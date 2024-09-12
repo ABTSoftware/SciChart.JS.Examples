@@ -175,10 +175,15 @@ async function getDataFromServer() {
 
     // See our source-code file tq3080_DSM_2M.js for format on this ASC Point cloud data
     // find the source online at github: https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src/server/Data/t
-    const host =
-        window.location.hostname.includes("scichart.com") || (window.location.hostname.includes("localhost:4200") && window.location.hostname.includes("localhost"))
-            ? ""
-            : "https://demo.scichart.com";
+    const hostname = window.location.hostname;
+    const port = window.location.port; 
+     let host = hostname.includes("scichart.com") || hostname.includes("localhost")
+     ? ""
+    : "https://demo.scichart.com";
+
+    if (hostname === "localhost" && port === "4200") {
+        host = "https://demo.scichart.com";
+    }
     const rawData = await fetch(host + "/api/lidardata");
     const ascData: AscData = reader.parse(await rawData.text());
 

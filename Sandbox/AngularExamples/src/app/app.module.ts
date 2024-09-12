@@ -36,7 +36,7 @@ import {Load500By500ChartComponent} from '../../../../Examples/src/components/Ex
 import {PointLine3DChartComponent} from '../../../../Examples/src/components/Examples/Charts3D/Basic3DChartTypes/PointLine3DChart/angular'
 import {ReactiveFormsModule } from '@angular/forms';
 import {HeatmapInteractionsComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/HeatmapInteractions/angular';
-import {RealtimeBigDataShowcaseComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/WebsocketBigData/angular'
+// import {RealtimeBigDataShowcaseComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/WebsocketBigData/angular'
 import {MatSliderModule} from '@angular/material/slider';
 import { MatRadioModule } from '@angular/material/radio';
 
@@ -68,7 +68,7 @@ import { MatRadioModule } from '@angular/material/radio';
     HeatmapChartComponent,
     Load500By500ChartComponent,
     PointLine3DChartComponent,
-    RealtimeBigDataShowcaseComponent,
+    // RealtimeBigDataShowcaseComponent,
     
     
   ],
