@@ -5,3 +5,15 @@
     overflow-x: auto;
     overflow-y: auto;
 }
+.custom-button {
+    background-color: blue;
+    color: white;
+    height: 40px;
+    width: 150px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 22px;
+    margin-top: 15px;
+}
