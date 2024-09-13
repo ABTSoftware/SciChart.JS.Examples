@@ -1100,10 +1100,10 @@ Show external placement div</Notes>
         <TaskItem Id="184d22ac-ebff-4f4f-a169-434224fc5ca8" Priority="Low" AssignedTo="">
           <Title>Synchronizing Multiple Charts docs</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-10-30T15:24:33.4663161Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2024-07-25T08:58:32.8764429Z</ModifiedOn>
+          <ModifiedOn>2024-09-11T10:48:37.2923911Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes>1/ how to sync two charts
 2/ Sync axis sizes
@@ -1119,10 +1119,10 @@ Show external placement div</Notes>
         <TaskItem Id="aa646516-38a5-43e3-b8cf-49fdfd56c9a1" Priority="Low" AssignedTo="">
           <Title>v3.3 Add RenderDataTransforms documentation</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2024-02-02T09:25:52.8061039Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2024-07-25T08:58:53.6899981Z</ModifiedOn>
+          <ModifiedOn>2024-09-11T10:48:28.2390231Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -1886,7 +1886,14 @@ Show external placement div</Notes>
                 </TocNode>
                 <TocNode Name="" Id="51ef5192-92ee-4804-bea1-0e02e8bd2938" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
-                  <ChildNodes />
+                  <ChildNodes>
+                    <TocNode Name="" Id="473953ef-998a-4387-a29e-5259f03ca161" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>37562eb0-702e-466c-9315-db6cbec0bd0f</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                  </ChildNodes>
                   <TargetItemId>246d21d0-3b1b-4840-be7b-33bc0066e0e1</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
@@ -6535,13 +6542,13 @@ Show external placement div</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="172addbf-995e-4705-9f7d-535415ab322a" Status="New Topic" CreatedOn="2016-09-02T09:34:03.7440005Z" ModifiedOn="2023-03-16T16:59:56.8644849Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="What is a RenderableSeries" BuildFlags="">
+                  <Topic Id="172addbf-995e-4705-9f7d-535415ab322a" Status="New Topic" CreatedOn="2016-09-02T09:34:03.7440005Z" ModifiedOn="2024-09-12T12:27:42.7180924Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="What is a RenderableSeries" BuildFlags="">
                     <Title m="2023-03-09T19:07:52.246146Z">Start Here - RenderableSeries Overview</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2023-03-16T16:59:56.8644849Z">&lt;innovasys:widget type="In This Topic List" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Prefix"&gt;$$In_This_Topic$$&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Tag"&gt;H2&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+                        <Content m="2024-09-12T12:27:42.7180924Z">&lt;innovasys:widget type="In This Topic List" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Prefix"&gt;$$In_This_Topic$$&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Tag"&gt;H2&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;The&amp;nbsp;RenderableSeries&lt;SPAN class=Apple-converted-space&gt;&amp;nbsp;&lt;/SPAN&gt;in SciChart are visual representations of &lt;STRONG&gt;X,Y Numeric&lt;/STRONG&gt; or &lt;STRONG&gt;Date&lt;/STRONG&gt; data. Other libraries call them 'Chart Types'.&lt;/P&gt;
 &lt;P&gt;Some RenderableSeries render simple X,Y values (2D points in space), while some render additional information (such as X,Y0,Y1 values, or X,Y,Z values).&lt;/P&gt;
 &lt;H2&gt;1. Chart Types in SciChart.js&lt;/H2&gt;
@@ -6617,6 +6624,9 @@ Show external placement div</Notes>
 &lt;TD&gt;
 &lt;P&gt;SciChart.js supports fast, WebGL based&amp;nbsp;text labels at datapoints, which can be customised. See the&amp;nbsp;&lt;A href="7ded97cf-3870-4fdf-b8b9-b6e74e1d8225"&gt;DataLabels API&lt;/A&gt; for more details.&lt;/P&gt;&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;Render Data Transforms&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
 &lt;TD&gt;&lt;STRONG&gt;Showing / hiding series&lt;/STRONG&gt;&lt;/TD&gt;
 &lt;TD&gt;You can show/hide series in SciChart.js as well as be notified when a series is hidden. See the&amp;nbsp;&lt;A href="1050b696-5965-441b-a60b-7743440dd66b"&gt;isVisibleChanged documentation&lt;/A&gt; for more details.&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
@@ -6645,13 +6655,16 @@ Show external placement div</Notes>
 &lt;TD&gt;&lt;STRONG&gt;Description&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
 &lt;TD&gt;&lt;STRONG style="COLOR: rgb(255,0,0)"&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#datalabelprovider"&gt;dataLabelProvider&lt;/A&gt;&lt;/STRONG&gt;&lt;/TD&gt;
-&lt;TD&gt;New to SciChart.js v3.0! The dataLabelprovider allows creation of per &lt;STRONG&gt;data-point text labels&lt;/STRONG&gt;. Please see the&amp;nbsp;&lt;A href="7ded97cf-3870-4fdf-b8b9-b6e74e1d8225"&gt;Data Labels API&lt;/A&gt; section for a complete walk-through of text labels on chart series.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TD&gt;(New to v3.0)&amp;nbsp;The dataLabelprovider allows creation of per &lt;STRONG&gt;data-point text labels&lt;/STRONG&gt;. Please see the&amp;nbsp;&lt;A href="7ded97cf-3870-4fdf-b8b9-b6e74e1d8225"&gt;Data Labels API&lt;/A&gt; section for a complete walk-through of text labels on chart series.&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
 &lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#dataseries"&gt;dataSeries&lt;/A&gt;&lt;/TD&gt;
 &lt;TD&gt;The DataSeries is the data-source for the RenderableSeries. Please see&amp;nbsp; &lt;A href="3425a202-cb28-4349-915f-ccf122d3a766"&gt;DataSeries API&lt;/A&gt; section for a complete walk-through of the DataSeries API&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
 &lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#drawnanas"&gt;drawNanAs&lt;/A&gt;&lt;/TD&gt;
 &lt;TD&gt;How to treat NAN (Not a number) values in the input dataSeries. See&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/elinedrawmode.html"&gt;ELineDrawMode&lt;/A&gt; for a list of values.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#renderDataTransform" target=_blank&gt;renderDataTransform&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;(New to v3.4) A&amp;nbsp;&lt;A href="72295505-46d0-4b28-b14d-7afe2b323f30"&gt;RenderDataTransform&lt;/A&gt; may be optionally applied to a RenderableSeries to transform data immediately before drawing. Can be used to change the visual output e.g. create interpolated series, insert points into series and change styles in a series without changing the data.&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
 &lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#pointmarker"&gt;pointMarker&lt;/A&gt;&lt;/TD&gt;
 &lt;TD&gt;A&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/basepointmarker.html"&gt;PointMarker&lt;/A&gt; is used to draw an &lt;STRONG&gt;optional point-marker at each data-point&lt;/STRONG&gt;. Applicable to some series types only.&lt;/TD&gt;&lt;/TR&gt;
@@ -8151,6 +8164,49 @@ Show external placement div</Notes>
 &lt;P align=center&gt;&lt;EM&gt;&lt;STRONG&gt;Above:&lt;/STRONG&gt; a&amp;nbsp;JavaScript 100% Smoothed Stacked Mountain chart when&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/stackedmountaincollection.html#isonehundredpercent"&gt;StackedMountainCollection.isOneHundredPercent&lt;/A&gt; is true&lt;/EM&gt;&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;P&gt;&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+              <Topic Id="37562eb0-702e-466c-9315-db6cbec0bd0f" Status="New Topic" CreatedOn="2024-09-12T12:23:41.6969527Z" ModifiedOn="2024-09-13T09:10:13.7241454Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="ColumnSeriesDataPointWidthMode" BuildFlags="">
+                <Title />
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2024-09-13T09:10:13.7241454Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;Not just applicable to&amp;nbsp;&lt;A href="246d21d0-3b1b-4840-be7b-33bc0066e0e1"&gt;Column Series&lt;/A&gt;, but also&amp;nbsp;&lt;A href="e5bcd0f1-0a90-4c63-a9ec-dc43c1846fbe"&gt;Error Bars Series&lt;/A&gt;,&amp;nbsp;&lt;A href="b2fc10ad-2614-414b-a173-bed16255aa6f"&gt;Candlestick&lt;/A&gt; and&amp;nbsp;&lt;A href="37dc17e0-10de-47a3-b255-dd7d6ad1cb0d"&gt;OHLC Series&lt;/A&gt;, the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/fastcolumnrenderableseries.html#datapointwidth" target=_blank&gt;dataPointWidth&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/fastcolumnrenderableseries.html#datapointwidthmode" target=_blank&gt;dataPointWidthMode&lt;/A&gt; properties allow controlling of spacing of bars on a 2D JavaScript Chart. &lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;In previous articles we've shown how&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/fastcolumnrenderableseries.html#datapointwidth" target=_blank&gt;dataPointWidth&lt;/A&gt;&amp;nbsp;can be used to change the width of bar-style series, for example Columns, Error Bars and Candlesticks/OHLC. &lt;/P&gt;
+&lt;P&gt;By default,&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/fastcolumnrenderableseries.html#datapointwidth" target=_blank&gt;dataPointWidth&lt;/A&gt;&amp;nbsp;sets the width of columns/bars as a fraction of available space, with valid values from 0.0 - 1.0.&lt;/P&gt;
+&lt;P&gt;New to SciChart.js v3.4 and above, a new property &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/fastcolumnrenderableseries.html#datapointwidthmode" target=_blank&gt;dataPointWidthMode&lt;/A&gt;&amp;nbsp;has been added. This has values of &lt;STRONG&gt;Absolute&lt;/STRONG&gt;, &lt;STRONG&gt;Range&lt;/STRONG&gt; and &lt;STRONG&gt;Relative&lt;/STRONG&gt;. These define how the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/fastcolumnrenderableseries.html#datapointwidth" target=_blank&gt;dataPointWidth&lt;/A&gt;&amp;nbsp;is interpreted on these series types:&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;TABLE&gt;
+&lt;TBODY&gt;
+&lt;TR&gt;
+&lt;TD width=10&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/edatapointwidthmode.html" target=_blank&gt;&lt;STRONG&gt;EDataPointWidthMode.Absolute&lt;/STRONG&gt;&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;Interprets Data Point Width as an absolute pixel value &lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD width=10&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/edatapointwidthmode.html" target=_blank&gt;&lt;STRONG&gt;EDataPointWidthMode.Range&lt;/STRONG&gt;&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;Interprets Data Point Width as the x data range per column. This is useful if you are plotting sparse columns on a NumericAxis &lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD width=10&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/edatapointwidthmode.html" target=_blank&gt;&lt;STRONG&gt;EDataPointWidthMode.Relative&lt;/STRONG&gt;&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;Interprets Data Point Width as a relative to the full width which is axis length / number of columns. This assumes that there are no gaps in the data. If you are plotting sparse columns on a NumericAxis, consider Range mode &lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;Here's an example of their use below. They can be very useful to change how sparsely populated column series behave.&lt;/P&gt;
+&lt;P&gt;Given a dataset with sparse values like this:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\2DChartTypes\ColumnCharts\DataPointWidthMode\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;And three column series with different dataPointWidthModes:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\2DChartTypes\ColumnCharts\DataPointWidthMode\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;The result is the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/2DChartTypes/ColumnCharts/DataPointWidthMode/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;Breaking this down:&lt;/STRONG&gt; &lt;/P&gt;
+&lt;P&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/edatapointwidthmode.html" target=_blank&gt;&lt;STRONG&gt;EDataPointWidthMode.Relative&lt;/STRONG&gt;&lt;/A&gt; was the previous default (and only) value prior to v3.4. This would calculate the available space for a column and render each bar as a fraction of that availble space (from 0.0 - 1.0). The problem with this mode was that when x-values were unevenly spaced or the dataset was sparse, then &lt;/P&gt;
+&lt;P&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/edatapointwidthmode.html" target=_blank&gt;&lt;STRONG&gt;EDataPointWidthMode.Absolute&lt;/STRONG&gt;&lt;/A&gt;&amp;nbsp;has been added post v3.4 which renders each bar as a pixel width. This is perfect for handling sparse datasets, except the bar will not scale as the chart is zoomed in or out. &lt;/P&gt;
+&lt;P&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/edatapointwidthmode.html" target=_blank&gt;&lt;STRONG&gt;EDataPointWidthMode.Relative&lt;/STRONG&gt;&lt;/A&gt;&amp;nbsp;has also been added post v3.4. This mode renders each bar as a x-Range, so if the xAxis has a range of 0-200 and you specify a value of 8, then a bar will occupy exactly 8 data units. Using this mode, bars or columns will never overlap.&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
                   </TopicSection>
                 </TopicSections>
                 <TopicLinks />
@@ -16554,7 +16610,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">1457</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
