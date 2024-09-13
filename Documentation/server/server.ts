@@ -299,6 +299,7 @@ SciChartSurface.useWasmFromCDN();`
       "es6",
       "dom"
     ],
+    "target": "es2021",
     "rootDir": "src",
     "moduleResolution": "node"
   }
