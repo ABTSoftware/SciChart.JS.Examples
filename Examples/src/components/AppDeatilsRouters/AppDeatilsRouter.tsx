@@ -1,5 +1,5 @@
 import React, { useState, FC, useContext, useMemo, useEffect } from "react";
-import classes from "./AppNewRouter.scss";
+import classes from "./AppDeatilsRouter.scss";
 import { useNavigate } from "react-router-dom";
 import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
 import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
@@ -23,7 +23,7 @@ type TProps = {
 
 const options = ["Option 1", "Option 2", "Option 3", "Another Option"];
 
-const AppNewRouter: FC<TProps> = (props) => {
+const AppDeatilsRouter: FC<TProps> = (props) => {
     const { currentExample, seeAlso, isIFrame = false } = props;
     const [code, setCode] = useState<string>("");
     const [selectedFile, setSelectedFile] = useState<string>("index.tsx");
@@ -333,4 +333,4 @@ const AppNewRouter: FC<TProps> = (props) => {
     );
 };
 
-export default AppNewRouter;
+export default AppDeatilsRouter;

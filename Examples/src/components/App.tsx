@@ -25,7 +25,7 @@ import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciC
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
 import NewTabs from "./NewTabs";
-import AppNewRouter from "./AppNewRouter/AppNewRouter";
+import AppNewRouter from "./AppDeatilsRouters/AppDeatilsRouter";
 
 export default function App() {
     const { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();

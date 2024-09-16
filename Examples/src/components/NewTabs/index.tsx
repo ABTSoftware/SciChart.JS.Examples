@@ -8,7 +8,7 @@ import { getTitle, useExampleRouteParams } from "../../helpers/shared/Helpers/fr
 import { generateExamplesGallery } from "../../helpers/SciChartExamples";
 import NewGalleryItems from "../NewGalleryitems";
 import Iconleft from "./images/icon-left-arrow.svg";
-import SubMenuItems from "../AppNewRouter/SubMenuItems";
+import SubMenuItems from "../AppDeatilsRouters/SubMenuItems";
 
 type TabName = "Featured Apps" | "2D Charts" | "3D Charts";
 

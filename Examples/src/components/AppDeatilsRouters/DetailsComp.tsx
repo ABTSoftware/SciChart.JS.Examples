@@ -1,5 +1,5 @@
 import React, { useState, FC, useContext, useMemo, useEffect } from "react";
-import classes from "./AppNewRouter.scss";
+import classes from "./AppDeatilsRouter.scss";
 import Chart from "../NewTabs/images/chart-d.jpg";
 import { TExamplePage } from "../AppRouter/examplePages";
 
