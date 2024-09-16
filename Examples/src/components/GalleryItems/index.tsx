@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import classes from "./index.scss";
 import { useNavigate } from "react-router-dom";
-import filtericon from "../NewTabs/images/filter-icon-1.svg";
-import filtericon11 from "../NewTabs/images/filtericon11.svg";
-import filtericon2 from "../NewTabs/images/filter-icon-2.svg";
-import filtericon22 from "../NewTabs/images/activeicon.svg";
-import filtericon3 from "../NewTabs/images/filter-icon-3.svg";
-import filtericon33 from "../NewTabs/images/filtericon33.svg";
+import filtericon from "../TopBarTabs/images/filter-icon-1.svg";
+import filtericon11 from "../TopBarTabs/images/filtericon11.svg";
+import filtericon2 from "../TopBarTabs/images/filter-icon-2.svg";
+import filtericon22 from "../TopBarTabs/images/activeicon.svg";
+import filtericon3 from "../TopBarTabs/images/filter-icon-3.svg";
+import filtericon33 from "../TopBarTabs/images/filtericon33.svg";
 import { GalleryItem } from "../../helpers/types/types";
 import { Tooltip } from "@mui/material";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
@@ -16,7 +16,7 @@ type TProps = {
     currentMenuItems: any[];
 };
 
-const NewGalleryItems: React.FC<TProps> = (props) => {
+const GalleryItems: React.FC<TProps> = (props) => {
     const navigate = useNavigate();
     const framework = useContext(FrameworkContext);
     const [groupedItems, setGroupedItems] = useState<any[]>([]);
@@ -155,4 +155,4 @@ const NewGalleryItems: React.FC<TProps> = (props) => {
     );
 };
 
-export default NewGalleryItems;
+export default GalleryItems;

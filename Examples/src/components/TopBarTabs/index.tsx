@@ -6,13 +6,13 @@ import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRo
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { getTitle, useExampleRouteParams } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { generateExamplesGallery } from "../../helpers/SciChartExamples";
-import NewGalleryItems from "../NewGalleryitems";
+import NewGalleryItems from "../GalleryItems";
 import Iconleft from "./images/icon-left-arrow.svg";
 import SubMenuItems from "../AppDeatilsRouters/SubMenuItems";
 
 type TabName = "Featured Apps" | "2D Charts" | "3D Charts";
 
-const NewTabs: FC = () => {
+const ButtonTabs: FC = () => {
     const navigate = useNavigate();
     const { framework } = useExampleRouteParams();
     const [activeTab, setActiveTab] = useState<TabName>("Featured Apps");
@@ -91,4 +91,4 @@ const NewTabs: FC = () => {
     );
 };
 
-export default NewTabs;
+export default ButtonTabs;

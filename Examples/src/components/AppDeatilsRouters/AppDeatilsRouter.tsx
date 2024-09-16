@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
 import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import SearchIcon from "../NewTabs/images/icon-search.svg";
+import SearchIcon from "../TopBarTabs/images/icon-search.svg";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { GalleryItem } from "../../helpers/types/types";
 import { generateSearchItems, TSearchItem } from "../Search/searchItems";

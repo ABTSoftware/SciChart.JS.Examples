@@ -321,7 +321,7 @@
 
                         &::after {
                             content: "";
-                            background-image: url("../NewTabs/images/icon-left-arrow.svg");
+                            background-image: url("../TopBarTabs/images/icon-left-arrow.svg");
                             background-repeat: no-repeat;
                             width: 9px;
                             height: 14px;
@@ -341,7 +341,7 @@
 
                         &::after {
                             content: "";
-                            background-image: url("../NewTabs/images/icon-left-arrow.svg");
+                            background-image: url("../TopBarTabs/images/icon-left-arrow.svg");
                             background-repeat: no-repeat;
                             width: 9px;
                             height: 14px;
@@ -354,13 +354,13 @@
 
                     @media only screen and (max-width: 768px) {
                         padding: 0 18px 10px 0;
-                        background-image: url("../NewTabs/images/tab-arrow.svg");
+                        background-image: url("../TopBarTabs/images/tab-arrow.svg");
                         background-repeat: no-repeat;
                         background-position: right 7px;
                         background-size: 10px;
 
                         &.active {
-                            background-image: url("../NewTabs/images/tab-arrow-hover.svg");
+                            background-image: url("../TopBarTabs/images/tab-arrow-hover.svg");
                             font-weight: 400;
                             color: #7593a4;
                             background-color: #f3f7fc;
@@ -371,7 +371,7 @@
                         }
 
                         &:hover {
-                            background-image: url("../NewTabs/images/tab-arrow-hover.svg");
+                            background-image: url("../TopBarTabs/images/tab-arrow-hover.svg");
                             font-weight: 400;
                             color: #7593a4;
                             background-color: #f3f7fc;
@@ -452,7 +452,7 @@
 
                     &::before {
                         content: "";
-                        background-image: url("../NewTabs/images/mobile-bullet.svg");
+                        background-image: url("../TopBarTabs/images/mobile-bullet.svg");
                         background-repeat: no-repeat;
                         width: 5px;
                         height: 5px;

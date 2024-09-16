@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import classes from "./AppDeatilsRouter.scss";
-import Iconleft from "../NewTabs/images/icon-left-arrow.svg";
+import Iconleft from "../TopBarTabs/images/icon-left-arrow.svg";
 
 type MenuItem = {
     item: {

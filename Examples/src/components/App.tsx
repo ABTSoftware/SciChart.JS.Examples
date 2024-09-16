@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useLocation, useMatch } from "react-router-dom";
 import { Theme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -14,17 +13,15 @@ import {
 import AppBarTop from "./AppTopBar/AppBarTop";
 import DrawerContent from "./DrawerContent/DrawerContent";
 import AppFooter from "./AppFooter/AppFooter";
-import { EXAMPLES_PAGES } from "./AppRouter/examplePages";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { SciChartDefaults } from "scichart/Charting/Visuals/SciChartDefaults";
 import classes from "./App.module.scss";
 import "./index.scss";
-import Gallery from "./Gallery/Gallery";
 import { GalleryItem } from "../helpers/types/types";
 import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
-import NewTabs from "./NewTabs";
+import TopBarTabs from "./TopBarTabs";
 import AppNewRouter from "./AppDeatilsRouters/AppDeatilsRouter";
 
 export default function App() {
@@ -122,7 +119,7 @@ export default function App() {
                     {isHomePage ? (
                         <div className={classes.tabsection}>
                             <div className={classes.container}>
-                                <NewTabs />
+                                <TopBarTabs />
                             </div>
                         </div>
                     ) : (
