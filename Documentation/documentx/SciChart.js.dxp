@@ -4680,28 +4680,36 @@ Show external placement div</Notes>
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
-          <Topic Id="d341b414-0d0b-4bcd-8782-e2da1b0b71ec" Status="New Topic" CreatedOn="2024-07-22T12:07:34.6359459Z" ModifiedOn="2024-07-22T12:57:15.8686324Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="WhatsNewSciChartJs3-4" BuildFlags="">
+          <Topic Id="d341b414-0d0b-4bcd-8782-e2da1b0b71ec" Status="New Topic" CreatedOn="2024-07-22T12:07:34.6359459Z" ModifiedOn="2024-09-17T14:07:01.4916286Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="WhatsNewSciChartJs3-4" BuildFlags="">
             <Title m="2024-07-22T12:07:48.9886028Z">What's New in SciChart.js SDK v3.4</Title>
             <ContentsTitle />
             <Notes></Notes>
             <TopicSections>
               <TopicSection Name="BodyText">
-                <Content m="2024-07-22T12:57:15.8686324Z">&lt;P&gt;SciChart.js v3.4 is minor update to our JavaScript Chart Library which is backward compatible to &lt;A href="048e8b8c-3acd-4ad6-93c6-034a8d79b14a"&gt;version 3.0&lt;/A&gt;. Our team has added lots of features to improve SciChart, which are detailed below.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Read the full release note at&amp;nbsp;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released/" target=_blank&gt;scichart.com/scichart-js-v3-4-released&lt;/A&gt;!&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Version 3.4 at a glance&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/P&gt;
+                <Content m="2024-09-17T14:07:01.4916286Z">&lt;P&gt;SciChart.js v3.4 is minor update to our JavaScript Chart Library which is backward compatible to &lt;A href="048e8b8c-3acd-4ad6-93c6-034a8d79b14a"&gt;version 3.0&lt;/A&gt;. Our team has added lots of features to improve SciChart, which are detailed below.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Read the full release note at&amp;nbsp;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released/" target=_blank&gt;scichart.com/scichart-js-v3-4-released&lt;/A&gt;!&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
+&lt;P&gt;Version 3.4 at a glance&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/P&gt;
 &lt;OL&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature1" target=_blank&gt;Hoverable Annotations&lt;/A&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature2" target=_blank&gt;DataLabels support for Stacked Column Series&lt;/A&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature3" target=_blank&gt;New Chart Type! Smooth Stacked Mountain Series&lt;/A&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature4" target=_blank&gt;Alternative Line Smoothing algorithms&lt;/A&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature5" target=_blank&gt;Animations improvements&lt;/A&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature6" target=_blank&gt;Engineering formatting for Axis Labels&lt;/A&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature7" target=_blank&gt;Optionally disable loader animations&lt;/A&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature8" target=_blank&gt;CursorModifier now supports non-uniform heatmap and contour series&lt;/A&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature9" target=_blank&gt;PaletteFactory.createYGradient - helper method for creating paletteproviders that depend on y-value&lt;/A&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature10" target=_blank&gt;SVG Annotations can now be placed behind the chart&lt;/A&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature11" target=_blank&gt;SS.ms format for displaying milliseconds and seconds in SmartDateLabelProvider&lt;/A&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature12" target=_blank&gt;createSuspended and nextStateRender for visual testing and chart image export improvements&lt;/A&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature13" target=_blank&gt;Gradient fill for band series&lt;/A&gt;&lt;/LI&gt;&lt;/OL&gt;</Content>
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature1" target=_blank&gt;Hoverable Annotations&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature2" target=_blank&gt;DataLabels support for Stacked Column Series&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature3" target=_blank&gt;New Chart Type! Smooth Stacked Mountain Series&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature4" target=_blank&gt;Alternative Line Smoothing algorithms&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature5" target=_blank&gt;Animations improvements&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature6" target=_blank&gt;Engineering formatting for Axis Labels&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature7" target=_blank&gt;Optionally disable loader animations&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature8" target=_blank&gt;CursorModifier now supports non-uniform heatmap and contour series&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature9" target=_blank&gt;PaletteFactory.createYGradient - helper method for creating paletteproviders that depend on y-value&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature10" target=_blank&gt;SVG Annotations can now be placed behind the chart&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature11" target=_blank&gt;SS.ms format for displaying milliseconds and seconds in SmartDateLabelProvider&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature12" target=_blank&gt;createSuspended and nextStateRender for visual testing and chart image export improvements&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature13" target=_blank&gt;Gradient fill for band series&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature14" target=_blank&gt;Sync Vertical Chart axis sizes with SciChartHorizontalGroup&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature15" target=_blank&gt;Sensible Column Widths for Columns, Error Bars, Candlesticks using dataPointWidthMode&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature16" target=_blank&gt;ColumnSeries can draw different styles in the same series&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature17" target=_blank&gt;Improvements to Splitting Line Charts by Thresholds&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature18" target=_blank&gt;Added MemoryTests project to Github to allow debugging memory issues&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature19" target=_blank&gt;New React / JavaScript Chart demos&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature20" target=_blank&gt;Improvements to Documentation / Examples&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature21" target=_blank&gt;Bug fixes, Improvements&lt;/A&gt; &lt;/LI&gt;&lt;/OL&gt;</Content>
               </TopicSection>
             </TopicSections>
             <TopicLinks />
