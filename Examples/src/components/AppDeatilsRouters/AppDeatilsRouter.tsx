@@ -28,6 +28,8 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     const [code, setCode] = useState<string>("");
     const [selectedFile, setSelectedFile] = useState<string>("index.tsx");
     const currentPath = location.pathname.substring(1); // Get the path without the leading "/"
+    // Split the path into framework and the rest (example path)
+    const [currentFramework, ...examplePath] = currentPath.split("/");
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState<TabName>("Featured Apps");
     const [currentMenuItems, setCurrentMenuItems] = useState(MENU_ITEMS_FEATURED_APPS);
@@ -48,7 +50,8 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
         const value = (e.currentTarget as HTMLElement).getAttribute("data-value");
         if (value) {
-            navigate(`/${value}`);
+            // Navigate to the new framework along with the current example path
+            navigate(`/${value}/${examplePath.join("/")}`);
         }
     };
 
@@ -138,7 +141,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                             handleClick(e);
                         }}
                         data-value="react"
-                        className={`${classes.FrameworkListItem} ${currentPath === "react" ? classes.active : ""}`}
+                        className={`${classes.FrameworkListItem} ${currentFramework === "react" ? classes.active : ""}`}
                     >
                         React
                     </div>
@@ -147,7 +150,9 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                             handleClick(e);
                         }}
                         data-value="javascript"
-                        className={`${classes.FrameworkListItem} ${currentPath === "javascript" ? classes.active : ""}`}
+                        className={`${classes.FrameworkListItem} ${
+                            currentFramework === "javascript" ? classes.active : ""
+                        }`}
                     >
                         JavaScript
                     </div>
@@ -156,7 +161,9 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                             handleClick(e);
                         }}
                         data-value="angular"
-                        className={`${classes.FrameworkListItem} ${currentPath === "angular" ? classes.active : ""}`}
+                        className={`${classes.FrameworkListItem} ${
+                            currentFramework === "angular" ? classes.active : ""
+                        }`}
                     >
                         Angular
                     </div>
