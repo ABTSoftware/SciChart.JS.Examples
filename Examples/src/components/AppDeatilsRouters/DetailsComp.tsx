@@ -13,14 +13,14 @@ const DetailsCom: FC<TProps> = (props) => {
         <div className={classes.scichartcontainer}>
             <div className={classes.scichartinfo}>
                 <p
-                    style={{ fontSize: "20px", fontFamily: "Popins" }}
+                    style={{ fontSize: "20px", fontFamily: "Arial" }}
                     dangerouslySetInnerHTML={{ __html: currentExample.customDescription }}
                 />
                 <button className={classes.gettingstartedbtn}>Getting Started</button>
             </div>
             <div className={classes.scichartdescription}>
                 <p
-                    style={{ fontSize: "20px", fontFamily: "Popins", fontWeight: 500, marginTop: "30px" }}
+                    style={{ fontSize: "20px", fontFamily: "Arial", fontWeight: 500, marginTop: "30px" }}
                     dangerouslySetInnerHTML={{ __html: currentExample.customDescription1 }}
                 />
             </div>
@@ -37,7 +37,7 @@ const DetailsCom: FC<TProps> = (props) => {
             <div className={classes.candlestickchartscontainer}>
                 <h2>Candlestick Charts for traders</h2>
                 <p
-                    style={{ fontSize: "20px", fontFamily: "Popins", fontWeight: 500, marginTop: "30px" }}
+                    style={{ fontSize: "20px", fontFamily: "Arial", fontWeight: 500, marginTop: "30px" }}
                     dangerouslySetInnerHTML={{ __html: currentExample.moreInfo }}
                 />
                 <h3>
@@ -71,7 +71,7 @@ const DetailsCom: FC<TProps> = (props) => {
                     {currentExample.Questions.map((link, index) => (
                         <>
                             <h3>{link.label}</h3>
-                            <p>{link.tag}</p>
+                            <p style={{ fontFamily: "Arial" }}>{link.tag}</p>
                         </>
                     ))}
                 </div>

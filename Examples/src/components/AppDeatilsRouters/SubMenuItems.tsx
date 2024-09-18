@@ -33,10 +33,16 @@ const SubMenuItems: FC<TProps> = ({
         <div className={classes.contertlistwrap}>
             <div className={`${classes.contentlist} ${classes.graybg}`}>
                 {currentMenuItems.map((item) => (
-                    <ul key={item.item.id}>
+                    <ul key={item.item.id} style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "17px" }}>
                         <li
                             className={selectedItemId === item.item.id ? classes.active : ""}
                             onClick={() => handleClicks(item.item.id)}
+                            style={{
+                                fontWeight: 500,
+                                fontFamily: "Arial",
+                                fontSize: "17px",
+                                color: "rgba(80, 103, 117, 1)",
+                            }}
                         >
                             {item.item.name}
                             {selectedItemId === item.item.id && (
@@ -56,7 +62,7 @@ const SubMenuItems: FC<TProps> = ({
                 ))}
             </div>
             <div className={`${classes.contentlist} ${classes.columncount} ${classes.mobilehidden}`}>
-                <ul style={{ fontSize: "17px", fontFamily: "Popins" }}>
+                <ul style={{ fontWeight: 600, fontFamily: "Arial", fontSize: "17px" }}>
                     {SubmenuTitle?.map((submenuItem, index) => (
                         <li key={index} onClick={() => handleSubmenuClick(submenuItem.path)}>
                             {submenuItem.title}

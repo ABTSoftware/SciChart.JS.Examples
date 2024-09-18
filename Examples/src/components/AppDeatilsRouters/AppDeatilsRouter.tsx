@@ -141,6 +141,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                             handleClick(e);
                         }}
                         data-value="react"
+                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "20px" }}
                         className={`${classes.FrameworkListItem} ${currentFramework === "react" ? classes.active : ""}`}
                     >
                         React
@@ -149,6 +150,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                         onClick={(e) => {
                             handleClick(e);
                         }}
+                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "20px" }}
                         data-value="javascript"
                         className={`${classes.FrameworkListItem} ${
                             currentFramework === "javascript" ? classes.active : ""
@@ -160,6 +162,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                         onClick={(e) => {
                             handleClick(e);
                         }}
+                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "20px" }}
                         data-value="angular"
                         className={`${classes.FrameworkListItem} ${
                             currentFramework === "angular" ? classes.active : ""
@@ -176,21 +179,21 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                             <li
                                 className={`${classes.tablink} ${activeTab === "Featured Apps" ? classes.active : ""}`}
                                 onClick={() => handleTabClick("Featured Apps")}
-                                style={{ fontWeight: "500", fontSize: "18px", fontFamily: "Popins" }}
+                                style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "18px" }}
                             >
                                 Featured Apps
                             </li>
                             <li
                                 className={`${classes.tablink} ${activeTab === "2D Charts" ? classes.active : ""}`}
                                 onClick={() => handleTabClick("2D Charts")}
-                                style={{ fontWeight: "500", fontSize: "18px", fontFamily: "Popins" }}
+                                style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "18px" }}
                             >
                                 2D Charts
                             </li>
                             <li
                                 className={`${classes.tablink} ${activeTab === "3D Charts" ? classes.active : ""}`}
                                 onClick={() => handleTabClick("3D Charts")}
-                                style={{ fontWeight: "500", fontSize: "18px", fontFamily: "Popins" }}
+                                style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "18px" }}
                             >
                                 3D Charts
                             </li>

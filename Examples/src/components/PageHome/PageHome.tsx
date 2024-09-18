@@ -81,6 +81,7 @@ export default function PageHome() {
                             handleClick(e);
                         }}
                         data-value="react"
+                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "18px" }}
                         className={`${classes.FrameworkListItem} ${currentPath === "react" ? classes.active : ""}`}
                     >
                         React
@@ -90,6 +91,7 @@ export default function PageHome() {
                             handleClick(e);
                         }}
                         data-value="javascript"
+                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "18px" }}
                         className={`${classes.FrameworkListItem} ${currentPath === "javascript" ? classes.active : ""}`}
                     >
                         JavaScript
@@ -99,6 +101,7 @@ export default function PageHome() {
                             handleClick(e);
                         }}
                         data-value="angular"
+                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "18px" }}
                         className={`${classes.FrameworkListItem} ${currentPath === "angular" ? classes.active : ""}`}
                     >
                         Angular
