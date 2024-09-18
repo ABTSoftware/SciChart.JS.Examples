@@ -5,13 +5,14 @@
         <title>SciChart.js Tutorial 3</title>
         <script async type="text/javascript" src="bundle.js"></script>
         <style>
-            body { font-family: 'Arial'}
+            body { font-family: 'Arial' }
         </style>
     </head>
     <body>
         <h1>Hello SciChart.js world!</h1>
         <p>In this example we add simple zoom and pan behaviour. Select the options below to enable different behaviours</p>
 
+        <!-- #region ExampleA -->
         <div style="margin: 10px;">
             <input type="checkbox" id="enable-pan" checked>
             <label for="enable-pan">Enable Mouse-Drag to Pan</label><br>
@@ -22,6 +23,7 @@
             <input type="checkbox" id="enable-mouse-wheel-zoom" checked>
             <label for="enable-mouse-wheel-zoom">Enable Mousewheel Zoom</label><br>                
         </div>
+        <!-- #endregion -->
         
         <!-- the Div where the SciChartSurface will reside -->
         <div id="scichart-root" style="height: 600px; width: 100%;"></div>
