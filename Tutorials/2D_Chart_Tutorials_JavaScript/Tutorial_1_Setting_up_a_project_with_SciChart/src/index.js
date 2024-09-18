@@ -1,14 +1,14 @@
-import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { SciChartSurface, NumericAxis } from "scichart";
 
 async function initSciChart() {
     // LICENSING //
-    // Set your license code here
-    // You can get a trial license key from https://www.scichart.com/licensing-scichart-js/
+    // For community or trial usage, SciChart.js works out of the box
+
+    // For commercial use of SciChart, you need a license.
     // Purchased license keys can be viewed at https://www.scichart.com/profile
     //
     // e.g.
-    //
+    // Set your license code here
     // SciChartSurface.setRuntimeLicenseKey("YOUR_RUNTIME_KEY");
     //
     // Also, once activated (trial or paid license) having the licensing wizard open on your machine

@@ -1,7 +1,7 @@
 {
-  "name": "tutorial1",
+  "name": "tutorial2",
   "version": "1.0.0",
-  "description": "First Tutorial with SciChart.js",
+  "description": "Tutorial with SciChart.js",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -10,7 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "scichart": "^2.2.2401"
+    "scichart": "^3.4.662"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^9.0.1",
