@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
 import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import ExamplesRoot from "../Examples/ExampleRootDetails";
 import SearchIcon from "../TopBarTabs/images/icon-search.svg";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { GalleryItem } from "../../helpers/types/types";
@@ -257,7 +258,8 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                             <div className={classes.chartwrap}>
                                 <p>{currentExample.description}</p>
                                 <div className={classes.chartimgwrap}>
-                                    <img src={currentExample.thumbnailImage} />
+                                    <ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />
+                                    {/* <img src={currentExample.thumbnailImage} /> */}
                                 </div>
                                 <div className={classes.tabbtnwrap}>
                                     <a
