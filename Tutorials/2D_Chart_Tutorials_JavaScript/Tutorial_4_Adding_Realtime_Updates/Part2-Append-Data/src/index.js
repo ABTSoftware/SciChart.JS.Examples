@@ -56,14 +56,10 @@ async function initSciChart() {
         // ZoomExtents after appending data.
         // Also see XAxis.AutoRange, and XAxis.VisibleRange for more options
         sciChartSurface.zoomExtents();
-
-        // Repeat at 60Hz        
-        setTimeout(updateDataFunc, 1000/60);
-
-        // Warning, this will repeat forever, it's not best practice!
     };
 
-    updateDataFunc();
+    // Repeat at 60Hz
+    setInterval(updateDataFunc, 1000/60);
     // #endregion
 }
 

@@ -53,17 +53,14 @@ async function initSciChart() {
         lineData.append(i, Math.sin(i * 0.1));
         scatterData.append(i, Math.cos(i * 0.1));
 
-        // ZoomExtents after appending data.
-        // Also see XAxis.AutoRange, and XAxis.VisibleRange for more options
+        // Apply scrolling to the chart by updating xAxis.visibleRange
+        // Also see dataSeries.fifoCapacity and dataSeries.fifoSweeping for more options
+        const xAxis = sciChartSurface.xAxes.get(0);
         xAxis.visibleRange = new NumberRange(i-1000, i);
-
-        // Repeat at 60Hz        
-        setTimeout(updateDataFunc, 1000/60);
-
-        // Warning, this will repeat forever, it's not best practice!
     };
 
-    updateDataFunc();
+    // Repeat at 60Hz
+    setInterval(updateDataFunc, 1000/60);
     // #endregion
 }
 

@@ -52,7 +52,8 @@ async function initSciChart() {
     const updateDataFunc = () => {
 
         // update the datapoints in the dataseries
-        // Note updateRange() passing in array is higher performance for larger datasets
+        // Note dataSeries.updateRange() passing in array is
+        // higher performance for larger datasets vs. calling dataSeries.update() in a loop
         for(let i = 0; i < 1000; i++) {
             lineData.update(i, Math.sin(i * 0.1 + phase));
             scatterData.update(i, Math.cos(i * 0.1 + phase));
@@ -63,7 +64,6 @@ async function initSciChart() {
 
     // Update data at 60Hz
     setInterval(updateDataFunc, 1000/60);
-    //updateDataFunc();
     // #endregion
 }
 
