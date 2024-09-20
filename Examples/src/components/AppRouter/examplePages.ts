@@ -112,6 +112,7 @@ import { TDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpe
 import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
 import { smoothStackedMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart/exampleInfo";
 import { lineSplittingThresholdsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds/exampleInfo";
+import { zoomHighPrecisionExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/ZoomHighPrecision/exampleInfo";
 
 export type TExampleInfo = {
     /**
@@ -476,10 +477,10 @@ export const EXAMPLES_PAGES = asRecord({
         id: "chart2D_zoomAndPanAChart_VirtualizedDataOverview",
         ...virtualizedDataOverviewExampleInfo,
     },
-    // chart2D_zoomAndPanAChart_ZoomHighPrecision: {
-    //     id: "chart2D_zoomAndPanAChart_ZoomHighPrecision",
-    //     ...zoomHighPrecisionExampleInfo,
-    // },
+    chart2D_zoomAndPanAChart_ZoomHighPrecision: {
+        id: "chart2D_zoomAndPanAChart_ZoomHighPrecision",
+        ...zoomHighPrecisionExampleInfo,
+    },
     chart2D_filters_PercentageChange: {
         id: "chart2D_filters_PercentageChange",
         ...percentageChangeExampleInfo,

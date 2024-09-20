@@ -121,6 +121,7 @@ import UserAnnotatedStockChart from "../Examples/Charts2D/CreateStockCharts/User
 import PopulationPyramid from "../Examples/FeaturedApps/ShowCases/PopulationPyramid";
 import SmoothStackedMountainChart from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart";
 import { lineSplittingThresholdsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds/exampleInfo";
+import ZoomHighPrecision from "../Examples/Charts2D/ZoomingAndPanning/ZoomHighPrecision";
 
 export type TMenuItem = {
     item: {
@@ -289,7 +290,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_VirtualizedDataOverview,
-            //EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision,
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision,
         ],
     },
     {
@@ -539,8 +540,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return Overview;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_VirtualizedDataOverview.id:
             return VirtualizedDataOverview;
-        // case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision.id:
-        //     return ZoomHighPrecision;
+        case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision.id:
+            return ZoomHighPrecision;
         case EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels.id:
             return MultiLineLabels;
         case EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels.id:
