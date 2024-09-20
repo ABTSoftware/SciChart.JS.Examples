@@ -29,29 +29,23 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const moreInfo = ` <p>
-                    The most popular <a href="#">chart type for traders</a> is the candlestick chart. Candlestick
-                    provides visual support for making decisions in the case of stocks, foreign exchange or commodities.
-                </p>
-                <p>
-                    Sometimes, in trading, you are not able to see the volume of data you require. With SciChart.js,
-                    there are fewer limitations – for instance, you can visualize a year’s worth of 1-minute OHLC bars
-                    in a Candlestick Chart, as opposed to a few days. We help you present even the most complex data
-                    sets in a way that’s easy to navigate and understand, all with high performance.
-                </p>
-                <p>
-                    Our candlestick graphs support interactive elements including animation, zooming and panning. Our
-                    boilerplates integrate easily with all your JavaScript frameworks, including Angular, Vue, Blazor,
-                    React, Electron and Next.js. Start creating more sophisticated financial charts to describe the
-                    price changes of a security or currency with SciChart.js. Ready to create your JavaScript
-                    Candlestick Chart?
-                </p>
-                <p>
-                    SciChart.js is the latest software to be added to our award-winning chart library portfolio. Our
-                    priority is to enable the creation of high-performance JavaScript charts for all your digital
-                    applications. To use locally, simply sign-up and follow the steps. Create complex, fast-rendering
-                    financial charts in just a few steps!
-                </p>`;
+// MoreInfo Header -
+const moreInfoHeader = `Candlestick Charts for traders`;
+const moreInfo = [
+    {
+        label: "The most popular chart type for traders</a> is the candlestick chart. Candlestick provides visual support for making decisions in the case of stocks, foreign exchange or commodities.",
+    },
+    {
+        label: " Sometimes, in trading, you are not able to see the volume of data you require. With SciChart.js, there are fewer limitations – for instance, you can visualize a year’s worth of 1-minute OHLC bars in a Candlestick Chart, as opposed to a few days. We help you present even the most complex data sets in a way that’s easy to navigate and understand, all with high performance.",
+    },
+    {
+        label: "Our candlestick graphs support interactive elements including animation, zooming and panning. Our boilerplates integrate easily with all your JavaScript frameworks, including Angular, Vue, Blazor, React, Electron and Next.js. Start creating more sophisticated financial charts to describe the price changes of a security or currency with SciChart.js. Ready to create your JavaScript Candlestick Chart?",
+    },
+    {
+        label: " SciChart.js is the latest software to be added to our award-winning chart library portfolio. Our priority is to enable the creation of high-performance JavaScript charts for all your digital applications. To use locally, simply sign-up and follow the steps. Create complex, fast-rendering financial charts in just a few steps!",
+    },
+];
+
 const customDescription = ` SciChart.js ships with over 80 <a href="#">JavaScript Chart demos</a> which you can browse, view the source code and see related documentation. Build incredible complex dashboards with SciChart.js, our High Performance <a href="#">JavaScript Chart Library</a.`;
 const customDescription1 = `This <a href="#">JavaScript Chart</a> demo shows you how to create a JavaScript Candlestick Chart or
                     Stock Chart using SciChart.js. SciChart.js supports Candlestick Charts with custom colors per bar
@@ -62,6 +56,9 @@ const customDescription1 = `This <a href="#">JavaScript Chart</a> demo shows you
                     financial charts. Compared to other chart software vendors, our samples have more sophisticated
                     features, all with simple to understand instructions and documentation. Your developers can also
                     benefit from our responsive support team.`;
+
+// customheader for the NewLinks
+const customheader = `Documentation Link`;
 const NewLinks = [
     { url: "https://www.scichart.com/documentation/js/current/", label: "SciChart.js Documentation Home" },
     {
@@ -82,6 +79,18 @@ const NewPoints = [
     { label: "Get building your first charting app with our tutorials." },
 ];
 
+// Benifit section Header
+const BenifitsHeader = `Why Use SciChart JavaScript Chart Library?`;
+const Benifits = [
+    { label: "Supports millions of data points" },
+    { label: "Fast rendering for real-time data feeds" },
+    { label: "Supports customizable, interactive features" },
+    { label: "5-star rated support for developers" },
+    { label: "Winner of Queen’s Award for Innovation" },
+];
+
+// Question section header
+const QuestionsHeader = `Frequently Asked Questions`;
 const Questions = [
     {
         label: "Are your JavaScript Candlestick Charts responsive?",
@@ -106,8 +115,13 @@ export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     thumbnailImage: exampleImage,
     customDescription,
     customDescription1,
+    customheader,
     NewLinks,
+    moreInfoHeader,
     moreInfo,
     NewPoints,
     Questions,
+    Benifits,
+    BenifitsHeader,
+    QuestionsHeader,
 };

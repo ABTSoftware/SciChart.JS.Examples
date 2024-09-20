@@ -126,10 +126,17 @@ export type TExampleInfo = {
     tips?: any;
     customDescription?: any;
     customDescription1?: any;
-    moreInfo?: any;
+    moreInfo?: { label: string }[];
     NewPoints?: { label: string }[];
+    Benifits?: { label: string }[];
     Questions?: { label: string; tag: string }[];
+    // custom header for the NewLinks
+    customheader?: string;
+    moreInfoHeader?: string;
+    BenifitsHeader?: string;
+    QuestionsHeader?: string;
     NewLinks?: { url: string; label: string }[];
+
     description: TDescriptionTemplate;
     previewDescription?: any;
     subtitle: (frameworkName: string) => JSX.Element;
