@@ -6,106 +6,125 @@ import { TDataUpdateInfo,drawExample } from './drawExample';
 @Component({
   selector: 'app-vital-signs-monitor',
   template: `
-  <style>
+
+<style>
   .chart-wrapper {
-  height: 100%;
-}
-.chart-container {
+    height: 100%;
+    display: flex; 
+  }
+  .chart-container {
+    display: flex; 
+    flex: 1;
+  }
+  .info-box-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    border: 1px solid;
+  }
+  .info-box {
+    padding: 58px;
+    flex: 1; 
+    border: 1px solid;
+  }
+  .ib-row1, .ib-row2 {
+    display: flex;
+    justify-content: space-between;
+  }
+  .ib-row1-col1, .ib-row2-col1, .ib-row2-col2 {
+    flex: 1; 
+  }
+
+.info-box {
+  padding: 58px;
   flex: 1;
-}
-.info-box-container {
+  border: 1px solid;
   display: flex;
   flex-direction: column;
-  // margin-left: 20px;
+  height: 100%;
+  justify-content: space-between; 
 }
-.info-box {
-  // margin-bottom: 10px;
-  padding: 58px;
-  // border-radius: 5px;
-}
-.ib-row1 {
+.ib-bottom-row {
   display: flex;
   justify-content: space-between;
+  margin-top: auto; 
 }
-.ib-row1-col1 {
-  font-weight: bold;
+
+.ib-title {
+  font-size: 24px; 
+  font-weight: bold; 
 }
-.ib-row2 {
-  display: flex;
-  justify-content: space-between;
+  .ib-row1-col1{
+  font-size: 24px; 
+  font-weight: bold; 
 }
-.ib-row2-col1 {
-  width: 50%;
-}
-.ib-row2-col2 {
-  width: 50%;
-}
-  </style>
-  <div class="chart-wrapper">
-  <div style="display: flex; height: 80%;">
-     <scichart-angular
-        [initChart]="drawExample"
-        (onInit)="onChartInit($event)"
-        style="flex: 1; flex-basis: 50%;">
-      </scichart-angular>
+</style>
+
+<div class="chart-wrapper">
+  <div class="chart-container">
+    <scichart-angular
+      [initChart]="drawExample"
+      (onInit)="onChartInit($event)"
+      style="flex: 1;">
+    </scichart-angular>
     <div class="info-box-container">
-      <div class="info-box" [ngStyle]="{ 'color': appTheme.VividOrange, 'background': appTheme.Background }">
-        <div class="info-box-row1">
-          <div class="info-box-row1-col1">ECG</div>
+    <div class="info-box" [ngStyle]="{ 'color': appTheme.VividOrange, 'background': appTheme.Background }">
+      <div class="ib-header">
+        <div class="ib-title">ECG</div>
+      </div>
+      <div class="ib-bottom-row">
+        <div class="ib-bottom-left">
+          <div>
+            V1 - 1.4MM<br />
+            ST | +0.6 || +0.9
+          </div>
         </div>
-        <div class="info-box-row2">
-          <div class="info-box-row2-col1">
-            <div>
-              V1 - 1.4MM<br />
-              ST | +0.6 || +0.9
-            </div>
-          </div>
-          <div class="info-box-row2-col2">
-            <div>{{ infoEcg }}</div>
-          </div>
+        <div class="ib-bottom-right">
+          <div>{{ infoEcg }}</div>
         </div>
       </div>
+      </div>
       <div class="info-box" [ngStyle]="{ 'color': appTheme.VividSkyBlue, 'background': appTheme.Background }">
-        <div class="info-box-row1">
-          <div class="info-box-row1-col1">NIBP</div>
-          <div class="info-box-row1-col2">
+        <div class="ib-row1">
+          <div class="ib-row1-col1">NIBP</div>
+          <div class="ib-row1-col2">
             AUTO<br />
             145/95
           </div>
         </div>
-        <div class="info-box-row2">
-          <div class="info-box-row2-col2">
+        <div class="ib-row2">
+          <div class="ib-row2-col2">
             <div>{{ infoBloodPressure1 }}/{{ infoBloodPressure2 }}</div>
           </div>
         </div>
       </div>
       <div class="info-box" [ngStyle]="{ 'color': appTheme.VividPink, 'background': appTheme.Background }">
-        <div class="info-box-row1">
-          <div class="info-box-row1-col1">SV</div>
-          <div class="info-box-row1-col2">
+        <div class="ib-row1">
+          <div class="ib-row1-col1">SV</div>
+          <div class="ib-row1-col2">
             ML 100<br />
             %**** 55
           </div>
         </div>
-        <div class="info-box-row2">
-          <div class="info-box-row2-col2">
+        <div class="ib-row2">
+          <div class="ib-row2-col2">
             <div>{{ infoBloodVolume.toFixed(1) }}</div>
           </div>
         </div>
       </div>
       <div class="info-box" [ngStyle]="{ 'color': appTheme.VividTeal, 'background': appTheme.Background }">
-        <div class="info-box-row1">
-          <div class="info-box-row1-col1">SPO<span style="font-size: 12px">2</span></div>
-          <div class="info-box-row1-col2">18:06</div>
+        <div class="ib-row1">
+          <div class="ib-row1-col1">SPO<span style="font-size: 12px">2</span></div>
+          <div class="ib-row1-col2">18:06</div>
         </div>
-        <div class="info-box-row2">
-          <div class="info-box-row2-col1">
+        <div class="ib-row2">
+          <div class="ib-row2-col1">
             <div>
               71-<br />
               RESP
             </div>
           </div>
-          <div class="info-box-row2-col2">
+          <div class="ib-row2-col2">
             <div>{{ infoBloodOxygenation }}</div>
           </div>
         </div>
@@ -113,6 +132,7 @@ import { TDataUpdateInfo,drawExample } from './drawExample';
     </div>
   </div>
 </div>
+
 
 `,
 })

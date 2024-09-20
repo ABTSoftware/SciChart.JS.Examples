@@ -5,7 +5,7 @@ import { drawExample, drawHeatmapLegend } from './drawExample';
   selector: 'app-li-dar3d-point-cloud',
   template: `
   <style>
-  .chart-area {
+.chart-area {
   position: relative;
   width: 100%;
   height: 100%;
@@ -13,15 +13,15 @@ import { drawExample, drawHeatmapLegend } from './drawExample';
 .chart-example {
   position: absolute;
   height: 100%;
-  width: calc(100% - 140px);
+  width: calc(100% - 1px);
   top: 0;
   left: 0;
 }
 .chart-legend {
   position: absolute;
   height: 95%;
-  width: 110px;
-  right: 20px;
+  width: 100px;
+  right: 15px;
   margin: 20px;
 }
   </style>
@@ -30,10 +30,12 @@ import { drawExample, drawHeatmapLegend } from './drawExample';
     [initChart]="initSciChartSurface"
     class="chart-example">
   </scichart-angular>
+  <div class="HeatmapLegend">
   <scichart-angular
     [initChart]="initHeatmapLegend"
     class="chart-legend">
   </scichart-angular>
+  </div>
 </div>
 `,
  
