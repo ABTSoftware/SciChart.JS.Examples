@@ -41,6 +41,16 @@ import {
   ScaleAnimation,
   FadeAnimation,
   GenericAnimation,
+  SplineMountainRenderableSeries,
+  GradientParams,
+  Point,
+  EAnimationType,
+  FastErrorBarsRenderableSeries,
+  HlcDataSeries,
+  EErrorMode,
+  EErrorDirection,
+  EDataPointWidthMode,
+  PinchZoomModifier,
 } from 'scichart';
 
 const waveAnimation = new WaveAnimation({
@@ -61,14 +71,32 @@ SciChart3DSurface.loadWasmFromCDN();
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent{
   title = 'CodeSandbox';
   private sciChartSurface?: SciChartSurface;
   private sciChart3DSurface?: SciChart3DSurface;
 
   constructor() {}
 
+  showCharts = true; 
+  showAnimation3D = true; 
+  showSpline = true;
+  showDigitalBand = true; 
+  showAnimation = true; 
 
+  toggleCharts() {
+    this.showAnimation3D = this.showCharts;
+    this.showSpline = this.showCharts;
+    this.showDigitalBand = this.showCharts;
+    this.showAnimation = this.showCharts;
+  }
+  
+  logVisibilityStatus() {
+    console.log(`Animation Chart: ${this.showAnimation}`);
+    console.log(`3D Animation Chart: ${this.showAnimation3D}`);
+    console.log(`Spline Chart: ${this.showSpline}`);
+    console.log(`Digital Band Chart: ${this.showDigitalBand}`);
+  }
 
   drawExampleanimation = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
@@ -254,6 +282,137 @@ export class AppComponent {
     return { wasmContext, sciChartSurface };
   };
   
+   drawExamplespline = async (rootElement: string | HTMLDivElement) => {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
+        theme: appTheme.SciChartJsTheme,
+    });
+
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
+
+    // Xy values for the data
+    const xValues = [0, 1, 2, 2.5, 4.5, 5, 6, 7, 8];
+    const yValues = [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0];
+
+    const randomError = () => Math.random() * 0.2 + 0.2;
+    // Low high error (absolute values)
+    const lowValues = yValues.map((y) => y - randomError());
+    const highValues = yValues.map((y) => y + randomError());
+
+    // Left/right error (absolute values)
+    const leftValues = xValues.map((x) => x - randomError());
+    const rightValues = xValues.map((x) => x + randomError());
+
+    // add optional mountain series. We use Spline type, for higher performance use FastLine or FastMountainRenderableSeries
+    const lineSeries = new SplineMountainRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+        strokeThickness: 5,
+        stroke: appTheme.VividSkyBlue,
+        fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+            { offset: 0, color: appTheme.VividSkyBlue + "77" },
+            { offset: 1, color: "Transparent" },
+        ]),
+        animation: { type: EAnimationType.Scale, options: { zeroLine: -1, duration: 500 } },
+    });
+    sciChartSurface.renderableSeries.add(lineSeries);
+
+    // Define Horizontal Error Bars Series, Error bars require HLC data with absolute values for error whiskers
+    const errorBarsHorizontalSeries = new FastErrorBarsRenderableSeries(wasmContext, {
+        dataSeries: new HlcDataSeries(wasmContext, {
+            xValues,
+            yValues,
+            highValues: leftValues,
+            lowValues: rightValues,
+        }),
+        errorMode: EErrorMode.Both,
+        errorDirection: EErrorDirection.Horizontal,
+        dataPointWidthMode: EDataPointWidthMode.Relative,
+        dataPointWidth: 0.3,
+        strokeThickness: 4,
+        stroke: appTheme.VividSkyBlue + "77",
+        animation: { type: EAnimationType.Scale, options: { zeroLine: 0,  duration: 500 } },
+    });
+    sciChartSurface.renderableSeries.add(errorBarsHorizontalSeries);
+
+    // Define Vertical Error Bars Series, Error bars require HLC data with absolute values for error whiskers
+    const errorBarsSeries = new FastErrorBarsRenderableSeries(wasmContext, {
+        dataSeries: new HlcDataSeries(wasmContext, { xValues, yValues, highValues, lowValues }),
+        errorMode: EErrorMode.Both,
+        errorDirection: EErrorDirection.Vertical,
+        dataPointWidthMode: EDataPointWidthMode.Relative,
+        dataPointWidth: 0.3,
+        strokeThickness: 4,
+        stroke: appTheme.VividSkyBlue,
+        animation: { type: EAnimationType.Scale, options: { zeroLine: 0, duration: 500 } },
+        // Add optional pointmarker (or use separate XyScatterRenderableSeries)
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 9,
+            height: 9,
+            strokeThickness: 0,
+            fill: appTheme.VividOrange,
+        }),
+    });
+    sciChartSurface.renderableSeries.add(errorBarsSeries);
+
+    // add some interactivity
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new PinchZoomModifier());
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
+    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+
+    sciChartSurface.zoomExtents();
+
+    return { sciChartSurface };
+};
+
+ drawExampleDigitalband = async (rootElement: string | HTMLDivElement) => {
+  // Create a SciChartSurface
+  const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
+      theme: appTheme.SciChartJsTheme,
+  });
+
+  // Create an XAxis and YAxis
+  sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisTitle: "X Axis" }));
+  sciChartSurface.yAxes.add(
+      new NumericAxis(wasmContext, {
+          growBy: new NumberRange(0.4, 0.4),
+          axisTitle: "Y Axis",
+      })
+  );
+
+  // Create some data for the example. We need X, Y and Y1 values
+  const xValues = [];
+  const yValues = [];
+  const y1Values = [];
+  const POINTS = 50;
+  const STEP = (3 * Math.PI) / POINTS;
+  for (let i = 0; i <= POINTS; i++) {
+      const k = 1 - i / 100;
+      xValues.push(i);
+      yValues.push(Math.sin(i * STEP) * k * 0.7);
+      y1Values.push(Math.cos(i * STEP) * k);
+  }
+
+  // Create the band series and add to the chart
+  // The bandseries requires a special dataseries type called XyyDataSeries with X,Y and Y1 values
+  sciChartSurface.renderableSeries.add(
+      new FastBandRenderableSeries(wasmContext, {
+          dataSeries: new XyyDataSeries(wasmContext, { xValues, yValues, y1Values }),
+          strokeThickness: 3,
+          fill: appTheme.VividOrange + "33",
+          fillY1: appTheme.VividSkyBlue + "33",
+          stroke: appTheme.VividOrange,
+          strokeY1: appTheme.VividSkyBlue,
+          isDigitalLine: true,
+          animation: new SweepAnimation({ duration: 800 }),
+      })
+  );
+
+  // Optional: Add some interactivity modifiers
+  sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
+
+  return { wasmContext, sciChartSurface };
+};
 
   ngOnDestroy() {
     if (this.sciChartSurface) {

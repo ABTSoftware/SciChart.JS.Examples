@@ -1,9 +1,23 @@
-<h1>Hello Angular 17 With Animations chart</h1>
-<div style="width:50%;height: 50%;">
-  <div>
-    <scichart-angular [initChart]="drawExampleanimation"></scichart-angular>
-  </div>
-  <div style="margin-top:10px;"> 
+<h1>Hello Angular 17 With Animations Chart</h1>
+<div>
+  <label>
+    <input type="checkbox" [(ngModel)]="showCharts" (change)="toggleCharts()" /> Show All Charts
+  </label>
+</div>
+<div>
+  <button class="test-button" (click)="logVisibilityStatus()">Test Button</button>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; width: 100%;">
+  <div *ngIf="showAnimation3D" style="flex: 1; margin: 10px;">
     <scichart-angular [initChart]="drawExampleAnimation3D"></scichart-angular>
+  </div>
+  <div *ngIf="showSpline" style="flex: 1; margin: 10px;">
+    <scichart-angular [initChart]="drawExamplespline"></scichart-angular>
+  </div>
+  <div *ngIf="showDigitalBand" style="flex: 1; margin: 10px;">
+    <scichart-angular [initChart]="drawExampleDigitalband"></scichart-angular>
+  </div>
+  <div *ngIf="showAnimation" style="flex: 1; margin: 10px;">
+    <scichart-angular [initChart]="drawExampleanimation"></scichart-angular>
   </div>
 </div>

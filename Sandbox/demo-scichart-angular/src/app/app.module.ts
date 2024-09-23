@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { ScichartAngularComponent } from 'scichart-angular';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -10,7 +10,8 @@ import { ScichartAngularComponent } from 'scichart-angular';
   ],
   imports: [
     BrowserModule,
-    ScichartAngularComponent
+    ScichartAngularComponent,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
