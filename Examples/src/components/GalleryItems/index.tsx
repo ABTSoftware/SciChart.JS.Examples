@@ -48,7 +48,13 @@ const GalleryItems: React.FC<TProps> = (props) => {
                         {items.map((item: any, idx: number) => (
                             <div className={classes.showcasecol} key={idx}>
                                 <div className={classes.showcasethumb}>
-                                    <img src={item.imgPath} alt={item.seoTitle} title={item.title} />
+                                    <img
+                                        onClick={() => handleSubmenuClick(item.examplePath)}
+                                        src={item.imgPath}
+                                        alt={item.seoTitle}
+                                        title={item.title}
+                                        style={{ cursor: "pointer" }}
+                                    />
                                 </div>
                                 <h3 onClick={() => handleSubmenuClick(item.examplePath)}>{item.title}</h3>
                             </div>
@@ -61,7 +67,13 @@ const GalleryItems: React.FC<TProps> = (props) => {
                         {items.map((item: any, idx: number) => (
                             <div className={classes.showcasecol} key={idx}>
                                 <div className={classes.showcasethumb}>
-                                    <img src={item.imgPath} alt={item.seoTitle} title={item.title} />
+                                    <img
+                                        onClick={() => handleSubmenuClick(item.examplePath)}
+                                        src={item.imgPath}
+                                        alt={item.seoTitle}
+                                        title={item.title}
+                                        style={{ cursor: "pointer" }}
+                                    />
                                 </div>
                                 <div className={classes.showcasecontent}>
                                     <h3>{item.title}</h3>
@@ -93,7 +105,12 @@ const GalleryItems: React.FC<TProps> = (props) => {
                                         style={{ zIndex: "9999" }}
                                         title={<img src={item.imgPath} width={600} height={600} alt={item.seoTitle} />}
                                     >
-                                        <img src={item.imgPath} alt={item.seoTitle} />
+                                        <img
+                                            src={item.imgPath}
+                                            alt={item.seoTitle}
+                                            onClick={() => handleSubmenuClick(item.examplePath)}
+                                            style={{ cursor: "pointer" }}
+                                        />
                                     </Tooltip>
                                 </div>
                                 <h3 onClick={() => handleSubmenuClick(item.examplePath)}>{item.title}</h3>
