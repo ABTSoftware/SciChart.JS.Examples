@@ -23,9 +23,11 @@ import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
 import TopBarTabs from "./TopBarTabs";
 import AppNewRouter from "./AppDeatilsRouters/AppDeatilsRouter";
+import { useNavigate } from "react-router-dom";
 
 export default function App() {
     const { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
+    const navigate = useNavigate(); // Hook to programmatically navigate
 
     const selectedFramework = framework;
 
@@ -69,6 +71,15 @@ export default function App() {
 
     const toggleOpenedMenuItem = (id: string) => setOpenedMenuItem(id, !openedMenuItems[id]);
     const toggleDrawer = () => setIsDrawerOpened(!isDrawerOpened);
+
+    React.useEffect(() => {
+        const currentPath = window.location.pathname;
+
+        // Check if the path is exactly "/" or empty (no path after the base URL)
+        if (currentPath === "/" || currentPath === "") {
+            navigate("/react", { replace: true }); // Redirect to /react by default
+        }
+    }, [navigate]);
 
     React.useEffect(() => {
         if (window.location.hostname.includes("scichart.com")) {
