@@ -2,11 +2,9 @@ import * as React from "react";
 
 import GalleryCard from "../GalleryCard";
 import classes from "../Gallery.module.scss";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ComponentWrapper from "../../ComponentWrapper/ComponentWrapper";
 import { GalleryItem } from "../../../helpers/types/types";
 import { FrameworkContext } from "../../../helpers/shared/Helpers/FrameworkContext";

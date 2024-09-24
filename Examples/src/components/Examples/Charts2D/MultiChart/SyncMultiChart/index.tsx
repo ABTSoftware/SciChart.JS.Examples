@@ -34,7 +34,7 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { Button, Checkbox, FormControlLabel, Typography } from "@material-ui/core";
+import { Button, Checkbox, FormControlLabel, Typography } from "@mui/material";
 
 export const divOverview = "multiChartOverview";
 export const divChart1 = "multiChart1";

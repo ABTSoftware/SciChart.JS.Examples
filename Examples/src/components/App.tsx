@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Theme } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { Theme } from "@mui/material/styles";
+import Drawer from "@mui/material/Drawer";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import AppRouter from "./AppRouter/AppRouter";
 import {
     ALL_MENU_ITEMS,

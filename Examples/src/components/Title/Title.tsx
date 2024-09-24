@@ -1,4 +1,4 @@
-import Typography from "@material-ui/core/Typography";
+import { Typography } from "@mui/material";
 import * as React from "react";
 
 type TProps = {

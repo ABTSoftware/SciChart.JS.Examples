@@ -5,8 +5,7 @@ import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
 import { drawExample, overviewOptions } from "./drawExample";
-import { Label } from "@material-ui/icons";
-import { FormLabel } from "@material-ui/core";
+import FormLabel from "@mui/material/FormLabel";
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info

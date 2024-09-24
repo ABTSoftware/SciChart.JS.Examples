@@ -1,9 +1,9 @@
 import { useContext, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import SearchIcon from "@material-ui/icons/Search";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import TextField from "@mui/material/TextField";
+import SearchIcon from "@mui/icons-material/Search";
+import InputAdornment from "@mui/material/InputAdornment";
 import { generateSearchItems, TSearchItem } from "./searchItems";
 import classes from "./Search.module.scss";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
