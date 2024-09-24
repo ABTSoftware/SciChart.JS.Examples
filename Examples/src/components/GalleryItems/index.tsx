@@ -14,6 +14,7 @@ import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext"
 type TProps = {
     examples: GalleryItem[];
     currentMenuItems: any[];
+    activeTab: any;
 };
 
 const GalleryItems: React.FC<TProps> = (props) => {
@@ -128,7 +129,7 @@ const GalleryItems: React.FC<TProps> = (props) => {
                     <div className={classes.showcaseheadingwrap}>
                         <div className={classes.showcasetitle}>
                             <h2>
-                                {`Featured Apps: ${group.item.name} (${group.items ? group.items.length : 0} Demo${
+                                {`${props.activeTab}: ${group.item.name} (${group.items ? group.items.length : 0} Demo${
                                     group.items && group.items.length !== 1 ? "s" : ""
                                 })`}
                             </h2>

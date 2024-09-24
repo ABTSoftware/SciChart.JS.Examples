@@ -84,7 +84,11 @@ const ButtonTabs: FC = () => {
                         SubmenuTitle={SubmenuTitle}
                         handleSubmenuClick={handleSubmenuClick}
                     />
-                    <NewGalleryItems examples={allGalleryItems} currentMenuItems={currentMenuItems} />
+                    <NewGalleryItems
+                        activeTab={activeTab}
+                        examples={allGalleryItems}
+                        currentMenuItems={currentMenuItems}
+                    />
                 </div>
             </div>
         </>
