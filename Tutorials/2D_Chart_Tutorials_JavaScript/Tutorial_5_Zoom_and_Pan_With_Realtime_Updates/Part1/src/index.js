@@ -59,16 +59,17 @@ async function initSciChart() {
   scatterSeries.dataSeries = scatterData;
   lineSeries.dataSeries = lineData;
 
-  // Add ZoomExtentsModifier and disable extends animation
+  // #region ExampleA
+  // import {
+  //   ZoomExtentsModifier, RubberBandZoomModifier,
+  // } from "scichart";
+
+  // Add ZoomExtentsModifier and disable extents animation
   sciChartSurface.chartModifiers.add(
     new ZoomExtentsModifier({ isAnimated: false })
   );
   // Add RubberBandZoomModifier
   sciChartSurface.chartModifiers.add(new RubberBandXyZoomModifier());
-  // Add ZoomPanModifier
-  sciChartSurface.chartModifiers.add(
-    new ZoomPanModifier({ executeOn: EExecuteOn.MouseRightButton })
-  );
 
   // Part 2: Appending data in realtime
   //
@@ -79,8 +80,11 @@ async function initSciChart() {
     lineData.append(i, Math.sin(i * 0.1));
     scatterData.append(i, Math.cos(i * 0.1));
 
-    // ZoomExtents after appending data.
-    // Also see XAxis.AutoRange, and XAxis.VisibleRange for more options
+    // import { ZoomState } from "scichart";
+    //
+    // Using zoomState, we only scroll if the state is not userZooming
+    // This property is set internally whenever the user mouse-down drags on the chart or
+    // performs a zoom operation, and can be used to selectively enable or disable scrolling
     if (sciChartSurface.zoomState !== EZoomState.UserZooming) {
       xAxis.visibleRange = new NumberRange(i - 1000, i);
     }
@@ -88,6 +92,7 @@ async function initSciChart() {
 
   // Repeat at 60Hz
   setInterval(updateDataFunc, 1000 / 60);
+  // #endregion
 }
 
 initSciChart();
