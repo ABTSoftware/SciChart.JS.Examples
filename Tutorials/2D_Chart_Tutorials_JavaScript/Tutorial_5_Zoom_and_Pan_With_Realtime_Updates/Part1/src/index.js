@@ -7,8 +7,6 @@ import {
   EllipsePointMarker,
   ZoomExtentsModifier,
   RubberBandXyZoomModifier,
-  ZoomPanModifier,
-  EExecuteOn,
   NumberRange,
   EZoomState,
 } from "scichart";
