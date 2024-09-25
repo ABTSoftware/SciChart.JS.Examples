@@ -1,0 +1,22 @@
+{
+  "name": "tutorial9",
+  "version": "1.0.0",
+  "description": "Linking Multiple Charts with SciChart.js Tutorial",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "scichart": "^3.4.662"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^9.0.1",
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.0",
+    "webpack-dev-server": "^4.3.1"
+  }
+}
