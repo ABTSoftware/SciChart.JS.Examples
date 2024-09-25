@@ -203,18 +203,22 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                     <div className={classes.contentwrapper}>
                         <div id="tab-1" className={`${classes.tabcontent} ${classes.active}`}>
                             <div className={classes.tabbreadcrumbwrap}>
-                                <ul>
+                                <ul style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "15px" }}>
                                     <li>
-                                        <a href="">Home</a>
+                                        <a href="/react">Home</a>
                                     </li>
                                     <li>
-                                        <a href="">React</a>
+                                        <a href="javascript:void(0);">{currentFramework}</a>
                                     </li>
                                     <li>
-                                        <a href="">2D Chart</a>
+                                        <a href="javascript:void(0);">{activeTab}</a>
                                     </li>
                                     <li>
-                                        <a href="">JavaScript Chart Types</a>
+                                        <a href="javascript:void(0);">
+                                            {currentMenuItems.map((item) => {
+                                                return <>{selectedItemId === item.item.id && item.item.name}</>;
+                                            })}
+                                        </a>
                                     </li>
                                     <li>{PageTitle}</li>
                                 </ul>
