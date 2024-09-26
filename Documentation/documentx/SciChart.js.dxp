@@ -3859,13 +3859,13 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="fb82afac-3f92-42e9-9f83-da8b315a1e5f" Status="New Topic" CreatedOn="2024-09-25T17:40:01.3182694Z" ModifiedOn="2024-09-26T14:07:28.3897737Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Tutorial02IncludeIndexMinJSWebassemblyFilesOffline" BuildFlags="">
+              <Topic Id="fb82afac-3f92-42e9-9f83-da8b315a1e5f" Status="New Topic" CreatedOn="2024-09-25T17:40:01.3182694Z" ModifiedOn="2024-09-26T14:17:21.9652229Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Tutorial02IncludeIndexMinJSWebassemblyFilesOffline" BuildFlags="">
                 <Title m="2024-09-25T17:40:31.9258959Z">Tutorial 02 - Including index.min.js and WebAssembly Files offline</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2024-09-26T14:07:28.3897737Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-09-26T14:17:21.9652229Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;This set of tutorials will be limited to how to use SciChart.js by including index.min.js in a vanilla JS application (without npm and webpack).&lt;/P&gt;
 &lt;P&gt;We recommend going through the following tutorials which explain the API first.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/P&gt;
 &lt;UL&gt;
@@ -3902,6 +3902,8 @@ Show external placement div</Notes>
 &lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;index.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\..\Tutorials\2D_Browser_CDN_Tutorials_JavaScript\Tutorial_2_Include_IndexMin_Wasm_Files_Offline\index.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;Opening the&amp;nbsp;index.html file in a browser should&amp;nbsp;result in the following output:&lt;/P&gt;
 &lt;P&gt;&lt;IMG border=0 alt="" src="images/BrowserBundle_HelloWorld.png"&gt;&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Open &lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Tutorials/2D_Browser_CDN_Tutorials_JavaScript/Tutorial_2_Include_IndexMin_Wasm_Files_Offline" target=_blank&gt;index.html&lt;/A&gt; in a browser in our Github Repository to see this result live&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Step 4: Serving Wasm for 3D Charts&lt;/H3&gt;
+&lt;P&gt;The steps above are for SciChart.js 2D charts. If you require 3D charts in your app the steps are the same, however ensure that you also serve files scichart3d.wasm, scichart3d.data and that you call&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#configure" target=_blank&gt;SciChart3DSurface.configure()&lt;/A&gt;&amp;nbsp;to load the 3D *.wasm files.&lt;/P&gt;
 &lt;H2&gt;Errors if Wasm Files are not found&lt;/H2&gt;
 &lt;P&gt;Calling&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#configure" target=_blank&gt;SciChartSurface.configure()&lt;/A&gt; with incorrect URL/file path, or if the files are incorrectly served can result in a multitude of errors in the output console.&lt;/P&gt;
 &lt;P&gt;Some of the errors include:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Errors&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
@@ -3915,9 +3917,9 @@ Show external placement div</Notes>
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;P&gt;RuntimeError: Aborted(both async and sync fetching of the wasm failed). Build with -sASSERTIONS for more info.&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;failed to asynchronously prepare wasm: RuntimeError: Aborted(both async and sync fetching of the wasm failed). Build with -sASSERTIONS for more info.&lt;/P&gt;
+&lt;P&gt;failed to asynchronously prepare wasm: RuntimeError: Aborted(both async and sync fetching of the wasm failed).&lt;BR&gt;Build with -sASSERTIONS for more info.&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;Aborted(RuntimeError: Aborted(both async and sync fetching of the wasm failed). Build with -sASSERTIONS for more info.)&lt;/P&gt;
+&lt;P&gt;Aborted(RuntimeError: Aborted(both async and sync fetching of the wasm failed).&lt;BR&gt;Build with -sASSERTIONS for more info.)&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;P&gt;Could not load SciChart WebAssembly module.&amp;nbsp; Check your build process and ensure that your scichart2d.wasm, scichart2d.data &lt;BR&gt;and scichart2d.js files are from the same version&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;All these errors essentially mean the same thing: &lt;STRONG&gt;either the URL/Path to the *.wasm files is incorrect, or the files are incorrectly served.&lt;/STRONG&gt;&lt;/P&gt;
