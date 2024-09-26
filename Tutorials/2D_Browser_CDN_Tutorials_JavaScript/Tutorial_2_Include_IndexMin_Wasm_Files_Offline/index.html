@@ -2,11 +2,15 @@
   <head>
     <meta charset="utf-8" />
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>SciChart.js Browser Bundle Tutorial 2</title>
+    <title>SciChart.js Locally Hosted Files</title>
+    <!-- #region Include_index.min.js -->
+    <!-- Ensure you have the correct path to the SciChart.js library locally -->
+    <!-- and use crossorigin=anonymous to avoid CORS issues -->
     <script
-      src="https://cdn.jsdelivr.net/npm/scichart@3.4.662/_wasm/scichart.browser.js"
+      src="scichart/v3.4.662/index.min.js"
       crossorigin="anonymous"
     ></script>
+    <!-- #endregion -->
     <script async type="text/javascript" src="index.js"></script>
     <style>
       body {
@@ -17,8 +21,7 @@
   <body>
     <h1>Hello SciChart.js world!</h1>
     <p>
-      In this example we add series &amp; data to a SciChart Chart using pure JS
-      and a CDN
+      In this example we show how to host index.min.js and wasm files offline
     </p>
 
     <!-- the Div where the SciChartSurface will reside -->
