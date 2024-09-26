@@ -1,10 +1,10 @@
 import express from "express";
 import cors from "cors";
 import compression from "compression";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import * as bodyParser from "body-parser";
 
-import * as chalk from "chalk";
+const chalk = require("chalk"); // Use require for chalk
 import * as React from "react";
 import { Helmet } from "react-helmet";
 import * as ReactDOMServer from "react-dom/server";
@@ -98,10 +98,8 @@ const getExamplePageKey = (examplePath: string) => {
 
 app.get("/codesandbox/:example", (req: Request, res: Response) => {
     renderCodeSandBoxRedirect(req, res);
-    //handleRender(req, res);
 });
 
-// to fix bad previous redirect
 app.get("/iframe/iframe/:example", (req: Request, res: Response) => {
     const params = req.params;
     if (getExamplePageKey(params.example)) {
