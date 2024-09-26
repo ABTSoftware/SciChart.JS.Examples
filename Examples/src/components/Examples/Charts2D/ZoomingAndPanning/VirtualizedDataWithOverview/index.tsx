@@ -1,185 +1,28 @@
 import * as React from "react";
-
-import { appTheme } from "../../../theme";
+import { useState } from "react";
+import { SciChartReact } from "scichart-react";
 import classes from "../../../styles/Examples.module.scss";
-import { Subject, debounceTime } from "rxjs";
-
-import {
-    easing,
-    EAutoRange,
-    EAxisAlignment,
-    EHorizontalAnchorPoint,
-    EVerticalAnchorPoint,
-    EWrapTo,
-    EXyDirection,
-    FastLineRenderableSeries,
-    MouseWheelZoomModifier,
-    NativeTextAnnotation,
-    NumberRange,
-    NumericAxis,
-    SciChartOverview,
-    SciChartSurface,
-    XAxisDragModifier,
-    XyDataSeries,
-    YAxisDragModifier,
-    ZoomExtentsModifier,
-    ZoomPanModifier,
-    ECoordinateMode,
-} from "scichart";
-
-export const divElementId = "chart";
-export const divOverviewId = "overview";
-
-export const drawExample = async () => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme,
-    });
-    const xAxis = new NumericAxis(wasmContext, {
-        axisAlignment: EAxisAlignment.Bottom,
-        visibleRange: new NumberRange(4000000, 5000000),
-        autoRange: EAutoRange.Never,
-        labelPrecision: 0,
-        useNativeText: true,
-    });
-
-    sciChartSurface.xAxes.add(xAxis);
-    const yAxis = new NumericAxis(wasmContext, {
-        axisAlignment: EAxisAlignment.Right,
-        visibleRange: new NumberRange(-5000, 5000),
-        autoRange: EAutoRange.Never,
-        labelPrecision: 0,
-        useNativeText: true,
-    });
-    sciChartSurface.yAxes.add(yAxis);
-
-    const dataSeries = new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true });
-    const rendSeries = new FastLineRenderableSeries(wasmContext, {
-        dataSeries,
-        strokeThickness: 2,
-        stroke: appTheme.VividOrange,
-    });
-    sciChartSurface.renderableSeries.add(rendSeries);
-    rendSeries.rolloverModifierProps.tooltipTextColor = "black";
-    rendSeries.rolloverModifierProps.showRollover = true;
-
-    sciChartSurface.chartModifiers.add(
-        new ZoomExtentsModifier({ xyDirection: EXyDirection.YDirection }),
-        new XAxisDragModifier(),
-        new YAxisDragModifier(),
-        new ZoomPanModifier(),
-        new MouseWheelZoomModifier()
-    );
-
-    // Create an observable stream
-    const subject = new Subject<NumberRange>();
-
-    // Push visible range changes into the observable
-    xAxis.visibleRangeChanged.subscribe(async (args) => {
-        subject.next(args.visibleRange);
-    });
-
-    // subscribe to the observable with a debounce
-    subject.pipe(debounceTime(250)).subscribe((r: NumberRange) => {
-        // Fetch data and update the dataSeries
-        loadPoints(r.min, r.max, sciChartSurface.domCanvas2D.width, dataSeries)
-            .then(() => {
-                // Update the y axis
-                const yRange = yAxis.getWindowedYRange(null);
-                yAxis.animateVisibleRange(yRange, 250, easing.outExpo);
-            })
-            .catch((err) =>
-                showError(
-                    sciChartSurface,
-                    "Server data is unavailable.  Please do npm run build, then npm start and access the site at localhost:3000"
-                )
-            );
-    });
-
-    const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, { theme: appTheme.SciChartJsTheme });
-    const overviewData = new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true });
-    // Load the full dataSet
-    loadPoints(0, 10000000, overview.overviewSciChartSurface.domCanvas2D.width, overviewData).catch((err) => {});
-    overview.overviewSciChartSurface.renderableSeries.get(0).dataSeries = overviewData;
-    overview.overviewSciChartSurface.zoomExtents();
-
-    // Load initial data
-    loadPoints(xAxis.visibleRange.min, xAxis.visibleRange.max, sciChartSurface.domCanvas2D.width, dataSeries)
-        .then(() => {
-            sciChartSurface.zoomExtents();
-        })
-        .catch((err) =>
-            showError(
-                sciChartSurface,
-                "Server data is unavailable.  Please do npm run build, then npm start and access the site at localhost:3000"
-            )
-        );
-
-    return { sciChartSurface, overview };
-};
-
-const loadPoints = async (xFrom: number, xTo: number, chartWidth: number, dataSeries: XyDataSeries) => {
-    chartWidth = Math.floor(chartWidth);
-
-    const response = await fetch(`api/data/${xFrom}-${xTo}/${chartWidth}`);
-    const data: { x: number[]; y: number[] } = await response.json();
-    console.log(`Loaded ${data.x.length} points`);
-    dataSeries.clear();
-    dataSeries.appendRange(data.x, data.y);
-};
-
-const showError = (sciChartSurface: SciChartSurface, message: string) => {
-    if (!sciChartSurface.annotations.getById("error")) {
-        sciChartSurface.annotations.add(
-            new NativeTextAnnotation({
-                id: "error",
-                text: message,
-                x1: 0.5,
-                y1: 0.5,
-                textColor: "red",
-                fontSize: 24,
-                horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-                verticalAnchorPoint: EVerticalAnchorPoint.Center,
-                xCoordinateMode: ECoordinateMode.Relative,
-                yCoordinateMode: ECoordinateMode.Relative,
-                lineSpacing: 5,
-                wrapTo: EWrapTo.ViewRect,
-            })
-        );
-    }
-};
+import { getChartsInitializationApi } from "./drawExample";
 
 export default function VirtualizedDataOverview() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const sciChartOverviewRef = React.useRef<SciChartOverview>();
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(({ sciChartSurface, overview }) => {
-            sciChartSurfaceRef.current = sciChartSurface;
-            sciChartOverviewRef.current = overview;
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                sciChartOverviewRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-                sciChartOverviewRef.current.delete();
-            });
-        };
-    }, []);
+    const [chartInitializationApi] = useState(getChartsInitializationApi);
+    const [isMainChartInitialized, setIsMainChartInitialized] = useState(false);
 
     return (
         <div className={classes.ChartWrapper}>
             <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                <div id={divElementId} style={{ flexBasis: 600, flexGrow: 1, flexShrink: 1 }} />
-                <div id={divOverviewId} style={{ flexBasis: 100, flexGrow: 1, flexShrink: 1 }} />
+                <SciChartReact
+                    style={{ flexBasis: 600, flexGrow: 1, flexShrink: 1 }}
+                    initChart={chartInitializationApi.createMainChart}
+                    onInit={() => setIsMainChartInitialized(true)}
+                />
+                {isMainChartInitialized ? (
+                    <SciChartReact
+                        style={{ flexBasis: 100, flexGrow: 1, flexShrink: 1 }}
+                        initChart={chartInitializationApi.createOverview}
+                        onInit={chartInitializationApi.afterOverviewInit}
+                    />
+                ) : null}
             </div>
         </div>
     );
