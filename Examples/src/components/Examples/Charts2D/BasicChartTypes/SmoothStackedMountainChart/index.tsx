@@ -2,9 +2,10 @@ import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
 import { makeStyles } from "@mui/styles";
 import { SciChartSurface, StackedMountainCollection } from "scichart";
-import { drawExample, divElementId } from "./drawExample";
+import { drawExample } from "./drawExample";
 const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",

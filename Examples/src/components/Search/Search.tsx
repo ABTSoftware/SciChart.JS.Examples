@@ -1,6 +1,6 @@
 import { useContext, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -15,7 +15,7 @@ export default function Search() {
     const searchItems: TSearchItem[] = useMemo(() => generateSearchItems(ALL_MENU_ITEMS, framework), [framework]);
 
     const handleChange = (_e: any, value: TSearchItem | string) => {
-        if (value && value.link) {
+        if (value && typeof value === "object" && "link" in value) {
             const v = value as TSearchItem;
             navigate(v.link);
         }
@@ -26,8 +26,14 @@ export default function Search() {
             <Autocomplete
                 id="someElement1"
                 freeSolo
-                options={searchItems.map((option) => option)}
-                getOptionLabel={(option) => option.title}
+                options={searchItems}
+                getOptionLabel={(option) => {
+                    // Check if option is TSearchItem and return title
+                    if (typeof option === "object" && "title" in option) {
+                        return option.title;
+                    }
+                    return option; // In case option is a string, return it directly
+                }}
                 onChange={handleChange}
                 renderInput={(params) => (
                     <TextField
