@@ -12,6 +12,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import App from "../components/App";
 import { customTheme } from "../theme";
 import { renderIndexHtml } from "./renderIndexHtml";
+import * as defaultConfig from "../../config/default";
 import * as http from "http";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
@@ -32,7 +33,7 @@ const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionS
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
-// const targetDir = defaultConfig.buildConfig.targetDir;
+const targetDir = defaultConfig.buildConfig.targetDir;
 
 function handleRender(req: Request, res: Response) {
     if (req.query["codesandbox"]) {
@@ -77,12 +78,72 @@ function shouldCompress(req: Request, res: Response) {
     return compression.filter(req, res);
 }
 
-// app.use(express.static(targetDir, { etag: true, maxAge: 0 }));
+app.use(express.static(targetDir, { etag: true, maxAge: 0 }));
 app.use("/api", api);
 app.use("/services/oembed", oembed);
 app.use("/services/findMissingExamples", findMissingExamples);
 app.use("/services/variants", getAvailableVariants);
 app.use("/vanillaDemo", vanillaExamplesRouter);
+
+const isValidFramework = (framework: EPageFramework) => Object.values(EPageFramework).includes(framework);
+const getExamplePageKey = (examplePath: string) => {
+    return Object.keys(EXAMPLES_PAGES).find((key) => {
+        const pagePath = EXAMPLES_PAGES[key]?.path;
+        return pagePath === examplePath;
+    });
+};
+
+app.get("/codesandbox/:example", (req: Request, res: Response) => {
+    renderCodeSandBoxRedirect(req, res);
+});
+
+app.get("/iframe/iframe/:example", (req: Request, res: Response) => {
+    const params = req.params;
+    if (getExamplePageKey(params.example)) {
+        return res.redirect(301, `../${params.example}`);
+    } else {
+        handleRender(req, res);
+    }
+});
+
+app.get("/iframe/codesandbox/:example", (req: Request, res: Response) => {
+    handleRender(req, res);
+});
+
+app.get("/iframe/javascript-:example", (req: Request, res: Response) => {
+    const params = req.params;
+    if (getExamplePageKey(params.example)) {
+        return res.redirect(301, `${params.example}`);
+    } else {
+        handleRender(req, res);
+    }
+});
+
+app.get("/iframe/:example?", (req: Request, res: Response) => {
+    handleRender(req, res);
+});
+
+app.get("/javascript-:example", (req: Request, res: Response) => {
+    const params = req.params;
+    if (getExamplePageKey(params.example)) {
+        return res.redirect(301, `javascript/${params.example}`);
+    } else {
+        handleRender(req, res);
+    }
+});
+
+app.get("/:example?", (req: Request, res: Response) => {
+    const params = req.params;
+    const exampleKey = getExamplePageKey(req.params.example);
+    if (isValidFramework(params.example as EPageFramework)) {
+        handleRender(req, res);
+    } else if (exampleKey) {
+        const redirectUrl = `react/${params.example}`;
+        res.redirect(301, redirectUrl);
+    } else {
+        res.redirect(301, `react`);
+    }
+});
 
 app.get("*", (req: Request, res: Response) => {
     handleRender(req, res);
