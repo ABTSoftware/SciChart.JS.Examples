@@ -1,7 +1,5 @@
 import { Component } from "@angular/core";
 import { SciChartSurface, SciChart3DSurface } from "scichart";
-
-// @ts-ignore
 import { drawExample } from "./drawExample";
 
 SciChartSurface.loadWasmFromCDN();
@@ -34,8 +32,8 @@ SciChart3DSurface.loadWasmFromCDN();
       <mat-button-toggle class="custom-button" [value]="true">100% Stacked mode</mat-button-toggle>
     </mat-button-toggle-group>
     <button mat-button class="custom-button" (click)="toggleDataLabels()">
-      {{ areDataLabelsVisible ? 'Show Data Labels': 'Hide Data Labels'}}
-   </button>
+    {{ areDataLabelsVisible ? 'Show Data Labels':'Hide Data Labels'}}
+    </button>
   </div>
    <scichart-angular
       [initChart]="drawExample"
@@ -51,10 +49,12 @@ export class StackeAppComponent  {
     title = "scichart-angular-app"
 
   use100PercentStackedMode = false;
-  areDataLabelsVisible = true;
+  areDataLabelsVisible = false;
   controls: any;
 
-  constructor() { }
+  constructor() { 
+  
+  }
   private initResult: any;
 
   drawExample = drawExample;
@@ -70,12 +70,10 @@ export class StackeAppComponent  {
     }
   }
 
-toggleDataLabels() {
-  this.areDataLabelsVisible = !this.areDataLabelsVisible;
+  toggleDataLabels() {
+  this.areDataLabelsVisible = !this.areDataLabelsVisible
   if (this.initResult.controls) {
     this.initResult.controls.toggleDataLabels(this.areDataLabelsVisible);
   }
 }
-
-
 }

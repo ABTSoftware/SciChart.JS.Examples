@@ -12,7 +12,7 @@ import { drawExample, drawHeatmapLegend } from "./drawExample";
     height: 100%;
     display: flex;
     flex-direction: column;
-    background: #002b36; 
+    background: rgb(20, 35, 60); 
 }
 
 .flex-outer-container {
@@ -22,17 +22,18 @@ import { drawExample, drawHeatmapLegend } from "./drawExample";
 }
 
 .toolbar-row {
-    display: flex;
+   display: flex;
     flex-basis: 70px;
-    padding: 10px;
+    padding-left: 27px;
+    padding-top: 10px;
+    margin-top: 19px;
     width: 100%;
     color: ${appTheme.ForegroundColor}; 
 }
-
 .toolbar-button {
-    color: ${appTheme.ForegroundColor} 
+    color: ${appTheme.ForegroundColor};
+    background: rgb(20, 35, 60)!important;
 }
-
 .chart-area {
     flex: 1;
     position: relative;
@@ -73,8 +74,8 @@ import { drawExample, drawHeatmapLegend } from "./drawExample";
  <div class="chart-wrapper">
     <div class="flex-outer-container">
         <div class="toolbar-row">
-            <button mat-raised-button  (click)="startDemo()" class="toolbar-button">Start</button>&nbsp;
-            <button mat-raised-button  (click)="stopDemo()" class="toolbar-button">Stop</button>
+            <button mat-raised-button  (click)="startDemo()" [ngStyle]="{ color: '#FFFFFF' }" class="toolbar-button">Start</button>&nbsp;
+            <button mat-raised-button  (click)="stopDemo()" [ngStyle]="{ color: '#FFFFFF' }" class="toolbar-button">Stop</button>
             <span class="stats-info">
                 # Heatmap Size: {{ stats.xSize }} x {{ stats.ySize }}
             </span>

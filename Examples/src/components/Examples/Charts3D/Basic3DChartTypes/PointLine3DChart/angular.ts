@@ -12,7 +12,7 @@ import { drawExample, drawHeatmapLegend } from "./drawExample";
 .chart-example {
   position: absolute;
   height: 100%;
-  width: calc(100% - 140px);
+  width: calc(100% - 1px);
   top: 0;
   left: 0;
 }
