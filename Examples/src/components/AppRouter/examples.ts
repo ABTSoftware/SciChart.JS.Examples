@@ -298,6 +298,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_filters_TrendMARatio,
             EXAMPLES_PAGES.chart2D_filters_CustomFilters,
             EXAMPLES_PAGES.chart2D_filters_PercentageChange,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold,
         ],
     },
     {

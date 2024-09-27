@@ -27,12 +27,12 @@ async function annotationHover(divElementId) {
     y1: 0.4,
     y2: 0.6,
     onHover: (args) => {
-      const { sender, mouseArgs, isHovered } = args;
+      const { sender, mouseArgs, isHovered }= args;
       if (mouseArgs && isHovered) {
         const relativeCoordinates = args.getRelativeCoordinates();
         console.log("The annotation is hovered at", relativeCoordinates);
       }
-    },
+    }
   });
   sciChartSurface.annotations.add(boxAnnotation);
   // Add AnnotationHoverModifier to enable hover behaviour

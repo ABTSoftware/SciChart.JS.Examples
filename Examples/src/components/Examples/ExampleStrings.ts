@@ -314,7 +314,8 @@ export const ExampleStrings = {
         `${frameworkName} Chart Trade Markers example demonstrates how to add hoverable buy/sell arrows and markers to a trading application`,
 
     // Drag horizontal threshold
-    titleDragHorizontalThreshold: (frameworkName: TFrameworkName) => `${frameworkName} Chart Drag Horizontal Threshold`,
+    titleDragHorizontalThreshold: (frameworkName: TFrameworkName) =>
+        `${frameworkName} Mountain Chart Draggable Thresholds`,
     urlDragHorizontalThreshold: `chart-drag-horizontal-threshold`,
     urlTitleDragHorizontalThreshold: `This Javascript chart example shows you how to add a draggable threshold and change the chart colour depending on threshold value`,
 
