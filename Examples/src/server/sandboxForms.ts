@@ -91,8 +91,8 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
                     eject: "react-scripts eject",
                 },
                 dependencies: {
-                    "@material-ui/core": "4.12.4",
-                    "@material-ui/lab": "4.0.0-alpha.61",
+                    "@mui/material": "^^5.15.20",            // Change to MUI v5
+                    "@mui/lab": "^5.0.0-alpha.170",  
                     sass: "^1.49.9",
                     "loader-utils": "3.2.1",
                     react: "^17.0.2",

@@ -1,8 +1,7 @@
 import * as React from "react";
-import { useLocation, useMatch } from "react-router-dom";
-import { Theme } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { Theme } from "@mui/material/styles";
+import Drawer from "@mui/material/Drawer";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import AppRouter from "./AppRouter/AppRouter";
 import {
     ALL_MENU_ITEMS,
@@ -14,19 +13,21 @@ import {
 import AppBarTop from "./AppTopBar/AppBarTop";
 import DrawerContent from "./DrawerContent/DrawerContent";
 import AppFooter from "./AppFooter/AppFooter";
-import { EXAMPLES_PAGES } from "./AppRouter/examplePages";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { SciChartDefaults } from "scichart/Charting/Visuals/SciChartDefaults";
 import classes from "./App.module.scss";
 import "./index.scss";
-import Gallery from "./Gallery/Gallery";
 import { GalleryItem } from "../helpers/types/types";
 import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
+import TopBarTabs from "./TopBarTabs";
+import AppNewRouter from "./AppDeatilsRouters/AppDeatilsRouter";
+import { useNavigate } from "react-router-dom";
 
 export default function App() {
     const { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
+    const navigate = useNavigate(); // Hook to programmatically navigate
 
     const selectedFramework = framework;
 
@@ -70,6 +71,15 @@ export default function App() {
 
     const toggleOpenedMenuItem = (id: string) => setOpenedMenuItem(id, !openedMenuItems[id]);
     const toggleDrawer = () => setIsDrawerOpened(!isDrawerOpened);
+
+    React.useEffect(() => {
+        const currentPath = window.location.pathname;
+
+        // Check if the path is exactly "/" or empty (no path after the base URL)
+        if (currentPath === "/" || currentPath === "") {
+            navigate("/react", { replace: true }); // Redirect to /react by default
+        }
+    }, [navigate]);
 
     React.useEffect(() => {
         if (window.location.hostname.includes("scichart.com")) {
@@ -117,7 +127,17 @@ export default function App() {
                     <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
-                    <div className={classes.MainAppWrapper}>
+                    {isHomePage ? (
+                        <div className={classes.tabsection}>
+                            <div className={classes.container}>
+                                <TopBarTabs />
+                            </div>
+                        </div>
+                    ) : (
+                        <AppNewRouter currentExample={currentExample} seeAlso={seeAlso} />
+                    )}
+                    {/* <AppRouter currentExample={currentExample} seeAlso={seeAlso} /> */}
+                    {/* <div className={classes.MainAppWrapper}>
                         <div className={classes.DrawerDesktop}>
                             <DrawerContent
                                 testIsOpened={testIsOpened}
@@ -132,7 +152,8 @@ export default function App() {
                         ) : (
                             <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
                         )}
-                    </div>
+                    </div> */}
+                    {/* <AppRouter currentExample={currentExample} seeAlso={seeAlso} /> */}
 
                     <AppFooter />
                 </div>

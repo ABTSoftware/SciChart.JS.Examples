@@ -1,5 +1,5 @@
-import themeColor from "@material-ui/core/colors/cyan";
-import { createTheme } from "@material-ui/core/styles";
+import { cyan } from "@mui/material/colors"; // Correct way to import colors in MUI v5
+import { createTheme } from "@mui/material/styles";
 
 export const customTheme = createTheme({
     breakpoints: {
@@ -27,6 +27,8 @@ export const customTheme = createTheme({
         ].join(","),
     },
     palette: {
-        primary: themeColor,
+        primary: {
+            main: cyan[500], // Use the 'main' key for the primary color
+        },
     },
 });

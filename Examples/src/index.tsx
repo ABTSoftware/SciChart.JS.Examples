@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/App";
 import { customTheme } from "./theme";

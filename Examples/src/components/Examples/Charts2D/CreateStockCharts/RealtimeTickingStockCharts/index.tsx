@@ -8,7 +8,7 @@ import { binanceSocketClient, TRealtimePriceBar } from "./binanceSocketClient";
 import { Observable, Subscription } from "rxjs";
 import { simpleBinanceRestClient, TPriceBar } from "../../../ExampleData/binanceRestClient";
 import { appTheme } from "../../../theme";
-import { FormLabel } from "@material-ui/core";
+import FormLabel from "@mui/material/FormLabel";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
 // SCICHART EXAMPLE

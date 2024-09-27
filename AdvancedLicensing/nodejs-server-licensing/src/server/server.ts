@@ -1,15 +1,17 @@
-import * as chalk from "chalk";
 import * as cors from "cors";
 import * as express from "express";
 import * as http from "http";
 import { licenseServer, closeLicenseServer } from "./licenseServer";
+
+// Import chalk using CommonJS style
+const chalk = require("chalk");
 
 const app = express();
 app.use(cors());
 
 app.use(express.static("build"));
 
-// The client expects the licnese validation endpoint to be at /api/license.
+// The client expects the license validation endpoint to be at /api/license.
 // If you need to use a different endpoint, tell the client by calling SciChartSurface.setServerLicenseEndpoint("/custom/endpoint")
 app.use("/api/license", licenseServer);
 
@@ -21,6 +23,7 @@ server.listen(3000, "0.0.0.0", () => {
     )}`
   );
 });
+
 // Graceful Shutdown
 process.on("SIGINT", () => {
   console.log("SIGINT signal received: closing HTTP server");
@@ -29,6 +32,7 @@ process.on("SIGINT", () => {
     process.exit(0);
   });
 });
+
 process.on("SIGTERM", () => {
   console.log("SIGTERM signal received: closing HTTP server");
   server.close(() => {

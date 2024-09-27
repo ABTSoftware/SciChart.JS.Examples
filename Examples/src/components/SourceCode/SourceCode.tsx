@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import CloseIcon from "@material-ui/icons/Close";
+import CloseIcon from "@mui/icons-material/Close";
 import classes from "./SourceCode.module.scss";
 
 type TProps = {

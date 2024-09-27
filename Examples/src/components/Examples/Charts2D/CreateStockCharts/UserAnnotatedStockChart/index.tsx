@@ -7,20 +7,13 @@ import {
     chartReviver,
     localStorageApi,
 } from "scichart";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { drawExample, IChartControls } from "./drawExample";
-import {
-    Button,
-    ButtonGroup,
-    FormControl,
-    FormHelperText,
-    makeStyles,
-    MenuItem,
-    Select,
-    TextField,
-} from "@material-ui/core";
+import { Button, ButtonGroup, MenuItem, Select, TextField } from "@mui/material";
+// If you want to keep using makeStyles:
+import { makeStyles } from "@mui/styles";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 const useStyles = makeStyles((theme) => ({

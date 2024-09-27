@@ -37,7 +37,7 @@
         //margin: auto;
 
         .PageHomeHeader {
-            padding: $default-spacing * 12.75 $default-spacing * 5;
+            padding: $default-spacing * 12.75 $default-spacing * 24;
             @extend %Container;
 
             margin: auto;
@@ -240,4 +240,101 @@
             }
         }
     }
+}
+
+// @import "../../assets/main.scss";
+
+// Existing styles...
+
+.frameworksection {
+    background-color: #9b268f;
+}
+
+.FrameworkList {
+    margin: 0 20px;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media only screen and (max-width: 768px) {
+        overflow-x: auto;
+        white-space: nowrap;
+        display: block;
+    }
+    .FrameworkListItem {
+        margin: 15px 0 0 0;
+        display: flex;
+        align-items: center;
+        width: 20%;
+        text-align: center;
+        justify-content: center;
+        position: relative;
+        @media only screen and (max-width: 768px) {
+            display: inline-block;
+            width: 50%;
+            white-space: nowrap;
+        }
+
+        &:last-child {
+            &:after {
+                display: none;
+            }
+        }
+        &:hover {
+            background: rgba(255, 255, 255, 0.17);
+            border-radius: 17px 17px 0px 0px;
+            &:after {
+                background: transparent;
+            }
+        }
+
+        &:after {
+            content: "";
+            background: rgba(217, 217, 217, 0.47);
+            position: absolute;
+            width: 1px;
+            height: 34px;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        &.active {
+            background: rgba(255, 255, 255, 0.17);
+            border-radius: 17px 17px 0px 0px;
+            &:after {
+                background: transparent;
+            }
+        }
+        a {
+            text-decoration: none;
+            font-family: "Arial";
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 30px;
+            letter-spacing: 0.02em;
+            color: #fff;
+            padding: 15px 0;
+            @media only screen and (max-width: 768px) {
+                line-height: 58px;
+            }
+        }
+    }
+}
+
+.FrameworkListItem {
+    color: white; /* White text color */
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.FrameworkListItem.active {
+    background-color: #b55abf; /* Lighter purple background for active item */
+    border-radius: 5px;
+}
+
+.FrameworkListItem:hover {
+    background-color: #a046a0; /* Darker purple for hover effect */
+    border-radius: 5px;
 }
