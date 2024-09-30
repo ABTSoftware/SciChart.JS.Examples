@@ -22,12 +22,20 @@ type TProps = {
     seeAlso: GalleryItem[];
 };
 
-const options = ["Option 1", "Option 2", "Option 3", "Another Option"];
+interface IFiles {
+    [key: string]: {
+        content: string;
+        isBinary: boolean;
+    };
+}
 
 const AppDeatilsRouter: FC<TProps> = (props) => {
     const { currentExample, seeAlso, isIFrame = false } = props;
-    const [code, setCode] = useState<string>("");
-    const [selectedFile, setSelectedFile] = useState<string>("index.tsx");
+    const [sourceFiles, setSourceFiles] = useState<{ name: string; content: string }[]>([]);
+    const [selectedFile, setSelectedFile] = useState<{ name: string; content: string }>({
+        name: "index.tsx",
+        content: "",
+    });
     const currentPath = location.pathname.substring(1); // Get the path without the leading "/"
     // Split the path into framework and the rest (example path)
     const [currentFramework, ...examplePath] = currentPath.split("/");
@@ -70,42 +78,29 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         }
     };
 
-    const getGithubRawUrl = (username: string, repository: string, branch: string, filePath: string): string => {
-        return `https://raw.githubusercontent.com/${username}/${repository}/${branch}/${filePath}`;
-    };
-
-    const fetchCodeFromGithub = (fileName: string) => {
-        const username = "ABTSoftware";
-        const repository = "SciChart.JS.Examples";
-        const branch = "master";
-        const filePath = `Examples/src/components/Examples/${currentExample.filepath}/${fileName}`;
-
-        const rawUrl = getGithubRawUrl(username, repository, branch, filePath);
-
-        fetch(rawUrl)
+    useEffect(() => {
+        fetch("/source/" + currentExample.path + "?framework=" + selectedFramework)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
-                return response.text();
+                return response.json();
             })
-            .then((text) => setCode(text))
-            .catch((error) => console.error("Error loading code:", error));
-    };
-
-    useEffect(() => {
-        fetchCodeFromGithub(selectedFile);
-    }, [selectedFile]);
+            .then((json) => setSourceFiles(json));
+    }, []);
 
     const handleFileClick = (fileName: string) => {
-        setSelectedFile(fileName);
+        const file = sourceFiles.find((f) => f.name === fileName);
+        setSelectedFile({ name: fileName, content: file.content });
     };
 
     const handleOptionClick = (option: any) => {
         setQuery(option.title);
         setFilteredOptions([]);
         // Optionally, navigate to the link
-        window.location.href = option.link;
+        if (window) {
+            window.location.href = option.link;
+        }
     };
 
     const handleTabClick = (tabName: TabName) => {
@@ -285,24 +280,15 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                             <div className={classes.editortabwrap}>
                                 <div className={classes.tabwrapper}>
                                     <ul className={`${classes.tabs} ${classes.mobilehidden}`}>
-                                        {[
-                                            "angular.ts",
-                                            "drawExample.js",
-                                            "drawExample.ts",
-                                            "exampleInfo.tsx",
-                                            "index.tsx",
-                                            "javascript-spline-smoothed-line-chart.jpg",
-                                            "vanilla.js",
-                                            "vanilla.ts",
-                                        ].map((file) => (
+                                        {sourceFiles.map((file) => (
                                             <li
-                                                key={file}
+                                                key={file.name}
                                                 className={`${classes.tablink} ${
-                                                    selectedFile === file ? classes.active : ""
+                                                    selectedFile.name === file.name ? classes.active : ""
                                                 }`}
-                                                onClick={() => handleFileClick(file)}
+                                                onClick={() => handleFileClick(file.name)}
                                             >
-                                                {file}
+                                                {file.name}
                                             </li>
                                         ))}
                                     </ul>
@@ -312,7 +298,10 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                         <div className={classes.codeeditorwrap}>
                                             <div className={classes.codeedit}>
                                                 <SourceCode
-                                                    code={code}
+                                                    code={selectedFile.content}
+                                                    language={selectedFile.name.substring(
+                                                        selectedFile.name.indexOf(".") + 1
+                                                    )}
                                                     githubUrl={`https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Examples/src/components/Examples/${currentExample.filepath}/${selectedFile}`}
                                                     onClose={() => console.log("Close clicked")}
                                                 />

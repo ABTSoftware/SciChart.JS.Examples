@@ -19,7 +19,7 @@ import createCache from "@emotion/cache";
 import createEmotionServer from "@emotion/server/create-instance";
 import { createSocketServer } from "./websockets";
 import { api } from "./api";
-import { renderCodeSandBoxRedirect } from "./renderCodeSandboxRedirect";
+import { getSourceFiles, renderCodeSandBoxRedirect } from "./renderCodeSandboxRedirect";
 import { oembed } from "./oembed";
 import { findMissingExamples } from "./find-missing-examples";
 import { vanillaExamplesRouter } from "./vanillaDemo/vanillaExamplesRouter";
@@ -95,6 +95,10 @@ const getExamplePageKey = (examplePath: string) => {
 
 app.get("/codesandbox/:example", (req: Request, res: Response) => {
     renderCodeSandBoxRedirect(req, res);
+});
+
+app.get("/source/:example", (req: Request, res: Response) => {
+    getSourceFiles(req, res);
 });
 
 app.get("/iframe/iframe/:example", (req: Request, res: Response) => {
