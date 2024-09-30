@@ -22,7 +22,7 @@ import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciC
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
 import TopBarTabs from "./TopBarTabs";
-import AppNewRouter from "./AppDeatilsRouters/AppDeatilsRouter";
+import AppDetailsRoute from "./AppDeatilsRouters/AppDeatilsRouter";
 import { useNavigate } from "react-router-dom";
 
 export default function App() {
@@ -134,7 +134,7 @@ export default function App() {
                             </div>
                         </div>
                     ) : (
-                        <AppNewRouter currentExample={currentExample} seeAlso={seeAlso} />
+                        <AppDetailsRoute currentExample={currentExample} seeAlso={seeAlso} />
                     )}
                     {/* <AppRouter currentExample={currentExample} seeAlso={seeAlso} /> */}
                     {/* <div className={classes.MainAppWrapper}>
