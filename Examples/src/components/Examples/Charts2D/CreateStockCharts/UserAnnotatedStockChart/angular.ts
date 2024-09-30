@@ -101,6 +101,25 @@ import { appTheme } from "../../../theme";
    ::ng-deep .mat-mdc-form-field-subscript-wrapper {
     display: none;
   }
+
+  mat-button-toggle {
+  color: white;
+  transition: color 0.3s;
+}
+
+mat-button-toggle:hover {
+  color: black;
+}
+
+mat-button-toggle.mat-button-toggle-checked {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+mat-button-toggle:hover.mat-button-toggle-checked {
+  color: white;
+}
+
 </style>
  <div class="chart-wrapper">
   <div class="flex-outer-container">
