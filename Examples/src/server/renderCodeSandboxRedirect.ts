@@ -111,7 +111,6 @@ export const getSourceFiles = async (req: Request, res: Response) => {
                     throw new Error("Invalid framework value!");
             }
             const result: { name: string; content: string }[] = [];
-            // TODO reverse the order here.
             for (const key in files) {
                 console.log(key);
                 const sep = key.indexOf("/") > 0 ? "/" : "\\";

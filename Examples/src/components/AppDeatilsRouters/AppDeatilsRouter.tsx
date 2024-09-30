@@ -88,8 +88,12 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                 }
                 return response.json();
             })
-            .then((json) => {
-                setSelectedFile({ name: json[0].name, content: json[0].content });
+            .then((json: { name: string; content: string }[]) => {
+                let defaultFile = json.find((f) => f.name === "drawExample.ts");
+                if (!defaultFile) {
+                    defaultFile = json[json.length - 1];
+                }
+                setSelectedFile({ name: defaultFile.name, content: defaultFile.content });
                 setSourceFiles(json);
             });
     }, [currentExample, selectedFramework]);
