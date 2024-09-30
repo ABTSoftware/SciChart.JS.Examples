@@ -32,7 +32,7 @@ export default function AppFooter() {
     return (
         <>
             <div className={classes.AppFooter}>
-                <FooterGrid
+                {/* <FooterGrid
                     historyPushPath={historyPushPath}
                     title="Featured Apps"
                     menuItems={MENU_ITEMS_FEATURED_APPS}
@@ -49,7 +49,7 @@ export default function AppFooter() {
                     title="3D Charts"
                     menuItems={MENU_ITEMS_3D}
                     menuItemsId={MENU_ITEMS_3D_ID}
-                />
+                /> */}
                 <div className={classes.FooterBottomSection}>
                     <div className={classes.LinksBox}>
                         <h5>Frameworks</h5>

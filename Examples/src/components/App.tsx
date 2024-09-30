@@ -99,32 +99,11 @@ export default function App() {
     return (
         <FrameworkContext.Provider value={selectedFramework}>
             <div className={classes.App}>
-                <Drawer
-                    className={classes.DrawerMobile}
-                    variant="temporary"
-                    classes={{ paper: classes.DrawerPaper }}
-                    anchor="right"
-                    open={isMedium && isDrawerOpened}
-                    onClose={toggleDrawer}
-                >
-                    <DrawerContent
-                        testIsOpened={testIsOpened}
-                        toggleOpenedMenuItem={toggleOpenedMenuItem}
-                        toggleDrawer={toggleDrawer}
-                    />
-                </Drawer>
                 <div className={classes.MainAppContent}>
                     <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
                     <div className={classes.MainAppWrapper}>
-                        <div className={classes.DrawerDesktop}>
-                            <DrawerContent
-                                testIsOpened={testIsOpened}
-                                toggleOpenedMenuItem={toggleOpenedMenuItem}
-                                toggleDrawer={() => {}}
-                            />
-                        </div>
                         {isHomePage ? (
                             <div className={classes.GalleryAppWrapper}>
                                 <Gallery examples={allGalleryItems} />
@@ -132,8 +111,28 @@ export default function App() {
                         ) : (
                             <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
                         )}
+                        <div className={classes.DrawerDesktop}>
+                            <DrawerContent
+                                testIsOpened={testIsOpened}
+                                toggleOpenedMenuItem={toggleOpenedMenuItem}
+                                toggleDrawer={() => {}}
+                            />
+                        </div>
                     </div>
-
+                    <Drawer
+                        className={classes.DrawerMobile}
+                        variant="temporary"
+                        classes={{ paper: classes.DrawerPaper }}
+                        anchor="right"
+                        open={isMedium && isDrawerOpened}
+                        onClose={toggleDrawer}
+                    >
+                        <DrawerContent
+                            testIsOpened={testIsOpened}
+                            toggleOpenedMenuItem={toggleOpenedMenuItem}
+                            toggleDrawer={toggleDrawer}
+                        />
+                    </Drawer>
                     <AppFooter />
                 </div>
             </div>
