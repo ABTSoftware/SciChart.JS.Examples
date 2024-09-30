@@ -15,19 +15,8 @@ import {
   EAxisType,
   ESeriesType,
   EChart2DModifierType,
-  Vector3,
-  CameraController,
-  NumericAxis3D,
-  zeroArray2D,
-  UniformGridDataSeries3D,
-  GradientColorPalette,
-  SurfaceMeshRenderableSeries3D,
-  EDrawMeshAs,
   FastBandRenderableSeries,
   XyyDataSeries,
-  MouseWheelZoomModifier3D,
-  OrbitModifier3D,
-  ResetCamera3DModifier,
   SciChart3DSurface,
   FastBubbleRenderableSeries,
   XyzDataSeries,
@@ -63,8 +52,8 @@ const sweepAnimation = new SweepAnimation({ duration: 1000 });
 const scaleAnimation = new ScaleAnimation({ duration: 1000, zeroLine: 0 });
 const fadeAnimation = new FadeAnimation({ duration: 1000 });
 
-SciChartSurface.loadWasmFromCDN();
-SciChart3DSurface.loadWasmFromCDN();
+// SciChartSurface.loadWasmFromCDN();
+// SciChart3DSurface.loadWasmFromCDN();
 
 @Component({
   selector: 'app-root',

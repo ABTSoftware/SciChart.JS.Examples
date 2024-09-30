@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { ScichartAngularComponent } from 'scichart-angular';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -11,7 +12,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     ScichartAngularComponent,
-    FormsModule
+    FormsModule,
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

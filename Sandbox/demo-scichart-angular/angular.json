@@ -22,7 +22,11 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/scichart2d.data",
+              "src/scichart2d.wasm",
+              "src/scichart3d.data",
+              "src/scichart3d.wasm"
             ],
             "styles": [
               "src/styles.css"
