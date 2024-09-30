@@ -112,7 +112,7 @@
 }
 
 .tabsection {
-    margin: 50px 0 0 0;
+    margin: 32px 0 0 0;
 }
 
 .tabwrapper {
@@ -570,7 +570,6 @@
         font-size: 19px;
         line-height: 28px;
         color: #212121;
-        margin-bottom: 25px;
 
         @media only screen and (max-width: 768px) {
             font-size: 12px;
@@ -590,7 +589,7 @@
 }
 
 .chartimgwrap {
-    margin: 0 auto 10px;
+    margin: 0 auto -34px;
     text-align: center;
 
     @media only screen and (max-width: 768px) {
@@ -790,7 +789,7 @@
     line-height: 48px;
     color: #050a30;
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
 
     @media only screen and (max-width: 768px) {
         font-size: 20px;
