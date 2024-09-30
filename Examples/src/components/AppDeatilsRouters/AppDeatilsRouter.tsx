@@ -1,6 +1,6 @@
 import React, { useState, FC, useContext, useMemo, useEffect } from "react";
 import classes from "./AppDeatilsRouter.scss";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
 import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
@@ -33,10 +33,11 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     const { currentExample, seeAlso, isIFrame = false } = props;
     const [sourceFiles, setSourceFiles] = useState<{ name: string; content: string }[]>([]);
     const [selectedFile, setSelectedFile] = useState<{ name: string; content: string }>({
-        name: "index.tsx",
+        name: "",
         content: "",
     });
-    const currentPath = location.pathname.substring(1); // Get the path without the leading "/"
+    const location = useLocation();
+    const currentPath = location.pathname;
     // Split the path into framework and the rest (example path)
     const [currentFramework, ...examplePath] = currentPath.split("/");
     const navigate = useNavigate();
@@ -44,6 +45,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     const [currentMenuItems, setCurrentMenuItems] = useState(MENU_ITEMS_FEATURED_APPS);
     const [selectedItemId, setSelectedItemId] = useState(currentMenuItems[0].item.id);
     const selectedFramework = useContext(FrameworkContext);
+
     const searchItems: TSearchItem[] = useMemo(
         () => generateSearchItems(ALL_MENU_ITEMS, selectedFramework),
         [selectedFramework]
@@ -86,8 +88,11 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                 }
                 return response.json();
             })
-            .then((json) => setSourceFiles(json));
-    }, []);
+            .then((json) => {
+                setSelectedFile({ name: json[0].name, content: json[0].content });
+                setSourceFiles(json);
+            });
+    }, [currentExample, selectedFramework]);
 
     const handleFileClick = (fileName: string) => {
         const file = sourceFiles.find((f) => f.name === fileName);
@@ -128,6 +133,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     const handleSubmenuClick = (path: string) => {
         navigate(`/${selectedFramework}/${path}`);
     };
+
     return (
         <>
             <div className={classes.frameworksection}>
