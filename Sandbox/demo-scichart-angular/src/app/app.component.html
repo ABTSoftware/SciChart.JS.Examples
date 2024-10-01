@@ -1,23 +1,25 @@
 <h1>Hello Angular 17 With Animations Chart</h1>
 <div>
-  <label>
-    <input type="checkbox" [(ngModel)]="showCharts" (change)="toggleCharts()" /> Show All Charts
-  </label>
+    <label>
+        <input type="checkbox" [(ngModel)]="showCharts" /> Show Charts
+    </label>
 </div>
 <div>
-  <button class="test-button" (click)="logVisibilityStatus()">Test Button</button>
+    <button class="test-button" (click)="logDebugInfo()">Log Debug Info</button>
 </div>
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; width: 100%;">
-  <div *ngIf="showAnimation3D" style="flex: 1; margin: 10px;">
-    <scichart-angular [initChart]="drawExampleAnimation3D"></scichart-angular>
-  </div>
-  <div *ngIf="showSpline" style="flex: 1; margin: 10px;">
-    <scichart-angular [initChart]="drawExamplespline"></scichart-angular>
-  </div>
-  <div *ngIf="showDigitalBand" style="flex: 1; margin: 10px;">
-    <scichart-angular [initChart]="drawExampleDigitalband"></scichart-angular>
-  </div>
-  <div *ngIf="showAnimation" style="flex: 1; margin: 10px;">
-    <scichart-angular [initChart]="drawExampleanimation"></scichart-angular>
-  </div>
+<div class="flex-container">
+    <div *ngIf="showCharts" class="chart-container">
+        <scichart-angular
+            [initChart]="drawChart2D"
+            (onInit)="onInit2DHandler($event)"
+            (onDelete)="onDelete2DHandler($event)"
+        ></scichart-angular>
+    </div>
+    <div *ngIf="showCharts" class="chart-container">
+        <scichart-angular
+            [initChart]="drawChart3D"
+            (onInit)="onInit3DHandler($event)"
+            (onDelete)="onDelete3DHandler($event)"
+        ></scichart-angular>
+    </div>
 </div>
