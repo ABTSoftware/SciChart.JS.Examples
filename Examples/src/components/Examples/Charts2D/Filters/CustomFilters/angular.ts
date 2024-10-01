@@ -1,45 +1,37 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 import { drawExample } from "./drawExample";
 
 @Component({
-    selector: 'app-custom-filter',
+    selector: "app-custom-filter",
     template: `
-<scichart-angular
-      [initChart]="drawExample"
-      (onInit)="onInit($event)"
-      (onDelete)="onDelete($event)"
-      style="flex: 1; flex-basis: 50%;">
-</scichart-angular>
+        <scichart-angular
+            [initChart]="drawExample"
+            (onInit)="onInit($event)"
+            (onDelete)="stopDemo($event)"
+            style="flex: 1; flex-basis: 50%;"
+        >
+        </scichart-angular>
     `,
 })
 export class CustomFilters {
+    private controls?: Awaited<ReturnType<typeof drawExample>>["controls"];
 
-    private initResult: any;
+    async onInit(initResult: Awaited<ReturnType<typeof drawExample>>) {
+        this.controls = initResult.controls;
+        this.startDemo();
+    }
 
-    async onInit(initResult: any) {
-      this.initResult = initResult;
-      this.startDemo();
-    }
-  
-    onDelete() {
-      if (this.initResult && this.initResult.controls) {
-        this.initResult.controls.stopDemo();
-      }
-    }
-  
     startDemo() {
-      if (this.initResult && this.initResult.controls) {
-        this.initResult.controls.startDemo();
-      }
+        if (this.controls) {
+            this.startDemo();
+        }
     }
-  
-    stopDemo() {
-      if (this.initResult && this.initResult.controls) {
-        this.initResult.controls.stopDemo();
-      }
-    }
-  
-    drawExample = drawExample;
-   
-}
 
+    stopDemo() {
+        if (this.controls) {
+            this.controls.stopDemo();
+        }
+    }
+
+    drawExample = drawExample;
+}
