@@ -421,6 +421,7 @@
       <OtherFile Id="996a3beb-6d3e-474f-ac36-48370cde8d0a" FileName="images\Axis_CustomLayoutManager.png" SourceData="" BuildFlags="" />
       <OtherFile Id="233fd633-5c29-40d9-b697-3b9b1144e0fb" FileName="images\jsdelivr-scichart-files-tab.png" SourceData="" BuildFlags="" />
       <OtherFile Id="e5b9dd07-7191-4010-87b8-e25fda772c01" FileName="images\jsdelivr-scichart-files-offline.png" SourceData="" BuildFlags="" />
+      <OtherFile Id="3cdaf826-6ff8-4808-aa4d-df3b8746efa1" FileName="images\wasm-file-not-found-error-network.png" SourceData="" BuildFlags="" />
     </OtherFiles>
     <DefaultStylesheet>stylesheets\customstyles.css</DefaultStylesheet>
     <DefaultCaptureDirectory></DefaultCaptureDirectory>
@@ -1300,7 +1301,7 @@ Show external placement div</Notes>
           <CaptionTemplate m="2022-08-17T08:43:03.242732Z">Get Started: Tutorials, Examples</CaptionTemplate>
           <ChildNodes>
             <TocNode Name="" Id="ddc59b2e-b6a6-472b-8817-1efeefe0d5c4" IconIndex="1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
-              <CaptionTemplate m="2024-09-26T08:16:08.7223966Z">Tutorials (JavaScript API)</CaptionTemplate>
+              <CaptionTemplate m="2024-09-26T15:56:10.1703277Z">Tutorials (JavaScript APIs / npm / webpack)</CaptionTemplate>
               <ChildNodes>
                 <TocNode Name="" Id="868dd211-94c3-4f97-894e-fe4fae86e1c2" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
@@ -1382,12 +1383,12 @@ Show external placement div</Notes>
               </ChildNodes>
             </TocNode>
             <TocNode Name="" Id="c82685ed-30a8-41f4-9681-46bcaa66295c" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
-              <CaptionTemplate m="2024-09-26T06:18:15.4197819Z">Tutorials (React)</CaptionTemplate>
+              <CaptionTemplate m="2024-09-26T15:31:23.204212Z">Tutorials (React)</CaptionTemplate>
               <ChildNodes>
-                <TocNode Name="" Id="84c4c9bd-0b88-44a4-a7a0-983431514e14" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                <TocNode Name="" Id="b5133d3b-abc9-4716-b243-ccb878f6afde" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
-                  <TargetItemId>a5d48d77-152d-4142-b184-811540804fde</TargetItemId>
+                  <TargetItemId>a954ad8a-89c7-41fc-88fe-cc8c3246b40b</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
               </ChildNodes>
@@ -2980,36 +2981,7 @@ Show external placement div</Notes>
       <TopicCategory Id="-" AutoIndex="false">
         <Caption m="2009-09-11T10:57:19.7639331Z">(Un-categorized)</Caption>
         <ChildTopicCategories />
-        <Topics>
-          <Topic Id="4a03e8a7-a1ce-4677-a2a7-f1233b22f4c4" Status="New Topic" CreatedOn="2023-03-22T16:51:39.6282895Z" ModifiedOn="" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="NewTopic" BuildFlags="">
-            <Title />
-            <ContentsTitle />
-            <Notes></Notes>
-            <TopicSections>
-              <TopicSection Name="BodyText">
-                <Content m="2023-03-22T16:51:39.6282895Z">&lt;p&gt; &lt;/p&gt;</Content>
-              </TopicSection>
-            </TopicSections>
-            <TopicLinks />
-            <TopicKeywords />
-            <PropertyDefinitionValues />
-            <ExcludedOtherFiles />
-          </Topic>
-          <Topic Id="b19c17c4-bf1d-4ee4-9902-0ec43e10e7e8" Status="New Topic" CreatedOn="2023-06-21T12:26:26.5395847Z" ModifiedOn="" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="NewTopic2" BuildFlags="">
-            <Title />
-            <ContentsTitle />
-            <Notes></Notes>
-            <TopicSections>
-              <TopicSection Name="BodyText">
-                <Content m="2023-06-21T12:26:26.5395847Z">&lt;p&gt; &lt;/p&gt;</Content>
-              </TopicSection>
-            </TopicSections>
-            <TopicLinks />
-            <TopicKeywords />
-            <PropertyDefinitionValues />
-            <ExcludedOtherFiles />
-          </Topic>
-        </Topics>
+        <Topics />
       </TopicCategory>
       <TopicCategory Id="CONTENTSNIPPETS" AutoIndex="false">
         <Caption m="2011-11-29T17:13:19.1489878Z">Content Snippets</Caption>
@@ -3228,8 +3200,8 @@ Show external placement div</Notes>
             <Caption m="2022-01-09T10:25:03.7513485Z">JS Webpack npm Tutorials</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="2247b20c-4be1-42cb-ad24-125310703f67" Status="New Topic" CreatedOn="2017-03-09T09:48:40.4008937Z" ModifiedOn="2024-09-18T16:12:24.6306026Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Tutorial 01 - Setting up a Project with SciChart.js" BuildFlags="">
-                <Title m="2022-01-09T10:24:17.1136681Z">Tutorial 01 - Setting up a npm Project with SciChart.js</Title>
+              <Topic Id="2247b20c-4be1-42cb-ad24-125310703f67" Status="New Topic" CreatedOn="2017-03-09T09:48:40.4008937Z" ModifiedOn="2024-09-26T15:53:15.1401168Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Tutorial 01 - Setting up a Project with SciChart.js" BuildFlags="">
+                <Title m="2024-09-26T15:53:15.1391196Z">Tutorial 01 - Setting up a npm Project with SciChart.js</Title>
                 <ContentsTitle m="2023-02-02T16:00:48.4268272Z">Tutorial 01 - Setting up a npm Project with SciChart.js</ContentsTitle>
                 <Notes></Notes>
                 <TopicSections>
@@ -3859,13 +3831,13 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="fb82afac-3f92-42e9-9f83-da8b315a1e5f" Status="New Topic" CreatedOn="2024-09-25T17:40:01.3182694Z" ModifiedOn="2024-09-26T14:17:21.9652229Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Tutorial02IncludeIndexMinJSWebassemblyFilesOffline" BuildFlags="">
+              <Topic Id="fb82afac-3f92-42e9-9f83-da8b315a1e5f" Status="New Topic" CreatedOn="2024-09-25T17:40:01.3182694Z" ModifiedOn="2024-09-27T08:55:22.1426733Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Tutorial02IncludeIndexMinJSWebassemblyFilesOffline" BuildFlags="">
                 <Title m="2024-09-25T17:40:31.9258959Z">Tutorial 02 - Including index.min.js and WebAssembly Files offline</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2024-09-26T14:17:21.9652229Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-09-27T08:55:22.1426733Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;This set of tutorials will be limited to how to use SciChart.js by including index.min.js in a vanilla JS application (without npm and webpack).&lt;/P&gt;
 &lt;P&gt;We recommend going through the following tutorials which explain the API first.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/P&gt;
 &lt;UL&gt;
@@ -3921,12 +3893,14 @@ Show external placement div</Notes>
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;P&gt;Aborted(RuntimeError: Aborted(both async and sync fetching of the wasm failed).&lt;BR&gt;Build with -sASSERTIONS for more info.)&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;Could not load SciChart WebAssembly module.&amp;nbsp; Check your build process and ensure that your scichart2d.wasm, scichart2d.data &lt;BR&gt;and scichart2d.js files are from the same version&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Could not load SciChart WebAssembly module.&amp;nbsp; Check your build process and ensure that your scichart2d.wasm, scichart2d.data&lt;BR&gt;and scichart2d.js files are from the same version&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;All these errors essentially mean the same thing: &lt;STRONG&gt;either the URL/Path to the *.wasm files is incorrect, or the files are incorrectly served.&lt;/STRONG&gt;&lt;/P&gt;
 &lt;OL&gt;
-&lt;LI&gt;As a first attempt to fix this, ensure that the *.wasm files can be reached at the relative path or URL provided to&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#configure" target=_blank&gt;SciChartSurface.configure()&lt;/A&gt;.
-&lt;LI&gt;Next, ensure that the *.wasm files are served with MIME type application/octet-stream.
-&lt;LI&gt;Finally, ensure that the version numbers of *.wasm files and index.min.js match. The best way to ensure this is&amp;nbsp;download a specific version again and overwrite&amp;nbsp;files in your source-code repository.&lt;/LI&gt;&lt;/OL&gt;
+&lt;LI&gt;As a first attempt to fix this, ensure that the *.wasm files can be reached at the relative path or URL provided to&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#configure" target=_blank&gt;&lt;U&gt;&lt;FONT color=#0066cc&gt;SciChartSurface.configure()&lt;/FONT&gt;&lt;/U&gt;&lt;/A&gt;.&lt;BR&gt;&lt;BR&gt;Look at the Network tab in Google Chrome developer tools to see the network failures for fetching the *.wasm files. Look at the request URL and check that it is correct, and adjust until you no longer get HTTP404&lt;BR&gt;&lt;BR&gt;&lt;IMG border=0 alt="" src="images/wasm-file-not-found-error-network.png"&gt;&lt;BR&gt;
+&lt;LI&gt;Next, ensure that the *.wasm files are served with MIME type application/octet-stream.&lt;BR&gt;
+&lt;LI&gt;Verify the file that was downloaded, that it is actually the correct file &amp;amp; file type. &lt;BR&gt;
+&lt;LI&gt;Finally, ensure that the version numbers of *.wasm files and index.min.js match. The best way to ensure this is&amp;nbsp;download a specific version again and overwrite&amp;nbsp;files in your source-code repository.&lt;BR&gt;&lt;/LI&gt;&lt;/OL&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;P&gt;If after that you still are having problems, contact&amp;nbsp;&lt;A href="https://scichart.com/contact-us" target=_blank&gt;scichart support&lt;/A&gt; and we will be glad to help.&lt;/P&gt;</Content>
                   </TopicSection>
                 </TopicSections>
@@ -3941,7 +3915,7 @@ Show external placement div</Notes>
             <Caption m="2023-07-24T18:13:53.6489646Z">Tutorials React</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="a5d48d77-152d-4142-b184-811540804fde" Status="New Topic" CreatedOn="2023-07-24T09:15:58.4265193Z" ModifiedOn="2024-01-12T17:24:08.5767921Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="TutorialReusableReactComponent" BuildFlags="">
+              <Topic Id="a5d48d77-152d-4142-b184-811540804fde" Status="In Progress" CreatedOn="2023-07-24T09:15:58.4265193Z" ModifiedOn="2024-09-26T15:35:23.3568077Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="TutorialReusableReactComponent" BuildFlags="">
                 <Title m="2024-01-12T17:12:32.3820528Z">Tutorial - Creating a SciChart React Component from the Ground Up</Title>
                 <ContentsTitle />
                 <Notes></Notes>
@@ -4057,6 +4031,29 @@ Show external placement div</Notes>
                     <Category />
                   </TopicLink>
                 </TopicLinks>
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+              <Topic Id="a954ad8a-89c7-41fc-88fe-cc8c3246b40b" Status="New Topic" CreatedOn="2024-09-26T15:34:32.3001276Z" ModifiedOn="2024-09-26T16:23:23.3665402Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Tutorial01CreateChartWithSciChartReact" BuildFlags="">
+                <Title m="2024-09-26T15:53:25.9157903Z">Tutorial 01 - Creating a Line Chart in React with SciChart.js</Title>
+                <ContentsTitle m="2024-09-26T15:53:03.8368027Z">Tutorial 01 - Creating a Line Chart in React with SciChart.js</ContentsTitle>
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2024-09-26T16:23:23.3665402Z">&lt;P&gt;In this tutorial we will create a React line chart with&amp;nbsp;&lt;A href="https://www.npmjs.com/package/scichart" target=_blank&gt;scichart.js&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.npmjs.com/package/scichart-react" target=_blank&gt;scichart-react&lt;/A&gt;. &lt;/P&gt;
+&lt;P&gt;We'll show you how to&amp;nbsp;create a new JavaScript project and adding scichart and scichart-react libraries as dependencies to it. &lt;/P&gt;
+&lt;P&gt;Plus, how to display the chart in a react component and how scichart-react handles the lifecycle of the chart including correctly calling delete/cleanup in component unmount. &lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Source code for this tutorial can be found at our&amp;nbsp;&lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Tutorials/React" target=_blank&gt;SciChart.Js.Examples Github Repository&lt;/A&gt;&amp;nbsp;under Tutorials / React.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;What is SciChart-React?&lt;/H2&gt;
+&lt;P&gt;&lt;A href="https://www.npmjs.com/package/scichart-react" target=_blank&gt;scichart-react&lt;/A&gt;&amp;nbsp;is a free open source React Chart component for use with scichart.js. This simplifies the development of React Charts by handling initialisation, deletion and lifecycle of the chart and allows multiple options for creating simple to advanced options.&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;TODO: link to blog post, github, npm for scichart-react&lt;/STRONG&gt;&lt;/P&gt;
+&lt;H2&gt;How to Setup A Project with SciChart-React&lt;/H2&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Initialising an npm project&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Command line&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;&amp;gt; npm install --save-dev webpack&lt;BR&gt;&amp;gt; npm install --save-dev webpack-dev-server&lt;BR&gt;&amp;gt; npm install --save-dev webpack-cli&lt;BR&gt;&amp;gt; npm install --save-dev copy-webpack-plugin&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
                 <TopicKeywords />
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
@@ -15128,7 +15125,7 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="66c2a477-19b7-4c68-9aea-10c01c54774f" Status="New Topic" CreatedOn="2019-08-30T13:01:32.6708223Z" ModifiedOn="2020-09-11T17:11:48.7905449Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial  01 - Charting Concepts" BuildFlags="">
+              <Topic Id="66c2a477-19b7-4c68-9aea-10c01c54774f" Status="In Progress" CreatedOn="2019-08-30T13:01:32.6708223Z" ModifiedOn="2024-09-26T15:34:07.0953086Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial  01 - Charting Concepts" BuildFlags="">
                 <Title m="2020-09-11T17:11:48.7875532Z">OLD 3D Tutorial  01 - Charting Concepts</Title>
                 <ContentsTitle m="2019-09-23T16:36:08.8189086Z">Charting Concepts</ContentsTitle>
                 <Notes></Notes>
@@ -15194,7 +15191,7 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="b6028fd1-9906-48ac-9d08-dd81e45997dd" Status="New Topic" CreatedOn="2019-09-02T10:38:10.9905454Z" ModifiedOn="2020-09-11T17:12:03.2366438Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial  02 - Add SciChart Libraries to Android Studio" BuildFlags="">
+              <Topic Id="b6028fd1-9906-48ac-9d08-dd81e45997dd" Status="In Progress" CreatedOn="2019-09-02T10:38:10.9905454Z" ModifiedOn="2024-09-26T15:34:07.0973081Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial  02 - Add SciChart Libraries to Android Studio" BuildFlags="">
                 <Title m="2020-09-11T17:12:03.2366438Z">OLD 3D Tutorial  02 - Add SciChart Libraries to Android Studio</Title>
                 <ContentsTitle />
                 <Notes></Notes>
@@ -15237,7 +15234,7 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="699aad4b-9271-4f53-bcff-48cd49a70752" Status="New Topic" CreatedOn="2019-09-23T16:15:11.006571Z" ModifiedOn="2020-09-11T17:12:08.1236238Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial  03 - Creating a Chart and Add a Data Series" BuildFlags="">
+              <Topic Id="699aad4b-9271-4f53-bcff-48cd49a70752" Status="In Progress" CreatedOn="2019-09-23T16:15:11.006571Z" ModifiedOn="2024-09-26T15:34:07.0988138Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial  03 - Creating a Chart and Add a Data Series" BuildFlags="">
                 <Title m="2020-09-11T17:12:08.1236238Z">OLD 3D Tutorial  03 - Creating a Chart and Add a Data Series</Title>
                 <ContentsTitle />
                 <Notes></Notes>
@@ -15310,7 +15307,7 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="d5f6befd-6b5b-4650-a207-d63f648a4f8e" Status="New Topic" CreatedOn="2019-09-02T14:12:14.8733503Z" ModifiedOn="2020-09-11T17:12:14.3954551Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial 04 - Changing the Axes Length and Chart Pitch and Yaw" BuildFlags="">
+              <Topic Id="d5f6befd-6b5b-4650-a207-d63f648a4f8e" Status="In Progress" CreatedOn="2019-09-02T14:12:14.8733503Z" ModifiedOn="2024-09-26T15:34:07.0988138Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial 04 - Changing the Axes Length and Chart Pitch and Yaw" BuildFlags="">
                 <Title m="2020-09-11T17:12:14.3954551Z">OLD 3D Tutorial 04 - Changing the Axes Length and Chart Pitch and Yaw</Title>
                 <ContentsTitle />
                 <Notes></Notes>
@@ -15389,7 +15386,7 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="b302958a-29d2-4089-9b36-8ff8acd30627" Status="New Topic" CreatedOn="2019-09-02T15:14:36.8281591Z" ModifiedOn="2020-09-11T17:12:18.6755628Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial 05 - Zooming and Rotating" BuildFlags="">
+              <Topic Id="b302958a-29d2-4089-9b36-8ff8acd30627" Status="In Progress" CreatedOn="2019-09-02T15:14:36.8281591Z" ModifiedOn="2024-09-26T15:34:07.099818Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial 05 - Zooming and Rotating" BuildFlags="">
                 <Title m="2020-09-11T17:12:18.6755628Z">OLD 3D Tutorial 05 - Zooming and Rotating</Title>
                 <ContentsTitle />
                 <Notes></Notes>
@@ -15440,7 +15437,7 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="57a08ab7-2fd2-4ee1-8268-30acf5c474c3" Status="New Topic" CreatedOn="2019-09-02T16:02:59.1689118Z" ModifiedOn="2020-09-11T17:12:23.5475964Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial 06 - Cursors and Tooltips" BuildFlags="">
+              <Topic Id="57a08ab7-2fd2-4ee1-8268-30acf5c474c3" Status="In Progress" CreatedOn="2019-09-02T16:02:59.1689118Z" ModifiedOn="2024-09-26T15:34:07.1008192Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial 06 - Cursors and Tooltips" BuildFlags="">
                 <Title m="2020-09-11T17:12:23.5475964Z">OLD 3D Tutorial 06 - Cursors and Tooltips</Title>
                 <ContentsTitle />
                 <Notes></Notes>
@@ -15471,7 +15468,7 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="5eb89f7b-2486-4a91-bb5d-2a567a4cdd16" Status="New Topic" CreatedOn="2019-09-02T12:26:48.1021752Z" ModifiedOn="2020-09-11T17:12:28.5004035Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial 07 - Plotting Realtime Data" BuildFlags="">
+              <Topic Id="5eb89f7b-2486-4a91-bb5d-2a567a4cdd16" Status="In Progress" CreatedOn="2019-09-02T12:26:48.1021752Z" ModifiedOn="2024-09-26T15:34:07.1008192Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial 07 - Plotting Realtime Data" BuildFlags="">
                 <Title m="2020-09-11T17:12:28.4994068Z">OLD 3D Tutorial 07 - Plotting Realtime Data</Title>
                 <ContentsTitle />
                 <Notes></Notes>
@@ -16536,7 +16533,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">267</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
