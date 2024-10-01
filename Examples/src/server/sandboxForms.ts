@@ -38,7 +38,7 @@ const includeExternalModules = async (folderPath: string, files: IFiles, content
     return content;
 };
 
-const includeImportedModules = async (folderPath: string, files: IFiles, code: string, includeImages: boolean, updateImports: boolean) => {
+const includeImportedModules = async (folderPath: string, files: IFiles, code: string, includeImages: boolean, updateImports: boolean, baseUrl: string) => {
     const localImports = Array.from(code.matchAll(/from ["']\.\/(.*)["'];/g));
     for (const localImport of localImports) {
         if (localImport.length > 1) {
@@ -49,8 +49,8 @@ const includeImportedModules = async (folderPath: string, files: IFiles, code: s
                     // handle images
                     csPath = "src/" + localImport[1];
                     const filename = localImport[1].substring(localImport[1].lastIndexOf("/") + 1);
-                    console.log("https://demo.scichart.com/images/" + filename);
-                    files[csPath] = { content: "https://demo.scichart.com/images/" + filename, isBinary: true };
+                    console.log(baseUrl + filename);
+                    files[csPath] = { content: baseUrl + filename, isBinary: true };
                 }
             } else {
                 try {
@@ -73,22 +73,22 @@ const includeImportedModules = async (folderPath: string, files: IFiles, code: s
     }
 };
 
-export const getSourceFilesForPath = async (folderPath: string, startFile: string) => {
+export const getSourceFilesForPath = async (folderPath: string, startFile: string, baseUrl: string) => {
     const tsPath = path.join(folderPath, startFile);
     let code = await fs.promises.readFile(tsPath, "utf8");
     let files: IFiles = {};
-    await includeImportedModules(folderPath, files, code, false, false);
+    await includeImportedModules(folderPath, files, code, false, false, baseUrl);
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
     await includeExternalModules(folderPath, files, code, false, false);
     files[tsPath] = { content: code, isBinary: false };
     return files;
 }
 
-const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
+const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo, baseUrl: string) => {
     const tsPath = path.join(folderPath, "index.tsx");
     let code = await fs.promises.readFile(tsPath, "utf8");
     let files: IFiles = {};
-    await includeImportedModules(folderPath, files, code, true, true);
+    await includeImportedModules(folderPath, files, code, true, true, baseUrl);
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
     code = await includeExternalModules(folderPath, files, code, true, true);
 
@@ -189,7 +189,7 @@ export const getAngularSrc = async (folderPath: string) => {
     return code;
 };
 
-const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
+const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo, baseUrl: string) => {
     const templatePath = path.join(folderPath, "angular.html");
     let code = await getAngularSrc(folderPath);
     let template: string;
@@ -201,7 +201,7 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
     }
 
     let files: IFiles = {};
-    await includeImportedModules(folderPath, files, code, true, true);
+    await includeImportedModules(folderPath, files, code, true, true, baseUrl);
 
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
     code = code.replace("./drawExample", "../drawExample");
@@ -427,7 +427,7 @@ export const getVanillaSrc = async (folderPath: string) => {
     return code;
 };
 
-const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
+const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo, baseUrl: string) => {
     let code = await getVanillaSrc(folderPath);
 
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
@@ -551,7 +551,7 @@ const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: T
     }
     files = { ...files, ...csStyles };
 
-    await includeImportedModules(folderPath, files, code, true, true);
+    await includeImportedModules(folderPath, files, code, true, true, baseUrl);
     const parameters = getParameters({ files, template });
     return `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
         <input type="hidden" name="parameters" value="${parameters}" />
@@ -618,16 +618,16 @@ const commonFiles: IFiles = {
     },
 };
 
-export const getSandboxWithTemplate = (folderPath: string, currentExample: TExampleInfo, framework: EPageFramework) => {
+export const getSandboxWithTemplate = (folderPath: string, currentExample: TExampleInfo, framework: EPageFramework, baseUrl: string) => {
     switch (framework) {
         case EPageFramework.Angular:
-            return getAngularCodeSandBoxForm(folderPath, currentExample);
+            return getAngularCodeSandBoxForm(folderPath, currentExample, baseUrl);
         case EPageFramework.Vue:
             throw new Error("Not Implemented");
         case EPageFramework.React:
-            return getCodeSandBoxForm(folderPath, currentExample);
+            return getCodeSandBoxForm(folderPath, currentExample, baseUrl);
         case EPageFramework.Vanilla:
-            return getVanillaTsCodeSandBoxForm(folderPath, currentExample);
+            return getVanillaTsCodeSandBoxForm(folderPath, currentExample, baseUrl);
         default:
             return handleInvalidFrameworkValue(framework);
     }

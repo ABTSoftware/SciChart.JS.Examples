@@ -80,9 +80,10 @@ export const getSourceFiles = async (req: Request, res: Response) => {
             let files: IFiles = {};
             let htmlPath: string;
             let html: string;
+            let baseUrl = req.protocol + "://" + req.get("host");
             switch (framework) {
                 case EPageFramework.Angular:
-                    files = await getSourceFilesForPath(folderPath, "angular.ts");
+                    files = await getSourceFilesForPath(folderPath, "angular.ts", baseUrl);
                     htmlPath = path.join(folderPath, "angular.html");
                     try {
                         html = await fs.promises.readFile(htmlPath, "utf8");
@@ -94,10 +95,10 @@ export const getSourceFiles = async (req: Request, res: Response) => {
                 case EPageFramework.Vue:
                     throw new Error("Not Implemented");
                 case EPageFramework.React:
-                    files = await getSourceFilesForPath(folderPath, "index.tsx");
+                    files = await getSourceFilesForPath(folderPath, "index.tsx", baseUrl);
                     break;
                 case EPageFramework.Vanilla:
-                    files = await getSourceFilesForPath(folderPath, "vanilla.ts");
+                    files = await getSourceFilesForPath(folderPath, "vanilla.ts", baseUrl);
                     htmlPath = path.join(folderPath, "index.html");
                     try {
                         const charHtmlSetup = await fs.promises.readFile(htmlPath, "utf8");
@@ -147,11 +148,13 @@ export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => 
             if (!isValidFramework) {
                 framework = EPageFramework.React;
             }
+            let baseUrl = req.protocol + "://" + req.get("host");
             const folderPath = path.join(basePath, currentExample.filepath);
             const form = await getSandboxWithTemplate(
                 folderPath,
                 currentExample,
-                req.query.framework as EPageFramework
+                req.query.framework as EPageFramework,
+                baseUrl
             );
             const page = renderCodeSandBoxRedirectPage(form);
             res.send(page);
