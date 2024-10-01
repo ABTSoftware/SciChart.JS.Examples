@@ -7,22 +7,26 @@ import { NotFoundError } from "./Errors";
 import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 const pj = require("../../package.json");
 
-const includeExternalModules = async (folderPath: string, files: IFiles, content: string) => {
+const includeExternalModules = async (folderPath: string, files: IFiles, content: string, includeImages: boolean, updateImports: boolean) => {
     // Pull files outside the local folder into it and rewrite the import
     const externalImports = Array.from(content.matchAll(/from "\.\.\/(.*)";/g));
     if (externalImports.length > 0) {
         for (const externalImport of externalImports) {
             if (externalImport.length > 1) {
                 if (externalImport[1].endsWith(".png") || externalImport[1].endsWith(".jpg")) {
-                    // handle images
-                    const csPath = "src/" + externalImport[1];
-                    const filename = externalImport[1].substring(externalImport[1].lastIndexOf("/") + 1);
-                    files[csPath] = { content: "https://demo.scichart.com/images/" + filename, isBinary: true };
+                    if (includeImages) {
+                        // handle images
+                        const csPath = "src/" + externalImport[1];
+                        const filename = externalImport[1].substring(externalImport[1].lastIndexOf("/") + 1);
+                        files[csPath] = { content: "https://demo.scichart.com/images/" + filename, isBinary: true };
+                    }
                 } else {
                     const filepath = path.join(folderPath, "../" + externalImport[1] + ".ts");
                     const filename = externalImport[1].substring(externalImport[1].lastIndexOf("/") + 1);
                     const csPath = "src/" + filename + ".ts";
-                    content = content.replace("../" + externalImport[1], "./" + filename);
+                    if (updateImports) {
+                        content = content.replace("../" + externalImport[1], "./" + filename);
+                    }
                     if (!files[csPath]) {
                         const externalContent = await fs.promises.readFile(filepath, "utf8");
                         files[csPath] = { content: externalContent, isBinary: false };
@@ -34,18 +38,20 @@ const includeExternalModules = async (folderPath: string, files: IFiles, content
     return content;
 };
 
-const includeImportedModules = async (folderPath: string, files: IFiles, code: string) => {
+const includeImportedModules = async (folderPath: string, files: IFiles, code: string, includeImages: boolean, updateImports: boolean, baseUrl: string) => {
     const localImports = Array.from(code.matchAll(/from ["']\.\/(.*)["'];/g));
     for (const localImport of localImports) {
         if (localImport.length > 1) {
             let content: string = "";
             let csPath: string = "";
             if (localImport[1].endsWith(".png") || localImport[1].endsWith(".jpg")) {
-                // handle images
-                csPath = "src/" + localImport[1];
-                const filename = localImport[1].substring(localImport[1].lastIndexOf("/") + 1);
-                console.log("https://demo.scichart.com/images/" + filename);
-                files[csPath] = { content: "https://demo.scichart.com/images/" + filename, isBinary: true };
+                if (includeImages) {
+                    // handle images
+                    csPath = "src/" + localImport[1];
+                    const filename = localImport[1].substring(localImport[1].lastIndexOf("/") + 1);
+                    console.log(baseUrl + filename);
+                    files[csPath] = { content: baseUrl + filename, isBinary: true };
+                }
             } else {
                 try {
                     const filepath = path.join(folderPath, localImport[1] + ".ts");
@@ -60,20 +66,31 @@ const includeImportedModules = async (folderPath: string, files: IFiles, code: s
                 if (nestedImports.length > 0) {
                     localImports.push(...nestedImports);
                 }
-                content = await includeExternalModules(folderPath, files, content);
+                content = await includeExternalModules(folderPath, files, content, includeImages, updateImports);
                 files[csPath] = { content, isBinary: false };
             }
         }
     }
 };
 
-const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
+export const getSourceFilesForPath = async (folderPath: string, startFile: string, baseUrl: string) => {
+    const tsPath = path.join(folderPath, startFile);
+    let code = await fs.promises.readFile(tsPath, "utf8");
+    let files: IFiles = {};
+    await includeImportedModules(folderPath, files, code, false, false, baseUrl);
+    code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
+    await includeExternalModules(folderPath, files, code, false, false);
+    files[tsPath] = { content: code, isBinary: false };
+    return files;
+}
+
+const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo, baseUrl: string) => {
     const tsPath = path.join(folderPath, "index.tsx");
     let code = await fs.promises.readFile(tsPath, "utf8");
     let files: IFiles = {};
-    await includeImportedModules(folderPath, files, code);
+    await includeImportedModules(folderPath, files, code, true, true, baseUrl);
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
-    code = await includeExternalModules(folderPath, files, code);
+    code = await includeExternalModules(folderPath, files, code, true, true);
 
     files = {
         ...commonFiles,
@@ -91,8 +108,8 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
                     eject: "react-scripts eject",
                 },
                 dependencies: {
-                    "@material-ui/core": "4.12.4",
-                    "@material-ui/lab": "4.0.0-alpha.61",
+                    "@mui/material": "^^5.15.20",            // Change to MUI v5
+                    "@mui/lab": "^5.0.0-alpha.170",  
                     sass: "^1.49.9",
                     "loader-utils": "3.2.1",
                     react: "^17.0.2",
@@ -172,7 +189,7 @@ export const getAngularSrc = async (folderPath: string) => {
     return code;
 };
 
-const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
+const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo, baseUrl: string) => {
     const templatePath = path.join(folderPath, "angular.html");
     let code = await getAngularSrc(folderPath);
     let template: string;
@@ -184,7 +201,7 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
     }
 
     let files: IFiles = {};
-    await includeImportedModules(folderPath, files, code);
+    await includeImportedModules(folderPath, files, code, true, true, baseUrl);
 
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
     code = code.replace("./drawExample", "../drawExample");
@@ -386,7 +403,7 @@ SciChartSurface.loadWasmFromCDN();
 SciChart3DSurface.loadWasmFromCDN();
 `;
 
-const indexHtmlTemplate = (customChartSetup?: string) => `<!DOCTYPE html>
+export const indexHtmlTemplate = (customChartSetup?: string) => `<!DOCTYPE html>
 <html lang="en">
     <head>
     <title>SciChart Example</title>
@@ -410,7 +427,7 @@ export const getVanillaSrc = async (folderPath: string) => {
     return code;
 };
 
-const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
+const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo, baseUrl: string) => {
     let code = await getVanillaSrc(folderPath);
 
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
@@ -534,7 +551,7 @@ const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: T
     }
     files = { ...files, ...csStyles };
 
-    await includeImportedModules(folderPath, files, code);
+    await includeImportedModules(folderPath, files, code, true, true, baseUrl);
     const parameters = getParameters({ files, template });
     return `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
         <input type="hidden" name="parameters" value="${parameters}" />
@@ -601,16 +618,16 @@ const commonFiles: IFiles = {
     },
 };
 
-export const getSandboxWithTemplate = (folderPath: string, currentExample: TExampleInfo, framework: EPageFramework) => {
+export const getSandboxWithTemplate = (folderPath: string, currentExample: TExampleInfo, framework: EPageFramework, baseUrl: string) => {
     switch (framework) {
         case EPageFramework.Angular:
-            return getAngularCodeSandBoxForm(folderPath, currentExample);
+            return getAngularCodeSandBoxForm(folderPath, currentExample, baseUrl);
         case EPageFramework.Vue:
             throw new Error("Not Implemented");
         case EPageFramework.React:
-            return getCodeSandBoxForm(folderPath, currentExample);
+            return getCodeSandBoxForm(folderPath, currentExample, baseUrl);
         case EPageFramework.Vanilla:
-            return getVanillaTsCodeSandBoxForm(folderPath, currentExample);
+            return getVanillaTsCodeSandBoxForm(folderPath, currentExample, baseUrl);
         default:
             return handleInvalidFrameworkValue(framework);
     }

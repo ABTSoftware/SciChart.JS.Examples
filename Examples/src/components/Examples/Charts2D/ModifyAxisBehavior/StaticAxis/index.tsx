@@ -1,12 +1,11 @@
 import * as React from "react";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { drawExample } from "./drawExample";
 import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import { Label } from "@material-ui/icons";
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 
 const useStyles = makeStyles(() => ({
     flexOuterContainer: {

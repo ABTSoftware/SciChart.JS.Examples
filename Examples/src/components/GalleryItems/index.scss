@@ -1,0 +1,262 @@
+.showcaseheadingwrap {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: center;
+    margin: 35px 0 20px;
+}
+.showcasetitle {
+    h2 {
+        font-family: "Arial";
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 45px;
+        color: #050a30;
+        margin: 0;
+        padding: 0;
+        @media only screen and (max-width: 768px) {
+            font-size: 14px;
+            line-height: 17px;
+        }
+    }
+}
+.showcasedisplay {
+    ul {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        gap: 15px;
+        @media only screen and (max-width: 1024px) {
+            gap: 5px;
+            img {
+                width: 24px;
+            }
+        }
+    }
+}
+.showcaserow {
+    display: flex;
+    gap: 14px;
+    justify-content: left;
+    flex-wrap: wrap;
+    &.tabmultiple {
+        @media only screen and (max-width: 768px) {
+            gap: 5px;
+        }
+        .showcasecol {
+            width: 18.97%;
+            @media screen and (min-width: 991px) and (max-width: 1200px) {
+                width: 17.97%;
+            }
+            @media screen and (min-width: 768px) and (max-width: 991px) {
+                width: 31%;
+            }
+            @media only screen and (max-width: 768px) {
+                width: 49%;
+            }
+            h3 {
+                font-size: 16px;
+                line-height: 22px;
+                cursor: pointer;
+                @media only screen and (max-width: 768px) {
+                    font-size: 13px;
+                    line-height: 18px;
+                    padding: 0;
+                }
+            }
+        }
+        .showcasethumb {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    }
+
+    &.tablist {
+        .showcasecol {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            border: 1px solid #eee;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
+            border-radius: 23px;
+            padding: 17px;
+            gap: 40px;
+            @media only screen and (max-width: 768px) {
+                padding: 17px 17px 40px;
+                gap: 15px;
+                position: relative;
+            }
+        }
+        .showcasethumb {
+            width: 28%;
+            padding: 0;
+            margin: 0;
+            box-shadow: none;
+            border: none;
+            border-radius: 0;
+            @media only screen and (max-width: 768px) {
+                width: 44%;
+                box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
+                padding: 5px 5px 2px;
+                border-radius: 14px;
+            }
+        }
+        .showcasecontent {
+            width: 72%;
+            text-align: left;
+            @media only screen and (max-width: 768px) {
+                width: 56%;
+            }
+            h3 {
+                font-family: "Arial";
+                font-weight: 600;
+                font-size: 26px;
+                line-height: 26px;
+                letter-spacing: 0.02em;
+                color: #315e96;
+                text-align: left;
+                padding: 0;
+                margin-bottom: 12px;
+                @media only screen and (max-width: 768px) {
+                    font-size: 14px;
+                    line-height: 18px;
+                }
+            }
+            p {
+                font-family: "Arial";
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 26px;
+                letter-spacing: 0.02em;
+                color: #212121;
+                margin: 0 0 30px 0;
+                @media only screen and (max-width: 768px) {
+                    font-size: 13px;
+                    line-height: 18px;
+                }
+                a {
+                    color: #2eacdb;
+                }
+            }
+        }
+    }
+
+    .showcasecol {
+        width: 32.4%;
+        text-align: center;
+        margin-bottom: 20px;
+        @media screen and (min-width: 768px) and (max-width: 1200px) {
+            width: 31.4%;
+        }
+        @media only screen and (max-width: 768px) {
+            width: 100%;
+        }
+
+        h3 {
+            font-family: "Arial";
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 26px;
+            text-align: center;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            color: #212121;
+            margin: 0;
+            padding: 0 20px;
+        }
+    }
+}
+
+.showcasethumb {
+    background: #fff;
+    border: 1px solid #eee;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
+    border-radius: 23px;
+    padding: 25px;
+    margin-bottom: 20px;
+
+    @media only screen and (max-width: 1024px) {
+        padding: 15px;
+        border-radius: 16px;
+    }
+    img {
+        border-radius: 14px;
+        width: 100%;
+    }
+}
+
+.loadmore {
+    text-align: center;
+    width: 100%;
+    a {
+        font-family: "Arial";
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 30px;
+        text-align: center;
+        color: #2eacdb;
+        text-decoration: none;
+        @media only screen and (max-width: 1024px) {
+            font-size: 14px;
+            line-height: 17px;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.tabbtnwrap {
+    display: flex;
+    gap: 10px;
+
+    @media only screen and (max-width: 768px) {
+        position: absolute;
+        left: 0;
+        width: 88%;
+        bottom: 15px;
+        right: 0;
+        margin: 0 auto;
+    }
+    .btnprimary {
+        background: linear-gradient(90deg, #1aa2d5 15.5%, #35bfb7 100%);
+        border-radius: 6px;
+        font-family: "Arial";
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 30px;
+        text-align: center;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 14px 32px;
+        @media only screen and (max-width: 768px) {
+            font-size: 12px;
+            padding: 0;
+            line-height: 35px;
+            display: block;
+            width: 50%;
+        }
+    }
+    .btnsecondary {
+        background: linear-gradient(90deg, #3578a9 0%, #a8218c 100%);
+        border-radius: 6px;
+        font-family: "Arial";
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 30px;
+        text-align: center;
+        text-decoration: none;
+        padding: 14px 32px;
+        color: #ffffff;
+        @media only screen and (max-width: 768px) {
+            font-size: 12px;
+            padding: 0;
+            line-height: 35px;
+            display: block;
+            width: 50%;
+        }
+    }
+}

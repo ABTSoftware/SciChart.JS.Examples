@@ -1,6 +1,6 @@
 import { FC, Fragment, useContext } from "react";
-import Collapse from "@material-ui/core/Collapse";
-import List from "@material-ui/core/List";
+import Collapse from "@mui/material/Collapse";
+import List from "@mui/material/List";
 import { TMenuItem } from "../AppRouter/examples";
 import { useMatch } from "react-router-dom";
 import MenuListItemText from "../../helpers/shared/MenuListItemText/MenuListItemText";

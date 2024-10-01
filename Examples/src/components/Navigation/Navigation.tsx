@@ -1,5 +1,5 @@
 import { FC, useContext } from "react";
-import List from "@material-ui/core/List";
+import List from "@mui/material/List";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
     MENU_ITEMS_2D,

@@ -1,4 +1,4 @@
-import { FC, useContext, useState, useEffect, ChangeEvent } from "react";
+import { FC, useContext, useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,7 +16,6 @@ import { TExamplePage } from "../AppRouter/examplePages";
 import npm from "./npm.svg";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { getTitle, EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { FormControl, InputLabel, MenuItem, Select, Tooltip } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { appTheme } from "../Examples/theme";
 
@@ -109,14 +108,6 @@ const AppBarTop: FC<TProps> = (props) => {
 
     const isFrameworkVariantAvailable = availableFrameworks?.includes(selectedFramework);
 
-    const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
-        if (currentExample) {
-            navigate(`/${event.target.value as EPageFramework}/${currentExample.path}`);
-        } else {
-            navigate(`/${event.target.value as EPageFramework}`);
-        }
-    };
-
     const codeSandboxButton = currentExample ? (
         <Button
             //disabled={!isFrameworkVariantAvailable}
@@ -134,7 +125,6 @@ const AppBarTop: FC<TProps> = (props) => {
                     : `Sorry, we have not got ${FRAMEWORK_NAME[selectedFramework]} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
             }
             target="_blank"
-            style={{ color: "white" }}
         >
             <CodeIcon fontSize="small" /> &nbsp;Code Sandbox
         </Button>
@@ -152,26 +142,6 @@ const AppBarTop: FC<TProps> = (props) => {
                 </a>
                 <Search />
                 <div className={classes.FlexPlaceholder}></div>
-                <FormControl className={localClasses.formControl}>
-                    <InputLabel id="framework-select-label" className={localClasses.label} style={{ color: "white" }}>
-                        Framework
-                    </InputLabel>
-                    <Select
-                        inputProps={{ MenuProps: { disableScrollLock: true } }}
-                        labelId="framework-select-label"
-                        id="demo-simple-select"
-                        className={localClasses.select}
-                        classes={{ icon: localClasses.selectIcon }}
-                        value={selectedFramework}
-                        label={FRAMEWORK_NAME[selectedFramework]}
-                        onChange={handleChange}
-                    >
-                        <MenuItem value={EPageFramework.Vanilla}>{FRAMEWORK_NAME[EPageFramework.Vanilla]}</MenuItem>
-                        <MenuItem value={EPageFramework.React}>{FRAMEWORK_NAME[EPageFramework.React]}</MenuItem>
-                        <MenuItem value={EPageFramework.Angular}>{FRAMEWORK_NAME[EPageFramework.Angular]}</MenuItem>
-                        {/* <MenuItem value={EPageFramework.Vue}>{FRAMEWORK_NAME[EPageFramework.Vue]}</MenuItem> */}
-                    </Select>
-                </FormControl>
                 <Button
                     className={classes.BlueButton}
                     href="https://www.scichart.com/getting-started/scichart-javascript/"
