@@ -18,13 +18,7 @@ export class CustomFilters {
 
     async onInit(initResult: Awaited<ReturnType<typeof drawExample>>) {
         this.controls = initResult.controls;
-        this.startDemo();
-    }
-
-    startDemo() {
-        if (this.controls) {
-            this.startDemo();
-        }
+        this.controls.startDemo();
     }
 
     stopDemo() {
