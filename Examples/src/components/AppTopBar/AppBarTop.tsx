@@ -151,26 +151,28 @@ const AppBarTop: FC<TProps> = (props) => {
                 </a>
                 <Search />
                 <div className={classes.FlexPlaceholder}></div>
-                <FormControl className={localClasses.formControl}>
-                    <InputLabel id="framework-select-label" className={localClasses.label}>
-                        Framework
-                    </InputLabel>
-                    <Select
-                        inputProps={{ MenuProps: { disableScrollLock: true } }}
-                        labelId="framework-select-label"
-                        id="demo-simple-select"
-                        className={localClasses.select}
-                        classes={{ icon: localClasses.selectIcon }}
-                        value={selectedFramework}
-                        label={FRAMEWORK_NAME[selectedFramework]}
-                        onChange={handleChange}
-                    >
-                        <MenuItem value={EPageFramework.Vanilla}>{FRAMEWORK_NAME[EPageFramework.Vanilla]}</MenuItem>
-                        <MenuItem value={EPageFramework.React}>{FRAMEWORK_NAME[EPageFramework.React]}</MenuItem>
-                        {/* <MenuItem value={EPageFramework.Angular}>{FRAMEWORK_NAME[EPageFramework.Angular]}</MenuItem> */}
-                        {/* <MenuItem value={EPageFramework.Vue}>{FRAMEWORK_NAME[EPageFramework.Vue]}</MenuItem> */}
-                    </Select>
-                </FormControl>
+                {!isMobile ? (
+                    <FormControl className={localClasses.formControl}>
+                        <InputLabel id="framework-select-label" className={localClasses.label}>
+                            Framework
+                        </InputLabel>
+                        <Select
+                            inputProps={{ MenuProps: { disableScrollLock: true } }}
+                            labelId="framework-select-label"
+                            id="demo-simple-select"
+                            className={localClasses.select}
+                            classes={{ icon: localClasses.selectIcon }}
+                            value={selectedFramework}
+                            label={FRAMEWORK_NAME[selectedFramework]}
+                            onChange={handleChange}
+                        >
+                            <MenuItem value={EPageFramework.Vanilla}>{FRAMEWORK_NAME[EPageFramework.Vanilla]}</MenuItem>
+                            <MenuItem value={EPageFramework.React}>{FRAMEWORK_NAME[EPageFramework.React]}</MenuItem>
+                            {/* <MenuItem value={EPageFramework.Angular}>{FRAMEWORK_NAME[EPageFramework.Angular]}</MenuItem> */}
+                            {/* <MenuItem value={EPageFramework.Vue}>{FRAMEWORK_NAME[EPageFramework.Vue]}</MenuItem> */}
+                        </Select>
+                    </FormControl>
+                ) : null}
                 <Button
                     className={classes.BlueButton}
                     href="https://www.scichart.com/getting-started/scichart-javascript/"
