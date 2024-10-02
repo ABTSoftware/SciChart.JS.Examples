@@ -31,7 +31,7 @@ interface IFiles {
 }
 
 const AppDeatilsRouter: FC<TProps> = (props) => {
-    const { currentExample, seeAlso, isIFrame = false } = props;
+    const { currentExample, seeAlso } = props;
     const [sourceFiles, setSourceFiles] = useState<{ name: string; content: string }[]>([]);
     const [selectedFile, setSelectedFile] = useState<{ name: string; content: string }>({
         name: "",

@@ -190,15 +190,7 @@ export const getAngularSrc = async (folderPath: string) => {
 };
 
 const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo, baseUrl: string) => {
-    const templatePath = path.join(folderPath, "angular.html");
     let code = await getAngularSrc(folderPath);
-    let template: string;
-
-    try {
-        template = await fs.promises.readFile(templatePath, "utf8");
-    } catch (err) {
-        template = `<scichart-angular [initChart]="drawExample"></scichart-angular>`;
-    }
 
     let files: IFiles = {};
     await includeImportedModules(folderPath, files, code, true, true, baseUrl);
@@ -313,16 +305,16 @@ import "zone.js/dist/zone";`,
             content: code,
             isBinary: false,
         },
-        "src/app/app.component.html": {
-            content: template,
-            isBinary: false,
-        },
         "src/app/app.module.ts": {
             content: `import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
+import { SciChartSurface, SciChart3DSurface } from "scichart";
 import { ScichartAngularComponent } from 'scichart-angular';
 import { AppComponent } from './app.component';
+
+SciChartSurface.loadWasmFromCDN();
+SciChart3DSurface.loadWasmFromCDN();
 
 @NgModule({
   declarations: [

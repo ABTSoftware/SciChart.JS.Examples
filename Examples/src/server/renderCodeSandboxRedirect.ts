@@ -75,7 +75,7 @@ export const getSourceFiles = async (req: Request, res: Response) => {
             if (!isValidFramework) {
                 framework = EPageFramework.React;
             }
-            console.log("Get source files for ", currentExample.title, framework);
+            // console.log("Get source files for ", currentExample.title, framework);
             const folderPath = path.join(basePath, currentExample.filepath);
             let files: IFiles = {};
             let htmlPath: string;
@@ -84,13 +84,6 @@ export const getSourceFiles = async (req: Request, res: Response) => {
             switch (framework) {
                 case EPageFramework.Angular:
                     files = await getSourceFilesForPath(folderPath, "angular.ts", baseUrl);
-                    htmlPath = path.join(folderPath, "angular.html");
-                    try {
-                        html = await fs.promises.readFile(htmlPath, "utf8");
-                    } catch (err) {
-                        html = `<scichart-angular [initChart]="drawExample"></scichart-angular>`;
-                    }
-                    files[htmlPath] = { content: html, isBinary: false };
                     break;
                 case EPageFramework.Vue:
                     throw new Error("Not Implemented");
@@ -113,7 +106,7 @@ export const getSourceFiles = async (req: Request, res: Response) => {
             }
             const result: { name: string; content: string }[] = [];
             for (const key in files) {
-                console.log(key);
+                // console.log(key);
                 const sep = key.indexOf("/") > 0 ? "/" : "\\";
                 const name = key.substring(key.lastIndexOf(sep) + 1);
                 result.push({ name, content: files[key].content });
