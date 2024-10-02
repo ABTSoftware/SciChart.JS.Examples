@@ -3,7 +3,7 @@ import { drawExample } from "./drawExample";
 
 @Component({
     selector: "app-root",
-    templateUrl: "./app.component.html",
+    template: `<scichart-angular [initChart]="drawExample"></scichart-angular>`,
 })
 export class AppComponent {
     title = "scichart-angular-app";
