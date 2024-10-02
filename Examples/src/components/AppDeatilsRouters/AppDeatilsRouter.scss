@@ -543,10 +543,16 @@
 }
 
 .dropdownItem {
+    display: block;
+    text-decoration: none;
     padding: 10px;
+    color: inherit;
     cursor: pointer;
 
-    &:hover {
+    &:visited,
+    &:hover,
+    &:active {
+        color: inherit;
         background-color: #f0f0f0;
     }
 }

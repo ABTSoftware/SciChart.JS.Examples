@@ -3,29 +3,18 @@ import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import SeoTags from "../SeoTags/SeoTags";
 import { ExampleStrings } from "../Examples/ExampleStrings";
 import classes from "./PageHome.module.scss";
-import { useNavigate, useLocation } from "react-router-dom";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { FrameworkSelect } from "../AppDeatilsRouters/FrameworkSelect";
 
 export const HOME_PAGE_TITLE = "HOMEPAGE";
 
 export default function PageHome() {
     const framework = React.useContext(FrameworkContext);
-    const navigate = useNavigate();
-    const location = useLocation();
 
     React.useEffect(() => {
         updateGoogleTagManagerPage();
     }, []);
-
-    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        const value = (e.currentTarget as HTMLElement).getAttribute("data-value");
-        if (value) {
-            navigate(`/${value}`);
-        }
-    };
-
-    const currentPath = location.pathname.substring(1); // Get the path without the leading "/"
 
     return (
         <>
@@ -74,40 +63,7 @@ export default function PageHome() {
                     </div>
                 </div>
             </div>
-            <div className={classes.frameworksection}>
-                <div className={classes.FrameworkList}>
-                    <div
-                        onClick={(e) => {
-                            handleClick(e);
-                        }}
-                        data-value="react"
-                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "18px" }}
-                        className={`${classes.FrameworkListItem} ${currentPath === "react" ? classes.active : ""}`}
-                    >
-                        React
-                    </div>
-                    <div
-                        onClick={(e) => {
-                            handleClick(e);
-                        }}
-                        data-value="javascript"
-                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "18px" }}
-                        className={`${classes.FrameworkListItem} ${currentPath === "javascript" ? classes.active : ""}`}
-                    >
-                        JavaScript
-                    </div>
-                    <div
-                        onClick={(e) => {
-                            handleClick(e);
-                        }}
-                        data-value="angular"
-                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "18px" }}
-                        className={`${classes.FrameworkListItem} ${currentPath === "angular" ? classes.active : ""}`}
-                    >
-                        Angular
-                    </div>
-                </div>
-            </div>
+            <FrameworkSelect />
         </>
     );
 }

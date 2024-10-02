@@ -1,6 +1,6 @@
 import React, { useState, FC, useContext, useMemo, useEffect } from "react";
 import classes from "./AppDeatilsRouter.scss";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
 import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
@@ -13,6 +13,7 @@ import { ALL_MENU_ITEMS } from "../AppRouter/examples";
 import SubMenuItems from "./SubMenuItems";
 import SourceCode from "../SourceCode/SourceCode";
 import DetailsCom from "./DetailsComp";
+import { FrameworkSelect } from "./FrameworkSelect";
 
 type TabName = "Featured Apps" | "2D Charts" | "3D Charts";
 
@@ -36,10 +37,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         name: "",
         content: "",
     });
-    const location = useLocation();
-    const currentPath = location.pathname;
-    // Split the path into framework and the rest (example path)
-    const [currentFramework, ...examplePath] = currentPath.split("/");
+
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState<TabName>("Featured Apps");
     const [currentMenuItems, setCurrentMenuItems] = useState(MENU_ITEMS_FEATURED_APPS);
@@ -58,17 +56,9 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     const [query, setQuery] = useState("");
     const [filteredOptions, setFilteredOptions] = useState([]);
 
-    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        const value = (e.currentTarget as HTMLElement).getAttribute("data-value");
-        if (value) {
-            // Navigate to the new framework along with the current example path
-            navigate(`/${value}/${examplePath.join("/")}`);
-        }
-    };
-
     const handleInputChange = (e: any) => {
         const value = e.target.value.toLowerCase();
-        setQuery(value);
+        setQuery(e.target.value);
 
         if (value) {
             const filtered = searchItems.filter(
@@ -103,15 +93,6 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         setSelectedFile({ name: fileName, content: file.content });
     };
 
-    const handleOptionClick = (option: any) => {
-        setQuery(option.title);
-        setFilteredOptions([]);
-        // Optionally, navigate to the link
-        if (window) {
-            window.location.href = option.link;
-        }
-    };
-
     const handleTabClick = (tabName: TabName) => {
         setActiveTab(tabName);
         switch (tabName) {
@@ -140,44 +121,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
 
     return (
         <>
-            <div className={classes.frameworksection}>
-                <div className={classes.FrameworkList}>
-                    <div
-                        onClick={(e) => {
-                            handleClick(e);
-                        }}
-                        data-value="react"
-                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "20px" }}
-                        className={`${classes.FrameworkListItem} ${currentFramework === "react" ? classes.active : ""}`}
-                    >
-                        React
-                    </div>
-                    <div
-                        onClick={(e) => {
-                            handleClick(e);
-                        }}
-                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "20px" }}
-                        data-value="javascript"
-                        className={`${classes.FrameworkListItem} ${
-                            currentFramework === "javascript" ? classes.active : ""
-                        }`}
-                    >
-                        JavaScript
-                    </div>
-                    <div
-                        onClick={(e) => {
-                            handleClick(e);
-                        }}
-                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "20px" }}
-                        data-value="angular"
-                        className={`${classes.FrameworkListItem} ${
-                            currentFramework === "angular" ? classes.active : ""
-                        }`}
-                    >
-                        Angular
-                    </div>
-                </div>
-            </div>
+            <FrameworkSelect />
             <div className={classes.tabsection}>
                 <div className={classes.container}>
                     <div className={classes.tabwrapper}>
@@ -210,13 +154,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                             <div className={classes.tabbreadcrumbwrap}>
                                 <ul style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "15px" }}>
                                     <li>
-                                        <a href="/react">Home</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">{currentFramework}</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">{activeTab}</a>
+                                        <Link to={selectedFramework}>Home</Link>
                                     </li>
                                     <li>
                                         <a href="javascript:void(0);">
@@ -252,13 +190,9 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                 {filteredOptions.length > 0 && (
                                     <div className={classes.dropdown}>
                                         {filteredOptions.map((option, index) => (
-                                            <div
-                                                key={index}
-                                                className={classes.dropdownItem}
-                                                onClick={() => handleOptionClick(option)}
-                                            >
+                                            <Link key={index} className={classes.dropdownItem} to={option.link}>
                                                 {option.title}
-                                            </div>
+                                            </Link>
                                         ))}
                                     </div>
                                 )}
