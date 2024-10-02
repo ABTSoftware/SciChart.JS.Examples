@@ -46,7 +46,7 @@ const getScaleValue = (dataSeries: XyDataSeries, zeroXValue: number) => {
 class TransformedSeries extends FastLineRenderableSeries {
     public originalSeries: XyDataSeries;
 
-    public getSeriesInfo(hitTestInfo: HitTestInfo): SeriesInfo {
+    public override getSeriesInfo(hitTestInfo: HitTestInfo): SeriesInfo {
         const info = new XySeriesInfo(this, hitTestInfo);
         if (this.originalSeries && info.dataSeriesIndex !== undefined) {
             info.yValue = this.originalSeries.getNativeYValues().get(info.dataSeriesIndex);

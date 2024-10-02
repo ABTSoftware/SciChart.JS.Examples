@@ -3,26 +3,86 @@ import { SciChartSurface, SciChart3DSurface } from "scichart";
 
 // @ts-ignore
 import { getChartsInitializationAPI } from "./drawExample";
-
-SciChartSurface.loadWasmFromCDN();
-SciChart3DSurface.loadWasmFromCDN();
+import { TSciChart } from "scichart/types/TSciChart";
 
 @Component({
-    selector: "app-root",
-    templateUrl: "./app.component.html",
+    selector: "app-line-chart",
+    template: `<style>
+            .flexOuterContainer {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                background: #14233c;
+            }
+
+            .flexContainerRow {
+                display: flex;
+                flex: auto;
+                flex-basis: 33%;
+                justify-content: space-between;
+                align-content: stretch;
+                margin: 10px;
+                width: calc(100% - 10px);
+            }
+            .item {
+                flex: auto;
+                height: 100%;
+            }
+        </style>
+        <div style="aspect-ratio: 3/2">
+            <div class="flexOuterContainer">
+                <div class="flexContainerRow">
+                    <div class="item"><scichart-angular [initChart]="initJustLineCharts"></scichart-angular></div>
+                    <div class="item"><scichart-angular [initChart]="initDigitalLineCharts"></scichart-angular></div>
+                    <div class="item"><scichart-angular [initChart]="initTooltipsOnLineCharts"></scichart-angular></div>
+                </div>
+                <div class="flexContainerRow">
+                    <div class="item"><scichart-angular [initChart]="initDashedLineCharts"></scichart-angular></div>
+                    <div class="item"><scichart-angular [initChart]="initPalettedLineCharts"></scichart-angular></div>
+                    <div class="item"><scichart-angular [initChart]="initHoveredLineCharts"></scichart-angular></div>
+                </div>
+                <div class="flexContainerRow">
+                    <div class="item"><scichart-angular [initChart]="initGapsInLineCharts"></scichart-angular></div>
+                    <div class="item"><scichart-angular [initChart]="initVerticalLineCharts"></scichart-angular></div>
+                    <div class="item">
+                        <scichart-angular [initChart]="initThresholdedLineCharts"></scichart-angular>
+                    </div>
+                </div>
+            </div>
+        </div>`,
 })
-export class AppComponent {
+export class AppLineChartComponent {
     title = "scichart-angular-app";
 
-    public initJustLineCharts;
-    public initDigitalLineCharts;
-    public initTooltipsOnLineCharts;
-    public initDashedLineCharts;
-    public initPalettedLineCharts;
-    public initHoveredLineCharts;
-    public initGapsInLineCharts;
-    public initVerticalLineCharts;
-    public initThresholdedLineCharts;
+    public initJustLineCharts: (
+        rootElement: string | HTMLDivElement
+    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
+    public initDigitalLineCharts: (
+        rootElement: string | HTMLDivElement
+    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
+    public initTooltipsOnLineCharts: (
+        rootElement: string | HTMLDivElement
+    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
+    public initDashedLineCharts: (
+        rootElement: string | HTMLDivElement
+    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
+    public initPalettedLineCharts: (
+        rootElement: string | HTMLDivElement
+    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
+    public initHoveredLineCharts: (
+        rootElement: string | HTMLDivElement
+    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
+    public initGapsInLineCharts: (
+        rootElement: string | HTMLDivElement
+    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
+    public initVerticalLineCharts: (
+        rootElement: string | HTMLDivElement
+    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
+    public initThresholdedLineCharts: (
+        rootElement: string | HTMLDivElement
+    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
 
     ngOnInit(): void {
         const charts = getChartsInitializationAPI();

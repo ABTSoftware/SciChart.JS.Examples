@@ -82,7 +82,7 @@ export const getChartsInitializationAPI = () => {
                 opacity: 1,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -98,7 +98,7 @@ export const getChartsInitializationAPI = () => {
                 opacity: 1,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -129,7 +129,7 @@ export const getChartsInitializationAPI = () => {
                 }),
                 animation: {
                     type: EAnimationType.Wave,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 },
+                    options: { duration: 500, delay: 200 },
                 },
                 // Optional DataLabels may be added via this property.
                 dataLabels: {
@@ -156,7 +156,7 @@ export const getChartsInitializationAPI = () => {
                 strokeThickness: 3,
                 animation: {
                     type: EAnimationType.Wave,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 },
+                    options: { duration: 500, delay: 200 },
                 },
             })
         );
@@ -193,7 +193,7 @@ export const getChartsInitializationAPI = () => {
                 strokeDashArray: [2, 2],
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 },
+                    options: { duration: 750 },
                 },
             })
         );
@@ -210,7 +210,7 @@ export const getChartsInitializationAPI = () => {
                 strokeDashArray: [3, 3],
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -227,7 +227,7 @@ export const getChartsInitializationAPI = () => {
                 strokeDashArray: [10, 5],
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -276,7 +276,7 @@ export const getChartsInitializationAPI = () => {
                 strokeThickness: 5,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             }),
 
@@ -286,7 +286,7 @@ export const getChartsInitializationAPI = () => {
                 strokeThickness: 5,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -321,7 +321,7 @@ export const getChartsInitializationAPI = () => {
                 onSelectedChanged,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 },
+                    options: { duration: 750 },
                 },
             })
         );
@@ -339,7 +339,7 @@ export const getChartsInitializationAPI = () => {
                 onSelectedChanged,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -357,7 +357,7 @@ export const getChartsInitializationAPI = () => {
                 onSelectedChanged,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -394,7 +394,7 @@ export const getChartsInitializationAPI = () => {
                 }),
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 },
+                    options: { duration: 400, delay: 250 },
                 },
             })
         );
@@ -414,7 +414,7 @@ export const getChartsInitializationAPI = () => {
                 }),
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 },
+                    options: { duration: 400, delay: 250 },
                 },
             })
         );

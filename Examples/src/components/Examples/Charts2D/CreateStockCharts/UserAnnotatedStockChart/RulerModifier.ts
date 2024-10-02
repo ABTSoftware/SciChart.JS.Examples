@@ -28,7 +28,7 @@ interface IClippedRightInnerAxesLayoutStrategyOptions extends IInnerAxisLayoutSt
 }
 
 class ClippedRightInnerAxesLayoutStrategy extends RightAlignedInnerAxisLayoutStrategy {
-    public isStacked: boolean = true;
+    public override isStacked: boolean = true;
     protected sizeRefAnnotation: IAnnotation;
 
     constructor(options: IClippedRightInnerAxesLayoutStrategyOptions) {
@@ -36,7 +36,7 @@ class ClippedRightInnerAxesLayoutStrategy extends RightAlignedInnerAxisLayoutStr
         this.sizeRefAnnotation = options?.sizeRefAnnotation;
     }
 
-    public layoutAxes(left: number, top: number, right: number, bottom: number, axes: AxisBase2D[]): void {
+    public override layoutAxes(left: number, top: number, right: number, bottom: number, axes: AxisBase2D[]): void {
         if (axes.length === 0) {
             return;
         }
@@ -65,7 +65,7 @@ class ClippedRightInnerAxesLayoutStrategy extends RightAlignedInnerAxisLayoutStr
         this.layoutAxesFromRightToLeft(left, top, rightCoord, bottom, axes);
     }
 
-    protected layoutAxesFromRightToLeft(
+    protected override layoutAxesFromRightToLeft(
         left: number,
         top: number,
         right: number,
@@ -98,14 +98,14 @@ class ClippedRightInnerAxesLayoutStrategy extends RightAlignedInnerAxisLayoutStr
 }
 
 export class VerticalYRulerModifier extends CustomChartModifier2D {
-    public type = EChart2DModifierType.Custom;
+    public override type = EChart2DModifierType.Custom;
 
     public ruler: BoxAnnotation;
 
     private creating: boolean = false;
     private remove: () => void;
 
-    public modifierMouseDown(args: ModifierMouseArgs): void {
+    public override modifierMouseDown(args: ModifierMouseArgs): void {
         if (args.button === EExecuteOn.MouseLeftButton && !this.ruler) {
             this.creating = true;
             const pt = translateFromCanvasToSeriesViewRect(args.mousePoint, this.parentSurface.seriesViewRect);
@@ -115,7 +115,7 @@ export class VerticalYRulerModifier extends CustomChartModifier2D {
         }
     }
 
-    public modifierMouseMove(args: ModifierMouseArgs): void {
+    public override modifierMouseMove(args: ModifierMouseArgs): void {
         if (this.ruler && this.creating) {
             const pt = translateFromCanvasToSeriesViewRect(args.mousePoint, this.parentSurface.seriesViewRect);
             this.ruler.x1 = pt.x;
@@ -124,7 +124,7 @@ export class VerticalYRulerModifier extends CustomChartModifier2D {
         }
     }
 
-    public modifierMouseUp(args: ModifierMouseArgs): void {
+    public override modifierMouseUp(args: ModifierMouseArgs): void {
         this.creating = false;
     }
 
@@ -209,7 +209,7 @@ export class VerticalYRulerModifier extends CustomChartModifier2D {
         sciChartSurface.annotations.add(rulerBoxAnnotation);
     }
 
-    public toJSON() {
+    public override toJSON() {
         const json = super.toJSON();
         return { type: "VerticalYRulerModifier", options: json.options };
     }

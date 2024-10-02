@@ -50,7 +50,7 @@ class CandleDragModifier extends CustomChartModifier2D {
         this.dataSeries = series.dataSeries as OhlcDataSeries;
     }
 
-    public onAttach(): void {
+    public override onAttach(): void {
         super.onAttach();
         // Create an annotation where only the selection box will be visible
         this.annotation = new LineAnnotation({
@@ -86,12 +86,12 @@ class CandleDragModifier extends CustomChartModifier2D {
         this.parentSurface.modifierAnnotations.add(this.annotation);
     }
 
-    public onDetach(): void {
+    public override onDetach(): void {
         this.parentSurface.modifierAnnotations.remove(this.annotation);
         this.annotation = deleteSafe(this.annotation);
     }
 
-    public modifierMouseUp(args: ModifierMouseArgs): void {
+    public override modifierMouseUp(args: ModifierMouseArgs): void {
         const point = args.mousePoint;
         const hitTestInfo = this.series.hitTestProvider.hitTest(point.x, point.y, 0);
         if (hitTestInfo.isHit) {

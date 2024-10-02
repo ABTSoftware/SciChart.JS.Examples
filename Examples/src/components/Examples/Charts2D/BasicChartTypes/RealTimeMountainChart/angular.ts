@@ -1,26 +1,23 @@
 import { Component } from "@angular/core";
-import { SciChartSurface, SciChart3DSurface } from "scichart";
-
-// @ts-ignore
 import { drawExample } from "./drawExample";
 
-SciChartSurface.loadWasmFromCDN();
-SciChart3DSurface.loadWasmFromCDN();
-
 @Component({
-    selector: "app-root",
-    templateUrl: "./app.component.html",
+    selector: "app-realTimeMountain-chart",
+    template: `<scichart-angular
+        [initChart]="drawExample"
+        (onInit)="onInitHandler($event)"
+        (onDelete)="onDeleteHandler($event)"
+    ></scichart-angular>`,
 })
-export class AppComponent {
-    title = "scichart-angular-app";
+export class AppRealTimeMountainComponent {
+    public title = "scichart-angular-app";
+    public drawExample = drawExample;
 
-    drawExample = drawExample;
-
-    onInitHandler = (initResult: any) => {
+    onInitHandler = (initResult: Awaited<ReturnType<typeof drawExample>>) => {
         initResult.controls.handleStart();
     };
 
-    onDeleteHandler = (initResult: any) => {
+    onDeleteHandler = (initResult: Awaited<ReturnType<typeof drawExample>>) => {
         initResult.controls.handleStop();
     };
 }

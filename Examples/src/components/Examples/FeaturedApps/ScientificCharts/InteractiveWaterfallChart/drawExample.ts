@@ -87,11 +87,11 @@ class CrossSectionPaletteProvider extends DefaultPaletteProvider {
     public selectedIndex: number = -1;
     public shouldUpdate: boolean = true;
 
-    public shouldUpdatePalette(): boolean {
+    public override shouldUpdatePalette(): boolean {
         return this.shouldUpdate;
     }
 
-    public overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity: number): number {
+    public override overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity: number): number {
         if (index === this.selectedIndex || index + 1 === this.selectedIndex || index - 1 === this.selectedIndex) {
             return 0xffff8a42;
         }
@@ -368,6 +368,7 @@ export const getChartsInitializationAPI = () => {
 
         // Add a function to update drawing the cross-selection when the drag annotation is dragged
         const updateDragAnnotation = () => {
+            
             // Don't allow to drag vertically, only horizontal
             dragMeAnnotation.y1 = -25;
 
@@ -383,12 +384,17 @@ export const getChartsInitializationAPI = () => {
             crossSectionPaletteProvider.selectedIndex = dataIndex;
             crossSectionPaletteProvider.shouldUpdate = true;
             mainChartSurface.invalidateElement();
-            crossSectionSliceSeries.clear();
-            for (let i = 0; i < mainChartSurface.renderableSeries.size(); i++) {
-                crossSectionSliceSeries.append(
-                    i,
-                    mainChartSurface.renderableSeries.get(i).dataSeries.getNativeYValues().get(dataIndex)
-                );
+            if (crossSectionSliceSeries) {
+                crossSectionSliceSeries.clear();
+                console.log("crossSectionSliceSeries:", crossSectionSliceSeries);
+                for (let i = 0; i < mainChartSurface.renderableSeries.size(); i++) {
+                    crossSectionSliceSeries.append(
+                        i,
+                        mainChartSurface.renderableSeries.get(i).dataSeries.getNativeYValues().get(dataIndex)
+                    );
+                }
+            } else {
+                console.error("crossSectionSliceSeries is not defined");
             }
         };
 

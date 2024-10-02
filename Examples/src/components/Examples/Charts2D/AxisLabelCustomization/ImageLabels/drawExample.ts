@@ -24,25 +24,9 @@ import {
     EHorizontalAnchorPoint,
     ECoordinateMode,
 } from "scichart";
-
-import appleLogo from "./images/apple.png";
-import samsungLogo from "./images/samsung.png";
-import xiaomiLogo from "./images/xiaomi.png";
-import huaweiLogo from "./images/Huawei.png";
-import oppoLogo from "./images/oppo.png";
-import vivoLogo from "./images/vivo.png";
-import realmeLogo from "./images/realme.png";
-import motorolaLogo from "./images/motorola.png";
-import unknownLogo from "./images/question.png";
-import lgLogo from "./images/Lg.png";
-import oneplusLogo from "./images/oneplus.png";
-import tecnoLogo from "./images/tecno.png";
-import infinixLogo from "./images/infinix.png";
-import googleLogo from "./images/google.png";
-import nokiaLogo from "./images/nokia.png";
 import { appTheme } from "../../../theme";
 
-export const drawExample = async (rootElement: string | HTMLDivElement) => {
+export const drawExample = (emojiUrls: string[]) => async (rootElement: string | HTMLDivElement) => {
     // Dataset = 'percentage market share of phones, 2022'
     const dataset = [
         { name: "Apple", percent: 28.41 },
@@ -76,23 +60,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     xAxis.labelProvider.numericFormat = ENumericFormat.NoFormat;
 
     // SciChart utility function to create HtmlImage elements from urls
-    const emojies = await createImagesArrayAsync([
-        appleLogo,
-        samsungLogo,
-        xiaomiLogo,
-        huaweiLogo,
-        oppoLogo,
-        vivoLogo,
-        realmeLogo,
-        motorolaLogo,
-        unknownLogo,
-        lgLogo,
-        oneplusLogo,
-        tecnoLogo,
-        infinixLogo,
-        googleLogo,
-        nokiaLogo,
-    ]);
+    const emojies = await createImagesArrayAsync(emojiUrls);
 
     // Override labelProvider.getLabelTexture() to return animage
     const getLabelTexture = (labelText: string, textureManager: TextureManager, labelStyle: TTextStyle) => {

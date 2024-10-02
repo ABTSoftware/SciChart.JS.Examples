@@ -1,4 +1,3 @@
-import customPointImage from "./img/CustomMarkerImage.png";
 
 import { appTheme } from "../../../theme";
 
@@ -51,7 +50,7 @@ function createData(wasmContext: TSciChart) {
     return [dataSeries1, dataSeries2, dataSeries3, dataSeries4, dataSeries5];
 }
 
-export const drawExample = async (rootElement: string | HTMLDivElement) => {
+export const drawExample = (customPointImage: string) =>  async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });

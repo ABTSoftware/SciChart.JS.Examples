@@ -1,0 +1,41 @@
+.chartCss{
+    width: 100%;
+ 
+}
+
+
+.flexOuterContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* Replace with your background styles */
+}
+
+.toolbarRow {
+    display: flex;
+    flex-basis: 70px;
+    padding: 10px;
+    width: 100%;
+    
+}
+
+.chartArea {
+    flex: 1;
+}
+
+.btn-outer{
+    padding: 0.5rem;
+    background-color: #141b39;
+    color: #ffffff;
+}
+::ng-deep .mat-button-toggle-button{
+    padding: 1rem !important;
+    background-color: transparent;
+}
+::ng-deep .mat-button-toggle-button:focus-visible{
+    background-color: transparent !important;
+}
+::ng-deep .mat-pseudo-checkbox{
+    display: none !important;
+}
