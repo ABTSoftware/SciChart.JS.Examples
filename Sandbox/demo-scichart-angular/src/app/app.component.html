@@ -1,0 +1,25 @@
+<h1>Hello Angular 17 With Animations Chart</h1>
+<div>
+    <label>
+        <input type="checkbox" [(ngModel)]="showCharts" /> Show Charts
+    </label>
+</div>
+<div>
+    <button class="test-button" (click)="logDebugInfo()">Log Debug Info</button>
+</div>
+<div class="flex-container">
+    <div *ngIf="showCharts" class="chart-container">
+        <scichart-angular
+            [initChart]="drawChart2D"
+            (onInit)="onInit2DHandler($event)"
+            (onDelete)="onDelete2DHandler($event)"
+        ></scichart-angular>
+    </div>
+    <div *ngIf="showCharts" class="chart-container">
+        <scichart-angular
+            [initChart]="drawChart3D"
+            (onInit)="onInit3DHandler($event)"
+            (onDelete)="onDelete3DHandler($event)"
+        ></scichart-angular>
+    </div>
+</div>
