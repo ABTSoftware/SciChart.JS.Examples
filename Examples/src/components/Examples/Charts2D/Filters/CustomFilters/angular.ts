@@ -13,7 +13,7 @@ import { drawExample } from "./drawExample";
         </scichart-angular>
     `,
 })
-export class CustomFilters {
+export class AppComponent {
     private controls?: Awaited<ReturnType<typeof drawExample>>["controls"];
 
     async onInit(initResult: Awaited<ReturnType<typeof drawExample>>) {

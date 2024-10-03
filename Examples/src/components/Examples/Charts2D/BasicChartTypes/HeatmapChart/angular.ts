@@ -106,7 +106,7 @@ import { drawExample, drawHeatmapLegend } from "./drawExample";
         </div>
     `,
 })
-export class HeatmapChartComponent {
+export class AppComponent {
     stats = { xSize: 0, ySize: 0, fps: 0 };
     drawExample = drawExample;
     drawHeatmapLegend = drawHeatmapLegend;

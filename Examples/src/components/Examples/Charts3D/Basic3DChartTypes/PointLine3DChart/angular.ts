@@ -31,7 +31,7 @@ import { drawExample, drawHeatmapLegend } from "./drawExample";
         </div>
     `,
 })
-export class PointLine3DChartComponent {
+export class AppComponent {
     drawExample = drawExample;
     drawHeatmapLegend = drawHeatmapLegend;
 }

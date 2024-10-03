@@ -9,7 +9,7 @@ import { drawExample } from "./drawExample";
         (onDelete)="onDeleteHandler($event)"
     ></scichart-angular>`,
 })
-export class AppRealTimeMountainComponent {
+export class AppComponent {
     public title = "scichart-angular-app";
     public drawExample = drawExample;
 

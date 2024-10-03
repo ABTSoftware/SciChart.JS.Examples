@@ -72,7 +72,7 @@ interface Controls {
         `,
     ],
 })
-export class RealtimePerformanceDemoComponent {
+export class AppComponent {
     stats = { numberPoints: 0, fps: 0 };
 
     constructor() {}

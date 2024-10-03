@@ -97,7 +97,7 @@ interface SciChartControls {
         </div>
     `,
 })
-export class Load1MillionPointsChartComponent implements OnInit {
+export class AppComponent implements OnInit {
     timeSpans: TTimeSpan[] = [];
     controls?: SciChartControls;
     theme: any;

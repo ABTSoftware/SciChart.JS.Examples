@@ -38,7 +38,7 @@ import { SciChartSurface } from "scichart";
         </div>
     `,
 })
-export class InteractiveWaterfallChartComponent {
+export class AppComponent {
     chartsInitializationAPI = getChartsInitializationAPI();
     mainSurface?: SciChartSurface;
     leftSectionSurface?: SciChartSurface;

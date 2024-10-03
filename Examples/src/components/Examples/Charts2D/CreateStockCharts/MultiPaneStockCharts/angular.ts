@@ -34,7 +34,7 @@ import { getChartsInitializationAPI } from "./drawExample";
         </div>
     `,
 })
-export class MultiPaneStockChartsComponent {
+export class AppComponent {
     chartsInitializationAPI = getChartsInitializationAPI();
     mainChart?: SciChartSurface;
     macdChart?: SciChartSurface;

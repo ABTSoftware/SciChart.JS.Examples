@@ -20,15 +20,9 @@ const emojiUrls = [
 ];
 
 @Component({
-    selector: "app-Image-labels",
-    template: `
-    <scichart-angular
-      [initChart]="drawExample"
-      style="flex: 1; flex-basis: 50%;">
-     </scichart-angular>`,
+    selector: "app-root",
+    template: `<scichart-angular [initChart]="drawExample"> </scichart-angular>`,
 })
-export class ChartComponent  {
-
-    drawExample = drawExample(emojiUrls); 
-
+export class AppComponent {
+    drawExample = drawExample(emojiUrls);
 }

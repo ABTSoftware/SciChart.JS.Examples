@@ -196,7 +196,8 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
     await includeImportedModules(folderPath, files, code, true, true, baseUrl);
 
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
-    code = code.replace("./drawExample", "../drawExample");
+    code = await includeExternalModules(folderPath, files, code, true, true);
+    code = code.replace(/(\.\/)/g, '../');
     files = {
         ...commonFiles,
         ...files,
@@ -305,6 +306,23 @@ import "zone.js/dist/zone";`,
             content: code,
             isBinary: false,
         },
+        "src/app/app-wrapper.component.ts":{
+            content: `import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
+import { AppComponent } from "./app.component";
+
+@Component({
+  selector: "app-root",
+  template: "",
+})
+export class AppWrapperComponent implements OnInit {
+  constructor(private container: ViewContainerRef) {}
+  ngOnInit(): void {
+    this.container.createComponent(AppComponent);
+  }
+}
+`, 
+            isBinary: false,
+        },
         "src/app/app.module.ts": {
             content: `import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -312,12 +330,14 @@ import { RouterOutlet } from '@angular/router';
 import { SciChartSurface, SciChart3DSurface } from "scichart";
 import { ScichartAngularComponent } from 'scichart-angular';
 import { AppComponent } from './app.component';
+import { AppWrapperComponent } from './app-wrapper.component';
 
 SciChartSurface.loadWasmFromCDN();
 SciChart3DSurface.loadWasmFromCDN();
 
 @NgModule({
   declarations: [
+    AppWrapperComponent,
     AppComponent
   ],
   imports: [
@@ -326,7 +346,7 @@ SciChart3DSurface.loadWasmFromCDN();
     ScichartAngularComponent
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppWrapperComponent]
 })
 export class AppModule { }`,
             isBinary: false,

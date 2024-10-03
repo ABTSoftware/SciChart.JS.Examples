@@ -53,36 +53,18 @@ import { TSciChart } from "scichart/types/TSciChart";
             </div>
         </div>`,
 })
-export class AppLineChartComponent {
+export class AppComponent {
     title = "scichart-angular-app";
 
-    public initJustLineCharts: (
-        rootElement: string | HTMLDivElement
-    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
-    public initDigitalLineCharts: (
-        rootElement: string | HTMLDivElement
-    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
-    public initTooltipsOnLineCharts: (
-        rootElement: string | HTMLDivElement
-    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
-    public initDashedLineCharts: (
-        rootElement: string | HTMLDivElement
-    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
-    public initPalettedLineCharts: (
-        rootElement: string | HTMLDivElement
-    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
-    public initHoveredLineCharts: (
-        rootElement: string | HTMLDivElement
-    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
-    public initGapsInLineCharts: (
-        rootElement: string | HTMLDivElement
-    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
-    public initVerticalLineCharts: (
-        rootElement: string | HTMLDivElement
-    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
-    public initThresholdedLineCharts: (
-        rootElement: string | HTMLDivElement
-    ) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
+    public initJustLineCharts!: TChartInitFunction;
+    public initDigitalLineCharts!: TChartInitFunction;
+    public initTooltipsOnLineCharts!: TChartInitFunction;
+    public initDashedLineCharts!: TChartInitFunction;
+    public initPalettedLineCharts!: TChartInitFunction;
+    public initHoveredLineCharts!: TChartInitFunction;
+    public initGapsInLineCharts!: TChartInitFunction;
+    public initVerticalLineCharts!: TChartInitFunction;
+    public initThresholdedLineCharts!: TChartInitFunction;
 
     ngOnInit(): void {
         const charts = getChartsInitializationAPI();
@@ -97,3 +79,7 @@ export class AppLineChartComponent {
         this.initThresholdedLineCharts = charts.initThresholdedLineCharts;
     }
 }
+
+type TChartInitFunction = (
+    rootElement: string | HTMLDivElement
+) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;

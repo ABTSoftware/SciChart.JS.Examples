@@ -83,7 +83,7 @@ interface SciChartControls {
         `,
     ],
 })
-export class Load500By500ChartComponent {
+export class AppComponent {
     timeSpans: TTimeSpan[] = [];
     controls?: SciChartControls;
 

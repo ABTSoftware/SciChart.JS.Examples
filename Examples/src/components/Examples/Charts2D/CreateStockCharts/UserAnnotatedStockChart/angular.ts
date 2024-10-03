@@ -166,7 +166,7 @@ import { appTheme } from "../../../theme";
         </div>
     `,
 })
-export class UserAnnotatedStockChartComponent implements OnInit {
+export class AppComponent implements OnInit {
     chartMode: string = "line";
     name: string = "";
     savedCharts: Record<string, object> = {};

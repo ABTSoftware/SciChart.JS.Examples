@@ -37,7 +37,7 @@ import { drawExample } from "./drawExample";
         </div>
     `,
 })
-export class StackedColumnChart {
+export class AppComponent {
     title = "StackedColumnChart";
 
     use100PercentStackedMode = false;
