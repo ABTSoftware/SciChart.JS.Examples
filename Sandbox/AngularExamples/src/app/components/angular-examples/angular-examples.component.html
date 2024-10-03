@@ -1,10 +1,10 @@
 <div class="list">
-  <ul>
-    <li>
-      <a [routerLink]="['/']">Home</a>
-    </li>
-    <li *ngFor="let link of chartLinks">
-      <a [routerLink]="link.href">{{ link.text }}</a>
-    </li>
-  </ul>
+    <ul>
+        <li>
+            <a [routerLink]="['/']">Home</a>
+        </li>
+        <li *ngFor="let link of chartLinks">
+            <a [routerLink]="link.href">{{ link.text }}</a>
+        </li>
+    </ul>
 </div>
