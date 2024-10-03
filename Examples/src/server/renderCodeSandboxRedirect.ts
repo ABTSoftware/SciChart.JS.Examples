@@ -6,8 +6,6 @@ import { IFiles, loadStyles } from "./sandboxDependencyUtils";
 import { getSandboxWithTemplate, getSourceFilesForPath, indexHtmlTemplate } from "./sandboxForms";
 import { BadRequestError, IHttpError, NotFoundError } from "./Errors";
 import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
-import { SettingsRemote } from "@material-ui/icons";
-import { stringOccurrences } from "scichart";
 
 const renderCodeSandBoxRedirectPage = (form: string) => {
     return `
