@@ -121,6 +121,7 @@ import UserAnnotatedStockChart from "../Examples/Charts2D/CreateStockCharts/User
 import PopulationPyramid from "../Examples/FeaturedApps/ShowCases/PopulationPyramid";
 import SmoothStackedMountainChart from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart";
 import { lineSplittingThresholdsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds/exampleInfo";
+import Column3DChart from "../Examples/Charts3D/Basic3DChartTypes/Column3DChart";
 
 export type TMenuItem = {
     item: {
@@ -348,6 +349,7 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo,
             EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_RealtimeSurfaceMesh3DChart,
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_Column3DChart,
         ],
     },
 ];
@@ -555,6 +557,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return RealtimeSurfaceMesh3DChart;
         case EXAMPLES_PAGES.chart3D_basic3DChartTypes_PointLine3DChart.id:
             return PointLine3DChart;
+        case EXAMPLES_PAGES.chart3D_basic3DChartTypes_Column3DChart.id:
+            return Column3DChart;
         case EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500.id:
             return Load500By500;
         case EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo.id:
