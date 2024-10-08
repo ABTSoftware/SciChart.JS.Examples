@@ -1,170 +1,135 @@
-import { Radix2FFT } from "../../../FeaturedApps/ScientificCharts/AudioAnalyzer/Radix2FFT";
 import {
-    CameraController,
-    HeatmapLegend,
-    MouseWheelZoomModifier3D,
-    NumericAxis3D,
-    OrbitModifier3D,
-    parseColorToUIntArgb,
-    PointLineRenderableSeries3D,
-    ResetCamera3DModifier,
     SciChart3DSurface,
+    CameraController,
     Vector3,
+    EWatermarkPosition,
+    MouseWheelZoomModifier3D,
+    OrbitModifier3D,
+    NumericAxis3D,
     XyzDataSeries3D,
+    parseColorToTArgb,
+    CubePointMarker3D,
+    PyramidPointMarker3D,
+    SpherePointMarker3D,
+    CylinderPointMarker3D,
+    ColumnRenderableSeries3D,
+    toHex,
+    parseColorToUIntArgb,
 } from "scichart";
 import { appTheme } from "../../../theme";
-export const divElementId = "chart";
-export const divHeatmapLegend = "heatmapLegend";
-// This function generates some spectral data for the waterfall chart
-const createSpectralData = (n) => {
-    const spectraSize = 1024;
-    const timeData = new Array(spectraSize);
-    // Generate some random data with spectral components
-    for (let i = 0; i < spectraSize; i++) {
-        timeData[i] =
-            4.0 * Math.sin((2 * Math.PI * i) / (20 + n * 0.2)) +
-            10 * Math.sin((2 * Math.PI * i) / (10 + n * 0.01)) +
-            20 * Math.sin((2 * Math.PI * i) / (5 + n * -0.002)) +
-            3.0 * Math.random();
-    }
-    // Do a fourier-transform on the data to get the frequency domain
-    const transform = new Radix2FFT(spectraSize);
-    const yValues = transform.run(timeData);
-    // .slice(0, 300); // We only want the first N points just to make the example cleaner
-    // This is just setting a floor to make the data cleaner for the example
-    for (let i = 0; i < yValues.length; i++) {
-        yValues[i] =
-            yValues[i] < -30 || yValues[i] > -5 ? (yValues[i] < -30 ? -30 : Math.random() * 9 - 6) : yValues[i];
-    }
-    yValues[0] = -30;
-    // we need x-values (sequential numbers) for the frequency data
-    const xValues = yValues.map((value, index) => index);
-    return { xValues, yValues };
-};
-// SCICHART CODE
-export const drawExample = async () => {
+export var EColumn3DType;
+(function (EColumn3DType) {
+    EColumn3DType["CylinderPointMarker3D"] = "Cylinder";
+    EColumn3DType["CubePointMarker3D"] = "Cube";
+    EColumn3DType["PyramidPointMarker3D"] = "Pyramid";
+    EColumn3DType["SpherePointMarker3D"] = "Sphere";
+})(EColumn3DType || (EColumn3DType = {}));
+export var EColumnColorMode;
+(function (EColumnColorMode) {
+    EColumnColorMode["X"] = "X";
+    EColumnColorMode["XZ"] = "XZ";
+    EColumnColorMode["Height"] = "Height";
+    EColumnColorMode["Series"] = "Series";
+})(EColumnColorMode || (EColumnColorMode = {}));
+export async function drawExample(divElementId) {
     const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
     });
-    sciChart3DSurface.worldDimensions = new Vector3(300, 100, 300);
     sciChart3DSurface.camera = new CameraController(wasmContext, {
-        position: new Vector3(-141.6, 310.29, 393.32),
+        position: new Vector3(-300, 300, -300),
         target: new Vector3(0, 50, 0),
     });
+    sciChart3DSurface.watermarkPosition = EWatermarkPosition.TopLeft;
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
     sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
-    sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
-    sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Frequency (Hz)",
-        drawMinorGridLines: false,
-        drawMajorGridLines: false,
-        tickLabelsOffset: 20,
+    // sciChart3DSurface.chartModifiers.add(new TooltipModifier3D({ showTooltip: true, crosshairStroke: 'green', crosshairStrokeThickness: 2 }));
+    sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, { axisTitle: "X Axis" });
+    sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, { axisTitle: "Y Axis" });
+    sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, { axisTitle: "Z Axis" });
+    const dataSeries = new XyzDataSeries3D(wasmContext);
+    // size in the point marker is ignored, use dataPointWidthX and dataPointWidthZ instead!
+    const series = new ColumnRenderableSeries3D(wasmContext, {
+        dataSeries,
+        pointMarker: createPointMarker3D(wasmContext, EColumn3DType.CylinderPointMarker3D, appTheme.VividOrange),
+        dataPointWidthX: 0.9,
+        dataPointWidthZ: 0.9,
+        useMetadataColors: true,
     });
-    sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Power (dB)",
-        drawMinorGridLines: false,
-        drawMajorGridLines: false,
-        tickLabelsOffset: 20,
-    });
-    sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Time (s)",
-        drawMinorGridLines: false,
-        drawMajorGridLines: false,
-        tickLabelsOffset: 20,
-    });
-    for (let i = 0; i < 50; i++) {
-        // Create some data for the example
-        // xValues are frequency values (Hz)
-        // yValues are heights or magnitude
-        const { xValues, yValues } = createSpectralData(i);
-        // zValues are the 3rd dimension where we will spread out our series in time
-        const zValues = Array.from({ length: xValues.length }).map((_) => i * 2);
-        // Metadata in scichart.js 3D controls color 3D line series. It can also hold additional optional properties
-        // Below we format the data for yValues into metadata colour coded and scaled depending on the value
-        const metadata = formatMetadata(yValues, [
-            { offset: 1, color: appTheme.VividPink },
-            { offset: 0.9, color: appTheme.VividOrange },
-            { offset: 0.7, color: appTheme.MutedRed },
-            { offset: 0.5, color: appTheme.VividGreen },
-            { offset: 0.3, color: appTheme.VividSkyBlue },
-            { offset: 0.2, color: appTheme.Indigo },
-            { offset: 0, color: appTheme.DarkIndigo },
-        ]);
-        // Add a 3D Point-Line chart
-        sciChart3DSurface.renderableSeries.add(
-            new PointLineRenderableSeries3D(wasmContext, {
-                dataSeries: new XyzDataSeries3D(wasmContext, {
-                    xValues,
-                    yValues,
-                    zValues,
-                    metadata,
-                }),
-                strokeThickness: 3,
-                opacity: 0.5,
-            })
-        );
-    }
-    return { sciChart3DSurface, wasmContext };
-};
-function formatMetadata(valuesArray, gradientStops) {
-    const low = Math.min(...valuesArray);
-    const high = Math.max(...valuesArray);
-    const sGradientStops = gradientStops.sort((a, b) => (a.offset > b.offset ? 1 : -1));
-    // Compute a scaling factor from 0...1 where values in valuesArray at the lower end correspond to 0 and
-    // values at the higher end correspond to 1
-    return valuesArray.map((x) => {
-        // scale from 0..1 for the values
-        const valueScale = (x - low) / (high - low);
-        // Find the nearest gradient stop index
-        const index = sGradientStops.findIndex((gs) => gs.offset >= valueScale);
-        // const nextIndex = Math.min(index + 1, sGradientStops.length - 1);
-        // work out the colour of this point
-        const color1 = parseColorToUIntArgb(sGradientStops[index].color);
-        // const color2 = parseColorToUIntArgb(sGradientStops[nextIndex].color);
-        // const ratio = (valueScale - sGradientStops[index].offset) / (sGradientStops[nextIndex].offset - sGradientStops[index].offset)
-        // const colorScale = uintArgbColorLerp(color1, color2, ratio)
-        // console.log(`valueScale ${valueScale} low ${sGradientStops[index].offset} high ${sGradientStops[nextIndex].offset} ratio ${ratio}`);
-        return { pointScale: 0.1 + valueScale, vertexColor: color1 };
-    });
+    const updateData = (colorMode, update) => {
+        const startX = 0;
+        const stepX = 1;
+        const countX = 10;
+        const startZ = 0;
+        const stepZ = 1;
+        const countZ = 30;
+        const minY = 0;
+        const maxY = 40;
+        const startColor = parseColorToTArgb(appTheme.VividTeal);
+        const endColor = parseColorToTArgb(appTheme.VividPink);
+        let i = 0;
+        for (let xIndex = 0; xIndex < countX; xIndex++) {
+            const x = startX + xIndex * stepX;
+            for (let zIndex = 0; zIndex < countZ; zIndex++) {
+                const z = startZ + zIndex * stepZ;
+                let y;
+                if (update) {
+                    y = dataSeries.getNativeYValues().get(i);
+                } else {
+                    y = Math.random() * maxY * (x / (2 * countX) + 0.5);
+                }
+                let vertexColor;
+                let c;
+                let cmax;
+                if (colorMode === EColumnColorMode.Height) {
+                    vertexColor = colorInterpolation(startColor, endColor, minY, maxY, y);
+                } else if (colorMode === EColumnColorMode.X) {
+                    c = x;
+                    cmax = countX;
+                    vertexColor = parseColorToUIntArgb(appTheme.SciChartJsTheme.getStrokeColor(c, cmax, wasmContext));
+                } else if (colorMode === EColumnColorMode.XZ) {
+                    c = x * z;
+                    cmax = countX * countZ;
+                    vertexColor = parseColorToUIntArgb(appTheme.SciChartJsTheme.getStrokeColor(c, cmax, wasmContext));
+                }
+                series.useMetadataColors = colorMode !== EColumnColorMode.Series;
+                if (update) {
+                    dataSeries.update(i, x, y, z, { vertexColor, pointScale: 1 });
+                } else {
+                    dataSeries.append(x, y, z, { vertexColor, pointScale: 1 });
+                }
+                i += 1;
+            }
+        }
+    };
+    sciChart3DSurface.renderableSeries.add(series);
+    updateData(EColumnColorMode.X, false);
+    const updateColors = (colorMode) => {
+        updateData(colorMode, true);
+    };
+    const updatePointMarker = (type) => {
+        series.pointMarker = createPointMarker3D(wasmContext, type, appTheme.VividOrange);
+    };
+    return { sciChartSurface: sciChart3DSurface, controls: { updateColors, updatePointMarker } };
 }
-export const drawHeatmapLegend = async () => {
-    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divHeatmapLegend, {
-        theme: {
-            ...appTheme.SciChartJsTheme,
-            sciChartBackground: appTheme.DarkIndigo + "BB",
-            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
-        },
-        yAxisOptions: {
-            axisBorder: {
-                borderLeft: 1,
-                color: appTheme.ForegroundColor + "77",
-            },
-            majorTickLineStyle: {
-                color: appTheme.ForegroundColor,
-                tickSize: 6,
-                strokeThickness: 1,
-            },
-            minorTickLineStyle: {
-                color: appTheme.ForegroundColor,
-                tickSize: 3,
-                strokeThickness: 1,
-            },
-            axisTitle: "Power (dB)",
-            axisTitleStyle: { fontSize: 14 },
-        },
-        colorMap: {
-            minimum: -30,
-            maximum: 0,
-            gradientStops: [
-                { offset: 1, color: appTheme.VividPink },
-                { offset: 0.9, color: appTheme.VividOrange },
-                { offset: 0.7, color: appTheme.MutedRed },
-                { offset: 0.5, color: appTheme.VividGreen },
-                { offset: 0.3, color: appTheme.VividSkyBlue },
-                { offset: 0.15, color: appTheme.Indigo },
-                { offset: 0, color: appTheme.DarkIndigo },
-            ],
-        },
-    });
-    return heatmapLegend;
-};
+export function createPointMarker3D(wasmContext, type, fill) {
+    switch (type) {
+        case EColumn3DType.CubePointMarker3D:
+            return new CubePointMarker3D(wasmContext, { fill });
+        case EColumn3DType.PyramidPointMarker3D:
+            return new PyramidPointMarker3D(wasmContext, { fill });
+        case EColumn3DType.SpherePointMarker3D:
+            return new SpherePointMarker3D(wasmContext, { fill });
+        default:
+            return new CylinderPointMarker3D(wasmContext, { fill });
+    }
+}
+export function colorInterpolation(startColor, endColor, startY, endY, currentY) {
+    const redValue = Math.floor(lerpFn(startY, endY, startColor.red, endColor.red, currentY));
+    const greenValue = Math.floor(lerpFn(startY, endY, startColor.green, endColor.green, currentY));
+    const blueValue = Math.floor(lerpFn(startY, endY, startColor.blue, endColor.blue, currentY));
+    const hexStr = "0x" + toHex(255) + toHex(redValue) + toHex(greenValue) + toHex(blueValue);
+    return parseInt(hexStr, 16);
+}
+function lerpFn(minY, maxY, minColor, maxColor, v) {
+    return minColor + ((v - minY) * (maxColor - minColor)) / (maxY - minY);
+}

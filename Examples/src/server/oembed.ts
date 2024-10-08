@@ -21,17 +21,21 @@ class OEmbedResponse {
 }
 
 router.get("/", (req, res) => {
-    // TODO test
     const requestUrl = req.query["url"];
     const location = url.parse(requestUrl, true);
-    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === location.pathname);
-    const currentExample = EXAMPLES_PAGES[currentExampleKey];
-    const oEmbedResponse = new OEmbedResponse();
-    oEmbedResponse.title = getTitle(currentExample.title, EPageFramework.Vanilla);
-    oEmbedResponse.description = currentExample.previewDescription;
-    oEmbedResponse.author_url = oEmbedResponse.provider_url + currentExample.path;
-    oEmbedResponse.thumbnail_url = oEmbedResponse.provider_url + "/" + currentExample.thumbnailImage;
-    res.send(oEmbedResponse);
+    const examplePath = (location.pathname as string).substring(location.pathname.lastIndexOf("/") + 1);
+    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === examplePath);
+    if (currentExampleKey) {
+        const currentExample = EXAMPLES_PAGES[currentExampleKey];
+        const oEmbedResponse = new OEmbedResponse();
+        oEmbedResponse.title = getTitle(currentExample.title, EPageFramework.Vanilla);
+        oEmbedResponse.description = currentExample.previewDescription;
+        oEmbedResponse.author_url = oEmbedResponse.provider_url + "/" + currentExample.path;
+        oEmbedResponse.thumbnail_url = oEmbedResponse.provider_url + "/" + currentExample.thumbnailImage;
+        res.send(oEmbedResponse);
+    } else {
+        res.status(404).send("Example not found");
+    }
 });
 
 export { router as oembed };
