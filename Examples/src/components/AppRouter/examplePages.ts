@@ -112,6 +112,7 @@ import { TDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpe
 import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
 import { smoothStackedMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart/exampleInfo";
 import { lineSplittingThresholdsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds/exampleInfo";
+import { column3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Column3DChart/exampleInfo";
 
 export type TExampleInfo = {
     /**
@@ -511,6 +512,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart3D_basic3DChartTypes_PointLine3DChart: {
         id: "chart3D_basic3DChartTypes_PointLine3DChart",
         ...pointLine3DChartExampleInfo,
+    },
+    chart3D_basic3DChartTypes_Column3DChart: {
+        id: "chart3D_basic3DChartTypes_Column3DChart",
+        ...column3DChartExampleInfo,
     },
     featuredApps_performanceDemos_Load500By500: {
         id: "featuredApps_performanceDemos_Load500By500",

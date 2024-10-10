@@ -17,6 +17,7 @@ import {
     TextAnnotation,
     VerticalLineAnnotation,
     XyDataSeries,
+    XyFilterBase,
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
@@ -24,6 +25,48 @@ import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { appTheme } from "../../../theme";
 // tslint:disable:no-empty
 // tslint:disable:max-line-length
+class ThresholdFilter extends XyFilterBase {
+    thresholdProperty = 1;
+    constructor(originalSeries, threshold, dataSeriesName) {
+        super(originalSeries, { dataSeriesName });
+        this.thresholdProperty = threshold;
+        this.filterAll();
+    }
+    get threshold() {
+        return this.thresholdProperty;
+    }
+    set threshold(value) {
+        this.thresholdProperty = value;
+        this.filterAll();
+    }
+    filterAll() {
+        this.clear();
+        this.filter(0, this.getOriginalCount());
+    }
+    filterOnAppend(count) {
+        // Overriding this so we do not have to reprocess the entire series on append
+        this.filter(this.getOriginalCount() - count, count);
+    }
+    filter(start, count) {
+        const xValues = [];
+        const yValues = [];
+        for (let i = start; i < start + count; i++) {
+            xValues.push(this.getOriginalXValues().get(i));
+            const y = this.getOriginalYValues().get(i);
+            if (this.threshold > 0 && y < this.threshold) {
+                yValues.push(NaN);
+            } else if (y < 0) {
+                yValues.push(Math.max(y, this.threshold));
+            } else {
+                yValues.push(y);
+            }
+        }
+        this.appendRange(xValues, yValues);
+    }
+    onClear() {
+        this.clear();
+    }
+}
 export const drawExample = async (rootElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
@@ -32,18 +75,19 @@ export const drawExample = async (rootElement) => {
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
     // Create a paletteprovider to colour the series depending on a threshold value
-    const thresholdPalette = new ThresholdPaletteProvider(4, appTheme.MutedOrange, 8, appTheme.VividTeal);
+    const thresholdPalette = new XThresholdPaletteProvider(8, appTheme.VividTeal);
     // Add a Column series with some values to the chart
     const { xValues, yValues } = ExampleDataProvider.getDampedSinewave(0, 10, 0, 0.001, 3000, 10);
+    const dataSeries = new XyDataSeries(wasmContext, {
+        xValues,
+        yValues,
+    });
     sciChartSurface.renderableSeries.add(
         new FastMountainRenderableSeries(wasmContext, {
             stroke: appTheme.PaleSkyBlue,
             strokeThickness: 5,
             zeroLineY: 0.0,
-            dataSeries: new XyDataSeries(wasmContext, {
-                xValues,
-                yValues,
-            }),
+            dataSeries,
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: appTheme.VividSkyBlue, offset: 0 },
                 { color: appTheme.VividSkyBlue + "77", offset: 1 },
@@ -51,6 +95,16 @@ export const drawExample = async (rootElement) => {
             paletteProvider: thresholdPalette,
         })
     );
+    const thresholdFilter = new ThresholdFilter(dataSeries, 4.0, "TopFill");
+    const topFill = new FastMountainRenderableSeries(wasmContext, {
+        stroke: appTheme.PaleSkyBlue,
+        strokeThickness: 5,
+        zeroLineY: 4.0,
+        dataSeries: thresholdFilter,
+        fill: appTheme.MutedOrange,
+        paletteProvider: thresholdPalette,
+    });
+    sciChartSurface.renderableSeries.add(topFill);
     // Add a label to tell user what to do
     const textAnnotation = new TextAnnotation({
         verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
@@ -74,7 +128,8 @@ export const drawExample = async (rootElement) => {
         onDrag: (args) => {
             // When the horizontal line is dragged, update the
             // threshold palette and redraw the SciChartSurface
-            thresholdPalette.yThresholdValue = horizontalLine.y1;
+            topFill.zeroLineY = Math.max(0, horizontalLine.y1);
+            thresholdFilter.threshold = horizontalLine.y1;
             textAnnotation.y1 = horizontalLine.y1 + 0.2;
             sciChartSurface.invalidateElement();
         },
@@ -120,18 +175,14 @@ export const drawExample = async (rootElement) => {
     return { sciChartSurface, wasmContext };
 };
 /**
- * A paletteprovider which colours a series if X or Y-value over a threshold, else use default colour
+ * A paletteprovider which colours a series if X value over a threshold, else use default colour
  */
-export class ThresholdPaletteProvider {
+export class XThresholdPaletteProvider {
     fillPaletteMode = EFillPaletteMode.GRADIENT;
     strokePaletteMode = EStrokePaletteMode.GRADIENT;
-    yThresholdValue;
     xThresholdValue;
-    yColor;
     xColor;
-    constructor(yThresholdValue, yColor, xThresholdValue, xColor) {
-        this.yThresholdValue = yThresholdValue;
-        this.yColor = parseColorToUIntArgb(yColor);
+    constructor(xThresholdValue, xColor) {
         this.xThresholdValue = xThresholdValue;
         this.xColor = parseColorToUIntArgb(xColor);
     }
@@ -143,15 +194,7 @@ export class ThresholdPaletteProvider {
         if (xValue > this.xThresholdValue) {
             return this.xColor;
         }
-        // When the y-value of the series is greater than the y-threshold,
-        // fill with the y-color
-        if (yValue > this.yThresholdValue) {
-            return this.yColor;
-        }
         // Undefined means use default color
         return undefined;
-    }
-    overrideStrokeArgb(xValue, yValue, index, opacity) {
-        return yValue > this.yThresholdValue ? this.yColor : undefined;
     }
 }

@@ -33,9 +33,8 @@ export default function HeatmapChart() {
         startDemo: () => {},
         stopDemo: () => {},
     });
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const heatmapLegendRef = React.useRef<HeatmapLegend>();
     const [stats, setStats] = React.useState({ xSize: 0, ySize: 0, fps: 0 });
+    const [updateEnabled, setUpdateEnabled] = React.useState(true);
 
     const localClasses = useStyles();
 
@@ -45,21 +44,18 @@ export default function HeatmapChart() {
                 <div className={localClasses.flexOuterContainer}>
                     <div className={localClasses.toolbarRow}>
                         <Button
-                            onClick={() => controlsRef.current.startDemo()}
+                            onClick={() => {
+                                updateEnabled ? controlsRef.current.stopDemo() : controlsRef.current.startDemo();
+                                setUpdateEnabled(!updateEnabled);
+                            }}
                             style={{ color: appTheme.ForegroundColor }}
                         >
-                            Start
+                            {updateEnabled ? "Stop" : "Start"}
                         </Button>
-                        <Button
-                            onClick={() => controlsRef.current.stopDemo()}
-                            style={{ color: appTheme.ForegroundColor }}
-                        >
-                            Stop
-                        </Button>
-                        <span style={{ margin: 12, minWidth: "200px" }}>
-                            # Heatmap Size: {stats.xSize} x {stats.ySize}
-                        </span>
-                        <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
+                        <div style={{ margin: 12, flex: "auto" }}>
+                            Size: {stats.xSize} x {stats.ySize}
+                        </div>
+                        <div style={{ margin: 12, flex: "none", alignSelf: "center" }}>FPS: {stats.fps.toFixed(0)}</div>
                     </div>
                     <div className={localClasses.chartArea} style={{ position: "relative" }}>
                         <SciChartReact
@@ -67,13 +63,7 @@ export default function HeatmapChart() {
                             style={{ width: "100%", height: "100%" }}
                             onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                                 const { sciChartSurface, heatmapDataSeries, controls } = initResult;
-                                sciChartSurfaceRef.current = sciChartSurface;
                                 controlsRef.current = controls;
-
-                                // Initialize heatmap legend not required for now
-                                // drawHeatmapLegend().then((legend) => {
-                                //     heatmapLegendRef.current = legend;
-                                // });
 
                                 // Handle drawing/updating FPS
                                 let lastRendered = Date.now();

@@ -603,6 +603,14 @@ export const ExampleStrings = {
     urlPointLine3DChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#ThePointLine3DChartType.html`,
     urlTitlePointLine3DChartDocumentation: `SciChart.js 3D Point Line Chart Documentation`,
 
+    // 3D Column Line
+    titleColumn3DChart: (frameworkName: TFrameworkName) => `${frameworkName} Column 3D Chart`,
+    pageTitleColumn3DChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} 3D Column Chart | View 3D JavaScript Charts`,
+    urlColumn3DChart: `3d-column-chart`,
+    urlColumn3DChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#TheColumn3DChartType.html`,
+    urlTitleColumn3DChartDocumentation: `SciChart.js 3D Column Chart Documentation`,
+
     // Featured Apps Lidar Example
     urlLidarFeaturedApp: `3d-lidar-visualization`,
     urlTitleLidarFeaturedApp: `LiDAR 3D Point Cloud of Geospatial Data`,
