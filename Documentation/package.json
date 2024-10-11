@@ -19,7 +19,7 @@
     "codesandbox": "^2.2.3",
     "express": "^4.17.1",
     "html-entities": "^2.3.3",
-    "scichart": "^3.5.685"
+    "scichart": "^3.5.687"
   },
   "devDependencies": {
     "@types/express": "^4.17.7",
