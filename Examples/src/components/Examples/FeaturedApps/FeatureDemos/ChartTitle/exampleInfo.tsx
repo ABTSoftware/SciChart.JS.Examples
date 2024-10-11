@@ -35,4 +35,5 @@ export const chartTitleExampleInfo: TExampleInfo = {
         `Demonstrates chart title with different position and alignment options`,
     metaKeywords: "title, text, alignment, multiline, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

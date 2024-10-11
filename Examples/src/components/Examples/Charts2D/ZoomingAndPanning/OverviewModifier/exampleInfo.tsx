@@ -45,4 +45,5 @@ export const overviewExampleInfo: TExampleInfo = {
     metaDescription: (frameworkName: string) => `Demonstrates how to zoom and pan with an Overview Chart`,
     metaKeywords: "drag, axis, scale, overview, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

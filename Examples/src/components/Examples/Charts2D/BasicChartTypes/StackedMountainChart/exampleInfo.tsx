@@ -44,4 +44,5 @@ export const stackedMountainChartExampleInfo: TExampleInfo = {
         `Design a high performance ${frameworkName} Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.`,
     metaKeywords: "stacked, mountain, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

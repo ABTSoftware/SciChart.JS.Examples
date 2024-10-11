@@ -44,4 +44,5 @@ export const backgroundAnnotationsExampleInfo: TExampleInfo = {
         `Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js Annotations API`,
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

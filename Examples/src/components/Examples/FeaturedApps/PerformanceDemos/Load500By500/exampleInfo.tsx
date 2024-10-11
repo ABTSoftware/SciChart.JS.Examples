@@ -43,4 +43,5 @@ export const load500By500ExampleInfo: TExampleInfo = {
         `This demo showcases the incredible performance of our ${frameworkName} Chart by loading 500 series with 500 points (250k points) instantly!`,
     metaKeywords: "performance, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

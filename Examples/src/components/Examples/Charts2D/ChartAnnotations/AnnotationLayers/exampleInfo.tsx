@@ -52,4 +52,5 @@ export const annotationLayersExampleInfo: TExampleInfo = {
         `Demonstrates how layering works a ${frameworkName} Chart using SciChart.js Annotations API`,
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

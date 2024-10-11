@@ -41,4 +41,5 @@ export const staticAxisExampleInfo: TExampleInfo = {
         `Demonstrates isStaticAxis on a ${frameworkName} Chart using SciChart.js.`,
     metaKeywords: "multiple, axis, static, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

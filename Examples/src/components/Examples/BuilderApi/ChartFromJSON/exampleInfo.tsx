@@ -42,4 +42,5 @@ export const chartFromJSONExampleInfo: TExampleInfo = {
         `Demonstrates how to create a ${frameworkName} Chart from JSON using the builder API. `,
     metaKeywords: "json, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

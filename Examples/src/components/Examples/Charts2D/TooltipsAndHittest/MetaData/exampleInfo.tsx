@@ -44,4 +44,5 @@ export const metaDataExampleInfo: TExampleInfo = {
         `Demonstrates using MetaData in a ${frameworkName} Chart - add custom data to points for display or to drive visual customisation`,
     metaKeywords: "metaData, api, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

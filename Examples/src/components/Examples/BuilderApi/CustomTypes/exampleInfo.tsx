@@ -45,4 +45,5 @@ export const customTypesExampleInfo: TExampleInfo = {
         "You can call methods within the builder api to get references to the objects being built, so you can update them later.",
     metaKeywords: "custom, chart, javascript, builder, paletteprovider",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

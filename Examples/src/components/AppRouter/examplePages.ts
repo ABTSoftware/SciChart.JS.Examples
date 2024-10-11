@@ -162,6 +162,10 @@ export type TExampleInfo = {
     extraDependencies?: Record<string, string>;
     codeSandBoxNotWorking?: boolean;
     sandboxConfig?: Record<string, any>;
+    /**
+     * Markdown content for the page, will help with SEO and editing
+     */
+    markdownContent?: string;
 };
 
 export type TExamplePage = TPage & TExampleInfo;

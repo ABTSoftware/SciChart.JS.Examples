@@ -40,4 +40,5 @@ export const userAnnotatedStockChartExampleInfo: TExampleInfo = {
         SciChart.js.  Custom modifiers allow you to add lines and markers, then use the built in serialisation functions to save and reload the chart, including the data and all your custom annotations.`,
     metaKeywords: "candlestick, chart, annotations, lines, markers, save, load, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

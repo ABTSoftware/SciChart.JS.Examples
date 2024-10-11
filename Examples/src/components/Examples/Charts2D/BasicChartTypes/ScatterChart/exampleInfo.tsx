@@ -44,4 +44,5 @@ export const scatterChartExampleInfo: TExampleInfo = {
         `Create ${frameworkName} Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. `,
     metaKeywords: "scatter, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

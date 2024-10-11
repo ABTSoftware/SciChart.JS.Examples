@@ -47,4 +47,5 @@ export const annotationsAreEasyExampleInfo: TExampleInfo = {
         `Demonstrates how to place Annotations (lines, arrows, markers, text) over a ${frameworkName} Chart using SciChart.js Annotations API`,
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

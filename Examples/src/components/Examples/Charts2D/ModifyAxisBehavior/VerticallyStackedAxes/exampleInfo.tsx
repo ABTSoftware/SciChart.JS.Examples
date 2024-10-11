@@ -41,4 +41,5 @@ export const verticallyStackedAxesExampleInfo: TExampleInfo = {
         `Demonstrates Vertically Stacked Axes on a ${frameworkName} Chart using SciChart.js, allowing data to overlap`,
     metaKeywords: "multiple, stacked, overlap, axis, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

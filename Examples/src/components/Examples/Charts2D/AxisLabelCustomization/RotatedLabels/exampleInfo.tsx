@@ -42,4 +42,5 @@ export const rotatedLabelsExampleInfo: TExampleInfo = {
     metaDescription: (frameworkName: string) => `Rotate to create vertical axis labels and fit more on an axis`,
     metaKeywords: "Axis, label, rotated, vertical, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

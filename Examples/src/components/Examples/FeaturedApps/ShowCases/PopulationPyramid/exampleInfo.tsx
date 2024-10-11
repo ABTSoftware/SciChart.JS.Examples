@@ -44,4 +44,5 @@ export const populationPyramidExampleInfo: TExampleInfo = {
     metaKeywords:
         "population, react, column, stacked, animation, labels, engineering, pyramid, europe, africa, javascript, chart, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

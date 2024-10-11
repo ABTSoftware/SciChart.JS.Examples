@@ -43,5 +43,6 @@ export const serverTrafficDashboardDemoExampleInfo: TExampleInfo = {
         `This dashboard demo showcases the incredible realtime performance of our ${frameworkName} charts by updating the series with millions of data-points!`,
     metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
     extraDependencies: { "country-flag-icons": "^1.5.7" },
 };

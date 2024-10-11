@@ -40,4 +40,5 @@ export const imageLabelsExampleInfo: TExampleInfo = {
     metaDescription: (frameworkName: string) => `Demonstrates how to use Images as Axis Labels`,
     metaKeywords: "image, axis, label, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

@@ -44,4 +44,5 @@ export const multiLineLabelsExampleInfo: TExampleInfo = {
         `Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider`,
     metaKeywords: "text, axis, label, wrap, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

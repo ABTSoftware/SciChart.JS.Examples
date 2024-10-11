@@ -37,4 +37,5 @@ export const waterfallChartExampleInfo: TExampleInfo = {
     metaDescription: previewDescription,
     metaKeywords: "waterfall, chart, interactive, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

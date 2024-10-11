@@ -46,4 +46,5 @@ export const chartLegendsAPIExampleInfo: TExampleInfo = {
         "a LegendModifier type to the sciChartSurface.chartModifiers collection.",
     metaKeywords: "legend, api, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

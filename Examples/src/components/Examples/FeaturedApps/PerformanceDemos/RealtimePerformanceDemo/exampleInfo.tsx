@@ -113,6 +113,7 @@ export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
         `This demo showcases the incredible realtime performance of our ${frameworkName} charts by updating the series with millions of data-points!`,
     metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
     customDescription,
     customDescription1,
     customheader,

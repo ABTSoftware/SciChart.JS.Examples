@@ -40,4 +40,5 @@ export const axisTypesExampleInfo: TExampleInfo = {
         `Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider`,
     metaKeywords: "text, axis, date, logarithmic, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

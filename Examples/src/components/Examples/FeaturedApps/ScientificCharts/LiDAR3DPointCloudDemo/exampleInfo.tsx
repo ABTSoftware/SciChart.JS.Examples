@@ -44,4 +44,5 @@ export const lidar3DPointCloudExampleInfo: TExampleInfo = {
         "from the UK Defra Survey.",
     metaKeywords: "lidar, 3d, point, cloud, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

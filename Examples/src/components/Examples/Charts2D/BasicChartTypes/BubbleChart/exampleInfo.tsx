@@ -44,4 +44,5 @@ export const bubbleChartExampleInfo: TExampleInfo = {
         `Create a high performance ${frameworkName} Bubble Chart with Sci-Chart. Demo shows how to draw point-markers at X,Y locations. Get your free demo now.`,
     metaKeywords: "bubble, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

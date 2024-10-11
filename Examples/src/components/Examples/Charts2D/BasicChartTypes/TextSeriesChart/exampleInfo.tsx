@@ -42,4 +42,5 @@ export const textChartExampleInfo: TExampleInfo = {
         `Create ${frameworkName} Text Chart with high performance SciChart.js.  `,
     metaKeywords: "text, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

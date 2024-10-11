@@ -45,4 +45,5 @@ export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
         `Demonstrates adding a Cursor (Crosshair) to a ${frameworkName} Chart with SciChart.js CursorModifier`,
     metaKeywords: "cursor, modifier, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

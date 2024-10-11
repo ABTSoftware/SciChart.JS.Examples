@@ -42,4 +42,5 @@ export const usingVerticalSliceModifierExampleInfo: TExampleInfo = {
         `Demonstrates adding Tooltips at certain positions to a ${frameworkName} Chart with SciChart.js VerticalSliceModifier`,
     metaKeywords: "tooltips, modifier, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

@@ -43,4 +43,5 @@ export const nonUniformHeatmapExampleInfo: TExampleInfo = {
         `Create ${frameworkName} Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.`,
     metaKeywords: "error, bars, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

@@ -43,4 +43,5 @@ export const dashedLineStylingExampleInfo: TExampleInfo = {
         `Demonstrates dashed line series in ${frameworkName} Charts with SciChart.js`,
     metaKeywords: "dash, dashed, dotted, line, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

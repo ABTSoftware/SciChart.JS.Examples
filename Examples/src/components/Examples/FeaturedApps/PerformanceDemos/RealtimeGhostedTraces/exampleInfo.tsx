@@ -42,4 +42,5 @@ export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
         `This demo showcases the realtime performance of our ${frameworkName} Chart by animating several series with thousands of data-points at 60 FPS`,
     metaKeywords: "realtime, ghosted, traces, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

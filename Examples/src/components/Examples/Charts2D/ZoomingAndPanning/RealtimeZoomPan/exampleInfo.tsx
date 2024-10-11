@@ -44,4 +44,5 @@ export const realtimeZoomPanExampleInfo: TExampleInfo = {
         `Demonstrates how to zoom and pan a realtime ${frameworkName} Chart while it is updating, with SciChart.js ZoomState API`,
     metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

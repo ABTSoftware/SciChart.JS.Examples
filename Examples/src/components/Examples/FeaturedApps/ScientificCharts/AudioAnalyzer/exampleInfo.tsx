@@ -45,6 +45,7 @@ export const audioAnalyzerExampleInfo: TExampleInfo = {
         "visualize the Fourier-Transform of an audio waveform in realtime.",
     metaKeywords: "audio, analyzer, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
     sandboxConfig: {
         infiniteLoopProtection: false,
         hardReloadOnChange: false,

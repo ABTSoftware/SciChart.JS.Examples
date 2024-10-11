@@ -41,4 +41,5 @@ export const stylingInCodeExampleInfo: TExampleInfo = {
         `Demonstrates how to style a ${frameworkName} Chart entirely in code with SciChart.js themeing API`,
     metaKeywords: "styling, in, code, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

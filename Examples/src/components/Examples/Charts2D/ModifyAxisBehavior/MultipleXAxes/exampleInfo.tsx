@@ -41,4 +41,5 @@ export const multipleXAxesExampleInfo: TExampleInfo = {
         `Demonstrates Multiple X & Y Axis on a ${frameworkName} Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning`,
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

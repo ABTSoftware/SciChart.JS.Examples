@@ -44,4 +44,5 @@ export const digitalMountainChartExampleInfo: TExampleInfo = {
         `Create ${frameworkName} Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.`,
     metaKeywords: "digital, mountain, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

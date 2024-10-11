@@ -45,4 +45,5 @@ export const syncMultiChartExampleInfo: TExampleInfo = {
     metaDescription: (frameworkName: string) => `Synchronise multiple dynamic charts and overview`,
     metaKeywords: "axis, synchronise, multiple, charts, overview, zoom, pan, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

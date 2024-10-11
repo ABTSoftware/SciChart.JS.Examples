@@ -39,4 +39,5 @@ export const drawBehindAxesExampleInfo: TExampleInfo = {
         `Demonstrates the option of the transparent Axes customization on a ${frameworkName} Chart using SciChart.js.`,
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

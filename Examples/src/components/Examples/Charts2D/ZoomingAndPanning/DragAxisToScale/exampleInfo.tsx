@@ -40,4 +40,5 @@ export const dragAxisToScaleExampleInfo: TExampleInfo = {
         `Demonstrates how to Zoom, Scale or Pan individual Axis on a ${frameworkName} Chart with SciChart.js AxisDragModifiers`,
     metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

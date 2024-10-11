@@ -6,21 +6,19 @@
 .tabwrapper {
     .tabs {
         margin: 0;
+        margin-bottom: -1.5px; // Overlap border from the main content
         padding: 0;
         list-style: none;
         cursor: pointer;
-        user-select: none; /* Disable text selection */
+        user-select: none;
+        /* Disable text selection */
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 15px;
-        @media only screen and (max-width: 1024px) {
-            overflow-x: auto;
-            white-space: nowrap;
-            display: block;
-            margin: 0 30px;
-            text-align: center;
-            overflow-y: hidden;
+
+        @media only screen and (max-width: 768px) {
+            margin-bottom: 0;
         }
 
         .tablink {
@@ -30,50 +28,23 @@
             line-height: 30px;
             letter-spacing: 0.02em;
             color: #fff;
-            padding: 13px 30px;
-            border: 1px solid #2eacdb;
+            padding: 12px 24px 8px 24px;
+            border: 1px solid #12003e;
             border-radius: 17px 17px 0px 0px;
             border-bottom: none;
-            background: #2eacdb;
+            background: #12003e;
             position: relative;
             cursor: pointer;
-            @media only screen and (max-width: 1024px) {
-                border-radius: 10px 10px 0px 0px;
-                display: inline-block;
-                font-size: 14px;
-                line-height: 30px;
-                padding: 5px 13px;
-            }
 
             &:hover {
-                border: 1px solid #b4d0db;
-                border-bottom: none;
-                background: #ffffff;
                 color: #7593a4;
-                &:after {
-                    content: "";
-                    width: 100%;
-                    height: 1px;
-                    position: absolute;
-                    left: 0;
-                    bottom: -1px;
-                    background-color: #fff;
-                }
             }
+
             &.active {
                 border: 1px solid #b4d0db;
                 border-bottom: none;
                 background: #ffffff;
                 color: #7593a4;
-                &:after {
-                    content: "";
-                    width: 100%;
-                    height: 1px;
-                    position: absolute;
-                    left: 0;
-                    bottom: -1px;
-                    background-color: #fff;
-                }
             }
         }
     }

@@ -35,4 +35,5 @@ export const depthChartExampleInfo: TExampleInfo = {
         `Create a ${frameworkName} Depth Chart, using the high performance SciChart.js chart library. Get free demo now.`,
     metaKeywords: "depth, orderbook, stock, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

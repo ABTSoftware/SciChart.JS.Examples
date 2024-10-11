@@ -44,4 +44,5 @@ export const websocketBigDataDemoExampleInfo: TExampleInfo = {
         `This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!`,
     metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

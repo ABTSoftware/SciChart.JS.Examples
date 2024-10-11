@@ -44,4 +44,5 @@ export const bubble3DChartExampleInfo: TExampleInfo = {
         `Create detailed ${frameworkName} 3D Bubble Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.`,
     metaKeywords: "3d, bubble, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

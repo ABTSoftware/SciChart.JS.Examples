@@ -43,4 +43,5 @@ export const sharedDataExampleInfo: TExampleInfo = {
         "Data can be easily integrated into a definition and shared between series",
     metaKeywords: "template, chart, javascript, data, reuse",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

@@ -39,5 +39,6 @@ export const virtualizedDataOverviewExampleInfo: TExampleInfo = {
         `shows how to load data on zoom/pan and how to create an overview chart for this case.`,
     metaKeywords: "zoom, pan, virtualize, server, overview, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
     extraDependencies: { rxjs: "^7.5.6" },
 };

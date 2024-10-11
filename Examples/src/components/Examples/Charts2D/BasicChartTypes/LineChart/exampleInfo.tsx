@@ -48,4 +48,5 @@ export const lineChartExampleInfo: TExampleInfo = {
         `Discover how to create a high performance ${frameworkName} Line Chart with SciChart - the leading JavaScript library. Get your free demo now.`,
     metaKeywords: "line, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

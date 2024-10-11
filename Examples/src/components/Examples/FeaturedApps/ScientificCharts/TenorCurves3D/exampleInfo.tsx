@@ -45,4 +45,5 @@ export const tenorCurvesExampleInfo: TExampleInfo = {
         "or other 2D/3D data combined on a single screen.",
     metaKeywords: "tenor, curves, 3d, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

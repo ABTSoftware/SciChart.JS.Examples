@@ -46,4 +46,5 @@ export const fullChartExampleInfo: TExampleInfo = {
         "The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
     metaKeywords: "definition, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

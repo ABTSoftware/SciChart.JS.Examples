@@ -39,4 +39,5 @@ export const styleAnimationExampleInfo: TExampleInfo = {
     metaDescription: (frameworkName: string) => `Demonstrates how to run Style Transition Animations with JavaScript.`,
     metaKeywords: "style, animation, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

@@ -43,4 +43,5 @@ export const transparentBackgroundExampleInfo: TExampleInfo = {
         `Demonstrates how to create a ${frameworkName} Chart with background image using transparency in SciChart.js`,
     metaKeywords: "styling, transparent, background, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

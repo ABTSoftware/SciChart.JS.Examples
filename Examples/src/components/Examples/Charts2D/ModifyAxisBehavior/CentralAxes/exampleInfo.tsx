@@ -40,4 +40,5 @@ export const centralAxesExampleInfo: TExampleInfo = {
         `Demonstrates Central Axes on a ${frameworkName} Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable layout`,
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

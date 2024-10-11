@@ -39,4 +39,5 @@ export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     metaDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.`,
     metaKeywords: "performance, loading, million, points, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

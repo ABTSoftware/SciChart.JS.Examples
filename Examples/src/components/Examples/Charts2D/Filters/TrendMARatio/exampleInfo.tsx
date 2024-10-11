@@ -43,4 +43,5 @@ export const trendMARatioExampleInfo: TExampleInfo = {
         `Chart with Linear Trendline, Moving Average and Ratio Filters with filter chaining`,
     metaKeywords: "trend, line, moving, average, ratio, transform, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

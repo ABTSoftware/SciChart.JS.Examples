@@ -43,4 +43,5 @@ export const mountainChartExampleInfo: TExampleInfo = {
         `Create ${frameworkName} Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.`,
     metaKeywords: "mountain, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

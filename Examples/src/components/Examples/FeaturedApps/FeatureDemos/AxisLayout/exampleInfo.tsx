@@ -39,4 +39,5 @@ export const axisLayoutExampleInfo: TExampleInfo = {
         `Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts`,
     metaKeywords: "stacked, axis, layout, alignment, vertical, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };

@@ -10,7 +10,7 @@ import NewGalleryItems from "../GalleryItems";
 import Iconleft from "./images/icon-left-arrow.svg";
 import SubMenuItems from "../AppDeatilsRouters/SubMenuItems";
 
-type TabName = "Featured Apps" | "2D Charts" | "3D Charts";
+export type TabName = "Featured Apps" | "2D Charts" | "3D Charts" | "Demos by Industry" | "Demos by Feature";
 
 const ButtonTabs: FC = () => {
     const navigate = useNavigate();
@@ -40,6 +40,14 @@ const ButtonTabs: FC = () => {
                 setCurrentMenuItems(MENU_ITEMS_3D);
                 setSelectedItemId(MENU_ITEMS_3D[0].item.id);
                 break;
+            case "Demos by Industry":
+                setCurrentMenuItems(MENU_ITEMS_FEATURED_APPS);
+                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].item.id);
+                break;
+            case "Demos by Feature":
+                setCurrentMenuItems(MENU_ITEMS_FEATURED_APPS);
+                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].item.id);
+                break;
         }
     };
 
@@ -58,20 +66,37 @@ const ButtonTabs: FC = () => {
                     <li
                         className={`${classes.tablink} ${activeTab === "Featured Apps" ? classes.active : ""}`}
                         onClick={() => handleTabClick("Featured Apps")}
+                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: 18 }}
                     >
                         Featured Apps
                     </li>
                     <li
                         className={`${classes.tablink} ${activeTab === "2D Charts" ? classes.active : ""}`}
                         onClick={() => handleTabClick("2D Charts")}
+                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: 18 }}
                     >
                         2D Charts
                     </li>
                     <li
                         className={`${classes.tablink} ${activeTab === "3D Charts" ? classes.active : ""}`}
                         onClick={() => handleTabClick("3D Charts")}
+                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: 18 }}
                     >
                         3D Charts
+                    </li>
+                    <li
+                        className={`${classes.tablink} ${activeTab === "Demos by Industry" ? classes.active : ""}`}
+                        onClick={() => handleTabClick("Demos by Industry")}
+                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: 18 }}
+                    >
+                        Demos by Industry
+                    </li>
+                    <li
+                        className={`${classes.tablink} ${activeTab === "Demos by Feature" ? classes.active : ""}`}
+                        onClick={() => handleTabClick("Demos by Feature")}
+                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: 18 }}
+                    >
+                        Demos by Feature
                     </li>
                 </ul>
             </div>
@@ -83,6 +108,7 @@ const ButtonTabs: FC = () => {
                         handleClicks={handleClick}
                         SubmenuTitle={SubmenuTitle}
                         handleSubmenuClick={handleSubmenuClick}
+                        isHomePage={true}
                     />
                     <NewGalleryItems
                         activeTab={activeTab}

@@ -42,4 +42,5 @@ export const candlestickChartExampleInfo: TExampleInfo = {
         `Discover how to create a ${frameworkName} Candlestick Chart or Stock Chart using SciChart.js. For high Performance JavaScript Charts, get your free demo now.`,
     metaKeywords: "candlestick, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent: undefined,
 };
