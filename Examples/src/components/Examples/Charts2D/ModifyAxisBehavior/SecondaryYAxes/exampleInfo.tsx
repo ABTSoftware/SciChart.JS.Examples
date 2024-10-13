@@ -27,6 +27,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const secondaryYAxesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleSecondaryYAxis,
@@ -41,5 +43,5 @@ export const secondaryYAxesExampleInfo: TExampleInfo = {
         `Demonstrates Secondary Y Axis on a ${frameworkName} Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning`,
     metaKeywords: "secondary, axis, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

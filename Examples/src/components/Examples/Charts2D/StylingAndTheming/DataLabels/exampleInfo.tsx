@@ -21,6 +21,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const datalabelsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDatalabels,
@@ -34,5 +36,5 @@ export const datalabelsExampleInfo: TExampleInfo = {
     metaDescription: (frameworkName: string) => `Show data labels on ${frameworkName} Chart. Get your free demo now.`,
     metaKeywords: "data labels, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

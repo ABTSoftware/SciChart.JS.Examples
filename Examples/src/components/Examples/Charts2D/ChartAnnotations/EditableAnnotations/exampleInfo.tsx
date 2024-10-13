@@ -28,6 +28,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const editableAnnotationsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleEditableAnnotations,
@@ -43,5 +45,5 @@ export const editableAnnotationsExampleInfo: TExampleInfo = {
         `Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a ${frameworkName} Chart using SciChart.js Annotations API`,
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas, drag and drop",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

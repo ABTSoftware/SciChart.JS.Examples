@@ -31,6 +31,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleTradeMarkers,
@@ -46,5 +48,5 @@ export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
         `Demonstrates how to place Buy/Sell arrow markers on a ${frameworkName} Stock Chart using SciChart.js - Annotations API`,
     metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

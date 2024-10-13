@@ -20,6 +20,8 @@ const Subtitle = (frameworkName: string) => (
     <p>A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.</p>
 );
 
+const markdownContent: string = undefined
+
 export const chartTitleExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleChartTitle,
@@ -35,5 +37,5 @@ export const chartTitleExampleInfo: TExampleInfo = {
         `Demonstrates chart title with different position and alignment options`,
     metaKeywords: "title, text, alignment, multiline, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

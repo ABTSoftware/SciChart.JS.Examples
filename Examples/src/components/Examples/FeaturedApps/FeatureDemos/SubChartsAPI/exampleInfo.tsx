@@ -26,6 +26,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const subchartsGridExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleChartGrid,
@@ -41,5 +43,5 @@ export const subchartsGridExampleInfo: TExampleInfo = {
         `Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript`,
     metaKeywords: "javascript, multichart, dashboard, performance, grid, realtime, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

@@ -29,6 +29,8 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
+const markdownContent: string = undefined
+
 export const populationPyramidExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titlePopulationPyramid,
@@ -44,5 +46,5 @@ export const populationPyramidExampleInfo: TExampleInfo = {
     metaKeywords:
         "population, react, column, stacked, animation, labels, engineering, pyramid, europe, africa, javascript, chart, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

@@ -30,6 +30,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const realTimeMountainChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRealtimeMountainChart,
@@ -44,5 +46,5 @@ export const realTimeMountainChartExampleInfo: TExampleInfo = {
         `${frameworkName} Realtime Mountain Chart made easy. Add animated, real-time updates with SciChart.js - high performance JavaScript Charts. Get free trial now. `,
     metaKeywords: "mountain, chart, realtime, animated, javascript, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

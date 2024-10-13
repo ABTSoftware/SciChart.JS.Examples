@@ -29,6 +29,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const fanChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleFanChart,
@@ -43,5 +45,5 @@ export const fanChartExampleInfo: TExampleInfo = {
         `Discover how to create ${frameworkName} Fan Chart with SciChart. Zoom in to see the detail you can go to using our JavaScript Charts. Get your free demo today. `,
     metaKeywords: "fan, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

@@ -25,6 +25,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const createACustomThemeExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleCustomTheme,
@@ -39,5 +41,5 @@ export const createACustomThemeExampleInfo: TExampleInfo = {
         `Demonstrates how to create a Custom Theme for a SciChart.js ${frameworkName} Chart using our Theming API`,
     metaKeywords: "theming, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

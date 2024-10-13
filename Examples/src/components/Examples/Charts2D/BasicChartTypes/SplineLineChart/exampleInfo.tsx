@@ -32,6 +32,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const splineLineChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleSplineLineChart,
@@ -47,5 +49,5 @@ export const splineLineChartExampleInfo: TExampleInfo = {
         `Discover how to create a ${frameworkName} Spline Line Chart with SciChart. Demo includes algorithm for smoother lines. Get your free trial now.`,
     metaKeywords: "spline, smoothed, line, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

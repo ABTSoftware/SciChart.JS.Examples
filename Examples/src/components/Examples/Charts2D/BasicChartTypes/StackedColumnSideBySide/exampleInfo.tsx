@@ -30,6 +30,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const stackedColumnSideBySideExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleGroupedColumnChart,
@@ -44,5 +46,5 @@ export const stackedColumnSideBySideExampleInfo: TExampleInfo = {
         `Design ${frameworkName} Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.`,
     metaKeywords: "stacked, column, side-by-side, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

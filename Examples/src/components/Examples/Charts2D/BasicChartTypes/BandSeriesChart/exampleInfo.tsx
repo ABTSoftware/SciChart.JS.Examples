@@ -30,6 +30,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = `<section class="container-markdown" style="background: #38a">  Markdown band series chart example. </section>`;
+
 export const bandSeriesChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleBandChart,
@@ -45,5 +47,5 @@ export const bandSeriesChartExampleInfo: TExampleInfo = {
         `Easily create a ${frameworkName} Band Chart or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.`,
     metaKeywords: "band, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

@@ -30,6 +30,8 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
+const markdownContent: string = undefined
+
 export const fullChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleBuilderFullChart,
@@ -46,5 +48,5 @@ export const fullChartExampleInfo: TExampleInfo = {
         "The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
     metaKeywords: "definition, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

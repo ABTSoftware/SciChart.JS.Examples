@@ -1,14 +1,21 @@
 #!/bin/bash
 
+# This script updates the `exampleInfo.tsx` files with the content of the `markdownContent.md` files.
+
 # Run script: ./updateMarkdown.sh
+# or
+# Run script: npm run updateMarkdown
 
-# This script will find the markdownContent.md files, and if they exist,
-# it will inject their stringified content into the "markdownContent" property
-# within the export object of the exampleInfo.tsx file at the same level.
+set -e
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+RESET="\033[0m"
 
-# Function to escape double quotes for JSON stringification
+echo -e "Updating exampleInfo.tsx in:${GREEN}"
+
+# Function to escape special characters and double quotes for JSON stringification
 escape_quotes() {
-    echo "$1" | sed 's/"/\\"/g'
+    echo "$1" | sed 's/\\/\\\\/g' | sed 's/"/\\"/g' | sed 's/\//\\\//g' | tr '\n' ' ' | sed 's/ *$//g'
 }
 
 # Loop through directories and find markdownContent.md files
@@ -17,25 +24,20 @@ for folder in $(find ./src/components -type f -name "markdownContent.md" -exec d
     example_info_file="$folder/exampleInfo.tsx"
 
     # Check if markdownContent.md exists
-    if [ -f "$markdown_file" ]; then
-        echo "Found markdownContent.md in: $folder"
-        
+    if [ -f "$markdown_file" ]; then        
         # Read and escape the markdown file content
         markdown_content=$(cat "$markdown_file")
         markdown_content_escaped=$(escape_quotes "$markdown_content")
 
-        # Check if exampleInfo.tsx exists
         if [ -f "$example_info_file" ]; then
-            echo "Updating exampleInfo.tsx in: $folder"
+            echo -e "    ${GREEN}$folder${RESET}"
 
-            # Insert or update the markdownContent property in the export object
-            perl -i -0pe "
-            s/(export default \{[^}]*?)(markdownContent:\s*\"[^\"]*\"|)([^}]*?\})/\1markdownContent: \"$markdown_content_escaped\",\3/s" "$example_info_file"
-        
+            # Replace the value in "const markdownContent" variable with the new markdown content
+            sed -i '' "s|const markdownContent: string =.*|const markdownContent: string = \`$markdown_content_escaped\`;|g" "$example_info_file"
         else
-            echo "exampleInfo.tsx not found in: $folder"
+            echo -e "${RED}exampleInfo.tsx not found in: $folder${RESET}"
         fi
     else
-        echo "No markdownContent.md found in: $folder"
+        echo -e "${RED}No markdownContent.md found in: $folder${RESET}"
     fi
 done

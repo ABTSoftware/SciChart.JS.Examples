@@ -28,6 +28,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const staticAxisExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleStaticAxis,
@@ -41,5 +43,5 @@ export const staticAxisExampleInfo: TExampleInfo = {
         `Demonstrates isStaticAxis on a ${frameworkName} Chart using SciChart.js.`,
     metaKeywords: "multiple, axis, static, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

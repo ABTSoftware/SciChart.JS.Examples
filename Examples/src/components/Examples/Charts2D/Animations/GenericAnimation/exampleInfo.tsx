@@ -25,6 +25,9 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
+
 export const genericAnimationExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleGenericAnimation,
@@ -39,5 +42,5 @@ export const genericAnimationExampleInfo: TExampleInfo = {
     metaDescription: (frameworkName: string) => `Demonstrates how to run Generic Animation with JavaScript.`,
     metaKeywords: "generic, animation, javascript",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

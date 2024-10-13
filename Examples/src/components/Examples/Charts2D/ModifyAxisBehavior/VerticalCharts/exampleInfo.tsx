@@ -30,6 +30,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const verticalChartsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleVerticalCharts,
@@ -44,5 +46,5 @@ export const verticalChartsExampleInfo: TExampleInfo = {
         `Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.`,
     metaKeywords: "vertical, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

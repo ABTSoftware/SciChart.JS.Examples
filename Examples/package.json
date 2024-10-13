@@ -23,7 +23,8 @@
     "generateSitemap": "ts-node before-generate.js && ts-node generate-sitemap.ts && ts-node after-generate.js",
     "generateFooterLinks": "ts-node before-generate.js && ts-node generate-footer-links.ts && ts-node after-generate.js",
     "prepare": "cd .. && husky install",
-    "pretty-quick": "pretty-quick --staged"
+    "pretty-quick": "pretty-quick --staged",
+    "updateMarkdown": "./updateMarkdown.sh"
   },
   "author": "",
   "license": "ISC",

@@ -25,6 +25,8 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
+const markdownContent: string = undefined
+
 export const dynamicLayoutExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleDynamicLayout,
@@ -40,5 +42,5 @@ export const dynamicLayoutExampleInfo: TExampleInfo = {
         `Demonstrates a custom modifier which can convert from single chart to grid layout and back.`,
     metaKeywords: "subcharts, layout, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

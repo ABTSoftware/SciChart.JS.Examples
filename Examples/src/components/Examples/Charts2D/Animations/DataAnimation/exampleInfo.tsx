@@ -25,6 +25,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const dataAnimationExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDataAnimation,
@@ -39,5 +41,5 @@ export const dataAnimationExampleInfo: TExampleInfo = {
     metaDescription: (frameworkName: string) => `Demonstrates how to run Dataset Animations with JavaScript.`,
     metaKeywords: "data, dataset, animation, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

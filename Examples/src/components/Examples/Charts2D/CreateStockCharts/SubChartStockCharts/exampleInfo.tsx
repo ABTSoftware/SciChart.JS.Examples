@@ -31,6 +31,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const subChartStockChartsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleSubChartStockChart,
@@ -46,5 +48,5 @@ export const subChartStockChartsExampleInfo: TExampleInfo = {
         `Create a ${frameworkName} Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.`,
     metaKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

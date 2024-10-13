@@ -26,6 +26,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = `<section class="container-markdown" style="background: #38a">  # markdown example 1 This is **bold** or _italic_.  <button class="button-red">click me</button>  <h1>Title 1</h1> </section>  <!-- section 2 --> <section class="container-markdown" style="background: #d83; margin-top: 15px">  # markdown example 2 </section>`;
+
 export const columnChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleColumnChart,
@@ -40,5 +42,5 @@ export const columnChartExampleInfo: TExampleInfo = {
         `${frameworkName} Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.`,
     metaKeywords: "column, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

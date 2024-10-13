@@ -30,6 +30,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined;
+
 export const audioAnalyzerExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleAudioAnalyzerFeaturedApp,
@@ -45,7 +47,7 @@ export const audioAnalyzerExampleInfo: TExampleInfo = {
         "visualize the Fourier-Transform of an audio waveform in realtime.",
     metaKeywords: "audio, analyzer, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent,
     sandboxConfig: {
         infiniteLoopProtection: false,
         hardReloadOnChange: false,

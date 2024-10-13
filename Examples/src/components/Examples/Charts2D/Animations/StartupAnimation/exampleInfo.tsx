@@ -25,6 +25,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const startupAnimationExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleStartupAnimation,
@@ -39,5 +41,5 @@ export const startupAnimationExampleInfo: TExampleInfo = {
     metaDescription: (frameworkName: string) => `Demonstrates how to run Startup Animations with JavaScript.`,
     metaKeywords: "startup, on-start, animation, javascript",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

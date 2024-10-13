@@ -25,6 +25,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const drawBehindAxesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDrawBehindAxes,
@@ -39,5 +41,5 @@ export const drawBehindAxesExampleInfo: TExampleInfo = {
         `Demonstrates the option of the transparent Axes customization on a ${frameworkName} Chart using SciChart.js.`,
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };

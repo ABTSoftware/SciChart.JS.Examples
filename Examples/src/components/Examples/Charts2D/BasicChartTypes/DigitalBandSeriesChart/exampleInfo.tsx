@@ -29,6 +29,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined
+
 export const digitalBandSeriesChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDigitalBandChart,
@@ -44,5 +46,5 @@ export const digitalBandSeriesChartExampleInfo: TExampleInfo = {
         `Learn how to create a ${frameworkName} Digital Band Chart or High-Low Fill Chart with SciChart's easy-to-follow demos. Get your free trial today.`,
     metaKeywords: "digital, band, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent: undefined,
+    markdownContent
 };
