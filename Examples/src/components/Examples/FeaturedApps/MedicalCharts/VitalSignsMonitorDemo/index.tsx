@@ -277,6 +277,7 @@ export default function VitalSignsMonitorDemo() {
                     >
                         <div className={classes.IbRow1}>
                             <div className={classes.IbRow1Col1}>ECG</div>
+                            <div className={classes.IbRow2Col2}>{infoEcg}</div>
                         </div>
                         <div className={classes.IbRow2}>
                             <div className={classes.IbRow2Col1}>
@@ -285,9 +286,6 @@ export default function VitalSignsMonitorDemo() {
                                     <br />
                                     ST | +0.6 || +0.9
                                 </div>
-                            </div>
-                            <div className={classes.IbRow2Col2}>
-                                <div>{infoEcg}</div>
                             </div>
                         </div>
                     </div>
