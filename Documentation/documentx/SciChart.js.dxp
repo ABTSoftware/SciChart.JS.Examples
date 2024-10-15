@@ -1768,7 +1768,7 @@ Show external placement div</Notes>
                       <TargetItemId>a7a8e8a9-a153-42a0-af00-913ef6e7e06c</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="a9634cf8-ab4c-4a03-97a4-272a34364765" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="a9634cf8-ab4c-4a03-97a4-272a34364765" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>52beca85-ed1b-4135-bd27-72f46ff74aa0</TargetItemId>
