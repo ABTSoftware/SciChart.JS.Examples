@@ -2,11 +2,12 @@ import * as path from "path";
 import * as fs from "fs";
 import { Request, Response } from "express";
 import { EXAMPLES_PAGES, TExamplePage } from "../components/AppRouter/examplePages";
-import { IFiles, loadStyles } from "./sandboxDependencyUtils";
-import { getSandboxConfig, getSourceFilesForPath, indexHtmlTemplate, SandboxConfig } from "./sandboxForms";
 import { BadRequestError, IHttpError, NotFoundError } from "./Errors";
 import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 import { getParameters } from "codesandbox/lib/api/define";
+import { getSandboxConfig } from "./services/sandbox";
+import { SandboxConfig, IFiles, getSourceFilesForPath, loadStyles } from "./services/sandbox/sandboxDependencyUtils";
+import { indexHtmlTemplate } from "./services/sandbox/vanillaTsConfig";
 
 const renderCodeSandBoxRedirectPage = (config: SandboxConfig, framework: EPageFramework) => {
     const files = config.files;
