@@ -1,13 +1,18 @@
 import * as path from "path";
 import * as fs from "fs";
-import { getParameters } from "codesandbox/lib/api/define";
 import { IFiles, csStyles } from "./sandboxDependencyUtils";
 import { type TExampleInfo } from "../components/AppRouter/examplePages";
 import { NotFoundError } from "./Errors";
 import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 const pj = require("../../package.json");
 
-const includeExternalModules = async (folderPath: string, files: IFiles, content: string, includeImages: boolean, updateImports: boolean) => {
+const includeExternalModules = async (
+    folderPath: string,
+    files: IFiles,
+    content: string,
+    includeImages: boolean,
+    updateImports: boolean
+) => {
     // Pull files outside the local folder into it and rewrite the import
     const externalImports = Array.from(content.matchAll(/from "\.\.\/(.*)";/g));
     if (externalImports.length > 0) {
@@ -38,7 +43,14 @@ const includeExternalModules = async (folderPath: string, files: IFiles, content
     return content;
 };
 
-const includeImportedModules = async (folderPath: string, files: IFiles, code: string, includeImages: boolean, updateImports: boolean, baseUrl: string) => {
+const includeImportedModules = async (
+    folderPath: string,
+    files: IFiles,
+    code: string,
+    includeImages: boolean,
+    updateImports: boolean,
+    baseUrl: string
+) => {
     const localImports = Array.from(code.matchAll(/from ["']\.\/(.*)["'];/g));
     for (const localImport of localImports) {
         if (localImport.length > 1) {
@@ -82,9 +94,15 @@ export const getSourceFilesForPath = async (folderPath: string, startFile: strin
     await includeExternalModules(folderPath, files, code, false, false);
     files[tsPath] = { content: code, isBinary: false };
     return files;
-}
+};
 
-const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo, baseUrl: string) => {
+export type SandboxConfig = { files: IFiles };
+
+const getReactSandBoxConfig = async (
+    folderPath: string,
+    currentExample: TExampleInfo,
+    baseUrl: string
+): Promise<SandboxConfig> => {
     const tsPath = path.join(folderPath, "index.tsx");
     let code = await fs.promises.readFile(tsPath, "utf8");
     let files: IFiles = {};
@@ -108,8 +126,11 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
                     eject: "react-scripts eject",
                 },
                 dependencies: {
-                    "@mui/material": "^^5.15.20",            // Change to MUI v5
-                    "@mui/lab": "^5.0.0-alpha.170",  
+                    "@emotion/react": "^11.13.3",
+                    "@emotion/styled": "^11.13.0",
+                    "@mui/material": "^5.15.20", // Change to MUI v5
+                    "@mui/lab": "^5.0.0-alpha.170",
+                    "@mui/styles": "^5.15.21",
                     sass: "^1.49.9",
                     "loader-utils": "3.2.1",
                     react: "^17.0.2",
@@ -127,7 +148,7 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
                 },
                 browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
             },
-            isBinary: false
+            isBinary: false,
         },
         "src/App.tsx": {
             content: code,
@@ -169,12 +190,7 @@ hydrate( <App />, rootElement);
             isBinary: false,
         };
     }
-    files = { ...files, ...csStyles };
-
-    const parameters = getParameters({ files });
-    return `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
-        <input type="hidden" name="parameters" value="${parameters}" />
-    </form>`;
+    return { files: { ...files, ...csStyles } };
 };
 
 export const getAngularSrc = async (folderPath: string) => {
@@ -189,7 +205,7 @@ export const getAngularSrc = async (folderPath: string) => {
     return code;
 };
 
-const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo, baseUrl: string) => {
+const getAngularSandBoxConfig = async (folderPath: string, currentExample: TExampleInfo, baseUrl: string) => {
     let code = await getAngularSrc(folderPath);
 
     let files: IFiles = {};
@@ -197,7 +213,7 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
 
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
     code = await includeExternalModules(folderPath, files, code, true, true);
-    code = code.replace(/(\.\/)/g, '../');
+    code = code.replace(/(\.\/)/g, "../");
     files = {
         ...commonFiles,
         ...files,
@@ -209,110 +225,156 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
                 scripts: {
                     ng: "ng",
                     start: "ng serve",
-                    build: "ng build --prod",
+                    build: "ng build",
+                    watch: "ng build --watch --configuration development",
                     test: "ng test",
-                    lint: "ng lint",
-                    e2e: "ng e2e",
                 },
                 private: true,
                 dependencies: {
-                    "@angular/animations": "15.0.3",
-                    "@angular/common": "15.0.3",
-                    "@angular/compiler": "15.0.3",
-                    "@angular/core": "15.0.3",
-                    "@angular/forms": "15.0.3",
-                    "@angular/platform-browser": "15.0.3",
-                    "@angular/platform-browser-dynamic": "15.0.3",
-                    "@angular/router": "15.0.3",
-                    "core-js": "3.26.1",
-                    rxjs: "7.6.0",
-                    "zone.js": "0.12.0",
-                    scichart: pj.dependencies.scichart,
-                    "scichart-angular": pj.dependencies["scichart-angular"],
-                    ...currentExample.extraDependencies,
-                },
-                devDependencies: {
-                    "@angular/cli": "1.6.6",
-                    "@angular/compiler-cli": "^5.2.0",
-                    "@angular/language-service": "^5.2.0",
-                    "@types/core-js": "0.9.46",
-                    "@types/jasmine": "~2.8.3",
-                    "@types/jasminewd2": "~2.0.2",
-                    "@types/node": "~6.0.60",
-                    codelyzer: "^4.0.1",
-                    "jasmine-core": "~2.8.0",
-                    "jasmine-spec-reporter": "~4.2.1",
-                    karma: "~2.0.0",
-                    "karma-chrome-launcher": "~2.2.0",
-                    "karma-coverage-istanbul-reporter": "^1.2.1",
-                    "karma-jasmine": "~1.1.0",
-                    "karma-jasmine-html-reporter": "^0.2.2",
-                    protractor: "~5.1.2",
-                    "ts-node": "~4.1.0",
-                    tslint: "~5.9.1",
-                    typescript: "~2.5.3",
+                    "@angular/animations": "^18.2.0",
+                    "@angular/common": "^18.2.0",
+                    "@angular/compiler": "^18.2.0",
+                    "@angular/core": "^18.2.0",
+                    "@angular/forms": "^18.2.0",
+                    "@angular/platform-browser": "^18.2.0",
+                    "@angular/platform-browser-dynamic": "^18.2.0",
+                    "@angular/router": "^18.2.0",
+                    "@angular/material": "^18.2.8",
+                    "@angular/cdk": "^18.1.0",
+                    rxjs: "~7.8.0",
+                    scichart: "^3.4.672",
+                    "scichart-angular": "^0.0.2",
+                    tslib: "^2.3.0",
+                    "zone.js": "~0.14.10",
+
+                    "@angular-devkit/build-angular": "^18.2.8",
+                    "@angular/cli": "^18.2.8",
+                    "@angular/compiler-cli": "^18.2.0",
+                    "@types/jasmine": "~5.1.0",
+                    "jasmine-core": "~5.2.0",
+                    karma: "~6.4.0",
+                    "karma-chrome-launcher": "~3.2.0",
+                    "karma-coverage": "~2.2.0",
+                    "karma-jasmine": "~5.1.0",
+                    "karma-jasmine-html-reporter": "~2.1.0",
+                    typescript: "~5.5.2",
                 },
             },
         },
-        ".angular-cli.json": {
+        "angular.json": {
             content: `{
-  "apps": [
-    {
-      "root": "src",
-      "outDir": "dist",
-      "assets": [],
-      "index": "index.html",
-      "main": "main.ts",
-      "polyfills": "polyfills.ts",
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "analytics": false
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "template": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
       "prefix": "app",
-      "styles": [],
-      "scripts": [],
-      "environmentSource": "environments/environment.ts",
-      "environments": {
-        "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/template",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "template:build:production"
+            },
+            "development": {
+              "buildTarget": "template:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        }
       }
     }
-  ]
+  }
 }
 `,
             isBinary: false,
         },
-        "src/typings.d.ts": {
-            content: `declare var module: NodeModule;
-interface NodeModule {
-  id: string;
-}`,
-            isBinary: false,
-        },
-        "src/polyfills.ts": {
-            content: `import "core-js/proposals/reflect-metadata";
-import "zone.js/dist/zone";`,
-            isBinary: false,
-        },
-        "src/environments/environment.prod.ts": {
-            content: `export const environment = {
-  production: true
-};`,
-            isBinary: false,
-        },
-        "src/environments/environment.ts": {
-            content: `export const environment = {
-  production: false
-};`,
+        "tsconfig.json": {
+            content: `/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+        /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+        {
+          "compileOnSave": false,
+          "compilerOptions": {
+            "outDir": "./dist/out-tsc",
+            "strict": true,
+            "noImplicitOverride": true,
+            "noPropertyAccessFromIndexSignature": true,
+            "noImplicitReturns": true,
+            "noFallthroughCasesInSwitch": true,
+            "skipLibCheck": true,
+            "isolatedModules": true,
+            "esModuleInterop": true,
+            "sourceMap": true,
+            "declaration": false,
+            "experimentalDecorators": true,
+            "moduleResolution": "bundler",
+            "importHelpers": true,
+            "target": "ES2022",
+            "module": "ES2022",
+            "lib": [
+              "ES2022",
+              "dom"
+            ]
+          },
+          "angularCompilerOptions": {
+            "enableI18nLegacyMessageIdFormat": false,
+            "strictInjectionParameters": true,
+            "strictInputAccessModifiers": true,
+            "strictTemplates": true
+          }
+        }
+        `,
             isBinary: false,
         },
         "src/app/app.component.ts": {
             content: code,
             isBinary: false,
         },
-        "src/app/app-wrapper.component.ts":{
-            content: `import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
-import { AppComponent } from "./app.component";
+        "src/app/app-wrapper.component.ts": {
+            content: `import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AppComponent } from './app.component';
+import { SciChartSurface, SciChart3DSurface } from 'scichart';
+
+SciChartSurface.loadWasmFromCDN();
+SciChart3DSurface.loadWasmFromCDN();
 
 @Component({
-  selector: "app-root",
-  template: "",
+  selector: 'app-root',
+  template: '',
+  standalone: true,
 })
 export class AppWrapperComponent implements OnInit {
   constructor(private container: ViewContainerRef) {}
@@ -320,49 +382,15 @@ export class AppWrapperComponent implements OnInit {
     this.container.createComponent(AppComponent);
   }
 }
-`, 
-            isBinary: false,
-        },
-        "src/app/app.module.ts": {
-            content: `import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterOutlet } from '@angular/router';
-import { SciChartSurface, SciChart3DSurface } from "scichart";
-import { ScichartAngularComponent } from 'scichart-angular';
-import { AppComponent } from './app.component';
-import { AppWrapperComponent } from './app-wrapper.component';
-
-SciChartSurface.loadWasmFromCDN();
-SciChart3DSurface.loadWasmFromCDN();
-
-@NgModule({
-  declarations: [
-    AppWrapperComponent,
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterOutlet,
-    ScichartAngularComponent
-  ],
-  providers: [],
-  bootstrap: [AppWrapperComponent]
-})
-export class AppModule { }`,
+`,
             isBinary: false,
         },
         "src/main.ts": {
-            content: `import { enableProdMode } from "@angular/core";
-import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
-import { environment } from "./environments/environment";
+            content: `import { bootstrapApplication } from '@angular/platform-browser';
+import { AppWrapperComponent } from './app/app-wrapper.component';
+import 'zone.js';
 
-import { AppModule } from "./app/app.module";
-
-if (environment.production) {
-  enableProdMode();
-}
-
-platformBrowserDynamic().bootstrapModule(AppModule);`,
+bootstrapApplication(AppWrapperComponent).catch((err) => console.error(err));`,
             isBinary: false,
         },
         "src/index.html": {
@@ -396,13 +424,7 @@ platformBrowserDynamic().bootstrapModule(AppModule);`,
             isBinary: false,
         };
     }
-    files = { ...files, ...csStyles };
-
-    const parameters = getParameters({ files });
-    return `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
-        <input type="hidden" name="parameters" value="${parameters}" />
-        <input type="hidden" name="query" value="file=readme.md" />
-    </form>`;
+    return { files: { ...files }, template: "node" };
 };
 
 const vanillaIndexCode = `import "./common";
@@ -439,11 +461,10 @@ export const getVanillaSrc = async (folderPath: string) => {
     return code;
 };
 
-const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo, baseUrl: string) => {
+const getVanillaTsSandBoxConfig = async (folderPath: string, currentExample: TExampleInfo, baseUrl: string) => {
     let code = await getVanillaSrc(folderPath);
 
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
-    const template = "parcel";
 
     let htmlCode = indexHtmlTemplate();
 
@@ -564,11 +585,7 @@ const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: T
     files = { ...files, ...csStyles };
 
     await includeImportedModules(folderPath, files, code, true, true, baseUrl);
-    const parameters = getParameters({ files, template });
-    return `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
-        <input type="hidden" name="parameters" value="${parameters}" />
-        <input type="hidden" name="query" value="file=src/drawExample.ts" />
-    </form>`;
+    return { files };
 };
 
 const commonFiles: IFiles = {
@@ -630,16 +647,21 @@ const commonFiles: IFiles = {
     },
 };
 
-export const getSandboxWithTemplate = (folderPath: string, currentExample: TExampleInfo, framework: EPageFramework, baseUrl: string) => {
+export const getSandboxConfig = (
+    folderPath: string,
+    currentExample: TExampleInfo,
+    framework: EPageFramework,
+    baseUrl: string
+) => {
     switch (framework) {
         case EPageFramework.Angular:
-            return getAngularCodeSandBoxForm(folderPath, currentExample, baseUrl);
+            return getAngularSandBoxConfig(folderPath, currentExample, baseUrl);
         case EPageFramework.Vue:
             throw new Error("Not Implemented");
         case EPageFramework.React:
-            return getCodeSandBoxForm(folderPath, currentExample, baseUrl);
+            return getReactSandBoxConfig(folderPath, currentExample, baseUrl);
         case EPageFramework.Vanilla:
-            return getVanillaTsCodeSandBoxForm(folderPath, currentExample, baseUrl);
+            return getVanillaTsSandBoxConfig(folderPath, currentExample, baseUrl);
         default:
             return handleInvalidFrameworkValue(framework);
     }

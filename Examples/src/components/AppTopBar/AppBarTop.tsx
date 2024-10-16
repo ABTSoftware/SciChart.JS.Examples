@@ -109,25 +109,46 @@ const AppBarTop: FC<TProps> = (props) => {
     const isFrameworkVariantAvailable = availableFrameworks?.includes(selectedFramework);
 
     const codeSandboxButton = currentExample ? (
-        <Button
-            //disabled={!isFrameworkVariantAvailable}
-            rel="nofollow external"
-            // className={
-            //     isFrameworkVariantAvailable ? classes.PurpleButton : `${classes.PurpleButton} ${classes.DisabledButton}`
-            // }
-            className={classes.PurpleButton}
-            href={`codesandbox/${currentExample.path}?codesandbox=1&framework=${
-                isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React
-            }`}
-            title={
-                isFrameworkVariantAvailable
-                    ? `Edit ${getTitle(currentExample.title, selectedFramework)} in CodeSandbox`
-                    : `Sorry, we have not got ${FRAMEWORK_NAME[selectedFramework]} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
-            }
-            target="_blank"
-        >
-            <CodeIcon fontSize="small" /> &nbsp;Code Sandbox
-        </Button>
+        <>
+            <Button
+                //disabled={!isFrameworkVariantAvailable}
+                rel="nofollow external"
+                // className={
+                //     isFrameworkVariantAvailable ? classes.PurpleButton : `${classes.PurpleButton} ${classes.DisabledButton}`
+                // }
+                className={classes.PurpleButton}
+                href={`codesandbox/${currentExample.path}?codesandbox=1&framework=${
+                    isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React
+                }`}
+                title={
+                    isFrameworkVariantAvailable
+                        ? `Edit ${getTitle(currentExample.title, selectedFramework)} in CodeSandbox`
+                        : `Sorry, we have not got ${FRAMEWORK_NAME[selectedFramework]} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
+                }
+                target="_blank"
+            >
+                <CodeIcon fontSize="small" /> &nbsp;Code Sandbox
+            </Button>
+            <Button
+                //disabled={!isFrameworkVariantAvailable}
+                rel="nofollow external"
+                // className={
+                //     isFrameworkVariantAvailable ? classes.PurpleButton : `${classes.PurpleButton} ${classes.DisabledButton}`
+                // }
+                className={classes.PurpleButton}
+                href={`stackblitz/${currentExample.path}?framework=${
+                    isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React
+                }`}
+                title={
+                    isFrameworkVariantAvailable
+                        ? `Edit ${getTitle(currentExample.title, selectedFramework)} in StackBlitz`
+                        : `Sorry, we have not got ${FRAMEWORK_NAME[selectedFramework]} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
+                }
+                target="_blank"
+            >
+                <CodeIcon fontSize="small" /> &nbsp;StackBlitz
+            </Button>
+        </>
     ) : null;
 
     return (

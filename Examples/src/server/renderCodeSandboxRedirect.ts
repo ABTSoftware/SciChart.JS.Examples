@@ -3,13 +3,23 @@ import * as fs from "fs";
 import { Request, Response } from "express";
 import { EXAMPLES_PAGES, TExamplePage } from "../components/AppRouter/examplePages";
 import { IFiles, loadStyles } from "./sandboxDependencyUtils";
-import { getSandboxWithTemplate, getSourceFilesForPath, indexHtmlTemplate } from "./sandboxForms";
+import { getSandboxConfig, getSourceFilesForPath, indexHtmlTemplate, SandboxConfig } from "./sandboxForms";
 import { BadRequestError, IHttpError, NotFoundError } from "./Errors";
 import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
-import { SettingsRemote } from "@material-ui/icons";
-import { stringOccurrences } from "scichart";
+import { getParameters } from "codesandbox/lib/api/define";
 
-const renderCodeSandBoxRedirectPage = (form: string) => {
+const renderCodeSandBoxRedirectPage = (config: SandboxConfig, framework: EPageFramework) => {
+    const files = config.files;
+    const openInDevBox = framework === EPageFramework.Angular;
+    const template = getCodeSandboxTemplate(framework);
+    const parameters = getParameters({ files, template });
+
+    const form = `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
+        <input type="hidden" name="parameters" value="${parameters}" />
+        <input type="hidden" name="query" value="file=src/drawExample.ts" />
+        ${openInDevBox ? `<input type="hidden" name="environment" value="server" />` : ""}
+    </form>`;
+
     return `
     <html lang="en-us">
       <head>
@@ -26,6 +36,44 @@ const renderCodeSandBoxRedirectPage = (form: string) => {
         </script>
       </body>
   </html>`;
+};
+
+function replaceAll(str: string, find: string, replace: string) {
+    return str.replace(new RegExp(find, "g"), replace);
+}
+
+// https://stackblitz.com/edit/sdk-angular-dependencies?file=project.ts,files.ts
+const renderStackblitzRedirectPage = (config: SandboxConfig, framework: EPageFramework) => {
+    const { "package.json": packageJsonFile, ...restFiles } = config.files;
+    const packageJsonContent = replaceAll(JSON.stringify(packageJsonFile.content, null, 2), '"', `&quot;`);
+    // @ts-ignore
+    const allDependencies = { ...packageJsonFile.content.dependencies, ...packageJsonFile.content.devDependencies };
+    const dependenciesArgs = replaceAll(JSON.stringify(allDependencies, null, 2), '"', `&quot;`);
+
+    const filesArgs = Object.entries(restFiles).map(([filename, file]) => {
+        const content = replaceAll(file.content, '"', `&quot;`);
+        return `<input type="hidden" name="project[files][${filename}]" value="${content}">`;
+    });
+
+    const templateArg = getStackblitzTemplate(framework);
+
+    return `
+    <html lang="en">
+        <head></head>
+        <body>
+            <form id="mainForm" method="post" action="https://stackblitz.com/run" target="_self">
+                ${filesArgs.join()}
+                <input type="hidden" name="project[description]" value="SciChart exported example">
+                <input type="hidden" name="project[files][package.json]" value="${packageJsonContent}">
+                <input type="hidden" name="project[dependencies]" value="${dependenciesArgs}">
+                <input type="hidden" name="project[template]" value="${templateArg}">
+                <input type="hidden" name="project[settings]" value="{&quot;compile&quot;:{&quot;clearConsole&quot;:false, &quot;action&quot;:'refresh', &quot;trigger&quot;: 'save'}}">
+            </form>
+            <script>
+                document.getElementById("mainForm").submit();
+            </script>
+        </body>
+    </html>`;
 };
 
 const notFoundCodeSandBoxRedirectPage = (page: TExamplePage) => {
@@ -124,7 +172,11 @@ export const getSourceFiles = async (req: Request, res: Response) => {
     }
 };
 
-export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => {
+export const renderCodeSandBoxRedirect = async (
+    req: Request,
+    res: Response,
+    sandboxEnv: "codesandbox" | "stackblitz"
+) => {
     try {
         await loadStyles(basePath);
         let currentExample: TExamplePage;
@@ -143,13 +195,16 @@ export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => 
             }
             let baseUrl = req.protocol + "://" + req.get("host");
             const folderPath = path.join(basePath, currentExample.filepath);
-            const form = await getSandboxWithTemplate(
+            const sandboxConfig = await getSandboxConfig(
                 folderPath,
                 currentExample,
                 req.query.framework as EPageFramework,
                 baseUrl
             );
-            const page = renderCodeSandBoxRedirectPage(form);
+            const page =
+                sandboxEnv === "codesandbox"
+                    ? renderCodeSandBoxRedirectPage(sandboxConfig, framework)
+                    : renderStackblitzRedirectPage(sandboxConfig, framework);
             res.send(page);
         } catch (err) {
             // check if expected error type
@@ -164,5 +219,39 @@ export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => 
     } catch (err) {
         console.warn(err);
         return false;
+    }
+};
+
+const handleInvalidFrameworkValue = (value: never): never => {
+    throw new Error("Invalid framework value!");
+};
+
+const getStackblitzTemplate = (framework: EPageFramework) => {
+    switch (framework) {
+        case EPageFramework.Angular:
+            return "node";
+        case EPageFramework.Vue:
+            return "vue";
+        case EPageFramework.React:
+            return "create-react-app";
+        case EPageFramework.Vanilla:
+            return "typescript";
+        default:
+            return handleInvalidFrameworkValue(framework);
+    }
+};
+
+const getCodeSandboxTemplate = (framework: EPageFramework) => {
+    switch (framework) {
+        case EPageFramework.Angular:
+            return "node";
+        case EPageFramework.Vue:
+            return "vue-cli";
+        case EPageFramework.React:
+            return "create-react-app";
+        case EPageFramework.Vanilla:
+            return "parcel";
+        default:
+            return handleInvalidFrameworkValue(framework);
     }
 };

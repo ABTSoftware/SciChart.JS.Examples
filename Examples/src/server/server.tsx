@@ -37,7 +37,7 @@ const targetDir = defaultConfig.buildConfig.targetDir;
 
 function handleRender(req: Request, res: Response) {
     if (req.query["codesandbox"]) {
-        if (renderCodeSandBoxRedirect(req, res)) return;
+        if (renderCodeSandBoxRedirect(req, res, "codesandbox")) return;
     }
 
     // Render the component to a string.
@@ -94,7 +94,11 @@ const getExamplePageKey = (examplePath: string) => {
 };
 
 app.get("/codesandbox/:example", (req: Request, res: Response) => {
-    renderCodeSandBoxRedirect(req, res);
+    renderCodeSandBoxRedirect(req, res, "codesandbox");
+});
+
+app.get("/stackblitz/:example", (req: Request, res: Response) => {
+    renderCodeSandBoxRedirect(req, res, "stackblitz");
 });
 
 app.get("/source/:example", (req: Request, res: Response) => {

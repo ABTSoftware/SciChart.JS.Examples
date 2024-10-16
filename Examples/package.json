@@ -28,7 +28,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@angular/common": "^18.2.8",
     "@angular/core": "^18.2.6",
+    "@angular/forms": "^18.2.8",
+    "@angular/material": "^18.2.8",
     "@emotion/react": "^11.13.3",
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.13.0",
