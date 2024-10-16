@@ -1,14 +1,10 @@
-import { Component, AfterViewInit, OnDestroy } from "@angular/core";
+import { Component } from "@angular/core";
+import { ScichartAngularComponent } from "scichart-angular";
 import { drawExample } from "./drawExample";
-import { appTheme } from "../../../theme";
-
-interface Controls {
-    startDemo: () => void;
-    stopDemo: () => void;
-    setStatsChangedCallback: (callback: (stats: { numberPoints: number; fps: number }) => void) => void;
-}
 
 @Component({
+    standalone: true,
+    imports: [ScichartAngularComponent],
     selector: "app-realtime-performance",
     template: `
         <div class="chart-wrapper">
@@ -16,13 +12,13 @@ interface Controls {
                 <div class="toolbar-row">
                     <button (click)="startDemo()">Start</button>
                     <button (click)="stopDemo()">Stop</button>
-                    <span class="data-points"># DataPoints: {{ stats.numberPoints | number }}</span>
-                    <span class="fps">FPS: {{ stats.fps | number : "1.0-0" }}</span>
+                    <span class="data-points"># DataPoints: {{ stats.numberPoints.toLocaleString() }}</span>
+                    <span class="fps">FPS: {{ stats.fps.toFixed(0) }}</span>
                 </div>
                 <scichart-angular
                     [initChart]="drawExample"
                     (onInit)="onInit($event)"
-                    (onDelete)="onDelete($event)"
+                    (onDelete)="onDelete()"
                     style="flex: 1; flex-basis: 50%;"
                 >
                 </scichart-angular>
@@ -41,7 +37,7 @@ interface Controls {
                 height: 100%;
                 display: flex;
                 flex-direction: column;
-                background: ${appTheme.DarkIndigo};
+                background: #1f0954;
             }
 
             .toolbar-row {
@@ -49,7 +45,7 @@ interface Controls {
                 flex-basis: 70px;
                 padding: 10px;
                 width: 100%;
-                color: ${appTheme.ForegroundColor};
+                color: white;
             }
 
             button {

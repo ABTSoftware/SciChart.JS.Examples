@@ -1,13 +1,30 @@
 import { Component } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { MatSliderModule } from "@angular/material/slider";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatCardModule } from "@angular/material/card";
+import { MatButtonModule } from "@angular/material/button";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
+import { ScichartAngularComponent } from "scichart-angular";
 import { drawExample, TTimeSpan } from "./drawExample";
-import { appTheme } from "../../../theme";
-
-interface SciChartControls {
-    startUpdate: () => void;
-    stopUpdate: () => void;
-}
 
 @Component({
+    standalone: true,
+    imports: [
+        ScichartAngularComponent,
+        CommonModule,
+        MatSliderModule,
+        MatRadioModule,
+        MatFormFieldModule,
+        MatButtonToggleModule,
+        MatCardModule,
+        MatButtonModule,
+        MatInputModule,
+        MatSelectModule,
+    ],
     selector: "app-load500-by500-chart",
     template: `
         <div class="chart-wrapper">
@@ -85,9 +102,9 @@ interface SciChartControls {
 })
 export class AppComponent {
     timeSpans: TTimeSpan[] = [];
-    controls?: SciChartControls;
+    controls?: Awaited<ReturnType<typeof drawExample>>["controls"];
 
-    drawExample = (rootElement: any, updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
+    drawExample = (rootElement: string | HTMLDivElement) => {
         return drawExample(rootElement, (newTimeSpans: TTimeSpan[]) => {
             this.updateTimeSpans(newTimeSpans);
         });

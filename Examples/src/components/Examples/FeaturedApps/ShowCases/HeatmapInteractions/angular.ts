@@ -1,8 +1,12 @@
 import { Component } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ScichartAngularComponent } from "scichart-angular";
 import { appTheme } from "../../../theme";
 import { getChartsInitializationApi, IChartControls } from "./drawExample";
 
 @Component({
+    standalone: true,
+    imports: [CommonModule, ScichartAngularComponent],
     selector: "app-heatmap-interactions",
     template: `
         <div class="chart-wrapper">
@@ -107,12 +111,12 @@ export class AppComponent {
         },
     };
 
-    private chartsInitializationAPI = getChartsInitializationApi();
-    private mainChart?: any;
-    private crossSectionChart?: any;
-    private inputChart?: any;
-    private historyChart?: any;
-    private controlsRef?: IChartControls;
+    chartsInitializationAPI = getChartsInitializationApi();
+    mainChart?: any;
+    crossSectionChart?: any;
+    inputChart?: any;
+    historyChart?: any;
+    controlsRef?: IChartControls;
     appTheme = appTheme;
 
     async onChartInit(event: any, chartType: "main" | "crossSection" | "input" | "history") {
