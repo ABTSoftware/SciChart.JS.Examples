@@ -2921,6 +2921,12 @@ Show external placement div</Notes>
                   <TargetItemId>33cbcf3e-8a70-4e28-a69f-3132493fcec7</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
+                <TocNode Name="" Id="e3dbd919-a1e9-420e-89c6-4ea1c27be4e1" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>e0f458ce-a8ca-4e6a-acea-19de01063053</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
               </ChildNodes>
             </TocNode>
             <TocNode Name="" Id="2b840874-75eb-43b4-b6df-c8cb3b544f57" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
@@ -15979,6 +15985,49 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
+              <Topic Id="e0f458ce-a8ca-4e6a-acea-19de01063053" Status="New Topic" CreatedOn="2024-10-15T12:45:33.8672897Z" ModifiedOn="2024-10-16T15:30:12.1319305Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Column3DChartType" BuildFlags="">
+                <Title m="2024-10-15T12:45:45.402444Z">The Column 3D Chart Type</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2024-10-16T15:30:12.1319305Z">&lt;P&gt;JavaScript 3D Column Charts can be created using the &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/columnrenderableseries3d.html"&gt;ColumnRenderableSeries3D&lt;/A&gt; type. This chart type draws columns or bars from X,Y,Z data in the 3D world, with a pointmarker denoting the shape of tghe column. Column 3D Charts can be static or dynamic, and updated in real-time if required.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;The &lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/react/3d-column-chart" target=_blank&gt;JavaScript / React 3D Column Chart Example&lt;/A&gt; can be found in the&amp;nbsp;&lt;A href="https://github.com/abtsoftware/scichart.js.examples" target=_blank&gt;SciChart.Js Examples Suite&lt;/A&gt;&amp;nbsp;on Github, or our live demo at&amp;nbsp;&lt;A href="https://demo.scichart.com/" target=_blank&gt;demo.scichart.com&lt;/A&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameWidth"&gt;100%&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameHeight"&gt;500px&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/3d-column-chart&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P align=center&gt;&lt;EM&gt;&lt;STRONG&gt;Above&lt;/STRONG&gt;: The&amp;nbsp;&lt;/EM&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;A href="https://demo.scichart.com/javascript/3d-column-chart" target=_blank&gt;&lt;EM&gt;JavaScript 3D Column Chart example&lt;/EM&gt;&lt;/A&gt;&lt;/A&gt;&lt;EM&gt; from the SciChart.js Demo, showing a variety of line options in SciChart.js.&lt;/EM&gt;&lt;/P&gt;
+&lt;H2&gt;Create a&amp;nbsp;3D Column Chart&lt;/H2&gt;
+&lt;P&gt;To declare a 3D Column Chart in JavaScript, use the following code:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\ColumnSeries3D\Basic\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Breaking this code down:&lt;/P&gt;
+&lt;P&gt;We initialize a 3D chart by calling&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#create" target=_blank&gt;SciChart3DSurface.create()&lt;/A&gt;. The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#worlddimensions" target=_blank&gt;worldDimensions&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/icameraoptions.html" target=_blank&gt;cameraOptions&lt;/A&gt; are passed to&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#create" target=_blank&gt;SciChart3DSurface.create()&lt;/A&gt; to initialize the 3D scene. &lt;/P&gt;
+&lt;P&gt;An xAxis, yAxis and zAxis are declared of type&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/numericaxis3d.html" target=_blank&gt;NumericAxis3D&lt;/A&gt;.&lt;/P&gt;
+&lt;P&gt;Additional code is added to generate some data which is unwrapped into 1D arrays of X,Y and ZValues. These will specify the discrete 3D points on the column chart: X-Z providing the position and Y value providing the height.&lt;/P&gt;
+&lt;P&gt;A&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/columnrenderableseries3d.html" target=_blank&gt;ColumnRenderableSeries3D&lt;/A&gt; is created and added to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#renderableseries" target=_blank&gt;SciChart3DSurface.renderableSeries&lt;/A&gt; collection. We set the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/columnrenderableseries3doptions.html#datapointwidthx" target=_blank&gt;dataPointWidth&lt;/A&gt; properties to define the size of the 3D bar as well as the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/columnrenderableseries3doptions.html#fill" target=_blank&gt;fill&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/columnrenderableseries3doptions.html#pointmarker" target=_blank&gt;pointMarker&lt;/A&gt; properties to define the colour and type (shape) of the column.&lt;/P&gt;
+&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/ColumnSeries3D/Basic/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;Choosing a Column / Bar Type&lt;/H2&gt;
+&lt;P&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/columnrenderableseries3d.html"&gt;ColumnRenderableSeries3D&lt;/A&gt; requires X,Y,Z data to render, stored in an&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xyzdataseries3d.html"&gt;XyzDataSeries3D&lt;/A&gt;. This series supports an optional pointmarker of multiple types, including:&lt;/P&gt;
+&lt;H3&gt;3D Marker Types&lt;/H3&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/spherepointmarker3d.html"&gt;SpherePointMarker3D&lt;/A&gt; - a 3D Sphere represents each bar/column
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cubepointmarker3d.html"&gt;CubePointMarker3D&lt;/A&gt; - a 3D Cube represents each bar/column
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/pyramidpointmarker3d.html"&gt;PyramidPointMarker3D&lt;/A&gt; - a 3D Pyramid represents each bar/column
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cylinderpointmarker3d.html"&gt;CylinderPointMarker3D&lt;/A&gt; - a 3D Cylinder represents each bar/column&lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;Changing the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/columnrenderableseries3doptions.html#pointmarker" target=_blank&gt;ColumnRenderableSeries3D.pointMarker&lt;/A&gt; property will update the type / shape of object used to denote a column.&lt;/P&gt;
+&lt;H2&gt;Colouring Individual Columns&lt;/H2&gt;
+&lt;P&gt;By default, the colour of the Column series is defined by ColumnR.fill. This can be overridden on a per-column basis using the metadata array passed to XyzDataSeries3D.&lt;/P&gt;
+&lt;P&gt;Update your code sample as follows:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\ColumnSeries3D\Colours\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This example also shows a variation&amp;nbsp;in the column type to use&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cylinderpointmarker3d.html" target=_blank&gt;CylinderPointMarker3D&lt;/A&gt; which must be imported. &lt;/P&gt;
+&lt;P&gt;Metadata are simply javascript objects attached to dataseries in SciChart. The property&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ipointmetadata3d.html#vertexcolor" target=_blank&gt;metadata.vertexColor&lt;/A&gt; is used to determine column 3D datapoint colour.&lt;/P&gt;
+&lt;P&gt;Finally, when specifying metadata colors, the property&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/columnrenderableseries3d.html#usemetadatacolors" target=_blank&gt;ColumnRenderableSeries3D.useMetadataColors&lt;/A&gt; must be set to true.&lt;/P&gt;
+&lt;P&gt;Here's the updated output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/ColumnSeries3D/Colours/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Note:&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ipointmetadata3d.html"&gt;IPointMetadata3D&lt;/A&gt; can be any javascript object but the property &lt;STRONG&gt;vertexColor&lt;/STRONG&gt; is used to determine column 3D datapoint colour. This is in hex format Alpha, Red, Green, Blue, so 0xFFFF0000 would correspond to red. The helper function&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#parseColorToUIntArgb"&gt;parseColorToUIntArgb&lt;/A&gt; can convert Javascript Hex codes to this format.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
             </Topics>
           </TopicCategory>
           <TopicCategory Id="c23f4a6a-f3e6-4765-b11c-43a4d0dcd48d" AutoIndex="false">
@@ -16579,7 +16628,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">862</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">1574</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
