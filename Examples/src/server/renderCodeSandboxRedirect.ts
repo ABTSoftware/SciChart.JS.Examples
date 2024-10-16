@@ -245,7 +245,7 @@ const getStackblitzTemplate = (framework: EPageFramework) => {
 const getCodeSandboxTemplate = (framework: EPageFramework) => {
     switch (framework) {
         case EPageFramework.Angular:
-            return "node";
+            return "angular-cli";
         case EPageFramework.Vue:
             return "vue-cli";
         case EPageFramework.React:

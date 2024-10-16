@@ -70,9 +70,47 @@ export const getAngularSandBoxConfig = async (folderPath: string, currentExample
                     "karma-coverage": "~2.2.0",
                     "karma-jasmine": "~5.1.0",
                     "karma-jasmine-html-reporter": "~2.1.0",
-                    typescript: "~5.5.2",
+                    typescript: pj.devDependencies.typescript,
                 },
             },
+        },
+        ".devcontainer/devcontainer.json": {
+            isBinary: false,
+            content: `{
+  "name": "Devcontainer",
+  "image": "ghcr.io/codesandbox/devcontainers/typescript-node:latest",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Angular.ng-template"
+      ]
+    }
+  }
+}`,
+        },
+        ".codesandbox/tasks.json": {
+            isBinary: false,
+            content: `{
+  // These tasks will run in order when initializing your CodeSandbox project.
+  "setupTasks": [
+    {
+      "name": "Install Dependencies",
+      "command": "npm install --legacy-peer-deps"
+    }
+  ],
+
+  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+  "tasks": {
+    "start": {
+      "name": "start",
+      "command": "npm run start",
+      "runAtStart": true,
+      "preview": {
+        "port": 4200
+      }
+    }
+  }
+}`,
         },
         "angular.json": {
             content: `{
@@ -144,6 +182,7 @@ export const getAngularSandBoxConfig = async (folderPath: string, currentExample
             "outDir": "./dist/out-tsc",
             "strict": true,
             "noImplicitOverride": true,
+            "strictPropertyInitialization": false,
             "noPropertyAccessFromIndexSignature": true,
             "noImplicitReturns": true,
             "noFallthroughCasesInSwitch": true,

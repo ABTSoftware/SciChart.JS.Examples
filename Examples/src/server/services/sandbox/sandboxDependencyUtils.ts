@@ -129,6 +129,7 @@ export const commonFiles: IFiles = {
 ],
 "compilerOptions": {
   "strict": false,
+  "strictPropertyInitialization": false,
   "esModuleInterop": true,
   "target": "es5",
   "downlevelIteration": true,

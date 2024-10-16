@@ -57,7 +57,7 @@ export const getReactSandBoxConfig = async (
                     "@types/react": "^17.0.52",
                     "@types/react-dom": "18.0.9",
                     "@babel/runtime": "7.13.8",
-                    typescript: "4.9.5",
+                    typescript: pj.devDependencies.typescript,
                 },
                 browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
             },
