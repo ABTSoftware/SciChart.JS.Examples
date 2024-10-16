@@ -34,6 +34,7 @@ export default function RealtimePerformanceDemo() {
     }>();
 
     const [stats, setStats] = React.useState({ numberPoints: 0, fps: 0 });
+    const [updateEnabled, setUpdateEnabled] = React.useState(true);
 
     const localClasses = useStyles();
 
@@ -43,26 +44,23 @@ export default function RealtimePerformanceDemo() {
                 <div className={localClasses.flexOuterContainer}>
                     <div className={localClasses.toolbarRow}>
                         <Button
-                            onClick={() => controlsRef.current.startDemo()}
+                            onClick={() => {
+                                updateEnabled ? controlsRef.current.stopDemo() : controlsRef.current.startDemo();
+                                setUpdateEnabled(!updateEnabled);
+                            }}
                             style={{ color: appTheme.ForegroundColor }}
                         >
-                            Start
+                            {updateEnabled ? "Stop" : "Start"}
                         </Button>
-                        <Button
-                            onClick={() => controlsRef.current.stopDemo()}
-                            style={{ color: appTheme.ForegroundColor }}
-                        >
-                            Stop
-                        </Button>
-                        <span
+                        <div
                             style={{
                                 margin: 12,
-                                minWidth: "200px",
+                                flex: "auto",
                             }}
                         >
                             # DataPoints: {stats.numberPoints.toLocaleString()}
-                        </span>
-                        <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
+                        </div>
+                        <div style={{ margin: 12, flex: "none", alignSelf: "center" }}>FPS: {stats.fps.toFixed(0)}</div>
                     </div>
                     <SciChartReact
                         className={localClasses.chartArea}

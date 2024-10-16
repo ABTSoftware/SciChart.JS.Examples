@@ -166,6 +166,7 @@ export default function RealtimeGhostedTraces() {
     }>();
 
     const [stats, setStats] = React.useState({ numberSeries: 0, numberPoints: 0, fps: 0 });
+    const [updateEnabled, setUpdateEnabled] = React.useState(true);
 
     const localClasses = useStyles();
 
@@ -175,29 +176,26 @@ export default function RealtimeGhostedTraces() {
                 <div className={localClasses.flexOuterContainer}>
                     <div className={localClasses.toolbarRow}>
                         <Button
-                            id="startAnimation"
+                            onClick={() => {
+                                updateEnabled
+                                    ? controlsRef.current.stopAnimation()
+                                    : controlsRef.current.startAnimation();
+                                setUpdateEnabled(!updateEnabled);
+                            }}
                             style={{ color: appTheme.ForegroundColor }}
-                            onClick={() => controlsRef.current.startAnimation()}
                         >
-                            Start
+                            {updateEnabled ? "Stop" : "Start"}
                         </Button>
-                        <Button
-                            id="stopAnimation"
-                            style={{ color: appTheme.ForegroundColor }}
-                            onClick={() => controlsRef.current.stopAnimation()}
-                        >
-                            Stop
-                        </Button>
-                        <span style={{ margin: 12 }}># Series: {stats.numberSeries}</span>
-                        <span
+                        <div style={{ margin: 12 }}># Series: {stats.numberSeries}</div>
+                        <div
                             style={{
                                 margin: 12,
-                                minWidth: "200px",
+                                flex: "auto",
                             }}
                         >
-                            # DataPoints: {stats.numberPoints.toLocaleString()}
-                        </span>
-                        <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
+                            # Points: {stats.numberPoints.toLocaleString()}
+                        </div>
+                        <div style={{ margin: 12, flex: "none", alignSelf: "center" }}>FPS: {stats.fps.toFixed(0)}</div>
                     </div>
                     <SciChartReact
                         className={localClasses.chartArea}
