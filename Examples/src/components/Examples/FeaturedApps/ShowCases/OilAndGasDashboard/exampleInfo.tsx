@@ -20,6 +20,8 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
+const markdownContent: string = undefined;
+
 export const oilAndGasExplorerDashboard: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleOilAndGasExplorerDashboard,
@@ -34,4 +36,5 @@ export const oilAndGasExplorerDashboard: TExampleInfo = {
     metaDescription: (frameworkName: string) => `Demonstrates how to create Oil and Gas Dashboard`,
     metaKeywords: "Todo keywords",
     thumbnailImage: exampleImage,
+    markdownContent,
 };

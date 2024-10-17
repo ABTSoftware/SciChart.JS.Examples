@@ -31,6 +31,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined;
+
 export const contourChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleContourChart,
@@ -45,4 +47,5 @@ export const contourChartExampleInfo: TExampleInfo = {
         `Design a highly dynamic ${frameworkName} Heatmap Chart With Contours with SciChart's feature-rich JavaScript Chart Library. Get your free demo today.`,
     metaKeywords: "contour, contours, heatmap, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent,
 };

@@ -29,6 +29,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined;
+
 export const dashedLineStylingExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDashedLineStyling,
@@ -43,4 +45,5 @@ export const dashedLineStylingExampleInfo: TExampleInfo = {
         `Demonstrates dashed line series in ${frameworkName} Charts with SciChart.js`,
     metaKeywords: "dash, dashed, dotted, line, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent,
 };

@@ -29,6 +29,8 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
+const markdownContent: string = undefined;
+
 export const eventMarkersExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleEventMarkers,
@@ -44,4 +46,5 @@ export const eventMarkersExampleInfo: TExampleInfo = {
         `Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers`,
     metaKeywords: "events, drag, edit, datalabels, , layout, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent,
 };

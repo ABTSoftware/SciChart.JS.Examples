@@ -27,6 +27,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined;
+
 export const usingVerticalSliceModifierExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleVerticalSliceModifier,
@@ -42,4 +44,5 @@ export const usingVerticalSliceModifierExampleInfo: TExampleInfo = {
         `Demonstrates adding Tooltips at certain positions to a ${frameworkName} Chart with SciChart.js VerticalSliceModifier`,
     metaKeywords: "tooltips, modifier, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent,
 };

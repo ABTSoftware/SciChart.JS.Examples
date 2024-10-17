@@ -1,77 +1,43 @@
+@import "../../assets/main.scss";
+
 .frameworksection {
-    background-color: #9b268f;
+    background-color: transparent;
 }
 
 .container {
-    max-width: 1238px;
     width: 100%;
     margin: 0 auto;
     font-family: "Arial";
 }
 
 .FrameworkList {
-    margin: 0 20px;
+    margin: 0 auto;
     padding: 0;
     list-style: none;
     display: flex;
+    gap: 16px;
     justify-content: center;
     align-items: center;
     width: 100%;
-
-    @media only screen and (max-width: 768px) {
-        overflow-x: auto;
-        white-space: nowrap;
-        display: block;
-    }
+    max-width: min(1000px, 84vw);
 
     .FrameworkListItem {
-        margin: 15px 0 0 0;
+        margin: 18px 0 -1px 0;
         display: flex;
         align-items: center;
-        width: 20%;
+        width: 100%;
         text-align: center;
         justify-content: center;
         position: relative;
-
-        @media only screen and (max-width: 768px) {
-            display: inline-block;
-            width: 50%;
-            white-space: nowrap;
-        }
-
-        &:last-child {
-            &:after {
-                display: none;
-            }
-        }
+        border-radius: 17px 17px 0 0;
 
         &:hover {
-            background: rgba(255, 255, 255, 0.17);
-            border-radius: 17px 17px 0px 0px;
-
-            &:after {
-                background: transparent;
-            }
-        }
-
-        &:after {
-            content: "";
-            background: rgba(217, 217, 217, 0.47);
-            position: absolute;
-            width: 1px;
-            height: 34px;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
+            color: #7593a4;
         }
 
         &.active {
-            background: rgba(255, 255, 255, 0.17);
-            border-radius: 17px 17px 0px 0px;
-
-            &:after {
-                background: transparent;
-            }
+            background: rgb(229, 229, 229);
+            color: #7593a4;
         }
 
         a {
@@ -94,30 +60,17 @@
 .FrameworkListItem {
     color: white;
     /* White text color */
-    padding: 10px 20px;
-    margin-right: 10px;
+    padding: 10px 14px 8px 10px;
     cursor: pointer;
 }
 
-.FrameworkListItem.active {
-    background-color: #b55abf;
-    /* Lighter purple background for active item */
-    border-radius: 5px;
-}
-
-.FrameworkListItem:hover {
-    background-color: #a046a0;
-    /* Darker purple for hover effect */
-    border-radius: 5px;
-}
-
-.tabsection {
-    margin: 32px 0 0 0;
-}
-
 .tabwrapper {
+    max-width: min(900px, 80vw);
+    margin: 0 auto;
+
     .tabs {
         margin: 0;
+        margin-bottom: -1.5px; // Overlap border from the main content
         padding: 0;
         list-style: none;
         cursor: pointer;
@@ -128,53 +81,27 @@
         justify-content: center;
         gap: 15px;
 
-        @media only screen and (max-width: 1024px) {
-            overflow-x: auto;
-            white-space: nowrap;
-            display: block;
-            margin: 0 30px;
-            text-align: center;
-            overflow-y: hidden;
+        @media only screen and (max-width: 768px) {
+            margin-bottom: 0;
         }
 
         .tablink {
             font-family: "Arial";
             font-weight: 500;
-            font-size: 18px;
+            font-size: 14px;
             line-height: 30px;
             letter-spacing: 0.02em;
             color: #fff;
-            padding: 13px 30px;
-            border: 1px solid #2eacdb;
+            padding: 10px 16px 6px 16px;
+            border: 1px solid #12003e;
             border-radius: 17px 17px 0px 0px;
             border-bottom: none;
-            background: #2eacdb;
+            background: #12003e;
             position: relative;
             cursor: pointer;
 
-            @media only screen and (max-width: 1024px) {
-                border-radius: 10px 10px 0px 0px;
-                display: inline-block;
-                font-size: 14px;
-                line-height: 30px;
-                padding: 5px 13px;
-            }
-
             &:hover {
-                border: 1px solid #b4d0db;
-                border-bottom: none;
-                background: #ffffff;
                 color: #7593a4;
-
-                &:after {
-                    content: "";
-                    width: 100%;
-                    height: 1px;
-                    position: absolute;
-                    left: 0;
-                    bottom: -1px;
-                    background-color: #fff;
-                }
             }
 
             &.active {
@@ -182,33 +109,26 @@
                 border-bottom: none;
                 background: #ffffff;
                 color: #7593a4;
-
-                &:after {
-                    content: "";
-                    width: 100%;
-                    height: 1px;
-                    position: absolute;
-                    left: 0;
-                    bottom: -1px;
-                    background-color: #fff;
-                }
             }
         }
     }
 }
 
 .contentwrapper {
-    padding: 34px;
+    padding: 25px;
     background: #fff;
     border: 1px solid #b4d0db;
     border-radius: 25px 25px 0 0;
     border-bottom: none;
+    margin: 0 auto;
+    max-width: min(1000px, 84vw);
 
     @media only screen and (max-width: 768px) {
         border-radius: 0;
         border-top: 1px solid #b4d0db;
         border: none;
         padding: 20px;
+        max-width: 100vw;
     }
 }
 
@@ -267,6 +187,8 @@
     font-family: "Arial" !important;
     font-weight: 400 !important;
     font-size: 17px !important;
+    position: sticky;
+    z-index: 10;
 
     @media only screen and (max-width: 768px) {
         border-radius: 18px 18px 0 0;
@@ -561,13 +483,15 @@
     background: #ffffff;
     border: 1px solid #b4d0db;
     border-radius: 22px;
-    padding: 30px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     margin-bottom: 45px;
     position: relative;
 
     @media only screen and (max-width: 768px) {
-        padding: 15px;
-        margin-bottom: 15px;
+        padding: 16px;
     }
 
     p {
@@ -585,7 +509,7 @@
         }
 
         a {
-            color: #2eacdb;
+            color: #050a30;
         }
     }
 
@@ -625,57 +549,35 @@
 
 .tabbtnwrap {
     display: flex;
-    gap: 10px;
+    gap: 20px;
 
-    @media only screen and (max-width: 768px) {
-        position: absolute;
-        left: 0;
-        width: 88%;
-        bottom: 15px;
-        right: 0;
-        margin: 0 auto;
+    .btnprimary,
+    .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        gap: 2px;
+        font-size: 16px;
+        font-family: "Arial";
+        line-height: 30px;
+        height: 46px;
+        color: white;
+        text-decoration: none;
+        padding: 0 14px 0 12px;
+        transition: all 200ms linear;
     }
 
     .btnprimary {
         background: linear-gradient(90deg, #1aa2d5 15.5%, #35bfb7 100%);
-        border-radius: 6px;
-        font-family: "Arial";
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 30px;
-        text-align: center;
-        color: #ffffff;
-        text-decoration: none;
-        padding: 14px 32px;
 
-        @media only screen and (max-width: 768px) {
-            font-size: 12px;
-            padding: 0;
-            line-height: 35px;
-            display: block;
-            width: 50%;
+        @include sm {
+            display: none;
         }
     }
 
-    .btnsecondary {
-        background: linear-gradient(90deg, #3578a9 0%, #a8218c 100%);
-        border-radius: 6px;
-        font-family: "Arial";
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 30px;
-        text-align: center;
-        text-decoration: none;
-        padding: 14px 32px;
-        color: #ffffff;
-
-        @media only screen and (max-width: 768px) {
-            font-size: 12px;
-            padding: 0;
-            line-height: 35px;
-            display: block;
-            width: 50%;
-        }
+    .btn:hover {
+        color: #ccc;
     }
 }
 

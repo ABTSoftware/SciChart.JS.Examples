@@ -27,6 +27,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined;
+
 export const logarithmicAxisExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleLogarithmicAxis,
@@ -41,4 +43,5 @@ export const logarithmicAxisExampleInfo: TExampleInfo = {
         `Demonstrates Logarithmic Axis on a ${frameworkName} Chart using SciChart.js. SciChart supports logarithmic axis with scientific or engineering notation and positive and negative values`,
     metaKeywords: "logarithmic, axis, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent,
 };

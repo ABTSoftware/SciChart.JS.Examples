@@ -28,6 +28,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined;
+
 export const trendMARatioExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleTrendMARatio,
@@ -43,4 +45,5 @@ export const trendMARatioExampleInfo: TExampleInfo = {
         `Chart with Linear Trendline, Moving Average and Ratio Filters with filter chaining`,
     metaKeywords: "trend, line, moving, average, ratio, transform, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent,
 };

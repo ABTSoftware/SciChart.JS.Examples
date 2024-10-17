@@ -24,6 +24,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined;
+
 export const virtualizedDataOverviewExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleVirtualizedData,
@@ -39,5 +41,6 @@ export const virtualizedDataOverviewExampleInfo: TExampleInfo = {
         `shows how to load data on zoom/pan and how to create an overview chart for this case.`,
     metaKeywords: "zoom, pan, virtualize, server, overview, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent,
     extraDependencies: { rxjs: "^7.5.6" },
 };

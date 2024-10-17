@@ -48,7 +48,7 @@ export default function Search() {
                             autoComplete: "new-password",
                             type: "text",
                             startAdornment: (
-                                <InputAdornment position="start" style={{ marginLeft: 10 }}>
+                                <InputAdornment position="start" style={{ marginLeft: 8 }}>
                                     &nbsp;
                                     <SearchIcon />
                                 </InputAdornment>

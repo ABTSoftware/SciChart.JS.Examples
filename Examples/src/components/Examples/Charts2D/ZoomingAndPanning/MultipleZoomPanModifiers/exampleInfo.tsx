@@ -26,6 +26,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined;
+
 export const zoomAndPanWithMultipleChartModifiersExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleZoomPanWithMultipleChartModifiers,
@@ -40,4 +42,5 @@ export const zoomAndPanWithMultipleChartModifiersExampleInfo: TExampleInfo = {
         `Demonstrates how to use multiple Zoom and Pan Modifiers on a ${frameworkName} Chart with SciChart.js`,
     metaKeywords: "zoom, pan, pinch, touch, scale, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent,
 };

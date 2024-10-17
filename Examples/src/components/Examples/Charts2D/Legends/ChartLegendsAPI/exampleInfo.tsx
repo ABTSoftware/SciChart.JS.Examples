@@ -30,6 +30,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined;
+
 export const chartLegendsAPIExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleChartLegends,
@@ -46,4 +48,5 @@ export const chartLegendsAPIExampleInfo: TExampleInfo = {
         "a LegendModifier type to the sciChartSurface.chartModifiers collection.",
     metaKeywords: "legend, api, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent,
 };

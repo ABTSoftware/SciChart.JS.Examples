@@ -27,6 +27,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined;
+
 export const heatmapChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleHeatmapChart,
@@ -40,4 +42,5 @@ export const heatmapChartExampleInfo: TExampleInfo = {
         `Easily create a high performance ${frameworkName} Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.`,
     metaKeywords: "heatmap, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent,
 };

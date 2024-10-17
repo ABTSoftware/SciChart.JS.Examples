@@ -7,6 +7,8 @@
         position: fixed;
         right: 0;
         top: 0;
+        display: flex;
+        gap: 10px;
         background-color: $color-dark;
         height: $app-bar-height;
         width: 100%;
@@ -16,13 +18,10 @@
 
         .Logo {
             height: 60px;
-            margin-top: 5px;
-            margin-right: $default-spacing * 2;
         }
 
         .MenuButton {
             display: none;
-            margin-left: 12px;
             padding: 9px;
             color: $color-primary-white;
             border: 1px solid $color-medium-blue;
@@ -40,8 +39,10 @@
 
         .GitHubLink {
             display: flex;
-            padding: 12px 12px;
-            margin-left: 12px;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            aspect-ratio: 1;
             border-radius: 4px;
             background-color: $color-medium-blue;
             color: $color-lightest-green;
@@ -51,7 +52,6 @@
         .NpmLink {
             display: flex;
             padding: 6px 6px;
-            margin-left: 12px;
             border-radius: 4px;
             background-color: $color-red;
             color: $color-primary-white;
@@ -62,7 +62,6 @@
             display: flex;
             flex: none;
             height: 100%;
-            margin-left: 10px;
             padding: $default-spacing * 2 $default-spacing * 2;
             border-radius: 14px;
             background: $gradient-btn-dark;
@@ -105,7 +104,9 @@
         .BlueButton {
             background: $gradient-blue;
             border-radius: 14px;
-            margin-left: 10px;
+            height: 100%;
+            text-align: center;
+            line-height: 1;
             span {
                 font-weight: bold;
                 padding: 6px 15px;

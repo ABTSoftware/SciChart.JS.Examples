@@ -34,6 +34,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined;
+
 export const realtimeSurfaceMesh3DChartExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleRealtimeSurfaceMesh3D,
@@ -48,4 +50,5 @@ export const realtimeSurfaceMesh3DChartExampleInfo: TExampleInfo = {
         `Design a ${frameworkName} 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.`,
     metaKeywords: "3d, surface, mesh, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent,
 };

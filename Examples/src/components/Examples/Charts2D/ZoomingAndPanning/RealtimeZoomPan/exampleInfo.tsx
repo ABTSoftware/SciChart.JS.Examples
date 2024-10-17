@@ -29,6 +29,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined;
+
 export const realtimeZoomPanExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRealtimeZoomPan,
@@ -44,4 +46,5 @@ export const realtimeZoomPanExampleInfo: TExampleInfo = {
         `Demonstrates how to zoom and pan a realtime ${frameworkName} Chart while it is updating, with SciChart.js ZoomState API`,
     metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent,
 };

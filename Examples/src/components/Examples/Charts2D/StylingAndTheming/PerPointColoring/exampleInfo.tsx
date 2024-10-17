@@ -27,6 +27,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined;
+
 export const perPointColoringExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titlePaletteProvider,
@@ -41,4 +43,5 @@ export const perPointColoringExampleInfo: TExampleInfo = {
         `Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API`,
     metaKeywords: "palette, provider, api, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent,
 };

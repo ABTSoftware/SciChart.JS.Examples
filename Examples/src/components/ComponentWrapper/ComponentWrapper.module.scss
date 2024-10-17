@@ -3,8 +3,8 @@
 .ComponentWrapper {
     background-color: white;
     border-radius: $default-border-radius;
-    padding: 40px;
     margin-bottom: 30px;
+    padding: 30px;
     overflow: hidden;
     @include xs {
         margin: 0 auto 30px;

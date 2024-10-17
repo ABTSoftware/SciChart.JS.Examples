@@ -26,7 +26,7 @@ export default function PageHome() {
                     image={ExampleStrings.siteHomeMetaImage}
                     url=""
                 />
-                <div className={classes.PageHomeContent}>
+                <div className={classes.PageHomeContent} style={{ paddingBottom: "2.5rem" }}>
                     <div className={classes.PageHomeHeader}>
                         <div className={classes.PageHomeHeaderText}>
                             <h1 className={classes.PageHomeTitle}>SciChart.js Demo</h1>
@@ -52,7 +52,7 @@ export default function PageHome() {
                         <div className="VideoContainer" style={{ marginLeft: "auto" }}>
                             <iframe
                                 className={classes.BannerVideo}
-                                style={{ width: "434px", height: "193px", borderRadius: "8px" }}
+                                style={{ height: "230px", aspectRatio: "16/9", borderRadius: "8px" }}
                                 src="https://www.youtube.com/embed/1pxjvy_Yaik?autoplay=1&mute=1&loop=1&playlist=1pxjvy_Yaik"
                                 title="YouTube video player"
                                 frameBorder="0"

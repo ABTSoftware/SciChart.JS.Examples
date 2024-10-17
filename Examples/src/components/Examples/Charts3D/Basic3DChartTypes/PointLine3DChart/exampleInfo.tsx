@@ -30,6 +30,8 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
+const markdownContent: string = undefined;
+
 export const pointLine3DChartExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titlePointLine3DChart,
@@ -44,4 +46,5 @@ export const pointLine3DChartExampleInfo: TExampleInfo = {
         `Create detailed ${frameworkName} 3D Line Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.`,
     metaKeywords: "3d, bubble, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    markdownContent,
 };
