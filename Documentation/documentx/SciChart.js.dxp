@@ -965,10 +965,10 @@ when done, document it</Notes>
         <TaskItem Id="2e3625f3-285b-4b83-b0ec-211c4b3a1a39" Priority="Low" AssignedTo="">
           <Title>v3.2 Browser Bundle tutorials now out of date</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-07-17T16:35:06.4644731Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2024-07-25T08:58:37.774258Z</ModifiedOn>
+          <ModifiedOn>2024-10-16T15:38:57.45241Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -1391,6 +1391,12 @@ Show external placement div</Notes>
             <TocNode Name="" Id="c82685ed-30a8-41f4-9681-46bcaa66295c" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
               <CaptionTemplate m="2024-09-26T15:31:23.204212Z">Tutorials (React)</CaptionTemplate>
               <ChildNodes>
+                <TocNode Name="" Id="e14c8ced-8eeb-47a0-b680-4a3c5937506d" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>a5d48d77-152d-4142-b184-811540804fde</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
                 <TocNode Name="" Id="b5133d3b-abc9-4716-b243-ccb878f6afde" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
@@ -1484,6 +1490,12 @@ Show external placement div</Notes>
               <CaptionTemplate />
               <ChildNodes />
               <TargetItemId>d341b414-0d0b-4bcd-8782-e2da1b0b71ec</TargetItemId>
+              <TargetItemBookmark></TargetItemBookmark>
+            </TocNode>
+            <TocNode Name="" Id="81eac7c4-f34c-4ed1-a7f6-ad7f1e282792" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+              <CaptionTemplate />
+              <ChildNodes />
+              <TargetItemId>6baf51ff-0d6e-419e-a97a-d2ebe84ae013</TargetItemId>
               <TargetItemBookmark></TargetItemBookmark>
             </TocNode>
             <TocNode Name="" Id="2abce70a-fead-4140-8520-c6aa419358bd" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
@@ -3927,21 +3939,20 @@ Show external placement div</Notes>
             <Caption m="2023-07-24T18:13:53.6489646Z">Tutorials React</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="a5d48d77-152d-4142-b184-811540804fde" Status="In Progress" CreatedOn="2023-07-24T09:15:58.4265193Z" ModifiedOn="2024-09-26T15:35:23.3568077Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="TutorialReusableReactComponent" BuildFlags="">
-                <Title m="2024-01-12T17:12:32.3820528Z">Tutorial - Creating a SciChart React Component from the Ground Up</Title>
+              <Topic Id="a5d48d77-152d-4142-b184-811540804fde" Status="New Topic" CreatedOn="2023-07-24T09:15:58.4265193Z" ModifiedOn="2024-10-16T17:09:43.385652Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="TutorialReusableReactComponent" BuildFlags="">
+                <Title m="2024-10-16T16:15:48.2597822Z">Tutorial 01 - Creating a SciChart React Component from the Ground Up</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2024-01-12T17:24:08.5767921Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-10-16T17:09:43.385652Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;&lt;STRONG&gt;NEW! We have now published an open source&amp;nbsp;&lt;A href="https://www.scichart.com/blog/react-charts-with-scichart-js/" target=_blank&gt;scichart-react&lt;/A&gt; library&lt;/STRONG&gt; which neatly wraps up this entire tutorial and more. Handling component lifecycle, proper disposal of the SciChartSurface and with a nice API too :)&lt;/P&gt;
 &lt;P&gt;Head over to the following page to learn more:&lt;/P&gt;
-&lt;P&gt;&lt;A href="https://www.scichart.com/blog/react-charts-with-scichart-js/" target=_blank&gt;&lt;A href="https://www.scichart.com/blog/react-charts-with-scichart-js/" target=_blank&gt;React Charts with SciChart.js: Introducing the scichart-react library&lt;/A&gt;&lt;/A&gt;&lt;/P&gt;
+&lt;P&gt;&lt;A href="https://www.scichart.com/blog/react-charts-with-scichart-js/" target=_blank&gt;&lt;/A&gt;&lt;A href="https://www.scichart.com/blog/react-charts-with-scichart-js/" target=_blank&gt;React Charts with SciChart.js: Introducing the scichart-react library&lt;/A&gt;&lt;/P&gt;
 &lt;P&gt;Also see:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://github.com/ABTSoftware/scichart-react" target=_blank&gt;SciChart-React on Github&lt;/A&gt;: official React component wrapper for SciChart.js 
-&lt;LI&gt;&lt;A href="https://www.npmjs.com/package/scichart-react" target=_blank&gt;SciChart-React on npm&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;LI&gt;&lt;A href="https://www.npmjs.com/package/scichart-react" target=_blank&gt;SciChart-React on npm&lt;/A&gt;&lt;/LI&gt;&lt;/UL&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P md-src-pos="2198..2365"&gt;The idea of this tutorial is to create a reusable React component which could be used as a core setup for instantiating a SciChart.js chart and properly disposing of memory once the chart is no longer needed.&amp;nbsp;&lt;/P&gt;
 &lt;P md-src-pos="2198..2365"&gt;Source code for this tutorial can be found at &lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/dev_v3.2/Tutorials/React/reusable-react-component" target=_blank&gt;SciChart.Js.Examples Github Repository&lt;/A&gt;&lt;/P&gt;
 &lt;P md-src-pos="2198..2365"&gt;Main criteria and points to consider:&lt;/P&gt;
@@ -4047,9 +4058,9 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="a954ad8a-89c7-41fc-88fe-cc8c3246b40b" Status="New Topic" CreatedOn="2024-09-26T15:34:32.3001276Z" ModifiedOn="2024-09-26T16:23:23.3665402Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Tutorial01CreateChartWithSciChartReact" BuildFlags="">
-                <Title m="2024-09-26T15:53:25.9157903Z">Tutorial 01 - Creating a Line Chart in React with SciChart.js</Title>
-                <ContentsTitle m="2024-09-26T15:53:03.8368027Z">Tutorial 01 - Creating a Line Chart in React with SciChart.js</ContentsTitle>
+              <Topic Id="a954ad8a-89c7-41fc-88fe-cc8c3246b40b" Status="New Topic" CreatedOn="2024-09-26T15:34:32.3001276Z" ModifiedOn="2024-10-16T16:16:01.1304567Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Tutorial01CreateChartWithSciChartReact" BuildFlags="">
+                <Title m="2024-10-16T16:15:57.8452912Z">Tutorial 02 - Creating a Line Chart in React with SciChart.js</Title>
+                <ContentsTitle m="2024-10-16T16:16:01.1294702Z">Tutorial 02 - Creating a Line Chart in React with SciChart.js</ContentsTitle>
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
@@ -4579,26 +4590,26 @@ Show external placement div</Notes>
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
-          <Topic Id="a5ce66b6-4949-40bd-8097-49b4a82206a6" Status="New Topic" CreatedOn="2024-07-22T12:07:14.624744Z" ModifiedOn="2024-07-22T12:49:29.1906734Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="WhatsNewSciChartJs3-3" BuildFlags="">
+          <Topic Id="a5ce66b6-4949-40bd-8097-49b4a82206a6" Status="New Topic" CreatedOn="2024-07-22T12:07:14.624744Z" ModifiedOn="2024-10-17T07:00:14.398663Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="WhatsNewSciChartJs3-3" BuildFlags="">
             <Title m="2024-07-22T12:07:53.6183391Z">What's New in SciChart.js SDK v3.3</Title>
             <ContentsTitle />
             <Notes></Notes>
             <TopicSections>
               <TopicSection Name="BodyText">
-                <Content m="2024-07-22T12:49:29.1906734Z">&lt;P&gt;SciChart.js v3.3 is minor update to our JavaScript Chart Library which is backward compatible to &lt;A href="048e8b8c-3acd-4ad6-93c6-034a8d79b14a"&gt;version 3.0&lt;/A&gt;. Our team has added lots of features to improve SciChart, which are detailed below.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Read the full release note at&amp;nbsp;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released/" target=_blank&gt;scichart.com/scichart-js-v3-3-released&lt;/A&gt;!&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Version 3.3 at a glance&lt;/P&gt;
+                <Content m="2024-10-17T07:00:14.398663Z">&lt;P&gt;SciChart.js v3.3 is minor update to our JavaScript Chart Library which is backward compatible to &lt;A href="048e8b8c-3acd-4ad6-93c6-034a8d79b14a"&gt;version 3.0&lt;/A&gt;. Our team has added lots of features to improve SciChart, which are detailed below.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Read the full release note at&amp;nbsp;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released/" target=_blank&gt;scichart.com/scichart-js-v3-3-released&lt;/A&gt;!&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Version 3.3 at a glance&lt;/H3&gt;
 &lt;OL&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature1" target=_blank&gt;Critical Fix&lt;/A&gt; - Community licensing error in versions 3.2.446 - 3.2.555 has been fixed in this version.&amp;nbsp;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released/" target=_blank&gt;Read the release note for more info&lt;/A&gt; and update is mandatory.
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature2" target=_blank&gt;VerticalSliceModifier feature&lt;/A&gt; - allows placing multiple draggable vertical lines with tooltips on the chart
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature1" target=_blank&gt;Critical Fix&lt;/A&gt; - Community licensing error in versions 3.2.446 - 3.2.555 has been fixed in this version.&amp;nbsp;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released/" target=_blank&gt;Read the release note for more info&lt;/A&gt; and update is mandatory. 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature2" target=_blank&gt;VerticalSliceModifier feature&lt;/A&gt; - allows placing multiple draggable vertical lines with tooltips on the chart 
 &lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature3" target=_blank&gt;IAdvancedPaletteProvider&lt;/A&gt; feature - better performance and more control when applying custom colouring (paletteproviders) to charts 
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature4" target=_blank&gt;Axis.isStaticAxis&lt;/A&gt; feature - allows fixing label position &amp;amp; numbers on the axis regardless of zoom or pan
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature5" target=_blank&gt;RenderDataTransforms feature&lt;/A&gt; - low level API that allows you to modify data right before it's drawn
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature6" target=_blank&gt;New Demos&lt;/A&gt; - multiple new demos have been created, including
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature4" target=_blank&gt;Axis.isStaticAxis&lt;/A&gt; feature - allows fixing label position &amp;amp; numbers on the axis regardless of zoom or pan 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature5" target=_blank&gt;RenderDataTransforms feature&lt;/A&gt; - low level API that allows you to modify data right before it's drawn 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature6" target=_blank&gt;New Demos&lt;/A&gt; - multiple new demos have been created, including 
 &lt;UL&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature6" target=_blank&gt;Server Traffic Dashboard demo&lt;/A&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature6" target=_blank&gt;Draggable Range Bar event markers&lt;/A&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature6" target=_blank&gt;VerticalSliceModifier demo&lt;/A&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature6" target=_blank&gt;Dynamically Add/Remove Synchronized Charts demo&lt;/A&gt;&lt;/LI&gt;&lt;/UL&gt;&lt;/LI&gt;&lt;/OL&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature6" target=_blank&gt;Server Traffic Dashboard demo&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature6" target=_blank&gt;Draggable Range Bar event markers&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature6" target=_blank&gt;VerticalSliceModifier demo&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature6" target=_blank&gt;Dynamically Add/Remove Synchronized Charts demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;&lt;/LI&gt;&lt;/OL&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
               </TopicSection>
             </TopicSections>
@@ -4607,14 +4618,14 @@ Show external placement div</Notes>
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
-          <Topic Id="d341b414-0d0b-4bcd-8782-e2da1b0b71ec" Status="New Topic" CreatedOn="2024-07-22T12:07:34.6359459Z" ModifiedOn="2024-09-17T14:07:01.4916286Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="WhatsNewSciChartJs3-4" BuildFlags="">
+          <Topic Id="d341b414-0d0b-4bcd-8782-e2da1b0b71ec" Status="New Topic" CreatedOn="2024-07-22T12:07:34.6359459Z" ModifiedOn="2024-10-17T07:00:04.8548851Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="WhatsNewSciChartJs3-4" BuildFlags="">
             <Title m="2024-07-22T12:07:48.9886028Z">What's New in SciChart.js SDK v3.4</Title>
             <ContentsTitle />
             <Notes></Notes>
             <TopicSections>
               <TopicSection Name="BodyText">
-                <Content m="2024-09-17T14:07:01.4916286Z">&lt;P&gt;SciChart.js v3.4 is minor update to our JavaScript Chart Library which is backward compatible to &lt;A href="048e8b8c-3acd-4ad6-93c6-034a8d79b14a"&gt;version 3.0&lt;/A&gt;. Our team has added lots of features to improve SciChart, which are detailed below.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Read the full release note at&amp;nbsp;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released/" target=_blank&gt;scichart.com/scichart-js-v3-4-released&lt;/A&gt;!&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
-&lt;P&gt;Version 3.4 at a glance&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/P&gt;
+                <Content m="2024-10-17T07:00:04.8548851Z">&lt;P&gt;SciChart.js v3.4 is minor update to our JavaScript Chart Library which is backward compatible to &lt;A href="048e8b8c-3acd-4ad6-93c6-034a8d79b14a"&gt;version 3.0&lt;/A&gt;. Our team has added lots of features to improve SciChart, which are detailed below.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Read the full release note at&amp;nbsp;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released/" target=_blank&gt;scichart.com/scichart-js-v3-4-released&lt;/A&gt;!&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Movie (YouTube)" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Movieid"&gt;Io6TaPTiN30&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Autoplay"&gt;False&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Showrelated"&gt;False&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Autoresize"&gt;True&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Width"&gt;640&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Height"&gt;390&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Theme"&gt;dark&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Version 3.4 at a glance&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/H3&gt;
 &lt;OL&gt;
 &lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature1" target=_blank&gt;Hoverable Annotations&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature2" target=_blank&gt;DataLabels support for Stacked Column Series&lt;/A&gt; 
@@ -4637,6 +4648,27 @@ Show external placement div</Notes>
 &lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature19" target=_blank&gt;New React / JavaScript Chart demos&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature20" target=_blank&gt;Improvements to Documentation / Examples&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature21" target=_blank&gt;Bug fixes, Improvements&lt;/A&gt; &lt;/LI&gt;&lt;/OL&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="6baf51ff-0d6e-419e-a97a-d2ebe84ae013" Status="New Topic" CreatedOn="2024-10-17T06:58:57.3260147Z" ModifiedOn="2024-10-17T07:07:36.8594393Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="WhatsNewSciChartJs3-5" BuildFlags="">
+            <Title m="2024-10-17T06:59:13.3479815Z">What's New in SciChart.js SDK v3.5</Title>
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2024-10-17T07:07:36.8594393Z">&lt;P&gt;SciChart.js v3.5 is minor update to our JavaScript Chart Library which is backward compatible to &lt;A href="048e8b8c-3acd-4ad6-93c6-034a8d79b14a"&gt;version 3.0&lt;/A&gt;. Our team has added new features to improve SciChart, which are detailed below.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Read the full release note at&amp;nbsp;&lt;A href="https://www.scichart.com/scichart-js-v3-5-released/" target=_blank&gt;scichart.com/scichart-js-v3-5-released&lt;/A&gt;!&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Version 3.5 at a glance&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/H3&gt;
+&lt;OL&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-5-released/#feature-1" target=_blank&gt;3D Column Charts&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-5-released/#feature-2" target=_blank&gt;Breaking changes: Updated SciChartDefaults.enableResampling to debugDisableResampling&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-5-released/#feature-3" target=_blank&gt;Significant performance improvements when yAxis.autoRange enabled&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-5-released/#feature-4" target=_blank&gt;Spline series and RenderDataTransforms now support FIFO&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-5-released/#feature-5" target=_blank&gt;Updated documentation pages and tutorials&lt;/A&gt; &lt;/LI&gt;&lt;/OL&gt;</Content>
               </TopicSection>
             </TopicSections>
             <TopicLinks />
@@ -4797,13 +4829,13 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="e09e931b-15a2-4e8f-ac78-4c2822394a62" Status="New Topic" CreatedOn="2022-05-05T09:11:49.9545584Z" ModifiedOn="2023-07-10T15:50:51.5930264Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Deploying Wasm or WebAssembly and Data Files with your app" BuildFlags="">
+              <Topic Id="e09e931b-15a2-4e8f-ac78-4c2822394a62" Status="New Topic" CreatedOn="2022-05-05T09:11:49.9545584Z" ModifiedOn="2024-10-16T16:03:09.0091985Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Deploying Wasm or WebAssembly and Data Files with your app" BuildFlags="">
                 <Title m="2022-05-05T09:13:33.0365641Z">Deploying Wasm (WebAssembly) and Data Files with your app</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-10T15:50:51.5930264Z">&lt;H2&gt;Deploying Wasm (WebAssembly) and Data Files with your app&lt;/H2&gt;
+                    <Content m="2024-10-16T16:03:09.0091985Z">&lt;H2&gt;Deploying Wasm (WebAssembly) and Data Files with your app&lt;/H2&gt;
 &lt;P&gt;If you receive an error message when running your app, you may not have deployed the Wasm (WebAssembly) or data files correctly. Below are some steps on how to resolve that.&lt;/P&gt;&lt;innovasys:widget type="Caution Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;STRONG&gt;Error&lt;/STRONG&gt;: Could not load SciChart WebAssembly module. Check your build process and ensure that your scichart2d.wasm, scichart2d.data and scichart2d.js files are from the same version&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H3&gt;Option 1: Package Wasm &amp;amp; Data Files with WebPack (or similar)&amp;nbsp;&lt;/H3&gt;
 &lt;P&gt;In our tutorials and boilerplate examples we show you how to package the Wasm &amp;amp; Data files to load them in a variety of JavaScript frameworks. Find the links to setting up a JavaScript project below:&lt;/P&gt;
@@ -4817,7 +4849,10 @@ Show external placement div</Notes>
 &lt;TD height=24&gt;&lt;A href="2247b20c-4be1-42cb-ad24-125310703f67"&gt;Tutorial - Setting up a project with WebPack&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
 &lt;TD&gt;Vanilla Javascript (no npm, webpack)&lt;/TD&gt;
-&lt;TD&gt;&lt;A href="38afdac0-306d-40d9-b056-b1b8f2a3ae61"&gt;Tutorial - Including SciChart.js in an HTML Page&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TD&gt;&lt;A href="38afdac0-306d-40d9-b056-b1b8f2a3ae61"&gt;Tutorial - Including index.min.js and wasm files using CDN&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;Vanilla Javascript (no npm, webpack)&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="fb82afac-3f92-42e9-9f83-da8b315a1e5f"&gt;Tutorial - Including index.min.js and wasm files offline&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
 &lt;TD height=24&gt;npm / webpack / react&lt;/TD&gt;
 &lt;TD height=24&gt;&lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Sandbox/demo-react-scichart" target=_blank&gt;code sample&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
@@ -4841,8 +4876,11 @@ Show external placement div</Notes>
 &lt;P&gt;The easiest way for SciChart.js to load WebAssembly and Data files are to load them from our CDN&amp;nbsp;(see &lt;A href="https://www.jsdelivr.com/package/npm/scichart" target=_blank&gt;jsdelivr.com/package/npm/scichart&lt;/A&gt;). This method is particularly useful in projects or frameworks that don't have a package manager or module bundler.&lt;/P&gt;
 &lt;P&gt;To do load SciChart's Wasm and Data file from CDN, call&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#configure" target=_blank&gt;SciChartSurface.configure()&lt;/A&gt; once before any SciChartSurface is shown:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Configure Wasm and Data File URLs&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
 &lt;P&gt;import { SciChartSurface, libraryVersion } from "scichart";&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;// Load Wasm &amp;amp; Data files from URL&lt;BR&gt;// This URL can be anything, but for example purposes we are loading from JSDelivr CDN&lt;BR&gt;SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.5.687${libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.5.687${libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;});&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;// Load Wasm &amp;amp; Data files from URL&lt;BR&gt;// This URL can be anything, but for example purposes we are loading from JSDelivr CDN&lt;BR&gt;SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@${libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@${libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;});&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;We've packaged a helpful function that automatically loads the latest &amp;amp; correct version of SciChart's Wasm &amp;amp; Data files from CDN. To use this, instead of calling&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#configure" target=_blank&gt;SciChartSurface.configure()&lt;/A&gt;&amp;nbsp;passing in a URL, call &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#usewasmfromcdn" target=_blank&gt;SciChartSurface.useWasmFromCDN()&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Load Wasm from CDN&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";&lt;BR&gt;&lt;BR&gt;export async function initSciChart() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Call this once before any SciChartSurface is shown.&lt;BR&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp;// This&amp;nbsp;is equivalent to calling SciChartSurface.configure() with the CDN URL (JSDelivr)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; SciChartSurface.useWasmFromCDN();&lt;BR&gt;}&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Loading Wasm files offline&lt;/H2&gt;
+&lt;P&gt;If your application must load wasm files offline (does not have an internet connection), you can download the files and serve them and use&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#configure" target=_blank&gt;SciChartSurface.configure()&lt;/A&gt; to fetch the local file. &lt;/P&gt;
+&lt;P&gt;To find out how to do this, see&amp;nbsp;&lt;A href="fb82afac-3f92-42e9-9f83-da8b315a1e5f"&gt;Tutorial 02 - Including index.min.js and WebAssembly Files offline&lt;/A&gt;.&lt;/P&gt;
 &lt;H2&gt;Loading Wasm for 3D Charts&lt;/H2&gt;
 &lt;P&gt;The process for loading Wasm files for 3D Charts is exactly the same, except you must configure SciChart.js to load scichart3d.wasm and scichart3d.data.&lt;/P&gt;
 &lt;P&gt;This can be done via Webpack/npm or a bundlers, or by calling&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#usewasmfromcdn"&gt;SciChart3DSurface.useWasmFromCDN()&lt;/A&gt; or&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#configure"&gt;SciChart3DSurface.configure()&lt;/A&gt; as before.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Configure Wasm and Data File URLs&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
@@ -15177,7 +15215,7 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="66c2a477-19b7-4c68-9aea-10c01c54774f" Status="In Progress" CreatedOn="2019-08-30T13:01:32.6708223Z" ModifiedOn="2024-09-26T15:34:07.0953086Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial  01 - Charting Concepts" BuildFlags="">
+              <Topic Id="66c2a477-19b7-4c68-9aea-10c01c54774f" Status="In Progress" CreatedOn="2019-08-30T13:01:32.6708223Z" ModifiedOn="2024-10-16T16:17:34.8330148Z" PageTypeName="" AutoIndex="false" HelpContextIds="" Name="OLD 3D Tutorial  01 - Charting Concepts" BuildFlags="">
                 <Title m="2020-09-11T17:11:48.7875532Z">OLD 3D Tutorial  01 - Charting Concepts</Title>
                 <ContentsTitle m="2019-09-23T16:36:08.8189086Z">Charting Concepts</ContentsTitle>
                 <Notes></Notes>
@@ -15243,7 +15281,7 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="b6028fd1-9906-48ac-9d08-dd81e45997dd" Status="In Progress" CreatedOn="2019-09-02T10:38:10.9905454Z" ModifiedOn="2024-09-26T15:34:07.0973081Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial  02 - Add SciChart Libraries to Android Studio" BuildFlags="">
+              <Topic Id="b6028fd1-9906-48ac-9d08-dd81e45997dd" Status="In Progress" CreatedOn="2019-09-02T10:38:10.9905454Z" ModifiedOn="2024-10-16T16:17:34.8339987Z" PageTypeName="" AutoIndex="false" HelpContextIds="" Name="OLD 3D Tutorial  02 - Add SciChart Libraries to Android Studio" BuildFlags="">
                 <Title m="2020-09-11T17:12:03.2366438Z">OLD 3D Tutorial  02 - Add SciChart Libraries to Android Studio</Title>
                 <ContentsTitle />
                 <Notes></Notes>
@@ -15286,7 +15324,7 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="699aad4b-9271-4f53-bcff-48cd49a70752" Status="In Progress" CreatedOn="2019-09-23T16:15:11.006571Z" ModifiedOn="2024-09-26T15:34:07.0988138Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial  03 - Creating a Chart and Add a Data Series" BuildFlags="">
+              <Topic Id="699aad4b-9271-4f53-bcff-48cd49a70752" Status="In Progress" CreatedOn="2019-09-23T16:15:11.006571Z" ModifiedOn="2024-10-16T16:17:34.8339987Z" PageTypeName="" AutoIndex="false" HelpContextIds="" Name="OLD 3D Tutorial  03 - Creating a Chart and Add a Data Series" BuildFlags="">
                 <Title m="2020-09-11T17:12:08.1236238Z">OLD 3D Tutorial  03 - Creating a Chart and Add a Data Series</Title>
                 <ContentsTitle />
                 <Notes></Notes>
@@ -15359,7 +15397,7 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="d5f6befd-6b5b-4650-a207-d63f648a4f8e" Status="In Progress" CreatedOn="2019-09-02T14:12:14.8733503Z" ModifiedOn="2024-09-26T15:34:07.0988138Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial 04 - Changing the Axes Length and Chart Pitch and Yaw" BuildFlags="">
+              <Topic Id="d5f6befd-6b5b-4650-a207-d63f648a4f8e" Status="In Progress" CreatedOn="2019-09-02T14:12:14.8733503Z" ModifiedOn="2024-10-16T16:17:34.8339987Z" PageTypeName="" AutoIndex="false" HelpContextIds="" Name="OLD 3D Tutorial 04 - Changing the Axes Length and Chart Pitch and Yaw" BuildFlags="">
                 <Title m="2020-09-11T17:12:14.3954551Z">OLD 3D Tutorial 04 - Changing the Axes Length and Chart Pitch and Yaw</Title>
                 <ContentsTitle />
                 <Notes></Notes>
@@ -15438,7 +15476,7 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="b302958a-29d2-4089-9b36-8ff8acd30627" Status="In Progress" CreatedOn="2019-09-02T15:14:36.8281591Z" ModifiedOn="2024-09-26T15:34:07.099818Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial 05 - Zooming and Rotating" BuildFlags="">
+              <Topic Id="b302958a-29d2-4089-9b36-8ff8acd30627" Status="In Progress" CreatedOn="2019-09-02T15:14:36.8281591Z" ModifiedOn="2024-10-16T16:17:34.8350118Z" PageTypeName="" AutoIndex="false" HelpContextIds="" Name="OLD 3D Tutorial 05 - Zooming and Rotating" BuildFlags="">
                 <Title m="2020-09-11T17:12:18.6755628Z">OLD 3D Tutorial 05 - Zooming and Rotating</Title>
                 <ContentsTitle />
                 <Notes></Notes>
@@ -15489,7 +15527,7 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="57a08ab7-2fd2-4ee1-8268-30acf5c474c3" Status="In Progress" CreatedOn="2019-09-02T16:02:59.1689118Z" ModifiedOn="2024-09-26T15:34:07.1008192Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial 06 - Cursors and Tooltips" BuildFlags="">
+              <Topic Id="57a08ab7-2fd2-4ee1-8268-30acf5c474c3" Status="In Progress" CreatedOn="2019-09-02T16:02:59.1689118Z" ModifiedOn="2024-10-16T16:17:34.8350118Z" PageTypeName="" AutoIndex="false" HelpContextIds="" Name="OLD 3D Tutorial 06 - Cursors and Tooltips" BuildFlags="">
                 <Title m="2020-09-11T17:12:23.5475964Z">OLD 3D Tutorial 06 - Cursors and Tooltips</Title>
                 <ContentsTitle />
                 <Notes></Notes>
@@ -15520,7 +15558,7 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="5eb89f7b-2486-4a91-bb5d-2a567a4cdd16" Status="In Progress" CreatedOn="2019-09-02T12:26:48.1021752Z" ModifiedOn="2024-09-26T15:34:07.1008192Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OLD 3D Tutorial 07 - Plotting Realtime Data" BuildFlags="">
+              <Topic Id="5eb89f7b-2486-4a91-bb5d-2a567a4cdd16" Status="In Progress" CreatedOn="2019-09-02T12:26:48.1021752Z" ModifiedOn="2024-10-16T16:17:34.83601Z" PageTypeName="" AutoIndex="false" HelpContextIds="" Name="OLD 3D Tutorial 07 - Plotting Realtime Data" BuildFlags="">
                 <Title m="2020-09-11T17:12:28.4994068Z">OLD 3D Tutorial 07 - Plotting Realtime Data</Title>
                 <ContentsTitle />
                 <Notes></Notes>
@@ -15985,22 +16023,22 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="e0f458ce-a8ca-4e6a-acea-19de01063053" Status="New Topic" CreatedOn="2024-10-15T12:45:33.8672897Z" ModifiedOn="2024-10-16T15:30:12.1319305Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Column3DChartType" BuildFlags="">
+              <Topic Id="e0f458ce-a8ca-4e6a-acea-19de01063053" Status="New Topic" CreatedOn="2024-10-15T12:45:33.8672897Z" ModifiedOn="2024-10-16T15:44:23.3624791Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Column3DChartType" BuildFlags="">
                 <Title m="2024-10-15T12:45:45.402444Z">The Column 3D Chart Type</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2024-10-16T15:30:12.1319305Z">&lt;P&gt;JavaScript 3D Column Charts can be created using the &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/columnrenderableseries3d.html"&gt;ColumnRenderableSeries3D&lt;/A&gt; type. This chart type draws columns or bars from X,Y,Z data in the 3D world, with a pointmarker denoting the shape of tghe column. Column 3D Charts can be static or dynamic, and updated in real-time if required.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-10-16T15:44:23.3624791Z">&lt;P&gt;JavaScript 3D Column Charts can be created using the &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/columnrenderableseries3d.html"&gt;ColumnRenderableSeries3D&lt;/A&gt; type. This chart type draws columns or bars from X,Y,Z data in the 3D world, with a pointmarker denoting the shape of tghe column. Column 3D Charts can be static or dynamic, and updated in real-time if required.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;The &lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/react/3d-column-chart" target=_blank&gt;JavaScript / React 3D Column Chart Example&lt;/A&gt; can be found in the&amp;nbsp;&lt;A href="https://github.com/abtsoftware/scichart.js.examples" target=_blank&gt;SciChart.Js Examples Suite&lt;/A&gt;&amp;nbsp;on Github, or our live demo at&amp;nbsp;&lt;A href="https://demo.scichart.com/" target=_blank&gt;demo.scichart.com&lt;/A&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameWidth"&gt;100%&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameHeight"&gt;500px&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/3d-column-chart&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P align=center&gt;&lt;EM&gt;&lt;STRONG&gt;Above&lt;/STRONG&gt;: The&amp;nbsp;&lt;/EM&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;A href="https://demo.scichart.com/javascript/3d-column-chart" target=_blank&gt;&lt;EM&gt;JavaScript 3D Column Chart example&lt;/EM&gt;&lt;/A&gt;&lt;/A&gt;&lt;EM&gt; from the SciChart.js Demo, showing a variety of line options in SciChart.js.&lt;/EM&gt;&lt;/P&gt;
+&lt;P align=center&gt;&lt;EM&gt;&lt;STRONG&gt;Above&lt;/STRONG&gt;: The&amp;nbsp;&lt;/EM&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript/3d-column-chart" target=_blank&gt;&lt;EM&gt;JavaScript 3D Column Chart example&lt;/EM&gt;&lt;/A&gt; &lt;EM&gt;from the SciChart.js Demo, showing a variety of line options in SciChart.js.&lt;/EM&gt;&lt;/P&gt;
 &lt;H2&gt;Create a&amp;nbsp;3D Column Chart&lt;/H2&gt;
 &lt;P&gt;To declare a 3D Column Chart in JavaScript, use the following code:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\ColumnSeries3D\Basic\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;Breaking this code down:&lt;/P&gt;
-&lt;P&gt;We initialize a 3D chart by calling&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#create" target=_blank&gt;SciChart3DSurface.create()&lt;/A&gt;. The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#worlddimensions" target=_blank&gt;worldDimensions&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/icameraoptions.html" target=_blank&gt;cameraOptions&lt;/A&gt; are passed to&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#create" target=_blank&gt;SciChart3DSurface.create()&lt;/A&gt; to initialize the 3D scene. &lt;/P&gt;
+&lt;P&gt;We initialize a 3D chart by calling&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#create" target=_blank&gt;SciChart3DSurface.create()&lt;/A&gt;. The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#worlddimensions" target=_blank&gt;worldDimensions&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/icameraoptions.html" target=_blank&gt;cameraOptions&lt;/A&gt; are passed to&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#create" target=_blank&gt;SciChart3DSurface.create()&lt;/A&gt; to initialize the 3D scene.&lt;/P&gt;
 &lt;P&gt;An xAxis, yAxis and zAxis are declared of type&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/numericaxis3d.html" target=_blank&gt;NumericAxis3D&lt;/A&gt;.&lt;/P&gt;
-&lt;P&gt;Additional code is added to generate some data which is unwrapped into 1D arrays of X,Y and ZValues. These will specify the discrete 3D points on the column chart: X-Z providing the position and Y value providing the height.&lt;/P&gt;
+&lt;P&gt;Additional code is added to generate some data which is unwrapped into 1D arrays of X,Y and ZValues. These will specify the discrete 3D points on the column chart: X-Z providing the position and Y value providing the height. Data is passed into a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xyzdataseries3d.html" target=_blank&gt;XyzDataSeries3D&lt;/A&gt; which is the data source for the 3D column chart.&lt;/P&gt;
 &lt;P&gt;A&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/columnrenderableseries3d.html" target=_blank&gt;ColumnRenderableSeries3D&lt;/A&gt; is created and added to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#renderableseries" target=_blank&gt;SciChart3DSurface.renderableSeries&lt;/A&gt; collection. We set the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/columnrenderableseries3doptions.html#datapointwidthx" target=_blank&gt;dataPointWidth&lt;/A&gt; properties to define the size of the 3D bar as well as the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/columnrenderableseries3doptions.html#fill" target=_blank&gt;fill&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/columnrenderableseries3doptions.html#pointmarker" target=_blank&gt;pointMarker&lt;/A&gt; properties to define the colour and type (shape) of the column.&lt;/P&gt;
 &lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/ColumnSeries3D/Basic/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
@@ -16008,17 +16046,17 @@ Show external placement div</Notes>
 &lt;P&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/columnrenderableseries3d.html"&gt;ColumnRenderableSeries3D&lt;/A&gt; requires X,Y,Z data to render, stored in an&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xyzdataseries3d.html"&gt;XyzDataSeries3D&lt;/A&gt;. This series supports an optional pointmarker of multiple types, including:&lt;/P&gt;
 &lt;H3&gt;3D Marker Types&lt;/H3&gt;
 &lt;UL&gt;
-&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/spherepointmarker3d.html"&gt;SpherePointMarker3D&lt;/A&gt; - a 3D Sphere represents each bar/column
-&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cubepointmarker3d.html"&gt;CubePointMarker3D&lt;/A&gt; - a 3D Cube represents each bar/column
-&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/pyramidpointmarker3d.html"&gt;PyramidPointMarker3D&lt;/A&gt; - a 3D Pyramid represents each bar/column
-&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cylinderpointmarker3d.html"&gt;CylinderPointMarker3D&lt;/A&gt; - a 3D Cylinder represents each bar/column&lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/spherepointmarker3d.html"&gt;SpherePointMarker3D&lt;/A&gt; - a 3D Sphere represents each bar/column 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cubepointmarker3d.html"&gt;CubePointMarker3D&lt;/A&gt; - a 3D Cube represents each bar/column 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/pyramidpointmarker3d.html"&gt;PyramidPointMarker3D&lt;/A&gt; - a 3D Pyramid represents each bar/column 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cylinderpointmarker3d.html"&gt;CylinderPointMarker3D&lt;/A&gt; - a 3D Cylinder represents each bar/column &lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;Changing the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/columnrenderableseries3doptions.html#pointmarker" target=_blank&gt;ColumnRenderableSeries3D.pointMarker&lt;/A&gt; property will update the type / shape of object used to denote a column.&lt;/P&gt;
 &lt;H2&gt;Colouring Individual Columns&lt;/H2&gt;
-&lt;P&gt;By default, the colour of the Column series is defined by ColumnR.fill. This can be overridden on a per-column basis using the metadata array passed to XyzDataSeries3D.&lt;/P&gt;
+&lt;P&gt;By default, the colour of the Column series is defined by&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/columnrenderableseries3d.html#fill" target=_blank&gt;ColumnRenderableSeries.fill&lt;/A&gt;. This can be overridden on a per-column basis using the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xyzdataseries3d.html#metadata" target=_blank&gt;metadata&lt;/A&gt; array passed to&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xyzdataseries3d.html" target=_blank&gt;XyzDataSeries3D&lt;/A&gt;.&lt;/P&gt;
 &lt;P&gt;Update your code sample as follows:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\ColumnSeries3D\Colours\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;This example also shows a variation&amp;nbsp;in the column type to use&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cylinderpointmarker3d.html" target=_blank&gt;CylinderPointMarker3D&lt;/A&gt; which must be imported. &lt;/P&gt;
-&lt;P&gt;Metadata are simply javascript objects attached to dataseries in SciChart. The property&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ipointmetadata3d.html#vertexcolor" target=_blank&gt;metadata.vertexColor&lt;/A&gt; is used to determine column 3D datapoint colour.&lt;/P&gt;
+&lt;P&gt;This example also shows a variation&amp;nbsp;in the column type to use&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cylinderpointmarker3d.html" target=_blank&gt;CylinderPointMarker3D&lt;/A&gt; which must be imported.&lt;/P&gt;
+&lt;P&gt;Metadata are simply javascript objects attached to the&amp;nbsp;&lt;A href="scichart.com/documentation/js/current/typedoc/classes/xyzdataseries3d.html" target=_blank&gt;XyzDataSeries3D&lt;/A&gt; in SciChart. The property&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ipointmetadata3d.html#vertexcolor" target=_blank&gt;metadata.vertexColor&lt;/A&gt; is used to determine column 3D datapoint colour.&lt;/P&gt;
 &lt;P&gt;Finally, when specifying metadata colors, the property&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/columnrenderableseries3d.html#usemetadatacolors" target=_blank&gt;ColumnRenderableSeries3D.useMetadataColors&lt;/A&gt; must be set to true.&lt;/P&gt;
 &lt;P&gt;Here's the updated output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/ColumnSeries3D/Colours/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Note:&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ipointmetadata3d.html"&gt;IPointMetadata3D&lt;/A&gt; can be any javascript object but the property &lt;STRONG&gt;vertexColor&lt;/STRONG&gt; is used to determine column 3D datapoint colour. This is in hex format Alpha, Red, Green, Blue, so 0xFFFF0000 would correspond to red. The helper function&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#parseColorToUIntArgb"&gt;parseColorToUIntArgb&lt;/A&gt; can convert Javascript Hex codes to this format.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
                   </TopicSection>
@@ -16628,7 +16666,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">1574</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">1810</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
