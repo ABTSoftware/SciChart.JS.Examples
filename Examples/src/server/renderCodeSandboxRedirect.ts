@@ -173,11 +173,7 @@ export const getSourceFiles = async (req: Request, res: Response) => {
     }
 };
 
-export const renderCodeSandBoxRedirect = async (
-    req: Request,
-    res: Response,
-    sandboxEnv: "codesandbox" | "stackblitz"
-) => {
+export const renderSandBoxRedirect = async (req: Request, res: Response, sandboxEnv: "codesandbox" | "stackblitz") => {
     try {
         await loadStyles(basePath);
         let currentExample: TExamplePage;

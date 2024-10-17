@@ -46,18 +46,16 @@ export const getReactSandBoxConfig = async (
                     "@mui/styles": "^5.15.21",
                     sass: "^1.49.9",
                     "loader-utils": "3.2.1",
-                    react: "^17.0.2",
-                    "react-dom": "^17.0.2",
+                    react: "^18.3.1",
+                    "react-dom": "^18.3.1",
                     "react-scripts": "5.0.1",
                     scichart: pj.dependencies.scichart,
                     "scichart-react": pj.dependencies["scichart-react"],
-                    ...currentExample.extraDependencies,
-                },
-                devDependencies: {
-                    "@types/react": "^17.0.52",
-                    "@types/react-dom": "18.0.9",
-                    "@babel/runtime": "7.13.8",
                     typescript: pj.devDependencies.typescript,
+                    ...currentExample.extraDependencies,
+                    "@types/react": "^18.3.11",
+                    "@types/react-dom": "^18.3.1",
+                    "@babel/runtime": "7.13.8",
                 },
                 browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
             },
@@ -69,7 +67,8 @@ export const getReactSandBoxConfig = async (
         },
         "src/index.tsx": {
             content: `
-import { hydrate } from "react-dom";
+import { createRoot, hydrateRoot } from "react-dom/client";
+
 import { SciChartSurface, SciChart3DSurface } from "scichart";
 
 import App from "./App";
@@ -77,7 +76,9 @@ import App from "./App";
 const rootElement = document.getElementById("root");
 SciChartSurface.loadWasmFromCDN();
 SciChart3DSurface.loadWasmFromCDN();
-hydrate( <App />, rootElement);
+
+const root = createRoot(rootElement)
+root.render(<App />);
 `,
             isBinary: false,
         },

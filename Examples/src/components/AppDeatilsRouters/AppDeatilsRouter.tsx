@@ -45,7 +45,11 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     const [activeTab, setActiveTab] = useState<TabName>("Featured Apps");
     const [currentMenuItems, setCurrentMenuItems] = useState(MENU_ITEMS_FEATURED_APPS);
     const [selectedItemId, setSelectedItemId] = useState(currentMenuItems[0].item.id);
-    const [availableFrameworks, setAvailableFrameworks] = useState<EPageFramework[]>([EPageFramework.React]);
+    const [availableFrameworks, setAvailableFrameworks] = useState<EPageFramework[]>([
+        EPageFramework.React,
+        EPageFramework.Vanilla,
+        EPageFramework.Angular,
+    ]);
     const selectedFramework = useContext(FrameworkContext);
 
     const searchItems: TSearchItem[] = useMemo(
@@ -201,7 +205,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                         {/* Title + Example */}
                         <h2 className={classes.headingtxt}>{PageTitle}</h2>
                         <div className={classes.chartwrap}>
-                            <p>{currentExample.description}</p>
+                            <p>{getTitle(currentExample.description, selectedFramework)}</p>
                             <ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />
                             <div className={classes.tabbtnwrap}>
                                 <a
@@ -220,6 +224,33 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                         <path d="M12 3H6.67C4.65 3 3 4.64 3 6.67V12c0 .55.45 1 1 1s1-.45 1-1V6.67C5 5.75 5.75 5 6.67 5H12c.55 0 1-.45 1-1S12.55 3 12 3zM12 27H6.67C5.75 27 5 26.25 5 25.33V20c0-.55-.45-1-1-1s-1 .45-1 1v5.33C3 27.36 4.65 29 6.67 29H12c.55 0 1-.45 1-1S12.55 27 12 27zM28 19c-.55 0-1 .45-1 1v5.33c0 .92-.75 1.67-1.67 1.67H20c-.55 0-1 .45-1 1s.45 1 1 1h5.33c2.02 0 3.67-1.64 3.67-3.67V20C29 19.45 28.55 19 28 19zM25.33 3H20c-.55 0-1 .45-1 1s.45 1 1 1h5.33C26.25 5 27 5.75 27 6.67V12c0 .27.1.52.29.71.04.03.08.05.13.08C27.58 12.91 27.78 13 28 13c.22 0 .42-.09.59-.21.04-.03.09-.04.12-.08.03-.04.05-.08.08-.12C28.91 12.42 29 12.22 29 12V6.67C29 4.64 27.35 3 25.33 3z"></path>
                                     </svg>
                                     &nbsp;Full Screen
+                                </a>
+                                <a
+                                    rel="nofollow external"
+                                    className={classes.btn}
+                                    style={{ backgroundColor: "#212121" }}
+                                    href={`stackblitz/${currentExample.path}?codesandbox=1&framework=${
+                                        isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React
+                                    }`}
+                                    title={
+                                        isFrameworkVariantAvailable
+                                            ? `Edit ${getTitle(currentExample.title, selectedFramework)} in StackBlitz`
+                                            : `Sorry, we have not got ${FRAMEWORK_NAME[selectedFramework]} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
+                                    }
+                                    target="_blank"
+                                >
+                                    <svg
+                                        style={{ height: 24, width: 24 }}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        id="code-sandbox"
+                                    >
+                                        <path
+                                            fill="#ffffff"
+                                            d="M22.5 17.95 22.41 6 11.955 0 1.5 6v12l10.455 6L22.5 17.95zm-2.173-4.711L16.982 15.1v3.514L13.01 20.91v-8.272l7.317-4.157v4.758zm-9.422 7.671-3.972-2.296v-3.516l-3.345-1.86V8.481l7.317 4.157v8.272zM4.634 6.601 4.633 6.6l3.913-2.255 3.43 1.968 3.41-1.945 3.871 2.197-7.32 4.18-7.303-4.144z"
+                                        ></path>
+                                    </svg>
+                                    &nbsp;Edit
                                 </a>
                                 <a
                                     rel="nofollow external"
