@@ -71,7 +71,7 @@ export const getChartsInitializationAPI = () => {
                 strokeThickness: 3,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -86,7 +86,7 @@ export const getChartsInitializationAPI = () => {
                 strokeThickness: 3,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -101,7 +101,7 @@ export const getChartsInitializationAPI = () => {
                 strokeThickness: 3,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );

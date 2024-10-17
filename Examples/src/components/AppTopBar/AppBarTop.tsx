@@ -42,7 +42,7 @@ const AppBarTop: FC<TProps> = (props) => {
         <AppBar position="sticky" className={classes.AppBar}>
             <Toolbar className={classes.ToolBar}>
                 <a href="https://demo.scichart.com/" title="SciChart Demo">
-                    {window.innerWidth <= 768 ? (
+                    {typeof window !== "undefined" && window?.innerWidth <= 768 ? (
                         <img className={classes.Logo} src={LogoSmall} alt="scichart-logo" />
                     ) : (
                         <img className={classes.Logo} src={Logo} alt="scichart-logo" />
