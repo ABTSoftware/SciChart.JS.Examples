@@ -70,7 +70,7 @@ export const getAngularSandBoxConfig = async (folderPath: string, currentExample
                     "karma-coverage": "~2.2.0",
                     "karma-jasmine": "~5.1.0",
                     "karma-jasmine-html-reporter": "~2.1.0",
-                    typescript: pj.devDependencies.typescript,
+                    typescript: "5.5.2",
                 },
             },
         },
@@ -220,6 +220,7 @@ export const getAngularSandBoxConfig = async (folderPath: string, currentExample
 import { AppComponent } from './app.component';
 import { SciChartSurface, SciChart3DSurface } from 'scichart';
 
+SciChartSurface.UseCommunityLicense();
 SciChartSurface.loadWasmFromCDN();
 SciChart3DSurface.loadWasmFromCDN();
 
