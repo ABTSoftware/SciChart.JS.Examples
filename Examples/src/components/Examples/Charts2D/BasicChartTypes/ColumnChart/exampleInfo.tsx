@@ -42,5 +42,5 @@ export const columnChartExampleInfo: TExampleInfo = {
         `${frameworkName} Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.`,
     metaKeywords: "column, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

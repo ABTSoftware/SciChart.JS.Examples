@@ -29,7 +29,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const websocketBigDataDemoExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -46,5 +46,5 @@ export const websocketBigDataDemoExampleInfo: TExampleInfo = {
         `This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!`,
     metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

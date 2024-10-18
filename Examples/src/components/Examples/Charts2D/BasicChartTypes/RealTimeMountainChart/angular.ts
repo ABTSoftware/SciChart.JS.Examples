@@ -1,7 +1,10 @@
 import { Component } from "@angular/core";
+import { ScichartAngularComponent } from "scichart-angular";
 import { drawExample } from "./drawExample";
 
 @Component({
+    standalone: true,
+    imports: [ScichartAngularComponent],
     selector: "app-realTimeMountain-chart",
     template: `<scichart-angular
         [initChart]="drawExample"

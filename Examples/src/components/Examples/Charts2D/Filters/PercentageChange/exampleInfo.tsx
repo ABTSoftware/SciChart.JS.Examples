@@ -31,7 +31,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const percentageChangeExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -48,5 +48,5 @@ export const percentageChangeExampleInfo: TExampleInfo = {
         `How to use a ScaleOffsetFilter to convert data to a percentage change, with realtime updates, rescale on pan`,
     metaKeywords: "real-time, updating, percentage, transform, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

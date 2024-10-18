@@ -26,7 +26,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const usePointMarkersExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -42,5 +42,5 @@ export const usePointMarkersExampleInfo: TExampleInfo = {
         `Demonstrates the different point-marker types for ${frameworkName} Scatter charts (Square, Circle, Triangle and Custom image point-marker)`,
     metaKeywords: "data, point, marker, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

@@ -28,7 +28,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const usingThemeManagerExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -44,5 +44,5 @@ export const usingThemeManagerExampleInfo: TExampleInfo = {
         `Demonstrates our Light and Dark Themes for ${frameworkName} Charts with SciChart.js ThemeManager API`,
     metaKeywords: "theme, provider, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

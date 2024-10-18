@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
-import { SciChartSurface, SciChart3DSurface } from "scichart";
-
-// @ts-ignore
+import { SciChartSurface } from "scichart";
+import { ScichartAngularComponent } from "scichart-angular";
 import { getChartsInitializationAPI } from "./drawExample";
-import { TSciChart } from "scichart/types/TSciChart";
 
 @Component({
+    standalone: true,
+    imports: [ScichartAngularComponent],
     selector: "app-line-chart",
     template: `<style>
             .flexOuterContainer {
@@ -80,6 +80,4 @@ export class AppComponent {
     }
 }
 
-type TChartInitFunction = (
-    rootElement: string | HTMLDivElement
-) => Promise<{ sciChartSurface: SciChartSurface; wasmContext: TSciChart }>;
+type TChartInitFunction = (rootElement: string | HTMLDivElement) => Promise<{ sciChartSurface: SciChartSurface }>;

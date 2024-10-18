@@ -26,7 +26,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const imageLabelsExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -42,5 +42,5 @@ export const imageLabelsExampleInfo: TExampleInfo = {
     metaDescription: (frameworkName: string) => `Demonstrates how to use Images as Axis Labels`,
     metaKeywords: "image, axis, label, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

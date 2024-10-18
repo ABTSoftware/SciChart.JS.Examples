@@ -28,7 +28,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -44,5 +44,5 @@ export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
         `This demo showcases the realtime performance of our ${frameworkName} Chart by animating several series with thousands of data-points at 60 FPS`,
     metaKeywords: "realtime, ghosted, traces, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

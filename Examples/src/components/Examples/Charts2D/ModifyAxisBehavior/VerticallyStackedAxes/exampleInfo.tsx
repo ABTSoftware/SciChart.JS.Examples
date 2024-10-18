@@ -27,7 +27,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const verticallyStackedAxesExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -43,5 +43,5 @@ export const verticallyStackedAxesExampleInfo: TExampleInfo = {
         `Demonstrates Vertically Stacked Axes on a ${frameworkName} Chart using SciChart.js, allowing data to overlap`,
     metaKeywords: "multiple, stacked, overlap, axis, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

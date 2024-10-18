@@ -29,7 +29,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const nonUniformHeatmapExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -45,5 +45,5 @@ export const nonUniformHeatmapExampleInfo: TExampleInfo = {
         `Create ${frameworkName} Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.`,
     metaKeywords: "error, bars, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

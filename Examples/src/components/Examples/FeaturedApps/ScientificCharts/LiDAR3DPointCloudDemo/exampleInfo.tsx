@@ -29,7 +29,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const lidar3DPointCloudExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -46,5 +46,5 @@ export const lidar3DPointCloudExampleInfo: TExampleInfo = {
         "from the UK Defra Survey.",
     metaKeywords: "lidar, 3d, point, cloud, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

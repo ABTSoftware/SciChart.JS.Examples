@@ -31,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const syncMultiChartExampleInfo: TExampleInfo = {
     onWebsite: false,
@@ -47,5 +47,5 @@ export const syncMultiChartExampleInfo: TExampleInfo = {
     metaDescription: (frameworkName: string) => `Synchronise multiple dynamic charts and overview`,
     metaKeywords: "axis, synchronise, multiple, charts, overview, zoom, pan, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

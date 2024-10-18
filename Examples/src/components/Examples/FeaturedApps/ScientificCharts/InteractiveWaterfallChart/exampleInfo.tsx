@@ -23,7 +23,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const waterfallChartExampleInfo: TExampleInfo = {
     onWebsite: false,
@@ -39,5 +39,5 @@ export const waterfallChartExampleInfo: TExampleInfo = {
     metaDescription: previewDescription,
     metaKeywords: "waterfall, chart, interactive, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

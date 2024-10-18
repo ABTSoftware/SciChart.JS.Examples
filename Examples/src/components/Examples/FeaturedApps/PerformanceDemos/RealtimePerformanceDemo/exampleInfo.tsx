@@ -98,7 +98,7 @@ const Questions = [
     },
 ];
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     onWebsite: true,

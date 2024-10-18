@@ -1,7 +1,10 @@
-import { draw3DChart, drawLineChart1, drawLineChart2, drawHeatmapLegend } from "./drawExaple";
 import { Component } from "@angular/core";
+import { ScichartAngularComponent } from "scichart-angular";
+import { draw3DChart, drawLineChart1, drawLineChart2, drawHeatmapLegend } from "./drawExaple";
 
 @Component({
+    standalone: true,
+    imports: [ScichartAngularComponent],
     selector: "app-Tenor-curves",
     template: `
         <style>

@@ -28,7 +28,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const transparentBackgroundExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -45,5 +45,5 @@ export const transparentBackgroundExampleInfo: TExampleInfo = {
         `Demonstrates how to create a ${frameworkName} Chart with background image using transparency in SciChart.js`,
     metaKeywords: "styling, transparent, background, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

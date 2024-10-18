@@ -28,7 +28,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
     onWebsite: true,

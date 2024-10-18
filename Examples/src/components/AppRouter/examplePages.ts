@@ -165,7 +165,7 @@ export type TExampleInfo = {
     /**
      * Markdown content for the page, will help with SEO and editing
      */
-   markdownContent?: string;
+    markdownContent?: string;
 };
 
 export type TExamplePage = TPage & TExampleInfo;

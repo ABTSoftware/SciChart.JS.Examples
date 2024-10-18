@@ -24,7 +24,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const axisLayoutExampleInfo: TExampleInfo = {
     onWebsite: false,
@@ -41,5 +41,5 @@ export const axisLayoutExampleInfo: TExampleInfo = {
         `Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts`,
     metaKeywords: "stacked, axis, layout, alignment, vertical, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

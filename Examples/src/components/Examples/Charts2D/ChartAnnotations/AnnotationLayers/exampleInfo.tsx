@@ -37,7 +37,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const annotationLayersExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -54,5 +54,5 @@ export const annotationLayersExampleInfo: TExampleInfo = {
         `Demonstrates how layering works a ${frameworkName} Chart using SciChart.js Annotations API`,
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

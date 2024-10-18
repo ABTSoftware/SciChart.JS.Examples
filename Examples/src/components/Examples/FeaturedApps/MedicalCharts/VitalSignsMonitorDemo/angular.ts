@@ -1,8 +1,12 @@
 import { Component } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ScichartAngularComponent } from "scichart-angular";
 import { appTheme } from "../../../theme";
 import { TDataUpdateInfo, drawExample } from "./drawExample";
 
 @Component({
+    standalone: true,
+    imports: [ScichartAngularComponent, CommonModule],
     selector: "app-vital-signs-monitor",
     template: `
         <style>

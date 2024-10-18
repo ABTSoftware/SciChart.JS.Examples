@@ -484,7 +484,7 @@
     border: 1px solid #b4d0db;
     border-radius: 22px;
     padding: 24px;
-    display: flex; 
+    display: flex;
     flex-direction: column;
     gap: 20px;
     margin-bottom: 45px;
@@ -551,7 +551,8 @@
     display: flex;
     gap: 20px;
 
-    .btnprimary, .btn {
+    .btnprimary,
+    .btn {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -605,7 +606,7 @@
                 font-size: 14px;
                 line-height: 15px;
                 text-align: center;
-                color: #fff;    
+                color: #fff;
                 background: #7593a4;
                 border-radius: 10px 10px 0px 0px;
                 padding: 13px 16px;

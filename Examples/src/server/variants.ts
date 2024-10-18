@@ -2,7 +2,8 @@ import * as path from "path";
 
 import express = require("express");
 import { getRequestedExample } from "./renderCodeSandboxRedirect";
-import { getAngularSrc, getVanillaSrc } from "./sandboxForms";
+import { getAngularSrc } from "./services/sandbox/angularConfig";
+import { getVanillaSrc } from "./services/sandbox/vanillaTsConfig";
 import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 import { IHttpError } from "./Errors";
 

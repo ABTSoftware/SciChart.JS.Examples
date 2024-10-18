@@ -1,10 +1,35 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { MatSliderModule } from "@angular/material/slider";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatCardModule } from "@angular/material/card";
+import { MatButtonModule } from "@angular/material/button";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
+import { ScichartAngularComponent } from "scichart-angular";
 import { drawExample, TTimeSpan } from "./drawExample";
 import { appTheme } from "../../../theme";
+
 interface SciChartControls {
     loadPoints: (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => void;
 }
+
 @Component({
+    standalone: true,
+    imports: [
+        CommonModule,
+        ScichartAngularComponent,
+        MatSliderModule,
+        MatRadioModule,
+        MatFormFieldModule,
+        MatButtonToggleModule,
+        MatCardModule,
+        MatButtonModule,
+        MatInputModule,
+        MatSelectModule,
+    ],
     selector: "app-load1-million-points-chart",
     template: `
         <style>

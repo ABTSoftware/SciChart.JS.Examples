@@ -1,8 +1,13 @@
 import { Component } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import { appTheme } from "../../../theme";
+import { ScichartAngularComponent } from "scichart-angular";
+
 import { drawExample, drawHeatmapLegend } from "./drawExample";
 
 @Component({
+    standalone: true,
+    imports: [ScichartAngularComponent, CommonModule],
     selector: "app-heatmap-chart",
     template: `
         <style>
@@ -27,10 +32,10 @@ import { drawExample, drawHeatmapLegend } from "./drawExample";
                 padding-top: 10px;
                 margin-top: 19px;
                 width: 100%;
-                color: ${appTheme.ForegroundColor};
+                color: {appTheme.ForegroundColor};
             }
             .toolbar-button {
-                color: ${appTheme.ForegroundColor};
+                color: {appTheme.ForegroundColor};
                 background: rgb(20, 35, 60) !important;
             }
             .chart-area {
@@ -107,6 +112,7 @@ import { drawExample, drawHeatmapLegend } from "./drawExample";
     `,
 })
 export class AppComponent {
+    appTheme = appTheme;
     stats = { xSize: 0, ySize: 0, fps: 0 };
     drawExample = drawExample;
     drawHeatmapLegend = drawHeatmapLegend;
@@ -130,7 +136,7 @@ export class AppComponent {
             this.initResult.controls.stopDemo();
         }
     }
-    onDelete() {
+    onDelete(initResult: Awaited<ReturnType<typeof drawExample>>) {
         if (this.initResult && this.initResult.controls) {
             this.initResult.controls.stopDemo();
         }

@@ -30,7 +30,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -47,5 +47,5 @@ export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
         `Demonstrates adding a Cursor (Crosshair) to a ${frameworkName} Chart with SciChart.js CursorModifier`,
     metaKeywords: "cursor, modifier, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

@@ -1,8 +1,12 @@
-import { Component, OnDestroy } from "@angular/core";
+import { Component } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import { SciChartSurface } from "scichart";
+import { ScichartAngularComponent } from "scichart-angular";
 import { getChartsInitializationAPI } from "./drawExample";
 
 @Component({
+    standalone: true,
+    imports: [CommonModule, ScichartAngularComponent],
     selector: "app-multi-pane-stock-charts",
     template: `
         <div style="display: flex; flex-direction: column; height: 100%;">

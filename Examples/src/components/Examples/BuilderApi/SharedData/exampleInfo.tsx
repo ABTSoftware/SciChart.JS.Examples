@@ -27,7 +27,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const sharedDataExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -45,5 +45,5 @@ export const sharedDataExampleInfo: TExampleInfo = {
         "Data can be easily integrated into a definition and shared between series",
     metaKeywords: "template, chart, javascript, data, reuse",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

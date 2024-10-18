@@ -5,4 +5,3 @@
         <strong>3D LiDAR visualization</strong> of a 500×500 (250k points)
     </p>
 </blockquote>
-

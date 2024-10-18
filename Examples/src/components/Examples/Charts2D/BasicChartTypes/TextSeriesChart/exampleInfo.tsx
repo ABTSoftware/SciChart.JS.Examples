@@ -27,7 +27,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const textChartExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -44,5 +44,5 @@ export const textChartExampleInfo: TExampleInfo = {
         `Create ${frameworkName} Text Chart with high performance SciChart.js.  `,
     metaKeywords: "text, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

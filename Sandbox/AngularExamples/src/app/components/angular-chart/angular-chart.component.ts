@@ -3,7 +3,8 @@ import { SciChart3DSurface, SciChartSurface, StackedColumnCollection } from "sci
 import { ActivatedRoute, Router } from "@angular/router";
 import { EXAMPLES_PAGES } from "../../services/angularExample";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
-import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef, NgZone } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef, NgZone, Injector } from "@angular/core";
+import { getComponentByRoute } from "../../services/advancedExamples";
 
 SciChartSurface.loadWasmFromCDN();
 SciChart3DSurface.loadWasmFromCDN();
@@ -12,7 +13,7 @@ SciChart3DSurface.loadWasmFromCDN();
     templateUrl: "./angular-chart.component.html",
     styleUrl: "./angular-chart.component.css",
 })
-export class AngularChartComponent implements OnInit {
+export class AngularChartComponent {
     drawChart: any;
     isreload: boolean = false;
     html: boolean = false;
@@ -38,33 +39,40 @@ export class AngularChartComponent implements OnInit {
             this.initChart(key);
         });
     }
-    ngOnInit() {}
-    checkChild() {
-        const element = document.getElementById("chart") as HTMLDivElement;
 
-        if (element.childElementCount > 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
     selector: any = "";
     initChart(key: string) {
-        let exampleArr: any = EXAMPLES_PAGES;
-        Object.values(exampleArr).forEach((page: any) => {
-            if (page.path == key) {
-                this.drawChart = page.drawExample;
-                // console.log("page.additinal", page.additinal)
-                if (page.additinal) {
-                    this.html = true;
-                    this.additinal = page.id;
-                }
-                // if(page.json){
-                //   this.html = true;
-                //   this.fetchJsonData(page.json);
-                // }
+        const currentExampleComponent = getComponentByRoute(key);
+        if (currentExampleComponent) {
+            this.html = true;
+            this.viewContainerRef.createComponent<unknown>(currentExampleComponent);
+        } else {
+            const page = Object.values(EXAMPLES_PAGES).find((page) => page.path === key);
+            if (page) {
+                // @ts-ignore
+                this.drawChart = page!.drawExample;
+                this.html = false;
+            } else {
+                console.warn(`No Angular Component provided for ${key}`);
             }
-        });
+        }
+
+        // let exampleArr: any = EXAMPLES_PAGES;
+        // Object.values(exampleArr).forEach((page: any) => {
+        //     if (page.path == key) {
+        //         this.drawChart = page.drawExample;
+        //         // console.log("page.additinal", page.additinal)
+        //         if (page.additinal) {
+        //             this.html = true;
+        //             this.additinal = page.id;
+
+        //         }
+        //         // if(page.json){
+        //         //   this.html = true;
+        //         //   this.fetchJsonData(page.json);
+        //         // }
+        //     }
+        // });
         this.isreload = true;
     }
     reloadComponent() {

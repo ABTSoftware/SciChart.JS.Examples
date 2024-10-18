@@ -1,6 +1,7 @@
 <section class="container-markdown" style="background: #38a">
 
 # markdown example 1
+
 This is **bold** or _italic_.
 
 <button class="button-red">click me</button>
@@ -12,5 +13,5 @@ This is **bold** or _italic_.
 <section class="container-markdown" style="background: #d83; margin-top: 15px">
 
 # markdown example 2
-</section>
 
+</section>

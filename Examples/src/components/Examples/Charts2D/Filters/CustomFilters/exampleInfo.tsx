@@ -31,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const customFiltersExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -48,5 +48,5 @@ export const customFiltersExampleInfo: TExampleInfo = {
         `Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates`,
     metaKeywords: "real-time, filter, transform, updating, aggregation, custom, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

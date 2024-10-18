@@ -30,7 +30,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const donutChartExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -46,5 +46,5 @@ export const donutChartExampleInfo: TExampleInfo = {
         `Create ${frameworkName} Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.`,
     metaKeywords: "donut, chart, javascript, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

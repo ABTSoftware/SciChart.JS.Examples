@@ -1,8 +1,12 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
-import { getChartsInitializationAPI } from "./drawExample";
+import { Component } from "@angular/core";
+import { ScichartAngularComponent } from "scichart-angular";
 import { SciChartSurface } from "scichart";
 
+import { getChartsInitializationAPI } from "./drawExample";
+
 @Component({
+    standalone: true,
+    imports: [ScichartAngularComponent],
     selector: "app-interactive-waterfall-chart",
     template: `
         <style>

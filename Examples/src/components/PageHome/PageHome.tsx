@@ -26,7 +26,7 @@ export default function PageHome() {
                     image={ExampleStrings.siteHomeMetaImage}
                     url=""
                 />
-                <div className={classes.PageHomeContent} style={{paddingBottom: '2.5rem'}}>
+                <div className={classes.PageHomeContent} style={{ paddingBottom: "2.5rem" }}>
                     <div className={classes.PageHomeHeader}>
                         <div className={classes.PageHomeHeaderText}>
                             <h1 className={classes.PageHomeTitle}>SciChart.js Demo</h1>

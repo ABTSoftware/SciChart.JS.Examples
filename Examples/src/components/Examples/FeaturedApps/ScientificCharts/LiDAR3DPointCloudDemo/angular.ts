@@ -1,7 +1,10 @@
 import { Component } from "@angular/core";
+import { ScichartAngularComponent } from "scichart-angular";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
 
 @Component({
+    standalone: true,
+    imports: [ScichartAngularComponent],
     selector: "app-li-dar3d-point-cloud",
     template: `
         <style>

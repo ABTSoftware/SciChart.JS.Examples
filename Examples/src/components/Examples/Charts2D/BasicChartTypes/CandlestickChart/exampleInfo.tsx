@@ -27,7 +27,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const candlestickChartExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -44,5 +44,5 @@ export const candlestickChartExampleInfo: TExampleInfo = {
         `Discover how to create a ${frameworkName} Candlestick Chart or Stock Chart using SciChart.js. For high Performance JavaScript Charts, get your free demo now.`,
     metaKeywords: "candlestick, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

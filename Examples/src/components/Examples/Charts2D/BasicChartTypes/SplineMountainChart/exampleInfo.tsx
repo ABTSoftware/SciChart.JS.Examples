@@ -30,7 +30,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const splineMountainChartExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -47,5 +47,5 @@ export const splineMountainChartExampleInfo: TExampleInfo = {
         `${frameworkName} Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.`,
     metaKeywords: "mountain, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

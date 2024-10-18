@@ -29,7 +29,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const tenorCurvesExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -47,5 +47,5 @@ export const tenorCurvesExampleInfo: TExampleInfo = {
         "or other 2D/3D data combined on a single screen.",
     metaKeywords: "tenor, curves, 3d, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };
