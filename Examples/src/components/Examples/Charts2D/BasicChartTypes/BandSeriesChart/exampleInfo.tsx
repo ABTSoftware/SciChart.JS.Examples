@@ -47,5 +47,5 @@ export const bandSeriesChartExampleInfo: TExampleInfo = {
         `Easily create a ${frameworkName} Band Chart or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.`,
     metaKeywords: "band, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

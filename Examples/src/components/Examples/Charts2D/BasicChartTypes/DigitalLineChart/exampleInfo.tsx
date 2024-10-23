@@ -29,7 +29,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const digitalLineChartExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -46,5 +46,5 @@ export const digitalLineChartExampleInfo: TExampleInfo = {
         `Discover how to create a ${frameworkName} Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.`,
     metaKeywords: "digital, line, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

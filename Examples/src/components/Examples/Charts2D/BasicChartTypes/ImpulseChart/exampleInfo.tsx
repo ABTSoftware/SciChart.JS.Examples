@@ -27,7 +27,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const impulseChartExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -43,5 +43,5 @@ export const impulseChartExampleInfo: TExampleInfo = {
         `Easily create ${frameworkName} Impulse Chart or Stem Chart using SciChart.js - our own high performance JavaScript Chart Library. Get your free trial now. `,
     metaKeywords: "impulse, lollipop, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

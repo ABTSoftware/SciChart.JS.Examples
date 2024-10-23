@@ -24,7 +24,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const virtualizedDataOverviewExampleInfo: TExampleInfo = {
     onWebsite: true,

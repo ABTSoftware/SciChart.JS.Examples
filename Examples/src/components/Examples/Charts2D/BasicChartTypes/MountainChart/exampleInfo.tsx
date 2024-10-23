@@ -29,7 +29,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const mountainChartExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -45,5 +45,5 @@ export const mountainChartExampleInfo: TExampleInfo = {
         `Create ${frameworkName} Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.`,
     metaKeywords: "mountain, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

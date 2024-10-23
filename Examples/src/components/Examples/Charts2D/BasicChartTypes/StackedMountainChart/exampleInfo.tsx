@@ -30,7 +30,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const stackedMountainChartExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -46,5 +46,5 @@ export const stackedMountainChartExampleInfo: TExampleInfo = {
         `Design a high performance ${frameworkName} Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.`,
     metaKeywords: "stacked, mountain, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

@@ -19,7 +19,7 @@ import createCache from "@emotion/cache";
 import createEmotionServer from "@emotion/server/create-instance";
 import { createSocketServer } from "./websockets";
 import { api } from "./api";
-import { getSourceFiles, renderCodeSandBoxRedirect } from "./renderCodeSandboxRedirect";
+import { getSourceFiles, renderSandBoxRedirect } from "./renderCodeSandboxRedirect";
 import { oembed } from "./oembed";
 import { findMissingExamples } from "./find-missing-examples";
 import { vanillaExamplesRouter } from "./vanillaDemo/vanillaExamplesRouter";
@@ -37,7 +37,7 @@ const targetDir = defaultConfig.buildConfig.targetDir;
 
 function handleRender(req: Request, res: Response) {
     if (req.query["codesandbox"]) {
-        if (renderCodeSandBoxRedirect(req, res)) return;
+        if (renderSandBoxRedirect(req, res, "codesandbox")) return;
     }
 
     // Render the component to a string.
@@ -94,7 +94,11 @@ const getExamplePageKey = (examplePath: string) => {
 };
 
 app.get("/codesandbox/:example", (req: Request, res: Response) => {
-    renderCodeSandBoxRedirect(req, res);
+    renderSandBoxRedirect(req, res, "codesandbox");
+});
+
+app.get("/stackblitz/:example", (req: Request, res: Response) => {
+    renderSandBoxRedirect(req, res, "stackblitz");
 });
 
 app.get("/source/:example", (req: Request, res: Response) => {

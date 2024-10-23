@@ -20,7 +20,7 @@ const Subtitle = (frameworkName: string) => (
     <p>How to create a Market Depth (Order Book) {frameworkName} Chart using Mountain Series and a Custom Modifier</p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const depthChartExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -37,5 +37,5 @@ export const depthChartExampleInfo: TExampleInfo = {
         `Create a ${frameworkName} Depth Chart, using the high performance SciChart.js chart library. Get free demo now.`,
     metaKeywords: "depth, orderbook, stock, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

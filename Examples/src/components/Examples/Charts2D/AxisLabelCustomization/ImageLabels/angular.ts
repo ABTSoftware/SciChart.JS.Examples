@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { ScichartAngularComponent } from "scichart-angular";
 import { drawExample } from "./drawExample";
 
 const emojiUrls = [
@@ -20,6 +21,8 @@ const emojiUrls = [
 ];
 
 @Component({
+    standalone: true,
+    imports: [ScichartAngularComponent],
     selector: "app-root",
     template: `<scichart-angular [initChart]="drawExample"> </scichart-angular>`,
 })

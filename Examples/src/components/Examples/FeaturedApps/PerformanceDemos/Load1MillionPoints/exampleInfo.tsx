@@ -26,7 +26,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -41,5 +41,5 @@ export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     metaDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.`,
     metaKeywords: "performance, loading, million, points, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

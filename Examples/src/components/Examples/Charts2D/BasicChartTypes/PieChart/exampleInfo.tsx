@@ -30,7 +30,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const pieChartExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -46,5 +46,5 @@ export const pieChartExampleInfo: TExampleInfo = {
         `Easily create and customise a high performance ${frameworkName} Pie Chart with 5-star rated SciChart.js. Get your free trial now to access the whole library. `,
     metaKeywords: "pie, chart, javascript, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

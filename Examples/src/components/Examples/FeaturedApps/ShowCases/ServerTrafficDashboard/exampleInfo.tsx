@@ -28,7 +28,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const serverTrafficDashboardDemoExampleInfo: TExampleInfo = {
     onWebsite: true,

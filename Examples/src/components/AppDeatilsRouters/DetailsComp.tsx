@@ -3,7 +3,7 @@ import classes from "./AppDeatilsRouter.scss";
 import Chart from "../TopBarTabs/images/chart-d.jpg";
 import { TExamplePage } from "../AppRouter/examplePages";
 import ReactMarkdown from "react-markdown";
-import rehypeRaw from 'rehype-raw';
+import rehypeRaw from "rehype-raw";
 import { PluggableList } from "react-markdown/lib/react-markdown";
 
 type TProps = {
@@ -16,12 +16,9 @@ const DetailsCom: FC<TProps> = (props) => {
     const { currentExample } = props;
     return (
         <div className={classes.scichartcontainer}>
-
-            {currentExample?.markdownContent?.length && 
-                <ReactMarkdown rehypePlugins={plugins}>
-                    {currentExample.markdownContent}
-                </ReactMarkdown>
-            }
+            {currentExample?.markdownContent?.length && (
+                <ReactMarkdown rehypePlugins={plugins}>{currentExample.markdownContent}</ReactMarkdown>
+            )}
 
             {currentExample.customDescription && (
                 <div className={classes.scichartinfo}>

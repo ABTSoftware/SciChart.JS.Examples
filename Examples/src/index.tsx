@@ -1,14 +1,13 @@
-import * as React from "react";
+import { useEffect } from "react";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/App";
 import { customTheme } from "./theme";
 import "./components/index.scss";
-// import { createRoot, hydrateRoot } from "react-dom/client";
-import { hydrate } from "react-dom";
 
 function Main() {
-    React.useEffect(() => {
+    useEffect(() => {
         const jssStyles = document.querySelector("#jss-server-side");
         if (jssStyles) {
             jssStyles.parentElement.removeChild(jssStyles);
@@ -23,12 +22,11 @@ function Main() {
         </ThemeProvider>
     );
 }
-hydrate(<Main />, document.querySelector("#react-root"));
 
-// TODO use with React 18
-// if (process.env.NODE_ENV === "production") {
-//     hydrateRoot(document.querySelector("#react-root"), <Main />);
-// } else {
-//     const root = createRoot(document.querySelector("#react-root"))
-//     root.render(<Main />);
-// }
+const rootElement = document.querySelector("#react-root");
+if (process.env.NODE_ENV === "production") {
+    hydrateRoot(rootElement, <Main />);
+} else {
+    const root = createRoot(rootElement);
+    root.render(<Main />);
+}

@@ -26,7 +26,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const dragAxisToScaleExampleInfo: TExampleInfo = {
     onWebsite: false,
@@ -42,5 +42,5 @@ export const dragAxisToScaleExampleInfo: TExampleInfo = {
         `Demonstrates how to Zoom, Scale or Pan individual Axis on a ${frameworkName} Chart with SciChart.js AxisDragModifiers`,
     metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

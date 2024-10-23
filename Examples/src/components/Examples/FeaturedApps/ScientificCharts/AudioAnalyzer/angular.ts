@@ -1,8 +1,12 @@
 import { Component } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ScichartAngularComponent } from "scichart-angular";
 import { getChartsInitializationApi } from "./drawExample";
 import { appTheme } from "../../../theme";
 
 @Component({
+    standalone: true,
+    imports: [CommonModule, ScichartAngularComponent],
     selector: "app-audio-analyzer",
     template: `
         <style>
@@ -49,11 +53,11 @@ import { appTheme } from "../../../theme";
     `,
 })
 export class AppComponent {
-    private chartsInitializationAPI = getChartsInitializationApi();
-    private audioChart: any;
-    private fftChart: any;
-    private spectrogramChart: any;
-    private controlsRef: any;
+    chartsInitializationAPI = getChartsInitializationApi();
+    audioChart: any;
+    fftChart: any;
+    spectrogramChart: any;
+    controlsRef: any;
     appTheme = appTheme;
 
     async onChartInit(event: any, chartType: "audio" | "fft" | "spectrogram") {

@@ -29,10 +29,10 @@ const SubMenuItems: FC<TProps> = ({
     handleClicks,
     SubmenuTitle,
     handleSubmenuClick,
-    isHomePage = false
+    isHomePage = false,
 }) => {
     return (
-        <div className={classes.contertlistwrap} style={ isHomePage ? {top: 80} : {}}> 
+        <div className={classes.contertlistwrap} style={isHomePage ? { top: 80 } : {}}>
             <div className={`${classes.contentlist} ${classes.graybg}`}>
                 {currentMenuItems.map((item) => (
                     <ul key={item.item.id} style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "17px" }}>

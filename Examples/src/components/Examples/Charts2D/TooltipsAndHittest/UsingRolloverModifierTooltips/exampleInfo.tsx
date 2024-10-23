@@ -30,7 +30,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -47,5 +47,5 @@ export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
         `Demonstrates adding Tooltips on mouse-move to a ${frameworkName} Chart with SciChart.js RolloverModifier`,
     metaKeywords: "rollover, modifier, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

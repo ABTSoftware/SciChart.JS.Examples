@@ -34,7 +34,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const vitalSignsMonitorDemoExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -52,5 +52,5 @@ export const vitalSignsMonitorDemoExampleInfo: TExampleInfo = {
         oxygen, volumetric flow and more.`,
     metaKeywords: "ecg, ekg, realtime, medical, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

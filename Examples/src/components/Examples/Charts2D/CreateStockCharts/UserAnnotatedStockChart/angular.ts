@@ -1,8 +1,33 @@
 import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { MatSliderModule } from "@angular/material/slider";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatCardModule } from "@angular/material/card";
+import { MatButtonModule } from "@angular/material/button";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
 import { SciChartSurface, chartReviver, localStorageApi } from "scichart";
+import { ScichartAngularComponent } from "scichart-angular";
 import { drawExample, IChartControls } from "./drawExample";
-import { appTheme } from "../../../theme";
+
 @Component({
+    standalone: true,
+    imports: [
+        CommonModule,
+        FormsModule,
+        ScichartAngularComponent,
+        MatSliderModule,
+        MatRadioModule,
+        MatFormFieldModule,
+        MatButtonToggleModule,
+        MatCardModule,
+        MatButtonModule,
+        MatInputModule,
+        MatSelectModule,
+    ],
     selector: "app-user-annotated-stock-chart",
     template: `
         <style>
@@ -11,7 +36,7 @@ import { appTheme } from "../../../theme";
                 flex-wrap: wrap;
                 gap: 10px;
                 padding: 10px;
-                background: ${appTheme.DarkIndigo};
+                background: #1f0954;
                 align-items: center;
             }
 

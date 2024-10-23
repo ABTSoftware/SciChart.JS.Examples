@@ -25,7 +25,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const styleAnimationExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -41,5 +41,5 @@ export const styleAnimationExampleInfo: TExampleInfo = {
     metaDescription: (frameworkName: string) => `Demonstrates how to run Style Transition Animations with JavaScript.`,
     metaKeywords: "style, animation, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

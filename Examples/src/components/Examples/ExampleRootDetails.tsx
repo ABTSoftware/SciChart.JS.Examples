@@ -41,9 +41,9 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
                 image={exampleImage}
                 url={exampleUrl}
             />
-                <div className={classes.Example}>
-                    <ExampleComponent />
-                </div>
+            <div className={classes.Example}>
+                <ExampleComponent />
+            </div>
         </div>
     );
 };

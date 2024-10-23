@@ -28,7 +28,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const rotatedLabelsExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -44,5 +44,5 @@ export const rotatedLabelsExampleInfo: TExampleInfo = {
     metaDescription: (frameworkName: string) => `Rotate to create vertical axis labels and fit more on an axis`,
     metaKeywords: "Axis, label, rotated, vertical, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };

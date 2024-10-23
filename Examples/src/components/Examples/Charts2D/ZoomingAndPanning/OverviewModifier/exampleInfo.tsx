@@ -31,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-const markdownContent: string = undefined
+const markdownContent: string = undefined;
 
 export const overviewExampleInfo: TExampleInfo = {
     onWebsite: true,
@@ -47,5 +47,5 @@ export const overviewExampleInfo: TExampleInfo = {
     metaDescription: (frameworkName: string) => `Demonstrates how to zoom and pan with an Overview Chart`,
     metaKeywords: "drag, axis, scale, overview, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    markdownContent
+    markdownContent,
 };
