@@ -49,11 +49,6 @@ import { ExampleDataProvider, IOhlcvValues } from "../../../ExampleData/ExampleD
 import { multiPaneData } from "../../../ExampleData/multiPaneData";
 import { appTheme } from "../../../theme";
 
-const divElementId1 = "cc_chart_3_1";
-const divElementId2 = "cc_chart_3_2";
-const divElementId3 = "cc_chart_3_3";
-const divOverviewId = "cc_overview";
-
 const getTradingData = (startPoints?: number, maxPoints?: number): IOhlcvValues => {
     const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = multiPaneData;
 
