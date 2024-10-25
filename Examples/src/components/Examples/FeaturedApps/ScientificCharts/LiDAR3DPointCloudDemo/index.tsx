@@ -10,20 +10,18 @@ export default function LiDAR3DPointCloudDemo() {
 
     return (
         <div className={classes.ChartWrapper}>
-            <div style={{ position: "relative" }}>
-                <SciChartReact
-                    initChart={drawExample}
-                    style={{ width: "100%", height: "100%" }}
-                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                        const { sciChartSurface } = initResult;
-                        sciChartSurfaceRef.current = sciChartSurface;
-                    }}
-                />
-                <SciChartReact
-                    initChart={drawHeatmapLegend}
-                    style={{ position: "absolute", height: "90%", width: "100px", top: 0, right: "75px", margin: "20" }}
-                />
-            </div>
+            <SciChartReact
+                initChart={drawExample}
+                style={{ height: "100%", width: "100%" }}
+                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                    const { sciChartSurface } = initResult;
+                    sciChartSurfaceRef.current = sciChartSurface;
+                }}
+            />
+            <SciChartReact
+                initChart={drawHeatmapLegend}
+                style={{ position: "absolute", height: "90%", width: "100px", top: 0, right: "75px", margin: "20" }}
+            />
         </div>
     );
 }
