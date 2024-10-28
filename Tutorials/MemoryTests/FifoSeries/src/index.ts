@@ -1,5 +1,6 @@
 import {
   EAutoRange,
+  EPerformanceMarkType,
   FastLineRenderableSeries,
   MemoryUsageHelper,
   NumberRange,
@@ -37,8 +38,110 @@ const logMemory = () => {
 };
 
 const logPerformance = () => {
-  const allPerformanceMarks = performance.getEntriesByType("mark");
-  console.log(allPerformanceMarks);
+  const allPerformanceMarks = performance.getEntriesByType(
+    "mark"
+  ) as PerformanceMark[];
+
+  const getMeasures = () => {
+    const endMarks = allPerformanceMarks.filter((mark) =>
+      mark.name.includes("End")
+    );
+
+    const startMarks = allPerformanceMarks.filter((mark) =>
+      mark.name.includes("Start")
+    );
+    const startMarksMap = new Map(
+      startMarks.map((mark) => [mark.detail.relatedId, mark])
+    );
+
+    const measures = endMarks.reduce((acc, endMark) => {
+      const startMark = startMarksMap.get(endMark.detail.relatedId);
+      if (!startMark) {
+        return acc;
+      }
+      acc.push(
+        performance.measure(
+          `${endMark.name.split("End")[0]}_${endMark.detail.relatedId}`,
+          startMark.name,
+          endMark.name
+        )
+      );
+
+      return acc;
+    }, []);
+
+    return measures.sort((a, b) => a.startTime - b.startTime);
+  };
+
+  const allMeasures = getMeasures();
+  console.table(allMeasures);
+
+  // Another example
+  // const getPerformanceInfo = () => {
+  //   const engineLoadStartMark = allPerformanceMarks.find((mark) =>
+  //     mark.name.startsWith(EPerformanceMarkType.EngineInitStart)
+  //   );
+  //   const engineLoadEndMark = allPerformanceMarks.find((mark) =>
+  //     mark.name.startsWith(EPerformanceMarkType.EngineInitEnd)
+  //   );
+  //   const wasmFetchAndCompileMeasure = performance.measure(
+  //     "EngineInit",
+  //     engineLoadStartMark.name,
+  //     engineLoadEndMark.name
+  //   );
+
+  //   console.table(wasmFetchAndCompileMeasure);
+
+  //   const getUpdateMeasures = () => {
+  //     const updateStartMarks = allPerformanceMarks.filter((mark) =>
+  //       mark.name.startsWith(EPerformanceMarkType.DataUpdateStart)
+  //     );
+  //     const updateEndMarks = allPerformanceMarks.filter((mark) =>
+  //       mark.name.startsWith(EPerformanceMarkType.DataUpdateEnd)
+  //     );
+  //     const updateStartMarksMap = new Map(
+  //       updateStartMarks.map((mark) => [mark.detail.relatedId, mark])
+  //     );
+  //     const measures = updateEndMarks.map((mark) =>
+  //       performance.measure(
+  //         `DataUpdate_${mark.detail.relatedId}`,
+  //         updateStartMarksMap.get(mark.detail.relatedId).name,
+  //         mark.name
+  //       )
+  //     );
+  //     return measures;
+  //   };
+
+  //   const updateMeasures = getUpdateMeasures();
+
+  //   const getRenderMeasures = () => {
+  //     const updateStartMarks = allPerformanceMarks.filter((mark) =>
+  //       mark.name.startsWith(EPerformanceMarkType.RenderStart)
+  //     );
+  //     const updateEndMarks = allPerformanceMarks.filter((mark) =>
+  //       mark.name.startsWith(EPerformanceMarkType.RenderEnd)
+  //     );
+  //     const updateStartMarksMap = new Map(
+  //       updateStartMarks.map((mark) => [mark.detail.relatedId, mark])
+  //     );
+  //     const measures = updateEndMarks.map((mark) =>
+  //       performance.measure(
+  //         `Render_${mark.detail.relatedId}`,
+  //         updateStartMarksMap.get(mark.detail.relatedId).name,
+  //         mark.name
+  //       )
+  //     );
+  //     return measures;
+  //   };
+
+  //   const renderMeasures = getRenderMeasures();
+
+  //   const allMeasures = [...updateMeasures, ...renderMeasures].sort(
+  //     (a, b) => a.startTime - b.startTime
+  //   );
+
+  //   console.table(allMeasures);
+  // };
 };
 
 const surfaces: SciChartSurface[] = [];
@@ -60,13 +163,13 @@ const createChart = async (index: number) => {
   console.log("createChart", index);
 
   const rootElement = createRootElement(index);
-  const initResult = await init2dChartWithSharedContext(rootElement);
+  const initResult = await init2dChart(rootElement);
   controls = initResult.controls;
 
   surfaces.push(initResult.sciChartSurface);
 };
 
-const init2dChartWithSharedContext = async (rootElement: HTMLDivElement) => {
+const init2dChart = async (rootElement: HTMLDivElement) => {
   const createFunction = shouldUseCreateSingle
     ? SciChartSurface.createSingle
     : SciChartSurface.create;
@@ -114,11 +217,21 @@ const init2dChartWithSharedContext = async (rootElement: HTMLDivElement) => {
   const xValues = new Float64Array(dataChunkSize);
   const yValues = new Float64Array(dataChunkSize);
   const appendData = () => {
+    const startMark = PerformanceDebugHelper.mark("DataPrepareStart", {
+      contextId: sciChartSurface.id,
+    });
+
+    // ideally, data preparations should be done on the server;
+    // in this example generating data on the fly may add some overhead
     for (let i = 0; i < dataChunkSize; i++) {
       xValues[i] = dataPointCount++;
       yValues[i] = 0.2 * Math.sin(i * 0.1) - Math.cos(i * 0.01);
     }
 
+    PerformanceDebugHelper.mark("DataPrepareEnd", {
+      relatedId: startMark?.detail?.relatedId,
+      contextId: sciChartSurface.id,
+    });
     xyDataSeries.appendRange(xValues, yValues);
   };
 
@@ -177,6 +290,9 @@ const cleanUp = () => {
 
   const parentNode = document.getElementById("containerId");
   parentNode.innerHTML = "";
+
+  performance.clearMeasures();
+  performance.clearMarks();
   window.gc && window.gc();
 };
 
