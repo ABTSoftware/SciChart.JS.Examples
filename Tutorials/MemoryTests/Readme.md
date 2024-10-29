@@ -8,7 +8,8 @@ They could be used for testing and debugging different SciChart features.
 Make sure to check the related documentation:  
 [Memory Best Practices](https://www.scichart.com/documentation/js/current/webframe.html#MemoryBestPractices.html)  
 [Memory Leak Debugging](https://www.scichart.com/documentation/js/current/webframe.html#MemoryLeakDebugging.html)  
-[Memory Management Cheat Sheet](./MemoryManagementCheatSheet.md)
+[Memory Management Cheat Sheet](./MemoryManagementCheatSheet.md)  
+[Performance Cheat Sheet](./PerformanceCheatSheet.md)
 
 ## Performing debugging
 

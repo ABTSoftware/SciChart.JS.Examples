@@ -7,6 +7,8 @@ The Memory Debug utils require the app to be run in development mode.
 Before running the example get familiarized with related documentation:  
 [Memory Best Practices](https://www.scichart.com/documentation/js/current/webframe.html#MemoryBestPractices.html)  
 [Memory Leak Debugging](https://www.scichart.com/documentation/js/current/webframe.html#MemoryLeakDebugging.html)
+[Performance Tips](../MemoryManagementCheatSheet.md)  
+[Performance Tips](../PerformanceCheatSheet.md)
 
 ## Running the project
 
@@ -28,7 +30,7 @@ For a demonstration of the example setup and memory usage behaviour follow these
 
 ### FIFO Data Series memory footprint observation example
 
-First of all, get acknowledged with the documentation on [FIFO Data Series]()
+First of all, get acknowledged with the documentation on [FIFO Data Series](https://www.scichart.com/documentation/js/current/webframe.html#DataSeries_RealtimeUpdates.html)
 
 Let's try the standard setup of this demo, leave the inputs in the default state.
 Force garbage collection and make a heap snapshot with dev tools.

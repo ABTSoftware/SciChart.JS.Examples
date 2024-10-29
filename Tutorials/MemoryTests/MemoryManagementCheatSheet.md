@@ -229,6 +229,8 @@ Dev tools and Memory Debug Mode could cause some performance overhead as well.
 
 More info on the subject can be found with the _Major and Minor GC_ topic query.
 
+Check out SciChart-related [performance tips](./PerformanceCheatSheet.md)
+
 ## Cleanup in framework based components
 
 There are different examples of component implementation for some frameworks.  
