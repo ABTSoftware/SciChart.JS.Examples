@@ -78,7 +78,7 @@ export default function ChartLegendsAPI() {
         },
         toolbar: {
             minHeight: "70px",
-            padding: "10",
+            padding: "10px",
             color: appTheme.ForegroundColor,
             fontSize: "13px",
             flex: "none",
@@ -87,7 +87,7 @@ export default function ChartLegendsAPI() {
         combobox: {
             color: appTheme.Background,
             backgroundColor: appTheme.ForegroundColor,
-            margin: "10",
+            margin: "10px",
         },
         chartElement: {
             width: "100%",

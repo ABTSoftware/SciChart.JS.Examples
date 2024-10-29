@@ -180,7 +180,7 @@ export const getAngularSandBoxConfig = async (folderPath: string, currentExample
           "compileOnSave": false,
           "compilerOptions": {
             "outDir": "./dist/out-tsc",
-            "strict": true,
+            "strict": false,
             "noImplicitOverride": true,
             "strictPropertyInitialization": false,
             "noPropertyAccessFromIndexSignature": true,

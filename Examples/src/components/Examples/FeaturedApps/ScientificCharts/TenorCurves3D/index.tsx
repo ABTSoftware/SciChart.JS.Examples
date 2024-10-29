@@ -6,8 +6,8 @@ import { SciChartReact } from "scichart-react";
 export default function TenorCurves3DChart() {
     return (
         <React.Fragment>
-            <div className={classes.ChartWrapper}>
-                <div style={{ float: "left", width: "50%", height: "100%", position: "relative" }}>
+            <div className={classes.ChartWrapper} style={{ display: "flex" }}>
+                <div style={{ flex: "none", width: "50%", position: "relative" }}>
                     <SciChartReact initChart={draw3DChart} style={{ width: "100%", height: "100%" }} />
                     <SciChartReact
                         initChart={drawHeatmapLegend}
@@ -21,7 +21,7 @@ export default function TenorCurves3DChart() {
                         }}
                     />
                 </div>
-                <div style={{ position: "relative", left: "50%", width: "50%", height: "100%" }}>
+                <div style={{ position: "relative", width: "50%", height: "100%" }}>
                     <SciChartReact initChart={drawLineChart1} style={{ position: "relative", height: "50%" }} />
                     <SciChartReact initChart={drawLineChart2} style={{ height: "50%" }} />
                 </div>
