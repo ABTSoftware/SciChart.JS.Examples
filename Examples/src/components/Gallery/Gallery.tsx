@@ -12,7 +12,8 @@ const Gallery: React.FC<TProps> = (props) => {
     const theme = useTheme();
 
     // Determine slider width based on screen size
-    const isXs = useMediaQuery(theme.breakpoints.down("sm")); // Mobile view
+    // TODO sm was changed by migration script.requires verification
+    const isXs = useMediaQuery(theme.breakpoints.down("md")); // Mobile view
     const isSm = useMediaQuery(theme.breakpoints.only("sm")); // Small view
     const slidersWidth = isXs ? 1 : isSm ? 3 : 5; // Default to 5 for larger screens
 
