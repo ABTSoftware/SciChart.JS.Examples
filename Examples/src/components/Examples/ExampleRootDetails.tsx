@@ -41,7 +41,7 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
                 image={exampleImage}
                 url={exampleUrl}
             />
-            <div className={classes.Example}>
+            <div className={`${classes.Example} AnExampleContainer`}>
                 <ExampleComponent />
             </div>
         </div>

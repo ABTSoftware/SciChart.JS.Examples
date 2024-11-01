@@ -36,7 +36,7 @@ export default function AppRouter(props: TProps) {
         const ChartComponent = getExampleComponent(currentExample.id);
 
         return (
-            <div className={classes.ExampleWrapperIFrame}>
+            <div className={`${classes.ExampleWrapperIFrame} AnExampleContainer`}>
                 <NoIndexTag />
                 <Routes>
                     {examplePagesKeys.map((key) => {
