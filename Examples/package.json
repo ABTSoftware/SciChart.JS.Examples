@@ -39,7 +39,7 @@
     "@mui/icons-material": "^5.15.20",
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.15.20",
-    "@mui/styles": "^5.15.21",
+    "@mui/styles": "^6.1.6",
     "@types/react": "^18.3.11",
     "chalk": "^4.1.0",
     "codesandbox": "^2.2.3",

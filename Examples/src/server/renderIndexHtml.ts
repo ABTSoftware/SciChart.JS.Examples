@@ -29,10 +29,10 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.css" />
             <link rel="stylesheet" href="style.css" />
 
-            <style id="jss-server-side">${css}</style>
+            <meta name="emotion-insertion-point" content="" />
+            ${css}
 
             <script async type="text/javascript" src="bundle.js"></script>
-
         </head>
         <body ${helmet.bodyAttributes.toString()} style="margin: 0;">
             <!-- Display a message if JS has been disabled on the browser. -->
