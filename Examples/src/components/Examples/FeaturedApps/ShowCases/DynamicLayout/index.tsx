@@ -18,7 +18,7 @@ import {
 } from "scichart";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { GridLayoutModifier } from "./GridLayoutModifier";
 import { SciChartReact, SciChartSurfaceContext, TResolvedReturnType } from "scichart-react";
 import { useContext } from "react";
@@ -104,7 +104,7 @@ export default function DynamicLayout() {
 
     return (
         <React.Fragment>
-            <div className={classes.ChartWrapper}>
+            <div className={commonClasses.ChartWrapper}>
                 <SciChartReact
                     className={localClasses.flexOuterContainer}
                     innerContainerProps={{ className: localClasses.chartArea }}

@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { appTheme } from "../../../theme";
@@ -43,7 +43,7 @@ export default function StyleAnimation() {
     const localClasses = useStyles();
 
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={commonClasses.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
                 <div className={localClasses.toolbarRow}>
                     <ToggleButtonGroup

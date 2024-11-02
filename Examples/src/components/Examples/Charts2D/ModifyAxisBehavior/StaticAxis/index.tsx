@@ -2,7 +2,7 @@ import * as React from "react";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { drawExample } from "./drawExample";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { makeStyles } from "@mui/styles";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { Typography } from "@mui/material";
@@ -38,7 +38,7 @@ export default function ChartComponent() {
     const localClasses = useStyles();
     return (
         <>
-            <div className={classes.ChartWrapper}>
+            <div className={commonClasses.ChartWrapper}>
                 <div className={localClasses.flexOuterContainer}>
                     <div className={localClasses.toolbarRow}>
                         <Typography style={{ color: appTheme.ForegroundColor }}>Primary Axis: </Typography>

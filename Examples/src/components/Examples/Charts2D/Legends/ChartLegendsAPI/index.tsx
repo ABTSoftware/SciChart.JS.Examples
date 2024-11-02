@@ -1,6 +1,6 @@
 import * as React from "react";
 import Checkbox from "@mui/material/Checkbox";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { makeStyles } from "@mui/styles";
 import { ELegendOrientation, ELegendPlacement, LegendModifier, SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";
@@ -98,7 +98,7 @@ export default function ChartLegendsAPI() {
 
     return (
         <React.Fragment>
-            <div className={classes.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+            <div className={commonClasses.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
                 <div className={localClasses.flexContainer}>
                     {/*The toolbar is here*/}
                     <div className={localClasses.toolbar}>
@@ -143,7 +143,7 @@ export default function ChartLegendsAPI() {
                         <SciChartReact
                             initChart={drawExample}
                             style={{ width: "100%", height: "100%" }}
-                            className={classes.ChartWrapper}
+                            className={commonClasses.ChartWrapper}
                             onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                                 const { sciChartSurface, legendModifier } = initResult;
                                 legendModifierRef.current = legendModifier;

@@ -1,7 +1,7 @@
 import { ToggleButton, ToggleButtonGroup, ToggleButtonGroupProps } from "@mui/material";
 import * as React from "react";
 import { makeStyles } from "@mui/styles";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";
@@ -42,7 +42,7 @@ export default function PercentageChange() {
 
     const localClasses = useStyles();
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={commonClasses.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
                 <ToggleButtonGroup
                     className={localClasses.toolbarRow}
@@ -64,7 +64,7 @@ export default function PercentageChange() {
                 <SciChartReact
                     key={chartKey} // Change the key to force re-render
                     initChart={(rootElement) => drawExample(rootElement, usePercentage)}
-                    className={classes.ChartWrapper}
+                    className={commonClasses.ChartWrapper}
                 />
             </div>
         </div>

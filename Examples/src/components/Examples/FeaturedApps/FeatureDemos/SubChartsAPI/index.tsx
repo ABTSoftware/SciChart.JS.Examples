@@ -1,6 +1,6 @@
 import * as React from "react";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { makeStyles } from "@mui/styles";
 import { FormControl, ButtonGroup, Button, FormControlLabel, Checkbox } from "@mui/material";
 import {
@@ -417,10 +417,10 @@ export default function SubchartsGrid() {
         });
 
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={commonClasses.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
                 <div className={localClasses.toolbarRow}>
-                    <FormControl className={classes.formControl}>
+                    <FormControl className={commonClasses.formControl}>
                         <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
                             <Button id="startStreaming" onClick={handleStartStreaming}>
                                 {isDirty ? "ReStart" : "Start"}
@@ -430,7 +430,7 @@ export default function SubchartsGrid() {
                             </Button>
                         </ButtonGroup>
                     </FormControl>
-                    <FormControl className={classes.formControl}>
+                    <FormControl className={commonClasses.formControl}>
                         <FormControlLabel
                             control={<Checkbox onChange={handleLabelsChange} />}
                             label="Axis Labels"

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { CSSProperties } from "react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { SciChartReact } from "scichart-react";
 import { DataPointInfo } from "scichart";
@@ -10,7 +10,7 @@ export default function DatapointSelection() {
     const [selectedPoints, setSelectedPoints] = React.useState<DataPointInfo[]>([]);
 
     return (
-        <div className={classes.FullHeightChartWrapper}>
+        <div className={commonClasses.FullHeightChartWrapper}>
             <div style={{ display: "flex", flexDirection: "row", height: "100%" }}>
                 <SciChartReact
                     style={chartStyle}

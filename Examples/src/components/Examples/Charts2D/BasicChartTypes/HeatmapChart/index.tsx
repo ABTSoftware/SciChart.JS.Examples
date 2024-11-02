@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { Button } from "@mui/material";
 import { appTheme } from "../../../theme";
 import { makeStyles } from "@mui/styles";
@@ -37,7 +37,7 @@ export default function HeatmapChart() {
     const localClasses = useStyles();
 
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={commonClasses.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
                 <div className={localClasses.toolbarRow}>
                     <Button onClick={() => controlsRef.current.startDemo()} style={{ color: appTheme.ForegroundColor }}>

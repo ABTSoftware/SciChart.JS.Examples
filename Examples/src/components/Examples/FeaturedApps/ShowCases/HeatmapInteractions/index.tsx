@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
 import * as React from "react";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { getChartsInitializationApi, IChartControls } from "./drawExample";
 import { SciChartGroup, SciChartReact } from "scichart-react";
 
@@ -34,7 +34,7 @@ export default function HeatmapInteractions() {
 
     return (
         <React.Fragment>
-            <div className={classes.ChartWrapper}>
+            <div className={commonClasses.ChartWrapper}>
                 <div className={localClasses.flexOuterContainer}>
                     <div className={localClasses.toolbarRow}>
                         <Button

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { appTheme } from "../../../theme";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
 
@@ -171,7 +171,7 @@ export default function RealtimeGhostedTraces() {
 
     return (
         <React.Fragment>
-            <div className={classes.ChartWrapper}>
+            <div className={commonClasses.ChartWrapper}>
                 <div className={localClasses.flexOuterContainer}>
                     <div className={localClasses.toolbarRow}>
                         <Button

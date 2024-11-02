@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "../../styles/Examples.module.scss";
+import commonClasses from "../../styles/Examples.module.scss";
 import { ButtonGroup, Button, TextField } from "@mui/material";
 import { Alert, AlertTitle } from "@mui/material";
 import { SciChartReact } from "scichart-react";
@@ -51,7 +51,7 @@ export default function ChartFromJSON() {
     };
 
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={commonClasses.ChartWrapper}>
             <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
                 <Chart chartConfig={currentChartConfig} />
                 <div style={{ position: "absolute", left: 20, top: 20 }}>
@@ -63,7 +63,7 @@ export default function ChartFromJSON() {
                     )}
                 </div>
                 <div style={{ flexBasis: "50px" }}>
-                    <div className={classes.FormControl}>
+                    <div className={commonClasses.FormControl}>
                         <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
                             <Button id="eg1" onClick={loadMinimal}>
                                 Simple example
@@ -90,9 +90,12 @@ export default function ChartFromJSON() {
                         onChange={handleChangeJSON}
                     />
                 </div>
-                <div className={[classes.FormControl, classes.AlignRight].join(" ")} style={{ flexBasis: "50px" }}>
+                <div
+                    className={[commonClasses.FormControl, commonClasses.AlignRight].join(" ")}
+                    style={{ flexBasis: "50px" }}
+                >
                     <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                        <Button className={classes.ButtonFilled} id="buildChart" onClick={handleBuild}>
+                        <Button className={commonClasses.ButtonFilled} id="buildChart" onClick={handleBuild}>
                             Apply
                         </Button>
                     </ButtonGroup>

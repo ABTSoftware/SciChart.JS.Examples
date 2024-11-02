@@ -22,7 +22,7 @@ type Mark = typeof MuiSlider.prototype.defaultProps.marks;
 import * as React from "react";
 import { ESeriesType, SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, ISettings, TMessage } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
@@ -175,7 +175,7 @@ export default function RealtimeBigDataShowcase() {
     }, seriesType);
 
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={commonClasses.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
                 <SciChartReact
                     key={seriesType}
@@ -197,7 +197,7 @@ export default function RealtimeBigDataShowcase() {
                     }}
                 />
                 <div
-                    className={classes.notificationsBlock}
+                    className={commonClasses.notificationsBlock}
                     style={{
                         margin: "10 10 0 10",
                         color: appTheme.ForegroundColor,
@@ -207,7 +207,7 @@ export default function RealtimeBigDataShowcase() {
                     }}
                 >
                     <div>
-                        <FormControl className={classes.formControl}>
+                        <FormControl className={commonClasses.formControl}>
                             <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
                                 <Button id="startStreaming" onClick={handleStartStreaming}>
                                     {isDirty ? "ReStart" : "Start"}
@@ -218,7 +218,7 @@ export default function RealtimeBigDataShowcase() {
                             </ButtonGroup>
                         </FormControl>
                     </div>
-                    <FormControl className={classes.formControl}>
+                    <FormControl className={commonClasses.formControl}>
                         <RadioGroup id="chartType" value={seriesType} onChange={changeChart}>
                             <FormControlLabel value={ESeriesType.LineSeries} control={<Radio />} label="Line Chart" />
                             <FormControlLabel
@@ -301,7 +301,7 @@ export default function RealtimeBigDataShowcase() {
                         valueLabelDisplay="off"
                     />
                     {messages.length > 0 && (
-                        <Alert key="0" severity="info" className={classes.notification}>
+                        <Alert key="0" severity="info" className={commonClasses.notification}>
                             {messages.map((msg, index) => (
                                 <div key={index} style={{ paddingBottom: 10 }}>
                                     <AlertTitle style={{ lineHeight: 1 }}>{msg.title}</AlertTitle>

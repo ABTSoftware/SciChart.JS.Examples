@@ -4,7 +4,7 @@ import AlertTitle from "@mui/material/AlertTitle";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { makeStyles } from "@mui/styles";
 
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
@@ -38,7 +38,7 @@ export default function Load500By500() {
     const localClasses = useStyles();
 
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={commonClasses.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
                 <SciChartReact
                     className={localClasses.chartArea}
@@ -68,7 +68,7 @@ export default function Load500By500() {
                         {timeSpans.length > 0 && (
                             <Alert
                                 key="0"
-                                className={classes.Notification}
+                                className={commonClasses.Notification}
                                 style={{ backgroundColor: appTheme.Indigo, color: appTheme.ForegroundColor }}
                             >
                                 <AlertTitle>Performance Results</AlertTitle>

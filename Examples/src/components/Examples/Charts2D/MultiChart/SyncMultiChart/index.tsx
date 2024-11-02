@@ -2,7 +2,7 @@ import * as React from "react";
 import { makeStyles } from "@mui/styles";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 
 import {
     AxisBase2D,
@@ -305,7 +305,7 @@ export default function SyncMultiChart() {
 
     const firstFreePane = chartPanes.find((pane) => !pane.sciChartSurface);
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={commonClasses.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
                 <div style={{ width: "100%", height: "100px", flex: "none" }}>
                     <div className={localClasses.chartArea} id={chartPanes[0].divId}></div>

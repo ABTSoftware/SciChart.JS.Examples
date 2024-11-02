@@ -9,7 +9,7 @@ import {
 } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, IChartControls } from "./drawExample";
 import { Button, ButtonGroup, MenuItem, Select, TextField } from "@mui/material";
 // If you want to keep using makeStyles:
@@ -91,7 +91,7 @@ export default function UserAnnotatedStockChart() {
 
     return (
         <React.Fragment>
-            <div className={classes.ChartWrapper}>
+            <div className={commonClasses.ChartWrapper}>
                 <div className={localClasses.flexOuterContainer}>
                     <div className={localClasses.toolbarRow}>
                         <ToggleButtonGroup

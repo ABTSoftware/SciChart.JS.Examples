@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import "./OIlGasStyles.css";
 
 import { SciChartVerticalGroup } from "scichart";
@@ -116,7 +116,7 @@ export default function OilAndGasDashboardShowcase() {
     }, []);
 
     return (
-        <div className={classes.ChartWrapper} style={{ display: "flex" }}>
+        <div className={commonClasses.ChartWrapper} style={{ display: "flex" }}>
             <div className="sidebar-charts">
                 <div id="sidebar-charts-2d" className="sidebar-charts-2d">
                     <div className="sidebar-charts-2d-title-container">

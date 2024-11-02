@@ -4,7 +4,7 @@ import AlertTitle from "@mui/material/AlertTitle";
 import * as React from "react";
 import { makeStyles } from "@mui/styles";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample, TTimeSpan } from "./drawExample";
 
@@ -40,7 +40,7 @@ export default function Load1MillionPointsChart() {
     const localClasses = useStyles();
 
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={commonClasses.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
                 <SciChartReact
                     className={localClasses.chartArea}
@@ -68,7 +68,7 @@ export default function Load1MillionPointsChart() {
                         {timeSpans.length > 0 && (
                             <Alert
                                 key="0"
-                                className={classes.Notification}
+                                className={commonClasses.Notification}
                                 style={{ backgroundColor: appTheme.Indigo, color: appTheme.ForegroundColor }}
                             >
                                 <AlertTitle>Performance Results</AlertTitle>

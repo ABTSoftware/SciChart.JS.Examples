@@ -2,7 +2,7 @@ import { makeStyles } from "@mui/styles";
 import * as React from "react";
 import { SciChartReact } from "scichart-react";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { getChartsInitializationAPI } from "./drawExample";
 
 // Styles for the 2x2 grid
@@ -37,7 +37,7 @@ export default function ChartComponent() {
     const localClasses = useStyles();
 
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={commonClasses.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
                 <div className={localClasses.flexContainerRow}>
                     <SciChartReact

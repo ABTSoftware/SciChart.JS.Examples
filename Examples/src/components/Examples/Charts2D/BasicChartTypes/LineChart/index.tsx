@@ -1,7 +1,7 @@
 import { makeStyles } from "@mui/styles";
 import * as React from "react";
 import { SciChartSurface } from "scichart";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { SciChartReact } from "scichart-react";
 import { getChartsInitializationAPI } from "./drawExample";
@@ -39,7 +39,7 @@ export default function LineChart() {
     const localClasses = useStyles();
 
     return (
-        <div className={classes.ChartWrapper} style={{ aspectRatio: "3 / 2" }}>
+        <div className={commonClasses.ChartWrapper} style={{ aspectRatio: "3 / 2" }}>
             <div className={localClasses.flexOuterContainer}>
                 <div className={localClasses.flexContainerRow}>
                     <SciChartReact

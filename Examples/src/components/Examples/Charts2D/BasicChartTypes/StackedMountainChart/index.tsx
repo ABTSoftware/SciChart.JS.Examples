@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -46,7 +46,7 @@ export default function StackedMountainChart() {
 
     const localClasses = useStyles();
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={commonClasses.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
                 <ToggleButtonGroup
                     className={localClasses.toolbarRow}

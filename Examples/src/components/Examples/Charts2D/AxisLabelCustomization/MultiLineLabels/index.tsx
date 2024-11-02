@@ -5,7 +5,7 @@ import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { makeStyles } from "@mui/styles";
 import { TextLabelProvider, SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 
 const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
@@ -62,10 +62,10 @@ export default function MultiLineLabels() {
 
     return (
         <>
-            <div className={classes.ChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+            <div className={commonClasses.ChartWrapper} style={{ background: appTheme.DarkIndigo }}>
                 <SciChartReact
                     initChart={drawExample}
-                    className={classes.ChartWrapper}
+                    className={commonClasses.ChartWrapper}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         const { sciChartSurface, labelProvider } = initResult;
                         labelProviderRef.current = labelProvider;
