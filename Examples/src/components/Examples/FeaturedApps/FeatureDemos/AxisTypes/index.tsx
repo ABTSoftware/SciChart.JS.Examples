@@ -52,12 +52,12 @@ export default function FeatureAxisTypes() {
         }
     };
 
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.toolbarRow}>
+            <div className={classes.flexOuterContainer}>
+                <div className={classes.toolbarRow}>
                     <ToggleButtonGroup
                         exclusive
                         value={preset}
@@ -78,7 +78,7 @@ export default function FeatureAxisTypes() {
                     </ToggleButtonGroup>
                 </div>
                 <SciChartReact
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     initChart={drawExample}
                     onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
                         setControls(controls);

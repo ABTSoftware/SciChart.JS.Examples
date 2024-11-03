@@ -34,12 +34,12 @@ export default function HeatmapChart() {
     });
     const [stats, setStats] = React.useState({ xSize: 0, ySize: 0, fps: 0 });
 
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.toolbarRow}>
+            <div className={classes.flexOuterContainer}>
+                <div className={classes.toolbarRow}>
                     <Button onClick={() => controlsRef.current.startDemo()} style={{ color: appTheme.ForegroundColor }}>
                         Start
                     </Button>
@@ -51,7 +51,7 @@ export default function HeatmapChart() {
                     </span>
                     <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
                 </div>
-                <div className={localClasses.chartArea} style={{ position: "relative" }}>
+                <div className={classes.chartArea} style={{ position: "relative" }}>
                     <SciChartReact
                         initChart={drawExample}
                         style={{ width: "100%", height: "100%" }}

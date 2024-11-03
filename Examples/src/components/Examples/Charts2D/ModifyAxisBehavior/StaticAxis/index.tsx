@@ -35,12 +35,12 @@ export default function ChartComponent() {
 
     const controlsRef = React.useRef<{ toggleStaticAxis: () => void }>();
 
-    const localClasses = useStyles();
+    const classes = useStyles();
     return (
         <>
             <div className={commonClasses.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.toolbarRow}>
+                <div className={classes.flexOuterContainer}>
+                    <div className={classes.toolbarRow}>
                         <Typography style={{ color: appTheme.ForegroundColor }}>Primary Axis: </Typography>
                         <ToggleButtonGroup
                             exclusive
@@ -63,7 +63,7 @@ export default function ChartComponent() {
                     </div>
 
                     <SciChartReact
-                        className={localClasses.chartArea}
+                        className={classes.chartArea}
                         initChart={drawExample}
                         onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                             controlsRef.current = initResult.controls;

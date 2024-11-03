@@ -58,7 +58,7 @@ export default function MultiLineLabels() {
         }
     };
 
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     return (
         <>
@@ -73,8 +73,8 @@ export default function MultiLineLabels() {
                     }}
                 />
             </div>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.toolbarRow}>
+            <div className={classes.flexOuterContainer}>
+                <div className={classes.toolbarRow}>
                     <ToggleButtonGroup
                         style={{ height: "100px", padding: "10" }}
                         exclusive

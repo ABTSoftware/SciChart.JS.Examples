@@ -40,12 +40,12 @@ export default function StyleAnimation() {
         controls.animateChartStyle(isStyle1);
     };
 
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.toolbarRow}>
+            <div className={classes.flexOuterContainer}>
+                <div className={classes.toolbarRow}>
                     <ToggleButtonGroup
                         exclusive
                         value={preset}
@@ -67,7 +67,7 @@ export default function StyleAnimation() {
                         setControls(initResult.controls);
                     }}
                     initChart={drawExample}
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                 />
             </div>
         </div>

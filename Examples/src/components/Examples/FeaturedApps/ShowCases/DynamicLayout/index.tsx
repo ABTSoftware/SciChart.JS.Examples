@@ -100,14 +100,14 @@ const useStyles = makeStyles((theme) => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function DynamicLayout() {
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     return (
         <React.Fragment>
             <div className={commonClasses.ChartWrapper}>
                 <SciChartReact
-                    className={localClasses.flexOuterContainer}
-                    innerContainerProps={{ className: localClasses.chartArea }}
+                    className={classes.flexOuterContainer}
+                    innerContainerProps={{ className: classes.chartArea }}
                     initChart={drawExample}
                 >
                     <ChartToolbar />
@@ -118,7 +118,7 @@ export default function DynamicLayout() {
 }
 
 const ChartToolbar = () => {
-    const localClasses = useStyles();
+    const classes = useStyles();
     const initResult = useContext(SciChartSurfaceContext) as TResolvedReturnType<typeof drawExample>;
     const [isGrid, setIsGrid] = React.useState<boolean>(false);
 
@@ -127,7 +127,7 @@ const ChartToolbar = () => {
         setIsGrid(value);
     };
     return (
-        <div className={localClasses.toolbarRow}>
+        <div className={classes.toolbarRow}>
             <ToggleButtonGroup
                 exclusive
                 value={isGrid}

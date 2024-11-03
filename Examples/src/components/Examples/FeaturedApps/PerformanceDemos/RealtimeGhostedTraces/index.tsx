@@ -167,13 +167,13 @@ export default function RealtimeGhostedTraces() {
 
     const [stats, setStats] = React.useState({ numberSeries: 0, numberPoints: 0, fps: 0 });
 
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     return (
         <React.Fragment>
             <div className={commonClasses.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.toolbarRow}>
+                <div className={classes.flexOuterContainer}>
+                    <div className={classes.toolbarRow}>
                         <Button
                             id="startAnimation"
                             style={{ color: appTheme.ForegroundColor }}
@@ -200,7 +200,7 @@ export default function RealtimeGhostedTraces() {
                         <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
                     </div>
                     <SciChartReact
-                        className={localClasses.chartArea}
+                        className={classes.chartArea}
                         initChart={drawExample}
                         onInit={({ sciChartSurface, controls }: TResolvedReturnType<typeof drawExample>) => {
                             controlsRef.current = controls;

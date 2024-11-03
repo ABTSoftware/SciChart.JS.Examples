@@ -94,14 +94,14 @@ export default function ChartLegendsAPI() {
             flex: "auto",
         },
     }));
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     return (
         <React.Fragment>
             <div className={commonClasses.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
-                <div className={localClasses.flexContainer}>
+                <div className={classes.flexContainer}>
                     {/*The toolbar is here*/}
-                    <div className={localClasses.toolbar}>
+                    <div className={classes.toolbar}>
                         Show Legend?
                         <Checkbox checked={showLegendValue} onChange={handleChangeShowLegend} />
                         Show Visibility Checkboxes?
@@ -111,7 +111,7 @@ export default function ChartLegendsAPI() {
                         <label id="sciChartPlacement-label">
                             Legend Placement
                             <select
-                                className={localClasses.combobox}
+                                className={classes.combobox}
                                 id="sciChartPlacement"
                                 value={placementValue}
                                 onChange={handleChangePlacement}
@@ -126,7 +126,7 @@ export default function ChartLegendsAPI() {
                         <label id="sciChartPlacement-label">
                             Legend Orientation
                             <select
-                                className={localClasses.combobox}
+                                className={classes.combobox}
                                 id="sciChartOrientation"
                                 value={orientationValue}
                                 onChange={handleChangeOrientation}

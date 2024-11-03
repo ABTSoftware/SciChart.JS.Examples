@@ -35,13 +35,13 @@ export default function RealtimePerformanceDemo() {
 
     const [stats, setStats] = React.useState({ numberPoints: 0, fps: 0 });
 
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     return (
         <React.Fragment>
             <div className={commonClasses.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.toolbarRow}>
+                <div className={classes.flexOuterContainer}>
+                    <div className={classes.toolbarRow}>
                         <Button
                             onClick={() => controlsRef.current.startDemo()}
                             style={{ color: appTheme.ForegroundColor }}
@@ -65,7 +65,7 @@ export default function RealtimePerformanceDemo() {
                         <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
                     </div>
                     <SciChartReact
-                        className={localClasses.chartArea}
+                        className={classes.chartArea}
                         initChart={drawExample}
                         onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                             controlsRef.current = initResult.controls;

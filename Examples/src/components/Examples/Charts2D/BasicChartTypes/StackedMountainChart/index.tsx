@@ -44,12 +44,12 @@ export default function StackedMountainChart() {
         }
     };
 
-    const localClasses = useStyles();
+    const classes = useStyles();
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
+            <div className={classes.flexOuterContainer}>
                 <ToggleButtonGroup
-                    className={localClasses.toolbarRow}
+                    className={classes.toolbarRow}
                     exclusive
                     value={use100PercentStackedMode}
                     onChange={handleUsePercentage}
@@ -66,7 +66,7 @@ export default function StackedMountainChart() {
                 </ToggleButtonGroup>
                 <SciChartReact
                     initChart={drawExample}
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         const { sciChartSurface, stackedMountainCollection } = initResult;
                         stackedMountainCollectionRef.current = stackedMountainCollection;

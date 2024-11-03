@@ -244,7 +244,7 @@ export default function SyncMultiChart() {
         chartPanes.length = 0;
     };
 
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     React.useEffect(() => {
         const chartInitializationPromise = Promise.all([addChart(0), addChart(1), addChart(2), addChart(3)]);
@@ -306,9 +306,9 @@ export default function SyncMultiChart() {
     const firstFreePane = chartPanes.find((pane) => !pane.sciChartSurface);
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
+            <div className={classes.flexOuterContainer}>
                 <div style={{ width: "100%", height: "100px", flex: "none" }}>
-                    <div className={localClasses.chartArea} id={chartPanes[0].divId}></div>
+                    <div className={classes.chartArea} id={chartPanes[0].divId}></div>
                 </div>
                 {firstFreePane ? (
                     <div
@@ -344,16 +344,13 @@ export default function SyncMultiChart() {
                 {chartPanes
                     .filter((pane) => pane.id > 0)
                     .map((pane) => (
-                        <div
-                            className={pane.sciChartSurface ? localClasses.chartRow : localClasses.emptyRow}
-                            key={pane.id}
-                        >
+                        <div className={pane.sciChartSurface ? classes.chartRow : classes.emptyRow} key={pane.id}>
                             <div
-                                className={pane.sciChartSurface ? localClasses.chartArea : localClasses.emptyRow}
+                                className={pane.sciChartSurface ? classes.chartArea : classes.emptyRow}
                                 id={pane.divId}
                             ></div>
                             {pane.sciChartSurface ? (
-                                <div className={localClasses.toolCol}>
+                                <div className={classes.toolCol}>
                                     <div>
                                         <Button
                                             color="primary"

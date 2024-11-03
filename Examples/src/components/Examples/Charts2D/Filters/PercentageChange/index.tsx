@@ -40,12 +40,12 @@ export default function PercentageChange() {
         }
     };
 
-    const localClasses = useStyles();
+    const classes = useStyles();
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
+            <div className={classes.flexOuterContainer}>
                 <ToggleButtonGroup
-                    className={localClasses.toolbarRow}
+                    className={classes.toolbarRow}
                     exclusive
                     value={usePercentage}
                     onChange={handleUsePercentage}

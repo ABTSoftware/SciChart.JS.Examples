@@ -35,13 +35,13 @@ export default function Load500By500() {
     const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(null);
     const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([]);
 
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
+            <div className={classes.flexOuterContainer}>
                 <SciChartReact
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     initChart={(rootElement: string | HTMLDivElement) =>
                         drawExample(rootElement, (newTimeSpans: TTimeSpan[]) => {
                             setTimeSpans([...newTimeSpans]);
@@ -55,7 +55,7 @@ export default function Load500By500() {
                         controls.stopUpdate();
                     }}
                 />
-                <div className={localClasses.toolbarRow} style={{ minHeight: "140px" }}>
+                <div className={classes.toolbarRow} style={{ minHeight: "140px" }}>
                     <Button
                         onClick={() => {
                             controlsRef.current?.startUpdate();

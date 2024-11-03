@@ -87,13 +87,13 @@ export default function UserAnnotatedStockChart() {
         controlsRef.current.resetChart();
     };
 
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     return (
         <React.Fragment>
             <div className={commonClasses.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.toolbarRow}>
+                <div className={classes.flexOuterContainer}>
+                    <div className={classes.toolbarRow}>
                         <ToggleButtonGroup
                             style={{ height: "70px", padding: "10" }}
                             exclusive
@@ -167,7 +167,7 @@ export default function UserAnnotatedStockChart() {
                         </ButtonGroup>
                     </div>
                     <SciChartReact
-                        className={localClasses.chartArea}
+                        className={classes.chartArea}
                         initChart={drawExample}
                         onInit={({ sciChartSurface, controls }: TResolvedReturnType<typeof drawExample>) => {
                             sciChartSurfaceRef.current = sciChartSurface;

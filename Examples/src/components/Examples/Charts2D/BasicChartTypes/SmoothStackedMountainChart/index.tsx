@@ -40,12 +40,12 @@ export default function SmoothStackedMountainChart() {
         }
     };
 
-    const localClasses = useStyles();
+    const classes = useStyles();
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
+            <div className={classes.flexOuterContainer}>
                 <ToggleButtonGroup
-                    className={localClasses.toolbarRow}
+                    className={classes.toolbarRow}
                     exclusive
                     value={use100PercentStackedMode}
                     onChange={handleUsePercentage}
@@ -61,7 +61,7 @@ export default function SmoothStackedMountainChart() {
                     </ToggleButton>
                 </ToggleButtonGroup>
                 <SciChartReact
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     initChart={drawExample}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         controlsRef.current = initResult.controls;

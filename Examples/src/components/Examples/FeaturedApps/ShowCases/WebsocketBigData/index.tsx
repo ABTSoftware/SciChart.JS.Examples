@@ -71,7 +71,7 @@ export default function RealtimeBigDataShowcase() {
         initialPoints: 6, // 1000000
     });
     const maxPoints = 10000000;
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     const [results, setResults] = React.useState({
         dimensions: null,
@@ -176,10 +176,10 @@ export default function RealtimeBigDataShowcase() {
 
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
+            <div className={classes.flexOuterContainer}>
                 <SciChartReact
                     key={seriesType}
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     style={{ flexBasis: 600, flexGrow: 1, flexShrink: 1 }}
                     initChart={chartInitFunction}
                     onInit={(initResult: TResolvedReturnType<typeof chartInitFunction>) => {

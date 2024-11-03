@@ -48,13 +48,13 @@ export default function StackedColumnChart() {
         controls.toggleDataLabels(areDataLabelsVisible);
     };
 
-    const localClasses = useStyles();
+    const classes = useStyles();
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.toolbarRow}>
+            <div className={classes.flexOuterContainer}>
+                <div className={classes.toolbarRow}>
                     <ToggleButtonGroup
-                        className={localClasses.toolbarRow}
+                        className={classes.toolbarRow}
                         exclusive
                         size="small"
                         value={use100PercentStackedMode}
@@ -70,7 +70,7 @@ export default function StackedColumnChart() {
                         </ToggleButton>
                     </ToggleButtonGroup>
 
-                    <ToggleButtonGroup style={{ marginLeft: "auto" }} className={localClasses.toolbarRow} size="small">
+                    <ToggleButtonGroup style={{ marginLeft: "auto" }} className={classes.toolbarRow} size="small">
                         <ToggleButton
                             value={areDataLabelsVisible}
                             style={{ color: appTheme.ForegroundColor }}
@@ -82,7 +82,7 @@ export default function StackedColumnChart() {
                 </div>
                 <SciChartReact
                     initChart={drawExample}
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         setControls(initResult.controls);
                     }}

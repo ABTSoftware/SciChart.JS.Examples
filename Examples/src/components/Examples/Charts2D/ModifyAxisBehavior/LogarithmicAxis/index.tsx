@@ -85,12 +85,12 @@ export default function LogarithmicAxisExample() {
         sciChartSurface.zoomExtents();
     };
 
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.toolbarRow}>
+            <div className={classes.flexOuterContainer}>
+                <div className={classes.toolbarRow}>
                     <ToggleButtonGroup
                         exclusive
                         value={preset}
@@ -112,7 +112,7 @@ export default function LogarithmicAxisExample() {
                 </div>
                 <SciChartReact
                     initChart={drawExample}
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         const { sciChartSurface } = initResult;
                         sciChartSurfaceRef.current = sciChartSurface;

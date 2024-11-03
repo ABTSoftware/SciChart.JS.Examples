@@ -37,13 +37,13 @@ export default function Load1MillionPointsChart() {
         setTimeSpans([...newTimeSpans]);
     };
 
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
+            <div className={classes.flexOuterContainer}>
                 <SciChartReact
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     initChart={drawExample}
                     onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
                         setControls(controls);
@@ -54,7 +54,7 @@ export default function Load1MillionPointsChart() {
                         };
                     }}
                 />
-                <div className={localClasses.toolbarRow} style={{ minHeight: "140px" }}>
+                <div className={classes.toolbarRow} style={{ minHeight: "140px" }}>
                     <Button
                         id="loadPoints"
                         onClick={() => {

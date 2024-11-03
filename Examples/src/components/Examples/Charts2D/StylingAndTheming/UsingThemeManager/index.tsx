@@ -34,28 +34,19 @@ const useStyles = makeStyles((theme) => ({
 export default function ChartComponent() {
     const [chartsInitializationAPI] = React.useState(getChartsInitializationAPI());
 
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.flexContainerRow}>
-                    <SciChartReact
-                        className={localClasses.item}
-                        initChart={chartsInitializationAPI.createNavyThemeChart}
-                    />
-                    <SciChartReact
-                        className={localClasses.item}
-                        initChart={chartsInitializationAPI.createLightThemeChart}
-                    />
+            <div className={classes.flexOuterContainer}>
+                <div className={classes.flexContainerRow}>
+                    <SciChartReact className={classes.item} initChart={chartsInitializationAPI.createNavyThemeChart} />
+                    <SciChartReact className={classes.item} initChart={chartsInitializationAPI.createLightThemeChart} />
                 </div>
-                <div className={localClasses.flexContainerRow}>
+                <div className={classes.flexContainerRow}>
+                    <SciChartReact className={classes.item} initChart={chartsInitializationAPI.createDarkThemeChart} />
                     <SciChartReact
-                        className={localClasses.item}
-                        initChart={chartsInitializationAPI.createDarkThemeChart}
-                    />
-                    <SciChartReact
-                        className={localClasses.item}
+                        className={classes.item}
                         initChart={chartsInitializationAPI.createCustomThemeChart}
                     />
                 </div>

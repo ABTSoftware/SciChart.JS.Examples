@@ -85,7 +85,7 @@ export function InfoToolbar(props: { examplePage: TExamplePage }) {
         setIsOpen(false);
     };
 
-    const localClasses = useStyles({ isOpen });
+    const classes = useStyles({ isOpen });
 
     const { examplePage } = props;
     const documentationLinks = examplePage ? examplePage.documentationLinks : undefined;
@@ -110,8 +110,8 @@ export function InfoToolbar(props: { examplePage: TExamplePage }) {
 
     return (
         <SpeedDial
-            className={localClasses.speedDial}
-            classes={{ fab: localClasses.speedDialFab, root: localClasses.root }}
+            className={classes.speedDial}
+            classes={{ fab: classes.speedDialFab, root: classes.root }}
             open={isOpen}
             onClose={handleClose}
             onOpen={handleOpen}
@@ -126,9 +126,9 @@ export function InfoToolbar(props: { examplePage: TExamplePage }) {
             icon={
                 <SpeedDialIcon
                     classes={{
-                        root: localClasses.fabIcon,
-                        iconOpen: localClasses.iconOpen,
-                        icon: localClasses.icon,
+                        root: classes.fabIcon,
+                        iconOpen: classes.iconOpen,
+                        icon: classes.icon,
                     }}
                     icon={<InfoIcon fontSize="large" />}
                 />
@@ -138,11 +138,11 @@ export function InfoToolbar(props: { examplePage: TExamplePage }) {
             {actions.map((action) => (
                 <SpeedDialAction
                     classes={{
-                        fab: localClasses.actionButtonFab,
+                        fab: classes.actionButtonFab,
                     }}
                     key={action.name}
                     icon={
-                        <a className={localClasses.actionLink} href={action.href} target="_blank">
+                        <a className={classes.actionLink} href={action.href} target="_blank">
                             {action.icon}
                         </a>
                     }

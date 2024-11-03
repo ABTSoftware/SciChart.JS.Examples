@@ -36,51 +36,36 @@ const useStyles = makeStyles((theme) => ({
 export default function LineChart() {
     const [chartsInitializationAPI] = React.useState(getChartsInitializationAPI);
 
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     return (
         <div className={commonClasses.ChartWrapper} style={{ aspectRatio: "3 / 2" }}>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.flexContainerRow}>
-                    <SciChartReact
-                        initChart={chartsInitializationAPI.initJustLineCharts}
-                        className={localClasses.item}
-                    />
-                    <SciChartReact
-                        initChart={chartsInitializationAPI.initDigitalLineCharts}
-                        className={localClasses.item}
-                    />
+            <div className={classes.flexOuterContainer}>
+                <div className={classes.flexContainerRow}>
+                    <SciChartReact initChart={chartsInitializationAPI.initJustLineCharts} className={classes.item} />
+                    <SciChartReact initChart={chartsInitializationAPI.initDigitalLineCharts} className={classes.item} />
                     <SciChartReact
                         initChart={chartsInitializationAPI.initTooltipsOnLineCharts}
-                        className={localClasses.item}
+                        className={classes.item}
                     />
                 </div>
-                <div className={localClasses.flexContainerRow}>
-                    <SciChartReact
-                        initChart={chartsInitializationAPI.initDashedLineCharts}
-                        className={localClasses.item}
-                    />
+                <div className={classes.flexContainerRow}>
+                    <SciChartReact initChart={chartsInitializationAPI.initDashedLineCharts} className={classes.item} />
                     <SciChartReact
                         initChart={chartsInitializationAPI.initPalettedLineCharts}
-                        className={localClasses.item}
+                        className={classes.item}
                     />
-                    <SciChartReact
-                        initChart={chartsInitializationAPI.initHoveredLineCharts}
-                        className={localClasses.item}
-                    />
+                    <SciChartReact initChart={chartsInitializationAPI.initHoveredLineCharts} className={classes.item} />
                 </div>
-                <div className={localClasses.flexContainerRow}>
-                    <SciChartReact
-                        initChart={chartsInitializationAPI.initGapsInLineCharts}
-                        className={localClasses.item}
-                    />
+                <div className={classes.flexContainerRow}>
+                    <SciChartReact initChart={chartsInitializationAPI.initGapsInLineCharts} className={classes.item} />
                     <SciChartReact
                         initChart={chartsInitializationAPI.initVerticalLineCharts}
-                        className={localClasses.item}
+                        className={classes.item}
                     />
                     <SciChartReact
                         initChart={chartsInitializationAPI.initThresholdedLineCharts}
-                        className={localClasses.item}
+                        className={classes.item}
                     />
                 </div>
             </div>

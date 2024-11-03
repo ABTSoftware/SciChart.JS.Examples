@@ -400,7 +400,7 @@ export default function SubchartsGrid() {
 
     const [messages, setMessages] = React.useState<TMessage[]>([]);
 
-    const localClasses = useStyles();
+    const classes = useStyles();
 
     const handleStartStreaming = () => {
         setIsDirty(false);
@@ -418,8 +418,8 @@ export default function SubchartsGrid() {
 
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.toolbarRow}>
+            <div className={classes.flexOuterContainer}>
+                <div className={classes.toolbarRow}>
                     <FormControl className={commonClasses.formControl}>
                         <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
                             <Button id="startStreaming" onClick={handleStartStreaming}>
@@ -437,16 +437,16 @@ export default function SubchartsGrid() {
                             labelPlacement="start"
                         />
                     </FormControl>
-                    <div className={localClasses.infoBlock}>
+                    <div className={classes.infoBlock}>
                         {messages.map((msg, index) => (
-                            <div key={index} className={localClasses.infoItem}>
+                            <div key={index} className={classes.infoItem}>
                                 {msg.title}: {msg.detail}
                             </div>
                         ))}
                     </div>
                 </div>
                 <SciChartReact
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     initChart={drawExample}
                     onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
                         controlsRef.current = controls;

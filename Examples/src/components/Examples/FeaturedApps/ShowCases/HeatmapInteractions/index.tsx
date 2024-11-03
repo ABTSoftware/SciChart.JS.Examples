@@ -28,15 +28,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function HeatmapInteractions() {
-    const localClasses = useStyles();
+    const classes = useStyles();
     const [chartsInitializationAPI] = React.useState(getChartsInitializationApi);
     const controlsRef = React.useRef<IChartControls>();
 
     return (
         <React.Fragment>
             <div className={commonClasses.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.toolbarRow}>
+                <div className={classes.flexOuterContainer}>
+                    <div className={classes.toolbarRow}>
                         <Button
                             disabled
                             id="startAnimation"
