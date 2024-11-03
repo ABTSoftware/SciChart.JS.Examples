@@ -25,7 +25,6 @@ const CodeSandboxActionButton = () => <EditIcon></EditIcon>;
 
 const ShowSourceActionButton = () => <CodeIcon></CodeIcon>;
 
-// TODO jss-to-tss-react codemod: Unable to handle style definition reliably. ArrowFunctionExpression in CSS prop.
 const useStyles = makeStyles()((theme) => ({
     root: {},
     speedDial: {
@@ -37,13 +36,14 @@ const useStyles = makeStyles()((theme) => ({
         backgroundColor: appTheme.PaleBlue,
         border: "1px solid black",
         color: "white",
-        // opacity: (props: any) => (props.isOpen ? 1 : 0.5),
+        opacity: 0.5,
         "&:hover": {
             backgroundColor: appTheme.MutedBlue,
             opacity: 1,
         },
     },
     actionButtonFab: {
+        lineHeight: "1em",
         backgroundColor: appTheme.PaleBlue,
         border: "1px solid black",
         color: appTheme.ForegroundColor,
@@ -52,21 +52,23 @@ const useStyles = makeStyles()((theme) => ({
         },
     },
     fabIcon: {
+        lineHeight: "1em",
         height: "unset",
-        width: "unset",
+        // width: "unset",
     },
     iconOpen: {
-        transform: "unset",
-        opacity: 1,
+        // position: "relative",
+        // transform: "unset",
+        // opacity: 1,
     },
 
     icon: {
-        position: "absolute",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-        "&:hover": {
-            opacity: 1,
-        },
+        // position: "absolute",
+        // top: "50%",
+        // transform: "translate(-50%, -50%)",
+        // "&:hover": {
+        // opacity: 1,
+        // },
     },
 
     actionLink: {
