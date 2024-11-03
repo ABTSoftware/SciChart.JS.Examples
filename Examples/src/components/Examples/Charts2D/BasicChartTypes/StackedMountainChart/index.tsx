@@ -2,12 +2,12 @@ import * as React from "react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { SciChartSurface, StackedMountainCollection } from "scichart";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -44,7 +44,7 @@ export default function StackedMountainChart() {
         }
     };
 
-    const classes = useStyles();
+    const { classes } = useStyles();
     return (
         <div className={commonClasses.ChartWrapper}>
             <div className={classes.flexOuterContainer}>

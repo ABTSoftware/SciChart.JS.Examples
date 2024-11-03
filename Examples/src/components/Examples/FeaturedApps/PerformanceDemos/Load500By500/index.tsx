@@ -5,12 +5,12 @@ import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample, TTimeSpan } from "./drawExample";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -35,7 +35,7 @@ export default function Load500By500() {
     const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(null);
     const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([]);
 
-    const classes = useStyles();
+    const { classes } = useStyles();
 
     return (
         <div className={commonClasses.ChartWrapper}>

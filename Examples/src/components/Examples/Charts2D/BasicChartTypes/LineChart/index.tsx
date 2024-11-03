@@ -1,4 +1,4 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import * as React from "react";
 import { SciChartSurface } from "scichart";
 import commonClasses from "../../../styles/Examples.module.scss";
@@ -7,7 +7,7 @@ import { SciChartReact } from "scichart-react";
 import { getChartsInitializationAPI } from "./drawExample";
 
 // Styles for the 3x3 grid
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 export default function LineChart() {
     const [chartsInitializationAPI] = React.useState(getChartsInitializationAPI);
 
-    const classes = useStyles();
+    const { classes } = useStyles();
 
     return (
         <div className={commonClasses.ChartWrapper} style={{ aspectRatio: "3 / 2" }}>

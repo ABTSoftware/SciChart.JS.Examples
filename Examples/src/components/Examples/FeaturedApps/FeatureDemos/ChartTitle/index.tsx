@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FormControlLabel, Checkbox } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
@@ -136,7 +136,7 @@ export default function FeatureChartTitle() {
         }
     };
 
-    const useStyles = makeStyles((theme) => ({
+    const useStyles = makeStyles()((theme) => ({
         flexContainer: {
             display: "flex",
             flexDirection: "column",
@@ -166,7 +166,7 @@ export default function FeatureChartTitle() {
             flex: "auto",
         },
     }));
-    const classes = useStyles();
+    const { classes } = useStyles();
 
     return (
         <div className={commonClasses.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>

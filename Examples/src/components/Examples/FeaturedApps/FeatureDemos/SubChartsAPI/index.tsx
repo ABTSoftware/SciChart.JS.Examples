@@ -1,7 +1,7 @@
 import * as React from "react";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { FormControl, ButtonGroup, Button, FormControlLabel, Checkbox } from "@mui/material";
 import {
     appendData,
@@ -358,7 +358,7 @@ export const drawGridExample = async (
     };
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -400,7 +400,7 @@ export default function SubchartsGrid() {
 
     const [messages, setMessages] = React.useState<TMessage[]>([]);
 
-    const classes = useStyles();
+    const { classes } = useStyles();
 
     const handleStartStreaming = () => {
         setIsDirty(false);

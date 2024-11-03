@@ -1,7 +1,7 @@
 import * as React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import commonClasses from "../../../styles/Examples.module.scss";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { ELegendOrientation, ELegendPlacement, LegendModifier, SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";
 import { drawExample } from "./drawExample";
@@ -69,7 +69,7 @@ export default function ChartLegendsAPI() {
         }
     };
 
-    const useStyles = makeStyles((theme) => ({
+    const useStyles = makeStyles()((theme) => ({
         flexContainer: {
             display: "flex",
             flexDirection: "column",
@@ -94,7 +94,7 @@ export default function ChartLegendsAPI() {
             flex: "auto",
         },
     }));
-    const classes = useStyles();
+    const { classes } = useStyles();
 
     return (
         <React.Fragment>

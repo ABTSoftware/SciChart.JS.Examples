@@ -2,12 +2,12 @@ import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import * as React from "react";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 import { useState } from "react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -52,7 +52,7 @@ export default function FeatureAxisTypes() {
         }
     };
 
-    const classes = useStyles();
+    const { classes } = useStyles();
 
     return (
         <div className={commonClasses.ChartWrapper}>

@@ -2,12 +2,12 @@ import * as React from "react";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { AxisBase2D, LogarithmicAxis, NumericAxis, SciChartSurface } from "scichart";
 import { drawExample } from "./drawExample";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -85,7 +85,7 @@ export default function LogarithmicAxisExample() {
         sciChartSurface.zoomExtents();
     };
 
-    const classes = useStyles();
+    const { classes } = useStyles();
 
     return (
         <div className={commonClasses.ChartWrapper}>

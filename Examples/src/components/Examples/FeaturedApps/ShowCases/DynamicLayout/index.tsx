@@ -1,4 +1,4 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import * as React from "react";
 import {
@@ -74,7 +74,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     return { wasmContext, sciChartSurface, setIsGridLayoutMode };
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function DynamicLayout() {
-    const classes = useStyles();
+    const { classes } = useStyles();
 
     return (
         <React.Fragment>
@@ -118,7 +118,7 @@ export default function DynamicLayout() {
 }
 
 const ChartToolbar = () => {
-    const classes = useStyles();
+    const { classes } = useStyles();
     const initResult = useContext(SciChartSurfaceContext) as TResolvedReturnType<typeof drawExample>;
     const [isGrid, setIsGrid] = React.useState<boolean>(false);
 

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
@@ -181,7 +181,7 @@ type ChartPane = {
 };
 
 // Styles for the 3x3 grid
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -244,7 +244,7 @@ export default function SyncMultiChart() {
         chartPanes.length = 0;
     };
 
-    const classes = useStyles();
+    const { classes } = useStyles();
 
     React.useEffect(() => {
         const chartInitializationPromise = Promise.all([addChart(0), addChart(1), addChart(2), addChart(3)]);

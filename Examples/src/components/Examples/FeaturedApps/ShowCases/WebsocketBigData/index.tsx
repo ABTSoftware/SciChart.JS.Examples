@@ -9,7 +9,7 @@ import Slider from "@mui/material/Slider";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import FormControl from "@mui/material/FormControl";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import Typography from "@mui/material/Typography";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
@@ -26,7 +26,7 @@ import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, ISettings, TMessage } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -71,7 +71,7 @@ export default function RealtimeBigDataShowcase() {
         initialPoints: 6, // 1000000
     });
     const maxPoints = 10000000;
-    const classes = useStyles();
+    const { classes } = useStyles();
 
     const [results, setResults] = React.useState({
         dimensions: null,

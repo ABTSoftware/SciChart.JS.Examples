@@ -3,10 +3,10 @@ import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { SciChartSurface, StackedMountainCollection } from "scichart";
 import { drawExample } from "./drawExample";
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -40,7 +40,7 @@ export default function SmoothStackedMountainChart() {
         }
     };
 
-    const classes = useStyles();
+    const { classes } = useStyles();
     return (
         <div className={commonClasses.ChartWrapper}>
             <div className={classes.flexOuterContainer}>

@@ -2,12 +2,12 @@ import * as React from "react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { Button } from "@mui/material";
 import { appTheme } from "../../../theme";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
 
 // Styles for layout of the toolbar / chart area
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -34,7 +34,7 @@ export default function HeatmapChart() {
     });
     const [stats, setStats] = React.useState({ xSize: 0, ySize: 0, fps: 0 });
 
-    const classes = useStyles();
+    const { classes } = useStyles();
 
     return (
         <div className={commonClasses.ChartWrapper}>

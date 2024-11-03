@@ -12,11 +12,13 @@ import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, IChartControls } from "./drawExample";
 import { Button, ButtonGroup, MenuItem, Select, TextField } from "@mui/material";
+
 // If you want to keep using makeStyles:
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
+
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -87,7 +89,7 @@ export default function UserAnnotatedStockChart() {
         controlsRef.current.resetChart();
     };
 
-    const classes = useStyles();
+    const { classes } = useStyles();
 
     return (
         <React.Fragment>

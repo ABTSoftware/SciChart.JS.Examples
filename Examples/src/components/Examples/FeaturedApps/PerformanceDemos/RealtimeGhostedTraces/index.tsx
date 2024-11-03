@@ -3,7 +3,7 @@ import { appTheme } from "../../../theme";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import commonClasses from "../../../styles/Examples.module.scss";
 import Button from "@mui/material/Button";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 
 import {
     CentralAxesLayoutManager,
@@ -138,7 +138,7 @@ const drawExample = async (rootElement: string | HTMLDivElement) => {
     return { wasmContext, sciChartSurface, controls: { startAnimation, stopAnimation } };
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -167,7 +167,7 @@ export default function RealtimeGhostedTraces() {
 
     const [stats, setStats] = React.useState({ numberSeries: 0, numberPoints: 0, fps: 0 });
 
-    const classes = useStyles();
+    const { classes } = useStyles();
 
     return (
         <React.Fragment>

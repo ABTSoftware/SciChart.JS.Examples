@@ -2,13 +2,13 @@ import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import * as React from "react";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample, TTimeSpan } from "./drawExample";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -37,7 +37,7 @@ export default function Load1MillionPointsChart() {
         setTimeSpans([...newTimeSpans]);
     };
 
-    const classes = useStyles();
+    const { classes } = useStyles();
 
     return (
         <div className={commonClasses.ChartWrapper}>

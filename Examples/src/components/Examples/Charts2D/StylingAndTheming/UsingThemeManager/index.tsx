@@ -1,4 +1,4 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import * as React from "react";
 import { SciChartReact } from "scichart-react";
 import { appTheme } from "../../../theme";
@@ -6,7 +6,7 @@ import commonClasses from "../../../styles/Examples.module.scss";
 import { getChartsInitializationAPI } from "./drawExample";
 
 // Styles for the 2x2 grid
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ChartComponent() {
     const [chartsInitializationAPI] = React.useState(getChartsInitializationAPI());
 
-    const classes = useStyles();
+    const { classes } = useStyles();
 
     return (
         <div className={commonClasses.ChartWrapper}>

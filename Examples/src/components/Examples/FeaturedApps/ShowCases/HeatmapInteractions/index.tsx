@@ -1,12 +1,12 @@
 import Button from "@mui/material/Button";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import * as React from "react";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { getChartsInitializationApi, IChartControls } from "./drawExample";
 import { SciChartGroup, SciChartReact } from "scichart-react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function HeatmapInteractions() {
-    const classes = useStyles();
+    const { classes } = useStyles();
     const [chartsInitializationAPI] = React.useState(getChartsInitializationApi);
     const controlsRef = React.useRef<IChartControls>();
 

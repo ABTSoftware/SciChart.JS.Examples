@@ -3,11 +3,11 @@ import { useState } from "react";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -48,7 +48,7 @@ export default function StackedColumnChart() {
         controls.toggleDataLabels(areDataLabelsVisible);
     };
 
-    const classes = useStyles();
+    const { classes } = useStyles();
     return (
         <div className={commonClasses.ChartWrapper}>
             <div className={classes.flexOuterContainer}>
