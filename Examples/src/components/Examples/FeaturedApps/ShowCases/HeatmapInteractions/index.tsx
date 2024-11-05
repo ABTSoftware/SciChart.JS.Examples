@@ -1,12 +1,12 @@
 import Button from "@mui/material/Button";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import * as React from "react";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { getChartsInitializationApi, IChartControls } from "./drawExample";
 import { SciChartGroup, SciChartReact } from "scichart-react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -28,15 +28,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function HeatmapInteractions() {
-    const localClasses = useStyles();
+    const { classes } = useStyles();
     const [chartsInitializationAPI] = React.useState(getChartsInitializationApi);
     const controlsRef = React.useRef<IChartControls>();
 
     return (
         <React.Fragment>
-            <div className={classes.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.toolbarRow}>
+            <div className={commonClasses.ChartWrapper}>
+                <div className={classes.flexOuterContainer}>
+                    <div className={classes.toolbarRow}>
                         <Button
                             disabled
                             id="startAnimation"

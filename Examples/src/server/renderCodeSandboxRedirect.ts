@@ -18,6 +18,7 @@ const renderCodeSandBoxRedirectPage = (config: SandboxConfig, framework: EPageFr
     const form = `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
         <input type="hidden" name="parameters" value="${parameters}" />
         <input type="hidden" name="query" value="file=src/drawExample.ts" />
+        <input type="hidden" name="embed" value="1" />
         ${openInDevBox ? `<input type="hidden" name="environment" value="server" />` : ""}
     </form>`;
 

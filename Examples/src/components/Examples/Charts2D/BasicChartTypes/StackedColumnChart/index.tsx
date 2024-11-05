@@ -1,13 +1,13 @@
 import * as React from "react";
 import { useState } from "react";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -48,13 +48,13 @@ export default function StackedColumnChart() {
         controls.toggleDataLabels(areDataLabelsVisible);
     };
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
     return (
-        <div className={classes.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.toolbarRow}>
+        <div className={commonClasses.ChartWrapper}>
+            <div className={classes.flexOuterContainer}>
+                <div className={classes.toolbarRow}>
                     <ToggleButtonGroup
-                        className={localClasses.toolbarRow}
+                        className={classes.toolbarRow}
                         exclusive
                         size="small"
                         value={use100PercentStackedMode}
@@ -70,7 +70,7 @@ export default function StackedColumnChart() {
                         </ToggleButton>
                     </ToggleButtonGroup>
 
-                    <ToggleButtonGroup style={{ marginLeft: "auto" }} className={localClasses.toolbarRow} size="small">
+                    <ToggleButtonGroup style={{ marginLeft: "auto" }} className={classes.toolbarRow} size="small">
                         <ToggleButton
                             value={areDataLabelsVisible}
                             style={{ color: appTheme.ForegroundColor }}
@@ -82,7 +82,7 @@ export default function StackedColumnChart() {
                 </div>
                 <SciChartReact
                     initChart={drawExample}
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         setControls(initResult.controls);
                     }}

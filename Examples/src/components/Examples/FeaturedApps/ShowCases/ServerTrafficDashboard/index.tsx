@@ -1,6 +1,6 @@
 import * as React from "react";
 import { CSSProperties, ChangeEventHandler, MouseEventHandler, useEffect, useRef, useState } from "react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { TChartConfigResult, synchronizeXVisibleRanges } from "./chart-configurations";
 import {
     ChartModifierBase2D,
@@ -188,7 +188,7 @@ function ServerTrafficDashboard() {
     };
 
     return (
-        <div className={classes.ChartWrapper} style={{ backgroundColor: "#242529" }}>
+        <div className={commonClasses.ChartWrapper} style={{ backgroundColor: "#242529" }}>
             {isDashboardInitialized ? null : <DashboardOverlay />}
             <div style={gridStyle}>
                 <SciChartGroup

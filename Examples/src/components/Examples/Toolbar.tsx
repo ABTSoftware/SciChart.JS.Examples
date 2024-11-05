@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { makeStyles, createStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { Theme } from "@mui/material/styles";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
@@ -25,53 +25,56 @@ const CodeSandboxActionButton = () => <EditIcon></EditIcon>;
 
 const ShowSourceActionButton = () => <CodeIcon></CodeIcon>;
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {},
-        speedDial: {
-            position: "absolute",
-            top: 4,
-            right: 8,
-        },
-        speedDialFab: {
-            backgroundColor: appTheme.PaleBlue,
-            border: "1px solid black",
-            color: "white",
-            opacity: (props: any) => (props.isOpen ? 1 : 0.5),
-            "&:hover": {
-                backgroundColor: appTheme.MutedBlue,
-                opacity: 1,
-            },
-        },
-        actionButtonFab: {
-            backgroundColor: appTheme.PaleBlue,
-            border: "1px solid black",
-            color: appTheme.ForegroundColor,
-            "&:hover": {
-                backgroundColor: appTheme.MutedBlue,
-            },
-        },
-        fabIcon: {
-            height: "unset",
-            width: "unset",
-        },
-        iconOpen: {
-            transform: "unset",
+const useStyles = makeStyles()((theme) => ({
+    root: {},
+    speedDial: {
+        position: "absolute",
+        top: 4,
+        right: 8,
+    },
+    speedDialFab: {
+        backgroundColor: appTheme.PaleBlue,
+        border: "1px solid black",
+        color: "white",
+        opacity: 0.5,
+        "&:hover": {
+            backgroundColor: appTheme.MutedBlue,
             opacity: 1,
         },
-        icon: {
-            position: "absolute",
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-            "&:hover": {
-                opacity: 1,
-            },
+    },
+    actionButtonFab: {
+        lineHeight: "1em",
+        backgroundColor: appTheme.PaleBlue,
+        border: "1px solid black",
+        color: appTheme.ForegroundColor,
+        "&:hover": {
+            backgroundColor: appTheme.MutedBlue,
         },
-        actionLink: {
-            color: "inherit",
-        },
-    })
-);
+    },
+    fabIcon: {
+        lineHeight: "1em",
+        height: "unset",
+        // width: "unset",
+    },
+    iconOpen: {
+        // position: "relative",
+        // transform: "unset",
+        // opacity: 1,
+    },
+
+    icon: {
+        // position: "absolute",
+        // top: "50%",
+        // transform: "translate(-50%, -50%)",
+        // "&:hover": {
+        // opacity: 1,
+        // },
+    },
+
+    actionLink: {
+        color: "inherit",
+    },
+}));
 
 export function InfoToolbar(props: { examplePage: TExamplePage }) {
     const framework = useContext(FrameworkContext);
@@ -85,7 +88,7 @@ export function InfoToolbar(props: { examplePage: TExamplePage }) {
         setIsOpen(false);
     };
 
-    const classes = useStyles({ isOpen });
+    const { classes } = useStyles();
 
     const { examplePage } = props;
     const documentationLinks = examplePage ? examplePage.documentationLinks : undefined;
@@ -125,7 +128,11 @@ export function InfoToolbar(props: { examplePage: TExamplePage }) {
             }}
             icon={
                 <SpeedDialIcon
-                    classes={{ root: classes.fabIcon, iconOpen: classes.iconOpen, icon: classes.icon }}
+                    classes={{
+                        root: classes.fabIcon,
+                        iconOpen: classes.iconOpen,
+                        icon: classes.icon,
+                    }}
                     icon={<InfoIcon fontSize="large" />}
                 />
             }

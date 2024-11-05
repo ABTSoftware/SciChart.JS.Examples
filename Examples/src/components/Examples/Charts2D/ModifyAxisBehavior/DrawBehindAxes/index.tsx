@@ -2,7 +2,7 @@ import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import * as React from "react";
 import { SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
@@ -23,11 +23,11 @@ export default function DrawBehindAxes() {
     };
 
     return (
-        <div className={classes.ChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+        <div className={commonClasses.ChartWrapper} style={{ background: appTheme.DarkIndigo }}>
             <SciChartReact
                 initChart={drawExample}
                 style={{ height: "calc(100% - 100px)", width: "100%" }}
-                className={classes.ChartWrapper}
+                className={commonClasses.ChartWrapper}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     const { sciChartSurface } = initResult;
                     sciChartSurfaceRef.current = sciChartSurface;

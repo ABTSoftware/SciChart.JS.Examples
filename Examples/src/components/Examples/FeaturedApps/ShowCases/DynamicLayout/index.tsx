@@ -1,4 +1,4 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import * as React from "react";
 import {
@@ -18,7 +18,7 @@ import {
 } from "scichart";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { GridLayoutModifier } from "./GridLayoutModifier";
 import { SciChartReact, SciChartSurfaceContext, TResolvedReturnType } from "scichart-react";
 import { useContext } from "react";
@@ -74,7 +74,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     return { wasmContext, sciChartSurface, setIsGridLayoutMode };
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -100,14 +100,14 @@ const useStyles = makeStyles((theme) => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function DynamicLayout() {
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
         <React.Fragment>
-            <div className={classes.ChartWrapper}>
+            <div className={commonClasses.ChartWrapper}>
                 <SciChartReact
-                    className={localClasses.flexOuterContainer}
-                    innerContainerProps={{ className: localClasses.chartArea }}
+                    className={classes.flexOuterContainer}
+                    innerContainerProps={{ className: classes.chartArea }}
                     initChart={drawExample}
                 >
                     <ChartToolbar />
@@ -118,7 +118,7 @@ export default function DynamicLayout() {
 }
 
 const ChartToolbar = () => {
-    const localClasses = useStyles();
+    const { classes } = useStyles();
     const initResult = useContext(SciChartSurfaceContext) as TResolvedReturnType<typeof drawExample>;
     const [isGrid, setIsGrid] = React.useState<boolean>(false);
 
@@ -127,7 +127,7 @@ const ChartToolbar = () => {
         setIsGrid(value);
     };
     return (
-        <div className={localClasses.toolbarRow}>
+        <div className={classes.toolbarRow}>
             <ToggleButtonGroup
                 exclusive
                 value={isGrid}

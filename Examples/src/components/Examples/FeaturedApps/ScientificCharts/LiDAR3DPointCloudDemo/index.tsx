@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
@@ -9,7 +9,7 @@ export default function LiDAR3DPointCloudDemo() {
     const sciChartSurfaceRef = React.useRef<SciChart3DSurface>();
 
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={commonClasses.ChartWrapper}>
             <SciChartReact
                 initChart={drawExample}
                 style={{ height: "100%", width: "100%" }}

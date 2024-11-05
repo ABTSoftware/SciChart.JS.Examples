@@ -1,6 +1,6 @@
 @import "_base";
 .ExampleWrapperIFrame {
-    height: 100%;
+    height: 100vh;
     .ChartWrapper {
         width: 100%;
         height: 100%;
@@ -17,6 +17,7 @@
     overflow: hidden;
     position: relative;
     touch-action: none;
+    // this seems to be an optimal aspect ration to keep the whole chart in view
     aspect-ratio: 16 / 11;
     img {
         display: block;

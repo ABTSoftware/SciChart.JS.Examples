@@ -39,7 +39,6 @@
     "@mui/icons-material": "^5.15.20",
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.15.20",
-    "@mui/styles": "^5.15.21",
     "@types/react": "^18.3.11",
     "chalk": "^4.1.0",
     "codesandbox": "^2.2.3",
@@ -61,6 +60,7 @@
     "scichart-react": "^0.1.9",
     "socket.io": "^4.5.2",
     "socket.io-client": "^4.7.5",
+    "tss-react": "^4.9.13",
     "websocket-ts": "^1.1.1"
   },
   "devDependencies": {

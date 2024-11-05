@@ -1,7 +1,7 @@
 import * as React from "react";
 import { appTheme } from "../../../theme";
 import { SciChartGroup, SciChartReact } from "scichart-react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { getChartsInitializationAPI } from "./drawExample";
 
 // React component needed as our examples app is react.
@@ -11,7 +11,7 @@ export default function InteractiveWaterfallChart() {
 
     return (
         <React.Fragment>
-            <div style={{ background: appTheme.Background }} className={classes.ChartWrapper}>
+            <div style={{ background: appTheme.Background }} className={commonClasses.ChartWrapper}>
                 <div
                     style={{
                         width: "100%",

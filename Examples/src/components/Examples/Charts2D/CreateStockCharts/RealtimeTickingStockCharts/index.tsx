@@ -1,7 +1,7 @@
 import * as React from "react";
 import { IDeletable } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { createCandlestickChart, sciChartOverview } from "./createCandlestickChart";
 import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
 import { binanceSocketClient, TRealtimePriceBar } from "./binanceSocketClient";
@@ -101,7 +101,7 @@ export default function RealtimeTickingStockCharts() {
 
     return (
         <React.Fragment>
-            <div className={classes.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+            <div className={commonClasses.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
                 <ToggleButtonGroup
                     style={{ height: "70px", padding: "10" }}
                     exclusive

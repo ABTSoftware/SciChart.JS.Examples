@@ -5,7 +5,7 @@ import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import { ALL_MENU_ITEMS, getExampleComponent } from "../AppRouter/examples";
 import { Button } from "@mui/material";
 import { ExampleStrings } from "./ExampleStrings";
-import classes from "./styles/Examples.module.scss";
+import commonClasses from "./styles/Examples.module.scss";
 import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";
 import Gallery from "../Gallery/Gallery";
 import { GalleryItem } from "../../helpers/types/types";
@@ -82,7 +82,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
         };
     }, []);
     return (
-        <div className={classes.ExamplesRoot}>
+        <div className={commonClasses.ExamplesRoot}>
             <SeoTags
                 title={seoTitleText}
                 keywords={seoKeywords}
@@ -90,16 +90,16 @@ const ExamplesRoot: FC<TProps> = (props) => {
                 image={exampleImage}
                 url={exampleUrl}
             />
-            <div className={classes.Body}>
-                <div className={classes.ColMain}>
+            <div className={commonClasses.Body}>
+                <div className={commonClasses.ColMain}>
                     <ComponentWrapper>
-                        <div className={classes.ExampleRootDescription}>
+                        <div className={commonClasses.ExampleRootDescription}>
                             <h5>SciChart.js Demo</h5>
 
-                            <p className={classes.ExampleDescriptionText}>
+                            <p className={commonClasses.ExampleDescriptionText}>
                                 {" "}
                                 <a
-                                    className={classes.ExampleRootDescriptionLink}
+                                    className={commonClasses.ExampleRootDescriptionLink}
                                     target="_blank"
                                     href={`https://scichart.com/example/javascript-chart/javascript-${exampleUrl}/`}
                                     title={titleText}
@@ -108,7 +108,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                 </a>{" "}
                                 is part of the SciChart.js demo app. To clone the repo for this demo, visit{" "}
                                 <a
-                                    className={classes.ExampleRootDescriptionLink}
+                                    className={commonClasses.ExampleRootDescriptionLink}
                                     target="_blank"
                                     rel="external"
                                     href="https://github.com/abtsoftware/scichart.js.examples"
@@ -118,7 +118,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                 </a>
                                 . For getting-started &amp; docs, see above!{" "}
                                 <a
-                                    className={classes.ExampleRootDescriptionLink}
+                                    className={commonClasses.ExampleRootDescriptionLink}
                                     target="_blank"
                                     rel="nofollow external"
                                     href={`/codesandbox/${exampleUrl}?codesandbox=1&framework=${framework}`}
@@ -130,11 +130,11 @@ const ExamplesRoot: FC<TProps> = (props) => {
                     </ComponentWrapper>
 
                     <ComponentWrapper>
-                        <h1 className={classes.Title}>{titleText} </h1>
+                        <h1 className={commonClasses.Title}>{titleText} </h1>
 
-                        <div className={classes.ExampleWrapper}>
-                            <div className={classes.ExampleDescription}>
-                                <div className={classes.Subtitle}>{subtitleText}</div>
+                        <div className={commonClasses.ExampleWrapper}>
+                            <div className={commonClasses.ExampleDescription}>
+                                <div className={commonClasses.Subtitle}>{subtitleText}</div>
                                 <ExampleDescription
                                     documentationLinks={documentationLinks}
                                     tips={tips}
@@ -142,9 +142,9 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                     previewDescription={previewDescription}
                                 />
                             </div>
-                            <div className={classes.Example}>
+                            <div className={commonClasses.Example}>
                                 <ExampleComponent />
-                                <div className={classes.ButtonsWrapper}>
+                                <div className={commonClasses.ButtonsWrapper}>
                                     {/*<Button*/}
                                     {/*    onClick={() => {*/}
                                     {/*        setShowSource(!showSource);*/}
@@ -155,27 +155,27 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                     {/*    }}*/}
                                     {/*>*/}
                                     {/*    <CodeIcon />*/}
-                                    {/*    <span className={classes.ButtonsText}>VIEW SOURCE CODE</span>*/}
+                                    {/*    <span className={commonClasses.ButtonsText}>VIEW SOURCE CODE</span>*/}
                                     {/*</Button>*/}
-                                    <Button className={classes.GitHubLink}>
+                                    <Button className={commonClasses.GitHubLink}>
                                         <GitHubIcon />
                                         <a
                                             href={fullGithubUrl}
                                             title={fullGithubUrl}
                                             target="_blank"
-                                            className={classes.ButtonsText}
+                                            className={commonClasses.ButtonsText}
                                         >
                                             VIEW SOURCE IN GITHUB
                                         </a>
                                     </Button>
-                                    <Button className={classes.GitHubLink}>
+                                    <Button className={commonClasses.GitHubLink}>
                                         <SubdirectoryArrowRight />
                                         <a
                                             href={`/iframe/${examplePage.path}`}
                                             title="View this example in Full Screen"
                                             target="_blank"
                                             rel="nofollow"
-                                            className={classes.ButtonsText}
+                                            className={commonClasses.ButtonsText}
                                         >
                                             VIEW Full Screen
                                         </a>
@@ -186,7 +186,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
                     </ComponentWrapper>
 
                     {seeAlso && (
-                        <div className={!showSource && !firstRender ? classes.Animation : ""}>
+                        <div className={!showSource && !firstRender ? commonClasses.Animation : ""}>
                             <Gallery examples={seeAlso} />
                         </div>
                     )}

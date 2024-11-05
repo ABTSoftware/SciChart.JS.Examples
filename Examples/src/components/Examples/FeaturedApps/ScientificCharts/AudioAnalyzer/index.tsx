@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartGroup, SciChartReact } from "scichart-react";
 import { getChartsInitializationApi } from "./drawExample";
 import { appTheme } from "../../../theme";
@@ -9,7 +9,7 @@ export default function AudioAnalyzer() {
     const controlsRef = React.useRef<ReturnType<typeof chartsInitializationAPI.onAllChartsInit>>();
 
     return (
-        <div style={{ background: appTheme.Background }} className={classes.ChartWrapper}>
+        <div style={{ background: appTheme.Background }} className={commonClasses.ChartWrapper}>
             <div
                 style={{
                     width: "100%",

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { appTheme } from "../../../theme";
 import { SciChartGroup, SciChartReact } from "scichart-react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { getChartsInitializationAPI } from "./drawExample";
 import { SciChartSurface } from "scichart";
 
@@ -10,7 +10,7 @@ export default function MultiPaneStockCharts() {
     const [mainChart, setMainChart] = React.useState<SciChartSurface>();
 
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={commonClasses.ChartWrapper}>
             <SciChartGroup onInit={chartsInitializationAPI.configureAfterInit}>
                 <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
                     {/*The panel hosting the price chart*/}

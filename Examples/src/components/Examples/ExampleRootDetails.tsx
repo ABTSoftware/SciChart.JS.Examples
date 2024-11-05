@@ -4,7 +4,7 @@ import { TExamplePage } from "../AppRouter/examplePages";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import { getExampleComponent } from "../AppRouter/examples";
 import { ExampleStrings } from "./ExampleStrings";
-import classes from "./styles/Examples.module.scss";
+import commonClasses from "./styles/Examples.module.scss";
 import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";
 import { GalleryItem } from "../../helpers/types/types";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
@@ -33,7 +33,7 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
         window.Prism?.highlightAll();
     }, []);
     return (
-        <div className={classes.ExamplesRoot}>
+        <div className={commonClasses.ExamplesRoot}>
             <SeoTags
                 title={seoTitleText}
                 keywords={seoKeywords}
@@ -41,7 +41,7 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
                 image={exampleImage}
                 url={exampleUrl}
             />
-            <div className={classes.Example}>
+            <div className={`${commonClasses.Example} AnExampleContainer`}>
                 <ExampleComponent />
             </div>
         </div>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartSurface } from "scichart";
 import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
 import { drawExample, overViewOption } from "./drawExample";
@@ -8,7 +8,7 @@ export default function Overview() {
     const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={commonClasses.ChartWrapper}>
             <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
                 <SciChartReact
                     initChart={drawExample}

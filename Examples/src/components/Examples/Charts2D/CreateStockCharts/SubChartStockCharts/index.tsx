@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { FinChartLegendModifier, IFinanceLegendModifierOptions } from "./FinChartLegendModifier";
 
 import {
@@ -611,7 +611,7 @@ export default function SubChartStockCharts() {
 
     return (
         <div
-            className={classes.ChartsWrapper}
+            className={commonClasses.ChartsWrapper}
             id={containerId2}
             style={{
                 position: "relative",

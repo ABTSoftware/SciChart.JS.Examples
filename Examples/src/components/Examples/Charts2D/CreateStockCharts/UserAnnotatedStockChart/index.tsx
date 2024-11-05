@@ -9,14 +9,16 @@ import {
 } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, IChartControls } from "./drawExample";
 import { Button, ButtonGroup, MenuItem, Select, TextField } from "@mui/material";
+
 // If you want to keep using makeStyles:
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
+
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -87,13 +89,13 @@ export default function UserAnnotatedStockChart() {
         controlsRef.current.resetChart();
     };
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
         <React.Fragment>
-            <div className={classes.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.toolbarRow}>
+            <div className={commonClasses.ChartWrapper}>
+                <div className={classes.flexOuterContainer}>
+                    <div className={classes.toolbarRow}>
                         <ToggleButtonGroup
                             style={{ height: "70px", padding: "10" }}
                             exclusive
@@ -167,7 +169,7 @@ export default function UserAnnotatedStockChart() {
                         </ButtonGroup>
                     </div>
                     <SciChartReact
-                        className={localClasses.chartArea}
+                        className={classes.chartArea}
                         initChart={drawExample}
                         onInit={({ sciChartSurface, controls }: TResolvedReturnType<typeof drawExample>) => {
                             sciChartSurfaceRef.current = sciChartSurface;

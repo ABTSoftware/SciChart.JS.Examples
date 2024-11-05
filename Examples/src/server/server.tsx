@@ -26,10 +26,7 @@ import { vanillaExamplesRouter } from "./vanillaDemo/vanillaExamplesRouter";
 import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";
 import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 import { getAvailableVariants } from "./variants";
-
-// Create an emotion cache for SSR
-const cache = createCache({ key: "css" });
-const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
+import createEmotionCache from "../createEmotionCache";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
@@ -39,6 +36,10 @@ function handleRender(req: Request, res: Response) {
     if (req.query["codesandbox"]) {
         if (renderSandBoxRedirect(req, res, "codesandbox")) return;
     }
+
+    // Create an emotion cache for SSR
+    const cache = createEmotionCache();
+    const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
 
     // Render the component to a string.
     const appHtml = ReactDOMServer.renderToString(
@@ -103,15 +104,6 @@ app.get("/stackblitz/:example", (req: Request, res: Response) => {
 
 app.get("/source/:example", (req: Request, res: Response) => {
     getSourceFiles(req, res);
-});
-
-app.get("/iframe/iframe/:example", (req: Request, res: Response) => {
-    const params = req.params;
-    if (getExamplePageKey(params.example)) {
-        return res.redirect(301, `../${params.example}`);
-    } else {
-        handleRender(req, res);
-    }
 });
 
 app.get("/iframe/codesandbox/:example", (req: Request, res: Response) => {

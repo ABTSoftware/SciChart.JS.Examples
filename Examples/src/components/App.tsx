@@ -31,7 +31,8 @@ export default function App() {
 
     const selectedFramework = framework;
 
-    const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
+    // TODO md was changed by migration script.requires verification
+    const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("lg"));
 
     let initialOpenedMenuItems = {
         MENU_ITEMS_FEATURED_APPS_ID: true,

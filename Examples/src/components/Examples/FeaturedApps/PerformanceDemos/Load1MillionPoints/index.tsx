@@ -2,13 +2,13 @@ import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import * as React from "react";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample, TTimeSpan } from "./drawExample";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -37,13 +37,13 @@ export default function Load1MillionPointsChart() {
         setTimeSpans([...newTimeSpans]);
     };
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
-        <div className={classes.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
+        <div className={commonClasses.ChartWrapper}>
+            <div className={classes.flexOuterContainer}>
                 <SciChartReact
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     initChart={drawExample}
                     onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
                         setControls(controls);
@@ -54,7 +54,7 @@ export default function Load1MillionPointsChart() {
                         };
                     }}
                 />
-                <div className={localClasses.toolbarRow} style={{ minHeight: "140px" }}>
+                <div className={classes.toolbarRow} style={{ minHeight: "140px" }}>
                     <Button
                         id="loadPoints"
                         onClick={() => {
@@ -68,7 +68,7 @@ export default function Load1MillionPointsChart() {
                         {timeSpans.length > 0 && (
                             <Alert
                                 key="0"
-                                className={classes.Notification}
+                                className={commonClasses.Notification}
                                 style={{ backgroundColor: appTheme.Indigo, color: appTheme.ForegroundColor }}
                             >
                                 <AlertTitle>Performance Results</AlertTitle>

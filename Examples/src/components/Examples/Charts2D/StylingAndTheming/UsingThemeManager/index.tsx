@@ -1,12 +1,12 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import * as React from "react";
 import { SciChartReact } from "scichart-react";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { getChartsInitializationAPI } from "./drawExample";
 
 // Styles for the 2x2 grid
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -34,28 +34,19 @@ const useStyles = makeStyles((theme) => ({
 export default function ChartComponent() {
     const [chartsInitializationAPI] = React.useState(getChartsInitializationAPI());
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
-        <div className={classes.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.flexContainerRow}>
-                    <SciChartReact
-                        className={localClasses.item}
-                        initChart={chartsInitializationAPI.createNavyThemeChart}
-                    />
-                    <SciChartReact
-                        className={localClasses.item}
-                        initChart={chartsInitializationAPI.createLightThemeChart}
-                    />
+        <div className={commonClasses.ChartWrapper}>
+            <div className={classes.flexOuterContainer}>
+                <div className={classes.flexContainerRow}>
+                    <SciChartReact className={classes.item} initChart={chartsInitializationAPI.createNavyThemeChart} />
+                    <SciChartReact className={classes.item} initChart={chartsInitializationAPI.createLightThemeChart} />
                 </div>
-                <div className={localClasses.flexContainerRow}>
+                <div className={classes.flexContainerRow}>
+                    <SciChartReact className={classes.item} initChart={chartsInitializationAPI.createDarkThemeChart} />
                     <SciChartReact
-                        className={localClasses.item}
-                        initChart={chartsInitializationAPI.createDarkThemeChart}
-                    />
-                    <SciChartReact
-                        className={localClasses.item}
+                        className={classes.item}
                         initChart={chartsInitializationAPI.createCustomThemeChart}
                     />
                 </div>

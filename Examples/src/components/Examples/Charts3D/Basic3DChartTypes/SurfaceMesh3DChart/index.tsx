@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 
 import { SciChart3DSurface } from "scichart";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
@@ -8,7 +8,7 @@ import { SciChartReact, TResolvedReturnType } from "scichart-react";
 // REACT COMPONENT
 export default function SurfaceMesh3DChart() {
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={commonClasses.ChartWrapper}>
             <div style={{ position: "relative", height: "100%", width: "100%" }}>
                 <SciChartReact
                     initChart={drawExample}

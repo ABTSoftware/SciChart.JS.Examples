@@ -2,12 +2,12 @@ import * as React from "react";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { drawExample } from "./drawExample";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
-import { makeStyles } from "@mui/styles";
+import commonClasses from "../../../styles/Examples.module.scss";
+import { makeStyles } from "tss-react/mui";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { Typography } from "@mui/material";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles()(() => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -35,12 +35,12 @@ export default function ChartComponent() {
 
     const controlsRef = React.useRef<{ toggleStaticAxis: () => void }>();
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
     return (
         <>
-            <div className={classes.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.toolbarRow}>
+            <div className={commonClasses.ChartWrapper}>
+                <div className={classes.flexOuterContainer}>
+                    <div className={classes.toolbarRow}>
                         <Typography style={{ color: appTheme.ForegroundColor }}>Primary Axis: </Typography>
                         <ToggleButtonGroup
                             exclusive
@@ -63,7 +63,7 @@ export default function ChartComponent() {
                     </div>
 
                     <SciChartReact
-                        className={localClasses.chartArea}
+                        className={classes.chartArea}
                         initChart={drawExample}
                         onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                             controlsRef.current = initResult.controls;

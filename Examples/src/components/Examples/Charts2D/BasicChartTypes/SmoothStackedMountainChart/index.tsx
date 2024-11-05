@@ -1,12 +1,12 @@
 import * as React from "react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { SciChartSurface, StackedMountainCollection } from "scichart";
 import { drawExample } from "./drawExample";
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -40,12 +40,12 @@ export default function SmoothStackedMountainChart() {
         }
     };
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
     return (
-        <div className={classes.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
+        <div className={commonClasses.ChartWrapper}>
+            <div className={classes.flexOuterContainer}>
                 <ToggleButtonGroup
-                    className={localClasses.toolbarRow}
+                    className={classes.toolbarRow}
                     exclusive
                     value={use100PercentStackedMode}
                     onChange={handleUsePercentage}
@@ -61,7 +61,7 @@ export default function SmoothStackedMountainChart() {
                     </ToggleButton>
                 </ToggleButtonGroup>
                 <SciChartReact
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     initChart={drawExample}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         controlsRef.current = initResult.controls;

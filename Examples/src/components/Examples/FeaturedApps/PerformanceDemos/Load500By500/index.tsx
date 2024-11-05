@@ -4,13 +4,13 @@ import AlertTitle from "@mui/material/AlertTitle";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
-import { makeStyles } from "@mui/styles";
+import commonClasses from "../../../styles/Examples.module.scss";
+import { makeStyles } from "tss-react/mui";
 
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample, TTimeSpan } from "./drawExample";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -35,13 +35,13 @@ export default function Load500By500() {
     const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(null);
     const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([]);
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
-        <div className={classes.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
+        <div className={commonClasses.ChartWrapper}>
+            <div className={classes.flexOuterContainer}>
                 <SciChartReact
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     initChart={(rootElement: string | HTMLDivElement) =>
                         drawExample(rootElement, (newTimeSpans: TTimeSpan[]) => {
                             setTimeSpans([...newTimeSpans]);
@@ -55,7 +55,7 @@ export default function Load500By500() {
                         controls.stopUpdate();
                     }}
                 />
-                <div className={localClasses.toolbarRow} style={{ minHeight: "140px" }}>
+                <div className={classes.toolbarRow} style={{ minHeight: "140px" }}>
                     <Button
                         onClick={() => {
                             controlsRef.current?.startUpdate();
@@ -68,7 +68,7 @@ export default function Load500By500() {
                         {timeSpans.length > 0 && (
                             <Alert
                                 key="0"
-                                className={classes.Notification}
+                                className={commonClasses.Notification}
                                 style={{ backgroundColor: appTheme.Indigo, color: appTheme.ForegroundColor }}
                             >
                                 <AlertTitle>Performance Results</AlertTitle>

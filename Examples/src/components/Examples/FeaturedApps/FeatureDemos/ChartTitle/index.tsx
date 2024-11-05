@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormControlLabel, Checkbox } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import classes from "../../../styles/Examples.module.scss";
+import { makeStyles } from "tss-react/mui";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import {
@@ -136,7 +136,7 @@ export default function FeatureChartTitle() {
         }
     };
 
-    const useStyles = makeStyles((theme) => ({
+    const useStyles = makeStyles()((theme) => ({
         flexContainer: {
             display: "flex",
             flexDirection: "column",
@@ -166,16 +166,16 @@ export default function FeatureChartTitle() {
             flex: "auto",
         },
     }));
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
-        <div className={classes.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
-            <div className={localClasses.flexContainer}>
-                <div className={localClasses.toolbar}>
+        <div className={commonClasses.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+            <div className={classes.flexContainer}>
+                <div className={classes.toolbar}>
                     <FormControlLabel
                         control={
                             <textarea
-                                className={localClasses.textarea}
+                                className={classes.textarea}
                                 value={titleText}
                                 onChange={handleChangeTitleText}
                             ></textarea>
@@ -187,7 +187,7 @@ export default function FeatureChartTitle() {
                     <FormControlLabel
                         control={
                             <select
-                                className={localClasses.combobox}
+                                className={classes.combobox}
                                 value={titleAlignment}
                                 onChange={selectTitleTextAlignment}
                             >
@@ -205,7 +205,7 @@ export default function FeatureChartTitle() {
                     <FormControlLabel
                         control={
                             <select
-                                className={localClasses.combobox}
+                                className={classes.combobox}
                                 value={titlePosition}
                                 onChange={selectTitleTextPosition}
                             >
@@ -223,7 +223,7 @@ export default function FeatureChartTitle() {
                     <FormControlLabel
                         control={
                             <select
-                                className={localClasses.combobox}
+                                className={classes.combobox}
                                 value={multilineAlignment}
                                 onChange={selectTitleTextMultilineAlignment}
                             >

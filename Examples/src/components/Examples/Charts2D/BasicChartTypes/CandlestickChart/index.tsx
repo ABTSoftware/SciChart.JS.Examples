@@ -2,7 +2,7 @@ import * as React from "react";
 import { SciChartSurface, FastCandlestickRenderableSeries, SciChartOverview, FastOhlcRenderableSeries } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
 import { drawExample, overviewOptions } from "./drawExample";
 import FormLabel from "@mui/material/FormLabel";
@@ -32,7 +32,7 @@ export default function CandlestickChart() {
 
     return (
         <React.Fragment>
-            <div className={classes.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+            <div className={commonClasses.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
                 <ToggleButtonGroup
                     style={{ height: "70px", padding: "10" }}
                     exclusive

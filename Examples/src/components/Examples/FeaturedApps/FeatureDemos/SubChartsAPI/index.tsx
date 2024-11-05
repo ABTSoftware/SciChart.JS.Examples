@@ -1,7 +1,7 @@
 import * as React from "react";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
-import { makeStyles } from "@mui/styles";
+import commonClasses from "../../../styles/Examples.module.scss";
+import { makeStyles } from "tss-react/mui";
 import { FormControl, ButtonGroup, Button, FormControlLabel, Checkbox } from "@mui/material";
 import {
     appendData,
@@ -358,7 +358,7 @@ export const drawGridExample = async (
     };
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -400,7 +400,7 @@ export default function SubchartsGrid() {
 
     const [messages, setMessages] = React.useState<TMessage[]>([]);
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     const handleStartStreaming = () => {
         setIsDirty(false);
@@ -417,10 +417,10 @@ export default function SubchartsGrid() {
         });
 
     return (
-        <div className={classes.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.toolbarRow}>
-                    <FormControl className={classes.formControl}>
+        <div className={commonClasses.ChartWrapper}>
+            <div className={classes.flexOuterContainer}>
+                <div className={classes.toolbarRow}>
+                    <FormControl className={commonClasses.formControl}>
                         <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
                             <Button id="startStreaming" onClick={handleStartStreaming}>
                                 {isDirty ? "ReStart" : "Start"}
@@ -430,23 +430,23 @@ export default function SubchartsGrid() {
                             </Button>
                         </ButtonGroup>
                     </FormControl>
-                    <FormControl className={classes.formControl}>
+                    <FormControl className={commonClasses.formControl}>
                         <FormControlLabel
                             control={<Checkbox onChange={handleLabelsChange} />}
                             label="Axis Labels"
                             labelPlacement="start"
                         />
                     </FormControl>
-                    <div className={localClasses.infoBlock}>
+                    <div className={classes.infoBlock}>
                         {messages.map((msg, index) => (
-                            <div key={index} className={localClasses.infoItem}>
+                            <div key={index} className={classes.infoItem}>
                                 {msg.title}: {msg.detail}
                             </div>
                         ))}
                     </div>
                 </div>
                 <SciChartReact
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     initChart={drawExample}
                     onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
                         controlsRef.current = controls;

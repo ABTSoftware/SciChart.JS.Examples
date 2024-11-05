@@ -1,12 +1,12 @@
 import * as React from "react";
 import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import Button from "@mui/material/Button";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -35,13 +35,13 @@ export default function RealtimePerformanceDemo() {
 
     const [stats, setStats] = React.useState({ numberPoints: 0, fps: 0 });
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
         <React.Fragment>
-            <div className={classes.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.toolbarRow}>
+            <div className={commonClasses.ChartWrapper}>
+                <div className={classes.flexOuterContainer}>
+                    <div className={classes.toolbarRow}>
                         <Button
                             onClick={() => controlsRef.current.startDemo()}
                             style={{ color: appTheme.ForegroundColor }}
@@ -65,7 +65,7 @@ export default function RealtimePerformanceDemo() {
                         <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
                     </div>
                     <SciChartReact
-                        className={localClasses.chartArea}
+                        className={classes.chartArea}
                         initChart={drawExample}
                         onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                             controlsRef.current = initResult.controls;

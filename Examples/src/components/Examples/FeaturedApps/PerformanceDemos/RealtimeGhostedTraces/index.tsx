@@ -1,9 +1,9 @@
 import * as React from "react";
 import { appTheme } from "../../../theme";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import Button from "@mui/material/Button";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 
 import {
     CentralAxesLayoutManager,
@@ -138,7 +138,7 @@ const drawExample = async (rootElement: string | HTMLDivElement) => {
     return { wasmContext, sciChartSurface, controls: { startAnimation, stopAnimation } };
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -167,13 +167,13 @@ export default function RealtimeGhostedTraces() {
 
     const [stats, setStats] = React.useState({ numberSeries: 0, numberPoints: 0, fps: 0 });
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
         <React.Fragment>
-            <div className={classes.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.toolbarRow}>
+            <div className={commonClasses.ChartWrapper}>
+                <div className={classes.flexOuterContainer}>
+                    <div className={classes.toolbarRow}>
                         <Button
                             id="startAnimation"
                             style={{ color: appTheme.ForegroundColor }}
@@ -200,7 +200,7 @@ export default function RealtimeGhostedTraces() {
                         <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
                     </div>
                     <SciChartReact
-                        className={localClasses.chartArea}
+                        className={classes.chartArea}
                         initChart={drawExample}
                         onInit={({ sciChartSurface, controls }: TResolvedReturnType<typeof drawExample>) => {
                             controlsRef.current = controls;

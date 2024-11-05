@@ -2,12 +2,12 @@ import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import * as React from "react";
 import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { TextLabelProvider, SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -58,14 +58,14 @@ export default function MultiLineLabels() {
         }
     };
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
         <>
-            <div className={classes.ChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+            <div className={commonClasses.ChartWrapper} style={{ background: appTheme.DarkIndigo }}>
                 <SciChartReact
                     initChart={drawExample}
-                    className={classes.ChartWrapper}
+                    className={commonClasses.ChartWrapper}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         const { sciChartSurface, labelProvider } = initResult;
                         labelProviderRef.current = labelProvider;
@@ -73,8 +73,8 @@ export default function MultiLineLabels() {
                     }}
                 />
             </div>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.toolbarRow}>
+            <div className={classes.flexOuterContainer}>
+                <div className={classes.toolbarRow}>
                     <ToggleButtonGroup
                         style={{ height: "100px", padding: "10" }}
                         exclusive
