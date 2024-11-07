@@ -15,13 +15,6 @@ const useStyles = makeStyles()((theme) => ({
         flexDirection: "column",
         background: appTheme.DarkIndigo,
     },
-    toolbarRow: {
-        display: "flex",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-        color: appTheme.ForegroundColor,
-    },
     chartArea: {
         flex: 1,
     },
@@ -36,7 +29,7 @@ export default function HeatmapChart() {
     return (
         <div className={commonClasses.ChartWrapper}>
             <div className={classes.flexOuterContainer}>
-                <div className={classes.toolbarRow}>
+                <div className={commonClasses.ToolbarRow}>
                     <Button
                         onClick={() => controlsRef.current.startUpdate()}
                         style={{ color: appTheme.ForegroundColor }}

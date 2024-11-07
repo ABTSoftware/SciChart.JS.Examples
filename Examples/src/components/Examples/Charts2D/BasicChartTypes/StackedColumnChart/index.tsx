@@ -15,13 +15,7 @@ const useStyles = makeStyles()((theme) => ({
         flexDirection: "column",
         background: appTheme.DarkIndigo,
     },
-    toolbarRow: {
-        display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-    },
+
     chartArea: {
         flex: 1,
     },
@@ -52,9 +46,9 @@ export default function StackedColumnChart() {
     return (
         <div className={commonClasses.ChartWrapper}>
             <div className={classes.flexOuterContainer}>
-                <div className={classes.toolbarRow}>
+                <div className={commonClasses.ToolbarRow}>
                     <ToggleButtonGroup
-                        className={classes.toolbarRow}
+                        className={commonClasses.ToggleButtonGroup}
                         exclusive
                         size="small"
                         value={use100PercentStackedMode}
@@ -70,7 +64,7 @@ export default function StackedColumnChart() {
                         </ToggleButton>
                     </ToggleButtonGroup>
 
-                    <ToggleButtonGroup style={{ marginLeft: "auto" }} className={classes.toolbarRow} size="small">
+                    <ToggleButtonGroup style={{ marginLeft: "auto" }} className={commonClasses.ToolbarRow} size="small">
                         <ToggleButton
                             value={areDataLabelsVisible}
                             style={{ color: appTheme.ForegroundColor }}

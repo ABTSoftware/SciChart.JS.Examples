@@ -15,13 +15,7 @@ const useStyles = makeStyles()((theme) => ({
         flexDirection: "column",
         background: appTheme.DarkIndigo,
     },
-    toolbarRow: {
-        display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-    },
+
     chartArea: {
         flex: 1,
     },
@@ -45,7 +39,7 @@ export default function PercentageChange() {
         <div className={commonClasses.ChartWrapper}>
             <div className={classes.flexOuterContainer}>
                 <ToggleButtonGroup
-                    className={classes.toolbarRow}
+                    className={commonClasses.ToolbarRow}
                     exclusive
                     value={usePercentage}
                     onChange={handleUsePercentage}

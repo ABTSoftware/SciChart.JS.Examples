@@ -34,14 +34,7 @@ const useStyles = makeStyles()((theme) => ({
         flexDirection: "row",
         background: appTheme.DarkIndigo,
     },
-    toolbarRow: {
-        display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-        color: appTheme.ForegroundColor,
-    },
+
     chartArea: {
         flex: 1,
     },

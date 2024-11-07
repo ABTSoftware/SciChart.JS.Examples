@@ -15,14 +15,6 @@ const useStyles = makeStyles()((theme) => ({
         flexDirection: "column",
         background: appTheme.DarkIndigo,
     },
-    toolbarRow: {
-        display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 0,
-        width: "100%",
-        color: appTheme.ForegroundColor,
-    },
     chartArea: {
         flex: 1,
     },
@@ -74,9 +66,9 @@ export default function MultiLineLabels() {
                 />
             </div>
             <div className={classes.flexOuterContainer}>
-                <div className={classes.toolbarRow}>
+                <div className={commonClasses.ToolbarRow}>
                     <ToggleButtonGroup
-                        style={{ height: "100px", padding: "10" }}
+                        className={commonClasses.ToggleButtonGroup}
                         exclusive
                         value={preset}
                         onChange={handlePreset}

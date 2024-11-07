@@ -146,14 +146,7 @@ const useStyles = makeStyles()((theme) => ({
         flexDirection: "column",
         background: appTheme.DarkIndigo,
     },
-    toolbarRow: {
-        display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-        color: appTheme.ForegroundColor,
-    },
+
     chartArea: {
         flex: 1,
     },
@@ -170,7 +163,7 @@ export default function RealtimeGhostedTraces() {
         <React.Fragment>
             <div className={commonClasses.ChartWrapper}>
                 <div className={classes.flexOuterContainer}>
-                    <div className={classes.toolbarRow}>
+                    <div className={commonClasses.ToolbarRow}>
                         <Button
                             style={{ color: appTheme.ForegroundColor }}
                             onClick={() => controlsRef.current.startUpdate()}

@@ -26,14 +26,7 @@ const useStyles = makeStyles()((theme) => ({
         flexDirection: "column",
         background: appTheme.DarkIndigo,
     },
-    toolbarRow: {
-        display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-        color: appTheme.ForegroundColor,
-    },
+
     chartArea: {
         flex: 1,
     },
@@ -95,7 +88,7 @@ export default function UserAnnotatedStockChart() {
         <React.Fragment>
             <div className={commonClasses.ChartWrapper}>
                 <div className={classes.flexOuterContainer}>
-                    <div className={classes.toolbarRow}>
+                    <div className={commonClasses.ToolbarRow}>
                         <ToggleButtonGroup
                             style={{ height: "70px", padding: "10" }}
                             exclusive
