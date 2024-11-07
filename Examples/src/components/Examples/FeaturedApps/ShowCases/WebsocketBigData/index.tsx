@@ -48,11 +48,7 @@ const useStyles = makeStyles()((theme) => ({
 }));
 
 export default function RealtimeBigDataShowcase() {
-    const controlsRef = React.useRef<{
-        startStreaming: () => void;
-        stopStreaming: () => void;
-        updateSettings: (newValues: ISettings) => void;
-    }>();
+    const controlsRef = React.useRef<TResolvedReturnType<typeof chartInitFunction>["controls"]>();
 
     const [seriesType, setSeriesType] = React.useState<ESeriesType>(ESeriesType.LineSeries);
     const [isDirty, setIsDirty] = React.useState<boolean>(false);
@@ -84,7 +80,7 @@ export default function RealtimeBigDataShowcase() {
     const [messages, setMessages] = React.useState<TMessage[]>([]);
 
     const changeChart = (e: any) => {
-        controlsRef.current.stopStreaming();
+        controlsRef.current.stopUpdate();
         setSeriesType(e.target.value);
     };
 
@@ -146,14 +142,14 @@ export default function RealtimeBigDataShowcase() {
     const handleStartStreaming = () => {
         if (controlsRef.current) {
             setIsDirty(false);
-            controlsRef.current.startStreaming();
+            controlsRef.current.startUpdate();
         }
     };
 
     const handleStopStreaming = () => {
         if (controlsRef.current) {
             setIsDirty(false);
-            controlsRef.current.stopStreaming();
+            controlsRef.current.stopUpdate();
         }
     };
 
@@ -192,7 +188,7 @@ export default function RealtimeBigDataShowcase() {
                         });
 
                         return () => {
-                            initResult.controls.stopStreaming();
+                            initResult.controls.stopUpdate();
                         };
                     }}
                 />
@@ -209,12 +205,8 @@ export default function RealtimeBigDataShowcase() {
                     <div>
                         <FormControl className={commonClasses.formControl}>
                             <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                                <Button id="startStreaming" onClick={handleStartStreaming}>
-                                    {isDirty ? "ReStart" : "Start"}
-                                </Button>
-                                <Button id="stopStreaming" onClick={handleStopStreaming}>
-                                    Stop
-                                </Button>
+                                <Button onClick={handleStartStreaming}>{isDirty ? "ReStart" : "Start"}</Button>
+                                <Button onClick={handleStopStreaming}>Stop</Button>
                             </ButtonGroup>
                         </FormControl>
                     </div>

@@ -11,10 +11,10 @@ export default function ChartComponent() {
                 style={{ width: "100%", height: "100%", float: "left" }}
                 initChart={drawExample}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                    initResult.controls.startDemo();
+                    initResult.controls.startUpdate();
                 }}
                 onDelete={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                    initResult.controls.stopDemo();
+                    initResult.controls.stopUpdate();
                 }}
             />
         </div>

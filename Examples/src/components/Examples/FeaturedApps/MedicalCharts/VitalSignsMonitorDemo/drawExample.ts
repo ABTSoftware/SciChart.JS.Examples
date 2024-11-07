@@ -216,17 +216,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChartSurface.addDeletable({ delete: () => dataUpdateEventHandler.unsubscribeAll() });
     };
 
-    const handleStop = () => {
+    const stopUpdate = () => {
         clearTimeout(timerId);
         timerId = undefined;
     };
 
-    const handleStart = () => {
+    const startUpdate = () => {
         if (timerId) {
-            handleStop();
+            stopUpdate();
         }
         runUpdateDataOnTimeout();
     };
 
-    return { sciChartSurface, subscribeToDataUpdates, controls: { handleStart, handleStop } };
+    return { sciChartSurface, subscribeToDataUpdates, controls: { startUpdate, stopUpdate } };
 };

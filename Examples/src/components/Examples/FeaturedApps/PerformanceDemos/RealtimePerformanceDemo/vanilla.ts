@@ -7,10 +7,10 @@ import { drawExample } from "./drawExample";
 const create = async () => {
     const { sciChartSurface, controls } = await drawExample("chart");
 
-    controls.startDemo();
+    controls.startUpdate();
 
     const destructor = () => {
-        controls.stopDemo();
+        controls.stopUpdate();
         sciChartSurface.delete();
     };
 

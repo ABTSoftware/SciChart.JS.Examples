@@ -22,10 +22,10 @@ export default function AudioAnalyzer() {
                 <SciChartGroup
                     onInit={() => {
                         controlsRef.current = chartsInitializationAPI.onAllChartsInit();
-                        controlsRef.current.handleStart();
+                        controlsRef.current.startUpdate();
                     }}
                     onDelete={() => {
-                        controlsRef.current.handleStop();
+                        controlsRef.current.stopUpdate();
                         controlsRef.current.cleanup();
                     }}
                 >

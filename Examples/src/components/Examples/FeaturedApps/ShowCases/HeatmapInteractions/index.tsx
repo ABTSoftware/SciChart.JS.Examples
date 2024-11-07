@@ -3,8 +3,8 @@ import { makeStyles } from "tss-react/mui";
 import * as React from "react";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
-import { getChartsInitializationApi, IChartControls } from "./drawExample";
-import { SciChartGroup, SciChartReact } from "scichart-react";
+import { getChartsInitializationApi } from "./drawExample";
+import { SciChartGroup, SciChartReact, TResolvedReturnType } from "scichart-react";
 
 const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
@@ -30,7 +30,7 @@ const useStyles = makeStyles()((theme) => ({
 export default function HeatmapInteractions() {
     const { classes } = useStyles();
     const [chartsInitializationAPI] = React.useState(getChartsInitializationApi);
-    const controlsRef = React.useRef<IChartControls>();
+    const controlsRef = React.useRef<TResolvedReturnType<typeof chartsInitializationAPI.onAllChartsInit>>();
 
     return (
         <React.Fragment>
@@ -39,9 +39,8 @@ export default function HeatmapInteractions() {
                     <div className={classes.toolbarRow}>
                         <Button
                             disabled
-                            id="startAnimation"
                             onClick={() => {
-                                controlsRef.current.stopAnimation();
+                                controlsRef.current.stopUpdate();
                             }}
                             style={{ color: appTheme.ForegroundColor }}
                         >
@@ -49,7 +48,7 @@ export default function HeatmapInteractions() {
                         </Button>
                         <Button
                             onClick={() => {
-                                controlsRef.current.stopAnimation();
+                                controlsRef.current.stopUpdate();
                             }}
                             style={{ color: appTheme.ForegroundColor }}
                         >

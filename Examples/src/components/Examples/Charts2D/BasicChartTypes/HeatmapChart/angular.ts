@@ -80,7 +80,7 @@ import { drawExample, drawHeatmapLegend } from "./drawExample";
                 <div class="toolbar-row">
                     <button
                         mat-raised-button
-                        (click)="startDemo()"
+                        (click)="startUpdate()"
                         [ngStyle]="{ color: '#FFFFFF' }"
                         class="toolbar-button"
                     >
@@ -88,7 +88,7 @@ import { drawExample, drawHeatmapLegend } from "./drawExample";
                     >&nbsp;
                     <button
                         mat-raised-button
-                        (click)="stopDemo()"
+                        (click)="stopUpdate()"
                         [ngStyle]="{ color: '#FFFFFF' }"
                         class="toolbar-button"
                     >
@@ -122,23 +122,23 @@ export class AppComponent {
     async onInit(initResult: Awaited<ReturnType<typeof drawExample>>) {
         this.initResult = initResult;
         this.initResult.subscribeToRenderStats((stats: any) => (this.stats = stats));
-        this.startDemo();
+        this.startUpdate();
     }
 
-    startDemo() {
+    startUpdate() {
         if (this.initResult && this.initResult.controls) {
-            this.initResult.controls.startDemo();
+            this.initResult.controls.startUpdate();
         }
     }
 
-    stopDemo() {
+    stopUpdate() {
         if (this.initResult && this.initResult.controls) {
-            this.initResult.controls.stopDemo();
+            this.initResult.controls.stopUpdate();
         }
     }
     onDelete(initResult: Awaited<ReturnType<typeof drawExample>>) {
         if (this.initResult && this.initResult.controls) {
-            this.initResult.controls.stopDemo();
+            this.initResult.controls.stopUpdate();
         }
     }
 }

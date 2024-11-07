@@ -159,8 +159,8 @@ export class AppComponent {
             initResult.subscribeToDataUpdates(this.dataUpdateCallback);
         }
 
-        if (initResult.controls.handleStart) {
-            initResult.controls.handleStart();
+        if (initResult.controls.startUpdate) {
+            initResult.controls.startUpdate();
         }
     }
 }

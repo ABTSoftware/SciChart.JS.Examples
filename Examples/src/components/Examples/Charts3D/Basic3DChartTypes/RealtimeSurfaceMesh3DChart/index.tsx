@@ -13,11 +13,11 @@ export default function RealtimeSurfaceMesh3DChart() {
                     initChart={drawExample}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         const { controls } = initResult;
-                        controls.startAnimation();
+                        controls.startUpdate();
 
                         // Return a cleanup function
                         return () => {
-                            controls.stopAnimation();
+                            controls.stopUpdate();
                         };
                     }}
                     style={{ position: "absolute", height: "100%", width: "100%" }}

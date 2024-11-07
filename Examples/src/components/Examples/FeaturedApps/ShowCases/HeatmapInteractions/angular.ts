@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ScichartAngularComponent } from "scichart-angular";
 import { appTheme } from "../../../theme";
-import { getChartsInitializationApi, IChartControls } from "./drawExample";
+import { getChartsInitializationApi } from "./drawExample";
 
 @Component({
     standalone: true,
@@ -14,7 +14,7 @@ import { getChartsInitializationApi, IChartControls } from "./drawExample";
                 <div [ngStyle]="localStyles.toolbarRow">
                     <button
                         mat-button
-                        (click)="startAnimation()"
+                        (click)="startUpdate()"
                         [ngStyle]="{ color: appTheme.ForegroundColor }"
                         [disabled]="!controlsRef"
                     >
@@ -22,7 +22,7 @@ import { getChartsInitializationApi, IChartControls } from "./drawExample";
                     </button>
                     <button
                         mat-button
-                        (click)="stopAnimation()"
+                        (click)="stopUpdate()"
                         [ngStyle]="{ color: appTheme.ForegroundColor }"
                         [disabled]="!controlsRef"
                     >
@@ -112,11 +112,11 @@ export class AppComponent {
     };
 
     chartsInitializationAPI = getChartsInitializationApi();
-    mainChart?: any;
-    crossSectionChart?: any;
-    inputChart?: any;
-    historyChart?: any;
-    controlsRef?: IChartControls;
+    mainChart?: Awaited<ReturnType<typeof this.chartsInitializationAPI.initMainChart>>;
+    crossSectionChart?: Awaited<ReturnType<typeof this.chartsInitializationAPI.initCrossSectionChart>>;
+    inputChart?: Awaited<ReturnType<typeof this.chartsInitializationAPI.inputChart>>;
+    historyChart?: Awaited<ReturnType<typeof this.chartsInitializationAPI.initHistoryChart>>;
+    controlsRef?: Awaited<ReturnType<typeof this.chartsInitializationAPI.onAllChartsInit>>;
     appTheme = appTheme;
 
     async onChartInit(event: any, chartType: "main" | "crossSection" | "input" | "history") {
@@ -148,12 +148,12 @@ export class AppComponent {
         this.controlsRef = this.chartsInitializationAPI.onAllChartsInit();
     }
 
-    startAnimation(): void {
-        this.controlsRef?.startAnimation();
+    startUpdate(): void {
+        this.controlsRef?.startUpdate();
     }
 
-    stopAnimation(): void {
-        this.controlsRef?.stopAnimation();
+    stopUpdate(): void {
+        this.controlsRef?.stopUpdate();
     }
 
     loadBasicExample(): void {

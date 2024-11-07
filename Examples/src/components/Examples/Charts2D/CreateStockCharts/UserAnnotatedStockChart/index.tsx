@@ -10,7 +10,7 @@ import {
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
-import { drawExample, IChartControls } from "./drawExample";
+import { drawExample } from "./drawExample";
 import { Button, ButtonGroup, MenuItem, Select, TextField } from "@mui/material";
 
 // If you want to keep using makeStyles:
@@ -45,7 +45,7 @@ const STORAGE_KEY = "Annotated-Charts";
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function UserAnnotatedStockChart() {
     const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const controlsRef = React.useRef<IChartControls>();
+    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
     const [name, setName] = React.useState<string>("");
     const [chartMode, setChartMode] = React.useState<string>("line");
     const [savedCharts, setSavedCharts] = React.useState<Record<string, object>>({});

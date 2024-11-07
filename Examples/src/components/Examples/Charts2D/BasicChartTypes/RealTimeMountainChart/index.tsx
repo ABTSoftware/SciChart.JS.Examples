@@ -11,10 +11,10 @@ export default function ChartComponent() {
             initChart={drawExample}
             className={commonClasses.ChartWrapper}
             onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                initResult.controls.handleStart();
+                initResult.controls.startUpdate();
             }}
             onDelete={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                initResult.controls.handleStop();
+                initResult.controls.stopUpdate();
             }}
         />
     );

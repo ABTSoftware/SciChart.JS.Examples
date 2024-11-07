@@ -122,20 +122,20 @@ const drawExample = async (rootElement: string | HTMLDivElement) => {
         timerId = setTimeout(reassignRenderableSeries, 20);
     };
 
-    const stopAnimation = () => {
+    const stopUpdate = () => {
         clearTimeout(timerId);
         timerId = undefined;
     };
 
     // Buttons for chart
-    const startAnimation = () => {
+    const startUpdate = () => {
         if (timerId) {
-            stopAnimation();
+            stopUpdate();
         }
         reassignRenderableSeries();
     };
 
-    return { wasmContext, sciChartSurface, controls: { startAnimation, stopAnimation } };
+    return { wasmContext, sciChartSurface, controls: { startUpdate, stopUpdate } };
 };
 
 const useStyles = makeStyles()((theme) => ({
@@ -160,10 +160,7 @@ const useStyles = makeStyles()((theme) => ({
 }));
 
 export default function RealtimeGhostedTraces() {
-    const controlsRef = React.useRef<{
-        startAnimation: () => void;
-        stopAnimation: () => void;
-    }>();
+    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
 
     const [stats, setStats] = React.useState({ numberSeries: 0, numberPoints: 0, fps: 0 });
 
@@ -175,16 +172,14 @@ export default function RealtimeGhostedTraces() {
                 <div className={classes.flexOuterContainer}>
                     <div className={classes.toolbarRow}>
                         <Button
-                            id="startAnimation"
                             style={{ color: appTheme.ForegroundColor }}
-                            onClick={() => controlsRef.current.startAnimation()}
+                            onClick={() => controlsRef.current.startUpdate()}
                         >
                             Start
                         </Button>
                         <Button
-                            id="stopAnimation"
                             style={{ color: appTheme.ForegroundColor }}
-                            onClick={() => controlsRef.current.stopAnimation()}
+                            onClick={() => controlsRef.current.stopUpdate()}
                         >
                             Stop
                         </Button>
@@ -220,10 +215,10 @@ export default function RealtimeGhostedTraces() {
                                 });
                             });
 
-                            controls.startAnimation();
+                            controls.startUpdate();
                         }}
                         onDelete={({ controls }: TResolvedReturnType<typeof drawExample>) => {
-                            controls.stopAnimation();
+                            controls.stopUpdate();
                         }}
                     />
                 </div>

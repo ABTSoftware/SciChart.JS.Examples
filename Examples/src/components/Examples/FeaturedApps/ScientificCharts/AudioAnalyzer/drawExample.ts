@@ -297,7 +297,7 @@ export const getChartsInitializationApi = () => {
 
     const onAllChartsInit = () => {
         if (!hasAudio) {
-            console.log("dataProvider",dataProvider);
+            console.log("dataProvider", dataProvider);
             if (dataProvider.permissionError) {
                 helpText.text =
                     "We were not able to access your microphone.  This may be because you did not accept the permissions.  Open your browser security settings and remove the block on microphone permissions from this site, then reload the page.";
@@ -307,7 +307,7 @@ export const getChartsInitializationApi = () => {
                 helpText.text = "There was an error trying to get microphone access.  Check the console";
             }
 
-            return { handleStart: () => {}, handleStop: () => {}, cleanup: () => {} };
+            return { startUpdate: () => {}, stopUpdate: () => {}, cleanup: () => {} };
         } else {
             helpText.text = "This example uses your microphone to generate waveforms. Say something!";
 
@@ -322,11 +322,11 @@ export const getChartsInitializationApi = () => {
 
             let timerId: NodeJS.Timeout;
 
-            const handleStart = () => {
+            const startUpdate = () => {
                 timerId = setInterval(updateChart, 20);
             };
 
-            const handleStop = () => {
+            const stopUpdate = () => {
                 clearInterval(timerId);
             };
 
@@ -334,7 +334,7 @@ export const getChartsInitializationApi = () => {
                 dataProvider.closeAudio();
             };
 
-            return { handleStart, handleStop, cleanup };
+            return { startUpdate, stopUpdate, cleanup };
         }
     };
 

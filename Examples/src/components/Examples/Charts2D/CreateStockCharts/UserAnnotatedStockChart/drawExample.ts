@@ -55,13 +55,6 @@ import { VerticalYRulerModifier } from "./RulerModifier";
 import { simpleBinanceRestClient } from "../../../ExampleData/binanceRestClient";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
-export interface IChartControls {
-    getDefinition: () => object;
-    applyDefinition: (definition: any) => void;
-    resetChart: () => void;
-    setChartMode: (mode: string) => void;
-}
-
 const deleteOnClick = (args: AnnotationClickEventArgs) => {
     if (args.sender.isSelected && args.mouseArgs.ctrlKey) {
         args.sender.parentSurface.annotations.remove(args.sender, true);
@@ -226,6 +219,6 @@ Ctrl + Click to delete a marker`;
 
     return {
         sciChartSurface,
-        controls: { getDefinition, applyDefinition, resetChart, setChartMode } as IChartControls,
+        controls: { getDefinition, applyDefinition, resetChart, setChartMode },
     };
 };

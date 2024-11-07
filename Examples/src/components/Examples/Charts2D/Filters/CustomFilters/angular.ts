@@ -10,7 +10,7 @@ import { drawExample } from "./drawExample";
         <scichart-angular
             [initChart]="drawExample"
             (onInit)="onInit($event)"
-            (onDelete)="stopDemo()"
+            (onDelete)="stopUpdate()"
             style="flex: 1; flex-basis: 50%;"
         >
         </scichart-angular>
@@ -21,12 +21,12 @@ export class AppComponent {
 
     async onInit(initResult: Awaited<ReturnType<typeof drawExample>>) {
         this.controls = initResult.controls;
-        this.controls.startDemo();
+        this.controls.startUpdate();
     }
 
-    stopDemo() {
+    stopUpdate() {
         if (this.controls) {
-            this.controls.stopDemo();
+            this.controls.stopUpdate();
         }
     }
 

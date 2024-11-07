@@ -80,13 +80,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         timerId = setTimeout(updateChart, 20);
     };
 
-    const startDemo = () => {
+    const startUpdate = () => {
         if (!timerId) {
             updateChart();
         }
     };
 
-    const stopDemo = () => {
+    const stopUpdate = () => {
         clearTimeout(timerId);
         timerId = undefined;
     };
@@ -107,7 +107,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         });
     };
 
-    return { sciChartSurface, subscribeToRenderStats, controls: { startDemo, stopDemo } };
+    return { sciChartSurface, subscribeToRenderStats, controls: { startUpdate, stopUpdate } };
 };
 
 // Draws a Heatmap legend over the <div id={divHeatmapLegend}></div>

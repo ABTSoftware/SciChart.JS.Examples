@@ -11,7 +11,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { SciChartSurface, chartReviver, localStorageApi } from "scichart";
 import { ScichartAngularComponent } from "scichart-angular";
-import { drawExample, IChartControls } from "./drawExample";
+import { drawExample } from "./drawExample";
 
 @Component({
     standalone: true,
@@ -196,7 +196,7 @@ export class AppComponent implements OnInit {
     name: string = "";
     savedCharts: Record<string, object> = {};
     selectedChart: string = "";
-    controlsRef: IChartControls | undefined;
+    controlsRef: Awaited<ReturnType<typeof drawExample>>["controls"] | undefined;
     sciChartSurfaceRef: SciChartSurface | undefined;
 
     readonly STORAGE_KEY = "Annotated-Charts";
@@ -254,9 +254,4 @@ export class AppComponent implements OnInit {
     getChartNames(): string[] {
         return Object.keys(this.savedCharts);
     }
-}
-
-interface DrawExampleResult {
-    sciChartSurface: SciChartSurface;
-    controls: IChartControls;
 }

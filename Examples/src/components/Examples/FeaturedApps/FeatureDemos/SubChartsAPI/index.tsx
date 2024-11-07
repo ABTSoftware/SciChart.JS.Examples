@@ -319,7 +319,7 @@ export const drawGridExample = async (
     });
 
     // Buttons for chart
-    const startStreaming = () => {
+    const startUpdate = () => {
         console.log("start streaming");
         loadCount = 0;
         avgRenderTime = 0;
@@ -328,7 +328,7 @@ export const drawGridExample = async (
         updateCharts();
     };
 
-    const stopStreaming = () => {
+    const stopUpdate = () => {
         console.log("stop streaming");
         isRunning = false;
         if (mainSurface.chartModifiers.size() === 0) {
@@ -351,8 +351,8 @@ export const drawGridExample = async (
         wasmContext,
         sciChartSurface: mainSurface,
         controls: {
-            startStreaming,
-            stopStreaming,
+            startUpdate,
+            stopUpdate,
             setLabels,
         },
     };
@@ -391,11 +391,7 @@ const useStyles = makeStyles()((theme) => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function SubchartsGrid() {
-    const controlsRef = React.useRef<{
-        startStreaming: () => void;
-        stopStreaming: () => void;
-        setLabels: (show: boolean) => void;
-    }>();
+    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
     const [isDirty, setIsDirty] = React.useState<boolean>(false);
 
     const [messages, setMessages] = React.useState<TMessage[]>([]);
@@ -404,7 +400,7 @@ export default function SubchartsGrid() {
 
     const handleStartStreaming = () => {
         setIsDirty(false);
-        controlsRef.current.startStreaming();
+        controlsRef.current.startUpdate();
     };
 
     const handleLabelsChange = (ev: any, checked: boolean) => {
@@ -422,12 +418,8 @@ export default function SubchartsGrid() {
                 <div className={classes.toolbarRow}>
                     <FormControl className={commonClasses.formControl}>
                         <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                            <Button id="startStreaming" onClick={handleStartStreaming}>
-                                {isDirty ? "ReStart" : "Start"}
-                            </Button>
-                            <Button id="stopStreaming" onClick={() => controlsRef.current.stopStreaming()}>
-                                Stop
-                            </Button>
+                            <Button onClick={handleStartStreaming}>{isDirty ? "ReStart" : "Start"}</Button>
+                            <Button onClick={() => controlsRef.current.stopUpdate()}>Stop</Button>
                         </ButtonGroup>
                     </FormControl>
                     <FormControl className={commonClasses.formControl}>
@@ -452,7 +444,7 @@ export default function SubchartsGrid() {
                         controlsRef.current = controls;
                     }}
                     onDelete={({ controls }: TResolvedReturnType<typeof drawExample>) => {
-                        controls.stopStreaming();
+                        controls.stopUpdate();
                     }}
                 />
             </div>

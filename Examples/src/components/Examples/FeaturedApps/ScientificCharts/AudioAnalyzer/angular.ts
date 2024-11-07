@@ -85,7 +85,7 @@ export class AppComponent {
     private configureCharts() {
         if (this.audioChart && this.fftChart && this.spectrogramChart) {
             this.controlsRef = this.chartsInitializationAPI.onAllChartsInit();
-            this.controlsRef.handleStart();
+            this.controlsRef.startUpdate();
         }
     }
 }

@@ -545,7 +545,7 @@ export const drawExample =
         };
 
         // Buttons for chart
-        const startStreaming = () => {
+        const startUpdate = () => {
             console.log("start streaming");
             loadCount = 0;
             avgLoadTime = 0;
@@ -561,7 +561,7 @@ export const drawExample =
             initWebSocket(positive);
         };
 
-        const stopStreaming = () => {
+        const stopUpdate = () => {
             console.log("stop streaming");
             socket?.disconnect();
             isRunning = false;
@@ -573,5 +573,5 @@ export const drawExample =
                 );
             }
         };
-        return { wasmContext, sciChartSurface, controls: { startStreaming, stopStreaming, updateSettings } };
+        return { wasmContext, sciChartSurface, controls: { startUpdate, stopUpdate, updateSettings } };
     };

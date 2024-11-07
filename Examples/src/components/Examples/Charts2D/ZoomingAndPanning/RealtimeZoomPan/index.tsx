@@ -12,7 +12,7 @@ export default function ChartComponent() {
             initChart={drawExample}
             className={commonClasses.ChartWrapper}
             onDelete={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                initResult.controls.handleStop();
+                initResult.controls.stopUpdate();
             }}
         />
     );

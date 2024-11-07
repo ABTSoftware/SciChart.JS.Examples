@@ -6,7 +6,7 @@ import { drawExample } from "./drawExample";
 
 // REACT COMPONENT
 export default function VitalSignsMonitorDemo() {
-    const controlsRef = React.useRef<{ handleStart: () => void; handleStop: () => void }>();
+    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
 
     const [infoEcg, setInfoEcg] = React.useState<number>(0);
     const [infoBloodPressure1, setInfoBloodPressure1] = React.useState<number>(0);
@@ -30,10 +30,10 @@ export default function VitalSignsMonitorDemo() {
                         });
 
                         controlsRef.current = initResult.controls;
-                        initResult.controls.handleStart();
+                        initResult.controls.startUpdate();
 
                         return () => {
-                            initResult.controls.handleStop();
+                            initResult.controls.stopUpdate();
                         };
                     }}
                 />

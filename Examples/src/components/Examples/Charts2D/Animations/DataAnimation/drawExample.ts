@@ -91,13 +91,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     };
     timerId = setTimeout(animateData, 1000);
 
-    const startAnimation = () => {
+    const startUpdate = () => {
         timerId = setTimeout(animateData, 1000);
     };
 
-    const stopAnimation = () => {
+    const stopUpdate = () => {
         clearTimeout(timerId);
     };
 
-    return { wasmContext, sciChartSurface, controls: { startAnimation, stopAnimation } };
+    return { wasmContext, sciChartSurface, controls: { startUpdate, stopUpdate } };
 };

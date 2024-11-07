@@ -10,8 +10,8 @@ import { drawExample } from "./drawExample";
         <div class="chart-wrapper">
             <div class="flex-outer-container">
                 <div class="toolbar-row">
-                    <button (click)="startDemo()">Start</button>
-                    <button (click)="stopDemo()">Stop</button>
+                    <button (click)="startUpdate()">Start</button>
+                    <button (click)="stopUpdate()">Stop</button>
                     <span class="data-points"># DataPoints: {{ stats.numberPoints.toLocaleString() }}</span>
                     <span class="fps">FPS: {{ stats.fps.toFixed(0) }}</span>
                 </div>
@@ -79,24 +79,24 @@ export class AppComponent {
     async onInit(initResult: Awaited<ReturnType<typeof drawExample>>) {
         this.initResult = initResult;
         this.initResult.controls.setStatsChangedCallback((stats: any) => (this.stats = stats));
-        this.startDemo();
+        this.startUpdate();
     }
 
-    startDemo() {
+    startUpdate() {
         if (this.initResult && this.initResult.controls) {
-            this.initResult.controls.startDemo();
+            this.initResult.controls.startUpdate();
         }
     }
 
-    stopDemo() {
+    stopUpdate() {
         if (this.initResult && this.initResult.controls) {
-            this.initResult.controls.stopDemo();
+            this.initResult.controls.stopUpdate();
         }
     }
 
     onDelete() {
         if (this.initResult && this.initResult.controls) {
-            this.initResult.controls.stopDemo();
+            this.initResult.controls.stopUpdate();
         }
     }
 }

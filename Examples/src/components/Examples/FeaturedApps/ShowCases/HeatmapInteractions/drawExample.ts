@@ -72,14 +72,6 @@ const csGradientStops = [
 let width = 700;
 let height = 500;
 
-export interface IChartControls {
-    startAnimation(): void;
-    stopAnimation(): void;
-    showHelp(): void;
-    twoPoint(): void;
-    interference(): void;
-}
-
 export const getChartsInitializationApi = () => {
     let initialZValues: number[][];
     let velocities: number[][];
@@ -717,19 +709,19 @@ export const getChartsInitializationApi = () => {
         };
 
         // Buttons for chart
-        const startAnimation = () => {
+        const startUpdate = () => {
             console.log("start animation");
             updateChart();
         };
 
-        const stopAnimation = () => {
+        const stopUpdate = () => {
             console.log("stop animation");
             clearTimeout(timerId);
             timerId = undefined;
         };
 
         mainSurface.addDeletable({
-            delete: () => stopAnimation(),
+            delete: () => stopUpdate(),
         });
 
         const showHelp = () => {
@@ -780,17 +772,17 @@ export const getChartsInitializationApi = () => {
         };
 
         const twoPoint = () => {
-            stopAnimation();
+            stopUpdate();
             clearHeatmap();
             addInput(width / 4, height / 2);
             addInput((3 * width) / 4, height / 2);
             addOutput((3 * width) / 4, (3 * height) / 4);
             addOutput(width / 4, height / 4);
-            startAnimation();
+            startUpdate();
         };
 
         const interference = () => {
-            stopAnimation();
+            stopUpdate();
             clearHeatmap();
             const sep = 20;
             const gap = 10;
@@ -803,14 +795,14 @@ export const getChartsInitializationApi = () => {
             addOutput((3 * width) / 4, height / 3);
             addOutput((3 * width) / 4, height / 4);
             vline.x1 = (3 * width) / 4;
-            startAnimation();
+            startUpdate();
         };
 
         twoPoint();
 
         return {
-            startAnimation,
-            stopAnimation,
+            startUpdate,
+            stopUpdate,
             showHelp,
             twoPoint,
             interference,

@@ -28,10 +28,7 @@ const useStyles = makeStyles()((theme) => ({
 }));
 
 export default function RealtimePerformanceDemo() {
-    const controlsRef = React.useRef<{
-        startDemo: () => void;
-        stopDemo: () => void;
-    }>();
+    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
 
     const [stats, setStats] = React.useState({ numberPoints: 0, fps: 0 });
 
@@ -43,13 +40,13 @@ export default function RealtimePerformanceDemo() {
                 <div className={classes.flexOuterContainer}>
                     <div className={classes.toolbarRow}>
                         <Button
-                            onClick={() => controlsRef.current.startDemo()}
+                            onClick={() => controlsRef.current.startUpdate()}
                             style={{ color: appTheme.ForegroundColor }}
                         >
                             Start
                         </Button>
                         <Button
-                            onClick={() => controlsRef.current.stopDemo()}
+                            onClick={() => controlsRef.current.stopUpdate()}
                             style={{ color: appTheme.ForegroundColor }}
                         >
                             Stop
@@ -70,10 +67,10 @@ export default function RealtimePerformanceDemo() {
                         onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                             controlsRef.current = initResult.controls;
                             initResult.controls.setStatsChangedCallback((renderStats) => setStats(renderStats));
-                            initResult.controls.startDemo();
+                            initResult.controls.startUpdate();
                         }}
                         onDelete={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                            initResult.controls.stopDemo();
+                            initResult.controls.stopUpdate();
                         }}
                     />
                 </div>

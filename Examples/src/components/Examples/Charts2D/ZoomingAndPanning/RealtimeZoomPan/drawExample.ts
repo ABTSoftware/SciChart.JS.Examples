@@ -81,10 +81,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         // Warning, this will repeat forever, it's not best practice!
     };
 
-    const handleStop = () => {
+    const stopUpdate = () => {
         clearTimeout(timerId);
     };
 
     updateDataFunc();
-    return { sciChartSurface, controls: { handleStop } };
+    return { sciChartSurface, controls: { stopUpdate } };
 };

@@ -97,8 +97,8 @@ import { ESeriesType } from "scichart";
                         <input matSliderThumb />
                     </mat-slider>
                     <div>Send Data Interval (ms): {{ settings.sendEvery }}</div>
-                    <button mat-raised-button color="primary" (click)="startStreaming()">Start</button>
-                    <button mat-raised-button color="warn" (click)="stopStreaming()">Stop</button>
+                    <button mat-raised-button color="primary" (click)="startUpdate()">Start</button>
+                    <button mat-raised-button color="warn" (click)="stopUpdate()">Stop</button>
                 </form>
             </div>
         </div>
@@ -159,7 +159,7 @@ export class RealtimeBigDataShowcaseComponent {
 
     changeChart(newSeriesType: ESeriesType) {
         if (this.controls) {
-            this.controls.stopStreaming();
+            this.controls.stopUpdate();
         }
         this.seriesType = newSeriesType;
         this.initChartFunction = drawExample((newMessages: TMessage[]) => {
@@ -168,17 +168,17 @@ export class RealtimeBigDataShowcaseComponent {
         this.updateChartSettings();
     }
 
-    startStreaming() {
+    startUpdate() {
         if (this.controls) {
             this.isDirty = false;
-            this.controls.startStreaming();
+            this.controls.startUpdate();
         }
     }
 
-    stopStreaming() {
+    stopUpdate() {
         if (this.controls) {
             this.isDirty = false;
-            this.controls.stopStreaming();
+            this.controls.stopUpdate();
         }
     }
 

@@ -17,10 +17,10 @@ export class AppComponent {
     public drawExample = drawExample;
 
     onInitHandler = (initResult: Awaited<ReturnType<typeof drawExample>>) => {
-        initResult.controls.handleStart();
+        initResult.controls.startUpdate();
     };
 
     onDeleteHandler = (initResult: Awaited<ReturnType<typeof drawExample>>) => {
-        initResult.controls.handleStop();
+        initResult.controls.stopUpdate();
     };
 }

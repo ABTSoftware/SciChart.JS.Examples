@@ -28,10 +28,7 @@ const useStyles = makeStyles()((theme) => ({
 }));
 
 export default function HeatmapChart() {
-    const controlsRef = React.useRef({
-        startDemo: () => {},
-        stopDemo: () => {},
-    });
+    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
     const [stats, setStats] = React.useState({ xSize: 0, ySize: 0, fps: 0 });
 
     const { classes } = useStyles();
@@ -40,10 +37,16 @@ export default function HeatmapChart() {
         <div className={commonClasses.ChartWrapper}>
             <div className={classes.flexOuterContainer}>
                 <div className={classes.toolbarRow}>
-                    <Button onClick={() => controlsRef.current.startDemo()} style={{ color: appTheme.ForegroundColor }}>
+                    <Button
+                        onClick={() => controlsRef.current.startUpdate()}
+                        style={{ color: appTheme.ForegroundColor }}
+                    >
                         Start
                     </Button>
-                    <Button onClick={() => controlsRef.current.stopDemo()} style={{ color: appTheme.ForegroundColor }}>
+                    <Button
+                        onClick={() => controlsRef.current.stopUpdate()}
+                        style={{ color: appTheme.ForegroundColor }}
+                    >
                         Stop
                     </Button>
                     <span style={{ margin: 12, minWidth: "200px" }}>
@@ -62,11 +65,11 @@ export default function HeatmapChart() {
                             subscribeToRenderStats((stats) => setStats(stats));
 
                             // Start the demo
-                            controls.startDemo();
+                            controls.startUpdate();
 
                             // Cleanup function
                             return () => {
-                                controls.stopDemo();
+                                controls.stopUpdate();
                             };
                         }}
                     />

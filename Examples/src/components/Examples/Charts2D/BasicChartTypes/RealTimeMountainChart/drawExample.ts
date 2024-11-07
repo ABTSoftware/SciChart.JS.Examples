@@ -127,18 +127,18 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         timerId = setTimeout(runAddDataOnTimeout, 1000);
     };
 
-    const handleStart = () => {
+    const startUpdate = () => {
         if (timerId) {
-            handleStop();
+            stopUpdate();
         }
         runAddDataOnTimeout();
     };
 
-    const handleStop = () => {
+    const stopUpdate = () => {
         animationToken?.cancelAnimation();
         clearTimeout(timerId);
         timerId = undefined;
     };
 
-    return { sciChartSurface, wasmContext, controls: { handleStart, handleStop } };
+    return { sciChartSurface, wasmContext, controls: { startUpdate, stopUpdate } };
 };
