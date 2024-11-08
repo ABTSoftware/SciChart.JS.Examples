@@ -32,11 +32,7 @@ const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
 const targetDir = defaultConfig.buildConfig.targetDir;
 
-function handleRender(req: Request, res: Response) {
-    if (req.query["codesandbox"]) {
-        if (renderSandBoxRedirect(req, res, "codesandbox")) return;
-    }
-
+function renderPage(url: string) {
     // Create an emotion cache for SSR
     const cache = createEmotionCache();
     const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
@@ -45,7 +41,7 @@ function handleRender(req: Request, res: Response) {
     const appHtml = ReactDOMServer.renderToString(
         <CacheProvider value={cache}>
             <ThemeProvider theme={customTheme}>
-                <StaticRouter location={req.url}>
+                <StaticRouter location={url}>
                     <App />
                 </StaticRouter>
             </ThemeProvider>
@@ -59,8 +55,44 @@ function handleRender(req: Request, res: Response) {
     // SEO tags
     const helmet = Helmet.renderStatic();
 
-    // Send the rendered page back to the client with the CSS.
-    res.send(renderIndexHtml(appHtml, emotionCss, helmet));
+    return renderIndexHtml(appHtml, emotionCss, helmet);
+}
+
+// Prerendered pages cache structure of URL/HTML pairs
+const pageHtmlCache = new Map<string, string>();
+
+function populatePrerenderedPageCache() {
+    for (let framework of Object.values(EPageFramework)) {
+        // generate homepage
+        const url = `/${framework}`;
+        const pageHtml = renderPage(url);
+        pageHtmlCache.set(url, pageHtml);
+
+        // generate example pages
+        for (let key in EXAMPLES_PAGES) {
+            const exampleRoute = EXAMPLES_PAGES[key].path;
+            const url = `/${framework}/${exampleRoute}`;
+            const pageHtml = renderPage(url);
+            pageHtmlCache.set(url, pageHtml);
+        }
+    }
+}
+
+populatePrerenderedPageCache();
+
+function handleRender(req: Request, res: Response) {
+    if (req.query["codesandbox"]) {
+        if (renderSandBoxRedirect(req, res, "codesandbox")) return;
+    }
+
+    const cachedPageHtml = pageHtmlCache.get(req.url);
+    if (cachedPageHtml) {
+        res.send(cachedPageHtml);
+    } else {
+        console.warn("render on demand", req.url);
+        const pageHtml = renderPage(req.url);
+        res.send(pageHtml);
+    }
 }
 
 const app = express();
