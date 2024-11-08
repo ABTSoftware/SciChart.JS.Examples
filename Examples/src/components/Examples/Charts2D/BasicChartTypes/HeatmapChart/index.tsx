@@ -1,9 +1,11 @@
-import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
-import { Button } from "@mui/material";
-import { appTheme } from "../../../theme";
+import { useRef, useState } from "react";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
+import Button from "@mui/material/Button";
 import { makeStyles } from "tss-react/mui";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
+import { appTheme } from "../../../theme";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
 
 // Styles for layout of the toolbar / chart area
@@ -21,8 +23,9 @@ const useStyles = makeStyles()((theme) => ({
 }));
 
 export default function HeatmapChart() {
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
-    const [stats, setStats] = React.useState({ xSize: 0, ySize: 0, fps: 0 });
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
+    const [isStarted, setIsStarted] = useState(false);
+    const [stats, setStats] = useState({ xSize: 0, ySize: 0, fps: 0 });
 
     const { classes } = useStyles();
 
@@ -31,21 +34,21 @@ export default function HeatmapChart() {
             <div className={classes.flexOuterContainer}>
                 <div className={commonClasses.ToolbarRow}>
                     <Button
-                        onClick={() => controlsRef.current.startUpdate()}
-                        style={{ color: appTheme.ForegroundColor }}
+                        onClick={() => {
+                            if (isStarted) {
+                                controlsRef.current.stopUpdate();
+                            } else {
+                                controlsRef.current.startUpdate();
+                            }
+                            setIsStarted(!isStarted);
+                        }}
                     >
-                        Start
+                        {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
                     </Button>
-                    <Button
-                        onClick={() => controlsRef.current.stopUpdate()}
-                        style={{ color: appTheme.ForegroundColor }}
-                    >
-                        Stop
-                    </Button>
-                    <span style={{ margin: 12, minWidth: "200px" }}>
+                    <span>
                         # Heatmap Size: {stats.xSize} x {stats.ySize}
                     </span>
-                    <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
+                    <span>FPS: {stats.fps.toFixed(0).padStart(2, "0")}</span>
                 </div>
                 <div className={classes.chartArea} style={{ position: "relative" }}>
                     <SciChartReact
@@ -59,6 +62,7 @@ export default function HeatmapChart() {
 
                             // Start the demo
                             controls.startUpdate();
+                            setIsStarted(true);
 
                             // Cleanup function
                             return () => {
@@ -72,9 +76,8 @@ export default function HeatmapChart() {
                             position: "absolute",
                             height: "90%",
                             width: "100px",
-                            top: 0,
+                            top: "5%",
                             right: "75px",
-                            margin: "20px",
                         }}
                     />
                 </div>

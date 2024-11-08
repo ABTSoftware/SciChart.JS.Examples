@@ -31,10 +31,10 @@ export default function CandlestickChart() {
     const initFunc = drawExample(dataSource);
 
     return (
-        <React.Fragment>
-            <div className={commonClasses.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+        <div className={commonClasses.ChartWrapper}>
+            <div className={commonClasses.ToolbarRow}>
                 <ToggleButtonGroup
-                    style={{ height: "70px", padding: "10" }}
+                    className={commonClasses.ToggleButtonGroup}
                     exclusive
                     value={preset}
                     onChange={handleToggleButtonChanged}
@@ -42,16 +42,12 @@ export default function CandlestickChart() {
                     color="primary"
                     aria-label="small outlined button group"
                 >
-                    <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
-                        Candlestick Series
-                    </ToggleButton>
-                    <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
-                        OHLC Series
-                    </ToggleButton>
+                    <ToggleButton value={0}>Candlestick Series</ToggleButton>
+                    <ToggleButton value={1}>OHLC Series</ToggleButton>
                 </ToggleButtonGroup>
                 <FormLabel style={{ color: appTheme.VividGreen }}>Data Source</FormLabel>
                 <ToggleButtonGroup
-                    style={{ height: "70px", padding: "10" }}
+                    className={commonClasses.ToggleButtonGroup}
                     exclusive
                     value={dataSource}
                     onChange={handleDataSourceChanged}
@@ -59,33 +55,28 @@ export default function CandlestickChart() {
                     color="primary"
                     aria-label="small outlined button group"
                 >
-                    <ToggleButton value={"Random"} style={{ color: appTheme.ForegroundColor }}>
-                        Random
-                    </ToggleButton>
-                    <ToggleButton value={"com"} style={{ color: appTheme.ForegroundColor }}>
-                        Binance.com
-                    </ToggleButton>
-                    <ToggleButton value={"us"} style={{ color: appTheme.ForegroundColor }}>
-                        Binance.us
-                    </ToggleButton>
+                    <ToggleButton value={"Random"}>Random</ToggleButton>
+                    <ToggleButton value={"com"}>Binance.com</ToggleButton>
+                    <ToggleButton value={"us"}>Binance.us</ToggleButton>
                 </ToggleButtonGroup>
-                <SciChartReact
-                    key={dataSource}
-                    initChart={initFunc}
-                    onInit={(initResult: TResolvedReturnType<typeof initFunc>) => {
-                        const { ohlcSeries, candlestickSeries } = initResult;
-                        setCandlestickChartSeries(candlestickSeries);
-                        setOhlcChartSeries(ohlcSeries);
-                    }}
-                    style={{ display: "flex", flexDirection: "column", height: "calc(100% - 70px)", width: "100%" }}
-                    innerContainerProps={{ style: { flexBasis: "80%", flexGrow: 1, flexShrink: 1 } }}
-                >
-                    <SciChartNestedOverview
-                        style={{ flexBasis: "20%", flexGrow: 1, flexShrink: 1 }}
-                        options={overviewOptions}
-                    />
-                </SciChartReact>
             </div>
-        </React.Fragment>
+
+            <SciChartReact
+                key={dataSource}
+                initChart={initFunc}
+                onInit={(initResult: TResolvedReturnType<typeof initFunc>) => {
+                    const { ohlcSeries, candlestickSeries } = initResult;
+                    setCandlestickChartSeries(candlestickSeries);
+                    setOhlcChartSeries(ohlcSeries);
+                }}
+                style={{ display: "flex", flexDirection: "column", height: "calc(100% - 70px)", width: "100%" }}
+                innerContainerProps={{ style: { flexBasis: "80%", flexGrow: 1, flexShrink: 1 } }}
+            >
+                <SciChartNestedOverview
+                    style={{ flexBasis: "20%", flexGrow: 1, flexShrink: 1 }}
+                    options={overviewOptions}
+                />
+            </SciChartReact>
+        </div>
     );
 }

@@ -1,10 +1,12 @@
-import * as React from "react";
-import { appTheme } from "../../../theme";
-import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
-import { drawExample } from "./drawExample";
+import { useRef, useState } from "react";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
 import Button from "@mui/material/Button";
 import { makeStyles } from "tss-react/mui";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
+import { appTheme } from "../../../theme";
+import commonClasses from "../../../styles/Examples.module.scss";
+import { drawExample } from "./drawExample";
 
 const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
@@ -21,53 +23,46 @@ const useStyles = makeStyles()((theme) => ({
 }));
 
 export default function RealtimePerformanceDemo() {
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
 
-    const [stats, setStats] = React.useState({ numberPoints: 0, fps: 0 });
+    const [isStarted, setIsStarted] = useState(false);
+    const [stats, setStats] = useState({ numberPoints: 0, fps: 0 });
 
     const { classes } = useStyles();
 
     return (
-        <React.Fragment>
-            <div className={commonClasses.ChartWrapper}>
-                <div className={classes.flexOuterContainer}>
-                    <div className={commonClasses.ToolbarRow}>
-                        <Button
-                            onClick={() => controlsRef.current.startUpdate()}
-                            style={{ color: appTheme.ForegroundColor }}
-                        >
-                            Start
-                        </Button>
-                        <Button
-                            onClick={() => controlsRef.current.stopUpdate()}
-                            style={{ color: appTheme.ForegroundColor }}
-                        >
-                            Stop
-                        </Button>
-                        <span
-                            style={{
-                                margin: 12,
-                                minWidth: "200px",
-                            }}
-                        >
-                            # DataPoints: {stats.numberPoints.toLocaleString()}
-                        </span>
-                        <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
-                    </div>
-                    <SciChartReact
-                        className={classes.chartArea}
-                        initChart={drawExample}
-                        onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                            controlsRef.current = initResult.controls;
-                            initResult.controls.setStatsChangedCallback((renderStats) => setStats(renderStats));
-                            initResult.controls.startUpdate();
+        <div className={commonClasses.ChartWrapper}>
+            <div className={classes.flexOuterContainer}>
+                <div className={commonClasses.ToolbarRow}>
+                    <Button
+                        onClick={() => {
+                            if (isStarted) {
+                                controlsRef.current.stopUpdate();
+                            } else {
+                                controlsRef.current.startUpdate();
+                            }
+                            setIsStarted(!isStarted);
                         }}
-                        onDelete={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                            initResult.controls.stopUpdate();
-                        }}
-                    />
+                    >
+                        {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
+                    </Button>
+                    <div># DataPoints: {stats.numberPoints.toLocaleString()}</div>
+                    <div>FPS: {stats.fps.toFixed(0).padStart(2, "0")}</div>
                 </div>
+                <SciChartReact
+                    className={classes.chartArea}
+                    initChart={drawExample}
+                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                        controlsRef.current = initResult.controls;
+                        initResult.controls.setStatsChangedCallback((renderStats) => setStats(renderStats));
+                        initResult.controls.startUpdate();
+                        setIsStarted(true);
+                    }}
+                    onDelete={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                        initResult.controls.stopUpdate();
+                    }}
+                />
             </div>
-        </React.Fragment>
+        </div>
     );
 }

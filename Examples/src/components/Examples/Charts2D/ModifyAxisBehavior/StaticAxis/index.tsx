@@ -31,7 +31,7 @@ export default function ChartComponent() {
     return (
         <div className={commonClasses.ChartWrapper}>
             <div className={classes.flexOuterContainer}>
-                <div className={commonClasses.ToolbarRow}>
+                <div className={commonClasses.ToolbarRow} style={{ justifyContent: "flex-start", paddingLeft: "1em" }}>
                     <Typography style={{ color: appTheme.ForegroundColor, alignSelf: "center" }}>
                         Primary Axis:{" "}
                     </Typography>

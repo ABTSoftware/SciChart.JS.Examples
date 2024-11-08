@@ -95,7 +95,7 @@ import { drawExample, drawHeatmapLegend } from "./drawExample";
                         Stop
                     </button>
                     <span class="stats-info"> # Heatmap Size: {{ stats.xSize }} x {{ stats.ySize }} </span>
-                    <span class="stats-info"> FPS: {{ stats.fps.toFixed(0) }} </span>
+                    <span class="stats-info"> FPS: {{ stats.fps.toFixed(0).padStart(2, "0") }} </span>
                 </div>
                 <div class="chart-area">
                     <scichart-angular
