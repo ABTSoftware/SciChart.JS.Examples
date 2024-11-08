@@ -14,6 +14,7 @@ import { TExamplePage } from "../AppRouter/examplePages";
 import { baseGithubPath } from "../../constants";
 import { appTheme } from "./theme";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { SciChartGroupContext } from "scichart-react";
 
 const DocsActionButton = () => <DescriptionIcon></DescriptionIcon>;
 
@@ -78,6 +79,7 @@ const useStyles = makeStyles()((theme) => ({
 
 export function InfoToolbar(props: { examplePage: TExamplePage }) {
     const framework = useContext(FrameworkContext);
+    const chartGroupContext = useContext(SciChartGroupContext);
     const [isOpen, setIsOpen] = useState(false);
 
     const handleOpen = () => {
