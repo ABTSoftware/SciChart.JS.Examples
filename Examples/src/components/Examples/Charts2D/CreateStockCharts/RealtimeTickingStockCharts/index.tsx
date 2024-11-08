@@ -99,33 +99,35 @@ export default function RealtimeTickingStockCharts() {
     const initFunc = drawExample(dataSource);
 
     return (
-        <div className={commonClasses.ChartWrapper} style={{ background: appTheme.DarkIndigo }}>
-            <ToggleButtonGroup
-                className={commonClasses.ToolbarRow}
-                exclusive
-                value={preset}
-                onChange={handleToggleButtonChanged}
-                size="small"
-                color="primary"
-                aria-label="small outlined button group"
-            >
-                <ToggleButton value={0}>Candlestick Series</ToggleButton>
-                <ToggleButton value={1}>OHLC Series</ToggleButton>
-            </ToggleButtonGroup>
-            <FormLabel style={{ color: appTheme.VividGreen }}>Data Source</FormLabel>
-            <ToggleButtonGroup
-                className={commonClasses.ToolbarRow}
-                exclusive
-                value={dataSource}
-                onChange={handleDataSourceChanged}
-                size="small"
-                color="primary"
-                aria-label="small outlined button group"
-            >
-                <ToggleButton value={"Random"}>Random</ToggleButton>
-                <ToggleButton value={"com"}>Binance.com</ToggleButton>
-                <ToggleButton value={"us"}>Binance.us</ToggleButton>
-            </ToggleButtonGroup>
+        <div className={commonClasses.ChartWrapper} style={{ display: "flex", flexDirection: "column" }}>
+            <div className={commonClasses.ToolbarRow} style={{ flex: "none" }}>
+                <ToggleButtonGroup
+                    className={commonClasses.ToggleButtonGroup}
+                    exclusive
+                    value={preset}
+                    onChange={handleToggleButtonChanged}
+                    size="small"
+                    color="primary"
+                    aria-label="small outlined button group"
+                >
+                    <ToggleButton value={0}>Candlestick Series</ToggleButton>
+                    <ToggleButton value={1}>OHLC Series</ToggleButton>
+                </ToggleButtonGroup>
+                <FormLabel style={{ color: appTheme.VividGreen }}>Data Source</FormLabel>
+                <ToggleButtonGroup
+                    className={commonClasses.ToggleButtonGroup}
+                    exclusive
+                    value={dataSource}
+                    onChange={handleDataSourceChanged}
+                    size="small"
+                    color="primary"
+                    aria-label="small outlined button group"
+                >
+                    <ToggleButton value={"Random"}>Random</ToggleButton>
+                    <ToggleButton value={"com"}>Binance.com</ToggleButton>
+                    <ToggleButton value={"us"}>Binance.us</ToggleButton>
+                </ToggleButtonGroup>
+            </div>
             <SciChartReact
                 key={dataSource}
                 initChart={initFunc}
@@ -137,7 +139,7 @@ export default function RealtimeTickingStockCharts() {
                         subscription.unsubscribe();
                     };
                 }}
-                style={{ display: "flex", flexDirection: "column", height: "calc(100% - 70px)", width: "100%" }}
+                style={{ display: "flex", flexDirection: "column", width: "100%", flex: "auto" }}
                 innerContainerProps={{ style: { flexBasis: "80%", flexGrow: 1, flexShrink: 1 } }}
             >
                 <SciChartNestedOverview

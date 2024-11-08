@@ -31,8 +31,8 @@ export default function CandlestickChart() {
     const initFunc = drawExample(dataSource);
 
     return (
-        <div className={commonClasses.ChartWrapper}>
-            <div className={commonClasses.ToolbarRow}>
+        <div className={commonClasses.ChartWrapper} style={{ display: "flex", flexDirection: "column" }}>
+            <div className={commonClasses.ToolbarRow} style={{ flex: "none" }}>
                 <ToggleButtonGroup
                     className={commonClasses.ToggleButtonGroup}
                     exclusive
@@ -69,7 +69,7 @@ export default function CandlestickChart() {
                     setCandlestickChartSeries(candlestickSeries);
                     setOhlcChartSeries(ohlcSeries);
                 }}
-                style={{ display: "flex", flexDirection: "column", height: "calc(100% - 70px)", width: "100%" }}
+                style={{ display: "flex", flexDirection: "column", width: "100%", flex: "auto" }}
                 innerContainerProps={{ style: { flexBasis: "80%", flexGrow: 1, flexShrink: 1 } }}
             >
                 <SciChartNestedOverview
