@@ -37,12 +37,18 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const lineSeries = new FastLineRenderableSeries(wasmContext, { stroke: "#4083B7", strokeThickness: 2 });
     sciChartSurface.renderableSeries.add(lineSeries, scatterSeries);
 
+    const initialDataPointsCount = 1000;
+
+    // if a required size of data series is known or it is expected to grow,
+    // setting a capacity value may give some efficiency boost
+    const initialCapacity = 2000;
+
     // Create and populate some XyDataSeries with static data
     // Note: you can pass xValues, yValues arrays to constructors, and you can use appendRange for bigger datasets
-    const scatterData = new XyDataSeries(wasmContext, { dataSeriesName: "Cos(x)" });
-    const lineData = new XyDataSeries(wasmContext, { dataSeriesName: "Sin(x)" });
+    const scatterData = new XyDataSeries(wasmContext, { dataSeriesName: "Cos(x)", capacity: initialCapacity });
+    const lineData = new XyDataSeries(wasmContext, { dataSeriesName: "Sin(x)", capacity: initialCapacity });
 
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < initialDataPointsCount; i++) {
         lineData.append(i, Math.sin(i * 0.05));
         scatterData.append(i, Math.cos(i * 0.05));
     }
@@ -65,6 +71,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const updateDataFunc = () => {
         // Append another data-point to the chart. We use dataSeries.count()
         // to determine the current length before appending
+        // NOTE: sometimes appending data points in bulk with appendRange can be more efficient
         const i = lineData.count();
         lineData.append(i, Math.sin(i * 0.05));
         scatterData.append(i, Math.cos(i * 0.05));
@@ -74,10 +81,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         if (sciChartSurface.zoomState !== EZoomState.UserZooming) {
             xAxis.visibleRange = new NumberRange(i - 1000, i);
         }
+    };
 
+    const startUpdate = () => {
         // Repeat at 60Hz
-        timerId = setTimeout(updateDataFunc, 1 / 60);
-
+        timerId = setInterval(updateDataFunc, 16);
         // Warning, this will repeat forever, it's not best practice!
     };
 
@@ -85,6 +93,5 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         clearTimeout(timerId);
     };
 
-    updateDataFunc();
-    return { sciChartSurface, controls: { stopUpdate } };
+    return { sciChartSurface, controls: { startUpdate, stopUpdate } };
 };

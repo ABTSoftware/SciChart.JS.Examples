@@ -11,6 +11,9 @@ export default function ChartComponent() {
         <SciChartReact
             initChart={drawExample}
             className={commonClasses.ChartWrapper}
+            onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                initResult.controls.startUpdate();
+            }}
             onDelete={(initResult: TResolvedReturnType<typeof drawExample>) => {
                 initResult.controls.stopUpdate();
             }}
