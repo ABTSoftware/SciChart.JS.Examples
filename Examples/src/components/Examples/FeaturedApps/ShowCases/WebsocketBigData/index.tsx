@@ -205,24 +205,38 @@ export default function RealtimeBigDataShowcase() {
                     </div>
                     <FormControl className={commonClasses.formControl}>
                         <RadioGroup id="chartType" value={seriesType} onChange={changeChart}>
-                            <FormControlLabel value={ESeriesType.LineSeries} control={<Radio />} label="Line Chart" />
                             <FormControlLabel
+                                className={commonClasses.FormControlLabel}
+                                value={ESeriesType.LineSeries}
+                                control={<Radio />}
+                                label="Line Chart"
+                            />
+                            <FormControlLabel
+                                className={commonClasses.FormControlLabel}
                                 value={ESeriesType.ColumnSeries}
                                 control={<Radio />}
                                 label="Column Chart with Stacked Axes"
                             />
                             <FormControlLabel
+                                className={commonClasses.FormControlLabel}
                                 value={ESeriesType.StackedMountainSeries}
                                 control={<Radio />}
                                 label="Stacked Mountain Chart"
                             />
-                            <FormControlLabel value={ESeriesType.BandSeries} control={<Radio />} label="Band Chart" />
                             <FormControlLabel
+                                className={commonClasses.FormControlLabel}
+                                value={ESeriesType.BandSeries}
+                                control={<Radio />}
+                                label="Band Chart"
+                            />
+                            <FormControlLabel
+                                className={commonClasses.FormControlLabel}
                                 value={ESeriesType.ScatterSeries}
                                 control={<Radio />}
                                 label="Scatter Chart"
                             />
                             <FormControlLabel
+                                className={commonClasses.FormControlLabel}
                                 value={ESeriesType.CandlestickSeries}
                                 control={<Radio />}
                                 label="Candlestick Chart"

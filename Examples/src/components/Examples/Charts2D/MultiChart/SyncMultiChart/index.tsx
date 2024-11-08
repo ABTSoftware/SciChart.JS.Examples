@@ -361,6 +361,7 @@ export default function SyncMultiChart() {
                                             Remove Chart
                                         </Button>
                                         <FormControlLabel
+                                            className={commonClasses.FormControlLabel}
                                             control={
                                                 <Checkbox
                                                     checked={pane.isSynced}
