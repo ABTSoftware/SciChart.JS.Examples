@@ -24,6 +24,11 @@ import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParame
 import TopBarTabs from "./TopBarTabs";
 import AppDetailsRoute from "./AppDeatilsRouters/AppDeatilsRouter";
 import { useNavigate } from "react-router-dom";
+import { appTheme } from "./Examples/theme";
+import { SciChartSurfaceBase } from "scichart";
+
+SciChartSurfaceBase.DEFAULT_THEME = appTheme.SciChartJsTheme;
+SciChartDefaults.useSharedCache = true;
 
 export default function App() {
     const { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
@@ -89,7 +94,6 @@ export default function App() {
             );
         }
 
-        SciChartDefaults.useSharedCache = true;
         if (currentExample) {
             const parentMenuIds = getParentMenuIds(currentExample.id);
             const updatedOpenedItems: Record<string, boolean> = { ...openedMenuItems };
