@@ -205,7 +205,7 @@
 }
 
 .InfoBox {
-    min-width: 200px;
+    min-width: 100px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -213,6 +213,7 @@
     padding: 6px;
     height: 25%;
     width: 100%;
+    line-height: 1.4;
     background-color: black;
     border-bottom: 1px solid #364ba0;
     //@include sm {
@@ -225,12 +226,12 @@
 }
 .IbRow1Col1 {
     flex-grow: 1;
-    font-size: 32px;
+    font-size: min(4vw, 32px);
 }
 .IbRow1Col2 {
     text-align: right;
     margin-top: 4px;
-    font-size: 12px;
+    font-size: min(3vw, 12px);
 }
 .IbRow2 {
     display: flex;
@@ -241,7 +242,7 @@
     display: flex;
     flex-direction: column;
 
-    font-size: 14px;
+    font-size: min(3vw, 14px);
     img {
         width: 45px;
     }
@@ -249,8 +250,7 @@
 .IbRow2Col2 {
     display: flex;
     flex-direction: column;
-    font-size: 44px;
-    line-height: 44px;
+    font-size: min(5vw, 44px);
 }
 
 .ButtonsWrapper {
