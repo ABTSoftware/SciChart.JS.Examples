@@ -300,10 +300,12 @@ export default function RealtimeBigDataShowcase() {
                         valueLabelDisplay="off"
                     />
                     {messages.length > 0 && (
-                        <Alert key="0" severity="info" className={commonClasses.notification}>
+                        <Alert key="0" severity="info" className={commonClasses.Notification}>
                             {messages.map((msg, index) => (
                                 <div key={index} style={{ paddingBottom: 10 }}>
-                                    <AlertTitle style={{ lineHeight: 1 }}>{msg.title}</AlertTitle>
+                                    <AlertTitle className={commonClasses.NotificationTitle} style={{ lineHeight: 1 }}>
+                                        {msg.title}
+                                    </AlertTitle>
                                     {msg.detail}
                                 </div>
                             ))}

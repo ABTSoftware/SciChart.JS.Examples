@@ -54,7 +54,7 @@ export default function RealtimePerformanceDemo() {
                     initChart={drawExample}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         controlsRef.current = initResult.controls;
-                        initResult.controls.setStatsChangedCallback((renderStats) => setStats(renderStats));
+                        initResult.controls.setStatsChangedCallback((stats) => setStats(stats));
                         initResult.controls.startUpdate();
                         setIsStarted(true);
                     }}

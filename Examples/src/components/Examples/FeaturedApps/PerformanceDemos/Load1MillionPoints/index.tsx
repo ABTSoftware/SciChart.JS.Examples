@@ -63,8 +63,9 @@ export default function Load1MillionPointsChart() {
                                 key="0"
                                 className={commonClasses.Notification}
                                 style={{ backgroundColor: appTheme.Indigo, color: appTheme.ForegroundColor }}
+                                severity="info"
                             >
-                                <AlertTitle>Performance Results</AlertTitle>
+                                <AlertTitle className={commonClasses.NotificationTitle}>Performance Results</AlertTitle>
                                 {timeSpans.map((ts, index) => (
                                     <div key={index}>
                                         {ts.title}: {ts.durationMs.toFixed(0)} ms
