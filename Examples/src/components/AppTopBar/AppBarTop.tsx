@@ -59,16 +59,23 @@ const AppBarTop: FC<TProps> = (props) => {
                 <Box className={classes.ToolBarMenu}>
                     {isSm ? null : (
                         <>
-                            <Chip
-                                sx={{
-                                    background:
-                                        "linear-gradient(45deg, rgb(42, 99, 151), rgb(113, 55, 149), rgb(160, 36, 142))",
-                                    color: "white",
-                                    fontWeight: 600,
-                                }}
-                                label={`v${libraryVersion}`}
-                                variant="outlined"
-                            />
+                            <a
+                                href="https://www.scichart.com/documentation/js/current/typedoc/index.html"
+                                title="SciChart.js TypeDoc"
+                                target="_blank"
+                            >
+                                <Chip
+                                    sx={{
+                                        background:
+                                            "linear-gradient(45deg, rgb(42, 99, 151), rgb(113, 55, 149), rgb(160, 36, 142))",
+                                        color: "white",
+                                        fontWeight: 600,
+                                    }}
+                                    label={`v${libraryVersion}`}
+                                    variant="outlined"
+                                />
+                            </a>
+
                             <Search />
                         </>
                     )}
