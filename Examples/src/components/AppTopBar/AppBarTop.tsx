@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import BookIcon from "@mui/icons-material/Book";
+import MenuIcon from "@mui/icons-material/Menu";
 import Search from "../Search/Search";
 import classes from "./AppTopBar.module.scss";
 import Logo from "../../images/scichart-logo-app-bar.svg";
@@ -19,7 +20,7 @@ type TProps = {
 };
 
 const AppBarTop: FC<TProps> = (props) => {
-    const { currentExample } = props;
+    const { toggleDrawer, currentExample } = props;
     const selectedFramework = useContext(FrameworkContext);
     const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
     const contextualGithub =
@@ -80,6 +81,13 @@ const AppBarTop: FC<TProps> = (props) => {
                 >
                     <img src={npm} alt="Npm Logo" width={32} height={32} />
                 </a>
+                <Button
+                    onClick={toggleDrawer}
+                    className={classes.MenuButton}
+                    aria-label="menu"
+                >
+                    <MenuIcon />
+                </Button>
             </Toolbar>
         </AppBar>
     );

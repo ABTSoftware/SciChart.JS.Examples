@@ -21,8 +21,14 @@
         }
 
         .MenuButton {
-            display: none;
-            padding: 9px;
+            display: block;
+            aspect-ratio: 1 / 1;
+            min-width: unset;
+            min-height: unset;
+            width: unset;
+            height: 100%;
+            padding: 0px;
+            line-height: 1em;
             color: $color-primary-white;
             border: 1px solid $color-medium-blue;
             background: $color-primary-white-alpha;
