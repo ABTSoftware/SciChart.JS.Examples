@@ -2,31 +2,61 @@
 
 .AppBar {
     height: $app-bar-height;
+    max-width: 100%;
+    background-color: $color-dark;
+
+    .Logo {
+        display: block;
+        height: 68px;
+
+        .LogoSmall {
+            height: 68px;
+            width: 68px;
+        }
+
+        .LogoDefault {
+            height: 100%;
+            width: 209px;
+        }
+    }
 
     .ToolBar {
-        position: fixed;
+        display: flex;
+        max-width: 100%;
+    }
+
+    .ToolBarMenu {
         right: 0;
         top: 0;
         display: flex;
+        align-items: center;
         gap: 10px;
-        background-color: $color-dark;
+        flex: auto;
         height: $app-bar-height;
-        width: 100%;
+        padding: 12px;
         padding-top: 12px;
         padding-bottom: 12px;
         z-index: 1200;
 
-        .Logo {
-            height: 60px;
+        %ToolBarButton {
+            display: block;
+            aspect-ratio: 1 / 1;
+            width: unset;
+            height: 44px;
+            padding: 0px;
+            min-width: unset;
+            min-height: unset;
+            border-radius: 4px;
+            color: $color-primary-white;
         }
 
         .MenuButton {
+            @extend %ToolBarButton;
+
             display: none;
-            padding: 9px;
-            color: $color-primary-white;
-            border: 1px solid $color-medium-blue;
+            line-height: 1em;
             background: $color-primary-white-alpha;
-            border-radius: 4px;
+            // border: 1px solid $color-medium-blue;
 
             @include md {
                 display: block;
@@ -38,18 +68,20 @@
         }
 
         .GitHubLink {
+            @extend %ToolBarButton;
+
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100%;
-            aspect-ratio: 1;
             border-radius: 4px;
             background-color: $color-medium-blue;
-            color: $color-lightest-green;
             text-decoration: none;
         }
 
         .NpmLink {
+            @extend %ToolBarButton;
+
             display: flex;
             padding: 6px 6px;
             border-radius: 4px;

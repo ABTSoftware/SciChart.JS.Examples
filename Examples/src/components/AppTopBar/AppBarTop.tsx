@@ -4,6 +4,9 @@ import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import BookIcon from "@mui/icons-material/Book";
+import MenuIcon from "@mui/icons-material/Menu";
+import Chip from "@mui/material/Chip";
+import Box from "@mui/material/Box";
 import Search from "../Search/Search";
 import classes from "./AppTopBar.module.scss";
 import Logo from "../../images/scichart-logo-app-bar.svg";
@@ -12,6 +15,9 @@ import { TExamplePage } from "../AppRouter/examplePages";
 import npm from "./npm.svg";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { libraryVersion } from "scichart";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { Theme } from "@mui/material";
 
 type TProps = {
     toggleDrawer: () => void;
@@ -19,7 +25,7 @@ type TProps = {
 };
 
 const AppBarTop: FC<TProps> = (props) => {
-    const { currentExample } = props;
+    const { toggleDrawer, currentExample } = props;
     const selectedFramework = useContext(FrameworkContext);
     const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
     const contextualGithub =
@@ -38,48 +44,81 @@ const AppBarTop: FC<TProps> = (props) => {
     const contextualDocTitle =
         docLinks !== undefined && docLinks.length > 0 ? docLinks[0].title : "SciChart.js Documentation Home";
 
+    const isSm = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm")); // Small view
+
     return (
         <AppBar position="sticky" className={classes.AppBar}>
-            <Toolbar className={classes.ToolBar}>
-                <a href="https://demo.scichart.com/" title="SciChart Demo">
+            <Toolbar className={classes.ToolBar} disableGutters>
+                <a className={classes.Logo} href="https://demo.scichart.com/" title="SciChart Demo">
                     {typeof window !== "undefined" && window?.innerWidth <= 768 ? (
-                        <img className={classes.Logo} src={LogoSmall} alt="scichart-logo" />
+                        <img className={classes.LogoSmall} src={LogoSmall} alt="scichart-logo" />
                     ) : (
-                        <img className={classes.Logo} src={Logo} alt="scichart-logo" />
+                        <img className={classes.LogoDefault} src={Logo} alt="scichart-logo" />
                     )}
                 </a>
-                <Search />
-                <div className={classes.FlexPlaceholder}></div>
-                <Button
-                    className={classes.BlueButton}
-                    href="https://www.scichart.com/getting-started/scichart-javascript/"
-                    target="_blank"
-                    title="Get a FREE Community license"
-                    style={{ color: "white" }}
-                >
-                    Get it FREE
-                </Button>
-                <Button
-                    className={classes.PurpleButton}
-                    href={contextualDocUrl}
-                    title={contextualDocTitle}
-                    target="_blank"
-                    style={{ color: "white" }}
-                >
-                    <BookIcon fontSize="small" style={{ color: "white" }} />
-                    &nbsp;Docs
-                </Button>
-                <a className={classes.GitHubLink} href={contextualGithub} title={contextualGithubTitle} target="_blank">
-                    <GitHubIcon fontSize="small" />
-                </a>
-                <a
-                    className={classes.NpmLink}
-                    href="https://www.npmjs.com/package/scichart"
-                    title="npmjs / SciChart"
-                    target="_blank"
-                >
-                    <img src={npm} alt="Npm Logo" width={32} height={32} />
-                </a>
+                <Box className={classes.ToolBarMenu}>
+                    {isSm ? null : (
+                        <>
+                            <a
+                                href="https://www.scichart.com/documentation/js/current/typedoc/index.html"
+                                title="SciChart.js TypeDoc"
+                                target="_blank"
+                            >
+                                <Chip
+                                    sx={{
+                                        background:
+                                            "linear-gradient(45deg, rgb(42, 99, 151), rgb(113, 55, 149), rgb(160, 36, 142))",
+                                        color: "white",
+                                        fontWeight: 600,
+                                    }}
+                                    label={`v${libraryVersion}`}
+                                    variant="outlined"
+                                />
+                            </a>
+
+                            <Search />
+                        </>
+                    )}
+                    <div className={classes.FlexPlaceholder}></div>
+                    <Button
+                        className={classes.BlueButton}
+                        href="https://www.scichart.com/getting-started/scichart-javascript/"
+                        target="_blank"
+                        title="Get a FREE Community license"
+                        style={{ color: "white" }}
+                    >
+                        Get it FREE
+                    </Button>
+                    <Button
+                        className={classes.PurpleButton}
+                        href={contextualDocUrl}
+                        title={contextualDocTitle}
+                        target="_blank"
+                        style={{ color: "white" }}
+                    >
+                        <BookIcon fontSize="small" style={{ color: "white" }} />
+                        &nbsp;Docs
+                    </Button>
+                    <a
+                        className={classes.GitHubLink}
+                        href={contextualGithub}
+                        title={contextualGithubTitle}
+                        target="_blank"
+                    >
+                        <GitHubIcon fontSize="small" />
+                    </a>
+                    <a
+                        className={classes.NpmLink}
+                        href="https://www.npmjs.com/package/scichart"
+                        title="npmjs / SciChart"
+                        target="_blank"
+                    >
+                        <img src={npm} alt="Npm Logo" width={32} height={32} />
+                    </a>
+                    <Button onClick={toggleDrawer} className={classes.MenuButton} aria-label="menu">
+                        <MenuIcon />
+                    </Button>
+                </Box>
             </Toolbar>
         </AppBar>
     );

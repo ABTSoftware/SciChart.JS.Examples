@@ -6,6 +6,7 @@ import Navigation from "../Navigation/Navigation";
 import { useNavigate } from "react-router-dom";
 import classes from "./DrawerContent.module.scss";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import Search from "../Search/Search";
 
 // tslint:disable-next-line:no-var-requires
 const APP_VERSION = require("../../../package.json").dependencies.scichart;
@@ -35,6 +36,7 @@ const DrawerContent: FC<TProps> = (props) => {
                 </IconButton>
             </div>
             <Divider />
+            <Search />
             <Navigation testIsOpened={testIsOpened} onExpandClick={toggleOpenedMenuItem} toggleDrawer={toggleDrawer} />
         </div>
     );
