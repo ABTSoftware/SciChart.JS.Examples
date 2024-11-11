@@ -12,7 +12,7 @@ const basePath = path.join(__dirname, "Examples");
 
 router.get("/:example", async (req, res) => {
     try {
-        const currentExample = getRequestedExample(req, res);
+        const currentExample = getRequestedExample(req, res)?.currentExample;
         const folderPath = path.join(basePath, currentExample.filepath);
         const [vanillaSrcFetchResult, angularSrcFetchResult] = await Promise.allSettled([
             getVanillaSrc(folderPath),

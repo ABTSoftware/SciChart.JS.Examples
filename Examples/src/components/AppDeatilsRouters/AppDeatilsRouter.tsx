@@ -19,6 +19,9 @@ import CodeIcon from "@mui/icons-material/Code";
 import Button from "@mui/material/Button";
 import CropFreeIcon from "@mui/icons-material/CropFree";
 import { TabName } from "../TopBarTabs";
+import TabBar from "../TabBar/TabBar";
+import FileExplorer from "../FileExplorer/FileExplorer";
+import { Editor } from "@monaco-editor/react";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -31,6 +34,15 @@ interface IFiles {
         content: string;
         isBinary: boolean;
     };
+}
+
+const EditorLanguageMap = {
+    ts: "typescript",
+    js: "javascript",
+    css: "css",
+    html: "html",
+    jsx: "javascript",
+    tsx: "typescript"
 }
 
 const AppDeatilsRouter: FC<TProps> = (props) => {
@@ -141,42 +153,12 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         <div>
             <FrameworkSelect />
             <div style={{ marginTop: 16 }}>
-                <div className={classes.tabwrapper}>
-                    <ul className={classes.tabs}>
-                        <li
-                            className={`${classes.tablink} ${activeTab === "Featured Apps" ? classes.active : ""}`}
-                            onClick={() => handleTabClick("Featured Apps")}
-                        >
-                            Featured&nbsp;Apps
-                        </li>
-                        <li
-                            className={`${classes.tablink} ${activeTab === "2D Charts" ? classes.active : ""}`}
-                            onClick={() => handleTabClick("2D Charts")}
-                        >
-                            2D&nbsp;Charts
-                        </li>
-                        <li
-                            className={`${classes.tablink} ${activeTab === "3D Charts" ? classes.active : ""}`}
-                            onClick={() => handleTabClick("3D Charts")}
-                        >
-                            3D&nbsp;Charts
-                        </li>
-                        <li
-                            className={`${classes.tablink} ${activeTab === "Demos by Industry" ? classes.active : ""}`}
-                            onClick={() => handleTabClick("Demos by Industry")}
-                        >
-                            Demos&nbsp;by&nbsp;Industry
-                        </li>
-                        <li
-                            className={`${classes.tablink} ${activeTab === "Demos by Feature" ? classes.active : ""}`}
-                            onClick={() => handleTabClick("Demos by Feature")}
-                        >
-                            Demos&nbsp;by&nbsp;Feature
-                        </li>
-                    </ul>
-                </div>
+                <TabBar 
+                    activeTab={activeTab}
+                    handleTabClick={handleTabClick}
+                />
                 <div className={classes.contentwrapper}>
-                    <div id="tab-1" className={`${classes.tabcontent} ${classes.active}`}>
+                    <div className={`${classes.tabcontent} ${classes.active}`}>
                         {/* Menu */}
                         <SubMenuItems
                             currentMenuItems={currentMenuItems}
@@ -205,7 +187,6 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                         {/* Title + Example */}
                         <h2 className={classes.headingtxt}>{PageTitle}</h2>
                         <div className={classes.chartwrap}>
-                            <p>{getTitle(currentExample.description, selectedFramework)}</p>
                             <ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />
                             <div className={classes.tabbtnwrap}>
                                 <a
@@ -302,39 +283,43 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                             </div>
                         </div>
 
+                        <p style={{padding: '0.75rem 0.25rem'}}>{getTitle(currentExample.description, selectedFramework)}</p>
+
                         {/* Source code */}
+                        <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative'}}>
+                            {/* <h4>Source code</h4> */}
+                            {/* <Select
+                                files={[
+                                    {name: "React", content: undefined},
+                                    {name: "Angular", content: undefined},
+                                    {name: "Vue", content: undefined},
+                                    {name: "JavaScript", content: undefined},
+                                ]}
+                                selectedFile={selectedFile}
+                                handleFileClick={handleFileClick}
+                            /> */}
+                        </div>
+
                         <div className={classes.editortabwrap}>
-                            <div className={classes.tabwrapper}>
-                                <ul className={`${classes.tabs} ${classes.mobilehidden}`}>
-                                    {sourceFiles.map((file) => (
-                                        <li
-                                            key={file.name}
-                                            className={`${classes.tablink} ${
-                                                selectedFile.name === file.name ? classes.active : ""
-                                            }`}
-                                            onClick={() => handleFileClick(file.name)}
-                                        >
-                                            {file.name}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className={classes.contentwrapper}>
-                                <div id="tab-a" className={`${classes.tabcontent} ${classes.active}`}>
-                                    <div className={classes.codeeditorwrap}>
-                                        <div className={classes.codeedit}>
-                                            <SourceCode
-                                                code={selectedFile.content}
-                                                language={selectedFile.name.substring(
-                                                    selectedFile.name.indexOf(".") + 1
-                                                )}
-                                                githubUrl={`https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Examples/src/components/Examples/${currentExample.filepath}/${selectedFile}`}
-                                                onClose={() => console.log("Close clicked")}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <FileExplorer
+                                files={sourceFiles}
+                                selectedFile={selectedFile}
+                                handleFileClick={handleFileClick}
+                            />
+                            <Editor
+                                height="80vh"
+                                theme="light"
+                                language={EditorLanguageMap[selectedFile.name.split(".").pop() as keyof typeof EditorLanguageMap]}
+                                value={selectedFile.content}
+                                options={{
+                                    readOnly: true, // to edit this example, press the "edit" button
+                                    lineNumbersMinChars: 3,
+                                    minimap: {
+                                        enabled: true,
+                                    },
+                                    fontSize: 16
+                                }}
+                            />
                         </div>
 
                         <DetailsCom currentExample={currentExample} />

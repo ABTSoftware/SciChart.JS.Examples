@@ -1,14 +1,7 @@
 @import "../../assets/main.scss";
 
 .ComponentWrapper {
-    background-color: white;
     border-radius: $default-border-radius;
-    margin-bottom: 30px;
     padding: 30px;
     overflow: hidden;
-    @include xs {
-        margin: 0 auto 30px;
-        width: 100%;
-        padding: 20px;
-    }
 }

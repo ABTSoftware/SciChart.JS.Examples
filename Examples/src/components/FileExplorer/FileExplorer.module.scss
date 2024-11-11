@@ -1,0 +1,94 @@
+.selectDropdown {
+    position: absolute;
+    top: 20px; 
+    right: 20px;
+    width: 220px;
+    z-index: 10;
+    background-color: #FFF;
+    border-radius: 8px;
+    border: 1px solid #b4d0db;
+    overflow: hidden;
+
+    .selectTab {
+        user-select: none;
+        max-width: 220px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 4px;
+        padding: 4px 5px;
+        background-color: #FFF;
+        cursor: pointer;
+    
+        &:hover, &.active {
+            background-color: #8881;
+        }
+    
+        svg {
+            height: 22px;
+            width: 22px;
+            min-height: 22px;
+            min-width: 22px;
+        }
+        p {
+            font-size: 18px;
+        }
+    }
+    
+    .selectTab.activeTab {
+        border-bottom: 1px solid #b4d0db;
+        background: #FFF;
+    }
+}
+
+.horizontalScroller{
+    overflow: auto;
+    overflow-y: hidden;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    padding: 0;
+    margin-right: 230px;
+
+    .selectTab {
+        user-select: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 4px;
+        padding: 3px 9px 3px 6px;
+        cursor: pointer;
+        background-color: #FFF;
+        border: 1px solid #FFF;
+        border-radius: 8px 8px 0 0;
+    
+        &:hover, &.active {
+            background-color: #8881;
+        }
+    
+        svg {
+            height: 22px;
+            width: 22px;
+            min-height: 22px;
+            min-width: 22px;
+        }
+        p {
+            font-size: 18px;
+        }
+    }
+    
+    .selectTab.activeTab {
+        border-color: #b4d0db;
+        background-color: #8882;
+    }    
+}
+
+::-webkit-scrollbar {
+    height: 5px; 
+    width: 5px;
+    background-color: #FFF;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+}

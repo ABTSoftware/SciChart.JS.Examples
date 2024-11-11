@@ -52,7 +52,7 @@ const FrameworkSVG = {
 export const FrameworkSelect = () => {
     const { currentExample, framework: currentFramework } = useExampleRouteParams();
     return (
-        <div className={classes.frameworksection} style={{ marginTop: "-4.2rem" }}>
+        <div className={classes.frameworksection}>
             <div className={classes.FrameworkList}>
                 {Object.values(EPageFramework).map((framework) => (
                     <Link

@@ -2,6 +2,7 @@
 
 .frameworksection {
     background-color: transparent;
+    margin-top: -4.2rem
 }
 
 .container {
@@ -19,7 +20,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: min(1000px, 84vw);
+    max-width: min(1200px, 84vw);
 
     .FrameworkListItem {
         margin: 18px 0 -1px 0;
@@ -30,6 +31,9 @@
         justify-content: center;
         position: relative;
         border-radius: 17px 17px 0 0;
+        padding: 10px 14px 8px 10px;
+        cursor: pointer;
+        color: white;
 
         &:hover {
             color: #7593a4;
@@ -57,71 +61,18 @@
     }
 }
 
-.FrameworkListItem {
-    color: white;
-    /* White text color */
-    padding: 10px 14px 8px 10px;
-    cursor: pointer;
-}
-
-.tabwrapper {
-    max-width: min(900px, 80vw);
-    margin: 0 auto;
-
-    .tabs {
-        margin: 0;
-        margin-bottom: -1.5px; // Overlap border from the main content
-        padding: 0;
-        list-style: none;
-        cursor: pointer;
-        user-select: none;
-        /* Disable text selection */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 15px;
-
-        @media only screen and (max-width: 768px) {
-            margin-bottom: 0;
-        }
-
-        .tablink {
-            font-family: "Arial";
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 30px;
-            letter-spacing: 0.02em;
-            color: #fff;
-            padding: 10px 16px 6px 16px;
-            border: 1px solid #12003e;
-            border-radius: 17px 17px 0px 0px;
-            border-bottom: none;
-            background: #12003e;
-            position: relative;
-            cursor: pointer;
-
-            &:hover {
-                color: #7593a4;
-            }
-
-            &.active {
-                border: 1px solid #b4d0db;
-                border-bottom: none;
-                background: #ffffff;
-                color: #7593a4;
-            }
-        }
-    }
-}
-
 .contentwrapper {
-    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 20px;
     background: #fff;
     border: 1px solid #b4d0db;
     border-radius: 25px 25px 0 0;
     border-bottom: none;
     margin: 0 auto;
-    max-width: min(1000px, 84vw);
+    width: 100%;
+    max-width: min(1200px, 84vw);
 
     @media only screen and (max-width: 768px) {
         border-radius: 0;
@@ -482,12 +433,11 @@
 .chartwrap {
     background: #ffffff;
     border: 1px solid #b4d0db;
-    border-radius: 22px;
-    padding: 24px;
-    display: flex;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex; 
     flex-direction: column;
     gap: 20px;
-    margin-bottom: 45px;
     position: relative;
 
     @media only screen and (max-width: 768px) {
@@ -518,19 +468,6 @@
     }
 }
 
-.chartimgwrap {
-    margin: 0 auto -34px;
-    text-align: center;
-
-    @media only screen and (max-width: 768px) {
-        margin: 0 auto 50px;
-    }
-
-    img {
-        max-width: 100%;
-    }
-}
-
 .headingtxt {
     font-family: "Arial";
     font-weight: 600;
@@ -538,21 +475,13 @@
     line-height: 48px;
     color: #050a30;
     text-align: center;
-    margin-bottom: 35px;
-
-    @media only screen and (max-width: 768px) {
-        font-size: 20px;
-        line-height: 28px;
-        margin-bottom: 20px;
-    }
 }
 
 .tabbtnwrap {
     display: flex;
     gap: 20px;
 
-    .btnprimary,
-    .btn {
+    .btnprimary, .btn {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -582,51 +511,11 @@
 }
 
 .editortabwrap {
-    .contentwrapper {
-        border-bottom: 1px solid #b4d0db;
-        border-radius: 25px;
-        margin-bottom: 45px;
-
-        @media only screen and (max-width: 768px) {
-            border: 1px solid #b4d0db;
-            border-radius: 11px;
-            margin-bottom: 25px;
-            padding: 15px;
-        }
-    }
-
-    .tabwrapper {
-        margin: 0 40px;
-
-        .tabs {
-            gap: 5px;
-
-            .tablink {
-                font-weight: 500;
-                font-size: 14px;
-                line-height: 15px;
-                text-align: center;
-                color: #fff;
-                background: #7593a4;
-                border-radius: 10px 10px 0px 0px;
-                padding: 13px 16px;
-                border: 1px solid #7593a4;
-                height: 45px;
-                display: flex;
-                align-items: center;
-
-                &.active {
-                    color: #7593a4;
-                    background-color: #fff;
-                }
-
-                &:hover {
-                    color: #7593a4;
-                    background-color: #fff;
-                }
-            }
-        }
-    }
+    border: 1px solid #b4d0db;
+    border-radius: 20px;
+    padding: 20px;
+    position: relative; // needed for absolute child
+    margin-bottom: 20px;
 }
 
 .mobilehidden {
@@ -672,37 +561,6 @@
                 max-width: 275px;
             }
         }
-
-        &::-webkit-scrollbar-track {
-            background-color: #a0c2d4;
-        }
-
-        &::-webkit-scrollbar {
-            width: 5px;
-            background-color: #a0c2d4;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: #7593a4;
-            // border: 2px solid #7593a4;
-            border-radius: 10px;
-        }
-    }
-}
-
-.headingtxt {
-    font-family: "Arial";
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 48px;
-    color: #050a30;
-    text-align: center;
-    margin-bottom: 20px;
-
-    @media only screen and (max-width: 768px) {
-        font-size: 20px;
-        line-height: 28px;
-        margin-bottom: 20px;
     }
 }
 
@@ -749,32 +607,6 @@
             margin-bottom: 10px;
         }
     }
-
-    .showcasecol {
-        width: 32.4%;
-        text-align: center;
-        margin-bottom: 20px;
-
-        @media screen and (min-width: 768px) and (max-width: 1200px) {
-            width: 31.4%;
-        }
-
-        @media only screen and (max-width: 768px) {
-            width: 100%;
-        }
-
-        h3 {
-            font-family: "Arial";
-            font-weight: 500;
-            font-size: 20px;
-            line-height: 26px;
-            text-align: center;
-            letter-spacing: 0.02em;
-            color: #212121;
-            margin: 0;
-            padding: 0 20px;
-        }
-    }
 }
 
 .showcasethumb {
@@ -782,7 +614,7 @@
     border: 1px solid #eee;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
     border-radius: 23px;
-    padding: 25px;
+    padding: 20px;
     margin-bottom: 20px;
 
     @media only screen and (max-width: 1024px) {
@@ -793,13 +625,14 @@
     img {
         border-radius: 14px;
         width: 100%;
+        aspect-ratio: 16/11;
     }
 }
 
 .scichartcontainer {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    gap: 20px;
     font-family: Arial;
     line-height: 28.5px;
     font-size: 19px;
@@ -1022,19 +855,15 @@
         }
     }
 
-    // Existing styles
-
     .newblockcontainer {
         font-family: "Arial";
         display: flex;
-        margin-top: 20px; // Adjust spacing as needed
-        background: rgba(5, 10, 48, 1);
-        border: 1px solid rgba(199, 199, 199, 1);
-        border-radius: 8px; // Optional: for rounded corners
+        background: rgb(5, 10, 48);
+        border-radius: 20px;
+        overflow: hidden;
 
         .imagecontainer {
             flex: 1;
-            border-radius: 8%;
 
             img {
                 max-width: 100%;
@@ -1083,16 +912,16 @@
     .codecardscontainer {
         display: flex;
         justify-content: space-between;
-        margin-top: 20px;
+        gap: 20px;
 
         .codecard {
-            flex: 1;
+            width: 100%;
             padding: 20px;
             border: 1px solid rgba(180, 208, 219, 1);
             background: rgba(255, 255, 255, 1);
             border-radius: 8px;
             text-align: center;
-            margin-right: 20px;
+            overflow: hidden;
 
             img {
                 width: 100%;

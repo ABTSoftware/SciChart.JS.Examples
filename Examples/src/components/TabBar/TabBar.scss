@@ -1,0 +1,50 @@
+.tabwrapper {
+    max-width: min(900px, 80vw);
+    margin: 16px auto 0 auto;
+    
+    .tabs {
+        margin-bottom: -1.5px; /* To hide the border between tabs and content */
+        padding: 0;
+        list-style: none;
+        cursor: pointer;
+        user-select: none;
+        /* Disable text selection */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    
+        .tablink {
+            font-family: "Arial";
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 30px;
+            letter-spacing: 0.02em;
+            color: #fff;
+            padding: 6px 14px 4px 14px;
+            border: 1px solid #12003e;
+            border-radius: 17px 17px 0px 0px;
+            border-bottom: none;
+            background: #12003e;
+            position: relative;
+            cursor: pointer;
+    
+            &:hover {
+                color: #7593a4;
+            }
+    
+            &.active {
+                border: 1px solid #b4d0db;
+                border-bottom: none;
+                background: #ffffff;
+                color: #7593a4;
+            }
+    
+            &.mobilehidden {
+                @media screen and (max-width: 768px) {
+                    display: none;
+                }
+            }
+        }
+    }
+}

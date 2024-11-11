@@ -7,8 +7,8 @@ import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext"
 import { getTitle, useExampleRouteParams } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { generateExamplesGallery } from "../../helpers/SciChartExamples";
 import NewGalleryItems from "../GalleryItems";
-import Iconleft from "./images/icon-left-arrow.svg";
 import SubMenuItems from "../AppDeatilsRouters/SubMenuItems";
+import TabBar from "../TabBar/TabBar";
 
 export type TabName = "Featured Apps" | "2D Charts" | "3D Charts" | "Demos by Industry" | "Demos by Feature";
 
@@ -61,47 +61,12 @@ const ButtonTabs: FC = () => {
 
     return (
         <>
-            <div className={classes.tabwrapper}>
-                <ul className={classes.tabs}>
-                    <li
-                        className={`${classes.tablink} ${activeTab === "Featured Apps" ? classes.active : ""}`}
-                        onClick={() => handleTabClick("Featured Apps")}
-                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: 18 }}
-                    >
-                        Featured Apps
-                    </li>
-                    <li
-                        className={`${classes.tablink} ${activeTab === "2D Charts" ? classes.active : ""}`}
-                        onClick={() => handleTabClick("2D Charts")}
-                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: 18 }}
-                    >
-                        2D Charts
-                    </li>
-                    <li
-                        className={`${classes.tablink} ${activeTab === "3D Charts" ? classes.active : ""}`}
-                        onClick={() => handleTabClick("3D Charts")}
-                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: 18 }}
-                    >
-                        3D Charts
-                    </li>
-                    <li
-                        className={`${classes.tablink} ${activeTab === "Demos by Industry" ? classes.active : ""}`}
-                        onClick={() => handleTabClick("Demos by Industry")}
-                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: 18 }}
-                    >
-                        Demos by Industry
-                    </li>
-                    <li
-                        className={`${classes.tablink} ${activeTab === "Demos by Feature" ? classes.active : ""}`}
-                        onClick={() => handleTabClick("Demos by Feature")}
-                        style={{ fontWeight: 500, fontFamily: "Arial", fontSize: 18 }}
-                    >
-                        Demos by Feature
-                    </li>
-                </ul>
-            </div>
+            <TabBar
+                activeTab={activeTab}
+                handleTabClick={handleTabClick}
+            />
             <div className={classes.contentwrapper}>
-                <div id="tab-1" className={`${classes.tabcontent} ${classes.active}`}>
+                <div className={`${classes.tabcontent} ${classes.active}`}>
                     <SubMenuItems
                         currentMenuItems={currentMenuItems}
                         selectedItemId={selectedItemId}

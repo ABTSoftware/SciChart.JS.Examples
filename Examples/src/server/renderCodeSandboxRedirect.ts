@@ -73,9 +73,9 @@ const renderStackblitzRedirectPage = (config: SandboxConfig, framework: EPageFra
             </form>
             <script>
                 document.getElementById("mainForm").submit();
-            </script>
-        </body>
-    </html>`;
+        </script>
+      </body>
+  </html>`;
 };
 
 const notFoundCodeSandBoxRedirectPage = (page: TExamplePage) => {
@@ -96,6 +96,22 @@ const notFoundCodeSandBoxRedirectPage = (page: TExamplePage) => {
 };
 
 const basePath = path.join(__dirname, "Examples");
+const memoryCache: {[key: string]: {[fileName: string]: string } } = {};
+
+// Get and cache source files for an example
+export const cacheSourceFiles = async (exampleKey: string, folderPath: string, framework: EPageFramework) => {
+    if (memoryCache[exampleKey]) return memoryCache[exampleKey];
+
+    const files = await getSourceFilesForPath(folderPath, framework === EPageFramework.React ? "index.tsx" : "drawExample.js", "");
+    memoryCache[exampleKey] = Object.fromEntries(
+        Object.entries(files).map(([filePath, file]) => {
+            const fileName = path.basename(filePath);
+            return [fileName, file.content];
+        })
+    );
+
+    return memoryCache[exampleKey];
+};
 
 export const getRequestedExample = (req: Request, res: Response) => {
     const examplePath = req.params.example;
@@ -106,14 +122,14 @@ export const getRequestedExample = (req: Request, res: Response) => {
         throw new NotFoundError(`Example ${examplePath} doesn't exist!`);
     }
 
-    return currentExample;
+    return { currentExample, currentExampleKey };
 };
 
 export const getSourceFiles = async (req: Request, res: Response) => {
     try {
         let currentExample: TExamplePage;
         try {
-            currentExample = getRequestedExample(req, res);
+            currentExample = getRequestedExample(req, res)?.currentExample;
         } catch (err) {
             const error = err as IHttpError;
             return res.status(error.status).send(error.status && error.message);
@@ -174,12 +190,34 @@ export const getSourceFiles = async (req: Request, res: Response) => {
     }
 };
 
+// Endpoint to get "drawExample.js" content and other file names
+export const getDrawExampleFile = async (req: Request, res: Response) => {
+    try {
+        const { currentExample, currentExampleKey } = getRequestedExample(req, res);
+        const framework = req.query.framework as EPageFramework || EPageFramework.React;
+        const folderPath = path.join(basePath, currentExample.filepath);
+
+        // Load or retrieve cached files
+        const cachedFiles = await cacheSourceFiles(currentExampleKey, folderPath, framework);
+
+        // Respond with "drawExample.js" content and other file names
+        const response = Object.entries(cachedFiles).map(([fileName, content]) => 
+            fileName === "drawExample.js" ? { name: fileName, content } : { name: fileName, content: null }
+        );
+        res.send(response);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error retrieving example files");
+    }
+};
+
 export const renderSandBoxRedirect = async (req: Request, res: Response, sandboxEnv: "codesandbox" | "stackblitz") => {
     try {
         await loadStyles(basePath);
         let currentExample: TExamplePage;
         try {
-            currentExample = getRequestedExample(req, res);
+            currentExample = getRequestedExample(req, res)?.currentExample;
         } catch (err) {
             const error = err as IHttpError;
             return res.status(error.status).send(error.status && error.message);

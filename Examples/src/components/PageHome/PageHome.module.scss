@@ -38,7 +38,8 @@
 
         .PageHomeHeader {
             @extend %Container;
-            max-width: min(1000px, 84vw);
+            width: 100%;
+            max-width: min(1200px, 84vw);
 
             padding: $default-spacing * 6 0;
 
@@ -236,12 +237,6 @@
 }
 
 // @import "../../assets/main.scss";
-
-// Existing styles...
-
-.frameworksection {
-    background-color: #9b268f;
-}
 
 .FrameworkList {
     margin: 0 20px;

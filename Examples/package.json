@@ -24,7 +24,7 @@
     "generateFooterLinks": "ts-node before-generate.js && ts-node generate-footer-links.ts && ts-node after-generate.js",
     "prepare": "cd .. && husky install",
     "pretty-quick": "pretty-quick --staged",
-    "updateMarkdown": "./updateMarkdown.sh"
+    "updateMarkdown": "node updateMarkdown.js"
   },
   "author": "",
   "license": "ISC",
@@ -36,6 +36,7 @@
     "@emotion/react": "^11.13.3",
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.13.0",
+    "@monaco-editor/react": "^4.6.0",
     "@mui/icons-material": "^5.15.20",
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.15.20",
@@ -46,6 +47,7 @@
     "cors": "^2.8.5",
     "country-flag-icons": "^1.5.7",
     "express": "^4.17.1",
+    "monaco-editor": "^0.52.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
