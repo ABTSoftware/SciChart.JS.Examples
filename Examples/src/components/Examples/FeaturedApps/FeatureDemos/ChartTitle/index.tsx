@@ -173,6 +173,7 @@ export default function FeatureChartTitle() {
             <div className={classes.flexContainer}>
                 <div className={classes.toolbar}>
                     <FormControlLabel
+                        className={commonClasses.FormControlLabel}
                         control={
                             <textarea
                                 className={classes.textarea}
@@ -185,6 +186,7 @@ export default function FeatureChartTitle() {
                     />
 
                     <FormControlLabel
+                        className={commonClasses.FormControlLabel}
                         control={
                             <select
                                 className={classes.combobox}
@@ -203,6 +205,7 @@ export default function FeatureChartTitle() {
                     />
 
                     <FormControlLabel
+                        className={commonClasses.FormControlLabel}
                         control={
                             <select
                                 className={classes.combobox}
@@ -221,6 +224,7 @@ export default function FeatureChartTitle() {
                     />
 
                     <FormControlLabel
+                        className={commonClasses.FormControlLabel}
                         control={
                             <select
                                 className={classes.combobox}
@@ -239,6 +243,7 @@ export default function FeatureChartTitle() {
                     />
 
                     <FormControlLabel
+                        className={commonClasses.FormControlLabel}
                         control={
                             <Checkbox
                                 checked={placeWithinChart}

@@ -24,24 +24,29 @@
     }
 }
 
+.ChartWithToolbar {
+    @extend .ChartWrapper;
+
+    display: flex;
+    flex-direction: column;
+    background: #14233c; // DarkIndigo
+}
+
+// TODO add class name in SciChartReact
+.ChartWithToolbar > div:first-child {
+    order: 2;
+    flex: 1;
+}
+
+.ChartWithBottomToolbar {
+    @extend .ChartWithToolbar;
+
+    flex: 1;
+}
+
 .FullHeightChartWrapper {
     @extend .ChartWrapper;
     flex: auto;
-}
-
-.ExampleWrapperCompicated {
-    display: grid;
-    grid-template-columns: repeat(50, 1fr);
-    margin: 0 auto;
-    .ExampleWrapperCompicatedMain {
-        grid-column: 1 / 33;
-    }
-    .ExampleWrapperCompicatedSub {
-        grid-column: 35 /-1;
-    }
-    @include xs {
-        max-width: 250px;
-    }
 }
 
 .ExampleWrapper {
@@ -63,10 +68,48 @@
     }
 }
 
+.ToolbarRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // flex-wrap: wrap;
+    flex: none;
+    gap: 1em;
+    padding: 0px;
+    padding-right: 1em;
+    width: 100%;
+    max-width: 100%;
+    color: $color-primary-white;
+    background: #14233c; // DarkIndigo
+    font-size: 1em;
+    text-align: center;
+
+    // TODO consider whether this should be applied globally and what would be a proper size
+    @media only screen and (max-width: 768px) {
+        font-size: 0.75em;
+    }
+
+    .ToggleButtonGroup {
+        font-size: inherit;
+    }
+
+    button {
+        padding: 1em;
+        font-size: inherit;
+        text-align: center;
+        color: inherit;
+    }
+}
+
 .FormControl {
     margin: $default-spacing;
     margin-left: 0;
     min-width: 142;
+}
+
+.FormControlLabel {
+    font-size: inherit;
+    color: inherit;
 }
 
 .AlignRight {
@@ -77,7 +120,12 @@
 }
 
 .Notification {
-    margin-bottom: $default-spacing * 2;
+    font-size: inherit;
+    padding: 0.5em;
+
+    .NotificationTitle {
+        font-size: 1.2em;
+    }
 }
 
 /////*****ExamplesRoot*****/////
@@ -181,15 +229,6 @@
     }
 }
 /////*****VitalSignsMonitorDemo*****/////
-
-.ChartContainer {
-    display: flex;
-    overflow: hidden;
-    position: relative;
-    @include xs {
-        flex-direction: column;
-    }
-}
 .VitalSigns {
     width: 100%;
     max-width: 90vw;
@@ -205,7 +244,7 @@
 }
 
 .InfoBox {
-    min-width: 200px;
+    min-width: 100px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -213,6 +252,7 @@
     padding: 6px;
     height: 25%;
     width: 100%;
+    line-height: 1.4;
     background-color: black;
     border-bottom: 1px solid #364ba0;
     //@include sm {
@@ -225,12 +265,12 @@
 }
 .IbRow1Col1 {
     flex-grow: 1;
-    font-size: 32px;
+    font-size: min(4vw, 32px);
 }
 .IbRow1Col2 {
     text-align: right;
     margin-top: 4px;
-    font-size: 12px;
+    font-size: min(3vw, 12px);
 }
 .IbRow2 {
     display: flex;
@@ -241,7 +281,7 @@
     display: flex;
     flex-direction: column;
 
-    font-size: 14px;
+    font-size: min(3vw, 14px);
     img {
         width: 45px;
     }
@@ -249,8 +289,7 @@
 .IbRow2Col2 {
     display: flex;
     flex-direction: column;
-    font-size: 44px;
-    line-height: 44px;
+    font-size: min(5vw, 44px);
 }
 
 .ButtonsWrapper {
@@ -294,59 +333,6 @@
     }
 }
 
-.SelectWrapper {
-    display: flex;
-    margin-top: 10px;
-    @include sm {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    @include xs {
-        align-items: stretch;
-    }
-}
-.InputSelectWrapper {
-    display: flex;
-    align-items: center;
-    color: $color-main-green;
-    border: 1px $color-main-green solid;
-    padding: 5px;
-    border-radius: 4px;
-
-    label {
-        margin-right: 5px;
-        margin: 0 auto;
-    }
-    select {
-        background-color: none !important;
-        outline: none;
-        border: none;
-        color: $color-main-green;
-        border-bottom: 1px $color-main-green solid;
-        font-size: 16px;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background: transparent;
-        width: 100%;
-        text-align: center;
-        background-image: url("data:image/svg+xml;utf8,<svg fill='rgb(92,184,92)' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-        background-repeat: no-repeat;
-        background-position-x: 100%;
-        background-position-y: -2px;
-
-        border-radius: 2px;
-        margin-right: 20px;
-    }
-    &:not(:last-child) {
-        margin-right: 10px;
-    }
-    @include sm {
-        &:not(:last-child) {
-            margin-right: 0px;
-            margin-bottom: 10px;
-        }
-    }
-}
 .Animation {
     transition: all 0.2s;
 
@@ -364,17 +350,6 @@
     100% {
         opacity: 1;
         transform: scale(1);
-    }
-}
-
-.Lidar {
-    min-height: 500;
-    @include md {
-        min-height: 300;
-        height: 70vh;
-    }
-    @include sm {
-        height: 60vw;
     }
 }
 

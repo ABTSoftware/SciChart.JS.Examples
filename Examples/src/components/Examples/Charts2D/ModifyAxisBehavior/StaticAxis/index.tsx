@@ -15,14 +15,6 @@ const useStyles = makeStyles()(() => ({
         flexDirection: "column",
         background: appTheme.DarkIndigo,
     },
-    toolbarRow: {
-        display: "flex",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-        alignItems: "center",
-        color: appTheme.ForegroundColor,
-    },
     chartArea: {
         flex: 1,
     },
@@ -37,40 +29,40 @@ export default function ChartComponent() {
 
     const { classes } = useStyles();
     return (
-        <>
-            <div className={commonClasses.ChartWrapper}>
-                <div className={classes.flexOuterContainer}>
-                    <div className={classes.toolbarRow}>
-                        <Typography style={{ color: appTheme.ForegroundColor }}>Primary Axis: </Typography>
-                        <ToggleButtonGroup
-                            exclusive
-                            value={isStaticAxis ? 1 : 0}
-                            onChange={() => {
-                                controlsRef.current.toggleStaticAxis();
-                                setIsStaticAxis(!isStaticAxis);
-                            }}
-                            size="medium"
-                            color="primary"
-                            aria-label="small outlined button group"
-                        >
-                            <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
-                                Normal Axis
-                            </ToggleButton>
-                            <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
-                                Static Axis
-                            </ToggleButton>
-                        </ToggleButtonGroup>
-                    </div>
-
-                    <SciChartReact
-                        className={classes.chartArea}
-                        initChart={drawExample}
-                        onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                            controlsRef.current = initResult.controls;
+        <div className={commonClasses.ChartWrapper}>
+            <div className={classes.flexOuterContainer}>
+                <div className={commonClasses.ToolbarRow} style={{ justifyContent: "flex-start", paddingLeft: "1em" }}>
+                    <Typography style={{ color: appTheme.ForegroundColor, alignSelf: "center" }}>
+                        Primary Axis:{" "}
+                    </Typography>
+                    <ToggleButtonGroup
+                        exclusive
+                        value={isStaticAxis ? 1 : 0}
+                        onChange={() => {
+                            controlsRef.current.toggleStaticAxis();
+                            setIsStaticAxis(!isStaticAxis);
                         }}
-                    />
+                        size="medium"
+                        color="primary"
+                        aria-label="small outlined button group"
+                    >
+                        <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
+                            Normal Axis
+                        </ToggleButton>
+                        <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
+                            Static Axis
+                        </ToggleButton>
+                    </ToggleButtonGroup>
                 </div>
+
+                <SciChartReact
+                    className={classes.chartArea}
+                    initChart={drawExample}
+                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                        controlsRef.current = initResult.controls;
+                    }}
+                />
             </div>
-        </>
+        </div>
     );
 }

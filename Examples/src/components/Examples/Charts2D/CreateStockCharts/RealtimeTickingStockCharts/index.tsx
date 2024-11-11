@@ -1,5 +1,4 @@
 import * as React from "react";
-import { IDeletable } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { createCandlestickChart, sciChartOverview } from "./createCandlestickChart";
@@ -100,10 +99,10 @@ export default function RealtimeTickingStockCharts() {
     const initFunc = drawExample(dataSource);
 
     return (
-        <React.Fragment>
-            <div className={commonClasses.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+        <div className={commonClasses.ChartWrapper} style={{ display: "flex", flexDirection: "column" }}>
+            <div className={commonClasses.ToolbarRow} style={{ flex: "none" }}>
                 <ToggleButtonGroup
-                    style={{ height: "70px", padding: "10" }}
+                    className={commonClasses.ToggleButtonGroup}
                     exclusive
                     value={preset}
                     onChange={handleToggleButtonChanged}
@@ -111,16 +110,12 @@ export default function RealtimeTickingStockCharts() {
                     color="primary"
                     aria-label="small outlined button group"
                 >
-                    <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
-                        Candlestick Series
-                    </ToggleButton>
-                    <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
-                        OHLC Series
-                    </ToggleButton>
+                    <ToggleButton value={0}>Candlestick Series</ToggleButton>
+                    <ToggleButton value={1}>OHLC Series</ToggleButton>
                 </ToggleButtonGroup>
                 <FormLabel style={{ color: appTheme.VividGreen }}>Data Source</FormLabel>
                 <ToggleButtonGroup
-                    style={{ height: "70px", padding: "10" }}
+                    className={commonClasses.ToggleButtonGroup}
                     exclusive
                     value={dataSource}
                     onChange={handleDataSourceChanged}
@@ -128,38 +123,30 @@ export default function RealtimeTickingStockCharts() {
                     color="primary"
                     aria-label="small outlined button group"
                 >
-                    <ToggleButton value={"Random"} style={{ color: appTheme.ForegroundColor }}>
-                        Random
-                    </ToggleButton>
-                    <ToggleButton value={"com"} style={{ color: appTheme.ForegroundColor }}>
-                        Binance.com
-                    </ToggleButton>
-                    <ToggleButton value={"us"} style={{ color: appTheme.ForegroundColor }}>
-                        Binance.us
-                    </ToggleButton>
+                    <ToggleButton value={"Random"}>Random</ToggleButton>
+                    <ToggleButton value={"com"}>Binance.com</ToggleButton>
+                    <ToggleButton value={"us"}>Binance.us</ToggleButton>
                 </ToggleButtonGroup>
-                <div>
-                    <SciChartReact
-                        key={dataSource}
-                        initChart={initFunc}
-                        onInit={(initResult: TResolvedReturnType<typeof initFunc>) => {
-                            const { subscription, controls } = initResult;
-                            chartControlsRef.current = controls;
-
-                            return () => {
-                                subscription.unsubscribe();
-                            };
-                        }}
-                        style={{ display: "flex", flexDirection: "column", height: "calc(100% - 70px)", width: "100%" }}
-                        innerContainerProps={{ style: { flexBasis: "80%", flexGrow: 1, flexShrink: 1 } }}
-                    >
-                        <SciChartNestedOverview
-                            style={{ flexBasis: "20%", flexGrow: 1, flexShrink: 1 }}
-                            options={sciChartOverview}
-                        />
-                    </SciChartReact>
-                </div>
             </div>
-        </React.Fragment>
+            <SciChartReact
+                key={dataSource}
+                initChart={initFunc}
+                onInit={(initResult: TResolvedReturnType<typeof initFunc>) => {
+                    const { subscription, controls } = initResult;
+                    chartControlsRef.current = controls;
+
+                    return () => {
+                        subscription.unsubscribe();
+                    };
+                }}
+                style={{ display: "flex", flexDirection: "column", width: "100%", flex: "auto" }}
+                innerContainerProps={{ style: { flexBasis: "80%", flexGrow: 1, flexShrink: 1 } }}
+            >
+                <SciChartNestedOverview
+                    style={{ flexBasis: "20%", flexGrow: 1, flexShrink: 1 }}
+                    options={sciChartOverview}
+                />
+            </SciChartReact>
+        </div>
     );
 }

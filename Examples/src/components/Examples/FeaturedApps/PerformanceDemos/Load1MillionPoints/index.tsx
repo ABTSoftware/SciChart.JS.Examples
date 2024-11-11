@@ -16,14 +16,7 @@ const useStyles = makeStyles()((theme) => ({
         flexDirection: "column",
         background: appTheme.DarkIndigo,
     },
-    toolbarRow: {
-        display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-        color: appTheme.ForegroundColor,
-    },
+
     chartArea: {
         flex: 1,
     },
@@ -54,7 +47,7 @@ export default function Load1MillionPointsChart() {
                         };
                     }}
                 />
-                <div className={classes.toolbarRow} style={{ minHeight: "140px" }}>
+                <div className={commonClasses.ToolbarRow}>
                     <Button
                         id="loadPoints"
                         onClick={() => {
@@ -70,8 +63,9 @@ export default function Load1MillionPointsChart() {
                                 key="0"
                                 className={commonClasses.Notification}
                                 style={{ backgroundColor: appTheme.Indigo, color: appTheme.ForegroundColor }}
+                                severity="info"
                             >
-                                <AlertTitle>Performance Results</AlertTitle>
+                                <AlertTitle className={commonClasses.NotificationTitle}>Performance Results</AlertTitle>
                                 {timeSpans.map((ts, index) => (
                                     <div key={index}>
                                         {ts.title}: {ts.durationMs.toFixed(0)} ms

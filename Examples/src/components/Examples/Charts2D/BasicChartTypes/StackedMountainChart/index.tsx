@@ -1,7 +1,8 @@
 import * as React from "react";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Switch from "@mui/material/Switch";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import { SciChartSurface, StackedMountainCollection } from "scichart";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
@@ -14,13 +15,6 @@ const useStyles = makeStyles()((theme) => ({
         display: "flex",
         flexDirection: "column",
         background: appTheme.DarkIndigo,
-    },
-    toolbarRow: {
-        display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
     },
     chartArea: {
         flex: 1,
@@ -48,8 +42,8 @@ export default function StackedMountainChart() {
     return (
         <div className={commonClasses.ChartWrapper}>
             <div className={classes.flexOuterContainer}>
-                <ToggleButtonGroup
-                    className={classes.toolbarRow}
+                {/* <ToggleButtonGroup
+                    className={commonClasses.ToolbarRow}
                     exclusive
                     value={use100PercentStackedMode}
                     onChange={handleUsePercentage}
@@ -63,7 +57,14 @@ export default function StackedMountainChart() {
                     <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
                         100% Stacked mode
                     </ToggleButton>
-                </ToggleButtonGroup>
+                </ToggleButtonGroup> */}
+                <div className={commonClasses.ToolbarRow}>
+                    <FormControlLabel
+                        control={<Switch value={use100PercentStackedMode} onChange={handleUsePercentage} />}
+                        label="100%&nbsp;Mode"
+                        style={{ margin: 0, padding: "1em" }}
+                    />
+                </div>
                 <SciChartReact
                     initChart={drawExample}
                     className={classes.chartArea}

@@ -34,14 +34,7 @@ const useStyles = makeStyles()((theme) => ({
         flexDirection: "row",
         background: appTheme.DarkIndigo,
     },
-    toolbarRow: {
-        display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-        color: appTheme.ForegroundColor,
-    },
+
     chartArea: {
         flex: 1,
     },
@@ -212,24 +205,38 @@ export default function RealtimeBigDataShowcase() {
                     </div>
                     <FormControl className={commonClasses.formControl}>
                         <RadioGroup id="chartType" value={seriesType} onChange={changeChart}>
-                            <FormControlLabel value={ESeriesType.LineSeries} control={<Radio />} label="Line Chart" />
                             <FormControlLabel
+                                className={commonClasses.FormControlLabel}
+                                value={ESeriesType.LineSeries}
+                                control={<Radio />}
+                                label="Line Chart"
+                            />
+                            <FormControlLabel
+                                className={commonClasses.FormControlLabel}
                                 value={ESeriesType.ColumnSeries}
                                 control={<Radio />}
                                 label="Column Chart with Stacked Axes"
                             />
                             <FormControlLabel
+                                className={commonClasses.FormControlLabel}
                                 value={ESeriesType.StackedMountainSeries}
                                 control={<Radio />}
                                 label="Stacked Mountain Chart"
                             />
-                            <FormControlLabel value={ESeriesType.BandSeries} control={<Radio />} label="Band Chart" />
                             <FormControlLabel
+                                className={commonClasses.FormControlLabel}
+                                value={ESeriesType.BandSeries}
+                                control={<Radio />}
+                                label="Band Chart"
+                            />
+                            <FormControlLabel
+                                className={commonClasses.FormControlLabel}
                                 value={ESeriesType.ScatterSeries}
                                 control={<Radio />}
                                 label="Scatter Chart"
                             />
                             <FormControlLabel
+                                className={commonClasses.FormControlLabel}
                                 value={ESeriesType.CandlestickSeries}
                                 control={<Radio />}
                                 label="Candlestick Chart"
@@ -293,10 +300,12 @@ export default function RealtimeBigDataShowcase() {
                         valueLabelDisplay="off"
                     />
                     {messages.length > 0 && (
-                        <Alert key="0" severity="info" className={commonClasses.notification}>
+                        <Alert key="0" severity="info" className={commonClasses.Notification}>
                             {messages.map((msg, index) => (
                                 <div key={index} style={{ paddingBottom: 10 }}>
-                                    <AlertTitle style={{ lineHeight: 1 }}>{msg.title}</AlertTitle>
+                                    <AlertTitle className={commonClasses.NotificationTitle} style={{ lineHeight: 1 }}>
+                                        {msg.title}
+                                    </AlertTitle>
                                     {msg.detail}
                                 </div>
                             ))}
