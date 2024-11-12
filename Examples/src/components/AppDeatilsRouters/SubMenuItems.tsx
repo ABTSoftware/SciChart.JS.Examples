@@ -1,23 +1,16 @@
 import React, { FC } from "react";
 import classes from "./AppDeatilsRouter.scss";
 import Iconleft from "../TopBarTabs/images/icon-left-arrow.svg";
-
-type MenuItem = {
-    item: {
-        id: any;
-        name: any;
-    };
-};
-
+import { TMenuItem } from "../AppRouter/examples";
 type SubMenuItem = {
-    title: any;
-    path: any;
+    title: string;
+    path: string;
 };
 
 type TProps = {
-    currentMenuItems: MenuItem[];
+    currentMenuItems: TMenuItem[];
     selectedItemId: any;
-    handleClicks: (id: number) => void;
+    handleClicks: (id: string) => void;
     SubmenuTitle: SubMenuItem[];
     handleSubmenuClick: (path: string) => void;
     isHomePage?: boolean;
