@@ -6,7 +6,7 @@ import { ExampleStrings } from "../components/Examples/ExampleStrings";
 
 const getGalleryItems = (category: string, menuItem: TMenuItem, framework: EPageFramework) => {
     return {
-        chartGroupTitle: (category !== undefined ? `${category}: ` : "") + menuItem.item.name,
+        chartGroupTitle: (category !== undefined ? `${category}: ` : "") + menuItem.title,
         items: menuItem.submenu.map((subMenu) => {
             return {
                 imgPath: subMenu.thumbnailImage,
@@ -49,10 +49,8 @@ export const getSeeAlsoGalleryItems = (
             getGalleryItems(
                 "See Also",
                 {
-                    item: {
-                        id: topLevelMenu.item.id,
-                        name: topLevelMenu.item.name,
-                    },
+                    id: topLevelMenu.id,
+                    title: topLevelMenu.title,
                     submenu: seeAlsoExamples,
                 },
                 framework

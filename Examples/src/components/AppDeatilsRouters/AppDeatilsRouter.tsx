@@ -56,7 +56,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState<TabName>("Featured Apps");
     const [currentMenuItems, setCurrentMenuItems] = useState(MENU_ITEMS_FEATURED_APPS);
-    const [selectedItemId, setSelectedItemId] = useState(currentMenuItems[0].item.id);
+    const [selectedItemId, setSelectedItemId] = useState(currentMenuItems[0].id);
     const [availableFrameworks, setAvailableFrameworks] = useState<EPageFramework[]>([
         EPageFramework.React,
         EPageFramework.Vanilla,
@@ -68,7 +68,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         () => generateSearchItems(ALL_MENU_ITEMS, selectedFramework),
         [selectedFramework]
     );
-    const selectedItem = currentMenuItems.find((item) => item?.item.id === selectedItemId);
+    const selectedItem = currentMenuItems.find((item) => item?.id === selectedItemId);
     const SubmenuTitle = selectedItem?.submenu?.map((item) => {
         return { title: getTitle(item?.title, selectedFramework), path: item.path };
     });
@@ -118,23 +118,23 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         switch (tabName) {
             case "Featured Apps":
                 setCurrentMenuItems(MENU_ITEMS_FEATURED_APPS);
-                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].item.id);
+                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].id);
                 break;
             case "2D Charts":
                 setCurrentMenuItems(MENU_ITEMS_2D);
-                setSelectedItemId(MENU_ITEMS_2D[0].item.id);
+                setSelectedItemId(MENU_ITEMS_2D[0].id);
                 break;
             case "3D Charts":
                 setCurrentMenuItems(MENU_ITEMS_3D);
-                setSelectedItemId(MENU_ITEMS_3D[0].item.id);
+                setSelectedItemId(MENU_ITEMS_3D[0].id);
                 break;
             case "Demos by Industry":
                 setCurrentMenuItems(MENU_ITEMS_FEATURED_APPS);
-                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].item.id);
+                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].id);
                 break;
             case "Demos by Feature":
                 setCurrentMenuItems(MENU_ITEMS_FEATURED_APPS);
-                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].item.id);
+                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].id);
                 break;
         }
     };

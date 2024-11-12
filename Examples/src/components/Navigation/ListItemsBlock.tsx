@@ -36,16 +36,16 @@ const ListItemsBlock: FC<TProps> = (props) => {
             <Collapse in={checkIsOpened(menuItemsId)} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     {menuItems.map((el) => (
-                        <Fragment key={el.item.id}>
-                            <div className={classes.CollapsibleMenuListItem} onClick={() => onExpandClick(el.item.id)}>
-                                <MenuListItemText text={el.item.name} className={classes.SecondLevelMenuListItemText} />
+                        <Fragment key={el.id}>
+                            <div className={classes.CollapsibleMenuListItem} onClick={() => onExpandClick(el.id)}>
+                                <MenuListItemText text={el.title} className={classes.SecondLevelMenuListItemText} />
                                 <ListItemCollapseArrowIcon
                                     className={classes.CollapseArrowButton}
-                                    isCollapseOpened={checkIsOpened(el.item.id)}
+                                    isCollapseOpened={checkIsOpened(el.id)}
                                 />
                                 {/*{isOpened[el.item.id] ? <ExpandLess /> : <ExpandMore />}*/}
                             </div>
-                            <Collapse in={checkIsOpened(el.item.id)} timeout="auto" unmountOnExit>
+                            <Collapse in={checkIsOpened(el.id)} timeout="auto" unmountOnExit>
                                 <List component="div" disablePadding>
                                     {el.submenu.map((subEl) => (
                                         <div

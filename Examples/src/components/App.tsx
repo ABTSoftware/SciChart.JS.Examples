@@ -26,6 +26,7 @@ import AppDetailsRoute from "./AppDeatilsRouters/AppDeatilsRouter";
 import { useNavigate } from "react-router-dom";
 import { appTheme } from "./Examples/theme";
 import { SciChartSurfaceBase } from "scichart";
+import { ContentSectionRouter } from "./Navigation/AnchorTagRouter";
 
 SciChartSurfaceBase.DEFAULT_THEME = appTheme.SciChartJsTheme;
 SciChartDefaults.useSharedCache = true;
@@ -46,13 +47,13 @@ export default function App() {
     };
 
     MENU_ITEMS_FEATURED_APPS.forEach((item) => {
-        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
+        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.id]: true };
     });
     MENU_ITEMS_3D.forEach((item) => {
-        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
+        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.id]: true };
     });
     MENU_ITEMS_2D.forEach((item) => {
-        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
+        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.id]: true };
     });
 
     const [openedMenuItems, setOpenedMenuItems] = React.useState<Record<string, boolean>>(initialOpenedMenuItems);
@@ -163,6 +164,7 @@ export default function App() {
                     <AppFooter />
                 </div>
             </div>
+            <ContentSectionRouter />
         </FrameworkContext.Provider>
     );
 }

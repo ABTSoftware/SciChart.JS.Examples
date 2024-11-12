@@ -15,7 +15,7 @@ export const generateSearchItems = (allMenuItems: TMenuItem[], framework: EPageF
             const smItemTitle = getTitle(smItem.title, framework);
             if (!searchItemsList.find((i) => i.title === smItemTitle)) {
                 searchItemsList.push({
-                    category: menuItem.item.name,
+                    category: menuItem.title,
                     title: smItemTitle,
                     link: `${framework}/${smItem.path}`,
                     keywords: smItem.metaKeywords,

@@ -35,10 +35,10 @@ const SubMenuItems: FC<TProps> = ({
         <div className={classes.contertlistwrap} style={isHomePage ? { top: 80 } : {}}>
             <div className={`${classes.contentlist} ${classes.graybg}`}>
                 {currentMenuItems.map((item) => (
-                    <ul key={item.item.id} style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "17px" }}>
+                    <ul key={item.id} style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "17px" }}>
                         <li
-                            className={selectedItemId === item.item.id ? classes.active : ""}
-                            onClick={() => handleClicks(item.item.id)}
+                            className={selectedItemId === item.id ? classes.active : ""}
+                            onClick={() => handleClicks(item.id)}
                             style={{
                                 fontWeight: 500,
                                 fontFamily: "Arial",
@@ -46,8 +46,8 @@ const SubMenuItems: FC<TProps> = ({
                                 color: "rgba(80, 103, 117, 1)",
                             }}
                         >
-                            {item.item.name}
-                            {selectedItemId === item.item.id && (
+                            {item.title}
+                            {selectedItemId === item.id && (
                                 <img style={{ marginTop: "2px", float: "right" }} src={Iconleft} alt="Icon" />
                             )}
                             <div className={`${classes.contentlist} ${classes.columncount} ${classes.desktophidden}`}>

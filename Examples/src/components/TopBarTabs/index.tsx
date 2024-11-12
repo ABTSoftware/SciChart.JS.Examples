@@ -17,9 +17,9 @@ const ButtonTabs: FC = () => {
     const { framework } = useExampleRouteParams();
     const [activeTab, setActiveTab] = useState<TabName>("Featured Apps");
     const [currentMenuItems, setCurrentMenuItems] = useState(MENU_ITEMS_FEATURED_APPS);
-    const [selectedItemId, setSelectedItemId] = useState(currentMenuItems[0].item.id);
+    const [selectedItemId, setSelectedItemId] = useState(currentMenuItems[0].id);
     const selectedFramework = useContext(FrameworkContext);
-    const selectedItem = currentMenuItems.find((item) => item?.item.id === selectedItemId);
+    const selectedItem = currentMenuItems.find((item) => item?.id === selectedItemId);
     const SubmenuTitle = selectedItem?.submenu?.map((item) => {
         return { title: getTitle(item?.title, selectedFramework), path: item.path };
     });
@@ -30,23 +30,23 @@ const ButtonTabs: FC = () => {
         switch (tabName) {
             case "Featured Apps":
                 setCurrentMenuItems(MENU_ITEMS_FEATURED_APPS);
-                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].item.id);
+                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].id);
                 break;
             case "2D Charts":
                 setCurrentMenuItems(MENU_ITEMS_2D);
-                setSelectedItemId(MENU_ITEMS_2D[0].item.id);
+                setSelectedItemId(MENU_ITEMS_2D[0].id);
                 break;
             case "3D Charts":
                 setCurrentMenuItems(MENU_ITEMS_3D);
-                setSelectedItemId(MENU_ITEMS_3D[0].item.id);
+                setSelectedItemId(MENU_ITEMS_3D[0].id);
                 break;
             case "Demos by Industry":
                 setCurrentMenuItems(MENU_ITEMS_FEATURED_APPS);
-                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].item.id);
+                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].id);
                 break;
             case "Demos by Feature":
                 setCurrentMenuItems(MENU_ITEMS_FEATURED_APPS);
-                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].item.id);
+                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].id);
                 break;
         }
     };
@@ -61,10 +61,7 @@ const ButtonTabs: FC = () => {
 
     return (
         <>
-            <TabBar
-                activeTab={activeTab}
-                handleTabClick={handleTabClick}
-            />
+            <TabBar activeTab={activeTab} handleTabClick={handleTabClick} />
             <div className={classes.contentwrapper}>
                 <div className={`${classes.tabcontent} ${classes.active}`}>
                     <SubMenuItems

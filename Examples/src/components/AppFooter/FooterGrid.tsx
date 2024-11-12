@@ -30,8 +30,8 @@ const FooterGrid: React.FC<TProps> = (props) => {
 
             <Grid container className={classes.GridListContainer} direction="row" alignItems="flex-start">
                 {menuItems.map((el) => (
-                    <div className={classes.FooterGridList} key={el.item.id}>
-                        <h6>{el.item.name}</h6>
+                    <div className={classes.FooterGridList} key={el.id}>
+                        <h6>{el.title}</h6>
 
                         <Box mb={8}>
                             <List component="div" disablePadding>
