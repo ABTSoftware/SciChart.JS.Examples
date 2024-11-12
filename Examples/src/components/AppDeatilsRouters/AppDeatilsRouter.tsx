@@ -151,7 +151,6 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
 
     return (
         <div>
-            <FrameworkSelect />
             <div style={{ marginTop: 16 }}>
                 <TabBar 
                     activeTab={activeTab}
