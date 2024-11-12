@@ -42,8 +42,8 @@ const EditorLanguageMap = {
     css: "css",
     html: "html",
     jsx: "javascript",
-    tsx: "typescript"
-}
+    tsx: "typescript",
+};
 
 const AppDeatilsRouter: FC<TProps> = (props) => {
     const { currentExample, seeAlso } = props;
@@ -152,10 +152,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     return (
         <div>
             <div style={{ marginTop: 16 }}>
-                <TabBar 
-                    activeTab={activeTab}
-                    handleTabClick={handleTabClick}
-                />
+                <TabBar activeTab={activeTab} handleTabClick={handleTabClick} />
                 <div className={classes.contentwrapper}>
                     <div className={`${classes.tabcontent} ${classes.active}`}>
                         {/* Menu */}
@@ -282,10 +279,20 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                             </div>
                         </div>
 
-                        <p style={{padding: '0.75rem 0.25rem'}}>{getTitle(currentExample.description, selectedFramework)}</p>
+                        <p style={{ padding: "0.75rem 0.25rem" }}>
+                            {getTitle(currentExample.description, selectedFramework)}
+                        </p>
 
                         {/* Source code */}
-                        <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative'}}>
+                        <div
+                            style={{
+                                width: "100%",
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                                position: "relative",
+                            }}
+                        >
                             {/* <h4>Source code</h4> */}
                             {/* <Select
                                 files={[
@@ -308,7 +315,11 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                             <Editor
                                 height="80vh"
                                 theme="light"
-                                language={EditorLanguageMap[selectedFile.name.split(".").pop() as keyof typeof EditorLanguageMap]}
+                                language={
+                                    EditorLanguageMap[
+                                        selectedFile.name.split(".").pop() as keyof typeof EditorLanguageMap
+                                    ]
+                                }
                                 value={selectedFile.content}
                                 options={{
                                     readOnly: true, // to edit this example, press the "edit" button
@@ -316,7 +327,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                     minimap: {
                                         enabled: true,
                                     },
-                                    fontSize: 16
+                                    fontSize: 16,
                                 }}
                             />
                         </div>
