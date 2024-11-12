@@ -1,7 +1,5 @@
-import React, { useState, FC, useContext, useMemo, useEffect } from "react";
+import { useState, FC, useContext, useMemo, useEffect } from "react";
 import classes from "./AppDeatilsRouter.scss";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
 import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import ExamplesRoot from "../Examples/ExampleRootDetails";
@@ -22,6 +20,7 @@ import { TabName } from "../TopBarTabs";
 import TabBar from "../TabBar/TabBar";
 import FileExplorer from "../FileExplorer/FileExplorer";
 import { Editor } from "@monaco-editor/react";
+import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -112,9 +111,10 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
             <div style={{ marginTop: 16 }}>
                 <div className={classes.contentwrapper}>
                     <div className={`${classes.tabcontent} ${classes.active}`}>
+                        <ExampleBreadcrumbs />
 
                         {/* Title + Example */}
-                        <h2 className={classes.headingtxt}>{PageTitle}</h2>
+                        <h1 className={classes.headingtxt}>{PageTitle}</h1>
                         <div className={classes.chartwrap}>
                             <ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />
                             <div className={classes.tabbtnwrap}>

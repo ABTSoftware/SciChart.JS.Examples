@@ -363,6 +363,75 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
 
 export const ALL_MENU_ITEMS = [...MENU_ITEMS_FEATURED_APPS, ...MENU_ITEMS_2D, ...MENU_ITEMS_3D];
 
+export type TMultilevelMenuItem =
+    | TExamplePage
+    | TMenuItem
+    | {
+          id: string;
+          title: string;
+          submenu: TMenuItem[];
+      }
+    | {
+          id: string;
+          title: string;
+          submenu: TMultilevelMenuItem[];
+      };
+
+export const MENU_ITEMS_HIERARCHY: TMultilevelMenuItem[] = [
+    {
+        id: "home",
+        title: "Home",
+        submenu: [
+            {
+                id: MENU_ITEMS_FEATURED_APPS_ID,
+                title: "Featured Apps",
+                submenu: MENU_ITEMS_FEATURED_APPS,
+            },
+            {
+                id: MENU_ITEMS_2D_ID,
+                title: "2D Charts",
+                submenu: MENU_ITEMS_2D,
+            },
+            {
+                id: MENU_ITEMS_3D_ID,
+                title: "3D Charts",
+                submenu: MENU_ITEMS_3D,
+            },
+        ],
+    },
+];
+
+// TODO refactor. Get path state as array of category IDs
+export const getExampleCategoryPath = (page: TExamplePage) => {
+    const fullPath: string[] = [];
+    const searchInItems = (items: TMultilevelMenuItem[]) => {
+        let found = false;
+        items.forEach((item) => {
+            if (found) {
+                return;
+            }
+            if ("submenu" in item) {
+                const res = searchInItems(item.submenu);
+                if (res) {
+                    fullPath.unshift(item.id);
+                    found = true;
+                    return;
+                }
+            } else if (item.id === page.id) {
+                fullPath.unshift(item.id);
+                found = true;
+                return;
+            }
+        });
+
+        return found;
+    };
+
+    searchInItems(MENU_ITEMS_HIERARCHY);
+
+    return fullPath;
+};
+
 export const getParentMenuIds = (exampleId: string): string[] => {
     const getSubmenuLevelIds = (menuItemsArr: TMenuItem[], id: string): string[] => {
         const res: string[] = [];
