@@ -53,10 +53,6 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         content: "",
     });
 
-    const navigate = useNavigate();
-    const [activeTab, setActiveTab] = useState<TabName>("Featured Apps");
-    const [currentMenuItems, setCurrentMenuItems] = useState(MENU_ITEMS_FEATURED_APPS);
-    const [selectedItemId, setSelectedItemId] = useState(currentMenuItems[0].id);
     const [availableFrameworks, setAvailableFrameworks] = useState<EPageFramework[]>([
         EPageFramework.React,
         EPageFramework.Vanilla,
@@ -68,10 +64,6 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         () => generateSearchItems(ALL_MENU_ITEMS, selectedFramework),
         [selectedFramework]
     );
-    const selectedItem = currentMenuItems.find((item) => item?.id === selectedItemId);
-    const SubmenuTitle = selectedItem?.submenu?.map((item) => {
-        return { title: getTitle(item?.title, selectedFramework), path: item.path };
-    });
     const PageTitle = getTitle(currentExample.title, selectedFramework);
     const [query, setQuery] = useState("");
     const [filteredOptions, setFilteredOptions] = useState([]);
@@ -113,72 +105,13 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         setSelectedFile({ name: fileName, content: file.content });
     };
 
-    const handleTabClick = (tabName: TabName) => {
-        setActiveTab(tabName);
-        switch (tabName) {
-            case "Featured Apps":
-                setCurrentMenuItems(MENU_ITEMS_FEATURED_APPS);
-                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].id);
-                break;
-            case "2D Charts":
-                setCurrentMenuItems(MENU_ITEMS_2D);
-                setSelectedItemId(MENU_ITEMS_2D[0].id);
-                break;
-            case "3D Charts":
-                setCurrentMenuItems(MENU_ITEMS_3D);
-                setSelectedItemId(MENU_ITEMS_3D[0].id);
-                break;
-            case "Demos by Industry":
-                setCurrentMenuItems(MENU_ITEMS_FEATURED_APPS);
-                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].id);
-                break;
-            case "Demos by Feature":
-                setCurrentMenuItems(MENU_ITEMS_FEATURED_APPS);
-                setSelectedItemId(MENU_ITEMS_FEATURED_APPS[0].id);
-                break;
-        }
-    };
-
-    const handleClicks = (id: any) => {
-        setSelectedItemId(id);
-    };
-
-    const handleSubmenuClick = (path: string) => {
-        navigate(`/${selectedFramework}/${path}`);
-    };
-
     const isFrameworkVariantAvailable = availableFrameworks?.includes(selectedFramework);
 
     return (
         <div>
             <div style={{ marginTop: 16 }}>
-                <TabBar activeTab={activeTab} handleTabClick={handleTabClick} />
                 <div className={classes.contentwrapper}>
                     <div className={`${classes.tabcontent} ${classes.active}`}>
-                        {/* Menu */}
-                        <SubMenuItems
-                            currentMenuItems={currentMenuItems}
-                            selectedItemId={selectedItemId}
-                            handleClicks={handleClicks}
-                            SubmenuTitle={SubmenuTitle}
-                            handleSubmenuClick={handleSubmenuClick}
-                        />
-                        {/* Path */}
-                        <div className={classes.tabbreadcrumbwrap}>
-                            <ul style={{ fontWeight: 500, fontFamily: "Arial", fontSize: "15px" }}>
-                                <li>
-                                    <Link to={selectedFramework}>Home</Link>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        {currentMenuItems.map((item) => {
-                                            return <>{selectedItemId === item.item.id && item.item.name}</>;
-                                        })}
-                                    </a>
-                                </li>
-                                <li>{PageTitle}</li>
-                            </ul>
-                        </div>
 
                         {/* Title + Example */}
                         <h2 className={classes.headingtxt}>{PageTitle}</h2>
