@@ -15,7 +15,7 @@ export const ContentSectionRouter = ({
     inline = "nearest",
     block = "start",
 }: ScrollToHashElementProps): null => {
-    const [hash, setHash] = useState(window.location.hash);
+    const [hash, setHash] = useState(typeof window !== "undefined" && window.location.hash);
     const [count, setCount] = useState(0);
     const originalListeners = useRef<{ [key: string]: Function }>({});
 
