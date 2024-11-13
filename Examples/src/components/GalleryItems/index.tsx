@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import classes from "./index.scss";
 import { useNavigate } from "react-router-dom";
 import filtericon from "../TopBarTabs/images/filter-icon-1.svg";
@@ -10,36 +10,33 @@ import filtericon33 from "../TopBarTabs/images/filtericon33.svg";
 import { GalleryItem } from "../../helpers/types/types";
 import { Tooltip } from "@mui/material";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { TMenuItem } from "../AppRouter/examples";
 
 type TProps = {
     examples: GalleryItem[];
-    currentMenuItems: any[];
+    currentMenuItems: TMenuItem[];
     activeTab: any;
 };
 
 const GalleryItems: React.FC<TProps> = (props) => {
     const navigate = useNavigate();
     const framework = useContext(FrameworkContext);
-    const [groupedItems, setGroupedItems] = useState<any[]>([]);
     const [activeFilter, setActiveFilter] = useState<string>("filter1");
 
     const handleSubmenuClick = (path: string) => {
         navigate(`/${framework}/${path}`);
     };
 
-    useEffect(() => {
-        const groupItems = () => {
-            const grouped = props.currentMenuItems.map((menuItem) => {
+    const groupedItems = useMemo(
+        () =>
+            props.currentMenuItems.map((menuItem) => {
                 const matchingExample = props.examples.find((example) =>
-                    example.chartGroupTitle.includes(menuItem.item.name)
+                    example.chartGroupTitle.includes(menuItem.title)
                 );
                 return matchingExample ? { ...menuItem, items: matchingExample.items } : menuItem;
-            });
-            setGroupedItems(grouped);
-        };
-
-        groupItems();
-    }, [props.currentMenuItems, props.examples]);
+            }),
+        [props.currentMenuItems, props.examples]
+    );
 
     const renderItems = (items: any[], submenu: any[]) => {
         switch (activeFilter) {
@@ -80,6 +77,7 @@ const GalleryItems: React.FC<TProps> = (props) => {
                                     <h3>{item.title}</h3>
                                     <p>{submenu[idx]?.description || "No description available"}</p>
                                     <div className={classes.tabbtnwrap}>
+                                        {/* TODO these should be ReactRouter `Link`s if they are needed at all */}
                                         <a
                                             href=""
                                             className={classes.btnprimary}
@@ -128,10 +126,10 @@ const GalleryItems: React.FC<TProps> = (props) => {
                 <div key={index}>
                     <div className={classes.showcaseheadingwrap}>
                         <div className={classes.showcasetitle}>
-                            <h2>
-                                {`${props.activeTab}: ${group.item.name} (${group.items ? group.items.length : 0} Demo${
-                                    group.items && group.items.length !== 1 ? "s" : ""
-                                })`}
+                            <h2 id={group.id}>
+                                {`${props.activeTab}: ${group.title} (${
+                                    "items" in group ? group.items.length : 0
+                                } Demo${"items" in group && group.items.length !== 1 ? "s" : ""})`}
                             </h2>
                         </div>
                         {index === 0 && (
@@ -162,7 +160,7 @@ const GalleryItems: React.FC<TProps> = (props) => {
                             </div>
                         )}
                     </div>
-                    {group.items && group.items.length > 0 ? (
+                    {"items" in group && group.items.length > 0 ? (
                         renderItems(group.items, group.submenu)
                     ) : (
                         <p>No items available</p>

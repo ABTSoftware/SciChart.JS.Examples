@@ -120,17 +120,16 @@ import PopulationPyramid from "../Examples/FeaturedApps/ShowCases/PopulationPyra
 import SmoothStackedMountainChart from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart";
 
 export type TMenuItem = {
-    item: {
-        id: string;
-        name: string;
-    };
+    id: string;
+    title: string;
     submenu: TExamplePage[];
 };
 
 export const MENU_ITEMS_FEATURED_APPS_ID = "MENU_ITEMS_FEATURED_APPS_ID";
 export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     {
-        item: { id: "featuredApps_performanceDemos", name: "Performance Demos & Showcases" },
+        id: "featuredApps_performanceDemos",
+        title: "Performance Demos & Showcases",
         submenu: [
             EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo,
             EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500,
@@ -147,7 +146,8 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
         ],
     },
     {
-        item: { id: "featuredApps_scientificCharts", name: "Scientific & Medical Charts" },
+        id: "featuredApps_scientificCharts",
+        title: "Scientific & Medical Charts",
         submenu: [
             EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
@@ -158,7 +158,8 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
         ],
     },
     {
-        item: { id: "featuredApps_financialCharts", name: "Financial Charts" },
+        id: "featuredApps_financialCharts",
+        title: "Financial Charts",
         submenu: [
             EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
             EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart,
@@ -176,7 +177,8 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
 export const MENU_ITEMS_2D_ID = "MENU_ITEMS_2D_ID";
 export const MENU_ITEMS_2D: TMenuItem[] = [
     {
-        item: { id: "chart2D_basicCharts", name: "JavaScript Chart Types" },
+        id: "chart2D_basicCharts",
+        title: "JavaScript Chart Types",
         submenu: [
             EXAMPLES_PAGES.chart2D_basicCharts_LineChart,
             EXAMPLES_PAGES.chart2D_basicCharts_SplineLineChart,
@@ -210,7 +212,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         ],
     },
     {
-        item: { id: "chart2D_chartAnnotations", name: "Chart Annotations" },
+        id: "chart2D_chartAnnotations",
+        title: "Chart Annotations",
         submenu: [
             EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring,
@@ -222,11 +225,13 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         ],
     },
     {
-        item: { id: "chart2D_legends", name: "Chart Legends" },
+        id: "chart2D_legends",
+        title: "Chart Legends",
         submenu: [EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI],
     },
     {
-        item: { id: "chart2D_modifyAxisBehavior", name: "Chart Axis APIs" },
+        id: "chart2D_modifyAxisBehavior",
+        title: "Chart Axis APIs",
         submenu: [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
@@ -241,7 +246,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         ],
     },
     {
-        item: { id: "chart2D_axisLabelCustomization", name: "Axis Label Customization" },
+        id: "chart2D_axisLabelCustomization",
+        title: "Axis Label Customization",
         submenu: [
             EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels,
             EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels,
@@ -249,7 +255,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         ],
     },
     {
-        item: { id: "chart2D_stylingAndTheming", name: "Styling and Theming" },
+        id: "chart2D_stylingAndTheming",
+        title: "Styling and Theming",
         submenu: [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode,
@@ -263,7 +270,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         ],
     },
     {
-        item: { id: "chart2D_tooltipsAndHittest", name: "Tooltips and Hit-Test" },
+        id: "chart2D_tooltipsAndHittest",
+        title: "Tooltips and Hit-Test",
         submenu: [
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips,
@@ -275,7 +283,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         ],
     },
     {
-        item: { id: "chart2D_zoomingAndPanning", name: "Zoom and Pan a Chart" },
+        id: "chart2D_zoomingAndPanning",
+        title: "Zoom and Pan a Chart",
         submenu: [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
@@ -288,7 +297,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         ],
     },
     {
-        item: { id: "chart2D_filters", name: "Transforming Data with Filters" },
+        id: "chart2D_filters",
+        title: "Transforming Data with Filters",
         submenu: [
             EXAMPLES_PAGES.chart2D_filters_TrendMARatio,
             EXAMPLES_PAGES.chart2D_filters_CustomFilters,
@@ -296,7 +306,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         ],
     },
     {
-        item: { id: "animationApi", name: "Animation API" },
+        id: "animationApi",
+        title: "Animation API",
         submenu: [
             EXAMPLES_PAGES.chart2D_Animations_DataAnimation,
             EXAMPLES_PAGES.chart2D_Animations_StyleAnimation,
@@ -305,7 +316,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         ],
     },
     {
-        item: { id: "builderApi", name: "Builder (JSON / JS Objects) API" },
+        id: "builderApi",
+        title: "Builder (JSON / JS Objects) API",
         submenu: [
             EXAMPLES_PAGES.builderApi_simplechart,
             EXAMPLES_PAGES.builderApi_fullchart,
@@ -315,14 +327,16 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         ],
     },
     {
-        item: { id: "subchartsApi", name: "Subcharts API" },
+        id: "subchartsApi",
+        title: "Subcharts API",
         submenu: [
             EXAMPLES_PAGES.featuredApps_featureDemos_subchartsGrid,
             EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout,
         ],
     },
     {
-        item: { id: "multichart", name: "Multiple Charts" },
+        id: "multichart",
+        title: "Multiple Charts",
         submenu: [
             EXAMPLES_PAGES.chart2D_multiChart_syncMultiChart,
             EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
@@ -334,7 +348,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
 export const MENU_ITEMS_3D_ID = "MENU_ITEMS_3D_ID";
 export const MENU_ITEMS_3D: TMenuItem[] = [
     {
-        item: { id: "chart3D_Basic3DChartTypes", name: "JavaScript 3D Chart Types" },
+        id: "chart3D_Basic3DChartTypes",
+        title: "JavaScript 3D Chart Types",
         submenu: [
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart,
@@ -348,13 +363,82 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
 
 export const ALL_MENU_ITEMS = [...MENU_ITEMS_FEATURED_APPS, ...MENU_ITEMS_2D, ...MENU_ITEMS_3D];
 
+export type TMultilevelMenuItem =
+    | TExamplePage
+    | TMenuItem
+    | {
+          id: string;
+          title: string;
+          submenu: TMenuItem[];
+      }
+    | {
+          id: string;
+          title: string;
+          submenu: TMultilevelMenuItem[];
+      };
+
+export const MENU_ITEMS_HIERARCHY: TMultilevelMenuItem[] = [
+    {
+        id: "home",
+        title: "Home",
+        submenu: [
+            {
+                id: MENU_ITEMS_FEATURED_APPS_ID,
+                title: "Featured Apps",
+                submenu: MENU_ITEMS_FEATURED_APPS,
+            },
+            {
+                id: MENU_ITEMS_2D_ID,
+                title: "2D Charts",
+                submenu: MENU_ITEMS_2D,
+            },
+            {
+                id: MENU_ITEMS_3D_ID,
+                title: "3D Charts",
+                submenu: MENU_ITEMS_3D,
+            },
+        ],
+    },
+];
+
+// TODO refactor. Get path state as array of category IDs
+export const getExampleCategoryPath = (page: TExamplePage) => {
+    const fullPath: string[] = [];
+    const searchInItems = (items: TMultilevelMenuItem[]) => {
+        let found = false;
+        items.forEach((item) => {
+            if (found) {
+                return;
+            }
+            if ("submenu" in item) {
+                const res = searchInItems(item.submenu);
+                if (res) {
+                    fullPath.unshift(item.id);
+                    found = true;
+                    return;
+                }
+            } else if (item.id === page.id) {
+                fullPath.unshift(item.id);
+                found = true;
+                return;
+            }
+        });
+
+        return found;
+    };
+
+    searchInItems(MENU_ITEMS_HIERARCHY);
+
+    return fullPath;
+};
+
 export const getParentMenuIds = (exampleId: string): string[] => {
     const getSubmenuLevelIds = (menuItemsArr: TMenuItem[], id: string): string[] => {
         const res: string[] = [];
         menuItemsArr.forEach((item) => {
             item.submenu.forEach((subItem) => {
                 if (subItem.id === id) {
-                    res.push(item.item.id);
+                    res.push(item.id);
                 }
             });
         });
