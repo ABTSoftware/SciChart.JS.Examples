@@ -18,9 +18,13 @@
     position: relative;
     touch-action: none;
     // this seems to be an optimal aspect ration to keep the whole chart in view
-    aspect-ratio: 16 / 11;
+    aspect-ratio: 16 / 9;
     img {
         display: block;
+    }
+
+    @include sm {
+        aspect-ratio: 9 / 16;
     }
 }
 
