@@ -44,8 +44,13 @@ export const ExampleBreadcrumbs = () => {
                 const label = (
                     <Button
                         sx={{
+                            display: "inline-block",
                             padding: 0,
                             minWidth: "unset",
+                            textWrap: "nowrap",
+                            overflow: "hidden",
+                            maxWidth: { xs: "250px", md: "unset", lg: "unset" },
+                            textOverflow: { xs: "ellipsis", md: "unset", lg: "unset" },
                             textTransform: "unset",
                             color: appTheme.VividBlue,
 

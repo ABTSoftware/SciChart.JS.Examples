@@ -1,6 +1,16 @@
 import { useContext, useState, MouseEvent, ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { MenuItem, Breadcrumbs, ClickAwayListener, Grow, MenuList, Paper, Popper } from "@mui/material";
+import {
+    MenuItem,
+    Breadcrumbs,
+    ClickAwayListener,
+    Grow,
+    MenuList,
+    Paper,
+    Popper,
+    useMediaQuery,
+    Theme,
+} from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import React from "react";
 
@@ -121,9 +131,15 @@ export function BreadcrumbsWithMenu(props: {
         );
     });
 
+    const isXs = useMediaQuery((theme: Theme) => theme.breakpoints.down("md")); // Mobile view
+
     return (
         <>
-            <Breadcrumbs aria-label="breadcrumbs" maxItems={2} separator={<NavigateNextIcon fontSize="small" />}>
+            <Breadcrumbs
+                aria-label="breadcrumbs"
+                maxItems={isXs ? 2 : 8}
+                separator={<NavigateNextIcon fontSize="small" />}
+            >
                 {breadcrumbElements}
             </Breadcrumbs>
 
