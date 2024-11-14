@@ -499,10 +499,6 @@
 
     .btnprimary {
         background: linear-gradient(90deg, #1aa2d5 15.5%, #35bfb7 100%);
-
-        @include sm {
-            display: none;
-        }
     }
 
     .btn:hover {
