@@ -30,8 +30,8 @@ import {
 } from "scichart";
 import { multiPaneData } from "../../../ExampleData/multiPaneData";
 import { appTheme } from "../../../theme";
+import { SciChartReact } from "scichart-react";
 
-export const mainChartWrapper = "cc_chart";
 export const mainChartWrapper2 = "cc_chart2";
 export const subChartWrapper1 = "subChartWrapper1";
 export const subChartWrapper2 = "subChartWrapper2";
@@ -83,7 +83,7 @@ const getDataForThirdPane = (xValues: number[], closeValues: number[]) => {
     return { rsiArray };
 };
 
-export const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const verticalGroup = new SciChartVerticalGroup();
     const { dateValues: xValues, openValues, highValues, lowValues, closeValues, volumeValues } = multiPaneData;
     const { macdArray, signalArray, divergenceArray } = getDataForSecondPane(xValues, closeValues);
@@ -108,7 +108,7 @@ export const drawExample = async () => {
     const downCol = appTheme.MutedRed;
     const opacity = "AA";
 
-    const { sciChartSurface: mainSurface, wasmContext } = await chartBuilder.build2DChart(mainChartWrapper2, {
+    const { sciChartSurface: mainSurface, wasmContext } = await chartBuilder.build2DChart(rootElement, {
         surface: {
             id: "mainSurface",
             theme: appTheme.SciChartJsTheme,
@@ -480,12 +480,12 @@ export const drawExample = async () => {
         event.preventDefault();
     };
 
-    firstDividerElement.addEventListener("mousedown", mouseDownHandlerFirst);
-    secondDividerElement.addEventListener("mousedown", mouseDownHandlerSecond);
-    container.addEventListener("mousedown", paneMouseDownHandler);
-    container.addEventListener("mouseup", mouseUpHandler);
-    container.addEventListener("mousemove", mouseMoveHandler);
-    container.addEventListener("mouseleave", mouseUpHandler);
+    firstDividerElement.addEventListener("pointerdown", mouseDownHandlerFirst);
+    secondDividerElement.addEventListener("pointerdown", mouseDownHandlerSecond);
+    container.addEventListener("pointerdown", paneMouseDownHandler);
+    container.addEventListener("pointerup", mouseUpHandler);
+    container.addEventListener("pointermove", mouseMoveHandler);
+    container.addEventListener("pointerleave", mouseUpHandler);
 
     firstDividerElement.style.top = `${subSurface1.subPosition.height * 100}%`;
     secondDividerElement.style.top = `${subSurface3.subPosition.y * 100}%`;
@@ -588,30 +588,9 @@ const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
 };
 
 export default function SubChartStockCharts() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
-            sciChartSurfaceRef.current = sciChartSurface;
-        });
-
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
-
     return (
         <div
-            className={commonClasses.ChartsWrapper}
+            className={commonClasses.ChartWrapper}
             id={containerId2}
             style={{
                 position: "relative",
@@ -664,8 +643,8 @@ export default function SubChartStockCharts() {
                     position: "absolute", // important
                 }}
             />
-            <div
-                id={mainChartWrapper2}
+            <SciChartReact
+                initChart={drawExample}
                 style={{
                     minWidth: "100%",
                     maxWidth: "100%",
@@ -674,7 +653,7 @@ export default function SubChartStockCharts() {
                     maxHeight: "100%",
                     height: "100%",
                 }}
-            ></div>
+            />
         </div>
     );
 }

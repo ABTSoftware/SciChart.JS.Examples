@@ -5,6 +5,7 @@ import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { SciChartReact } from "scichart-react";
 import { getChartsInitializationAPI } from "./drawExample";
+import { ChartGroupLoader } from "../../../ChartGroupLoader";
 
 // Styles for the 3x3 grid
 const useStyles = makeStyles()((theme) => ({
@@ -12,9 +13,10 @@ const useStyles = makeStyles()((theme) => ({
         width: "100%",
         height: "100%",
         display: "flex",
-        flexDirection: "column",
+        flexWrap: "wrap",
         justifyContent: "space-between",
-        background: appTheme.DarkIndigo,
+        justifyItems: "stretch",
+        background: appTheme.Background,
     },
     flexContainerRow: {
         display: "flex",
@@ -27,7 +29,9 @@ const useStyles = makeStyles()((theme) => ({
     },
     item: {
         flex: "auto",
-        height: "100%",
+        flexBasis: "33%",
+        minWidth: "200px",
+        height: "auto",
     },
 }));
 
@@ -39,36 +43,18 @@ export default function LineChart() {
     const { classes } = useStyles();
 
     return (
-        <div className={commonClasses.ChartWrapper} style={{ aspectRatio: "3 / 2" }}>
+        <ChartGroupLoader className={commonClasses.ChartWrapper}>
             <div className={classes.flexOuterContainer}>
-                <div className={classes.flexContainerRow}>
-                    <SciChartReact initChart={chartsInitializationAPI.initJustLineCharts} className={classes.item} />
-                    <SciChartReact initChart={chartsInitializationAPI.initDigitalLineCharts} className={classes.item} />
-                    <SciChartReact
-                        initChart={chartsInitializationAPI.initTooltipsOnLineCharts}
-                        className={classes.item}
-                    />
-                </div>
-                <div className={classes.flexContainerRow}>
-                    <SciChartReact initChart={chartsInitializationAPI.initDashedLineCharts} className={classes.item} />
-                    <SciChartReact
-                        initChart={chartsInitializationAPI.initPalettedLineCharts}
-                        className={classes.item}
-                    />
-                    <SciChartReact initChart={chartsInitializationAPI.initHoveredLineCharts} className={classes.item} />
-                </div>
-                <div className={classes.flexContainerRow}>
-                    <SciChartReact initChart={chartsInitializationAPI.initGapsInLineCharts} className={classes.item} />
-                    <SciChartReact
-                        initChart={chartsInitializationAPI.initVerticalLineCharts}
-                        className={classes.item}
-                    />
-                    <SciChartReact
-                        initChart={chartsInitializationAPI.initThresholdedLineCharts}
-                        className={classes.item}
-                    />
-                </div>
+                <SciChartReact initChart={chartsInitializationAPI.initJustLineCharts} className={classes.item} />
+                <SciChartReact initChart={chartsInitializationAPI.initDigitalLineCharts} className={classes.item} />
+                <SciChartReact initChart={chartsInitializationAPI.initTooltipsOnLineCharts} className={classes.item} />
+                <SciChartReact initChart={chartsInitializationAPI.initDashedLineCharts} className={classes.item} />
+                <SciChartReact initChart={chartsInitializationAPI.initPalettedLineCharts} className={classes.item} />
+                <SciChartReact initChart={chartsInitializationAPI.initHoveredLineCharts} className={classes.item} />
+                <SciChartReact initChart={chartsInitializationAPI.initGapsInLineCharts} className={classes.item} />
+                <SciChartReact initChart={chartsInitializationAPI.initVerticalLineCharts} className={classes.item} />
+                <SciChartReact initChart={chartsInitializationAPI.initThresholdedLineCharts} className={classes.item} />
             </div>
-        </div>
+        </ChartGroupLoader>
     );
 }

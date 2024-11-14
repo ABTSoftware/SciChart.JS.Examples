@@ -7,6 +7,7 @@ import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
+import { ChartGroupLoader } from "../../../ChartGroupLoader";
 
 // Styles for layout of the toolbar / chart area
 const useStyles = makeStyles()((theme) => ({
@@ -30,7 +31,7 @@ export default function HeatmapChart() {
     const { classes } = useStyles();
 
     return (
-        <div className={commonClasses.ChartWrapper}>
+        <ChartGroupLoader className={commonClasses.ChartWrapper}>
             <div className={classes.flexOuterContainer}>
                 <div className={commonClasses.ToolbarRow}>
                     <Button
@@ -74,14 +75,14 @@ export default function HeatmapChart() {
                         initChart={drawHeatmapLegend}
                         style={{
                             position: "absolute",
-                            height: "90%",
-                            width: "100px",
-                            top: "5%",
-                            right: "75px",
+                            height: "100%",
+                            width: "65px",
+                            top: "0px",
+                            right: "0px",
                         }}
                     />
                 </div>
             </div>
-        </div>
+        </ChartGroupLoader>
     );
 }

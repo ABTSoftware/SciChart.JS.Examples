@@ -155,8 +155,13 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
             loadingAnimationBackground: appTheme.DarkIndigo + "BB",
         },
         yAxisOptions: {
+            isInnerAxis: true,
+            labelStyle: {
+                fontSize: 12,
+                color: appTheme.ForegroundColor,
+            },
             axisBorder: {
-                borderLeft: 1,
+                borderRight: 1,
                 color: appTheme.ForegroundColor + "77",
             },
             majorTickLineStyle: {
@@ -169,8 +174,6 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
                 tickSize: 3,
                 strokeThickness: 1,
             },
-            axisTitle: "Power (dB)",
-            axisTitleStyle: { fontSize: 14 },
         },
         colorMap: {
             minimum: -30,
@@ -186,6 +189,10 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
             ],
         },
     });
+
+    heatmapLegend.innerSciChartSurface.sciChartSurface.title = "Power (dB)";
+    heatmapLegend.innerSciChartSurface.sciChartSurface.padding.top = 0;
+    heatmapLegend.innerSciChartSurface.sciChartSurface.titleStyle = { fontSize: 12, color: appTheme.ForegroundColor };
 
     return { sciChartSurface: heatmapLegend.innerSciChartSurface.sciChartSurface };
 };
