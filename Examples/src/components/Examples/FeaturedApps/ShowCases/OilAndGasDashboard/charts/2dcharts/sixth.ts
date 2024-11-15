@@ -8,8 +8,10 @@ import { TSciChart } from "scichart/types/TSciChart";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { appTheme } from "../../theme";
 
-export default async function init2dSixthChart(id: string) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme: appTheme.SciChartJsTheme });
+export default async function init2dSixthChart(rootELement: string | HTMLDivElement) {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootELement, {
+        theme: appTheme.SciChartJsTheme,
+    });
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, { visibleRange: new NumberRange(-0.5, 5.5), isVisible: false })
     );
@@ -26,7 +28,7 @@ export default async function init2dSixthChart(id: string) {
     sciChartSurface.renderableSeries.add(scatterSeriesB);
     sciChartSurface.renderableSeries.add(scatterSeriesR);
 
-    return sciChartSurface;
+    return { sciChartSurface };
 }
 
 function generateData(wasmContext: TSciChart, color: string, xValues: number[], yValues: []) {

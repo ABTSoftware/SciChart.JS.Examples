@@ -1,23 +1,9 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: "Arial";
-    margin: 0;
-    padding: 0;
-}
-
-main {
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
-}
-
 .sidebar-charts {
-    width: 30%;
+    /* width: 30%; */
     display: flex;
     flex-direction: column;
+    flex: auto;
+    flex-basis: 30%;
 }
 
 .sidebar-charts-2d {
@@ -70,7 +56,8 @@ main {
 }
 
 .main-container {
-    width: 70%;
+    flex: auto;
+    flex-basis: 70%;
 }
 
 .main-area .container {
@@ -183,7 +170,7 @@ main {
     display: flex;
     flex-direction: column;
     flex: auto;
-    max-width: 16%;
+    /* max-width: 16%; */
 }
 
 .legend-root {

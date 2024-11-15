@@ -5,7 +5,7 @@ import { axesSetup, generateDefaultLegend, generateModifiers, getRandomSinewave 
 import { NumberRange } from "scichart/Core/NumberRange";
 
 export default async function initLldChart(
-    id: string,
+    id: string | HTMLDivElement,
     group: SciChartVerticalGroup,
     pointsCount: number,
     visibleRange: NumberRange
@@ -32,4 +32,6 @@ export default async function initLldChart(
     const getLegendItemHtml = generateDefaultLegend(sciChartSurface, "rgba(5,254,252,255)");
     generateModifiers(sciChartSurface, id, getLegendItemHtml);
     group.addSurfaceToGroup(sciChartSurface);
+
+    return { sciChartSurface };
 }
