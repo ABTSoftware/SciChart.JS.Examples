@@ -120,7 +120,13 @@ export default function OilAndGasDashboardShowcase() {
                 >
                     <div className="chart-container">
                         <div id="shale-legend" className="legend-root"></div>
-                        <div id="shale-chart-background" className="chart-root">
+                        <div
+                            id="shale-chart-background"
+                            className="chart-root"
+                            style={{
+                                background: appTheme.ShaleBackgroundColor,
+                            }}
+                        >
                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                                 <defs>
                                     <pattern id="grid1" patternUnits="userSpaceOnUse" width="10" height="10">
@@ -134,13 +140,7 @@ export default function OilAndGasDashboardShowcase() {
                                 <rect width="100%" height="100%" fill="url(#grid2)" />
                             </svg>
                         </div>
-                        <SciChartReact
-                            className="chart-root"
-                            style={{
-                                background: appTheme.ShaleBackgroundColor,
-                            }}
-                            initChart={drawShaleChart}
-                        ></SciChartReact>
+                        <SciChartReact className="chart-root" initChart={drawShaleChart}></SciChartReact>
                     </div>
                     <div className="chart-container">
                         <div id="density-legend" className="legend-root"></div>
