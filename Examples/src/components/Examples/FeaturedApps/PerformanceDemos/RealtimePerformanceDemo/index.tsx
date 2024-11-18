@@ -46,8 +46,12 @@ export default function RealtimePerformanceDemo() {
                     >
                         {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
                     </Button>
-                    <div># DataPoints: {stats.numberPoints.toLocaleString()}</div>
-                    <div>FPS: {stats.fps.toFixed(0).padStart(2, "0")}</div>
+                    <div style={{ flex: "none", flexBasis: "13em", textAlign: "left" }}>
+                        # DataPoints: {stats.numberPoints.toLocaleString()}
+                    </div>
+                    <div style={{ flex: "none", flexBasis: "4em", textAlign: "left" }}>
+                        FPS: {stats.fps.toFixed(0).padStart(2, "0")}
+                    </div>
                 </div>
                 <SciChartReact
                     className={classes.chartArea}

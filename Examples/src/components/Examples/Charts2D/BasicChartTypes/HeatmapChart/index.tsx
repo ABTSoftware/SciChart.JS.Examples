@@ -46,10 +46,12 @@ export default function HeatmapChart() {
                     >
                         {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
                     </Button>
-                    <span>
+                    <div>
                         # Heatmap Size: {stats.xSize} x {stats.ySize}
-                    </span>
-                    <span>FPS: {stats.fps.toFixed(0).padStart(2, "0")}</span>
+                    </div>
+                    <div style={{ flex: "none", flexBasis: "4em", textAlign: "left" }}>
+                        FPS: {stats.fps.toFixed(0).padStart(2, "0")}
+                    </div>
                 </div>
                 <div className={classes.chartArea} style={{ position: "relative" }}>
                     <SciChartReact
