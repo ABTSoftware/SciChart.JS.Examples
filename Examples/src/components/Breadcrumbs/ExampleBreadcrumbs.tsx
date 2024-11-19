@@ -23,21 +23,25 @@ export const ExampleBreadcrumbs = () => {
             onChange={onBreadcrumbPathChange}
             breadcrumbPropsMapper={(breadcrumb: TBreadcrumbItem) => {
                 let link: string;
+                let title: string;
                 let labelContent: ReactNode;
                 let menuItems: TBreadcrumbItem[] = undefined;
 
                 if (!breadcrumb.submenu) {
                     // leaf nodes (specific examples handling)
                     link = (breadcrumb as TExamplePage).path;
+                    title = getTitle(breadcrumb.title, selectedFramework);
                     labelContent = getTitle(breadcrumb.title, selectedFramework);
                 } else if (breadcrumb.id === "home") {
                     // Home menu item handling
                     link = `/${selectedFramework}`;
+                    title = "Home Page Gallery";
                     labelContent = <HomeIcon />;
                     menuItems = [];
                 } else {
                     // inner menu category handling
                     link = `/${selectedFramework}#${breadcrumb.id}`;
+                    title = breadcrumb.title;
                     labelContent = breadcrumb.title;
                 }
 
@@ -61,23 +65,22 @@ export const ExampleBreadcrumbs = () => {
                     </Button>
                 );
 
-                return { link, label, menuItems };
+                return { link, label, title, menuItems };
             }}
             breadcrumbMenuItemsMapper={(breadcrumb: TBreadcrumbItem) => {
                 let link: string;
+                let title: string;
                 let labelContent: ReactNode;
 
                 if (!breadcrumb.submenu) {
                     // leaf nodes (specific examples handling)
                     link = (breadcrumb as TExamplePage).path;
+                    title = getTitle(breadcrumb.title, selectedFramework);
                     labelContent = getTitle(breadcrumb.title, selectedFramework);
-                } else if (breadcrumb.id === "home") {
-                    // Home menu item handling
-                    link = `/${selectedFramework}`;
-                    labelContent = <HomeIcon />;
                 } else {
                     // inner menu category handling
                     link = `/${selectedFramework}#${breadcrumb.id}`;
+                    title = breadcrumb.title;
                     labelContent = breadcrumb.title;
                 }
 
@@ -98,7 +101,7 @@ export const ExampleBreadcrumbs = () => {
                     </Typography>
                 );
 
-                return { link, label };
+                return { link, label, title };
             }}
         />
     );

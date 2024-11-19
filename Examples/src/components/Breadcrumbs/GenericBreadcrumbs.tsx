@@ -22,7 +22,7 @@ export type TBreadcrumbItem = {
 
 export type TBreadcrumbPath = (number | string)[];
 
-export type TBreadcrumbProps = { link: string; label: ReactNode; menuItems?: TBreadcrumbItem[] };
+export type TBreadcrumbProps = { link: string; label: ReactNode; title: string; menuItems?: TBreadcrumbItem[] };
 
 export function BreadcrumbsWithMenu(props: {
     path: TBreadcrumbPath;
@@ -87,8 +87,9 @@ export function BreadcrumbsWithMenu(props: {
 
     const defaultMapper = (breadcrumbItem: TBreadcrumbItem): TBreadcrumbProps => {
         const label = breadcrumbItem?.title;
+        const title = breadcrumbItem?.title;
         const link = breadcrumbItem?.id;
-        return { label, link, menuItems: undefined };
+        return { label, link, title, menuItems: undefined };
     };
 
     const breadcrumbList = path.reduce(
@@ -97,11 +98,12 @@ export function BreadcrumbsWithMenu(props: {
             // TODO maybe it would be simpler to find by index
             const itemEntry = sameLevelEntries?.find((menuItem) => menuItem.id === pathSegment);
 
-            const { label, link, menuItems } = breadcrumbPropsMapper?.(itemEntry) ?? defaultMapper(itemEntry);
+            const { label, link, title, menuItems } = breadcrumbPropsMapper?.(itemEntry) ?? defaultMapper(itemEntry);
 
             acc.nodes.push({
                 label,
                 link,
+                title,
                 sameLevelEntries,
                 entry: itemEntry,
                 menuItems: menuItems ?? sameLevelEntries,
