@@ -1,8 +1,5 @@
 @import "../../assets/main.scss";
 
-.tabsection {
-    margin: 50px 0 0 0;
-}
 .tabwrapper {
     .tabs {
         margin: 0;
@@ -53,7 +50,7 @@
     padding: 13px;
     background: #fff;
     border: 1px solid #b4d0db;
-    border-radius: 25px 25px 0 0;
+    border-radius: 15px 15px 0 0;
     border-bottom: none;
     @media only screen and (max-width: 768px) {
         border-radius: 0;

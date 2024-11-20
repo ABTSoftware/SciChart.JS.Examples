@@ -107,7 +107,7 @@ import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/Tool
 import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo";
 import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo";
 import { populationPyramidExampleInfo } from "../Examples/FeaturedApps/ShowCases/PopulationPyramid/exampleInfo";
-import { TDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { EPageLayout, TDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
 import { smoothStackedMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart/exampleInfo";
 
@@ -166,6 +166,7 @@ export type TExampleInfo = {
      * Markdown content for the page, will help with SEO and editing
      */
     markdownContent?: string;
+    pageLayout?: EPageLayout
 };
 
 export type TExamplePage = TPage & TExampleInfo;

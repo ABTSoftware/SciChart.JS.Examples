@@ -3,24 +3,22 @@ import classes from "./AppDeatilsRouter.scss";
 import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import ExamplesRoot from "../Examples/ExampleRootDetails";
-import SearchIcon from "../TopBarTabs/images/icon-search.svg";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { GalleryItem } from "../../helpers/types/types";
 import { generateSearchItems, TSearchItem } from "../Search/searchItems";
-import { ALL_MENU_ITEMS } from "../AppRouter/examples";
-import SubMenuItems from "./SubMenuItems";
-import SourceCode from "../SourceCode/SourceCode";
 import DetailsCom from "./DetailsComp";
-import { FrameworkSelect } from "./FrameworkSelect";
 import { EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
-import CodeIcon from "@mui/icons-material/Code";
-import Button from "@mui/material/Button";
-import CropFreeIcon from "@mui/icons-material/CropFree";
-import { TabName } from "../TopBarTabs";
-import TabBar from "../TabBar/TabBar";
 import FileExplorer from "../FileExplorer/FileExplorer";
 import { Editor } from "@monaco-editor/react";
 import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
+import DrawerContent from "../DrawerContent/DrawerContent";
+import {
+    ALL_MENU_ITEMS,
+    MENU_ITEMS_2D,
+    MENU_ITEMS_3D,
+    MENU_ITEMS_FEATURED_APPS,
+} from "../AppRouter/examples";
+import Gallery from "../Gallery/Gallery";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -44,13 +42,47 @@ const EditorLanguageMap = {
     tsx: "typescript",
 };
 
+const fakeFiles = [
+    {
+        name: "drawExample.ts",
+        content: `import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
+import { EAutoRange } from "scichart/types/AutoRange";
+
+export async function drawExample(divId: string) {  
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId);
+
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { 
+        axisAlignment: EAxisAlignment.Bottom 
+    }));
+
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { 
+        axisAlignment: EAxisAlignment.Left, 
+        autoRange: EAutoRange.Always 
+    }));
+
+    sciChartSurface.renderableSeries.add(new LineSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, {
+            dataSeriesName: "Line Series",
+            xValues: [1, 2, 3, 4, 5],
+            yValues: [1, 2, 3, 4, 5]
+        })
+    }))
+
+    sciChartSurface.zoomExtents();
+}`
+},
+{
+    name: "index.tsx",
+    content: `import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";`
+}
+]
+
 const AppDeatilsRouter: FC<TProps> = (props) => {
     const { currentExample, seeAlso } = props;
-    const [sourceFiles, setSourceFiles] = useState<{ name: string; content: string }[]>([]);
-    const [selectedFile, setSelectedFile] = useState<{ name: string; content: string }>({
-        name: "",
-        content: "",
-    });
+    const [ sourceFiles, setSourceFiles ] = useState<{ name: string; content: string }[]>(fakeFiles);
+    const [ selectedFile, setSelectedFile ] = useState<{ name: string; content: string }>(fakeFiles[0]);
 
     const [availableFrameworks, setAvailableFrameworks] = useState<EPageFramework[]>([
         EPageFramework.React,
@@ -58,6 +90,25 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         EPageFramework.Angular,
     ]);
     const selectedFramework = useContext(FrameworkContext);
+
+    let initialOpenedMenuItems = {
+        MENU_ITEMS_FEATURED_APPS_ID: true,
+        MENU_ITEMS_3D_ID: true,
+        MENU_ITEMS_2D_ID: true,
+    };
+
+    MENU_ITEMS_FEATURED_APPS.forEach((item) => {
+        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.id]: true };
+    });
+    MENU_ITEMS_3D.forEach((item) => {
+        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.id]: true };
+    });
+    MENU_ITEMS_2D.forEach((item) => {
+        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.id]: true };
+    });
+
+    const [openedMenuItems, setOpenedMenuItems] = useState<Record<string, boolean>>(initialOpenedMenuItems);
+    const [isDrawerOpened, setIsDrawerOpened] = useState(false);
 
     const searchItems: TSearchItem[] = useMemo(
         () => generateSearchItems(ALL_MENU_ITEMS, selectedFramework),
@@ -104,18 +155,37 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         setSelectedFile({ name: fileName, content: file.content });
     };
 
+    const setOpenedMenuItem = (id: string, value: boolean = true) => {
+        setOpenedMenuItems({ ...openedMenuItems, [id]: value });
+    };
+
     const isFrameworkVariantAvailable = availableFrameworks?.includes(selectedFramework);
+    const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
+    const toggleOpenedMenuItem = (id: string) => setOpenedMenuItem(id, !openedMenuItems[id]);
 
     return (
         <div>
-            <div style={{ marginTop: 16 }}>
+            <div style={{ display: 'flex', padding: 20 }}>
+                <div className={classes.DrawerDesktop}>
+                    <DrawerContent
+                        testIsOpened={testIsOpened}
+                        toggleOpenedMenuItem={toggleOpenedMenuItem}
+                        toggleDrawer={() => {}}
+                    />
+                </div>
                 <div className={classes.contentwrapper}>
-                    <div className={`${classes.tabcontent} ${classes.active}`}>
-                        <ExampleBreadcrumbs />
+                    <ExampleBreadcrumbs />
 
-                        {/* Title + Example */}
-                        <h1 className={classes.headingtxt}>{PageTitle}</h1>
-                        <div className={classes.chartwrap}>
+                    {/* Title */}
+                    <h1 className={classes.headingtxt} style={{margin: '-10px 0'}}>{PageTitle}</h1>
+
+                    {/* Description */}
+                    <p className={classes.chartdescription}>
+                        {getTitle(currentExample.description, selectedFramework)}
+                    </p>
+
+                    <div className={classes.dynamicFlexWrapper}>
+                        <div className={classes.chartwrap} style={{minWidth: '50%'}}>
                             <ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />
                             <div className={classes.tabbtnwrap}>
                                 <a
@@ -149,16 +219,13 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                     }
                                     target="_blank"
                                 >
-                                    <svg
+                                    <svg 
+                                        role="img" 
+                                        viewBox="0 0 24 24" 
+                                        xmlns="http://www.w3.org/2000/svg" 
                                         style={{ height: 24, width: 24 }}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        id="code-sandbox"
                                     >
-                                        <path
-                                            fill="#ffffff"
-                                            d="M22.5 17.95 22.41 6 11.955 0 1.5 6v12l10.455 6L22.5 17.95zm-2.173-4.711L16.982 15.1v3.514L13.01 20.91v-8.272l7.317-4.157v4.758zm-9.422 7.671-3.972-2.296v-3.516l-3.345-1.86V8.481l7.317 4.157v8.272zM4.634 6.601 4.633 6.6l3.913-2.255 3.43 1.968 3.41-1.945 3.871 2.197-7.32 4.18-7.303-4.144z"
-                                        ></path>
+                                        <path fill="#ffffff" d="M10.797 14.182H3.635L16.728 0l-3.525 9.818h7.162L7.272 24l3.524-9.818Z"/>
                                     </svg>
                                     &nbsp;Edit
                                 </a>
@@ -211,43 +278,21 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                 </a>
                             </div>
                         </div>
-
-                        <p style={{ padding: "0.75rem 0.25rem" }}>
-                            {getTitle(currentExample.description, selectedFramework)}
-                        </p>
-
+                        
                         {/* Source code */}
-                        <div
-                            style={{
-                                width: "100%",
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                position: "relative",
-                            }}
-                        >
-                            {/* <h4>Source code</h4> */}
-                            {/* <Select
-                                files={[
-                                    {name: "React", content: undefined},
-                                    {name: "Angular", content: undefined},
-                                    {name: "Vue", content: undefined},
-                                    {name: "JavaScript", content: undefined},
-                                ]}
-                                selectedFile={selectedFile}
-                                handleFileClick={handleFileClick}
-                            /> */}
-                        </div>
-
                         <div className={classes.editortabwrap}>
                             <FileExplorer
                                 files={sourceFiles}
                                 selectedFile={selectedFile}
                                 handleFileClick={handleFileClick}
                             />
-                            <Editor
-                                height="80vh"
+
+                            <p>todo</p>
+                            
+                            {/* <Editor
                                 theme="light"
+                                height="40vh"
+                                width="100%"
                                 language={
                                     EditorLanguageMap[
                                         selectedFile.name.split(".").pop() as keyof typeof EditorLanguageMap
@@ -262,11 +307,12 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                     },
                                     fontSize: 16,
                                 }}
-                            />
+                            /> */}
                         </div>
-
-                        <DetailsCom currentExample={currentExample} />
                     </div>
+
+                    {/* <DetailsCom currentExample={currentExample} /> */}
+                    <Gallery examples={seeAlso} />
                 </div>
             </div>
         </div>

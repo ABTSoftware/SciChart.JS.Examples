@@ -27,6 +27,7 @@ import { useNavigate } from "react-router-dom";
 import { appTheme } from "./Examples/theme";
 import { SciChartSurfaceBase } from "scichart";
 import { ContentSectionRouter } from "./Navigation/AnchorTagRouter";
+import Gallery from "./Gallery/Gallery";
 
 SciChartSurfaceBase.DEFAULT_THEME = appTheme.SciChartJsTheme;
 SciChartDefaults.useSharedCache = true;
@@ -133,17 +134,11 @@ export default function App() {
                     <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
-                    {isHomePage ? (
-                        <div className={classes.tabsection}>
-                            <div className={classes.container}>
-                                <TopBarTabs />
-                            </div>
-                        </div>
-                    ) : (
+                    {!isHomePage ? 
                         <AppDetailsRoute currentExample={currentExample} seeAlso={seeAlso} />
-                    )}
+                    : null}
                     {/* <AppRouter currentExample={currentExample} seeAlso={seeAlso} /> */}
-                    {/* <div className={classes.MainAppWrapper}>
+                    <div className={classes.MainAppWrapper}>
                         <div className={classes.DrawerDesktop}>
                             <DrawerContent
                                 testIsOpened={testIsOpened}
@@ -158,7 +153,7 @@ export default function App() {
                         ) : (
                             <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
                         )}
-                    </div> */}
+                    </div>
                     {/* <AppRouter currentExample={currentExample} seeAlso={seeAlso} /> */}
 
                     <AppFooter />

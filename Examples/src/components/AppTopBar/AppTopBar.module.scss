@@ -59,7 +59,7 @@
             background: $color-primary-white-alpha;
             // border: 1px solid $color-medium-blue;
 
-            @include md {
+            @include sm {
                 display: block;
             }
         }

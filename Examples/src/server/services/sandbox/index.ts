@@ -14,8 +14,8 @@ export const getSandboxConfig = (
     switch (framework) {
         case EPageFramework.Angular:
             return getAngularSandBoxConfig(folderPath, currentExample, baseUrl);
-        case EPageFramework.Vue:
-            throw new Error("Not Implemented");
+        // case EPageFramework.Vue:
+        //     throw new Error("Not Implemented");
         case EPageFramework.React:
             return getReactSandBoxConfig(folderPath, currentExample, baseUrl);
         case EPageFramework.Vanilla:

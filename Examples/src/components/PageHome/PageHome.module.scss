@@ -39,9 +39,8 @@
         .PageHomeHeader {
             @extend %Container;
             width: 100%;
-            max-width: min(1200px, 84vw);
 
-            padding: $default-spacing * 6 0;
+            padding: $default-spacing * 2;
 
             margin: auto;
             display: flex;
@@ -89,7 +88,7 @@
                     margin-bottom: 0;
                     line-height: 3.875rem;
                     white-space: nowrap;
-                    margin-bottom: 30px;
+                    margin-bottom: 20px;
                     span {
                         display: block;
                         color: white;

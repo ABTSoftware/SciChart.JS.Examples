@@ -15,10 +15,11 @@
     .CloseButton {
         align-self: center;
         cursor: pointer;
-        padding: 0;
+        padding: 7px;
+        margin-left: -7px;
         display: none;
         
-        @include md {
+        @include sm {
             display: block;
         }
     }
@@ -63,4 +64,26 @@
         text-transform: uppercase;
         text-decoration-thickness: auto;
     }
+}
+
+.FrameworkSelect{
+    display: flex;
+    height: 42px;
+    width: 100%;
+    border: 1px solid #b4d0db;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.FrameworkSelect .Framework, .FrameworkSelect .SelectedFramework{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.FrameworkSelect .SelectedFramework{
+    background-color: #b4d0db44;
 }

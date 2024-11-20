@@ -4,22 +4,14 @@
     display: block;
     // width: 30vw;
     // height: 100%;
-    margin-top: 5px;
+    padding: 16px 16px 8px 16px;
     flex: auto;
 
     .SearchField {
-        background-color: $color-dark-grey;
-
-        //TODO this is a workaround for styling Search in Drawer
         @include sm {
             background-color: unset;
         }
-
-        border-radius: 4px;
-
-        &:hover {
-            background-color: $color-grey;
-        }
+        border-radius: 12px;
     }
 
     svg,

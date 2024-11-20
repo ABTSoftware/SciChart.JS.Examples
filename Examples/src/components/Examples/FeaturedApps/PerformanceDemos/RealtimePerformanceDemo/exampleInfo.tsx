@@ -33,7 +33,7 @@ const documentationLinks: TDocumentationLink[] = [
 const moreInfoHeader = `Candlestick Charts for traders`;
 const moreInfo = [
     {
-        label: "The most popular chart type for traders</a> is the candlestick chart. Candlestick provides visual support for making decisions in the case of stocks, foreign exchange or commodities.",
+        label: "The most popular chart type for traders is the candlestick chart. Candlestick provides visual support for making decisions in the case of stocks, foreign exchange or commodities.",
     },
     {
         label: " Sometimes, in trading, you are not able to see the volume of data you require. With SciChart.js, there are fewer limitations – for instance, you can visualize a year’s worth of 1-minute OHLC bars in a Candlestick Chart, as opposed to a few days. We help you present even the most complex data sets in a way that’s easy to navigate and understand, all with high performance.",

@@ -5,14 +5,14 @@ export enum EPageFramework {
     Vanilla = "javascript",
     React = "react",
     Angular = "angular",
-    Vue = "vue",
+    // Vue = "vue",
 }
 
 export const FRAMEWORK_NAME = {
     [EPageFramework.Vanilla]: "JavaScript",
     [EPageFramework.React]: "React",
     [EPageFramework.Angular]: "Angular",
-    [EPageFramework.Vue]: "Vue",
+    // [EPageFramework.Vue]: "Vue",
 } as const;
 
 const DEFAULT_FRAMEWORK = EPageFramework.React;
@@ -21,6 +21,20 @@ export type TPathTemplate = string | ((framework: EPageFramework) => string);
 export type TFrameworkName = "JavaScript" | "Angular" | "React" | "Vue";
 export type TTitleTemplate = string | ((framework: TFrameworkName) => string);
 export type TDescriptionTemplate = string | ((framework: TFrameworkName) => string);
+
+/**
+ * Describes the layout of the page where the chart is displayed relative to the source code component
+ */
+export enum EPageLayout {
+    /**
+     * Where the chart needs to be displayed in the full width of the page (e.g. oil-gas dashboard)
+     */
+    MaxChart,
+    /**
+     * Where the chart does not need a whole lot of space
+     */
+    MinChart
+}
 
 export const getTitle = (title: TTitleTemplate, framework: EPageFramework) => {
     return typeof title === "string" ? title : title(FRAMEWORK_NAME[framework]);
