@@ -21,13 +21,12 @@ import { GalleryItem } from "../helpers/types/types";
 import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
-import TopBarTabs from "./TopBarTabs";
 import AppDetailsRoute from "./AppDeatilsRouters/AppDeatilsRouter";
 import { useNavigate } from "react-router-dom";
 import { appTheme } from "./Examples/theme";
 import { SciChartSurfaceBase } from "scichart";
 import { ContentSectionRouter } from "./Navigation/AnchorTagRouter";
-import Gallery from "./Gallery/Gallery";
+import GalleryItems from "./GalleryItems";
 
 SciChartSurfaceBase.DEFAULT_THEME = appTheme.SciChartJsTheme;
 SciChartDefaults.useSharedCache = true;
@@ -134,9 +133,7 @@ export default function App() {
                     <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
-                    {!isHomePage ? 
-                        <AppDetailsRoute currentExample={currentExample} seeAlso={seeAlso} />
-                    : null}
+                    {!isHomePage ? <AppDetailsRoute currentExample={currentExample} seeAlso={seeAlso} /> : null}
                     {/* <AppRouter currentExample={currentExample} seeAlso={seeAlso} /> */}
                     <div className={classes.MainAppWrapper}>
                         <div className={classes.DrawerDesktop}>
@@ -148,7 +145,7 @@ export default function App() {
                         </div>
                         {isHomePage ? (
                             <div className={classes.GalleryAppWrapper}>
-                                <Gallery examples={allGalleryItems} />
+                                <GalleryItems examples={allGalleryItems} />
                             </div>
                         ) : (
                             <AppRouter currentExample={currentExample} seeAlso={seeAlso} />

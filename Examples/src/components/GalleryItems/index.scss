@@ -58,8 +58,8 @@
                 width: 49%;
             }
             h3 {
-                font-size: 16px;
-                line-height: 22px;
+                font-size: 0.875rem;
+                line-height: 1.5;
                 cursor: pointer;
                 @media only screen and (max-width: 768px) {
                     font-size: 13px;
@@ -69,8 +69,8 @@
             }
         }
         .showcasethumb {
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 4%;
+            margin-bottom: 2%;
         }
     }
 
@@ -91,6 +91,7 @@
             }
         }
         .showcasethumb {
+            background: transparent;
             width: 28%;
             padding: 0;
             margin: 0;
@@ -101,7 +102,7 @@
                 width: 44%;
                 box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
                 padding: 5px 5px 2px;
-                border-radius: 14px;
+                border-radius: 10%;
             }
         }
         .showcasecontent {
@@ -147,7 +148,7 @@
     .showcasecol {
         width: 32.4%;
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 1%;
         @media screen and (min-width: 768px) and (max-width: 1200px) {
             width: 31.4%;
         }
@@ -156,10 +157,16 @@
         }
 
         h3 {
+            display: -webkit-box; /* Enables the flexbox behavior for text */
+            -webkit-box-orient: vertical; /* Specifies the box's orientation */
+            overflow: hidden; /* Hides overflowed text */
+            text-overflow: ellipsis; /* Adds the ellipsis (...) */
+            -webkit-line-clamp: 2; /* Limits to 2 lines */
+            line-clamp: 2; /* Standard property for modern browsers */
             font-family: "Arial";
             font-weight: 500;
-            font-size: 20px;
-            line-height: 26px;
+            font-size: 0.875rem; // relative to root element
+            line-height: 1.5; // 1.5 times font height
             text-align: center;
             letter-spacing: 0.02em;
             cursor: pointer;
@@ -174,17 +181,18 @@
     background: #fff;
     border: 1px solid #eee;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
-    border-radius: 23px;
-    padding: 25px;
-    margin-bottom: 20px;
+    border-radius: 10%;
+    padding: 4%;
+    margin-bottom: 2%;
 
     @media only screen and (max-width: 1024px) {
         padding: 15px;
-        border-radius: 16px;
+        border-radius: 10%;
     }
     img {
-        border-radius: 14px;
+        border-radius: 10%;
         width: 100%;
+        display: block;
     }
 }
 

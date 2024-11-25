@@ -7,7 +7,6 @@ import { Button } from "@mui/material";
 import { ExampleStrings } from "./ExampleStrings";
 import commonClasses from "./styles/Examples.module.scss";
 import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";
-import Gallery from "../Gallery/Gallery";
 import { GalleryItem } from "../../helpers/types/types";
 import ExampleDescription from "../ExampleDescription/ExampleDescription";
 import { Simulate } from "react-dom/test-utils";
@@ -20,6 +19,7 @@ import { baseGithubPath } from "../../constants";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { getTitle, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
+import GalleryItems from "../GalleryItems";
 
 type TProps = {
     // example: () => JSX.Element;
@@ -187,7 +187,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
 
                     {seeAlso && (
                         <div className={!showSource && !firstRender ? commonClasses.Animation : ""}>
-                            <Gallery examples={seeAlso} />
+                            <GalleryItems examples={seeAlso} />
                         </div>
                     )}
                 </div>

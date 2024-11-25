@@ -7,12 +7,14 @@ import { ExampleStrings } from "../components/Examples/ExampleStrings";
 const getGalleryItems = (category: string, menuItem: TMenuItem, framework: EPageFramework) => {
     return {
         chartGroupTitle: (category !== undefined ? `${category}: ` : "") + menuItem.title,
+        id: menuItem.id,
         items: menuItem.submenu.map((subMenu) => {
             return {
                 imgPath: subMenu.thumbnailImage,
                 title: getTitle(subMenu.title, framework),
                 seoTitle: getTitle(subMenu.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix,
                 examplePath: subMenu.path,
+                description: subMenu.description as string,
             };
         }),
     };

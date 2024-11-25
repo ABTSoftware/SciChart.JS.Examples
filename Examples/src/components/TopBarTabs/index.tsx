@@ -9,6 +9,7 @@ import { generateExamplesGallery } from "../../helpers/SciChartExamples";
 import NewGalleryItems from "../GalleryItems";
 import SubMenuItems from "../AppDeatilsRouters/SubMenuItems";
 import TabBar from "../TabBar/TabBar";
+import GalleryItems from "../GalleryItems";
 
 export type TabName = "Featured Apps" | "2D Charts" | "3D Charts" | "Demos by Industry" | "Demos by Feature";
 
@@ -72,11 +73,7 @@ const ButtonTabs: FC = () => {
                         handleSubmenuClick={handleSubmenuClick}
                         isHomePage={true}
                     />
-                    <NewGalleryItems
-                        activeTab={activeTab}
-                        examples={allGalleryItems}
-                        currentMenuItems={currentMenuItems}
-                    />
+                    <GalleryItems examples={allGalleryItems} />
                 </div>
             </div>
         </>

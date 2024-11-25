@@ -12,13 +12,8 @@ import FileExplorer from "../FileExplorer/FileExplorer";
 import { Editor } from "@monaco-editor/react";
 import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
 import DrawerContent from "../DrawerContent/DrawerContent";
-import {
-    ALL_MENU_ITEMS,
-    MENU_ITEMS_2D,
-    MENU_ITEMS_3D,
-    MENU_ITEMS_FEATURED_APPS,
-} from "../AppRouter/examples";
-import Gallery from "../Gallery/Gallery";
+import { ALL_MENU_ITEMS, MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
+import GalleryItems from "../GalleryItems";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -71,18 +66,18 @@ export async function drawExample(divId: string) {
     }))
 
     sciChartSurface.zoomExtents();
-}`
-},
-{
-    name: "index.tsx",
-    content: `import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";`
-}
-]
+}`,
+    },
+    {
+        name: "index.tsx",
+        content: `import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";`,
+    },
+];
 
 const AppDeatilsRouter: FC<TProps> = (props) => {
     const { currentExample, seeAlso } = props;
-    const [ sourceFiles, setSourceFiles ] = useState<{ name: string; content: string }[]>(fakeFiles);
-    const [ selectedFile, setSelectedFile ] = useState<{ name: string; content: string }>(fakeFiles[0]);
+    const [sourceFiles, setSourceFiles] = useState<{ name: string; content: string }[]>(fakeFiles);
+    const [selectedFile, setSelectedFile] = useState<{ name: string; content: string }>(fakeFiles[0]);
 
     const [availableFrameworks, setAvailableFrameworks] = useState<EPageFramework[]>([
         EPageFramework.React,
@@ -165,7 +160,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
 
     return (
         <div>
-            <div style={{ display: 'flex', padding: 20 }}>
+            <div style={{ display: "flex", padding: 20 }}>
                 <div className={classes.DrawerDesktop}>
                     <DrawerContent
                         testIsOpened={testIsOpened}
@@ -177,7 +172,9 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                     <ExampleBreadcrumbs />
 
                     {/* Title */}
-                    <h1 className={classes.headingtxt} style={{margin: '-10px 0'}}>{PageTitle}</h1>
+                    <h1 className={classes.headingtxt} style={{ margin: "-10px 0" }}>
+                        {PageTitle}
+                    </h1>
 
                     {/* Description */}
                     <p className={classes.chartdescription}>
@@ -185,7 +182,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                     </p>
 
                     <div className={classes.dynamicFlexWrapper}>
-                        <div className={classes.chartwrap} style={{minWidth: '50%'}}>
+                        <div className={classes.chartwrap} style={{ minWidth: "50%" }}>
                             <ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />
                             <div className={classes.tabbtnwrap}>
                                 <a
@@ -219,13 +216,16 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                     }
                                     target="_blank"
                                 >
-                                    <svg 
-                                        role="img" 
-                                        viewBox="0 0 24 24" 
-                                        xmlns="http://www.w3.org/2000/svg" 
+                                    <svg
+                                        role="img"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
                                         style={{ height: 24, width: 24 }}
                                     >
-                                        <path fill="#ffffff" d="M10.797 14.182H3.635L16.728 0l-3.525 9.818h7.162L7.272 24l3.524-9.818Z"/>
+                                        <path
+                                            fill="#ffffff"
+                                            d="M10.797 14.182H3.635L16.728 0l-3.525 9.818h7.162L7.272 24l3.524-9.818Z"
+                                        />
                                     </svg>
                                     &nbsp;Edit
                                 </a>
@@ -278,7 +278,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                 </a>
                             </div>
                         </div>
-                        
+
                         {/* Source code */}
                         <div className={classes.editortabwrap}>
                             <FileExplorer
@@ -288,7 +288,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                             />
 
                             <p>todo</p>
-                            
+
                             {/* <Editor
                                 theme="light"
                                 height="40vh"
@@ -311,8 +311,8 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                         </div>
                     </div>
 
-                    {/* <DetailsCom currentExample={currentExample} /> */}
-                    <Gallery examples={seeAlso} />
+                    {/*<DetailsCom currentExample={currentExample} /> */}
+                    <GalleryItems examples={seeAlso} />
                 </div>
             </div>
         </div>

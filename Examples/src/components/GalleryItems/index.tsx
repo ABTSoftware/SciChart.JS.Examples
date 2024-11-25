@@ -14,31 +14,68 @@ import { TMenuItem } from "../AppRouter/examples";
 
 type TProps = {
     examples: GalleryItem[];
-    currentMenuItems: TMenuItem[];
-    activeTab: any;
 };
 
-const GalleryItems: React.FC<TProps> = (props) => {
+enum GridType {
+    Filter1 = "filter1",
+    Filter2 = "filter2",
+    Filter3 = "filter3",
+}
+
+type StatePair<T> = [T, React.Dispatch<React.SetStateAction<T>>];
+
+const GridSelection: React.FC<{ filterState: StatePair<string> }> = ({
+    filterState: [activeFilter, setActiveFilter],
+}) => {
+    const getIcon = (filter: GridType) => {
+        const active = activeFilter === filter;
+        switch (filter) {
+            case GridType.Filter1:
+                return active ? filtericon : filtericon11;
+            case GridType.Filter2:
+                return active ? filtericon22 : filtericon2;
+            case GridType.Filter3:
+                return active ? filtericon33 : filtericon3;
+        }
+    };
+
+    const item = (filter: GridType) => (
+        <li onClick={() => setActiveFilter(filter)} key={filter}>
+            <img src={getIcon(filter)} />
+        </li>
+    );
+
+    return (
+        <div className={classes.showcasedisplay}>
+            <ul style={{ cursor: "pointer" }}>{Object.values(GridType).map(item)}</ul>
+        </div>
+    );
+};
+
+const GalleryItems: React.FC<TProps> = ({ examples }) => {
     const navigate = useNavigate();
     const framework = useContext(FrameworkContext);
-    const [activeFilter, setActiveFilter] = useState<string>("filter1");
+    const activeFilterState = useState<string>("filter1");
+    const [activeFilter] = activeFilterState;
 
     const handleSubmenuClick = (path: string) => {
         navigate(`/${framework}/${path}`);
     };
 
+    /*
     const groupedItems = useMemo(
         () =>
-            props.currentMenuItems.map((menuItem) => {
-                const matchingExample = props.examples.find((example) =>
+            currentMenuItems.map((menuItem) => {
+                const matchingExample = examples.find((example) =>
                     example.chartGroupTitle.includes(menuItem.title)
                 );
                 return matchingExample ? { ...menuItem, items: matchingExample.items } : menuItem;
             }),
-        [props.currentMenuItems, props.examples]
+        [currentMenuItems, examples]
     );
+    */
 
-    const renderItems = (items: any[], submenu: any[]) => {
+    const renderItems = (items: any[]) => {
         switch (activeFilter) {
             case "filter2":
                 return (
@@ -75,7 +112,7 @@ const GalleryItems: React.FC<TProps> = (props) => {
                                 </div>
                                 <div className={classes.showcasecontent}>
                                     <h3>{item.title}</h3>
-                                    <p>{submenu[idx]?.description || "No description available"}</p>
+                                    <p>{item.description || "No description available"}</p>
                                     <div className={classes.tabbtnwrap}>
                                         {/* TODO these should be ReactRouter `Link`s if they are needed at all */}
                                         <a
@@ -120,51 +157,24 @@ const GalleryItems: React.FC<TProps> = (props) => {
         }
     };
 
+    const groupHeading = (group: GalleryItem) => (
+        <div className={classes.showcasetitle}>
+            <h2 id={group.id}>
+                {`${group.chartGroupTitle} (${"items" in group ? group.items.length : 0} Demo${
+                    "items" in group && group.items.length !== 1 ? "s" : ""
+                })`}
+            </h2>
+        </div>
+    );
     return (
         <div className="showcase-wrap">
-            {groupedItems.map((group, index) => (
+            {examples.map((group, index) => (
                 <div key={index}>
                     <div className={classes.showcaseheadingwrap}>
-                        <div className={classes.showcasetitle}>
-                            <h2 id={group.id}>
-                                {`${props.activeTab}: ${group.title} (${
-                                    "items" in group ? group.items.length : 0
-                                } Demo${"items" in group && group.items.length !== 1 ? "s" : ""})`}
-                            </h2>
-                        </div>
-                        {index === 0 && (
-                            <div className={classes.showcasedisplay}>
-                                <ul style={{ cursor: "pointer" }}>
-                                    <li onClick={() => setActiveFilter("filter1")}>
-                                        {activeFilter == "filter1" ? (
-                                            <img src={filtericon} alt="Filter 2" />
-                                        ) : (
-                                            <img src={filtericon11} alt="Filter 2" />
-                                        )}
-                                    </li>
-                                    <li onClick={() => setActiveFilter("filter2")}>
-                                        {activeFilter == "filter2" ? (
-                                            <img src={filtericon22} alt="Filter 2" />
-                                        ) : (
-                                            <img src={filtericon2} alt="Filter 2" />
-                                        )}
-                                    </li>
-                                    <li onClick={() => setActiveFilter("filter3")}>
-                                        {activeFilter == "filter3" ? (
-                                            <img src={filtericon33} alt="Filter 2" />
-                                        ) : (
-                                            <img src={filtericon3} alt="Filter 2" />
-                                        )}
-                                    </li>
-                                </ul>
-                            </div>
-                        )}
+                        {groupHeading(group)}
+                        {index === 0 && <GridSelection filterState={activeFilterState} />}
                     </div>
-                    {"items" in group && group.items.length > 0 ? (
-                        renderItems(group.items, group.submenu)
-                    ) : (
-                        <p>No items available</p>
-                    )}
+                    {"items" in group && group.items.length > 0 ? renderItems(group.items) : <p>No items available</p>}
                 </div>
             ))}
         </div>
