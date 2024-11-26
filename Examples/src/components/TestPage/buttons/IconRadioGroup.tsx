@@ -7,6 +7,7 @@ interface IconRadioGroupProps<T extends string> {
     onChange: (value: T) => void;
     options: T[];
     iconMap?: Record<T, string>;
+    iconTitles?: Record<T, string>;
     className?: string;
 }
 
@@ -15,6 +16,7 @@ export function IconRadioGroup<T extends string>({
     onChange,
     options,
     iconMap,
+    iconTitles,
     className = "",
 }: IconRadioGroupProps<T>) {
     return (
@@ -25,6 +27,7 @@ export function IconRadioGroup<T extends string>({
                     icon={iconMap?.[option] ?? option}
                     selected={value === option}
                     onClick={() => onChange(option)}
+                    title={iconTitles?.[option]}
                 />
             ))}
         </div>

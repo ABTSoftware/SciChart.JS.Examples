@@ -1,0 +1,73 @@
+@import "./variables.scss";
+
+@keyframes tooltipFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(8px);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-6px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+.tooltipContainer {
+    position: relative;
+    display: inline-flex;
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    padding: 6px 12px;
+    background: rgba(30, 41, 59, 0.98);
+    color: rgba(255, 255, 255, 0.98);
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    backdrop-filter: blur(8px);
+    margin-bottom: 8px;
+    pointer-events: none;
+    z-index: 1000;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    will-change: transform, opacity;
+
+    &.visible {
+        animation: tooltipFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        visibility: visible;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: rgba(30, 41, 59, 0.98) transparent transparent transparent;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 6px;
+        border-style: solid;
+        border-color: rgba(255, 255, 255, 0.15) transparent transparent transparent;
+        margin-top: 1px;
+        z-index: -1;
+    }
+}

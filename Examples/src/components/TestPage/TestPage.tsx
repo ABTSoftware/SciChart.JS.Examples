@@ -19,6 +19,12 @@ export const TestPage: React.FC = () => {
         console.log("Back clicked");
     };
 
+    const displayModeDescriptions: Record<DisplayMode, string> = {
+        [DisplayMode.Embedded]: "Display as embedded component",
+        [DisplayMode.BrowserFill]: "Fill browser window",
+        [DisplayMode.Fullscreen]: "Show in fullscreen mode",
+    };
+
     return (
         <div className="test-page">
             <h1>Component Tests</h1>
@@ -59,6 +65,7 @@ export const TestPage: React.FC = () => {
                             onChange={setDisplayMode}
                             options={Object.values(DisplayMode)}
                             className="display-mode-group"
+                            iconTitles={displayModeDescriptions}
                         />
                         <p>Current display mode: {displayMode}</p>
                     </div>
@@ -71,8 +78,13 @@ export const TestPage: React.FC = () => {
             </div>
 
             <ButtonBar onPositionChange={handlePositionChange}>
-                <IconButton icon="back" onClick={handleBack} />
-                <IconRadioGroup value={displayMode} onChange={setDisplayMode} options={Object.values(DisplayMode)} />
+                <IconButton icon="back" onClick={handleBack} title="Go back" />
+                <IconRadioGroup
+                    value={displayMode}
+                    onChange={setDisplayMode}
+                    options={Object.values(DisplayMode)}
+                    iconTitles={displayModeDescriptions}
+                />
             </ButtonBar>
         </div>
     );
