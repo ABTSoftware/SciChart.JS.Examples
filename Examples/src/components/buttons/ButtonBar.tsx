@@ -11,16 +11,25 @@ interface ButtonBarProps {
 export const ButtonBar: React.FC<ButtonBarProps> = ({ children, className = "", style, onPositionChange }) => {
     const [isDragging, setIsDragging] = useState(false);
     const [position, setPosition] = useState({ x: 20, y: 20 });
-    const mouseOffset = useRef({ x: 0, y: 0 });
+    const initialState = useRef({
+        mouseX: 0,
+        mouseY: 0,
+        barX: 0,
+        barY: 0,
+    });
     const barRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             if (!isDragging) return;
 
-            // Calculate new position based on mouse position and scroll position
-            const newX = e.clientX + window.scrollX - mouseOffset.current.x;
-            const newY = e.clientY + window.scrollY - mouseOffset.current.y;
+            // Calculate the displacement from initial mouse position
+            const dx = e.clientX - initialState.current.mouseX;
+            const dy = e.clientY - initialState.current.mouseY;
+
+            // Add displacement to initial bar position
+            const newX = initialState.current.barX + dx;
+            const newY = initialState.current.barY + dy;
 
             // Disable transitions during drag for smoother movement
             if (barRef.current) {
@@ -65,13 +74,12 @@ export const ButtonBar: React.FC<ButtonBarProps> = ({ children, className = "", 
             return;
         }
 
-        const rect = barRef.current?.getBoundingClientRect();
-        if (!rect) return;
-
-        // Calculate offset from the mouse position to the bar's edge
-        mouseOffset.current = {
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top,
+        // Store initial mouse position and bar position
+        initialState.current = {
+            mouseX: e.clientX,
+            mouseY: e.clientY,
+            barX: position.x,
+            barY: position.y,
         };
 
         setIsDragging(true);
