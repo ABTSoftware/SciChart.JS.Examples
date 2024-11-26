@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { Loader } from "./Loader";
+import styles from "./CodeSandbox.module.scss";
 
 type TCodeSandbox = {
     id: string;
@@ -16,20 +17,15 @@ export const CodeSandbox: FC<TCodeSandbox> = ({ id, fontSize = 10 }) => {
     };
 
     return (
-        <div style={{ position: "relative", width: "100%", height: "500px" }}>
+        <div className={styles.container}>
             {isLoading && <Loader />}
             <iframe
                 src={url}
                 title="CodeSandbox"
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    border: "1px solid black",
-                    marginTop: "10px",
-                }}
+                className={styles.frame}
                 sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
                 onLoad={handleLoad}
-            ></iframe>
+            />
         </div>
     );
 };
