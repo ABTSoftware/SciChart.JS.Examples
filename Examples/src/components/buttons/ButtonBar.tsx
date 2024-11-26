@@ -84,12 +84,8 @@ export const ButtonBar: React.FC<ButtonBarProps> = ({ children, className = "", 
             className={`${styles.buttonBar} ${isDragging ? styles.dragging : ""} ${className}`.trim()}
             style={{
                 ...style,
-                position: "fixed",
                 left: `${position.x}px`,
                 top: `${position.y}px`,
-                cursor: isDragging ? "grabbing" : "grab",
-                transform: isDragging ? "scale(1.02)" : undefined,
-                willChange: isDragging ? "transform, left, top" : undefined,
             }}
             onMouseDown={handleMouseDown}
         >

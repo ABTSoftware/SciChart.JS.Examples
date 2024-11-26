@@ -4,17 +4,7 @@
     height: 500px;
     transition: all 0.3s ease;
 
-    &.browserFill {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: 1000;
-    }
-
+    &.browserFill,
     &.fullscreen {
         position: fixed;
         top: 0;
@@ -23,7 +13,10 @@
         bottom: 0;
         width: 100vw;
         height: 100vh;
-        z-index: 1000;
+        z-index: 9999;
+        margin: 0;
+        padding: 0;
+        background: white;
     }
 }
 
@@ -36,7 +29,14 @@
 
     .browserFill &,
     .fullscreen & {
-        margin-top: 0;
+        margin: 0;
         border: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
     }
 }

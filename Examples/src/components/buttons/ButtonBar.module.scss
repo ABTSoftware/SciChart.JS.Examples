@@ -13,6 +13,10 @@
     will-change: transform;
     z-index: 1000;
     backdrop-filter: blur(8px);
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    cursor: grab;
 
     &:hover {
         background: rgba(255, 255, 255, 0.6);
@@ -25,6 +29,9 @@
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
         border-color: rgba(25, 118, 210, 0.15);
         z-index: 1001;
+        cursor: grabbing;
+        transform: scale(1.02);
+        will-change: transform, left, top;
     }
 
     :global(button),
