@@ -252,6 +252,10 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     const toggleOpenedMenuItem = (id: string) => setOpenedMenuItem(id, !openedMenuItems[id]);
 
+    const handleBack = () => {
+        setEmbedCode(false);
+    };
+
     const ExamplesArea = () => (
         <div className={classes.dynamicFlexWrapper}>
             <div className={classes.chartwrap} style={{ minWidth: "50%" }}>
@@ -295,7 +299,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                     </p>
 
                     {/* Example area, either actual Example or embeded code */}
-                    {embedCode ? <CodeSandbox id={"83ptjv"} /> : <ExamplesArea />}
+                    {embedCode ? <CodeSandbox id={"83ptjv"} onBack={handleBack} /> : <ExamplesArea />}
 
                     <GalleryItems examples={seeAlso} />
                 </div>
