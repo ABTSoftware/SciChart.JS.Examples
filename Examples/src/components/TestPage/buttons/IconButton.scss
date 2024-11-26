@@ -1,0 +1,52 @@
+@import "./variables.scss";
+
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    outline: none;
+
+    &:not(.selected) {
+        &:hover,
+        &.hovered {
+            background-color: var(--button-hover-bg);
+            border-color: var(--button-hover-border);
+            transform: scale(1.05);
+        }
+    }
+
+    &.selected {
+        background-color: var(--button-selected-bg);
+        border-color: var(--button-selected-border);
+        box-shadow: 0 1px 3px var(--button-selected-shadow);
+
+        .icon-button-image {
+            filter: invert(31%) sepia(97%) saturate(1029%) hue-rotate(197deg) brightness(91%) contrast(98%);
+        }
+
+        &:hover,
+        &.hovered {
+            background-color: var(--button-selected-hover-bg);
+            border-color: var(--button-selected-hover-border);
+            transform: scale(1.05);
+            box-shadow: 0 2px 4px var(--button-selected-hover-shadow);
+        }
+    }
+
+    :global(.icon-button-image) {
+        width: 24px;
+        height: 24px;
+        transition: filter 0.2s ease-in-out;
+    }
+
+    &:focus {
+        border-color: var(--button-focus-border);
+        box-shadow: 0 0 0 2px var(--button-focus-shadow);
+    }
+}
