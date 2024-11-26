@@ -1,0 +1,20 @@
+.iconRadioGroup {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 4px;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.03);
+
+    :global(.icon-button) {
+        margin: 0;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
