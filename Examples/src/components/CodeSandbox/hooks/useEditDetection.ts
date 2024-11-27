@@ -1,27 +1,60 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 
 export const useEditDetection = () => {
     const [hasEdits, setHasEdits] = useState(false);
-    const mouseDownCount = useRef(0);
+    const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
-    const handleMouseDown = useCallback(() => {
-        mouseDownCount.current += 1;
-        // After a short delay, if there was a mousedown, we assume an edit was made
-        setTimeout(() => {
-            if (mouseDownCount.current > 0) {
-                setHasEdits(true);
+    const setupEditDetection = useCallback((iframe: HTMLIFrameElement) => {
+        iframeRef.current = iframe;
+
+        const handleEvent = () => {
+            setHasEdits(true);
+        };
+
+        const iframeWindow = iframe.contentWindow;
+        if (iframeWindow) {
+            // Listen for various events that might indicate editing
+            iframeWindow.addEventListener("keydown", handleEvent);
+            iframeWindow.addEventListener("mousedown", handleEvent);
+            iframeWindow.addEventListener("input", handleEvent);
+            iframeWindow.addEventListener("paste", handleEvent);
+            iframeWindow.addEventListener("cut", handleEvent);
+        }
+
+        return () => {
+            if (iframeWindow) {
+                iframeWindow.removeEventListener("keydown", handleEvent);
+                iframeWindow.removeEventListener("mousedown", handleEvent);
+                iframeWindow.removeEventListener("input", handleEvent);
+                iframeWindow.removeEventListener("paste", handleEvent);
+                iframeWindow.removeEventListener("cut", handleEvent);
             }
-        }, 100);
+        };
     }, []);
 
     const resetEdits = useCallback(() => {
         setHasEdits(false);
-        mouseDownCount.current = 0;
+    }, []);
+
+    useEffect(() => {
+        return () => {
+            if (iframeRef.current) {
+                const iframeWindow = iframeRef.current.contentWindow;
+                if (iframeWindow) {
+                    // Clean up all event listeners when component unmounts
+                    iframeWindow.removeEventListener("keydown", () => {});
+                    iframeWindow.removeEventListener("mousedown", () => {});
+                    iframeWindow.removeEventListener("input", () => {});
+                    iframeWindow.removeEventListener("paste", () => {});
+                    iframeWindow.removeEventListener("cut", () => {});
+                }
+            }
+        };
     }, []);
 
     return {
         hasEdits,
-        handleMouseDown,
+        setupEditDetection,
         resetEdits,
     };
 };

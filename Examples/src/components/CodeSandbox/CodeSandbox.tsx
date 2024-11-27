@@ -30,12 +30,16 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
     const [displayMode, setDisplayMode] = useState<DisplayMode>(DisplayMode.Embedded);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
-    const { hasEdits, handleMouseDown, resetEdits } = useEditDetection();
+    const iframeRef = useRef<HTMLIFrameElement>(null);
+    const { hasEdits, setupEditDetection, resetEdits } = useEditDetection();
 
     const url = getEmbedUrl(platform, id, fontSize);
 
     const handleLoad = () => {
         setIsLoading(false);
+        if (iframeRef.current) {
+            setupEditDetection(iframeRef.current);
+        }
     };
 
     const handleDisplayModeChange = (mode: DisplayMode) => {
@@ -104,13 +108,13 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
             </Toolbar>
             {isLoading && <Loader />}
             <iframe
+                ref={iframeRef}
                 key={url}
                 src={url}
                 title={platform === SandboxPlatform.CodeSandbox ? "CodeSandbox" : "StackBlitz"}
                 className={styles.frame}
                 sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
                 onLoad={handleLoad}
-                onMouseDown={handleMouseDown}
             />
             <ConfirmDialog isOpen={showConfirmDialog} onConfirm={handleConfirmClose} onCancel={handleCancelClose} />
         </div>
