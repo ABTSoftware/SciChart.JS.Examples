@@ -9,12 +9,24 @@
     box-sizing: border-box;
     gap: 12px;
     backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+        .toolbarGroup {
+            opacity: 0.95;
+        }
+    }
 }
 
 .toolbarGroup {
     display: flex;
     align-items: center;
     gap: 4px;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
 
     &:not(:last-child)::after {
         content: "";
@@ -22,6 +34,10 @@
         width: 1px;
         background: var(--border-color);
         margin-left: 8px;
+    }
+
+    &:hover {
+        opacity: 1;
     }
 }
 
@@ -31,4 +47,10 @@
     font-weight: 500;
     user-select: none;
     line-height: 16px;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+        opacity: 1;
+    }
 }
