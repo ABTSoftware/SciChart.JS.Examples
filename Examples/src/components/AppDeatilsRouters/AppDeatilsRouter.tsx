@@ -14,6 +14,7 @@ import DrawerContent from "../DrawerContent/DrawerContent";
 import { ALL_MENU_ITEMS, MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
 import GalleryItems from "../GalleryItems";
 import { CodeSandbox } from "../CodeSandbox";
+import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -82,13 +83,13 @@ type TExampleButtonsProps = {
     currentExample: TExamplePage;
     selectedFramework: EPageFramework;
     selectedFile: { name: string; content: string };
-    buttonFunction: any;
+    onSandboxOpen: (platform: SandboxPlatform) => void;
 };
 
 const ExamplesButtons: FC<TExampleButtonsProps> = ({
     currentExample,
     selectedFramework,
-    buttonFunction,
+    onSandboxOpen,
     selectedFile,
 }) => {
     const [availableFrameworks, setAvailableFrameworks] = useState<EPageFramework[]>([
@@ -120,6 +121,10 @@ const ExamplesButtons: FC<TExampleButtonsProps> = ({
                 &nbsp;Full Screen
             </a>
             <a
+                onClick={(e) => {
+                    e.preventDefault();
+                    onSandboxOpen(SandboxPlatform.StackBlitz);
+                }}
                 rel="nofollow external"
                 className={classes.btn}
                 style={{ backgroundColor: "#212121" }}
@@ -131,7 +136,6 @@ const ExamplesButtons: FC<TExampleButtonsProps> = ({
                         ? `Edit ${getTitle(currentExample.title, selectedFramework)} in StackBlitz`
                         : `Sorry, we have not got ${frameWorkName} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
                 }
-                target="_blank"
             >
                 <svg
                     role="img"
@@ -144,7 +148,10 @@ const ExamplesButtons: FC<TExampleButtonsProps> = ({
                 &nbsp;Edit
             </a>
             <a
-                onClick={buttonFunction}
+                onClick={(e) => {
+                    e.preventDefault();
+                    onSandboxOpen(SandboxPlatform.CodeSandbox);
+                }}
                 rel="nofollow external"
                 className={classes.btn}
                 style={{ backgroundColor: "#212121" }}
@@ -156,7 +163,6 @@ const ExamplesButtons: FC<TExampleButtonsProps> = ({
                         ? `Edit ${getTitle(currentExample.title, selectedFramework)} in CodeSandbox`
                         : `Sorry, we have not got ${frameWorkName} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
                 }
-                target="_blank"
             >
                 <svg
                     style={{ height: 24, width: 24 }}
@@ -200,6 +206,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     const [sourceFiles, setSourceFiles] = useState<{ name: string; content: string }[]>(fakeFiles);
     const [selectedFile, setSelectedFile] = useState<{ name: string; content: string }>(fakeFiles[0]);
     const [embedCode, setEmbedCode] = useState<boolean>(false);
+    const [sandboxPlatform, setSandboxPlatform] = useState<SandboxPlatform>(SandboxPlatform.CodeSandbox);
 
     const selectedFramework = useContext(FrameworkContext);
 
@@ -256,16 +263,18 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         setEmbedCode(false);
     };
 
+    const handleSandboxOpen = (platform: SandboxPlatform) => {
+        setSandboxPlatform(platform);
+        setEmbedCode(true);
+    };
+
     const ExamplesArea = () => (
         <div className={classes.dynamicFlexWrapper}>
             <div className={classes.chartwrap} style={{ minWidth: "50%" }}>
                 <ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />
                 <ExamplesButtons
                     {...{ currentExample, selectedFramework, selectedFile }}
-                    buttonFunction={(e: Event) => {
-                        e.preventDefault();
-                        setEmbedCode(true);
-                    }}
+                    onSandboxOpen={handleSandboxOpen}
                 />
             </div>
             {/* Source code */}
@@ -299,7 +308,11 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                     </p>
 
                     {/* Example area, either actual Example or embeded code */}
-                    {embedCode ? <CodeSandbox id={"83ptjv"} onBack={handleBack} /> : <ExamplesArea />}
+                    {embedCode ? (
+                        <CodeSandbox id={"83ptjv"} onBack={handleBack} platform={sandboxPlatform} />
+                    ) : (
+                        <ExamplesArea />
+                    )}
 
                     <GalleryItems examples={seeAlso} />
                 </div>
