@@ -21,7 +21,7 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
     id,
     fontSize = 10,
     onBack,
-    title = "Code Sandbox",
+    title,
     platform = SandboxPlatform.CodeSandbox,
 }) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -93,6 +93,8 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
     const platformTooltip =
         platform === SandboxPlatform.CodeSandbox ? "Running in CodeSandbox" : "Running in StackBlitz";
 
+    const defaultTitle = platform === SandboxPlatform.CodeSandbox ? "CodeSandbox" : "StackBlitz";
+
     return (
         <div ref={containerRef} className={containerClassName}>
             <Toolbar className={styles.toolbar}>
@@ -102,7 +104,7 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
                             <Icon name={platformIcons[platform]} />
                         </div>
                     </Tooltip>
-                    <ToolbarText>{title}</ToolbarText>
+                    <ToolbarText>{title || defaultTitle}</ToolbarText>
                 </ToolbarGroup>
                 <div className={styles.spacer} />
                 <ToolbarGroup>
