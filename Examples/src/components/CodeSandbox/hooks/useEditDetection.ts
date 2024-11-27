@@ -4,7 +4,6 @@ export const useEditDetection = () => {
     const [hasEdits, setHasEdits] = useState(false);
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
     const initialCodeRef = useRef<string | null>(null);
-    const intervalRef = useRef<number>();
 
     const checkForChanges = useCallback(() => {
         if (iframeRef.current?.contentWindow) {
@@ -15,25 +14,27 @@ export const useEditDetection = () => {
     useEffect(() => {
         const handleMessage = (event: MessageEvent) => {
             if (event.data.type === "code") {
+                const currentCode = event.data.code;
+
                 // Store initial code on first response
                 if (initialCodeRef.current === null) {
-                    initialCodeRef.current = event.data.code;
-                } else if (event.data.code !== initialCodeRef.current) {
+                    initialCodeRef.current = currentCode;
+                } else if (currentCode !== initialCodeRef.current) {
                     setHasEdits(true);
                 }
+
+                // Request next update immediately
+                setTimeout(checkForChanges, 1000);
             }
         };
 
         window.addEventListener("message", handleMessage);
 
-        // Start periodic checking
-        intervalRef.current = window.setInterval(checkForChanges, 5000);
+        // Start initial check
+        checkForChanges();
 
         return () => {
             window.removeEventListener("message", handleMessage);
-            if (intervalRef.current) {
-                window.clearInterval(intervalRef.current);
-            }
         };
     }, [checkForChanges]);
 
