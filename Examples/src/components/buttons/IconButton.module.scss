@@ -4,17 +4,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4px;
+    padding: 0.25rem;
     border: 1px solid transparent;
-    border-radius: 4px;
+    border-radius: 0.25rem;
     background: transparent;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     outline: none;
 
     svg {
-        width: 18px;
-        height: 18px;
+        width: 1.125rem;
+        height: 1.125rem;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         fill: var(--button-icon-color);
         filter: drop-shadow(0 0 0 var(--button-icon-color));
@@ -30,7 +30,7 @@
 
             svg {
                 opacity: 0.9;
-                filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.2));
+                filter: drop-shadow(0 0 0.125rem rgba(0, 0, 0, 0.2));
             }
         }
     }
@@ -53,7 +53,7 @@
             svg {
                 opacity: 0.95;
                 transform: scale(1.1);
-                filter: drop-shadow(0 0 1px rgba(25, 118, 210, 0.3));
+                filter: drop-shadow(0 0 0.125rem rgba(25, 118, 210, 0.3));
             }
         }
     }
