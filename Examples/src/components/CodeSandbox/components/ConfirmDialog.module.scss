@@ -1,67 +1,53 @@
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--color-tooltip-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: var(--z-index-modal);
-}
-
 .dialog {
+    position: absolute;
+    top: 50px;
+    right: 10px;
     background: white;
-    border-radius: var(--border-radius-lg);
-    padding: var(--spacing-xl);
-    width: 25rem;
-    box-shadow: var(--shadow-lg);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    width: 280px;
 
     h2 {
-        margin: 0 0 var(--spacing-lg);
-        font-size: var(--font-size-md);
-        color: var(--button-icon-color);
+        margin: 0 0 8px 0;
+        font-size: 14px;
+        font-weight: 600;
     }
 
     p {
-        margin: 0 0 var(--spacing-xl);
-        color: var(--button-icon-color);
-        line-height: 1.5;
-        font-size: var(--font-size-sm);
+        margin: 0 0 12px 0;
+        font-size: 12px;
     }
 }
 
 .buttons {
     display: flex;
     justify-content: flex-end;
-    gap: var(--spacing-lg);
+    gap: 8px;
 
     button {
-        padding: var(--spacing-md) var(--spacing-lg);
-        border-radius: var(--border-radius-sm);
-        border: none;
+        min-width: 60px;
+        padding: 4px 12px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        background: white;
         cursor: pointer;
-        font-weight: 500;
-        font-size: var(--font-size-sm);
-        transition: background-color var(--transition-normal);
+        font-size: 12px;
 
-        &.cancel {
-            background-color: var(--color-overlay);
-            color: var(--button-icon-color);
-
-            &:hover {
-                background-color: var(--color-overlay-hover);
-            }
+        &:hover {
+            background: #f5f5f5;
         }
+    }
 
-        &.confirm {
-            background-color: var(--button-selected-bg);
-            color: var(--button-selected-icon-color);
+    .confirm {
+        background: #1976d2;
+        color: white;
+        border-color: #1976d2;
 
-            &:hover {
-                background-color: var(--button-selected-hover-bg);
-            }
+        &:hover {
+            background: #1565c0;
         }
     }
 }

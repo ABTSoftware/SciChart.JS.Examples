@@ -19,18 +19,14 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
     if (!isOpen) return null;
 
     return (
-        <div className={styles.overlay}>
-            <div className={styles.dialog}>
-                <h2>{title}</h2>
-                <p>{message}</p>
-                <div className={styles.buttons}>
-                    <button className={styles.cancel} onClick={onCancel}>
-                        Cancel
-                    </button>
-                    <button className={styles.confirm} onClick={onConfirm}>
-                        Close Editor
-                    </button>
-                </div>
+        <div className={styles.dialog}>
+            <h2>{title}</h2>
+            <p>{message}</p>
+            <div className={styles.buttons}>
+                <button onClick={onCancel}>Cancel</button>
+                <button className={styles.confirm} onClick={onConfirm}>
+                    OK
+                </button>
             </div>
         </div>
     );

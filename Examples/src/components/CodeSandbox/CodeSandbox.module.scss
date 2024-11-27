@@ -55,3 +55,21 @@
     width: var(--icon-size-lg);
     height: var(--icon-size-lg);
 }
+
+.titleGroup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.exampleName {
+    font-weight: 600;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+    padding-left: 12px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}

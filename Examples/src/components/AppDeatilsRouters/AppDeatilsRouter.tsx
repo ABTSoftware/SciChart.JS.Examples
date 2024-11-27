@@ -309,7 +309,12 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
 
                     {/* Example area, either actual Example or embeded code */}
                     {embedCode ? (
-                        <CodeSandbox id={"83ptjv"} onBack={handleBack} platform={sandboxPlatform} />
+                        <CodeSandbox
+                            id={"83ptjv"}
+                            onBack={handleBack}
+                            platform={sandboxPlatform}
+                            exampleName={PageTitle}
+                        />
                     ) : (
                         <ExamplesArea />
                     )}

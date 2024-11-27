@@ -1,4 +1,4 @@
-import { FC, useState, useRef } from "react";
+import { FC, useState, useRef, useCallback } from "react";
 import { Loader } from "./Loader";
 import styles from "./CodeSandbox.module.scss";
 import { DisplayMode } from "./DisplayMode";
@@ -17,6 +17,7 @@ type TCodeSandbox = {
     onBack?: () => void;
     title?: string;
     platform?: SandboxPlatform;
+    exampleName?: string;
 };
 
 export const CodeSandbox: FC<TCodeSandbox> = ({
@@ -25,12 +26,14 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
     onBack,
     title,
     platform = SandboxPlatform.CodeSandbox,
+    exampleName,
 }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [displayMode, setDisplayMode] = useState<DisplayMode>(DisplayMode.Embedded);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
-    const { hasEdits, iframeRef, resetEdits } = useEditDetection();
+    const iframeRef = useRef<HTMLIFrameElement>(null);
+    const { hasEdits, resetEdits } = useEditDetection(!isLoading, iframeRef);
 
     const url = getEmbedUrl(platform, id, fontSize);
 
@@ -56,23 +59,23 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
         displayMode === DisplayMode.BrowserFill ? styles.browserFill : ""
     }`;
 
-    const handleBack = () => {
+    const handleBack = useCallback(() => {
         if (hasEdits) {
             setShowConfirmDialog(true);
         } else {
-            onBack?.();
+            setShowConfirmDialog(true);
         }
-    };
+    }, [hasEdits]);
 
-    const handleConfirmClose = () => {
-        setShowConfirmDialog(false);
+    const handleConfirmClose = useCallback(() => {
         resetEdits();
-        onBack?.();
-    };
-
-    const handleCancelClose = () => {
         setShowConfirmDialog(false);
-    };
+        onBack?.();
+    }, [onBack, resetEdits]);
+
+    const handleCancelClose = useCallback(() => {
+        setShowConfirmDialog(false);
+    }, []);
 
     const platformTooltip =
         platform === SandboxPlatform.CodeSandbox ? "Running in CodeSandbox" : "Running in StackBlitz";
@@ -88,7 +91,10 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
                             <Icon name={platformIcons[platform]} />
                         </div>
                     </Tooltip>
-                    <ToolbarText>{title || defaultTitle}</ToolbarText>
+                    <div className={styles.titleGroup}>
+                        <ToolbarText>{title || defaultTitle}</ToolbarText>
+                        {exampleName && <div className={styles.exampleName}>{exampleName}</div>}
+                    </div>
                 </ToolbarGroup>
                 <div className={styles.spacer} />
                 <ToolbarGroup>
@@ -114,7 +120,17 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
                     onLoad={handleLoad}
                 />
             </div>
-            <ConfirmDialog isOpen={showConfirmDialog} onConfirm={handleConfirmClose} onCancel={handleCancelClose} />
+            <ConfirmDialog
+                isOpen={showConfirmDialog}
+                onConfirm={handleConfirmClose}
+                onCancel={handleCancelClose}
+                title={hasEdits ? "Unsaved Changes" : "Close Editor"}
+                message={
+                    hasEdits
+                        ? "You have unsaved changes. Are you sure you want to close the editor?"
+                        : "Are you sure you want to close the editor?"
+                }
+            />
         </div>
     );
 };
