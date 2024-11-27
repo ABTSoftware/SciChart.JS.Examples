@@ -1,4 +1,4 @@
-import { FC, useState, useRef, useEffect } from "react";
+import { FC, useState, useRef } from "react";
 import { Loader } from "./Loader";
 import styles from "./CodeSandbox.module.scss";
 import { DisplayMode } from "./DisplayMode";
@@ -27,7 +27,6 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
     const [isLoading, setIsLoading] = useState(true);
     const [displayMode, setDisplayMode] = useState<DisplayMode>(DisplayMode.Embedded);
     const containerRef = useRef<HTMLDivElement>(null);
-    const prevMode = useRef<DisplayMode>(displayMode);
 
     const url = getEmbedUrl(platform, id, fontSize);
 
@@ -35,58 +34,25 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
         setIsLoading(false);
     };
 
-    const handleDisplayModeChange = async (mode: DisplayMode) => {
-        if (mode === DisplayMode.Fullscreen) {
-            try {
-                await containerRef.current?.requestFullscreen();
-            } catch (err) {
-                console.error("Could not enter fullscreen mode:", err);
-            }
-        } else if (displayMode === DisplayMode.Fullscreen) {
-            try {
-                if (document.fullscreenElement) {
-                    await document.exitFullscreen();
-                }
-            } catch (err) {
-                console.error("Could not exit fullscreen mode:", err);
-            }
-        }
-
-        prevMode.current = displayMode;
+    const handleDisplayModeChange = (mode: DisplayMode) => {
         setDisplayMode(mode);
     };
 
-    useEffect(() => {
-        const handleFullscreenChange = () => {
-            if (!document.fullscreenElement && displayMode === DisplayMode.Fullscreen) {
-                setDisplayMode(DisplayMode.Embedded);
-            }
-        };
-
-        document.addEventListener("fullscreenchange", handleFullscreenChange);
-        return () => {
-            document.removeEventListener("fullscreenchange", handleFullscreenChange);
-        };
-    }, [displayMode]);
+    const displayModeIcons: Record<DisplayMode, string> = {
+        [DisplayMode.Embedded]: "embedded",
+        [DisplayMode.BrowserFill]: "fullscreen",
+    };
 
     const displayModeDescriptions: Record<DisplayMode, string> = {
         [DisplayMode.Embedded]: "Display as embedded component",
         [DisplayMode.BrowserFill]: "Fill browser window",
-        [DisplayMode.Fullscreen]: "Show in fullscreen mode",
     };
 
     const containerClassName = `${styles.container} ${
-        displayMode === DisplayMode.BrowserFill
-            ? styles.browserFill
-            : displayMode === DisplayMode.Fullscreen
-            ? styles.fullscreen
-            : ""
+        displayMode === DisplayMode.BrowserFill ? styles.browserFill : ""
     }`;
 
     const handleBack = () => {
-        if (displayMode === DisplayMode.Fullscreen && document.fullscreenElement) {
-            document.exitFullscreen();
-        }
         onBack?.();
     };
 
@@ -112,6 +78,7 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
                         value={displayMode}
                         onChange={handleDisplayModeChange}
                         options={Object.values(DisplayMode)}
+                        iconMap={displayModeIcons}
                         iconTitles={displayModeDescriptions}
                     />
                     <IconButton icon="close" onClick={handleBack} title="Close" />
