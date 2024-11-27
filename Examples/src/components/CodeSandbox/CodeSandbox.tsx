@@ -36,6 +36,10 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
 
     const handleLoad = () => {
         setIsLoading(false);
+        // Trigger initial code check when iframe loads
+        if (iframeRef.current?.contentWindow) {
+            iframeRef.current.contentWindow.postMessage({ type: "get-code" }, "*");
+        }
     };
 
     const handleDisplayModeChange = (mode: DisplayMode) => {
