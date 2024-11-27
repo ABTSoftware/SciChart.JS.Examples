@@ -102,7 +102,7 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
                     <IconButton icon="close" onClick={handleBack} title="Close" />
                 </ToolbarGroup>
             </Toolbar>
-            <div className={styles.frameContainer} tabIndex={0}>
+            <div className={styles.frameContainer}>
                 {isLoading && <Loader />}
                 <iframe
                     ref={iframeRef}
