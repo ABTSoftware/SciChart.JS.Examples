@@ -5,21 +5,31 @@ import { DisplayMode } from "./DisplayMode";
 import { IconButton } from "../buttons/IconButton";
 import { IconRadioGroup } from "../buttons/IconRadioGroup";
 import { Toolbar, ToolbarGroup, ToolbarText } from "../buttons/Toolbar";
+import { Icon } from "../buttons/Icon";
+import { Tooltip } from "../buttons/Tooltip";
+import { SandboxPlatform, getEmbedUrl, platformIcons } from "./SandboxPlatform";
 
 type TCodeSandbox = {
     id: string;
     fontSize?: number;
     onBack?: () => void;
     title?: string;
+    platform?: SandboxPlatform;
 };
 
-export const CodeSandbox: FC<TCodeSandbox> = ({ id, fontSize = 10, onBack, title = "Code Sandbox" }) => {
+export const CodeSandbox: FC<TCodeSandbox> = ({
+    id,
+    fontSize = 10,
+    onBack,
+    title = "Code Sandbox",
+    platform = SandboxPlatform.CodeSandbox,
+}) => {
     const [isLoading, setIsLoading] = useState(true);
     const [displayMode, setDisplayMode] = useState<DisplayMode>(DisplayMode.Embedded);
     const containerRef = useRef<HTMLDivElement>(null);
     const prevMode = useRef<DisplayMode>(displayMode);
 
-    const url = `https://codesandbox.io/embed/${id}?fontsize=${fontSize}&view=split`;
+    const url = getEmbedUrl(platform, id, fontSize);
 
     const handleLoad = () => {
         setIsLoading(false);
@@ -74,18 +84,26 @@ export const CodeSandbox: FC<TCodeSandbox> = ({ id, fontSize = 10, onBack, title
     }`;
 
     const handleBack = () => {
-        // If we're in fullscreen, exit first
         if (displayMode === DisplayMode.Fullscreen && document.fullscreenElement) {
             document.exitFullscreen();
         }
-        // Call the parent's onBack handler
         onBack?.();
     };
+
+    const platformTooltip =
+        platform === SandboxPlatform.CodeSandbox ? "Running in CodeSandbox" : "Running in StackBlitz";
 
     return (
         <div ref={containerRef} className={containerClassName}>
             <Toolbar className={styles.toolbar}>
-                <ToolbarText>{title}</ToolbarText>
+                <ToolbarGroup>
+                    <Tooltip content={platformTooltip}>
+                        <div className={styles.platformIcon}>
+                            <Icon name={platformIcons[platform]} />
+                        </div>
+                    </Tooltip>
+                    <ToolbarText>{title}</ToolbarText>
+                </ToolbarGroup>
                 <div className={styles.spacer} />
                 <ToolbarGroup>
                     <IconRadioGroup
@@ -99,8 +117,9 @@ export const CodeSandbox: FC<TCodeSandbox> = ({ id, fontSize = 10, onBack, title
             </Toolbar>
             {isLoading && <Loader />}
             <iframe
+                key={url}
                 src={url}
-                title="CodeSandbox"
+                title={platform === SandboxPlatform.CodeSandbox ? "CodeSandbox" : "StackBlitz"}
                 className={styles.frame}
                 sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
                 onLoad={handleLoad}

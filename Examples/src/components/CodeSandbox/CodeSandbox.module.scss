@@ -42,3 +42,16 @@
 .spacer {
     flex: 1;
 }
+
+.platformIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    margin-right: 8px;
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
