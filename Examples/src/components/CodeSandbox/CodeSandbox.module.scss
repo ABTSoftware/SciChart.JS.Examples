@@ -1,44 +1,29 @@
-@import "../buttons/variables.scss";
-
 .container {
-    position: relative;
-    width: 100%;
-    height: 31.25rem;
-    transition: var(--transition-slow);
     display: flex;
     flex-direction: column;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
 
-    &.browserFill,
-    &.fullscreen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: var(--z-index-fullscreen);
-        margin: 0;
-        padding: 0;
-        background: white;
+.toolbar {
+    flex: 0 0 auto;
+}
+
+.frameContainer {
+    flex: 1;
+    position: relative;
+    outline: none; // Remove default focus outline
+
+    &:focus {
+        outline: none; // Ensure no focus outline shows
     }
 }
 
 .frame {
     width: 100%;
-    flex: 1;
-    border: 1px solid var(--border-color);
-    background: white;
-
-    .browserFill &,
-    .fullscreen & {
-        border: none;
-    }
-}
-
-.toolbar {
-    flex-shrink: 0;
-    border-bottom: 1px solid var(--border-color);
+    height: 100%;
+    border: none;
 }
 
 .spacer {
@@ -49,11 +34,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.7;
-    margin-right: var(--spacing-md);
+    width: var(--icon-size-lg);
+    height: var(--icon-size-lg);
+}
 
-    svg {
-        width: var(--icon-size-sm);
-        height: var(--icon-size-sm);
-    }
+.browserFill {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--z-index-fullscreen);
+    background: white;
 }

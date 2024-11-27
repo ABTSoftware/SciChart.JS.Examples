@@ -80,7 +80,7 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
     const defaultTitle = platform === SandboxPlatform.CodeSandbox ? "CodeSandbox" : "StackBlitz";
 
     return (
-        <div ref={containerRef} className={containerClassName} onKeyDown={handleKeyDown}>
+        <div ref={containerRef} className={containerClassName}>
             <Toolbar className={styles.toolbar}>
                 <ToolbarGroup>
                     <Tooltip content={platformTooltip}>
@@ -102,15 +102,17 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
                     <IconButton icon="close" onClick={handleBack} title="Close" />
                 </ToolbarGroup>
             </Toolbar>
-            {isLoading && <Loader />}
-            <iframe
-                key={url}
-                src={url}
-                title={platform === SandboxPlatform.CodeSandbox ? "CodeSandbox" : "StackBlitz"}
-                className={styles.frame}
-                sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-                onLoad={handleLoad}
-            />
+            <div className={styles.frameContainer} onKeyDown={handleKeyDown} tabIndex={0}>
+                {isLoading && <Loader />}
+                <iframe
+                    key={url}
+                    src={url}
+                    title={platform === SandboxPlatform.CodeSandbox ? "CodeSandbox" : "StackBlitz"}
+                    className={styles.frame}
+                    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+                    onLoad={handleLoad}
+                />
+            </div>
             <ConfirmDialog isOpen={showConfirmDialog} onConfirm={handleConfirmClose} onCancel={handleCancelClose} />
         </div>
     );
