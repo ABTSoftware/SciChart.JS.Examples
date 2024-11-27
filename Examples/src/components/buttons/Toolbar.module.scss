@@ -1,19 +1,21 @@
+@import "./variables.scss";
+
 .toolbar {
     display: flex;
     align-items: center;
-    background: rgba(0, 0, 0, 0.03);
+    background: var(--color-overlay);
     border-bottom: 1px solid var(--border-color);
-    padding: 0.0625rem 0.75rem;
+    padding: var(--spacing-xxs) var(--spacing-lg);
     min-height: 1.5625rem;
     width: 100%;
     box-sizing: border-box;
-    gap: 0.75rem;
+    gap: var(--spacing-lg);
     backdrop-filter: blur(0.5rem);
-    transition: all 0.2s ease;
+    transition: var(--transition-normal);
 
     &:hover {
-        background: rgba(0, 0, 0, 0.08);
-        box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.08);
+        background: var(--color-overlay-hover);
+        box-shadow: var(--shadow-sm);
 
         .toolbarGroup {
             opacity: 0.98;
@@ -24,16 +26,16 @@
 .toolbarGroup {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: var(--spacing-sm);
     opacity: 0.85;
-    transition: opacity 0.2s ease;
+    transition: var(--transition-normal);
 
     &:not(:last-child)::after {
         content: "";
-        height: 1rem;
+        height: var(--spacing-xl);
         width: 1px;
         background: var(--border-color);
-        margin-left: 0.5rem;
+        margin-left: var(--spacing-md);
     }
 
     &:hover {
@@ -42,13 +44,13 @@
 }
 
 .toolbarText {
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     color: var(--text-color);
     font-weight: 500;
     user-select: none;
-    line-height: 1rem;
+    line-height: var(--spacing-xl);
     opacity: 0.9;
-    transition: opacity 0.2s ease;
+    transition: var(--transition-normal);
 
     &:hover {
         opacity: 1;

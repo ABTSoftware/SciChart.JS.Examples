@@ -4,18 +4,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.25rem;
+    padding: var(--spacing-sm);
     border: 1px solid transparent;
-    border-radius: 0.25rem;
+    border-radius: var(--border-radius-sm);
     background: transparent;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: var(--transition-slow);
     outline: none;
 
     svg {
-        width: 1.125rem;
-        height: 1.125rem;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+        transition: var(--transition-slow);
         fill: var(--button-icon-color);
         filter: drop-shadow(0 0 0 var(--button-icon-color));
         opacity: 0.75;
@@ -24,20 +24,20 @@
     &:not(.selected) {
         &:hover,
         &.hovered {
-            background-color: rgba(0, 0, 0, 0.03);
-            border-color: rgba(0, 0, 0, 0.08);
+            background-color: var(--color-overlay);
+            border-color: var(--color-border);
             transform: scale(1.05);
 
             svg {
                 opacity: 0.9;
-                filter: drop-shadow(0 0 0.125rem rgba(0, 0, 0, 0.2));
+                filter: drop-shadow(0 0 var(--spacing-xs) var(--color-shadow));
             }
         }
     }
 
     &.selected {
-        background-color: rgba(25, 118, 210, 0.06);
-        border-color: rgba(25, 118, 210, 0.15);
+        background-color: var(--button-selected-bg);
+        border-color: var(--button-selected-border);
 
         svg {
             fill: var(--button-selected-icon-color);
@@ -47,18 +47,18 @@
 
         &:hover,
         &.hovered {
-            background-color: rgba(25, 118, 210, 0.1);
-            border-color: rgba(25, 118, 210, 0.2);
+            background-color: var(--button-selected-hover-bg);
+            border-color: var(--button-selected-hover-border);
 
             svg {
                 opacity: 0.95;
                 transform: scale(1.1);
-                filter: drop-shadow(0 0 0.125rem rgba(25, 118, 210, 0.3));
+                filter: drop-shadow(0 0 var(--spacing-xs) var(--button-selected-shadow));
             }
         }
     }
 
     &:focus {
-        border-color: rgba(25, 118, 210, 0.2);
+        border-color: var(--button-focus-border);
     }
 }

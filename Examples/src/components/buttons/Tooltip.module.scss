@@ -3,7 +3,7 @@
 @keyframes tooltipFadeInTop {
     0% {
         opacity: 0;
-        transform: translateX(-50%) translateY(0.5rem);
+        transform: translateX(-50%) translateY(var(--spacing-md));
     }
     100% {
         opacity: 1;
@@ -14,7 +14,7 @@
 @keyframes tooltipFadeInBottom {
     0% {
         opacity: 0;
-        transform: translateX(-50%) translateY(-0.5rem);
+        transform: translateX(-50%) translateY(calc(-1 * var(--spacing-md)));
     }
     100% {
         opacity: 1;
@@ -25,7 +25,7 @@
 @keyframes tooltipFadeInLeft {
     0% {
         opacity: 0;
-        transform: translateY(-50%) translateX(0.5rem);
+        transform: translateY(-50%) translateX(var(--spacing-md));
     }
     100% {
         opacity: 1;
@@ -36,7 +36,7 @@
 @keyframes tooltipFadeInRight {
     0% {
         opacity: 0;
-        transform: translateY(-50%) translateX(-0.5rem);
+        transform: translateY(-50%) translateX(calc(-1 * var(--spacing-md)));
     }
     100% {
         opacity: 1;
@@ -51,21 +51,21 @@
 
 .tooltip {
     position: absolute;
-    padding: 0.375rem 0.75rem;
-    background: rgba(30, 41, 59, 0.98);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--color-tooltip-bg);
     color: rgba(255, 255, 255, 0.98);
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     font-weight: 500;
-    border-radius: 0.375rem;
+    border-radius: var(--border-radius-md);
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    backdrop-filter: blur(0.5rem);
+    backdrop-filter: blur(var(--spacing-md));
     pointer-events: none;
-    z-index: 1000;
+    z-index: var(--z-index-tooltip);
     letter-spacing: 0.02em;
-    box-shadow: 0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1), 0 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-white-transparent);
     will-change: transform, opacity;
 
     &.visible {
@@ -77,19 +77,19 @@
         bottom: 100%;
         left: 50%;
         transform: translateX(-50%) translateY(0);
-        margin-bottom: 0.5rem;
+        margin-bottom: var(--spacing-md);
 
         &.visible {
-            animation: tooltipFadeInTop 0.2s ease-out forwards;
+            animation: tooltipFadeInTop var(--transition-normal) forwards;
         }
 
         &::after {
             top: 100%;
             left: 50%;
             transform: translateX(-50%);
-            border-width: 0.3125rem;
+            border-width: var(--spacing-xs);
             border-style: solid;
-            border-color: rgba(30, 41, 59, 0.98) transparent transparent transparent;
+            border-color: var(--color-tooltip-bg) transparent transparent transparent;
         }
 
         &::before {
@@ -98,10 +98,10 @@
             top: 100%;
             left: 50%;
             transform: translateX(-50%);
-            border-width: 0.375rem;
+            border-width: var(--spacing-sm);
             border-style: solid;
-            border-color: rgba(255, 255, 255, 0.15) transparent transparent transparent;
-            margin-top: 0.0625rem;
+            border-color: var(--color-white-transparent) transparent transparent transparent;
+            margin-top: var(--spacing-xxs);
             z-index: -1;
         }
     }
@@ -111,19 +111,19 @@
         top: 100%;
         left: 50%;
         transform: translateX(-50%) translateY(0);
-        margin-top: 0.5rem;
+        margin-top: var(--spacing-md);
 
         &.visible {
-            animation: tooltipFadeInBottom 0.2s ease-out forwards;
+            animation: tooltipFadeInBottom var(--transition-normal) forwards;
         }
 
         &::after {
             bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
-            border-width: 0.3125rem;
+            border-width: var(--spacing-xs);
             border-style: solid;
-            border-color: transparent transparent rgba(30, 41, 59, 0.98) transparent;
+            border-color: transparent transparent var(--color-tooltip-bg) transparent;
         }
 
         &::before {
@@ -132,10 +132,10 @@
             bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
-            border-width: 0.375rem;
+            border-width: var(--spacing-sm);
             border-style: solid;
-            border-color: transparent transparent rgba(255, 255, 255, 0.15) transparent;
-            margin-bottom: 0.0625rem;
+            border-color: transparent transparent var(--color-white-transparent) transparent;
+            margin-bottom: var(--spacing-xxs);
             z-index: -1;
         }
     }
@@ -145,19 +145,19 @@
         top: 50%;
         right: 100%;
         transform: translateY(-50%) translateX(0);
-        margin-right: 0.5rem;
+        margin-right: var(--spacing-md);
 
         &.visible {
-            animation: tooltipFadeInLeft 0.2s ease-out forwards;
+            animation: tooltipFadeInLeft var(--transition-normal) forwards;
         }
 
         &::after {
             top: 50%;
             left: 100%;
             transform: translateY(-50%);
-            border-width: 0.3125rem;
+            border-width: var(--spacing-xs);
             border-style: solid;
-            border-color: transparent transparent transparent rgba(30, 41, 59, 0.98);
+            border-color: transparent transparent transparent var(--color-tooltip-bg);
         }
 
         &::before {
@@ -166,10 +166,10 @@
             top: 50%;
             left: 100%;
             transform: translateY(-50%);
-            border-width: 0.375rem;
+            border-width: var(--spacing-sm);
             border-style: solid;
-            border-color: transparent transparent transparent rgba(255, 255, 255, 0.15);
-            margin-left: 0.0625rem;
+            border-color: transparent transparent transparent var(--color-white-transparent);
+            margin-left: var(--spacing-xxs);
             z-index: -1;
         }
     }
@@ -179,19 +179,19 @@
         top: 50%;
         left: 100%;
         transform: translateY(-50%) translateX(0);
-        margin-left: 0.5rem;
+        margin-left: var(--spacing-md);
 
         &.visible {
-            animation: tooltipFadeInRight 0.2s ease-out forwards;
+            animation: tooltipFadeInRight var(--transition-normal) forwards;
         }
 
         &::after {
             top: 50%;
             right: 100%;
             transform: translateY(-50%);
-            border-width: 0.3125rem;
+            border-width: var(--spacing-xs);
             border-style: solid;
-            border-color: transparent rgba(30, 41, 59, 0.98) transparent transparent;
+            border-color: transparent var(--color-tooltip-bg) transparent transparent;
         }
 
         &::before {
@@ -200,10 +200,10 @@
             top: 50%;
             right: 100%;
             transform: translateY(-50%);
-            border-width: 0.375rem;
+            border-width: var(--spacing-sm);
             border-style: solid;
-            border-color: transparent rgba(255, 255, 255, 0.15) transparent transparent;
-            margin-right: 0.0625rem;
+            border-color: transparent var(--color-white-transparent) transparent transparent;
+            margin-right: var(--spacing-xxs);
             z-index: -1;
         }
     }
