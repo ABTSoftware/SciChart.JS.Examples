@@ -1,16 +1,46 @@
 @import "./variables.scss";
 
-@keyframes tooltipFadeIn {
+@keyframes tooltipFadeInTop {
     0% {
         opacity: 0;
         transform: translateX(-50%) translateY(8px);
     }
-    50% {
-        transform: translateX(-50%) translateY(-6px);
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes tooltipFadeInBottom {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-8px);
     }
     100% {
         opacity: 1;
-        transform: translateX(-50%) translateY(-5px);
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes tooltipFadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%) translateX(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
+}
+
+@keyframes tooltipFadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%) translateX(-8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
     }
 }
 
@@ -21,9 +51,6 @@
 
 .tooltip {
     position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(0);
     padding: 6px 12px;
     background: rgba(30, 41, 59, 0.98);
     color: rgba(255, 255, 255, 0.98);
@@ -34,7 +61,6 @@
     opacity: 0;
     visibility: hidden;
     backdrop-filter: blur(8px);
-    margin-bottom: 8px;
     pointer-events: none;
     z-index: 1000;
     letter-spacing: 0.3px;
@@ -43,31 +69,102 @@
     will-change: transform, opacity;
 
     &.visible {
-        animation: tooltipFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         visibility: visible;
+
+        &.top {
+            animation: tooltipFadeInTop 0.2s ease-out forwards;
+        }
+        &.bottom {
+            animation: tooltipFadeInBottom 0.2s ease-out forwards;
+        }
+        &.left {
+            animation: tooltipFadeInLeft 0.2s ease-out forwards;
+        }
+        &.right {
+            animation: tooltipFadeInRight 0.2s ease-out forwards;
+        }
     }
 
-    &::after {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        border-width: 5px;
-        border-style: solid;
-        border-color: rgba(30, 41, 59, 0.98) transparent transparent transparent;
-    }
-
+    &::after,
     &::before {
         content: "";
         position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        border-width: 6px;
         border-style: solid;
-        border-color: rgba(255, 255, 255, 0.15) transparent transparent transparent;
-        margin-top: 1px;
-        z-index: -1;
+    }
+
+    &.top {
+        &::after {
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-color: rgba(30, 41, 59, 0.98) transparent transparent transparent;
+        }
+        &::before {
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px;
+            border-color: rgba(255, 255, 255, 0.15) transparent transparent transparent;
+            margin-top: 1px;
+            z-index: -1;
+        }
+    }
+
+    &.bottom {
+        &::after {
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-color: transparent transparent rgba(30, 41, 59, 0.98) transparent;
+        }
+        &::before {
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px;
+            border-color: transparent transparent rgba(255, 255, 255, 0.15) transparent;
+            margin-bottom: 1px;
+            z-index: -1;
+        }
+    }
+
+    &.left {
+        &::after {
+            top: 50%;
+            left: 100%;
+            transform: translateY(-50%);
+            border-width: 5px;
+            border-color: transparent transparent transparent rgba(30, 41, 59, 0.98);
+        }
+        &::before {
+            top: 50%;
+            left: 100%;
+            transform: translateY(-50%);
+            border-width: 6px;
+            border-color: transparent transparent transparent rgba(255, 255, 255, 0.15);
+            margin-left: 1px;
+            z-index: -1;
+        }
+    }
+
+    &.right {
+        &::after {
+            top: 50%;
+            right: 100%;
+            transform: translateY(-50%);
+            border-width: 5px;
+            border-color: transparent rgba(30, 41, 59, 0.98) transparent transparent;
+        }
+        &::before {
+            top: 50%;
+            right: 100%;
+            transform: translateY(-50%);
+            border-width: 6px;
+            border-color: transparent rgba(255, 255, 255, 0.15) transparent transparent;
+            margin-right: 1px;
+            z-index: -1;
+        }
     }
 }
