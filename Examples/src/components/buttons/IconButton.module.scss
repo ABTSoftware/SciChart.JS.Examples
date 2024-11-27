@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px;
+    padding: 4px;
     border: 1px solid transparent;
     border-radius: 4px;
     background: transparent;
@@ -13,8 +13,8 @@
     outline: none;
 
     svg {
-        width: 24px;
-        height: 24px;
+        width: 18px;
+        height: 18px;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         fill: var(--button-icon-color);
         filter: drop-shadow(0 0 0 var(--button-icon-color));
@@ -26,11 +26,11 @@
         &.hovered {
             background-color: rgba(0, 0, 0, 0.03);
             border-color: rgba(0, 0, 0, 0.08);
-            transform: scale(1.1);
+            transform: scale(1.05);
 
             svg {
                 opacity: 0.9;
-                filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));
+                filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.2));
             }
         }
     }
@@ -42,7 +42,7 @@
         svg {
             fill: var(--button-selected-icon-color);
             opacity: 0.85;
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         &:hover,
@@ -52,8 +52,8 @@
 
             svg {
                 opacity: 0.95;
-                transform: scale(1.2);
-                filter: drop-shadow(0 0 2px rgba(25, 118, 210, 0.3));
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 1px rgba(25, 118, 210, 0.3));
             }
         }
     }

@@ -3,6 +3,8 @@
     width: 100%;
     height: 500px;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
 
     &.browserFill,
     &.fullscreen {
@@ -22,21 +24,21 @@
 
 .frame {
     width: 100%;
-    height: 100%;
-    border: 1px solid black;
-    margin-top: 10px;
+    flex: 1;
+    border: 1px solid var(--border-color);
     background: white;
 
     .browserFill &,
     .fullscreen & {
-        margin: 0;
         border: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
     }
+}
+
+.toolbar {
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.spacer {
+    flex: 1;
 }

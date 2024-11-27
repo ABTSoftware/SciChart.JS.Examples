@@ -2,20 +2,20 @@ import { FC, useState, useRef, useEffect } from "react";
 import { Loader } from "./Loader";
 import styles from "./CodeSandbox.module.scss";
 import { DisplayMode } from "./DisplayMode";
-import { ButtonBar } from "../buttons/ButtonBar";
 import { IconButton } from "../buttons/IconButton";
 import { IconRadioGroup } from "../buttons/IconRadioGroup";
+import { Toolbar, ToolbarGroup, ToolbarText } from "../buttons/Toolbar";
 
 type TCodeSandbox = {
     id: string;
     fontSize?: number;
     onBack?: () => void;
+    title?: string;
 };
 
-export const CodeSandbox: FC<TCodeSandbox> = ({ id, fontSize = 10, onBack }) => {
+export const CodeSandbox: FC<TCodeSandbox> = ({ id, fontSize = 10, onBack, title = "Code Sandbox" }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [displayMode, setDisplayMode] = useState<DisplayMode>(DisplayMode.Embedded);
-    const [position, setPosition] = useState({ x: 20, y: 20 });
     const containerRef = useRef<HTMLDivElement>(null);
     const prevMode = useRef<DisplayMode>(displayMode);
 
@@ -25,41 +25,7 @@ export const CodeSandbox: FC<TCodeSandbox> = ({ id, fontSize = 10, onBack }) => 
         setIsLoading(false);
     };
 
-    const handlePositionChange = (x: number, y: number) => {
-        setPosition({ x, y });
-    };
-
-    const calculateAdjustedPosition = (
-        fromMode: DisplayMode,
-        toMode: DisplayMode,
-        currentPos: { x: number; y: number }
-    ) => {
-        const container = containerRef.current;
-        if (!container) return currentPos;
-
-        const rect = container.getBoundingClientRect();
-        const { width: newWidth, height: newHeight } = rect;
-
-        let scaleX = 1,
-            scaleY = 1;
-
-        if (fromMode === DisplayMode.Embedded && toMode === DisplayMode.BrowserFill) {
-            scaleX = window.innerWidth / newWidth;
-            scaleY = window.innerHeight / newHeight;
-        } else if (fromMode === DisplayMode.BrowserFill && toMode === DisplayMode.Embedded) {
-            scaleX = newWidth / window.innerWidth;
-            scaleY = newHeight / window.innerHeight;
-        }
-
-        return {
-            x: currentPos.x * scaleX,
-            y: currentPos.y * scaleY,
-        };
-    };
-
     const handleDisplayModeChange = async (mode: DisplayMode) => {
-        const newPosition = calculateAdjustedPosition(displayMode, mode, position);
-
         if (mode === DisplayMode.Fullscreen) {
             try {
                 await containerRef.current?.requestFullscreen();
@@ -78,15 +44,12 @@ export const CodeSandbox: FC<TCodeSandbox> = ({ id, fontSize = 10, onBack }) => 
 
         prevMode.current = displayMode;
         setDisplayMode(mode);
-        setPosition(newPosition);
     };
 
     useEffect(() => {
         const handleFullscreenChange = () => {
             if (!document.fullscreenElement && displayMode === DisplayMode.Fullscreen) {
-                const newPosition = calculateAdjustedPosition(DisplayMode.Fullscreen, DisplayMode.Embedded, position);
                 setDisplayMode(DisplayMode.Embedded);
-                setPosition(newPosition);
             }
         };
 
@@ -94,7 +57,7 @@ export const CodeSandbox: FC<TCodeSandbox> = ({ id, fontSize = 10, onBack }) => 
         return () => {
             document.removeEventListener("fullscreenchange", handleFullscreenChange);
         };
-    }, [displayMode, position]);
+    }, [displayMode]);
 
     const displayModeDescriptions: Record<DisplayMode, string> = {
         [DisplayMode.Embedded]: "Display as embedded component",
@@ -121,6 +84,19 @@ export const CodeSandbox: FC<TCodeSandbox> = ({ id, fontSize = 10, onBack }) => 
 
     return (
         <div ref={containerRef} className={containerClassName}>
+            <Toolbar className={styles.toolbar}>
+                <ToolbarText>{title}</ToolbarText>
+                <div className={styles.spacer} />
+                <ToolbarGroup>
+                    <IconRadioGroup
+                        value={displayMode}
+                        onChange={handleDisplayModeChange}
+                        options={Object.values(DisplayMode)}
+                        iconTitles={displayModeDescriptions}
+                    />
+                    <IconButton icon="close" onClick={handleBack} title="Close" />
+                </ToolbarGroup>
+            </Toolbar>
             {isLoading && <Loader />}
             <iframe
                 src={url}
@@ -129,18 +105,6 @@ export const CodeSandbox: FC<TCodeSandbox> = ({ id, fontSize = 10, onBack }) => 
                 sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
                 onLoad={handleLoad}
             />
-            <ButtonBar
-                onPositionChange={handlePositionChange}
-                style={{ left: `${position.x}px`, top: `${position.y}px` }}
-            >
-                <IconButton icon="back" onClick={handleBack} title="Go back" />
-                <IconRadioGroup
-                    value={displayMode}
-                    onChange={handleDisplayModeChange}
-                    options={Object.values(DisplayMode)}
-                    iconTitles={displayModeDescriptions}
-                />
-            </ButtonBar>
         </div>
     );
 };
