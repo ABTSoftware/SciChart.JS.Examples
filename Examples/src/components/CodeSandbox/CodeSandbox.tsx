@@ -8,6 +8,8 @@ import { Toolbar, ToolbarGroup, ToolbarText } from "../buttons/Toolbar";
 import { Icon } from "../buttons/Icon";
 import { Tooltip } from "../buttons/Tooltip";
 import { SandboxPlatform, getEmbedUrl, platformIcons } from "./SandboxPlatform";
+import { useEditDetection } from "./hooks/useEditDetection";
+import { ConfirmDialog } from "./components/ConfirmDialog";
 
 type TCodeSandbox = {
     id: string;
@@ -26,7 +28,9 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
 }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [displayMode, setDisplayMode] = useState<DisplayMode>(DisplayMode.Embedded);
+    const [showConfirmDialog, setShowConfirmDialog] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+    const { hasEdits, handleMouseDown, resetEdits } = useEditDetection();
 
     const url = getEmbedUrl(platform, id, fontSize);
 
@@ -53,7 +57,21 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
     }`;
 
     const handleBack = () => {
+        if (hasEdits) {
+            setShowConfirmDialog(true);
+        } else {
+            onBack?.();
+        }
+    };
+
+    const handleConfirmClose = () => {
+        setShowConfirmDialog(false);
+        resetEdits();
         onBack?.();
+    };
+
+    const handleCancelClose = () => {
+        setShowConfirmDialog(false);
     };
 
     const platformTooltip =
@@ -92,7 +110,9 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
                 className={styles.frame}
                 sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
                 onLoad={handleLoad}
+                onMouseDown={handleMouseDown}
             />
+            <ConfirmDialog isOpen={showConfirmDialog} onConfirm={handleConfirmClose} onCancel={handleCancelClose} />
         </div>
     );
 };
