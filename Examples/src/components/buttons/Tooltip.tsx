@@ -9,7 +9,12 @@ interface TooltipProps {
     delay?: number;
 }
 
-export const Tooltip: React.FC<TooltipProps> = ({ children, content, className = "", delay = 400 }) => {
+export const Tooltip: React.FC<TooltipProps> = ({
+    children,
+    content,
+    className = "",
+    delay = 550, // Increased from 400 to 550ms
+}) => {
     const [isVisible, setIsVisible] = useState(false);
     const [position, setPosition] = useState<TooltipPosition>("top");
     const timeoutRef = useRef<number>();
