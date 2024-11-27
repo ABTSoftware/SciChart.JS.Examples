@@ -30,16 +30,12 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
     const [displayMode, setDisplayMode] = useState<DisplayMode>(DisplayMode.Embedded);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
-    const iframeRef = useRef<HTMLIFrameElement>(null);
-    const { hasEdits, setupEditDetection, resetEdits } = useEditDetection();
+    const { hasEdits, handleKeyDown, resetEdits } = useEditDetection();
 
     const url = getEmbedUrl(platform, id, fontSize);
 
     const handleLoad = () => {
         setIsLoading(false);
-        if (iframeRef.current) {
-            setupEditDetection(iframeRef.current);
-        }
     };
 
     const handleDisplayModeChange = (mode: DisplayMode) => {
@@ -84,7 +80,7 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
     const defaultTitle = platform === SandboxPlatform.CodeSandbox ? "CodeSandbox" : "StackBlitz";
 
     return (
-        <div ref={containerRef} className={containerClassName}>
+        <div ref={containerRef} className={containerClassName} onKeyDown={handleKeyDown}>
             <Toolbar className={styles.toolbar}>
                 <ToolbarGroup>
                     <Tooltip content={platformTooltip}>
@@ -108,7 +104,6 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
             </Toolbar>
             {isLoading && <Loader />}
             <iframe
-                ref={iframeRef}
                 key={url}
                 src={url}
                 title={platform === SandboxPlatform.CodeSandbox ? "CodeSandbox" : "StackBlitz"}
