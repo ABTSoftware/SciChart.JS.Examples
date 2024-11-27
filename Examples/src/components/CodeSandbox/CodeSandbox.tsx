@@ -30,7 +30,7 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
     const [displayMode, setDisplayMode] = useState<DisplayMode>(DisplayMode.Embedded);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
-    const { hasEdits, handleKeyDown, resetEdits } = useEditDetection();
+    const { hasEdits, iframeRef, resetEdits } = useEditDetection();
 
     const url = getEmbedUrl(platform, id, fontSize);
 
@@ -102,9 +102,10 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
                     <IconButton icon="close" onClick={handleBack} title="Close" />
                 </ToolbarGroup>
             </Toolbar>
-            <div className={styles.frameContainer} onKeyDown={handleKeyDown} tabIndex={0}>
+            <div className={styles.frameContainer} tabIndex={0}>
                 {isLoading && <Loader />}
                 <iframe
+                    ref={iframeRef}
                     key={url}
                     src={url}
                     title={platform === SandboxPlatform.CodeSandbox ? "CodeSandbox" : "StackBlitz"}
