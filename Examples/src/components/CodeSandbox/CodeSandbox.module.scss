@@ -1,22 +1,40 @@
 .container {
     display: flex;
     flex-direction: column;
-    height: 100%;
     width: 100%;
     position: relative;
+
+    &.browserFill {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: var(--z-index-fullscreen);
+        background: white;
+    }
 }
 
 .toolbar {
     flex: 0 0 auto;
+    margin-bottom: 1px;
+    position: relative;
+    z-index: 2;
 }
 
 .frameContainer {
-    flex: 1;
     position: relative;
-    outline: none; // Remove default focus outline
+    outline: none;
+    height: 500px;
+    z-index: 1;
+
+    .browserFill & {
+        flex: 1;
+        height: 100%;
+    }
 
     &:focus {
-        outline: none; // Ensure no focus outline shows
+        outline: none;
     }
 }
 
@@ -36,14 +54,4 @@
     justify-content: center;
     width: var(--icon-size-lg);
     height: var(--icon-size-lg);
-}
-
-.browserFill {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: var(--z-index-fullscreen);
-    background: white;
 }

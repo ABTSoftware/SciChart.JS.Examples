@@ -1,23 +1,33 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 
-export const useEditDetection = () => {
+export const useEditDetection = (isLoaded: boolean, iframeRef: React.RefObject<HTMLIFrameElement>) => {
     const [hasEdits, setHasEdits] = useState(false);
-    const iframeRef = useRef<HTMLIFrameElement | null>(null);
     const initialCodeRef = useRef<string | null>(null);
 
     const checkForChanges = useCallback(() => {
         if (iframeRef.current?.contentWindow) {
             iframeRef.current.contentWindow.postMessage({ type: "get-code" }, "*");
         }
-    }, []);
+    }, [iframeRef]);
 
     useEffect(() => {
+        if (!isLoaded) return undefined;
+
         const handleMessage = (event: MessageEvent) => {
+            const code = event.data;
+            const initial = initialCodeRef.current;
+
             // Store initial code on first response
-            if (initialCodeRef.current === null) {
-                initialCodeRef.current = event.data;
-            } else if (event.data !== initialCodeRef.current) {
-                setHasEdits(true);
+            if (initial === null) {
+                initialCodeRef.current = code;
+                return;
+            }
+
+            // Only check for changes if both values are defined
+            if (code && initial) {
+                if (code.length !== initial.length || !initial.startsWith(code)) {
+                    setHasEdits(true);
+                }
             }
 
             // Request next update immediately
@@ -26,13 +36,13 @@ export const useEditDetection = () => {
 
         window.addEventListener("message", handleMessage);
 
-        // Start initial check
+        // Start initial check only after iframe is loaded
         checkForChanges();
 
         return () => {
             window.removeEventListener("message", handleMessage);
         };
-    }, [checkForChanges]);
+    }, [checkForChanges, isLoaded]);
 
     const resetEdits = useCallback(() => {
         setHasEdits(false);
@@ -41,7 +51,6 @@ export const useEditDetection = () => {
 
     return {
         hasEdits,
-        iframeRef,
         resetEdits,
     };
 };
