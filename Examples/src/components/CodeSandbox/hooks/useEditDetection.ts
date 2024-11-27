@@ -13,19 +13,15 @@ export const useEditDetection = () => {
 
     useEffect(() => {
         const handleMessage = (event: MessageEvent) => {
-            if (event.data.type === "code") {
-                const currentCode = event.data.code;
-
-                // Store initial code on first response
-                if (initialCodeRef.current === null) {
-                    initialCodeRef.current = currentCode;
-                } else if (currentCode !== initialCodeRef.current) {
-                    setHasEdits(true);
-                }
-
-                // Request next update immediately
-                setTimeout(checkForChanges, 1000);
+            // Store initial code on first response
+            if (initialCodeRef.current === null) {
+                initialCodeRef.current = event.data;
+            } else if (event.data !== initialCodeRef.current) {
+                setHasEdits(true);
             }
+
+            // Request next update immediately
+            setTimeout(checkForChanges, 1000);
         };
 
         window.addEventListener("message", handleMessage);
