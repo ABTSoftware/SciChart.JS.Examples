@@ -12,11 +12,11 @@
     transition: all 0.2s ease;
 
     &:hover {
-        background: rgba(0, 0, 0, 0.05);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        background: rgba(0, 0, 0, 0.08);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 
         .toolbarGroup {
-            opacity: 0.95;
+            opacity: 0.98;
         }
     }
 }
