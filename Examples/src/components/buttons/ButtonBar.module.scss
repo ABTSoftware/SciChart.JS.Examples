@@ -14,9 +14,9 @@
     z-index: 1000;
     backdrop-filter: blur(8px);
     position: absolute;
-    left: 20px;
-    top: 20px;
     cursor: grab;
+    left: var(--button-bar-x, 20px);
+    top: var(--button-bar-y, 20px);
 
     &:hover {
         background: rgba(255, 255, 255, 0.7);
@@ -32,6 +32,11 @@
         cursor: grabbing;
         transform: scale(1.02);
         will-change: transform, left, top;
+        transition: none;
+    }
+
+    &:not(.dragging) {
+        transition: all 0.15s ease-out;
     }
 
     :global(button),

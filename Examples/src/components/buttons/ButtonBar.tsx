@@ -31,11 +31,6 @@ export const ButtonBar: React.FC<ButtonBarProps> = ({ children, className = "", 
             const newX = initialState.current.barX + dx;
             const newY = initialState.current.barY + dy;
 
-            // Disable transitions during drag for smoother movement
-            if (barRef.current) {
-                barRef.current.style.transition = "none";
-            }
-
             requestAnimationFrame(() => {
                 setPosition({ x: newX, y: newY });
                 onPositionChange?.(newX, newY);
@@ -48,11 +43,6 @@ export const ButtonBar: React.FC<ButtonBarProps> = ({ children, className = "", 
         const handleMouseUp = () => {
             setIsDragging(false);
             document.body.style.cursor = "";
-
-            // Re-enable transitions after drag
-            if (barRef.current) {
-                barRef.current.style.transition = "";
-            }
         };
 
         if (isDragging) {
@@ -86,15 +76,18 @@ export const ButtonBar: React.FC<ButtonBarProps> = ({ children, className = "", 
         e.preventDefault();
     };
 
+    // Create CSS custom properties for positioning
+    const cssVariables = {
+        "--button-bar-x": `${position.x}px`,
+        "--button-bar-y": `${position.y}px`,
+        ...style,
+    } as React.CSSProperties;
+
     return (
         <div
             ref={barRef}
             className={`${styles.buttonBar} ${isDragging ? styles.dragging : ""} ${className}`.trim()}
-            style={{
-                ...style,
-                left: `${position.x}px`,
-                top: `${position.y}px`,
-            }}
+            style={cssVariables}
             onMouseDown={handleMouseDown}
         >
             <div className={styles.gripArea}>

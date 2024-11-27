@@ -1,6 +1,6 @@
 import React, { ReactNode, useState, useCallback, useRef, useEffect } from "react";
 import styles from "./Tooltip.module.scss";
-import { calculateTooltipPosition, getTooltipStyles, TooltipPosition } from "./tooltipUtils";
+import { calculateTooltipPosition, TooltipPosition } from "./tooltipUtils";
 
 interface TooltipProps {
     children: ReactNode;
@@ -61,8 +61,6 @@ export const Tooltip: React.FC<TooltipProps> = ({ children, content, className =
         };
     }, [isVisible, updatePosition]);
 
-    const tooltipStyle = getTooltipStyles(position);
-
     return (
         <div
             ref={containerRef}
@@ -74,7 +72,6 @@ export const Tooltip: React.FC<TooltipProps> = ({ children, content, className =
             <div
                 ref={tooltipRef}
                 className={`${styles.tooltip} ${isVisible ? styles.visible : ""} ${styles[position]}`}
-                style={tooltipStyle}
             >
                 {content}
             </div>

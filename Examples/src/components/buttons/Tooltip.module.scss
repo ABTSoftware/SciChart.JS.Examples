@@ -70,98 +70,138 @@
 
     &.visible {
         visibility: visible;
+    }
 
-        &.top {
+    // Top position
+    &.top {
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(0);
+        margin-bottom: 8px;
+
+        &.visible {
             animation: tooltipFadeInTop 0.2s ease-out forwards;
         }
-        &.bottom {
-            animation: tooltipFadeInBottom 0.2s ease-out forwards;
-        }
-        &.left {
-            animation: tooltipFadeInLeft 0.2s ease-out forwards;
-        }
-        &.right {
-            animation: tooltipFadeInRight 0.2s ease-out forwards;
-        }
-    }
 
-    &::after,
-    &::before {
-        content: "";
-        position: absolute;
-        border-style: solid;
-    }
-
-    &.top {
         &::after {
             top: 100%;
             left: 50%;
             transform: translateX(-50%);
             border-width: 5px;
+            border-style: solid;
             border-color: rgba(30, 41, 59, 0.98) transparent transparent transparent;
         }
+
         &::before {
+            content: "";
+            position: absolute;
             top: 100%;
             left: 50%;
             transform: translateX(-50%);
             border-width: 6px;
+            border-style: solid;
             border-color: rgba(255, 255, 255, 0.15) transparent transparent transparent;
             margin-top: 1px;
             z-index: -1;
         }
     }
 
+    // Bottom position
     &.bottom {
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(0);
+        margin-top: 8px;
+
+        &.visible {
+            animation: tooltipFadeInBottom 0.2s ease-out forwards;
+        }
+
         &::after {
             bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
             border-width: 5px;
+            border-style: solid;
             border-color: transparent transparent rgba(30, 41, 59, 0.98) transparent;
         }
+
         &::before {
+            content: "";
+            position: absolute;
             bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
             border-width: 6px;
+            border-style: solid;
             border-color: transparent transparent rgba(255, 255, 255, 0.15) transparent;
             margin-bottom: 1px;
             z-index: -1;
         }
     }
 
+    // Left position
     &.left {
+        top: 50%;
+        right: 100%;
+        transform: translateY(-50%) translateX(0);
+        margin-right: 8px;
+
+        &.visible {
+            animation: tooltipFadeInLeft 0.2s ease-out forwards;
+        }
+
         &::after {
             top: 50%;
             left: 100%;
             transform: translateY(-50%);
             border-width: 5px;
+            border-style: solid;
             border-color: transparent transparent transparent rgba(30, 41, 59, 0.98);
         }
+
         &::before {
+            content: "";
+            position: absolute;
             top: 50%;
             left: 100%;
             transform: translateY(-50%);
             border-width: 6px;
+            border-style: solid;
             border-color: transparent transparent transparent rgba(255, 255, 255, 0.15);
             margin-left: 1px;
             z-index: -1;
         }
     }
 
+    // Right position
     &.right {
+        top: 50%;
+        left: 100%;
+        transform: translateY(-50%) translateX(0);
+        margin-left: 8px;
+
+        &.visible {
+            animation: tooltipFadeInRight 0.2s ease-out forwards;
+        }
+
         &::after {
             top: 50%;
             right: 100%;
             transform: translateY(-50%);
             border-width: 5px;
+            border-style: solid;
             border-color: transparent rgba(30, 41, 59, 0.98) transparent transparent;
         }
+
         &::before {
+            content: "";
+            position: absolute;
             top: 50%;
             right: 100%;
             transform: translateY(-50%);
             border-width: 6px;
+            border-style: solid;
             border-color: transparent rgba(255, 255, 255, 0.15) transparent transparent;
             margin-right: 1px;
             z-index: -1;
