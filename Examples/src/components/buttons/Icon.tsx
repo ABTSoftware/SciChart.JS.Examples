@@ -1,10 +1,4 @@
-import React, { useEffect, useState } from "react";
-// FIX should be able to load dynamically
-import back from "../../assets/icons/back.svg";
-import close from "../../assets/icons/close.svg";
-import codesandbox from "../../assets/icons/codesandbox.svg";
-import stackblitz from "../../assets/icons/stackblitz.svg";
-import fullscreen from "../../assets/icons/fullscreen.svg";
+import React from "react";
 
 // Mapping between names and SVG components
 import * as icons from "./svgIcons";
