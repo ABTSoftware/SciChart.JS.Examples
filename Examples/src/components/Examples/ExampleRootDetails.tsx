@@ -8,7 +8,7 @@ import commonClasses from "./styles/Examples.module.scss";
 import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";
 import { GalleryItem } from "../../helpers/types/types";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TProps = {
     // example: () => JSX.Element;
@@ -20,8 +20,9 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
     const { examplePage, seeAlso } = props;
     const framework = useContext(FrameworkContext);
     const ExampleComponent = getExampleComponent(examplePage.id);
-    const seoTitleText = getTitle(examplePage.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix;
-    const seoDescription = examplePage ? getTitle(examplePage.metaDescription, framework) : "";
+    const seoTitleText =
+        getFrameworkContent(examplePage.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix;
+    const seoDescription = examplePage ? getFrameworkContent(examplePage.metaDescription, framework) : "";
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
     const basePath = "https://demo.scichart.com";
     const exampleImage = examplePage ? `${basePath}/${examplePage.thumbnailImage}` : undefined;

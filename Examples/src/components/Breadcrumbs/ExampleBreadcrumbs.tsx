@@ -5,7 +5,7 @@ import { getExampleCategoryPath, MENU_ITEMS_HIERARCHY } from "../AppRouter/examp
 import { BreadcrumbsWithMenu, TBreadcrumbItem, TBreadcrumbPath } from "./GenericBreadcrumbs";
 import { appTheme } from "../Examples/theme";
 import { TExamplePage } from "../AppRouter/examplePages";
-import { useExampleRouteParams, getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { useExampleRouteParams, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 // TODO TMenuItem is not consistent with tree-like format and doesn't really fit this structure, thus special handling of the leaf nodes is required
 
@@ -30,8 +30,8 @@ export const ExampleBreadcrumbs = () => {
                 if (!breadcrumb.submenu) {
                     // leaf nodes (specific examples handling)
                     link = (breadcrumb as TExamplePage).path;
-                    title = getTitle(breadcrumb.title, selectedFramework);
-                    labelContent = getTitle(breadcrumb.title, selectedFramework);
+                    title = getFrameworkContent(breadcrumb.title, selectedFramework);
+                    labelContent = getFrameworkContent(breadcrumb.title, selectedFramework);
                 } else if (breadcrumb.id === "home") {
                     // Home menu item handling
                     link = `/${selectedFramework}`;
@@ -75,8 +75,8 @@ export const ExampleBreadcrumbs = () => {
                 if (!breadcrumb.submenu) {
                     // leaf nodes (specific examples handling)
                     link = (breadcrumb as TExamplePage).path;
-                    title = getTitle(breadcrumb.title, selectedFramework);
-                    labelContent = getTitle(breadcrumb.title, selectedFramework);
+                    title = getFrameworkContent(breadcrumb.title, selectedFramework);
+                    labelContent = getFrameworkContent(breadcrumb.title, selectedFramework);
                 } else {
                     // inner menu category handling
                     link = `/${selectedFramework}#${breadcrumb.id}`;

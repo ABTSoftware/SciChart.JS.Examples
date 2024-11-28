@@ -1,12 +1,12 @@
 import * as React from "react";
 import classes from "./ExampleDescription.module.scss";
 import { TDocumentationLink } from "../../helpers/types/ExampleDescriptionTypes";
-import { TDescriptionTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { TFrameworkTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TProps = {
     documentationLinks: TDocumentationLink[];
     previewDescription?: string;
-    description: TDescriptionTemplate;
+    description: TFrameworkTemplate;
     tips?: string[];
 };
 

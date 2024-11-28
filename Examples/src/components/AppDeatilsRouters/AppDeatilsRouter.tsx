@@ -1,26 +1,20 @@
-import { useState, FC, useContext, useMemo, useEffect } from "react";
-import classes from "./AppDeatilsRouter.scss";
-import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import ExamplesRoot from "../Examples/ExampleRootDetails";
-import SearchIcon from "../TopBarTabs/images/icon-search.svg";
-import { TExamplePage } from "../AppRouter/examplePages";
-import { GalleryItem } from "../../helpers/types/types";
-import { generateSearchItems, TSearchItem } from "../Search/searchItems";
-import { ALL_MENU_ITEMS } from "../AppRouter/examples";
-import SubMenuItems from "./SubMenuItems";
-import SourceCode from "../SourceCode/SourceCode";
-import DetailsCom from "./DetailsComp";
-import { FrameworkSelect } from "./FrameworkSelect";
-import { EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
-import CodeIcon from "@mui/icons-material/Code";
-import Button from "@mui/material/Button";
-import CropFreeIcon from "@mui/icons-material/CropFree";
-import { TabName } from "../TopBarTabs";
-import TabBar from "../TabBar/TabBar";
-import FileExplorer from "../FileExplorer/FileExplorer";
 import { Editor } from "@monaco-editor/react";
+import { FC, useContext, useEffect, useMemo, useState } from "react";
+import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import {
+    EPageFramework,
+    FRAMEWORK_NAME,
+    getFrameworkContent,
+} from "../../helpers/shared/Helpers/frameworkParametrization";
+import { GalleryItem } from "../../helpers/types/types";
+import { TExamplePage } from "../AppRouter/examplePages";
+import { ALL_MENU_ITEMS } from "../AppRouter/examples";
 import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
+import ExamplesRoot from "../Examples/ExampleRootDetails";
+import FileExplorer from "../FileExplorer/FileExplorer";
+import { generateSearchItems, TSearchItem } from "../Search/searchItems";
+import classes from "./AppDeatilsRouter.scss";
+import MarkdownContent from "./MarkdownContent";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -63,7 +57,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         () => generateSearchItems(ALL_MENU_ITEMS, selectedFramework),
         [selectedFramework]
     );
-    const PageTitle = getTitle(currentExample.title, selectedFramework);
+    const PageTitle = getFrameworkContent(currentExample.title, selectedFramework);
     const [query, setQuery] = useState("");
     const [filteredOptions, setFilteredOptions] = useState([]);
 
@@ -143,7 +137,10 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                     }`}
                                     title={
                                         isFrameworkVariantAvailable
-                                            ? `Edit ${getTitle(currentExample.title, selectedFramework)} in StackBlitz`
+                                            ? `Edit ${getFrameworkContent(
+                                                  currentExample.title,
+                                                  selectedFramework
+                                              )} in StackBlitz`
                                             : `Sorry, we have not got ${FRAMEWORK_NAME[selectedFramework]} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
                                     }
                                     target="_blank"
@@ -169,7 +166,10 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                     }`}
                                     title={
                                         isFrameworkVariantAvailable
-                                            ? `Edit ${getTitle(currentExample.title, selectedFramework)} in CodeSandbox`
+                                            ? `Edit ${getFrameworkContent(
+                                                  currentExample.title,
+                                                  selectedFramework
+                                              )} in CodeSandbox`
                                             : `Sorry, we have not got ${FRAMEWORK_NAME[selectedFramework]} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
                                     }
                                     target="_blank"
@@ -209,31 +209,8 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                         </div>
 
                         <p style={{ padding: "0.75rem 0.25rem" }}>
-                            {getTitle(currentExample.description, selectedFramework)}
+                            {getFrameworkContent(currentExample.description, selectedFramework)}
                         </p>
-
-                        {/* Source code */}
-                        <div
-                            style={{
-                                width: "100%",
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                position: "relative",
-                            }}
-                        >
-                            {/* <h4>Source code</h4> */}
-                            {/* <Select
-                                files={[
-                                    {name: "React", content: undefined},
-                                    {name: "Angular", content: undefined},
-                                    {name: "Vue", content: undefined},
-                                    {name: "JavaScript", content: undefined},
-                                ]}
-                                selectedFile={selectedFile}
-                                handleFileClick={handleFileClick}
-                            /> */}
-                        </div>
 
                         <div className={classes.editortabwrap}>
                             <FileExplorer
@@ -260,8 +237,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                 }}
                             />
                         </div>
-
-                        <DetailsCom currentExample={currentExample} />
+                        <MarkdownContent selectedFramework={selectedFramework} currentExample={currentExample} />
                     </div>
                 </div>
             </div>

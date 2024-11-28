@@ -1,7 +1,7 @@
 import express = require("express");
 var url = require("url");
 import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";
-import { getTitle, EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
+import { getFrameworkContent, EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 
 const router = express.Router();
 
@@ -27,7 +27,7 @@ router.get("/", (req, res) => {
     const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === location.pathname);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
     const oEmbedResponse = new OEmbedResponse();
-    oEmbedResponse.title = getTitle(currentExample.title, EPageFramework.Vanilla);
+    oEmbedResponse.title = getFrameworkContent(currentExample.title, EPageFramework.Vanilla);
     oEmbedResponse.description = currentExample.previewDescription;
     oEmbedResponse.author_url = oEmbedResponse.provider_url + currentExample.path;
     oEmbedResponse.thumbnail_url = oEmbedResponse.provider_url + "/" + currentExample.thumbnailImage;

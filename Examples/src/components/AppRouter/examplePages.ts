@@ -107,7 +107,7 @@ import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/Tool
 import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo";
 import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo";
 import { populationPyramidExampleInfo } from "../Examples/FeaturedApps/ShowCases/PopulationPyramid/exampleInfo";
-import { TDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { TFrameworkTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
 import { smoothStackedMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart/exampleInfo";
 
@@ -115,29 +115,17 @@ export type TExampleInfo = {
     /**
      * Example title
      */
-    title: TTitleTemplate;
+    title: TFrameworkTemplate;
     /**
      * Meta title
      */
-    pageTitle: TTitleTemplate;
+    pageTitle: TFrameworkTemplate;
     path: string;
 
     documentationLinks: TDocumentationLink[];
     tips?: any;
-    customDescription?: any;
-    customDescription1?: any;
-    moreInfo?: { label: string }[];
-    NewPoints?: { label: string }[];
-    Benifits?: { label: string }[];
-    Questions?: { label: string; tag: string }[];
-    // custom header for the NewLinks
-    customheader?: string;
-    moreInfoHeader?: string;
-    BenifitsHeader?: string;
-    QuestionsHeader?: string;
-    NewLinks?: { url: string; label: string }[];
 
-    description: TDescriptionTemplate;
+    description: TFrameworkTemplate;
     previewDescription?: any;
     subtitle: (frameworkName: string) => JSX.Element;
     // If this example has been created on scichart.com
@@ -150,7 +138,7 @@ export type TExampleInfo = {
     /**
      * Page meta description
      */
-    metaDescription: TDescriptionTemplate;
+    metaDescription: TFrameworkTemplate;
     /**
      * Page meta keywords
      */
@@ -165,7 +153,7 @@ export type TExampleInfo = {
     /**
      * Markdown content for the page, will help with SEO and editing
      */
-    markdownContent?: string;
+    markdownContent?: TFrameworkTemplate;
 };
 
 export type TExamplePage = TPage & TExampleInfo;

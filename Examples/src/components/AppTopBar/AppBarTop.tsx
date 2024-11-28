@@ -14,7 +14,7 @@ import LogoSmall from "../../images/scichart-logo-app-bar-mobile.svg";
 import { TExamplePage } from "../AppRouter/examplePages";
 import npm from "./npm.svg";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { libraryVersion } from "scichart";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Theme } from "@mui/material";
@@ -34,7 +34,7 @@ const AppBarTop: FC<TProps> = (props) => {
             : "https://github.com/ABTSoftware/SciChart.JS.Examples";
     const contextualGithubTitle =
         currentExample !== undefined
-            ? `View source for ${getTitle(currentExample.title, selectedFramework)} on Github`
+            ? `View source for ${getFrameworkContent(currentExample.title, selectedFramework)} on Github`
             : "Clone SciChart.js.examples on GitHub";
     const docLinks = currentExample?.documentationLinks;
     const contextualDocUrl =

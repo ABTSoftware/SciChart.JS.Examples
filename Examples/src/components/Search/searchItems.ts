@@ -1,4 +1,4 @@
-import { getTitle, EPageFramework } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { getFrameworkContent, EPageFramework } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { TMenuItem } from "../AppRouter/examples";
 
 export type TSearchItem = {
@@ -12,7 +12,7 @@ export const generateSearchItems = (allMenuItems: TMenuItem[], framework: EPageF
     const searchItemsList: TSearchItem[] = [];
     allMenuItems.forEach((menuItem) => {
         menuItem.submenu.forEach((smItem) => {
-            const smItemTitle = getTitle(smItem.title, framework);
+            const smItemTitle = getFrameworkContent(smItem.title, framework);
             if (!searchItemsList.find((i) => i.title === smItemTitle)) {
                 searchItemsList.push({
                     category: menuItem.title,

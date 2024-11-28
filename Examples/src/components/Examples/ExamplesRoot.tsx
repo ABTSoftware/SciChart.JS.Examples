@@ -19,7 +19,7 @@ import { InfoToolbar } from "./Toolbar";
 import { baseGithubPath } from "../../constants";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import { getTitle, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { getFrameworkContent, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TProps = {
     // example: () => JSX.Element;
@@ -42,9 +42,10 @@ const ExamplesRoot: FC<TProps> = (props) => {
     // const ChartComponent = getExampleComponent(examplePage.id);
 
     const titleText = examplePage
-        ? getTitle(examplePage.title, framework)
+        ? getFrameworkContent(examplePage.title, framework)
         : ExampleStrings.siteHomeTitle(frameworkName);
-    const seoTitleText = getTitle(examplePage.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix;
+    const seoTitleText =
+        getFrameworkContent(examplePage.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix;
     const subtitleText = examplePage ? examplePage.subtitle(frameworkName) : undefined;
 
     const documentationLinks = examplePage ? examplePage.documentationLinks : undefined;
@@ -53,7 +54,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
     const description = examplePage ? examplePage.description : undefined;
 
     const githubUrl = examplePage ? "/components/Examples/" + examplePage.filepath : "";
-    const seoDescription = examplePage ? getTitle(examplePage.metaDescription, framework) : "";
+    const seoDescription = examplePage ? getFrameworkContent(examplePage.metaDescription, framework) : "";
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
     const basePath = "https://demo.scichart.com";
     const exampleImage = examplePage ? `${basePath}/${examplePage.thumbnailImage}` : undefined;

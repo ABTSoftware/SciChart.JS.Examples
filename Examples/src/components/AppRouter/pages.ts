@@ -1,8 +1,8 @@
-import { TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { TFrameworkTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 export type TPage = {
     id: string;
-    title: TTitleTemplate;
+    title: TFrameworkTemplate;
     path: string;
 };
 

@@ -6,7 +6,7 @@ import Box from "../../helpers/shared/Helpers/Box/Box";
 import classes from "./FooterGrid.module.scss";
 import { useContext } from "react";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TProps = {
     historyPushPath: (path: string) => void;
@@ -38,10 +38,10 @@ const FooterGrid: React.FC<TProps> = (props) => {
                                 {el.submenu.map((subEl) => (
                                     <a
                                         href={`${framework}/${subEl.path}`}
-                                        title={getTitle(subEl.title, framework)}
+                                        title={getFrameworkContent(subEl.title, framework)}
                                         key={subEl.id}
                                     >
-                                        {getTitle(subEl.title, framework)}
+                                        {getFrameworkContent(subEl.title, framework)}
                                     </a>
                                 ))}
                             </List>

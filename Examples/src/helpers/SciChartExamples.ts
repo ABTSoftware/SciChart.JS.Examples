@@ -1,7 +1,7 @@
 import { GalleryItem } from "./types/types";
 import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS, TMenuItem } from "../components/AppRouter/examples";
 import { TExamplePage } from "../components/AppRouter/examplePages";
-import { getTitle, EPageFramework } from "./shared/Helpers/frameworkParametrization";
+import { getFrameworkContent, EPageFramework } from "./shared/Helpers/frameworkParametrization";
 import { ExampleStrings } from "../components/Examples/ExampleStrings";
 
 const getGalleryItems = (category: string, menuItem: TMenuItem, framework: EPageFramework) => {
@@ -10,8 +10,8 @@ const getGalleryItems = (category: string, menuItem: TMenuItem, framework: EPage
         items: menuItem.submenu.map((subMenu) => {
             return {
                 imgPath: subMenu.thumbnailImage,
-                title: getTitle(subMenu.title, framework),
-                seoTitle: getTitle(subMenu.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix,
+                title: getFrameworkContent(subMenu.title, framework),
+                seoTitle: getFrameworkContent(subMenu.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix,
                 examplePath: subMenu.path,
             };
         }),

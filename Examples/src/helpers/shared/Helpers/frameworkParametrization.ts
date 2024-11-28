@@ -19,10 +19,10 @@ const DEFAULT_FRAMEWORK = EPageFramework.React;
 
 export type TPathTemplate = string | ((framework: EPageFramework) => string);
 export type TFrameworkName = "JavaScript" | "Angular" | "React" | "Vue";
-export type TTitleTemplate = string | ((framework: TFrameworkName) => string);
-export type TDescriptionTemplate = string | ((framework: TFrameworkName) => string);
+export type TFrameworkTemplate = string | ((framework: TFrameworkName) => string);
 
-export const getTitle = (title: TTitleTemplate, framework: EPageFramework) => {
+export const getFrameworkContent = (title: TFrameworkTemplate, framework: EPageFramework) => {
+    if (!title) return "";
     return typeof title === "string" ? title : title(FRAMEWORK_NAME[framework]);
 };
 
