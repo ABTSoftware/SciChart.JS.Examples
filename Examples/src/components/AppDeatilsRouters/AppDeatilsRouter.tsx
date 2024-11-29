@@ -1,4 +1,4 @@
-import { useState, FC, useContext, useMemo, useEffect } from "react";
+import { useState, FC, useContext, useMemo, useEffect, ReactNode } from "react";
 import classes from "./AppDeatilsRouter.scss";
 import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
@@ -15,6 +15,7 @@ import { ALL_MENU_ITEMS, MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS 
 import GalleryItems from "../GalleryItems";
 import { CodeSandbox } from "../CodeSandbox";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
+import { getCodeSandboxUrl, getStackblitzUrl, extractSandboxId } from "./sandboxUtils";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -83,7 +84,7 @@ type TExampleButtonsProps = {
     currentExample: TExamplePage;
     selectedFramework: EPageFramework;
     selectedFile: { name: string; content: string };
-    onSandboxOpen: (platform: SandboxPlatform) => void;
+    onSandboxOpen: (platform: SandboxPlatform, sandboxId: string) => void;
 };
 
 const ExamplesButtons: FC<TExampleButtonsProps> = ({
@@ -91,8 +92,8 @@ const ExamplesButtons: FC<TExampleButtonsProps> = ({
     selectedFramework,
     onSandboxOpen,
     selectedFile,
-}) => {
-    const [availableFrameworks, setAvailableFrameworks] = useState<EPageFramework[]>([
+}): ReactNode => {
+    const [availableFrameworks] = useState<EPageFramework[]>([
         EPageFramework.React,
         EPageFramework.Vanilla,
         EPageFramework.Angular,
@@ -100,6 +101,41 @@ const ExamplesButtons: FC<TExampleButtonsProps> = ({
 
     const isFrameworkVariantAvailable = availableFrameworks?.includes(selectedFramework);
     const frameWorkName = getFrameWorkName(selectedFramework);
+
+    const handleSandboxClick = async (e: React.MouseEvent, platform: SandboxPlatform) => {
+        e.preventDefault();
+        try {
+            const framework = isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React;
+            const frameworkType = framework.toLowerCase() as "react" | "angular" | "vanilla";
+
+            // Get the URL before opening the sandbox
+            const url =
+                platform === SandboxPlatform.CodeSandbox
+                    ? await getCodeSandboxUrl(currentExample.path, frameworkType)
+                    : await getStackblitzUrl(currentExample.path, frameworkType);
+
+            // Extract the sandbox ID and open the sandbox component
+            const sandboxId = extractSandboxId(url, platform);
+            if (sandboxId) {
+                onSandboxOpen(platform, sandboxId);
+            } else {
+                // If we couldn't extract an ID, fall back to the URL directly
+                window.location.href = url;
+            }
+        } catch (error) {
+            console.error("Failed to open sandbox:", error);
+            // Fallback to the original href if the API call fails
+            const fallbackUrl =
+                platform === SandboxPlatform.CodeSandbox
+                    ? `codesandbox/${currentExample.path}?codesandbox=1&framework=${
+                          isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React
+                      }`
+                    : `stackblitz/${currentExample.path}?codesandbox=1&framework=${
+                          isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React
+                      }`;
+            window.location.href = fallbackUrl;
+        }
+    };
 
     return (
         <div className={classes.tabbtnwrap}>
@@ -121,10 +157,7 @@ const ExamplesButtons: FC<TExampleButtonsProps> = ({
                 &nbsp;Full Screen
             </a>
             <a
-                onClick={(e) => {
-                    e.preventDefault();
-                    onSandboxOpen(SandboxPlatform.StackBlitz);
-                }}
+                onClick={(e) => handleSandboxClick(e, SandboxPlatform.StackBlitz)}
                 rel="nofollow external"
                 className={classes.btn}
                 style={{ backgroundColor: "#212121" }}
@@ -148,10 +181,7 @@ const ExamplesButtons: FC<TExampleButtonsProps> = ({
                 &nbsp;Edit
             </a>
             <a
-                onClick={(e) => {
-                    e.preventDefault();
-                    onSandboxOpen(SandboxPlatform.CodeSandbox);
-                }}
+                onClick={(e) => handleSandboxClick(e, SandboxPlatform.CodeSandbox)}
                 rel="nofollow external"
                 className={classes.btn}
                 style={{ backgroundColor: "#212121" }}
@@ -179,7 +209,7 @@ const ExamplesButtons: FC<TExampleButtonsProps> = ({
             </a>
             <a
                 target="_blank"
-                href={`https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Examples/src/components/Examples/${currentExample.filepath}/${selectedFile}`}
+                href={`https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Examples/src/components/Examples/${currentExample.filepath}/${selectedFile.name}`}
                 style={{ backgroundColor: "rgb(42, 99, 151)" }}
                 className={classes.btn}
             >
@@ -207,8 +237,10 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     const [selectedFile, setSelectedFile] = useState<{ name: string; content: string }>(fakeFiles[0]);
     const [embedCode, setEmbedCode] = useState<boolean>(false);
     const [sandboxPlatform, setSandboxPlatform] = useState<SandboxPlatform>(SandboxPlatform.CodeSandbox);
+    const [sandboxId, setSandboxId] = useState<string>("");
 
     const selectedFramework = useContext(FrameworkContext);
+    const pageTitle = getTitle(currentExample.title, selectedFramework);
 
     let initialOpenedMenuItems = {
         MENU_ITEMS_FEATURED_APPS_ID: true,
@@ -227,7 +259,6 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     });
 
     const [openedMenuItems, setOpenedMenuItems] = useState<Record<string, boolean>>(initialOpenedMenuItems);
-    const PageTitle = getTitle(currentExample.title, selectedFramework);
 
     useEffect(() => {
         fetch("/source/" + currentExample.path + "?framework=" + selectedFramework)
@@ -261,10 +292,12 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
 
     const handleBack = () => {
         setEmbedCode(false);
+        setSandboxId("");
     };
 
-    const handleSandboxOpen = (platform: SandboxPlatform) => {
+    const handleSandboxOpen = (platform: SandboxPlatform, id: string) => {
         setSandboxPlatform(platform);
+        setSandboxId(id);
         setEmbedCode(true);
     };
 
@@ -277,7 +310,6 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                     onSandboxOpen={handleSandboxOpen}
                 />
             </div>
-            {/* Source code */}
             <div className={classes.editortabwrap}>
                 <FileExplorer files={sourceFiles} selectedFile={selectedFile} handleFileClick={handleFileClick} />
             </div>
@@ -296,29 +328,22 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                 </div>
                 <div className={classes.contentwrapper}>
                     <ExampleBreadcrumbs />
-
-                    {/* Title */}
                     <h1 className={classes.headingtxt} style={{ margin: "-10px 0" }}>
-                        {PageTitle}
+                        {pageTitle}
                     </h1>
-
-                    {/* Description */}
                     <p className={classes.chartdescription}>
                         {getTitle(currentExample.description, selectedFramework)}
                     </p>
-
-                    {/* Example area, either actual Example or embeded code */}
                     {embedCode ? (
                         <CodeSandbox
-                            id={"83ptjv"}
+                            id={sandboxId}
                             onBack={handleBack}
                             platform={sandboxPlatform}
-                            exampleName={PageTitle}
+                            exampleName={pageTitle}
                         />
                     ) : (
                         <ExamplesArea />
                     )}
-
                     <GalleryItems examples={seeAlso} />
                 </div>
             </div>

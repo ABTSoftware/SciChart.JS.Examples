@@ -40,9 +40,62 @@ const renderCodeSandBoxRedirectPage = (config: SandboxConfig, framework: EPageFr
   </html>`;
 };
 
+// Function to get CodeSandbox URL directly
+const getCodeSandboxUrl = (config: SandboxConfig, framework: EPageFramework) => {
+    const files = config.files;
+    const template = getCodeSandboxTemplate(framework);
+    const parameters = getParameters({ files, template });
+    const openInDevBox = framework === EPageFramework.Angular;
+
+    const url = new URL("https://codesandbox.io/api/v1/sandboxes/define");
+    url.searchParams.set("parameters", parameters);
+    url.searchParams.set("query", "file=src/drawExample.ts");
+    url.searchParams.set("embed", "1");
+    if (openInDevBox) {
+        url.searchParams.set("environment", "server");
+    }
+
+    return url.toString();
+};
+
 function replaceAll(str: string, find: string, replace: string) {
     return str.replace(new RegExp(find, "g"), replace);
 }
+
+// Function to get Stackblitz URL directly
+const getStackblitzUrl = (config: SandboxConfig, framework: EPageFramework) => {
+    const { "package.json": packageJsonFile, ...restFiles } = config.files;
+    // @ts-ignore
+    const allDependencies = { ...packageJsonFile.content.dependencies, ...packageJsonFile.content.devDependencies };
+
+    const templateArg = getStackblitzTemplate(framework);
+    const url = new URL("https://stackblitz.com/run");
+
+    const formData = new URLSearchParams();
+
+    // Add files
+    Object.entries(restFiles).forEach(([filename, file]) => {
+        formData.append(`project[files][${filename}]`, file.content);
+    });
+
+    // Add package.json
+    formData.append("project[files][package.json]", JSON.stringify(packageJsonFile.content, null, 2));
+    formData.append("project[dependencies]", JSON.stringify(allDependencies, null, 2));
+    formData.append("project[template]", templateArg);
+    formData.append("project[description]", "SciChart exported example");
+    formData.append(
+        "project[settings]",
+        JSON.stringify({
+            compile: {
+                clearConsole: false,
+                action: "refresh",
+                trigger: "save",
+            },
+        })
+    );
+
+    return `${url.toString()}?${formData.toString()}`;
+};
 
 // https://stackblitz.com/edit/sdk-angular-dependencies?file=project.ts,files.ts
 const renderStackblitzRedirectPage = (config: SandboxConfig, framework: EPageFramework) => {
@@ -96,13 +149,17 @@ const notFoundCodeSandBoxRedirectPage = (page: TExamplePage) => {
 };
 
 const basePath = path.join(__dirname, "Examples");
-const memoryCache: {[key: string]: {[fileName: string]: string } } = {};
+const memoryCache: { [key: string]: { [fileName: string]: string } } = {};
 
 // Get and cache source files for an example
 export const cacheSourceFiles = async (exampleKey: string, folderPath: string, framework: EPageFramework) => {
     if (memoryCache[exampleKey]) return memoryCache[exampleKey];
 
-    const files = await getSourceFilesForPath(folderPath, framework === EPageFramework.React ? "index.tsx" : "drawExample.js", "");
+    const files = await getSourceFilesForPath(
+        folderPath,
+        framework === EPageFramework.React ? "index.tsx" : "drawExample.js",
+        ""
+    );
     memoryCache[exampleKey] = Object.fromEntries(
         Object.entries(files).map(([filePath, file]) => {
             const fileName = path.basename(filePath);
@@ -125,14 +182,15 @@ export const getRequestedExample = (req: Request, res: Response) => {
     return { currentExample, currentExampleKey };
 };
 
-export const getSourceFiles = async (req: Request, res: Response) => {
+export const getSourceFiles = async (req: Request, res: Response): Promise<boolean> => {
     try {
         let currentExample: TExamplePage;
         try {
             currentExample = getRequestedExample(req, res)?.currentExample;
         } catch (err) {
             const error = err as IHttpError;
-            return res.status(error.status).send(error.status && error.message);
+            res.status(error.status).send(error.status && error.message);
+            return false;
         }
 
         try {
@@ -141,7 +199,6 @@ export const getSourceFiles = async (req: Request, res: Response) => {
             if (!isValidFramework) {
                 framework = EPageFramework.React;
             }
-            // console.log("Get source files for ", currentExample.title, framework);
             const folderPath = path.join(basePath, currentExample.filepath);
             let files: IFiles = {};
             let htmlPath: string;
@@ -151,8 +208,6 @@ export const getSourceFiles = async (req: Request, res: Response) => {
                 case EPageFramework.Angular:
                     files = await getSourceFilesForPath(folderPath, "angular.ts", baseUrl);
                     break;
-                // case EPageFramework.Vue:
-                //     throw new Error("Not Implemented");
                 case EPageFramework.React:
                     files = await getSourceFilesForPath(folderPath, "index.tsx", baseUrl);
                     break;
@@ -172,20 +227,25 @@ export const getSourceFiles = async (req: Request, res: Response) => {
             }
             const result: { name: string; content: string }[] = [];
             for (const key in files) {
-                // console.log(key);
                 const sep = key.indexOf("/") > 0 ? "/" : "\\";
                 const name = key.substring(key.lastIndexOf(sep) + 1);
                 result.push({ name, content: files[key].content });
             }
             res.send(result);
+            return true;
         } catch (err) {
-            // check if expected error type
             console.warn(err);
             const error = err as IHttpError;
+            if (error?.status) {
+                res.status(error.status).send(error.message);
+            } else {
+                res.status(500).send("Internal server error");
+            }
+            return false;
         }
-        return true;
     } catch (err) {
         console.warn(err);
+        res.status(500).send("Internal server error");
         return false;
     }
 };
@@ -194,25 +254,25 @@ export const getSourceFiles = async (req: Request, res: Response) => {
 export const getDrawExampleFile = async (req: Request, res: Response) => {
     try {
         const { currentExample, currentExampleKey } = getRequestedExample(req, res);
-        const framework = req.query.framework as EPageFramework || EPageFramework.React;
+        const framework = (req.query.framework as EPageFramework) || EPageFramework.React;
         const folderPath = path.join(basePath, currentExample.filepath);
 
         // Load or retrieve cached files
         const cachedFiles = await cacheSourceFiles(currentExampleKey, folderPath, framework);
 
         // Respond with "drawExample.js" content and other file names
-        const response = Object.entries(cachedFiles).map(([fileName, content]) => 
+        const response = Object.entries(cachedFiles).map(([fileName, content]) =>
             fileName === "drawExample.js" ? { name: fileName, content } : { name: fileName, content: null }
         );
         res.send(response);
-
     } catch (err) {
         console.error(err);
         res.status(500).send("Error retrieving example files");
     }
 };
 
-export const renderSandBoxRedirect = async (req: Request, res: Response, sandboxEnv: "codesandbox" | "stackblitz") => {
+// Endpoint handler that returns the CodeSandbox URL instead of redirecting
+export const getCodeSandboxUrlEndpoint = async (req: Request, res: Response) => {
     try {
         await loadStyles(basePath);
         let currentExample: TExamplePage;
@@ -231,29 +291,111 @@ export const renderSandBoxRedirect = async (req: Request, res: Response, sandbox
             }
             let baseUrl = req.protocol + "://" + req.get("host");
             const folderPath = path.join(basePath, currentExample.filepath);
-            const sandboxConfig = await getSandboxConfig(
-                folderPath,
-                currentExample,
-                req.query.framework as EPageFramework,
-                baseUrl
-            );
+            const sandboxConfig = await getSandboxConfig(folderPath, currentExample, framework, baseUrl);
+            const url = getCodeSandboxUrl(sandboxConfig, framework);
+            res.json({ url });
+        } catch (err) {
+            console.warn(err);
+            const error = err as IHttpError;
+            if (error?.status === 404) {
+                const alternativeLink = `/codesandbox/${currentExample.path}?codesandbox=1&framework=${EPageFramework.React}`;
+                res.json({ error: "Example not found", alternativeUrl: alternativeLink });
+            } else {
+                res.status(500).json({ error: "Internal server error" });
+            }
+        }
+    } catch (err) {
+        console.warn(err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+    return res.status(200);
+};
+
+// Endpoint handler that returns the Stackblitz URL instead of redirecting
+export const getStackblitzUrlEndpoint = async (req: Request, res: Response) => {
+    try {
+        await loadStyles(basePath);
+        let currentExample: TExamplePage;
+        try {
+            currentExample = getRequestedExample(req, res)?.currentExample;
+        } catch (err) {
+            const error = err as IHttpError;
+            return res.status(error.status).send(error.status && error.message);
+        }
+
+        try {
+            let framework = req.query.framework as EPageFramework;
+            const isValidFramework = Object.values(EPageFramework).includes(framework);
+            if (!isValidFramework) {
+                framework = EPageFramework.React;
+            }
+            let baseUrl = req.protocol + "://" + req.get("host");
+            const folderPath = path.join(basePath, currentExample.filepath);
+            const sandboxConfig = await getSandboxConfig(folderPath, currentExample, framework, baseUrl);
+            const url = getStackblitzUrl(sandboxConfig, framework);
+            res.json({ url });
+        } catch (err) {
+            console.warn(err);
+            const error = err as IHttpError;
+            if (error?.status === 404) {
+                const alternativeLink = `/codesandbox/${currentExample.path}?codesandbox=1&framework=${EPageFramework.React}`;
+                res.json({ error: "Example not found", alternativeUrl: alternativeLink });
+            } else {
+                res.status(500).json({ error: "Internal server error" });
+            }
+        }
+    } catch (err) {
+        console.warn(err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+    return res.status(200);
+};
+
+export const renderSandBoxRedirect = async (
+    req: Request,
+    res: Response,
+    sandboxEnv: "codesandbox" | "stackblitz"
+): Promise<boolean> => {
+    try {
+        await loadStyles(basePath);
+        let currentExample: TExamplePage;
+        try {
+            currentExample = getRequestedExample(req, res)?.currentExample;
+        } catch (err) {
+            const error = err as IHttpError;
+            res.status(error.status).send(error.status && error.message);
+            return false;
+        }
+
+        try {
+            let framework = req.query.framework as EPageFramework;
+            const isValidFramework = Object.values(EPageFramework).includes(framework);
+            if (!isValidFramework) {
+                framework = EPageFramework.React;
+            }
+            let baseUrl = req.protocol + "://" + req.get("host");
+            const folderPath = path.join(basePath, currentExample.filepath);
+            const sandboxConfig = await getSandboxConfig(folderPath, currentExample, framework, baseUrl);
             const page =
                 sandboxEnv === "codesandbox"
                     ? renderCodeSandBoxRedirectPage(sandboxConfig, framework)
                     : renderStackblitzRedirectPage(sandboxConfig, framework);
             res.send(page);
+            return true;
         } catch (err) {
-            // check if expected error type
             console.warn(err);
             const error = err as IHttpError;
             if (error?.status === 404) {
                 const page = notFoundCodeSandBoxRedirectPage(currentExample);
                 res.send(page);
+                return true;
             }
+            res.status(error?.status || 500).send(error?.message || "Internal server error");
+            return false;
         }
-        return true;
     } catch (err) {
         console.warn(err);
+        res.status(500).send("Internal server error");
         return false;
     }
 };
@@ -266,8 +408,6 @@ const getStackblitzTemplate = (framework: EPageFramework) => {
     switch (framework) {
         case EPageFramework.Angular:
             return "node";
-        // case EPageFramework.Vue:
-        //     return "vue";
         case EPageFramework.React:
             return "create-react-app";
         case EPageFramework.Vanilla:
@@ -281,8 +421,6 @@ const getCodeSandboxTemplate = (framework: EPageFramework) => {
     switch (framework) {
         case EPageFramework.Angular:
             return "angular-cli";
-        // case EPageFramework.Vue:
-        //     return "vue-cli";
         case EPageFramework.React:
             return "create-react-app";
         case EPageFramework.Vanilla:

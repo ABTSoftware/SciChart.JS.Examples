@@ -13,6 +13,7 @@ import { candlesXRPUSDT } from "./BinanceData/candlesXRPUSDT";
 import { tq3080_DSM_2M } from "./Data/tq3080_DSM_2M";
 import { TweetData } from "./Data/tweetData";
 import { TBinanceQueryParams } from "./types/TBinanceQueryParams";
+import { getCodeSandboxUrlEndpoint, getStackblitzUrlEndpoint } from "./renderCodeSandboxRedirect";
 
 const router = express.Router();
 
@@ -90,5 +91,9 @@ router.get("/get-binance-candles", (req, res) => {
     }
     res.send(data);
 });
+
+// Endpoints to get sandbox URLs without redirect
+router.get("/codesandbox/url/:example", getCodeSandboxUrlEndpoint);
+router.get("/stackblitz/url/:example", getStackblitzUrlEndpoint);
 
 export { router as api };
