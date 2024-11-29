@@ -34,12 +34,10 @@ export const styleAnimationExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlStyleAnimation,
     filepath: "Charts2D/Animations/StyleAnimation",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) => `Demonstrates how to run Style Transition Animations with JavaScript.`,
     metaKeywords: "style, animation, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

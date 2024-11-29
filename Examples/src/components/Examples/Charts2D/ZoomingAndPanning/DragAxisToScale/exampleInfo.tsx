@@ -35,12 +35,10 @@ export const dragAxisToScaleExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlDragAxisToScale,
     filepath: "Charts2D/ZoomingAndPanning/DragAxisToScale",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to Zoom, Scale or Pan individual Axis on a ${frameworkName} Chart with SciChart.js AxisDragModifiers`,
     metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

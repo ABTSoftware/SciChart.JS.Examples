@@ -37,13 +37,11 @@ export const editableAnnotationsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlEditableAnnotations,
     filepath: "Charts2D/ChartAnnotations/EditableAnnotations",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a ${frameworkName} Chart using SciChart.js Annotations API`,
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas, drag and drop",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

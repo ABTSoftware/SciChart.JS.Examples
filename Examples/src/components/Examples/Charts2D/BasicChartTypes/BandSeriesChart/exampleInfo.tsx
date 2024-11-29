@@ -21,13 +21,13 @@ const documentationLinks: TDocumentationLink[] = [
 ];
 
 const Subtitle = (frameworkName: string) => (
-    <p>
+    <>
         Demonstrates how to create a <strong>{frameworkName} Band Chart</strong> or High-Low Fill using SciChart.js, our
         High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Framework">
             JavaScript Chart Framework
         </a>
-    </p>
+    </>
 );
 
 const markdownContent: string = `<section class=\"container-markdown\" style=\"background: #38a\">
@@ -44,13 +44,10 @@ export const bandSeriesChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlBandChart,
     filepath: "Charts2D/BasicChartTypes/BandSeriesChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
     metaDescription: (frameworkName: TFrameworkName) =>
         `Easily create a ${frameworkName} Band Chart or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.`,
     metaKeywords: "band, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

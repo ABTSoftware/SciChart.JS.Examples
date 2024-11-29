@@ -40,13 +40,11 @@ export const hitTestApiExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlHitTestApi,
     filepath: "Charts2D/TooltipsAndHittest/HitTestAPI",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates Hit-Testing a ${frameworkName} Chart - point and click on the chart and get feedback about what data-points were clicked`,
     metaKeywords: "hit, test, api, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

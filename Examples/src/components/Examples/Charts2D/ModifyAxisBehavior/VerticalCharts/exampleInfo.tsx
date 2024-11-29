@@ -39,12 +39,10 @@ export const verticalChartsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlVerticalCharts,
     filepath: "Charts2D/ModifyAxisBehavior/VerticalCharts",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.`,
     metaKeywords: "vertical, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

@@ -39,12 +39,10 @@ export const errorBarsChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlErrorBarsChart,
     filepath: "Charts2D/BasicChartTypes/ErrorBarsChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Create ${frameworkName} Error Bars Chart using high performance SciChart.js. Display uncertainty or statistical confidence of a data-point. Get free demo now.`,
     metaKeywords: "error, bars, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

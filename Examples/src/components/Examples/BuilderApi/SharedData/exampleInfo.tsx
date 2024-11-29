@@ -36,14 +36,12 @@ export const sharedDataExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlSharedData,
     filepath: "BuilderApi/SharedData",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription:
         "Demonstrates how to use the Builder Api to create Reusable Chart Templates." +
         "Data can be easily integrated into a definition and shared between series",
     metaKeywords: "template, chart, javascript, data, reuse",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

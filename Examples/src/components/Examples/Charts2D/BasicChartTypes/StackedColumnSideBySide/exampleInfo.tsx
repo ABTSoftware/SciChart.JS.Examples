@@ -39,12 +39,10 @@ export const stackedColumnSideBySideExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlGroupedColumnChart,
     filepath: "Charts2D/BasicChartTypes/StackedColumnSideBySide",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Design ${frameworkName} Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.`,
     metaKeywords: "stacked, column, side-by-side, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

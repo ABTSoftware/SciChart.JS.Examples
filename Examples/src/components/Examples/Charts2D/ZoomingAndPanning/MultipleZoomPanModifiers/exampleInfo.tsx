@@ -35,12 +35,10 @@ export const zoomAndPanWithMultipleChartModifiersExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlZoomPanWithMultipleChartModifiers,
     filepath: "Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to use multiple Zoom and Pan Modifiers on a ${frameworkName} Chart with SciChart.js`,
     metaKeywords: "zoom, pan, pinch, touch, scale, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

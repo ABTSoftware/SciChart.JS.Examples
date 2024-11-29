@@ -39,12 +39,10 @@ export const smoothStackedMountainChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlSmoothStackedMountainChart,
     filepath: "Charts2D/BasicChartTypes/SmoothStackedMountainChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Design a high performance ${frameworkName} Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.`,
     metaKeywords: "stacked, mountain, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

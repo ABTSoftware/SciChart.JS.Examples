@@ -19,3 +19,4 @@ Documentation/server/nav.html
 Documentation/server/*.js
 /Sandbox/demo-dotnet-server-licensing/wwwroot/index.js
 **/*.tsbuildinfo
+Examples/exampleInfo.*

@@ -36,12 +36,10 @@ export const logarithmicAxisExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlLogarithmicAxis,
     filepath: "Charts2D/ModifyAxisBehavior/LogarithmicAxis",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Demonstrates Logarithmic Axis on a ${frameworkName} Chart using SciChart.js. SciChart supports logarithmic axis with scientific or engineering notation and positive and negative values`,
     metaKeywords: "logarithmic, axis, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

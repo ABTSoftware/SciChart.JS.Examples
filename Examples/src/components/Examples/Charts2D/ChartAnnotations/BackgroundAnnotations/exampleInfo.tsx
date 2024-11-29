@@ -38,13 +38,11 @@ export const backgroundAnnotationsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlBackgroundAnnotations,
     filepath: "Charts2D/ChartAnnotations/BackgroundAnnotations",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js Annotations API`,
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

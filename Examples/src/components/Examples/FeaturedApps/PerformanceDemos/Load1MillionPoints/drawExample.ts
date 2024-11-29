@@ -30,22 +30,24 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
-            axisTitle: "X Axis",
+            // axisTitle: "X Axis",
             visibleRange: new NumberRange(0, 1000000),
             autoRange: EAutoRange.Never,
+            useNativeText: true,
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
+            // axisTitle: "Y Axis",
             axisAlignment: EAxisAlignment.Left,
             visibleRange: new NumberRange(-5000, 5000),
             autoRange: EAutoRange.Never,
-            axisTitle: "Y Axis",
+            useNativeText: true,
         })
     );
 
     const watermarkAnnotation = (text: string, offset: number = 0) => {
-        return new TextAnnotation({
+        const annotation = new TextAnnotation({
             text,
             fontSize: 42,
             fontWeight: "Bold",
@@ -60,12 +62,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             yCoordinateMode: ECoordinateMode.Relative,
             annotationLayer: EAnnotationLayer.BelowChart,
         });
+
+        return annotation;
     };
     // add a title annotation
     sciChartSurface.annotations.add(watermarkAnnotation("SciChart.js Performance Demo"));
     sciChartSurface.annotations.add(watermarkAnnotation("1 Million Data-Points", 52));
 
-    const dataSeries = new XyDataSeries(wasmContext);
+    const POINTS = 1_000_000;
+
+    const dataSeries = new XyDataSeries(wasmContext, { capacity: POINTS, isSorted: true, containsNaN: false });
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
             dataSeries,
@@ -76,8 +82,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
+    let updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void = () => null;
+
+    const xValues = new Float64Array(POINTS);
+    const yValues = new Float64Array(POINTS);
+
     // Buttons for chart
-    const loadPoints = (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
+    const loadPoints = () => {
         // Clear state
         dataSeries.clear();
         const newTimeSpans: TTimeSpan[] = [];
@@ -85,9 +96,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         // Start clouting Points generation time
         const generateTimestamp = Date.now();
 
-        const POINTS = 1_000_000;
-        const xValues = new Float64Array(POINTS);
-        const yValues = new Float64Array(POINTS);
         let prevYValue = 0;
         for (let i = 0; i < POINTS; i++) {
             const curYValue = Math.random() * 10 - 5;
@@ -143,5 +151,22 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChartSurface.rendered.subscribe(handler);
     };
 
-    return { sciChartSurface, controls: { loadPoints } };
+    let timerId: NodeJS.Timeout;
+    const startUpdate = () => {
+        timerId = setInterval(loadPoints, 200);
+    };
+
+    const stopUpdate = () => {
+        clearInterval(timerId);
+    };
+
+    const reloadOnce = () => {
+        loadPoints();
+    };
+
+    const subscribeToInfo = (listener: (newTimeSpans: TTimeSpan[]) => void) => {
+        updateTimeSpans = listener;
+    };
+
+    return { sciChartSurface, controls: { startUpdate, stopUpdate, reloadOnce, subscribeToInfo } };
 };

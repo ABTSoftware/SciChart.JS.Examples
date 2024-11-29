@@ -70,8 +70,6 @@ export const bandSeriesChartExampleInfo: TExampleInfo = {
     subtitle: Subtitle,
     documentationLinks,
     tips,
-    description,
-    previewDescription,
     seeAlso,
     githubUrl,
     seoDescription:

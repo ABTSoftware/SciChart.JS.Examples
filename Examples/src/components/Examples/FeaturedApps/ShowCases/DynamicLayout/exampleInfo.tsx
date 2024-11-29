@@ -34,13 +34,11 @@ export const dynamicLayoutExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlDynamicLayout,
     filepath: "FeaturedApps/ShowCases/DynamicLayout",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates a custom modifier which can convert from single chart to grid layout and back.`,
     metaKeywords: "subcharts, layout, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

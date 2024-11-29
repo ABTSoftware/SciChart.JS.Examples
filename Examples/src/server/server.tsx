@@ -21,12 +21,12 @@ import { createSocketServer } from "./websockets";
 import { api } from "./api";
 import { getSourceFiles, renderSandBoxRedirect } from "./renderCodeSandboxRedirect";
 import { oembed } from "./oembed";
-import { findMissingExamples } from "./find-missing-examples";
 import { vanillaExamplesRouter } from "./vanillaDemo/vanillaExamplesRouter";
 import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";
 import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 import { getAvailableVariants } from "./variants";
 import createEmotionCache from "../createEmotionCache";
+import { exportExampleInfo } from "./exportExampleInfo";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
@@ -114,8 +114,8 @@ function shouldCompress(req: Request, res: Response) {
 app.use(express.static(targetDir, { etag: true, maxAge: 0 }));
 app.use("/api", api);
 app.use("/services/oembed", oembed);
-app.use("/services/findMissingExamples", findMissingExamples);
 app.use("/services/variants", getAvailableVariants);
+app.use("/services/export", exportExampleInfo);
 app.use("/vanillaDemo", vanillaExamplesRouter);
 
 const isValidFramework = (framework: EPageFramework) => Object.values(EPageFramework).includes(framework);

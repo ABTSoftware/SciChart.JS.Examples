@@ -39,13 +39,11 @@ export const splineMountainChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlSplineMountainChart,
     filepath: "Charts2D/BasicChartTypes/SplineMountainChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `${frameworkName} Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.`,
     metaKeywords: "mountain, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

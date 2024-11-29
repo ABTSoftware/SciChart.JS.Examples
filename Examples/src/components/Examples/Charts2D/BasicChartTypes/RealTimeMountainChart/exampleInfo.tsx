@@ -39,12 +39,10 @@ export const realTimeMountainChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlRealtimeMountainChart,
     filepath: "Charts2D/BasicChartTypes/RealTimeMountainChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `${frameworkName} Realtime Mountain Chart made easy. Add animated, real-time updates with SciChart.js - high performance JavaScript Charts. Get free trial now. `,
     metaKeywords: "mountain, chart, realtime, animated, javascript, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

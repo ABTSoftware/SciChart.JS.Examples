@@ -37,13 +37,11 @@ export const trendMARatioExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlTrendMARatio,
     filepath: "Charts2D/Filters/TrendMARatio",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Chart with Linear Trendline, Moving Average and Ratio Filters with filter chaining`,
     metaKeywords: "trend, line, moving, average, ratio, transform, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

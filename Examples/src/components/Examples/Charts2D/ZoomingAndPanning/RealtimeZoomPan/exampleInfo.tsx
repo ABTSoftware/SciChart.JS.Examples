@@ -38,13 +38,11 @@ export const realtimeZoomPanExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlRealtimeZoomPan,
     filepath: "Charts2D/ZoomingAndPanning/RealtimeZoomPan",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to zoom and pan a realtime ${frameworkName} Chart while it is updating, with SciChart.js ZoomState API`,
     metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

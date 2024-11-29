@@ -38,13 +38,11 @@ export const lidar3DPointCloudExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlLidarFeaturedApp,
     filepath: "FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription:
         "Demonstrating the capability of SciChart.js to create JavaScript 3D Point Cloud charts and visualize LiDAR data " +
         "from the UK Defra Survey.",
     metaKeywords: "lidar, 3d, point, cloud, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

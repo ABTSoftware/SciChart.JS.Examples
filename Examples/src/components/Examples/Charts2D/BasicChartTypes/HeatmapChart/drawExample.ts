@@ -24,8 +24,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     // Add XAxis and YAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
 
     // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
     const initialZValues: number[][] = generateExampleData(WIDTH, HEIGHT, 200, 20, MAX_SERIES);
@@ -119,8 +119,13 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
             loadingAnimationBackground: appTheme.DarkIndigo + "BB",
         },
         yAxisOptions: {
+            isInnerAxis: true,
+            labelStyle: {
+                fontSize: 12,
+                color: appTheme.ForegroundColor,
+            },
             axisBorder: {
-                borderLeft: 1,
+                borderRight: 1,
                 color: appTheme.ForegroundColor + "77",
             },
             majorTickLineStyle: {

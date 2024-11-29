@@ -107,7 +107,7 @@ import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/Tool
 import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo";
 import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo";
 import { populationPyramidExampleInfo } from "../Examples/FeaturedApps/ShowCases/PopulationPyramid/exampleInfo";
-import { EPageLayout, TDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { EPageLayout, TFrameworkTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
 import { smoothStackedMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart/exampleInfo";
 
@@ -115,31 +115,27 @@ export type TExampleInfo = {
     /**
      * Example title
      */
-    title: TTitleTemplate;
+    title: TFrameworkTemplate;
     /**
      * Meta title
      */
-    pageTitle: TTitleTemplate;
+    pageTitle: TFrameworkTemplate;
     path: string;
 
-    documentationLinks: TDocumentationLink[];
-    tips?: any;
-    customDescription?: any;
-    customDescription1?: any;
-    moreInfo?: { label: string }[];
-    NewPoints?: { label: string }[];
-    Benifits?: { label: string }[];
-    Questions?: { label: string; tag: string }[];
-    // custom header for the NewLinks
-    customheader?: string;
-    moreInfoHeader?: string;
-    BenifitsHeader?: string;
-    QuestionsHeader?: string;
-    NewLinks?: { url: string; label: string }[];
-
-    description: TDescriptionTemplate;
-    previewDescription?: any;
+    /**
+     * Content shown below title on example page
+     */
     subtitle: (frameworkName: string) => JSX.Element;
+    /**
+     * Page meta description
+     */
+    metaDescription: TFrameworkTemplate;
+
+    /**
+     * The first link is used in the docs button in the header
+     */
+    documentationLinks: TDocumentationLink[];
+
     // If this example has been created on scichart.com
     onWebsite?: boolean;
     /**
@@ -147,10 +143,7 @@ export type TExampleInfo = {
      * in the top level menu. See {@link getSeeAlsoGalleryItems}
      */
     seeAlso?: GalleryItem[];
-    /**
-     * Page meta description
-     */
-    metaDescription: TDescriptionTemplate;
+
     /**
      * Page meta keywords
      */
@@ -165,8 +158,8 @@ export type TExampleInfo = {
     /**
      * Markdown content for the page, will help with SEO and editing
      */
-    markdownContent?: string;
-    pageLayout?: EPageLayout
+    markdownContent?: TFrameworkTemplate;
+    pageLayout?: EPageLayout;
 };
 
 export type TExamplePage = TPage & TExampleInfo;

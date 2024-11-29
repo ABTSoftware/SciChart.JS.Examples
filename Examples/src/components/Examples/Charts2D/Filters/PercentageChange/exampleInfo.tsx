@@ -40,13 +40,11 @@ export const percentageChangeExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlPercentageChange,
     filepath: "Charts2D/Filters/PercentageChange",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `How to use a ScaleOffsetFilter to convert data to a percentage change, with realtime updates, rescale on pan`,
     metaKeywords: "real-time, updating, percentage, transform, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

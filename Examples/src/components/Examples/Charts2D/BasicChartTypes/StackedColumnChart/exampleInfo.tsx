@@ -39,12 +39,10 @@ export const stackedColumnChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlStackedColumnChart,
     filepath: "Charts2D/BasicChartTypes/StackedColumnChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Discover how to create a ${frameworkName} Stacked Column Chart using our feature-rich JavaScript Chart Library, SciChart.js. Get your free demo today!`,
     metaKeywords: "stacked, column, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

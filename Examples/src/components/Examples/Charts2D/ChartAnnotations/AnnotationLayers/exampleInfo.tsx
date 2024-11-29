@@ -46,13 +46,11 @@ export const annotationLayersExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlAnnotationLayers,
     filepath: "Charts2D/ChartAnnotations/AnnotationLayers",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates how layering works a ${frameworkName} Chart using SciChart.js Annotations API`,
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

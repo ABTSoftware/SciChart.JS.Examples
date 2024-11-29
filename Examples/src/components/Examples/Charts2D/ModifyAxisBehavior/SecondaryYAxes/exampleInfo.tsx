@@ -36,12 +36,10 @@ export const secondaryYAxesExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlSecondaryYAxis,
     filepath: "Charts2D/ModifyAxisBehavior/SecondaryYAxes",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Demonstrates Secondary Y Axis on a ${frameworkName} Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning`,
     metaKeywords: "secondary, axis, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

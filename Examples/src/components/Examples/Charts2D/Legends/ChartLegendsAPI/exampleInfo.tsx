@@ -39,14 +39,12 @@ export const chartLegendsAPIExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlChartLegends,
     filepath: "Charts2D/Legends/ChartLegendsAPI",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription:
         "Demonstrates how to add a Legends to a JavaScript Line Chart using SciChart.js. The legend is created when you add " +
         "a LegendModifier type to the sciChartSurface.chartModifiers collection.",
     metaKeywords: "legend, api, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

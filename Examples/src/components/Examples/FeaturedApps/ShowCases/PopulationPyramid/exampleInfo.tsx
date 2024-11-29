@@ -38,13 +38,11 @@ export const populationPyramidExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlPopulationPyramid,
     filepath: "FeaturedApps/ShowCases/PopulationPyramid",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) => `Population Pyramid of Europe and Africa`,
     metaKeywords:
         "population, react, column, stacked, animation, labels, engineering, pyramid, europe, africa, javascript, chart, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

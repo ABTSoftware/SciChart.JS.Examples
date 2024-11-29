@@ -39,14 +39,12 @@ export const simpleChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlBuilderSimpleChart,
     filepath: "BuilderApi/SimpleChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription:
         "Demonstrates how to use the Builder Api to create a simple chart using a definition object. " +
         "The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
     metaKeywords: "definition, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

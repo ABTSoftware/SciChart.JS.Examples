@@ -38,13 +38,11 @@ export const splineBandSeriesChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlSplineBandChart,
     filepath: "Charts2D/BasicChartTypes/SplineBandSeriesChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `SciChart's ${frameworkName} Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.`,
     metaKeywords: "band, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

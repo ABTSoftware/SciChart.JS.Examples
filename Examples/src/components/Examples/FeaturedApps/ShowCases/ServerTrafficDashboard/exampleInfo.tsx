@@ -37,14 +37,11 @@ export const serverTrafficDashboardDemoExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlServerTrafficDashboard,
     filepath: "FeaturedApps/ShowCases/ServerTrafficDashboard",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
     metaDescription: (frameworkName: string) =>
         `This dashboard demo showcases the incredible realtime performance of our ${frameworkName} charts by updating the series with millions of data-points!`,
     metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
     extraDependencies: { "country-flag-icons": "^1.5.7" },
+    documentationLinks,
 };

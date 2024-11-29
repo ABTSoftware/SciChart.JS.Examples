@@ -36,12 +36,10 @@ export const impulseChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlImpulseChart,
     filepath: "Charts2D/BasicChartTypes/ImpulseChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Easily create ${frameworkName} Impulse Chart or Stem Chart using SciChart.js - our own high performance JavaScript Chart Library. Get your free trial now. `,
     metaKeywords: "impulse, lollipop, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

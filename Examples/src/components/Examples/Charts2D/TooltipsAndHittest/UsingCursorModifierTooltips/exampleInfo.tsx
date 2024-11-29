@@ -39,13 +39,11 @@ export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlCursorModifier,
     filepath: "Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates adding a Cursor (Crosshair) to a ${frameworkName} Chart with SciChart.js CursorModifier`,
     metaKeywords: "cursor, modifier, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

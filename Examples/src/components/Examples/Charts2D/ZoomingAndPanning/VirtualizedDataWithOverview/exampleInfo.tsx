@@ -33,14 +33,12 @@ export const virtualizedDataOverviewExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlVirtualizedData,
     filepath: "Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `shows how to load data on zoom/pan and how to create an overview chart for this case.`,
     metaKeywords: "zoom, pan, virtualize, server, overview, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
     extraDependencies: { rxjs: "^7.5.6" },
+    documentationLinks,
 };

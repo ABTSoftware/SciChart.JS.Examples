@@ -38,13 +38,11 @@ export const scatterChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlScatterChart,
     filepath: "Charts2D/BasicChartTypes/ScatterChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Create ${frameworkName} Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. `,
     metaKeywords: "scatter, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

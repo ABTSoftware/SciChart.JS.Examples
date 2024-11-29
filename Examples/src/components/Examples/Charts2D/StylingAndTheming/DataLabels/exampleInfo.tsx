@@ -30,11 +30,9 @@ export const datalabelsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlDatalabels,
     filepath: "Charts2D/StylingAndTheming/DataLabels",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) => `Show data labels on ${frameworkName} Chart. Get your free demo now.`,
     metaKeywords: "data labels, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

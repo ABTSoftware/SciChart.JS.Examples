@@ -52,12 +52,10 @@ export const columnChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlColumnChart,
     filepath: "Charts2D/BasicChartTypes/ColumnChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `${frameworkName} Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.`,
     metaKeywords: "column, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

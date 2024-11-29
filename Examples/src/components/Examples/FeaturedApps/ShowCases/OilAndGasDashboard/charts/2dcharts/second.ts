@@ -11,8 +11,10 @@ import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/
 import { getColor } from "../utils";
 import { appTheme } from "../../theme";
 
-export default async function init2dSecondChart(id: string) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme: appTheme.SciChartJsTheme });
+export default async function init2dSecondChart(rootELement: string | HTMLDivElement) {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootELement, {
+        theme: appTheme.SciChartJsTheme,
+    });
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, { visibleRange: new NumberRange(-0.5, 5.5), isVisible: false })
     );
@@ -54,7 +56,7 @@ export default async function init2dSecondChart(id: string) {
         });
     });
 
-    return sciChartSurface;
+    return { sciChartSurface };
 }
 
 function generateData(wasmContext: TSciChart, color: string, xValues: number[], yValues: []) {

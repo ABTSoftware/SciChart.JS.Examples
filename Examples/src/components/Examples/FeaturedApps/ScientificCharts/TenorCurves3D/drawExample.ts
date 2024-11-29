@@ -109,7 +109,11 @@ export const drawLineChart1 = async (rootElement: string | HTMLDivElement) => {
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
 
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
+    const yAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) });
+    sciChartSurface.yAxes.add(yAxis);
+
+    // xAxis.isVisible = false;
+    // yAxis.isVisible = false;
 
     const mountainSeries = new FastMountainRenderableSeries(wasmContext, {
         stroke: appTheme.VividSkyBlue,
@@ -152,8 +156,13 @@ export const drawLineChart2 = async (rootElement: string | HTMLDivElement) => {
         theme: appTheme.SciChartJsTheme,
     });
 
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
+    const xAxis = new NumericAxis(wasmContext);
+    sciChartSurface.xAxes.add(xAxis);
+
+    const yAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) });
+    sciChartSurface.yAxes.add(yAxis);
+    // xAxis.isVisible = false;
+    // yAxis.isVisible = false;
 
     const mountainSeries = new FastMountainRenderableSeries(wasmContext, {
         stroke: appTheme.PaleSkyBlue,
@@ -195,8 +204,13 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
             loadingAnimationBackground: appTheme.DarkIndigo + "BB",
         },
         yAxisOptions: {
+            isInnerAxis: true,
+            labelStyle: {
+                fontSize: 12,
+                color: appTheme.ForegroundColor,
+            },
             axisBorder: {
-                borderLeft: 1,
+                borderRight: 1,
                 color: appTheme.ForegroundColor + "77",
             },
             majorTickLineStyle: {

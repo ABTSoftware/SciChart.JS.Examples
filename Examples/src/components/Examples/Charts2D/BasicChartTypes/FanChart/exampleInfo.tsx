@@ -38,12 +38,10 @@ export const fanChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlFanChart,
     filepath: "Charts2D/BasicChartTypes/FanChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Discover how to create ${frameworkName} Fan Chart with SciChart. Zoom in to see the detail you can go to using our JavaScript Charts. Get your free demo today. `,
     metaKeywords: "fan, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

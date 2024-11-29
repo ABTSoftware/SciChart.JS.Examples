@@ -2,7 +2,7 @@
 
 .frameworksection {
     background-color: transparent;
-    margin-top: -4.2rem
+    margin-top: -4.2rem;
 }
 
 .container {
@@ -100,11 +100,11 @@
     }
 }
 
-.contentwrapper .chartdescription{
+.contentwrapper .chartdescription {
     padding: 0 0.25rem;
 }
 
-.contentwrapper .dynamicFlexWrapper{
+.contentwrapper .dynamicFlexWrapper {
     display: flex;
     gap: 20px;
     flex-direction: column;
@@ -470,7 +470,7 @@
     border: 1px solid #b4d0db;
     border-radius: 20px;
     padding: 20px;
-    display: flex; 
+    display: flex;
     flex-direction: column;
     gap: 20px;
     position: relative;
@@ -502,11 +502,10 @@
 }
 
 .headingtxt {
-    font-family: "Arial";
     font-weight: 600;
-    font-size: 32px;
-    line-height: 48px;
-    color: #050a30;
+    font-size: 24px;
+    // line-height: 48px;
+    color: $color-dark;
     text-align: center;
 }
 
@@ -514,7 +513,8 @@
     display: flex;
     gap: 20px;
 
-    .btnprimary, .btn {
+    .btnprimary,
+    .btn {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -532,10 +532,6 @@
 
     .btnprimary {
         background: linear-gradient(90deg, #1aa2d5 15.5%, #35bfb7 100%);
-
-        @include sm {
-            display: none;
-        }
     }
 
     .btn:hover {

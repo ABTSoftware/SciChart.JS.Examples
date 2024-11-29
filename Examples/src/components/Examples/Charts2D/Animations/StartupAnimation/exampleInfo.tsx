@@ -34,12 +34,10 @@ export const startupAnimationExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlStartupAnimation,
     filepath: "Charts2D/Animations/StartupAnimation",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) => `Demonstrates how to run Startup Animations with JavaScript.`,
     metaKeywords: "startup, on-start, animation, javascript",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

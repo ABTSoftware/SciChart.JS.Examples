@@ -35,12 +35,10 @@ export const usePointMarkersExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlPointMarkers,
     filepath: "Charts2D/StylingAndTheming/UsePointMarkers",
     subtitle: Subtitle,
-    documentationLinks,
-    description,
-    previewDescription,
     metaDescription: (frameworkName: string) =>
         `Demonstrates the different point-marker types for ${frameworkName} Scatter charts (Square, Circle, Triangle and Custom image point-marker)`,
     metaKeywords: "data, point, marker, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

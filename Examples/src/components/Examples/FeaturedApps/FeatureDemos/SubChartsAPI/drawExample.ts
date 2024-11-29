@@ -153,12 +153,12 @@ export const drawGridExample = async (
             parentXAxisId: mainXAxis.id,
             parentYAxisId: mainYAxis.id,
             coordinateMode: subChartPositioningCoordinateMode,
-            subChartPadding: Thickness.fromNumber(3),
+            subChartPadding: Thickness.fromNumber(1),
             viewportBorder: {
                 color: "rgba(150, 74, 148, 0.51)",
                 border: 2,
             },
-            title: seriesNamesMap[seriesType],
+            // title: seriesNamesMap[seriesType],
             titleStyle: {
                 placeWithinChart: true,
                 fontSize: 12,
@@ -175,6 +175,7 @@ export const drawGridExample = async (
             ...axisOptions,
             id: `${subChartSurface.id}-XAxis`,
             growBy: new NumberRange(0.0, 0.0),
+            useNativeText: true,
         });
 
         subChartSurface.xAxes.add(subChartXAxis);
@@ -183,6 +184,7 @@ export const drawGridExample = async (
             ...axisOptions,
             id: `${subChartSurface.id}-YAxis`,
             growBy: new NumberRange(0.01, 0.1),
+            useNativeText: true,
         });
         subChartSurface.yAxes.add(subChartYAxis);
 

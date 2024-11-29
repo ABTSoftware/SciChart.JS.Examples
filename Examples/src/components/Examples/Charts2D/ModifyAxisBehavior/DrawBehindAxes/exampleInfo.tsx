@@ -34,12 +34,10 @@ export const drawBehindAxesExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlDrawBehindAxes,
     filepath: "Charts2D/ModifyAxisBehavior/DrawBehindAxes",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Demonstrates the option of the transparent Axes customization on a ${frameworkName} Chart using SciChart.js.`,
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

@@ -37,13 +37,11 @@ export const transparentBackgroundExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlTransparentBackground,
     filepath: "Charts2D/StylingAndTheming/TransparentBackground",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to create a ${frameworkName} Chart with background image using transparency in SciChart.js`,
     metaKeywords: "styling, transparent, background, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

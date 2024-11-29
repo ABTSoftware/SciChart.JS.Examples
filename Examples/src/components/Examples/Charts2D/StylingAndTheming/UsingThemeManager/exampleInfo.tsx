@@ -37,12 +37,10 @@ export const usingThemeManagerExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlThemeManager,
     filepath: "Charts2D/StylingAndTheming/UsingThemeManager",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Demonstrates our Light and Dark Themes for ${frameworkName} Charts with SciChart.js ThemeManager API`,
     metaKeywords: "theme, provider, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

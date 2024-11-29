@@ -43,14 +43,12 @@ export const vitalSignsMonitorDemoExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlVitalSigns,
     filepath: "FeaturedApps/MedicalCharts/VitalSignsMonitorDemo",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: `In this example we are simulating four channels of data showing that SciChart.js can be used to draw real-time
         ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate, SPO2 blood
         oxygen, volumetric flow and more.`,
     metaKeywords: "ecg, ekg, realtime, medical, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

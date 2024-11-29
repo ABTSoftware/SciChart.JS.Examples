@@ -41,13 +41,11 @@ export const multiPaneStockChartsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlMultiPaneStockChart,
     filepath: "Charts2D/CreateStockCharts/MultiPaneStockCharts",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Create a ${frameworkName} Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.`,
     metaKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

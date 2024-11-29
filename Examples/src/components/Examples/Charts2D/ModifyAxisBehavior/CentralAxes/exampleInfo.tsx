@@ -35,12 +35,10 @@ export const centralAxesExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlCentralAxes,
     filepath: "Charts2D/ModifyAxisBehavior/CentralAxes",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Demonstrates Central Axes on a ${frameworkName} Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable layout`,
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

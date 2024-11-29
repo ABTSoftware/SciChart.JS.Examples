@@ -35,13 +35,11 @@ export const subchartsGridExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlChartGrid,
     filepath: "FeaturedApps/FeatureDemos/SubChartsAPI",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript`,
     metaKeywords: "javascript, multichart, dashboard, performance, grid, realtime, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };
