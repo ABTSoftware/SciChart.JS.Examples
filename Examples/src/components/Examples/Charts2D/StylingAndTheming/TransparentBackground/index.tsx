@@ -6,11 +6,10 @@ import { drawExample } from "./drawExample";
 
 export default function TransparentBackground() {
     return (
-        <div
+        <SciChartReact
             className={commonClasses.ChartWrapper}
             style={{ backgroundImage: `url(${BackgroundImage})`, backgroundSize: "100% 100%" }}
-        >
-            <SciChartReact initChart={drawExample} />
-        </div>
+            initChart={drawExample}
+        />
     );
 }

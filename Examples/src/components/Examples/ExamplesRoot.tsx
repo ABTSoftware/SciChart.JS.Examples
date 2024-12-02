@@ -1,25 +1,21 @@
-import { useRef, useContext, FC, useState, useEffect } from "react";
-import SeoTags from "../SeoTags/SeoTags";
-import { TExamplePage } from "../AppRouter/examplePages";
-import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
-import { ALL_MENU_ITEMS, getExampleComponent } from "../AppRouter/examples";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import SubdirectoryArrowRight from "@mui/icons-material/SubdirectoryArrowRight";
 import { Button } from "@mui/material";
+import { FC, useContext, useEffect, useRef, useState } from "react";
+import { Simulate } from "react-dom/test-utils";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { baseGithubPath } from "../../constants";
+import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { FRAMEWORK_NAME, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { GalleryItem } from "../../helpers/types/types";
+import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
+import { TExamplePage } from "../AppRouter/examplePages";
+import { getExampleComponent } from "../AppRouter/examples";
+import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";
+import GalleryItems from "../GalleryItems";
+import SeoTags from "../SeoTags/SeoTags";
 import { ExampleStrings } from "./ExampleStrings";
 import commonClasses from "./styles/Examples.module.scss";
-import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";
-import { GalleryItem } from "../../helpers/types/types";
-import ExampleDescription from "../ExampleDescription/ExampleDescription";
-import { Simulate } from "react-dom/test-utils";
-import submit = Simulate.submit;
-import GitHubIcon from "@mui/icons-material/GitHub";
-import Radio from "@mui/icons-material/Radio";
-import SubdirectoryArrowRight from "@mui/icons-material/SubdirectoryArrowRight";
-import { InfoToolbar } from "./Toolbar";
-import { baseGithubPath } from "../../constants";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import { getTitle, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
-import GalleryItems from "../GalleryItems";
 
 type TProps = {
     // example: () => JSX.Element;
@@ -42,18 +38,16 @@ const ExamplesRoot: FC<TProps> = (props) => {
     // const ChartComponent = getExampleComponent(examplePage.id);
 
     const titleText = examplePage
-        ? getTitle(examplePage.title, framework)
+        ? getFrameworkContent(examplePage.title, framework)
         : ExampleStrings.siteHomeTitle(frameworkName);
-    const seoTitleText = getTitle(examplePage.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix;
+    const seoTitleText =
+        getFrameworkContent(examplePage.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix;
     const subtitleText = examplePage ? examplePage.subtitle(frameworkName) : undefined;
 
     const documentationLinks = examplePage ? examplePage.documentationLinks : undefined;
-    const tips = examplePage ? examplePage.tips : undefined;
-    const previewDescription = examplePage ? examplePage.previewDescription : undefined;
-    const description = examplePage ? examplePage.description : undefined;
 
     const githubUrl = examplePage ? "/components/Examples/" + examplePage.filepath : "";
-    const seoDescription = examplePage ? getTitle(examplePage.metaDescription, framework) : "";
+    const seoDescription = examplePage ? getFrameworkContent(examplePage.metaDescription, framework) : "";
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
     const basePath = "https://demo.scichart.com";
     const exampleImage = examplePage ? `${basePath}/${examplePage.thumbnailImage}` : undefined;
@@ -133,15 +127,6 @@ const ExamplesRoot: FC<TProps> = (props) => {
                         <h1 className={commonClasses.Title}>{titleText} </h1>
 
                         <div className={commonClasses.ExampleWrapper}>
-                            <div className={commonClasses.ExampleDescription}>
-                                <div className={commonClasses.Subtitle}>{subtitleText}</div>
-                                <ExampleDescription
-                                    documentationLinks={documentationLinks}
-                                    tips={tips}
-                                    description={description}
-                                    previewDescription={previewDescription}
-                                />
-                            </div>
                             <div className={commonClasses.Example}>
                                 <ExampleComponent />
                                 <div className={commonClasses.ButtonsWrapper}>

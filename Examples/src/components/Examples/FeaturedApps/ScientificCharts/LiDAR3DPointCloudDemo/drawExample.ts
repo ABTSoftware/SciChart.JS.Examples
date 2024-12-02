@@ -3,6 +3,7 @@ import {
     EColorMapMode,
     EDrawMeshAs,
     EMeshPaletteMode,
+    ETitlePosition,
     GradientColorPalette,
     HeatmapLegend,
     linearColorMapLerp,
@@ -109,8 +110,13 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
             loadingAnimationBackground: appTheme.DarkIndigo + "BB",
         },
         yAxisOptions: {
+            isInnerAxis: true,
+            labelStyle: {
+                fontSize: 12,
+                color: appTheme.ForegroundColor,
+            },
             axisBorder: {
-                borderLeft: 1,
+                borderRight: 1,
                 color: appTheme.ForegroundColor + "77",
             },
             majorTickLineStyle: {
@@ -122,11 +128,6 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
                 color: appTheme.ForegroundColor,
                 tickSize: 3,
                 strokeThickness: 1,
-            },
-            axisTitle: "Height (meters)",
-            axisTitleStyle: {
-                fontSize: 13,
-                color: appTheme.ForegroundColor,
             },
         },
         colorMap: {
@@ -143,6 +144,14 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
             ],
         },
     });
+
+    heatmapLegend.innerSciChartSurface.sciChartSurface.title = "Height (m)";
+
+    heatmapLegend.innerSciChartSurface.sciChartSurface.titleStyle = {
+        fontSize: 12,
+        color: appTheme.ForegroundColor,
+        position: ETitlePosition.Bottom,
+    };
 
     return { sciChartSurface: heatmapLegend.innerSciChartSurface.sciChartSurface };
 };
@@ -176,10 +185,8 @@ async function getDataFromServer() {
     // See our source-code file tq3080_DSM_2M.js for format on this ASC Point cloud data
     // find the source online at github: https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src/server/Data/t
     const hostname = window.location.hostname;
-    const port = window.location.port; 
-     let host = hostname.includes("scichart.com") || hostname.includes("localhost")
-     ? ""
-    : "https://demo.scichart.com";
+    const port = window.location.port;
+    let host = hostname.includes("scichart.com") || hostname.includes("localhost") ? "" : "https://demo.scichart.com";
 
     if (hostname === "localhost" && port === "4200") {
         host = "https://demo.scichart.com";

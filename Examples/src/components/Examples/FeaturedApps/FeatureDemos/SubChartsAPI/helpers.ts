@@ -103,7 +103,7 @@ export const appendData = (
         case EDataSeriesType.Xy:
             const xySeries = dataSeries as XyDataSeries;
             xySeries.appendRange(xValues, GetRandomData(xValues, positive, xySeries.getNativeYValues().get(lastIndex)));
-            if (xySeries.count() > pointsOnChart) {
+            if (!dataSeries.fifoCapacity && xySeries.count() > pointsOnChart) {
                 xySeries.removeRange(0, pointsPerUpdate);
             }
             break;
@@ -114,7 +114,7 @@ export const appendData = (
                 GetRandomData(xValues, positive, xyySeries.getNativeYValues().get(lastIndex)),
                 GetRandomData(xValues, positive, xyySeries.getNativeY1Values().get(lastIndex))
             );
-            if (xyySeries.count() > pointsOnChart) {
+            if (!dataSeries.fifoCapacity && xyySeries.count() > pointsOnChart) {
                 xyySeries.removeRange(0, pointsPerUpdate);
             }
             break;
@@ -127,7 +127,7 @@ export const appendData = (
                     Math.abs(z / 5)
                 )
             );
-            if (xyzSeries.count() > pointsOnChart) {
+            if (!dataSeries.fifoCapacity && xyzSeries.count() > pointsOnChart) {
                 xyzSeries.removeRange(0, pointsPerUpdate);
             }
             break;
@@ -139,7 +139,7 @@ export const appendData = (
                 GetRandomData(xValues, positive, lastClose)
             );
             ohlcSeries.appendRange(xValues, openValues, highValues, lowValues, closeValues);
-            if (ohlcSeries.count() > pointsOnChart) {
+            if (!dataSeries.fifoCapacity && ohlcSeries.count() > pointsOnChart) {
                 ohlcSeries.removeRange(0, pointsPerUpdate);
             }
             break;
@@ -202,6 +202,7 @@ export const prePopulateData = (
 const dsOptions: IBaseDataSeriesOptions = {
     isSorted: true,
     containsNaN: false,
+    fifoCapacity: 6000,
 };
 
 export const createRenderableSeries = (
@@ -253,7 +254,7 @@ export const createRenderableSeries = (
         });
         return { dataSeries, rendSeries };
     } else if (seriesType === ESeriesType.StackedColumnSeries) {
-        const dataSeries: XyDataSeries = new XyDataSeries(wasmContext, dsOptions);
+        const dataSeries: XyDataSeries = new XyDataSeries(wasmContext, { ...dsOptions, fifoCapacity: undefined });
         const rendSeries: StackedColumnRenderableSeries = new StackedColumnRenderableSeries(wasmContext, {
             stroke: AUTO_COLOR,
             fill: AUTO_COLOR,
@@ -274,7 +275,7 @@ export const createRenderableSeries = (
         });
         return { dataSeries, rendSeries };
     } else if (seriesType === ESeriesType.StackedMountainSeries) {
-        const dataSeries: XyDataSeries = new XyDataSeries(wasmContext, dsOptions);
+        const dataSeries: XyDataSeries = new XyDataSeries(wasmContext, { ...dsOptions, fifoCapacity: undefined });
         const rendSeries: StackedMountainRenderableSeries = new StackedMountainRenderableSeries(wasmContext, {
             stroke: AUTO_COLOR,
             fill: AUTO_COLOR,

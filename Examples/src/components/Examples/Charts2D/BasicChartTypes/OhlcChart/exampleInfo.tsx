@@ -38,13 +38,11 @@ export const ohlcChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlOhlcChart,
     filepath: "Charts2D/BasicChartTypes/OhlcChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Easily create ${frameworkName} OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. `,
     metaKeywords: "ohlc, stock, trading, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

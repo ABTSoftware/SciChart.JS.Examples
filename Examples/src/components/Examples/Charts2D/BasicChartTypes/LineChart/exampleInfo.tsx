@@ -42,13 +42,11 @@ export const lineChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlLineChart,
     filepath: "Charts2D/BasicChartTypes/LineChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Discover how to create a high performance ${frameworkName} Line Chart with SciChart - the leading JavaScript library. Get your free demo now.`,
     metaKeywords: "line, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

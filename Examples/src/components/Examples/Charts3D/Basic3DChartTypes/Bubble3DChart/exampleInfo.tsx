@@ -39,12 +39,10 @@ export const bubble3DChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlBubble3DChart,
     filepath: "Charts3D/Basic3DChartTypes/Bubble3DChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Create detailed ${frameworkName} 3D Bubble Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.`,
     metaKeywords: "3d, bubble, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

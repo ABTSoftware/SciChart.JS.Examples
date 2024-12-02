@@ -40,12 +40,10 @@ export const overviewExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlOverview,
     filepath: "Charts2D/ZoomingAndPanning/OverviewModifier",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) => `Demonstrates how to zoom and pan with an Overview Chart`,
     metaKeywords: "drag, axis, scale, overview, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

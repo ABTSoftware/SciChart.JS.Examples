@@ -32,12 +32,10 @@ export const waterfallChartExampleInfo: TExampleInfo = {
     path: `interactive-waterfall-chart`,
     filepath: "FeaturedApps/ScientificCharts/InteractiveWaterfallChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: previewDescription,
     metaKeywords: "waterfall, chart, interactive, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

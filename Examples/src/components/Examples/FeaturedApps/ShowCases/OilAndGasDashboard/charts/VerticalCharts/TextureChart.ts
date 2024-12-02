@@ -9,13 +9,14 @@ import { RangeFillPaletteProvider, PaletteRange } from "./RangeFillPaletteProvid
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
 import { appTheme } from "../../theme";
 
-export const drawTextureChart = async () => {
-    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("texture-chart", {
+export const drawTextureChart = async (rootELement: string | HTMLDivElement) => {
+    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(rootELement, {
         ...getCommonChartConfigs("Texture"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
             padding: Thickness.fromNumber(0),
+            id: "textureChart",
         },
     });
 
@@ -75,7 +76,7 @@ export const drawTextureChart = async () => {
     legendModifier.sciChartLegend.getLegendHTML = generateTextureLegend;
     sciChartSurface.chartModifiers.add(legendModifier);
 
-    return sciChartSurface;
+    return { sciChartSurface };
 };
 
 const generateTextureLegend = (

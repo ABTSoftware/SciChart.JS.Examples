@@ -35,12 +35,10 @@ export const imageLabelsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlImageLabels,
     filepath: "Charts2D/AxisLabelCustomization/ImageLabels",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) => `Demonstrates how to use Images as Axis Labels`,
     metaKeywords: "image, axis, label, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

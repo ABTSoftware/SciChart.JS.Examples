@@ -38,13 +38,11 @@ export const dataPointSelectionExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlDataPointSelection,
     filepath: "Charts2D/TooltipsAndHittest/DatapointSelection",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates the DatapointSelectionModifier, which provides a UI to select one or many data points, and works with DataPointSelectionPaletteProvider to change the appearance of selected points`,
     metaKeywords: "datapoint, selection, api, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

@@ -4,7 +4,7 @@ import "./index.scss";
 import classes from "./index.scss";
 import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import { getTitle, useExampleRouteParams } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { getFrameworkContent, useExampleRouteParams } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { generateExamplesGallery } from "../../helpers/SciChartExamples";
 import NewGalleryItems from "../GalleryItems";
 import SubMenuItems from "../AppDeatilsRouters/SubMenuItems";
@@ -22,7 +22,7 @@ const ButtonTabs: FC = () => {
     const selectedFramework = useContext(FrameworkContext);
     const selectedItem = currentMenuItems.find((item) => item?.id === selectedItemId);
     const SubmenuTitle = selectedItem?.submenu?.map((item) => {
-        return { title: getTitle(item?.title, selectedFramework), path: item.path };
+        return { title: getFrameworkContent(item?.title, selectedFramework), path: item.path };
     });
     const allGalleryItems = generateExamplesGallery(framework);
 

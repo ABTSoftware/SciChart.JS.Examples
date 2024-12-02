@@ -39,12 +39,10 @@ export const digitalMountainChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlDigitalMountainChart,
     filepath: "Charts2D/BasicChartTypes/DigitalMountainChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Create ${frameworkName} Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.`,
     metaKeywords: "digital, mountain, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

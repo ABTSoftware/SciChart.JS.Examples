@@ -37,9 +37,6 @@ export const tenorCurvesExampleInfo: TExampleInfo = {
     pageTitle: ExampleStrings.titleTenorCurvesFeaturedApp,
     path: ExampleStrings.urlTenorCurvesFeaturedApp,
     filepath: "FeaturedApps/ScientificCharts/TenorCurves3D",
-    documentationLinks,
-    tips,
-    description,
     subtitle: Subtitle,
     metaDescription:
         "Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application. " +
@@ -48,4 +45,5 @@ export const tenorCurvesExampleInfo: TExampleInfo = {
     metaKeywords: "tenor, curves, 3d, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

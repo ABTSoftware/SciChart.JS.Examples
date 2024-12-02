@@ -72,7 +72,10 @@ export const getCommonChartModifiersConfig = (): TModifierDefinition[] => [
     },
     // TODO: Uncomment after v2.1 scichart.js release
     // { type: EChart2DModifierType.ZoomPan, options: { modifierGroup: "VerticalChartsGroup", excludedYAxisIds: [AxisCore.DEFAULT_AXIS_ID] } },
-    { type: EChart2DModifierType.ZoomPan, options: { modifierGroup: "VerticalChartsGroup" } },
+    {
+        type: EChart2DModifierType.ZoomPan,
+        options: { modifierGroup: "VerticalChartsGroup", xyDirection: EXyDirection.XDirection },
+    },
     {
         type: EChart2DModifierType.MouseWheelZoom,
         options: {

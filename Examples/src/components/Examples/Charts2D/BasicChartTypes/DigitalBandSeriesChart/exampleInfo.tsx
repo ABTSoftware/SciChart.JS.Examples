@@ -38,13 +38,11 @@ export const digitalBandSeriesChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlDigitalBandChart,
     filepath: "Charts2D/BasicChartTypes/DigitalBandSeriesChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Learn how to create a ${frameworkName} Digital Band Chart or High-Low Fill Chart with SciChart's easy-to-follow demos. Get your free trial today.`,
     metaKeywords: "digital, band, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

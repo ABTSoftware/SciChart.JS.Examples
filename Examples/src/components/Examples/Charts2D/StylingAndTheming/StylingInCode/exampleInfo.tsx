@@ -35,13 +35,11 @@ export const stylingInCodeExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlStylingInCode,
     filepath: "Charts2D/StylingAndTheming/StylingInCode",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to style a ${frameworkName} Chart entirely in code with SciChart.js themeing API`,
     metaKeywords: "styling, in, code, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

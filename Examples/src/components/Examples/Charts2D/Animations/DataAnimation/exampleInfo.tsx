@@ -34,12 +34,10 @@ export const dataAnimationExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlDataAnimation,
     filepath: "Charts2D/Animations/DataAnimation",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) => `Demonstrates how to run Dataset Animations with JavaScript.`,
     metaKeywords: "data, dataset, animation, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

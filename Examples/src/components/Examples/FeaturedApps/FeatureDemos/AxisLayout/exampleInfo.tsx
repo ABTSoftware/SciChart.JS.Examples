@@ -33,13 +33,11 @@ export const axisLayoutExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlAxisLayout,
     filepath: "FeaturedApps/FeatureDemos/AxisLayout",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts`,
     metaKeywords: "stacked, axis, layout, alignment, vertical, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

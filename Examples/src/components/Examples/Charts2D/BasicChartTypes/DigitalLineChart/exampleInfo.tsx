@@ -38,13 +38,11 @@ export const digitalLineChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlDigitalLineChart,
     filepath: "Charts2D/BasicChartTypes/DigitalLineChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Discover how to create a ${frameworkName} Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.`,
     metaKeywords: "digital, line, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

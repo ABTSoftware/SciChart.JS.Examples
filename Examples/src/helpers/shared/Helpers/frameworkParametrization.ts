@@ -19,8 +19,7 @@ const DEFAULT_FRAMEWORK = EPageFramework.React;
 
 export type TPathTemplate = string | ((framework: EPageFramework) => string);
 export type TFrameworkName = "JavaScript" | "Angular" | "React" | "Vue";
-export type TTitleTemplate = string | ((framework: TFrameworkName) => string);
-export type TDescriptionTemplate = string | ((framework: TFrameworkName) => string);
+export type TFrameworkTemplate = string | ((framework: TFrameworkName) => string);
 
 /**
  * Describes the layout of the page where the chart is displayed relative to the source code component
@@ -36,8 +35,9 @@ export enum EPageLayout {
     Default = "default",
 }
 
-export const getTitle = (title: TTitleTemplate, framework: EPageFramework) => {
-    return typeof title === "string" ? title : title(FRAMEWORK_NAME[framework]);
+export const getFrameworkContent = (content: TFrameworkTemplate, framework: EPageFramework) => {
+    if (!content) return "";
+    return typeof content === "string" ? content : content(FRAMEWORK_NAME[framework]);
 };
 
 const isValidFramework = (framework: string | EPageFramework) =>

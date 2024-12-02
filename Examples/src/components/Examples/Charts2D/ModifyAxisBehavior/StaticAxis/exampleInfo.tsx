@@ -37,11 +37,10 @@ export const staticAxisExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlStaticAxis,
     filepath: "Charts2D/ModifyAxisBehavior/StaticAxis",
     subtitle: Subtitle,
-    documentationLinks,
-    description,
     metaDescription: (frameworkName: string) =>
         `Demonstrates isStaticAxis on a ${frameworkName} Chart using SciChart.js.`,
     metaKeywords: "multiple, axis, static, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

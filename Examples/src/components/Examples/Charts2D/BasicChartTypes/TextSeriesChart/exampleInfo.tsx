@@ -36,13 +36,11 @@ export const textChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlTextChart,
     filepath: "Charts2D/BasicChartTypes/TextSeriesChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Create ${frameworkName} Text Chart with high performance SciChart.js.  `,
     metaKeywords: "text, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

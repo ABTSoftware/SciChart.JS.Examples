@@ -41,13 +41,11 @@ export const splineLineChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlSplineLineChart,
     filepath: "Charts2D/BasicChartTypes/SplineLineChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Discover how to create a ${frameworkName} Spline Line Chart with SciChart. Demo includes algorithm for smoother lines. Get your free trial now.`,
     metaKeywords: "spline, smoothed, line, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

@@ -37,13 +37,11 @@ export const load500By500ExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlLoad500By500,
     filepath: "FeaturedApps/PerformanceDemos/Load500By500",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `This demo showcases the incredible performance of our ${frameworkName} Chart by loading 500 series with 500 points (250k points) instantly!`,
     metaKeywords: "performance, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

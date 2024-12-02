@@ -43,13 +43,11 @@ export const bubbleChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlBubbleChart,
     filepath: "Charts2D/BasicChartTypes/BubbleChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Create a high performance ${frameworkName} Bubble Chart with Sci-Chart. Demo shows how to draw point-markers at X,Y locations. Get your free demo now.`,
     metaKeywords: "bubble, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

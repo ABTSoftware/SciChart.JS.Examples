@@ -7,7 +7,7 @@ import MenuListItemText from "../../helpers/shared/MenuListItemText/MenuListItem
 import classes from "./ListItemsBlock.module.scss";
 import ListItemCollapseArrowIcon from "./ListItemCollapseArrowIcon";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import { getTitle, useExampleRouteParams } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { getFrameworkContent, useExampleRouteParams } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TProps = {
     onExpandClick: (id: string) => void;
@@ -111,9 +111,9 @@ const ListItemsBlock: FC<TProps> = (props) => {
                                                     isItemActive(subEl.id) ? classes.ActiveLink : ''
                                                 }`}
                                                 href={`${selectedFramework}/${subEl.path}`}
-                                                title={getTitle(subEl.title, selectedFramework)}
+                                                title={getFrameworkContent(subEl.title, selectedFramework)}
                                             >
-                                                {getTitle(subEl.title, selectedFramework)}
+                                                {getFrameworkContent(subEl.title, selectedFramework)}
                                             </a>
                                         </div>
                                     ))}

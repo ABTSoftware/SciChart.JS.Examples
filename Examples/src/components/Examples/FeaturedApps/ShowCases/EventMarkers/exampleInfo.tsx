@@ -38,13 +38,11 @@ export const eventMarkersExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlEventMarkers,
     filepath: "FeaturedApps/ShowCases/EventMarkers",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers`,
     metaKeywords: "events, drag, edit, datalabels, , layout, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

@@ -36,13 +36,11 @@ export const chartFromJSONExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlChartFromJSON,
     filepath: "BuilderApi/ChartFromJSON",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to create a ${frameworkName} Chart from JSON using the builder API. `,
     metaKeywords: "json, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

@@ -36,12 +36,10 @@ export const perPointColoringExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlPaletteProvider,
     filepath: "Charts2D/StylingAndTheming/PerPointColoring",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API`,
     metaKeywords: "palette, provider, api, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

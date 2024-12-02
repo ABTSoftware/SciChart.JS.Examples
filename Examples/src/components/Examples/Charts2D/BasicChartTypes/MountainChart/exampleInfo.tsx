@@ -38,12 +38,10 @@ export const mountainChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlMountainChart,
     filepath: "Charts2D/BasicChartTypes/MountainChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Create ${frameworkName} Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.`,
     metaKeywords: "mountain, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

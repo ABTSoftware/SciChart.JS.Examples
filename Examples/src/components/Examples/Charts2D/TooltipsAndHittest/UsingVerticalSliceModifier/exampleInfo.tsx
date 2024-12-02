@@ -36,13 +36,11 @@ export const usingVerticalSliceModifierExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlVerticalSliceModifier,
     filepath: "Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates adding Tooltips at certain positions to a ${frameworkName} Chart with SciChart.js VerticalSliceModifier`,
     metaKeywords: "tooltips, modifier, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

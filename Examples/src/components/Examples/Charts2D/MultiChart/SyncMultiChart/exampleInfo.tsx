@@ -40,12 +40,10 @@ export const syncMultiChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlSyncMultiChart,
     filepath: "Charts2D/MultiChart/SyncMultiChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) => `Synchronise multiple dynamic charts and overview`,
     metaKeywords: "axis, synchronise, multiple, charts, overview, zoom, pan, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

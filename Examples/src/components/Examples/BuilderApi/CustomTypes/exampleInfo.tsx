@@ -38,14 +38,12 @@ export const customTypesExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlCustomTypes,
     filepath: "BuilderApi/CustomTypes",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription:
         "Demonstrates how to make a custom type such as a PaletteProvider available for use with the Builder Api." +
         "You can call methods within the builder api to get references to the objects being built, so you can update them later.",
     metaKeywords: "custom, chart, javascript, builder, paletteprovider",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

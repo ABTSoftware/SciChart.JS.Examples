@@ -38,12 +38,10 @@ export const dashedLineStylingExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlDashedLineStyling,
     filepath: "Charts2D/StylingAndTheming/DashedLineStyling",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Demonstrates dashed line series in ${frameworkName} Charts with SciChart.js`,
     metaKeywords: "dash, dashed, dotted, line, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

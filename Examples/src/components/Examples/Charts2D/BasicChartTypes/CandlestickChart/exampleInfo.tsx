@@ -43,13 +43,11 @@ export const candlestickChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlCandlestickChart,
     filepath: "Charts2D/BasicChartTypes/CandlestickChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Discover how to create a ${frameworkName} Candlestick Chart or Stock Chart using SciChart.js. For high Performance JavaScript Charts, get your free demo now.`,
     metaKeywords: "candlestick, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

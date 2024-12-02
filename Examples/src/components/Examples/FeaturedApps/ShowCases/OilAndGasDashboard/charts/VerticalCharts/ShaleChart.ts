@@ -9,12 +9,13 @@ import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } f
 import { StackedMountainCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainCollection";
 import { appTheme } from "../../theme";
 
-export const drawShaleChart = async () => {
-    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("shale-chart", {
+export const drawShaleChart = async (rootELement: string | HTMLDivElement) => {
+    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(rootELement, {
         ...getCommonChartConfigs("Shale"),
         surface: {
             padding: Thickness.fromNumber(0),
             theme: { type: appTheme.SciChartJsTheme.type, sciChartBackground: "Transparent" },
+            id: "shaleChart",
         },
         modifiers: getCommonChartModifiersConfig(),
     });
@@ -98,7 +99,7 @@ export const drawShaleChart = async () => {
     legendModifier.sciChartLegend.getLegendHTML = generateShaleLegend;
     sciChartSurface.chartModifiers.add(legendModifier);
 
-    return sciChartSurface;
+    return { sciChartSurface };
 };
 
 const generateShaleLegend = (

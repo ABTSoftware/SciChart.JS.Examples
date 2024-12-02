@@ -39,13 +39,11 @@ export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlRolloverModifier,
     filepath: "Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates adding Tooltips on mouse-move to a ${frameworkName} Chart with SciChart.js RolloverModifier`,
     metaKeywords: "rollover, modifier, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

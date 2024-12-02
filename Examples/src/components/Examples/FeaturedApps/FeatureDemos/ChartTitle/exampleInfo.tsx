@@ -28,14 +28,12 @@ export const chartTitleExampleInfo: TExampleInfo = {
     pageTitle: ExampleStrings.titleChartTitle,
     path: ExampleStrings.urlChartTitle,
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     filepath: "FeaturedApps/FeatureDemos/ChartTitle",
     metaDescription: (frameworkName: string) =>
         `Demonstrates chart title with different position and alignment options`,
     metaKeywords: "title, text, alignment, multiline, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

@@ -39,12 +39,10 @@ export const donutChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlDonutChart,
     filepath: "Charts2D/BasicChartTypes/DonutChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Create ${frameworkName} Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.`,
     metaKeywords: "donut, chart, javascript, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

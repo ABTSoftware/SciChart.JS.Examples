@@ -35,11 +35,9 @@ export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlLoadOneMillionPoints,
     filepath: "FeaturedApps/PerformanceDemos/Load1MillionPoints",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.`,
     metaKeywords: "performance, loading, million, points, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

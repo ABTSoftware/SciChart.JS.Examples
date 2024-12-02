@@ -42,12 +42,10 @@ export const realtimeSurfaceMesh3DChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlRealtimeSurfaceMesh3D,
     filepath: "Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Design a ${frameworkName} 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.`,
     metaKeywords: "3d, surface, mesh, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

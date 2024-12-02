@@ -40,13 +40,11 @@ export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlTradeMarkers,
     filepath: "Charts2D/ChartAnnotations/TradeMarkers",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to place Buy/Sell arrow markers on a ${frameworkName} Stock Chart using SciChart.js - Annotations API`,
     metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

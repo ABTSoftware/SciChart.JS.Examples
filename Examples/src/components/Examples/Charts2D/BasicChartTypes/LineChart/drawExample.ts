@@ -38,7 +38,7 @@ export const getChartsInitializationAPI = () => {
             theme: appTheme.SciChartJsTheme,
             padding: new Thickness(5, 5, 5, 5),
             title,
-            disableAspect: false,
+            disableAspect: true,
             titleStyle: {
                 placeWithinChart: true,
                 color: appTheme.ForegroundColor + "C4",
@@ -46,11 +46,16 @@ export const getChartsInitializationAPI = () => {
             },
         });
 
-        // Create the X,Y Axis
-        sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { maxAutoTicks: 5 }));
-        sciChartSurface.yAxes.add(
-            new NumericAxis(wasmContext, { maxAutoTicks: 5, growBy: new NumberRange(0.05, 0.25) })
-        );
+        sciChartSurface.background = "transparent";
+
+        const xAxis = new NumericAxis(wasmContext, { maxAutoTicks: 5 });
+        sciChartSurface.xAxes.add(xAxis);
+
+        const yAxis = new NumericAxis(wasmContext, { maxAutoTicks: 5, growBy: new NumberRange(0.05, 0.25) });
+        sciChartSurface.yAxes.add(yAxis);
+
+        xAxis.isVisible = false;
+        yAxis.isVisible = false;
 
         if (isVertical) {
             // We also want our padding on the xaxis at the start for vertical

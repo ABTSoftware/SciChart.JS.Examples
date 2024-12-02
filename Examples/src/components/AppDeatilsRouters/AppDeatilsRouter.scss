@@ -4,7 +4,7 @@ $drawerWidthDesktop: min(450px, 30vw);
 
 .frameworksection {
     background-color: transparent;
-    margin-top: -4.2rem
+    margin-top: -4.2rem;
 }
 
 .container {
@@ -130,11 +130,11 @@ $drawerWidthDesktop: min(450px, 30vw);
     }
 }
 
-.contentwrapper .chartdescription{
+.contentwrapper .chartdescription {
     padding: 0 0.25rem;
 }
 
-.contentwrapper .dynamicFlexWrapper{
+.contentwrapper .dynamicFlexWrapper {
     display: flex;
     gap: 16px;
     flex-direction: column;
@@ -546,7 +546,6 @@ $drawerWidthDesktop: min(450px, 30vw);
 }
 
 .headingtxt {
-    font-family: "Arial";
     font-weight: 600;
     font-size: 32px;
     line-height: 48px;
@@ -579,10 +578,6 @@ $drawerWidthDesktop: min(450px, 30vw);
 
     .btnprimary {
         background: linear-gradient(90deg, #1aa2d5 15.5%, #35bfb7 100%);
-
-        @include sm {
-            display: none;
-        }
     }
 
     .btn:hover {

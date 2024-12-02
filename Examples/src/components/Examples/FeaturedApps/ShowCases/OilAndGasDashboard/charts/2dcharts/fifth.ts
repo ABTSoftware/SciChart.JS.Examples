@@ -9,8 +9,10 @@ import { getColor, getDataDiagonal } from "../utils";
 import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import { appTheme } from "../../theme";
 
-export default async function init2dFifthChart(id: string) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme: appTheme.SciChartJsTheme });
+export default async function init2dFifthChart(rootELement: string | HTMLDivElement) {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootELement, {
+        theme: appTheme.SciChartJsTheme,
+    });
     // Create an xAxis, yAxis
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, { visibleRange: new NumberRange(-0.5, 5.5), isVisible: false })
@@ -72,5 +74,5 @@ export default async function init2dFifthChart(id: string) {
 
     sciChartSurface.zoomExtents();
 
-    return sciChartSurface;
+    return { sciChartSurface };
 }

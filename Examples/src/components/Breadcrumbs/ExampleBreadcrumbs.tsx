@@ -5,7 +5,7 @@ import { getExampleCategoryPath, MENU_ITEMS_HIERARCHY } from "../AppRouter/examp
 import { BreadcrumbsWithMenu, TBreadcrumbItem, TBreadcrumbPath } from "./GenericBreadcrumbs";
 import { appTheme } from "../Examples/theme";
 import { TExamplePage } from "../AppRouter/examplePages";
-import { useExampleRouteParams, getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { useExampleRouteParams, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 // TODO TMenuItem is not consistent with tree-like format and doesn't really fit this structure, thus special handling of the leaf nodes is required
 
@@ -23,29 +23,38 @@ export const ExampleBreadcrumbs = () => {
             onChange={onBreadcrumbPathChange}
             breadcrumbPropsMapper={(breadcrumb: TBreadcrumbItem) => {
                 let link: string;
+                let title: string;
                 let labelContent: ReactNode;
                 let menuItems: TBreadcrumbItem[] = undefined;
 
                 if (!breadcrumb.submenu) {
                     // leaf nodes (specific examples handling)
                     link = (breadcrumb as TExamplePage).path;
-                    labelContent = getTitle(breadcrumb.title, selectedFramework);
+                    title = getFrameworkContent(breadcrumb.title, selectedFramework);
+                    labelContent = getFrameworkContent(breadcrumb.title, selectedFramework);
                 } else if (breadcrumb.id === "home") {
                     // Home menu item handling
                     link = `/${selectedFramework}`;
+                    title = "Home Page Gallery";
                     labelContent = <HomeIcon />;
                     menuItems = [];
                 } else {
                     // inner menu category handling
                     link = `/${selectedFramework}#${breadcrumb.id}`;
+                    title = breadcrumb.title;
                     labelContent = breadcrumb.title;
                 }
 
                 const label = (
                     <Button
                         sx={{
+                            display: "inline-block",
                             padding: 0,
                             minWidth: "unset",
+                            textWrap: "nowrap",
+                            overflow: "hidden",
+                            maxWidth: { xs: "250px", md: "unset", lg: "unset" },
+                            textOverflow: { xs: "ellipsis", md: "unset", lg: "unset" },
                             textTransform: "unset",
                             color: appTheme.VividBlue,
 
@@ -56,23 +65,22 @@ export const ExampleBreadcrumbs = () => {
                     </Button>
                 );
 
-                return { link, label, menuItems };
+                return { link, label, title, menuItems };
             }}
             breadcrumbMenuItemsMapper={(breadcrumb: TBreadcrumbItem) => {
                 let link: string;
+                let title: string;
                 let labelContent: ReactNode;
 
                 if (!breadcrumb.submenu) {
                     // leaf nodes (specific examples handling)
                     link = (breadcrumb as TExamplePage).path;
-                    labelContent = getTitle(breadcrumb.title, selectedFramework);
-                } else if (breadcrumb.id === "home") {
-                    // Home menu item handling
-                    link = `/${selectedFramework}`;
-                    labelContent = <HomeIcon />;
+                    title = getFrameworkContent(breadcrumb.title, selectedFramework);
+                    labelContent = getFrameworkContent(breadcrumb.title, selectedFramework);
                 } else {
                     // inner menu category handling
                     link = `/${selectedFramework}#${breadcrumb.id}`;
+                    title = breadcrumb.title;
                     labelContent = breadcrumb.title;
                 }
 
@@ -93,7 +101,7 @@ export const ExampleBreadcrumbs = () => {
                     </Typography>
                 );
 
-                return { link, label };
+                return { link, label, title };
             }}
         />
     );

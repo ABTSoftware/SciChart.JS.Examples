@@ -15,7 +15,7 @@ export default function ChartFromJSON() {
     const Chart = React.useMemo(
         () =>
             React.memo((props: { chartConfig: string }) => {
-                console.log("Rebuild");
+                //console.log("Rebuild");
                 return (
                     <SciChartReact
                         initChart={(rootElementId: string | HTMLDivElement) =>

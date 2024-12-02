@@ -38,9 +38,6 @@ export const audioAnalyzerExampleInfo: TExampleInfo = {
     pageTitle: ExampleStrings.titleAudioAnalyzerFeaturedApp,
     path: ExampleStrings.urlAudioAnalyzerFeaturedApp,
     filepath: "FeaturedApps/ScientificCharts/AudioAnalyzer",
-    documentationLinks,
-    tips,
-    description,
     subtitle: Subtitle,
     metaDescription:
         "Demonstrating the capability of SciChart.js to create a JavaScript Audio Analyzer and " +
@@ -53,4 +50,5 @@ export const audioAnalyzerExampleInfo: TExampleInfo = {
         hardReloadOnChange: false,
         view: "browser",
     },
+    documentationLinks,
 };

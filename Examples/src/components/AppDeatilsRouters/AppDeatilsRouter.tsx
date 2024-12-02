@@ -1,19 +1,22 @@
-import { useState, FC, useContext, useMemo, useEffect } from "react";
-import classes from "./AppDeatilsRouter.scss";
-import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import ExamplesRoot from "../Examples/ExampleRootDetails";
-import { TExamplePage } from "../AppRouter/examplePages";
-import { GalleryItem } from "../../helpers/types/types";
-import { generateSearchItems, TSearchItem } from "../Search/searchItems";
-import DetailsCom from "./DetailsComp";
-import { EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
-import FileExplorer from "../FileExplorer/FileExplorer";
 import { Editor } from "@monaco-editor/react";
+import { FC, useContext, useEffect, useMemo, useState } from "react";
+import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import {
+    EPageFramework,
+    FRAMEWORK_NAME,
+    getFrameworkContent,
+} from "../../helpers/shared/Helpers/frameworkParametrization";
+import { GalleryItem } from "../../helpers/types/types";
+import { TExamplePage } from "../AppRouter/examplePages";
+import { ALL_MENU_ITEMS, MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
 import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
 import DrawerContent from "../DrawerContent/DrawerContent";
-import { ALL_MENU_ITEMS, MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
+import ExamplesRoot from "../Examples/ExampleRootDetails";
+import FileExplorer from "../FileExplorer/FileExplorer";
 import GalleryItems from "../GalleryItems";
+import { generateSearchItems, TSearchItem } from "../Search/searchItems";
+import classes from "./AppDeatilsRouter.scss";
+import MarkdownContent from "./MarkdownContent";
 import { EPageLayout } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TProps = {
@@ -279,7 +282,10 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                     }`}
                                     title={
                                         isFrameworkVariantAvailable
-                                            ? `Edit ${getTitle(currentExample.title, selectedFramework)} in StackBlitz`
+                                            ? `Edit ${getFrameworkContent(
+                                                  currentExample.title,
+                                                  selectedFramework
+                                              )} in StackBlitz`
                                             : `Sorry, we have not got ${FRAMEWORK_NAME[selectedFramework]} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
                                     }
                                     target="_blank"
@@ -292,7 +298,6 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                     >
                                         <path fill="#ffffff" d="M10.797 14.182H3.635L16.728 0l-3.525 9.818h7.162L7.272 24l3.524-9.818Z"/>
                                     </svg>
-                                    &nbsp;Edit
                                 </a>
                                 <a
                                     rel="nofollow external"
@@ -303,7 +308,10 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                     }`}
                                     title={
                                         isFrameworkVariantAvailable
-                                            ? `Edit ${getTitle(currentExample.title, selectedFramework)} in CodeSandbox`
+                                            ? `Edit ${getFrameworkContent(
+                                                  currentExample.title,
+                                                  selectedFramework
+                                              )} in CodeSandbox`
                                             : `Sorry, we have not got ${FRAMEWORK_NAME[selectedFramework]} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
                                     }
                                     target="_blank"
@@ -319,7 +327,6 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                             d="M22.5 17.95 22.41 6 11.955 0 1.5 6v12l10.455 6L22.5 17.95zm-2.173-4.711L16.982 15.1v3.514L13.01 20.91v-8.272l7.317-4.157v4.758zm-9.422 7.671-3.972-2.296v-3.516l-3.345-1.86V8.481l7.317 4.157v8.272zM4.634 6.601 4.633 6.6l3.913-2.255 3.43 1.968 3.41-1.945 3.871 2.197-7.32 4.18-7.303-4.144z"
                                         ></path>
                                     </svg>
-                                    &nbsp;Edit
                                 </a>
                                 <a
                                     target="_blank"
@@ -378,6 +385,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                             {getTitle(currentExample.description, selectedFramework)}
                         </p>
 
+                        <MarkdownContent selectedFramework={selectedFramework} currentExample={currentExample} />
                     </div>
                     <GalleryItems 
                         examples={seeAlso} 

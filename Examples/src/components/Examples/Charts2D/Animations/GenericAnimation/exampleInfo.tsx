@@ -34,12 +34,10 @@ export const genericAnimationExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlGenericAnimation,
     filepath: "Charts2D/Animations/GenericAnimation",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) => `Demonstrates how to run Generic Animation with JavaScript.`,
     metaKeywords: "generic, animation, javascript",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

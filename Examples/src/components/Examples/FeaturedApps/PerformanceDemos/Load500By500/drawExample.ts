@@ -13,6 +13,7 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
     MouseWheelZoomModifier,
+    EAxisAlignment,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -26,7 +27,8 @@ const POINTS = 500;
 
 export const drawExample = async (
     rootElement: string | HTMLDivElement,
-    updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void
+    updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void,
+    useVerticalChart = false
 ) => {
     // Create the SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
@@ -36,6 +38,9 @@ export const drawExample = async (
     // Create an X,Y Axis
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
+            isVisible: false,
+            axisAlignment: useVerticalChart ? EAxisAlignment.Left : EAxisAlignment.Bottom,
+            flippedCoordinates: true,
             visibleRange: new NumberRange(0, POINTS),
             autoRange: EAutoRange.Never,
             axisTitle: "X Axis",
@@ -43,33 +48,37 @@ export const drawExample = async (
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
+            isVisible: false,
+            axisAlignment: useVerticalChart ? EAxisAlignment.Bottom : EAxisAlignment.Left,
             visibleRange: new NumberRange(-250, 250),
             autoRange: EAutoRange.Never,
             axisTitle: "Y Axis",
         })
     );
 
-    const watermarkAnnotation = (text: string, offset: number = 0) => {
-        return new TextAnnotation({
-            text,
-            fontSize: 42,
-            fontWeight: "Bold",
-            textColor: appTheme.ForegroundColor,
-            x1: 0.5,
-            y1: 0.5,
-            yCoordShift: offset,
-            opacity: 0.43,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-            verticalAnchorPoint: EVerticalAnchorPoint.Center,
-            xCoordinateMode: ECoordinateMode.Relative,
-            yCoordinateMode: ECoordinateMode.Relative,
-            annotationLayer: EAnnotationLayer.AboveChart,
-        });
-    };
-    // add a title annotation
-    sciChartSurface.annotations.add(watermarkAnnotation("SciChart.js Performance Demo", -52));
-    sciChartSurface.annotations.add(watermarkAnnotation(`${SERIES} Series x ${POINTS} Points per series`, 0));
-    sciChartSurface.annotations.add(watermarkAnnotation(`(${(SERIES * POINTS) / 1000}k DataPoints)`, 52));
+    if (!useVerticalChart) {
+        const watermarkAnnotation = (text: string, offset: number = 0) => {
+            return new TextAnnotation({
+                text,
+                fontSize: 42,
+                fontWeight: "Bold",
+                textColor: appTheme.ForegroundColor,
+                x1: 0.5,
+                y1: 0.5,
+                yCoordShift: offset,
+                opacity: 0.43,
+                horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+                verticalAnchorPoint: EVerticalAnchorPoint.Center,
+                xCoordinateMode: ECoordinateMode.Relative,
+                yCoordinateMode: ECoordinateMode.Relative,
+                annotationLayer: EAnnotationLayer.AboveChart,
+            });
+        };
+        // add a title annotation
+        sciChartSurface.annotations.add(watermarkAnnotation("SciChart.js Performance Demo", -52));
+        sciChartSurface.annotations.add(watermarkAnnotation(`${SERIES} Series x ${POINTS} Points per series`, 0));
+        sciChartSurface.annotations.add(watermarkAnnotation(`(${(SERIES * POINTS) / 1000}k DataPoints)`, 52));
+    }
 
     // // add a title annotation
     // // Add title annotation
@@ -137,7 +146,7 @@ export const drawExample = async (
 
         // Add the first time span: Generating 500 series x 500 points
         newTimeSpans.push({
-            title: "Generate 500x500 Data Points",
+            title: "Generate Data Points",
             durationMs: Date.now() - generateTimestamp,
         });
 
@@ -149,7 +158,7 @@ export const drawExample = async (
 
         // Add the second time span: Generation of data point
         newTimeSpans.push({
-            title: "Append 500x500 Data Points",
+            title: "Append Data Points",
             durationMs: Date.now() - appendTimestamp,
         });
 
@@ -182,14 +191,18 @@ export const drawExample = async (
         sciChartSurface.rendered.subscribe(handler);
     };
 
-    let autoStartTimerId: NodeJS.Timeout;
+    let timerId: NodeJS.Timeout;
     const startUpdate = () => {
-        autoStartTimerId = setTimeout(loadPoints, 0);
+        timerId = setInterval(loadPoints, 200);
     };
 
     const stopUpdate = () => {
-        clearTimeout(autoStartTimerId);
+        clearInterval(timerId);
     };
 
-    return { wasmContext, sciChartSurface, controls: { startUpdate, stopUpdate } };
+    const reloadOnce = () => {
+        loadPoints();
+    };
+
+    return { wasmContext, sciChartSurface, controls: { startUpdate, stopUpdate, reloadOnce } };
 };

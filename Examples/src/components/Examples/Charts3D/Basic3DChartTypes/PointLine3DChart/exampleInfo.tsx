@@ -39,12 +39,10 @@ export const pointLine3DChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlPointLine3DChart,
     filepath: "Charts3D/Basic3DChartTypes/PointLine3DChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Create detailed ${frameworkName} 3D Line Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.`,
     metaKeywords: "3d, bubble, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

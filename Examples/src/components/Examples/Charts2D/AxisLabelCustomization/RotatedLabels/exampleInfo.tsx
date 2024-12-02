@@ -37,12 +37,10 @@ export const rotatedLabelsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlRotatedLabels,
     filepath: "Charts2D/AxisLabelCustomization/RotatedLabels",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) => `Rotate to create vertical axis labels and fit more on an axis`,
     metaKeywords: "Axis, label, rotated, vertical, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

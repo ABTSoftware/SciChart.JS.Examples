@@ -40,12 +40,10 @@ export const contourChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlContourChart,
     filepath: "Charts2D/BasicChartTypes/ContoursChart",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Design a highly dynamic ${frameworkName} Heatmap Chart With Contours with SciChart's feature-rich JavaScript Chart Library. Get your free demo today.`,
     metaKeywords: "contour, contours, heatmap, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

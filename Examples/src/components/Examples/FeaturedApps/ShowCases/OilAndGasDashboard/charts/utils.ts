@@ -50,7 +50,7 @@ export function getRandomSinewave(
 
 export function generateModifiers(
     sciChartSurface: SciChartSurface,
-    id: string,
+    legendPlacementDiv: string | HTMLDivElement,
     getLegendItemHTML?: (
         orientation: ELegendOrientation,
         showCheckboxes: boolean,
@@ -63,7 +63,7 @@ export function generateModifiers(
         new ZoomPanModifier({ modifierGroup: "first", excludedYAxisIds: [AxisCore.DEFAULT_AXIS_ID] })
     );
     // sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    const legendModifier = new LegendModifier({ showCheckboxes: true, placementDivId: `${id}-legend` });
+    const legendModifier = new LegendModifier({ showCheckboxes: true, placementDivId: legendPlacementDiv });
     if (getLegendItemHTML) {
         legendModifier.sciChartLegend.getLegendItemHTML = getLegendItemHTML;
     }

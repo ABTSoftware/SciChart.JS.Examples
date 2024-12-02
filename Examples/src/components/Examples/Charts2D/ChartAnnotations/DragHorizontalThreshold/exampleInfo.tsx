@@ -34,13 +34,11 @@ export const dragHorizontalThresholdExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlDragHorizontalThreshold,
     filepath: "Charts2D/ChartAnnotations/DragHorizontalThreshold",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to add draggable thresholds which change the series color in the chart in SciChart.js`,
     metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

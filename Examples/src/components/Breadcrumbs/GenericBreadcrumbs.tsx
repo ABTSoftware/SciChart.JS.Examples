@@ -1,6 +1,16 @@
 import { useContext, useState, MouseEvent, ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { MenuItem, Breadcrumbs, ClickAwayListener, Grow, MenuList, Paper, Popper } from "@mui/material";
+import {
+    MenuItem,
+    Breadcrumbs,
+    ClickAwayListener,
+    Grow,
+    MenuList,
+    Paper,
+    Popper,
+    useMediaQuery,
+    Theme,
+} from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import React from "react";
 
@@ -12,7 +22,7 @@ export type TBreadcrumbItem = {
 
 export type TBreadcrumbPath = (number | string)[];
 
-export type TBreadcrumbProps = { link: string; label: ReactNode; menuItems?: TBreadcrumbItem[] };
+export type TBreadcrumbProps = { link: string; label: ReactNode; title: string; menuItems?: TBreadcrumbItem[] };
 
 export function BreadcrumbsWithMenu(props: {
     path: TBreadcrumbPath;
@@ -77,8 +87,9 @@ export function BreadcrumbsWithMenu(props: {
 
     const defaultMapper = (breadcrumbItem: TBreadcrumbItem): TBreadcrumbProps => {
         const label = breadcrumbItem?.title;
+        const title = breadcrumbItem?.title;
         const link = breadcrumbItem?.id;
-        return { label, link, menuItems: undefined };
+        return { label, link, title, menuItems: undefined };
     };
 
     const breadcrumbList = path.reduce(
@@ -87,11 +98,12 @@ export function BreadcrumbsWithMenu(props: {
             // TODO maybe it would be simpler to find by index
             const itemEntry = sameLevelEntries?.find((menuItem) => menuItem.id === pathSegment);
 
-            const { label, link, menuItems } = breadcrumbPropsMapper?.(itemEntry) ?? defaultMapper(itemEntry);
+            const { label, link, title, menuItems } = breadcrumbPropsMapper?.(itemEntry) ?? defaultMapper(itemEntry);
 
             acc.nodes.push({
                 label,
                 link,
+                title,
                 sameLevelEntries,
                 entry: itemEntry,
                 menuItems: menuItems ?? sameLevelEntries,
@@ -121,9 +133,15 @@ export function BreadcrumbsWithMenu(props: {
         );
     });
 
+    const isXs = useMediaQuery((theme: Theme) => theme.breakpoints.down("md")); // Mobile view
+
     return (
         <>
-            <Breadcrumbs aria-label="breadcrumbs" maxItems={2} separator={<NavigateNextIcon fontSize="small" />}>
+            <Breadcrumbs
+                aria-label="breadcrumbs"
+                maxItems={isXs ? 2 : 8}
+                separator={<NavigateNextIcon fontSize="small" />}
+            >
                 {breadcrumbElements}
             </Breadcrumbs>
 
@@ -157,9 +175,18 @@ export function BreadcrumbsWithMenu(props: {
                                             defaultMapper(item);
 
                                         return (
-                                            <MenuItem key={item.id} onClick={handleClose}>
+                                            <MenuItem key={item.id} onClick={handleClose} sx={{ padding: "0px" }}>
                                                 {
-                                                    <Link color="primary" style={{ textDecoration: "none" }} to={link}>
+                                                    <Link
+                                                        color="primary"
+                                                        style={{
+                                                            textDecoration: "none",
+                                                            width: "100%",
+                                                            height: "100%",
+                                                            padding: "6px 16px",
+                                                        }}
+                                                        to={link}
+                                                    >
                                                         {label}
                                                     </Link>
                                                 }

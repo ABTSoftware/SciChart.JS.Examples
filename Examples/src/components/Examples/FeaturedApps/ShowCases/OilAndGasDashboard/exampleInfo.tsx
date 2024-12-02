@@ -29,12 +29,10 @@ export const oilAndGasExplorerDashboard: TExampleInfo = {
     path: ExampleStrings.urlOilAndGasExplorerDashboard,
     filepath: "FeaturedApps/ShowCases/OilAndGasDashboard",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) => `Demonstrates how to create Oil and Gas Dashboard`,
     metaKeywords: "Todo keywords",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

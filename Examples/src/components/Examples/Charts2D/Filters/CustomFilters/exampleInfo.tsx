@@ -40,13 +40,11 @@ export const customFiltersExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlCustomFilters,
     filepath: "Charts2D/Filters/CustomFilters",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates`,
     metaKeywords: "real-time, filter, transform, updating, aggregation, custom, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

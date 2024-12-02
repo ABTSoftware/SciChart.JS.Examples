@@ -34,12 +34,10 @@ export const createACustomThemeExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlCustomTheme,
     filepath: "Charts2D/StylingAndTheming/CreateACustomTheme",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to create a Custom Theme for a SciChart.js ${frameworkName} Chart using our Theming API`,
     metaKeywords: "theming, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

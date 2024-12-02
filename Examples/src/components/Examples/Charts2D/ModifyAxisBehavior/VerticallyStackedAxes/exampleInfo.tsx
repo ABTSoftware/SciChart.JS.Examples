@@ -36,12 +36,10 @@ export const verticallyStackedAxesExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlVerticallyStackedAxes,
     filepath: "Charts2D/ModifyAxisBehavior/VerticallyStackedAxes",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Demonstrates Vertically Stacked Axes on a ${frameworkName} Chart using SciChart.js, allowing data to overlap`,
     metaKeywords: "multiple, stacked, overlap, axis, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };

@@ -38,9 +38,6 @@ export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
     filepath: "Charts2D/CreateStockCharts/RealtimeTickingStockCharts",
     subtitle: Subtitle,
     documentationLinks,
-    tips,
-    description,
-    previewDescription,
     metaDescription: (frameworkName: string) =>
         `Create a ${frameworkName} Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.`,
     metaKeywords: "real-time, ticking, updating, stock, chart, javascript, webgl, canvas",

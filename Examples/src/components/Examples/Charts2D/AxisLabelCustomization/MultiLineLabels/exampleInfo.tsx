@@ -38,13 +38,11 @@ export const multiLineLabelsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlMultiLineLabels,
     filepath: "Charts2D/AxisLabelCustomization/MultiLineLabels",
     subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
+
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider`,
     metaKeywords: "text, axis, label, wrap, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
+    documentationLinks,
 };
