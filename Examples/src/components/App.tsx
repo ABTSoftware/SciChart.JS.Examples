@@ -59,6 +59,7 @@ export default function App() {
     const [openedMenuItems, setOpenedMenuItems] = React.useState<Record<string, boolean>>(initialOpenedMenuItems);
 
     const [isDrawerOpened, setIsDrawerOpened] = React.useState(false);
+    const [mostVisibleCategory, setMostVisibleCategory] = React.useState<string | null>(null);
 
     const currentExampleId = currentExample?.id;
     // SeeAlso is now optional on exampleInfo. Return this if provided else auto-generate from menu
@@ -76,7 +77,10 @@ export default function App() {
         setOpenedMenuItems({ ...openedMenuItems, [id]: value });
     };
 
-    const toggleOpenedMenuItem = (id: string) => setOpenedMenuItem(id, !openedMenuItems[id]);
+    const toggleOpenedMenuItem = (id: string) => {
+        console.log("toggleOpenedMenuItem", id);
+        setOpenedMenuItem(id, !openedMenuItems[id]);
+    } 
     const toggleDrawer = () => setIsDrawerOpened(!isDrawerOpened);
 
     React.useEffect(() => {
@@ -111,47 +115,58 @@ export default function App() {
 
     const allGalleryItems = generateExamplesGallery(framework);
 
+    React.useEffect(() => {
+        console.log("--- ", mostVisibleCategory);
+    }, [mostVisibleCategory]);
+
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     return (
         <FrameworkContext.Provider value={selectedFramework}>
             <div className={classes.App}>
-                <Drawer
-                    className={classes.DrawerMobile}
-                    variant="temporary"
-                    classes={{ paper: classes.DrawerPaper }}
-                    anchor="right"
-                    open={isMedium && isDrawerOpened}
-                    onClose={toggleDrawer}
-                >
-                    <DrawerContent
-                        testIsOpened={testIsOpened}
-                        toggleOpenedMenuItem={toggleOpenedMenuItem}
-                        toggleDrawer={toggleDrawer}
-                    />
-                </Drawer>
+                {isMedium && 
+                    <Drawer
+                        className={classes.DrawerMobile}
+                        variant="temporary"
+                        classes={{ paper: classes.DrawerPaper }}
+                        anchor="right"
+                        open={isDrawerOpened}
+                        onClose={toggleDrawer}
+                    >
+                        <DrawerContent
+                            testIsOpened={testIsOpened}
+                            toggleOpenedMenuItem={toggleOpenedMenuItem}
+                            toggleDrawer={toggleDrawer}
+                            // mostVisibleCategory={mostVisibleCategory} mobile does not need this hover feature
+                        />
+                    </Drawer>
+                }
                 <div className={classes.MainAppContent}>
                     <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
-                    {!isHomePage ? <AppDetailsRoute currentExample={currentExample} seeAlso={seeAlso} /> : null}
-                    {/* <AppRouter currentExample={currentExample} seeAlso={seeAlso} /> */}
+                    {!isHomePage ? 
+                        <AppDetailsRoute currentExample={currentExample} seeAlso={seeAlso} />
+                    : 
                     <div className={classes.MainAppWrapper}>
                         <div className={classes.DrawerDesktop}>
                             <DrawerContent
                                 testIsOpened={testIsOpened}
                                 toggleOpenedMenuItem={toggleOpenedMenuItem}
-                                toggleDrawer={() => {}}
+                                toggleDrawer={toggleDrawer}
+                                mostVisibleCategory={mostVisibleCategory}
                             />
                         </div>
                         {isHomePage ? (
                             <div className={classes.GalleryAppWrapper}>
-                                <GalleryItems examples={allGalleryItems} />
+                                <GalleryItems 
+                                    examples={allGalleryItems} 
+                                    setMostVisibleCategory={setMostVisibleCategory}
+                                />
                             </div>
                         ) : (
                             <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
                         )}
-                    </div>
-                    {/* <AppRouter currentExample={currentExample} seeAlso={seeAlso} /> */}
+                    </div>}
 
                     <AppFooter />
                 </div>

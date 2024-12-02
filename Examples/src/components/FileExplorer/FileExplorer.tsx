@@ -24,6 +24,7 @@ export default function FileExplorer({files, selectedFile, handleFileClick}: {
     const [ isExtended, setIsExtended ] = useState(false);
     return (
     <>
+        {/* VSCode-like horizontal scrollable tabs */}
         <div className={classes.horizontalScroller}>
             {files.map((file) => (
                 <div
@@ -36,6 +37,7 @@ export default function FileExplorer({files, selectedFile, handleFileClick}: {
                 </div>
             ))}
         </div>
+        {/* Select */}
         <div className={classes.selectDropdown}>
             <div className={`${classes.selectTab} ${classes.activeTab}`}
                 onClick={() => setIsExtended(!isExtended)}

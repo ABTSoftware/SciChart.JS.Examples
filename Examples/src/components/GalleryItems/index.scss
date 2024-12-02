@@ -1,198 +1,143 @@
+.showcaseWrap {
+    padding-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    background: #FFFFFF;
+    border-radius: 15px;
+    border: 1px solid #b4d0db;
+}
+
 .showcaseheadingwrap {
     display: flex;
     justify-content: space-between;
     gap: 15px;
-    align-items: center;
-    margin: 35px 0 20px;
+    margin-bottom: 15px;
 }
-.showcasetitle {
-    h2 {
-        font-family: "Arial";
-        font-weight: 600;
-        font-size: 30px;
-        line-height: 45px;
-        color: #050a30;
-        margin: 0;
-        padding: 0;
-        @media only screen and (max-width: 768px) {
-            font-size: 14px;
-            line-height: 17px;
+
+.gridSelection {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+
+    li {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+
+        svg path {
+            fill: #A0C2D4;
+        }
+
+        &.activeGrid {
+            svg path {
+                fill: #315E96
+            }
         }
     }
+
 }
-.showcasedisplay {
-    ul {
+
+// Master style for grid component
+.gridWrap {
+    width: 100%;
+    display: grid;
+    place-items: start;
+    gap: 15px;
+    overflow: hidden;
+
+    .card {
+        width: 100%;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        gap: 15px;
-        @media only screen and (max-width: 1024px) {
-            gap: 5px;
+    
+        .imgWrapper {
+            width: 100%;
+            aspect-ratio: 16 / 11;
+            overflow: hidden;
+    
+            @media screen and (max-width: 768px) {
+                aspect-ratio: 11 / 16;
+            }
+        
             img {
-                width: 24px;
+                width: 100%;
+                height: 100%;
+                object-fit: fill;
+                border-radius: 12px;
             }
         }
-    }
-}
-.showcaserow {
-    display: flex;
-    gap: 14px;
-    justify-content: left;
-    flex-wrap: wrap;
-    &.tabmultiple {
-        @media only screen and (max-width: 768px) {
-            gap: 5px;
-        }
-        .showcasecol {
-            width: 18.97%;
-            @media screen and (min-width: 991px) and (max-width: 1200px) {
-                width: 17.97%;
-            }
-            @media screen and (min-width: 768px) and (max-width: 991px) {
-                width: 31%;
-            }
-            @media only screen and (max-width: 768px) {
-                width: 49%;
-            }
-            h3 {
-                font-size: 0.875rem;
-                line-height: 1.5;
-                cursor: pointer;
-                @media only screen and (max-width: 768px) {
-                    font-size: 13px;
-                    line-height: 18px;
-                    padding: 0;
-                }
-            }
-        }
-        .showcasethumb {
-            padding: 4%;
-            margin-bottom: 2%;
-        }
-    }
-
-    &.tablist {
-        .showcasecol {
-            width: 100%;
+    
+        .content {
             display: flex;
-            align-items: center;
-            border: 1px solid #eee;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
-            border-radius: 23px;
-            padding: 17px;
-            gap: 40px;
-            @media only screen and (max-width: 768px) {
-                padding: 17px 17px 40px;
-                gap: 15px;
-                position: relative;
-            }
-        }
-        .showcasethumb {
-            background: transparent;
-            width: 28%;
-            padding: 0;
-            margin: 0;
-            box-shadow: none;
-            border: none;
-            border-radius: 0;
-            @media only screen and (max-width: 768px) {
-                width: 44%;
-                box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
-                padding: 5px 5px 2px;
-                border-radius: 10%;
-            }
-        }
-        .showcasecontent {
-            width: 72%;
-            text-align: left;
-            @media only screen and (max-width: 768px) {
-                width: 56%;
-            }
-            h3 {
-                font-family: "Arial";
-                font-weight: 600;
-                font-size: 26px;
-                line-height: 26px;
-                letter-spacing: 0.02em;
-                color: #315e96;
-                text-align: left;
-                padding: 0;
-                margin-bottom: 12px;
-                @media only screen and (max-width: 768px) {
-                    font-size: 14px;
-                    line-height: 18px;
-                }
-            }
-            p {
-                font-family: "Arial";
-                font-weight: 400;
-                font-size: 18px;
-                line-height: 26px;
-                letter-spacing: 0.02em;
-                color: #212121;
-                margin: 0 0 30px 0;
-                @media only screen and (max-width: 768px) {
-                    font-size: 13px;
-                    line-height: 18px;
-                }
-                a {
-                    color: #2eacdb;
-                }
-            }
-        }
-    }
-
-    .showcasecol {
-        width: 32.4%;
-        text-align: center;
-        margin-bottom: 1%;
-        @media screen and (min-width: 768px) and (max-width: 1200px) {
-            width: 31.4%;
-        }
-        @media only screen and (max-width: 768px) {
-            width: 100%;
-        }
-
-        h3 {
-            display: -webkit-box; /* Enables the flexbox behavior for text */
-            -webkit-box-orient: vertical; /* Specifies the box's orientation */
-            overflow: hidden; /* Hides overflowed text */
-            text-overflow: ellipsis; /* Adds the ellipsis (...) */
-            -webkit-line-clamp: 2; /* Limits to 2 lines */
-            line-clamp: 2; /* Standard property for modern browsers */
-            font-family: "Arial";
-            font-weight: 500;
-            font-size: 0.875rem; // relative to root element
-            line-height: 1.5; // 1.5 times font height
+            flex-direction: column;
             text-align: center;
-            letter-spacing: 0.02em;
-            cursor: pointer;
-            color: #212121;
-            margin: 0;
-            padding: 0 20px;
+    
+            h3 {
+                display: -webkit-box; /* Enables the flexbox behavior for text */
+                -webkit-box-orient: vertical; /* Specifies the box's orientation */
+                overflow: hidden; /* Hides overflowed text */
+                text-overflow: ellipsis; /* Adds the ellipsis (...) */
+                -webkit-line-clamp: 2; /* Limits to 2 lines */
+                line-clamp: 2; /* Standard property for modern browsers */
+                line-height: 1.5;
+            }
+    
+            p {
+                display: none; // hide for all but cardview
+            }
         }
     }
 }
 
-.showcasethumb {
-    background: #fff;
-    border: 1px solid #eee;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
-    border-radius: 10%;
-    padding: 4%;
-    margin-bottom: 2%;
+// cardview - has 1 column
+.cardView {
+    grid-template-columns: 1fr;
 
-    @media only screen and (max-width: 1024px) {
-        padding: 15px;
-        border-radius: 10%;
+    .card {
+        flex-direction: row;
+        height: 25vh;
+    
+        .imgWrapper {
+            height: 100%;
+            aspect-ratio: 16 / 11 !important;
+        }
+
+        .content {
+            padding: 10px;
+            height: 100%;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        p {
+            display: block !important;
+        }
     }
-    img {
-        border-radius: 10%;
-        width: 100%;
-        display: block;
+}
+
+// gridview - 2/3 columns
+.gridView2or3 {
+    grid-template-columns: repeat(2, 1fr);
+
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+// gridview - 5/6 columns
+.gridView5or6 {
+    grid-template-columns: repeat(2, 1fr);
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(6, 1fr);
     }
 }
 
@@ -220,15 +165,7 @@
 .tabbtnwrap {
     display: flex;
     gap: 10px;
-
-    @media only screen and (max-width: 768px) {
-        position: absolute;
-        left: 0;
-        width: 88%;
-        bottom: 15px;
-        right: 0;
-        margin: 0 auto;
-    }
+    
     .btnprimary {
         background: linear-gradient(90deg, #1aa2d5 15.5%, #35bfb7 100%);
         border-radius: 6px;

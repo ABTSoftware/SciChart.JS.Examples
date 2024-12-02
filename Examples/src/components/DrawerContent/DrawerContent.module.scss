@@ -10,7 +10,8 @@
 .DrawerTopSection {
     display: flex;
     justify-content: space-between;
-    padding: $default-spacing * 2 $default-spacing * 2;
+    padding: $default-spacing * 2;
+    padding-bottom: $default-spacing;
 
     .CloseButton {
         align-self: center;

@@ -1,5 +1,4 @@
-import * as React from "react";
-
+import { useState, useEffect, useRef } from "react";
 import GalleryCard from "../GalleryCard";
 import classes from "../Gallery.module.scss";
 
@@ -14,55 +13,84 @@ type TProps = {
     example: GalleryItem;
     length: number;
     slidersNumber: number;
+    mostVisibleCategory?: string | null;
+    setMostVisibleCategory?: (category: string) => void;
 };
+
 export default function GalleryList(props: TProps) {
-    const [index, setIndex] = React.useState(0);
-    const [showAll, setShowAll] = React.useState(false);
+    const [showAll, setShowAll] = useState(false);
     const slideWidth = (1 / props.slidersNumber) * 100;
-    const framework = useContext(FrameworkContext);
-    const moveR = () => {
-        if (index <= props.slidersNumber - props.example.items.length) {
-            setIndex(0);
-            return;
-        }
-        setIndex(index - 1);
-    };
-    const moveL = () => {
-        if (index >= 0) {
-            setIndex(props.slidersNumber - props.example.items.length);
-            return;
-        }
-        setIndex(index + 1);
-    };
+
+    const sectionRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!props.setMostVisibleCategory || !sectionRef.current) return () => {};
+    
+        const observer = new IntersectionObserver(
+            (entries) => {
+                // Track the visible area for all observed elements
+                const visibilityMap = new Map<string, number>();
+    
+                entries.forEach((entry) => {
+                    // Calculate the visible area in square pixels
+                    const visibleArea =
+                        entry.intersectionRect.width * entry.intersectionRect.height;
+    
+                    const category = props.example.chartGroupTitle;
+                    if (category) {
+                        visibilityMap.set(category, visibleArea);
+                    }
+                });
+    
+                // Find the component with the maximum visible area
+                let mostVisible = null;
+                let maxVisibleArea = 0;
+    
+                visibilityMap.forEach((visibleArea, category) => {
+                    if (visibleArea > maxVisibleArea) {
+                        mostVisible = category;
+                        maxVisibleArea = visibleArea;
+                    }
+                });
+    
+                // Update the state only if the most visible changes
+                if (mostVisible) {
+                    props.setMostVisibleCategory(mostVisible);
+                }
+            },
+            {
+                root: null, // Observe relative to the viewport
+                threshold: [0], // Trigger callback on any visibility change
+            }
+        );
+    
+        observer.observe(sectionRef.current);
+    
+        return () => {
+            observer.disconnect();
+        };
+    }, [props.setMostVisibleCategory, props.example.chartGroupTitle]);    
+
     return (
         <ComponentWrapper>
-            <div className={classes.ChartGroupHeader}>
+            <div
+                className={classes.ChartGroupHeader}
+                ref={sectionRef}
+            >
                 <div className={classes.ChartGroupTitle}>
                     <h6>{props.example.chartGroupTitle}</h6>
                     <span>{props.example.items.length} Demos</span>
                 </div>
-
-                {/*{props.slidersNumber < props.example.items.length && (*/}
-                {/*    <div className={classes.CarouselButtons}>*/}
-                {/*        <button className={classes.ButtonArrow} onClick={moveL}>*/}
-                {/*            <ArrowBackIcon />*/}
-                {/*        </button>*/}
-                {/*        <button className={classes.ButtonArrow} onClick={moveR}>*/}
-                {/*            <ArrowForwardIcon />*/}
-                {/*        </button>*/}
-                {/*    </div>*/}
-                {/*)}*/}
             </div>
             <ul className={classes.Gallery}>
                 {props.example.items.map((item, itemIndex) => {
-                    if (props.slidersNumber !== 1 || itemIndex === 0 || showAll) {
+                    if (props.slidersNumber !== 1 || itemIndex === 0 || showAll) { // Show all items if only one slider is visible
                         const key = item.title + item.imgPath;
                         return (
                             <li
                                 key={key}
                                 className={classes.GalleryItem}
                                 style={{
-                                    transform: `translateX(${index * 100}%)`,
                                     minWidth: `${slideWidth}%`,
                                     maxWidth: `${slideWidth}%`,
                                 }}

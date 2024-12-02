@@ -40,3 +40,14 @@
         border-radius: 50%;
     }
 }
+
+.ActiveParent {
+    // Styles for categories with an active child
+    background-color: rgba(0, 0, 0, 0.1); // Example style
+}
+
+.ActiveCategory {
+    // Styles for the exact category that matches mostVisibleCategory
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.05); // Example style
+}

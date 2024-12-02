@@ -17,10 +17,11 @@ type TProps = {
     onExpandClick: (id: string) => void;
     testIsOpened: (id: string) => boolean;
     toggleDrawer: () => void;
+    mostVisibleCategory?: string;
 };
 
 const Navigation: FC<TProps> = (props) => {
-    const { onExpandClick, testIsOpened, toggleDrawer } = props;
+    const { onExpandClick, testIsOpened, toggleDrawer, mostVisibleCategory } = props;
     const navigate = useNavigate();
     const location = useLocation();
     const framework = useContext(FrameworkContext);
@@ -52,6 +53,7 @@ const Navigation: FC<TProps> = (props) => {
                 title="Featured Apps"
                 menuItems={MENU_ITEMS_FEATURED_APPS}
                 menuItemsId={MENU_ITEMS_FEATURED_APPS_ID}
+                mostVisibleCategory={mostVisibleCategory}
             />
             <ListItemsBlock
                 onExpandClick={onExpandClick}
@@ -60,6 +62,7 @@ const Navigation: FC<TProps> = (props) => {
                 title="2D Charts"
                 menuItems={MENU_ITEMS_2D}
                 menuItemsId={MENU_ITEMS_2D_ID}
+                mostVisibleCategory={mostVisibleCategory}
             />
             <ListItemsBlock
                 onExpandClick={onExpandClick}
@@ -68,6 +71,7 @@ const Navigation: FC<TProps> = (props) => {
                 title="3D Charts"
                 menuItems={MENU_ITEMS_3D}
                 menuItemsId={MENU_ITEMS_3D_ID}
+                mostVisibleCategory={mostVisibleCategory}
             />
         </List>
     );

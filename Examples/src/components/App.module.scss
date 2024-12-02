@@ -1,6 +1,6 @@
 @import "../assets/main.scss";
 
-$drawerWidthDesktop: 350px;
+$drawerWidthDesktop: min(450px, 30vw);
 $drawerWidthTablet: 375px;
 $drawerWidthMobile: 100%;
 
@@ -34,9 +34,9 @@ $drawerWidthMobile: 100%;
     top: 85px;
     order: -1;
     background-color: $color-primary-white;
-    width: 350px;
-    max-height: calc(100vh - 108px);
-    margin-right: 20px;
+    width: $drawerWidthDesktop;
+    max-height: calc(100vh - 68px - 24px); // subtract navHeight and 2 * padding
+    margin-right: 15px;
     flex-shrink: 0;
     overflow-x: hidden;
     border: 1px solid #b4d0db;
@@ -60,7 +60,6 @@ $drawerWidthMobile: 100%;
 }
 
 .container {
-    max-width: 1300px;
     width: 100%;
     margin: 0 auto;
 }

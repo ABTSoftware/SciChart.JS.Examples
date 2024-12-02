@@ -16,6 +16,7 @@ type TProps = {
     testIsOpened: (id: string) => boolean;
     toggleOpenedMenuItem: (id: string) => void;
     toggleDrawer: () => void;
+    mostVisibleCategory?: string;
 };
 
 function changeFramework(framework: 'react' | 'angular' | 'javascript') {
@@ -65,6 +66,8 @@ const DrawerContent: FC<TProps> = (props) => {
 
     return (
         <div className={classes.DrawerContent}>
+            <Search />
+            <Divider />
             <div className={classes.DrawerTopSection}>
                 <IconButton onClick={toggleDrawer} className={classes.CloseButton} aria-label="close-drawer-button">
                     <CloseIcon />
@@ -90,9 +93,12 @@ const DrawerContent: FC<TProps> = (props) => {
                     </div>
                 </div>
             </div>
-            <Divider />
-            <Search />
-            <Navigation testIsOpened={testIsOpened} onExpandClick={toggleOpenedMenuItem} toggleDrawer={toggleDrawer} />
+            <Navigation 
+                testIsOpened={testIsOpened} 
+                onExpandClick={toggleOpenedMenuItem} 
+                toggleDrawer={toggleDrawer}
+                mostVisibleCategory={props?.mostVisibleCategory} 
+            />
         </div>
     );
 };

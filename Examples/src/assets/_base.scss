@@ -45,11 +45,8 @@ $default-spacing: 8px;
 $default-border-radius: 10px;
 //
 %Container {
-    max-width: 2300px;
     padding: 0 20px;
     @include md {
-        max-width: 1200px;
-
         padding: 0 10px;
     }
 }

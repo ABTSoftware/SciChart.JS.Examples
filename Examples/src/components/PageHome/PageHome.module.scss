@@ -28,208 +28,169 @@
 
 .PageHomeWrapper {
     background: $gradient-header;
-    .PageHomeContent {
-        //max-width: 1600;
-        //background: url("../../assets//images/Chart.png");
-        //background-size: auto;
-        //background-repeat: no-repeat;
-        //background-position: 150% 50%;
-        //margin: auto;
-
-        .PageHomeHeader {
-            @extend %Container;
+    .PageHomeHeaderText {
+        padding: 10px 20px;
+        .PageHomeAboutText {
+            font-size: 1.2rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: $color-primary-white;
             width: 100%;
+            a {
+                color: $color-link-text;
+            }
+            a:hover {
+                color: $color-link-text-hover;
+            }
+        }
+        .PageHomeTitle {
+            color: $color-primary-white;
+            font-size: 2.75rem;
 
-            padding: $default-spacing * 2;
-
-            margin: auto;
-            display: flex;
-            align-items: stretch;
-            flex-direction: row;
-
+            font-weight: 600;
+            margin-bottom: 0;
+            line-height: 3.875rem;
+            white-space: nowrap;
+            margin-bottom: 4px;
+            span {
+                display: block;
+                color: white;
+                white-space: pre-line;
+            }
             @include sm {
-                flex-direction: column;
+                font-size: 4rem;
+
+                white-space: normal;
             }
             @include xs {
-                padding-top: $default-spacing * 2;
-                padding-bottom: $default-spacing * 2;
+                font-size: 2.75rem;
             }
+        }
+    }
+    .PageHomeHeaderImages {
+        display: flex;
+        flex-grow: 1;
+        position: relative;
+        @include sm {
+            height: 400px;
+        }
 
-            .PageHomeHeaderText {
-                width: 50%;
+        .Blur {
+            position: absolute;
+            background-color: white;
+            filter: blur(300px);
+            max-width: 200px;
+            max-height: 200px;
+            width: 100%;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        // .PageHomeHeaderImagesWrapper {
+        //     border-radius: 20px;
+        img {
+            position: absolute;
 
-                @include sm {
-                    width: 100%;
-                    margin-left: 0;
-                    margin-top: $default-spacing * 6;
-                    text-align: center;
+            border-radius: $default-border-radius * 2;
+            border: 8px solid $color-grey;
+            @include xxs {
+                border-radius: $default-border-radius;
+                border: 4px solid $color-grey;
+            }
+        }
+        .PageHomeHeaderImage1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            transform: translate(-50%, -50%);
+            @include md {
+                width: 400px;
+            }
+            @include xxs {
+                width: 250px;
+            }
+            .SmallBox {
+                // position: absolute;
+                // top: 0;
+                // left: 0;
+                width: 100px;
+                height: 100px;
+                background-color: $color-dark-green;
+                border-radius: 18px;
+                transform: translate(-20%, -140%);
+                @include md {
+                    width: 80px;
+                    height: 80px;
                 }
-                .PageHomeAboutText {
-                    font-size: 1.2rem;
-                    font-weight: 400;
-                    line-height: 1.5;
-                    color: $color-primary-white;
-                    width: 100%;
-                    @include sm {
-                        width: 100%;
-                    }
-                    a {
-                        color: $color-link-text;
-                    }
-                    a:hover {
-                        color: $color-link-text-hover;
-                    }
-                }
-                .PageHomeTitle {
-                    color: $color-primary-white;
-                    font-size: 3.25rem;
-
-                    font-weight: 600;
-                    margin-bottom: 0;
-                    line-height: 3.875rem;
-                    white-space: nowrap;
-                    margin-bottom: 20px;
-                    span {
-                        display: block;
-                        color: white;
-                        white-space: pre-line;
-                    }
-                    @include sm {
-                        font-size: 4rem;
-
-                        white-space: normal;
-                    }
-                    @include xs {
-                        font-size: 2.75rem;
-                    }
+                @include xxs {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 6px;
                 }
             }
-            .PageHomeHeaderImages {
-                display: flex;
-                flex-grow: 1;
-                position: relative;
-                @include sm {
-                    height: 400px;
-                }
+            .BigBox {
+                position: absolute;
+                top: 100%;
+                left: 100%;
+                width: 150px;
+                height: 150px;
+                background-color: $color-dark-green;
+                border-radius: 18px;
+                transform: translate(-55%, -0%);
+                z-index: -1;
+                @include md {
+                    width: 120px;
+                    height: 120px;
 
-                .Blur {
-                    position: absolute;
-                    background-color: white;
-                    filter: blur(300px);
-                    max-width: 200px;
-                    max-height: 200px;
-                    width: 100%;
-                    height: 100%;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
+                    transform: translate(-75%, -0%);
                 }
-                // .PageHomeHeaderImagesWrapper {
-                //     border-radius: 20px;
-                img {
-                    position: absolute;
+                @include xxs {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 6px;
+                }
+            }
+        }
+        .PageHomeHeaderImage2 {
+            top: 100%;
+            width: 200px;
 
-                    border-radius: $default-border-radius * 2;
-                    border: 8px solid $color-grey;
-                    @include xxs {
-                        border-radius: $default-border-radius;
-                        border: 4px solid $color-grey;
-                    }
-                }
-                .PageHomeHeaderImage1 {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    width: 500px;
-                    transform: translate(-50%, -50%);
-                    @include md {
-                        width: 400px;
-                    }
-                    @include xxs {
-                        width: 250px;
-                    }
-                    .SmallBox {
-                        // position: absolute;
-                        // top: 0;
-                        // left: 0;
-                        width: 100px;
-                        height: 100px;
-                        background-color: $color-dark-green;
-                        border-radius: 18px;
-                        transform: translate(-20%, -140%);
-                        @include md {
-                            width: 80px;
-                            height: 80px;
-                        }
-                        @include xxs {
-                            width: 50px;
-                            height: 50px;
-                            border-radius: 6px;
-                        }
-                    }
-                    .BigBox {
-                        position: absolute;
-                        top: 100%;
-                        left: 100%;
-                        width: 150px;
-                        height: 150px;
-                        background-color: $color-dark-green;
-                        border-radius: 18px;
-                        transform: translate(-55%, -0%);
-                        z-index: -1;
-                        @include md {
-                            width: 120px;
-                            height: 120px;
+            transform: translate(0, -80%);
+            @include md {
+                width: 150px;
+                transform: translate(0, -120%);
+            }
+            @include sm {
+                transform: translate(75%, -100%);
+            }
+            @include xs {
+                transform: translate(0%, -100%);
+            }
+            @include xxs {
+                width: 120px;
+                transform: translate(0%, -200%);
+            }
+        }
+        .PageHomeHeaderImage3 {
+            left: 100%;
+            width: 250px;
 
-                            transform: translate(-75%, -0%);
-                        }
-                        @include xxs {
-                            width: 80px;
-                            height: 80px;
-                            border-radius: 6px;
-                        }
-                    }
-                }
-                .PageHomeHeaderImage2 {
-                    top: 100%;
-                    width: 200px;
-
-                    transform: translate(0, -80%);
-                    @include md {
-                        width: 150px;
-                        transform: translate(0, -120%);
-                    }
-                    @include sm {
-                        transform: translate(75%, -100%);
-                    }
-                    @include xs {
-                        transform: translate(0%, -100%);
-                    }
-                    @include xxs {
-                        width: 120px;
-                        transform: translate(0%, -200%);
-                    }
-                }
-                .PageHomeHeaderImage3 {
-                    left: 100%;
-                    width: 250px;
-
-                    transform: translate(-100%, 0);
-                    @include md {
-                        width: 200px;
-                        transform: translate(-110%, 0);
-                    }
-                    @include sm {
-                        transform: translate(-150%, 20%);
-                    }
-                    @include xs {
-                        transform: translate(-100%, 20%);
-                    }
-                    @include xxs {
-                        width: 150px;
-                        transform: translate(-100%, 50%);
-                    }
-                }
+            transform: translate(-100%, 0);
+            @include md {
+                width: 200px;
+                transform: translate(-110%, 0);
+            }
+            @include sm {
+                transform: translate(-150%, 20%);
+            }
+            @include xs {
+                transform: translate(-100%, 20%);
+            }
+            @include xxs {
+                width: 150px;
+                transform: translate(-100%, 50%);
             }
         }
     }
