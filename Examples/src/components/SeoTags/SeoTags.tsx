@@ -35,7 +35,6 @@ const SeoTags: FC<TProps> = (props) => {
             <meta name="twitter:image:alt" content={title} />
             <meta name="twitter:domain" content={baseUrl} />
             <meta property="twitter:url" content={exampleUrl} />
-            {canonical}
         </Helmet>
     );
 };
