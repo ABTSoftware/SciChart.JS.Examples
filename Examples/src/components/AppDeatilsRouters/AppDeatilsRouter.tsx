@@ -1,4 +1,4 @@
-import { useState, FC, useContext, useMemo, useEffect, ReactNode } from "react";
+import { useState, FC, useContext, useEffect, ReactNode } from "react";
 import classes from "./AppDeatilsRouter.scss";
 import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
@@ -14,8 +14,9 @@ import DrawerContent from "../DrawerContent/DrawerContent";
 import { ALL_MENU_ITEMS, MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
 import GalleryItems from "../GalleryItems";
 import { CodeSandbox } from "../CodeSandbox";
+import { StackblitzEditor } from "../CodeSandbox/StackblitzEditor";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
-import { getCodeSandboxUrl, getStackblitzUrl, extractSandboxId } from "./sandboxUtils";
+import { getSandboxUrl } from "./sandboxUtils";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -108,23 +109,19 @@ const ExamplesButtons: FC<TExampleButtonsProps> = ({
             const framework = isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React;
             const frameworkType = framework.toLowerCase() as "react" | "angular" | "vanilla";
 
-            // Get the URL before opening the sandbox
-            const url =
-                platform === SandboxPlatform.CodeSandbox
-                    ? await getCodeSandboxUrl(currentExample.path, frameworkType)
-                    : await getStackblitzUrl(currentExample.path, frameworkType);
-
-            // Extract the sandbox ID and open the sandbox component
-            const sandboxId = extractSandboxId(url, platform);
-            if (sandboxId) {
-                onSandboxOpen(platform, sandboxId);
+            if (platform === SandboxPlatform.CodeSandbox) {
+                const sandboxId = await getSandboxUrl(currentExample.path, frameworkType, platform);
+                if (sandboxId) {
+                    onSandboxOpen(platform, sandboxId);
+                } else {
+                    console.log("error");
+                }
             } else {
-                // If we couldn't extract an ID, fall back to the URL directly
-                window.location.href = url;
+                // For StackBlitz, directly open the editor without getting a URL
+                onSandboxOpen(platform, currentExample.path);
             }
         } catch (error) {
             console.error("Failed to open sandbox:", error);
-            // Fallback to the original href if the API call fails
             const fallbackUrl =
                 platform === SandboxPlatform.CodeSandbox
                     ? `codesandbox/${currentExample.path}?codesandbox=1&framework=${
@@ -278,6 +275,12 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
             });
     }, [currentExample, selectedFramework]);
 
+    useEffect(() => {
+        if (embedCode) {
+            setEmbedCode(false);
+        }
+    }, [currentExample]);
+
     const handleFileClick = (fileName: string) => {
         const file = sourceFiles.find((f) => f.name === fileName);
         setSelectedFile({ name: fileName, content: file.content });
@@ -316,6 +319,16 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         </div>
     );
 
+    const renderEditor = () => {
+        if (sandboxPlatform === SandboxPlatform.CodeSandbox) {
+            return (
+                <CodeSandbox id={sandboxId} onBack={handleBack} platform={sandboxPlatform} exampleName={pageTitle} />
+            );
+        } else {
+            return <StackblitzEditor id={sandboxId} onBack={handleBack} exampleName={pageTitle} />;
+        }
+    };
+
     return (
         <div>
             <div style={{ display: "flex", padding: 20 }}>
@@ -334,16 +347,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                     <p className={classes.chartdescription}>
                         {getTitle(currentExample.description, selectedFramework)}
                     </p>
-                    {embedCode ? (
-                        <CodeSandbox
-                            id={sandboxId}
-                            onBack={handleBack}
-                            platform={sandboxPlatform}
-                            exampleName={pageTitle}
-                        />
-                    ) : (
-                        <ExamplesArea />
-                    )}
+                    {embedCode ? renderEditor() : <ExamplesArea />}
                     <GalleryItems examples={seeAlso} />
                 </div>
             </div>

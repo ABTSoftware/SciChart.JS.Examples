@@ -8,6 +8,11 @@ export enum EPageFramework {
     // Vue = "vue",
 }
 
+export enum EPlatform {
+    CodeSandbox = "codesandbox",
+    StackBlitz = "stackblitz",
+}
+
 export const FRAMEWORK_NAME = {
     [EPageFramework.Vanilla]: "JavaScript",
     [EPageFramework.React]: "React",
@@ -33,7 +38,7 @@ export enum EPageLayout {
     /**
      * Where the chart does not need a whole lot of space
      */
-    MinChart
+    MinChart,
 }
 
 export const getTitle = (title: TTitleTemplate, framework: EPageFramework) => {

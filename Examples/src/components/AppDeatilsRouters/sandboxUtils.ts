@@ -2,7 +2,7 @@ import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 
 // Types for the API responses
 interface SandboxUrlResponse {
-    url: string;
+    id: string;
 }
 
 interface SandboxErrorResponse {
@@ -30,10 +30,15 @@ export function extractSandboxId(url: string, platform: SandboxPlatform): string
     }
 }
 
-// Function to get CodeSandbox URL
-export async function getCodeSandboxUrl(examplePath: string, framework: Framework = "react"): Promise<string> {
+// Function to get make sandbox
+const GET_SANDBOX_URL = "/api/sandboxurl/";
+export async function getSandboxUrl(
+    examplePath: string,
+    framework: Framework = "react",
+    platform = "codeSandbox"
+): Promise<string> {
     try {
-        const response = await fetch(`/api/codesandbox/url/${examplePath}?framework=${framework}`);
+        const response = await fetch(`${GET_SANDBOX_URL}${examplePath}?framework=${framework}&platform=${platform}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -43,7 +48,31 @@ export async function getCodeSandboxUrl(examplePath: string, framework: Framewor
             throw new Error(`API error: ${data.error}. Alternative URL: ${data.alternativeUrl}`);
         }
 
-        return data.url;
+        console.log(data);
+        return data.id;
+    } catch (error) {
+        console.error("Failed to get CodeSandbox URL:", error);
+        throw error;
+    }
+}
+
+/*
+// Function to get CodeSandbox URL
+const GET_SANDBOX_URL = "/api/sandboxurl/"
+export async function getCodeSandboxUrl(examplePath: string, framework: Framework = "react"): Promise<string> {
+    try {
+        const response = await fetch(`${GET_SANDBOX_URL}${examplePath}?framework=${framework}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = (await response.json()) as SandboxUrlResponse | SandboxErrorResponse;
+
+        if ("error" in data) {
+            throw new Error(`API error: ${data.error}. Alternative URL: ${data.alternativeUrl}`);
+        }
+
+        console.log(data);
+        return data.id;
     } catch (error) {
         console.error("Failed to get CodeSandbox URL:", error);
         throw error;
@@ -63,9 +92,10 @@ export async function getStackblitzUrl(examplePath: string, framework: Framework
             throw new Error(`API error: ${data.error}. Alternative URL: ${data.alternativeUrl}`);
         }
 
-        return data.url;
+        return data.id;
     } catch (error) {
         console.error("Failed to get Stackblitz URL:", error);
         throw error;
     }
 }
+*/

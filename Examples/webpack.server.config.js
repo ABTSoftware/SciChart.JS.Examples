@@ -8,6 +8,7 @@ module.exports = {
     mode: "production",
     name: "server",
     target: "node",
+    devtool: "source-map",
     externalsPresets: { node: true }, // in order to ignore built-in modules like path, fs, etc.
     externals: {
         express: "commonjs2 express",
