@@ -16,7 +16,7 @@ import GalleryItems from "../GalleryItems";
 import { CodeSandbox } from "../CodeSandbox";
 import { StackblitzEditor } from "../CodeSandbox/StackblitzEditor";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
-import { ExamplesButtons } from "./ExamplesButtons";
+import { CodeActionButtons } from "./CodeActionButtons";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -157,7 +157,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         <div className={classes.dynamicFlexWrapper}>
             <div className={classes.chartwrap} style={{ minWidth: "50%" }}>
                 <ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />
-                <ExamplesButtons
+                <CodeActionButtons
                     {...{ currentExample, selectedFramework, selectedFile }}
                     onSandboxOpen={handleSandboxOpen}
                 />

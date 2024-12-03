@@ -4,20 +4,20 @@ import { EPageFramework, FRAMEWORK_NAME, getTitle } from "../../helpers/shared/H
 import { TExamplePage } from "../AppRouter/examplePages";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { getSandboxUrl } from "./sandboxUtils";
-import { ExampleButton } from "./ExampleButton";
+import { CodeActionButton } from "./CodeActionButton";
 
 const getFrameWorkName = (frameWork: string): string => {
     return (FRAMEWORK_NAME as any)[frameWork];
 };
 
-type TExampleButtonsProps = {
+type CodeActionButtonsProps = {
     currentExample: TExamplePage;
     selectedFramework: EPageFramework;
     selectedFile: { name: string; content: string };
     onSandboxOpen: (platform: SandboxPlatform, sandboxId: string) => void;
 };
 
-export const ExamplesButtons: FC<TExampleButtonsProps> = ({
+export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
     currentExample,
     selectedFramework,
     onSandboxOpen,
@@ -65,7 +65,7 @@ export const ExamplesButtons: FC<TExampleButtonsProps> = ({
 
     return (
         <div className={classes.tabbtnwrap}>
-            <ExampleButton
+            <CodeActionButton
                 iconName="exampleFullscreen"
                 label="Full Screen"
                 className={classes.btnprimary}
@@ -73,10 +73,10 @@ export const ExamplesButtons: FC<TExampleButtonsProps> = ({
                 target="_blank"
                 rel="noopener"
             />
-            <ExampleButton
+            <CodeActionButton
                 iconName="exampleStackblitz"
                 label="Edit"
-                className={classes.btnDark}
+                className={`${classes.btn} ${classes.btnDark}`}
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.StackBlitz)}
                 title={
                     isFrameworkVariantAvailable
@@ -84,10 +84,10 @@ export const ExamplesButtons: FC<TExampleButtonsProps> = ({
                         : `Sorry, we have not got ${frameWorkName} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
                 }
             />
-            <ExampleButton
+            <CodeActionButton
                 iconName="codesandbox"
                 label="Edit"
-                className={classes.btnDark}
+                className={`${classes.btn} ${classes.btnDark}`}
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.CodeSandbox)}
                 title={
                     isFrameworkVariantAvailable
@@ -95,10 +95,10 @@ export const ExamplesButtons: FC<TExampleButtonsProps> = ({
                         : `Sorry, we have not got ${frameWorkName} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
                 }
             />
-            <ExampleButton
+            <CodeActionButton
                 iconName="exampleGithub"
                 label="View Source"
-                className={classes.btnGithub}
+                className={`${classes.btn} ${classes.btnGithub}`}
                 href={`https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Examples/src/components/Examples/${currentExample.filepath}/${selectedFile.name}`}
                 target="_blank"
                 rel="noopener"
