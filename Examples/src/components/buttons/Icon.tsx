@@ -13,6 +13,12 @@ const getSvgText = (name: string) => {
 const validSvgAttributes = ["width", "height", "viewBox", "fill", "stroke", "xmlns", "class", "style"];
 
 export const Icon: React.FC<{ name: string }> = ({ name }) => {
+    if (typeof window === "undefined") {
+        // this is getting into the server bundle!!
+        // Server-side rendering fallback,
+        return null;
+    }
+
     const makeSvgNode = (svgText: string) => {
         // Parse the SVG text to create an SVG element
         const parser = new DOMParser();

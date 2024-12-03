@@ -10,6 +10,22 @@ interface SandboxErrorResponse {
     alternativeUrl: string;
 }
 
+interface StackBlitzFiles {
+    files: { [key: string]: { content: string } };
+    title: string;
+    description: string;
+    template: string;
+    dependencies: { [key: string]: string };
+    devDependencies: { [key: string]: string };
+    settings: {
+        compile: {
+            clearConsole: boolean;
+            action: string;
+            trigger: string;
+        };
+    };
+}
+
 type Framework = "react" | "angular" | "vanilla";
 
 // Function to extract sandbox ID from URL
@@ -42,7 +58,9 @@ export async function getSandboxUrl(
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
+        console.log(response);
         const data = (await response.json()) as SandboxUrlResponse | SandboxErrorResponse;
+        console.log(data);
 
         if ("error" in data) {
             throw new Error(`API error: ${data.error}. Alternative URL: ${data.alternativeUrl}`);
@@ -56,46 +74,25 @@ export async function getSandboxUrl(
     }
 }
 
-/*
-// Function to get CodeSandbox URL
-const GET_SANDBOX_URL = "/api/sandboxurl/"
-export async function getCodeSandboxUrl(examplePath: string, framework: Framework = "react"): Promise<string> {
+// Function to get StackBlitz files
+export async function getStackBlitzFiles(
+    examplePath: string,
+    framework: Framework = "react"
+): Promise<StackBlitzFiles> {
     try {
-        const response = await fetch(`${GET_SANDBOX_URL}${examplePath}?framework=${framework}`);
+        const response = await fetch(`/api/stackblitz/files/${examplePath}?framework=${framework}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = (await response.json()) as SandboxUrlResponse | SandboxErrorResponse;
+        const data = await response.json();
 
         if ("error" in data) {
-            throw new Error(`API error: ${data.error}. Alternative URL: ${data.alternativeUrl}`);
+            throw new Error(`API error: ${data.error}`);
         }
 
-        console.log(data);
-        return data.id;
+        return data as StackBlitzFiles;
     } catch (error) {
-        console.error("Failed to get CodeSandbox URL:", error);
+        console.error("Failed to get StackBlitz files:", error);
         throw error;
     }
 }
-
-// Function to get Stackblitz URL
-export async function getStackblitzUrl(examplePath: string, framework: Framework = "react"): Promise<string> {
-    try {
-        const response = await fetch(`/api/stackblitz/url/${examplePath}?framework=${framework}`);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = (await response.json()) as SandboxUrlResponse | SandboxErrorResponse;
-
-        if ("error" in data) {
-            throw new Error(`API error: ${data.error}. Alternative URL: ${data.alternativeUrl}`);
-        }
-
-        return data.id;
-    } catch (error) {
-        console.error("Failed to get Stackblitz URL:", error);
-        throw error;
-    }
-}
-*/

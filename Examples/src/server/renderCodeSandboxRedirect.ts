@@ -438,6 +438,7 @@ export const postToStackblitzAndCaptureRedirect = async (
     config: SandboxConfig,
     framework: EPageFramework
 ): Promise<string | null> => {
+    return null;
     /*
     const { "package.json": packageJsonFile, ...restFiles } = config.files;
 
@@ -471,6 +472,7 @@ export const postToStackblitzAndCaptureRedirect = async (
     //const formBody = new URLSearchParams(formData).toString();
 
     // Perform POST request
+    /*
     return new Promise((resolve, reject) => {
         const req = https.request(
             {
@@ -524,6 +526,7 @@ export const postToStackblitzAndCaptureRedirect = async (
         req.write(formBody);
         req.end();
     });
+    */
 };
 
 // Endpoint handler that returns the CodeSandbox URL instead of redirecting

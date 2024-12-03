@@ -84,6 +84,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     const [embedCode, setEmbedCode] = useState<boolean>(false);
     const [sandboxPlatform, setSandboxPlatform] = useState<SandboxPlatform>(SandboxPlatform.CodeSandbox);
     const [sandboxId, setSandboxId] = useState<string>("");
+    const [projectFiles, setProjectFiles] = useState<any>(null);
 
     const selectedFramework = useContext(FrameworkContext);
     const pageTitle = getTitle(currentExample.title, selectedFramework);
@@ -127,6 +128,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     useEffect(() => {
         if (embedCode) {
             setEmbedCode(false);
+            setProjectFiles(null);
         }
     }, [currentExample]);
 
@@ -145,11 +147,15 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     const handleBack = () => {
         setEmbedCode(false);
         setSandboxId("");
+        setProjectFiles(null);
     };
 
-    const handleSandboxOpen = (platform: SandboxPlatform, id: string) => {
+    const handleSandboxOpen = (platform: SandboxPlatform, id: string, files?: any) => {
         setSandboxPlatform(platform);
         setSandboxId(id);
+        if (files) {
+            setProjectFiles(files);
+        }
         setEmbedCode(true);
     };
 
@@ -174,7 +180,14 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                 <CodeSandbox id={sandboxId} onBack={handleBack} platform={sandboxPlatform} exampleName={pageTitle} />
             );
         } else {
-            return <StackblitzEditor id={sandboxId} onBack={handleBack} exampleName={pageTitle} />;
+            return (
+                <StackblitzEditor
+                    id={sandboxId}
+                    onBack={handleBack}
+                    exampleName={pageTitle}
+                    projectFiles={projectFiles}
+                />
+            );
         }
     };
 

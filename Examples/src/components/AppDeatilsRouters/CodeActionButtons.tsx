@@ -3,7 +3,7 @@ import classes from "./AppDeatilsRouter.scss";
 import { EPageFramework, FRAMEWORK_NAME, getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
-import { getSandboxUrl } from "./sandboxUtils";
+import { getSandboxUrl, getStackBlitzFiles } from "./sandboxUtils";
 import { CodeActionButton } from "./CodeActionButton";
 
 const getFrameWorkName = (frameWork: string): string => {
@@ -14,7 +14,7 @@ type CodeActionButtonsProps = {
     currentExample: TExamplePage;
     selectedFramework: EPageFramework;
     selectedFile: { name: string; content: string };
-    onSandboxOpen: (platform: SandboxPlatform, sandboxId: string) => void;
+    onSandboxOpen: (platform: SandboxPlatform, sandboxId: string, projectFiles?: any) => void;
 };
 
 export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
@@ -46,20 +46,12 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
                     console.log("error");
                 }
             } else {
-                // For StackBlitz, directly open the editor without getting a URL
-                onSandboxOpen(platform, currentExample.path);
+                // For StackBlitz, get the files first
+                const files = await getStackBlitzFiles(currentExample.path, frameworkType);
+                onSandboxOpen(platform, currentExample.path, files);
             }
         } catch (error) {
             console.error("Failed to open sandbox:", error);
-            const fallbackUrl =
-                platform === SandboxPlatform.CodeSandbox
-                    ? `codesandbox/${currentExample.path}?codesandbox=1&framework=${
-                          isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React
-                      }`
-                    : `stackblitz/${currentExample.path}?codesandbox=1&framework=${
-                          isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React
-                      }`;
-            window.location.href = fallbackUrl;
         }
     };
 
