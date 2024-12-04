@@ -38,7 +38,7 @@ export default function App() {
     const selectedFramework = framework;
 
     // TODO md was changed by migration script.requires verification
-    const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("lg"));
+    const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
     let initialOpenedMenuItems = {
         MENU_ITEMS_FEATURED_APPS_ID: true,
@@ -78,7 +78,6 @@ export default function App() {
     };
 
     const toggleOpenedMenuItem = (id: string) => {
-        console.log("toggleOpenedMenuItem", id);
         setOpenedMenuItem(id, !openedMenuItems[id]);
     } 
     const toggleDrawer = () => setIsDrawerOpened(!isDrawerOpened);

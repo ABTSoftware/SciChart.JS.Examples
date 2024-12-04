@@ -56,11 +56,11 @@
     
         .imgWrapper {
             width: 100%;
-            aspect-ratio: 16 / 11;
+            aspect-ratio: 16 / 9;
             overflow: hidden;
     
             @media screen and (max-width: 768px) {
-                aspect-ratio: 11 / 16;
+                aspect-ratio: 9 / 16;
             }
         
             img {
@@ -99,18 +99,49 @@
 
     .card {
         flex-direction: row;
-        height: 25vh;
+        justify-content: space-between;
+        gap: 15px;
+        height: 25vh; // feel free to adjust this value
     
         .imgWrapper {
             height: 100%;
-            aspect-ratio: 16 / 11 !important;
+            width: auto;
+            aspect-ratio: 16 / 9 !important;
         }
 
         .content {
             padding: 10px;
             height: 100%;
+            flex: 1;
+            gap: 10px;
             flex-direction: column;
             text-align: left;
+
+            .contentButtons {
+                display: flex;
+                width: 100%;
+                margin-top: auto;
+                margin-left: auto;
+                height: 50px;
+                gap: 10px;
+
+                .button {
+                    background: linear-gradient(90deg, #1aa2d5 15.5%, #35bfb7 100%);
+                    border-radius: 6px;
+                    font-family: "Arial";
+                    font-weight: 500;
+                    font-size: 16px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: #ffffff;
+                    text-decoration: none;
+                    padding: 6px 14px;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
         }
 
         p {

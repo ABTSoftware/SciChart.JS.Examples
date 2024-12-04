@@ -17,11 +17,9 @@ const MarkdownContent: FC<TProps> = (props) => {
     const { currentExample, selectedFramework } = props;
     return (
         <div className={classes.scichartcontainer}>
-            {currentExample?.markdownContent?.length && (
-                <ReactMarkdown rehypePlugins={plugins}>
-                    {getFrameworkContent(currentExample.markdownContent, selectedFramework)}
-                </ReactMarkdown>
-            )}
+            <ReactMarkdown rehypePlugins={plugins}>
+                {getFrameworkContent(currentExample.markdownContent, selectedFramework)}
+            </ReactMarkdown>
         </div>
     );
 };

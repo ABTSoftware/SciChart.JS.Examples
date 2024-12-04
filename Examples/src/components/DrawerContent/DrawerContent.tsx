@@ -19,7 +19,7 @@ type TProps = {
     mostVisibleCategory?: string;
 };
 
-function changeFramework(framework: 'react' | 'angular' | 'javascript') {
+function changeFramework(framework: EPageFramework) {
     const path = window.location.pathname.split('/');
     // replace any of 'react', 'angular' or 'javascript' with the new framework, only if it's new:
     if (path[1] !== framework) {
@@ -60,7 +60,6 @@ const FrameworkSVG = {
 };
 
 const DrawerContent: FC<TProps> = (props) => {
-    const navigate = useNavigate();
     const framework = useContext(FrameworkContext);
     const { testIsOpened, toggleOpenedMenuItem, toggleDrawer } = props;
 
@@ -73,24 +72,15 @@ const DrawerContent: FC<TProps> = (props) => {
                     <CloseIcon />
                 </IconButton>
                 <div className={classes.FrameworkSelect}>
+                {Object.values(EPageFramework).map((fw) => (
                     <div 
-                        className={framework === EPageFramework.Vanilla ? classes.SelectedFramework : classes.Framework}
-                        onClick={() => changeFramework('javascript')}
+                        key={fw}
+                        className={framework === fw ? classes.SelectedFramework : classes.Framework}
+                        onClick={() => changeFramework(fw)}
                     >
-                        {FrameworkSVG[EPageFramework.Vanilla]}
+                        {FrameworkSVG[fw]}
                     </div>
-                    <div 
-                        className={framework === EPageFramework.React ? classes.SelectedFramework : classes.Framework}
-                        onClick={() => changeFramework('react')}
-                    >
-                        {FrameworkSVG[EPageFramework.React]}
-                    </div>
-                    <div 
-                        className={framework === EPageFramework.Angular ? classes.SelectedFramework : classes.Framework}
-                        onClick={() => changeFramework('angular')}
-                    >
-                        {FrameworkSVG[EPageFramework.Angular]}
-                    </div>
+                ))}
                 </div>
             </div>
             <Navigation 

@@ -6,6 +6,7 @@ export type GalleryItem = {
         title: string;
         seoTitle: string;
         examplePath: string;
-        description?: string;
+        subtitle?: string;
+        metaDescription?: string;
     }[];
 };

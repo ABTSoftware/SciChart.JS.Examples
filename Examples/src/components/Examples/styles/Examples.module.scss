@@ -18,14 +18,14 @@
     position: relative;
     touch-action: none;
     // this seems to be an optimal aspect ration to keep the whole chart in view
-    aspect-ratio: 16 / 9;
+    // aspect-ratio: 16 / 9;
     img {
         display: block;
     }
 
-    @include sm {
-        aspect-ratio: 9 / 16;
-    }
+    // @include sm { // maybe someday
+    //     aspect-ratio: 9 / 16;
+    // }
 }
 
 .ChartWithToolbar {
@@ -138,11 +138,7 @@
     overflow: hidden;
     padding: 0;
     margin: 0;
-
-    @include md {
-        margin: 0;
-        padding: 0;
-    }
+    
     .SciChartLogo {
         text-align: right;
         margin-bottom: $default-spacing * 2;

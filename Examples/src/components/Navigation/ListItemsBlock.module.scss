@@ -22,6 +22,11 @@
     .SelectedBottomLevelListItem {
         @extend %ListItem;
         @extend %SelectedListItem;
+
+        // Active parent category styling
+        &.ActiveParentCategory {
+            background-color: rgba(0, 123, 255, 0.2);
+        }
     }
 
     .ExampleLink {
@@ -50,4 +55,17 @@
     // Styles for the exact category that matches mostVisibleCategory
     font-weight: bold;
     background-color: rgba(0, 0, 0, 0.05); // Example style
+}
+
+
+.ListItemBlock {
+    .CollapsibleMenuListItem {
+        // Base styles for menu items
+        transition: background-color 0.2s ease;
+
+        // Active parent category styling
+        &.ActiveParentCategory {
+            background-color: rgba(0, 123, 255, 0.2);
+        }
+    }
 }

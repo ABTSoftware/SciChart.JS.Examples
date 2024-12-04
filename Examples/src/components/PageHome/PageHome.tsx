@@ -5,7 +5,6 @@ import { ExampleStrings } from "../Examples/ExampleStrings";
 import classes from "./PageHome.module.scss";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { FrameworkSelect } from "../AppDeatilsRouters/FrameworkSelect";
 
 export const HOME_PAGE_TITLE = "HOMEPAGE";
 
