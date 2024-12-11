@@ -5,3 +5,7 @@ copy-to-server.sh
 drawExample.js
 vanilla.js
 src/components/Examples/**/*.js
+.vscode/
+
+# Progress tracking
+.progress/

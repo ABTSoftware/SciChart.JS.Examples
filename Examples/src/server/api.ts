@@ -13,6 +13,8 @@ import { candlesXRPUSDT } from "./BinanceData/candlesXRPUSDT";
 import { tq3080_DSM_2M } from "./Data/tq3080_DSM_2M";
 import { TweetData } from "./Data/tweetData";
 import { TBinanceQueryParams } from "./types/TBinanceQueryParams";
+import { getSandboxUrlEndpoint } from "./renderCodeSandboxRedirect";
+import { getStackblitzFiles } from "./services/stackblitz/getStackblitzFiles";
 
 const router = express.Router();
 
@@ -90,5 +92,22 @@ router.get("/get-binance-candles", (req, res) => {
     }
     res.send(data);
 });
+
+// example is the name framework and platform is in the query
+router.get("/sandboxurl/:example", (req, res) => {
+    return getSandboxUrlEndpoint(req, res);
+});
+
+// Endpoints to get sandbox URLs without redirect
+router.get("/codesandbox/:example", (req, res) => {
+    return getSandboxUrlEndpoint(req, res);
+});
+
+router.get("/stackblitz/:example", (req, res) => {
+    return getSandboxUrlEndpoint(req, res);
+});
+
+// Get files for StackBlitz
+router.get("/stackblitz/files/:example", getStackblitzFiles);
 
 export { router as api };

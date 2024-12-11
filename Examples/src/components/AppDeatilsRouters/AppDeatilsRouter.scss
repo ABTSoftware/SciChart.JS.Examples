@@ -27,6 +27,7 @@ $drawerWidthDesktop: min(450px, 30vw);
     border-radius: 15px;
     overflow-x: hidden;
     overflow-y: scroll;
+
     @include sm {
         display: none;
     }
@@ -560,7 +561,8 @@ $drawerWidthDesktop: min(450px, 30vw);
     justify-content: end;
     gap: 10px;
 
-    .btnprimary, .btn {
+    .btnprimary,
+    .btn {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -579,6 +581,14 @@ $drawerWidthDesktop: min(450px, 30vw);
 
     .btnprimary {
         background: linear-gradient(90deg, #1aa2d5 15.5%, #35bfb7 100%);
+    }
+
+    .btnDark {
+        background-color: #212121;
+    }
+
+    .btnGithub {
+        background-color: rgb(42, 99, 151);
     }
 
     .btn:hover {

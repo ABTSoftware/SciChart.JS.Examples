@@ -1,0 +1,53 @@
+.dialog {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    width: 280px;
+
+    h2 {
+        margin: 0 0 8px 0;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    p {
+        margin: 0 0 12px 0;
+        font-size: 12px;
+    }
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+
+    button {
+        min-width: 60px;
+        padding: 4px 12px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        background: white;
+        cursor: pointer;
+        font-size: 12px;
+
+        &:hover {
+            background: #f5f5f5;
+        }
+    }
+
+    .confirm {
+        background: #1976d2;
+        color: white;
+        border-color: #1976d2;
+
+        &:hover {
+            background: #1565c0;
+        }
+    }
+}

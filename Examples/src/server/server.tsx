@@ -81,10 +81,6 @@ function populatePrerenderedPageCache() {
 populatePrerenderedPageCache();
 
 function handleRender(req: Request, res: Response) {
-    if (req.query["codesandbox"]) {
-        if (renderSandBoxRedirect(req, res, "codesandbox")) return;
-    }
-
     const cachedPageHtml = pageHtmlCache.get(req.url);
     if (cachedPageHtml) {
         res.send(cachedPageHtml);
@@ -134,11 +130,21 @@ app.get("/stackblitz/:example", (req: Request, res: Response) => {
     renderSandBoxRedirect(req, res, "stackblitz");
 });
 
+// StackBlitz json endpoints
+app.get("/json/list", (req: Request, res: Response) => {
+    res.json({ files: [] });
+});
+
+app.get("/json/version", (req: Request, res: Response) => {
+    res.json({ version: "1" });
+});
+
 app.get("/source/:example", (req: Request, res: Response) => {
     getSourceFiles(req, res);
 });
 
 app.get("/iframe/codesandbox/:example", (req: Request, res: Response) => {
+    console.log("/iframe/codesandbox/:example");
     handleRender(req, res);
 });
 
@@ -147,11 +153,13 @@ app.get("/iframe/javascript-:example", (req: Request, res: Response) => {
     if (getExamplePageKey(params.example)) {
         return res.redirect(301, `${params.example}`);
     } else {
+        console.log("/iframe/javascript-:example");
         handleRender(req, res);
     }
 });
 
 app.get("/iframe/:example?", (req: Request, res: Response) => {
+    console.log("/iframe/:example?");
     handleRender(req, res);
 });
 
@@ -160,11 +168,13 @@ app.get("/javascript-:example", (req: Request, res: Response) => {
     if (getExamplePageKey(params.example)) {
         return res.redirect(301, `javascript/${params.example}`);
     } else {
+        console.log("/javascript-:example");
         handleRender(req, res);
     }
 });
 
 app.get("/:example?", (req: Request, res: Response) => {
+    console.log("/:example?");
     const params = req.params;
     const exampleKey = getExamplePageKey(req.params.example);
     if (isValidFramework(params.example as EPageFramework)) {
@@ -177,9 +187,13 @@ app.get("/:example?", (req: Request, res: Response) => {
     }
 });
 
+/*
 app.get("*", (req: Request, res: Response) => {
-    handleRender(req, res);
+    console.log("*");
+    console.log("Request URL:", req.url);
+    console.log("Request Headers:", req.headers);
 });
+*/
 
 server.listen(port, () => {
     console.log(

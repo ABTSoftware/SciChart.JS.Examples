@@ -8,6 +8,11 @@ export enum EPageFramework {
     // Vue = "vue",
 }
 
+export enum EPlatform {
+    CodeSandbox = "codesandbox",
+    StackBlitz = "stackblitz",
+}
+
 export const FRAMEWORK_NAME = {
     [EPageFramework.Vanilla]: "JavaScript",
     [EPageFramework.React]: "React",

@@ -88,18 +88,18 @@ module.exports = {
                 { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
                 { from: "sitemap.xml", to: "" },
                 { from: "robots.txt", to: "" },
+                { from: "src/assets", to: "assets" },
             ],
         }),
-        // new CopyPlugin({
-        //     patterns: [{ from: "src/static/no_server.index.html", to: "index.html" }]
-        // })
     ],
     devServer: {
         client: {
             progress: true,
         },
-        // liveReload: true,
-        // hot: true,
+        static: {
+            directory: "src/assets",
+            publicPath: "/assets",
+        },
         allowedHosts: "all",
         historyApiFallback: true,
         onBeforeSetupMiddleware: function (devServer) {
@@ -135,36 +135,3 @@ module.exports = {
         },
     },
 };
-
-// , {
-//     mode: "development",
-//     devtool: "inline-source-map",
-//     watch: true,
-//     plugins: [
-//         new CopyPlugin({
-//             patterns: [
-//                 { from: "src/static/no_server.index.html", to: "index.html" }
-//             ],
-//         })
-//     ],
-//     devServer: {
-//         disableHostCheck: true,
-//         historyApiFallback: true,
-//         proxy: {
-//             "/api/thevirustracker": {
-//                 target: "https://thevirustracker.com",
-//                 pathRewrite: { "^/api/thevirustracker": "" },
-//                 secure: false,
-//                 changeOrigin: true
-//             }
-//         },
-//         before: function(app, server, compiler) {
-//             app.get("/api/license", function(req, res) {
-//                 res.send(betaTrialKey);
-//             });
-//             app.get("/api/lidarData", function(req, res) {
-//                 res.send(tq3080_DSM_2M.tq3080_DSM_2M);
-//             });
-//         }
-//     }
-// });

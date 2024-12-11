@@ -3,11 +3,15 @@ import * as fs from "fs";
 import { Request, Response } from "express";
 import { EXAMPLES_PAGES, TExamplePage } from "../components/AppRouter/examplePages";
 import { BadRequestError, IHttpError, NotFoundError } from "./Errors";
-import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
+import { EPageFramework, EPlatform } from "../helpers/shared/Helpers/frameworkParametrization";
 import { getParameters } from "codesandbox/lib/api/define";
 import { getSandboxConfig } from "./services/sandbox";
 import { SandboxConfig, IFiles, getSourceFilesForPath, loadStyles } from "./services/sandbox/sandboxDependencyUtils";
 import { indexHtmlTemplate } from "./services/sandbox/vanillaTsConfig";
+import https from "https";
+import { parse } from "node-html-parser"; // Install: npm install node-html-parser
+
+//  const parameters = getParameters({ files, template:  getCodeSandboxTemplate(framework) });
 
 const renderCodeSandBoxRedirectPage = (config: SandboxConfig, framework: EPageFramework) => {
     const files = config.files;
@@ -43,6 +47,77 @@ const renderCodeSandBoxRedirectPage = (config: SandboxConfig, framework: EPageFr
 function replaceAll(str: string, find: string, replace: string) {
     return str.replace(new RegExp(find, "g"), replace);
 }
+
+function postAndCaptureRedirect(url: string, data: any): Promise<string | null> {
+    return new Promise((resolve, reject) => {
+        const urlObj = new URL(url);
+        const options = {
+            hostname: urlObj.hostname,
+            port: urlObj.port || 443,
+            path: urlObj.pathname + urlObj.search,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Content-Length": Buffer.byteLength(JSON.stringify(data)),
+            },
+        };
+
+        const req = https.request(options, (res) => {
+            if (res.statusCode && res.statusCode >= 300 && res.statusCode < 400) {
+                // Redirect occurred
+                if (res.headers.location) {
+                    resolve(res.headers.location); // Capture and return redirect URL
+                } else {
+                    resolve(null); // No location header in redirect
+                }
+            } else {
+                resolve(null); // No redirect
+            }
+        });
+
+        req.on("error", (err) => {
+            reject(err); // Handle request errors
+        });
+
+        // Write data to the request body
+        req.write(JSON.stringify(data));
+        req.end();
+    });
+}
+const STATCKBLITZ_URL = "https://stackblitz.com/run";
+
+// Function to get Stackblitz URL directly
+const getStackblitzData = async (config: SandboxConfig, framework: EPageFramework) => {
+    const { "package.json": packageJsonFile, ...restFiles } = config.files;
+    // @ts-ignore
+    const allDependencies = { ...packageJsonFile.content.dependencies, ...packageJsonFile.content.devDependencies };
+
+    const templateArg = getStackblitzTemplate(framework);
+
+    const formData = new URLSearchParams();
+
+    // Add files
+    Object.entries(restFiles).forEach(([filename, file]) => {
+        formData.append(`project[files][${filename}]`, file.content);
+    });
+
+    // Add package.json
+    formData.append("project[files][package.json]", JSON.stringify(packageJsonFile.content, null, 2));
+    formData.append("project[dependencies]", JSON.stringify(allDependencies, null, 2));
+    formData.append("project[template]", templateArg);
+    formData.append("project[description]", "SciChart exported example");
+    formData.append(
+        "project[settings]",
+        JSON.stringify({
+            compile: {
+                clearConsole: false,
+                action: "refresh",
+                trigger: "save",
+            },
+        })
+    );
+    return formData.toString();
+};
 
 // https://stackblitz.com/edit/sdk-angular-dependencies?file=project.ts,files.ts
 const renderStackblitzRedirectPage = (config: SandboxConfig, framework: EPageFramework) => {
@@ -96,13 +171,17 @@ const notFoundCodeSandBoxRedirectPage = (page: TExamplePage) => {
 };
 
 const basePath = path.join(__dirname, "Examples");
-const memoryCache: {[key: string]: {[fileName: string]: string } } = {};
+const memoryCache: { [key: string]: { [fileName: string]: string } } = {};
 
 // Get and cache source files for an example
 export const cacheSourceFiles = async (exampleKey: string, folderPath: string, framework: EPageFramework) => {
     if (memoryCache[exampleKey]) return memoryCache[exampleKey];
 
-    const files = await getSourceFilesForPath(folderPath, framework === EPageFramework.React ? "index.tsx" : "drawExample.js", "");
+    const files = await getSourceFilesForPath(
+        folderPath,
+        framework === EPageFramework.React ? "index.tsx" : "drawExample.js",
+        ""
+    );
     memoryCache[exampleKey] = Object.fromEntries(
         Object.entries(files).map(([filePath, file]) => {
             const fileName = path.basename(filePath);
@@ -125,14 +204,15 @@ export const getRequestedExample = (req: Request, res: Response) => {
     return { currentExample, currentExampleKey };
 };
 
-export const getSourceFiles = async (req: Request, res: Response) => {
+export const getSourceFiles = async (req: Request, res: Response): Promise<boolean> => {
     try {
         let currentExample: TExamplePage;
         try {
             currentExample = getRequestedExample(req, res)?.currentExample;
         } catch (err) {
             const error = err as IHttpError;
-            return res.status(error.status).send(error.status && error.message);
+            res.status(error.status).send(error.status && error.message);
+            return false;
         }
 
         try {
@@ -141,7 +221,6 @@ export const getSourceFiles = async (req: Request, res: Response) => {
             if (!isValidFramework) {
                 framework = EPageFramework.React;
             }
-            // console.log("Get source files for ", currentExample.title, framework);
             const folderPath = path.join(basePath, currentExample.filepath);
             let files: IFiles = {};
             let htmlPath: string;
@@ -151,8 +230,6 @@ export const getSourceFiles = async (req: Request, res: Response) => {
                 case EPageFramework.Angular:
                     files = await getSourceFilesForPath(folderPath, "angular.ts", baseUrl);
                     break;
-                // case EPageFramework.Vue:
-                //     throw new Error("Not Implemented");
                 case EPageFramework.React:
                     files = await getSourceFilesForPath(folderPath, "index.tsx", baseUrl);
                     break;
@@ -172,20 +249,25 @@ export const getSourceFiles = async (req: Request, res: Response) => {
             }
             const result: { name: string; content: string }[] = [];
             for (const key in files) {
-                // console.log(key);
                 const sep = key.indexOf("/") > 0 ? "/" : "\\";
                 const name = key.substring(key.lastIndexOf(sep) + 1);
                 result.push({ name, content: files[key].content });
             }
             res.send(result);
+            return true;
         } catch (err) {
-            // check if expected error type
             console.warn(err);
             const error = err as IHttpError;
+            if (error?.status) {
+                res.status(error.status).send(error.message);
+            } else {
+                res.status(500).send("Internal server error");
+            }
+            return false;
         }
-        return true;
     } catch (err) {
         console.warn(err);
+        res.status(500).send("Internal server error");
         return false;
     }
 };
@@ -194,25 +276,321 @@ export const getSourceFiles = async (req: Request, res: Response) => {
 export const getDrawExampleFile = async (req: Request, res: Response) => {
     try {
         const { currentExample, currentExampleKey } = getRequestedExample(req, res);
-        const framework = req.query.framework as EPageFramework || EPageFramework.React;
+        const framework = (req.query.framework as EPageFramework) || EPageFramework.React;
         const folderPath = path.join(basePath, currentExample.filepath);
 
         // Load or retrieve cached files
         const cachedFiles = await cacheSourceFiles(currentExampleKey, folderPath, framework);
 
         // Respond with "drawExample.js" content and other file names
-        const response = Object.entries(cachedFiles).map(([fileName, content]) => 
+        const response = Object.entries(cachedFiles).map(([fileName, content]) =>
             fileName === "drawExample.js" ? { name: fileName, content } : { name: fileName, content: null }
         );
         res.send(response);
-
     } catch (err) {
         console.error(err);
         res.status(500).send("Error retrieving example files");
     }
 };
 
-export const renderSandBoxRedirect = async (req: Request, res: Response, sandboxEnv: "codesandbox" | "stackblitz") => {
+/*
+const getParams = (config: SandboxConfig, framework: EPageFramework) => {
+    const files = config.files;
+    const openInDevBox = framework === EPageFramework.Angular;
+    const template = getCodeSandboxTemplate(framework);
+    const parameters = getParameters({ files, template })
+    return parameters;
+}
+*/
+
+const CODESANDBOX_URL = "https://codesandbox.io/api/v1/sandboxes/define?json=1";
+const sendCodeSandboxRequest = async (body: string) => {
+    const response = await fetch(CODESANDBOX_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        body,
+    });
+
+    if (!response.ok) {
+        const errorBody = await response.text();
+        throw new Error(`Failed to create sandbox: ${response.status} ${response.statusText} - ${errorBody}`);
+    }
+    return response;
+};
+
+const getId = async (response: globalThis.Response) => {
+    if (!response.ok) {
+        const errorBody = await response.text();
+        throw new Error(`Failed to create sandbox: ${response.status} ${response.statusText} - ${errorBody}`);
+    }
+
+    const sandboxResponse = await response.json();
+    console.log(sandboxResponse);
+    const sandboxId = sandboxResponse.sandbox_id; // Extract the sandbox ID
+    return sandboxId;
+};
+
+/*
+fetch("https://codesandbox.io/api/v1/sandboxes/define?json=1", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json"
+  },
+  body: JSON.stringify({
+    files: {
+      "package.json": {
+        content: {
+          dependencies: {
+            react: "latest",
+            "react-dom": "latest"
+          }
+        }
+      },
+      "index.js": {
+        content: code
+      },
+      "index.html": {
+        content: html
+      }
+    }
+  })
+})
+*/
+
+export const validateStackblitzProject = async (projectId: string, cookies: string[]): Promise<boolean> => {
+    const cookieHeader = cookies.join("; ");
+
+    return new Promise((resolve, reject) => {
+        const options = {
+            hostname: "stackblitz.com",
+            path: `/edit/${projectId}`,
+            method: "GET",
+            headers: {
+                Cookie: cookieHeader,
+            },
+        };
+
+        const req = https.request(options, (res) => {
+            // Project accessible if we get a 200 OK response
+            if (res.statusCode === 200) {
+                resolve(true);
+            } else {
+                console.error(`Error: Received status code ${res.statusCode}`);
+                resolve(false);
+            }
+        });
+
+        req.on("error", (err) => {
+            console.error("Request error:", err);
+            reject(err);
+        });
+
+        req.end();
+    });
+};
+
+const simpleTest = {
+    project: {
+        files: {
+            "index.ts": "console.log('Hello, StackBlitz!');",
+            "package.json": {
+                name: "stackblitz-test",
+                version: "1.0.0",
+                description: "A simple test project for StackBlitz",
+                main: "index.js",
+                dependencies: {
+                    typescript: "^4.8.0",
+                },
+                scripts: {
+                    start: "tsc index.ts && node index.js",
+                },
+            },
+        },
+        template: "node",
+        description: "Test project for StackBlitz",
+        settings: {
+            compile: {
+                clearConsole: false,
+                action: "refresh",
+                trigger: "save",
+            },
+        },
+    },
+};
+
+const getTestFormData = () => {
+    const formData = new URLSearchParams();
+    formData.append("project[files][index.ts]", simpleTest.project.files["index.ts"]);
+    formData.append("project[files][package.json]", JSON.stringify(simpleTest.project.files["package.json"]));
+    formData.append("project[template]", simpleTest.project.template);
+    formData.append("project[description]", simpleTest.project.description);
+    formData.append("project[settings]", JSON.stringify(simpleTest.project.settings));
+
+    const formBody = formData.toString();
+    return formBody;
+};
+
+export const postToStackblitzAndCaptureRedirect = async (
+    config: SandboxConfig,
+    framework: EPageFramework
+): Promise<string | null> => {
+    return null;
+    /*
+    const { "package.json": packageJsonFile, ...restFiles } = config.files;
+
+    const packageJsonContent = replaceAll(JSON.stringify(packageJsonFile.content, null, 2), '"', `&quot;`);
+    // @ts-ignore
+    const allDependencies = { ...packageJsonFile.content.dependencies, ...packageJsonFile.content.devDependencies };
+    const dependenciesArgs = replaceAll(JSON.stringify(allDependencies, null, 2), '"', `&quot;`);
+
+    const filesArgs = Object.entries(restFiles).reduce((acc, [filename, file]) => {
+        acc[`project[files][${filename}]`] = file.content;
+        return acc;
+    }, {} as Record<string, string>);
+
+
+    const templateArg = getStackblitzTemplate(framework);
+
+    // Form data
+    const formData = {
+        "project[description]": "SciChart exported example",
+        "project[files][package.json]": packageJsonContent,
+        "project[dependencies]": dependenciesArgs,
+        "project[template]": templateArg,
+        "project[settings]": JSON.stringify({
+            compile: { clearConsole: false, action: 'refresh', trigger: 'save' },
+        }),
+        ...filesArgs,
+    };
+    */
+
+    const formBody = getTestFormData();
+    //const formBody = new URLSearchParams(formData).toString();
+
+    // Perform POST request
+    /*
+    return new Promise((resolve, reject) => {
+        const req = https.request(
+            {
+                hostname: "stackblitz.com",
+                port: 443,
+                path: "/run",
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Content-Length": Buffer.byteLength(formBody),
+                },
+            },
+            (res) => {
+                let responseBody = "";
+
+                res.on("data", (chunk) => {
+                    responseBody += chunk;
+                });
+
+                res.on("end", async () => {
+                    if (res.statusCode && res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+                        resolve(res.headers.location); // Redirect URL captured
+                    } else {
+                        const root = parse(responseBody);
+
+                        // Example: Extract the <title> or <meta> tags
+                        const title = root.querySelector("title")?.text || "Unknown Title";
+                        const id = title.split(" ")[0].trim();
+                        const cookies = res.headers["set-cookie"];
+                        const isValid = await validateStackblitzProject(id, cookies);
+                        console.log(isValid);
+                        console.log("Page Title:", title);
+
+                        // Infer project URL (e.g., based on known structure)
+                        const projectUrl = root.querySelector('meta[property="og:url"]')?.getAttribute("content");
+                        console.log("Project URL:", projectUrl || "Could not find URL");
+
+                        console.log("Response Status Code:", res.statusCode);
+                        console.log("Response Headers:", res.headers);
+                        console.log("Response Body:", responseBody);
+                        resolve(null); // No redirect
+                    }
+                });
+            }
+        );
+
+        req.on("error", (err) => {
+            reject(err);
+        });
+
+        req.write(formBody);
+        req.end();
+    });
+    */
+};
+
+// Endpoint handler that returns the CodeSandbox URL instead of redirecting
+export const getSandboxUrlEndpoint = async (req: Request, res: Response) => {
+    try {
+        await loadStyles(basePath);
+        let currentExample: TExamplePage;
+        try {
+            currentExample = getRequestedExample(req, res)?.currentExample;
+        } catch (err) {
+            const error = err as IHttpError;
+            return res.status(error.status).send(error.status && error.message);
+        }
+
+        try {
+            let framework = req.query.framework as EPageFramework;
+            const isValidFramework = Object.values(EPageFramework).includes(framework);
+            if (!isValidFramework) {
+                framework = EPageFramework.React;
+            }
+            let platform = req.query.platform as EPlatform;
+            const isValidPlatform = Object.values(EPlatform).includes(platform);
+            if (!isValidPlatform) {
+                platform = EPlatform.CodeSandbox;
+            }
+            //
+            let baseUrl = req.protocol + "://" + req.get("host");
+            const folderPath = path.join(basePath, currentExample.filepath);
+            const sandboxConfig = await getSandboxConfig(folderPath, currentExample, framework, baseUrl);
+            //const parms = getParams(sandboxConfig, framework)
+
+            if (platform === EPlatform.CodeSandbox) {
+                const parms = JSON.stringify(sandboxConfig);
+                const sbres = await sendCodeSandboxRequest(parms); // may fail
+                const id = await getId(sbres);
+                res.status(200).json({ id });
+            } else {
+                // stackblitz
+                //  const data = getStackblitzData(sandboxConfig, framework)
+                //console.log(data);
+                const url = await postToStackblitzAndCaptureRedirect(sandboxConfig, framework);
+                console.log(url);
+                res.status(200).json({ url });
+            }
+        } catch (err) {
+            console.warn(err);
+            const error = err as IHttpError;
+            if (error?.status === 404) {
+                const alternativeLink = `/codesandbox/${currentExample.path}?codesandbox=1&framework=${EPageFramework.React}`;
+                res.json({ error: "Example not found", alternativeUrl: alternativeLink });
+            } else {
+                res.status(500).json({ error: "Internal server error" });
+            }
+        }
+    } catch (err) {
+        console.warn(err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+    return res.status(200);
+};
+
+/*
+// Endpoint handler that returns the CodeSandbox URL instead of redirecting
+export const getCodeSandboxUrlEndpoint = async (req: Request, res: Response) => {
     try {
         await loadStyles(basePath);
         let currentExample: TExamplePage;
@@ -231,29 +609,127 @@ export const renderSandBoxRedirect = async (req: Request, res: Response, sandbox
             }
             let baseUrl = req.protocol + "://" + req.get("host");
             const folderPath = path.join(basePath, currentExample.filepath);
-            const sandboxConfig = await getSandboxConfig(
-                folderPath,
-                currentExample,
-                req.query.framework as EPageFramework,
-                baseUrl
-            );
+            const sandboxConfig = await getSandboxConfig(folderPath, currentExample, framework, baseUrl);
+
+            const platform = req.query.platform;
+            //const parms = getParams(sandboxConfig, framework)
+            const parms = JSON.stringify(sandboxConfig);
+
+            if (platform === EPlatform.CodeSandbox) {
+                const sbres = await sendCodeSandboxRequest(parms); // may fail
+                const id = await getId(sbres);
+                res.status(200).json({ id });
+            } else {  // stackblitz
+                const url = getStackblitzUrl(sandboxConfig, framework);
+                console.log(url);
+                res.status(200).json({ url })
+            }
+        } catch (err) {
+            console.warn(err);
+            const error = err as IHttpError;
+            if (error?.status === 404) {
+                const alternativeLink = `/codesandbox/${currentExample.path}?codesandbox=1&framework=${EPageFramework.React}`;
+                res.json({ error: "Example not found", alternativeUrl: alternativeLink });
+            } else {
+                res.status(500).json({ error: "Internal server error" });
+            }
+        }
+    } catch (err) {
+        console.warn(err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+    return res.status(200);
+};
+*/
+
+// Endpoint handler that returns the Stackblitz URL instead of redirecting
+/*
+export const getStackblitzUrlEndpoint = async (req: Request, res: Response) => {
+    try {
+        await loadStyles(basePath);
+        let currentExample: TExamplePage;
+        try {
+            currentExample = getRequestedExample(req, res)?.currentExample;
+        } catch (err) {
+            const error = err as IHttpError;
+            return res.status(error.status).send(error.status && error.message);
+        }
+
+        try {
+            let framework = req.query.framework as EPageFramework;
+            const isValidFramework = Object.values(EPageFramework).includes(framework);
+            if (!isValidFramework) {
+                framework = EPageFramework.React;
+            }
+            let baseUrl = req.protocol + "://" + req.get("host");
+            const folderPath = path.join(basePath, currentExample.filepath);
+            const sandboxConfig = await getSandboxConfig(folderPath, currentExample, framework, baseUrl);
+            const url = getStackblitzUrl(sandboxConfig, framework);
+            res.json({ url });
+        } catch (err) {
+            console.warn(err);
+            const error = err as IHttpError;
+            if (error?.status === 404) {
+                const alternativeLink = `/codesandbox/${currentExample.path}?codesandbox=1&framework=${EPageFramework.React}`;
+                res.json({ error: "Example not found", alternativeUrl: alternativeLink });
+            } else {
+                res.status(500).json({ error: "Internal server error" });
+            }
+        }
+    } catch (err) {
+        console.warn(err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+    return res.status(200);
+};
+*/
+
+export const renderSandBoxRedirect = async (
+    req: Request,
+    res: Response,
+    sandboxEnv: "codesandbox" | "stackblitz"
+): Promise<boolean> => {
+    try {
+        await loadStyles(basePath);
+        let currentExample: TExamplePage;
+        try {
+            currentExample = getRequestedExample(req, res)?.currentExample;
+        } catch (err) {
+            const error = err as IHttpError;
+            res.status(error.status).send(error.status && error.message);
+            return false;
+        }
+
+        try {
+            let framework = req.query.framework as EPageFramework;
+            const isValidFramework = Object.values(EPageFramework).includes(framework);
+            if (!isValidFramework) {
+                framework = EPageFramework.React;
+            }
+            let baseUrl = req.protocol + "://" + req.get("host");
+            const folderPath = path.join(basePath, currentExample.filepath);
+            const sandboxConfig = await getSandboxConfig(folderPath, currentExample, framework, baseUrl);
+
             const page =
                 sandboxEnv === "codesandbox"
                     ? renderCodeSandBoxRedirectPage(sandboxConfig, framework)
                     : renderStackblitzRedirectPage(sandboxConfig, framework);
             res.send(page);
+            return true;
         } catch (err) {
-            // check if expected error type
             console.warn(err);
             const error = err as IHttpError;
             if (error?.status === 404) {
                 const page = notFoundCodeSandBoxRedirectPage(currentExample);
                 res.send(page);
+                return true;
             }
+            res.status(error?.status || 500).send(error?.message || "Internal server error");
+            return false;
         }
-        return true;
     } catch (err) {
         console.warn(err);
+        res.status(500).send("Internal server error");
         return false;
     }
 };
@@ -266,8 +742,6 @@ const getStackblitzTemplate = (framework: EPageFramework) => {
     switch (framework) {
         case EPageFramework.Angular:
             return "node";
-        // case EPageFramework.Vue:
-        //     return "vue";
         case EPageFramework.React:
             return "create-react-app";
         case EPageFramework.Vanilla:
@@ -281,8 +755,6 @@ const getCodeSandboxTemplate = (framework: EPageFramework) => {
     switch (framework) {
         case EPageFramework.Angular:
             return "angular-cli";
-        // case EPageFramework.Vue:
-        //     return "vue-cli";
         case EPageFramework.React:
             return "create-react-app";
         case EPageFramework.Vanilla:

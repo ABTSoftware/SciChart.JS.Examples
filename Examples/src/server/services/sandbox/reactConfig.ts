@@ -43,6 +43,7 @@ export const getReactSandBoxConfig = async (
                     "@emotion/styled": "^11.13.0", // peer dependency of @mui/material
                     "@mui/material": "^5.15.20", // Change to MUI v5
                     "@mui/lab": "^5.0.0-alpha.170",
+                    "@mui/icons-material": "^5.15.20",
                     "tss-react": "^4.9.13",
                     sass: "^1.49.9",
                     "loader-utils": "3.2.1",
