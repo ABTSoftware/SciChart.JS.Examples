@@ -17,6 +17,7 @@
     overflow: hidden;
     position: relative;
     touch-action: none;
+    height: 100%;
     // this seems to be an optimal aspect ration to keep the whole chart in view
     // aspect-ratio: 16 / 9;
     img {

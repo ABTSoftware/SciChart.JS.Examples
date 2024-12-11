@@ -98,15 +98,6 @@ router.get("/sandboxurl/:example", (req, res) => {
     return getSandboxUrlEndpoint(req, res);
 });
 
-// Endpoints to get sandbox URLs without redirect
-router.get("/codesandbox/:example", (req, res) => {
-    return getSandboxUrlEndpoint(req, res);
-});
-
-router.get("/stackblitz/:example", (req, res) => {
-    return getSandboxUrlEndpoint(req, res);
-});
-
 // Get files for StackBlitz
 router.get("/stackblitz/files/:example", getStackblitzFiles);
 

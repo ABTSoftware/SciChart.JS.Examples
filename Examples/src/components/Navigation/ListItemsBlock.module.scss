@@ -22,11 +22,6 @@
     .SelectedBottomLevelListItem {
         @extend %ListItem;
         @extend %SelectedListItem;
-
-        // Active parent category styling
-        &.ActiveParentCategory {
-            background-color: rgba(0, 123, 255, 0.2);
-        }
     }
 
     .ExampleLink {
@@ -43,6 +38,11 @@
         background-color: #f9fafa;
         color: #98a4af;
         border-radius: 50%;
+        height: 24px;
+        width: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -65,7 +65,7 @@
 
         // Active parent category styling
         &.ActiveParentCategory {
-            background-color: rgba(0, 123, 255, 0.2);
+            background-color: rgba(42, 99, 151, 0.2);
         }
     }
 }

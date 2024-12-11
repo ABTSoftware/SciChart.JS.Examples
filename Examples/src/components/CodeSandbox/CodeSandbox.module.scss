@@ -3,6 +3,8 @@
     flex-direction: column;
     width: 100%;
     position: relative;
+    border-radius: 12px;
+    overflow: hidden;
 
     &.browserFill {
         position: fixed;

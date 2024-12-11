@@ -42,7 +42,7 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
                 image={exampleImage}
                 url={exampleUrl}
             />
-            <div className={`${commonClasses.Example} AnExampleContainer`}>
+            <div className={`${commonClasses.Example} AnExampleContainer`} style={{height: '100%'}}>
                 <ExampleComponent />
                 {/* view fullscreen */}
                 <a

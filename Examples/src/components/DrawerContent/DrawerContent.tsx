@@ -8,6 +8,8 @@ import classes from "./DrawerContent.module.scss";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import Search from "../Search/Search";
 import { EPageFramework } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { useMediaQuery } from "@mui/material";
+import { Theme } from "@mui/material/styles";
 
 // tslint:disable-next-line:no-var-requires
 const APP_VERSION = require("../../../package.json").dependencies.scichart;
@@ -63,9 +65,12 @@ const DrawerContent: FC<TProps> = (props) => {
     const framework = useContext(FrameworkContext);
     const { testIsOpened, toggleOpenedMenuItem, toggleDrawer } = props;
 
+    // TODO md was changed by migration script.requires verification
+    const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
+
     return (
         <div className={classes.DrawerContent}>
-            <Search />
+            {isMedium && <Search />}
             <Divider />
             <div className={classes.DrawerTopSection}>
                 <IconButton onClick={toggleDrawer} className={classes.CloseButton} aria-label="close-drawer-button">

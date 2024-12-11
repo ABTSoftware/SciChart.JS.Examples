@@ -113,7 +113,6 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     });
 
     const [openedMenuItems, setOpenedMenuItems] = useState<Record<string, boolean>>(initialOpenedMenuItems);
-    const PageTitle = getFrameworkContent(currentExample.title, selectedFramework);
 
     useEffect(() => {
         window.scrollTo({
@@ -142,7 +141,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
             setEmbedCode(false);
             setProjectFiles(null);
         }
-    }, [currentExample]);
+    }, []);
 
     const handleFileClick = (fileName: string) => {
         const file = sourceFiles.find((f) => f.name === fileName);
@@ -171,37 +170,37 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         setEmbedCode(true);
     };
 
-    const ExamplesArea = () => (
-        <div className={classes.dynamicFlexWrapper}>
-            <div className={classes.chartwrap} style={{ minWidth: "50%" }}>
-                <ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />
-                <CodeActionButtons
-                    {...{ currentExample, selectedFramework, selectedFile }}
-                    onSandboxOpen={handleSandboxOpen}
-                />
-            </div>
-            <div className={classes.editortabwrap}>
-                <FileExplorer files={sourceFiles} selectedFile={selectedFile} handleFileClick={handleFileClick} />
-            </div>
-        </div>
-    );
-
     const renderEditor = () => {
-        if (sandboxPlatform === SandboxPlatform.CodeSandbox) {
-            return (
-                <CodeSandbox id={sandboxId} onBack={handleBack} platform={sandboxPlatform} exampleName={pageTitle} />
-            );
-        } else {
-            return (
-                <StackblitzEditor
-                    id={sandboxId}
-                    onBack={handleBack}
-                    exampleName={pageTitle}
-                    projectFiles={projectFiles}
-                />
-            );
-        }
+        return ( sandboxPlatform === SandboxPlatform.CodeSandbox ) ?
+            <CodeSandbox id={sandboxId} onBack={handleBack} platform={sandboxPlatform} exampleName={pageTitle} />
+            : <StackblitzEditor id={sandboxId} onBack={handleBack} exampleName={pageTitle} projectFiles={projectFiles} />
     };
+
+    const LayoutButtons = () => {
+        return ( 
+            <ul className={classes.layoutButtons}>
+                <li 
+                    onClick={() => setPageLayout(EPageLayout.Default)}
+                    className={pageLayout === EPageLayout.Default ? classes.active : ""}
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <rect x="1.3" y="1.3" width="10" height="21.4" stroke="none" rx="2" />
+                        <rect x="12.7" y="1.3" width="10" height="21.4" stroke="none" rx="2" />
+                    </svg>
+                </li>
+
+                <li 
+                    onClick={() => setPageLayout(EPageLayout.MaxWidth)}
+                    className={pageLayout === EPageLayout.MaxWidth ? classes.active : ""}
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <rect x="1.3" y="1.3" width="21.4" height="10" stroke="none" rx="2" />
+                        <rect x="1.3" y="12.7" width="21.4" height="10" stroke="none" rx="2" />
+                    </svg>
+                </li>
+            </ul>
+        );
+    }
 
     return (
         <div>
@@ -213,15 +212,71 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                         toggleDrawer={() => {}}
                     />
                 </div>
-                <div className={classes.contentwrapper}>
-                    <ExampleBreadcrumbs />
-                    <h1 className={classes.headingtxt} style={{ margin: "-10px 0" }}>
-                        {pageTitle}
-                    </h1>
-                    <p className={classes.chartdescription}>
-                        {PageTitle}
-                    </p>
-                    {embedCode ? renderEditor() : <ExamplesArea />}
+                <div style={{ display: "flex", flexDirection: "column", gap: 15, width: '100%' }}>
+                    <div className={classes.contentwrapper}>
+                        <div style={{ display: "flex" }}>
+                            <ExampleBreadcrumbs />
+
+                            <LayoutButtons/>
+                        </div>
+
+                        <div style={{ display: "flex", justifyContent: "center"}}>
+                            <h1 className={classes.headingtxt} style={{ margin: "-10px 0" }}>
+                                {pageTitle}
+                            </h1>
+
+                            {/* Github, stackblitz buttons visible on maxwidth layout */}
+                            {!(pageLayout === EPageLayout.MaxWidth) ?
+                                <CodeActionButtons
+                                    className={`${classes.tabbtnwrap} ${classes.hiddenSmall}`}
+                                    {...{ currentExample, selectedFramework, selectedFile }}
+                                    onSandboxOpen={handleSandboxOpen}
+                                    style={{marginLeft: 'auto'}}
+                                />
+                            : null}
+                        </div>
+
+                        {/* Subtitle // this returns a <p> already, no need to update */}
+                        {currentExample.subtitle(selectedFramework)} 
+
+                        {/* Main example section */}
+                        {embedCode ? 
+                            renderEditor() 
+                            : 
+                            <div // Chart + Code section
+                                className={classes.dynamicFlexWrapper} 
+                                style={pageLayout === EPageLayout.MaxWidth ? { flexDirection: "column" } : {}}
+                            >
+                                <ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />
+                                <CodeActionButtons
+                                    {...{ currentExample, selectedFramework, selectedFile }}
+                                    onSandboxOpen={handleSandboxOpen}
+                                    className={`${classes.tabbtnwrap} ${pageLayout === EPageLayout.MaxWidth ? "" : classes.hiddenLarge}`}
+                                    style={{minHeight: 35, height: 35, padding: 0, width: '100%'}}            
+                                />
+                                <div className={classes.editortabwrap}>
+                                    <FileExplorer files={sourceFiles} selectedFile={selectedFile} handleFileClick={handleFileClick} />
+                                    <Editor
+                                        theme="light"
+                                        height="100%"
+                                        width="100%"
+                                        language={EditorLanguageMap[selectedFile.name.split(".").pop() as keyof typeof EditorLanguageMap]}
+                                        value={selectedFile.content}
+                                        options={{
+                                            readOnly: true,
+                                            lineNumbersMinChars: 3,
+                                            minimap: { enabled: true },
+                                            fontSize: 16,
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        }
+
+                        {currentExample?.markdownContent?.length ?
+                            <MarkdownContent selectedFramework={selectedFramework} currentExample={currentExample} />
+                        : null }
+                    </div>
                     <GalleryItems examples={seeAlso} />
                 </div>
             </div>

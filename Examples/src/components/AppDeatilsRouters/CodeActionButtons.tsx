@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, useState } from "react";
 import classes from "./AppDeatilsRouter.scss";
-import { EPageFramework, FRAMEWORK_NAME, getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { EPageFramework, FRAMEWORK_NAME, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { getSandboxUrl, getStackBlitzFiles } from "./sandboxUtils";
@@ -11,17 +11,21 @@ const getFrameWorkName = (frameWork: string): string => {
 };
 
 type CodeActionButtonsProps = {
+    className?: string;
     currentExample: TExamplePage;
     selectedFramework: EPageFramework;
     selectedFile: { name: string; content: string };
     onSandboxOpen: (platform: SandboxPlatform, sandboxId: string, projectFiles?: any) => void;
+    style?: React.CSSProperties;
 };
 
 export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
+    className,
     currentExample,
     selectedFramework,
     onSandboxOpen,
     selectedFile,
+    style,
 }): ReactNode => {
     const [availableFrameworks] = useState<EPageFramework[]>([
         EPageFramework.React,
@@ -56,15 +60,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
     };
 
     return (
-        <div className={classes.tabbtnwrap}>
-            <CodeActionButton
-                iconName="exampleFullscreen"
-                label="Full Screen"
-                className={classes.btnprimary}
-                href={`/iframe/${currentExample.path}`}
-                target="_blank"
-                rel="noopener"
-            />
+        <div className={className} style={style}>
             <CodeActionButton
                 iconName="exampleStackblitz"
                 label="Edit"
@@ -72,7 +68,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.StackBlitz)}
                 title={
                     isFrameworkVariantAvailable
-                        ? `Edit ${getTitle(currentExample.title, selectedFramework)} in StackBlitz`
+                        ? `Edit ${getFrameworkContent(currentExample.title, selectedFramework)} in StackBlitz`
                         : `Sorry, we have not got ${frameWorkName} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
                 }
             />
@@ -83,13 +79,13 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.CodeSandbox)}
                 title={
                     isFrameworkVariantAvailable
-                        ? `Edit ${getTitle(currentExample.title, selectedFramework)} in CodeSandbox`
+                        ? `Edit ${getFrameworkContent(currentExample.title, selectedFramework)} in CodeSandbox`
                         : `Sorry, we have not got ${frameWorkName} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
                 }
             />
             <CodeActionButton
                 iconName="exampleGithub"
-                label="View Source"
+                label="View&nbsp;Source"
                 className={`${classes.btn} ${classes.btnGithub}`}
                 href={`https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Examples/src/components/Examples/${currentExample.filepath}/${selectedFile.name}`}
                 target="_blank"

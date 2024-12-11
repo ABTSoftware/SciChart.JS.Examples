@@ -1,4 +1,4 @@
-import { FC, Fragment, useContext, useEffect } from "react";
+import { FC, Fragment, useContext, useEffect, useRef } from "react";
 import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
 import { TMenuItem } from "../AppRouter/examples";
@@ -33,46 +33,46 @@ const ListItemsBlock: FC<TProps> = (props) => {
         mostVisibleCategory 
     } = props;
 
+    // Ref for the currently active item
+    const activeItemRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        // Automatically scroll to the active item
+        if (activeItemRef.current) {
+            activeItemRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
+        }
+    }, []);
+
     // Automatically expand the section containing the active or most visible item
     useEffect(() => {
         if (mostVisibleCategory) {
-            // Find the parent category for the most visible category
             const activeMenuItem = menuItems.find(item => 
                 item.submenu.some(subItem => subItem.id === mostVisibleCategory)
             );
 
             if (activeMenuItem) {
-                // Expand the parent category
                 onExpandClick(activeMenuItem.id);
-                
-                // Ensure the top-level menu is also expanded
                 onExpandClick(menuItemsId);
             }
         }
     }, [mostVisibleCategory, menuItems, onExpandClick, menuItemsId]);
 
-    // Helper function to check if a submenu item is active
-    const isItemActive = (itemId: string) => {
-        return match?.currentExample?.path === `${selectedFramework}/${itemId}`;
+    const isItemActive = (itemId: string): boolean => {        
+        return match?.currentExample?.id === itemId;
     };
 
     return (
         <div className={classes.ListItemBlock}>
             <div 
                 onClick={() => onExpandClick(menuItemsId)} 
-                className={`${classes.CollapsibleMenuListItem} ${
-                    menuItems.some(menuItem => 
-                        menuItem.submenu.some(subItem => isItemActive(subItem.id))
-                    ) ? classes.ActiveParentCategory : ''
-                }`}
+                className={classes.CollapsibleMenuListItem}
             >
                 <MenuListItemText text={title} className={classes.MenuListItemText} />
-                <ListItemCollapseArrowIcon
-                    className={classes.CollapseArrowButton}
-                    isCollapseOpened={checkIsOpened(menuItemsId)}
-                />
             </div>
-            <Collapse in={checkIsOpened(menuItemsId)} timeout="auto" unmountOnExit>
+            <Collapse in={true} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     {menuItems.map((el) => (
                         <Fragment key={el.id}>
@@ -81,19 +81,23 @@ const ListItemsBlock: FC<TProps> = (props) => {
                                     el.id === mostVisibleCategory ? classes.ActiveParentCategory : ''
                                 }`} 
                                 onClick={() => onExpandClick(el.id)}
-                                data-category-id={el.id} // Assign a data attribute
+                                data-category-id={el.id}
                             >
                                 <MenuListItemText text={el.title} className={classes.SecondLevelMenuListItemText} />
                                 <ListItemCollapseArrowIcon
                                     className={classes.CollapseArrowButton}
-                                    isCollapseOpened={!checkIsOpened(el.id)}
+                                    isCollapseOpened={el.submenu.some(subItem => isItemActive(subItem.id)) || !checkIsOpened(el.id)} 
                                 />
                             </div>
-                            <Collapse in={!checkIsOpened(el.id)} timeout="auto" unmountOnExit>
+                            <Collapse 
+                                in={el.submenu.some(subItem => isItemActive(subItem.id)) || !checkIsOpened(el.id)} 
+                                timeout="auto" unmountOnExit
+                            >
                                 <List component="div" disablePadding>
                                     {el.submenu.map((subEl) => (
                                         <div
                                             key={subEl.id}
+                                            ref={isItemActive(subEl.id) ? activeItemRef : null} // Attach ref to the active item
                                             className={`${isItemActive(subEl.id)
                                                 ? classes.SelectedBottomLevelListItem
                                                 : classes.BottomLevelListItem} ${

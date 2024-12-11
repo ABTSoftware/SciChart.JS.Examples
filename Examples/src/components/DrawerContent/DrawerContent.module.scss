@@ -9,6 +9,9 @@
 
 .DrawerTopSection {
     display: flex;
+    position: sticky; top: 0;
+    background-color: #FFF;
+    z-index: 9999;
     justify-content: space-between;
     padding: $default-spacing * 2;
     padding-bottom: $default-spacing;

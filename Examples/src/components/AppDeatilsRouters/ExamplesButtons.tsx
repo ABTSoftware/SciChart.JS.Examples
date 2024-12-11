@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, useState } from "react";
 import classes from "./AppDeatilsRouter.scss";
-import { EPageFramework, FRAMEWORK_NAME, getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { EPageFramework, FRAMEWORK_NAME, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { getSandboxUrl } from "./sandboxUtils";
@@ -80,7 +80,7 @@ export const ExamplesButtons: FC<TExampleButtonsProps> = ({
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.StackBlitz)}
                 title={
                     isFrameworkVariantAvailable
-                        ? `Edit ${getTitle(currentExample.title, selectedFramework)} in StackBlitz`
+                        ? `Edit ${getFrameworkContent(currentExample.title, selectedFramework)} in StackBlitz`
                         : `Sorry, we have not got ${frameWorkName} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
                 }
             />
@@ -91,7 +91,7 @@ export const ExamplesButtons: FC<TExampleButtonsProps> = ({
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.CodeSandbox)}
                 title={
                     isFrameworkVariantAvailable
-                        ? `Edit ${getTitle(currentExample.title, selectedFramework)} in CodeSandbox`
+                        ? `Edit ${getFrameworkContent(currentExample.title, selectedFramework)} in CodeSandbox`
                         : `Sorry, we have not got ${frameWorkName} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
                 }
             />

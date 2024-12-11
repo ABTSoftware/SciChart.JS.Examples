@@ -41,9 +41,9 @@ export default function App() {
     const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
     let initialOpenedMenuItems = {
-        MENU_ITEMS_FEATURED_APPS_ID: true,
-        MENU_ITEMS_3D_ID: true,
-        MENU_ITEMS_2D_ID: true,
+        MENU_ITEMS_FEATURED_APPS_ID: false,
+        MENU_ITEMS_3D_ID: false,
+        MENU_ITEMS_2D_ID: false,
     };
 
     MENU_ITEMS_FEATURED_APPS.forEach((item) => {
@@ -113,10 +113,6 @@ export default function App() {
     }
 
     const allGalleryItems = generateExamplesGallery(framework);
-
-    React.useEffect(() => {
-        console.log("--- ", mostVisibleCategory);
-    }, [mostVisibleCategory]);
 
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     return (
