@@ -85,7 +85,7 @@ module.exports = {
                 { from: process.env.NOINDEX ? "robotsNoIndex.txt" : "robots.txt", to: "robots.txt" },
             ],
         }),
-        // new BundleAnalyzerPlugin()
+        //new BundleAnalyzerPlugin(),
         new MiniCssExtractPlugin({
             filename: filename("styles.css"),
         }),

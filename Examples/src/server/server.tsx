@@ -85,7 +85,7 @@ function handleRender(req: Request, res: Response) {
     if (cachedPageHtml) {
         res.send(cachedPageHtml);
     } else {
-        console.warn("render on demand", req.url);
+        console.log("render on demand", req.url);
         const pageHtml = renderPage(req.url);
         res.send(pageHtml);
     }
@@ -169,6 +169,7 @@ app.get("/javascript-:example", (req: Request, res: Response) => {
     }
 });
 
+// This does not work.  Is anything like this needed?
 app.get("/:example?", (req: Request, res: Response) => {
     console.log("/:example?");
     const params = req.params;
@@ -183,6 +184,9 @@ app.get("/:example?", (req: Request, res: Response) => {
     }
 });
 
+app.get("*", (req: Request, res: Response) => {
+    handleRender(req, res);
+});
 /*
 app.get("*", (req: Request, res: Response) => {
     console.log("*");
