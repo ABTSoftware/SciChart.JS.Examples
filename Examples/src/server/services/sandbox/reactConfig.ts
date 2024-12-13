@@ -9,6 +9,8 @@ import {
     commonFiles,
     csStyles,
 } from "./sandboxDependencyUtils";
+import { SCICHART_ANCHOR, SCICHART_VERSION } from "./constants";
+
 const pj = require("../../../../package.json");
 
 export const getReactSandBoxConfig = async (
@@ -50,7 +52,8 @@ export const getReactSandBoxConfig = async (
                     react: "^18.3.1",
                     "react-dom": "^18.3.1",
                     "react-scripts": "5.0.1",
-                    scichart: pj.dependencies.scichart,
+                    // scichart: pj.dependencies.scichart,
+                    scichart: SCICHART_VERSION,
                     "scichart-react": pj.dependencies["scichart-react"],
                     typescript: pj.devDependencies.typescript,
                     ...currentExample.extraDependencies,
@@ -81,7 +84,7 @@ SciChartSurface.loadWasmFromCDN();
 SciChart3DSurface.loadWasmFromCDN();
 
 const root = createRoot(rootElement)
-root.render(<App />);
+root.render(<><App />${SCICHART_ANCHOR}</>);
 `,
             isBinary: false,
         },

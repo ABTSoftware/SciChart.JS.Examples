@@ -4,6 +4,8 @@ import fs from "fs";
 import { TExampleInfo } from "../../../components/AppRouter/examplePages";
 import { NotFoundError } from "../../Errors";
 import { IFiles, includeImportedModules, includeExternalModules, commonFiles } from "./sandboxDependencyUtils";
+import { SCICHART_ANCHOR, SCICHART_VERSION } from "./constants";
+
 const pj = require("../../../../package.json");
 
 export const getAngularSrc = async (folderPath: string) => {
@@ -55,7 +57,8 @@ export const getAngularSandBoxConfig = async (folderPath: string, currentExample
                     "@angular/material": "^18.2.8",
                     "@angular/cdk": "^18.1.0",
                     rxjs: "~7.8.0",
-                    scichart: pj.dependencies.scichart,
+                    // scichart: pj.dependencies.scichart,
+                    scichart: SCICHART_VERSION,
                     "scichart-angular": pj.dependencies["scichart-angular"],
                     tslib: "^2.3.0",
                     "zone.js": "~0.14.10",
@@ -257,6 +260,7 @@ bootstrapApplication(AppWrapperComponent).catch((err) => console.error(err));`,
   </head>
   <body>
     <app-root></app-root>
+    ${SCICHART_ANCHOR}
   </body>
 </html>`,
             isBinary: false,
