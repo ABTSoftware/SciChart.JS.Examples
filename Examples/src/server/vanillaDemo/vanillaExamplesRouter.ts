@@ -55,8 +55,8 @@ vanillaExamplesRouter.get("/:example/:file", async (req, res) => {
             let styles = "";
             try {
                 const [htmlSetup, cssSetup] = await Promise.all([
-                    fs.promises.readFile(htmlPath, "utf8").catch(() => null),
-                    fs.promises.readFile(cssPath, "utf8").catch(() => null),
+                    fs.promises.readFile(htmlPath, "utf8").catch((): string => ""),
+                    fs.promises.readFile(cssPath, "utf8").catch((): string => ""),
                 ]);
 
                 body = htmlSetup;
