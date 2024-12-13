@@ -8,7 +8,7 @@ module.exports = {
     mode: "production",
     name: "server",
     target: "node",
-    devtool: "source-map",
+    // devtool: "source-map", // using source map in production build increases RAM in build time from 3.8 Gb to 4.7Gb
     externalsPresets: { node: true }, // in order to ignore built-in modules like path, fs, etc.
     externals: {
         express: "commonjs2 express",
