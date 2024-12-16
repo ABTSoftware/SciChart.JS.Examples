@@ -61,6 +61,13 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
 
     return (
         <div className={className} style={style}>
+            <CodeActionButton 
+                iconName="fullscreen"
+                label="View&nbsp;fullscreen"
+                className={`${classes.btn} ${classes.btnGithub}`}
+                onClick={() => window.open(`/iframe/${currentExample.path}`, "_blank")}
+                title={`View ${getFrameworkContent(currentExample.title, selectedFramework)} in fullscreen`}
+            />
             <CodeActionButton
                 iconName="exampleStackblitz"
                 label="Edit"

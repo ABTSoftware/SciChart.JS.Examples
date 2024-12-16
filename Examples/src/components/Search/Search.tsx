@@ -49,7 +49,6 @@ export default function Search() {
                             type: "text",
                             startAdornment: (
                                 <InputAdornment position="start" style={{ marginLeft: 8 }}>
-                                    &nbsp;
                                     <SearchIcon />
                                 </InputAdornment>
                             ),

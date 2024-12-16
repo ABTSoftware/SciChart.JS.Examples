@@ -2,7 +2,7 @@
     padding-bottom: auto;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 32px;
     padding: 16px;
     background: #FFFFFF;
     border-radius: 15px;
@@ -56,12 +56,12 @@
     
         .imgWrapper {
             width: 100%;
-            aspect-ratio: 16 / 9;
+            aspect-ratio: 3 / 2;
             overflow: hidden;
     
-            @media screen and (max-width: 768px) {
-                aspect-ratio: 9 / 16;
-            }
+            // @media screen and (max-width: 768px) {
+            //     aspect-ratio: 9 / 16;
+            // }
         
             img {
                 width: 100%;
@@ -106,7 +106,7 @@
         .imgWrapper {
             height: 100%;
             width: auto;
-            aspect-ratio: 16 / 9 !important;
+            aspect-ratio: 3 / 2 !important;
         }
 
         .content {
@@ -161,7 +161,11 @@
 
 // gridview - 5/6 columns
 .gridView5or6 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+
+    @media (min-width: 824px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
 
     @media (min-width: 1024px) {
         grid-template-columns: repeat(5, 1fr);

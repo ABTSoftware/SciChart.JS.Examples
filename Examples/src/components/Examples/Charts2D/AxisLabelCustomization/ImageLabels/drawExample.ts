@@ -55,6 +55,7 @@ export const drawExample = (emojiUrls: string[]) => async (rootElement: string |
         // Also see major/minor delta in the docs
         maxAutoTicks: 15,
         axisTitle: "Mobile phone manufacturer",
+        growBy: new NumberRange(0.02, 0.02)
     });
     // We need the data value as plain text
     xAxis.labelProvider.numericFormat = ENumericFormat.NoFormat;

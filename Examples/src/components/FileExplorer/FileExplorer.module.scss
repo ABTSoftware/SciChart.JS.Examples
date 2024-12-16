@@ -19,6 +19,8 @@
         gap: 4px;
         padding: 4px 5px;
         background-color: #FFF;
+        white-space: nowrap;
+        overflow: hidden;
         cursor: pointer;
     
         &:hover, &.active {
@@ -82,4 +84,11 @@
         border-color: #b4d0db;
         background-color: #8882;
     }    
+}
+
+.explorerSelect {
+    display: flex;
+    flex-direction: column;
+    max-height: 20rem;
+    overflow: auto;
 }
