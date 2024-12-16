@@ -22,6 +22,7 @@ import { CodeSandbox } from "../CodeSandbox";
 import { StackblitzEditor } from "../CodeSandbox/StackblitzEditor";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { CodeActionButtons } from "./CodeActionButtons";
+import { Dialog } from "../Dialog/Dialog";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -81,6 +82,55 @@ export async function drawExample(divId: string) {
         content: `import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";`,
     },
 ];
+
+const CodeEditor: FC<{
+    files: { name: string; content: string }[];
+    selectedFile: { name: string; content: string };
+    handleFileClick: (fileName: string) => void;
+    desiredFramework: EPageFramework;
+    actualFramework: EPageFramework | null;
+    examplePath: string;
+}> = ({ files, selectedFile, handleFileClick, desiredFramework, actualFramework, examplePath }) => {
+    const [hasShownDialog, setHasShownDialog] = useState(false);
+    const [showDialog, setShowDialog] = useState(false);
+
+    const handleMouseEnter = () => {
+        if (!hasShownDialog && actualFramework && actualFramework !== desiredFramework) {
+            setShowDialog(true);
+            setHasShownDialog(true);
+        }
+    };
+
+    useEffect(() => {
+        // Reset dialog state when example changes
+        setHasShownDialog(false);
+        setShowDialog(false);
+    }, [examplePath]);
+
+    return (
+        <div className={classes.editortabwrap} onMouseEnter={handleMouseEnter}>
+            <FileExplorer files={files} selectedFile={selectedFile} handleFileClick={handleFileClick} />
+            <Editor
+                theme="light"
+                height="100%"
+                width="100%"
+                language={EditorLanguageMap[selectedFile.name.split(".").pop() as keyof typeof EditorLanguageMap]}
+                value={selectedFile.content}
+                options={{
+                    readOnly: true,
+                    lineNumbersMinChars: 3,
+                    minimap: { enabled: true },
+                    fontSize: 16,
+                }}
+            />
+            <Dialog
+                isOpen={showDialog}
+                onClose={() => setShowDialog(false)}
+                text={`This example will be shown in ${FRAMEWORK_NAME[actualFramework]} instead of ${FRAMEWORK_NAME[desiredFramework]}.`}
+            />
+        </div>
+    );
+};
 
 const AppDeatilsRouter: FC<TProps> = (props) => {
     const { currentExample, seeAlso } = props;
@@ -272,30 +322,14 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                     }`}
                                     style={{ minHeight: 35, height: 35, padding: 0, width: "100%" }}
                                 />
-                                <div className={classes.editortabwrap}>
-                                    <FileExplorer
-                                        files={sourceFiles}
-                                        selectedFile={selectedFile}
-                                        handleFileClick={handleFileClick}
-                                    />
-                                    <Editor
-                                        theme="light"
-                                        height="100%"
-                                        width="100%"
-                                        language={
-                                            EditorLanguageMap[
-                                                selectedFile.name.split(".").pop() as keyof typeof EditorLanguageMap
-                                            ]
-                                        }
-                                        value={selectedFile.content}
-                                        options={{
-                                            readOnly: true,
-                                            lineNumbersMinChars: 3,
-                                            minimap: { enabled: true },
-                                            fontSize: 16,
-                                        }}
-                                    />
-                                </div>
+                                <CodeEditor
+                                    files={sourceFiles}
+                                    selectedFile={selectedFile}
+                                    handleFileClick={handleFileClick}
+                                    desiredFramework={selectedFramework}
+                                    actualFramework={actualFramework}
+                                    examplePath={currentExample.path}
+                                />
                             </div>
                         )}
 
