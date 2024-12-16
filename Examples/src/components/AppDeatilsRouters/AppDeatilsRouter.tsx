@@ -127,13 +127,14 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                 }
                 return response.json();
             })
-            .then((json: { name: string; content: string }[]) => {
-                let defaultFile = json.find((f) => f.name === "drawExample.ts");
+            .then((json: { files: { name: string; content: string }[]; framework: EPageFramework }) => {
+                let defaultFile = json.files.find((f) => f.name === "drawExample.ts");
                 if (!defaultFile) {
-                    defaultFile = json[json.length - 1];
+                    defaultFile = json.files[json.files.length - 1];
                 }
                 setSelectedFile({ name: defaultFile.name, content: defaultFile.content });
-                setSourceFiles(json);
+                setSourceFiles(json.files);
+                setActualFramework(json.framework);
             });
     }, [currentExample, selectedFramework]);
 

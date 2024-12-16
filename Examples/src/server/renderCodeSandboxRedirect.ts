@@ -225,35 +225,48 @@ export const getSourceFiles = async (req: Request, res: Response): Promise<boole
             let files: IFiles = {};
             let htmlPath: string;
             let html: string;
+            let actualFramework = framework;
             let baseUrl = req.protocol + "://" + req.get("host");
-            switch (framework) {
-                case EPageFramework.Angular:
-                    files = await getSourceFilesForPath(folderPath, "angular.ts", baseUrl);
-                    break;
-                case EPageFramework.React:
+
+            try {
+                switch (framework) {
+                    case EPageFramework.Angular:
+                        files = await getSourceFilesForPath(folderPath, "angular.ts", baseUrl);
+                        break;
+                    case EPageFramework.React:
+                        files = await getSourceFilesForPath(folderPath, "index.tsx", baseUrl);
+                        break;
+                    case EPageFramework.Vanilla:
+                        files = await getSourceFilesForPath(folderPath, "vanilla.ts", baseUrl);
+                        htmlPath = path.join(folderPath, "index.html");
+                        try {
+                            const charHtmlSetup = await fs.promises.readFile(htmlPath, "utf8");
+                            html = indexHtmlTemplate(charHtmlSetup);
+                        } catch (err) {
+                            html = indexHtmlTemplate();
+                        }
+                        files[htmlPath] = { content: html, isBinary: false };
+                        break;
+                    default:
+                        throw new Error("Invalid framework value!");
+                }
+            } catch (err) {
+                // If files not found for requested framework, fallback to React
+                if (framework !== EPageFramework.React) {
+                    actualFramework = EPageFramework.React;
                     files = await getSourceFilesForPath(folderPath, "index.tsx", baseUrl);
-                    break;
-                case EPageFramework.Vanilla:
-                    files = await getSourceFilesForPath(folderPath, "vanilla.ts", baseUrl);
-                    htmlPath = path.join(folderPath, "index.html");
-                    try {
-                        const charHtmlSetup = await fs.promises.readFile(htmlPath, "utf8");
-                        html = indexHtmlTemplate(charHtmlSetup);
-                    } catch (err) {
-                        html = indexHtmlTemplate();
-                    }
-                    files[htmlPath] = { content: html, isBinary: false };
-                    break;
-                default:
-                    throw new Error("Invalid framework value!");
+                } else {
+                    throw err;
+                }
             }
+
             const result: { name: string; content: string }[] = [];
             for (const key in files) {
                 const sep = key.indexOf("/") > 0 ? "/" : "\\";
                 const name = key.substring(key.lastIndexOf(sep) + 1);
                 result.push({ name, content: files[key].content });
             }
-            res.send(result);
+            res.send({ files: result, framework: actualFramework });
             return true;
         } catch (err) {
             console.warn(err);
