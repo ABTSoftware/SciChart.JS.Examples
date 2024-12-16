@@ -101,9 +101,6 @@ $drawerWidthDesktop: min(400px, 28vw);
     width: 100%;
 
     @media only screen and (max-width: 768px) {
-        border-radius: 0;
-        border-top: 1px solid #b4d0db;
-        border: none;
         max-width: 100vw;
     }
 
@@ -518,7 +515,7 @@ $drawerWidthDesktop: min(400px, 28vw);
     border: 1px solid #b4d0db;
     border-radius: 20px;
     padding: 16px;
-    display: flex; 
+    display: flex;
     flex-direction: column;
     gap: 16px;
     position: relative;
@@ -547,10 +544,11 @@ $drawerWidthDesktop: min(400px, 28vw);
 
 .headingtxt {
     font-weight: 600;
-    font-size: 32px;
+    font-size: calc(12px + 1vw);
     line-height: 48px;
     color: #050a30;
     margin: -10px 0;
+    margin-right: auto;
 }
 
 .tabbtnwrap {

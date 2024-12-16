@@ -1,10 +1,10 @@
 .selectDropdown {
     position: absolute;
-    top: 16px; 
+    top: 16px;
     right: 16px;
     width: 220px;
     z-index: 10;
-    background-color: #FFF;
+    background-color: #fff;
     border-radius: 8px;
     border: 1px solid #b4d0db;
     overflow: hidden;
@@ -18,13 +18,16 @@
         justify-content: flex-start;
         gap: 4px;
         padding: 4px 5px;
-        background-color: #FFF;
+        background-color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
         cursor: pointer;
-    
-        &:hover, &.active {
+
+        &:hover,
+        &.active {
             background-color: #8881;
         }
-    
+
         svg {
             height: 22px;
             width: 22px;
@@ -35,14 +38,14 @@
             font-size: 18px;
         }
     }
-    
+
     .selectTab.activeTab {
         border-bottom: 1px solid #b4d0db;
-        background: #FFF;
+        background: #fff;
     }
 }
 
-.horizontalScroller{
+.horizontalScroller {
     overflow: auto;
     overflow-y: hidden;
     display: flex;
@@ -59,14 +62,15 @@
         gap: 4px;
         padding: 3px 9px 3px 6px;
         cursor: pointer;
-        background-color: #FFF;
-        border: 1px solid #FFF;
+        background-color: #fff;
+        border: 1px solid #fff;
         border-radius: 8px 8px 0 0;
-    
-        &:hover, &.active {
+
+        &:hover,
+        &.active {
             background-color: #8881;
         }
-    
+
         svg {
             height: 22px;
             width: 22px;
@@ -77,9 +81,16 @@
             font-size: 18px;
         }
     }
-    
+
     .selectTab.activeTab {
         border-color: #b4d0db;
         background-color: #8882;
-    }    
+    }
+}
+
+.explorerSelect {
+    display: flex;
+    flex-direction: column;
+    max-height: 20rem;
+    overflow: auto;
 }

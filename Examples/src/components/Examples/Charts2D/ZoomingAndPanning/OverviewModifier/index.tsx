@@ -16,7 +16,7 @@ export default function Overview() {
                         const { sciChartSurface } = initResult;
                         sciChartSurfaceRef.current = sciChartSurface;
                     }}
-                    style={{ display: "flex", flexDirection: "column", height: "calc(100% - 70px)", width: "100%" }}
+                    style={{ display: "flex", flexDirection: "column", height: "100%", width: "100%" }}
                     innerContainerProps={{ style: { flexBasis: "80%", flexGrow: 1, flexShrink: 1 } }}
                 >
                     <SciChartNestedOverview

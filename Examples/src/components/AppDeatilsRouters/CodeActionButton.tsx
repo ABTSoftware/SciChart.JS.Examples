@@ -36,7 +36,9 @@ export const CodeActionButton: React.FC<CodeActionButtonProps> = ({
 }) => {
     return (
         <a className={className} href={href} target={target} onClick={onClick} title={title} rel={rel}>
-            <Icon name={iconName} />
+            <div style={{ width: 30, height: 30, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <Icon name={iconName} />
+            </div>
             &nbsp;{label}
         </a>
     );

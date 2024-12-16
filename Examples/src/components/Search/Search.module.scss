@@ -12,10 +12,12 @@
             background-color: unset;
         }
         border-radius: 12px;
+        border: 2px solid rgba(127, 127, 127, 0.6);
+        background-color: rgba(127, 127, 127, 0.1);
     }
 
     svg,
     input {
-        color: $color-light-grey;
+        color: rgba(127, 127, 127, 0.6);
     }
 }

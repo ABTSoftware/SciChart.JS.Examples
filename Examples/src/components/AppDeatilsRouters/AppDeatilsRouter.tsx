@@ -48,7 +48,7 @@ const EditorLanguageMap = {
 
 const mockFiles = [
     {
-        name: "drawExample.ts",
+        name: "drawExample-for-testing.ts",
         content: `import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
@@ -288,7 +288,14 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                         </div>
 
                         <div style={{ display: "flex", justifyContent: "center" }}>
-                            <h1 className={classes.headingtxt} style={{ margin: "-10px 0" }}>
+                            <h1
+                                className={classes.headingtxt}
+                                style={{
+                                    margin: "-10px 0",
+                                    marginInline: pageLayout === EPageLayout.MaxWidth ? "auto" : 0,
+                                    width: pageLayout === EPageLayout.MaxWidth ? "110vh" : "auto",
+                                }}
+                            >
                                 {pageTitle}
                             </h1>
 
@@ -303,8 +310,16 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                             ) : null}
                         </div>
 
-                        {/* Subtitle // this returns a <p> already, no need to update */}
-                        {currentExample.subtitle(selectedFramework)}
+                        {/* Subtitle // this returns a <p> already */}
+                        <span
+                            style={
+                                pageLayout === EPageLayout.MaxWidth
+                                    ? { width: "100%", maxWidth: "110vh", margin: "0 auto", textAlign: "start" }
+                                    : {}
+                            }
+                        >
+                            {currentExample.subtitle(selectedFramework)}
+                        </span>
 
                         {/* Main example section */}
                         {embedCode ? (

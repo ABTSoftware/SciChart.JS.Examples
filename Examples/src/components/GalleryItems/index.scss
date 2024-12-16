@@ -2,9 +2,9 @@
     padding-bottom: auto;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 32px;
     padding: 16px;
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 15px;
     border: 1px solid #b4d0db;
 }
@@ -27,16 +27,15 @@
         cursor: pointer;
 
         svg path {
-            fill: #A0C2D4;
+            fill: #a0c2d4;
         }
 
         &.activeGrid {
             svg path {
-                fill: #315E96
+                fill: #315e96;
             }
         }
     }
-
 }
 
 // Master style for grid component
@@ -53,16 +52,16 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-    
+
         .imgWrapper {
             width: 100%;
-            aspect-ratio: 16 / 9;
+            aspect-ratio: 3 / 2;
             overflow: hidden;
-    
-            @media screen and (max-width: 768px) {
-                aspect-ratio: 9 / 16;
-            }
-        
+
+            // @media screen and (max-width: 768px) {
+            //     aspect-ratio: 9 / 16;
+            // }
+
             img {
                 width: 100%;
                 height: 100%;
@@ -70,12 +69,12 @@
                 border-radius: 12px;
             }
         }
-    
+
         .content {
             display: flex;
             flex-direction: column;
             text-align: center;
-    
+
             h3 {
                 display: -webkit-box; /* Enables the flexbox behavior for text */
                 -webkit-box-orient: vertical; /* Specifies the box's orientation */
@@ -85,7 +84,7 @@
                 line-clamp: 2; /* Standard property for modern browsers */
                 line-height: 1.5;
             }
-    
+
             p {
                 display: none; // hide for all but cardview
             }
@@ -102,11 +101,11 @@
         justify-content: space-between;
         gap: 15px;
         height: 25vh; // feel free to adjust this value
-    
+
         .imgWrapper {
             height: 100%;
             width: auto;
-            aspect-ratio: 16 / 9 !important;
+            aspect-ratio: 3 / 2 !important;
         }
 
         .content {
@@ -161,7 +160,11 @@
 
 // gridview - 5/6 columns
 .gridView5or6 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+
+    @media (min-width: 824px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
 
     @media (min-width: 1024px) {
         grid-template-columns: repeat(5, 1fr);
@@ -196,7 +199,7 @@
 .tabbtnwrap {
     display: flex;
     gap: 10px;
-    
+
     .btnprimary {
         background: linear-gradient(90deg, #1aa2d5 15.5%, #35bfb7 100%);
         border-radius: 6px;
