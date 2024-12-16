@@ -172,7 +172,14 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
 
     const renderEditor = () => {
         return sandboxPlatform === SandboxPlatform.CodeSandbox ? (
-            <CodeSandbox id={sandboxId} onBack={handleBack} platform={sandboxPlatform} exampleName={pageTitle} />
+            <CodeSandbox
+                id={sandboxId}
+                onBack={handleBack}
+                platform={sandboxPlatform}
+                exampleName={pageTitle}
+                desiredFramework={selectedFramework}
+                actualFramework={selectedFramework}
+            />
         ) : (
             <StackblitzEditor id={sandboxId} onBack={handleBack} exampleName={pageTitle} projectFiles={projectFiles} />
         );
