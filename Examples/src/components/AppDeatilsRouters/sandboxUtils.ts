@@ -1,8 +1,10 @@
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
+import { EPageFramework } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 // Types for the API responses
 interface SandboxUrlResponse {
     id: string;
+    actualFramework: EPageFramework;
 }
 
 interface SandboxErrorResponse {
@@ -52,7 +54,7 @@ export async function getSandboxUrl(
     examplePath: string,
     framework: Framework = "react",
     platform = "codeSandbox"
-): Promise<string> {
+): Promise<{ id: string; actualFramework: EPageFramework }> {
     try {
         const response = await fetch(`${GET_SANDBOX_URL}${examplePath}?framework=${framework}&platform=${platform}`);
         if (!response.ok) {
@@ -67,7 +69,7 @@ export async function getSandboxUrl(
         }
 
         console.log(data);
-        return data.id;
+        return { id: data.id, actualFramework: data.actualFramework };
     } catch (error) {
         console.error("Failed to get CodeSandbox URL:", error);
         throw error;

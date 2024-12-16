@@ -1,27 +1,40 @@
 import React, { FC, ReactNode, useState } from "react";
 import classes from "./AppDeatilsRouter.scss";
-import { EPageFramework, FRAMEWORK_NAME, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
+import {
+    EPageFramework,
+    FRAMEWORK_NAME,
+    getFrameworkContent,
+} from "../../helpers/shared/Helpers/frameworkParametrization";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
-import { getSandboxUrl } from "./sandboxUtils";
+import { getSandboxUrl, getStackBlitzFiles } from "./sandboxUtils";
 import { ExampleButton } from "./ExampleButton";
 
 const getFrameWorkName = (frameWork: string): string => {
     return (FRAMEWORK_NAME as any)[frameWork];
 };
 
-type TExampleButtonsProps = {
+type ExampleButtonsProps = {
+    className?: string;
     currentExample: TExamplePage;
     selectedFramework: EPageFramework;
     selectedFile: { name: string; content: string };
-    onSandboxOpen: (platform: SandboxPlatform, sandboxId: string) => void;
+    onSandboxOpen: (
+        platform: SandboxPlatform,
+        sandboxId: string,
+        projectFiles?: any,
+        framework?: EPageFramework
+    ) => void;
+    style?: React.CSSProperties;
 };
 
-export const ExamplesButtons: FC<TExampleButtonsProps> = ({
+export const ExampleButtons: FC<ExampleButtonsProps> = ({
+    className,
     currentExample,
     selectedFramework,
     onSandboxOpen,
     selectedFile,
+    style,
 }): ReactNode => {
     const [availableFrameworks] = useState<EPageFramework[]>([
         EPageFramework.React,
@@ -39,44 +52,28 @@ export const ExamplesButtons: FC<TExampleButtonsProps> = ({
             const frameworkType = framework.toLowerCase() as "react" | "angular" | "vanilla";
 
             if (platform === SandboxPlatform.CodeSandbox) {
-                const sandboxId = await getSandboxUrl(currentExample.path, frameworkType, platform);
-                if (sandboxId) {
-                    onSandboxOpen(platform, sandboxId);
+                const { id, actualFramework } = await getSandboxUrl(currentExample.path, frameworkType, platform);
+                if (id) {
+                    onSandboxOpen(platform, id, undefined, actualFramework);
                 } else {
                     console.log("error");
                 }
             } else {
-                // For StackBlitz, directly open the editor without getting a URL
-                onSandboxOpen(platform, currentExample.path);
+                // For StackBlitz, get the files first
+                const files = await getStackBlitzFiles(currentExample.path, frameworkType);
+                onSandboxOpen(platform, currentExample.path, files);
             }
         } catch (error) {
             console.error("Failed to open sandbox:", error);
-            const fallbackUrl =
-                platform === SandboxPlatform.CodeSandbox
-                    ? `codesandbox/${currentExample.path}?codesandbox=1&framework=${
-                          isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React
-                      }`
-                    : `stackblitz/${currentExample.path}?codesandbox=1&framework=${
-                          isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React
-                      }`;
-            window.location.href = fallbackUrl;
         }
     };
 
     return (
-        <div className={classes.tabbtnwrap}>
-            <ExampleButton
-                iconName="exampleFullscreen"
-                label="Full Screen"
-                className={classes.btnprimary}
-                href={`/iframe/${currentExample.path}`}
-                target="_blank"
-                rel="noopener"
-            />
+        <div className={className} style={style}>
             <ExampleButton
                 iconName="exampleStackblitz"
                 label="Edit"
-                className={classes.btnDark}
+                className={`${classes.btn} ${classes.btnDark}`}
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.StackBlitz)}
                 title={
                     isFrameworkVariantAvailable
@@ -87,7 +84,7 @@ export const ExamplesButtons: FC<TExampleButtonsProps> = ({
             <ExampleButton
                 iconName="codesandbox"
                 label="Edit"
-                className={classes.btnDark}
+                className={`${classes.btn} ${classes.btnDark}`}
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.CodeSandbox)}
                 title={
                     isFrameworkVariantAvailable
@@ -97,8 +94,8 @@ export const ExamplesButtons: FC<TExampleButtonsProps> = ({
             />
             <ExampleButton
                 iconName="exampleGithub"
-                label="View Source"
-                className={classes.btnGithub}
+                label="View&nbsp;Source"
+                className={`${classes.btn} ${classes.btnGithub}`}
                 href={`https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Examples/src/components/Examples/${currentExample.filepath}/${selectedFile.name}`}
                 target="_blank"
                 rel="noopener"

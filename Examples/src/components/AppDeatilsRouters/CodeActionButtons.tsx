@@ -1,6 +1,10 @@
 import React, { FC, ReactNode, useState } from "react";
 import classes from "./AppDeatilsRouter.scss";
-import { EPageFramework, FRAMEWORK_NAME, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
+import {
+    EPageFramework,
+    FRAMEWORK_NAME,
+    getFrameworkContent,
+} from "../../helpers/shared/Helpers/frameworkParametrization";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { getSandboxUrl, getStackBlitzFiles } from "./sandboxUtils";
@@ -15,7 +19,12 @@ type CodeActionButtonsProps = {
     currentExample: TExamplePage;
     selectedFramework: EPageFramework;
     selectedFile: { name: string; content: string };
-    onSandboxOpen: (platform: SandboxPlatform, sandboxId: string, projectFiles?: any) => void;
+    onSandboxOpen: (
+        platform: SandboxPlatform,
+        sandboxId: string,
+        projectFiles?: any,
+        framework?: EPageFramework
+    ) => void;
     style?: React.CSSProperties;
 };
 
@@ -43,9 +52,9 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
             const frameworkType = framework.toLowerCase() as "react" | "angular" | "vanilla";
 
             if (platform === SandboxPlatform.CodeSandbox) {
-                const sandboxId = await getSandboxUrl(currentExample.path, frameworkType, platform);
-                if (sandboxId) {
-                    onSandboxOpen(platform, sandboxId);
+                const { id, actualFramework } = await getSandboxUrl(currentExample.path, frameworkType, platform);
+                if (id) {
+                    onSandboxOpen(platform, id, undefined, actualFramework);
                 } else {
                     console.log("error");
                 }

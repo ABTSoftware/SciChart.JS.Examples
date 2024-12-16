@@ -555,21 +555,20 @@ export const getSandboxUrlEndpoint = async (req: Request, res: Response) => {
             //
             let baseUrl = req.protocol + "://" + req.get("host");
             const folderPath = path.join(basePath, currentExample.filepath);
-            const sandboxConfig = await getSandboxConfig(folderPath, currentExample, framework, baseUrl);
-            //const parms = getParams(sandboxConfig, framework)
+            const { files, actualFramework } = await getSandboxConfig(folderPath, currentExample, framework, baseUrl);
 
             if (platform === EPlatform.CodeSandbox) {
-                const parms = JSON.stringify(sandboxConfig);
+                const parms = JSON.stringify({ files });
                 const sbres = await sendCodeSandboxRequest(parms); // may fail
                 const id = await getId(sbres);
-                res.status(200).json({ id });
+                res.status(200).json({ id, actualFramework });
             } else {
                 // stackblitz
                 //  const data = getStackblitzData(sandboxConfig, framework)
                 //console.log(data);
-                const url = await postToStackblitzAndCaptureRedirect(sandboxConfig, framework);
+                const url = await postToStackblitzAndCaptureRedirect({ files }, actualFramework);
                 console.log(url);
-                res.status(200).json({ url });
+                res.status(200).json({ url, actualFramework });
             }
         } catch (err) {
             console.warn(err);

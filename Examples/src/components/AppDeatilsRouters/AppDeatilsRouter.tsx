@@ -92,6 +92,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     const [sandboxPlatform, setSandboxPlatform] = useState<SandboxPlatform>(SandboxPlatform.CodeSandbox);
     const [sandboxId, setSandboxId] = useState<string>("");
     const [projectFiles, setProjectFiles] = useState<any>(null);
+    const [actualFramework, setActualFramework] = useState<EPageFramework | null>(null);
 
     const selectedFramework = useContext(FrameworkContext);
     const pageTitle = getFrameworkContent(currentExample.title, selectedFramework);
@@ -140,6 +141,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         if (embedCode) {
             setEmbedCode(false);
             setProjectFiles(null);
+            setActualFramework(null);
         }
     }, []);
 
@@ -159,13 +161,17 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         setEmbedCode(false);
         setSandboxId("");
         setProjectFiles(null);
+        setActualFramework(null);
     };
 
-    const handleSandboxOpen = (platform: SandboxPlatform, id: string, files?: any) => {
+    const handleSandboxOpen = (platform: SandboxPlatform, id: string, files?: any, framework?: EPageFramework) => {
         setSandboxPlatform(platform);
         setSandboxId(id);
         if (files) {
             setProjectFiles(files);
+        }
+        if (framework) {
+            setActualFramework(framework);
         }
         setEmbedCode(true);
     };
@@ -178,7 +184,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                 platform={sandboxPlatform}
                 exampleName={pageTitle}
                 desiredFramework={selectedFramework}
-                actualFramework={selectedFramework}
+                actualFramework={actualFramework || selectedFramework}
             />
         ) : (
             <StackblitzEditor id={sandboxId} onBack={handleBack} exampleName={pageTitle} projectFiles={projectFiles} />
