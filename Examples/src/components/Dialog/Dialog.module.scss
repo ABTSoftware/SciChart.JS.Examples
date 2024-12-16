@@ -1,11 +1,8 @@
 .overlay {
     position: absolute;
-    top: 50%;
+    top: 20px;
     left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    transform: translateX(-50%);
     z-index: 9999;
 }
 
@@ -58,11 +55,11 @@
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translate(-50%, -60%);
+        transform: translate(-50%, -8px);
     }
 
     to {
         opacity: 1;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, 0);
     }
 }

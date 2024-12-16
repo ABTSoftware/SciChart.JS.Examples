@@ -37,7 +37,7 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
     const dialogText = `This example will be shown in ${FRAMEWORK_NAME[actualFramework]} instead of ${FRAMEWORK_NAME[desiredFramework]}.`;
 
     return (
-        <>
+        <div className={styles.container}>
             <EditorFrame
                 platform={platform}
                 title={title}
@@ -57,6 +57,6 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
                 />
             </EditorFrame>
             <Dialog isOpen={desiredFramework !== actualFramework} text={dialogText} />
-        </>
+        </div>
     );
 };

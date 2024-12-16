@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./Dialog.module.scss";
 
 interface DialogProps {
@@ -7,13 +7,10 @@ interface DialogProps {
     text: string;
 }
 
-export const Dialog: React.FC<DialogProps> = ({ isOpen: initialIsOpen, onClose, text }) => {
-    const [isOpen, setIsOpen] = useState(initialIsOpen);
-
+export const Dialog: React.FC<DialogProps> = ({ isOpen, onClose, text }) => {
     if (!isOpen) return null;
 
     const handleClose = () => {
-        setIsOpen(false);
         onClose?.(); // Only call onClose if provided
     };
 

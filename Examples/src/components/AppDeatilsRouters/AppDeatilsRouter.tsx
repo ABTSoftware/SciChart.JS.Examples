@@ -142,7 +142,8 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
     const [sandboxPlatform, setSandboxPlatform] = useState<SandboxPlatform>(SandboxPlatform.CodeSandbox);
     const [sandboxId, setSandboxId] = useState<string>("");
     const [projectFiles, setProjectFiles] = useState<any>(null);
-    const [actualFramework, setActualFramework] = useState<EPageFramework | null>(null);
+    const [sourceFramework, setSourceFramework] = useState<EPageFramework | null>(null);
+    const [sandboxFramework, setSandboxFramework] = useState<EPageFramework | null>(null);
 
     const selectedFramework = useContext(FrameworkContext);
     const pageTitle = getFrameworkContent(currentExample.title, selectedFramework);
@@ -184,7 +185,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                 }
                 setSelectedFile({ name: defaultFile.name, content: defaultFile.content });
                 setSourceFiles(json.files);
-                setActualFramework(json.framework);
+                setSourceFramework(json.framework);
             });
     }, [currentExample, selectedFramework]);
 
@@ -192,7 +193,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         if (embedCode) {
             setEmbedCode(false);
             setProjectFiles(null);
-            setActualFramework(null);
+            setSandboxFramework(null);
         }
     }, []);
 
@@ -212,7 +213,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
         setEmbedCode(false);
         setSandboxId("");
         setProjectFiles(null);
-        setActualFramework(null);
+        setSandboxFramework(null);
     };
 
     const handleSandboxOpen = (platform: SandboxPlatform, id: string, files?: any, framework?: EPageFramework) => {
@@ -222,7 +223,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
             setProjectFiles(files);
         }
         if (framework) {
-            setActualFramework(framework);
+            setSandboxFramework(framework);
         }
         setEmbedCode(true);
     };
@@ -235,7 +236,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                 platform={sandboxPlatform}
                 exampleName={pageTitle}
                 desiredFramework={selectedFramework}
-                actualFramework={actualFramework || selectedFramework}
+                actualFramework={sandboxFramework || selectedFramework}
             />
         ) : (
             <StackblitzEditor id={sandboxId} onBack={handleBack} exampleName={pageTitle} projectFiles={projectFiles} />
@@ -327,7 +328,7 @@ const AppDeatilsRouter: FC<TProps> = (props) => {
                                     selectedFile={selectedFile}
                                     handleFileClick={handleFileClick}
                                     desiredFramework={selectedFramework}
-                                    actualFramework={actualFramework}
+                                    actualFramework={sourceFramework}
                                     examplePath={currentExample.path}
                                 />
                             </div>
