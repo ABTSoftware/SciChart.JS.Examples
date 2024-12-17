@@ -4,6 +4,7 @@ import { EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/fra
 import FileExplorer from "../FileExplorer/FileExplorer";
 import { Dialog } from "../Dialog/Dialog";
 import classes from "./AppDetailsRouter.scss";
+import { getFileName, processFiles } from "./utils";
 
 const EditorLanguageMap = {
     ts: "typescript",
@@ -34,6 +35,13 @@ export const CodeEditor: FC<CodeEditorProps> = ({
     const [hasShownDialog, setHasShownDialog] = useState(false);
     const [showDialog, setShowDialog] = useState(false);
 
+    // Process files to ensure only filenames are shown and properly sorted
+    const processedFiles = processFiles(files);
+    const processedSelectedFile = {
+        ...selectedFile,
+        name: getFileName(selectedFile.name),
+    };
+
     const handleMouseEnter = () => {
         if (!hasShownDialog && actualFramework && actualFramework !== desiredFramework) {
             setShowDialog(true);
@@ -49,13 +57,19 @@ export const CodeEditor: FC<CodeEditorProps> = ({
 
     return (
         <div className={classes.editortabwrap} onMouseEnter={handleMouseEnter}>
-            <FileExplorer files={files} selectedFile={selectedFile} handleFileClick={handleFileClick} />
+            <FileExplorer
+                files={processedFiles}
+                selectedFile={processedSelectedFile}
+                handleFileClick={handleFileClick}
+            />
             <Editor
                 theme="light"
                 height="100%"
                 width="100%"
-                language={EditorLanguageMap[selectedFile.name.split(".").pop() as keyof typeof EditorLanguageMap]}
-                value={selectedFile.content}
+                language={
+                    EditorLanguageMap[processedSelectedFile.name.split(".").pop() as keyof typeof EditorLanguageMap]
+                }
+                value={processedSelectedFile.content}
                 options={{
                     readOnly: true,
                     lineNumbersMinChars: 3,
