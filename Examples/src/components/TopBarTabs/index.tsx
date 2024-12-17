@@ -7,7 +7,7 @@ import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext"
 import { getFrameworkContent, useExampleRouteParams } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { generateExamplesGallery } from "../../helpers/SciChartExamples";
 import NewGalleryItems from "../GalleryItems";
-import SubMenuItems from "../AppDeatilsRouters/SubMenuItems";
+import SubMenuItems from "../AppDetailsRouters/SubMenuItems";
 import TabBar from "../TabBar/TabBar";
 import GalleryItems from "../GalleryItems";
 

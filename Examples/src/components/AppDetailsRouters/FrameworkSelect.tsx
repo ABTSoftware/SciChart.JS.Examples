@@ -4,7 +4,7 @@ import {
     FRAMEWORK_NAME,
     useExampleRouteParams,
 } from "../../helpers/shared/Helpers/frameworkParametrization";
-import classes from "./AppDeatilsRouter.scss";
+import classes from "./AppDetailsRouter.scss";
 
 const FrameworkSVG = {
     [EPageFramework.React]: (

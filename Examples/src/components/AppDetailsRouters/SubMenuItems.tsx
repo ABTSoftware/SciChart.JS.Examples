@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import classes from "./AppDeatilsRouter.scss";
+import classes from "./AppDetailsRouter.scss";
 import Iconleft from "../TopBarTabs/images/icon-left-arrow.svg";
 import { TMenuItem } from "../AppRouter/examples";
 type SubMenuItem = {

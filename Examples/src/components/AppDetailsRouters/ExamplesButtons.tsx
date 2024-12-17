@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useState } from "react";
-import classes from "./AppDeatilsRouter.scss";
+import classes from "./AppDetailsRouter.scss";
 import {
     EPageFramework,
     FRAMEWORK_NAME,
@@ -8,13 +8,13 @@ import {
 import { TExamplePage } from "../AppRouter/examplePages";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { getSandboxUrl, getStackBlitzFiles } from "./sandboxUtils";
-import { CodeActionButton } from "./CodeActionButton";
+import { ExampleButton } from "./ExampleButton";
 
 const getFrameWorkName = (frameWork: string): string => {
     return (FRAMEWORK_NAME as any)[frameWork];
 };
 
-type CodeActionButtonsProps = {
+type ExampleButtonsProps = {
     className?: string;
     currentExample: TExamplePage;
     selectedFramework: EPageFramework;
@@ -28,7 +28,7 @@ type CodeActionButtonsProps = {
     style?: React.CSSProperties;
 };
 
-export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
+export const ExampleButtons: FC<ExampleButtonsProps> = ({
     className,
     currentExample,
     selectedFramework,
@@ -70,14 +70,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
 
     return (
         <div className={className} style={style}>
-            <CodeActionButton
-                iconName="fullscreen"
-                label="View&nbsp;fullscreen"
-                className={`${classes.btn} ${classes.btnGithub}`}
-                onClick={() => window.open(`/iframe/${currentExample.path}`, "_blank")}
-                title={`View ${getFrameworkContent(currentExample.title, selectedFramework)} in fullscreen`}
-            />
-            <CodeActionButton
+            <ExampleButton
                 iconName="exampleStackblitz"
                 label="Edit"
                 className={`${classes.btn} ${classes.btnDark}`}
@@ -88,7 +81,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
                         : `Sorry, we have not got ${frameWorkName} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
                 }
             />
-            <CodeActionButton
+            <ExampleButton
                 iconName="codesandbox"
                 label="Edit"
                 className={`${classes.btn} ${classes.btnDark}`}
@@ -99,7 +92,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
                         : `Sorry, we have not got ${frameWorkName} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
                 }
             />
-            <CodeActionButton
+            <ExampleButton
                 iconName="exampleGithub"
                 label="View&nbsp;Source"
                 className={`${classes.btn} ${classes.btnGithub}`}

@@ -21,7 +21,7 @@ import { GalleryItem } from "../helpers/types/types";
 import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
-import AppDetailsRoute from "./AppDeatilsRouters/AppDeatilsRouter";
+import AppDetailsRoute from "./AppDetailsRouters/AppDetailsRouter";
 import { useNavigate } from "react-router-dom";
 import { appTheme } from "./Examples/theme";
 import { SciChartSurfaceBase } from "scichart";
@@ -79,7 +79,7 @@ export default function App() {
 
     const toggleOpenedMenuItem = (id: string) => {
         setOpenedMenuItem(id, !openedMenuItems[id]);
-    } 
+    };
     const toggleDrawer = () => setIsDrawerOpened(!isDrawerOpened);
 
     React.useEffect(() => {
@@ -118,7 +118,7 @@ export default function App() {
     return (
         <FrameworkContext.Provider value={selectedFramework}>
             <div className={classes.App}>
-                {isMedium && 
+                {isMedium && (
                     <Drawer
                         className={classes.DrawerMobile}
                         variant="temporary"
@@ -134,34 +134,35 @@ export default function App() {
                             // mostVisibleCategory={mostVisibleCategory} mobile does not need this hover feature
                         />
                     </Drawer>
-                }
+                )}
                 <div className={classes.MainAppContent}>
                     <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
-                    {!isHomePage ? 
+                    {!isHomePage ? (
                         <AppDetailsRoute currentExample={currentExample} seeAlso={seeAlso} />
-                    : 
-                    <div className={classes.MainAppWrapper}>
-                        <div className={classes.DrawerDesktop}>
-                            <DrawerContent
-                                testIsOpened={testIsOpened}
-                                toggleOpenedMenuItem={toggleOpenedMenuItem}
-                                toggleDrawer={toggleDrawer}
-                                mostVisibleCategory={mostVisibleCategory}
-                            />
-                        </div>
-                        {isHomePage ? (
-                            <div className={classes.GalleryAppWrapper}>
-                                <GalleryItems 
-                                    examples={allGalleryItems} 
-                                    setMostVisibleCategory={setMostVisibleCategory}
+                    ) : (
+                        <div className={classes.MainAppWrapper}>
+                            <div className={classes.DrawerDesktop}>
+                                <DrawerContent
+                                    testIsOpened={testIsOpened}
+                                    toggleOpenedMenuItem={toggleOpenedMenuItem}
+                                    toggleDrawer={toggleDrawer}
+                                    mostVisibleCategory={mostVisibleCategory}
                                 />
                             </div>
-                        ) : (
-                            <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
-                        )}
-                    </div>}
+                            {isHomePage ? (
+                                <div className={classes.GalleryAppWrapper}>
+                                    <GalleryItems
+                                        examples={allGalleryItems}
+                                        setMostVisibleCategory={setMostVisibleCategory}
+                                    />
+                                </div>
+                            ) : (
+                                <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
+                            )}
+                        </div>
+                    )}
 
                     <AppFooter />
                 </div>

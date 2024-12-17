@@ -1,8 +1,8 @@
 import React from "react";
-import classes from "./AppDeatilsRouter.scss";
+import classes from "./AppDetailsRouter.scss";
 import { Icon } from "../buttons/Icon";
 
-interface BaseExampleButtonProps {
+interface BaseCodeActionButtonProps {
     iconName: string;
     label: string;
     className?: string;
@@ -10,21 +10,21 @@ interface BaseExampleButtonProps {
     rel?: string;
 }
 
-interface LinkExampleButtonProps extends BaseExampleButtonProps {
+interface LinkCodeActionButtonProps extends BaseCodeActionButtonProps {
     href: string;
     target?: string;
     onClick?: never;
 }
 
-interface ClickExampleButtonProps extends BaseExampleButtonProps {
+interface ClickCodeActionButtonProps extends BaseCodeActionButtonProps {
     onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
     href?: never;
     target?: never;
 }
 
-type ExampleButtonProps = LinkExampleButtonProps | ClickExampleButtonProps;
+type CodeActionButtonProps = LinkCodeActionButtonProps | ClickCodeActionButtonProps;
 
-export const ExampleButton: React.FC<ExampleButtonProps> = ({
+export const CodeActionButton: React.FC<CodeActionButtonProps> = ({
     iconName,
     label,
     className = classes.btn,
@@ -36,7 +36,9 @@ export const ExampleButton: React.FC<ExampleButtonProps> = ({
 }) => {
     return (
         <a className={className} href={href} target={target} onClick={onClick} title={title} rel={rel}>
-            <Icon name={iconName} />
+            <div style={{ width: 30, height: 30, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <Icon name={iconName} />
+            </div>
             &nbsp;{label}
         </a>
     );

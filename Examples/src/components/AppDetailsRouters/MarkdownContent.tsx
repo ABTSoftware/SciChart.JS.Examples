@@ -4,7 +4,7 @@ import { PluggableList } from "react-markdown/lib/react-markdown";
 import rehypeRaw from "rehype-raw";
 import { EPageFramework, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { TExamplePage } from "../AppRouter/examplePages";
-import classes from "./AppDeatilsRouter.scss";
+import classes from "./AppDetailsRouter.scss";
 
 type TProps = {
     currentExample: TExamplePage;
