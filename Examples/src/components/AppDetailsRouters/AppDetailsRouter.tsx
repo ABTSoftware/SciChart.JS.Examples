@@ -63,6 +63,12 @@ const AppDetailsRouter: FC<TProps> = (props) => {
             top: 0,
             behavior: "smooth",
         });
+        // Reset sandbox state when example changes
+        setEmbedCode(false);
+        setSandboxId("");
+        setProjectFiles(null);
+        setSandboxFramework(null);
+
         fetch("/source/" + currentExample.path + "?framework=" + selectedFramework)
             .then((response) => {
                 if (!response.ok) {
