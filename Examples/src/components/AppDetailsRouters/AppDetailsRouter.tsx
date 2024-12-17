@@ -1,20 +1,13 @@
-import { Editor } from "@monaco-editor/react";
-import { FC, useContext, useEffect, useMemo, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import {
-    EPageFramework,
-    FRAMEWORK_NAME,
-    getFrameworkContent,
-} from "../../helpers/shared/Helpers/frameworkParametrization";
+import { EPageFramework, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { GalleryItem } from "../../helpers/types/types";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { ALL_MENU_ITEMS, MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
 import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
 import DrawerContent from "../DrawerContent/DrawerContent";
 import ExamplesRoot from "../Examples/ExampleRootDetails";
-import FileExplorer from "../FileExplorer/FileExplorer";
 import GalleryItems from "../GalleryItems";
-import { generateSearchItems, TSearchItem } from "../Search/searchItems";
 import classes from "./AppDetailsRouter.scss";
 import MarkdownContent from "./MarkdownContent";
 import { EPageLayout } from "../../helpers/shared/Helpers/frameworkParametrization";
@@ -22,114 +15,13 @@ import { CodeSandbox } from "../CodeSandbox";
 import { StackblitzEditor } from "../CodeSandbox/StackblitzEditor";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { CodeActionButtons } from "./CodeActionButtons";
-import { Dialog } from "../Dialog/Dialog";
+import { CodeEditor } from "./CodeEditor";
+import { mockFiles } from "./constants";
 
 type TProps = {
     currentExample: TExamplePage;
     isIFrame?: boolean;
     seeAlso: GalleryItem[];
-};
-
-interface IFiles {
-    [key: string]: {
-        content: string;
-        isBinary: boolean;
-    };
-}
-
-const EditorLanguageMap = {
-    ts: "typescript",
-    js: "javascript",
-    css: "css",
-    html: "html",
-    jsx: "javascript",
-    tsx: "typescript",
-};
-
-const mockFiles = [
-    {
-        name: "drawExample-for-testing.ts",
-        content: `import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { EAutoRange } from "scichart/types/AutoRange";
-
-export async function drawExample(divId: string) {  
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId);
-
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { 
-        axisAlignment: EAxisAlignment.Bottom 
-    }));
-
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { 
-        axisAlignment: EAxisAlignment.Left, 
-        autoRange: EAutoRange.Always 
-    }));
-
-    sciChartSurface.renderableSeries.add(new LineSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, {
-            dataSeriesName: "Line Series",
-            xValues: [1, 2, 3, 4, 5],
-            yValues: [1, 2, 3, 4, 5]
-        })
-    }))
-
-    sciChartSurface.zoomExtents();
-}`,
-    },
-    {
-        name: "index.tsx",
-        content: `import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";`,
-    },
-];
-
-const CodeEditor: FC<{
-    files: { name: string; content: string }[];
-    selectedFile: { name: string; content: string };
-    handleFileClick: (fileName: string) => void;
-    desiredFramework: EPageFramework;
-    actualFramework: EPageFramework | null;
-    examplePath: string;
-}> = ({ files, selectedFile, handleFileClick, desiredFramework, actualFramework, examplePath }) => {
-    const [hasShownDialog, setHasShownDialog] = useState(false);
-    const [showDialog, setShowDialog] = useState(false);
-
-    const handleMouseEnter = () => {
-        if (!hasShownDialog && actualFramework && actualFramework !== desiredFramework) {
-            setShowDialog(true);
-            setHasShownDialog(true);
-        }
-    };
-
-    useEffect(() => {
-        // Reset dialog state when example changes
-        setHasShownDialog(false);
-        setShowDialog(false);
-    }, [examplePath]);
-
-    return (
-        <div className={classes.editortabwrap} onMouseEnter={handleMouseEnter}>
-            <FileExplorer files={files} selectedFile={selectedFile} handleFileClick={handleFileClick} />
-            <Editor
-                theme="light"
-                height="100%"
-                width="100%"
-                language={EditorLanguageMap[selectedFile.name.split(".").pop() as keyof typeof EditorLanguageMap]}
-                value={selectedFile.content}
-                options={{
-                    readOnly: true,
-                    lineNumbersMinChars: 3,
-                    minimap: { enabled: true },
-                    fontSize: 16,
-                }}
-            />
-            <Dialog
-                isOpen={showDialog}
-                onClose={() => setShowDialog(false)}
-                text={`This example will be shown in ${FRAMEWORK_NAME[actualFramework]} instead of ${FRAMEWORK_NAME[desiredFramework]}.`}
-            />
-        </div>
-    );
 };
 
 const AppDetailsRouter: FC<TProps> = (props) => {
