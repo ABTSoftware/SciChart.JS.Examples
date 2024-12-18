@@ -149,7 +149,7 @@ const Example: React.FC<{
         <div key={example.id} ref={sectionRef}>
             <div className={classes.showcaseheadingwrap}>
                 {/* group title */}
-                <h3 id={example.id} style={{ fontSize: "min(calc(3vw + 0.2rem), 1.3rem)" }}>
+                <h3 id={example.id} style={{ fontSize: "min(calc(3vw + 0.4rem), 1.3rem)" }}>
                     {`${example.chartGroupTitle} (${"items" in example ? example.items.length : 0} Demo${
                         "items" in example && example.items.length !== 1 ? "s" : ""
                     })`}
@@ -181,7 +181,7 @@ const Example: React.FC<{
                                 />
                             </div>
                             <div className={classes.content}>
-                                <h3 style={{ fontSize: "1rem" }}>{item.title}</h3>
+                                <h3>{item.title}</h3>
                                 <p>{item.metaDescription || "No description available for this example yet"}</p>
                                 {gridType === EGridType.Cardview ? (
                                     <div className={classes.contentButtons}>

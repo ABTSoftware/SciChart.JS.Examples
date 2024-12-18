@@ -1,6 +1,6 @@
 # These are the components written in markdown which are used for
 
-> The CSS for these is in [Examples/src/components/AppDeatilsRouters/markdown.css](/Examples/src/components/AppDeatilsRouters/markdown.css)
+> The CSS for these is in [Examples/src/components/AppDetailsRouters/markdown.css](/Examples/src/components/AppDetailsRouters/markdown.css)
 
 ## 1. Tips
 
@@ -19,7 +19,6 @@
 ```html
 <ul class="md-checklist">
     <li>Start for free with our Community Edition.</li>
-    <li>Code a chart with NPM and Webpack and step-by-step code samples.</li>
     <li>Build your first charting app with our tutorials.</li>
 </ul>
 ```

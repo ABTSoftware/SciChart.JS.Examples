@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useMemo } from "react";
 import { Button, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import { getExampleCategoryPath, MENU_ITEMS_HIERARCHY } from "../AppRouter/examples";
@@ -13,13 +13,12 @@ const onBreadcrumbPathChange = (value: TBreadcrumbPath) => {};
 
 export const ExampleBreadcrumbs = () => {
     const { isIFrame, currentExample, framework: selectedFramework } = useExampleRouteParams();
-
-    const exampleMenuPath = getExampleCategoryPath(currentExample);
+    const memoizedMenuPath = useMemo(() => getExampleCategoryPath(currentExample), [currentExample]);
 
     return (
         <BreadcrumbsWithMenu
             items={MENU_ITEMS_HIERARCHY as TBreadcrumbItem[]}
-            path={exampleMenuPath}
+            path={memoizedMenuPath}
             onChange={onBreadcrumbPathChange}
             breadcrumbPropsMapper={(breadcrumb: TBreadcrumbItem) => {
                 let link: string;
@@ -31,12 +30,12 @@ export const ExampleBreadcrumbs = () => {
                     // leaf nodes (specific examples handling)
                     link = (breadcrumb as TExamplePage).path;
                     title = getFrameworkContent(breadcrumb.title, selectedFramework);
-                    labelContent = getFrameworkContent(breadcrumb.title, selectedFramework);
+                    labelContent = getFrameworkContent(breadcrumb.title, selectedFramework) || "Loading...";
                 } else if (breadcrumb.id === "home") {
                     // Home menu item handling
                     link = `/${selectedFramework}`;
                     title = "Home Page Gallery";
-                    labelContent = <HomeIcon />;
+                    labelContent = <div style={{height: '26px', width: '26px'}}><HomeIcon /></div>;
                     menuItems = [];
                 } else {
                     // inner menu category handling
@@ -53,7 +52,6 @@ export const ExampleBreadcrumbs = () => {
                             minWidth: "unset",
                             textWrap: "nowrap",
                             overflow: "hidden",
-                            maxWidth: { xs: "250px", md: "unset", lg: "unset" },
                             textOverflow: { xs: "ellipsis", md: "unset", lg: "unset" },
                             textTransform: "unset",
                             color: appTheme.VividBlue,

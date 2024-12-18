@@ -17,7 +17,7 @@ export const embedded = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24
     <path d="M19 3H5C3.89 3 3 3.89 3 5V19C3 20.11 3.89 21 5 21H19C20.11 21 21 20.11 21 19V5C21 3.89 20.11 3 19 3ZM19 19H5V5H19V19ZM12 17L8 13H16L12 17ZM12 7L16 11H8L12 7Z"/>
 </svg>`;
 
-export const fullscreen = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff">
+export const fullscreen = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="2 2 20 20" fill="#fff">
     <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
 </svg>`;
 
@@ -25,16 +25,11 @@ export const DEFAULT_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 
     <rect width="16" height="16" />
 </svg>`;
 
-export const codesandbox = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-    <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
-    <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
-    <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
-    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+export const codesandbox = `<svg fill="#FFFFFF" width="800px" height="800px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 6l10.455-6L22.91 6 23 17.95 12.455 24 2 18V6zm2.088 2.481v4.757l3.345 1.86v3.516l3.972 2.296v-8.272L4.088 8.481zm16.739 0l-7.317 4.157v8.272l3.972-2.296V15.1l3.345-1.861V8.48zM5.134 6.601l7.303 4.144 7.32-4.18-3.871-2.197-3.41 1.945-3.43-1.968L5.133 6.6z"/>
 </svg>`;
 
-export const stackblitz = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+export const stackblitz = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-1 -1 25 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
 </svg>`;
 

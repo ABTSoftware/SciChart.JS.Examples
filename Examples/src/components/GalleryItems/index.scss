@@ -36,6 +36,10 @@
             }
         }
     }
+
+    @media only screen and (max-width: 768px) {
+        display: none;
+    }
 }
 
 // Master style for grid component
@@ -100,6 +104,7 @@
         flex-direction: row;
         justify-content: space-between;
         gap: 15px;
+        width: 100%;
         height: 25vh; // feel free to adjust this value
 
         .imgWrapper {
@@ -146,6 +151,10 @@
         p {
             display: block !important;
         }
+
+        h2 {
+            
+        }
     }
 }
 
@@ -160,7 +169,7 @@
 
 // gridview - 5/6 columns
 .gridView5or6 {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     @media (min-width: 824px) {
         grid-template-columns: repeat(4, 1fr);
@@ -172,6 +181,10 @@
 
     @media (min-width: 1200px) {
         grid-template-columns: repeat(6, 1fr);
+    }
+
+    .card {
+        width: 100%;
     }
 }
 

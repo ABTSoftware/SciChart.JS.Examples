@@ -79,11 +79,7 @@
     align-items: center;
     // flex-wrap: wrap;
     flex: none;
-    gap: 1em;
     padding: 0px;
-    padding-right: 1em;
-    width: 100%;
-    max-width: 100%;
     color: $color-primary-white;
     background: #14233c; // DarkIndigo
     font-size: 1em;
@@ -109,7 +105,7 @@
 .FormControl {
     margin: $default-spacing;
     margin-left: 0;
-    min-width: 142;
+    min-width: 120;
 }
 
 .FormControlLabel {

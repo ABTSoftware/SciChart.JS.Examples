@@ -9,7 +9,8 @@ const ICONS: Record<string, JSX.Element> = {
     jsx: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#00bcd4" d="M16 12c7.444 0 12 2.59 12 4s-4.556 4-12 4-12-2.59-12-4 4.556-4 12-4m0-2c-7.732 0-14 2.686-14 6s6.268 6 14 6 14-2.686 14-6-6.268-6-14-6Z"/><path fill="#00bcd4" d="M16 14a2 2 0 1 0 2 2 2 2 0 0 0-2-2Z"/><path fill="#00bcd4" d="M10.458 5.507c2.017 0 5.937 3.177 9.006 8.493 3.722 6.447 3.757 11.687 2.536 12.392a.9.9 0 0 1-.457.1c-2.017 0-5.938-3.176-9.007-8.492C8.814 11.553 8.779 6.313 10 5.608a.903.903 0 0 1 .458-.1m-.001-2A2.871 2.871 0 0 0 9 3.875C6.13 5.532 6.938 12.304 10.804 19c3.284 5.69 7.72 9.493 10.74 9.493A2.87 2.87 0 0 0 23 28.124c2.87-1.656 2.062-8.428-1.804-15.124-3.284-5.69-7.72-9.493-10.74-9.493Z"/><path fill="#00bcd4" d="M21.543 5.507a.9.9 0 0 1 .457.1c1.221.706 1.186 5.946-2.536 12.393-3.07 5.316-6.99 8.493-9.007 8.493a.9.9 0 0 1-.457-.1C8.779 25.686 8.814 20.446 12.536 14c3.07-5.316 6.99-8.493 9.007-8.493m0-2c-3.02 0-7.455 3.804-10.74 9.493C6.939 19.696 6.13 26.468 9 28.124a2.87 2.87 0 0 0 1.457.369c3.02 0 7.455-3.804 10.74-9.493C25.061 12.304 25.87 5.532 23 3.876a2.87 2.87 0 0 0-1.457-.369Z"/></svg>,
     tsx: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#0288d1" d="M16 12c7.444 0 12 2.59 12 4s-4.556 4-12 4-12-2.59-12-4 4.556-4 12-4m0-2c-7.732 0-14 2.686-14 6s6.268 6 14 6 14-2.686 14-6-6.268-6-14-6Z"/><path fill="#0288d1" d="M16 14a2 2 0 1 0 2 2 2 2 0 0 0-2-2Z"/><path fill="#0288d1" d="M10.458 5.507c2.017 0 5.937 3.177 9.006 8.493 3.722 6.447 3.757 11.687 2.536 12.392a.9.9 0 0 1-.457.1c-2.017 0-5.938-3.176-9.007-8.492C8.814 11.553 8.779 6.313 10 5.608a.903.903 0 0 1 .458-.1m-.001-2A2.871 2.871 0 0 0 9 3.875C6.13 5.532 6.938 12.304 10.804 19c3.284 5.69 7.72 9.493 10.74 9.493A2.87 2.87 0 0 0 23 28.124c2.87-1.656 2.062-8.428-1.804-15.124-3.284-5.69-7.72-9.493-10.74-9.493Z"/><path fill="#0288d1" d="M21.543 5.507a.9.9 0 0 1 .457.1c1.221.706 1.186 5.946-2.536 12.393-3.07 5.316-6.99 8.493-9.007 8.493a.9.9 0 0 1-.457-.1C8.779 25.686 8.814 20.446 12.536 14c3.07-5.316 6.99-8.493 9.007-8.493m0-2c-3.02 0-7.455 3.804-10.74 9.493C6.939 19.696 6.13 26.468 9 28.124a2.87 2.87 0 0 0 1.457.369c3.02 0 7.455-3.804 10.74-9.493C25.061 12.304 25.87 5.532 23 3.876a2.87 2.87 0 0 0-1.457-.369Z"/></svg>,
     json: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path fill="#f9a825" d="M560-160v-80h120q17 0 28.5-11.5T720-280v-80q0-38 22-69t58-44v-14q-36-13-58-44t-22-69v-80q0-17-11.5-28.5T680-720H560v-80h120q50 0 85 35t35 85v80q0 17 11.5 28.5T840-560h40v160h-40q-17 0-28.5 11.5T800-360v80q0 50-35 85t-85 35H560Zm-280 0q-50 0-85-35t-35-85v-80q0-17-11.5-28.5T120-400H80v-160h40q17 0 28.5-11.5T160-600v-80q0-50 35-85t85-35h120v80H280q-17 0-28.5 11.5T240-680v80q0 38-22 69t-58 44v14q36 13 58 44t22 69v80q0 17 11.5 28.5T280-240h120v80H280Z"/></svg>,
-}
+    csv: <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 17 17" fill="none"><path d="M13.5 3.5H14V3.29289L13.8536 3.14645L13.5 3.5ZM10.5 0.5L10.8536 0.146447L10.7071 0H10.5V0.5ZM6.5 6.5V6H6V6.5H6.5ZM6.5 8.5H6V9H6.5V8.5ZM8.5 8.5H9V8H8.5V8.5ZM8.5 10.5V11H9V10.5H8.5ZM10.5 9.5H10V9.70711L10.1464 9.85355L10.5 9.5ZM11.5 10.5L11.1464 10.8536L11.5 11.2071L11.8536 10.8536L11.5 10.5ZM12.5 9.5L12.8536 9.85355L13 9.70711V9.5H12.5ZM2.5 6.5V6H2V6.5H2.5ZM2.5 10.5H2V11H2.5V10.5ZM2 5V1.5H1V5H2ZM13 3.5V5H14V3.5H13ZM2.5 1H10.5V0H2.5V1ZM10.1464 0.853553L13.1464 3.85355L13.8536 3.14645L10.8536 0.146447L10.1464 0.853553ZM2 1.5C2 1.22386 2.22386 1 2.5 1V0C1.67157 0 1 0.671573 1 1.5H2ZM1 12V13.5H2V12H1ZM2.5 15H12.5V14H2.5V15ZM14 13.5V12H13V13.5H14ZM12.5 15C13.3284 15 14 14.3284 14 13.5H13C13 13.7761 12.7761 14 12.5 14V15ZM1 13.5C1 14.3284 1.67157 15 2.5 15V14C2.22386 14 2 13.7761 2 13.5H1ZM9 6H6.5V7H9V6ZM6 6.5V8.5H7V6.5H6ZM6.5 9H8.5V8H6.5V9ZM8 8.5V10.5H9V8.5H8ZM8.5 10H6V11H8.5V10ZM10 6V9.5H11V6H10ZM10.1464 9.85355L11.1464 10.8536L11.8536 10.1464L10.8536 9.14645L10.1464 9.85355ZM11.8536 10.8536L12.8536 9.85355L12.1464 9.14645L11.1464 10.1464L11.8536 10.8536ZM13 9.5V6H12V9.5H13ZM5 6H2.5V7H5V6ZM2 6.5V10.5H3V6.5H2ZM2.5 11H5V10H2.5V11Z" fill="#000000"/></svg>
+} // todo talk with team
 
 type TFile = {
     name: string; 
@@ -22,11 +23,20 @@ export default function FileExplorer({files, selectedFile, handleFileClick}: {
     handleFileClick: (fileName: string) => void;
 }) {
     const [ isExtended, setIsExtended ] = useState(false);
+
+    // "drawExample" and "index" files should be first
+    const sortedFiles = files.sort((a, b) => {
+        if (a.name.includes("drawExample")) return -1;
+        if (b.name.includes("drawExample")) return 1;
+        if (a.name.includes("index")) return -1;
+        if (b.name.includes("index")) return 1;
+        return 0;
+    })
     return (
-    <>
+    <div className={classes.codeHeader}>
         {/* VSCode-like horizontal scrollable tabs */}
         <div className={classes.horizontalScroller}>
-            {files.map((file) => (
+            {sortedFiles.map((file) => (
                 <div
                     key={file.name}
                     className={`${classes.selectTab} ${selectedFile.name === file.name ? classes.activeTab : ""}`}
@@ -38,6 +48,7 @@ export default function FileExplorer({files, selectedFile, handleFileClick}: {
             ))}
         </div>
         {/* Select */}
+        {files.length > 3 ?
         <div className={classes.selectDropdown}>
             <div className={`${classes.selectTab} ${classes.activeTab}`}
                 onClick={() => setIsExtended(!isExtended)}
@@ -48,17 +59,18 @@ export default function FileExplorer({files, selectedFile, handleFileClick}: {
                 {ICONS[selectedFile.name.split('.').pop() as keyof typeof ICONS]}
                 <p>{selectedFile.name}</p>
                 {/* Dropdown Arrow */}
-                <svg style={{transform: isExtended ? "rotate(-180deg)" : "rotate(0deg)", marginLeft: "auto", transition: 'all 200ms linear'}}
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                <svg style={{transform: isExtended ? "rotate(-180deg)" : "rotate(0deg)", marginLeft: "auto", transition: 'all 200ms linear', position: 'absolute', right: '5px'}}
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                 </svg>
             </div>
 
-            <div className={classes.explorerSelect} style={{display: isExtended ? "block" : "none"}}>
-                {files.map((file) => (
+            <div className={classes.selectContent} style={{display: isExtended ? "block" : "none"}}>
+                {sortedFiles.map((file) => (
                     <div
                         key={file.name}
                         className={classes.selectTab}
                         onClick={() => handleFileClick(file.name)}
+                        style={{width: '100%'}}
                     >
                         {ICONS[file.name.split('.').pop() as keyof typeof ICONS]}
                         <p>{file.name}</p>
@@ -66,7 +78,8 @@ export default function FileExplorer({files, selectedFile, handleFileClick}: {
                 ))}
             </div>
         </div>
-    </>
+        : null}
+    </div>
     )
 }
 

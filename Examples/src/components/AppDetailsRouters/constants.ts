@@ -33,4 +33,8 @@ export async function drawExample(divId: string) {
         name: "index.tsx",
         content: `import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";`,
     },
+    {
+        name: "example.html",
+        content: `<div id="scichart-root" style="width: 100%; height: 100%"></div>`,
+    }
 ];

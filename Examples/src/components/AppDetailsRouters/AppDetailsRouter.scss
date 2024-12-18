@@ -13,6 +13,25 @@ $drawerWidthDesktop: min(400px, 28vw);
     font-family: "Arial";
 }
 
+.actionButton {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+        width: 20px;
+        height: 20px;
+
+    }
+
+    @media only screen and (max-width: 768px) {
+        p {
+            display: none;
+        }
+    }
+}
+
 .DrawerDesktop {
     position: sticky;
     top: 85px;
@@ -86,6 +105,7 @@ $drawerWidthDesktop: min(400px, 28vw);
     display: flex;
     padding: 20px;
     @media only screen and (max-width: 768px) {
+        padding: 0;
     }
 }
 
@@ -161,6 +181,13 @@ $drawerWidthDesktop: min(400px, 28vw);
     aspect-ratio: 1.5 !important;
     position: relative;
     overflow: hidden;
+}
+
+@media only screen and (max-width: 768px) {
+    .contentwrapper .dynamicFlexWrapper > * {
+        max-width: 100%;
+        aspect-ratio: 1/1.5 !important;
+    }
 }
 
 .tabbreadcrumbwrap {
@@ -1011,3 +1038,4 @@ $drawerWidthDesktop: min(400px, 28vw);
         }
     }
 }
+

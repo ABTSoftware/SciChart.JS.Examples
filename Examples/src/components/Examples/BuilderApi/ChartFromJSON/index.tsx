@@ -52,7 +52,7 @@ export default function ChartFromJSON() {
 
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+            <div style={{ display: "flex", flexDirection: "column", height: "100%", width: '100%' }}>
                 <Chart chartConfig={currentChartConfig} />
                 <div style={{ position: "absolute", left: 20, top: 20 }}>
                     {errors && (
@@ -62,7 +62,7 @@ export default function ChartFromJSON() {
                         </Alert>
                     )}
                 </div>
-                <div style={{ flexBasis: "50px" }}>
+                <div>
                     <div className={commonClasses.FormControl}>
                         <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
                             <Button id="eg1" onClick={loadMinimal}>
@@ -77,14 +77,14 @@ export default function ChartFromJSON() {
                         </ButtonGroup>
                     </div>
                 </div>
-                <div style={{ flexBasis: "200px" }}>
+                <div>
                     <TextField
                         id="chartDef"
                         type="text"
                         fullWidth={true}
                         multiline={true}
-                        minRows="10"
-                        maxRows="10"
+                        minRows="8"
+                        maxRows="8"
                         variant="outlined"
                         value={json}
                         onChange={handleChangeJSON}
@@ -92,9 +92,8 @@ export default function ChartFromJSON() {
                 </div>
                 <div
                     className={[commonClasses.FormControl, commonClasses.AlignRight].join(" ")}
-                    style={{ flexBasis: "50px" }}
                 >
-                    <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                    <ButtonGroup size="small" color="primary" aria-label="small outlined button group">
                         <Button className={commonClasses.ButtonFilled} id="buildChart" onClick={handleBuild}>
                             Apply
                         </Button>

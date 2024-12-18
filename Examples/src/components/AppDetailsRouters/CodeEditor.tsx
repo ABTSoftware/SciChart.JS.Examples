@@ -74,7 +74,7 @@ export const CodeEditor: FC<CodeEditorProps> = ({
                     readOnly: true,
                     lineNumbersMinChars: 3,
                     minimap: { enabled: true },
-                    fontSize: 16,
+                    fontSize: 14,
                 }}
             />
             <Dialog
