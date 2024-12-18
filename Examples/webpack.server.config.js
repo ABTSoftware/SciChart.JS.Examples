@@ -8,7 +8,7 @@ module.exports = {
     mode: "production",
     name: "server",
     target: "node",
-    devtool: "source-map", // Enabled source maps
+    // devtool: "source-map", // If you enable this while developing, you MUST disable it again before commiting as it uses too much memory during produciton build
     externalsPresets: { node: true }, // in order to ignore built-in modules like path, fs, etc.
     externals: {
         express: "commonjs2 express",
