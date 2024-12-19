@@ -53,19 +53,17 @@ export default function MultiLineLabels() {
     const { classes } = useStyles();
 
     return (
-        <>
-            <div className={commonClasses.ChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+        <div className={commonClasses.ChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+            <div className={classes.flexOuterContainer}>
                 <SciChartReact
                     initChart={drawExample}
-                    className={commonClasses.ChartWrapper}
+                    className={classes.chartArea}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         const { sciChartSurface, labelProvider } = initResult;
                         labelProviderRef.current = labelProvider;
                         sciChartSurfaceRef.current = sciChartSurface;
                     }}
                 />
-            </div>
-            <div className={classes.flexOuterContainer}>
                 <div className={commonClasses.ToolbarRow}>
                     <ToggleButtonGroup
                         className={commonClasses.ToggleButtonGroup}
@@ -88,6 +86,6 @@ export default function MultiLineLabels() {
                     </ToggleButtonGroup>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
