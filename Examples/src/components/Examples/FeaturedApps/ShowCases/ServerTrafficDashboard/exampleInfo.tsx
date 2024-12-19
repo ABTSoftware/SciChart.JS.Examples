@@ -2,6 +2,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-server-traffic-dashboard.jpg";
+import { EPageLayout } from "../../../../../helpers/types/types";
 
 const Subtitle = (frameworkName: string) => (
     <p>
@@ -44,4 +45,5 @@ export const serverTrafficDashboardDemoExampleInfo: TExampleInfo = {
     markdownContent,
     extraDependencies: { "country-flag-icons": "^1.5.7" },
     documentationLinks,
+    pageLayout: EPageLayout.MaxWidth
 };

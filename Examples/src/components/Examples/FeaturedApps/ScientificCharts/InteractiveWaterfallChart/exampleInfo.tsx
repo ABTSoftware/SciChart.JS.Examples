@@ -3,6 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-interactive-waterfall-chart.jpg";
+import { EPageLayout } from "../../../../../helpers/types/types";
 
 const previewDescription = `Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.`;
 const description = ``;
@@ -38,4 +39,5 @@ export const waterfallChartExampleInfo: TExampleInfo = {
     thumbnailImage: exampleImage,
     markdownContent,
     documentationLinks,
+    pageLayout: EPageLayout.MaxWidth
 };

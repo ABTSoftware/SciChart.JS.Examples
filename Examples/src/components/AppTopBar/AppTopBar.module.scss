@@ -15,6 +15,7 @@
         }
 
         .LogoDefault {
+            margin-top: 2px;
             height: 100%;
             width: 209px;
         }
@@ -35,8 +36,7 @@
         flex: auto;
         height: $app-bar-height;
         padding: 12px;
-        padding-top: 12px;
-        padding-bottom: 12px;
+        padding-left: 0px;
         z-index: 1200;
 
         %ToolBarButton {
@@ -47,7 +47,7 @@
             padding: 0px;
             min-width: unset;
             min-height: unset;
-            border-radius: 4px;
+            border-radius: 8px;
             color: $color-primary-white;
         }
 
@@ -75,17 +75,25 @@
             align-items: center;
             justify-content: center;
             height: 100%;
-            border-radius: 4px;
+            border-radius: 8px;
             background-color: $color-medium-blue;
             text-decoration: none;
+        }
+
+        .versionChip {
+            height: 44px;
+            border-radius: 8px;
+            @include sm {
+                display: none;
+            }
         }
 
         .NpmLink {
             @extend %ToolBarButton;
 
             display: flex;
-            padding: 6px 6px;
-            border-radius: 4px;
+            padding: 6px;
+            border-radius: 8px;
             background-color: $color-red;
             color: $color-primary-white;
             text-decoration: none;
@@ -95,9 +103,9 @@
             display: flex;
             flex: none;
             height: 100%;
-            padding: $default-spacing * 2 $default-spacing * 2;
-            border-radius: 14px;
+            padding: $default-spacing;
             background: $gradient-btn-dark;
+            border-radius: 8px;
 
             @include sm {
                 display: none;
@@ -136,10 +144,10 @@
 
         .BlueButton {
             background: $gradient-blue;
-            border-radius: 14px;
             height: 100%;
             text-align: center;
             line-height: 1;
+            border-radius: 8px;
             span {
                 font-weight: bold;
                 padding: 6px 15px;

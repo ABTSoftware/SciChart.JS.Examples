@@ -26,20 +26,6 @@ export type TPathTemplate = string | ((framework: EPageFramework) => string);
 export type TFrameworkName = "JavaScript" | "Angular" | "React" | "Vue";
 export type TFrameworkTemplate = string | ((framework: TFrameworkName) => string);
 
-/**
- * Describes the layout of the page where the chart is displayed relative to the source code component
- */
-export enum EPageLayout {
-    /**
-     * Where the chart needs to be displayed in the full width of the page (e.g. oil-gas dashboard)
-     */
-    MaxWidth = "max-width",
-    /**
-     * Where the chart does not need a whole lot of space, it will be side by side with the code section if screen width > 1900px
-     */
-    Default = "default",
-}
-
 export const getFrameworkContent = (content: TFrameworkTemplate, framework: EPageFramework) => {
     if (!content) return "";
     return typeof content === "string" ? content : content(FRAMEWORK_NAME[framework]);

@@ -64,7 +64,8 @@ const AppBarTop: FC<TProps> = (props) => {
                                 title="SciChart.js TypeDoc"
                                 target="_blank"
                             >
-                                <Chip
+                                <Chip  
+                                    className={classes.versionChip}
                                     sx={{
                                         background:
                                             "linear-gradient(45deg, rgb(42, 99, 151), rgb(113, 55, 149), rgb(160, 36, 142))",

@@ -103,7 +103,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
                 iconName="exampleGithub"
                 label="View&nbsp;Source"
                 className={`${classes.btn} ${classes.btnGithub}`}
-                href={`https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Examples/src/components/Examples/${currentExample.filepath}/${selectedFile.name}`}
+                href={`https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Examples/src/components/Examples/${currentExample.filepath}`}
                 target="_blank"
                 rel="noopener"
             />

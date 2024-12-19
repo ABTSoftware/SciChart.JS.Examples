@@ -2,17 +2,20 @@
 
 .Search {
     display: block;
+    width: 100%;
+    max-width: 40vw;
     // width: 30vw;
     // height: 100%;
-    padding: 16px;
+    padding: 16px 0;
     flex: auto;
 
     .SearchField {
         @include sm {
             background-color: unset;
         }
-        border-radius: 12px;
-        border: 2px solid rgba(127, 127, 127, 0.6);
+        height: 44px;
+        border-radius: 8px;
+        border: 1px solid rgba(127, 127, 127, 0.6);
         background-color: rgba(127, 127, 127, 0.1);
     }
 

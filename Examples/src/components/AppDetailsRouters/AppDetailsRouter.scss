@@ -1,6 +1,6 @@
 @import "../../assets/main.scss";
 
-$drawerWidthDesktop: min(400px, 28vw);
+$drawerWidthDesktop: min(350px, 25vw);
 
 .frameworksection {
     background-color: transparent;
@@ -177,8 +177,9 @@ $drawerWidthDesktop: min(400px, 28vw);
 .contentwrapper .dynamicFlexWrapper > * {
     width: 100%;
     height: 100%;
-    max-width: 110vh; // trick to keep chart into view
-    aspect-ratio: 1.5 !important;
+    max-height: 80vh;
+    max-width: min(100vh, 100vw); // trick to keep chart into view
+    aspect-ratio: 1.5;
     position: relative;
     overflow: hidden;
 }
@@ -186,7 +187,7 @@ $drawerWidthDesktop: min(400px, 28vw);
 @media only screen and (max-width: 768px) {
     .contentwrapper .dynamicFlexWrapper > * {
         max-width: 100%;
-        aspect-ratio: 1/1.5 !important;
+        aspect-ratio: 1/1.5;
     }
 }
 

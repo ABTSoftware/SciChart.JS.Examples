@@ -30,12 +30,7 @@ const Subtitle = (frameworkName: string) => (
     </>
 );
 
-const markdownContent: string = `<section class=\"container-markdown\" style=\"background: #38a\">
-
-Markdown band series chart example.
-
-<\/section>
-`;
+const markdownContent: string = undefined;
 
 export const bandSeriesChartExampleInfo: TExampleInfo = {
     onWebsite: true,

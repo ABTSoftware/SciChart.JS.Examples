@@ -7,6 +7,10 @@
     background: #ffffff;
     border-radius: 15px;
     border: 1px solid #b4d0db;
+
+    --small-h3: calc(0.65rem + 0.3vw);
+    --medium-h3: calc(0.8rem + 0.4vw);
+    --large-h3: calc(1rem + 0.4vw);
 }
 
 .showcaseheadingwrap {
@@ -51,6 +55,7 @@
     overflow: hidden;
 
     .card {
+        cursor: pointer;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -61,10 +66,6 @@
             width: 100%;
             aspect-ratio: 3 / 2;
             overflow: hidden;
-
-            // @media screen and (max-width: 768px) {
-            //     aspect-ratio: 9 / 16;
-            // }
 
             img {
                 width: 100%;
@@ -121,6 +122,10 @@
             flex-direction: column;
             text-align: left;
 
+            h3 {
+                font-size: var(--large-h3);
+            }
+
             .contentButtons {
                 display: flex;
                 width: 100%;
@@ -151,10 +156,6 @@
         p {
             display: block !important;
         }
-
-        h2 {
-            
-        }
     }
 }
 
@@ -164,23 +165,34 @@
 
     @media (min-width: 1200px) {
         grid-template-columns: repeat(3, 1fr);
+
+        h3 {
+            font-size: var(--medium-h3);
+        }
     }
 }
 
 // gridview - 5/6 columns
 .gridView5or6 {
     grid-template-columns: repeat(2, 1fr);
+    font-size: var(--medium-h3);
 
     @media (min-width: 824px) {
         grid-template-columns: repeat(4, 1fr);
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1200px) {
         grid-template-columns: repeat(5, 1fr);
+        h3 {
+            font-size: var(--small-h3);
+        }
     }
 
-    @media (min-width: 1200px) {
+    @media (min-width: 1600px) {
         grid-template-columns: repeat(6, 1fr);
+        h3 {
+            font-size: var(--small-h3);
+        }
     }
 
     .card {

@@ -3,6 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-annotations.jpg";
+import { EPageLayout } from "../../../../../helpers/types/types";
 
 const previewDescription = `An introduction to the Annotations API in SciChart.js, which allows SVG elements or custom WebGL rendered
 elements to be placed over the chart at specific X,Y data-values.`;
@@ -47,5 +48,5 @@ export const annotationsAreEasyExampleInfo: TExampleInfo = {
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     markdownContent,
-    documentationLinks,
+    documentationLinks 
 };

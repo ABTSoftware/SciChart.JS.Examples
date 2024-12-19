@@ -3,6 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-editable-annotations.jpg";
+import { EPageLayout } from "../../../../../helpers/types/types";
 
 const previewDescription = `An introduction to the Annotations Editable API in SciChart.js, which allows SVG elements or custom WebGL
 rendered elements to be editable over the chart at specific X,Y data-values.`;
@@ -44,4 +45,5 @@ export const editableAnnotationsExampleInfo: TExampleInfo = {
     thumbnailImage: exampleImage,
     markdownContent,
     documentationLinks,
+    pageLayout: EPageLayout.MaxWidth
 };

@@ -19,12 +19,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const markdownContent: string = `<section class=\"container-markdown\" style=\"background: #38a\">
-
-BUBBLE BUBBLE BUBBLe <h1>Bubble<\/h1>
-
-<\/section>
-`;
+const markdownContent: string = undefined;
 
 const Subtitle = (frameworkName: string) => (
     <p>

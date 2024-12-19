@@ -3,6 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-oil-gas-explorer-dashboard-charts.jpg";
+import { EPageLayout } from "../../../../../helpers/types/types";
 
 const Subtitle = (frameworkName: string) => (
     <p>This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.</p>
@@ -35,4 +36,5 @@ export const oilAndGasExplorerDashboard: TExampleInfo = {
     thumbnailImage: exampleImage,
     markdownContent,
     documentationLinks,
+    pageLayout: EPageLayout.MaxWidth
 };

@@ -39,7 +39,7 @@ export const CodeEditor: FC<CodeEditorProps> = ({
     const processedFiles = processFiles(files);
     const processedSelectedFile = {
         ...selectedFile,
-        name: getFileName(selectedFile.name),
+        name: getFileName(selectedFile?.name),
     };
 
     const handleMouseEnter = () => {
@@ -72,7 +72,7 @@ export const CodeEditor: FC<CodeEditorProps> = ({
                 value={processedSelectedFile.content}
                 options={{
                     readOnly: true,
-                    lineNumbersMinChars: 3,
+                    lineNumbersMinChars: 2,
                     minimap: { enabled: true },
                     fontSize: 14,
                 }}

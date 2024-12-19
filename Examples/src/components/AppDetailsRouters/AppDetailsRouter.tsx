@@ -1,7 +1,7 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { EPageFramework, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { GalleryItem } from "../../helpers/types/types";
+import { EPageLayout, GalleryItem } from "../../helpers/types/types";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { ALL_MENU_ITEMS, MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
 import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
@@ -10,13 +10,11 @@ import ExamplesRoot from "../Examples/ExampleRootDetails";
 import GalleryItems from "../GalleryItems";
 import classes from "./AppDetailsRouter.scss";
 import MarkdownContent from "./MarkdownContent";
-import { EPageLayout } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { CodeSandbox } from "../CodeSandbox";
 import { StackblitzEditor } from "../CodeSandbox/StackblitzEditor";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { CodeActionButtons } from "./CodeActionButtons";
 import { CodeEditor } from "./CodeEditor";
-import { mockFiles } from "./constants";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -26,8 +24,10 @@ type TProps = {
 
 const AppDetailsRouter: FC<TProps> = (props) => {
     const { currentExample, seeAlso } = props;
-    const [sourceFiles, setSourceFiles] = useState<{ name: string; content: string }[]>(mockFiles);
-    const [selectedFile, setSelectedFile] = useState<{ name: string; content: string }>(mockFiles[0]);
+    
+    const loadingFile = { name: "drawExample.ts", content: "// Loading ... " };
+    const [sourceFiles, setSourceFiles] = useState<{ name: string; content: string }[]>([loadingFile]);
+    const [selectedFile, setSelectedFile] = useState<{ name: string; content: string }>(loadingFile);
 
     const [pageLayout, setPageLayout] = useState<EPageLayout>(currentExample.pageLayout ?? EPageLayout.Default);
     const [embedCode, setEmbedCode] = useState<boolean>(false);
@@ -59,6 +59,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
     const [openedMenuItems, setOpenedMenuItems] = useState<Record<string, boolean>>(initialOpenedMenuItems);
 
     useEffect(() => {
+        setPageLayout(currentExample.pageLayout ?? EPageLayout.Default);
         window.scrollTo({
             top: 0,
             behavior: "smooth",
@@ -96,8 +97,8 @@ const AppDetailsRouter: FC<TProps> = (props) => {
     }, []);
 
     const handleFileClick = (fileName: string) => {
-        const file = sourceFiles.find((f) => f.name === fileName);
-        setSelectedFile({ name: fileName, content: file.content });
+        const file = sourceFiles.find((f) => f.name.includes(fileName));
+        setSelectedFile({ name: file.name, content: file.content });
     };
 
     const setOpenedMenuItem = (id: string, value: boolean = true) => {
@@ -185,13 +186,13 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                             <LayoutButtons />
                         </div>
 
-                        <div style={{ display: "flex", justifyContent: "center" }}>
+                        <div style={{ display: "flex", justifyContent: 'center'}}>
                             <h1
                                 className={classes.headingtxt}
                                 style={{
                                     margin: "-10px 0",
                                     marginInline: pageLayout === EPageLayout.MaxWidth ? "auto" : 0,
-                                    width: pageLayout === EPageLayout.MaxWidth ? "110vh" : "auto",
+                                    width: pageLayout === EPageLayout.MaxWidth ? "min(100vh , 100%)" : "auto",
                                 }}
                             >
                                 {pageTitle}
@@ -212,7 +213,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                         <span
                             style={
                                 pageLayout === EPageLayout.MaxWidth
-                                    ? { width: "100%", maxWidth: "110vh", margin: "0 auto", textAlign: "start" }
+                                    ? { width: "100%", maxWidth: "min(100vh, 100vw)", margin: "0 auto", textAlign: "start" }
                                     : {}
                             }
                         >

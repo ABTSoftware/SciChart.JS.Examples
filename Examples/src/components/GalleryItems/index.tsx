@@ -149,7 +149,7 @@ const Example: React.FC<{
         <div key={example.id} ref={sectionRef}>
             <div className={classes.showcaseheadingwrap}>
                 {/* group title */}
-                <h3 id={example.id} style={{ fontSize: "min(calc(3vw + 0.4rem), 1.3rem)" }}>
+                <h3 id={example.id} style={{ fontSize: "min(calc(4vw + 0.4rem), 1.4rem)" }}>
                     {`${example.chartGroupTitle} (${"items" in example ? example.items.length : 0} Demo${
                         "items" in example && example.items.length !== 1 ? "s" : ""
                     })`}
@@ -171,10 +171,11 @@ const Example: React.FC<{
             `}
                 >
                     {example.items.map((item, index) => (
-                        <div key={index} className={classes.card}>
+                        <div key={index} className={classes.card}
+                            onClick={() => handleSubmenuClick(item.examplePath)}
+                        >
                             <div className={classes.imgWrapper}>
                                 <img
-                                    onClick={() => handleSubmenuClick(item.examplePath)}
                                     src={item.imgPath}
                                     alt={item.seoTitle}
                                     title={item.title}
@@ -222,7 +223,11 @@ const Example: React.FC<{
 };
 
 const GalleryItems: React.FC<TProps> = ({ examples, setMostVisibleCategory }) => {
-    const [gridType, setGridType] = useState<EGridType>(EGridType.Grid2or3);
+    const [gridType, setGridType] = useState<EGridType>(
+        (window !== undefined && window.innerWidth > 1200) 
+            ? EGridType.Grid5or6 
+            : EGridType.Grid2or3
+    );
 
     return (
         <div className={classes.showcaseWrap}>

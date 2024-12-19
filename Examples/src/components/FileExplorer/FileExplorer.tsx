@@ -22,7 +22,7 @@ export default function FileExplorer({files, selectedFile, handleFileClick}: {
     selectedFile: TFile;
     handleFileClick: (fileName: string) => void;
 }) {
-    const [ isExtended, setIsExtended ] = useState(false);
+    // const [ isExtended, setIsExtended ] = useState(false); // for select
 
     // "drawExample" and "index" files should be first
     const sortedFiles = files.sort((a, b) => {
@@ -33,9 +33,8 @@ export default function FileExplorer({files, selectedFile, handleFileClick}: {
         return 0;
     })
     return (
-    <div className={classes.codeHeader}>
-        {/* VSCode-like horizontal scrollable tabs */}
         <div className={classes.horizontalScroller}>
+            {/* VSCode-like horizontal scrollable tabs */}
             {sortedFiles.map((file) => (
                 <div
                     key={file.name}
@@ -47,9 +46,8 @@ export default function FileExplorer({files, selectedFile, handleFileClick}: {
                 </div>
             ))}
         </div>
-        {/* Select */}
-        {files.length > 3 ?
-        <div className={classes.selectDropdown}>
+    )
+        {/* <div className={classes.selectDropdown}>
             <div className={`${classes.selectTab} ${classes.activeTab}`}
                 onClick={() => setIsExtended(!isExtended)}
                 style={{
@@ -58,7 +56,6 @@ export default function FileExplorer({files, selectedFile, handleFileClick}: {
             >
                 {ICONS[selectedFile.name.split('.').pop() as keyof typeof ICONS]}
                 <p>{selectedFile.name}</p>
-                {/* Dropdown Arrow */}
                 <svg style={{transform: isExtended ? "rotate(-180deg)" : "rotate(0deg)", marginLeft: "auto", transition: 'all 200ms linear', position: 'absolute', right: '5px'}}
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                 </svg>
@@ -77,11 +74,5 @@ export default function FileExplorer({files, selectedFile, handleFileClick}: {
                     </div>
                 ))}
             </div>
-        </div>
-        : null}
-    </div>
-    )
+        </div> */}
 }
-
-
-// override drawLabels() from AxisRenderer.ts

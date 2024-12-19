@@ -63,7 +63,7 @@ import { dragAxisToScaleExampleInfo } from "../Examples/Charts2D/ZoomingAndPanni
 import { realtimeZoomPanExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/exampleInfo";
 import { zoomAndPanWithMultipleChartModifiersExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers/exampleInfo";
 import { editableAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations/exampleInfo";
-import { GalleryItem } from "../../helpers/types/types";
+import { EPageLayout, GalleryItem } from "../../helpers/types/types";
 import { dragHorizontalThresholdExampleInfo } from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/exampleInfo";
 import { metaDataExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/MetaData/exampleInfo";
 import { logarithmicAxisExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis/exampleInfo";
@@ -107,9 +107,10 @@ import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/Tool
 import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo";
 import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo";
 import { populationPyramidExampleInfo } from "../Examples/FeaturedApps/ShowCases/PopulationPyramid/exampleInfo";
-import { EPageLayout, TFrameworkTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { TFrameworkTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
 import { smoothStackedMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart/exampleInfo";
+
 
 export type TExampleInfo = {
     /**

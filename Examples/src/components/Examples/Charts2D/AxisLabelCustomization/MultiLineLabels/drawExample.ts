@@ -65,6 +65,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         maxAutoTicks: 15,
         // add the title
         axisTitle: "Mobile phone manufacturer",
+        growBy: new NumberRange(0.05, 0.05) // add some horizontal padding
     });
 
     // additional axis options
