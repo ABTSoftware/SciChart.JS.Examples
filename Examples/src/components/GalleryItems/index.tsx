@@ -223,11 +223,7 @@ const Example: React.FC<{
 };
 
 const GalleryItems: React.FC<TProps> = ({ examples, setMostVisibleCategory }) => {
-    const [gridType, setGridType] = useState<EGridType>(
-        (window !== undefined && window.innerWidth > 1200) 
-            ? EGridType.Grid5or6 
-            : EGridType.Grid2or3
-    );
+    const [gridType, setGridType] = useState<EGridType>(EGridType.Grid5or6);
 
     return (
         <div className={classes.showcaseWrap}>
