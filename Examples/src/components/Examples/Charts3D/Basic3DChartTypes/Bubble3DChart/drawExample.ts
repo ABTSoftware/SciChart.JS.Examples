@@ -71,14 +71,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Life Expectancy",
         visibleRange: new NumberRange(30, 85),
+        labelPrecision: 0,
     });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Gdp Per Capita",
         visibleRange: new NumberRange(0, 50000),
+        labelPrecision: 0,
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Year",
         visibleRange: new NumberRange(1950, 2010),
+        labelPrecision: 0,
     });
 
     // Population dataset from gapminderdata
