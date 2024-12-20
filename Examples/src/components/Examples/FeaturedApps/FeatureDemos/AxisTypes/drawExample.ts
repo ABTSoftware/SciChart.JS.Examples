@@ -144,12 +144,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new ZoomExtentsModifier()
     );
 
-    const updateLabelProvider = (rotation: number, maxLength: number) => {
-        labelProvider.rotation = rotation;
-        labelProvider.maxLength = maxLength;
-    };
-
-    return { sciChartSurface, wasmContext, controls: { updateLabelProvider } };
+    return { sciChartSurface, wasmContext };
 };
 
 class AxisTypesPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {

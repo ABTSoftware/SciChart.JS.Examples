@@ -24,60 +24,10 @@ const useStyles = makeStyles()((theme) => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function FeatureAxisTypes() {
-    const [controls, setControls] = useState<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
-    const [preset, setPreset] = useState<number>(0);
-
-    const handlePreset = (event: any, value: number) => {
-        setPreset(value);
-        switch (value) {
-            case 0:
-                controls.updateLabelProvider(0, 9);
-                break;
-            case 1:
-                controls.updateLabelProvider(20, 0);
-                break;
-            case 2:
-                controls.updateLabelProvider(30, 12);
-                break;
-            default:
-                controls.updateLabelProvider(0, 9);
-                break;
-        }
-    };
-
     const { classes } = useStyles();
-
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={classes.flexOuterContainer}>
-                <div className={commonClasses.ToolbarRow}>
-                    <ToggleButtonGroup
-                        exclusive
-                        value={preset}
-                        onChange={handlePreset}
-                        size="medium"
-                        color="primary"
-                        aria-label="small outlined button group"
-                    >
-                        <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
-                            Multi-Line
-                        </ToggleButton>
-                        <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
-                            Single Line Rotated
-                        </ToggleButton>
-                        <ToggleButton value={2} style={{ color: appTheme.ForegroundColor }}>
-                            Multi-Line Rotated
-                        </ToggleButton>
-                    </ToggleButtonGroup>
-                </div>
-                <SciChartReact
-                    className={classes.chartArea}
-                    initChart={drawExample}
-                    onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
-                        setControls(controls);
-                    }}
-                />
-            </div>
+            <SciChartReact className={classes.chartArea} initChart={drawExample} />
         </div>
     );
 }

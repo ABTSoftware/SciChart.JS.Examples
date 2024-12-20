@@ -26,7 +26,7 @@ export default function MultiLineLabels() {
     const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const labelProviderRef = React.useRef<TextLabelProvider>();
 
-    const [preset, setPreset] = React.useState<number>(0);
+    const [preset, setPreset] = React.useState<number>(2);
 
     const handlePreset = (event: any, value: number) => {
         setPreset(value);
@@ -41,11 +41,11 @@ export default function MultiLineLabels() {
                 break;
             case 2:
                 labelProviderRef.current.rotation = 30;
-                labelProviderRef.current.maxLength = 12;
+                labelProviderRef.current.maxLength = 15;
                 break;
             default:
-                labelProviderRef.current.rotation = 0;
-                labelProviderRef.current.maxLength = 9;
+                labelProviderRef.current.rotation = 30;
+                labelProviderRef.current.maxLength = 15;
                 break;
         }
     };
@@ -55,15 +55,6 @@ export default function MultiLineLabels() {
     return (
         <div className={commonClasses.ChartWrapper} style={{ background: appTheme.DarkIndigo }}>
             <div className={classes.flexOuterContainer}>
-                <SciChartReact
-                    initChart={drawExample}
-                    className={classes.chartArea}
-                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                        const { sciChartSurface, labelProvider } = initResult;
-                        labelProviderRef.current = labelProvider;
-                        sciChartSurfaceRef.current = sciChartSurface;
-                    }}
-                />
                 <div className={commonClasses.ToolbarRow}>
                     <ToggleButtonGroup
                         className={commonClasses.ToggleButtonGroup}
@@ -85,6 +76,15 @@ export default function MultiLineLabels() {
                         </ToggleButton>
                     </ToggleButtonGroup>
                 </div>
+                <SciChartReact
+                    initChart={drawExample}
+                    className={classes.chartArea}
+                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                        const { sciChartSurface, labelProvider } = initResult;
+                        labelProviderRef.current = labelProvider;
+                        sciChartSurfaceRef.current = sciChartSurface;
+                    }}
+                />
             </div>
         </div>
     );
