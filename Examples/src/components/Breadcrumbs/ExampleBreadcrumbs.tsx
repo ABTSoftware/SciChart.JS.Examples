@@ -35,7 +35,7 @@ export const ExampleBreadcrumbs = () => {
                     // Home menu item handling
                     link = `/${selectedFramework}`;
                     title = "Home Page Gallery";
-                    labelContent = <div style={{height: '26px', width: '26px'}}><HomeIcon /></div>;
+                    labelContent = <HomeIcon />;
                     menuItems = [];
                 } else {
                     // inner menu category handling
