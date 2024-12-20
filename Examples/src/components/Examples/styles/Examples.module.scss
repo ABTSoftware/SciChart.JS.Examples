@@ -84,6 +84,7 @@
     background: #14233c; // DarkIndigo
     font-size: 1em;
     text-align: center;
+    max-width: 100%;
 
     // TODO consider whether this should be applied globally and what would be a proper size
     @media only screen and (max-width: 768px) {

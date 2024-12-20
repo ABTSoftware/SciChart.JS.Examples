@@ -26,7 +26,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
     const { currentExample, seeAlso } = props;
     
     const loadingFile = { name: "drawExample.ts", content: "// Loading ... " };
-    const [sourceFiles, setSourceFiles] = useState<{ name: string; content: string }[]>([loadingFile]);
+    const [sourceFiles, setSourceFiles] = useState<{ name: string; content: string }[]>([loadingFile, loadingFile,loadingFile, loadingFile,loadingFile, loadingFile,loadingFile, loadingFile,loadingFile, loadingFile,]);
     const [selectedFile, setSelectedFile] = useState<{ name: string; content: string }>(loadingFile);
 
     const [pageLayout, setPageLayout] = useState<EPageLayout>(currentExample.pageLayout ?? EPageLayout.Default);
@@ -62,7 +62,6 @@ const AppDetailsRouter: FC<TProps> = (props) => {
         setPageLayout(currentExample.pageLayout ?? EPageLayout.Default);
         window.scrollTo({
             top: 0,
-            behavior: "smooth",
         });
         // Reset sandbox state when example changes
         setEmbedCode(false);

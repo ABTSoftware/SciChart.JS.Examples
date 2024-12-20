@@ -33,18 +33,20 @@ export default function FileExplorer({files, selectedFile, handleFileClick}: {
         return 0;
     })
     return (
-        <div className={classes.horizontalScroller}>
-            {/* VSCode-like horizontal scrollable tabs */}
-            {sortedFiles.map((file) => (
-                <div
+        <div style={{width: '100%'}}>
+            <div className={classes.horizontalScroller}>
+                {/* VSCode-like horizontal scrollable tabs */}
+                {sortedFiles.map((file) => (
+                    <div
                     key={file.name}
                     className={`${classes.selectTab} ${selectedFile.name === file.name ? classes.activeTab : ""}`}
                     onClick={() => handleFileClick(file.name)}
-                >
-                    {ICONS[file.name.split('.').pop() as keyof typeof ICONS]}
-                    <p>{file.name}</p>
-                </div>
-            ))}
+                    >
+                        {ICONS[file.name.split('.').pop() as keyof typeof ICONS]}
+                        <p>{file.name}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     )
         {/* <div className={classes.selectDropdown}>

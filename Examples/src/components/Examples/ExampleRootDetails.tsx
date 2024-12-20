@@ -31,7 +31,7 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
     useEffect(() => {
         updateGoogleTagManagerPage();
         window.scrollTo(0, 0);
-        window.Prism?.highlightAll();
+        // window.Prism?.highlightAll();
     }, []);
     return (
         <div className={commonClasses.ExamplesRoot}>

@@ -56,7 +56,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
     useEffect(() => {
         updateGoogleTagManagerPage();
         window.scrollTo(0, 0);
-        window.Prism?.highlightAll();
+        // window.Prism?.highlightAll();
     }, []);
     const fullGithubUrl = baseGithubPath + githubUrl;
 

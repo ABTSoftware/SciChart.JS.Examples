@@ -1,5 +1,5 @@
 .codeHeader {
-    height: 2.5rem;
+    height: 2.3rem;
     width: 100%;
     max-width: 100%;
     overflow: hidden;
@@ -8,69 +8,69 @@
     position: relative;
 }
 
-.selectDropdown {
-    width: 220px;
-    min-width: max(35%, 220px);
-    z-index: 10;
-    background-color: #fff;
-    border-radius: 8px;
-    border: 1px solid #b4d0db;
-    overflow: hidden;
+// .selectDropdown {
+//     width: 220px;
+//     min-width: max(35%, 220px);
+//     z-index: 10;
+//     background-color: #fff;
+//     border-radius: 8px;
+//     border: 1px solid #b4d0db;
+//     overflow: hidden;
 
-    .selectTab {
-        user-select: none;
-        width: 100%;
-        height: 2.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 4px;
-        padding: 4px 7px;
-        background-color: #fff;
-        white-space: nowrap;
-        overflow: hidden;
-        cursor: pointer;
+//     .selectTab {
+//         user-select: none;
+//         width: 100%;
+//         height: 2.3rem;
+//         display: flex;
+//         align-items: center;
+//         justify-content: flex-start;
+//         gap: 4px;
+//         padding: 4px 7px;
+//         background-color: #fff;
+//         white-space: nowrap;
+//         overflow: hidden;
+//         cursor: pointer;
 
-        &:hover,
-        &.active {
-            background-color: #8881;
-        }
+//         &:hover,
+//         &.active {
+//             background-color: #8881;
+//         }
 
-        svg {
-            height: 22px;
-            width: 22px;
-            min-height: 22px;
-            min-width: 22px;
-        }
+//         svg {
+//             height: 22px;
+//             width: 22px;
+//             min-height: 22px;
+//             min-width: 22px;
+//         }
 
-        p {
-            font-size: 15px;
-        }
-    }
+//         p {
+//             font-size: 15px;
+//         }
+//     }
 
-    .selectTab.activeTab {
-        border-bottom: 1px solid #b4d0db;
-        background: #fff;
-    }
+//     .selectTab.activeTab {
+//         border-bottom: 1px solid #b4d0db;
+//         background: #fff;
+//     }
 
-    .selectContent {
-        display: flex;
-        flex-direction: column;
-        max-height: 21.5rem;
-        overflow: auto;
-        position: absolute;
-        top: 3rem;
-        width: 220px;
-        border-radius: 6px;
-        min-width: max(35%, 220px);
-        background-color: #fff;
-        border: 1px solid #b4d0db;
-    }
+//     .selectContent {
+//         display: flex;
+//         flex-direction: column;
+//         max-height: 21.5rem;
+//         overflow: auto;
+//         position: absolute;
+//         top: 3rem;
+//         width: 220px;
+//         border-radius: 6px;
+//         min-width: max(35%, 220px);
+//         background-color: #fff;
+//         border: 1px solid #b4d0db;
+//     }
 
-    @media only screen and (max-width: 768px) {
-        display: none;
-    }
-}
+//     @media only screen and (max-width: 768px) {
+//         display: none;
+//     }
+// }
 
 .horizontalScroller {
     overflow: auto;
@@ -83,11 +83,11 @@
     .selectTab {
         user-select: none;
         display: flex;
-        height: 2.5rem;
+        height: 2.3rem;
         align-items: center;
         justify-content: flex-start;
         gap: 4px;
-        padding: 3px 9px 3px 6px;
+        padding: 3px 7px 3px 4px;
         cursor: pointer;
         background-color: #fff;
         border: 1px solid #fff;

@@ -18,11 +18,11 @@ $drawerWidthDesktop: min(350px, 25vw);
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 5px;
 
     svg {
         width: 20px;
         height: 20px;
-
     }
 
     @media only screen and (max-width: 768px) {
@@ -168,7 +168,7 @@ $drawerWidthDesktop: min(350px, 25vw);
     .editortabwrap {
         border: 1px solid #b4d0db;
         border-radius: 12px;
-        padding: 16px;
+        padding: 15px;
         width: 100%;
         height: 100%;
     }
