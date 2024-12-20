@@ -25,7 +25,7 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
     const seoDescription = examplePage ? getFrameworkContent(examplePage.metaDescription, framework) : "";
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
     const basePath = "https://demo.scichart.com";
-    const exampleImage = examplePage ? `${basePath}/${examplePage.thumbnailImage}` : undefined;
+    const exampleImage = examplePage ? examplePage.thumbnailImage : undefined;
     const exampleUrl = examplePage ? examplePage.path : "";
 
     useEffect(() => {

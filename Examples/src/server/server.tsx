@@ -169,11 +169,11 @@ app.get("/javascript-:example", (req: Request, res: Response) => {
     }
 });
 
-// This does not work.  Is anything like this needed?
+// This is doing some useful things in handling framework defaults
 app.get("/:example?", (req: Request, res: Response) => {
-    console.log("/:example?");
     const params = req.params;
-    const exampleKey = getExamplePageKey(req.params.example);
+    const exampleKey = getExamplePageKey(params.example);
+    console.log(exampleKey);
     if (isValidFramework(params.example as EPageFramework)) {
         handleRender(req, res);
     } else if (exampleKey) {
@@ -187,13 +187,6 @@ app.get("/:example?", (req: Request, res: Response) => {
 app.get("*", (req: Request, res: Response) => {
     handleRender(req, res);
 });
-/*
-app.get("*", (req: Request, res: Response) => {
-    console.log("*");
-    console.log("Request URL:", req.url);
-    console.log("Request Headers:", req.headers);
-});
-*/
 
 server.listen(port, () => {
     console.log(
