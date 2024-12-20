@@ -59,7 +59,7 @@
             background: $color-primary-white-alpha;
             // border: 1px solid $color-medium-blue;
 
-            @include sm {
+            @include md {
                 display: block;
             }
         }
@@ -83,7 +83,7 @@
         .versionChip {
             height: 44px;
             border-radius: 8px;
-            @include sm {
+            @include md {
                 display: none;
             }
         }
@@ -107,7 +107,7 @@
             background: $gradient-btn-dark;
             border-radius: 8px;
 
-            @include sm {
+            @include md {
                 display: none;
             }
 

@@ -53,6 +53,12 @@ export default function Search() {
                                 </InputAdornment>
                             ),
                         }}
+                        sx={{
+                            '& .MuiOutlinedInput-root': {
+                                borderRadius: '8px',
+                                height: '44px'
+                            },
+                        }}
                     />
                 )}
             />

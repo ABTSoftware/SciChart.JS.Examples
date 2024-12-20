@@ -106,7 +106,7 @@
         justify-content: space-between;
         gap: 15px;
         width: 100%;
-        height: 25vh; // feel free to adjust this value
+        height: min(25vh, 20vw); // feel free to adjust this value
 
         .imgWrapper {
             height: 100%;

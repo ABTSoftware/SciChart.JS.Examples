@@ -44,7 +44,7 @@ const AppBarTop: FC<TProps> = (props) => {
     const contextualDocTitle =
         docLinks !== undefined && docLinks.length > 0 ? docLinks[0].title : "SciChart.js Documentation Home";
 
-    const isSm = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm")); // Small view
+    const isMd = useMediaQuery((theme: Theme) => theme.breakpoints.down("md")); // Medium view
 
     return (
         <AppBar position="sticky" className={classes.AppBar}>
@@ -57,7 +57,7 @@ const AppBarTop: FC<TProps> = (props) => {
                     )}
                 </a>
                 <Box className={classes.ToolBarMenu}>
-                    {isSm ? null : (
+                    {isMd ? null : (
                         <>
                             <a
                                 href="https://www.scichart.com/documentation/js/current/typedoc/index.html"

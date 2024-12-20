@@ -143,14 +143,14 @@ export default function App() {
                         <AppDetailsRoute currentExample={currentExample} seeAlso={seeAlso} />
                     ) : (
                         <div className={classes.MainAppWrapper}>
-                            <div className={classes.DrawerDesktop}>
+                            {!isMedium ? <div className={classes.DrawerDesktop}>
                                 <DrawerContent
                                     testIsOpened={testIsOpened}
                                     toggleOpenedMenuItem={toggleOpenedMenuItem}
                                     toggleDrawer={toggleDrawer}
                                     mostVisibleCategory={mostVisibleCategory}
                                 />
-                            </div>
+                            </div> : null}
                             {isHomePage ? (
                                 <div className={classes.GalleryAppWrapper}>
                                     <GalleryItems
