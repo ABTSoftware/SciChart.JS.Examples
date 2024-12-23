@@ -1,0 +1,145 @@
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Chart initialization and cleanup test example</title>
+    <script async type="text/javascript" src="bundle.js"></script>
+    <style>
+      body {
+        font-family: "Arial";
+      }
+
+      #containerId {
+        height: 400px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 10px;
+      }
+
+      #containerId > div {
+        flex: auto;
+        min-width: 300px;
+        max-width: 300px;
+        height: 200px;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, auto);
+        gap: 10px; /* Adjust the gap as needed */
+        grid-auto-flow: column; /* Fill columns first */
+      }
+      .grid-container input,
+      .grid-container div {
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Chart initialization and cleanup demo</h1>
+
+    <div class="grid-container">
+      <div
+        title="Records objects that need to be deleted and collected (should be set before creating charts)"
+      >
+        <input type="checkbox" checked="true" id="memoryDebug" /> Memory Usage
+        Debug
+      </div>
+      <div
+        title="Records chart lifecycle events using Performance API (should be set before creating charts)"
+      >
+        <input type="checkbox" checked="true" id="performanceDebug" />
+        Performance Debug
+      </div>
+      <div
+        title="Defines if the WASM contexts should be destroyed automatically (should be set before creating charts)"
+      >
+        <input type="checkbox" checked="true" id="autoDispose" /> Auto dispose
+        WASM context
+      </div>
+      <div
+        title="Defines if the new Native Text Rendering should be used (should be set before creating charts)"
+      >
+        <input type="checkbox" checked="true" id="nativeText" /> Native Text
+      </div>
+      <input
+        title="Creates a surface with a shared 2D WASM context"
+        type="button"
+        value="Create Multi 2D"
+        id="create1"
+      />
+      <input
+        title="Creates a surface with a separate 2D WASM context"
+        type="button"
+        value="Create Single 2D"
+        id="create2"
+      />
+      <input
+        title="Creates a surface with a shared 3D WASM context"
+        type="button"
+        value="Create Multi 3D"
+        id="create3"
+      />
+      <input
+        title="Creates a surface with a separate 3D WASM context"
+        type="button"
+        value="Create Single 3D"
+        id="create4"
+      />
+      <input
+        title="Deletes the last surface with a shared 2D WASM context"
+        type="button"
+        value="Delete Multi 2D"
+        id="delete1"
+      />
+      <input
+        title="Deletes the last surface with a separate 2D WASM context"
+        type="button"
+        value="Delete Single 2D"
+        id="delete2"
+      />
+      <input
+        title="Deletes the last surface with a shared 3D WASM context"
+        type="button"
+        value="Delete Multi 3D"
+        id="delete3"
+      />
+      <input
+        title="Deletes the last surface with a separate 3D WASM context"
+        type="button"
+        value="Delete Single 3D"
+        id="delete4"
+      />
+      <input
+        title="Deletes all 2D and 3D surfaces"
+        type="button"
+        value="Delete All Surfaces"
+        id="deleteSurfaces"
+      />
+      <input
+        title="Deletes  2D and 3D Shared WASM Contexts"
+        type="button"
+        value="Delete Shared WASM Contexts"
+        id="deleteWasm"
+      />
+      <input
+        title="Outputs current ObjectRegistry state to Console if Memory Debug Mode Enabled"
+        type="button"
+        value="Log Memory Debug Output"
+        id="logMemoryDebug"
+      />
+      <input
+        title="Outputs all of the Performance API marks to the Console"
+        type="button"
+        value="Log Performance Debug Output"
+        id="logPerformanceDebug"
+      />
+    </div>
+
+    <!-- the Div where the SciChartSurfaces will reside -->
+    <div id="containerId"></div>
+  </body>
+</html>

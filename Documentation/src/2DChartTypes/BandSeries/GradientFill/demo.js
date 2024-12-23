@@ -3,18 +3,21 @@ async function gradientFillBandChart(divElementId) {
   const {
     SciChartSurface,
     NumericAxis,
-    FastBandRenderableSeries ,
+    FastBandRenderableSeries,
     XyyDataSeries,
     SciChartJsNavyTheme,
     Point,
-    GradientParams
+    GradientParams,
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
 
-  const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-    theme: new SciChartJsNavyTheme()
-  });
+  const { wasmContext, sciChartSurface } = await SciChartSurface.create(
+    divElementId,
+    {
+      theme: new SciChartJsNavyTheme(),
+    }
+  );
   sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
@@ -30,7 +33,11 @@ async function gradientFillBandChart(divElementId) {
     y1Values.push(Math.cos(i * STEP) * k);
   }
 
-  const dataSeries = new XyyDataSeries(wasmContext, { xValues, yValues, y1Values });
+  const dataSeries = new XyyDataSeries(wasmContext, {
+    xValues,
+    yValues,
+    y1Values,
+  });
 
   // #region ExampleA
   const bandSeries = new FastBandRenderableSeries(wasmContext, {
@@ -39,14 +46,22 @@ async function gradientFillBandChart(divElementId) {
     strokeY1: "#50C7E0",
     // use fillLinearGradient and fillLinearGradientY1 to set a gradient fill
     // instead of fill and fillY1
-    fillLinearGradient: new GradientParams(new Point(0, 0.6), new Point(0, 0.9), [
-      { color: "#F48420ff", offset: 0 },
-      { color: "#F4842033", offset: 1 },
-    ]),
-    fillLinearGradientY1: new GradientParams(new Point(0, 0.6), new Point(0, 0.9), [
-      { color: "#50C7E033", offset: 0 },
-      { color: "#50C7E0ff", offset: 1 },
-    ]),
+    fillLinearGradient: new GradientParams(
+      new Point(0, 0.6),
+      new Point(0, 0.9),
+      [
+        { color: "#F48420ff", offset: 0 },
+        { color: "#F4842033", offset: 1 },
+      ]
+    ),
+    fillLinearGradientY1: new GradientParams(
+      new Point(0, 0.6),
+      new Point(0, 0.9),
+      [
+        { color: "#50C7E033", offset: 0 },
+        { color: "#50C7E0ff", offset: 1 },
+      ]
+    ),
     strokeThickness: 4,
   });
 
@@ -54,15 +69,16 @@ async function gradientFillBandChart(divElementId) {
   // #endregion
 
   // Optional: add zooming, panning for the example
-  const { MouseWheelZoomModifier, ZoomPanModifier, ZoomExtentsModifier } = SciChart;
-  sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier(), new ZoomPanModifier, new ZoomExtentsModifier());
-};
+  const { MouseWheelZoomModifier, ZoomPanModifier, ZoomExtentsModifier } =
+    SciChart;
+  sciChartSurface.chartModifiers.add(
+    new MouseWheelZoomModifier(),
+    new ZoomPanModifier(),
+    new ZoomExtentsModifier()
+  );
+}
 
 gradientFillBandChart("scichart-root");
-
-
-
-
 
 async function builderExample(divElementId) {
   // Demonstrates how to create a band chart with SciChart.js using the Builder API
@@ -71,7 +87,7 @@ async function builderExample(divElementId) {
     ESeriesType,
     EThemeProviderType,
     GradientParams,
-    Point
+    Point,
   } = SciChart;
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -89,38 +105,46 @@ async function builderExample(divElementId) {
   }
 
   // #region ExampleB
-  const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
-    surface: { theme: { type: EThemeProviderType.Dark } },
-    series: [
-      {
-        type: ESeriesType.BandSeries,
-        xyyData: {
-          xValues,
-          yValues,
-          y1Values
+  const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(
+    divElementId,
+    {
+      surface: { theme: { type: EThemeProviderType.Dark } },
+      series: [
+        {
+          type: ESeriesType.BandSeries,
+          xyyData: {
+            xValues,
+            yValues,
+            y1Values,
+          },
+          options: {
+            stroke: "#FF1919FF",
+            strokeY1: "#279B27FF",
+            // use fillLinearGradient and fillLinearGradientY1 to set a gradient fill
+            // instead of fill and fillY1
+            fillLinearGradient: new GradientParams(
+              new Point(0, 0),
+              new Point(0, 1),
+              [
+                { color: "#F48420ff", offset: 0 },
+                { color: "#F4842033", offset: 1 },
+              ]
+            ),
+            fillLinearGradientY1: new GradientParams(
+              new Point(0, 0),
+              new Point(0, 1),
+              [
+                { color: "#50C7E033", offset: 0 },
+                { color: "#50C7E0ff", offset: 1 },
+              ]
+            ),
+            strokeThickness: 4,
+          },
         },
-        options: {
-          stroke: "#FF1919FF",
-          strokeY1: "#279B27FF",
-          // use fillLinearGradient and fillLinearGradientY1 to set a gradient fill
-          // instead of fill and fillY1
-          fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-            { color: "#F48420ff", offset: 0 },
-            { color: "#F4842033", offset: 1 },
-          ]),
-          fillLinearGradientY1: new GradientParams(new Point(0, 0), new Point(0, 1), [
-            { color: "#50C7E033", offset: 0 },
-            { color: "#50C7E0ff", offset: 1 },
-          ]),
-          strokeThickness: 4,
-        }
-      }
-    ]
-  });
+      ],
+    }
+  );
   // #endregion
-};
+}
 
-
-
-if (location.search.includes("builder=1"))
-builderExample("scichart-root");
+if (location.search.includes("builder=1")) builderExample("scichart-root");
