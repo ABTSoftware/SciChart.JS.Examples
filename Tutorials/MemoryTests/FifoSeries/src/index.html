@@ -1,0 +1,175 @@
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link
+      rel="preload"
+      href="scichart2d.wasm"
+      as="fetch"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="scichart2d.data"
+      as="fetch"
+      crossorigin="anonymous"
+    />
+    <!-- <link rel="preload" href="scichart3d.wasm" as="fetch" crossorigin="anonymous" /> -->
+    <!-- <link rel="preload" href="scichart3d.data" as="fetch" crossorigin="anonymous" /> -->
+    <title>FIFO memory usage</title>
+    <script async type="text/javascript" src="bundle.js"></script>
+    <style>
+      body {
+        font-family: "Arial";
+      }
+
+      #containerId {
+        height: 400px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 10px;
+      }
+
+      #containerId > div {
+        flex: auto;
+        width: 100%;
+        height: 400px;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, auto);
+        gap: 10px; /* Adjust the gap as needed */
+        grid-auto-flow: column; /* Fill columns first */
+      }
+      .grid-container input,
+      .grid-container div {
+        margin: 5px;
+      }
+
+      .value-selector {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>FIFO Memory Usage</h1>
+
+    <div class="grid-container">
+      <div
+        title="Records objects that need to be deleted and collected (should be set before creating charts)"
+      >
+        <input type="checkbox" checked id="memoryDebug" /> Memory Usage Debug
+      </div>
+      <div
+        title="Records chart lifecycle events using Performance API (should be set before creating charts)"
+      >
+        <input type="checkbox" checked id="performanceDebug" /> Performance
+        Debug
+      </div>
+      <div
+        title="Defines if the WASM contexts should be destroyed automatically (should be set before creating charts)"
+      >
+        <input type="checkbox" checked id="autoDispose" /> Auto delete WASM
+      </div>
+      <div
+        title="Defines if the new Native Text Rendering should be used (should be set before creating charts)"
+      >
+        <input type="checkbox" checked id="nativeText" /> Native Text
+      </div>
+      <div
+        title="Defines whether a surface with individual or shared WASM context should be created"
+      >
+        <input type="checkbox" checked id="individualContext" /> Create Single
+      </div>
+      <div title="Defines the data update interval when auto update enabled">
+        Update Interval <span id="intervalLabel">0</span>
+        <input
+          class="value-selector"
+          id="intervalSelector"
+          type="range"
+          min="1"
+          max="10"
+          step="1"
+        />
+      </div>
+      <div title="Defines the FIFO capacity to create data series with">
+        Capacity <span id="capacityLabel">0</span>
+        <input
+          class="value-selector"
+          id="capacitySelector"
+          type="range"
+          min="0"
+          max="1000000"
+          step="10000"
+        />
+      </div>
+      <div title="Defines the size of data array appended per update">
+        Chunk size <span id="chunkSizeLabel"></span>
+        <input
+          class="value-selector"
+          id="chunkSizeSelector"
+          type="range"
+          min="10000"
+          max="1000000"
+          step="10000"
+        />
+      </div>
+      <input
+        title="Creates a surface with a shared 2D WASM context"
+        type="button"
+        value="Create 2D Chart"
+        id="create1"
+      />
+      <input
+        title="Appends data to series"
+        type="button"
+        value="Append data"
+        id="append"
+      />
+      <input
+        title="Clear data from series"
+        type="button"
+        value="Remove all data"
+        id="remove"
+      />
+      <input
+        title="Starts or stops a loop of updates with some interval"
+        type="button"
+        value="Toggle Dynamic Update"
+        id="animate"
+      />
+
+      <input
+        title="Deletes all 2D and 3D surfaces"
+        type="button"
+        value="Delete All Surfaces"
+        id="deleteSurfaces"
+      />
+      <input
+        title="Deletes 2D and 3D Shared WASM Contexts"
+        type="button"
+        value="Delete Shared WASM Contexts"
+        id="deleteWasm"
+      />
+      <input
+        title="Outputs current ObjectRegistry state to Console if Memory Debug Mode Enabled"
+        type="button"
+        value="Log Memory Debug Output"
+        id="logMemoryDebug"
+      />
+      <input
+        title="Outputs all of the Performance API marks to the Console"
+        type="button"
+        value="Log Performance Debug Output"
+        id="logPerformanceDebug"
+      />
+    </div>
+
+    <!-- the Div where the SciChartSurfaces will reside -->
+    <div id="containerId"></div>
+  </body>
+</html>

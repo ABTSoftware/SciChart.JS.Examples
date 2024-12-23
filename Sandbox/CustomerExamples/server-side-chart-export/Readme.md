@@ -1,8 +1,10 @@
 # SciChart Chart Export as an image
+
 SciChart uses several presentational HTML element layers.
-- 2D / WebGL canvases for most of the drawing 
-- HTML layer for specific components (Loader, legend)
-- SVG layer for an appropriate Annotations and adorners 
+
+-   2D / WebGL canvases for most of the drawing
+-   HTML layer for specific components (Loader, legend)
+-   SVG layer for an appropriate Annotations and adorners
 
 Moreover, users can add their custom HTML and CSS styles which will affect the resulting representation.
 
@@ -19,6 +21,7 @@ Then, on the server, we startup the headless browser instance, navigate to the p
 Then the resulting data could be sent back to client.
 
 ## Running the demo
+
 ```
 npm install
 npm run build

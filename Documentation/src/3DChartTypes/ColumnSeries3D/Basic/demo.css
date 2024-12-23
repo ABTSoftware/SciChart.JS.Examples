@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  font-family: Arial;
+}
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+#scichart-root {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.titleWrapper {
+  position: absolute;
+  width: 100%;
+  top: 35%;
+  text-align: center;
+  pointer-events: none;
+  color: #ffffffaa;
+}
+.title {
+  font-size: 20px;
+}
+.subTitle {
+  font-size: 16px;
+}

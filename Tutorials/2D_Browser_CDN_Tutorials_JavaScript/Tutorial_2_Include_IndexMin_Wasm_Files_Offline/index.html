@@ -1,0 +1,30 @@
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>SciChart.js Locally Hosted Files</title>
+    <!-- #region Include_index.min.js -->
+    <!-- Ensure you have the correct path to the SciChart.js library locally -->
+    <!-- and use crossorigin=anonymous to avoid CORS issues -->
+    <script
+      src="scichart/v3.4.662/index.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- #endregion -->
+    <script async type="text/javascript" src="index.js"></script>
+    <style>
+      body {
+        font-family: "Arial";
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello SciChart.js world!</h1>
+    <p>
+      In this example we show how to host index.min.js and wasm files offline
+    </p>
+
+    <!-- the Div where the SciChartSurface will reside -->
+    <div id="scichart-root" style="width: 800px; height: 600px"></div>
+  </body>
+</html>

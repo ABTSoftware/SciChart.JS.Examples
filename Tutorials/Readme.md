@@ -1,13 +1,14 @@
-# SciChart.js Tutorials 
+# SciChart.js Tutorials
 
 We've prepared a number of tutorials for SciChart.js - High Performance Realtime [Javascript Charts](https://scichart.com/javascript-chart-features).
 
-You can find all written and video tutorials in the **SciChart.js documentation** over at [scichart.com/javascript-chart-documentation](https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2001%20-%20Setting%20up%20a%20Project%20with%20SciChart.js.html). 
+You can find all written and video tutorials in the **SciChart.js documentation** over at [scichart.com/javascript-chart-documentation](https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2001%20-%20Setting%20up%20a%20Project%20with%20SciChart.js.html).
 Many include videos embedded in the page. The source-code for tutorials are found in this repository.
 
 [![JavaScript Chart Documentation](../Sandbox/scichart-js-javascript-chart-documentation.PNG)](https://www.scichart.com/javascript-chart-documentation).
 
 ## List of SciChart.js Tutorials
+
 ### [2D Chart Tutorials (Webpack)](Tutorials/2D_Chart_Tutorials_JavaScript)
 
 The following tutorials use npm, webpack and javascript.:
@@ -32,3 +33,7 @@ We have a handful of tutorials showing you how to use SciChart.js in vanilla HTM
 ### [3D Chart Tutorials](Tutorials/3D_Chart_Tutorials_JavaScript)
 
 Coming soon!
+
+### [MemoryTests](Tutorials/MemoryTests)
+
+Provide examples for testing SciChart memory usage

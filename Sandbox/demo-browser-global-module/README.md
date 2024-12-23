@@ -36,8 +36,8 @@ If you want to use a different cdn, or serve the wasm files locally you can conf
 
 ```typescript
 SciChart.SciChartSurface.configure({
-  dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.5.711${SciChart.libraryVersion}/_wasm/scichart2d.data`,
-  wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.5.711${SciChart.libraryVersion}/_wasm/scichart2d.wasm`,
+  dataUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.data`,
+  wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.wasm`,
 });
 ```
 
