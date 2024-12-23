@@ -1,5 +1,6 @@
 import * as React from "react";
-import classes from "../../../styles/Examples.module.scss";
+import { makeStyles } from "tss-react/mui";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChart3DSurface, TSciChart3D, ColumnRenderableSeries3D } from "scichart";
 import { drawExample, EColumn3DType, createPointMarker3D, EColumnColorMode } from "./drawExample";
 import {
@@ -7,19 +8,18 @@ import {
     FormControl,
     FormControlLabel,
     InputLabel,
-    makeStyles,
     MenuItem,
     Select,
     Slider,
     Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 const column3DTypeSelect = Object.values(EColumn3DType);
 const colorModeSelect = Object.values(EColumnColorMode);
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()(() => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -81,17 +81,17 @@ export default function Column3DChart() {
         renderableSeries.dataPointWidthZ = newDataPointWidth;
     };
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
         <React.Fragment>
-            <div className={classes.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.toolbarRow}>
+            <div className={commonClasses.ChartWrapper}>
+                <div className={classes.flexOuterContainer}>
+                    <div className={classes.toolbarRow}>
                         <FormControlLabel
                             control={
                                 <select
-                                    className={localClasses.combobox}
+                                    className={classes.combobox}
                                     value={column3DType}
                                     onChange={handleColumn3DTypeChange}
                                 >
@@ -107,11 +107,7 @@ export default function Column3DChart() {
                         />
                         <FormControlLabel
                             control={
-                                <select
-                                    className={localClasses.combobox}
-                                    value={colorMode}
-                                    onChange={handleColorChange}
-                                >
+                                <select className={classes.combobox} value={colorMode} onChange={handleColorChange}>
                                     {colorModeSelect.map((el) => (
                                         <option key={el} value={el}>
                                             {el}
@@ -136,7 +132,7 @@ export default function Column3DChart() {
                         </div>
                     </div>
                     <SciChartReact
-                        className={localClasses.chartArea}
+                        className={classes.chartArea}
                         initChart={drawExample}
                         onInit={({ sciChartSurface, controls }: TResolvedReturnType<typeof drawExample>) => {
                             sciChartSurfaceRef.current = sciChartSurface;
