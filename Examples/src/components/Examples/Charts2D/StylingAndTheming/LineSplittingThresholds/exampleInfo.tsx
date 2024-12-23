@@ -34,8 +34,6 @@ export const lineSplittingThresholdsExampleInfo: TExampleInfo = {
     filepath: "Charts2D/StylingAndTheming/LineSplittingThresholds",
     subtitle: Subtitle,
     documentationLinks,
-    tips,
-    description,
     metaDescription:
         "Demonstrates how to use a RenderDataTransform to split lines into multiple segments so they can be individually colored according to thresholds",
     metaKeywords: "thresholds, coloring, chart, javascript, webgl, canvas",

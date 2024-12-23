@@ -34,8 +34,6 @@ export const multiplePointMarkersExampleInfo: TExampleInfo = {
     filepath: "Charts2D/StylingAndTheming/MultiStyleSeries",
     subtitle: Subtitle,
     documentationLinks,
-    tips,
-    description,
     metaDescription: "Demonstrates how to apply multiple different styles to a single series using RenderDataTransform",
     metaKeywords: "multiple styles, api, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,

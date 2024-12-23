@@ -30,8 +30,6 @@ export const column3DChartExampleInfo: TExampleInfo = {
     filepath: "Charts3D/Basic3DChartTypes/Column3DChart",
     subtitle: Subtitle,
     documentationLinks,
-    tips,
-    description,
     metaDescription: (frameworkName: string) =>
         `Create detailed ${frameworkName} 3D Column Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets`,
     metaKeywords: "3d, column, chart, javascript, webgl, canvas",
