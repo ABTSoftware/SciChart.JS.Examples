@@ -115,20 +115,6 @@ export default function App() {
     return (
         <FrameworkContext.Provider value={selectedFramework}>
             <div className={classes.App}>
-                <Drawer
-                    className={classes.DrawerMobile}
-                    variant="temporary"
-                    classes={{ paper: classes.DrawerPaper }}
-                    anchor="right"
-                    open={isMedium && isDrawerOpened}
-                    onClose={toggleDrawer}
-                >
-                    <DrawerContent
-                        testIsOpened={testIsOpened}
-                        toggleOpenedMenuItem={toggleOpenedMenuItem}
-                        toggleDrawer={toggleDrawer}
-                    />
-                </Drawer>
                 <div className={classes.MainAppContent}>
                     <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}

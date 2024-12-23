@@ -26,7 +26,6 @@ const useStyles = makeStyles()((theme) => ({
         flexDirection: "column",
         background: appTheme.DarkIndigo,
     },
-
     chartArea: {
         flex: 1,
     },
@@ -40,7 +39,7 @@ export default function UserAnnotatedStockChart() {
     const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
     const [name, setName] = React.useState<string>("");
-    const [chartMode, setChartMode] = React.useState<string>("line");
+    const [chartMode, setChartMode] = React.useState<"line" | "marker" | "pan">("line");
     const [savedCharts, setSavedCharts] = React.useState<Record<string, object>>({});
     const [selectedChart, setSelectedChart] = React.useState<string>("");
 
@@ -50,7 +49,7 @@ export default function UserAnnotatedStockChart() {
         }
     }, []);
 
-    const handleToggleButtonChanged = (event: any, state: string) => {
+    const handleToggleButtonChanged = (event: any, state: "pan" | "line" | "marker") => {
         if (state === null) return;
         setChartMode(state);
         controlsRef.current.setChartMode(state);
@@ -90,7 +89,7 @@ export default function UserAnnotatedStockChart() {
                 <div className={classes.flexOuterContainer}>
                     <div className={commonClasses.ToolbarRow}>
                         <ToggleButtonGroup
-                            style={{ height: "70px", padding: "10" }}
+                            style={{ height: "50px" }}
                             exclusive
                             value={chartMode}
                             onChange={handleToggleButtonChanged}
@@ -98,56 +97,74 @@ export default function UserAnnotatedStockChart() {
                             color="primary"
                             aria-label="small outlined button group"
                         >
-                            <ToggleButton value={"pan"} style={{ color: appTheme.ForegroundColor }}>
+                            <ToggleButton
+                                value={"pan"}
+                                style={{ color: appTheme.ForegroundColor, borderColor: "#00bcd466" }}
+                                onClick={() => handleToggleButtonChanged(null, "pan")}
+                            >
                                 Pan
                             </ToggleButton>
-                            <ToggleButton value={"line"} style={{ color: appTheme.ForegroundColor }}>
+                            <ToggleButton
+                                value={"line"}
+                                style={{ color: appTheme.ForegroundColor, borderColor: "#00bcd466" }}
+                                onClick={() => handleToggleButtonChanged(null, "line")}
+                            >
                                 Lines
                             </ToggleButton>
-                            <ToggleButton value={"marker"} style={{ color: appTheme.ForegroundColor }}>
+                            <ToggleButton
+                                value={"marker"}
+                                style={{ color: appTheme.ForegroundColor, borderColor: "#00bcd466" }}
+                                onClick={() => handleToggleButtonChanged(null, "marker")}
+                            >
                                 Markers
                             </ToggleButton>
                         </ToggleButtonGroup>
+
+                        <TextField
+                            id="chartName"
+                            label="Save As"
+                            type="text"
+                            style={{ backgroundColor: "#00bcd111", marginLeft: "auto", borderRadius: 3 }}
+                            inputProps={{
+                                style: { color: appTheme.ForegroundColor, height: 13 },
+                                "aria-label": "Without label",
+                            }}
+                            value={name}
+                            multiline={false}
+                            variant="outlined"
+                            onChange={handleNameChanged}
+                        ></TextField>
+
                         <ButtonGroup
                             color="primary"
                             aria-label="small outlined button group"
-                            style={{ height: "70px", padding: "10" }}
+                            style={{ margin: "0 5px" }}
                         >
-                            <TextField
-                                id="chartName"
-                                label="Save As"
-                                type="text"
-                                inputProps={{
-                                    style: { color: appTheme.ForegroundColor },
-                                    "aria-label": "Without label",
-                                }}
-                                value={name}
-                                multiline={false}
-                                variant="outlined"
-                                onChange={handleNameChanged}
-                            ></TextField>
                             <Button id="btnSave" onClick={saveChart}>
                                 Save
                             </Button>
                         </ButtonGroup>
-                        <ButtonGroup
-                            color="primary"
-                            aria-label="small outlined button group"
-                            style={{ height: "70px", padding: "10" }}
-                        >
+
+                        <ButtonGroup color="primary" aria-label="small outlined button group">
                             <Select
                                 id="select-chart-names"
                                 inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
-                                style={{ color: appTheme.ForegroundColor, width: 150 }}
+                                style={{ color: appTheme.ForegroundColor, width: 150, backgroundColor: "#00bcd411" }}
                                 value={selectedChart}
                                 displayEmpty
                                 autoWidth={true}
                                 onChange={handleSelectionChanged}
                             >
-                                <MenuItem value="" disabled>
-                                    Load From
-                                </MenuItem>
-                                {Object.keys(savedCharts).map((name, i) => (
+                                {Object.keys(savedCharts).length > 0 ? (
+                                    <MenuItem value="" disabled>
+                                        Load from
+                                    </MenuItem>
+                                ) : (
+                                    <MenuItem value="" disabled>
+                                        No saved charts
+                                    </MenuItem>
+                                )}
+                                {Object.keys(savedCharts).map((name: string, i: number) => (
                                     <MenuItem value={name} key={i}>
                                         {name}
                                     </MenuItem>

@@ -106,10 +106,13 @@ import { dynamicLayoutExampleInfo } from "../Examples/FeaturedApps/ShowCases/Dyn
 import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier/exampleInfo";
 import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo";
 import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo";
+import { multiplePointMarkersExampleInfo } from "../Examples/Charts2D/StylingAndTheming/MultiStyleSeries/exampleInfo";
 import { populationPyramidExampleInfo } from "../Examples/FeaturedApps/ShowCases/PopulationPyramid/exampleInfo";
 import { TFrameworkTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
 import { smoothStackedMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart/exampleInfo";
+import { lineSplittingThresholdsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds/exampleInfo";
+import { column3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Column3DChart/exampleInfo";
 
 export type TExampleInfo = {
     /**
@@ -423,6 +426,14 @@ export const EXAMPLES_PAGES = asRecord({
         id: "chart2D_stylingAndTheming_DataLabels",
         ...datalabelsExampleInfo,
     },
+    chart2D_stylingAndTheming_MultiplePointMarkers: {
+        id: "chart2D_stylingAndTheming_MultiplePointMarkers",
+        ...multiplePointMarkersExampleInfo,
+    },
+    chart2D_stylingAndTheming_LineSplittingThresholds: {
+        id: "chart2D_stylingAndTheming_LineSplittingThresholds",
+        ...lineSplittingThresholdsExampleInfo,
+    },
     chart2D_tooltipsAndHittest_HitTestApi: {
         id: "chart2D_tooltipsAndHittest_HitTestApi",
         ...hitTestApiExampleInfo,
@@ -506,6 +517,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart3D_basic3DChartTypes_PointLine3DChart: {
         id: "chart3D_basic3DChartTypes_PointLine3DChart",
         ...pointLine3DChartExampleInfo,
+    },
+    chart3D_basic3DChartTypes_Column3DChart: {
+        id: "chart3D_basic3DChartTypes_Column3DChart",
+        ...column3DChartExampleInfo,
     },
     featuredApps_performanceDemos_Load500By500: {
         id: "featuredApps_performanceDemos_Load500By500",

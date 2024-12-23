@@ -269,6 +269,7 @@ export const createCandlestickChart = async (rootElement: string | HTMLDivElemen
             candleDataSeries.append(priceBar.date / 1000, priceBar.open, priceBar.high, priceBar.low, priceBar.close);
             volumeDataSeries.append(priceBar.date / 1000, priceBar.volume);
 
+            // #region ExampleA
             // Is the latest candle in the viewport?
             if (xAxis.visibleRange.max > getLatestCandleDate) {
                 // If so, shift the xAxis by one candle
@@ -279,6 +280,7 @@ export const createCandlestickChart = async (rootElement: string | HTMLDivElemen
                 );
                 xAxis.animateVisibleRange(shiftedRange, 250, easing.inOutQuad);
             }
+            // #endregion
         }
         // Update the large trades displaying trades > $LARGE_TRADE_THRESHOLD in value
         const tradeValue = tradeSize * priceBar.close;

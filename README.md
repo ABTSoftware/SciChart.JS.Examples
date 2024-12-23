@@ -3,7 +3,8 @@
 ## What's in this repo?
 
 1. The source code for [demo.scichart.com](https://demo.scichart.com) found under the **[/Examples](Examples)** folder
-2. Source code for **tutorials** for SciChart.js, found under the **[/Tutorials](Tutorials)** folder
+2. Source code for **tutorials** for SciChart.js, found under the **[/Tutorials](Tutorials)** folder;
+   also examples for testing and profiling memory usage at **[/Tutorials/MemoryTests](Tutorials/MemoryTests)**
 3. **Sandbox examples**, including boilerplates for React, Angular, Vue, Electron, Next.js and Nuxt.js plus several useful examples found under the **[/Sandbox](Sandbox)** folder
 4. Supporting code for the **documentation**, which is published online at [scichart.com/javascript-chart-documentation](https://scichart.com/javascript-chart-documentation) is found in the **[/Documentation](Documentation)** folder
 

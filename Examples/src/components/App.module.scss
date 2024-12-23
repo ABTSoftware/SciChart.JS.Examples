@@ -69,6 +69,7 @@ $drawerWidthMobile: 100%;
     }
 }
 .DrawerDesktop {
+    order: -1;
     padding: 10px 0;
     background-color: $color-primary-white;
     width: $drawerWidthDesktop;

@@ -253,7 +253,7 @@ SciChartSurface.useWasmFromCDN();`
           },
           dependencies: {
             "parcel-bundler": "^1.6.1",
-            scichart: "3.2.538",
+            scichart: "3.5.708",
           },
           devDependencies: {
             "@babel/core": "7.2.0",
@@ -299,6 +299,7 @@ SciChartSurface.useWasmFromCDN();`
       "es6",
       "dom"
     ],
+    "target": "es2021",
     "rootDir": "src",
     "moduleResolution": "node"
   }

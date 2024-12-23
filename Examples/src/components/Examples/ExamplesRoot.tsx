@@ -57,7 +57,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
     const seoDescription = examplePage ? getFrameworkContent(examplePage.metaDescription, framework) : "";
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
     const basePath = "https://demo.scichart.com";
-    const exampleImage = examplePage ? `${basePath}/${examplePage.thumbnailImage}` : undefined;
+    const exampleImage = examplePage ? `${examplePage.thumbnailImage}` : undefined;
     const exampleUrl = examplePage ? examplePage.path : "";
 
     useEffect(() => {
@@ -93,8 +93,8 @@ const ExamplesRoot: FC<TProps> = (props) => {
             />
             <div className={commonClasses.Body}>
                 <div className={commonClasses.ColMain}>
-                    <ComponentWrapper>
-                        <div className={commonClasses.ExampleRootDescription}>
+                    {/* <ComponentWrapper>
+                        <div className={classes.ExampleRootDescription}>
                             <h5>SciChart.js Demo</h5>
 
                             <p className={commonClasses.ExampleDescriptionText}>
@@ -128,7 +128,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                 </a>
                             </p>
                         </div>
-                    </ComponentWrapper>
+                    </ComponentWrapper> */}
 
                     <ComponentWrapper>
                         <h1 className={commonClasses.Title}>{titleText} </h1>

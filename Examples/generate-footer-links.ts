@@ -9,16 +9,16 @@ console.log("Generating footer links...");
     const links: TFooterlink[] = [];
 
     // Add examples links
-    Object.values(EXAMPLES_PAGES).forEach(el => {
+    Object.values(EXAMPLES_PAGES).forEach((el) => {
         links.push({
             link: el.path,
-            text: getTitle(el.title, EPageFramework.Vanilla)
+            text: getTitle(el.title, EPageFramework.Vanilla),
         });
     });
 
     const linksStr = `export const FOOTER_LINKS = ${JSON.stringify(links)}`;
 
-    fs.writeFile("./src/components/AppFooter/GENERATED_FOOTER_LINKS.ts", linksStr, err => {
+    fs.writeFile("./src/components/AppFooter/GENERATED_FOOTER_LINKS.ts", linksStr, (err) => {
         if (err) console.log(err);
         console.log("GENERATED_FOOTER_LINKS.ts is successfully written to file.");
     });
