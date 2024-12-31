@@ -10,6 +10,7 @@ import { SandboxConfig, IFiles, getSourceFilesForPath, loadStyles } from "./serv
 import { indexHtmlTemplate } from "./services/sandbox/vanillaTsConfig";
 import https from "https";
 import { parse } from "node-html-parser"; // Install: npm install node-html-parser
+import { ExampleSourceFile, SourceFilesVariant } from "../helpers/types/types";
 
 //  const parameters = getParameters({ files, template:  getCodeSandboxTemplate(framework) });
 
@@ -222,51 +223,9 @@ export const getSourceFiles = async (req: Request, res: Response): Promise<boole
                 framework = EPageFramework.React;
             }
             const folderPath = path.join(basePath, currentExample.filepath);
-            let files: IFiles = {};
-            let htmlPath: string;
-            let html: string;
-            let actualFramework = framework;
             let baseUrl = req.protocol + "://" + req.get("host");
-
-            try {
-                switch (framework) {
-                    case EPageFramework.Angular:
-                        files = await getSourceFilesForPath(folderPath, "angular.ts", baseUrl);
-                        break;
-                    case EPageFramework.React:
-                        files = await getSourceFilesForPath(folderPath, "index.tsx", baseUrl);
-                        break;
-                    case EPageFramework.Vanilla:
-                        files = await getSourceFilesForPath(folderPath, "vanilla.ts", baseUrl);
-                        htmlPath = path.join(folderPath, "index.html");
-                        try {
-                            const charHtmlSetup = await fs.promises.readFile(htmlPath, "utf8");
-                            html = indexHtmlTemplate(charHtmlSetup);
-                        } catch (err) {
-                            html = indexHtmlTemplate();
-                        }
-                        files[htmlPath] = { content: html, isBinary: false };
-                        break;
-                    default:
-                        throw new Error("Invalid framework value!");
-                }
-            } catch (err) {
-                // If files not found for requested framework, fallback to React
-                if (framework !== EPageFramework.React) {
-                    actualFramework = EPageFramework.React;
-                    files = await getSourceFilesForPath(folderPath, "index.tsx", baseUrl);
-                } else {
-                    throw err;
-                }
-            }
-
-            const result: { name: string; content: string }[] = [];
-            for (const key in files) {
-                const sep = key.indexOf("/") > 0 ? "/" : "\\";
-                const name = key.substring(key.lastIndexOf(sep) + 1);
-                result.push({ name, content: files[key].content });
-            }
-            res.send({ files: result, framework: actualFramework });
+            const result = await readSourceFiles(framework, folderPath, baseUrl);
+            res.send(result);
             return true;
         } catch (err) {
             console.warn(err);
@@ -775,3 +734,82 @@ const getCodeSandboxTemplate = (framework: EPageFramework) => {
             return handleInvalidFrameworkValue(framework);
     }
 };
+
+export const readSourceFiles = async (framework: EPageFramework, folderPath: string, baseUrl: string) => {
+    let files: IFiles = {};
+    let actualFramework = framework;
+
+    try {
+        switch (framework) {
+            case EPageFramework.Angular:
+                files = await getSourceFilesForPath(folderPath, "angular.ts", baseUrl);
+                break;
+            case EPageFramework.React:
+                files = await getSourceFilesForPath(folderPath, "index.tsx", baseUrl);
+                break;
+            case EPageFramework.Vanilla:
+                files = await getSourceFilesForPath(folderPath, "vanilla.ts", baseUrl);
+                const htmlPath = path.join(folderPath, "index.html");
+                let html: string;
+                try {
+                    const charHtmlSetup = await fs.promises.readFile(htmlPath, "utf8");
+                    html = indexHtmlTemplate(charHtmlSetup);
+                } catch (err) {
+                    html = indexHtmlTemplate();
+                }
+                files[htmlPath] = { content: html, isBinary: false };
+                break;
+            default:
+                throw new Error("Invalid framework value!");
+        }
+    } catch (err) {
+        // If files not found for requested framework, fallback to React
+        if (framework !== EPageFramework.React) {
+            actualFramework = EPageFramework.React;
+            files = await getSourceFilesForPath(folderPath, "index.tsx", baseUrl);
+        } else {
+            throw err;
+        }
+    }
+
+    const result: ExampleSourceFile[] = [];
+    for (const key in files) {
+        const sep = key.indexOf("/") > 0 ? "/" : "\\";
+        const name = key.substring(key.lastIndexOf(sep) + 1);
+        result.push({ name, content: files[key].content });
+    }
+    return { files: result, framework: actualFramework };
+};
+
+type ExampleSourceFilesPerFramework = { [value in EPageFramework]: SourceFilesVariant };
+const sourceFilesCache = new Map<string, ExampleSourceFilesPerFramework>(
+    Object.keys(EXAMPLES_PAGES).map((exampleKey) => [exampleKey, {} as ExampleSourceFilesPerFramework])
+);
+
+// Get and cache source files for an example
+const cacheSourceFilesVariant = async (exampleKey: string, folderPath: string, framework: EPageFramework) => {
+    const result: SourceFilesVariant = await readSourceFiles(framework, folderPath, "");
+    sourceFilesCache.get(exampleKey)[framework] = result;
+    // if (result.framework !== framework) {
+    //     console.warn(`Missing ${framework} variant for ${exampleKey}!`)
+    // }
+
+    return result;
+};
+
+export const getSourceFilesForExample = (exampleKey: string, framework: EPageFramework) => {
+    const currentExample = EXAMPLES_PAGES[exampleKey];
+    const folderPath = path.join(basePath, currentExample.filepath);
+    return cacheSourceFilesVariant(exampleKey, folderPath, framework);
+};
+
+export const populateSourceFilesCache = async () => {
+    for (let framework of Object.values(EPageFramework)) {
+        for (let key in EXAMPLES_PAGES) {
+            await getSourceFilesForExample(key, framework);
+        }
+    }
+};
+
+export const getCachedSourceFiles = (exampleKey: string, framework: EPageFramework) =>
+    sourceFilesCache.get(exampleKey)[framework];

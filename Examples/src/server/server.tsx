@@ -19,7 +19,12 @@ import createCache from "@emotion/cache";
 import createEmotionServer from "@emotion/server/create-instance";
 import { createSocketServer } from "./websockets";
 import { api } from "./api";
-import { getSourceFiles, renderSandBoxRedirect } from "./renderCodeSandboxRedirect";
+import {
+    getCachedSourceFiles,
+    getSourceFiles,
+    populateSourceFilesCache,
+    renderSandBoxRedirect,
+} from "./renderCodeSandboxRedirect";
 import { oembed } from "./oembed";
 import { vanillaExamplesRouter } from "./vanillaDemo/vanillaExamplesRouter";
 import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";
@@ -27,12 +32,17 @@ import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrizati
 import { getAvailableVariants } from "./variants";
 import createEmotionCache from "../createEmotionCache";
 import { exportExampleInfo } from "./exportExampleInfo";
+import {
+    defaultSourceFilesVariant,
+    SourceFilesContext,
+} from "../components/AppDetailsRouters/SourceFilesLoading/SourceFilesContext";
+import { SourceFilesVariant } from "../helpers/types/types";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
 const targetDir = defaultConfig.buildConfig.targetDir;
 
-function renderPage(url: string) {
+function renderPage(url: string, sourceFilesInfo: SourceFilesVariant = defaultSourceFilesVariant) {
     // Create an emotion cache for SSR
     const cache = createEmotionCache();
     const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
@@ -41,9 +51,11 @@ function renderPage(url: string) {
     const appHtml = ReactDOMServer.renderToString(
         <CacheProvider value={cache}>
             <ThemeProvider theme={customTheme}>
-                <StaticRouter location={url}>
-                    <App />
-                </StaticRouter>
+                <SourceFilesContext.Provider value={sourceFilesInfo}>
+                    <StaticRouter location={url}>
+                        <App />
+                    </StaticRouter>
+                </SourceFilesContext.Provider>
             </ThemeProvider>
         </CacheProvider>
     );
@@ -72,13 +84,12 @@ function populatePrerenderedPageCache() {
         for (let key in EXAMPLES_PAGES) {
             const exampleRoute = EXAMPLES_PAGES[key].path;
             const url = `/${framework}/${exampleRoute}`;
-            const pageHtml = renderPage(url);
+            const sourceFileInfo = getCachedSourceFiles(key, framework);
+            const pageHtml = renderPage(url, sourceFileInfo);
             pageHtmlCache.set(url, pageHtml);
         }
     }
 }
-
-populatePrerenderedPageCache();
 
 function handleRender(req: Request, res: Response) {
     const cachedPageHtml = pageHtmlCache.get(req.url);
@@ -188,8 +199,12 @@ app.get("*", (req: Request, res: Response) => {
     handleRender(req, res);
 });
 
-server.listen(port, () => {
-    console.log(
-        `Serving at http://${host}:${port} ${chalk.green("✓")}. ${chalk.red("To run in dev mode: npm run dev")}`
-    );
-});
+populateSourceFilesCache()
+    .then(populatePrerenderedPageCache)
+    .then(() => {
+        server.listen(port, () => {
+            console.log(
+                `Serving at http://${host}:${port} ${chalk.green("✓")}. ${chalk.red("To run in dev mode: npm run dev")}`
+            );
+        });
+    });

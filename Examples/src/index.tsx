@@ -6,6 +6,10 @@ import { customTheme } from "./theme";
 import "./components/index.scss";
 import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "./createEmotionCache";
+import {
+    defaultSourceFilesVariant,
+    SourceFilesContext,
+} from "./components/AppDetailsRouters/SourceFilesLoading/SourceFilesContext";
 
 const cache = createEmotionCache();
 
@@ -13,9 +17,11 @@ function Main() {
     return (
         <CacheProvider value={cache}>
             <ThemeProvider theme={customTheme}>
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
+                <SourceFilesContext.Provider value={defaultSourceFilesVariant}>
+                    <BrowserRouter>
+                        <App />
+                    </BrowserRouter>
+                </SourceFilesContext.Provider>
             </ThemeProvider>
         </CacheProvider>
     );

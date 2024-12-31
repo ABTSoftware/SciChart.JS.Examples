@@ -1,3 +1,5 @@
+import type { EPageFramework } from "../shared/Helpers/frameworkParametrization";
+
 export type GalleryItem = {
     chartGroupTitle: string;
     id: string;
@@ -24,3 +26,6 @@ export enum EPageLayout {
      */
     Default = "default",
 }
+
+export type ExampleSourceFile = { name: string; content: string };
+export type SourceFilesVariant = { files: ExampleSourceFile[]; framework: EPageFramework };
