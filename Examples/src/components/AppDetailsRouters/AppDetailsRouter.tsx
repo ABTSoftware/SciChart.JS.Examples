@@ -1,7 +1,7 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { EPageFramework, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { EPageLayout, GalleryItem } from "../../helpers/types/types";
+import { EPageLayout, ExampleSourceFile, GalleryItem } from "../../helpers/types/types";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { ALL_MENU_ITEMS, MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
 import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
@@ -15,6 +15,7 @@ import { StackblitzEditor } from "../CodeSandbox/StackblitzEditor";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { CodeActionButtons } from "./CodeActionButtons";
 import { CodeEditor } from "./CodeEditor";
+import { SourceFilesContext } from "./SourceFilesLoading/SourceFilesContext";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -24,17 +25,18 @@ type TProps = {
 
 const AppDetailsRouter: FC<TProps> = (props) => {
     const { currentExample, seeAlso } = props;
-    
-    const loadingFile = { name: "drawExample.ts", content: "// Loading ... " };
-    const [sourceFiles, setSourceFiles] = useState<{ name: string; content: string }[]>([loadingFile]);
-    const [selectedFile, setSelectedFile] = useState<{ name: string; content: string }>(loadingFile);
 
+    const initialSourceFilesVariant = useContext(SourceFilesContext);
+    const [initialSelectedFile] = initialSourceFilesVariant.files;
+
+    const [sourceFiles, setSourceFiles] = useState<ExampleSourceFile[]>(initialSourceFilesVariant.files);
+    const [selectedFile, setSelectedFile] = useState<ExampleSourceFile>(initialSelectedFile);
     const [pageLayout, setPageLayout] = useState<EPageLayout>();
     const [embedCode, setEmbedCode] = useState<boolean>(false);
     const [sandboxPlatform, setSandboxPlatform] = useState<SandboxPlatform>(SandboxPlatform.CodeSandbox);
     const [sandboxId, setSandboxId] = useState<string>("");
     const [projectFiles, setProjectFiles] = useState<any>(null);
-    const [sourceFramework, setSourceFramework] = useState<EPageFramework | null>(null);
+    const [sourceFramework, setSourceFramework] = useState<EPageFramework | null>(initialSourceFilesVariant.framework);
     const [sandboxFramework, setSandboxFramework] = useState<EPageFramework | null>(null);
 
     const selectedFramework = useContext(FrameworkContext);
@@ -60,9 +62,8 @@ const AppDetailsRouter: FC<TProps> = (props) => {
 
     useEffect(() => {
         setPageLayout(
-            currentExample.pageLayout ?? 
-            (window !== undefined && window.innerWidth > 1900) 
-                ? EPageLayout.Default 
+            currentExample.pageLayout ?? (window !== undefined && window.innerWidth > 1900)
+                ? EPageLayout.Default
                 : EPageLayout.MaxWidth
         );
         window.scrollTo({
@@ -190,7 +191,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                             <LayoutButtons />
                         </div>
 
-                        <div style={{ display: "flex", justifyContent: 'center'}}>
+                        <div style={{ display: "flex", justifyContent: "center" }}>
                             <h1
                                 className={classes.headingtxt}
                                 style={{
@@ -217,7 +218,12 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                         <span
                             style={
                                 pageLayout === EPageLayout.MaxWidth
-                                    ? { width: "100%", maxWidth: "min(100vh, 100vw)", margin: "0 auto", textAlign: "start" }
+                                    ? {
+                                          width: "100%",
+                                          maxWidth: "min(100vh, 100vw)",
+                                          margin: "0 auto",
+                                          textAlign: "start",
+                                      }
                                     : {}
                             }
                         >

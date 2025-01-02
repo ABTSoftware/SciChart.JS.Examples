@@ -66,6 +66,7 @@ export const CodeEditor: FC<CodeEditorProps> = ({
                 theme="light"
                 height="100%"
                 width="100%"
+                loading={selectedFile.content}
                 language={
                     EditorLanguageMap[processedSelectedFile.name.split(".").pop() as keyof typeof EditorLanguageMap]
                 }
