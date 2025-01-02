@@ -222,10 +222,18 @@ export const getSourceFiles = async (req: Request, res: Response): Promise<boole
             if (!isValidFramework) {
                 framework = EPageFramework.React;
             }
-            const folderPath = path.join(basePath, currentExample.filepath);
-            let baseUrl = req.protocol + "://" + req.get("host");
-            const result = await readSourceFiles(framework, folderPath, baseUrl);
-            res.send(result);
+
+            const cachedResult = getCachedSourceFiles(currentExample.id, framework);
+
+            if (cachedResult) {
+                res.send(cachedResult);
+            } else {
+                const folderPath = path.join(basePath, currentExample.filepath);
+                let baseUrl = req.protocol + "://" + req.get("host");
+                const result = await readSourceFiles(framework, folderPath, baseUrl);
+                res.send(result);
+            }
+
             return true;
         } catch (err) {
             console.warn(err);
@@ -811,5 +819,7 @@ export const populateSourceFilesCache = async () => {
     }
 };
 
-export const getCachedSourceFiles = (exampleKey: string, framework: EPageFramework) =>
-    sourceFilesCache.get(exampleKey)[framework];
+export const getCachedSourceFiles = (exampleKey: string, framework: EPageFramework) => {
+    const sourceFilesForExample = sourceFilesCache.get(exampleKey);
+    return sourceFilesForExample ? sourceFilesForExample[framework] : null;
+};
