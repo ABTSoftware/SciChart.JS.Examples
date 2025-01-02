@@ -1,4 +1,5 @@
 import {
+    BaseDataSeries,
     ECoordinateMode,
     EFillPaletteMode,
     EHorizontalAnchorPoint,
@@ -20,6 +21,8 @@ import {
     TextAnnotation,
     VerticalLineAnnotation,
     XyDataSeries,
+    XyFilterBase,
+    XyyFilterBase,
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
@@ -28,6 +31,56 @@ import { appTheme } from "../../../theme";
 
 // tslint:disable:no-empty
 // tslint:disable:max-line-length
+
+class ThresholdFilter extends XyFilterBase {
+    private thresholdProperty = 1;
+
+    constructor(originalSeries: BaseDataSeries, threshold: number, dataSeriesName: string) {
+        super(originalSeries, { dataSeriesName });
+        this.thresholdProperty = threshold;
+        this.filterAll();
+    }
+
+    public get threshold() {
+        return this.thresholdProperty;
+    }
+
+    public set threshold(value: number) {
+        this.thresholdProperty = value;
+        this.filterAll();
+    }
+
+    protected filterAll() {
+        this.clear();
+        this.filter(0, this.getOriginalCount());
+    }
+
+    protected filterOnAppend(count: number): void {
+        // Overriding this so we do not have to reprocess the entire series on append
+        this.filter(this.getOriginalCount() - count, count);
+    }
+
+    protected filter(start: number, count: number): void {
+        const xValues: number[] = [];
+        const yValues: number[] = [];
+        for (let i = start; i < start + count; i++) {
+            xValues.push(this.getOriginalXValues().get(i));
+            const y = this.getOriginalYValues().get(i);
+            if (this.threshold > 0 && y < this.threshold) {
+                yValues.push(NaN);
+            } else if (y < 0) {
+                yValues.push(Math.max(y, this.threshold));
+            } else {
+                yValues.push(y);
+            }
+        }
+        this.appendRange(xValues, yValues);
+    }
+
+    protected onClear() {
+        this.clear();
+    }
+}
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
@@ -39,20 +92,20 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
 
     // Create a paletteprovider to colour the series depending on a threshold value
-    const thresholdPalette = new ThresholdPaletteProvider(4, appTheme.MutedOrange, 8, appTheme.VividTeal);
+    const thresholdPalette = new XThresholdPaletteProvider(8, appTheme.VividTeal);
 
     // Add a Column series with some values to the chart
     const { xValues, yValues } = ExampleDataProvider.getDampedSinewave(0, 10, 0, 0.001, 3000, 10);
-
+    const dataSeries = new XyDataSeries(wasmContext, {
+        xValues,
+        yValues,
+    });
     sciChartSurface.renderableSeries.add(
         new FastMountainRenderableSeries(wasmContext, {
             stroke: appTheme.PaleSkyBlue,
             strokeThickness: 5,
             zeroLineY: 0.0,
-            dataSeries: new XyDataSeries(wasmContext, {
-                xValues,
-                yValues,
-            }),
+            dataSeries,
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: appTheme.VividSkyBlue, offset: 0 },
                 { color: appTheme.VividSkyBlue + "77", offset: 1 },
@@ -60,6 +113,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             paletteProvider: thresholdPalette,
         })
     );
+
+    const thresholdFilter = new ThresholdFilter(dataSeries, 4.0, "TopFill");
+    const topFill = new FastMountainRenderableSeries(wasmContext, {
+        stroke: appTheme.PaleSkyBlue,
+        strokeThickness: 5,
+        zeroLineY: 4.0,
+        dataSeries: thresholdFilter,
+        fill: appTheme.MutedOrange,
+        paletteProvider: thresholdPalette,
+    });
+    sciChartSurface.renderableSeries.add(topFill);
 
     // Add a label to tell user what to do
     const textAnnotation = new TextAnnotation({
@@ -84,7 +148,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         onDrag: (args) => {
             // When the horizontal line is dragged, update the
             // threshold palette and redraw the SciChartSurface
-            thresholdPalette.yThresholdValue = horizontalLine.y1;
+            topFill.zeroLineY = Math.max(0, horizontalLine.y1);
+            thresholdFilter.threshold = horizontalLine.y1;
             textAnnotation.y1 = horizontalLine.y1 + 0.2;
             sciChartSurface.invalidateElement();
         },
@@ -135,19 +200,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 };
 
 /**
- * A paletteprovider which colours a series if X or Y-value over a threshold, else use default colour
+ * A paletteprovider which colours a series if X value over a threshold, else use default colour
  */
-export class ThresholdPaletteProvider implements IFillPaletteProvider, IStrokePaletteProvider {
+export class XThresholdPaletteProvider implements IFillPaletteProvider {
     public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.GRADIENT;
     public readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.GRADIENT;
-    public yThresholdValue: number;
     public xThresholdValue: number;
-    private readonly yColor: number;
     private readonly xColor: number;
 
-    constructor(yThresholdValue: number, yColor: string, xThresholdValue: number, xColor: string) {
-        this.yThresholdValue = yThresholdValue;
-        this.yColor = parseColorToUIntArgb(yColor);
+    constructor(xThresholdValue: number, xColor: string) {
         this.xThresholdValue = xThresholdValue;
         this.xColor = parseColorToUIntArgb(xColor);
     }
@@ -162,16 +223,7 @@ export class ThresholdPaletteProvider implements IFillPaletteProvider, IStrokePa
         if (xValue > this.xThresholdValue) {
             return this.xColor;
         }
-        // When the y-value of the series is greater than the y-threshold,
-        // fill with the y-color
-        if (yValue > this.yThresholdValue) {
-            return this.yColor;
-        }
         // Undefined means use default color
         return undefined;
-    }
-
-    overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity?: number): number {
-        return yValue > this.yThresholdValue ? this.yColor : undefined;
     }
 }

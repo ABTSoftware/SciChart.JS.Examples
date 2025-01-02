@@ -7,7 +7,8 @@ SciChart.js is commercial software with a [free community license](https://scich
 - From SciChart.js v3.2 and onwards, trial licenses are not required. Instead the chart initialises with a [Community License](https://scichart.com/community-licensing)
 - For commercial licensing, follow steps from [scichart.com/licensing-scichart-js](https://scichart.com/licensing-scichart-js).
 
-## Step 1: Installing SciChart 
+## Step 1: Installing SciChart
+
 If you haven't already done so, add SciChart.js to your application.
 
 ```bash
@@ -22,46 +23,50 @@ SciChart.js uses WebAssembly files which must be served. The easiest way to do t
 
 ```javascript
 export default {
-	input: 'src/main.js',
-	output: {
-		sourcemap: true,
-		format: 'iife',
-		name: 'app',
-		file: 'public/bundle.js' // change this, so that everything is served at "public", not "build"
-	},
-	plugins: [
-		svelte({
-			compilerOptions: {
-				// enable run-time checks when not in production
-				dev: !production
-			}
-		}),
+  input: "src/main.js",
+  output: {
+    sourcemap: true,
+    format: "iife",
+    name: "app",
+    file: "public/bundle.js", // change this, so that everything is served at "public", not "build"
+  },
+  plugins: [
+    svelte({
+      compilerOptions: {
+        // enable run-time checks when not in production
+        dev: !production,
+      },
+    }),
 
-		// Serve WASM files from SciChart into the bundle
-        // scichart2d.wasm
-		{
-			name: 'wasm',
-			generateBundle() {
-				this.emitFile({
-					type: 'asset',
-					fileName: 'scichart2d.wasm',
-					source: fs.readFileSync('node_modules/scichart/_wasm/scichart2d.wasm')
-				});
-			}
-		},
-		// scichart2d.data
-		{
-			name: 'wasm',
-			generateBundle() {
-				this.emitFile({ 
-					type: 'asset',
-					fileName: 'scichart2d.data',
-					source: fs.readFileSync('node_modules/scichart/_wasm/scichart2d.data')
-				});
-			}
-		},
-        // if needed, do the same for 3d .wasm/.data files
-    ]
+    // Serve WASM files from SciChart into the bundle
+    // scichart2d.wasm
+    {
+      name: "wasm",
+      generateBundle() {
+        this.emitFile({
+          type: "asset",
+          fileName: "scichart2d.wasm",
+          source: fs.readFileSync(
+            "node_modules/scichart/_wasm/scichart2d.wasm"
+          ),
+        });
+      },
+    },
+    // scichart2d.data
+    {
+      name: "wasm",
+      generateBundle() {
+        this.emitFile({
+          type: "asset",
+          fileName: "scichart2d.data",
+          source: fs.readFileSync(
+            "node_modules/scichart/_wasm/scichart2d.data"
+          ),
+        });
+      },
+    },
+    // if needed, do the same for 3d .wasm/.data files
+  ],
 };
 ```
 
@@ -69,61 +74,68 @@ export default {
 
 ## Step 3: Creating the chart configuration
 
-###  drawExample.js:
+### drawExample.js:
+
 ```javascript
-import { 
-    SciChartSurface, 
-    NumericAxis, 
-    XyDataSeries, 
-    StackedColumnRenderableSeries, 
-    StackedColumnCollection, 
-    ZoomPanModifier, 
-    ZoomExtentsModifier, 
-    MouseWheelZoomModifier 
+import {
+  SciChartSurface,
+  NumericAxis,
+  XyDataSeries,
+  StackedColumnRenderableSeries,
+  StackedColumnCollection,
+  ZoomPanModifier,
+  ZoomExtentsModifier,
+  MouseWheelZoomModifier,
 } from "scichart";
 
 export const drawExample = async (divId) => {
-    // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId);
+  // Create a SciChartSurface
+  const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId);
 
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
-    
-    // Data for the example
-    const xValues = [1992, 1993, 1994, 1995];
-    const yValues1 = [10, 13, 7, 16];
-    const yValues2 = [12, 17, 21, 15];
-    
-    // Create some RenderableSeries - for each part of the stacked column
-    const rendSeries1 = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues1, dataSeriesName: "EU" }),
-        fill: "#2277CC",
-        stackedGroupId: "StackedGroupId"
-    });
-    
-    const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues2, dataSeriesName: "Asia" }),
-        fill: "#EC5F6C",
-        stackedGroupId: "StackedGroupId2"
-    });
+  sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+  sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
-    // To add the series to the chart, put them in a StackedColumnCollection
-    const stackedColumnCollection = new StackedColumnCollection(wasmContext);
+  // Data for the example
+  const xValues = [1992, 1993, 1994, 1995];
+  const yValues1 = [10, 13, 7, 16];
+  const yValues2 = [12, 17, 21, 15];
 
-    // Add the series to the StackedColumnCollection
-    stackedColumnCollection.add(rendSeries1, rendSeries2);
+  // Create some RenderableSeries - for each part of the stacked column
+  const rendSeries1 = new StackedColumnRenderableSeries(wasmContext, {
+    dataSeries: new XyDataSeries(wasmContext, {
+      xValues,
+      yValues: yValues1,
+      dataSeriesName: "EU",
+    }),
+    fill: "#2277CC",
+    stackedGroupId: "StackedGroupId",
+  });
 
-    // Add the Stacked Column collection to the chart
-    sciChartSurface.renderableSeries.add(
-        stackedColumnCollection
-    );
+  const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
+    dataSeries: new XyDataSeries(wasmContext, {
+      xValues,
+      yValues: yValues2,
+      dataSeriesName: "Asia",
+    }),
+    fill: "#EC5F6C",
+    stackedGroupId: "StackedGroupId2",
+  });
 
-    // Add zooming and panning behaviour
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+  // To add the series to the chart, put them in a StackedColumnCollection
+  const stackedColumnCollection = new StackedColumnCollection(wasmContext);
 
-    return { sciChartSurface, wasmContext };
+  // Add the series to the StackedColumnCollection
+  stackedColumnCollection.add(rendSeries1, rendSeries2);
+
+  // Add the Stacked Column collection to the chart
+  sciChartSurface.renderableSeries.add(stackedColumnCollection);
+
+  // Add zooming and panning behaviour
+  sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+  sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
+  sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+
+  return { sciChartSurface, wasmContext };
 };
 ```
 
@@ -131,36 +143,36 @@ export const drawExample = async (divId) => {
 
 ```html
 <script>
-    import { onMount } from 'svelte';
-    import { drawExample } from './drawExample';
+  import { onMount } from "svelte";
+  import { drawExample } from "./drawExample";
 
-    const divID = 'scichart-root';
-    let sciChartSurface;
+  const divID = "scichart-root";
+  let sciChartSurface;
 
-    // recommended way to initialize SciChart, and delete on cleanup to avoid memory leaks
-    onMount(() => { 
-        let chartInitializationPromise = drawExample(divID).then(res => {
-            sciChartSurface = res.sciChartSurface;
-        });
-
-        return () => {
-            // Check if chart is already initialized
-            if (sciChartSurface) {
-                sciChartSurface.delete();
-                return;
-            }
-
-            // Else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurface.delete();
-            });
-        };
+  // recommended way to initialize SciChart, and delete on cleanup to avoid memory leaks
+  onMount(() => {
+    let chartInitializationPromise = drawExample(divID).then((res) => {
+      sciChartSurface = res.sciChartSurface;
     });
+
+    return () => {
+      // Check if chart is already initialized
+      if (sciChartSurface) {
+        sciChartSurface.delete();
+        return;
+      }
+
+      // Else postpone deletion
+      chartInitializationPromise.then(() => {
+        sciChartSurface.delete();
+      });
+    };
+  });
 </script>
 
 <main>
-    <h1>Hello SciChart!</h1>
-    <div id={divID} style="width: 100%; height: 500px;"></div>
+  <h1>Hello SciChart!</h1>
+  <div id="{divID}" style="width: 100%; height: 500px;"></div>
 </main>
 ```
 
