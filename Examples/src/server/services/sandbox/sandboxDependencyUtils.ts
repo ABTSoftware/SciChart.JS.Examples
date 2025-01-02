@@ -62,7 +62,14 @@ export const includeExternalModules = async (
                             const externalContent = await fs.promises.readFile(filepath, "utf8");
                             files[csPath] = { content: externalContent, isBinary: false };
                         } catch {
-                            files[csPath] = { content: "Could not load source", isBinary: false };
+                            const filepathx = filepath;
+                            const csPathx = csPath + "x";
+                            try {
+                                const externalContentx = await fs.promises.readFile(filepathx, "utf8");
+                                files[csPathx] = { content: externalContentx, isBinary: false };
+                            } catch {
+                                files[csPath] = { content: "Could not load source", isBinary: false };
+                            }
                         }
                     }
                 }
