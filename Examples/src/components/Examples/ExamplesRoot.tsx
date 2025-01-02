@@ -86,8 +86,8 @@ const ExamplesRoot: FC<TProps> = (props) => {
             />
             <div className={commonClasses.Body}>
                 <div className={commonClasses.ColMain}>
-                    <ComponentWrapper>
-                        <div className={commonClasses.ExampleRootDescription}>
+                    {/* <ComponentWrapper>
+                        <div className={classes.ExampleRootDescription}>
                             <h5>SciChart.js Demo</h5>
 
                             <p className={commonClasses.ExampleDescriptionText}>
@@ -121,7 +121,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                 </a>
                             </p>
                         </div>
-                    </ComponentWrapper>
+                    </ComponentWrapper> */}
 
                     <ComponentWrapper>
                         <h1 className={commonClasses.Title}>{titleText} </h1>

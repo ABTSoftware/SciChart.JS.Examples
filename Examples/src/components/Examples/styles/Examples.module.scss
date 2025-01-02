@@ -2,8 +2,8 @@
 .ExampleWrapperIFrame {
     height: 100vh;
     .ChartWrapper {
-        width: 100%;
         height: 100%;
+        width: 100%;
         position: relative;
         overflow: hidden;
         touch-action: none;
@@ -208,7 +208,8 @@
     .Title {
         width: 100%;
         font-weight: 600;
-        margin-bottom: 30px;
+        font-size: 1.5rem;
+        // margin-bottom: 30px;
     }
     .Subtitle {
         margin-bottom: 20px;

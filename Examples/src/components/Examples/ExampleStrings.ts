@@ -314,7 +314,8 @@ export const ExampleStrings = {
         `${frameworkName} Chart Trade Markers example demonstrates how to add hoverable buy/sell arrows and markers to a trading application`,
 
     // Drag horizontal threshold
-    titleDragHorizontalThreshold: (frameworkName: TFrameworkName) => `${frameworkName} Chart Drag Horizontal Threshold`,
+    titleDragHorizontalThreshold: (frameworkName: TFrameworkName) =>
+        `${frameworkName} Mountain Chart Draggable Thresholds`,
     urlDragHorizontalThreshold: `chart-drag-horizontal-threshold`,
     urlTitleDragHorizontalThreshold: `This Javascript chart example shows you how to add a draggable threshold and change the chart colour depending on threshold value`,
 
@@ -480,6 +481,15 @@ export const ExampleStrings = {
     urlPaletteProviderDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20PaletteProvider%20API.html`,
     urlTitlePaletteProviderDocumentation: `The PaletteProvider API documentation`,
 
+    // MultiStyleSeries
+    titleMultiStyleSeries: (frameworkName: TFrameworkName) => `${frameworkName} Chart with Multi-Style Series`,
+    urlMultiStyleSeries: "multi-style-series",
+
+    // LineSplittingThresholds
+    titleLineSplittingThresholds: (frameworkName: TFrameworkName) =>
+        `${frameworkName} Chart with lines split by thresholds`,
+    urlLineSplittingThresholds: "line-splitting-thresholds",
+
     // Dashed line styling
     titleDashedLineStyling: `Dashed Line Styling`,
     urlDashedLineStyling: `dashed-line-chart`,
@@ -592,6 +602,14 @@ export const ExampleStrings = {
     urlPointLine3DChart: `3d-point-line-chart`,
     urlPointLine3DChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#ThePointLine3DChartType.html`,
     urlTitlePointLine3DChartDocumentation: `SciChart.js 3D Point Line Chart Documentation`,
+
+    // 3D Column Line
+    titleColumn3DChart: (frameworkName: TFrameworkName) => `${frameworkName} Column 3D Chart`,
+    pageTitleColumn3DChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} 3D Column Chart | View 3D JavaScript Charts`,
+    urlColumn3DChart: `3d-column-chart`,
+    urlColumn3DChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#TheColumn3DChartType.html`,
+    urlTitleColumn3DChartDocumentation: `SciChart.js 3D Column Chart Documentation`,
 
     // Featured Apps Lidar Example
     urlLidarFeaturedApp: `3d-lidar-visualization`,

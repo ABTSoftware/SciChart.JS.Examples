@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "tsc": "tsc --watch",
     "build": "tsc && npm run copySciChart && npm run gen",
     "copySciChart": "copy-files-from-to --config copy-files-from-to.json",
     "start": "node server/server.js",

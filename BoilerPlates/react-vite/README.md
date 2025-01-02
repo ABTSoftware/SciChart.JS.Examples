@@ -24,28 +24,29 @@ SciChart.js uses WebAssembly files which must be served. In vite.config.js, add 
 ```javascript
 // vite.config.js
 
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { viteStaticCopy } from 'vite-plugin-static-copy' // for copying wasm files
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { viteStaticCopy } from "vite-plugin-static-copy"; // for copying wasm files
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [
-        react(),
-        viteStaticCopy({ // for serving wasm files
-            targets: [
-                {
-                    src: 'node_modules/scichart/_wasm/scichart2d.data',
-                    dest: '/'
-                },
-                {
-                    src: 'node_modules/scichart/_wasm/scichart2d.wasm',
-                    dest: '/'
-                },
-            ]
-        }),
-    ],
-})
+  plugins: [
+    react(),
+    viteStaticCopy({
+      // for serving wasm files
+      targets: [
+        {
+          src: "node_modules/scichart/_wasm/scichart2d.data",
+          dest: "/",
+        },
+        {
+          src: "node_modules/scichart/_wasm/scichart2d.wasm",
+          dest: "/",
+        },
+      ],
+    }),
+  ],
+});
 ```
 
 > Note: other methods to [load wasm from CDN](https://www.scichart.com/documentation/js/current/webframe.html#Deploying%20Wasm%20or%20WebAssembly%20and%20Data%20Files%20with%20your%20app.html) are available to simplify getting started
@@ -55,35 +56,31 @@ export default defineConfig({
 After that, you can define a config object to create a SciChartSurface like this.
 
 ```javascript
-import {
-    EAxisType,
-    EChart2DModifierType,
-    ESeriesType,
-} from "scichart";
+import { EAxisType, EChart2DModifierType, ESeriesType } from "scichart";
 
 export const chartConfig = {
-    xAxes: [{ type: EAxisType.NumericAxis }],
-    yAxes: [{ type: EAxisType.NumericAxis }],
-    series: [
-        {
-            type: ESeriesType.SplineMountainSeries,
-            options: {
-                fill: "#3ca832",
-                stroke: "#eb911c",
-                strokeThickness: 4,
-                opacity: 0.4
-            },
-            xyData: { 
-                xValues: [1, 2, 3, 4], 
-                yValues: [1, 4, 7, 3] 
-            }
-        }
-    ],
-    modifiers: [
-        { type: EChart2DModifierType.ZoomPan, options: { enableZoom: true } },
-        { type: EChart2DModifierType.MouseWheelZoom },
-        { type: EChart2DModifierType.ZoomExtents }
-    ]
+  xAxes: [{ type: EAxisType.NumericAxis }],
+  yAxes: [{ type: EAxisType.NumericAxis }],
+  series: [
+    {
+      type: ESeriesType.SplineMountainSeries,
+      options: {
+        fill: "#3ca832",
+        stroke: "#eb911c",
+        strokeThickness: 4,
+        opacity: 0.4,
+      },
+      xyData: {
+        xValues: [1, 2, 3, 4],
+        yValues: [1, 4, 7, 3],
+      },
+    },
+  ],
+  modifiers: [
+    { type: EChart2DModifierType.ZoomPan, options: { enableZoom: true } },
+    { type: EChart2DModifierType.MouseWheelZoom },
+    { type: EChart2DModifierType.ZoomExtents },
+  ],
 };
 ```
 
