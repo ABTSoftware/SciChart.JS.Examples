@@ -87,6 +87,10 @@ function populatePrerenderedPageCache() {
             const sourceFileInfo = getCachedSourceFiles(key, framework);
             const pageHtml = renderPage(url, sourceFileInfo);
             pageHtmlCache.set(url, pageHtml);
+
+            const iFrameUrl = `/iframe/${exampleRoute}`;
+            const fullScreenExampleHtml = renderPage(iFrameUrl, sourceFileInfo);
+            pageHtmlCache.set(iFrameUrl, fullScreenExampleHtml);
         }
     }
 }
