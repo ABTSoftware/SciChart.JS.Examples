@@ -29,17 +29,27 @@ export const CodeActionButton: React.FC<CodeActionButtonProps> = ({
     label,
     className = classes.btn,
     title,
-    href = "#",
+    href,
     target,
     onClick,
     rel,
 }) => {
-    return (
-        <a className={`${className} ${classes.actionButton}`} 
-            href={href} target={target} onClick={onClick} title={title} rel={rel}
+    return href ? (
+        <a
+            className={`${className} ${classes.actionButton}`}
+            href={href}
+            target={target}
+            onClick={onClick}
+            title={title}
+            rel={rel}
         >
             <Icon name={iconName} />
             <p>{label}</p>
         </a>
+    ) : (
+        <span className={`${className} ${classes.actionButton}`} onClick={onClick} title={title} rel={rel}>
+            <Icon name={iconName} />
+            <p>{label}</p>
+        </span>
     );
 };

@@ -45,6 +45,13 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
     const isFrameworkVariantAvailable = availableFrameworks?.includes(selectedFramework);
     const frameWorkName = getFrameWorkName(selectedFramework);
 
+    const pageTitle = getFrameworkContent(currentExample.title, selectedFramework);
+
+    const contextualGithubTitle =
+        currentExample !== undefined
+            ? `View source for ${pageTitle} on Github`
+            : "Clone SciChart.js.examples on GitHub";
+
     const handleSandboxClick = async (e: React.MouseEvent<HTMLAnchorElement>, platform: SandboxPlatform) => {
         e.preventDefault();
         try {
@@ -74,7 +81,9 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
                 iconName="fullscreen"
                 label="View&nbsp;fullscreen"
                 className={`${classes.btn} ${classes.btnGithub}`}
-                onClick={() => window.open(`/iframe/${currentExample.path}`, "_blank")}
+                href={`/iframe/${currentExample.path}`}
+                target="_blank"
+                rel="nofollow"
                 title={`View ${getFrameworkContent(currentExample.title, selectedFramework)} in fullscreen`}
             />
             <CodeActionButton
@@ -106,6 +115,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
                 href={`https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Examples/src/components/Examples/${currentExample.filepath}`}
                 target="_blank"
                 rel="noopener"
+                title={contextualGithubTitle}
             />
         </div>
     );
