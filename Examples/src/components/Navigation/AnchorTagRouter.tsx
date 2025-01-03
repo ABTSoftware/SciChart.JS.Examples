@@ -1,5 +1,6 @@
 // https://github.com/ncoughlin/scroll-to-hash-element/blob/main/src/index.tsx
-import { useLayoutEffect, useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useIsomorphicLayoutEffect } from "../../helpers/hooks/useIsomorphicLayoutEffect";
 
 interface ScrollToHashElementProps {
     /** On first run do we jump or scroll? */
@@ -70,7 +71,7 @@ export const ContentSectionRouter = ({
         return removeWindowListeners;
     }, []);
 
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
         const removeHashCharacter = (str: string) => {
             const result = str.slice(1);
             return result;
