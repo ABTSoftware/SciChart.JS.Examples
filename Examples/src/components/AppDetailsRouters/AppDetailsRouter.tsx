@@ -27,10 +27,13 @@ const AppDetailsRouter: FC<TProps> = (props) => {
     const { currentExample, seeAlso } = props;
 
     const initialSourceFilesVariant = useContext(SourceFilesContext);
-    const [initialSelectedFile] = initialSourceFilesVariant.files;
+    const getInitialSelectedFile = () =>
+        initialSourceFilesVariant.files.find((file) => file.name.startsWith("drawExample")) ??
+        initialSourceFilesVariant.files.find((file) => file.name.startsWith("index")) ??
+        initialSourceFilesVariant.files[0];
 
     const [sourceFiles, setSourceFiles] = useState<ExampleSourceFile[]>(initialSourceFilesVariant.files);
-    const [selectedFile, setSelectedFile] = useState<ExampleSourceFile>(initialSelectedFile);
+    const [selectedFile, setSelectedFile] = useState<ExampleSourceFile>(getInitialSelectedFile);
     const [pageLayout, setPageLayout] = useState<EPageLayout>();
     const [embedCode, setEmbedCode] = useState<boolean>(false);
     const [sandboxPlatform, setSandboxPlatform] = useState<SandboxPlatform>(SandboxPlatform.CodeSandbox);

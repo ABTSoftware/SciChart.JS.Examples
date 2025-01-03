@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { ScichartAngularComponent } from "scichart-angular";
-import { draw3DChart, drawLineChart1, drawLineChart2, drawHeatmapLegend } from "./drawExaple";
+import { draw3DChart, drawLineChart1, drawLineChart2, drawHeatmapLegend } from "./drawExample";
 
 @Component({
     standalone: true,
