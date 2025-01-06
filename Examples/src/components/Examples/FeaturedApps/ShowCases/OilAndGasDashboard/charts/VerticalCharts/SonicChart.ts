@@ -5,7 +5,7 @@ import { ELegendPlacement, ELegendOrientation, TLegendItem } from "scichart/Char
 import { HeatmapColorMap } from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
-import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "./utils";
+import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "../vChartUtils";
 import { appTheme } from "../../theme";
 
 export const drawSonicChart = async (rootELement: string | HTMLDivElement) => {

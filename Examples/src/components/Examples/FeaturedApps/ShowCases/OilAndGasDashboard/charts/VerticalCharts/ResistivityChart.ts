@@ -6,7 +6,7 @@ import { ELegendPlacement, ELegendOrientation, TLegendItem } from "scichart/Char
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
-import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
+import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "../vChartUtils";
 import { appTheme } from "../../theme";
 
 export const drawResistivityChart = async (rootELement: string | HTMLDivElement) => {

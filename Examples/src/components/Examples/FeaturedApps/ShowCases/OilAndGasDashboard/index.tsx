@@ -57,7 +57,7 @@ const onInitAllCharts = (initResults: IInitResult[]) => {
 };
 
 export default function OilAndGasDashboardShowcase() {
-    const isXs = useMediaQuery((theme: Theme) => theme.breakpoints.down("md")); // Mobile view
+    const isXs = useMediaQuery((theme: Theme) => theme?.breakpoints.down("md")); // Mobile view
 
     return (
         <ChartGroupLoader className={commonClasses.ChartWrapper} style={{ display: "flex" }} onInit={onInitAllCharts}>

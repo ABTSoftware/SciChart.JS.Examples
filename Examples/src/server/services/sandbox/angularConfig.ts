@@ -27,7 +27,7 @@ export const getAngularSandBoxConfig = async (folderPath: string, currentExample
     await includeImportedModules(folderPath, files, code, true, true, baseUrl);
 
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
-    code = await includeExternalModules(folderPath, files, code, true, true);
+    code = await includeExternalModules(folderPath, folderPath, files, code, true, true);
     code = code.replace(/(\.\/)/g, "../");
     files = {
         ...commonFiles,

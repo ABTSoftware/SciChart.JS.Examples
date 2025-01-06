@@ -6,7 +6,7 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { RangeFillPaletteProvider, PaletteRange } from "./RangeFillPaletteProvider";
-import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
+import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "../vChartUtils";
 import { appTheme } from "../../theme";
 
 export const drawTextureChart = async (rootELement: string | HTMLDivElement) => {

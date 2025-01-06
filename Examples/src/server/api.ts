@@ -4,7 +4,7 @@ import express = require("express");
 import path = require("path");
 import fs = require("fs");
 import { Request, Response } from "express";
-import { TBinanceCandleData } from "../commonTypes/TBinanceCandleData";
+import { TBinanceCandleData } from "../components/Examples/TBinanceCandleData";
 import { candlesADAUSDT } from "./BinanceData/candlesADAUSDT";
 import { candlesBTCUSDT } from "./BinanceData/candlesBTCUSDT";
 import { candlesDOGEUSDT } from "./BinanceData/candlesDOGEUSDT";

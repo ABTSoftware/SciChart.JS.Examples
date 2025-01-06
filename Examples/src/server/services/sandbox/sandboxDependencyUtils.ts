@@ -32,6 +32,7 @@ export const handleInvalidFrameworkValue = (value: never): never => {
 };
 
 export const includeExternalModules = async (
+    examplefolderPath: string,
     folderPath: string,
     files: IFiles,
     content: string,
@@ -39,35 +40,42 @@ export const includeExternalModules = async (
     updateImports: boolean
 ) => {
     // Pull files outside the local folder into it and rewrite the import
-    const externalImports = Array.from(content.matchAll(/from "\.\.\/(.*)";/g));
+    const externalImports = Array.from(content.matchAll(/from "([\.\/]+)(.*)";/g));
     if (externalImports.length > 0) {
         for (const externalImport of externalImports) {
             if (externalImport.length > 1) {
-                if (externalImport[1].endsWith(".png") || externalImport[1].endsWith(".jpg")) {
+                if (externalImport[2].endsWith(".scss")) continue;
+                if (externalImport[2].endsWith(".png") || externalImport[2].endsWith(".jpg")) {
                     if (includeImages) {
                         // handle images
-                        const csPath = "src/" + externalImport[1];
-                        const filename = externalImport[1].substring(externalImport[1].lastIndexOf("/") + 1);
+                        const csPath = "src/" + externalImport[2];
+                        const filename = externalImport[2].substring(externalImport[2].lastIndexOf("/") + 1);
                         files[csPath] = { content: "https://demo.scichart.com/images/" + filename, isBinary: true };
                     }
                 } else {
-                    const filepath = path.join(folderPath, "../" + externalImport[1] + ".ts");
-                    const filename = externalImport[1].substring(externalImport[1].lastIndexOf("/") + 1);
-                    const csPath = "src/" + filename + ".ts";
+                    const filepath = path.join(folderPath, externalImport[1] + externalImport[2] + ".ts");
+                    const filename = externalImport[2].substring(externalImport[2].lastIndexOf("/") + 1);
+                    let csPath = filepath.replace(examplefolderPath, "src").replace(/\\/g, "/");
                     if (updateImports) {
-                        content = content.replace("../" + externalImport[1], "./" + filename);
+                        if (!filepath.includes(examplefolderPath)) {
+                            csPath = "src/" + filename + ".ts";
+                            content = content.replace(externalImport[1] + externalImport[2], "./" + filename);
+                        }
+                        console.log(filepath, csPath);
                     }
                     if (!files[csPath]) {
                         try {
                             const externalContent = await fs.promises.readFile(filepath, "utf8");
+                            //console.log(filepath);
                             files[csPath] = { content: externalContent, isBinary: false };
                         } catch {
-                            const filepathx = filepath;
+                            const filepathx = filepath + "x";
                             const csPathx = csPath + "x";
                             try {
                                 const externalContentx = await fs.promises.readFile(filepathx, "utf8");
                                 files[csPathx] = { content: externalContentx, isBinary: false };
                             } catch {
+                                console.log(externalImport[2], "not found at", filepath, "from", folderPath);
                                 files[csPath] = { content: "Could not load source", isBinary: false };
                             }
                         }
@@ -92,25 +100,30 @@ export const includeImportedModules = async (
         if (localImport.length > 1) {
             let content: string = "";
             let csPath: string = "";
+            let dirname: string = "";
             if (localImport[1].endsWith(".png") || localImport[1].endsWith(".jpg")) {
                 if (includeImages) {
                     // handle images
                     csPath = "src/" + localImport[1];
                     const filename = localImport[1].substring(localImport[1].lastIndexOf("/") + 1);
-                    console.log(baseUrl + filename);
                     files[csPath] = { content: baseUrl + filename, isBinary: true };
                 }
             } else {
                 try {
                     const filepath = path.join(folderPath, localImport[1] + ".ts");
                     csPath = "src/" + localImport[1] + ".ts";
+                    console.log(csPath);
                     content = await fs.promises.readFile(filepath, "utf8");
+                    dirname = path.dirname(filepath);
                 } catch (e) {
                     try {
                         const filepath = path.join(folderPath, localImport[1] + ".tsx");
+                        //console.log("not found. trying ", filepath);
                         csPath = "src/" + localImport[1] + ".tsx";
                         content = await fs.promises.readFile(filepath, "utf8");
+                        dirname = path.dirname(filepath);
                     } catch {
+                        //console.log(csPath, "not loaded");
                         content = "Could not load source";
                     }
                 }
@@ -118,9 +131,27 @@ export const includeImportedModules = async (
                 if (nestedImports.length > 0) {
                     localImports.push(...nestedImports);
                 }
-                content = await includeExternalModules(folderPath, files, content, includeImages, updateImports);
+
+                content = await includeExternalModules(
+                    folderPath,
+                    dirname,
+                    files,
+                    content,
+                    includeImages,
+                    updateImports
+                );
                 files[csPath] = { content, isBinary: false };
             }
+        }
+    }
+    // stylesheets
+    const cssImports = Array.from(code.matchAll(/import ["']\.\/(.*\.css)["'];/g));
+    for (const cssImport of cssImports) {
+        if (cssImport.length > 1) {
+            const csPath = "src/" + cssImport[1];
+            const filepath = path.join(folderPath, cssImport[1]);
+            const content = await fs.promises.readFile(filepath, "utf8");
+            files[csPath] = { content, isBinary: false };
         }
     }
 };
@@ -131,7 +162,7 @@ export const getSourceFilesForPath = async (folderPath: string, startFile: strin
     let files: IFiles = {};
     await includeImportedModules(folderPath, files, code, false, false, baseUrl);
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
-    await includeExternalModules(folderPath, files, code, false, false);
+    await includeExternalModules(folderPath, folderPath, files, code, false, false);
     files[tsPath] = { content: code, isBinary: false };
     return files;
 };

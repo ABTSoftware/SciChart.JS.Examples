@@ -8,7 +8,7 @@ import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtent
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
-import { getColor, getDataDiagonal } from "../utils";
+import { getColor, getDataDiagonal } from "../chartUtils";
 import { appTheme } from "../../theme";
 
 export default async function init2dFirstChart(rootELement: string | HTMLDivElement) {

@@ -8,7 +8,7 @@ import { TSciChart } from "scichart/types/TSciChart";
 import { Point } from "scichart/Core/Point";
 import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
 import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
-import { getColor } from "../utils";
+import { getColor } from "../chartUtils";
 import { appTheme } from "../../theme";
 
 export default async function init2dSecondChart(rootELement: string | HTMLDivElement) {

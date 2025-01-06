@@ -6,7 +6,7 @@ import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/Ellip
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
-import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "./utils";
+import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "../vChartUtils";
 import { appTheme } from "../../theme";
 
 export const drawPoreSpaceChart = async (rootELement: string | HTMLDivElement) => {

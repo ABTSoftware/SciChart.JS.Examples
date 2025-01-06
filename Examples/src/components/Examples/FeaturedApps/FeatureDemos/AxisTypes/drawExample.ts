@@ -27,7 +27,7 @@ import {
 } from "scichart";
 
 import { appTheme } from "../../../theme";
-import { TBinanceCandleData } from "../../../../../commonTypes/TBinanceCandleData";
+import { TBinanceCandleData } from "../../../TBinanceCandleData";
 
 const colorStrings = [
     appTheme.VividSkyBlue,

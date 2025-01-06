@@ -32,9 +32,9 @@ export const oilAndGasExplorerDashboard: TExampleInfo = {
     subtitle: Subtitle,
 
     metaDescription: (frameworkName: string) => `Demonstrates how to create Oil and Gas Dashboard`,
-    metaKeywords: "Todo keywords",
+    metaKeywords: "oil gas vertical chart javascript chart performance",
     thumbnailImage: exampleImage,
     markdownContent,
     documentationLinks,
-    pageLayout: EPageLayout.MaxWidth
+    pageLayout: EPageLayout.MaxWidth,
 };

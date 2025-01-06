@@ -5,7 +5,7 @@ import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { getColor, getDataDiagonal } from "../utils";
+import { getColor, getDataDiagonal } from "../chartUtils";
 import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import { appTheme } from "../../theme";
 

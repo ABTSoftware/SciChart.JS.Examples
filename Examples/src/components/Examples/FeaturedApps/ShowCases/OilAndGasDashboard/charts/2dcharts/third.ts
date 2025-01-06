@@ -5,7 +5,7 @@ import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { TSciChart } from "scichart/types/TSciChart";
-import { getColor } from "../utils";
+import { getColor } from "../chartUtils";
 import { appTheme } from "../../theme";
 
 export default async function init2dThirdChart(rootELement: string | HTMLDivElement) {

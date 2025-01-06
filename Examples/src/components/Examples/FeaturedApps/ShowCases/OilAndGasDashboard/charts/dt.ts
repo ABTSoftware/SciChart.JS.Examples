@@ -1,7 +1,7 @@
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
-import { axesSetup, generateDefaultLegend, generateModifiers, getRandomSinewave } from "./utils";
+import { axesSetup, generateDefaultLegend, generateModifiers, getRandomSinewave } from "./chartUtils";
 import { NumberRange } from "scichart/Core/NumberRange";
 
 export default async function initDtChart(

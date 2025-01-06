@@ -2,7 +2,7 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { getColor } from "../utils";
+import { getColor } from "../chartUtils";
 import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import { TSciChart } from "scichart/types/TSciChart";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";

@@ -5,7 +5,7 @@ import { ELegendPlacement, ELegendOrientation, TLegendItem } from "scichart/Char
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
-import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
+import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "../vChartUtils";
 import { StackedMountainCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainCollection";
 import { appTheme } from "../../theme";
 
