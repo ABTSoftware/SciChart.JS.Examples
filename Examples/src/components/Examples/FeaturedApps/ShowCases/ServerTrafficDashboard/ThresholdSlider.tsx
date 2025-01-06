@@ -1,12 +1,12 @@
 import { ChangeEventHandler, useContext, useEffect, useState } from "react";
 import { appTheme } from "../../../theme";
-import { SciChartSurfaceContext } from "scichart-react";
-import { Rect } from "scichart";
-import { TMainChartConfigFunc } from "./main-chart-config";
+import { IInitResult, SciChartSurfaceContext, TResolvedReturnType } from "scichart-react";
+import { Rect, SciChartSurface } from "scichart";
+import { createMainChart } from "./main-chart-config";
 
 const ThresholdSlider = () => {
     // get reference to chart init result
-    const context = useContext(SciChartSurfaceContext) as Awaited<ReturnType<TMainChartConfigFunc>>;
+    const context = useContext(SciChartSurfaceContext) as TResolvedReturnType<typeof createMainChart>;
     const [seriesViewRect, setSeriesViewRect] = useState(context.sciChartSurface.seriesViewRect);
     const viewport = context.sciChartSurface.renderSurface.viewportSize;
 
@@ -45,6 +45,7 @@ const ThresholdSlider = () => {
                 right: viewport.width - seriesViewRect.right,
                 position: "absolute",
                 color: appTheme.ForegroundColor,
+                fontSize: "0.8em",
             }}
         >
             Duration Threshold

@@ -21,29 +21,29 @@ import {
     EAxisAlignment,
     TRolloverTooltipDataTemplate,
     XySeriesInfo,
+    ECoordinateMode,
+    VerticalSliceModifier,
+    CursorModifier,
+    ChartModifierBase2D,
 } from "scichart";
 import { appTheme } from "../../../theme";
 import { getData, TDataEntry, availablePages, getRequestsNumberPerTimestamp } from "./data-generation";
-import { TChartConfigResult, tooltipDataTemplateKey } from "./chart-configurations";
-import { TInitFunction } from "scichart-react";
-
-export type TPageStatsConfigFuncResult = TChartConfigResult<SciChartSurface> & { toggleIsHundredPercent: () => void };
-export type TPageStatsChartConfigFunc = TInitFunction<SciChartSurface, TPageStatsConfigFuncResult>;
+import { TChartViewOptions, tooltipDataTemplateKey } from "./chart-configurations";
 
 const fillColors = ["#f6086c", "#47bde6", "#34c19c", "#f4840b"];
 
-// per page
-export const createPageStatisticsChart: TPageStatsChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
+export const createPageStatisticsChart = async (divElementId: string | HTMLDivElement, options: TChartViewOptions) => {
+    const { isMobileView, isLargeView } = options;
+
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
         title: "URL statistics",
         titleStyle: {
             useNativeText: true,
+            placeWithinChart: !isLargeView,
             padding: Thickness.fromString("15 0 0 0"),
-            // placeWithinChart: true,
-            alignment: ETextAlignment.Center,
-            fontSize: 20,
+            fontSize: 16,
             color: appTheme.ForegroundColor,
         },
     });
@@ -51,21 +51,24 @@ export const createPageStatisticsChart: TPageStatsChartConfigFunc = async (divEl
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
         labelFormat: ENumericFormat.Date_DDMM,
-        // useNativeText: true,
+        useNativeText: true,
+        labelStyle: {
+            fontSize: isLargeView ? 12 : 10,
+        },
     });
     const yAxis = new NumericAxis(wasmContext, {
-        axisTitle: "Requests",
+        axisTitle: isLargeView ? "Requests" : undefined,
         axisTitleStyle: {
             fontSize: 20,
             color: appTheme.ForegroundColor,
         },
         labelStyle: {
-            color: appTheme.ForegroundColor,
+            fontSize: isLargeView ? 12 : 10,
         },
         axisAlignment: EAxisAlignment.Left,
         growBy: new NumberRange(0, 0.3),
         labelPrecision: 0,
-        keepLabelsWithinAxis: true,
+        keepLabelsWithinAxis: false,
         useNativeText: true,
     });
 
@@ -107,6 +110,7 @@ export const createPageStatisticsChart: TPageStatsChartConfigFunc = async (divEl
     sciChartSurface.renderableSeries.add(stackedColumnCollection);
 
     const legendModifier = new LegendModifier({
+        showLegend: isLargeView,
         placement: ELegendPlacement.TopLeft,
         orientation: ELegendOrientation.Vertical,
         backgroundColor: "#0d1523",
@@ -114,15 +118,32 @@ export const createPageStatisticsChart: TPageStatsChartConfigFunc = async (divEl
 
     const zoomAndScrollDirection = EXyDirection.XDirection;
 
-    const rolloverModifier = new RolloverModifier({
-        id: "PageStatisticsRolloverModifier",
-        showTooltip: true,
-        snapToDataPoint: true,
-        tooltipDataTemplate: tooltipDataTemplateKey,
-    });
-    rolloverModifier.rolloverLineAnnotation.showLabel = true;
-    rolloverModifier.rolloverLineAnnotation.axisLabelFill = "#e8c667";
-    rolloverModifier.rolloverLineAnnotation.axisLabelStroke = "#0d1523";
+    let rolloverModifier: ChartModifierBase2D;
+
+    if (isMobileView) {
+        rolloverModifier = new VerticalSliceModifier({
+            id: "PageStatisticsRolloverModifier",
+            showTooltip: true,
+            tooltipDataTemplate: tooltipDataTemplateKey,
+
+            x1: 0.75,
+            xCoordinateMode: ECoordinateMode.Relative,
+            isDraggable: true,
+        });
+    } else {
+        const defaultRolloverModifier = new RolloverModifier({
+            id: "PageStatisticsRolloverModifier",
+            showTooltip: true,
+            snapToDataPoint: true,
+            tooltipDataTemplate: tooltipDataTemplateKey,
+        });
+
+        defaultRolloverModifier.rolloverLineAnnotation.showLabel = true;
+        defaultRolloverModifier.rolloverLineAnnotation.axisLabelFill = "#e8c667";
+        defaultRolloverModifier.rolloverLineAnnotation.axisLabelStroke = "#0d1523";
+        rolloverModifier = defaultRolloverModifier;
+    }
+
     sciChartSurface.chartModifiers.add(
         legendModifier,
         rolloverModifier,
@@ -152,10 +173,12 @@ export const createPageStatisticsChart: TPageStatsChartConfigFunc = async (divEl
         stackedColumnCollection.isOneHundredPercent = !stackedColumnCollection.isOneHundredPercent;
 
         if (stackedColumnCollection.isOneHundredPercent) {
+            sciChartSurface.titleStyle.placeWithinChart = false;
             yAxis.visibleRange = new NumberRange(0, 100);
             yAxis.visibleRangeLimit = new NumberRange(0, 100);
             yAxis.labelProvider.formatLabel = (dataValue: number) => `${dataValue}%`;
         } else {
+            sciChartSurface.titleStyle.placeWithinChart = true;
             yAxis.visibleRangeLimit = new NumberRange(0, undefined);
             yAxis.labelProvider.formatLabel = (dataValue: number) => `${dataValue}`;
             adjustYAxisVisibleRange();
@@ -177,3 +200,7 @@ export const createPageStatisticsChart: TPageStatsChartConfigFunc = async (divEl
 
     return { sciChartSurface, updateData, toggleIsHundredPercent };
 };
+
+export const getPageStatisticsChartConfig =
+    (options: TChartViewOptions) => async (divElementId: string | HTMLDivElement) =>
+        createPageStatisticsChart(divElementId, options);
