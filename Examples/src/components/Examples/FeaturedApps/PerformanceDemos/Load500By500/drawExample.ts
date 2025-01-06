@@ -40,7 +40,7 @@ export const drawExample = async (
         new NumericAxis(wasmContext, {
             isVisible: false,
             axisAlignment: useVerticalChart ? EAxisAlignment.Left : EAxisAlignment.Bottom,
-            flippedCoordinates: true,
+            flippedCoordinates: useVerticalChart,
             visibleRange: new NumberRange(0, POINTS),
             autoRange: EAutoRange.Never,
             axisTitle: "X Axis",

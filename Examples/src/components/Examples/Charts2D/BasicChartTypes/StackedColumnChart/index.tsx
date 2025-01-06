@@ -76,7 +76,7 @@ export default function StackedColumnChart() {
                         </ToggleButton>
                     </ToggleButtonGroup> */}
                     <FormControlLabel
-                        control={<Switch value={use100PercentStackedMode} onChange={handleUsePercentage} />}
+                        control={<Switch checked={use100PercentStackedMode} onChange={handleUsePercentage} />}
                         label="100%&nbsp;Mode"
                         style={{ margin: 0, padding: "1em" }}
                     />
