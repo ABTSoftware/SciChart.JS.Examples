@@ -34,7 +34,7 @@
             }
     
             &.active {
-                border: 1px solid #b4d0db;
+                border: 1px solid var(--border-color);
                 border-bottom: none;
                 background: #ffffff;
                 color: #7593a4;

@@ -140,7 +140,7 @@ export function BreadcrumbsWithMenu(props: {
             <Breadcrumbs
                 aria-label="breadcrumbs"
                 maxItems={isXs ? 2 : 8}
-                separator={<NavigateNextIcon fontSize="small" />}
+                separator={<NavigateNextIcon fontSize="small" sx={{ color: 'var(--text)' }} />}
             >
                 {breadcrumbElements}
             </Breadcrumbs>

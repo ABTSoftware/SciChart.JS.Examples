@@ -38,7 +38,7 @@
             }
 
             &.active {
-                border: 1px solid #b4d0db;
+                border: 1px solid var(--border-color);
                 border-bottom: none;
                 background: #ffffff;
                 color: #7593a4;
@@ -49,19 +49,19 @@
 .contentwrapper {
     padding: 13px;
     background: #fff;
-    border: 1px solid #b4d0db;
+    border: 1px solid var(--border-color);
     border-radius: 15px 15px 0 0;
     border-bottom: none;
     @media only screen and (max-width: 768px) {
         border-radius: 0;
-        border-top: 1px solid #b4d0db;
+        border-top: 1px solid var(--border-color);
         border: none;
         padding: 20px;
     }
 }
 .contertlistwrap {
     background: #ffffff;
-    border: 1px solid #b4d0db;
+    border: 1px solid var(--border-color);
     border-radius: 18px;
     display: flex;
     gap: 40px;

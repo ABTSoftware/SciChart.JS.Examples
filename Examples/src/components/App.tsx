@@ -17,7 +17,7 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { SciChartDefaults } from "scichart/Charting/Visuals/SciChartDefaults";
 import classes from "./App.module.scss";
 import "./index.scss";
-import { GalleryItem } from "../helpers/types/types";
+import { ETheme, GalleryItem } from "../helpers/types/types";
 import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
@@ -34,6 +34,12 @@ SciChartDefaults.useSharedCache = true;
 export default function App() {
     const { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
     const navigate = useNavigate(); // Hook to programmatically navigate
+
+    const [ theme, setTheme ] = React.useState(
+        // (window && window?.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) 
+        // ? ETheme.dark : 
+        ETheme.dark
+    );
 
     const selectedFramework = framework;
 
@@ -136,11 +142,16 @@ export default function App() {
                     </Drawer>
                 )}
                 <div className={classes.MainAppContent}>
-                    <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
+                    <AppBarTop 
+                        toggleDrawer={toggleDrawer} 
+                        currentExample={currentExample} 
+                        theme={theme}
+                        setTheme={setTheme}
+                    />
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
                     {!isHomePage ? (
-                        <AppDetailsRoute currentExample={currentExample} seeAlso={seeAlso} />
+                        <AppDetailsRoute currentExample={currentExample} seeAlso={seeAlso} theme={theme} />
                     ) : (
                         <div className={classes.MainAppWrapper}>
                             {!isMedium ? <div className={classes.DrawerDesktop}>

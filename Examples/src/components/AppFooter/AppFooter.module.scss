@@ -4,7 +4,7 @@
 .AppFooter {
     padding: 40px;
     overflow: hidden;
-    background: $color-dark !important;
+    background: var(--primary);
     color: white;
 
     @include sm {

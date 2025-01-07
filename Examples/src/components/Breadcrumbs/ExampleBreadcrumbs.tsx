@@ -35,7 +35,12 @@ export const ExampleBreadcrumbs = () => {
                     // Home menu item handling
                     link = `/${selectedFramework}`;
                     title = "Home Page Gallery";
-                    labelContent = <HomeIcon />;
+                    labelContent = <HomeIcon
+                        sx={{
+                            // align in center
+                            verticalAlign: "middle",
+                        }}
+                    />;
                     menuItems = [];
                 } else {
                     // inner menu category handling
@@ -54,7 +59,7 @@ export const ExampleBreadcrumbs = () => {
                             overflow: "hidden",
                             textOverflow: { xs: "ellipsis", md: "unset", lg: "unset" },
                             textTransform: "unset",
-                            color: appTheme.VividBlue,
+                            color: 'var(--light-blue)',
 
                             "&:hover": { textDecoration: "underline" },
                         }}
@@ -90,8 +95,7 @@ export const ExampleBreadcrumbs = () => {
                             textTransform: "unset",
                             textDecoration: "none",
 
-                            color: "black",
-
+                            color: "var(--text)",
                             // "&:hover": { textDecoration: "underline" },
                         }}
                     >

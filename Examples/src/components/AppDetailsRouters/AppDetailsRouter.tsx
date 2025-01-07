@@ -1,9 +1,9 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { EPageFramework, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { EPageLayout, ExampleSourceFile, GalleryItem } from "../../helpers/types/types";
+import { EPageLayout, ETheme, ExampleSourceFile, GalleryItem } from "../../helpers/types/types";
 import { TExamplePage } from "../AppRouter/examplePages";
-import { ALL_MENU_ITEMS, MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
+import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
 import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
 import DrawerContent from "../DrawerContent/DrawerContent";
 import ExamplesRoot from "../Examples/ExampleRootDetails";
@@ -14,17 +14,19 @@ import { CodeSandbox } from "../CodeSandbox";
 import { StackblitzEditor } from "../CodeSandbox/StackblitzEditor";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { CodeActionButtons } from "./CodeActionButtons";
-import { CodeEditor } from "./CodeEditor";
+import { CodePreview } from "../CodePreview/CodePreview";
+
 import { SourceFilesContext } from "./SourceFilesLoading/SourceFilesContext";
 
 type TProps = {
     currentExample: TExamplePage;
     isIFrame?: boolean;
     seeAlso: GalleryItem[];
+    theme: ETheme;
 };
 
 const AppDetailsRouter: FC<TProps> = (props) => {
-    const { currentExample, seeAlso } = props;
+    const { currentExample, seeAlso, theme } = props;
 
     const initialSourceFilesVariant = useContext(SourceFilesContext);
     const getInitialSelectedFile = () =>
@@ -35,6 +37,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
     const [sourceFiles, setSourceFiles] = useState<ExampleSourceFile[]>(initialSourceFilesVariant.files);
     const [selectedFile, setSelectedFile] = useState<ExampleSourceFile>(getInitialSelectedFile);
     const [pageLayout, setPageLayout] = useState<EPageLayout>();
+    const [isSideBySidePossible, setIsSideBySidePossible] = useState<boolean>();
     const [embedCode, setEmbedCode] = useState<boolean>(false);
     const [sandboxPlatform, setSandboxPlatform] = useState<SandboxPlatform>(SandboxPlatform.CodeSandbox);
     const [sandboxId, setSandboxId] = useState<string>("");
@@ -64,6 +67,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
     const [openedMenuItems, setOpenedMenuItems] = useState<Record<string, boolean>>(initialOpenedMenuItems);
 
     useEffect(() => {
+        setIsSideBySidePossible(window.innerWidth > 1900);
         setPageLayout(
             currentExample.pageLayout ?? (window !== undefined && window.innerWidth > 1900)
                 ? EPageLayout.Default
@@ -95,6 +99,14 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                 setSourceFramework(json.framework);
             });
     }, [currentExample, selectedFramework]);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSideBySidePossible(window.innerWidth > 1900);
+        };
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     useEffect(() => {
         if (embedCode) {
@@ -176,6 +188,8 @@ const AppDetailsRouter: FC<TProps> = (props) => {
         );
     };
 
+    const isMaxWidth = pageLayout === EPageLayout.MaxWidth || !isSideBySidePossible;
+
     return (
         <div>
             <div className={classes.mainWrapper}>
@@ -199,15 +213,15 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                                 className={classes.headingtxt}
                                 style={{
                                     margin: "-10px 0",
-                                    marginInline: pageLayout === EPageLayout.MaxWidth ? "auto" : 0,
-                                    width: pageLayout === EPageLayout.MaxWidth ? "min(100vh , 100%)" : "auto",
+                                    marginInline: isMaxWidth ? "auto" : 0,
+                                    width: isMaxWidth ? "min(100vh , 100%)" : "auto",
                                 }}
                             >
                                 {pageTitle}
                             </h1>
 
                             {/* Github, stackblitz buttons visible on maxwidth layout */}
-                            {!(pageLayout === EPageLayout.MaxWidth) ? (
+                            {!(isMaxWidth) ? (
                                 <CodeActionButtons
                                     className={`${classes.tabbtnwrap} ${classes.hiddenSmall}`}
                                     {...{ currentExample, selectedFramework, selectedFile }}
@@ -220,13 +234,13 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                         {/* Subtitle // this returns a <p> already */}
                         <span
                             style={
-                                pageLayout === EPageLayout.MaxWidth
+                                isMaxWidth
                                     ? {
-                                          width: "100%",
-                                          maxWidth: "min(100vh, 100vw)",
-                                          margin: "0 auto",
-                                          textAlign: "start",
-                                      }
+                                        width: "100%",
+                                        maxWidth: "min(100vh, 100vw)",
+                                        margin: "0 auto",
+                                        textAlign: "start",
+                                    }
                                     : {}
                             }
                         >
@@ -238,25 +252,25 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                             renderEditor()
                         ) : (
                             <div // Chart + Code section
-                                className={classes.dynamicFlexWrapper}
-                                style={pageLayout === EPageLayout.MaxWidth ? { flexDirection: "column" } : {}}
-                            >
+                                className={`${classes.dynamicFlexWrapper} ${isMaxWidth ? classes.maxWidth: ""}`}
+                            >   
                                 <ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />
                                 <CodeActionButtons
                                     {...{ currentExample, selectedFramework, selectedFile }}
                                     onSandboxOpen={handleSandboxOpen}
                                     className={`${classes.tabbtnwrap} ${
-                                        pageLayout === EPageLayout.MaxWidth ? "" : classes.hiddenLarge
+                                        isMaxWidth ? "" : classes.hiddenLarge
                                     }`}
                                     style={{ minHeight: 35, height: 35, padding: 0, width: "100%" }}
                                 />
-                                <CodeEditor
+                                <CodePreview
                                     files={sourceFiles}
                                     selectedFile={selectedFile}
                                     handleFileClick={handleFileClick}
                                     desiredFramework={selectedFramework}
                                     actualFramework={sourceFramework}
                                     examplePath={currentExample.path}
+                                    theme={theme}
                                 />
                             </div>
                         )}
