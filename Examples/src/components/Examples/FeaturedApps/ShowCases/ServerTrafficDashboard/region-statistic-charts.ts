@@ -37,9 +37,8 @@ import {
 import { CN, IN, US, JP, DE, GB, FR, BR, CA, AU } from "country-flag-icons/string/3x2";
 import { appTheme } from "../../../theme";
 import { TDataEntry, availableLocations, getData, getRequestsNumberPerLocation } from "./data-generation";
-import { TChartConfigFunc, TChartConfigResult } from "./chart-configurations";
 import { TTextureObject } from "scichart/Charting/Visuals/TextureManager/TextureManager";
-import { TInitFunction } from "scichart-react";
+import type { TChartViewOptions } from "./chart-configurations";
 
 type TCustomMetadata = IPointMetadata & {
     isHovered: boolean;
@@ -126,16 +125,13 @@ class CustomColumnPaletteProvider extends BasePaletteProvider implements IStroke
     }
 }
 
-export type TLocationStatsChartConfigFuncResult = TChartConfigResult<SciChartSurface> & {
-    subscribeToLocationSelection: (callback: (value: string) => void) => void;
-};
-export type TLocationStatsChartConfigFunc = TInitFunction<SciChartSurface, TLocationStatsChartConfigFuncResult>;
-
 // location stats
-export const createRegionStatisticsColumnChart: TLocationStatsChartConfigFunc = async (
-    divElementId: string | HTMLDivElement
+export const createRegionStatisticsColumnChart = async (
+    divElementId: string | HTMLDivElement,
+    options: { isLargeView: boolean; isMobileView: boolean }
 ) => {
     const icons = await getIcons();
+    const { isLargeView, isMobileView } = options;
 
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
@@ -169,7 +165,8 @@ export const createRegionStatisticsColumnChart: TLocationStatsChartConfigFunc = 
     };
 
     const yAxis = new NumericAxis(wasmContext, {
-        axisTitle: "Requests",
+        isVisible: isLargeView,
+        axisTitle: isLargeView ? "Requests" : undefined,
         axisTitleStyle: {
             fontSize: 18,
             color: appTheme.ForegroundColor,
@@ -208,9 +205,9 @@ export const createRegionStatisticsColumnChart: TLocationStatsChartConfigFunc = 
         dataLabels: {
             precision: 0,
             style: {
-                padding: Thickness.fromString("6 0 6 0"),
+                padding: Thickness.fromString("0 0 2 0"),
                 fontFamily: "Arial",
-                fontSize: 18,
+                fontSize: isLargeView ? 18 : 12,
             },
             color: appTheme.ForegroundColor,
         },
@@ -268,9 +265,11 @@ export const createRegionStatisticsColumnChart: TLocationStatsChartConfigFunc = 
     return { sciChartSurface, updateData, subscribeToLocationSelection };
 };
 
-export const createRegionStatisticsPieChart: TChartConfigFunc<SciChartPieSurface> = async (
-    divElementId: string | HTMLDivElement
-) => {
+export const getRegionStatisticsColumnChartConfig =
+    (options: TChartViewOptions) => async (divElementId: string | HTMLDivElement) =>
+        createRegionStatisticsColumnChart(divElementId, options);
+
+export const createRegionStatisticsPieChart = async (divElementId: string | HTMLDivElement) => {
     // Create the pie chart
     const sciChartPieSurface = await SciChartPieSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
