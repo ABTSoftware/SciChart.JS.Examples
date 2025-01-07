@@ -27,7 +27,7 @@ import type {
 } from "./chart-types";
 import { afterAllChartsInit } from "./after-all-charts-init";
 import { VisibleRangeSynchronizationManager } from "./VisibleRangeSynchronizationManager";
-import { useViewType } from "../../../../../helpers/shared/hooks/containerSizeHooks";
+import { useViewType } from "../../../containerSizeHooks";
 
 function ServerTrafficDashboard() {
     const ref = useRef<HTMLDivElement>(null);

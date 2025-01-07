@@ -61,7 +61,7 @@ export const includeExternalModules = async (
                             csPath = "src/" + filename + ".ts";
                             content = content.replace(externalImport[1] + externalImport[2], "./" + filename);
                         }
-                        console.log(filepath, csPath);
+                        //console.log(filepath, csPath);
                     }
                     if (!files[csPath]) {
                         try {
@@ -108,11 +108,11 @@ export const includeImportedModules = async (
                     const filename = localImport[1].substring(localImport[1].lastIndexOf("/") + 1);
                     files[csPath] = { content: baseUrl + filename, isBinary: true };
                 }
-            } else {
+            } else if (!files[csPath]) {
                 try {
                     const filepath = path.join(folderPath, localImport[1] + ".ts");
                     csPath = "src/" + localImport[1] + ".ts";
-                    console.log(csPath);
+                    //console.log(csPath);
                     content = await fs.promises.readFile(filepath, "utf8");
                     dirname = path.dirname(filepath);
                 } catch (e) {
@@ -123,8 +123,8 @@ export const includeImportedModules = async (
                         content = await fs.promises.readFile(filepath, "utf8");
                         dirname = path.dirname(filepath);
                     } catch {
-                        //console.log(csPath, "not loaded");
-                        content = "Could not load source";
+                        console.log(localImport[1], "not loaded for", folderPath);
+                        content = "could not load source";
                     }
                 }
                 const nestedImports = Array.from(content.matchAll(/from "\.\/(.*)";/g));
