@@ -35,11 +35,7 @@ export default function App() {
     const { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
     const navigate = useNavigate(); // Hook to programmatically navigate
 
-    const [ theme, setTheme ] = React.useState(
-        // (window && window?.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) 
-        // ? ETheme.dark : 
-        ETheme.dark
-    );
+    const [ theme, setTheme ] = React.useState<ETheme>();
 
     const selectedFramework = framework;
 
@@ -96,6 +92,13 @@ export default function App() {
             navigate("/react", { replace: true }); // Redirect to /react by default
         }
     }, [navigate]);
+
+    React.useEffect(() => {
+        setTheme(
+            (window && window?.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) 
+            ? ETheme.dark : ETheme.dark
+        )
+    }, []);
 
     React.useEffect(() => {
         if (window.location.hostname.includes("scichart.com")) {

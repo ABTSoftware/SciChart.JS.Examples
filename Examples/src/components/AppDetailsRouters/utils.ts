@@ -7,11 +7,8 @@
  * - "file.ts" -> "file.ts"
  */
 export const getFileName = (path: string): string => {
-    // Handle both forward and backward slashes
-    const normalizedPath = path.replace(/\\/g, "/");
-    // Get everything after the last slash, or the whole string if no slash
-    const fileName = normalizedPath.split("/").pop() || "";
-    return fileName;
+    const parts = path.split(/[\\/]/);
+    return parts[parts.length - 1];
 };
 
 /**

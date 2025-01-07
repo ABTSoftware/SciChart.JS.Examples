@@ -8,19 +8,11 @@
     position: relative;
 
     .code {
-        min-height: 100%;
-        height: 100%;
+        position: absolute;
+        width: 100%;
+        min-height: calc(100% - 64px);
+        height: calc(100% - 64px);
         overflow: auto;
-
-        &::-webkit-scrollbar {
-            height: 8px;
-            border-radius: 0;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            height: 8px;
-            border-radius: 0;
-        }
     }
 }
 
