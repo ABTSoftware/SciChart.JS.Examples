@@ -3,7 +3,7 @@ import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
 import { EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { Dialog } from "../Dialog/Dialog";
 import classes from "./index.module.scss"
-import { getFileName, processFiles } from "../AppDetailsRouters/utils";
+import { getFileName } from "../AppDetailsRouters/utils";
 import { ETheme } from "../../helpers/types/types";
 
 const EditorLanguageMap: Record<string, string> = {
@@ -281,17 +281,10 @@ export const CodePreview: FC<CodeEditorProps> = ({
     const [hasShownDialog, setHasShownDialog] = useState(false);
     const [showDialog, setShowDialog] = useState(false);
 
-    // Process files to ensure only filenames are shown and properly sorted
-    const processedFiles = processFiles(files);
-    const processedSelectedFile = {
-        ...selectedFile,
-        name: getFileName(selectedFile?.name),
-    };
-
     const handleMouseEnter = () => {
         if (!hasShownDialog && actualFramework && actualFramework !== desiredFramework) {
-              setShowDialog(true);
-              setHasShownDialog(true);
+            setShowDialog(true);
+            setHasShownDialog(true);
         }
     };
 
@@ -305,30 +298,39 @@ export const CodePreview: FC<CodeEditorProps> = ({
         <div className={classes.editorWrapper} onMouseEnter={handleMouseEnter}>
             <div className={classes.horizontalScroller}>
                 {/* VSCode-like horizontal scrollable tabs */}
-                {files.map((file) => (
-                    <div
-                        key={file.name}
-                        className={`${classes.selectTab} ${selectedFile.name === file.name ? classes.activeTab : ""}`}
-                        onClick={() => handleFileClick(file.name)}
-                    >
-                        {ICONS[file.name.split('.').pop() as keyof typeof ICONS]}
-                        <p>{file.name}</p>
-                    </div>
-                ))}
+                {files
+                    .sort((a, b) => {
+                        if (a.name.includes("drawExample")) { return -1 }
+                        if (b.name.includes("drawExample")) { return 1 }
+                        if (a.name.includes("index")) { return -1 }
+                        if (b.name.includes("index")) { return 1 }
+                        return a.name.localeCompare(b.name);
+                    })
+                    .map((file) => (
+                        <div
+                            key={file.name}
+                            className={`${classes.selectTab} ${selectedFile.name === file.name ? classes.activeTab : ""}`}
+                            onClick={() => handleFileClick(file.name)}
+                        >
+                            {ICONS[file.name.split('.').pop() as keyof typeof ICONS]}
+                            <p>{getFileName(file.name)}</p>
+                        </div>
+                    ))
+                }
             </div>
 
             {/* Code */}
             <section className={classes.code}>
                 <SyntaxHighlighter
                     language={
-                        EditorLanguageMap[processedSelectedFile.name.split(".").pop() as keyof typeof EditorLanguageMap]
+                        EditorLanguageMap[selectedFile.name.split(".").pop() as keyof typeof EditorLanguageMap]
                     }
                     // @ts-ignore
                     style={theme === ETheme.dark ? DarkStyles : LightStyles}
                     showLineNumbers={true}
                     wrapLines
                 >
-                    {processedSelectedFile.content}
+                    {selectedFile.content}
                 </SyntaxHighlighter>
             </section>
             

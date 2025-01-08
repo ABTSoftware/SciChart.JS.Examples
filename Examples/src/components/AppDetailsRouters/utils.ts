@@ -7,34 +7,30 @@
  * - "file.ts" -> "file.ts"
  */
 export const getFileName = (path: string): string => {
-    const parts = path.split(/[\\/]/);
-    return parts[parts.length - 1];
+    return path.split(/[/\\]/).pop() || "";
 };
 
 /**
  * Processes an array of files to:
  * 1. Extract just the filename from any path
- * 2. Sort files so that drawExample appears first, followed by index files
+ * 2. Sort files so that "drawExample" files appears first, followed by "index" files and then the rest
  */
 export const processFiles = <T extends { name: string }>(files: T[]): T[] => {
     return files
-        .map((file) => ({
-            ...file,
-            name: getFileName(file.name),
-        }))
+        .map((file) => ({ ...file, name: getFileName(file.name) }))
         .sort((a, b) => {
-            const aName = a.name.toLowerCase();
-            const bName = b.name.toLowerCase();
-
-            // drawExample files come first
-            if (aName.startsWith("drawexample") && !bName.startsWith("drawexample")) return -1;
-            if (!aName.startsWith("drawexample") && bName.startsWith("drawexample")) return 1;
-
-            // Then index files
-            if (aName.startsWith("index") && !bName.startsWith("index")) return -1;
-            if (!aName.startsWith("index") && bName.startsWith("index")) return 1;
-
-            // Then alphabetically
-            return aName.localeCompare(bName);
+            if (a.name.includes("drawExample")) {
+                return -1;
+            }
+            if (b.name.includes("drawExample")) {
+                return 1;
+            }
+            if (a.name.includes("index")) {
+                return -1;
+            }
+            if (b.name.includes("index")) {
+                return 1;
+            }
+            return a.name.localeCompare(b.name);
         });
 };

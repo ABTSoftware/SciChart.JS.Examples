@@ -36,7 +36,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
 
     const [sourceFiles, setSourceFiles] = useState<ExampleSourceFile[]>(initialSourceFilesVariant.files);
     const [selectedFile, setSelectedFile] = useState<ExampleSourceFile>(getInitialSelectedFile);
-    const [pageLayout, setPageLayout] = useState<EPageLayout>();
+    const [pageLayout, setPageLayout] = useState<EPageLayout>(EPageLayout.Default);
     const [isSideBySidePossible, setIsSideBySidePossible] = useState<boolean>();
     const [embedCode, setEmbedCode] = useState<boolean>(false);
     const [sandboxPlatform, setSandboxPlatform] = useState<SandboxPlatform>(SandboxPlatform.CodeSandbox);
@@ -67,12 +67,8 @@ const AppDetailsRouter: FC<TProps> = (props) => {
     const [openedMenuItems, setOpenedMenuItems] = useState<Record<string, boolean>>(initialOpenedMenuItems);
 
     useEffect(() => {
-        setIsSideBySidePossible(window.innerWidth > 1900);
-        setPageLayout(
-            currentExample.pageLayout ?? (window !== undefined && window.innerWidth > 1900)
-                ? EPageLayout.Default
-                : EPageLayout.MaxWidth
-        );
+        setIsSideBySidePossible(window.innerWidth > 1900);        
+        setPageLayout(currentExample.pageLayout ?? EPageLayout.Default);
         window.scrollTo({
             top: 0,
         });

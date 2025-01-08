@@ -11,6 +11,7 @@ import {
     MENU_ITEMS_FEATURED_APPS,
 } from "./AppRouter/examples";
 import AppBarTop from "./AppTopBar/AppBarTop";
+import SciChartNavbar from "./SciChartNavbar/SciChartNavbar";
 import DrawerContent from "./DrawerContent/DrawerContent";
 import AppFooter from "./AppFooter/AppFooter";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
@@ -96,7 +97,7 @@ export default function App() {
     React.useEffect(() => {
         setTheme(
             (window && window?.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) 
-            ? ETheme.dark : ETheme.dark
+            ? ETheme.dark : ETheme.light
         )
     }, []);
 
@@ -151,6 +152,8 @@ export default function App() {
                         theme={theme}
                         setTheme={setTheme}
                     />
+                    {/* <SciChartNavbar /> */}
+                    
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
                     {!isHomePage ? (
