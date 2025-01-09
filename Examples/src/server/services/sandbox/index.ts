@@ -2,7 +2,7 @@ import { TExampleInfo } from "../../../components/AppRouter/examplePages";
 import { EPageFramework } from "../../../helpers/shared/Helpers/frameworkParametrization";
 import { getAngularSandBoxConfig } from "./angularConfig";
 import { getVanillaTsSandBoxConfig } from "./vanillaTsConfig";
-import { handleInvalidFrameworkValue } from "./sandboxDependencyUtils";
+import { handleInvalidFrameworkValue, IFiles, SandboxConfig } from "./sandboxDependencyUtils";
 import { getReactSandBoxConfig } from "./reactConfig";
 import { NotFoundError } from "../../Errors";
 
@@ -11,7 +11,7 @@ export const getSandboxConfig = async (
     currentExample: TExampleInfo,
     framework: EPageFramework,
     baseUrl: string
-): Promise<{ files: any; actualFramework: EPageFramework }> => {
+): Promise<SandboxConfig & { actualFramework: EPageFramework }> => {
     try {
         switch (framework) {
             case EPageFramework.Angular:

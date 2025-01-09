@@ -141,6 +141,10 @@ app.get("/codesandbox/:example", (req: Request, res: Response) => {
     renderSandBoxRedirect(req, res, "codesandbox");
 });
 
+app.get("/stackblitz/:example", (req: Request, res: Response) => {
+    renderSandBoxRedirect(req, res, "stackblitz");
+});
+
 // StackBlitz json endpoints
 app.get("/json/list", (req: Request, res: Response) => {
     res.json({ files: [] });

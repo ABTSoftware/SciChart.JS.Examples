@@ -2,17 +2,13 @@ import React, { FC, ReactNode, useState } from "react";
 import classes from "./AppDetailsRouter.scss";
 import {
     EPageFramework,
-    FRAMEWORK_NAME,
     getFrameworkContent,
+    getFrameworkName,
 } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { getSandboxUrl, getStackBlitzFiles } from "./sandboxUtils";
 import { ExampleButton } from "./ExampleButton";
-
-const getFrameWorkName = (frameWork: string): string => {
-    return (FRAMEWORK_NAME as any)[frameWork];
-};
 
 type ExampleButtonsProps = {
     className?: string;
@@ -43,16 +39,15 @@ export const ExampleButtons: FC<ExampleButtonsProps> = ({
     ]);
 
     const isFrameworkVariantAvailable = availableFrameworks?.includes(selectedFramework);
-    const frameWorkName = getFrameWorkName(selectedFramework);
+    const frameWorkName = getFrameworkName(selectedFramework);
 
     const handleSandboxClick = async (e: React.MouseEvent<HTMLAnchorElement>, platform: SandboxPlatform) => {
         e.preventDefault();
         try {
             const framework = isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React;
-            const frameworkType = framework.toLowerCase() as "react" | "angular" | "vanilla";
 
             if (platform === SandboxPlatform.CodeSandbox) {
-                const { id, actualFramework } = await getSandboxUrl(currentExample.path, frameworkType, platform);
+                const { id, actualFramework } = await getSandboxUrl(currentExample.path, framework, platform);
                 if (id) {
                     onSandboxOpen(platform, id, undefined, actualFramework);
                 } else {
@@ -60,7 +55,7 @@ export const ExampleButtons: FC<ExampleButtonsProps> = ({
                 }
             } else {
                 // For StackBlitz, get the files first
-                const files = await getStackBlitzFiles(currentExample.path, frameworkType);
+                const files = await getStackBlitzFiles(currentExample.path, framework);
                 onSandboxOpen(platform, currentExample.path, files);
             }
         } catch (error) {
