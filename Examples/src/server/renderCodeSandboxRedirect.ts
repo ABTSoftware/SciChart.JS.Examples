@@ -733,7 +733,7 @@ const getStackblitzTemplate = (framework: EPageFramework) => {
 const getCodeSandboxTemplate = (framework: EPageFramework) => {
     switch (framework) {
         case EPageFramework.Angular:
-            return "angular-cli";
+            return "node";
         case EPageFramework.React:
             return "create-react-app";
         case EPageFramework.Vanilla:
