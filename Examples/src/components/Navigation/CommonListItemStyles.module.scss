@@ -1,8 +1,8 @@
 @import "../../assets/main.scss";
 
 %ListItem {
-    height: 42px;
-    padding: 4px 20px;
+    min-height: 38px;
+    padding: 6px 20px;
     display: flex;
     align-items: center;
     border: 0;
