@@ -20,6 +20,8 @@ export const FRAMEWORK_NAME = {
     // [EPageFramework.Vue]: "Vue",
 } as const;
 
+export const getFrameworkName = (frameWork: EPageFramework) => FRAMEWORK_NAME[frameWork];
+
 const DEFAULT_FRAMEWORK = EPageFramework.React;
 
 export type TPathTemplate = string | ((framework: EPageFramework) => string);

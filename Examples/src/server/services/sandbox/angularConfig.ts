@@ -3,7 +3,13 @@ import fs from "fs";
 
 import { TExampleInfo } from "../../../components/AppRouter/examplePages";
 import { NotFoundError } from "../../Errors";
-import { IFiles, includeImportedModules, includeExternalModules, commonFiles } from "./sandboxDependencyUtils";
+import {
+    IFiles,
+    includeImportedModules,
+    includeExternalModules,
+    commonFiles,
+    SandboxConfig,
+} from "./sandboxDependencyUtils";
 import { SCICHART_ANCHOR, SCICHART_VERSION } from "./constants";
 
 const pj = require("../../../../package.json");
@@ -20,7 +26,11 @@ export const getAngularSrc = async (folderPath: string) => {
     return code;
 };
 
-export const getAngularSandBoxConfig = async (folderPath: string, currentExample: TExampleInfo, baseUrl: string) => {
+export const getAngularSandBoxConfig = async (
+    folderPath: string,
+    currentExample: TExampleInfo,
+    baseUrl: string
+): Promise<SandboxConfig> => {
     let code = await getAngularSrc(folderPath);
 
     let files: IFiles = {};
@@ -281,5 +291,5 @@ bootstrapApplication(AppWrapperComponent).catch((err) => console.error(err));`,
             isBinary: false,
         };
     }
-    return { files: { ...files }, template: "node" };
+    return { files: { ...files } };
 };

@@ -1,3 +1,4 @@
+import type { ProjectTemplate, ProjectDependencies, ProjectSettings, ProjectFiles } from "@stackblitz/sdk";
 import type { EPageFramework } from "../shared/Helpers/frameworkParametrization";
 
 export type GalleryItem = {
@@ -29,3 +30,13 @@ export enum EPageLayout {
 
 export type ExampleSourceFile = { name: string; content: string };
 export type SourceFilesVariant = { files: ExampleSourceFile[]; framework: EPageFramework };
+
+export interface StackBlitzResponse {
+    files: ProjectFiles;
+    title: string;
+    description: string;
+    template: ProjectTemplate;
+    dependencies: ProjectDependencies;
+    devDependencies: ProjectDependencies;
+    settings: ProjectSettings;
+}

@@ -16,6 +16,7 @@ import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { CodeActionButtons } from "./CodeActionButtons";
 import { CodeEditor } from "./CodeEditor";
 import { SourceFilesContext } from "./SourceFilesLoading/SourceFilesContext";
+import type { StackBlitzResponse } from "../../helpers/types/types";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -38,7 +39,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
     const [embedCode, setEmbedCode] = useState<boolean>(false);
     const [sandboxPlatform, setSandboxPlatform] = useState<SandboxPlatform>(SandboxPlatform.CodeSandbox);
     const [sandboxId, setSandboxId] = useState<string>("");
-    const [projectFiles, setProjectFiles] = useState<any>(null);
+    const [projectFiles, setProjectFiles] = useState<StackBlitzResponse>(null);
     const [sourceFramework, setSourceFramework] = useState<EPageFramework | null>(initialSourceFilesVariant.framework);
     const [sandboxFramework, setSandboxFramework] = useState<EPageFramework | null>(null);
 
