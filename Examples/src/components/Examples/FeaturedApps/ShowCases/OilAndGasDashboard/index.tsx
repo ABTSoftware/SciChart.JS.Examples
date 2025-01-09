@@ -23,7 +23,7 @@ import { drawTextureChart } from "./charts/VerticalCharts/TextureChart";
 import { IInitResult, SciChartReact } from "scichart-react";
 import { ChartGroupLoader } from "../../../ChartGroupLoader";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { Theme } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const onInitAllCharts = (initResults: IInitResult[]) => {
     const verticalChartIds = [
@@ -57,8 +57,8 @@ const onInitAllCharts = (initResults: IInitResult[]) => {
 };
 
 export default function OilAndGasDashboardShowcase() {
-    const isXs = useMediaQuery((theme: Theme) => theme?.breakpoints.down("md")); // Mobile view
-
+    const theme = useTheme();
+    const isXs = useMediaQuery(theme.breakpoints.down("md")); // Mobile view
     return (
         <ChartGroupLoader className={commonClasses.ChartWrapper} style={{ display: "flex" }} onInit={onInitAllCharts}>
             {isXs ? null : (

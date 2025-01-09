@@ -14,7 +14,7 @@ import { makeStyles } from "tss-react/mui";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample, TTimeSpan } from "./drawExample";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { Theme } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
@@ -40,7 +40,8 @@ export default function Load500By500() {
     const [isStarted, setIsStarted] = React.useState(false);
 
     const { classes } = useStyles();
-    const isXs = useMediaQuery((theme: Theme) => theme.breakpoints.down("md")); // Mobile view
+    const theme = useTheme();
+    const isXs = useMediaQuery(theme.breakpoints.down("md")); // Mobile view
 
     return (
         <div className={commonClasses.ChartWrapper}>
