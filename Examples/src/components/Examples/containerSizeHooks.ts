@@ -1,4 +1,5 @@
-import { useState, useCallback, useLayoutEffect, MutableRefObject } from "react";
+import { useState, useCallback, MutableRefObject } from "react";
+import { useIsomorphicLayoutEffect } from "../../helpers/hooks/useIsomorphicLayoutEffect";
 
 export const useMeasure = (ref: MutableRefObject<HTMLElement>) => {
     const [bounds, setBounds] = useState<{ width: number; height: number }>(undefined);
@@ -10,7 +11,7 @@ export const useMeasure = (ref: MutableRefObject<HTMLElement>) => {
         }
     }, []);
 
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
         if (!ref.current) return undefined;
 
         const resizeObserver = new ResizeObserver(() => measure());
