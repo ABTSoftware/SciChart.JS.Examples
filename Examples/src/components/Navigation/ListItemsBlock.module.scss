@@ -2,6 +2,8 @@
 @import "./CommonListItemStyles.module.scss";
 
 .ListItemBlock {
+    color: var(--text);
+
     .MenuListItemText {
         flex: auto;
     }
@@ -28,15 +30,15 @@
         font-size: 0.875rem;
         line-height: 17px;
         margin: 9px 0 10px 40px;
-        color: $font-color;
+        color: var(--text);
         text-decoration: none;
         pointer-events: none;
         cursor: default;
     }
 
     .CollapseArrowButton {
-        background-color: #f9fafa;
-        color: #98a4af;
+        background-color: var(--bg-darker);
+        color: var(--text);
         border-radius: 50%;
         height: 24px;
         width: 24px;

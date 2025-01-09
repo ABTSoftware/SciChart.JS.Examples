@@ -30,16 +30,11 @@ import {
 import { appTheme } from "../../../theme";
 import { GridLayoutModifier } from "./GridLayoutModifier";
 import { getData, TDataEntry, availableServers, getRequestsNumberPerTimestamp } from "./data-generation";
-import { TChartConfigResult, tooltipDataTemplateKey } from "./chart-configurations";
-import { TInitFunction } from "scichart-react";
+import { TChartViewOptions, tooltipDataTemplateKey } from "./chart-configurations";
 
-export type TServerStatsChartConfigFuncResult = TChartConfigResult<SciChartSurface> & {
-    subscribeToServerSelection: (callback: (server: string, isChecked: boolean) => void) => void;
-};
-export type TServerStatsChartConfigFunc = TInitFunction<SciChartSurface, TServerStatsChartConfigFuncResult>;
+export const createServerLoadChart = async (divElementId: string | HTMLDivElement, options: TChartViewOptions) => {
+    const { isMobileView, isLargeView } = options;
 
-// per server
-export const createServerLoadChart: TServerStatsChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
@@ -47,27 +42,32 @@ export const createServerLoadChart: TServerStatsChartConfigFunc = async (divElem
         title: "Server Load",
         titleStyle: {
             useNativeText: true,
+            placeWithinChart: !isLargeView,
             padding: Thickness.fromString("15 0 0 0"),
-            fontSize: 20,
+            fontSize: 16,
             color: appTheme.ForegroundColor,
         },
     });
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
+        labelStyle: {
+            fontSize: isLargeView ? 12 : 10,
+        },
         labelFormat: ENumericFormat.Date_DDMM,
         // useNativeText: true,
     });
 
     const yAxis = new NumericAxis(wasmContext, {
         labelPrecision: 0,
-        axisTitle: "Requests",
+        axisTitle: isLargeView ? "Requests" : undefined,
         axisTitleStyle: {
             fontSize: 20,
             color: appTheme.ForegroundColor,
         },
         labelStyle: {
-            color: appTheme.ForegroundColor,
+            fontSize: isLargeView ? 10 : 12,
         },
+        keepLabelsWithinAxis: false,
         useNativeText: true,
     });
 
@@ -120,11 +120,14 @@ export const createServerLoadChart: TServerStatsChartConfigFunc = async (divElem
 
     const legendModifier = new LegendModifier({
         id: "LegendModifier",
+        showLegend: isLargeView,
         orientation: ELegendOrientation.Horizontal,
         placement: ELegendPlacement.TopRight,
         showCheckboxes: true,
         backgroundColor: "#0d1523",
     });
+
+    legendModifier.isEnabled = isLargeView;
 
     const rolloverModifier = new RolloverModifier({
         id: "ServerLoadCursorModifier",
@@ -179,6 +182,9 @@ export const createServerLoadChart: TServerStatsChartConfigFunc = async (divElem
 
     return { sciChartSurface, updateData, subscribeToServerSelection };
 };
+
+export const getServerLoadChartConfig = (options: TChartViewOptions) => async (divElementId: string | HTMLDivElement) =>
+    createServerLoadChart(divElementId, options);
 
 const onSelectionChanged = (args: SelectionChangedArgs) => {
     args.allSeries.forEach((series) => {

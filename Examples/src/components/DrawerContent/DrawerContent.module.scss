@@ -10,7 +10,7 @@
 .DrawerTopSection {
     display: flex;
     position: sticky; top: 0;
-    background-color: #FFF;
+    background-color: var(--bg);
     z-index: 9999;
     justify-content: space-between;
     padding: $default-spacing * 2;
@@ -74,7 +74,7 @@
     display: flex;
     height: 42px;
     width: 100%;
-    border: 1px solid #b4d0db;
+    border: 1px solid var(--border-color);
     overflow: hidden;
     border-radius: 4px;
     cursor: pointer;
@@ -89,5 +89,5 @@
 }
 
 .FrameworkSelect .SelectedFramework{
-    background-color: #b4d0db44;
+    background-color: var(--border-color)44;
 }

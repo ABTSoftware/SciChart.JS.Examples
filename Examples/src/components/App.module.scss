@@ -13,7 +13,7 @@ $drawerWidthMobile: 100%;
 }
 
 .DrawerMobile {
-    background-color: $color-primary-white;
+    background-color: var(--bg);
     flex-shrink: 0;
     display: none;
     padding: 0;
@@ -33,13 +33,13 @@ $drawerWidthMobile: 100%;
     position: sticky;
     top: 85px;
     order: -1;
-    background-color: $color-primary-white;
+    background-color: var(--bg);
     width: $drawerWidthDesktop;
     max-height: calc(100vh - 68px - 24px); // subtract navHeight and 2 * padding
     margin-right: 15px;
     flex-shrink: 0;
     overflow-x: hidden;
-    border: 1px solid #b4d0db;
+    border: 1px solid var(--border-color);
     border-radius: 15px;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -55,7 +55,7 @@ $drawerWidthMobile: 100%;
 
 .MainAppContent {
     flex-grow: 1;
-    background-color: #e5e5e5;
+    background-color: var(--bg-darker);
     max-width: 100vw;
 }
 

@@ -9,7 +9,7 @@
     background-position: center;
     transition: background 0.8s;
     background: transparent radial-gradient(circle, transparent 1%, #0000000f 1%) center/15000%;
-    color: $font-color;
+    color: var(--text);
     -webkit-tap-highlight-color: transparent;
     font-weight: 500;
     line-height: 17px;
@@ -18,11 +18,10 @@
     // prevent simulation of hover on touch devices
     @media (hover: hover) {
       &:hover {
-        color: $font-color;
-        background-color: rgba(0, 0, 0, 0.04);
+        background-color: rgba(0, 0, 0, 0.05);
 
         a {
-          color: $font-color;
+          color: var(--primary-purple);
         }
 
         &::after {
@@ -32,9 +31,10 @@
     }
 
     &:active {
-      background-color: #0000000f;
+      background-color: var(--bg-darker);
       background-size: 100%;
       transition: background 0s;
+      color: var(--text);
 
       &::after {
           border-left: 0px solid $color-dark-green;
@@ -51,7 +51,7 @@
 %MenuListItem {
   @extend %ListItem;
 
-  color: $menu-list-item-font-color;
+  color: var(--text);
   font-size: 0.875rem;
   font-weight: 600;
   padding-top: 12px;
@@ -60,11 +60,11 @@
 }
 
 %SelectedListItem {
-  background-color: $color-medium-blue;
-  color: $color-primary-white;
+  background-color: var(--light-blue);
+  color: #FFF;
 
   a {
-    color: $color-primary-white;
+    color: #FFF;
   }
 
   &::after {

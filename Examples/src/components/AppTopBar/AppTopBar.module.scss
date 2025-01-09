@@ -24,7 +24,7 @@
     .ToolBar {
         display: flex;
         max-width: 100%;
-        background-color: $color-dark;
+        background-color: var(--primary);
     }
 
     .ToolBarMenu {
@@ -59,7 +59,7 @@
             background: $color-primary-white-alpha;
             // border: 1px solid $color-medium-blue;
 
-            @include md {
+            @include sm {
                 display: block;
             }
         }
@@ -160,6 +160,14 @@
         .BlueButton:hover {
             background-size: 200% 100%;
             background-position: 0 100%;
+        }
+
+        .ThemeButton {
+            @extend %ToolBarButton;
+            height: 100%;
+            border-radius: 8px;
+            font-size: 22px;
+            padding: 6px;
         }
     }
 }

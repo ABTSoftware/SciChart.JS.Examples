@@ -4,9 +4,10 @@
     flex-direction: column;
     gap: 32px;
     padding: 16px;
-    background: #ffffff;
+    background-color: var(--bg);
+    color: var(--text);
     border-radius: 15px;
-    border: 1px solid #b4d0db;
+    border: 1px solid var(--border-color);
 
     --small-h3: calc(0.65rem + 0.3vw);
     --medium-h3: calc(0.8rem + 0.4vw);
@@ -31,12 +32,13 @@
         cursor: pointer;
 
         svg path {
-            fill: #a0c2d4;
+            fill: var(--light-blue);
+            opacity: 0.6;
         }
 
         &.activeGrid {
             svg path {
-                fill: #315e96;
+                opacity: 1;
             }
         }
     }

@@ -12,6 +12,7 @@ import {
     ECoordinateMode,
     GenericAnimation,
     I2DSubSurfaceOptions,
+    IGenericAnimation,
     ISciChart2DDefinition,
     LegendModifier,
     NumberRange,
@@ -28,6 +29,7 @@ import {
     TSeriesDefinition,
     TTextStyle,
     TTickLineStyle,
+    VisibleRangeChangedArgs,
 } from "scichart";
 import { ChartModifierBase2D } from "scichart/Charting/ChartModifiers/ChartModifierBase2D";
 import { appTheme } from "../../../theme";
@@ -37,6 +39,7 @@ export class GridLayoutModifier extends ChartModifierBase2D {
     public isGridProperty: boolean = false;
     public columns: number = 2;
     public transitionDuration = 500;
+    protected activeAnimations: IGenericAnimation[] = [];
 
     public get isGrid() {
         return this.isGridProperty;
@@ -54,6 +57,12 @@ export class GridLayoutModifier extends ChartModifierBase2D {
 
     public onAttach(): void {
         // TODO add viewportSizeChange subscription
+    }
+
+    public halt() {
+        this.activeAnimations.forEach((animation) => {
+            animation.cancel();
+        });
     }
 
     private getSubChartsAreaRect() {
@@ -159,6 +168,22 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             // borderTop: 2,
             // borderBottom: 2,
         };
+
+        const parentXAxis = subChart.parentSurface.xAxes.get(0);
+        parentXAxis.visibleRangeChanged.subscribe((data) => {
+            xAxis.visibleRange = data.visibleRange;
+        });
+
+        const reflectParentVisibleRange = (data: VisibleRangeChangedArgs) => {
+            parentXAxis.visibleRange = data.visibleRange;
+        };
+
+        xAxis.visibleRangeChanged.subscribe(reflectParentVisibleRange);
+        subChart.addDeletable({
+            delete: () => {
+                parentXAxis.visibleRangeChanged.unsubscribe(reflectParentVisibleRange);
+            },
+        });
 
         const axisInitialStyles = collectAxisStyles(xAxis);
         const surfaceInitialStyles = collectSurfaceStyles(subChart);
@@ -323,7 +348,10 @@ export class GridLayoutModifier extends ChartModifierBase2D {
                         const legendModifier = this.parentSurface.chartModifiers.getById(
                             "LegendModifier"
                         ) as LegendModifier;
-                        legendModifier.sciChartLegend.showLegend = true;
+
+                        if (legendModifier.isEnabled) {
+                            legendModifier.sciChartLegend.showLegend = true;
+                        }
                     }, 0);
                 },
             });
