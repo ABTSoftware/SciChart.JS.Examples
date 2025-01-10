@@ -282,6 +282,15 @@ bootstrapApplication(AppWrapperComponent).catch((err) => console.error(err));`,
             `,
             isBinary: false,
         },
+        "sandbox.config.json": {
+            isBinary: false,
+            content: `{
+"infiniteLoopProtection": false,
+"hardReloadOnChange": false,
+"view": "browser",
+"template": "node"
+}`,
+        },
     };
 
     if (currentExample.sandboxConfig) {
