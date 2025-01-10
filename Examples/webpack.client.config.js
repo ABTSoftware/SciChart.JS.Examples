@@ -10,7 +10,7 @@ const filename = (ext) => `[name].[hash].${ext}`;
 
 module.exports = {
     mode: "production",
-    devtool: "source-map",
+    //devtool: "source-map",
     entry: "./src/index.tsx",
     module: {
         rules: [
