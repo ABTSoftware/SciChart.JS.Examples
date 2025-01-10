@@ -1,3 +1,4 @@
+import React from "react";
 import { bandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart/exampleInfo";
 import { splineBandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart/exampleInfo";
 import { digitalBandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/DigitalBandSeriesChart/exampleInfo";
@@ -114,7 +115,6 @@ import { smoothStackedMountainChartExampleInfo } from "../Examples/Charts2D/Basi
 import { lineSplittingThresholdsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds/exampleInfo";
 import { column3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Column3DChart/exampleInfo";
 
-
 export type TExampleInfo = {
     /**
      * Example title
@@ -129,7 +129,7 @@ export type TExampleInfo = {
     /**
      * Content shown below title on example page
      */
-    subtitle: (frameworkName: string) => JSX.Element;
+    subtitle: (frameworkName: string) => React.ReactElement | string;
     /**
      * Page meta description
      */

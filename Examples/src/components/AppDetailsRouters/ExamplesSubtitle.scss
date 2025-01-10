@@ -1,0 +1,10 @@
+.subtitle {
+    display: block;
+
+    &.maxWidth {
+        width: 100%;
+        max-width: min(100vh, 100vw);
+        margin: 0 auto;
+        text-align: start;
+    }
+}
