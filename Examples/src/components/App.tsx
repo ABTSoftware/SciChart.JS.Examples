@@ -11,7 +11,7 @@ import {
     MENU_ITEMS_FEATURED_APPS,
 } from "./AppRouter/examples";
 import AppBarTop from "./AppTopBar/AppBarTop";
-import SciChartNavbar from "./SciChartNavbar/SciChartNavbar";
+//import SciChartNavbar from "./SciChartNavbar/SciChartNavbar";
 import DrawerContent from "./DrawerContent/DrawerContent";
 import AppFooter from "./AppFooter/AppFooter";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
@@ -36,7 +36,7 @@ export default function App() {
     const { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
     const navigate = useNavigate(); // Hook to programmatically navigate
 
-    const [ theme, setTheme ] = React.useState<ETheme>();
+    const [theme, setTheme] = React.useState<ETheme>();
 
     const selectedFramework = framework;
 
@@ -96,9 +96,10 @@ export default function App() {
 
     React.useEffect(() => {
         setTheme(
-            (window && window?.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) 
-            ? ETheme.dark : ETheme.light
-        )
+            window && window?.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? ETheme.dark
+                : ETheme.light
+        );
     }, []);
 
     React.useEffect(() => {
@@ -146,28 +147,30 @@ export default function App() {
                     </Drawer>
                 )}
                 <div className={classes.MainAppContent}>
-                    <AppBarTop 
-                        toggleDrawer={toggleDrawer} 
-                        currentExample={currentExample} 
+                    <AppBarTop
+                        toggleDrawer={toggleDrawer}
+                        currentExample={currentExample}
                         theme={theme}
                         setTheme={setTheme}
                     />
                     {/* <SciChartNavbar /> */}
-                    
+
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
                     {!isHomePage ? (
                         <AppDetailsRoute currentExample={currentExample} seeAlso={seeAlso} theme={theme} />
                     ) : (
                         <div className={classes.MainAppWrapper}>
-                            {!isMedium ? <div className={classes.DrawerDesktop}>
-                                <DrawerContent
-                                    testIsOpened={testIsOpened}
-                                    toggleOpenedMenuItem={toggleOpenedMenuItem}
-                                    toggleDrawer={toggleDrawer}
-                                    mostVisibleCategory={mostVisibleCategory}
-                                />
-                            </div> : null}
+                            {!isMedium ? (
+                                <div className={classes.DrawerDesktop}>
+                                    <DrawerContent
+                                        testIsOpened={testIsOpened}
+                                        toggleOpenedMenuItem={toggleOpenedMenuItem}
+                                        toggleDrawer={toggleDrawer}
+                                        mostVisibleCategory={mostVisibleCategory}
+                                    />
+                                </div>
+                            ) : null}
                             {isHomePage ? (
                                 <div className={classes.GalleryAppWrapper}>
                                     <GalleryItems

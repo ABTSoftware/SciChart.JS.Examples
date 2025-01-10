@@ -56,21 +56,21 @@ export const includeExternalModules = async (
                     const filepath = path.join(folderPath, externalImport[1] + externalImport[2] + ".ts");
                     const filename = externalImport[2].substring(externalImport[2].lastIndexOf("/") + 1);
                     let csPath = filepath.replace(examplefolderPath, "src").replace(/\\/g, "/");
+                    const csPathx = csPath + "x";
                     if (updateImports) {
                         if (!filepath.includes(examplefolderPath)) {
                             csPath = "src/" + filename + ".ts";
                             content = content.replace(externalImport[1] + externalImport[2], "./" + filename);
+                            console.log("Updating import", filepath, csPath, externalImport[1] + externalImport[2]);
                         }
-                        //console.log(filepath, csPath);
                     }
-                    if (!files[csPath]) {
+                    if (!files[csPath] && !files[csPathx]) {
                         try {
                             const externalContent = await fs.promises.readFile(filepath, "utf8");
                             //console.log(filepath);
                             files[csPath] = { content: externalContent, isBinary: false };
                         } catch {
                             const filepathx = filepath + "x";
-                            const csPathx = csPath + "x";
                             try {
                                 const externalContentx = await fs.promises.readFile(filepathx, "utf8");
                                 files[csPathx] = { content: externalContentx, isBinary: false };
@@ -108,39 +108,45 @@ export const includeImportedModules = async (
                     const filename = localImport[1].substring(localImport[1].lastIndexOf("/") + 1);
                     files[csPath] = { content: baseUrl + filename, isBinary: true };
                 }
-            } else if (!files[csPath]) {
-                try {
-                    const filepath = path.join(folderPath, localImport[1] + ".ts");
-                    csPath = "src/" + localImport[1] + ".ts";
-                    //console.log(csPath);
-                    content = await fs.promises.readFile(filepath, "utf8");
-                    dirname = path.dirname(filepath);
-                } catch (e) {
+            } else {
+                csPath = "src/" + localImport[1] + ".ts";
+                const csxPath = "src/" + localImport[1] + ".tsx";
+                if (!files[csPath] && !files[csxPath]) {
                     try {
-                        const filepath = path.join(folderPath, localImport[1] + ".tsx");
-                        //console.log("not found. trying ", filepath);
-                        csPath = "src/" + localImport[1] + ".tsx";
+                        const filepath = path.join(folderPath, localImport[1] + ".ts");
+                        //console.log(csPath);
                         content = await fs.promises.readFile(filepath, "utf8");
                         dirname = path.dirname(filepath);
-                    } catch {
-                        console.log(localImport[1], "not loaded for", folderPath);
-                        content = "could not load source";
+                    } catch (e) {
+                        try {
+                            const filepath = path.join(folderPath, localImport[1] + ".tsx");
+                            //console.log("not found. trying ", filepath);
+                            csPath = "src/" + localImport[1] + ".tsx";
+                            content = await fs.promises.readFile(filepath, "utf8");
+                            dirname = path.dirname(filepath);
+                        } catch {
+                            console.log(localImport[1], "not loaded for", folderPath);
+                            content = "could not load source";
+                        }
                     }
+                    if (!localImport[1].includes("/")) {
+                        // this only works if the import is in the base folder
+                        const nestedImports = Array.from(content.matchAll(/from "\.\/(.*)";/g));
+                        if (nestedImports.length > 0) {
+                            localImports.push(...nestedImports);
+                        }
+                    }
+                    console.log("processing externals for", localImport[1]);
+                    content = await includeExternalModules(
+                        folderPath,
+                        dirname,
+                        files,
+                        content,
+                        includeImages,
+                        updateImports
+                    );
+                    files[csPath] = { content, isBinary: false };
                 }
-                const nestedImports = Array.from(content.matchAll(/from "\.\/(.*)";/g));
-                if (nestedImports.length > 0) {
-                    localImports.push(...nestedImports);
-                }
-
-                content = await includeExternalModules(
-                    folderPath,
-                    dirname,
-                    files,
-                    content,
-                    includeImages,
-                    updateImports
-                );
-                files[csPath] = { content, isBinary: false };
             }
         }
     }
