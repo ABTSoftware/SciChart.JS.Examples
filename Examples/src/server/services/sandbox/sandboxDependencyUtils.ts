@@ -56,14 +56,14 @@ export const includeExternalModules = async (
                     const filepath = path.join(folderPath, externalImport[1] + externalImport[2] + ".ts");
                     const filename = externalImport[2].substring(externalImport[2].lastIndexOf("/") + 1);
                     let csPath = filepath.replace(examplefolderPath, "src").replace(/\\/g, "/");
-                    const csPathx = csPath + "x";
                     if (updateImports) {
                         if (!filepath.includes(examplefolderPath)) {
                             csPath = "src/" + filename + ".ts";
                             content = content.replace(externalImport[1] + externalImport[2], "./" + filename);
-                            console.log("Updating import", filepath, csPath, externalImport[1] + externalImport[2]);
+                            //console.log("Updating import", filepath, csPath, externalImport[1] + externalImport[2]);
                         }
                     }
+                    const csPathx = csPath + "x";
                     if (!files[csPath] && !files[csPathx]) {
                         try {
                             const externalContent = await fs.promises.readFile(filepath, "utf8");
@@ -136,7 +136,7 @@ export const includeImportedModules = async (
                             localImports.push(...nestedImports);
                         }
                     }
-                    console.log("processing externals for", localImport[1]);
+                    //console.log("processing externals for", localImport[1]);
                     content = await includeExternalModules(
                         folderPath,
                         dirname,
