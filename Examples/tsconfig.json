@@ -22,7 +22,7 @@
         "jsx": "react-jsx",
         "allowJs": true,
         "typeRoots": ["./src/types", "./node_modules/@types"],
-        "skipLibCheck": false,
+        "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
         "experimentalDecorators": true
     },

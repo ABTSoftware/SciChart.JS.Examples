@@ -2,7 +2,6 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import SubdirectoryArrowRight from "@mui/icons-material/SubdirectoryArrowRight";
 import { Button } from "@mui/material";
 import { FC, useContext, useEffect, useRef, useState } from "react";
-import { Simulate } from "react-dom/test-utils";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { baseGithubPath } from "../../constants";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
