@@ -21,7 +21,7 @@ const useStyles = makeStyles()((theme) => ({
 }));
 
 export default function ChartComponent() {
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
+    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
     const [preset, setPreset] = React.useState<string>(HIT_TEST_DATAPOINT);
 

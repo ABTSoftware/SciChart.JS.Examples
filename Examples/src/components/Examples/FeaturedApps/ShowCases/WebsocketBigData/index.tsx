@@ -41,7 +41,7 @@ const useStyles = makeStyles()((theme) => ({
 }));
 
 export default function RealtimeBigDataShowcase() {
-    const controlsRef = React.useRef<TResolvedReturnType<typeof chartInitFunction>["controls"]>();
+    const controlsRef = React.useRef<TResolvedReturnType<typeof chartInitFunction>["controls"]>(undefined);
 
     const [seriesType, setSeriesType] = React.useState<ESeriesType>(ESeriesType.LineSeries);
     const [isDirty, setIsDirty] = React.useState<boolean>(false);

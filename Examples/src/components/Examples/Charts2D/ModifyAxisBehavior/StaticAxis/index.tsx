@@ -25,7 +25,7 @@ const useStyles = makeStyles()(() => ({
 export default function ChartComponent() {
     const [isStaticAxis, setIsStaticAxis] = React.useState(false);
 
-    const controlsRef = React.useRef<{ toggleStaticAxis: () => void }>();
+    const controlsRef = React.useRef<{ toggleStaticAxis: () => void }>(undefined);
 
     const { classes } = useStyles();
     return (

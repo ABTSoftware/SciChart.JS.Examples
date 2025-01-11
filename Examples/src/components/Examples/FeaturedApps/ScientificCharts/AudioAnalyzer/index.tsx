@@ -6,7 +6,7 @@ import { appTheme } from "../../../theme";
 
 export default function AudioAnalyzer() {
     const [chartsInitializationAPI] = React.useState(getChartsInitializationApi);
-    const controlsRef = React.useRef<ReturnType<typeof chartsInitializationAPI.onAllChartsInit>>();
+    const controlsRef = React.useRef<ReturnType<typeof chartsInitializationAPI.onAllChartsInit>>(undefined);
 
     return (
         <div style={{ background: appTheme.Background }} className={commonClasses.ChartWrapper}>

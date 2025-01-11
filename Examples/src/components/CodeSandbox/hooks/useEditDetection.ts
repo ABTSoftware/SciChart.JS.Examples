@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 
-export const useEditDetection = (isLoaded: boolean, iframeRef: React.RefObject<HTMLIFrameElement>) => {
+export const useEditDetection = (isLoaded: boolean, iframeRef: React.RefObject<HTMLIFrameElement | null>) => {
     const [hasEdits, setHasEdits] = useState(false);
     const initialCodeRef = useRef<string | null>(null);
 

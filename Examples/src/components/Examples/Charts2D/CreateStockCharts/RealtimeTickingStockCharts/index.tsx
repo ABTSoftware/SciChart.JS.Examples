@@ -81,7 +81,7 @@ export default function RealtimeTickingStockCharts() {
         setXRange: (startDate: Date, endDate: Date) => void;
         enableCandlestick: () => void;
         enableOhlc: () => void;
-    }>();
+    }>(undefined);
     const [dataSource, setDataSource] = React.useState<string>("Random");
 
     const handleToggleButtonChanged = (event: any, state: number) => {

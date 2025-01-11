@@ -47,11 +47,11 @@ const useStyles = makeStyles()(() => ({
 
 // REACT COMPONENT
 export default function Column3DChart() {
-    const sciChartSurfaceRef = React.useRef<SciChart3DSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChart3DSurface>(undefined);
     const controlsRef = React.useRef<{
         updateColors: (colorMode: EColumnColorMode) => void;
         updatePointMarker: (type: EColumn3DType) => void;
-    }>();
+    }>(undefined);
 
     const [column3DType, setColumn3DType] = React.useState<EColumn3DType>(EColumn3DType.CylinderPointMarker3D);
     const [renderableSeries, setRenderableSeries] = React.useState<ColumnRenderableSeries3D>();
