@@ -1,30 +1,55 @@
+import * as React from "react";
+import { TExampleInfo } from "../../../../AppRouter/examplePages";
+import { ExampleStrings } from "../../../ExampleStrings";
+import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-band-chart.jpg";
+import { TFrameworkName } from "../../../../../helpers/shared/Helpers/frameworkParametrization";
 import { IExampleMetadata } from "../../../IExampleMetadata";
 import { metaData } from "./BandSeriesChartMetadata";
 import { createExampleInfo } from "../../../exampleInfoUtils";
 
-// const previewDescription = `Band Charts fill a polygon between two high and low lines. The colour of the polygon changes depending on which line Y1 or Y2 is higher.`;
-// const description = `This JavaScript chart type can be used to draw thresholds, a fill between two lines or areas of interest on a chart.`;
-// const tips = [
-//     `If you have data where Y1 is greater than Y2 always, you'll get an envelope effect. Great for rendering
-//     confidence intervals, error margins or Bollinger Bands!`,
-// ];
+///  <comment out FROM here when done>   ////
+const previewDescription = `Band Charts fill a polygon between two high and low lines. The colour of the polygon changes depending on which line Y1 or Y2 is higher.`;
+const description = `This JavaScript chart type can be used to draw thresholds, a fill between two lines or areas of interest on a chart.`;
+const tips = [
+    `If you have data where Y1 is greater than Y2 always, you'll get an envelope effect. Great for rendering
+    confidence intervals, error margins or Bollinger Bands!`,
+];
 
-// Original implementation commented out for reference
-/*
-export const bandSeriesChartExampleInfo = {
-    onWebsite: metaData.onWebsite,
-    title: (frameworkName: TFrameworkName) => metaData.frameworks[frameworkName.toLowerCase()].title,
-    pageTitle: (frameworkName: TFrameworkName) => metaData.frameworks[frameworkName.toLowerCase()].pageTitle,
-    path: metaData.path,
-    filepath: metaData.filepath,
-    subtitle: (frameworkName: string) => metaData.frameworks[frameworkName.toLowerCase()].subtitle,
-    metaDescription: (frameworkName: TFrameworkName) => metaData.frameworks[frameworkName.toLowerCase()].metaDescription,
-    metaKeywords: metaData.metaKeywords,
-    thumbnailImage: getExampleImage(metaData.imagePath),
-    markdownContent: metaData.markdownContent,
-    documentationLinks: metaData.documentationLinks
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlBandChartDocumentation,
+        title: ExampleStrings.urlTitleDigitalLineChartDocumentation,
+        linkTitle: "JavaScript Band Chart Documentation",
+    },
+];
+
+const Subtitle = (frameworkName: string) => (
+    <>
+        Demonstrates how to create a <strong>{frameworkName} Band Chart</strong> or High-Low Fill using SciChart.js our
+        High Performance{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Framework">
+            JavaScript Chart Framework
+        </a>
+    </>
+);
+
+// Original implementation restored
+export const oldBandSeriesChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
+    title: ExampleStrings.titleBandChart,
+    pageTitle: ExampleStrings.pageTitleBandChart,
+    path: ExampleStrings.urlBandChart,
+    filepath: "Charts2D/BasicChartTypes/BandSeriesChart",
+    subtitle: Subtitle,
+    metaDescription: (frameworkName: TFrameworkName) =>
+        `Easily create a ${frameworkName} Band Chart or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.`,
+    metaKeywords: "band chart javascript webgl canvas",
+    thumbnailImage: exampleImage,
+    markdownContent: undefined,
+    documentationLinks,
 };
-*/
+///  <comment out TO here when done>   ////
 
 // New implementation using centralized utility
 export const bandSeriesChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);
