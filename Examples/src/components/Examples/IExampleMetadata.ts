@@ -12,7 +12,6 @@ export interface IExampleMetadata {
     metaKeywords: string; // Meta keywords for SEO
     onWebsite: boolean; // Whether the example is shown on the website
     filepath: string; // File path for the example
-    markdownContent: string | null; // Optional markdown content
 }
 
 export interface IDocumentationLink {
@@ -22,10 +21,10 @@ export interface IDocumentationLink {
 }
 
 export interface IFrameworkData {
-    path: string; // Path to the framework-specific implementation
     component: string; // Name of the framework-specific component
     subtitle: string; // Markdown formatted subtitle for the framework
     title: string; // Framework-specific title
     pageTitle: string; // Framework-specific page title
     metaDescription: string; // Framework-specific meta description
+    markdownContent: string | null; // Framework-specific markdown content
 }

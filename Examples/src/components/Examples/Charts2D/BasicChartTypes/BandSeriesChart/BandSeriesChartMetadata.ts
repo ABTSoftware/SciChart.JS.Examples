@@ -9,11 +9,9 @@ export const metaData =
         metaKeywords: "band, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/BandSeriesChart",
-        markdownContent: "",
         tips: ["Great for rendering confidence intervals, error margins or Bollinger Bands!"],
         frameworks: {
             react: {
-                path: "Charts2D/BasicChartTypes/BandSeriesChart/react",
                 component: "BandChartComponent",
                 subtitle:
                     "Demonstrates how to create a **React Band Chart** or High-Low Fill using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
@@ -21,9 +19,9 @@ export const metaData =
                 pageTitle: "React Band Chart | JavaScript Charts | View Examples",
                 metaDescription:
                     "Easily create a React Band Chart or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                markdownContent: "",
             },
             angular: {
-                path: "Charts2D/BasicChartTypes/BandSeriesChart/angular",
                 component: "BandChartComponent",
                 subtitle:
                     "Demonstrates how to create an **Angular Band Chart** or High-Low Fill using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
@@ -31,9 +29,9 @@ export const metaData =
                 pageTitle: "Angular Band Chart | JavaScript Charts | View Examples",
                 metaDescription:
                     "Easily create an Angular Band Chart or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                markdownContent: "",
             },
             javascript: {
-                path: "Charts2D/BasicChartTypes/BandSeriesChart/vanilla",
                 component: "BandChartComponent",
                 subtitle:
                     "Demonstrates how to create a **JavaScript Band Chart** or High-Low Fill using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
@@ -41,6 +39,7 @@ export const metaData =
                 pageTitle: "JavaScript Band Chart | JavaScript Charts | View Examples",
                 metaDescription:
                     "Easily create a JavaScript Band Chart or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                markdownContent: "",
             },
         },
         documentationLinks: [

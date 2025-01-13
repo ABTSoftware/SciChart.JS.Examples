@@ -14,6 +14,7 @@ export const createExampleInfo = (metadata: IExampleMetadata): TExampleInfo => (
         metadata.frameworks[frameworkName.toLowerCase()].metaDescription,
     metaKeywords: metadata.metaKeywords,
     thumbnailImage: getExampleImage(metadata.imagePath),
-    markdownContent: metadata.markdownContent,
+    markdownContent: (frameworkName: TFrameworkName) =>
+        metadata.frameworks[frameworkName.toLowerCase()].markdownContent,
     documentationLinks: metadata.documentationLinks,
 });
