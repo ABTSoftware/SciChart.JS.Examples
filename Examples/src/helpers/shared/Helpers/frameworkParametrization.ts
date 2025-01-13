@@ -1,4 +1,4 @@
-import { useMatch } from "react-router-dom";
+import { useMatch } from "react-router";
 import { EXAMPLES_PAGES } from "../../../components/AppRouter/examplePages";
 
 export enum EPageFramework {

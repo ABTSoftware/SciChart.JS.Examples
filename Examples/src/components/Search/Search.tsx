@@ -1,5 +1,5 @@
 import { useContext, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
@@ -54,9 +54,9 @@ export default function Search() {
                             ),
                         }}
                         sx={{
-                            '& .MuiOutlinedInput-root': {
-                                borderRadius: '8px',
-                                height: '44px'
+                            "& .MuiOutlinedInput-root": {
+                                borderRadius: "8px",
+                                height: "44px",
                             },
                         }}
                     />

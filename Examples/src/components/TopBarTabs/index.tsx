@@ -1,5 +1,5 @@
 import React, { useState, FC, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import "./index.scss";
 import classes from "./index.scss";
 import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";

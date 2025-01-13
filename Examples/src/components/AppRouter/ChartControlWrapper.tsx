@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 import { IInitResult, SciChartGroup } from "scichart-react";
 import { InfoToolbar } from "../Examples/Toolbar";
 import { TExamplePage } from "./examplePages";
