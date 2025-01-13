@@ -19,7 +19,7 @@
     "svelte": "^3.55.0"
   },
   "dependencies": {
-    "scichart": "^3.3.586",
+    "scichart": "latest",
     "sirv-cli": "^2.0.0"
   }
 }
