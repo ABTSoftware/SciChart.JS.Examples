@@ -4,10 +4,13 @@ import {
     EHorizontalAnchorPoint,
     ELabelAlignment,
     EllipsePointMarker,
+    EMultiLineAlignment,
     ENumericFormat,
     EVerticalAnchorPoint,
+    EWrapTo,
     FastLineRenderableSeries,
     MouseWheelZoomModifier,
+    NativeTextAnnotation,
     NumberRange,
     NumericAxis,
     SciChartSurface,
@@ -60,7 +63,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             labelStyle: {
                 color: appTheme.VividSkyBlue,
             },
-            growBy: new NumberRange(0.2, 0.2),
+            growBy: new NumberRange(0.1, 0.2),
             backgroundColor: appTheme.VividSkyBlue + "22",
             axisBorder: {
                 borderRight: 1,
@@ -104,7 +107,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             axisTitle: "Y Axis Right",
             labelFormat: ENumericFormat.Decimal,
             labelPrecision: 2,
-            growBy: new NumberRange(0.2, 0.2),
+            growBy: new NumberRange(0.1, 0.2),
             backgroundColor: appTheme.VividOrange + "22",
             axisBorder: {
                 borderLeft: 1,
@@ -143,11 +146,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Add a title over the chart with information
     sciChartSurface.annotations.add(
-        new TextAnnotation({
-            x1: 0,
-            y1: 0,
-            yCoordShift: 20,
-            xCoordShift: 20,
+        new NativeTextAnnotation({
+            x1: 0.01,
+            y1: 0.01,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
@@ -156,12 +157,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             opacity: 0.55,
             textColor: appTheme.ForegroundColor,
             text: "SciChart.js supports unlimited X,Y axis. Drag an axis to see the series scale",
+            wrapTo: EWrapTo.ViewRect,
+            multiLineAlignment: EMultiLineAlignment.Left,
         })
     );
 
     sciChartSurface.annotations.add(
         new TextAnnotation({
-            x1: 30,
+            x1: 10,
             y1: 1.1,
             fontSize: 18,
             textColor: appTheme.VividSkyBlue,
@@ -174,8 +177,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Note annotations need X,Y Axis ID as well in multi-axis scenarios
     sciChartSurface.annotations.add(
         new TextAnnotation({
-            x1: 26,
-            y1: -1,
+            x1: 5,
+            y1: -1.2,
             fontSize: 18,
             textColor: appTheme.VividOrange,
             yAxisId: ID_Y_AXIS_2,

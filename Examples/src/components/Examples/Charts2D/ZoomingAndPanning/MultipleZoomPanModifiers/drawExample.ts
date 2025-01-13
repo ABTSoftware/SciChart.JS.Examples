@@ -20,6 +20,8 @@ import {
     EExecuteOn,
     TextAnnotation,
     ECoordinateMode,
+    NativeTextAnnotation,
+    EWrapTo,
 } from "scichart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -139,21 +141,21 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             opacity: 0.38,
-            fontSize: 28,
+            fontSize: 20,
         })
     );
     sciChartSurface.annotations.add(
-        new TextAnnotation({
+        new NativeTextAnnotation({
             text: "Try mouse-wheel, left/right mouse drag, mousewheel on axis, pinch zoom, double-click to zoom to fit etc...",
             x1: 0.5,
-            y1: 0.5,
-            yCoordShift: 50,
+            y1: 0.6,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             opacity: 0.45,
             fontSize: 17,
+            wrapTo: EWrapTo.ViewRect,
         })
     );
     return { wasmContext, sciChartSurface };

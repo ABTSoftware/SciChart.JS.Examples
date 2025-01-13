@@ -171,7 +171,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
 
     // Add a legend to the chart
-    sciChartSurface.chartModifiers.add(new LegendModifier());
+    sciChartSurface.chartModifiers.add(new LegendModifier({ margin: 25 }));
 
     return { sciChartSurface, wasmContext };
 };
