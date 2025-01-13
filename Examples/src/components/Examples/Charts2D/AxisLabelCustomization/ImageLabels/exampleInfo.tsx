@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./ImageLabelsMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -28,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const imageLabelsExampleInfo: TExampleInfo = {
+export const oldimageLabelsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleImageLabels,
     pageTitle: ExampleStrings.titleImageLabels,
@@ -42,3 +45,6 @@ export const imageLabelsExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const imageLabelsExampleInfo = createExampleInfo(metaData as IExampleMetadata);

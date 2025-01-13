@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./Load1MillionPointsMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -28,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const loadOneMillionPointsExampleInfo: TExampleInfo = {
+export const oldloadOneMillionPointsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleLoadOneMillionPoints,
     pageTitle: ExampleStrings.titleLoadOneMillionPoints,
@@ -41,3 +44,6 @@ export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const loadOneMillionPointsExampleInfo = createExampleInfo(metaData as IExampleMetadata);

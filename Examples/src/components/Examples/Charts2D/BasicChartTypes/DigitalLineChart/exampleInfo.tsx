@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./DigitalLineChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -31,7 +34,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const digitalLineChartExampleInfo: TExampleInfo = {
+export const olddigitalLineChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDigitalLineChart,
     pageTitle: ExampleStrings.pageTitleDigitalLineChart,
@@ -46,3 +49,6 @@ export const digitalLineChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const digitalLineChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,3 +1,7 @@
+import React from "react";
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./ServerTrafficDashboardMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -31,7 +35,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const markdownContent: string = undefined;
 
-export const serverTrafficDashboardDemoExampleInfo: TExampleInfo = {
+export const oldserverTrafficDashboardDemoExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleServerTrafficDashboard,
     pageTitle: ExampleStrings.titleServerTrafficDashboard,
@@ -45,5 +49,8 @@ export const serverTrafficDashboardDemoExampleInfo: TExampleInfo = {
     markdownContent,
     extraDependencies: { "country-flag-icons": "^1.5.7" },
     documentationLinks,
-    pageLayout: EPageLayout.MaxWidth
+    pageLayout: EPageLayout.MaxWidth,
 };
+
+// New implementation using centralized utility
+export const serverTrafficDashboardDemoExampleInfo = createExampleInfo(metaData as IExampleMetadata);

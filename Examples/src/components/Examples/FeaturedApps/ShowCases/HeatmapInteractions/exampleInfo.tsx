@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./HeatmapInteractionsMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -31,7 +34,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const markdownContent: string = undefined;
 
-export const heatmapInteractionsExampleInfo: TExampleInfo = {
+export const oldheatmapInteractionsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleHeatmapInteractionsData,
     pageTitle: ExampleStrings.titleHeatmapInteractionsData,
@@ -46,3 +49,6 @@ export const heatmapInteractionsExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const heatmapInteractionsExampleInfo = createExampleInfo(metaData as IExampleMetadata);

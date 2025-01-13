@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./Column3DChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -22,7 +25,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-export const column3DChartExampleInfo: TExampleInfo = {
+export const oldcolumn3DChartExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleColumn3DChart,
     pageTitle: ExampleStrings.pageTitleColumn3DChart,
@@ -35,3 +38,6 @@ export const column3DChartExampleInfo: TExampleInfo = {
     metaKeywords: "3d, column, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };
+
+// New implementation using centralized utility
+export const column3DChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

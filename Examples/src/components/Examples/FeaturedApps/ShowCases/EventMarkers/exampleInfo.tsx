@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./EventMarkersMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -31,7 +34,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const markdownContent: string = undefined;
 
-export const eventMarkersExampleInfo: TExampleInfo = {
+export const oldeventMarkersExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleEventMarkers,
     pageTitle: ExampleStrings.titleEventMarkers,
@@ -46,3 +49,6 @@ export const eventMarkersExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const eventMarkersExampleInfo = createExampleInfo(metaData as IExampleMetadata);

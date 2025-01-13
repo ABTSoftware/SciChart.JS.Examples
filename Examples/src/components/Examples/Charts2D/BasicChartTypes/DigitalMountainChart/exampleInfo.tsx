@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./DigitalMountainChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -32,7 +35,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const digitalMountainChartExampleInfo: TExampleInfo = {
+export const olddigitalMountainChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDigitalMountainChart,
     pageTitle: ExampleStrings.pageTitleDigitalMountainChart,
@@ -46,3 +49,6 @@ export const digitalMountainChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const digitalMountainChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

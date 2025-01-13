@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./HitTestAPIMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -33,7 +36,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const hitTestApiExampleInfo: TExampleInfo = {
+export const oldhitTestApiExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleHitTestApi,
     pageTitle: ExampleStrings.titleHitTestApi,
@@ -48,3 +51,6 @@ export const hitTestApiExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const hitTestApiExampleInfo = createExampleInfo(metaData as IExampleMetadata);

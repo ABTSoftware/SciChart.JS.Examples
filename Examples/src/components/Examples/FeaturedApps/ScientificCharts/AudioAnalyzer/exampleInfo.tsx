@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./AudioAnalyzerMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -32,7 +35,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const audioAnalyzerExampleInfo: TExampleInfo = {
+export const oldaudioAnalyzerExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleAudioAnalyzerFeaturedApp,
     pageTitle: ExampleStrings.titleAudioAnalyzerFeaturedApp,
@@ -52,3 +55,6 @@ export const audioAnalyzerExampleInfo: TExampleInfo = {
     },
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const audioAnalyzerExampleInfo = createExampleInfo(metaData as IExampleMetadata);

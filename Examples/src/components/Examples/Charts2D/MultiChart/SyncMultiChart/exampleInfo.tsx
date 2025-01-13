@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./SyncMultiChartMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -33,7 +36,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const syncMultiChartExampleInfo: TExampleInfo = {
+export const oldsyncMultiChartExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleSyncMultiChart,
     pageTitle: ExampleStrings.titleSyncMultiChart,
@@ -47,3 +50,6 @@ export const syncMultiChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const syncMultiChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

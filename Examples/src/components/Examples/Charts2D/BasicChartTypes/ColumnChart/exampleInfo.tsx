@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./ColumnChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -28,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = ``;
 
-export const columnChartExampleInfo: TExampleInfo = {
+export const oldcolumnChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleColumnChart,
     pageTitle: ExampleStrings.pageTitleColumnChart,
@@ -42,3 +45,6 @@ export const columnChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const columnChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

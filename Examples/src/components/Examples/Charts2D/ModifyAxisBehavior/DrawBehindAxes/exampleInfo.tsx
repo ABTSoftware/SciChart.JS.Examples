@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./DrawBehindAxesMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -27,7 +30,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const drawBehindAxesExampleInfo: TExampleInfo = {
+export const olddrawBehindAxesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDrawBehindAxes,
     pageTitle: ExampleStrings.titleDrawBehindAxes,
@@ -41,3 +44,6 @@ export const drawBehindAxesExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const drawBehindAxesExampleInfo = createExampleInfo(metaData as IExampleMetadata);

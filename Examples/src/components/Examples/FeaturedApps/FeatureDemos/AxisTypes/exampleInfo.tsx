@@ -1,3 +1,7 @@
+import React from "react";
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./AxisTypesMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -26,7 +30,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const axisTypesExampleInfo: TExampleInfo = {
+export const oldaxisTypesExampleInfo: TExampleInfo = {
     onWebsite: true,
     // TODO add to example strings
     title: "Axis Types",
@@ -42,3 +46,6 @@ export const axisTypesExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const axisTypesExampleInfo = createExampleInfo(metaData as IExampleMetadata);

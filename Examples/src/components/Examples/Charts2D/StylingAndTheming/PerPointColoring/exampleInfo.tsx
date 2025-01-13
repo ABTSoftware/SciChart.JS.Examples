@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./PerPointColoringMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -29,7 +32,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const perPointColoringExampleInfo: TExampleInfo = {
+export const oldperPointColoringExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titlePaletteProvider,
     pageTitle: ExampleStrings.titlePaletteProvider,
@@ -43,3 +46,6 @@ export const perPointColoringExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const perPointColoringExampleInfo = createExampleInfo(metaData as IExampleMetadata);

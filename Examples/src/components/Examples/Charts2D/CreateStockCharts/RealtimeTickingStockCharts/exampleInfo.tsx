@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./RealtimeTickingStockChartsMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -30,7 +33,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
+export const oldrealtimeTickingStockChartsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRealtimeTickingStockCharts,
     pageTitle: ExampleStrings.pageTitleRealtimeTickingStockCharts,
@@ -45,3 +48,6 @@ export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
     markdownContent,
     extraDependencies: { "websocket-ts": "^1.1.1", rxjs: "^7.5.6" },
 };
+
+// New implementation using centralized utility
+export const realtimeTickingStockChartsExampleInfo = createExampleInfo(metaData as IExampleMetadata);

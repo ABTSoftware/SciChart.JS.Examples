@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./VerticalChartsMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -32,7 +35,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const verticalChartsExampleInfo: TExampleInfo = {
+export const oldverticalChartsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleVerticalCharts,
     pageTitle: ExampleStrings.titleVerticalCharts,
@@ -46,3 +49,6 @@ export const verticalChartsExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const verticalChartsExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./StylingInCodeMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -28,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const stylingInCodeExampleInfo: TExampleInfo = {
+export const oldstylingInCodeExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleStylingInCode,
     pageTitle: ExampleStrings.titleStylingInCode,
@@ -43,3 +46,6 @@ export const stylingInCodeExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const stylingInCodeExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./RotatedLabelsMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -30,7 +33,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const rotatedLabelsExampleInfo: TExampleInfo = {
+export const oldrotatedLabelsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRotatedLabels,
     pageTitle: ExampleStrings.titleRotatedLabels,
@@ -44,3 +47,6 @@ export const rotatedLabelsExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const rotatedLabelsExampleInfo = createExampleInfo(metaData as IExampleMetadata);

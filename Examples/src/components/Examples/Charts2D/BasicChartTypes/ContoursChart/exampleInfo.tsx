@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./ContoursChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -33,7 +36,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const contourChartExampleInfo: TExampleInfo = {
+export const oldcontourChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleContourChart,
     pageTitle: ExampleStrings.pageTitleContourChart,
@@ -47,3 +50,6 @@ export const contourChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const contourChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./InteractiveWaterfallChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -26,7 +29,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const waterfallChartExampleInfo: TExampleInfo = {
+export const oldwaterfallChartExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: "Interactive Waterfall Spectral Chart",
     pageTitle: "Interactive Waterfall Chart",
@@ -39,5 +42,8 @@ export const waterfallChartExampleInfo: TExampleInfo = {
     thumbnailImage: exampleImage,
     markdownContent,
     documentationLinks,
-    pageLayout: EPageLayout.MaxWidth
+    pageLayout: EPageLayout.MaxWidth,
 };
+
+// New implementation using centralized utility
+export const waterfallChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./PointLine3DChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -32,7 +35,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const pointLine3DChartExampleInfo: TExampleInfo = {
+export const oldpointLine3DChartExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titlePointLine3DChart,
     pageTitle: ExampleStrings.pageTitlePointLine3DChart,
@@ -46,3 +49,6 @@ export const pointLine3DChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const pointLine3DChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

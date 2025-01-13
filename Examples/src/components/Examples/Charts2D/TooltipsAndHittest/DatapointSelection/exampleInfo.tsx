@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./DatapointSelectionMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -31,7 +34,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const dataPointSelectionExampleInfo: TExampleInfo = {
+export const olddataPointSelectionExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDataPointSelection,
     pageTitle: ExampleStrings.titleDataPointSelection,
@@ -46,3 +49,6 @@ export const dataPointSelectionExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const dataPointSelectionExampleInfo = createExampleInfo(metaData as IExampleMetadata);

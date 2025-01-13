@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./CandlestickChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -29,7 +32,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const candlestickChartExampleInfo: TExampleInfo = {
+export const oldcandlestickChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleCandlestickChart,
     pageTitle: ExampleStrings.pageTitleCandlestickChart,
@@ -44,3 +47,6 @@ export const candlestickChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const candlestickChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

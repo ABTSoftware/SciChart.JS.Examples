@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./UsePointMarkersMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -28,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const usePointMarkersExampleInfo: TExampleInfo = {
+export const oldusePointMarkersExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titlePointMarkers,
     pageTitle: ExampleStrings.titlePointMarkers,
@@ -42,3 +45,6 @@ export const usePointMarkersExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const usePointMarkersExampleInfo = createExampleInfo(metaData as IExampleMetadata);

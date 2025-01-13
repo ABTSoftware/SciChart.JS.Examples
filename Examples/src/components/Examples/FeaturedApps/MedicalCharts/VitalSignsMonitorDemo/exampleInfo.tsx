@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./VitalSignsMonitorDemoMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -36,7 +39,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const vitalSignsMonitorDemoExampleInfo: TExampleInfo = {
+export const oldvitalSignsMonitorDemoExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleVitalSigns,
     pageTitle: ExampleStrings.titleVitalSigns,
@@ -52,3 +55,6 @@ export const vitalSignsMonitorDemoExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const vitalSignsMonitorDemoExampleInfo = createExampleInfo(metaData as IExampleMetadata);

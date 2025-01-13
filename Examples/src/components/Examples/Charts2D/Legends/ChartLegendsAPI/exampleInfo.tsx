@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./ChartLegendsAPIMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -32,7 +35,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const chartLegendsAPIExampleInfo: TExampleInfo = {
+export const oldchartLegendsAPIExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleChartLegends,
     pageTitle: ExampleStrings.titleChartLegends,
@@ -48,3 +51,6 @@ export const chartLegendsAPIExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const chartLegendsAPIExampleInfo = createExampleInfo(metaData as IExampleMetadata);

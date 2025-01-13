@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./OverviewModifierMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -33,7 +36,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const overviewExampleInfo: TExampleInfo = {
+export const oldoverviewExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleOverview,
     pageTitle: ExampleStrings.titleOverview,
@@ -47,3 +50,6 @@ export const overviewExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const overviewExampleInfo = createExampleInfo(metaData as IExampleMetadata);

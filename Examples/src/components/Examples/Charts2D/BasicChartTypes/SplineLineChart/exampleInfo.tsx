@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./SplineLineChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -34,7 +37,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const splineLineChartExampleInfo: TExampleInfo = {
+export const oldsplineLineChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleSplineLineChart,
     pageTitle: ExampleStrings.pageTitleSplineLineChart,
@@ -49,3 +52,6 @@ export const splineLineChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const splineLineChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./SeriesSelectionMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -31,7 +34,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const seriesSelectionExampleInfo: TExampleInfo = {
+export const oldseriesSelectionExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleSeriesSelection,
     pageTitle: ExampleStrings.titleSeriesSelection,
@@ -46,3 +49,6 @@ export const seriesSelectionExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const seriesSelectionExampleInfo = createExampleInfo(metaData as IExampleMetadata);

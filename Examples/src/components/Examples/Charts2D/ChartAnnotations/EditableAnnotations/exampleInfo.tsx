@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./EditableAnnotationsMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -31,7 +34,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const editableAnnotationsExampleInfo: TExampleInfo = {
+export const oldeditableAnnotationsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleEditableAnnotations,
     pageTitle: ExampleStrings.titleEditableAnnotations,
@@ -45,5 +48,8 @@ export const editableAnnotationsExampleInfo: TExampleInfo = {
     thumbnailImage: exampleImage,
     markdownContent,
     documentationLinks,
-    pageLayout: EPageLayout.MaxWidth
+    pageLayout: EPageLayout.MaxWidth,
 };
+
+// New implementation using centralized utility
+export const editableAnnotationsExampleInfo = createExampleInfo(metaData as IExampleMetadata);

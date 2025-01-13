@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./ScatterChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -31,7 +34,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const scatterChartExampleInfo: TExampleInfo = {
+export const oldscatterChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleScatterChart,
     pageTitle: ExampleStrings.pageTitleScatterChart,
@@ -46,3 +49,6 @@ export const scatterChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const scatterChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

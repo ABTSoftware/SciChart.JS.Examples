@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../IExampleMetadata";
+import { createExampleInfo } from "../../exampleInfoUtils";
+import { metaData } from "./SharedDataMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../ExampleStrings";
@@ -29,7 +32,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const markdownContent: string = undefined;
 
-export const sharedDataExampleInfo: TExampleInfo = {
+export const oldsharedDataExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleSharedData,
     pageTitle: ExampleStrings.titleSharedData,
@@ -45,3 +48,6 @@ export const sharedDataExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const sharedDataExampleInfo = createExampleInfo(metaData as IExampleMetadata);

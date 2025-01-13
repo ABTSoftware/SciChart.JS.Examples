@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./TradeMarkersMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -33,7 +36,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
+export const oldtradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleTradeMarkers,
     pageTitle: ExampleStrings.titleTradeMarkers,
@@ -48,3 +51,6 @@ export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const tradeMarkerAnnotationsExampleInfo = createExampleInfo(metaData as IExampleMetadata);

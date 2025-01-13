@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./ErrorBarsChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -32,7 +35,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const errorBarsChartExampleInfo: TExampleInfo = {
+export const olderrorBarsChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleErrorBarsChart,
     pageTitle: ExampleStrings.pageTitleErrorBarsChart,
@@ -46,3 +49,6 @@ export const errorBarsChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const errorBarsChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

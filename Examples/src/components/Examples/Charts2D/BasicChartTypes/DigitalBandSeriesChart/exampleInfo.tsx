@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./DigitalBandSeriesChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -31,7 +34,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const digitalBandSeriesChartExampleInfo: TExampleInfo = {
+export const olddigitalBandSeriesChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDigitalBandChart,
     pageTitle: ExampleStrings.pageTitleDigitalBandChart,
@@ -46,3 +49,6 @@ export const digitalBandSeriesChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const digitalBandSeriesChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

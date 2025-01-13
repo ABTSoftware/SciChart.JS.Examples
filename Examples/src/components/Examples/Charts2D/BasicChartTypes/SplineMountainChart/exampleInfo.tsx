@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./SplineMountainChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -32,7 +35,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const splineMountainChartExampleInfo: TExampleInfo = {
+export const oldsplineMountainChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleSplineMountainChart,
     pageTitle: ExampleStrings.pageTitleSplineMountainChart,
@@ -47,3 +50,6 @@ export const splineMountainChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const splineMountainChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

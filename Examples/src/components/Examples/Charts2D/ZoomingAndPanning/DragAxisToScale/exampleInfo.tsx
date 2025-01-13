@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./DragAxisToScaleMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -28,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const dragAxisToScaleExampleInfo: TExampleInfo = {
+export const olddragAxisToScaleExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleDragAxisToScale,
     pageTitle: ExampleStrings.titleDragAxisToScale,
@@ -42,3 +45,6 @@ export const dragAxisToScaleExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const dragAxisToScaleExampleInfo = createExampleInfo(metaData as IExampleMetadata);

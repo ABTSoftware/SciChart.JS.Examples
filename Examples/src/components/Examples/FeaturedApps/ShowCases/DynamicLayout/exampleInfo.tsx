@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./DynamicLayoutMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -27,7 +30,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const markdownContent: string = undefined;
 
-export const dynamicLayoutExampleInfo: TExampleInfo = {
+export const olddynamicLayoutExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleDynamicLayout,
     pageTitle: ExampleStrings.titleDynamicLayout,
@@ -42,3 +45,6 @@ export const dynamicLayoutExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const dynamicLayoutExampleInfo = createExampleInfo(metaData as IExampleMetadata);

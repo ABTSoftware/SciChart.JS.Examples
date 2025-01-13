@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./UsingVerticalSliceModifierMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -29,7 +32,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const usingVerticalSliceModifierExampleInfo: TExampleInfo = {
+export const oldusingVerticalSliceModifierExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleVerticalSliceModifier,
     pageTitle: ExampleStrings.titleVerticalSliceModifier,
@@ -44,3 +47,6 @@ export const usingVerticalSliceModifierExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const usingVerticalSliceModifierExampleInfo = createExampleInfo(metaData as IExampleMetadata);

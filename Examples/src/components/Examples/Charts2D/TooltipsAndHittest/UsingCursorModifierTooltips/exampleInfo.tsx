@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./UsingCursorModifierTooltipsMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -32,7 +35,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
+export const oldusingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleCursorModifier,
     pageTitle: ExampleStrings.titleCursorModifier,
@@ -47,3 +50,6 @@ export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const usingCursorModifierTooltipsExampleInfo = createExampleInfo(metaData as IExampleMetadata);

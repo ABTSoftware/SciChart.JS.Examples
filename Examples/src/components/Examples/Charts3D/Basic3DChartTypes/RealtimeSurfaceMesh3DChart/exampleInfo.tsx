@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./RealtimeSurfaceMesh3DChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -35,7 +38,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const realtimeSurfaceMesh3DChartExampleInfo: TExampleInfo = {
+export const oldrealtimeSurfaceMesh3DChartExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleRealtimeSurfaceMesh3D,
     pageTitle: ExampleStrings.pageTitleRealtimeSurfaceMesh3D,
@@ -49,3 +52,6 @@ export const realtimeSurfaceMesh3DChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const realtimeSurfaceMesh3DChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

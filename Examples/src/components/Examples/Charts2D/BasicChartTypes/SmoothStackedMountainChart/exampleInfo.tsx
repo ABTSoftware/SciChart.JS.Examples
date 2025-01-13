@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./SmoothStackedMountainChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -32,7 +35,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const smoothStackedMountainChartExampleInfo: TExampleInfo = {
+export const oldsmoothStackedMountainChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleSmoothStackedMountainChart,
     pageTitle: ExampleStrings.pageTitleSmoothStackedMountainChart,
@@ -46,3 +49,6 @@ export const smoothStackedMountainChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const smoothStackedMountainChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./TransparentBackgroundMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -30,7 +33,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const transparentBackgroundExampleInfo: TExampleInfo = {
+export const oldtransparentBackgroundExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleTransparentBackground,
     pageTitle: ExampleStrings.titleTransparentBackground,
@@ -45,3 +48,6 @@ export const transparentBackgroundExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const transparentBackgroundExampleInfo = createExampleInfo(metaData as IExampleMetadata);

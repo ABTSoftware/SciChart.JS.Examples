@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./RealtimeGhostedTracesMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -30,7 +33,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
+export const oldrealtimeGhostedTracesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRealtimeGhostedTraces,
     pageTitle: ExampleStrings.titleRealtimeGhostedTraces,
@@ -44,3 +47,6 @@ export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const realtimeGhostedTracesExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,3 +1,7 @@
+import React from "react";
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./MultiStyleSeriesMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -26,7 +30,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-export const multiplePointMarkersExampleInfo: TExampleInfo = {
+export const oldmultiplePointMarkersExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleMultiStyleSeries,
     pageTitle: ExampleStrings.titleMultiStyleSeries,
@@ -38,3 +42,6 @@ export const multiplePointMarkersExampleInfo: TExampleInfo = {
     metaKeywords: "multiple styles, api, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };
+
+// New implementation using centralized utility
+export const multiplePointMarkersExampleInfo = createExampleInfo(metaData as IExampleMetadata);

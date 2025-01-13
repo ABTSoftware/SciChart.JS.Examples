@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./FanChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -31,7 +34,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const fanChartExampleInfo: TExampleInfo = {
+export const oldfanChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleFanChart,
     pageTitle: ExampleStrings.pageTitleFanChart,
@@ -45,3 +48,6 @@ export const fanChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const fanChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,3 +1,6 @@
+import { IExampleMetadata } from "../../../IExampleMetadata";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { metaData } from "./BackgroundAnnotationsMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -31,7 +34,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const backgroundAnnotationsExampleInfo: TExampleInfo = {
+export const oldbackgroundAnnotationsExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleBackgroundAnnotations,
     pageTitle: ExampleStrings.titleBackgroundAnnotations,
@@ -46,3 +49,6 @@ export const backgroundAnnotationsExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
+
+// New implementation using centralized utility
+export const backgroundAnnotationsExampleInfo = createExampleInfo(metaData as IExampleMetadata);
