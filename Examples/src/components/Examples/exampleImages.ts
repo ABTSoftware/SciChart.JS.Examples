@@ -1,4 +1,26 @@
 import bandChartImage from "./Charts2D/BasicChartTypes/BandSeriesChart/javascript-band-chart.jpg";
+import contoursChartImage from "./Charts2D/BasicChartTypes/ContoursChart/javascript-heatmap-chart-with-contours.jpg";
+import digitalLineChartImage from "./Charts2D/BasicChartTypes/DigitalLineChart/javascript-digital-line-chart.jpg";
+import digitalMountainChartImage from "./Charts2D/BasicChartTypes/DigitalMountainChart/javascript-digital-mountain-chart.jpg";
+import donutChartImage from "./Charts2D/BasicChartTypes/DonutChart/javascript-donut-chart.jpg";
+import errorBarsChartImage from "./Charts2D/BasicChartTypes/ErrorBarsChart/javascript-error-bars-chart.jpg";
+import fanChartImage from "./Charts2D/BasicChartTypes/FanChart/javascript-fan-chart.jpg";
+import heatmapChartImage from "./Charts2D/BasicChartTypes/HeatmapChart/javascript-heatmap-chart.jpg";
+import impulseChartImage from "./Charts2D/BasicChartTypes/ImpulseChart/javascript-impulse-chart.jpg";
+import mountainChartImage from "./Charts2D/BasicChartTypes/MountainChart/javascript-mountain-chart.jpg";
+import nonUniformHeatmapChartImage from "./Charts2D/BasicChartTypes/NonUniformHeatmapChart/javascript-non-uniform-heatmap-chart.jpg";
+import ohlcChartImage from "./Charts2D/BasicChartTypes/OhlcChart/javascript-ohlc-chart.jpg";
+import pieChartImage from "./Charts2D/BasicChartTypes/PieChart/javascript-pie-chart.jpg";
+import realTimeMountainChartImage from "./Charts2D/BasicChartTypes/RealTimeMountainChart/javascript-realtime-mountain-chart.jpg";
+import scatterChartImage from "./Charts2D/BasicChartTypes/ScatterChart/javascript-scatter-chart.jpg";
+import smoothStackedMountainChartImage from "./Charts2D/BasicChartTypes/SmoothStackedMountainChart/javascript-smooth-stacked-mountain-chart.jpg";
+import splineBandChartImage from "./Charts2D/BasicChartTypes/SplineBandSeriesChart/javascript-spline-band-chart.jpg";
+import splineLineChartImage from "./Charts2D/BasicChartTypes/SplineLineChart/javascript-spline-smoothed-line-chart.jpg";
+import splineMountainChartImage from "./Charts2D/BasicChartTypes/SplineMountainChart/javascript-spline-mountain-chart.jpg";
+import stackedColumnChartImage from "./Charts2D/BasicChartTypes/StackedColumnChart/javascript-stacked-column-chart.jpg";
+import stackedColumnSideBySideImage from "./Charts2D/BasicChartTypes/StackedColumnSideBySide/javascript-stacked-grouped-column-chart.jpg";
+import stackedMountainChartImage from "./Charts2D/BasicChartTypes/StackedMountainChart/javascript-stacked-mountain-chart.jpg";
+import textChartImage from "./Charts2D/BasicChartTypes/TextSeriesChart/javascript-text-chart.jpg";
 import bubbleChartImage from "./Charts2D/BasicChartTypes/BubbleChart/javascript-bubble-chart.jpg";
 import candlestickChartImage from "./Charts2D/BasicChartTypes/CandlestickChart/javascript-candlestick-chart.jpg";
 import columnChartImage from "./Charts2D/BasicChartTypes/ColumnChart/javascript-column-chart.jpg";
@@ -88,99 +110,52 @@ import populationPyramidImage from "./FeaturedApps/ShowCases/PopulationPyramid/j
 import serverTrafficDashboardImage from "./FeaturedApps/ShowCases/ServerTrafficDashboard/javascript-server-traffic-dashboard.jpg";
 import streamingDataImage from "./FeaturedApps/ShowCases/WebsocketBigData/javascript-streaming-data.jpg";
 
-export type ExampleImagePath =
-    | "javascript-band-chart.jpg"
-    | "javascript-bubble-chart.jpg"
-    | "javascript-candlestick-chart.jpg"
-    | "javascript-column-chart.jpg"
-    | "javascript-digital-band-chart.jpg"
-    | "javascript-line-chart.jpg"
-    | "javascript-chart-from-json.jpg"
-    | "javascript-custom-types.jpg"
-    | "javascript-builder-full.jpg"
-    | "javascript-shared-data.jpg"
-    | "javascript-builder-simple.jpg"
-    | "javascript-data-animation.jpg"
-    | "javascript-generic-animation.jpg"
-    | "javascript-startup-animations.jpg"
-    | "javascript-style-animation.jpg"
-    | "javascript-image-labels.jpg"
-    | "javascript-multiline-labels.jpg"
-    | "javascript-rotated-labels-chart.jpg"
-    | "javascript-chart-annotation-layers.jpg"
-    | "javascript-chart-annotations.jpg"
-    | "javascript-background-annotations.jpg"
-    | "javascript-chart-drag-horizontal-threshold.jpg"
-    | "javascript-chart-editable-annotations.jpg"
-    | "javascript-stock-chart-buy-sell-markers.jpg"
-    | "javascript-depth-chart.jpg"
-    | "javascript-multi-pane-stock-charts.jpg"
-    | "javascript-realtime-ticking-stock-charts.jpg"
-    | "javascript-subcharts-multi-pane-stock-charts.jpg"
-    | "javascript-user-annotated-stock-chart.jpg"
-    | "javascript-custom-filters.jpg"
-    | "javascript-percentage-change.jpg"
-    | "javascript-trend-ma-ratio.jpg"
-    | "javascript-chart-legends.jpg"
-    | "javascript-central-axes.jpg"
-    | "javascript-draw-behind-axes.jpg"
-    | "javascript-chart-logarithmic-axis.jpg"
-    | "javascript-chart-with-multiple-x-axis.jpg"
-    | "javascript-chart-with-secondary-y-axis.jpg"
-    | "javascript-static-axis.jpg"
-    | "javascript-vertical-charts.jpg"
-    | "javascript-vertically-stacked-axes.jpg"
-    | "javascript-sync-multi-chart.jpg"
-    | "javascript-chart-custom-themed.jpg"
-    | "javascript-dashed-line-chart.jpg"
-    | "javascript-datalabels-chart.jpg"
-    | "javascript-chart-line-splitting-thresholds.jpg"
-    | "javascript-chart-multi-style-series.jpg"
-    | "javascript-chart-color-points-individually-with-paletteprovider.jpg"
-    | "javascript-chart-styling-theming-in-code.jpg"
-    | "javascript-chart-transparent-background.jpg"
-    | "javascript-chart-custom-pointmarkers.jpg"
-    | "javascript-chart-themes.jpg"
-    | "javascript-datapoint-selection.jpg"
-    | "javascript-chart-hit-test-on-click.jpg"
-    | "javascript-chart-metadata.jpg"
-    | "javascript-chart-series-selection.jpg"
-    | "javascript-chart-cursormodifier-crosshairs.jpg"
-    | "javascript-chart-rollovermodifier-tooltips.jpg"
-    | "javascript-chart-vertical-slice-modifier.jpg"
-    | "drag-axis-on-javascript-charts-to-scale-or-pan.jpg"
-    | "zoom-pan-multiple-modifiers.jpg"
-    | "javascript-overview-chart.jpg"
-    | "zoom-and-pan-a-realtime-javascript-chart.jpg"
-    | "virtualized-data-javascript-chart.jpg"
-    | "javascript-3d-bubble-chart.jpg"
-    | "javascript-3d-column-chart.jpg"
-    | "javascript-3d-point-line-chart.jpg"
-    | "javascript-realtime-3d-surface-mesh-chart.jpg"
-    | "javascript-3d-surface-mesh-chart.jpg"
-    | "javascript-axis-layout.jpg"
-    | "javascript-axis-types.jpg"
-    | "javascript-chart-title.jpg"
-    | "javascript-subcharts-grid.jpg"
-    | "javascript-vital-signs-ecg-medical-chart-example.jpg"
-    | "javascript-chart-performance-load-one-million-points.jpg"
-    | "javascript-chart-load-500-series-by-500-points.jpg"
-    | "javascript-realtime-ghosted-traces-oscilloscope-chart.jpg"
-    | "javascript-chart-realtime-performance-demo.jpg"
-    | "javascript-audio-analyzer-fft-example.jpg"
-    | "javascript-interactive-waterfall-chart.jpg"
-    | "javascript-3d-lidar-visualization.jpg"
-    | "javascript-2d-3d-chart-tenor-curves-example.jpg"
-    | "javascript-dynamic-layout.jpg"
-    | "javascript-draggable-event-markers.jpg"
-    | "javascript-heatmap-interactions.jpg"
-    | "javascript-oil-gas-explorer-dashboard-charts.jpg"
-    | "javascript-population-pyramid.jpg"
-    | "javascript-server-traffic-dashboard.jpg"
-    | "javascript-streaming-data.jpg";
-
 export const getExampleImage = (filename: string): string => {
     switch (filename) {
+        case "javascript-heatmap-chart-with-contours.jpg":
+            return contoursChartImage;
+        case "javascript-digital-line-chart.jpg":
+            return digitalLineChartImage;
+        case "javascript-digital-mountain-chart.jpg":
+            return digitalMountainChartImage;
+        case "javascript-donut-chart.jpg":
+            return donutChartImage;
+        case "javascript-error-bars-chart.jpg":
+            return errorBarsChartImage;
+        case "javascript-fan-chart.jpg":
+            return fanChartImage;
+        case "javascript-heatmap-chart.jpg":
+            return heatmapChartImage;
+        case "javascript-impulse-chart.jpg":
+            return impulseChartImage;
+        case "javascript-mountain-chart.jpg":
+            return mountainChartImage;
+        case "javascript-non-uniform-heatmap-chart.jpg":
+            return nonUniformHeatmapChartImage;
+        case "javascript-ohlc-chart.jpg":
+            return ohlcChartImage;
+        case "javascript-pie-chart.jpg":
+            return pieChartImage;
+        case "javascript-realtime-mountain-chart.jpg":
+            return realTimeMountainChartImage;
+        case "javascript-scatter-chart.jpg":
+            return scatterChartImage;
+        case "javascript-smooth-stacked-mountain-chart.jpg":
+            return smoothStackedMountainChartImage;
+        case "javascript-spline-band-chart.jpg":
+            return splineBandChartImage;
+        case "javascript-spline-smoothed-line-chart.jpg":
+            return splineLineChartImage;
+        case "javascript-spline-mountain-chart.jpg":
+            return splineMountainChartImage;
+        case "javascript-stacked-column-chart.jpg":
+            return stackedColumnChartImage;
+        case "javascript-stacked-grouped-column-chart.jpg":
+            return stackedColumnSideBySideImage;
+        case "javascript-stacked-mountain-chart.jpg":
+            return stackedMountainChartImage;
+        case "javascript-text-chart.jpg":
+            return textChartImage;
         case "javascript-band-chart.jpg":
             return bandChartImage;
         case "javascript-bubble-chart.jpg":
