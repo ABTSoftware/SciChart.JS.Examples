@@ -1,5 +1,3 @@
-import { ExampleImagePath } from "./exampleImages";
-
 export interface IExampleMetadata {
     exampleId: string; // Unique identifier for the example
     imagePath: string; // Path to the example's thumbnail image

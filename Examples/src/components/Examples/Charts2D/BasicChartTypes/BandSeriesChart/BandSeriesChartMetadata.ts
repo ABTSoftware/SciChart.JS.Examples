@@ -1,4 +1,6 @@
-export const metaData =
+import { IExampleMetadata } from "../../../IExampleMetadata";
+
+export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
     {
         exampleId: "bandChart",
@@ -10,6 +12,7 @@ export const metaData =
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/BandSeriesChart",
         tips: ["Great for rendering confidence intervals, error margins or Bollinger Bands!"],
+        thumbnailImage: "/javascript-band-chart.jpg",
         frameworks: {
             react: {
                 component: "BandChartComponent",
