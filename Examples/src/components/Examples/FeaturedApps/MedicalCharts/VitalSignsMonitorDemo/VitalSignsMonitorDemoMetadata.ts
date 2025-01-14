@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "vitalsignsmonitordemo",
         imagePath: "./javascript-vital-signs-ecg-medical-chart-example.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "This example uses the GlowShaderEffect - an effect that can be tagged onto BaseRenderableSeries in SciChart to add oscilloscope/VDU style glow effects. A single point-marker is added to render the latest point which also has the glow applied. Try it out!",
         ],
-        thumbnailImage: 'getExampleImage("javascript-vital-signs-ecg-medical-chart-example.jpg")',
+        thumbnailImage: "javascript-vital-signs-ecg-medical-chart-example.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

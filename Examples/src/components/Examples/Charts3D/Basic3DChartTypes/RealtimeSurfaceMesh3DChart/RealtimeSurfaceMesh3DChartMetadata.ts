@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "realtimesurfacemesh3dchart",
         imagePath: "./javascript-realtime-3d-surface-mesh-chart.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "Updating the yValues array in one go using setYValues is more efficient than updating the values one by one",
         ],
-        thumbnailImage: 'getExampleImage("javascript-realtime-3d-surface-mesh-chart.jpg")',
+        thumbnailImage: "javascript-realtime-3d-surface-mesh-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

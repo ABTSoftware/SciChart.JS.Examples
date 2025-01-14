@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "multilinelabels",
         imagePath: "./javascript-multiline-labels.jpg",
@@ -17,7 +16,7 @@ export const metaData: IExampleMetadata =
             "If some labels are not appearing, it is probably because there is not enough space for them.  Sometimes adjusting the padding in the labelStyle can help.",
             "To see how padding affects label placement try setting sciChartSurface.debugRendering = true;",
         ],
-        thumbnailImage: 'getExampleImage("javascript-multiline-labels.jpg")',
+        thumbnailImage: "javascript-multiline-labels.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

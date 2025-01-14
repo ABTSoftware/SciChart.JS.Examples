@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "perpointcoloring",
         imagePath: "./javascript-chart-color-points-individually-with-paletteprovider.jpg",
@@ -14,7 +13,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "Charts2D/StylingAndTheming/PerPointColoring",
         tips: ["The PaletteProvider API is useful for showing thresholds or areas of interest!"],
-        thumbnailImage: 'getExampleImage("javascript-chart-color-points-individually-with-paletteprovider.jpg")',
+        thumbnailImage: "javascript-chart-color-points-individually-with-paletteprovider.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

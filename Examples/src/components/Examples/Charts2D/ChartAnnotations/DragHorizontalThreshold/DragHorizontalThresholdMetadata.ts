@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "draghorizontalthreshold",
         imagePath: "./javascript-chart-drag-horizontal-threshold.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "All Annotations have an isEditable property. When true, the annotation can be dragged and resized. Chart colouring may be changed via a rule using the PaletteProvider API.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-chart-drag-horizontal-threshold.jpg")',
+        thumbnailImage: "javascript-chart-drag-horizontal-threshold.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

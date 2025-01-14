@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "verticallystackedaxes",
         imagePath: "./javascript-vertically-stacked-axes.jpg",
@@ -17,7 +16,7 @@ export const metaData: IExampleMetadata =
             "Make sure data series and annotations are bound to the correct axis.",
             "You can also Horizontally stack top and bottom axes",
         ],
-        thumbnailImage: 'getExampleImage("javascript-vertically-stacked-axes.jpg")',
+        thumbnailImage: "javascript-vertically-stacked-axes.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

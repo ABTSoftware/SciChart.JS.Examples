@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "imagelabels",
         imagePath: "./javascript-image-labels.jpg",
@@ -14,7 +13,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "Charts2D/AxisLabelCustomization/ImageLabels",
         tips: ["Label textures are automatically cached, so complex label rendering will not slow down your chart."],
-        thumbnailImage: 'getExampleImage("javascript-image-labels.jpg")',
+        thumbnailImage: "javascript-image-labels.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

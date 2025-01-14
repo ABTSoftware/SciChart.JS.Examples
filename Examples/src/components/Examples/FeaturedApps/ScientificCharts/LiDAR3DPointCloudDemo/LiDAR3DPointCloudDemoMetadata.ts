@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "lidar3dpointcloud",
         imagePath: "./javascript-3d-lidar-visualization.jpg",
@@ -17,7 +16,7 @@ export const metaData: IExampleMetadata =
             "This example uses a ScatterRenderable Series3D with PixelPointMarker to render a high performance LiDAR\r\nvisualization of a 500x500 (250k points) ASC format dataset.",
             "You can also overlay contours if you use the SurfaceMeshRenderable Series3D and enable contours by setting the DrawMeshAs property.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-3d-lidar-visualization.jpg")',
+        thumbnailImage: "javascript-3d-lidar-visualization.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "customfilters",
         imagePath: "./javascript-custom-filters.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             '" There are CustomFilter and FitlerBase types for each of the series types (xy, xyy, xyz, ohlc)", " Complex custom filters do not have to output the same series type as they take as input.", " If your filter takes a parameter, use a setter to call filterAll when the parameter is updated",',
         ],
-        thumbnailImage: 'getExampleImage("javascript-custom-filters.jpg")',
+        thumbnailImage: "javascript-custom-filters.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "annotationlayers",
         imagePath: "./javascript-chart-annotation-layers.jpg",
@@ -20,7 +19,7 @@ export const metaData: IExampleMetadata =
             "Other types of annotations, inherited from RenderContextAnnotationBase (e.g. BoxAnnotation, NativeTextAnnotation, LineAnnotation), are rendered natively with WebGl on the HTMLCanvas, which is placed between SVG ones.",
             "Relative placement between annotations of the same type are defined by their order within the collection.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-chart-annotation-layers.jpg")',
+        thumbnailImage: "javascript-chart-annotation-layers.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

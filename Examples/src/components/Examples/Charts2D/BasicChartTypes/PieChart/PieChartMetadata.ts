@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "piechart",
         imagePath: "./javascript-pie-chart.jpg",
@@ -17,7 +16,7 @@ export const metaData: IExampleMetadata =
             "You can change the fill color of every segment and the style of its label.",
             "Every segment can be highlighted by clicking on it or when selected in the legend.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-pie-chart.jpg")',
+        thumbnailImage: "javascript-pie-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

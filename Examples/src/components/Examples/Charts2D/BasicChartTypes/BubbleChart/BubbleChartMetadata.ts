@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "bubblechart",
         imagePath: "./javascript-bubble-chart.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "If you share a single XyzDataSeries between Line and Bubble Renderable Series, the line will render the X-Y points while the Bubble will render the X-Y-Z points.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-bubble-chart.jpg")',
+        thumbnailImage: "javascript-bubble-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

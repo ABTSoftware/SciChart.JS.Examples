@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "realtimetickingstockcharts",
         imagePath: "./javascript-realtime-ticking-stock-charts.jpg",
@@ -14,7 +13,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "Charts2D/CreateStockCharts/RealtimeTickingStockCharts",
         tips: ["You can change the series type from Candlestick to Ohlc to Mountain and more."],
-        thumbnailImage: 'getExampleImage("javascript-realtime-ticking-stock-charts.jpg")',
+        thumbnailImage: "javascript-realtime-ticking-stock-charts.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "dragaxistoscale",
         imagePath: "./drag-axis-on-javascript-charts-to-scale-or-pan.jpg",
@@ -14,7 +13,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "Charts2D/ZoomingAndPanning/DragAxisToScale",
         tips: ["Try dragging an axis to zoom or pan the axis. Double clicking the chart resets the zoom!"],
-        thumbnailImage: 'getExampleImage("drag-axis-on-javascript-charts-to-scale-or-pan.jpg")',
+        thumbnailImage: "drag-axis-on-javascript-charts-to-scale-or-pan.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

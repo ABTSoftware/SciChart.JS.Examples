@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "populationpyramid",
         imagePath: "./javascript-population-pyramid.jpg",
@@ -17,7 +16,7 @@ export const metaData: IExampleMetadata =
             "Pay close attention to the way the 2 YAxes are stacked",
             'Check out our new "Engineering" numeric formatter, which is used to format the xAxis and the dataLabels',
         ],
-        thumbnailImage: 'getExampleImage("javascript-population-pyramid.jpg")',
+        thumbnailImage: "javascript-population-pyramid.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

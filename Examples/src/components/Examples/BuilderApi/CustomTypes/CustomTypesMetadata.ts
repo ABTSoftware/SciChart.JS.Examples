@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "customtypes",
         imagePath: "./javascript-custom-types.jpg",
@@ -17,7 +16,7 @@ export const metaData: IExampleMetadata =
             "Custom types can have options which will be passed to the registered function.",
             "Add a toJSON method to your custom type if you want it to be serialized",
         ],
-        thumbnailImage: 'getExampleImage("javascript-custom-types.jpg")',
+        thumbnailImage: "javascript-custom-types.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

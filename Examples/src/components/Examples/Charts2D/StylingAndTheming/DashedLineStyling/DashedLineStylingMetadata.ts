@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "dashedlinestyling",
         imagePath: "./javascript-dashed-line-chart.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "The StrokeDashArray property accepts a number array e.g. [2,3] which defines the length of the dash and the length of the gap.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-dashed-line-chart.jpg")',
+        thumbnailImage: "javascript-dashed-line-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

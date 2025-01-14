@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "subchartsgrid",
         imagePath: "./javascript-subcharts-grid.jpg",
@@ -13,7 +12,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "FeaturedApps/FeatureDemos/SubChartsAPI",
         tips: [],
-        thumbnailImage: 'getExampleImage("javascript-subcharts-grid.jpg")',
+        thumbnailImage: "javascript-subcharts-grid.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

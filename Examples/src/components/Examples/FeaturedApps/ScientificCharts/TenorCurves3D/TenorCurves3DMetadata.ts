@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "tenorcurves",
         imagePath: "./javascript-2d-3d-chart-tenor-curves-example.jpg",
@@ -17,7 +16,7 @@ export const metaData: IExampleMetadata =
             "This example uses a SurfaceMeshRenderable Series3D to render a 2-dimensional array as a heightmap. Line\r\ncharts are shown on the same example to show that 2D & 3D charts can be combined.",
             "You can also overlay contours if you use the SurfaceMeshRenderable Series3D and enable contours by setting the DrawMeshAs property.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-2d-3d-chart-tenor-curves-example.jpg")',
+        thumbnailImage: "javascript-2d-3d-chart-tenor-curves-example.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

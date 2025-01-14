@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "createacustomtheme",
         imagePath: "./javascript-chart-custom-themed.jpg",
@@ -14,7 +13,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "Charts2D/StylingAndTheming/CreateACustomTheme",
         tips: ["It's also possible to style chart-parts in code!"],
-        thumbnailImage: 'getExampleImage("javascript-chart-custom-themed.jpg")',
+        thumbnailImage: "javascript-chart-custom-themed.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

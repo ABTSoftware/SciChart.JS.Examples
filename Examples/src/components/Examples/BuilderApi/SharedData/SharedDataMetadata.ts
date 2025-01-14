@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "shareddata",
         imagePath: "./javascript-shared-data.jpg",
@@ -18,7 +17,7 @@ export const metaData: IExampleMetadata =
             "To convert a chart to a definition without data, use sciChartSurface.toJSON(true)",
             "Data will be serialized to the individual series if the resulting chart is serialized",
         ],
-        thumbnailImage: 'getExampleImage("javascript-shared-data.jpg")',
+        thumbnailImage: "javascript-shared-data.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

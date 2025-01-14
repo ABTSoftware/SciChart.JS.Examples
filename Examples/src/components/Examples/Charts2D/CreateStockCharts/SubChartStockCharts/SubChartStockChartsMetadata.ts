@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "subchartstockcharts",
         imagePath: "./javascript-subcharts-multi-pane-stock-charts.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "SciChart.js supports all the features you need to create rich, interactive, realtime JavaScript Stock Chart applications. Including Candlestick/OHLC charts, Band Series for bollinger bands, multi-panes, plus incredible real-time performance.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-subcharts-multi-pane-stock-charts.jpg")',
+        thumbnailImage: "javascript-subcharts-multi-pane-stock-charts.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

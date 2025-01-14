@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "staticaxis",
         imagePath: "./javascript-static-axis.jpg",
@@ -14,7 +13,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "Charts2D/ModifyAxisBehavior/StaticAxis",
         tips: [],
-        thumbnailImage: 'getExampleImage("javascript-static-axis.jpg")',
+        thumbnailImage: "javascript-static-axis.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

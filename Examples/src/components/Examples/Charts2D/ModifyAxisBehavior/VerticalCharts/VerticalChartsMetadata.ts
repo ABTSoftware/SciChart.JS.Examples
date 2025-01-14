@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "verticalcharts",
         imagePath: "./javascript-vertical-charts.jpg",
@@ -17,7 +16,7 @@ export const metaData: IExampleMetadata =
             "The vertical chart, popular in Oil & Gas, Geo-surveying, is created by setting xAxis.axisAlignment =\r\nLeft, and yAxis.axisAlignment = top.",
             "Try dragging an axis or the chart to zoom and pan around. Double clicking the chart resets the zoom!",
         ],
-        thumbnailImage: 'getExampleImage("javascript-vertical-charts.jpg")',
+        thumbnailImage: "javascript-vertical-charts.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

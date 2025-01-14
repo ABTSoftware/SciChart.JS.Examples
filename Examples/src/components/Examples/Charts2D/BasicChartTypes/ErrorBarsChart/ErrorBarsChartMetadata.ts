@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "errorbarschart",
         imagePath: "./javascript-error-bars-chart.jpg",
@@ -18,7 +17,7 @@ export const metaData: IExampleMetadata =
             "It is possible to change orientation of error bars.",
             "You can also configure visibility of different part of an error bar.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-error-bars-chart.jpg")',
+        thumbnailImage: "javascript-error-bars-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

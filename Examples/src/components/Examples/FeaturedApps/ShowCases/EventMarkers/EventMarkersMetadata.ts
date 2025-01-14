@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "eventmarkers",
         imagePath: "./javascript-draggable-event-markers.jpg",
@@ -17,7 +16,7 @@ export const metaData: IExampleMetadata =
             "FastCandleStickRenderableSeries needs to be given a properly configured DataLabelProvider in order to show labels",
             "DataPointSelectionPaletteProvider takes care of coloring the selected point, even when you are setting isSelected on the metaData manually",
         ],
-        thumbnailImage: 'getExampleImage("javascript-draggable-event-markers.jpg")',
+        thumbnailImage: "javascript-draggable-event-markers.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

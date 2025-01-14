@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "chartlegendsapi",
         imagePath: "./javascript-chart-legends.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "There are many different configurations for the legend, including fine grained control over the legend rows. Please review the API documentation below carefully for further information.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-chart-legends.jpg")',
+        thumbnailImage: "javascript-chart-legends.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

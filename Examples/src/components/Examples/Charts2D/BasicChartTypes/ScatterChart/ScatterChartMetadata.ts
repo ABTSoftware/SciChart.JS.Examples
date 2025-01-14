@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "scatterchart",
         imagePath: "./javascript-scatter-chart.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "Perhaps you wanted a scatter point with a line? If so, you can do this using the Line Series type and by setting the pointMarker property.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-scatter-chart.jpg")',
+        thumbnailImage: "javascript-scatter-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

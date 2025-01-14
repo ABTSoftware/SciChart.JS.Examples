@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "backgroundannotations",
         imagePath: "./javascript-background-annotations.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "The AnnotationBase type has properties for x,yCoordinateMode which allow you to place annotations are relative or absolute values. Great for docking annotations to the top,left,right,bottom of a chart",
         ],
-        thumbnailImage: 'getExampleImage("javascript-background-annotations.jpg")',
+        thumbnailImage: "javascript-background-annotations.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

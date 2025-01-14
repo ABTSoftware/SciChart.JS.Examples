@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "percentagechange",
         imagePath: "./javascript-percentage-change.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "ScaleOffsetFilters are available for all DataSeries types, so you could do the same thing for a band or candlestick chart",
         ],
-        thumbnailImage: 'getExampleImage("javascript-percentage-change.jpg")',
+        thumbnailImage: "javascript-percentage-change.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

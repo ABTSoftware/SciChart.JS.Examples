@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "linesplittingthresholds",
         imagePath: "./javascript-chart-line-splitting-thresholds.jpg",
@@ -14,7 +13,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "Charts2D/StylingAndTheming/LineSplittingThresholds",
         tips: [],
-        thumbnailImage: 'getExampleImage("javascript-chart-line-splitting-thresholds.jpg")',
+        thumbnailImage: "javascript-chart-line-splitting-thresholds.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

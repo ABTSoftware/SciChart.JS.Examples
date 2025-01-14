@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "metadata",
         imagePath: "./javascript-chart-metadata.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "MetaData can be anything that implements IPointMetadata.  You do not have to assign metadata to every point.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-chart-metadata.jpg")',
+        thumbnailImage: "javascript-chart-metadata.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

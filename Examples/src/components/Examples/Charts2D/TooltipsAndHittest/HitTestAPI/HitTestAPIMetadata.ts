@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "hittestapi",
         imagePath: "./javascript-chart-hit-test-on-click.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "The hitTest function accepts parameters to control the hit-test logic. See the documentation on Hit-Testing for more info!",
         ],
-        thumbnailImage: 'getExampleImage("javascript-chart-hit-test-on-click.jpg")',
+        thumbnailImage: "javascript-chart-hit-test-on-click.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "realtimezoompan",
         imagePath: "./zoom-and-pan-a-realtime-javascript-chart.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "Check in the source-code for how we use the SciChartSurface.ZoomState property to determine when to scroll\r\nand when to allow user-zooming.",
         ],
-        thumbnailImage: 'getExampleImage("zoom-and-pan-a-realtime-javascript-chart.jpg")',
+        thumbnailImage: "zoom-and-pan-a-realtime-javascript-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

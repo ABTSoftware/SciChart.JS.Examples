@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "realtimeghostedtraces",
         imagePath: "./javascript-realtime-ghosted-traces-oscilloscope-chart.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "This example uses the GlowShaderEffect - an effect that can be tagged onto BaseRenderableSeries in SciChart to add oscilloscope/VDU style glow effects. Try it out!",
         ],
-        thumbnailImage: 'getExampleImage("javascript-realtime-ghosted-traces-oscilloscope-chart.jpg")',
+        thumbnailImage: "javascript-realtime-ghosted-traces-oscilloscope-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "splinemountainchart",
         imagePath: "./javascript-spline-mountain-chart.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "By setting the stroke property you alter the line color, and fill alters the fill. The Mountain-series also supports semi-transparent and linear gradient brush fills and looks great!.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-spline-mountain-chart.jpg")',
+        thumbnailImage: "javascript-spline-mountain-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "secondaryyaxes",
         imagePath: "./javascript-chart-with-secondary-y-axis.jpg",
@@ -14,7 +13,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "Charts2D/ModifyAxisBehavior/SecondaryYAxes",
         tips: ["Try dragging an axis or the chart to zoom and pan around. Double clicking the chart resets the zoom!"],
-        thumbnailImage: 'getExampleImage("javascript-chart-with-secondary-y-axis.jpg")',
+        thumbnailImage: "javascript-chart-with-secondary-y-axis.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

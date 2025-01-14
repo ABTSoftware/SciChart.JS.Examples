@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "heatmapinteractions",
         imagePath: "./javascript-heatmap-interactions.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded appendRange functions on dataseries.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-heatmap-interactions.jpg")',
+        thumbnailImage: "javascript-heatmap-interactions.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

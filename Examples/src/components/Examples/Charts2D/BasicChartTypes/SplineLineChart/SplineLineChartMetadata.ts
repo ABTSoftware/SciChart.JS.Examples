@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "splinelinechart",
         imagePath: "./javascript-spline-smoothed-line-chart.jpg",
@@ -17,7 +16,7 @@ export const metaData: IExampleMetadata =
             "As well as stroke, you can set strokeThickness, isVisible properties to change how the series is rendered.",
             "You can add data-point markers to a line series using the PointMarker API. This is very performant and uses the same WebGL rendering as our Scatter Charts.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-spline-smoothed-line-chart.jpg")',
+        thumbnailImage: "javascript-spline-smoothed-line-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

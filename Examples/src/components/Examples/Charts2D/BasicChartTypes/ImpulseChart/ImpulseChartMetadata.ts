@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "impulsechart",
         imagePath: "./javascript-impulse-chart.jpg",
@@ -14,7 +13,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/ImpulseChart",
         tips: ["To change the size of the impulse point, set the size property. Default value is 10.0."],
-        thumbnailImage: 'getExampleImage("javascript-impulse-chart.jpg")',
+        thumbnailImage: "javascript-impulse-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

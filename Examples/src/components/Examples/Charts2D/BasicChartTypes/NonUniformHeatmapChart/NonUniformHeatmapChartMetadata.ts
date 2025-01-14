@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "nonuniformheatmap",
         imagePath: "./javascript-non-uniform-heatmap-chart.jpg",
@@ -17,7 +16,7 @@ export const metaData: IExampleMetadata =
             "It is possible to specify offsets as arrays or mapping functions.",
             "Updating data with setZValues method recalcula tes the mapped offsets.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-non-uniform-heatmap-chart.jpg")',
+        thumbnailImage: "javascript-non-uniform-heatmap-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

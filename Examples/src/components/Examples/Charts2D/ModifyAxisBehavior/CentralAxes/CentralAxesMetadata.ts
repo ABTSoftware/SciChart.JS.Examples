@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "centralaxes",
         imagePath: "./javascript-central-axes.jpg",
@@ -14,7 +13,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "Charts2D/ModifyAxisBehavior/CentralAxes",
         tips: ["You can create a custom Axis Layout Strategy!"],
-        thumbnailImage: 'getExampleImage("javascript-central-axes.jpg")',
+        thumbnailImage: "javascript-central-axes.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

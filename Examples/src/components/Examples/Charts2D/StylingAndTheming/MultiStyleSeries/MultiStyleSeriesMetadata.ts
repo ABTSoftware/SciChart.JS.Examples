@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "multiplepointmarkers",
         imagePath: "./javascript-chart-multi-style-series.jpg",
@@ -13,7 +12,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "Charts2D/StylingAndTheming/MultiStyleSeries",
         tips: [],
-        thumbnailImage: 'getExampleImage("javascript-chart-multi-style-series.jpg")',
+        thumbnailImage: "javascript-chart-multi-style-series.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

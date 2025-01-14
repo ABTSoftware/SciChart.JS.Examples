@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "rotatedlabels",
         imagePath: "./javascript-rotated-labels-chart.jpg",
@@ -14,7 +13,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "Charts2D/AxisLabelCustomization/RotatedLabels",
         tips: ["Rotation is is degrees clockwise.", "All axes and label providers support rotation."],
-        thumbnailImage: 'getExampleImage("javascript-rotated-labels-chart.jpg")',
+        thumbnailImage: "javascript-rotated-labels-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

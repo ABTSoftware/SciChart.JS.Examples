@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "fanchart",
         imagePath: "./javascript-fan-chart.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "As well as stroke, you can set strokeThickness, isVisible properties to change how the series is rendered.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-fan-chart.jpg")',
+        thumbnailImage: "javascript-fan-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

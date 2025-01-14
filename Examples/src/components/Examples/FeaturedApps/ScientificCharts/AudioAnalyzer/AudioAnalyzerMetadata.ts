@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "audioanalyzer",
         imagePath: "./javascript-audio-analyzer-fft-example.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "This example uses a Line Series to render audio data recorded from the microphone, a Column series to render FFT data, and a Heatmap series to render a spectrogram - a scrolling visualisation of frequency domain data.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-audio-analyzer-fft-example.jpg")',
+        thumbnailImage: "javascript-audio-analyzer-fft-example.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

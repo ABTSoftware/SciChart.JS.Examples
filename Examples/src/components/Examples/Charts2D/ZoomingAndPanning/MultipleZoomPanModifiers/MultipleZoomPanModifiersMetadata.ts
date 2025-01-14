@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "zoomandpanwithmultiplechartmodifiers",
         imagePath: "./zoom-pan-multiple-modifiers.jpg",
@@ -18,7 +17,7 @@ export const metaData: IExampleMetadata =
             "Use 'easingFunction' property to animate zoom.",
             "Use CSS 'touch-action' property to override browser default touch behavior. e.g., 'touch-action: none'.",
         ],
-        thumbnailImage: 'getExampleImage("zoom-pan-multiple-modifiers.jpg")',
+        thumbnailImage: "zoom-pan-multiple-modifiers.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

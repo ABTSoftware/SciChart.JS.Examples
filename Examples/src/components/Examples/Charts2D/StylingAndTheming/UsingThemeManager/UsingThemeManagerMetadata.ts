@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "usingthememanager",
         imagePath: "./javascript-chart-themes.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "If you implement IThemeProvider you can create your own custom themes! It's also possible to style chart-parts in code.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-chart-themes.jpg")',
+        thumbnailImage: "javascript-chart-themes.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

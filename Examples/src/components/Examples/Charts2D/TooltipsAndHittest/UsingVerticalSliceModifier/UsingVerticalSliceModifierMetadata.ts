@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "usingverticalslicemodifier",
         imagePath: "./javascript-chart-vertical-slice-modifier.jpg",
@@ -15,7 +14,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "The x1 property of the modifier.verticalLine is in pixels and can be used to synchronise the position of other annotations relative to the line",
         ],
-        thumbnailImage: 'getExampleImage("javascript-chart-vertical-slice-modifier.jpg")',
+        thumbnailImage: "javascript-chart-vertical-slice-modifier.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

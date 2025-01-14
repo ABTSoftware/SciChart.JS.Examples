@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "overview",
         imagePath: "./javascript-overview-chart.jpg",
@@ -18,7 +17,7 @@ export const metaData: IExampleMetadata =
             "You can easily customise which series appear in the overview, and how they are rendered, with the transformRenderableSeries option.",
             "You can also apply the overview to vertical charts.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-overview-chart.jpg")',
+        thumbnailImage: "javascript-overview-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

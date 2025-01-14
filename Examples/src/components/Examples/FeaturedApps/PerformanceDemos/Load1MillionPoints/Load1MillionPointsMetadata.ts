@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "loadonemillionpoints",
         imagePath: "./javascript-chart-performance-load-one-million-points.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded appendRange functions on dataseries.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-chart-performance-load-one-million-points.jpg")',
+        thumbnailImage: "javascript-chart-performance-load-one-million-points.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

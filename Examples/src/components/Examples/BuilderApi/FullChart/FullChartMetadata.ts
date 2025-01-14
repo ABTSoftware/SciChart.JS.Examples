@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "fullchart",
         imagePath: "./javascript-builder-full.jpg",
@@ -18,7 +17,7 @@ export const metaData: IExampleMetadata =
             "The builder api supports all SciChart 2D features.",
             "Use the new TextLabelProvider for easy configuration of text labels on a category axis",
         ],
-        thumbnailImage: 'getExampleImage("javascript-builder-full.jpg")',
+        thumbnailImage: "javascript-builder-full.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

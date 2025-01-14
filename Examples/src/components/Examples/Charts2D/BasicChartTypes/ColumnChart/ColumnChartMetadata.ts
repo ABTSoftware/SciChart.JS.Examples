@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "columnchart",
         imagePath: "./javascript-column-chart.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much space the column takes up.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-column-chart.jpg")',
+        thumbnailImage: "javascript-column-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

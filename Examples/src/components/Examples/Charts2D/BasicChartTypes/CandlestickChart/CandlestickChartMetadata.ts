@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "candlestickchart",
         imagePath: "./javascript-candlestick-chart.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "Try dragging on the chart to pan or zoom it. Use the mousewheel to zoom and double-click to zoom to fit.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-candlestick-chart.jpg")',
+        thumbnailImage: "javascript-candlestick-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

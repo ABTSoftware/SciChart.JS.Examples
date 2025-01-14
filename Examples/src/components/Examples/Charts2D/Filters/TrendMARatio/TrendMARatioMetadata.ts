@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "trendmaratio",
         imagePath: "./javascript-trend-ma-ratio.jpg",
@@ -15,7 +14,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "Moving Average and Linear Trend filters can be applied to any kind of data series, and you can pick which field to filter",
         ],
-        thumbnailImage: 'getExampleImage("javascript-trend-ma-ratio.jpg")',
+        thumbnailImage: "javascript-trend-ma-ratio.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "contourchart",
         imagePath: "./javascript-heatmap-chart-with-contours.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "Contours are calculated using GPU Shader programs so are very fast, but require some tweaking of properties\r\non UniformContoursRenderableSeries to get a good visual.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-heatmap-chart-with-contours.jpg")',
+        thumbnailImage: "javascript-heatmap-chart-with-contours.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

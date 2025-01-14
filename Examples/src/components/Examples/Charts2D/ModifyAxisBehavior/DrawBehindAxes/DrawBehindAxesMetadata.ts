@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "drawbehindaxes",
         imagePath: "./javascript-draw-behind-axes.jpg",
@@ -13,7 +12,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "Charts2D/ModifyAxisBehavior/DrawBehindAxes",
         tips: ["You can also draw axes over the chart area, and in other positions, buy using Inner Axes"],
-        thumbnailImage: 'getExampleImage("javascript-draw-behind-axes.jpg")',
+        thumbnailImage: "javascript-draw-behind-axes.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

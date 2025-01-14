@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "dynamiclayout",
         imagePath: "./javascript-dynamic-layout.jpg",
@@ -13,7 +12,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "FeaturedApps/ShowCases/DynamicLayout",
         tips: [],
-        thumbnailImage: 'getExampleImage("javascript-dynamic-layout.jpg")',
+        thumbnailImage: "javascript-dynamic-layout.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

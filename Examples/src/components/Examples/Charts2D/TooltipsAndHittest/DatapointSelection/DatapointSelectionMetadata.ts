@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "datapointselection",
         imagePath: "./javascript-datapoint-selection.jpg",
@@ -17,7 +16,7 @@ export const metaData: IExampleMetadata =
             "Adding DataPointSelectionModifier will automatically create the metadata required to track selection, but it does not stop you using your own metadata.",
             "You don't have to use DataPointSelectionPaletteProvider.  You can create your own and use the metadata.isSelected that is passed to the paletteProvider methods.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-datapoint-selection.jpg")',
+        thumbnailImage: "javascript-datapoint-selection.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "digitalbandserieschart",
         imagePath: "./javascript-digital-band-chart.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "If you have data where Y1 is greater than Y2 always, you’ll get an envelope effect. Great for rendering confidence intervals, error margins or Bollinger Bands!",
         ],
-        thumbnailImage: 'getExampleImage("javascript-digital-band-chart.jpg")',
+        thumbnailImage: "javascript-digital-band-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

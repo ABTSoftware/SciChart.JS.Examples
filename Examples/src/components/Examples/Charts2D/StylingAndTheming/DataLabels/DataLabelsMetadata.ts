@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "datalabels",
         imagePath: "./javascript-datalabels-chart.jpg",
@@ -13,7 +12,7 @@ export const metaData: IExampleMetadata =
         onWebsite: true,
         filepath: "Charts2D/StylingAndTheming/DataLabels",
         tips: [],
-        thumbnailImage: 'getExampleImage("javascript-datalabels-chart.jpg")',
+        thumbnailImage: "javascript-datalabels-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

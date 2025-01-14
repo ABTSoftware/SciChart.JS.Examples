@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "surfacemesh3dchart",
         imagePath: "./javascript-3d-surface-mesh-chart.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "Bubbles can be colored individually, programmatically selected and scaled using the PointMetadata3D class. PointMetadata also allows you to tag individual bubbles with a business object of any type.",
         ],
-        thumbnailImage: 'getExampleImage("javascript-3d-surface-mesh-chart.jpg")',
+        thumbnailImage: "javascript-3d-surface-mesh-chart.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

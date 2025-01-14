@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "trademarkerannotations",
         imagePath: "./javascript-stock-chart-buy-sell-markers.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             'News/Event bullet annotations use AnnotationBase.${" "}yCoordinateMode = ECoordinateMode.${" "}RelativeY to always place\r\nthe event bullet at the bottom of the chart.',
         ],
-        thumbnailImage: 'getExampleImage("javascript-stock-chart-buy-sell-markers.jpg")',
+        thumbnailImage: "javascript-stock-chart-buy-sell-markers.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",

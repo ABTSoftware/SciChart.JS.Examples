@@ -2,7 +2,6 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 
 export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
-
     {
         exampleId: "transparentbackground",
         imagePath: "./javascript-chart-transparent-background.jpg",
@@ -16,7 +15,7 @@ export const metaData: IExampleMetadata =
         tips: [
             "It's also possible to show DOM elements: Videos, Images, Gradient Backgrounds or an entire webpage behind charts!",
         ],
-        thumbnailImage: 'getExampleImage("javascript-chart-transparent-background.jpg")',
+        thumbnailImage: "javascript-chart-transparent-background.jpg",
         frameworks: {
             react: {
                 component: "ReactChartComponent",
