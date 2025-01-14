@@ -110,7 +110,9 @@ import populationPyramidImage from "./FeaturedApps/ShowCases/PopulationPyramid/j
 import serverTrafficDashboardImage from "./FeaturedApps/ShowCases/ServerTrafficDashboard/javascript-server-traffic-dashboard.jpg";
 import streamingDataImage from "./FeaturedApps/ShowCases/WebsocketBigData/javascript-streaming-data.jpg";
 
-export const getExampleImage = (filename: string): string => {
+export const getExampleImage = (filepath: string): string => {
+    // Extract just the filename from the path (everything after the last slash or backslash)
+    const filename = filepath.split(/[/\\]/).pop() || "";
     switch (filename) {
         case "javascript-heatmap-chart-with-contours.jpg":
             return contoursChartImage;
