@@ -12,6 +12,7 @@ export interface IExampleMetadata {
     metaKeywords: string; // Meta keywords for SEO
     onWebsite: boolean; // Whether the example is shown on the website
     filepath: string; // File path for the example
+    thumbnailImage: string;
 }
 
 export interface IDocumentationLink {

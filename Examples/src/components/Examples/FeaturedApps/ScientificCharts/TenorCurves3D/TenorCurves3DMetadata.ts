@@ -1,5 +1,8 @@
-export const metaData =
+import { IExampleMetadata } from "../../../IExampleMetadata";
+
+export const metaData: IExampleMetadata =
     //// this file is generated, do not edit it!  JSON DATA >>>>>
+
     {
         exampleId: "tenorcurves",
         imagePath: "./javascript-2d-3d-chart-tenor-curves-example.jpg",
