@@ -104,14 +104,18 @@ export default function Load500By500() {
                             sx={{
                                 backgroundColor: appTheme.Indigo,
                                 color: appTheme.ForegroundColor,
-                                textAlign: "left",
+
+                                "& .MuiAlert-message": {
+                                    flex: "auto",
+                                },
                             }}
                             severity="info"
                         >
                             <AlertTitle className={commonClasses.NotificationTitle}>Performance Results</AlertTitle>
                             {timeSpans.map((ts, index) => (
-                                <div key={index}>
-                                    {ts.title}: {ts.durationMs.toFixed(0)} ms
+                                <div key={index} style={{ display: "flex", justifyContent: "space-between" }}>
+                                    <p>{ts.title}</p>
+                                    <p>{ts.durationMs.toFixed(0)} ms</p>
                                 </div>
                             ))}
                         </Alert>

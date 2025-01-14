@@ -122,10 +122,27 @@ function ServerTrafficDashboard() {
         setIsDialogOpen(false);
     };
 
+    const switchStyleOverrides = {
+        width: "100%",
+        margin: 0,
+        padding: "1em",
+        color: appTheme.ForegroundColor,
+        accentColor: "#0bdef4",
+
+        "& .MuiSwitch-track": {
+            opacity: 1,
+            backgroundColor: appTheme.PalePink,
+        },
+    };
+
     const configurationDialog = (
-        <Dialog onClose={handleClose} open={isDialogOpen}>
+        <Dialog
+            onClose={handleClose}
+            open={isDialogOpen}
+            sx={{ color: appTheme.ForegroundColor, "& .MuiDialog-paper": { background: appTheme.DarkIndigo } }}
+        >
             <DialogTitle>
-                Chart Configurations
+                <span style={{ color: appTheme.ForegroundColor }}>Chart Configurations</span>
                 <IconButton
                     aria-label="close"
                     onClick={handleClose}
@@ -140,7 +157,11 @@ function ServerTrafficDashboard() {
                 </IconButton>
             </DialogTitle>
             <List>
-                <Typography variant="subtitle2" fontWeight={"bold"} sx={{ padding: "0em 1em" }}>
+                <Typography
+                    variant="subtitle2"
+                    fontWeight={"bold"}
+                    sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
+                >
                     Main Chart
                 </Typography>
 
@@ -148,45 +169,35 @@ function ServerTrafficDashboard() {
                     <FormControlLabel
                         control={<Switch checked={isVisibleRangeSynced} onChange={handleSyncVisibleRangeChange} />}
                         label="Sync&nbsp;X-Axis&nbsp;visible&nbsp;range"
-                        sx={{
-                            margin: 0,
-                            padding: "1em",
-                            color: "#17243d",
-                            accentColor: "#0bdef4",
-                            marginRight: 4,
-                        }}
+                        sx={switchStyleOverrides}
                     />
                 </ListItem>
-                <Typography variant="subtitle2" fontWeight={"bold"} sx={{ padding: "0em 1em" }}>
+                <Typography
+                    variant="subtitle2"
+                    fontWeight={"bold"}
+                    sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
+                >
                     URL Statistics Chart
                 </Typography>
                 <ListItem disablePadding>
                     <FormControlLabel
                         control={<Switch checked={isHundredPercentCollection} onChange={handleUsePercentage} />}
                         label="is&nbsp;100%&nbsp;collection"
-                        sx={{
-                            margin: 0,
-                            padding: "1em",
-                            color: "#17243d",
-                            accentColor: "#0bdef4",
-                            marginRight: 4,
-                        }}
+                        sx={switchStyleOverrides}
                     />
                 </ListItem>
-                <Typography variant="subtitle2" fontWeight={"bold"} sx={{ padding: "0em 1em" }}>
+                <Typography
+                    variant="subtitle2"
+                    fontWeight={"bold"}
+                    sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
+                >
                     Server Load Statistics Chart
                 </Typography>
                 <ListItem disablePadding>
                     <FormControlLabel
                         control={<Switch checked={isGridLayout} onChange={handleUseGridLayout} />}
                         label="is&nbsp;Grid&nbsp;Layout"
-                        sx={{
-                            margin: 0,
-                            padding: "1em",
-                            color: "#17243d",
-                            accentColor: "#0bdef4",
-                            marginRight: 4,
-                        }}
+                        sx={switchStyleOverrides}
                     />
                 </ListItem>
             </List>
@@ -202,7 +213,7 @@ function ServerTrafficDashboard() {
                             sx={{ color: appTheme.ForegroundColor, pointerEvents: "all", touchAction: "all" }}
                             onClick={handleClickOpen}
                         >
-                            <SettingsIcon />
+                            <SettingsIcon fontSize="large" />
                         </IconButton>
                         {configurationDialog}
                     </div>
