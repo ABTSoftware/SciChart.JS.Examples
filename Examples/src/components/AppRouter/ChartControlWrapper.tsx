@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { useSearchParams } from "react-router-dom";
 import { IInitResult, SciChartGroup } from "scichart-react";
-import { InfoToolbar } from "../Examples/Toolbar";
+// import { InfoToolbar } from "../Examples/Toolbar";
 import { TExamplePage } from "./examplePages";
 import { SciChartSurfaceBase } from "scichart";
 
@@ -27,7 +27,7 @@ export default function ChartControlWrapper(props: { children: ReactNode; exampl
                     // });
                 }}
             >
-                {!hideToolbar ? <InfoToolbar examplePage={props.examplePage} /> : null}
+                {/* {!hideToolbar ? <InfoToolbar examplePage={props.examplePage} /> : null} */}
                 {props.children}
             </SciChartGroup>
         </>

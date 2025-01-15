@@ -7,7 +7,7 @@ import { getExampleComponent } from "./examples";
 import classes from "../Examples/styles/Examples.module.scss";
 import { GalleryItem } from "../../helpers/types/types";
 import NoIndexTag from "../SeoTags/NoIndexTag";
-import { InfoToolbar } from "../Examples/Toolbar";
+// import { InfoToolbar } from "../Examples/Toolbar";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import ChartControlWrapper from "./ChartControlWrapper";
 
