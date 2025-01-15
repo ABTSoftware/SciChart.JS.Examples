@@ -568,7 +568,7 @@ export const drawExample =
             if (sciChartSurface.chartModifiers.size() === 0) {
                 sciChartSurface.chartModifiers.add(
                     new MouseWheelZoomModifier(),
-                    new ZoomPanModifier(),
+                    new ZoomPanModifier({ enableZoom: true }),
                     new ZoomExtentsModifier()
                 );
             }

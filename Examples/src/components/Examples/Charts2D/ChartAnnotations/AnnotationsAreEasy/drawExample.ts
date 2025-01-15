@@ -39,7 +39,7 @@ export const drawExample = (CustomImage: string) => async (rootElement: string |
     sciChartSurface.yAxes.add(yAxis);
 
     // Optional: Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
 
     const textColor = appTheme.ForegroundColor;
     const stroke = appTheme.VividSkyBlue;

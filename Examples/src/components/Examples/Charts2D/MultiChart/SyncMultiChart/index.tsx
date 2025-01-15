@@ -112,7 +112,7 @@ const createChart = async (divId: string, id: number) => {
         new RolloverModifier({ modifierGroup: "one" }),
         new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton, modifierGroup: "one" }),
         // These do not need modifierGroup as the xAxes are synchronised.
-        new ZoomPanModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
         new ZoomExtentsModifier(),
         new MouseWheelZoomModifier()
     );

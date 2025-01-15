@@ -148,7 +148,7 @@ export const createPageStatisticsChart = async (divElementId: string | HTMLDivEl
         legendModifier,
         rolloverModifier,
         new ZoomExtentsModifier({ xyDirection: zoomAndScrollDirection }),
-        new ZoomPanModifier({ xyDirection: zoomAndScrollDirection }),
+        new ZoomPanModifier({ enableZoom: true, xyDirection: zoomAndScrollDirection }),
         new MouseWheelZoomModifier({ xyDirection: zoomAndScrollDirection })
     );
     sciChartSurface.zoomExtents();
