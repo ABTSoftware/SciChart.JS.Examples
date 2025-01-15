@@ -1,7 +1,6 @@
 export interface IExampleMetadata {
     exampleId: string; // Unique identifier for the example
     imagePath: string; // Path to the example's thumbnail image
-    title: string; // Title of the example
     description: string; // General description of the example
     tips: string[]; // Array of tips related to the example
     frameworks: Record<string, IFrameworkData>; // Framework-specific data keyed by framework name (e.g., "react", "angular", "javascript")
