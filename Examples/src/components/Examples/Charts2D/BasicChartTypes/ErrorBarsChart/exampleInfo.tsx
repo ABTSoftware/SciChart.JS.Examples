@@ -4,57 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "errorbarschart",
+        exampleId: "charts2d\\basiccharttypes\\errorbarschart",
         imagePath: "./javascript-error-bars-chart.jpg",
-        title: "errorBarsChart",
-        description:
-            "Error Bars on JavaScript Charts are useful to display uncertainty or statistical confidence of a data-point.\r\n    In SciChart.js Error Bars can have custom error values per point or a fixed percentage error value. Error bars can be horizontal or vertical.",
-        path: "errorbarschart",
+        description: "",
+        path: "error-bars-chart",
         metaKeywords: "error, bars, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/ErrorBarsChart",
-        tips: [
-            "To change the size of the cap, use the dataPointWidth and dataPointWidthMode properties.",
-            "It is possible to change orientation of error bars.",
-            "You can also configure visibility of different part of an error bar.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-error-bars-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "This SciChart demo demonstrates how to create a **JavaScript, Error Bars Chart** using SciChart.js our High Performance JavaScript Chart component.",
+                title: "JavaScript Error Bars Chart",
+                pageTitle: "JavaScript Error Bars Chart |  Online Examples | SciChart.js",
+                metaDescription:
+                    "Create JavaScript Error Bars Chart using high performance SciChart.js. Display uncertainty or statistical confidence of a data-point. Get free demo now.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React errorBarsChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React errorBarsChart",
-                pageTitle: "React errorBarsChart | JavaScript Charts | View Examples",
+                    "This SciChart demo demonstrates how to create a **React, Error Bars Chart** using SciChart.js our High Performance JavaScript Chart component.",
+                title: "React Error Bars Chart",
+                pageTitle: "React Error Bars Chart |  Online Examples | SciChart.js",
                 metaDescription:
-                    "Easily create a React errorBarsChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create React Error Bars Chart using high performance SciChart.js. Display uncertainty or statistical confidence of a data-point. Get free demo now.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular errorBarsChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular errorBarsChart",
-                pageTitle: "Angular errorBarsChart | JavaScript Charts | View Examples",
+                    "This SciChart demo demonstrates how to create a **Angular, Error Bars Chart** using SciChart.js our High Performance JavaScript Chart component.",
+                title: "Angular Error Bars Chart",
+                pageTitle: "Angular Error Bars Chart |  Online Examples | SciChart.js",
                 metaDescription:
-                    "Easily create an Angular errorBarsChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript errorBarsChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript errorBarsChart",
-                pageTitle: "JavaScript errorBarsChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript errorBarsChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create Angular Error Bars Chart using high performance SciChart.js. Display uncertainty or statistical confidence of a data-point. Get free demo now.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Error%20Bars%20Chart%20Type.html",
+                title: "This specific page in the JavaScript Error Bars Chart documentation will help you to get started",
                 linkTitle: "JavaScript Impulse Chart Documentation",
             },
         ],

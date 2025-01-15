@@ -4,53 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "stylingincode",
+        exampleId: "charts2d\\stylingandtheming\\stylingincode",
         imagePath: "./javascript-chart-styling-theming-in-code.jpg",
-        title: "stylingInCode",
-        description:
-            "Almost any element in SciChart is stylable in code and most parts of the chart are exposed. You can easily\r\nset background, grid-line, axis label, viewport background and chart series colors in JavaScript.",
-        path: "stylingincode",
+        description: "",
+        path: "chart-styling-theming-in-code",
         metaKeywords: "styling, in, code, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/StylingAndTheming/StylingInCode",
-        tips: ["It's also possible to style chart-parts in code!"],
+        tips: ['""'],
         thumbnailImage: "javascript-chart-styling-theming-in-code.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to **style or theme a ,JavaScript, Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Styling a JavaScript Chart in Code",
+                pageTitle: "Styling a JavaScript Chart in Code",
+                metaDescription:
+                    "Demonstrates how to style a JavaScript Chart entirely in code with SciChart.js themeing API",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React stylingInCode** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React stylingInCode",
-                pageTitle: "React stylingInCode | JavaScript Charts | View Examples",
+                    "Demonstrates how to **style or theme a ,React, Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Styling a React Chart in Code",
+                pageTitle: "Styling a React Chart in Code",
                 metaDescription:
-                    "Easily create a React stylingInCode with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to style a React Chart entirely in code with SciChart.js themeing API",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular stylingInCode** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular stylingInCode",
-                pageTitle: "Angular stylingInCode | JavaScript Charts | View Examples",
+                    "Demonstrates how to **style or theme a ,Angular, Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Styling a Angular Chart in Code",
+                pageTitle: "Styling a Angular Chart in Code",
                 metaDescription:
-                    "Easily create an Angular stylingInCode with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript stylingInCode** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript stylingInCode",
-                pageTitle: "JavaScript stylingInCode | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript stylingInCode with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to style a Angular Chart entirely in code with SciChart.js themeing API",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Chart%20Styling%20-%20Style%20Chart%20Parts%20in%20Code.html",
+                title: "How to style chart parts in code documentation",
                 linkTitle: "Custom Theme documentation",
             },
         ],

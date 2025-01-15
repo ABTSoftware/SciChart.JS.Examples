@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "vitalsignsmonitordemo",
+        exampleId: "featuredapps\\medicalcharts\\vitalsignsmonitordemo",
         imagePath: "./javascript-vital-signs-ecg-medical-chart-example.jpg",
-        title: "vitalSignsMonitorDemo",
-        description:
-            "SciChart.js will help you short-cut your development by providing rich, real-time high performance and\r\nreliable charts for JavaScript medical and healthcare applications.",
-        path: "vitalsignsmonitordemo",
+        description: "",
+        path: "vital-signs-ecg-medical-chart-example",
         metaKeywords: "ecg, ekg, realtime, medical, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "FeaturedApps/MedicalCharts/VitalSignsMonitorDemo",
-        tips: [
-            "This example uses the GlowShaderEffect - an effect that can be tagged onto BaseRenderableSeries in SciChart to add oscilloscope/VDU style glow effects. A single point-marker is added to render the latest point which also has the glow applied. Try it out!",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-vital-signs-ecg-medical-chart-example.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Showcases how SciChart.js can be used in a **Medical context**, drawing ECGs with our High Performance JavaScript Charts",
+                title: "JavaScript Vital Signs ECG/EKG Medical Demo",
+                pageTitle: "JavaScript Vital Signs ECG/EKG Medical Demo",
+                metaDescription:
+                    "In this example we are simulating four channels of data showing that SciChart.js can be used to draw real-time\n        ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate, SPO2 blood\n        oxygen, volumetric flow and more.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React vitalSignsMonitorDemo** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React vitalSignsMonitorDemo",
-                pageTitle: "React vitalSignsMonitorDemo | JavaScript Charts | View Examples",
+                    "Showcases how SciChart.js can be used in a **Medical context**, drawing ECGs with our High Performance JavaScript Charts",
+                title: "React Vital Signs ECG/EKG Medical Demo",
+                pageTitle: "React Vital Signs ECG/EKG Medical Demo",
                 metaDescription:
-                    "Easily create a React vitalSignsMonitorDemo with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "In this example we are simulating four channels of data showing that SciChart.js can be used to draw real-time\n        ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate, SPO2 blood\n        oxygen, volumetric flow and more.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular vitalSignsMonitorDemo** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular vitalSignsMonitorDemo",
-                pageTitle: "Angular vitalSignsMonitorDemo | JavaScript Charts | View Examples",
+                    "Showcases how SciChart.js can be used in a **Medical context**, drawing ECGs with our High Performance JavaScript Charts",
+                title: "Angular Vital Signs ECG/EKG Medical Demo",
+                pageTitle: "Angular Vital Signs ECG/EKG Medical Demo",
                 metaDescription:
-                    "Easily create an Angular vitalSignsMonitorDemo with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript vitalSignsMonitorDemo** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript vitalSignsMonitorDemo",
-                pageTitle: "JavaScript vitalSignsMonitorDemo | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript vitalSignsMonitorDemo with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "In this example we are simulating four channels of data showing that SciChart.js can be used to draw real-time\n        ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate, SPO2 blood\n        oxygen, volumetric flow and more.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],

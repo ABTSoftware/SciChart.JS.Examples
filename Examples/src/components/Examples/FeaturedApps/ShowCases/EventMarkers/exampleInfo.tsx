@@ -4,56 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "eventmarkers",
+        exampleId: "featuredapps\\showcases\\eventmarkers",
         imagePath: "./javascript-draggable-event-markers.jpg",
-        title: "eventMarkers",
-        description: "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers",
-        path: "eventmarkers",
+        description: "",
+        path: "dragabble-event-markers",
         metaKeywords: "events, drag, edit, datalabels, , layout, demo, chart, javascript, webgl, canvas",
-        onWebsite: true,
+        onWebsite: false,
         filepath: "FeaturedApps/ShowCases/EventMarkers",
-        tips: [
-            "Take control of the candle width by overriding series.getDataPointWidth",
-            "FastCandleStickRenderableSeries needs to be given a properly configured DataLabelProvider in order to show labels",
-            "DataPointSelectionPaletteProvider takes care of coloring the selected point, even when you are setting isSelected on the metaData manually",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-draggable-event-markers.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
+                title: "Dragabble Event Markers",
+                pageTitle: "Dragabble Event Markers",
+                metaDescription:
+                    "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React eventMarkers** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React eventMarkers",
-                pageTitle: "React eventMarkers | JavaScript Charts | View Examples",
+                    "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
+                title: "Dragabble Event Markers",
+                pageTitle: "Dragabble Event Markers",
                 metaDescription:
-                    "Easily create a React eventMarkers with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular eventMarkers** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular eventMarkers",
-                pageTitle: "Angular eventMarkers | JavaScript Charts | View Examples",
+                    "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
+                title: "Dragabble Event Markers",
+                pageTitle: "Dragabble Event Markers",
                 metaDescription:
-                    "Easily create an Angular eventMarkers with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript eventMarkers** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript eventMarkers",
-                pageTitle: "JavaScript eventMarkers | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript eventMarkers with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],

@@ -4,56 +4,49 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "populationpyramid",
+        exampleId: "featuredapps\\showcases\\populationpyramid",
         imagePath: "./javascript-population-pyramid.jpg",
-        title: "populationPyramid",
-        description: "Population Pyramid of Europe and Africa",
-        path: "populationpyramid",
+        description: "",
+        path: "population-pyramid",
         metaKeywords:
             "population, react, column, stacked, animation, labels, engineering, pyramid, europe, africa, javascript, chart, webgl, canvas",
-        onWebsite: true,
+        onWebsite: false,
         filepath: "FeaturedApps/ShowCases/PopulationPyramid",
-        tips: [
-            "Pay close attention to the way the 2 YAxes are stacked",
-            'Check out our new "Engineering" numeric formatter, which is used to format the xAxis and the dataLabels',
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-population-pyramid.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
+                title: "JavaScript Population Pyramid",
+                pageTitle: "JavaScript Population Pyramid",
+                metaDescription: "Population Pyramid of Europe and Africa",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React populationPyramid** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React populationPyramid",
-                pageTitle: "React populationPyramid | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a React populationPyramid with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
+                title: "React Population Pyramid",
+                pageTitle: "React Population Pyramid",
+                metaDescription: "Population Pyramid of Europe and Africa",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular populationPyramid** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular populationPyramid",
-                pageTitle: "Angular populationPyramid | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create an Angular populationPyramid with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript populationPyramid** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript populationPyramid",
-                pageTitle: "JavaScript populationPyramid | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript populationPyramid with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
+                title: "Angular Population Pyramid",
+                pageTitle: "Angular Population Pyramid",
+                metaDescription: "Population Pyramid of Europe and Africa",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],

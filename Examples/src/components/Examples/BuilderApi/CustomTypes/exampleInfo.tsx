@@ -4,56 +4,52 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "customtypes",
+        exampleId: "builderapi\\customtypes",
         imagePath: "./javascript-custom-types.jpg",
-        title: "customTypes",
-        description:
-            "To use a custom type, you just need to register it using chartBuilder.registerType, with a name, and a function that will create an instance of your type.\r\nThis example also shows how you can call methods within the builder api to get references to the objects being built, so you can update them later.",
-        path: "customtypes",
+        title: "Custom Types with Builder API",
+        description: "",
+        path: "custom-types",
         metaKeywords: "custom, chart, javascript, builder, paletteprovider",
         onWebsite: true,
         filepath: "BuilderApi/CustomTypes",
-        tips: [
-            "Custom types can have options which will be passed to the registered function.",
-            "Add a toJSON method to your custom type if you want it to be serialized",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-custom-types.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to use the Builder Api with **Custom Types** using SciChart.js, High Performance JavaScript Charts",
+                title: "Custom Types with Builder API",
+                pageTitle: "Custom Types with Builder API",
+                metaDescription:
+                    "Demonstrates how to make a custom type such as a PaletteProvider available for use with the Builder Api.You can call methods within the builder api to get references to the objects being built, so you can update them later.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React customTypes** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React customTypes",
-                pageTitle: "React customTypes | JavaScript Charts | View Examples",
+                    "Demonstrates how to use the Builder Api with **Custom Types** using SciChart.js, High Performance JavaScript Charts",
+                title: "Custom Types with Builder API",
+                pageTitle: "Custom Types with Builder API",
                 metaDescription:
-                    "Easily create a React customTypes with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to make a custom type such as a PaletteProvider available for use with the Builder Api.You can call methods within the builder api to get references to the objects being built, so you can update them later.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular customTypes** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular customTypes",
-                pageTitle: "Angular customTypes | JavaScript Charts | View Examples",
+                    "Demonstrates how to use the Builder Api with **Custom Types** using SciChart.js, High Performance JavaScript Charts",
+                title: "Custom Types with Builder API",
+                pageTitle: "Custom Types with Builder API",
                 metaDescription:
-                    "Easily create an Angular customTypes with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript customTypes** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript customTypes",
-                pageTitle: "JavaScript customTypes | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript customTypes with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to make a custom type such as a PaletteProvider available for use with the Builder Api.You can call methods within the builder api to get references to the objects being built, so you can update them later.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Intro%20to%20the%20Builder%20API.html",
+                title: "This specific page in the JavaScript Builder API documentation will help you to get started",
                 linkTitle: "JavaScript Builder API Documentation",
             },
         ],

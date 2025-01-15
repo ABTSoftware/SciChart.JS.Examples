@@ -4,55 +4,52 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "loadonemillionpoints",
+        exampleId: "featuredapps\\performancedemos\\load1millionpoints",
         imagePath: "./javascript-chart-performance-load-one-million-points.jpg",
-        title: "loadOneMillionPoints",
-        description:
-            "This demo showcases the loading or startup time of SciChart.js with a million points. Click 'Load' to run the example and see SciChart load 1-million points instantly!",
-        path: "loadonemillionpoints",
+        title: "Load 1 Million Points Performance Demo",
+        description: "",
+        path: "chart-performance-load-one-million-points",
         metaKeywords: "performance, loading, million, points, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "FeaturedApps/PerformanceDemos/Load1MillionPoints",
-        tips: [
-            "For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded appendRange functions on dataseries.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-chart-performance-load-one-million-points.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
+                title: "Load 1 Million Points Performance Demo",
+                pageTitle: "Load 1 Million Points Performance Demo",
+                metaDescription:
+                    "This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React loadOneMillionPoints** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React loadOneMillionPoints",
-                pageTitle: "React loadOneMillionPoints | JavaScript Charts | View Examples",
+                    "Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
+                title: "Load 1 Million Points Performance Demo",
+                pageTitle: "Load 1 Million Points Performance Demo",
                 metaDescription:
-                    "Easily create a React loadOneMillionPoints with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular loadOneMillionPoints** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular loadOneMillionPoints",
-                pageTitle: "Angular loadOneMillionPoints | JavaScript Charts | View Examples",
+                    "Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
+                title: "Load 1 Million Points Performance Demo",
+                pageTitle: "Load 1 Million Points Performance Demo",
                 metaDescription:
-                    "Easily create an Angular loadOneMillionPoints with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript loadOneMillionPoints** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript loadOneMillionPoints",
-                pageTitle: "JavaScript loadOneMillionPoints | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript loadOneMillionPoints with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Common%20RenderableSeries%20Features.html",
+                title: "Go to the Performance Tips and Tricks page in the SciChart.js Documentation",
                 linkTitle: "SciChart.js Performance Tips and Tricks",
             },
         ],

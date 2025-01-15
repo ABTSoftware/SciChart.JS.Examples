@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "heatmapinteractions",
+        exampleId: "featuredapps\\showcases\\heatmapinteractions",
         imagePath: "./javascript-heatmap-interactions.jpg",
-        title: "heatmapInteractions",
-        description:
-            "SciChart can handle realtime data, and lots of it!.  Pick a chart type and use the sliders to adjust the data volume and see how SciChart is able to keep up.\r\nData is streamed from the server via websocket and buffered locally so it keeps up with the data even if the render time is more than the update interval.\r\nStop the updates then zoom with the mousewheel to see all the data is really there.",
-        path: "heatmapinteractions",
+        description: "",
+        path: "heatmap-interactions",
         metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "FeaturedApps/ShowCases/HeatmapInteractions",
-        tips: [
-            "For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded appendRange functions on dataseries.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-heatmap-interactions.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
+                title: "Rich Interactions Showcase",
+                pageTitle: "Rich Interactions Showcase",
+                metaDescription:
+                    "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React heatmapInteractions** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React heatmapInteractions",
-                pageTitle: "React heatmapInteractions | JavaScript Charts | View Examples",
+                    "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
+                title: "Rich Interactions Showcase",
+                pageTitle: "Rich Interactions Showcase",
                 metaDescription:
-                    "Easily create a React heatmapInteractions with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "This demo showcases the incredible realtime performance of our React charts by updating the series with millions of data-points!",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular heatmapInteractions** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular heatmapInteractions",
-                pageTitle: "Angular heatmapInteractions | JavaScript Charts | View Examples",
+                    "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
+                title: "Rich Interactions Showcase",
+                pageTitle: "Rich Interactions Showcase",
                 metaDescription:
-                    "Easily create an Angular heatmapInteractions with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript heatmapInteractions** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript heatmapInteractions",
-                pageTitle: "JavaScript heatmapInteractions | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript heatmapInteractions with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "This demo showcases the incredible realtime performance of our Angular charts by updating the series with millions of data-points!",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],

@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "stackedcolumnsidebyside",
+        exampleId: "charts2d\\basiccharttypes\\stackedcolumnsidebyside",
         imagePath: "./javascript-stacked-grouped-column-chart.jpg",
-        title: "stackedColumnSideBySide",
-        description:
-            "Demonstrates how to create a JavaScript Stacked Column Chart with side-by-side grouping. This mode of\r\nStacked Column Charts groups the columns next to each other, allowing for easy comparison of several\r\ndatasets.",
-        path: "stackedcolumnsidebyside",
+        description: "",
+        path: "stacked-grouped-column-chart-side-by-side",
         metaKeywords: "stacked, column, side-by-side, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/StackedColumnSideBySide",
-        tips: [
-            "To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much space the column takes up.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-stacked-grouped-column-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "We have created a simple example that shows you how to create a **JavaScript, Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",
+                title: "JavaScript Stacked Column Side by Side",
+                pageTitle: "JavaScript Stacked Group Column Chart | View Examples Now",
+                metaDescription:
+                    "Design JavaScript Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React stackedColumnSideBySide** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React stackedColumnSideBySide",
-                pageTitle: "React stackedColumnSideBySide | JavaScript Charts | View Examples",
+                    "We have created a simple example that shows you how to create a **React, Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",
+                title: "React Stacked Column Side by Side",
+                pageTitle: "React Stacked Group Column Chart | View Examples Now",
                 metaDescription:
-                    "Easily create a React stackedColumnSideBySide with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Design React Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular stackedColumnSideBySide** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular stackedColumnSideBySide",
-                pageTitle: "Angular stackedColumnSideBySide | JavaScript Charts | View Examples",
+                    "We have created a simple example that shows you how to create a **Angular, Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",
+                title: "Angular Stacked Column Side by Side",
+                pageTitle: "Angular Stacked Group Column Chart | View Examples Now",
                 metaDescription:
-                    "Easily create an Angular stackedColumnSideBySide with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript stackedColumnSideBySide** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript stackedColumnSideBySide",
-                pageTitle: "JavaScript stackedColumnSideBySide | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript stackedColumnSideBySide with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Design Angular Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Stacked%20Column%20Series%20Type.html",
+                title: "The specific page for the JavaScript Stacked Column Chart documentation will help you to get started",
                 linkTitle: "JavaScript Stacked Column Chart Documentation",
             },
         ],

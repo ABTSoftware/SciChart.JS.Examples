@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "bubble3dchart",
+        exampleId: "charts3d\\basic3dcharttypes\\bubble3dchart",
         imagePath: "./javascript-3d-bubble-chart.jpg",
-        title: "bubble3DChart",
-        description:
-            "JavaScript 3D Bubble Charts can be created using SciChart.js.\r\n    Large datasets up to a million points can be drawn, enabling point-clouds or visualisation of large statistical datsets in a browser.",
-        path: "bubble3dchart",
+        description: "",
+        path: "3d-bubble-chart",
         metaKeywords: "3d, bubble, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts3D/Basic3DChartTypes/Bubble3DChart",
-        tips: [
-            "Bubbles can be colored individually, programmatically selected and scaled using the PointMetadata3D class. PointMetadata also allows you to tag individual bubbles with a business object of any type.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-3d-bubble-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Our team demonstrates how to create a **JavaScript, 3D Bubble Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
+                title: "JavaScript 3D Bubble Chart",
+                pageTitle: "JavaScript 3D Bubble Chart | 3D JavaScript Charts | View Now",
+                metaDescription:
+                    "Create detailed JavaScript 3D Bubble Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React bubble3DChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React bubble3DChart",
-                pageTitle: "React bubble3DChart | JavaScript Charts | View Examples",
+                    "Our team demonstrates how to create a **React, 3D Bubble Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
+                title: "React 3D Bubble Chart",
+                pageTitle: "React 3D Bubble Chart | 3D JavaScript Charts | View Now",
                 metaDescription:
-                    "Easily create a React bubble3DChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create detailed React 3D Bubble Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular bubble3DChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular bubble3DChart",
-                pageTitle: "Angular bubble3DChart | JavaScript Charts | View Examples",
+                    "Our team demonstrates how to create a **Angular, 3D Bubble Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
+                title: "Angular 3D Bubble Chart",
+                pageTitle: "Angular 3D Bubble Chart | 3D JavaScript Charts | View Now",
                 metaDescription:
-                    "Easily create an Angular bubble3DChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript bubble3DChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript bubble3DChart",
-                pageTitle: "JavaScript bubble3DChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript bubble3DChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create detailed Angular 3D Bubble Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Bubble%203D%20Chart%20Type.html",
+                title: "SciChart.js 3D Bubble Chart Documentation",
                 linkTitle: "JavaScript 3D Bubble Chart Documentation",
             },
         ],

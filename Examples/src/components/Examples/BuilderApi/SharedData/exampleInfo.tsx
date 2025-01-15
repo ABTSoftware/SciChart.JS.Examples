@@ -4,57 +4,51 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "shareddata",
+        exampleId: "builderapi\\shareddata",
         imagePath: "./javascript-shared-data.jpg",
-        title: "sharedData",
-        description:
-            "This allows data to be reused in the chart, but more importantly allows the data and the chart definition to be built separately and then combined with ease.",
-        path: "shareddata",
+        description: "",
+        path: "reusable-templates-using-shared-data",
         metaKeywords: "template, chart, javascript, data, reuse",
         onWebsite: true,
         filepath: "BuilderApi/SharedData",
-        tips: [
-            "To deserialize a definition before adding data, use JSON.parse(jsonString, chartBuilder.chartReviver)",
-            "To convert a chart to a definition without data, use sciChartSurface.toJSON(true)",
-            "Data will be serialized to the individual series if the resulting chart is serialized",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-shared-data.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to use the Builder Api to create **Reusable Chart Templates** using SciChart.js Builder API. Use this method when you want to create a template for a chart and add data later.",
+                title: "JavaScript Chart with Reusable Templates using Shared Data",
+                pageTitle: "JavaScript Chart with Reusable Templates using Shared Data",
+                metaDescription:
+                    "Demonstrates how to use the Builder Api to create Reusable Chart Templates.Data can be easily integrated into a definition and shared between series",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React sharedData** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React sharedData",
-                pageTitle: "React sharedData | JavaScript Charts | View Examples",
+                    "Demonstrates how to use the Builder Api to create **Reusable Chart Templates** using SciChart.js Builder API. Use this method when you want to create a template for a chart and add data later.",
+                title: "React Chart with Reusable Templates using Shared Data",
+                pageTitle: "React Chart with Reusable Templates using Shared Data",
                 metaDescription:
-                    "Easily create a React sharedData with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to use the Builder Api to create Reusable Chart Templates.Data can be easily integrated into a definition and shared between series",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular sharedData** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular sharedData",
-                pageTitle: "Angular sharedData | JavaScript Charts | View Examples",
+                    "Demonstrates how to use the Builder Api to create **Reusable Chart Templates** using SciChart.js Builder API. Use this method when you want to create a template for a chart and add data later.",
+                title: "Angular Chart with Reusable Templates using Shared Data",
+                pageTitle: "Angular Chart with Reusable Templates using Shared Data",
                 metaDescription:
-                    "Easily create an Angular sharedData with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript sharedData** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript sharedData",
-                pageTitle: "JavaScript sharedData | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript sharedData with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to use the Builder Api to create Reusable Chart Templates.Data can be easily integrated into a definition and shared between series",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Intro%20to%20the%20Builder%20API.html",
+                title: "This specific page in the JavaScript Builder API documentation will help you to get started",
                 linkTitle: "JavaScript Builder API Documentation",
             },
         ],

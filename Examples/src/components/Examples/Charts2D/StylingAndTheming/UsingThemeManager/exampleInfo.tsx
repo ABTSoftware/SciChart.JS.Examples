@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "usingthememanager",
+        exampleId: "charts2d\\stylingandtheming\\usingthememanager",
         imagePath: "./javascript-chart-themes.jpg",
-        title: "usingThemeManager",
-        description:
-            "SciChart.js ships with a light and a dark theme, which you can switch by calling the\r\nSciChartSurface.applyTheme() function.",
-        path: "usingthememanager",
+        description: "",
+        path: "chart-themes",
         metaKeywords: "theme, provider, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/StylingAndTheming/UsingThemeManager",
-        tips: [
-            "If you implement IThemeProvider you can create your own custom themes! It's also possible to style chart-parts in code.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-chart-themes.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
+                title: "Using Theme Manager in JavaScript Chart",
+                pageTitle: "Using Theme Manager in JavaScript Chart",
+                metaDescription:
+                    "Demonstrates our Light and Dark Themes for JavaScript Charts with SciChart.js ThemeManager API",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React usingThemeManager** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React usingThemeManager",
-                pageTitle: "React usingThemeManager | JavaScript Charts | View Examples",
+                    "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
+                title: "Using Theme Manager in React Chart",
+                pageTitle: "Using Theme Manager in React Chart",
                 metaDescription:
-                    "Easily create a React usingThemeManager with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates our Light and Dark Themes for React Charts with SciChart.js ThemeManager API",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular usingThemeManager** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular usingThemeManager",
-                pageTitle: "Angular usingThemeManager | JavaScript Charts | View Examples",
+                    "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
+                title: "Using Theme Manager in Angular Chart",
+                pageTitle: "Using Theme Manager in Angular Chart",
                 metaDescription:
-                    "Easily create an Angular usingThemeManager with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript usingThemeManager** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript usingThemeManager",
-                pageTitle: "JavaScript usingThemeManager | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript usingThemeManager with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates our Light and Dark Themes for Angular Charts with SciChart.js ThemeManager API",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Chart%20Styling%20-%20ThemeManager%20API.html",
+                title: "SciChart.js ThemeManager Documentation",
                 linkTitle: "The ThemeManager documentation",
             },
         ],

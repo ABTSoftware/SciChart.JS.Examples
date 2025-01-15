@@ -4,52 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "depthchart",
+        exampleId: "charts2d\\createstockcharts\\depthchart",
         imagePath: "./javascript-depth-chart.jpg",
-        title: "depthChart",
         description: "",
-        path: "depthchart",
+        path: "depth-chart",
         metaKeywords: "depth, orderbook, stock, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/CreateStockCharts/DepthChart",
         tips: ['""'],
         thumbnailImage: "javascript-depth-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "How to create a Market Depth (Order Book) JavaScript Chart using Mountain Series and a Custom Modifier",
+                title: "JavaScript Market Depth Chart",
+                pageTitle: "JavaScript Market Depth Chart",
+                metaDescription:
+                    "Create a JavaScript Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React depthChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React depthChart",
-                pageTitle: "React depthChart | JavaScript Charts | View Examples",
+                    "How to create a Market Depth (Order Book) React Chart using Mountain Series and a Custom Modifier",
+                title: "React Market Depth Chart",
+                pageTitle: "React Market Depth Chart",
                 metaDescription:
-                    "Easily create a React depthChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create a React Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular depthChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular depthChart",
-                pageTitle: "Angular depthChart | JavaScript Charts | View Examples",
+                    "How to create a Market Depth (Order Book) Angular Chart using Mountain Series and a Custom Modifier",
+                title: "Angular Market Depth Chart",
+                pageTitle: "Angular Market Depth Chart",
                 metaDescription:
-                    "Easily create an Angular depthChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript depthChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript depthChart",
-                pageTitle: "JavaScript depthChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript depthChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create a Angular Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],

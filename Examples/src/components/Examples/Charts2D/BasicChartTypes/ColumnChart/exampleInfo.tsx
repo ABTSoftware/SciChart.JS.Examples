@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "columnchart",
+        exampleId: "charts2d\\basiccharttypes\\columnchart",
         imagePath: "./javascript-column-chart.jpg",
-        title: "columnChart",
-        description:
-            "Columns in SciChart.js are rendered with a stroke and fill, and\r\nsupport gradient fill and paletteproviders for more custom coloring options.",
-        path: "columnchart",
+        description: "",
+        path: "column-chart",
         metaKeywords: "column, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/ColumnChart",
-        tips: [
-            "To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much space the column takes up.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-column-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Creates a **JavaScript, Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                title: "JavaScript Column Chart",
+                pageTitle: "JavaScript Column Chart | JavaScript Charts | SciChart.js",
+                metaDescription:
+                    "JavaScript Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React columnChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React columnChart",
-                pageTitle: "React columnChart | JavaScript Charts | View Examples",
+                    "Creates a **React, Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                title: "React Column Chart",
+                pageTitle: "React Column Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "Easily create a React columnChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "React Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular columnChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular columnChart",
-                pageTitle: "Angular columnChart | JavaScript Charts | View Examples",
+                    "Creates a **Angular, Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                title: "Angular Column Chart",
+                pageTitle: "Angular Column Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "Easily create an Angular columnChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript columnChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript columnChart",
-                pageTitle: "JavaScript columnChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript columnChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Angular Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Column%20Series%20Type.html",
+                title: "This specific page in the JavaScript Column Chart documentation will help you to get started",
                 linkTitle: "JavaScript Column Chart Documentation",
             },
         ],

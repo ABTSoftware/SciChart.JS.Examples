@@ -4,53 +4,52 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "perpointcoloring",
+        exampleId: "charts2d\\stylingandtheming\\perpointcoloring",
         imagePath: "./javascript-chart-color-points-individually-with-paletteprovider.jpg",
-        title: "perPointColoring",
-        description:
-            "Demonstrates how to use the PaletteProvider API to color lines, points and fills individually based on a\r\nrule. Using this API you can color individual data-points of the following chart series: Line, Column,\r\nCandlestick, Ohlc, Mountain, Scatter, Bubble and Band.",
-        path: "perpointcoloring",
+        title: "Coloring Series per-point using the PaletteProvider",
+        description: "",
+        path: "chart-color-points-individually-with-paletteprovider",
         metaKeywords: "palette, provider, api, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/StylingAndTheming/PerPointColoring",
-        tips: ["The PaletteProvider API is useful for showing thresholds or areas of interest!"],
+        tips: ['""'],
         thumbnailImage: "javascript-chart-color-points-individually-with-paletteprovider.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how create **JavaScript, Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
+                title: "Coloring Series per-point using the PaletteProvider",
+                pageTitle: "Coloring Series per-point using the PaletteProvider",
+                metaDescription:
+                    "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React perPointColoring** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React perPointColoring",
-                pageTitle: "React perPointColoring | JavaScript Charts | View Examples",
+                    "Demonstrates how create **React, Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
+                title: "Coloring Series per-point using the PaletteProvider",
+                pageTitle: "Coloring Series per-point using the PaletteProvider",
                 metaDescription:
-                    "Easily create a React perPointColoring with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular perPointColoring** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular perPointColoring",
-                pageTitle: "Angular perPointColoring | JavaScript Charts | View Examples",
+                    "Demonstrates how create **Angular, Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
+                title: "Coloring Series per-point using the PaletteProvider",
+                pageTitle: "Coloring Series per-point using the PaletteProvider",
                 metaDescription:
-                    "Easily create an Angular perPointColoring with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript perPointColoring** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript perPointColoring",
-                pageTitle: "JavaScript perPointColoring | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript perPointColoring with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20PaletteProvider%20API.html",
+                title: "The PaletteProvider API documentation",
                 linkTitle: "SciChart.js PaletteProvider documentation",
             },
         ],

@@ -4,55 +4,52 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "transparentbackground",
+        exampleId: "charts2d\\stylingandtheming\\transparentbackground",
         imagePath: "./javascript-chart-transparent-background.jpg",
-        title: "transparentBackground",
-        description:
-            "SciChart.js v2.x now supports transparent backgrounds in all browsers, and will show through the DOM element underneath the chart. In this example we use a background image to demonstrate how to create a stunning styled chart.",
-        path: "transparentbackground",
+        title: "Background Image with Transparency",
+        description: "",
+        path: "chart-transparent-background",
         metaKeywords: "styling, transparent, background, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/StylingAndTheming/TransparentBackground",
-        tips: [
-            "It's also possible to show DOM elements: Videos, Images, Gradient Backgrounds or an entire webpage behind charts!",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-chart-transparent-background.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to create a **Chart with Transparent Background** using SciChart.js, High Performance JavaScript Charts",
+                title: "Background Image with Transparency",
+                pageTitle: "Background Image with Transparency",
+                metaDescription:
+                    "Demonstrates how to create a JavaScript Chart with background image using transparency in SciChart.js",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React transparentBackground** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React transparentBackground",
-                pageTitle: "React transparentBackground | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **Chart with Transparent Background** using SciChart.js, High Performance JavaScript Charts",
+                title: "Background Image with Transparency",
+                pageTitle: "Background Image with Transparency",
                 metaDescription:
-                    "Easily create a React transparentBackground with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to create a React Chart with background image using transparency in SciChart.js",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular transparentBackground** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular transparentBackground",
-                pageTitle: "Angular transparentBackground | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **Chart with Transparent Background** using SciChart.js, High Performance JavaScript Charts",
+                title: "Background Image with Transparency",
+                pageTitle: "Background Image with Transparency",
                 metaDescription:
-                    "Easily create an Angular transparentBackground with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript transparentBackground** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript transparentBackground",
-                pageTitle: "JavaScript transparentBackground | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript transparentBackground with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to create a Angular Chart with background image using transparency in SciChart.js",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Chart%20Styling%20-%20Images%20in%20Background.html",
+                title: "How to add a background image with transparency documentation",
                 linkTitle: "Custom Theme documentation",
             },
         ],

@@ -4,53 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "impulsechart",
+        exampleId: "charts2d\\basiccharttypes\\impulsechart",
         imagePath: "./javascript-impulse-chart.jpg",
-        title: "impulseChart",
-        description:
-            "An Impulse Chart (otherwise known as Stem Chart, Lollipop Chart) displays a single point at the top of a thin stem.\r\n    In SciChart.js these can be customised with different color points or shapes.",
-        path: "impulsechart",
+        description: "",
+        path: "impulse-chart",
         metaKeywords: "impulse, lollipop, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/ImpulseChart",
-        tips: ["To change the size of the impulse point, set the size property. Default value is 10.0."],
+        tips: ['""'],
         thumbnailImage: "javascript-impulse-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Use this demonstration to learn how to create a **JavaScript, Impulse Chart** using SciChart.js, our own High Performance JavaScript Chart Library.",
+                title: "JavaScript Impulse Chart",
+                pageTitle: "JavaScript Impulse Chart | JavaScript Charts | View Online",
+                metaDescription:
+                    "Easily create JavaScript Impulse Chart or Stem Chart using SciChart.js - our own high performance JavaScript Chart Library. Get your free trial now. ",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React impulseChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React impulseChart",
-                pageTitle: "React impulseChart | JavaScript Charts | View Examples",
+                    "Use this demonstration to learn how to create a **React, Impulse Chart** using SciChart.js, our own High Performance JavaScript Chart Library.",
+                title: "React Impulse Chart",
+                pageTitle: "React Impulse Chart | JavaScript Charts | View Online",
                 metaDescription:
-                    "Easily create a React impulseChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Easily create React Impulse Chart or Stem Chart using SciChart.js - our own high performance JavaScript Chart Library. Get your free trial now. ",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular impulseChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular impulseChart",
-                pageTitle: "Angular impulseChart | JavaScript Charts | View Examples",
+                    "Use this demonstration to learn how to create a **Angular, Impulse Chart** using SciChart.js, our own High Performance JavaScript Chart Library.",
+                title: "Angular Impulse Chart",
+                pageTitle: "Angular Impulse Chart | JavaScript Charts | View Online",
                 metaDescription:
-                    "Easily create an Angular impulseChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript impulseChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript impulseChart",
-                pageTitle: "JavaScript impulseChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript impulseChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Easily create Angular Impulse Chart or Stem Chart using SciChart.js - our own high performance JavaScript Chart Library. Get your free trial now. ",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Lollipop%20(Impulse%20or%20Stem)%20Chart%20Type.html",
+                title: "This specific page in the JavaScript Impulse Chart documentation will help you to get started",
                 linkTitle: "JavaScript Impulse Chart Documentation",
             },
         ],

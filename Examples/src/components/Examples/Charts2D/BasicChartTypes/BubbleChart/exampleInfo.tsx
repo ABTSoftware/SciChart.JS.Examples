@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "bubblechart",
+        exampleId: "charts2d\\basiccharttypes\\bubblechart",
         imagePath: "./javascript-bubble-chart.jpg",
-        title: "bubbleChart",
-        description:
-            "The JS Bubble chart type can be animated, have varying point colours and sizes and supports a variety of point types: circle, square, and custom shapes are possible.",
-        path: "bubblechart",
+        description: "",
+        path: "bubble-chart",
         metaKeywords: "bubble, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/BubbleChart",
-        tips: [
-            "If you share a single XyzDataSeries between Line and Bubble Renderable Series, the line will render the X-Y points while the Bubble will render the X-Y-Z points.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-bubble-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to create a **JavaScript, Bubble Chart** This is a JavaScript Chart type which draws point-markers (Ellipse, Square, Triangle, Circle) at X,Y locations",
+                title: "JavaScript Bubble Chart",
+                pageTitle: "JavaScript Bubble Chart | Online JavaScript Chart Examples",
+                metaDescription:
+                    "Create a high performance JavaScript Bubble Chart with Sci-Chart. Demo shows how to draw point-markers at X,Y locations. Get your free demo now.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React bubbleChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React bubbleChart",
-                pageTitle: "React bubbleChart | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **React, Bubble Chart** This is a JavaScript Chart type which draws point-markers (Ellipse, Square, Triangle, Circle) at X,Y locations",
+                title: "React Bubble Chart",
+                pageTitle: "React Bubble Chart | Online JavaScript Chart Examples",
                 metaDescription:
-                    "Easily create a React bubbleChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create a high performance React Bubble Chart with Sci-Chart. Demo shows how to draw point-markers at X,Y locations. Get your free demo now.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular bubbleChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular bubbleChart",
-                pageTitle: "Angular bubbleChart | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **Angular, Bubble Chart** This is a JavaScript Chart type which draws point-markers (Ellipse, Square, Triangle, Circle) at X,Y locations",
+                title: "Angular Bubble Chart",
+                pageTitle: "Angular Bubble Chart | Online JavaScript Chart Examples",
                 metaDescription:
-                    "Easily create an Angular bubbleChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript bubbleChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript bubbleChart",
-                pageTitle: "JavaScript bubbleChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript bubbleChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create a high performance Angular Bubble Chart with Sci-Chart. Demo shows how to draw point-markers at X,Y locations. Get your free demo now.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Bubble%20Series%20Type.html",
+                title: "This specific page in the JavaScript Bubble Chart documentation will help you to get started",
                 linkTitle: "JavaScript Bubble Chart Documentation",
             },
         ],

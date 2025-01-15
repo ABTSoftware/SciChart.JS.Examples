@@ -4,53 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "createacustomtheme",
+        exampleId: "charts2d\\stylingandtheming\\createacustomtheme",
         imagePath: "./javascript-chart-custom-themed.jpg",
-        title: "createACustomTheme",
-        description:
-            "With our ThemeManager API you can create a custom theme. To do this, create a type that implements all the\r\nproperties of the IThemeProvider interface and pass to sciChartSurface.applyTheme.",
-        path: "createacustomtheme",
+        description: "",
+        path: "chart-custom-themes",
         metaKeywords: "theming, chart, javascript, webgl, canvas",
-        onWebsite: true,
+        onWebsite: false,
         filepath: "Charts2D/StylingAndTheming/CreateACustomTheme",
-        tips: ["It's also possible to style chart-parts in code!"],
+        tips: ['""'],
         thumbnailImage: "javascript-chart-custom-themed.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to create a **Custom Theme** for SciChart.js, High Performance JavaScript Charts",
+                title: "Create a Custom Theme for JavaScript Chart",
+                pageTitle: "Create a Custom Theme for JavaScript Chart",
+                metaDescription:
+                    "Demonstrates how to create a Custom Theme for a SciChart.js JavaScript Chart using our Theming API",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React createACustomTheme** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React createACustomTheme",
-                pageTitle: "React createACustomTheme | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **Custom Theme** for SciChart.js, High Performance JavaScript Charts",
+                title: "Create a Custom Theme for React Chart",
+                pageTitle: "Create a Custom Theme for React Chart",
                 metaDescription:
-                    "Easily create a React createACustomTheme with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to create a Custom Theme for a SciChart.js React Chart using our Theming API",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular createACustomTheme** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular createACustomTheme",
-                pageTitle: "Angular createACustomTheme | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **Custom Theme** for SciChart.js, High Performance JavaScript Charts",
+                title: "Create a Custom Theme for Angular Chart",
+                pageTitle: "Create a Custom Theme for Angular Chart",
                 metaDescription:
-                    "Easily create an Angular createACustomTheme with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript createACustomTheme** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript createACustomTheme",
-                pageTitle: "JavaScript createACustomTheme | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript createACustomTheme with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to create a Custom Theme for a SciChart.js Angular Chart using our Theming API",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Chart%20Styling%20-%20Creating%20a%20Custom%20Theme.html",
+                title: "SciChart.js Custom Theme Documentation",
                 linkTitle: "Custom Theme documentation",
             },
         ],

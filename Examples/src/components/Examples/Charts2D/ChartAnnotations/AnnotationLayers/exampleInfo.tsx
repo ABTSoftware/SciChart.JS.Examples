@@ -4,59 +4,48 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "annotationlayers",
+        exampleId: "charts2d\\chartannotations\\annotationlayers",
         imagePath: "./javascript-chart-annotation-layers.jpg",
-        title: "annotationLayers",
-        description:
-            'The chart contains three types of annotations and a line series with data labels.\r\nIt demonstrates how they are stacked on each other depending on their type and "annotationLayer" option.',
-        path: "annotationlayers",
+        description: "",
+        path: "annotation-layers",
         metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/ChartAnnotations/AnnotationLayers",
-        tips: [
-            "There are specifics of rendering for each type: TextAnnotation, as well as CustomAnnotation are examples of SVG Annotations (derived from SvgAnnotationBase).",
-            '"annotationLayer" property allows to control the placement an annotation relatively to Renderable Series and Grid Lines.',
-            "SVG Annotations are rendered on an SVG Canvas. SciChart currently provides only two of them - foreground and background SVG layer elements (EAnnotationLayer.AboveChart, EAnnotationLayer.Background correspondingly).",
-            "Other types of annotations, inherited from RenderContextAnnotationBase (e.g. BoxAnnotation, NativeTextAnnotation, LineAnnotation), are rendered natively with WebGl on the HTMLCanvas, which is placed between SVG ones.",
-            "Relative placement between annotations of the same type are defined by their order within the collection.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-chart-annotation-layers.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how Annotation layering a **JavaScript, Chart** using SciChart.js, High Performance JavaScript ChartsNotice the difference between annotations rendered to SVG and Canvas, as well as annotationLayer property effect.",
+                title: "JavaScript Chart Annotation Layers",
+                pageTitle: "JavaScript Chart Annotation Layers",
+                metaDescription: "Demonstrates how layering works a JavaScript Chart using SciChart.js Annotations API",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React annotationLayers** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React annotationLayers",
-                pageTitle: "React annotationLayers | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a React annotationLayers with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how Annotation layering a **React, Chart** using SciChart.js, High Performance JavaScript ChartsNotice the difference between annotations rendered to SVG and Canvas, as well as annotationLayer property effect.",
+                title: "React Chart Annotation Layers",
+                pageTitle: "React Chart Annotation Layers",
+                metaDescription: "Demonstrates how layering works a React Chart using SciChart.js Annotations API",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular annotationLayers** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular annotationLayers",
-                pageTitle: "Angular annotationLayers | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create an Angular annotationLayers with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript annotationLayers** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript annotationLayers",
-                pageTitle: "JavaScript annotationLayers | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript annotationLayers with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how Annotation layering a **Angular, Chart** using SciChart.js, High Performance JavaScript ChartsNotice the difference between annotations rendered to SVG and Canvas, as well as annotationLayer property effect.",
+                title: "Angular Chart Annotation Layers",
+                pageTitle: "Angular Chart Annotation Layers",
+                metaDescription: "Demonstrates how layering works a Angular Chart using SciChart.js Annotations API",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Annotations%20API%20Overview.html",
+                title: "The specific page for the SciChart.js Annotations documentation will help you to get started",
                 linkTitle: "Annotations API Documentation",
             },
         ],

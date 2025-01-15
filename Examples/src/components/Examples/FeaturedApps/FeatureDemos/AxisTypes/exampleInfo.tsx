@@ -4,52 +4,52 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "axistypes",
+        exampleId: "featuredapps\\featuredemos\\axistypes",
         imagePath: "./javascript-axis-types.jpg",
-        title: "axisTypes",
+        title: "Axis Types",
         description: "",
-        path: "axistypes",
+        path: "axis-types",
         metaKeywords: "text, axis, date, logarithmic, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "FeaturedApps/FeatureDemos/AxisTypes",
-        tips: [],
+        tips: ['""'],
         thumbnailImage: "javascript-axis-types.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High Performance JavaScript Charts",
+                title: "Axis Types",
+                pageTitle: "Axis Types",
+                metaDescription:
+                    "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React axisTypes** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React axisTypes",
-                pageTitle: "React axisTypes | JavaScript Charts | View Examples",
+                    "Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High Performance JavaScript Charts",
+                title: "Axis Types",
+                pageTitle: "Axis Types",
                 metaDescription:
-                    "Easily create a React axisTypes with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular axisTypes** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular axisTypes",
-                pageTitle: "Angular axisTypes | JavaScript Charts | View Examples",
+                    "Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High Performance JavaScript Charts",
+                title: "Axis Types",
+                pageTitle: "Axis Types",
                 metaDescription:
-                    "Easily create an Angular axisTypes with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript axisTypes** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript axisTypes",
-                pageTitle: "JavaScript axisTypes | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript axisTypes with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#StartHere-AxisOverview.html",
+                title: "SciChart.js Axis Documentation",
                 linkTitle: "Scichart.js Axis Documentation",
             },
         ],

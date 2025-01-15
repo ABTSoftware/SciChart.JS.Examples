@@ -4,56 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "donutchart",
+        exampleId: "charts2d\\basiccharttypes\\donutchart",
         imagePath: "./javascript-donut-chart.jpg",
-        title: "donutChart",
-        description:
-            "Donut Charts in SciChart.js support selection, legends, different text labels, animated updates,\r\n    gradient or solid fills and more.",
-        path: "donutchart",
+        description: "",
+        path: "donut-chart",
         metaKeywords: "donut, chart, javascript, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/DonutChart",
-        tips: [
-            "You can change the fill color of every segment and the style of its label.",
-            "Every segment can be highlighted by clicking on it or when selected in the legend.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-donut-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "This demo demonstrates how create a **JavaScript, Donut Chart** with our powerful JavaScript library, SciChart.js.",
+                title: "JavaScript Donut Chart",
+                pageTitle: "JavaScript Donut Chart | JavaScript Charts | SciChart.js",
+                metaDescription:
+                    "Create JavaScript Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React donutChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React donutChart",
-                pageTitle: "React donutChart | JavaScript Charts | View Examples",
+                    "This demo demonstrates how create a **React, Donut Chart** with our powerful JavaScript library, SciChart.js.",
+                title: "React Donut Chart",
+                pageTitle: "React Donut Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "Easily create a React donutChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create React Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular donutChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular donutChart",
-                pageTitle: "Angular donutChart | JavaScript Charts | View Examples",
+                    "This demo demonstrates how create a **Angular, Donut Chart** with our powerful JavaScript library, SciChart.js.",
+                title: "Angular Donut Chart",
+                pageTitle: "Angular Donut Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "Easily create an Angular donutChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript donutChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript donutChart",
-                pageTitle: "JavaScript donutChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript donutChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create Angular Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: '"Donut Chart"',
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Donut%20Chart%20Type.html",
+                title: "Donut Chart",
                 linkTitle: "JavaScript Donut Chart Documentation",
             },
         ],

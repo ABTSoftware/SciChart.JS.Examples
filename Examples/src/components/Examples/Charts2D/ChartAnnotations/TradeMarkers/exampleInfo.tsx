@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "trademarkerannotations",
+        exampleId: "charts2d\\chartannotations\\trademarkers",
         imagePath: "./javascript-stock-chart-buy-sell-markers.jpg",
-        title: "tradeMarkerAnnotations",
-        description:
-            "The CustomAnnotations are created and added using SVG to the sciChartSurface.annotations collection. They\r\nmay be placed above or below candles with our helpful API.",
-        path: "trademarkerannotations",
+        description: "",
+        path: "stock-chart-buy-sell-markers",
         metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/ChartAnnotations/TradeMarkers",
-        tips: [
-            'News/Event bullet annotations use AnnotationBase.${" "}yCoordinateMode = ECoordinateMode.${" "}RelativeY to always place\r\nthe event bullet at the bottom of the chart.',
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-stock-chart-buy-sell-markers.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to add Hoverable Buy/Sell Markers (annotations) and News/Dividend bullets to a **JavaScript, Stock Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Chart Hoverable Buy Sell Marker Annotations",
+                pageTitle: "JavaScript Chart Hoverable Buy Sell Marker Annotations",
+                metaDescription:
+                    "Demonstrates how to place Buy/Sell arrow markers on a JavaScript Stock Chart using SciChart.js - Annotations API",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React tradeMarkerAnnotations** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React tradeMarkerAnnotations",
-                pageTitle: "React tradeMarkerAnnotations | JavaScript Charts | View Examples",
+                    "Demonstrates how to add Hoverable Buy/Sell Markers (annotations) and News/Dividend bullets to a **React, Stock Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "React Chart Hoverable Buy Sell Marker Annotations",
+                pageTitle: "React Chart Hoverable Buy Sell Marker Annotations",
                 metaDescription:
-                    "Easily create a React tradeMarkerAnnotations with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to place Buy/Sell arrow markers on a React Stock Chart using SciChart.js - Annotations API",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular tradeMarkerAnnotations** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular tradeMarkerAnnotations",
-                pageTitle: "Angular tradeMarkerAnnotations | JavaScript Charts | View Examples",
+                    "Demonstrates how to add Hoverable Buy/Sell Markers (annotations) and News/Dividend bullets to a **Angular, Stock Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Chart Hoverable Buy Sell Marker Annotations",
+                pageTitle: "Angular Chart Hoverable Buy Sell Marker Annotations",
                 metaDescription:
-                    "Easily create an Angular tradeMarkerAnnotations with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript tradeMarkerAnnotations** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript tradeMarkerAnnotations",
-                pageTitle: "JavaScript tradeMarkerAnnotations | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript tradeMarkerAnnotations with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to place Buy/Sell arrow markers on a Angular Stock Chart using SciChart.js - Annotations API",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Annotations%20API%20Overview.html",
+                title: "The specific page for the SciChart.js Annotations documentation will help you to get started",
                 linkTitle: "Annotations API Documentation",
             },
         ],

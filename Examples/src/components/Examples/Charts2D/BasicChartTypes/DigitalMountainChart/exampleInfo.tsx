@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "digitalmountainchart",
+        exampleId: "charts2d\\basiccharttypes\\digitalmountainchart",
         imagePath: "./javascript-digital-mountain-chart.jpg",
-        title: "digitalMountainChart",
-        description:
-            "A mountain or area chart draws a polygon from a line to configurable zero value.\r\n    This variation on Mountain Charts in SciChart.js uses the IsDigitalLine property to achieve a stepped-line visual effect!",
-        path: "digitalmountainchart",
+        description: "",
+        path: "digital-mountain-chart",
         metaKeywords: "digital, mountain, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/DigitalMountainChart",
-        tips: [
-            "By setting the stroke property you alter the line color, and fill alters the fill. The Mountain-series also supports semi-transparent and linear gradient brush fills and looks great!.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-digital-mountain-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "For Digital Mountain Charts, you can use this demonstration to see how to create a **JavaScript, Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
+                title: "JavaScript Digital Mountain Chart",
+                pageTitle: "JavaScript Digital Mountain Chart | JavaScript Chart Example",
+                metaDescription:
+                    "Create JavaScript Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React digitalMountainChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React digitalMountainChart",
-                pageTitle: "React digitalMountainChart | JavaScript Charts | View Examples",
+                    "For Digital Mountain Charts, you can use this demonstration to see how to create a **React, Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
+                title: "React Digital Mountain Chart",
+                pageTitle: "React Digital Mountain Chart | JavaScript Chart Example",
                 metaDescription:
-                    "Easily create a React digitalMountainChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create React Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular digitalMountainChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular digitalMountainChart",
-                pageTitle: "Angular digitalMountainChart | JavaScript Charts | View Examples",
+                    "For Digital Mountain Charts, you can use this demonstration to see how to create a **Angular, Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
+                title: "Angular Digital Mountain Chart",
+                pageTitle: "Angular Digital Mountain Chart | JavaScript Chart Example",
                 metaDescription:
-                    "Easily create an Angular digitalMountainChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript digitalMountainChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript digitalMountainChart",
-                pageTitle: "JavaScript digitalMountainChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript digitalMountainChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create Angular Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: '"Digital Mountain Chart"',
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Digital%20(Step)%20Mountain%20Series%20Type.html",
+                title: "Digital Mountain Chart",
                 linkTitle: "JavaScript Digital Mountain Chart Documentation",
             },
         ],

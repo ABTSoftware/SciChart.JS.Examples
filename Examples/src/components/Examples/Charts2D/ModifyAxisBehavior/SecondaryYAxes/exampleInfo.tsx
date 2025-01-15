@@ -4,53 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "secondaryyaxes",
+        exampleId: "charts2d\\modifyaxisbehavior\\secondaryyaxes",
         imagePath: "./javascript-chart-with-secondary-y-axis.jpg",
-        title: "secondaryYAxes",
-        description:
-            "Demonstrates how to assign line series to different Y Axis in a JavaScript Chart. SciChart supports multiple\r\ntop or bottom X-Axes and multiple left and right Y-Axes. This example shows in a simple way how to register\r\na line series on each axis.",
-        path: "secondaryyaxes",
+        description: "",
+        path: "chart-with-secondary-y-axis",
         metaKeywords: "secondary, axis, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/ModifyAxisBehavior/SecondaryYAxes",
-        tips: ["Try dragging an axis or the chart to zoom and pan around. Double clicking the chart resets the zoom!"],
+        tips: ['""'],
         thumbnailImage: "javascript-chart-with-secondary-y-axis.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to create a **JavaScript, Chart with Secondary Y axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Chart with Secondary Y Axes",
+                pageTitle: "JavaScript Chart with Secondary Y Axes",
+                metaDescription:
+                    "Demonstrates Secondary Y Axis on a JavaScript Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React secondaryYAxes** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React secondaryYAxes",
-                pageTitle: "React secondaryYAxes | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **React, Chart with Secondary Y axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "React Chart with Secondary Y Axes",
+                pageTitle: "React Chart with Secondary Y Axes",
                 metaDescription:
-                    "Easily create a React secondaryYAxes with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates Secondary Y Axis on a React Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular secondaryYAxes** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular secondaryYAxes",
-                pageTitle: "Angular secondaryYAxes | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **Angular, Chart with Secondary Y axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Chart with Secondary Y Axes",
+                pageTitle: "Angular Chart with Secondary Y Axes",
                 metaDescription:
-                    "Easily create an Angular secondaryYAxes with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript secondaryYAxes** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript secondaryYAxes",
-                pageTitle: "JavaScript secondaryYAxes | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript secondaryYAxes with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates Secondary Y Axis on a Angular Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Alignment%20-%20Setting%20Axis%20Alignment.html",
+                title: "SciChart.js Multiple XAxis Documentation",
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],

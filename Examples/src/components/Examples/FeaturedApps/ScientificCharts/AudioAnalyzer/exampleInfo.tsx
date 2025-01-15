@@ -4,55 +4,52 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "audioanalyzer",
+        exampleId: "featuredapps\\scientificcharts\\audioanalyzer",
         imagePath: "./javascript-audio-analyzer-fft-example.jpg",
-        title: "audioAnalyzer",
-        description:
-            "Demonstrating the capability of SciChart.js to create a JavaScript Audio Analyzer and visualize the\r\nFourier-Transform of an audio waveform.",
-        path: "audioanalyzer",
+        title: "Realtime Audio Analyzer Demo",
+        description: "",
+        path: "audio-analyzer-fft-example",
         metaKeywords: "audio, analyzer, demo, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "FeaturedApps/ScientificCharts/AudioAnalyzer",
-        tips: [
-            "This example uses a Line Series to render audio data recorded from the microphone, a Column series to render FFT data, and a Heatmap series to render a spectrogram - a scrolling visualisation of frequency domain data.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-audio-analyzer-fft-example.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to create a **JavaScript Frequency / Audio Analyzer** with Fourier Transform (Frequency spectra) and a real-time frequency history using heatmaps. [object Object]",
+                title: "Realtime Audio Analyzer Demo",
+                pageTitle: "Realtime Audio Analyzer Demo",
+                metaDescription:
+                    "Demonstrating the capability of SciChart.js to create a JavaScript Audio Analyzer and visualize the Fourier-Transform of an audio waveform in realtime.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React audioAnalyzer** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React audioAnalyzer",
-                pageTitle: "React audioAnalyzer | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **JavaScript Frequency / Audio Analyzer** with Fourier Transform (Frequency spectra) and a real-time frequency history using heatmaps. [object Object]",
+                title: "Realtime Audio Analyzer Demo",
+                pageTitle: "Realtime Audio Analyzer Demo",
                 metaDescription:
-                    "Easily create a React audioAnalyzer with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrating the capability of SciChart.js to create a JavaScript Audio Analyzer and visualize the Fourier-Transform of an audio waveform in realtime.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular audioAnalyzer** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular audioAnalyzer",
-                pageTitle: "Angular audioAnalyzer | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **JavaScript Frequency / Audio Analyzer** with Fourier Transform (Frequency spectra) and a real-time frequency history using heatmaps. [object Object]",
+                title: "Realtime Audio Analyzer Demo",
+                pageTitle: "Realtime Audio Analyzer Demo",
                 metaDescription:
-                    "Easily create an Angular audioAnalyzer with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript audioAnalyzer** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript audioAnalyzer",
-                pageTitle: "JavaScript audioAnalyzer | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript audioAnalyzer with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrating the capability of SciChart.js to create a JavaScript Audio Analyzer and visualize the Fourier-Transform of an audio waveform in realtime.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],

@@ -4,52 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "virtualizeddataoverview",
+        exampleId: "charts2d\\zoomingandpanning\\virtualizeddatawithoverview",
         imagePath: "./virtualized-data-javascript-chart.jpg",
-        title: "virtualizedDataOverview",
-        description: ".",
-        path: "virtualizeddataoverview",
+        description: "",
+        path: "chart-with-virtualized-data",
         metaKeywords: "zoom, pan, virtualize, server, overview, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview",
         tips: ['""'],
         thumbnailImage: "virtualized-data-javascript-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
+                title: "Virtualized JavaScript Charts: Load Data on Zoom/Pan",
+                pageTitle: "Virtualized JavaScript Charts: Load Data on Zoom/Pan",
+                metaDescription:
+                    "shows how to load data on zoom/pan and how to create an overview chart for this case.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React virtualizedDataOverview** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React virtualizedDataOverview",
-                pageTitle: "React virtualizedDataOverview | JavaScript Charts | View Examples",
+                    "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
+                title: "Virtualized React Charts: Load Data on Zoom/Pan",
+                pageTitle: "Virtualized React Charts: Load Data on Zoom/Pan",
                 metaDescription:
-                    "Easily create a React virtualizedDataOverview with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "shows how to load data on zoom/pan and how to create an overview chart for this case.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular virtualizedDataOverview** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular virtualizedDataOverview",
-                pageTitle: "Angular virtualizedDataOverview | JavaScript Charts | View Examples",
+                    "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
+                title: "Virtualized Angular Charts: Load Data on Zoom/Pan",
+                pageTitle: "Virtualized Angular Charts: Load Data on Zoom/Pan",
                 metaDescription:
-                    "Easily create an Angular virtualizedDataOverview with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript virtualizedDataOverview** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript virtualizedDataOverview",
-                pageTitle: "JavaScript virtualizedDataOverview | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript virtualizedDataOverview with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "shows how to load data on zoom/pan and how to create an overview chart for this case.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],

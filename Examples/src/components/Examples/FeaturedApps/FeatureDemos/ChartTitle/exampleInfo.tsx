@@ -4,52 +4,48 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charttitle",
+        exampleId: "featuredapps\\featuredemos\\charttitle",
         imagePath: "./javascript-chart-title.jpg",
-        title: "chartTitle",
         description: "",
-        path: "charttitle",
+        path: "chart-title",
         metaKeywords: "title, text, alignment, multiline, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "FeaturedApps/FeatureDemos/ChartTitle",
-        tips: [],
+        tips: ['""'],
         thumbnailImage: "javascript-chart-title.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
+                title: "JavaScript Chart Title",
+                pageTitle: "JavaScript Chart Title",
+                metaDescription: "Demonstrates chart title with different position and alignment options",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React chartTitle** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React chartTitle",
-                pageTitle: "React chartTitle | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a React chartTitle with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
+                title: "React Chart Title",
+                pageTitle: "React Chart Title",
+                metaDescription: "Demonstrates chart title with different position and alignment options",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular chartTitle** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular chartTitle",
-                pageTitle: "Angular chartTitle | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create an Angular chartTitle with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript chartTitle** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript chartTitle",
-                pageTitle: "JavaScript chartTitle | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript chartTitle with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
+                title: "Angular Chart Title",
+                pageTitle: "Angular Chart Title",
+                metaDescription: "Demonstrates chart title with different position and alignment options",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],

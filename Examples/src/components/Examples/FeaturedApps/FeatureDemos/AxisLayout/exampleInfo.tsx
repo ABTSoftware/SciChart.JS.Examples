@@ -4,52 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "axislayout",
+        exampleId: "featuredapps\\featuredemos\\axislayout",
         imagePath: "./javascript-axis-layout.jpg",
-        title: "axisLayout",
         description: "",
-        path: "axislayout",
+        path: "chart-axis-layout-options",
         metaKeywords: "stacked, axis, layout, alignment, vertical, javascript, webgl, canvas",
-        onWebsite: true,
+        onWebsite: false,
         filepath: "FeaturedApps/FeatureDemos/AxisLayout",
-        tips: [],
+        tips: ['""'],
         thumbnailImage: "javascript-axis-layout.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
+                title: "JavaScript Chart Axis Layout Options",
+                pageTitle: "JavaScript Chart Axis Layout Options",
+                metaDescription:
+                    "Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React axisLayout** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React axisLayout",
-                pageTitle: "React axisLayout | JavaScript Charts | View Examples",
+                    "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
+                title: "React Chart Axis Layout Options",
+                pageTitle: "React Chart Axis Layout Options",
                 metaDescription:
-                    "Easily create a React axisLayout with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular axisLayout** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular axisLayout",
-                pageTitle: "Angular axisLayout | JavaScript Charts | View Examples",
+                    "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
+                title: "Angular Chart Axis Layout Options",
+                pageTitle: "Angular Chart Axis Layout Options",
                 metaDescription:
-                    "Easily create an Angular axisLayout with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript axisLayout** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript axisLayout",
-                pageTitle: "JavaScript axisLayout | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript axisLayout with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#StartHere-AxisOverview.html",
+                title: "SciChart.js Axis Documentation",
                 linkTitle: "Scichart.js Axis Documentation",
             },
         ],

@@ -4,52 +4,48 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "styleanimation",
+        exampleId: "charts2d\\animations\\styleanimation",
         imagePath: "./javascript-style-animation.jpg",
-        title: "styleAnimation",
-        description: "By clicking the buttons the chart styles and data transform from one value to another",
-        path: "styleanimation",
+        description: "",
+        path: "style-animation",
         metaKeywords: "style, animation, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/Animations/StyleAnimation",
-        tips: [],
+        tips: ['""'],
         thumbnailImage: "javascript-style-animation.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Style Animation",
+                pageTitle: "JavaScript Style Animation",
+                metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React styleAnimation** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React styleAnimation",
-                pageTitle: "React styleAnimation | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a React styleAnimation with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",
+                title: "React Style Animation",
+                pageTitle: "React Style Animation",
+                metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular styleAnimation** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular styleAnimation",
-                pageTitle: "Angular styleAnimation | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create an Angular styleAnimation with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript styleAnimation** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript styleAnimation",
-                pageTitle: "JavaScript styleAnimation | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript styleAnimation with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Style Animation",
+                pageTitle: "Angular Style Animation",
+                metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Series%20Style%20Animations.html",
+                title: "The specific page for the JavaScript Style Transition Animation documentation will help you to get started",
                 linkTitle: "JavaScript Style Transition Animation Documentation",
             },
         ],

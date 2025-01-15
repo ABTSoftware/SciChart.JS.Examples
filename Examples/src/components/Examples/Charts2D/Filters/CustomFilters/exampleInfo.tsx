@@ -4,55 +4,52 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "customfilters",
+        exampleId: "charts2d\\filters\\customfilters",
         imagePath: "./javascript-custom-filters.jpg",
-        title: "customFilters",
-        description:
-            "Simple Custom Filters are great if you just want to apply some function to each y value.  Just create an XyCustomFilter and set your function.\r\nIf you want to significantly reshape your data, create a class that extends XyFilterBase",
-        path: "customfilters",
+        title: "Custom Filters",
+        description: "",
+        path: "custom-filters",
         metaKeywords: "real-time, filter, transform, updating, aggregation, custom, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/Filters/CustomFilters",
-        tips: [
-            '" There are CustomFilter and FitlerBase types for each of the series types (xy, xyy, xyz, ohlc)", " Complex custom filters do not have to output the same series type as they take as input.", " If your filter takes a parameter, use a setter to call filterAll when the parameter is updated",',
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-custom-filters.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
+                title: "Custom Filters",
+                pageTitle: "Custom Filters",
+                metaDescription:
+                    "Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React customFilters** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React customFilters",
-                pageTitle: "React customFilters | JavaScript Charts | View Examples",
+                    "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
+                title: "Custom Filters",
+                pageTitle: "Custom Filters",
                 metaDescription:
-                    "Easily create a React customFilters with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular customFilters** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular customFilters",
-                pageTitle: "Angular customFilters | JavaScript Charts | View Examples",
+                    "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
+                title: "Custom Filters",
+                pageTitle: "Custom Filters",
                 metaDescription:
-                    "Easily create an Angular customFilters with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript customFilters** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript customFilters",
-                pageTitle: "JavaScript customFilters | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript customFilters with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Creating%20a%20Custom%20Filter.html",
+                title: "This specific page in the JavaScript Filters API documentation will help you to get started",
                 linkTitle: "SciChart.js Custom Filters Documentation",
             },
         ],

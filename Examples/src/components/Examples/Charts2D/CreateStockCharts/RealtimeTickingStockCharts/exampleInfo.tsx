@@ -4,53 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "realtimetickingstockcharts",
+        exampleId: "charts2d\\createstockcharts\\realtimetickingstockcharts",
         imagePath: "./javascript-realtime-ticking-stock-charts.jpg",
-        title: "realtimeTickingStockCharts",
-        description:
-            "Technical indicators are for demonstration purposes only. We recommend using the open source TA-Lib",
-        path: "realtimetickingstockcharts",
+        description: "",
+        path: "realtime-ticking-stock-charts",
         metaKeywords: "real-time, ticking, updating, stock, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/CreateStockCharts/RealtimeTickingStockCharts",
-        tips: ["You can change the series type from Candlestick to Ohlc to Mountain and more."],
+        tips: ['""'],
         thumbnailImage: "javascript-realtime-ticking-stock-charts.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. **[object Object]**",
+                title: "JavaScript Realtime Ticking Stock Charts",
+                pageTitle: "JavaScript Realtime Ticking Stock Chart | SciChart.js",
+                metaDescription:
+                    "Create a JavaScript Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React realtimeTickingStockCharts** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React realtimeTickingStockCharts",
-                pageTitle: "React realtimeTickingStockCharts | JavaScript Charts | View Examples",
+                    "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. **[object Object]**",
+                title: "React Realtime Ticking Stock Charts",
+                pageTitle: "React Realtime Ticking Stock Chart | SciChart.js",
                 metaDescription:
-                    "Easily create a React realtimeTickingStockCharts with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create a React Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular realtimeTickingStockCharts** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular realtimeTickingStockCharts",
-                pageTitle: "Angular realtimeTickingStockCharts | JavaScript Charts | View Examples",
+                    "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. **[object Object]**",
+                title: "Angular Realtime Ticking Stock Charts",
+                pageTitle: "Angular Realtime Ticking Stock Chart | SciChart.js",
                 metaDescription:
-                    "Easily create an Angular realtimeTickingStockCharts with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript realtimeTickingStockCharts** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript realtimeTickingStockCharts",
-                pageTitle: "JavaScript realtimeTickingStockCharts | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript realtimeTickingStockCharts with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create a Angular Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Candlestick%20Series%20type.html",
+                title: "This specific page in the JavaScript Candlestick Chart documentation will help you to get started",
                 linkTitle: "JavaScript Candlestick Chart Documentation",
             },
         ],

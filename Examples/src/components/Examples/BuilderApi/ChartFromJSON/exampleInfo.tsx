@@ -4,55 +4,49 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "chartfromjson",
+        exampleId: "builderapi\\chartfromjson",
         imagePath: "./javascript-chart-from-json.jpg",
-        title: "chartFromJSON",
-        description: "This example simply passes the json you specify into the chartBuilder.build2DChart method",
-        path: "chartfromjson",
+        title: "Chart from JSON",
+        description: "",
+        path: "chart-from-json",
         metaKeywords: "json, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "BuilderApi/ChartFromJSON",
-        tips: [
-            "Call sciChartSurface.toJSON() to get definition object, rather than a string.",
-            "See the documentation links for the types and options you can specify.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-chart-from-json.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
+                title: "Chart from JSON",
+                pageTitle: "Chart from JSON",
+                metaDescription: "Demonstrates how to create a JavaScript Chart from JSON using the builder API. ",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React chartFromJSON** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React chartFromJSON",
-                pageTitle: "React chartFromJSON | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a React chartFromJSON with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
+                title: "Chart from JSON",
+                pageTitle: "Chart from JSON",
+                metaDescription: "Demonstrates how to create a React Chart from JSON using the builder API. ",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular chartFromJSON** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular chartFromJSON",
-                pageTitle: "Angular chartFromJSON | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create an Angular chartFromJSON with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript chartFromJSON** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript chartFromJSON",
-                pageTitle: "JavaScript chartFromJSON | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript chartFromJSON with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
+                title: "Chart from JSON",
+                pageTitle: "Chart from JSON",
+                metaDescription: "Demonstrates how to create a Angular Chart from JSON using the builder API. ",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Intro%20to%20the%20Builder%20API.html",
+                title: "This specific page in the JavaScript Builder API documentation will help you to get started",
                 linkTitle: "JavaScript Builder API Documentation",
             },
         ],

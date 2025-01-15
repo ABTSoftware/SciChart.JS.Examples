@@ -4,52 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "column3dchart",
+        exampleId: "charts3d\\basic3dcharttypes\\column3dchart",
         imagePath: "./javascript-3d-column-chart.jpg",
-        title: "column3DChart",
-        description: "JavaScript 3D Column Charts can be created using SciChart.js.",
-        path: "column3dchart",
+        description: "",
+        path: "3d-column-chart",
         metaKeywords: "3d, column, chart, javascript, webgl, canvas",
-        onWebsite: true,
+        onWebsite: false,
         filepath: "Charts3D/Basic3DChartTypes/Column3DChart",
-        tips: [],
+        tips: ['""'],
         thumbnailImage: "javascript-3d-column-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "The SciChart.js **JavaScript, 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",
+                title: "JavaScript Column 3D Chart",
+                pageTitle: "JavaScript 3D Column Chart | View 3D JavaScript Charts",
+                metaDescription:
+                    "Create detailed JavaScript 3D Column Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React column3DChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React column3DChart",
-                pageTitle: "React column3DChart | JavaScript Charts | View Examples",
+                    "The SciChart.js **React, 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",
+                title: "React Column 3D Chart",
+                pageTitle: "React 3D Column Chart | View 3D JavaScript Charts",
                 metaDescription:
-                    "Easily create a React column3DChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create detailed React 3D Column Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular column3DChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular column3DChart",
-                pageTitle: "Angular column3DChart | JavaScript Charts | View Examples",
+                    "The SciChart.js **Angular, 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",
+                title: "Angular Column 3D Chart",
+                pageTitle: "Angular 3D Column Chart | View 3D JavaScript Charts",
                 metaDescription:
-                    "Easily create an Angular column3DChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript column3DChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript column3DChart",
-                pageTitle: "JavaScript column3DChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript column3DChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create detailed Angular 3D Column Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#TheColumn3DChartType.html",
+                title: "SciChart.js 3D Column Chart Documentation",
                 linkTitle: "JavaScript 3D Column Chart Documentation",
             },
         ],

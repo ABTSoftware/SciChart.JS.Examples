@@ -4,57 +4,49 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "overview",
+        exampleId: "charts2d\\zoomingandpanning\\overviewmodifier",
         imagePath: "./javascript-overview-chart.jpg",
-        title: "overview",
-        description:
-            "Drag the box to pan the main chart, and drag the handles of the box to resize it and zoom the main chart.\r\nRight click and drag on the main chart to zoom.",
+        title: "Zoom and Pan with Overview Chart",
+        description: "",
         path: "overview",
         metaKeywords: "drag, axis, scale, overview, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/ZoomingAndPanning/OverviewModifier",
-        tips: [
-            "The overview is a normal sciChartSurface so you can add annotations to it, or customise it any way you want.",
-            "You can easily customise which series appear in the overview, and how they are rendered, with the transformRenderableSeries option.",
-            "You can also apply the overview to vertical charts.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-overview-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to zoom and pan with an **Overview Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Zoom and Pan with Overview Chart",
+                pageTitle: "Zoom and Pan with Overview Chart",
+                metaDescription: "Demonstrates how to zoom and pan with an Overview Chart",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React overview** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React overview",
-                pageTitle: "React overview | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a React overview with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to zoom and pan with an **Overview Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Zoom and Pan with Overview Chart",
+                pageTitle: "Zoom and Pan with Overview Chart",
+                metaDescription: "Demonstrates how to zoom and pan with an Overview Chart",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular overview** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular overview",
-                pageTitle: "Angular overview | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create an Angular overview with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript overview** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript overview",
-                pageTitle: "JavaScript overview | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript overview with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to zoom and pan with an **Overview Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Zoom and Pan with Overview Chart",
+                pageTitle: "Zoom and Pan with Overview Chart",
+                metaDescription: "Demonstrates how to zoom and pan with an Overview Chart",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChartOverview.html",
+                title: "This specific page in the JavaScript SciChartOverview Api documentation will help you to get started",
                 linkTitle: "SciChart.js Overview Documentation",
             },
         ],

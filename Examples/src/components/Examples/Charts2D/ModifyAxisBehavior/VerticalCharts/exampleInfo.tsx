@@ -4,56 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "verticalcharts",
+        exampleId: "charts2d\\modifyaxisbehavior\\verticalcharts",
         imagePath: "./javascript-vertical-charts.jpg",
-        title: "verticalCharts",
-        description:
-            "Demonstrates a vertical chart with XAxis on the Left and YAxis on the Top. SciChart.js supports unlimited X\r\nand Y axis and allows placement of any axis on the Left, Right, Top, Bottom of the chart.",
-        path: "verticalcharts",
+        description: "",
+        path: "vertical-charts",
         metaKeywords: "vertical, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/ModifyAxisBehavior/VerticalCharts",
-        tips: [
-            "The vertical chart, popular in Oil & Gas, Geo-surveying, is created by setting xAxis.axisAlignment =\r\nLeft, and yAxis.axisAlignment = top.",
-            "Try dragging an axis or the chart to zoom and pan around. Double clicking the chart resets the zoom!",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-vertical-charts.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to create a **rotated ,JavaScript, Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Vertical Charts",
+                pageTitle: "JavaScript Vertical Charts",
+                metaDescription:
+                    "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React verticalCharts** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React verticalCharts",
-                pageTitle: "React verticalCharts | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **rotated ,React, Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "React Vertical Charts",
+                pageTitle: "React Vertical Charts",
                 metaDescription:
-                    "Easily create a React verticalCharts with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular verticalCharts** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular verticalCharts",
-                pageTitle: "Angular verticalCharts | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **rotated ,Angular, Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Vertical Charts",
+                pageTitle: "Angular Vertical Charts",
                 metaDescription:
-                    "Easily create an Angular verticalCharts with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript verticalCharts** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript verticalCharts",
-                pageTitle: "JavaScript verticalCharts | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript verticalCharts with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Alignment%20-%20Create%20a%20Vertical%20Chart.html",
+                title: "The specific page for the SciChart.js API documentation for Vertical Charts will help you to get started",
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],

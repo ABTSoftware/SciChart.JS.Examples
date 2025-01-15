@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "realtimeperformancedemo",
+        exampleId: "featuredapps\\performancedemos\\realtimeperformancedemo",
         imagePath: "./javascript-chart-realtime-performance-demo.jpg",
-        title: "realtimePerformanceDemo",
-        description:
-            "Demonstrates the speed and power of SciChart.js in a real-time example. Creates a timer and pushes 1,000\r\npoints every 10ms to 3 line series on the chart (300k points per second). The point count quickly rises into\r\nthe millions, and SciChart is still rendering!",
-        path: "realtimeperformancedemo",
+        description: "",
+        path: "chart-realtime-performance-demo",
         metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "FeaturedApps/PerformanceDemos/RealtimePerformanceDemo",
-        tips: [
-            "For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded appendRange functions on dataseries.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-chart-realtime-performance-demo.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates appending **millions of points** to a line chart with SciChart.js, High Performance JavaScript Charts",
+                title: "Realtime JavaScript Chart Performance Demo",
+                pageTitle: "Realtime JavaScript Chart Performance Demo",
+                metaDescription:
+                    "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React realtimePerformanceDemo** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React realtimePerformanceDemo",
-                pageTitle: "React realtimePerformanceDemo | JavaScript Charts | View Examples",
+                    "Demonstrates appending **millions of points** to a line chart with SciChart.js, High Performance JavaScript Charts",
+                title: "Realtime React Chart Performance Demo",
+                pageTitle: "Realtime React Chart Performance Demo",
                 metaDescription:
-                    "Easily create a React realtimePerformanceDemo with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "This demo showcases the incredible realtime performance of our React charts by updating the series with millions of data-points!",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular realtimePerformanceDemo** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular realtimePerformanceDemo",
-                pageTitle: "Angular realtimePerformanceDemo | JavaScript Charts | View Examples",
+                    "Demonstrates appending **millions of points** to a line chart with SciChart.js, High Performance JavaScript Charts",
+                title: "Realtime Angular Chart Performance Demo",
+                pageTitle: "Realtime Angular Chart Performance Demo",
                 metaDescription:
-                    "Easily create an Angular realtimePerformanceDemo with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript realtimePerformanceDemo** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript realtimePerformanceDemo",
-                pageTitle: "JavaScript realtimePerformanceDemo | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript realtimePerformanceDemo with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "This demo showcases the incredible realtime performance of our Angular charts by updating the series with millions of data-points!",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Common%20RenderableSeries%20Features.html",
+                title: "Go to the Performance Tips and Tricks page in the SciChart.js Documentation",
                 linkTitle: "SciChart.js Performance Tips and Tricks",
             },
         ],

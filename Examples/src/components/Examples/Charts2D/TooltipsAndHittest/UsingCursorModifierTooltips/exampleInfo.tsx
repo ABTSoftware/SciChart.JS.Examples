@@ -4,55 +4,52 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "usingcursormodifiertooltips",
+        exampleId: "charts2d\\tooltipsandhittest\\usingcursormodifiertooltips",
         imagePath: "./javascript-chart-cursormodifier-crosshairs.jpg",
-        title: "usingCursorModifierTooltips",
-        description:
-            "This can be used to add Tooltips to a JavaScript chart as well as draw cursors (crosshairs) and axis labels\r\nvalues as the user moves the mouse.",
-        path: "usingcursormodifiertooltips",
+        title: "Using CursorModifier Crosshairs",
+        description: "",
+        path: "chart-cursormodifier-crosshairs",
         metaKeywords: "cursor, modifier, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips",
-        tips: [
-            "The hitTest function accepts parameters to control the hit-test logic. See the documentation on Hit-Testing for more info!",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-chart-cursormodifier-crosshairs.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",
+                title: "Using CursorModifier Crosshairs",
+                pageTitle: "Using CursorModifier Crosshairs",
+                metaDescription:
+                    "Demonstrates adding a Cursor (Crosshair) to a JavaScript Chart with SciChart.js CursorModifier",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React usingCursorModifierTooltips** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React usingCursorModifierTooltips",
-                pageTitle: "React usingCursorModifierTooltips | JavaScript Charts | View Examples",
+                    "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",
+                title: "Using CursorModifier Crosshairs",
+                pageTitle: "Using CursorModifier Crosshairs",
                 metaDescription:
-                    "Easily create a React usingCursorModifierTooltips with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates adding a Cursor (Crosshair) to a React Chart with SciChart.js CursorModifier",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular usingCursorModifierTooltips** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular usingCursorModifierTooltips",
-                pageTitle: "Angular usingCursorModifierTooltips | JavaScript Charts | View Examples",
+                    "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",
+                title: "Using CursorModifier Crosshairs",
+                pageTitle: "Using CursorModifier Crosshairs",
                 metaDescription:
-                    "Easily create an Angular usingCursorModifierTooltips with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript usingCursorModifierTooltips** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript usingCursorModifierTooltips",
-                pageTitle: "JavaScript usingCursorModifierTooltips | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript usingCursorModifierTooltips with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates adding a Cursor (Crosshair) to a Angular Chart with SciChart.js CursorModifier",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#CursorModifier.html",
+                title: "The specific page for the SciChart.js API documentation for the CursorModifier to help you to get started",
                 linkTitle: "CursorModifier documentation",
             },
         ],

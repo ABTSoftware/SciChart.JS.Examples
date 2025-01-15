@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "subchartstockcharts",
+        exampleId: "charts2d\\createstockcharts\\subchartstockcharts",
         imagePath: "./javascript-subcharts-multi-pane-stock-charts.jpg",
-        title: "subChartStockCharts",
-        description:
-            "All charts are synchronized together by using the mouseEventGroup property on chart modifiers and the\r\nSciChartVerticalGroup type. Technical indicators are for demo purposes only. We recommend using TA-Lib to add more complex indicators to SciChart.js",
-        path: "subchartstockcharts",
+        description: "",
+        path: "multi-pane-stock-charts",
         metaKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/CreateStockCharts/SubChartStockCharts",
-        tips: [
-            "SciChart.js supports all the features you need to create rich, interactive, realtime JavaScript Stock Chart applications. Including Candlestick/OHLC charts, Band Series for bollinger bands, multi-panes, plus incredible real-time performance.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-subcharts-multi-pane-stock-charts.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
+                title: "JavaScript Multi-Pane Stock Charts using Subcharts",
+                pageTitle: "JavaScript Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
+                metaDescription:
+                    "Create a JavaScript Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React subChartStockCharts** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React subChartStockCharts",
-                pageTitle: "React subChartStockCharts | JavaScript Charts | View Examples",
+                    "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
+                title: "React Multi-Pane Stock Charts using Subcharts",
+                pageTitle: "React Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
                 metaDescription:
-                    "Easily create a React subChartStockCharts with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create a React Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular subChartStockCharts** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular subChartStockCharts",
-                pageTitle: "Angular subChartStockCharts | JavaScript Charts | View Examples",
+                    "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
+                title: "Angular Multi-Pane Stock Charts using Subcharts",
+                pageTitle: "Angular Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
                 metaDescription:
-                    "Easily create an Angular subChartStockCharts with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript subChartStockCharts** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript subChartStockCharts",
-                pageTitle: "JavaScript subChartStockCharts | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript subChartStockCharts with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create a Angular Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],

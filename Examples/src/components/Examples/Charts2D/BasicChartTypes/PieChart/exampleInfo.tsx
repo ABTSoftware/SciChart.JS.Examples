@@ -4,56 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "piechart",
+        exampleId: "charts2d\\basiccharttypes\\piechart",
         imagePath: "./javascript-pie-chart.jpg",
-        title: "pieChart",
-        description:
-            "Pie Charts in SciChart.js support selection, legends, different text labels, animated updates,\r\n    gradient or solid fills and more.",
-        path: "piechart",
+        description: "",
+        path: "pie-chart",
         metaKeywords: "pie, chart, javascript, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/PieChart",
-        tips: [
-            "You can change the fill color of every segment and the style of its label.",
-            "Every segment can be highlighted by clicking on it or when selected in the legend.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-pie-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "For an example that demonstrates how create a **JavaScript, Pie Chart**, our demo code teaches you how to do this with SciChart's JavaScript Charting Library.",
+                title: "JavaScript Pie Chart",
+                pageTitle: "JavaScript Pie Chart | JavaScript Chart Examples | SciChart",
+                metaDescription:
+                    "Easily create and customise a high performance JavaScript Pie Chart with 5-star rated SciChart.js. Get your free trial now to access the whole library. ",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React pieChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React pieChart",
-                pageTitle: "React pieChart | JavaScript Charts | View Examples",
+                    "For an example that demonstrates how create a **React, Pie Chart**, our demo code teaches you how to do this with SciChart's JavaScript Charting Library.",
+                title: "React Pie Chart",
+                pageTitle: "React Pie Chart | JavaScript Chart Examples | SciChart",
                 metaDescription:
-                    "Easily create a React pieChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Easily create and customise a high performance React Pie Chart with 5-star rated SciChart.js. Get your free trial now to access the whole library. ",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular pieChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular pieChart",
-                pageTitle: "Angular pieChart | JavaScript Charts | View Examples",
+                    "For an example that demonstrates how create a **Angular, Pie Chart**, our demo code teaches you how to do this with SciChart's JavaScript Charting Library.",
+                title: "Angular Pie Chart",
+                pageTitle: "Angular Pie Chart | JavaScript Chart Examples | SciChart",
                 metaDescription:
-                    "Easily create an Angular pieChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript pieChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript pieChart",
-                pageTitle: "JavaScript pieChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript pieChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Easily create and customise a high performance Angular Pie Chart with 5-star rated SciChart.js. Get your free trial now to access the whole library. ",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Pie%20Chart%20Type.html",
+                title: "The specific page for the JavaScript Pie Chart documentation will help you to get started",
                 linkTitle: "JavaScript Pie Chart Documentation",
             },
         ],

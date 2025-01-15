@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "digitalbandserieschart",
+        exampleId: "charts2d\\basiccharttypes\\digitalbandserieschart",
         imagePath: "./javascript-digital-band-chart.jpg",
-        title: "digitalBandSeriesChart",
-        description:
-            "Band series (also known as High-Low fill or Poylgon Fill) can be used to draw thresholds, a fill between two lines or areas of interest on a chart.",
-        path: "digitalbandserieschart",
+        description: "",
+        path: "digital-band-chart",
         metaKeywords: "digital, band, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/DigitalBandSeriesChart",
-        tips: [
-            "If you have data where Y1 is greater than Y2 always, you’ll get an envelope effect. Great for rendering confidence intervals, error margins or Bollinger Bands!",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-digital-band-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to create a **JavaScript, Digital Band Chart** or High-Low Fill using SciChart.js. This is our High Performance JavaScript Chart Library",
+                title: "JavaScript Digital Band Chart",
+                pageTitle: "JavaScript Digital Band Chart | JavaScript Chart Library",
+                metaDescription:
+                    "Learn how to create a JavaScript Digital Band Chart or High-Low Fill Chart with SciChart's easy-to-follow demos. Get your free trial today.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React digitalBandSeriesChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React digitalBandSeriesChart",
-                pageTitle: "React digitalBandSeriesChart | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **React, Digital Band Chart** or High-Low Fill using SciChart.js. This is our High Performance JavaScript Chart Library",
+                title: "React Digital Band Chart",
+                pageTitle: "React Digital Band Chart | JavaScript Chart Library",
                 metaDescription:
-                    "Easily create a React digitalBandSeriesChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Learn how to create a React Digital Band Chart or High-Low Fill Chart with SciChart's easy-to-follow demos. Get your free trial today.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular digitalBandSeriesChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular digitalBandSeriesChart",
-                pageTitle: "Angular digitalBandSeriesChart | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **Angular, Digital Band Chart** or High-Low Fill using SciChart.js. This is our High Performance JavaScript Chart Library",
+                title: "Angular Digital Band Chart",
+                pageTitle: "Angular Digital Band Chart | JavaScript Chart Library",
                 metaDescription:
-                    "Easily create an Angular digitalBandSeriesChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript digitalBandSeriesChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript digitalBandSeriesChart",
-                pageTitle: "JavaScript digitalBandSeriesChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript digitalBandSeriesChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Learn how to create a Angular Digital Band Chart or High-Low Fill Chart with SciChart's easy-to-follow demos. Get your free trial today.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#DigitalBandSeriesType.html",
+                title: "Digital Band Chart example",
                 linkTitle: "JavaScript Digital Band Documentation",
             },
         ],

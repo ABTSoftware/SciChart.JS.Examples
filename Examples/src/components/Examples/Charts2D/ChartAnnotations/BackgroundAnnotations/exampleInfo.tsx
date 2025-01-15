@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "backgroundannotations",
+        exampleId: "charts2d\\chartannotations\\backgroundannotations",
         imagePath: "./javascript-background-annotations.jpg",
-        title: "backgroundAnnotations",
-        description:
-            "Annotations can be placed on the Background layer, behind the gridlines, which allows for colouring areas of the chart",
-        path: "backgroundannotations",
+        description: "",
+        path: "chart-background-annotations",
         metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
-        onWebsite: true,
+        onWebsite: false,
         filepath: "Charts2D/ChartAnnotations/BackgroundAnnotations",
-        tips: [
-            "The AnnotationBase type has properties for x,yCoordinateMode which allow you to place annotations are relative or absolute values. Great for docking annotations to the top,left,right,bottom of a chart",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-background-annotations.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Quadrant Chart using Background Annotations",
+                pageTitle: "JavaScript Quadrant Chart using Background Annotations",
+                metaDescription:
+                    "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js Annotations API",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React backgroundAnnotations** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React backgroundAnnotations",
-                pageTitle: "React backgroundAnnotations | JavaScript Charts | View Examples",
+                    "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js, High Performance JavaScript Charts",
+                title: "React Quadrant Chart using Background Annotations",
+                pageTitle: "React Quadrant Chart using Background Annotations",
                 metaDescription:
-                    "Easily create a React backgroundAnnotations with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js Annotations API",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular backgroundAnnotations** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular backgroundAnnotations",
-                pageTitle: "Angular backgroundAnnotations | JavaScript Charts | View Examples",
+                    "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Quadrant Chart using Background Annotations",
+                pageTitle: "Angular Quadrant Chart using Background Annotations",
                 metaDescription:
-                    "Easily create an Angular backgroundAnnotations with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript backgroundAnnotations** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript backgroundAnnotations",
-                pageTitle: "JavaScript backgroundAnnotations | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript backgroundAnnotations with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js Annotations API",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Annotations%20API%20Overview.html",
+                title: "The specific page for the SciChart.js Annotations documentation will help you to get started",
                 linkTitle: "Annotations API Documentation",
             },
         ],

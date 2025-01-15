@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "realtimezoompan",
+        exampleId: "charts2d\\zoomingandpanning\\realtimezoompan",
         imagePath: "./zoom-and-pan-a-realtime-javascript-chart.jpg",
-        title: "realtimeZoomPan",
-        description:
-            "When you use AutoRanging in a SciChart.js chart, the chart will always automatically range to fit the data.\r\nThis means that zoom, pan modifiers will not work on the chart. In order to allow both behaviors, this\r\nexample demonstrates how to use the ZoomState property to determine when to zoom to fit, or when to allow\r\nuser zooming.",
-        path: "realtimezoompan",
+        description: "",
+        path: "zoom-pan-realtime-javascript-chart",
         metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/ZoomingAndPanning/RealtimeZoomPan",
-        tips: [
-            "Check in the source-code for how we use the SciChartSurface.ZoomState property to determine when to scroll\r\nand when to allow user-zooming.",
-        ],
+        tips: ['""'],
         thumbnailImage: "zoom-and-pan-a-realtime-javascript-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",
+                title: "Zoom and Pan a Realtime JavaScript Chart",
+                pageTitle: "Zoom and Pan a Realtime JavaScript Chart",
+                metaDescription:
+                    "Demonstrates how to zoom and pan a realtime JavaScript Chart while it is updating, with SciChart.js ZoomState API",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React realtimeZoomPan** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React realtimeZoomPan",
-                pageTitle: "React realtimeZoomPan | JavaScript Charts | View Examples",
+                    "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",
+                title: "Zoom and Pan a Realtime React Chart",
+                pageTitle: "Zoom and Pan a Realtime React Chart",
                 metaDescription:
-                    "Easily create a React realtimeZoomPan with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to zoom and pan a realtime React Chart while it is updating, with SciChart.js ZoomState API",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular realtimeZoomPan** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular realtimeZoomPan",
-                pageTitle: "Angular realtimeZoomPan | JavaScript Charts | View Examples",
+                    "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",
+                title: "Zoom and Pan a Realtime Angular Chart",
+                pageTitle: "Zoom and Pan a Realtime Angular Chart",
                 metaDescription:
-                    "Easily create an Angular realtimeZoomPan with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript realtimeZoomPan** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript realtimeZoomPan",
-                pageTitle: "JavaScript realtimeZoomPan | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript realtimeZoomPan with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to zoom and pan a realtime Angular Chart while it is updating, with SciChart.js ZoomState API",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#ZoomPanModifier.html",
+                title: "Zoom and Pan Modifier Documentation",
                 linkTitle: "SciChart.js Zooming and Panning Documentation",
             },
         ],

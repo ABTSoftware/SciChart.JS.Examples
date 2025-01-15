@@ -4,55 +4,52 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "percentagechange",
+        exampleId: "charts2d\\filters\\percentagechange",
         imagePath: "./javascript-percentage-change.jpg",
-        title: "percentageChange",
-        description:
-            "The zero value for change is the visible start of the chart and data rescales as you pan.\r\nClick the Add Data button to see that data is automatically transformed when the original data is updated.\r\nA simple extention to the RenderableSeries allows us to show the original values for the transformed series in the rollover tooltip",
-        path: "percentagechange",
+        title: "Realtime Percentage Change using Filter",
+        description: "",
+        path: "percentage-change",
         metaKeywords: "real-time, updating, percentage, transform, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/Filters/PercentageChange",
-        tips: [
-            "ScaleOffsetFilters are available for all DataSeries types, so you could do the same thing for a band or candlestick chart",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-percentage-change.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to use a ScaleOffsetFilter to convert data to a **Percentage Change** with realtime updates, using SciChart.js, High Performance JavaScript Charts",
+                title: "Realtime Percentage Change using Filter",
+                pageTitle: "Realtime Percentage Change using Filter",
+                metaDescription:
+                    "How to use a ScaleOffsetFilter to convert data to a percentage change, with realtime updates, rescale on pan",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React percentageChange** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React percentageChange",
-                pageTitle: "React percentageChange | JavaScript Charts | View Examples",
+                    "Demonstrates how to use a ScaleOffsetFilter to convert data to a **Percentage Change** with realtime updates, using SciChart.js, High Performance JavaScript Charts",
+                title: "Realtime Percentage Change using Filter",
+                pageTitle: "Realtime Percentage Change using Filter",
                 metaDescription:
-                    "Easily create a React percentageChange with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "How to use a ScaleOffsetFilter to convert data to a percentage change, with realtime updates, rescale on pan",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular percentageChange** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular percentageChange",
-                pageTitle: "Angular percentageChange | JavaScript Charts | View Examples",
+                    "Demonstrates how to use a ScaleOffsetFilter to convert data to a **Percentage Change** with realtime updates, using SciChart.js, High Performance JavaScript Charts",
+                title: "Realtime Percentage Change using Filter",
+                pageTitle: "Realtime Percentage Change using Filter",
                 metaDescription:
-                    "Easily create an Angular percentageChange with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript percentageChange** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript percentageChange",
-                pageTitle: "JavaScript percentageChange | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript percentageChange with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "How to use a ScaleOffsetFilter to convert data to a percentage change, with realtime updates, rescale on pan",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Scale%20Offset%20Filters.html",
+                title: "This specific page in the JavaScript Filters API documentation will help you to get started",
                 linkTitle: "SciChart.js ScaleOffsetFilter Documentation",
             },
         ],

@@ -4,57 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "zoomandpanwithmultiplechartmodifiers",
+        exampleId: "charts2d\\zoomingandpanning\\multiplezoompanmodifiers",
         imagePath: "./zoom-pan-multiple-modifiers.jpg",
-        title: "zoomAndPanWithMultipleChartModifiers",
-        description:
-            "Scroll Middle Mouse button to zoom in/zoom out. Use Right Mouse Button to select an area on the chart with RubberBandXyZoomModifier. Try it out on touch devices: use pinch zoom gesture to scale.",
-        path: "zoomandpanwithmultiplechartmodifiers",
+        description: "",
+        path: "zoom-pan-multiple-modifiers",
         metaKeywords: "zoom, pan, pinch, touch, scale, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers",
-        tips: [
-            "Use 'executeOn' property to assign a Modifier to specific mouse button.",
-            "Use 'easingFunction' property to animate zoom.",
-            "Use CSS 'touch-action' property to override browser default touch behavior. e.g., 'touch-action: none'.",
-        ],
+        tips: ['""'],
         thumbnailImage: "zoom-pan-multiple-modifiers.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates different **Zoom and Pan Modifiers on a ,JavaScript, Chart** including Mousewheel, Pinchzoom, Rubber-band zoom.",
+                title: "Zoom and Pan with JavaScript Chart multiple Modifiers",
+                pageTitle: "Zoom and Pan with JavaScript Chart multiple Modifiers",
+                metaDescription:
+                    "Demonstrates how to use multiple Zoom and Pan Modifiers on a JavaScript Chart with SciChart.js",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React zoomAndPanWithMultipleChartModifiers** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React zoomAndPanWithMultipleChartModifiers",
-                pageTitle: "React zoomAndPanWithMultipleChartModifiers | JavaScript Charts | View Examples",
+                    "Demonstrates different **Zoom and Pan Modifiers on a ,React, Chart** including Mousewheel, Pinchzoom, Rubber-band zoom.",
+                title: "Zoom and Pan with React Chart multiple Modifiers",
+                pageTitle: "Zoom and Pan with React Chart multiple Modifiers",
                 metaDescription:
-                    "Easily create a React zoomAndPanWithMultipleChartModifiers with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to use multiple Zoom and Pan Modifiers on a React Chart with SciChart.js",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular zoomAndPanWithMultipleChartModifiers** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular zoomAndPanWithMultipleChartModifiers",
-                pageTitle: "Angular zoomAndPanWithMultipleChartModifiers | JavaScript Charts | View Examples",
+                    "Demonstrates different **Zoom and Pan Modifiers on a ,Angular, Chart** including Mousewheel, Pinchzoom, Rubber-band zoom.",
+                title: "Zoom and Pan with Angular Chart multiple Modifiers",
+                pageTitle: "Zoom and Pan with Angular Chart multiple Modifiers",
                 metaDescription:
-                    "Easily create an Angular zoomAndPanWithMultipleChartModifiers with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript zoomAndPanWithMultipleChartModifiers** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript zoomAndPanWithMultipleChartModifiers",
-                pageTitle: "JavaScript zoomAndPanWithMultipleChartModifiers | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript zoomAndPanWithMultipleChartModifiers with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to use multiple Zoom and Pan Modifiers on a Angular Chart with SciChart.js",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#ZoomPanModifier.html",
+                title: "Zoom and Pan Modifier Documentation",
                 linkTitle: "SciChart.js Zooming and Panning documentation",
             },
         ],

@@ -4,52 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "subchartsgrid",
+        exampleId: "featuredapps\\featuredemos\\subchartsapi",
         imagePath: "./javascript-subcharts-grid.jpg",
-        title: "subchartsGrid",
         description: "",
-        path: "subchartsgrid",
+        path: "multiple-chart-dashboard-performance-demo",
         metaKeywords: "javascript, multichart, dashboard, performance, grid, realtime, webgl, canvas",
-        onWebsite: true,
+        onWebsite: false,
         filepath: "FeaturedApps/FeatureDemos/SubChartsAPI",
-        tips: [],
+        tips: ['""'],
         thumbnailImage: "javascript-subcharts-grid.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
+                title: "JavaScript 64-Chart Dashboard Performance Demo",
+                pageTitle: "JavaScript 64-Chart Dashboard Performance Demo",
+                metaDescription:
+                    "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React subchartsGrid** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React subchartsGrid",
-                pageTitle: "React subchartsGrid | JavaScript Charts | View Examples",
+                    "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
+                title: "React 64-Chart Dashboard Performance Demo",
+                pageTitle: "React 64-Chart Dashboard Performance Demo",
                 metaDescription:
-                    "Easily create a React subchartsGrid with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular subchartsGrid** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular subchartsGrid",
-                pageTitle: "Angular subchartsGrid | JavaScript Charts | View Examples",
+                    "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
+                title: "Angular 64-Chart Dashboard Performance Demo",
+                pageTitle: "Angular 64-Chart Dashboard Performance Demo",
                 metaDescription:
-                    "Easily create an Angular subchartsGrid with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript subchartsGrid** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript subchartsGrid",
-                pageTitle: "JavaScript subchartsGrid | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript subchartsGrid with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#WhatIsTheSubChartsAPI.html",
+                title: "This specifics page in the JavaScript SubCharts API documentation will help you to get started",
                 linkTitle: "Scichart.js SubCharts API Documentation",
             },
         ],

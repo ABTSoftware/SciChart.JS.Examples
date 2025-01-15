@@ -4,53 +4,48 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "dataanimation",
+        exampleId: "charts2d\\animations\\dataanimation",
         imagePath: "./javascript-data-animation.jpg",
-        title: "dataAnimation",
-        description:
-            "Every second new random values are generated for the scatter series and transition from one state to another is animated",
-        path: "dataanimation",
+        description: "",
+        path: "data-animation",
         metaKeywords: "data, dataset, animation, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/Animations/DataAnimation",
-        tips: [],
+        tips: ['""'],
         thumbnailImage: "javascript-data-animation.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to run **Dataset Animations** using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Chart Data Animation",
+                pageTitle: "JavaScript Chart Data Animation",
+                metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React dataAnimation** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React dataAnimation",
-                pageTitle: "React dataAnimation | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a React dataAnimation with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to run **Dataset Animations** using SciChart.js, High Performance JavaScript Charts",
+                title: "React Chart Data Animation",
+                pageTitle: "React Chart Data Animation",
+                metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular dataAnimation** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular dataAnimation",
-                pageTitle: "Angular dataAnimation | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create an Angular dataAnimation with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript dataAnimation** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript dataAnimation",
-                pageTitle: "JavaScript dataAnimation | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript dataAnimation with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to run **Dataset Animations** using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Chart Data Animation",
+                pageTitle: "Angular Chart Data Animation",
+                metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Dataset%20Animations.html",
+                title: "The specific page for the JavaScript Dataset Animation documentation will help you to get started",
                 linkTitle: "JavaScript Data Animation Documentation",
             },
         ],

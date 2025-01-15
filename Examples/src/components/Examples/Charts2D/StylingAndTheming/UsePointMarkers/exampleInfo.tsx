@@ -4,53 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "usepointmarkers",
+        exampleId: "charts2d\\stylingandtheming\\usepointmarkers",
         imagePath: "./javascript-chart-custom-pointmarkers.jpg",
-        title: "usePointMarkers",
-        description:
-            "The Point-markers are created using the HTML Canvas or custom images, but applied to the line as a WebGL\r\nTexture, so it’s possible to render tens or hundreds of thousands of point-markers using this method.",
-        path: "usepointmarkers",
+        description: "",
+        path: "chart-custom-pointmarkers",
         metaKeywords: "data, point, marker, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/StylingAndTheming/UsePointMarkers",
-        tips: [],
+        tips: ['""'],
         thumbnailImage: "javascript-chart-custom-pointmarkers.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to create **custom data-point markers** using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Point-Markers Chart",
+                pageTitle: "JavaScript Point-Markers Chart",
+                metaDescription:
+                    "Demonstrates the different point-marker types for JavaScript Scatter charts (Square, Circle, Triangle and Custom image point-marker)",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React usePointMarkers** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React usePointMarkers",
-                pageTitle: "React usePointMarkers | JavaScript Charts | View Examples",
+                    "Demonstrates how to create **custom data-point markers** using SciChart.js, High Performance JavaScript Charts",
+                title: "React Point-Markers Chart",
+                pageTitle: "React Point-Markers Chart",
                 metaDescription:
-                    "Easily create a React usePointMarkers with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates the different point-marker types for React Scatter charts (Square, Circle, Triangle and Custom image point-marker)",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular usePointMarkers** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular usePointMarkers",
-                pageTitle: "Angular usePointMarkers | JavaScript Charts | View Examples",
+                    "Demonstrates how to create **custom data-point markers** using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Point-Markers Chart",
+                pageTitle: "Angular Point-Markers Chart",
                 metaDescription:
-                    "Easily create an Angular usePointMarkers with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript usePointMarkers** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript usePointMarkers",
-                pageTitle: "JavaScript usePointMarkers | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript usePointMarkers with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates the different point-marker types for Angular Scatter charts (Square, Circle, Triangle and Custom image point-marker)",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#DrawingPointMarkersOnSeries.html",
+                title: "SciChart.js PointMarkers Documentation",
                 linkTitle: "Point-Markers API documentation",
             },
         ],

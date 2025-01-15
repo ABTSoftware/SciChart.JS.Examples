@@ -4,55 +4,52 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "chartlegendsapi",
+        exampleId: "charts2d\\legends\\chartlegendsapi",
         imagePath: "./javascript-chart-legends.jpg",
-        title: "chartLegendsAPI",
-        description:
-            "Legends may be placed in the top left, top right, bottom left and bottom right of the chart, and can be\r\noriented horizontally or vertically. Each legend item takes its text from the dataSeriesName property",
-        path: "chartlegendsapi",
+        title: "Chart Legends API",
+        description: "",
+        path: "chart-legends",
         metaKeywords: "legend, api, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/Legends/ChartLegendsAPI",
-        tips: [
-            "There are many different configurations for the legend, including fine grained control over the legend rows. Please review the API documentation below carefully for further information.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-chart-legends.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to add a legend to a **JavaScript, Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Chart Legends API",
+                pageTitle: "Chart Legends API",
+                metaDescription:
+                    "Demonstrates how to add a Legends to a JavaScript Line Chart using SciChart.js. The legend is created when you add a LegendModifier type to the sciChartSurface.chartModifiers collection.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React chartLegendsAPI** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React chartLegendsAPI",
-                pageTitle: "React chartLegendsAPI | JavaScript Charts | View Examples",
+                    "Demonstrates how to add a legend to a **React, Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Chart Legends API",
+                pageTitle: "Chart Legends API",
                 metaDescription:
-                    "Easily create a React chartLegendsAPI with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to add a Legends to a JavaScript Line Chart using SciChart.js. The legend is created when you add a LegendModifier type to the sciChartSurface.chartModifiers collection.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular chartLegendsAPI** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular chartLegendsAPI",
-                pageTitle: "Angular chartLegendsAPI | JavaScript Charts | View Examples",
+                    "Demonstrates how to add a legend to a **Angular, Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Chart Legends API",
+                pageTitle: "Chart Legends API",
                 metaDescription:
-                    "Easily create an Angular chartLegendsAPI with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript chartLegendsAPI** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript chartLegendsAPI",
-                pageTitle: "JavaScript chartLegendsAPI | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript chartLegendsAPI with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to add a Legends to a JavaScript Line Chart using SciChart.js. The legend is created when you add a LegendModifier type to the sciChartSurface.chartModifiers collection.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#LegendModifier.html",
+                title: "The specific page for the SciChart.js Legends documentation will help you to get started",
                 linkTitle: "Legend API Documentation",
             },
         ],

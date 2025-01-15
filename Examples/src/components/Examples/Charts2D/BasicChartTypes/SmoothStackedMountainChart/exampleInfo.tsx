@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "smoothstackedmountainchart",
+        exampleId: "charts2d\\basiccharttypes\\smoothstackedmountainchart",
         imagePath: "./javascript-smooth-stacked-mountain-chart.jpg",
-        title: "smoothStackedMountainChart",
-        description:
-            "Smooth Stacked Mountain Charts can be created in JavaScript using SciChart.js. An mountain or area is rendered from the\r\n    Y-value of each stacked mountain series to the Y-value of the next.\r\n    Each area can have a different color and you can stack to 100% using our library.",
-        path: "smoothstackedmountainchart",
+        description: "",
+        path: "smooth-stacked-mountain-chart",
         metaKeywords: "stacked, mountain, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/SmoothStackedMountainChart",
-        tips: [
-            "By setting the stroke property you alter the line color, and fill alters the fill. The Mountain-series also supports semi-transparent and linear gradient brush fills and looks great!",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-smooth-stacked-mountain-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Learn how to make a **JavaScript, Smooth Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
+                title: "JavaScript Smooth Stacked Mountain Chart",
+                pageTitle: "JavaScript Smooth Stacked Mountain Chart | JavaScript Chart Library",
+                metaDescription:
+                    "Design a high performance JavaScript Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React smoothStackedMountainChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React smoothStackedMountainChart",
-                pageTitle: "React smoothStackedMountainChart | JavaScript Charts | View Examples",
+                    "Learn how to make a **React, Smooth Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
+                title: "React Smooth Stacked Mountain Chart",
+                pageTitle: "React Smooth Stacked Mountain Chart | JavaScript Chart Library",
                 metaDescription:
-                    "Easily create a React smoothStackedMountainChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Design a high performance React Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular smoothStackedMountainChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular smoothStackedMountainChart",
-                pageTitle: "Angular smoothStackedMountainChart | JavaScript Charts | View Examples",
+                    "Learn how to make a **Angular, Smooth Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
+                title: "Angular Smooth Stacked Mountain Chart",
+                pageTitle: "Angular Smooth Stacked Mountain Chart | JavaScript Chart Library",
                 metaDescription:
-                    "Easily create an Angular smoothStackedMountainChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript smoothStackedMountainChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript smoothStackedMountainChart",
-                pageTitle: "JavaScript smoothStackedMountainChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript smoothStackedMountainChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Design a high performance Angular Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Stacked%20Mountain%20Series%20Type.html",
+                title: "The specific page for the JavaScript Stacked Mountain Chart documentation will help you to get started",
                 linkTitle: "JavaScript Stacked Mountain Chart Documentation",
             },
         ],

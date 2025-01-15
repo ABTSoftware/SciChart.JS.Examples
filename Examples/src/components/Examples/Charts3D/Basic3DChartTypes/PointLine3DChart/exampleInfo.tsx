@@ -4,55 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "pointline3dchart",
+        exampleId: "charts3d\\basic3dcharttypes\\pointline3dchart",
         imagePath: "./javascript-3d-point-line-chart.jpg",
-        title: "pointLine3DChart",
-        description:
-            "JavaScript 3D Point Line Charts can be created using SciChart.js.\r\n    Large datasets can be drawn, enabling visualisation of large statistical datsets in a browser.",
-        path: "pointline3dchart",
+        description: "",
+        path: "3d-point-line-chart",
         metaKeywords: "3d, bubble, chart, javascript, webgl, canvas",
-        onWebsite: true,
+        onWebsite: false,
         filepath: "Charts3D/Basic3DChartTypes/PointLine3DChart",
-        tips: [
-            "Lines and points can be colored individually, programmatically selected and scaled using the PointMetadata3D class. PointMetadata also allows you to tag individual data-points with a business object of any type.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-3d-point-line-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Our team demonstrates how to create a **JavaScript, 3D Point Line Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
+                title: "JavaScript Point Line 3D Chart",
+                pageTitle: "JavaScript 3D Point Line Chart | View 3D JavaScript Charts",
+                metaDescription:
+                    "Create detailed JavaScript 3D Line Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React pointLine3DChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React pointLine3DChart",
-                pageTitle: "React pointLine3DChart | JavaScript Charts | View Examples",
+                    "Our team demonstrates how to create a **React, 3D Point Line Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
+                title: "React Point Line 3D Chart",
+                pageTitle: "React 3D Point Line Chart | View 3D JavaScript Charts",
                 metaDescription:
-                    "Easily create a React pointLine3DChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create detailed React 3D Line Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular pointLine3DChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular pointLine3DChart",
-                pageTitle: "Angular pointLine3DChart | JavaScript Charts | View Examples",
+                    "Our team demonstrates how to create a **Angular, 3D Point Line Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
+                title: "Angular Point Line 3D Chart",
+                pageTitle: "Angular 3D Point Line Chart | View 3D JavaScript Charts",
                 metaDescription:
-                    "Easily create an Angular pointLine3DChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript pointLine3DChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript pointLine3DChart",
-                pageTitle: "JavaScript pointLine3DChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript pointLine3DChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Create detailed Angular 3D Line Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#ThePointLine3DChartType.html",
+                title: "SciChart.js 3D Point Line Chart Documentation",
                 linkTitle: "JavaScript 3D Point Line Chart Documentation",
             },
         ],

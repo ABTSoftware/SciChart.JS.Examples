@@ -4,52 +4,48 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "textchart",
+        exampleId: "charts2d\\basiccharttypes\\textserieschart",
         imagePath: "./javascript-text-chart.jpg",
-        title: "textChart",
         description: "",
-        path: "textchart",
+        path: "text-chart",
         metaKeywords: "text, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/TextSeriesChart",
-        tips: [],
+        tips: ['""'],
         thumbnailImage: "javascript-text-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
+                title: "JavaScript Text Chart",
+                pageTitle: "JavaScript Text Chart",
+                metaDescription: "Create JavaScript Text Chart with high performance SciChart.js.  ",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React textChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React textChart",
-                pageTitle: "React textChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a React textChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
+                title: "React Text Chart",
+                pageTitle: "React Text Chart",
+                metaDescription: "Create React Text Chart with high performance SciChart.js.  ",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular textChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular textChart",
-                pageTitle: "Angular textChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create an Angular textChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript textChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript textChart",
-                pageTitle: "JavaScript textChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript textChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
+                title: "Angular Text Chart",
+                pageTitle: "Angular Text Chart",
+                metaDescription: "Create Angular Text Chart with high performance SciChart.js.  ",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#TheTextSeriesType.html",
+                title: "The documentation page for the TextSeries in SciChart.js",
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],

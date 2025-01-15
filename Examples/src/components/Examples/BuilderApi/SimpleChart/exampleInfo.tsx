@@ -4,57 +4,52 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "simplechart",
+        exampleId: "builderapi\\simplechart",
         imagePath: "./javascript-builder-simple.jpg",
-        title: "simpleChart",
-        description:
-            "The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
-        path: "simplechart",
+        title: "Simple Chart using Builder API",
+        description: "",
+        path: "builder-simple",
         metaKeywords: "definition, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "BuilderApi/SimpleChart",
-        tips: [
-            "Everything in the definition is optional. SciChart will add numeric axes by default.",
-            "The builder api supports all SciChart 2D features.",
-            "You can combine the builder api and normal api to utilize the strengths of each",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-builder-simple.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to use the Builder Api to create a **Simple Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Simple Chart using Builder API",
+                pageTitle: "Simple Chart using Builder API",
+                metaDescription:
+                    "Demonstrates how to use the Builder Api to create a simple chart using a definition object. The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React simpleChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React simpleChart",
-                pageTitle: "React simpleChart | JavaScript Charts | View Examples",
+                    "Demonstrates how to use the Builder Api to create a **Simple Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Simple Chart using Builder API",
+                pageTitle: "Simple Chart using Builder API",
                 metaDescription:
-                    "Easily create a React simpleChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to use the Builder Api to create a simple chart using a definition object. The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular simpleChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular simpleChart",
-                pageTitle: "Angular simpleChart | JavaScript Charts | View Examples",
+                    "Demonstrates how to use the Builder Api to create a **Simple Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Simple Chart using Builder API",
+                pageTitle: "Simple Chart using Builder API",
                 metaDescription:
-                    "Easily create an Angular simpleChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript simpleChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript simpleChart",
-                pageTitle: "JavaScript simpleChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript simpleChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to use the Builder Api to create a simple chart using a definition object. The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Intro%20to%20the%20Builder%20API.html",
+                title: "This specific page in the JavaScript Builder API documentation will help you to get started",
                 linkTitle: "JavaScript Builder API Documentation",
             },
         ],

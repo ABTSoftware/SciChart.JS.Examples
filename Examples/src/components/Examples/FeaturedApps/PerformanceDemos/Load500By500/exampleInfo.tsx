@@ -4,55 +4,52 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "load500by500",
+        exampleId: "featuredapps\\performancedemos\\load500by500",
         imagePath: "./javascript-chart-load-500-series-by-500-points.jpg",
-        title: "load500By500",
-        description:
-            "This kind of plot can be used in statistical analysis such as rendering the output of Monte Carlo\r\nsimulations. Anywhere you need hundreds (or even thousands) of line series on a chart, SciChart.js can\r\nhelp!",
-        path: "load500by500",
+        title: "Load 500 Series x 500 Points Performance Demo",
+        description: "",
+        path: "load-500-series-x-500-points-performance-demo",
         metaKeywords: "performance, demo, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "FeaturedApps/PerformanceDemos/Load500By500",
-        tips: [
-            "For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded appendRange functions on dataseries.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-chart-load-500-series-by-500-points.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates loading **500 series, each with 500 points (250k points total) instantly**. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
+                title: "Load 500 Series x 500 Points Performance Demo",
+                pageTitle: "Load 500 Series x 500 Points Performance Demo",
+                metaDescription:
+                    "This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React load500By500** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React load500By500",
-                pageTitle: "React load500By500 | JavaScript Charts | View Examples",
+                    "Demonstrates loading **500 series, each with 500 points (250k points total) instantly**. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
+                title: "Load 500 Series x 500 Points Performance Demo",
+                pageTitle: "Load 500 Series x 500 Points Performance Demo",
                 metaDescription:
-                    "Easily create a React load500By500 with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "This demo showcases the incredible performance of our React Chart by loading 500 series with 500 points (250k points) instantly!",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular load500By500** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular load500By500",
-                pageTitle: "Angular load500By500 | JavaScript Charts | View Examples",
+                    "Demonstrates loading **500 series, each with 500 points (250k points total) instantly**. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
+                title: "Load 500 Series x 500 Points Performance Demo",
+                pageTitle: "Load 500 Series x 500 Points Performance Demo",
                 metaDescription:
-                    "Easily create an Angular load500By500 with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript load500By500** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript load500By500",
-                pageTitle: "JavaScript load500By500 | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript load500By500 with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "This demo showcases the incredible performance of our Angular Chart by loading 500 series with 500 points (250k points) instantly!",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Common%20RenderableSeries%20Features.html",
+                title: "Go to the Performance Tips and Tricks page in the SciChart.js Documentation",
                 linkTitle: "SciChart.js Performance Tips and Tricks",
             },
         ],

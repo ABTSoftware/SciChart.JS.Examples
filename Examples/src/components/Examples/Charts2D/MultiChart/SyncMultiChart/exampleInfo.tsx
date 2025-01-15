@@ -4,57 +4,54 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "syncmultichart",
+        exampleId: "charts2d\\multichart\\syncmultichart",
         imagePath: "./javascript-sync-multi-chart.jpg",
-        title: "syncMultiChart",
+        title: "Synchronise Multiple Charts",
         description: "",
-        path: "syncmultichart",
+        path: "sync-multi-chart",
         metaKeywords: "axis, synchronise, multiple, charts, overview, zoom, pan, javascript, webgl, canvas",
-        onWebsite: true,
+        onWebsite: false,
         filepath: "Charts2D/MultiChart/SyncMultiChart",
-        tips: [],
+        tips: ['""'],
         thumbnailImage: "javascript-sync-multi-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "This example demonstrates how to synchronise layout and visible range across multiple dynamic charts, and how to synchronise series with an overview chart.using SciChart.js, High Performance JavaScript Charts",
+                title: "Synchronise Multiple Charts",
+                pageTitle: "Synchronise Multiple Charts",
+                metaDescription: "Synchronise multiple dynamic charts and overview",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React syncMultiChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React syncMultiChart",
-                pageTitle: "React syncMultiChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a React syncMultiChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "This example demonstrates how to synchronise layout and visible range across multiple dynamic charts, and how to synchronise series with an overview chart.using SciChart.js, High Performance JavaScript Charts",
+                title: "Synchronise Multiple Charts",
+                pageTitle: "Synchronise Multiple Charts",
+                metaDescription: "Synchronise multiple dynamic charts and overview",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular syncMultiChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular syncMultiChart",
-                pageTitle: "Angular syncMultiChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create an Angular syncMultiChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript syncMultiChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript syncMultiChart",
-                pageTitle: "JavaScript syncMultiChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript syncMultiChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "This example demonstrates how to synchronise layout and visible range across multiple dynamic charts, and how to synchronise series with an overview chart.using SciChart.js, High Performance JavaScript Charts",
+                title: "Synchronise Multiple Charts",
+                pageTitle: "Synchronise Multiple Charts",
+                metaDescription: "Synchronise multiple dynamic charts and overview",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: '"This is a tutorial for how to synchronise the axis and modifiers for multiple charts"',
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2009%20-%20Linking%20Multiple%20Charts.html",
+                title: "This is a tutorial for how to synchronise the axis and modifiers for multiple charts",
                 linkTitle: "SciChart.js Synchronise Charts Tutorial",
             },
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChartOverview.html",
+                title: "This specific page in the JavaScript SciChartOverview Api documentation will help you to get started",
                 linkTitle: "SciChart.js Overview Documentation",
             },
         ],

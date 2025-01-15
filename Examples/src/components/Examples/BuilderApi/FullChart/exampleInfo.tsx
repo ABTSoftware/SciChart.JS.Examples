@@ -4,57 +4,52 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "fullchart",
+        exampleId: "builderapi\\fullchart",
         imagePath: "./javascript-builder-full.jpg",
-        title: "fullChart",
-        description:
-            "The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
-        path: "fullchart",
+        title: "Full Chart using Builder API",
+        description: "",
+        path: "builder-full",
         metaKeywords: "definition, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "BuilderApi/FullChart",
-        tips: [
-            "Axes, series, annotations and modifiers can all be a single definition object, or an array",
-            "The builder api supports all SciChart 2D features.",
-            "Use the new TextLabelProvider for easy configuration of text labels on a category axis",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-builder-full.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to use the Builder Api to create a **Fully Configured Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Full Chart using Builder API",
+                pageTitle: "Full Chart using Builder API",
+                metaDescription:
+                    "Demonstrates how to use the Builder Api to configure axes, series, annotations and modifiers using a definition object. The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React fullChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React fullChart",
-                pageTitle: "React fullChart | JavaScript Charts | View Examples",
+                    "Demonstrates how to use the Builder Api to create a **Fully Configured Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Full Chart using Builder API",
+                pageTitle: "Full Chart using Builder API",
                 metaDescription:
-                    "Easily create a React fullChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to use the Builder Api to configure axes, series, annotations and modifiers using a definition object. The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular fullChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular fullChart",
-                pageTitle: "Angular fullChart | JavaScript Charts | View Examples",
+                    "Demonstrates how to use the Builder Api to create a **Fully Configured Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Full Chart using Builder API",
+                pageTitle: "Full Chart using Builder API",
                 metaDescription:
-                    "Easily create an Angular fullChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript fullChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript fullChart",
-                pageTitle: "JavaScript fullChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript fullChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Demonstrates how to use the Builder Api to configure axes, series, annotations and modifiers using a definition object. The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Intro%20to%20the%20Builder%20API.html",
+                title: "This specific page in the JavaScript Builder API documentation will help you to get started",
                 linkTitle: "JavaScript Builder API Documentation",
             },
         ],

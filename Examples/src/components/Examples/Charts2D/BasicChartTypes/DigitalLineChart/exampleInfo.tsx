@@ -4,56 +4,51 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "digitallinechart",
+        exampleId: "charts2d\\basiccharttypes\\digitallinechart",
         imagePath: "./javascript-digital-line-chart.jpg",
-        title: "digitalLineChart",
-        description:
-            "In SciChart.js lines can be stepped, continuous or spline interpolated (smoothed) using our flexible JS Chart Library.",
-        path: "digitallinechart",
+        description: "",
+        path: "digital-line-chart",
         metaKeywords: "digital, line, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/DigitalLineChart",
-        tips: [
-            "As well as stroke, you can set strokeThickness, isVisible properties to change how the series is rendered.",
-            "You can add data-point markers to a line series using the PointMarker API. This is very performant and uses the same WebGL rendering as our Scatter Charts.",
-        ],
+        tips: ['""'],
         thumbnailImage: "javascript-digital-line-chart.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "Demonstrates how to create a **JavaScript, Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",
+                title: "JavaScript Digital Line Chart",
+                pageTitle: "JavaScript Digital Line Chart | JavaScript Charts | View Now",
+                metaDescription:
+                    "Discover how to create a JavaScript Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React digitalLineChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React digitalLineChart",
-                pageTitle: "React digitalLineChart | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **React, Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",
+                title: "React Digital Line Chart",
+                pageTitle: "React Digital Line Chart | JavaScript Charts | View Now",
                 metaDescription:
-                    "Easily create a React digitalLineChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Discover how to create a React Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular digitalLineChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular digitalLineChart",
-                pageTitle: "Angular digitalLineChart | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **Angular, Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",
+                title: "Angular Digital Line Chart",
+                pageTitle: "Angular Digital Line Chart | JavaScript Charts | View Now",
                 metaDescription:
-                    "Easily create an Angular digitalLineChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript digitalLineChart** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript digitalLineChart",
-                pageTitle: "JavaScript digitalLineChart | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript digitalLineChart with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "Discover how to create a Angular Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Digital%20(Step)%20Line%20Series.html",
+                title: "The specific page for the JavaScript Digital Line Chart documentation will help you to get started",
                 linkTitle: "JavaScript Digital Line Chart Documentation",
             },
         ],
