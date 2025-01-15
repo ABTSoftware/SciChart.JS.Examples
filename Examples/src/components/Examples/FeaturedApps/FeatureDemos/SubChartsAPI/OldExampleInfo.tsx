@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./SubChartsAPIMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -31,7 +28,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldsubchartsGridExampleInfo: TExampleInfo = {
+export const subchartsGridExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleChartGrid,
     pageTitle: ExampleStrings.titleChartGrid,
@@ -46,6 +43,3 @@ export const oldsubchartsGridExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const subchartsGridExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./StartupAnimationMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -30,7 +27,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldstartupAnimationExampleInfo: TExampleInfo = {
+export const startupAnimationExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleStartupAnimation,
     pageTitle: ExampleStrings.titleStartupAnimation,
@@ -44,6 +41,3 @@ export const oldstartupAnimationExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const startupAnimationExampleInfo = createExampleInfo(metaData as IExampleMetadata);

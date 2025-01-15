@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./DonutChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -35,7 +32,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const olddonutChartExampleInfo: TExampleInfo = {
+export const donutChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDonutChart,
     pageTitle: ExampleStrings.pageTitleDonutChart,
@@ -49,6 +46,3 @@ export const olddonutChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const donutChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

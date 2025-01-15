@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./LogarithmicAxisMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -32,7 +29,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldlogarithmicAxisExampleInfo: TExampleInfo = {
+export const logarithmicAxisExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleLogarithmicAxis,
     pageTitle: ExampleStrings.titleLogarithmicAxis,
@@ -46,6 +43,3 @@ export const oldlogarithmicAxisExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const logarithmicAxisExampleInfo = createExampleInfo(metaData as IExampleMetadata);

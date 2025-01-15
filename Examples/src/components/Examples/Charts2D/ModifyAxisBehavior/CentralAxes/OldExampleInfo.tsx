@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./CentralAxesMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -31,7 +28,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldcentralAxesExampleInfo: TExampleInfo = {
+export const centralAxesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleCentralAxes,
     pageTitle: ExampleStrings.titleCentralAxes,
@@ -45,6 +42,3 @@ export const oldcentralAxesExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const centralAxesExampleInfo = createExampleInfo(metaData as IExampleMetadata);

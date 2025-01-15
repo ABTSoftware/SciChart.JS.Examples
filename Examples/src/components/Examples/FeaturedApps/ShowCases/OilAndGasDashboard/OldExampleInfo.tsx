@@ -4,9 +4,6 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-oil-gas-explorer-dashboard-charts.jpg";
 import { EPageLayout } from "../../../../../helpers/types/types";
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./OilAndGasDashboardMetadata";
 
 const Subtitle = (frameworkName: string) => (
     <p>This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.</p>
@@ -26,13 +23,14 @@ const documentationLinks: TDocumentationLink[] = [
 
 const markdownContent: string = undefined;
 
-export const oldoilAndGasExplorerDashboard: TExampleInfo = {
+export const oilAndGasExplorerDashboard: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleOilAndGasExplorerDashboard,
     pageTitle: ExampleStrings.titleOilAndGasExplorerDashboard,
     path: ExampleStrings.urlOilAndGasExplorerDashboard,
     filepath: "FeaturedApps/ShowCases/OilAndGasDashboard",
     subtitle: Subtitle,
+
     metaDescription: (frameworkName: string) => `Demonstrates how to create Oil and Gas Dashboard`,
     metaKeywords: "oil gas vertical chart javascript chart performance",
     thumbnailImage: exampleImage,
@@ -40,6 +38,3 @@ export const oldoilAndGasExplorerDashboard: TExampleInfo = {
     documentationLinks,
     pageLayout: EPageLayout.MaxWidth,
 };
-
-// New implementation using centralized utility
-export const oilAndGasExplorerDashboard = createExampleInfo(metaData as IExampleMetadata);

@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./OhlcChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -34,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldohlcChartExampleInfo: TExampleInfo = {
+export const ohlcChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleOhlcChart,
     pageTitle: ExampleStrings.pageTitleOhlcChart,
@@ -49,6 +46,3 @@ export const oldohlcChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const ohlcChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

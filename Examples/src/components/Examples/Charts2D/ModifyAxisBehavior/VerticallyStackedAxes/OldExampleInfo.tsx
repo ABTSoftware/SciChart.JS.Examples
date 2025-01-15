@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./VerticallyStackedAxesMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -32,7 +29,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldverticallyStackedAxesExampleInfo: TExampleInfo = {
+export const verticallyStackedAxesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleVerticallyStackedAxes,
     pageTitle: ExampleStrings.titleVerticallyStackedAxes,
@@ -46,6 +43,3 @@ export const oldverticallyStackedAxesExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const verticallyStackedAxesExampleInfo = createExampleInfo(metaData as IExampleMetadata);

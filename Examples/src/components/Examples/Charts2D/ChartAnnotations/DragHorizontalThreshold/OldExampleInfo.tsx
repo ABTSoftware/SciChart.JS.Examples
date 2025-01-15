@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./DragHorizontalThresholdMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -31,7 +28,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const olddragHorizontalThresholdExampleInfo: TExampleInfo = {
+export const dragHorizontalThresholdExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDragHorizontalThreshold,
     pageTitle: ExampleStrings.titleDragHorizontalThreshold,
@@ -46,6 +43,3 @@ export const olddragHorizontalThresholdExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const dragHorizontalThresholdExampleInfo = createExampleInfo(metaData as IExampleMetadata);

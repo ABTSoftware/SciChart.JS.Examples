@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./DashedLineStylingMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -34,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const olddashedLineStylingExampleInfo: TExampleInfo = {
+export const dashedLineStylingExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDashedLineStyling,
     pageTitle: ExampleStrings.titleDashedLineStyling,
@@ -48,6 +45,3 @@ export const olddashedLineStylingExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const dashedLineStylingExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./UsingRolloverModifierTooltipsMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -35,7 +32,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldusingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
+export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRolloverModifier,
     pageTitle: ExampleStrings.titleRolloverModifier,
@@ -50,6 +47,3 @@ export const oldusingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const usingRolloverModifierTooltipsExampleInfo = createExampleInfo(metaData as IExampleMetadata);

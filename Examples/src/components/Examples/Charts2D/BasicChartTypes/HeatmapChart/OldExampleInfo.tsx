@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./HeatmapChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -32,7 +29,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldheatmapChartExampleInfo: TExampleInfo = {
+export const heatmapChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleHeatmapChart,
     pageTitle: ExampleStrings.pageTitleHeatmapChart,
@@ -46,6 +43,3 @@ export const oldheatmapChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const heatmapChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./DepthChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -25,7 +22,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const olddepthChartExampleInfo: TExampleInfo = {
+export const depthChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDepthChart,
     pageTitle: ExampleStrings.titleDepthChart,
@@ -40,6 +37,3 @@ export const olddepthChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const depthChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

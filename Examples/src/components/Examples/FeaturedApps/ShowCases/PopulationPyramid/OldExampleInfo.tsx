@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./PopulationPyramidMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -34,7 +31,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const markdownContent: string = undefined;
 
-export const oldpopulationPyramidExampleInfo: TExampleInfo = {
+export const populationPyramidExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titlePopulationPyramid,
     pageTitle: ExampleStrings.titlePopulationPyramid,
@@ -49,6 +46,3 @@ export const oldpopulationPyramidExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const populationPyramidExampleInfo = createExampleInfo(metaData as IExampleMetadata);

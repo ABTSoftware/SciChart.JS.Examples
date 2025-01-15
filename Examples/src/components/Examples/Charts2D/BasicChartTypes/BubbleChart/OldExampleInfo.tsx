@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./BubbleChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -34,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-export const oldbubbleChartExampleInfo: TExampleInfo = {
+export const bubbleChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleBubbleChart,
     pageTitle: ExampleStrings.pageTitleBubbleChart,
@@ -49,6 +46,3 @@ export const oldbubbleChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const bubbleChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./TrendMARatioMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -33,7 +30,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldtrendMARatioExampleInfo: TExampleInfo = {
+export const trendMARatioExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleTrendMARatio,
     pageTitle: ExampleStrings.titleTrendMARatio,
@@ -48,6 +45,3 @@ export const oldtrendMARatioExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const trendMARatioExampleInfo = createExampleInfo(metaData as IExampleMetadata);

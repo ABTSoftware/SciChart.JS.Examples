@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../IExampleMetadata";
-import { createExampleInfo } from "../../exampleInfoUtils";
-import { metaData } from "./FullChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../ExampleStrings";
@@ -35,7 +32,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const markdownContent: string = undefined;
 
-export const oldfullChartExampleInfo: TExampleInfo = {
+export const fullChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleBuilderFullChart,
     pageTitle: ExampleStrings.titleBuilderFullChart,
@@ -51,6 +48,3 @@ export const oldfullChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const fullChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

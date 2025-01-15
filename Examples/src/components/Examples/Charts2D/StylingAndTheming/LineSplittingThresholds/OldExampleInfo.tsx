@@ -1,7 +1,3 @@
-import React from "react";
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./LineSplittingThresholdsMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -30,7 +26,7 @@ const Subtitle = (frameworkName: string) => (
     </p>
 );
 
-export const oldlineSplittingThresholdsExampleInfo: TExampleInfo = {
+export const lineSplittingThresholdsExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleLineSplittingThresholds,
     pageTitle: ExampleStrings.titleLineSplittingThresholds,
@@ -43,6 +39,3 @@ export const oldlineSplittingThresholdsExampleInfo: TExampleInfo = {
     metaKeywords: "thresholds, coloring, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };
-
-// New implementation using centralized utility
-export const lineSplittingThresholdsExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./RealtimePerformanceDemoMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -34,7 +31,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const markdownContent: string = undefined;
 
-export const oldrealtimePerformanceDemoExampleInfo: TExampleInfo = {
+export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
     pageTitle: ExampleStrings.titleRealtimeJavaScriptChartDemo,
@@ -49,6 +46,3 @@ export const oldrealtimePerformanceDemoExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const realtimePerformanceDemoExampleInfo = createExampleInfo(metaData as IExampleMetadata);

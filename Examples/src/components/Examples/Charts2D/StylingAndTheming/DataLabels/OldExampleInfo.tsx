@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./DataLabelsMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -26,7 +23,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const olddatalabelsExampleInfo: TExampleInfo = {
+export const datalabelsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDatalabels,
     pageTitle: ExampleStrings.titleDatalabels,
@@ -39,6 +36,3 @@ export const olddatalabelsExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const datalabelsExampleInfo = createExampleInfo(metaData as IExampleMetadata);

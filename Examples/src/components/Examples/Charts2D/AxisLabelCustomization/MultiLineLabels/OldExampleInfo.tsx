@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./MultiLineLabelsMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -34,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldmultiLineLabelsExampleInfo: TExampleInfo = {
+export const multiLineLabelsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleMultiLineLabels,
     pageTitle: ExampleStrings.titleMultiLineLabels,
@@ -49,6 +46,3 @@ export const oldmultiLineLabelsExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const multiLineLabelsExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./MultiPaneStockChartsMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -37,7 +34,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldmultiPaneStockChartsExampleInfo: TExampleInfo = {
+export const multiPaneStockChartsExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleMultiPaneStockChart,
     pageTitle: ExampleStrings.pageTitleMultiPaneStockChart,
@@ -52,6 +49,3 @@ export const oldmultiPaneStockChartsExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const multiPaneStockChartsExampleInfo = createExampleInfo(metaData as IExampleMetadata);

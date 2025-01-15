@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./SplineBandSeriesChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -34,7 +31,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const markdownContent: string = undefined;
 
-export const oldsplineBandSeriesChartExampleInfo: TExampleInfo = {
+export const splineBandSeriesChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleSplineBandChart,
     pageTitle: ExampleStrings.pageTitleSplineBandChart,
@@ -49,6 +46,3 @@ export const oldsplineBandSeriesChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const splineBandSeriesChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

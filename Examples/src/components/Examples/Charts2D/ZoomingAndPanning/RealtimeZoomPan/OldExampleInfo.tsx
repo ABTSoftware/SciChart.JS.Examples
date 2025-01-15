@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./RealtimeZoomPanMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -34,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldrealtimeZoomPanExampleInfo: TExampleInfo = {
+export const realtimeZoomPanExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRealtimeZoomPan,
     pageTitle: ExampleStrings.titleRealtimeZoomPan,
@@ -49,6 +46,3 @@ export const oldrealtimeZoomPanExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const realtimeZoomPanExampleInfo = createExampleInfo(metaData as IExampleMetadata);

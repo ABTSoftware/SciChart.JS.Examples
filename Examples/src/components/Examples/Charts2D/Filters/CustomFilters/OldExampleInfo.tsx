@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./CustomFiltersMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -36,7 +33,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldcustomFiltersExampleInfo: TExampleInfo = {
+export const customFiltersExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleCustomFilters,
     pageTitle: ExampleStrings.titleCustomFilters,
@@ -51,6 +48,3 @@ export const oldcustomFiltersExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const customFiltersExampleInfo = createExampleInfo(metaData as IExampleMetadata);

@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./NonUniformHeatmapChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -34,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldnonUniformHeatmapExampleInfo: TExampleInfo = {
+export const nonUniformHeatmapExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleNonUniformHeatmapChart,
     pageTitle: ExampleStrings.pageTitleNonUniformHeatmapChart,
@@ -48,6 +45,3 @@ export const oldnonUniformHeatmapExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const nonUniformHeatmapExampleInfo = createExampleInfo(metaData as IExampleMetadata);

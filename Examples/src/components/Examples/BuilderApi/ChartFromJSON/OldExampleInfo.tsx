@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../IExampleMetadata";
-import { createExampleInfo } from "../../exampleInfoUtils";
-import { metaData } from "./ChartFromJSONMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../ExampleStrings";
@@ -32,7 +29,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const markdownContent: string = undefined;
 
-export const oldchartFromJSONExampleInfo: TExampleInfo = {
+export const chartFromJSONExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleChartFromJSON,
     pageTitle: ExampleStrings.titleChartFromJSON,
@@ -47,6 +44,3 @@ export const oldchartFromJSONExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const chartFromJSONExampleInfo = createExampleInfo(metaData as IExampleMetadata);

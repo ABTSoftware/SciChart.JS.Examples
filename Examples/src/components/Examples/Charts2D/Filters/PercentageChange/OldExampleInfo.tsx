@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./PercentageChangeMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -36,7 +33,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const markdownContent: string = undefined;
 
-export const oldpercentageChangeExampleInfo: TExampleInfo = {
+export const percentageChangeExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titlePercentageChange,
     pageTitle: ExampleStrings.titlePercentageChange,
@@ -51,6 +48,3 @@ export const oldpercentageChangeExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const percentageChangeExampleInfo = createExampleInfo(metaData as IExampleMetadata);

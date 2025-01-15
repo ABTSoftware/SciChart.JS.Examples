@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./Bubble3DChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -35,7 +32,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldbubble3DChartExampleInfo: TExampleInfo = {
+export const bubble3DChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleBubble3DChart,
     pageTitle: ExampleStrings.pageTitleBubble3DChart,
@@ -49,6 +46,3 @@ export const oldbubble3DChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const bubble3DChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

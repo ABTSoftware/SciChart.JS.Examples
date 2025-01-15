@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./CreateACustomThemeMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -30,7 +27,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldcreateACustomThemeExampleInfo: TExampleInfo = {
+export const createACustomThemeExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleCustomTheme,
     pageTitle: ExampleStrings.titleCustomTheme,
@@ -44,6 +41,3 @@ export const oldcreateACustomThemeExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const createACustomThemeExampleInfo = createExampleInfo(metaData as IExampleMetadata);

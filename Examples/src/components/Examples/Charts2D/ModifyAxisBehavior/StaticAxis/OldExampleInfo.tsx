@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./StaticAxisMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -33,7 +30,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldstaticAxisExampleInfo: TExampleInfo = {
+export const staticAxisExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleStaticAxis,
     pageTitle: ExampleStrings.titleStaticAxis,
@@ -47,6 +44,3 @@ export const oldstaticAxisExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const staticAxisExampleInfo = createExampleInfo(metaData as IExampleMetadata);

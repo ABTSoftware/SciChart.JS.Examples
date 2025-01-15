@@ -1,7 +1,3 @@
-import React from "react";
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./AnnotationLayersMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -43,7 +39,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldannotationLayersExampleInfo: TExampleInfo = {
+export const annotationLayersExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleAnnotationLayers,
     pageTitle: ExampleStrings.titleAnnotationLayers,
@@ -58,6 +54,3 @@ export const oldannotationLayersExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const annotationLayersExampleInfo = createExampleInfo(metaData as IExampleMetadata);

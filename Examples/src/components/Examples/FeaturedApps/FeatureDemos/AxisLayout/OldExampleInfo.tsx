@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./AxisLayoutMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -29,7 +26,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldaxisLayoutExampleInfo: TExampleInfo = {
+export const axisLayoutExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleAxisLayout,
     pageTitle: ExampleStrings.titleAxisLayout,
@@ -44,6 +41,3 @@ export const oldaxisLayoutExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const axisLayoutExampleInfo = createExampleInfo(metaData as IExampleMetadata);

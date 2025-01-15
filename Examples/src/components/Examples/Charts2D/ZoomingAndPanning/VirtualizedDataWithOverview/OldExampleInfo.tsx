@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./VirtualizedDataWithOverviewMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -29,7 +26,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldvirtualizedDataOverviewExampleInfo: TExampleInfo = {
+export const virtualizedDataOverviewExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleVirtualizedData,
     pageTitle: ExampleStrings.titleVirtualizedData,
@@ -45,6 +42,3 @@ export const oldvirtualizedDataOverviewExampleInfo: TExampleInfo = {
     extraDependencies: { rxjs: "^7.5.6" },
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const virtualizedDataOverviewExampleInfo = createExampleInfo(metaData as IExampleMetadata);

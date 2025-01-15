@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./TenorCurves3DMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -34,7 +31,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldtenorCurvesExampleInfo: TExampleInfo = {
+export const tenorCurvesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleTenorCurvesFeaturedApp,
     pageTitle: ExampleStrings.titleTenorCurvesFeaturedApp,
@@ -50,6 +47,3 @@ export const oldtenorCurvesExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const tenorCurvesExampleInfo = createExampleInfo(metaData as IExampleMetadata);

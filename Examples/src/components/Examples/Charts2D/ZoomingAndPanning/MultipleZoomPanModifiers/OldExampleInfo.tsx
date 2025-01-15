@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./MultipleZoomPanModifiersMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -31,7 +28,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const oldzoomAndPanWithMultipleChartModifiersExampleInfo: TExampleInfo = {
+export const zoomAndPanWithMultipleChartModifiersExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleZoomPanWithMultipleChartModifiers,
     pageTitle: ExampleStrings.titleZoomPanWithMultipleChartModifiers,
@@ -45,6 +42,3 @@ export const oldzoomAndPanWithMultipleChartModifiersExampleInfo: TExampleInfo = 
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const zoomAndPanWithMultipleChartModifiersExampleInfo = createExampleInfo(metaData as IExampleMetadata);

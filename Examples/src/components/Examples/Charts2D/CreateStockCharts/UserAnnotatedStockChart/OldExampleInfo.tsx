@@ -1,6 +1,3 @@
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./UserAnnotatedStockChartMetadata";
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -29,7 +26,7 @@ const Subtitle = (frameworkName: string) => (
 
 const markdownContent: string = undefined;
 
-export const olduserAnnotatedStockChartExampleInfo: TExampleInfo = {
+export const userAnnotatedStockChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleuserAnnotatedStockChart,
     pageTitle: ExampleStrings.pageTitleuserAnnotatedStockChart,
@@ -45,6 +42,3 @@ export const olduserAnnotatedStockChartExampleInfo: TExampleInfo = {
     markdownContent,
     documentationLinks,
 };
-
-// New implementation using centralized utility
-export const userAnnotatedStockChartExampleInfo = createExampleInfo(metaData as IExampleMetadata);

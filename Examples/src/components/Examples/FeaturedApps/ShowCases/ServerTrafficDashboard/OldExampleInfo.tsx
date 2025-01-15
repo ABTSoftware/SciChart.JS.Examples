@@ -1,7 +1,3 @@
-import React from "react";
-import { IExampleMetadata } from "../../../IExampleMetadata";
-import { createExampleInfo } from "../../../exampleInfoUtils";
-import { metaData } from "./ServerTrafficDashboardMetadata";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -35,7 +31,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const markdownContent: string = undefined;
 
-export const oldserverTrafficDashboardDemoExampleInfo: TExampleInfo = {
+export const serverTrafficDashboardDemoExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleServerTrafficDashboard,
     pageTitle: ExampleStrings.titleServerTrafficDashboard,
@@ -51,6 +47,3 @@ export const oldserverTrafficDashboardDemoExampleInfo: TExampleInfo = {
     documentationLinks,
     pageLayout: EPageLayout.MaxWidth,
 };
-
-// New implementation using centralized utility
-export const serverTrafficDashboardDemoExampleInfo = createExampleInfo(metaData as IExampleMetadata);
