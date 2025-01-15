@@ -4,42 +4,35 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\zoomingandpanning\\overviewmodifier",
-        imagePath: "./javascript-overview-chart.jpg",
-        description: "",
-        path: "overview",
-        metaKeywords: "drag, axis, scale, overview, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/ZoomingAndPanning/OverviewModifier",
-        tips: ['""'],
-        thumbnailImage: "javascript-overview-chart.jpg",
+        exampleId: "Charts2DZoomingAndPanningOverviewModifier",
+        imagePath: "javascript-overview-chart.jpg",
+        description:
+            "Demonstrates how to zoom and pan with an **Overview Chart** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to zoom and pan with an **Overview Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Zoom and Pan with Overview Chart",
                 pageTitle: "Zoom and Pan with Overview Chart",
                 metaDescription: "Demonstrates how to zoom and pan with an Overview Chart",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to zoom and pan with an **Overview Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Zoom and Pan with Overview Chart",
                 pageTitle: "Zoom and Pan with Overview Chart",
                 metaDescription: "Demonstrates how to zoom and pan with an Overview Chart",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to zoom and pan with an **Overview Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Zoom and Pan with Overview Chart",
                 pageTitle: "Zoom and Pan with Overview Chart",
                 metaDescription: "Demonstrates how to zoom and pan with an Overview Chart",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -49,6 +42,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Overview Documentation",
             },
         ],
+        path: "overview",
+        metaKeywords: "drag, axis, scale, overview, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/ZoomingAndPanning/OverviewModifier",
+        thumbnailImage: "javascript-overview-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

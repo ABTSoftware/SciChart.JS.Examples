@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\modifyaxisbehavior\\verticallystackedaxes",
-        imagePath: "./javascript-vertically-stacked-axes.jpg",
-        description: "",
-        path: "vertically-stacked-axes",
-        metaKeywords: "multiple, stacked, overlap, axis, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/ModifyAxisBehavior/VerticallyStackedAxes",
-        tips: ['""'],
-        thumbnailImage: "javascript-vertically-stacked-axes.jpg",
+        exampleId: "Charts2DModifyAxisBehaviorVerticallyStackedAxes",
+        imagePath: "javascript-vertically-stacked-axes.jpg",
+        description:
+            "Vertically-Stacked Axis in SciChart.js allows several traces with independent Y-axis to be placed on the same chart, stacking the Y-Axis and enabling an ECG/EEG-style trace. Great for neurological apps, medical apps, earthquake monitoring.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Vertically-Stacked Axis in SciChart.js allows several traces with independent Y-axis to be placed on the same chart, stacking the Y-Axis and enabling an ECG/EEG-style trace. Great for neurological apps, medical apps, earthquake monitoring.",
-                title: "JavaScript Chart with Vertically Stacked Axes",
-                pageTitle: "JavaScript Chart with Vertically Stacked Axes",
+                title: "javascript Chart with Vertically Stacked Axes",
+                pageTitle: "javascript Chart with Vertically Stacked Axes",
                 metaDescription:
-                    "Demonstrates Vertically Stacked Axes on a JavaScript Chart using SciChart.js, allowing data to overlap",
-                markdownContent: "",
+                    "Demonstrates Vertically Stacked Axes on a javascript Chart using SciChart.js, allowing data to overlap",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Vertically-Stacked Axis in SciChart.js allows several traces with independent Y-axis to be placed on the same chart, stacking the Y-Axis and enabling an ECG/EEG-style trace. Great for neurological apps, medical apps, earthquake monitoring.",
-                title: "React Chart with Vertically Stacked Axes",
-                pageTitle: "React Chart with Vertically Stacked Axes",
+                title: "react Chart with Vertically Stacked Axes",
+                pageTitle: "react Chart with Vertically Stacked Axes",
                 metaDescription:
-                    "Demonstrates Vertically Stacked Axes on a React Chart using SciChart.js, allowing data to overlap",
-                markdownContent: "",
+                    "Demonstrates Vertically Stacked Axes on a react Chart using SciChart.js, allowing data to overlap",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Vertically-Stacked Axis in SciChart.js allows several traces with independent Y-axis to be placed on the same chart, stacking the Y-Axis and enabling an ECG/EEG-style trace. Great for neurological apps, medical apps, earthquake monitoring.",
-                title: "Angular Chart with Vertically Stacked Axes",
-                pageTitle: "Angular Chart with Vertically Stacked Axes",
+                title: "angular Chart with Vertically Stacked Axes",
+                pageTitle: "angular Chart with Vertically Stacked Axes",
                 metaDescription:
-                    "Demonstrates Vertically Stacked Axes on a Angular Chart using SciChart.js, allowing data to overlap",
-                markdownContent: "",
+                    "Demonstrates Vertically Stacked Axes on a angular Chart using SciChart.js, allowing data to overlap",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Stacked Axes Documentation",
             },
         ],
+        path: "vertically-stacked-axes",
+        metaKeywords: "multiple, stacked, overlap, axis, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/ModifyAxisBehavior/VerticallyStackedAxes",
+        thumbnailImage: "javascript-vertically-stacked-axes.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

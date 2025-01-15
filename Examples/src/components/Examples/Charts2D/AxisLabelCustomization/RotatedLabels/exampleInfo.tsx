@@ -4,42 +4,35 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\axislabelcustomization\\rotatedlabels",
-        imagePath: "./javascript-rotated-labels-chart.jpg",
-        description: "",
-        path: "rotated-labels",
-        metaKeywords: "Axis, label, rotated, vertical, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/AxisLabelCustomization/RotatedLabels",
-        tips: ['""'],
-        thumbnailImage: "javascript-rotated-labels-chart.jpg",
+        exampleId: "Charts2DAxisLabelCustomizationRotatedLabels",
+        imagePath: "javascript-rotated-labels-chart.jpg",
+        description:
+            "Demonstrates how to use **Rotation and Alignment of Axis Labels** with SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to use **Rotation and Alignment of Axis Labels** with SciChart.js, High Performance JavaScript Charts",
                 title: "Rotated Labels and Alignment",
                 pageTitle: "Rotated Labels and Alignment",
                 metaDescription: "Rotate to create vertical axis labels and fit more on an axis",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to use **Rotation and Alignment of Axis Labels** with SciChart.js, High Performance JavaScript Charts",
                 title: "Rotated Labels and Alignment",
                 pageTitle: "Rotated Labels and Alignment",
                 metaDescription: "Rotate to create vertical axis labels and fit more on an axis",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to use **Rotation and Alignment of Axis Labels** with SciChart.js, High Performance JavaScript Charts",
                 title: "Rotated Labels and Alignment",
                 pageTitle: "Rotated Labels and Alignment",
                 metaDescription: "Rotate to create vertical axis labels and fit more on an axis",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -49,6 +42,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Axis Label Formatting Documentation",
             },
         ],
+        path: "rotated-labels",
+        metaKeywords: "Axis, label, rotated, vertical, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/AxisLabelCustomization/RotatedLabels",
+        thumbnailImage: "javascript-rotated-labels-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

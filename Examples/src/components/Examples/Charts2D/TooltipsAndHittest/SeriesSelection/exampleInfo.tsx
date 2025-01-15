@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\tooltipsandhittest\\seriesselection",
-        imagePath: "./javascript-chart-series-selection.jpg",
-        description: "",
-        path: "chart-series-selection",
-        metaKeywords: "hit, test, api, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/TooltipsAndHittest/SeriesSelection",
-        tips: ['""'],
-        thumbnailImage: "javascript-chart-series-selection.jpg",
+        exampleId: "Charts2DTooltipsAndHittestSeriesSelection",
+        imagePath: "javascript-chart-series-selection.jpg",
+        description:
+            "Demonstrates how to add **Series Selection** to a chart using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to add **Series Selection** to a chart using SciChart.js, High Performance JavaScript Charts",
                 title: "Using Series Selection",
                 pageTitle: "Using Series Selection",
                 metaDescription:
-                    "Demonstrates Hit-Testing a JavaScript Chart - point and click on the chart and get feedback about what data-points were clicked",
-                markdownContent: "",
+                    "Demonstrates Hit-Testing a javascript Chart - point and click on the chart and get feedback about what data-points were clicked",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to add **Series Selection** to a chart using SciChart.js, High Performance JavaScript Charts",
                 title: "Using Series Selection",
                 pageTitle: "Using Series Selection",
                 metaDescription:
-                    "Demonstrates Hit-Testing a React Chart - point and click on the chart and get feedback about what data-points were clicked",
-                markdownContent: "",
+                    "Demonstrates Hit-Testing a react Chart - point and click on the chart and get feedback about what data-points were clicked",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to add **Series Selection** to a chart using SciChart.js, High Performance JavaScript Charts",
                 title: "Using Series Selection",
                 pageTitle: "Using Series Selection",
                 metaDescription:
-                    "Demonstrates Hit-Testing a Angular Chart - point and click on the chart and get feedback about what data-points were clicked",
-                markdownContent: "",
+                    "Demonstrates Hit-Testing a angular Chart - point and click on the chart and get feedback about what data-points were clicked",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Series Selection Documentation",
             },
         ],
+        path: "chart-series-selection",
+        metaKeywords: "hit, test, api, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/TooltipsAndHittest/SeriesSelection",
+        thumbnailImage: "javascript-chart-series-selection.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

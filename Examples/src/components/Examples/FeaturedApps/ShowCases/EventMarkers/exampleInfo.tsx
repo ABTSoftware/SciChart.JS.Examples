@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "featuredapps\\showcases\\eventmarkers",
-        imagePath: "./javascript-draggable-event-markers.jpg",
-        description: "",
-        path: "dragabble-event-markers",
-        metaKeywords: "events, drag, edit, datalabels, , layout, demo, chart, javascript, webgl, canvas",
-        onWebsite: false,
-        filepath: "FeaturedApps/ShowCases/EventMarkers",
-        tips: ['""'],
-        thumbnailImage: "javascript-draggable-event-markers.jpg",
+        exampleId: "FeaturedAppsShowCasesEventMarkers",
+        imagePath: "javascript-draggable-event-markers.jpg",
+        description:
+            "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
                 title: "Dragabble Event Markers",
                 pageTitle: "Dragabble Event Markers",
                 metaDescription:
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
                 title: "Dragabble Event Markers",
                 pageTitle: "Dragabble Event Markers",
                 metaDescription:
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
                 title: "Dragabble Event Markers",
                 pageTitle: "Dragabble Event Markers",
                 metaDescription:
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],
+        path: "dragabble-event-markers",
+        metaKeywords: "events, drag, edit, datalabels, , layout, demo, chart, javascript, webgl, canvas",
+        onWebsite: false,
+        filepath: "FeaturedApps/ShowCases/EventMarkers",
+        thumbnailImage: "javascript-draggable-event-markers.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\basiccharttypes\\nonuniformheatmapchart",
-        imagePath: "./javascript-non-uniform-heatmap-chart.jpg",
-        description: "",
-        path: "non-uniform-heatmap-chart",
-        metaKeywords: "error, bars, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/BasicChartTypes/NonUniformHeatmapChart",
-        tips: ['""'],
-        thumbnailImage: "javascript-non-uniform-heatmap-chart.jpg",
+        exampleId: "Charts2DBasicChartTypesNonUniformHeatmapChart",
+        imagePath: "javascript-non-uniform-heatmap-chart.jpg",
+        description:
+            "This SciChart demo demonstrates how to create a **JavaScript Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "This SciChart demo demonstrates how to create a **JavaScript, Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
-                title: "JavaScript Non Uniform Heatmap Chart",
-                pageTitle: "JavaScript Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
+                    "This SciChart demo demonstrates how to create a **javascript Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
+                title: "javascript Non Uniform Heatmap Chart",
+                pageTitle: "javascript Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
                 metaDescription:
-                    "Create JavaScript Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
-                markdownContent: "",
+                    "Create javascript Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "This SciChart demo demonstrates how to create a **React, Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
-                title: "React Non Uniform Heatmap Chart",
-                pageTitle: "React Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
+                    "This SciChart demo demonstrates how to create a **react Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
+                title: "react Non Uniform Heatmap Chart",
+                pageTitle: "react Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
                 metaDescription:
-                    "Create React Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
-                markdownContent: "",
+                    "Create react Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "This SciChart demo demonstrates how to create a **Angular, Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
-                title: "Angular Non Uniform Heatmap Chart",
-                pageTitle: "Angular Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
+                    "This SciChart demo demonstrates how to create a **angular Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
+                title: "angular Non Uniform Heatmap Chart",
+                pageTitle: "angular Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
                 metaDescription:
-                    "Create Angular Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
-                markdownContent: "",
+                    "Create angular Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Non Uniform Heatmap Chart Documentation",
             },
         ],
+        path: "non-uniform-heatmap-chart",
+        metaKeywords: "error, bars, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/BasicChartTypes/NonUniformHeatmapChart",
+        thumbnailImage: "javascript-non-uniform-heatmap-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

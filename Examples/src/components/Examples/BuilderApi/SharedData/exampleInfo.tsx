@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "builderapi\\shareddata",
-        imagePath: "./javascript-shared-data.jpg",
-        description: "",
-        path: "reusable-templates-using-shared-data",
-        metaKeywords: "template, chart, javascript, data, reuse",
-        onWebsite: true,
-        filepath: "BuilderApi/SharedData",
-        tips: ['""'],
-        thumbnailImage: "javascript-shared-data.jpg",
+        exampleId: "BuilderApiSharedData",
+        imagePath: "javascript-shared-data.jpg",
+        description:
+            "Demonstrates how to use the Builder Api to create **Reusable Chart Templates** using SciChart.js Builder API. Use this method when you want to create a template for a chart and add data later.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to use the Builder Api to create **Reusable Chart Templates** using SciChart.js Builder API. Use this method when you want to create a template for a chart and add data later.",
-                title: "JavaScript Chart with Reusable Templates using Shared Data",
-                pageTitle: "JavaScript Chart with Reusable Templates using Shared Data",
+                title: "javascript Chart with Reusable Templates using Shared Data",
+                pageTitle: "javascript Chart with Reusable Templates using Shared Data",
                 metaDescription:
                     "Demonstrates how to use the Builder Api to create Reusable Chart Templates.Data can be easily integrated into a definition and shared between series",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to use the Builder Api to create **Reusable Chart Templates** using SciChart.js Builder API. Use this method when you want to create a template for a chart and add data later.",
-                title: "React Chart with Reusable Templates using Shared Data",
-                pageTitle: "React Chart with Reusable Templates using Shared Data",
+                title: "react Chart with Reusable Templates using Shared Data",
+                pageTitle: "react Chart with Reusable Templates using Shared Data",
                 metaDescription:
                     "Demonstrates how to use the Builder Api to create Reusable Chart Templates.Data can be easily integrated into a definition and shared between series",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to use the Builder Api to create **Reusable Chart Templates** using SciChart.js Builder API. Use this method when you want to create a template for a chart and add data later.",
-                title: "Angular Chart with Reusable Templates using Shared Data",
-                pageTitle: "Angular Chart with Reusable Templates using Shared Data",
+                title: "angular Chart with Reusable Templates using Shared Data",
+                pageTitle: "angular Chart with Reusable Templates using Shared Data",
                 metaDescription:
                     "Demonstrates how to use the Builder Api to create Reusable Chart Templates.Data can be easily integrated into a definition and shared between series",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Builder API Documentation",
             },
         ],
+        path: "reusable-templates-using-shared-data",
+        metaKeywords: "template, chart, javascript, data, reuse",
+        onWebsite: true,
+        filepath: "BuilderApi/SharedData",
+        thumbnailImage: "javascript-shared-data.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

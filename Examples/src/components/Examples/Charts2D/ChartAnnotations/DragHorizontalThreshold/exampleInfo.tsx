@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\chartannotations\\draghorizontalthreshold",
-        imagePath: "./javascript-chart-drag-horizontal-threshold.jpg",
-        description: "",
-        path: "chart-drag-horizontal-threshold",
-        metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/ChartAnnotations/DragHorizontalThreshold",
-        tips: ['""'],
-        thumbnailImage: "javascript-chart-drag-horizontal-threshold.jpg",
+        exampleId: "Charts2DChartAnnotationsDragHorizontalThreshold",
+        imagePath: "javascript-chart-drag-horizontal-threshold.jpg",
+        description:
+            "Demonstrates interaction by dragging vertical and horizontal line thresholds on a mountain chart. As the thresholds move, the chart colour updates. The vertical mountain fill is done using a separate renderableSeries and a dataFilter which reshapes the data to draw only the portion above the threshold.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates interaction by dragging vertical and horizontal line thresholds on a mountain chart. As the thresholds move, the chart colour updates. The vertical mountain fill is done using a separate renderableSeries and a dataFilter which reshapes the data to draw only the portion above the threshold.",
-                title: "JavaScript Mountain Chart Draggable Thresholds",
-                pageTitle: "JavaScript Mountain Chart Draggable Thresholds",
+                title: "javascript Mountain Chart Draggable Thresholds",
+                pageTitle: "javascript Mountain Chart Draggable Thresholds",
                 metaDescription:
                     "Demonstrates how to add draggable thresholds which change the series color in the chart in SciChart.js",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates interaction by dragging vertical and horizontal line thresholds on a mountain chart. As the thresholds move, the chart colour updates. The vertical mountain fill is done using a separate renderableSeries and a dataFilter which reshapes the data to draw only the portion above the threshold.",
-                title: "React Mountain Chart Draggable Thresholds",
-                pageTitle: "React Mountain Chart Draggable Thresholds",
+                title: "react Mountain Chart Draggable Thresholds",
+                pageTitle: "react Mountain Chart Draggable Thresholds",
                 metaDescription:
                     "Demonstrates how to add draggable thresholds which change the series color in the chart in SciChart.js",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates interaction by dragging vertical and horizontal line thresholds on a mountain chart. As the thresholds move, the chart colour updates. The vertical mountain fill is done using a separate renderableSeries and a dataFilter which reshapes the data to draw only the portion above the threshold.",
-                title: "Angular Mountain Chart Draggable Thresholds",
-                pageTitle: "Angular Mountain Chart Draggable Thresholds",
+                title: "angular Mountain Chart Draggable Thresholds",
+                pageTitle: "angular Mountain Chart Draggable Thresholds",
                 metaDescription:
                     "Demonstrates how to add draggable thresholds which change the series color in the chart in SciChart.js",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "Annotations API Documentation",
             },
         ],
+        path: "chart-drag-horizontal-threshold",
+        metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/ChartAnnotations/DragHorizontalThreshold",
+        thumbnailImage: "javascript-chart-drag-horizontal-threshold.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

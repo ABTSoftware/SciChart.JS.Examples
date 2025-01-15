@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "featuredapps\\showcases\\dynamiclayout",
-        imagePath: "./javascript-dynamic-layout.jpg",
-        description: "",
-        path: "dynamic-layout",
-        metaKeywords: "subcharts, layout, demo, chart, javascript, webgl, canvas",
-        onWebsite: false,
-        filepath: "FeaturedApps/ShowCases/DynamicLayout",
-        tips: ['""'],
-        thumbnailImage: "javascript-dynamic-layout.jpg",
+        exampleId: "FeaturedAppsShowCasesDynamicLayout",
+        imagePath: "javascript-dynamic-layout.jpg",
+        description:
+            "Demonstrates a custom modifier which can convert from single chart to grid layout and back using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back using SciChart.js, High Performance JavaScript Charts",
                 title: "Dynamic Layout Showcase",
                 pageTitle: "Dynamic Layout Showcase",
                 metaDescription:
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back.",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back using SciChart.js, High Performance JavaScript Charts",
                 title: "Dynamic Layout Showcase",
                 pageTitle: "Dynamic Layout Showcase",
                 metaDescription:
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back.",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back using SciChart.js, High Performance JavaScript Charts",
                 title: "Dynamic Layout Showcase",
                 pageTitle: "Dynamic Layout Showcase",
                 metaDescription:
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back.",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],
+        path: "dynamic-layout",
+        metaKeywords: "subcharts, layout, demo, chart, javascript, webgl, canvas",
+        onWebsite: false,
+        filepath: "FeaturedApps/ShowCases/DynamicLayout",
+        thumbnailImage: "javascript-dynamic-layout.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

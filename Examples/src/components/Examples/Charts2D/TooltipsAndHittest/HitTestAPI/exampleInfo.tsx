@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\tooltipsandhittest\\hittestapi",
-        imagePath: "./javascript-chart-hit-test-on-click.jpg",
-        description: "",
-        path: "chart-hit-test-on-click",
-        metaKeywords: "hit, test, api, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/TooltipsAndHittest/HitTestAPI",
-        tips: ['""'],
-        thumbnailImage: "javascript-chart-hit-test-on-click.jpg",
+        exampleId: "Charts2DTooltipsAndHittestHitTestAPI",
+        imagePath: "javascript-chart-hit-test-on-click.jpg",
+        description:
+            "Demonstrates how to add **Hit-Test on click behavior** to a chart using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to add **Hit-Test on click behavior** to a chart using SciChart.js, High Performance JavaScript Charts",
-                title: "JavaScript Chart Hit-Test API",
-                pageTitle: "JavaScript Chart Hit-Test API",
+                title: "javascript Chart Hit-Test API",
+                pageTitle: "javascript Chart Hit-Test API",
                 metaDescription:
-                    "Demonstrates Hit-Testing a JavaScript Chart - point and click on the chart and get feedback about what data-points were clicked",
-                markdownContent: "",
+                    "Demonstrates Hit-Testing a javascript Chart - point and click on the chart and get feedback about what data-points were clicked",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to add **Hit-Test on click behavior** to a chart using SciChart.js, High Performance JavaScript Charts",
-                title: "React Chart Hit-Test API",
-                pageTitle: "React Chart Hit-Test API",
+                title: "react Chart Hit-Test API",
+                pageTitle: "react Chart Hit-Test API",
                 metaDescription:
-                    "Demonstrates Hit-Testing a React Chart - point and click on the chart and get feedback about what data-points were clicked",
-                markdownContent: "",
+                    "Demonstrates Hit-Testing a react Chart - point and click on the chart and get feedback about what data-points were clicked",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to add **Hit-Test on click behavior** to a chart using SciChart.js, High Performance JavaScript Charts",
-                title: "Angular Chart Hit-Test API",
-                pageTitle: "Angular Chart Hit-Test API",
+                title: "angular Chart Hit-Test API",
+                pageTitle: "angular Chart Hit-Test API",
                 metaDescription:
-                    "Demonstrates Hit-Testing a Angular Chart - point and click on the chart and get feedback about what data-points were clicked",
-                markdownContent: "",
+                    "Demonstrates Hit-Testing a angular Chart - point and click on the chart and get feedback about what data-points were clicked",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "Hit-Test API documentation",
             },
         ],
+        path: "chart-hit-test-on-click",
+        metaKeywords: "hit, test, api, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/TooltipsAndHittest/HitTestAPI",
+        thumbnailImage: "javascript-chart-hit-test-on-click.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

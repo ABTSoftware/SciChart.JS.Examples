@@ -4,42 +4,35 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "featuredapps\\showcases\\oilandgasdashboard",
-        imagePath: "./javascript-oil-gas-explorer-dashboard-charts.jpg",
-        description: "",
-        path: "oil-and-gas-dashboard-showcase",
-        metaKeywords: "oil gas vertical chart javascript chart performance",
-        onWebsite: true,
-        filepath: "FeaturedApps/ShowCases/OilAndGasDashboard",
-        tips: ['""'],
-        thumbnailImage: "javascript-oil-gas-explorer-dashboard-charts.jpg",
+        exampleId: "FeaturedAppsShowCasesOilAndGasDashboard",
+        imagePath: "javascript-oil-gas-explorer-dashboard-charts.jpg",
+        description:
+            "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
-                title: "Oil & Gas Explorer JavaScript Dashboard",
-                pageTitle: "Oil & Gas Explorer JavaScript Dashboard",
+                title: "Oil & Gas Explorer javascript Dashboard",
+                pageTitle: "Oil & Gas Explorer javascript Dashboard",
                 metaDescription: "Demonstrates how to create Oil and Gas Dashboard",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
-                title: "Oil & Gas Explorer React Dashboard",
-                pageTitle: "Oil & Gas Explorer React Dashboard",
+                title: "Oil & Gas Explorer react Dashboard",
+                pageTitle: "Oil & Gas Explorer react Dashboard",
                 metaDescription: "Demonstrates how to create Oil and Gas Dashboard",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
-                title: "Oil & Gas Explorer Angular Dashboard",
-                pageTitle: "Oil & Gas Explorer Angular Dashboard",
+                title: "Oil & Gas Explorer angular Dashboard",
+                pageTitle: "Oil & Gas Explorer angular Dashboard",
                 metaDescription: "Demonstrates how to create Oil and Gas Dashboard",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -49,6 +42,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],
+        path: "oil-and-gas-dashboard-showcase",
+        metaKeywords: "oil gas vertical chart javascript chart performance",
+        onWebsite: true,
+        filepath: "FeaturedApps/ShowCases/OilAndGasDashboard",
+        thumbnailImage: "javascript-oil-gas-explorer-dashboard-charts.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "max-width",
     };
 //// End of computer generated metadata
 

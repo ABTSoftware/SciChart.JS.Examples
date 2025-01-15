@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts3d\\basic3dcharttypes\\realtimesurfacemesh3dchart",
-        imagePath: "./javascript-realtime-3d-surface-mesh-chart.jpg",
-        description: "",
-        path: "realtime-3d-surface-mesh-chart",
-        metaKeywords: "3d, surface, mesh, chart, javascript, webgl, canvas",
-        onWebsite: false,
-        filepath: "Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart",
-        tips: ['""'],
-        thumbnailImage: "javascript-realtime-3d-surface-mesh-chart.jpg",
+        exampleId: "Charts3DBasic3DChartTypesRealtimeSurfaceMesh3DChart",
+        imagePath: "javascript-realtime-3d-surface-mesh-chart.jpg",
+        description:
+            "Learn how to create a realtime updating **JavaScript 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "Learn how to create a realtime updating **JavaScript, 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
-                title: "JavaScript Realtime Surface Mesh 3D Chart",
-                pageTitle: "JavaScript Realtime 3D Surface Mesh Chart | View 3D JavaScript Charts",
+                    "Learn how to create a realtime updating **javascript 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
+                title: "javascript Realtime Surface Mesh 3D Chart",
+                pageTitle: "javascript Realtime 3D Surface Mesh Chart | View 3D JavaScript Charts",
                 metaDescription:
-                    "Design a JavaScript 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.",
-                markdownContent: "",
+                    "Design a javascript 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "Learn how to create a realtime updating **React, 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
-                title: "React Realtime Surface Mesh 3D Chart",
-                pageTitle: "React Realtime 3D Surface Mesh Chart | View 3D JavaScript Charts",
+                    "Learn how to create a realtime updating **react 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
+                title: "react Realtime Surface Mesh 3D Chart",
+                pageTitle: "react Realtime 3D Surface Mesh Chart | View 3D JavaScript Charts",
                 metaDescription:
-                    "Design a React 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.",
-                markdownContent: "",
+                    "Design a react 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "Learn how to create a realtime updating **Angular, 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
-                title: "Angular Realtime Surface Mesh 3D Chart",
-                pageTitle: "Angular Realtime 3D Surface Mesh Chart | View 3D JavaScript Charts",
+                    "Learn how to create a realtime updating **angular 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
+                title: "angular Realtime Surface Mesh 3D Chart",
+                pageTitle: "angular Realtime 3D Surface Mesh Chart | View 3D JavaScript Charts",
                 metaDescription:
-                    "Design a Angular 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.",
-                markdownContent: "",
+                    "Design a angular 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript 3D Surface Mesh Documentation",
             },
         ],
+        path: "realtime-3d-surface-mesh-chart",
+        metaKeywords: "3d, surface, mesh, chart, javascript, webgl, canvas",
+        onWebsite: false,
+        filepath: "Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart",
+        thumbnailImage: "javascript-realtime-3d-surface-mesh-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

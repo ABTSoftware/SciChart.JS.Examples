@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\stylingandtheming\\transparentbackground",
-        imagePath: "./javascript-chart-transparent-background.jpg",
-        description: "",
-        path: "chart-transparent-background",
-        metaKeywords: "styling, transparent, background, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/StylingAndTheming/TransparentBackground",
-        tips: ['""'],
-        thumbnailImage: "javascript-chart-transparent-background.jpg",
+        exampleId: "Charts2DStylingAndThemingTransparentBackground",
+        imagePath: "javascript-chart-transparent-background.jpg",
+        description:
+            "Demonstrates how to create a **Chart with Transparent Background** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to create a **Chart with Transparent Background** using SciChart.js, High Performance JavaScript Charts",
                 title: "Background Image with Transparency",
                 pageTitle: "Background Image with Transparency",
                 metaDescription:
-                    "Demonstrates how to create a JavaScript Chart with background image using transparency in SciChart.js",
-                markdownContent: "",
+                    "Demonstrates how to create a javascript Chart with background image using transparency in SciChart.js",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to create a **Chart with Transparent Background** using SciChart.js, High Performance JavaScript Charts",
                 title: "Background Image with Transparency",
                 pageTitle: "Background Image with Transparency",
                 metaDescription:
-                    "Demonstrates how to create a React Chart with background image using transparency in SciChart.js",
-                markdownContent: "",
+                    "Demonstrates how to create a react Chart with background image using transparency in SciChart.js",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to create a **Chart with Transparent Background** using SciChart.js, High Performance JavaScript Charts",
                 title: "Background Image with Transparency",
                 pageTitle: "Background Image with Transparency",
                 metaDescription:
-                    "Demonstrates how to create a Angular Chart with background image using transparency in SciChart.js",
-                markdownContent: "",
+                    "Demonstrates how to create a angular Chart with background image using transparency in SciChart.js",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "Custom Theme documentation",
             },
         ],
+        path: "chart-transparent-background",
+        metaKeywords: "styling, transparent, background, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/StylingAndTheming/TransparentBackground",
+        thumbnailImage: "javascript-chart-transparent-background.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

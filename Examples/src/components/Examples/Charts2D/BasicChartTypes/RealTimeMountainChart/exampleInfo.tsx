@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\basiccharttypes\\realtimemountainchart",
-        imagePath: "./javascript-realtime-mountain-chart.jpg",
-        description: "",
-        path: "realtime-mountain-chart",
-        metaKeywords: "mountain, chart, realtime, animated, javascript, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/BasicChartTypes/RealTimeMountainChart",
-        tips: ['""'],
-        thumbnailImage: "javascript-realtime-mountain-chart.jpg",
+        exampleId: "Charts2DBasicChartTypesRealTimeMountainChart",
+        imagePath: "javascript-realtime-mountain-chart.jpg",
+        description:
+            "This example demonstrates how create a **JavaScript Mountain Chart** with animated realtime updates using SciChart.js, our High Performance JavaScript Charts.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "This example demonstrates how create a **JavaScript, Mountain Chart** with animated realtime updates using SciChart.js, our High Performance JavaScript Charts.",
-                title: "JavaScript Realtime Mountain Chart",
-                pageTitle: "JavaScript Realtime Mountain Chart | View Online At SciChart",
+                    "This example demonstrates how create a **javascript Mountain Chart** with animated realtime updates using SciChart.js, our High Performance JavaScript Charts.",
+                title: "javascript Realtime Mountain Chart",
+                pageTitle: "javascript Realtime Mountain Chart | View Online At SciChart",
                 metaDescription:
-                    "JavaScript Realtime Mountain Chart made easy. Add animated, real-time updates with SciChart.js - high performance JavaScript Charts. Get free trial now. ",
-                markdownContent: "",
+                    "javascript Realtime Mountain Chart made easy. Add animated, real-time updates with SciChart.js - high performance JavaScript Charts. Get free trial now. ",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "This example demonstrates how create a **React, Mountain Chart** with animated realtime updates using SciChart.js, our High Performance JavaScript Charts.",
-                title: "React Realtime Mountain Chart",
-                pageTitle: "React Realtime Mountain Chart | View Online At SciChart",
+                    "This example demonstrates how create a **react Mountain Chart** with animated realtime updates using SciChart.js, our High Performance JavaScript Charts.",
+                title: "react Realtime Mountain Chart",
+                pageTitle: "react Realtime Mountain Chart | View Online At SciChart",
                 metaDescription:
-                    "React Realtime Mountain Chart made easy. Add animated, real-time updates with SciChart.js - high performance JavaScript Charts. Get free trial now. ",
-                markdownContent: "",
+                    "react Realtime Mountain Chart made easy. Add animated, real-time updates with SciChart.js - high performance JavaScript Charts. Get free trial now. ",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "This example demonstrates how create a **Angular, Mountain Chart** with animated realtime updates using SciChart.js, our High Performance JavaScript Charts.",
-                title: "Angular Realtime Mountain Chart",
-                pageTitle: "Angular Realtime Mountain Chart | View Online At SciChart",
+                    "This example demonstrates how create a **angular Mountain Chart** with animated realtime updates using SciChart.js, our High Performance JavaScript Charts.",
+                title: "angular Realtime Mountain Chart",
+                pageTitle: "angular Realtime Mountain Chart | View Online At SciChart",
                 metaDescription:
-                    "Angular Realtime Mountain Chart made easy. Add animated, real-time updates with SciChart.js - high performance JavaScript Charts. Get free trial now. ",
-                markdownContent: "",
+                    "angular Realtime Mountain Chart made easy. Add animated, real-time updates with SciChart.js - high performance JavaScript Charts. Get free trial now. ",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "Mountain (Area) Chart Documentation",
             },
         ],
+        path: "realtime-mountain-chart",
+        metaKeywords: "mountain, chart, realtime, animated, javascript, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/BasicChartTypes/RealTimeMountainChart",
+        thumbnailImage: "javascript-realtime-mountain-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

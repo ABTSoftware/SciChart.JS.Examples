@@ -4,45 +4,37 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\stylingandtheming\\usingthememanager",
-        imagePath: "./javascript-chart-themes.jpg",
-        description: "",
-        path: "chart-themes",
-        metaKeywords: "theme, provider, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/StylingAndTheming/UsingThemeManager",
-        tips: ['""'],
-        thumbnailImage: "javascript-chart-themes.jpg",
+        exampleId: "Charts2DStylingAndThemingUsingThemeManager",
+        imagePath: "javascript-chart-themes.jpg",
+        description: "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
-                title: "Using Theme Manager in JavaScript Chart",
-                pageTitle: "Using Theme Manager in JavaScript Chart",
+                title: "Using Theme Manager in javascript Chart",
+                pageTitle: "Using Theme Manager in javascript Chart",
                 metaDescription:
-                    "Demonstrates our Light and Dark Themes for JavaScript Charts with SciChart.js ThemeManager API",
-                markdownContent: "",
+                    "Demonstrates our Light and Dark Themes for javascript Charts with SciChart.js ThemeManager API",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
-                title: "Using Theme Manager in React Chart",
-                pageTitle: "Using Theme Manager in React Chart",
+                title: "Using Theme Manager in react Chart",
+                pageTitle: "Using Theme Manager in react Chart",
                 metaDescription:
-                    "Demonstrates our Light and Dark Themes for React Charts with SciChart.js ThemeManager API",
-                markdownContent: "",
+                    "Demonstrates our Light and Dark Themes for react Charts with SciChart.js ThemeManager API",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
-                title: "Using Theme Manager in Angular Chart",
-                pageTitle: "Using Theme Manager in Angular Chart",
+                title: "Using Theme Manager in angular Chart",
+                pageTitle: "Using Theme Manager in angular Chart",
                 metaDescription:
-                    "Demonstrates our Light and Dark Themes for Angular Charts with SciChart.js ThemeManager API",
-                markdownContent: "",
+                    "Demonstrates our Light and Dark Themes for angular Charts with SciChart.js ThemeManager API",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +44,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "The ThemeManager documentation",
             },
         ],
+        path: "chart-themes",
+        metaKeywords: "theme, provider, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/StylingAndTheming/UsingThemeManager",
+        thumbnailImage: "javascript-chart-themes.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

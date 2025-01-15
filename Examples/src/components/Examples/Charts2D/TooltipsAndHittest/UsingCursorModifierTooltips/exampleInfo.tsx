@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\tooltipsandhittest\\usingcursormodifiertooltips",
-        imagePath: "./javascript-chart-cursormodifier-crosshairs.jpg",
-        description: "",
-        path: "chart-cursormodifier-crosshairs",
-        metaKeywords: "cursor, modifier, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips",
-        tips: ['""'],
-        thumbnailImage: "javascript-chart-cursormodifier-crosshairs.jpg",
+        exampleId: "Charts2DTooltipsAndHittestUsingCursorModifierTooltips",
+        imagePath: "javascript-chart-cursormodifier-crosshairs.jpg",
+        description:
+            "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using CursorModifier Crosshairs",
                 pageTitle: "Using CursorModifier Crosshairs",
                 metaDescription:
-                    "Demonstrates adding a Cursor (Crosshair) to a JavaScript Chart with SciChart.js CursorModifier",
-                markdownContent: "",
+                    "Demonstrates adding a Cursor (Crosshair) to a javascript Chart with SciChart.js CursorModifier",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using CursorModifier Crosshairs",
                 pageTitle: "Using CursorModifier Crosshairs",
                 metaDescription:
-                    "Demonstrates adding a Cursor (Crosshair) to a React Chart with SciChart.js CursorModifier",
-                markdownContent: "",
+                    "Demonstrates adding a Cursor (Crosshair) to a react Chart with SciChart.js CursorModifier",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using CursorModifier Crosshairs",
                 pageTitle: "Using CursorModifier Crosshairs",
                 metaDescription:
-                    "Demonstrates adding a Cursor (Crosshair) to a Angular Chart with SciChart.js CursorModifier",
-                markdownContent: "",
+                    "Demonstrates adding a Cursor (Crosshair) to a angular Chart with SciChart.js CursorModifier",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "CursorModifier documentation",
             },
         ],
+        path: "chart-cursormodifier-crosshairs",
+        metaKeywords: "cursor, modifier, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips",
+        thumbnailImage: "javascript-chart-cursormodifier-crosshairs.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

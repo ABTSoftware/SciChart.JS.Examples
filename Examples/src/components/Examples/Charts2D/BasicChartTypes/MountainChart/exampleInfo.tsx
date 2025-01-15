@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\basiccharttypes\\mountainchart",
-        imagePath: "./javascript-mountain-chart.jpg",
-        description: "",
-        path: "mountain-chart",
-        metaKeywords: "mountain, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/BasicChartTypes/MountainChart",
-        tips: ['""'],
-        thumbnailImage: "javascript-mountain-chart.jpg",
+        exampleId: "Charts2DBasicChartTypesMountainChart",
+        imagePath: "javascript-mountain-chart.jpg",
+        description:
+            "Use our Mountain Chart example to learn how to create a **JavaScript Mountain Chart** using SciChart.js, our in-house built JavaScript Chart framework.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "Use our Mountain Chart example to learn how to create a **JavaScript, Mountain Chart** using SciChart.js, our in-house built JavaScript Chart framework.",
-                title: "JavaScript Mountain Chart",
-                pageTitle: "JavaScript Mountain Chart | View Examples Now | SciChart.js",
+                    "Use our Mountain Chart example to learn how to create a **javascript Mountain Chart** using SciChart.js, our in-house built JavaScript Chart framework.",
+                title: "javascript Mountain Chart",
+                pageTitle: "javascript Mountain Chart | View Examples Now | SciChart.js",
                 metaDescription:
-                    "Create JavaScript Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.",
-                markdownContent: "",
+                    "Create javascript Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "Use our Mountain Chart example to learn how to create a **React, Mountain Chart** using SciChart.js, our in-house built JavaScript Chart framework.",
-                title: "React Mountain Chart",
-                pageTitle: "React Mountain Chart | View Examples Now | SciChart.js",
+                    "Use our Mountain Chart example to learn how to create a **react Mountain Chart** using SciChart.js, our in-house built JavaScript Chart framework.",
+                title: "react Mountain Chart",
+                pageTitle: "react Mountain Chart | View Examples Now | SciChart.js",
                 metaDescription:
-                    "Create React Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.",
-                markdownContent: "",
+                    "Create react Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "Use our Mountain Chart example to learn how to create a **Angular, Mountain Chart** using SciChart.js, our in-house built JavaScript Chart framework.",
-                title: "Angular Mountain Chart",
-                pageTitle: "Angular Mountain Chart | View Examples Now | SciChart.js",
+                    "Use our Mountain Chart example to learn how to create a **angular Mountain Chart** using SciChart.js, our in-house built JavaScript Chart framework.",
+                title: "angular Mountain Chart",
+                pageTitle: "angular Mountain Chart | View Examples Now | SciChart.js",
                 metaDescription:
-                    "Create Angular Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.",
-                markdownContent: "",
+                    "Create angular Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Mountain Chart Documentation",
             },
         ],
+        path: "mountain-chart",
+        metaKeywords: "mountain, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/BasicChartTypes/MountainChart",
+        thumbnailImage: "javascript-mountain-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

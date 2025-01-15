@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\basiccharttypes\\fanchart",
-        imagePath: "./javascript-fan-chart.jpg",
-        description: "",
-        path: "fan-chart",
-        metaKeywords: "fan, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/BasicChartTypes/FanChart",
-        tips: ['""'],
-        thumbnailImage: "javascript-fan-chart.jpg",
+        exampleId: "Charts2DBasicChartTypesFanChart",
+        imagePath: "javascript-fan-chart.jpg",
+        description:
+            "Here we demonstrate how to create a **JavaScript Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "Here we demonstrate how to create a **JavaScript, Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",
-                title: "JavaScript Fan Chart",
-                pageTitle: "JavaScript Fan Chart | JavaScript Chart Library | View Now",
+                    "Here we demonstrate how to create a **javascript Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",
+                title: "javascript Fan Chart",
+                pageTitle: "javascript Fan Chart | JavaScript Chart Library | View Now",
                 metaDescription:
-                    "Discover how to create JavaScript Fan Chart with SciChart. Zoom in to see the detail you can go to using our JavaScript Charts. Get your free demo today. ",
-                markdownContent: "",
+                    "Discover how to create javascript Fan Chart with SciChart. Zoom in to see the detail you can go to using our JavaScript Charts. Get your free demo today. ",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "Here we demonstrate how to create a **React, Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",
-                title: "React Fan Chart",
-                pageTitle: "React Fan Chart | JavaScript Chart Library | View Now",
+                    "Here we demonstrate how to create a **react Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",
+                title: "react Fan Chart",
+                pageTitle: "react Fan Chart | JavaScript Chart Library | View Now",
                 metaDescription:
-                    "Discover how to create React Fan Chart with SciChart. Zoom in to see the detail you can go to using our JavaScript Charts. Get your free demo today. ",
-                markdownContent: "",
+                    "Discover how to create react Fan Chart with SciChart. Zoom in to see the detail you can go to using our JavaScript Charts. Get your free demo today. ",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "Here we demonstrate how to create a **Angular, Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",
-                title: "Angular Fan Chart",
-                pageTitle: "Angular Fan Chart | JavaScript Chart Library | View Now",
+                    "Here we demonstrate how to create a **angular Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",
+                title: "angular Fan Chart",
+                pageTitle: "angular Fan Chart | JavaScript Chart Library | View Now",
                 metaDescription:
-                    "Discover how to create Angular Fan Chart with SciChart. Zoom in to see the detail you can go to using our JavaScript Charts. Get your free demo today. ",
-                markdownContent: "",
+                    "Discover how to create angular Fan Chart with SciChart. Zoom in to see the detail you can go to using our JavaScript Charts. Get your free demo today. ",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Fan Chart Documentation",
             },
         ],
+        path: "fan-chart",
+        metaKeywords: "fan, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/BasicChartTypes/FanChart",
+        thumbnailImage: "javascript-fan-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

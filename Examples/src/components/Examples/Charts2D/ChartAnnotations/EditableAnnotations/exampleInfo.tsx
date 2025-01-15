@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\chartannotations\\editableannotations",
-        imagePath: "./javascript-chart-editable-annotations.jpg",
-        description: "",
-        path: "editable-annotations",
-        metaKeywords: "annotations, chart, api, javascript, webgl, canvas, drag and drop",
-        onWebsite: true,
-        filepath: "Charts2D/ChartAnnotations/EditableAnnotations",
-        tips: ['""'],
-        thumbnailImage: "javascript-chart-editable-annotations.jpg",
+        exampleId: "Charts2DChartAnnotationsEditableAnnotations",
+        imagePath: "javascript-chart-editable-annotations.jpg",
+        description:
+            "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a **JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a **JavaScript, Chart** using SciChart.js, High Performance JavaScript Charts",
-                title: "JavaScript Chart Editable Annotations",
-                pageTitle: "JavaScript Chart Editable Annotations",
+                    "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a **javascript Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "javascript Chart Editable Annotations",
+                pageTitle: "javascript Chart Editable Annotations",
                 metaDescription:
-                    "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a JavaScript Chart using SciChart.js Annotations API",
-                markdownContent: "",
+                    "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a javascript Chart using SciChart.js Annotations API",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a **React, Chart** using SciChart.js, High Performance JavaScript Charts",
-                title: "React Chart Editable Annotations",
-                pageTitle: "React Chart Editable Annotations",
+                    "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a **react Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "react Chart Editable Annotations",
+                pageTitle: "react Chart Editable Annotations",
                 metaDescription:
-                    "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a React Chart using SciChart.js Annotations API",
-                markdownContent: "",
+                    "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a react Chart using SciChart.js Annotations API",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a **Angular, Chart** using SciChart.js, High Performance JavaScript Charts",
-                title: "Angular Chart Editable Annotations",
-                pageTitle: "Angular Chart Editable Annotations",
+                    "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a **angular Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "angular Chart Editable Annotations",
+                pageTitle: "angular Chart Editable Annotations",
                 metaDescription:
-                    "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a Angular Chart using SciChart.js Annotations API",
-                markdownContent: "",
+                    "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a angular Chart using SciChart.js Annotations API",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "Annotations API Documentation",
             },
         ],
+        path: "editable-annotations",
+        metaKeywords: "annotations, chart, api, javascript, webgl, canvas, drag and drop",
+        onWebsite: true,
+        filepath: "Charts2D/ChartAnnotations/EditableAnnotations",
+        thumbnailImage: "javascript-chart-editable-annotations.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "max-width",
     };
 //// End of computer generated metadata
 

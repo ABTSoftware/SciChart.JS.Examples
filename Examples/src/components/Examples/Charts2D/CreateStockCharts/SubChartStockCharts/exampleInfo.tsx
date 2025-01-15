@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\createstockcharts\\subchartstockcharts",
-        imagePath: "./javascript-subcharts-multi-pane-stock-charts.jpg",
-        description: "",
-        path: "multi-pane-stock-charts",
-        metaKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/CreateStockCharts/SubChartStockCharts",
-        tips: ['""'],
-        thumbnailImage: "javascript-subcharts-multi-pane-stock-charts.jpg",
+        exampleId: "Charts2DCreateStockChartsSubChartStockCharts",
+        imagePath: "javascript-subcharts-multi-pane-stock-charts.jpg",
+        description:
+            "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
-                title: "JavaScript Multi-Pane Stock Charts using Subcharts",
-                pageTitle: "JavaScript Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
+                title: "javascript Multi-Pane Stock Charts using Subcharts",
+                pageTitle: "javascript Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
                 metaDescription:
-                    "Create a JavaScript Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
-                markdownContent: "",
+                    "Create a javascript Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
-                title: "React Multi-Pane Stock Charts using Subcharts",
-                pageTitle: "React Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
+                title: "react Multi-Pane Stock Charts using Subcharts",
+                pageTitle: "react Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
                 metaDescription:
-                    "Create a React Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
-                markdownContent: "",
+                    "Create a react Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
-                title: "Angular Multi-Pane Stock Charts using Subcharts",
-                pageTitle: "Angular Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
+                title: "angular Multi-Pane Stock Charts using Subcharts",
+                pageTitle: "angular Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
                 metaDescription:
-                    "Create a Angular Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
-                markdownContent: "",
+                    "Create a angular Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],
+        path: "multi-pane-stock-charts",
+        metaKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/CreateStockCharts/SubChartStockCharts",
+        thumbnailImage: "javascript-subcharts-multi-pane-stock-charts.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

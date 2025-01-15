@@ -4,42 +4,35 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\filters\\trendmaratio",
-        imagePath: "./javascript-trend-ma-ratio.jpg",
-        description: "",
-        path: "trend-ma-ratio",
-        metaKeywords: "trend, line, moving, average, ratio, transform, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/Filters/TrendMARatio",
-        tips: ['""'],
-        thumbnailImage: "javascript-trend-ma-ratio.jpg",
+        exampleId: "Charts2DFiltersTrendMARatio",
+        imagePath: "javascript-trend-ma-ratio.jpg",
+        description:
+            "Demonstrates how use **Linear Trend, Moving Average and Ratio Filters** with filter chaining, using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how use **Linear Trend, Moving Average and Ratio Filters** with filter chaining, using SciChart.js, High Performance JavaScript Charts",
                 title: "Trendline, Moving Average and Ratio Filters",
                 pageTitle: "Trendline, Moving Average and Ratio Filters",
                 metaDescription: "Chart with Linear Trendline, Moving Average and Ratio Filters with filter chaining",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how use **Linear Trend, Moving Average and Ratio Filters** with filter chaining, using SciChart.js, High Performance JavaScript Charts",
                 title: "Trendline, Moving Average and Ratio Filters",
                 pageTitle: "Trendline, Moving Average and Ratio Filters",
                 metaDescription: "Chart with Linear Trendline, Moving Average and Ratio Filters with filter chaining",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how use **Linear Trend, Moving Average and Ratio Filters** with filter chaining, using SciChart.js, High Performance JavaScript Charts",
                 title: "Trendline, Moving Average and Ratio Filters",
                 pageTitle: "Trendline, Moving Average and Ratio Filters",
                 metaDescription: "Chart with Linear Trendline, Moving Average and Ratio Filters with filter chaining",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -49,6 +42,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Filters Api Documentation",
             },
         ],
+        path: "trend-ma-ratio",
+        metaKeywords: "trend, line, moving, average, ratio, transform, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/Filters/TrendMARatio",
+        thumbnailImage: "javascript-trend-ma-ratio.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

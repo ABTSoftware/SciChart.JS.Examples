@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\basiccharttypes\\splinemountainchart",
-        imagePath: "./javascript-spline-mountain-chart.jpg",
-        description: "",
-        path: "spline-mountain-chart",
-        metaKeywords: "mountain, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/BasicChartTypes/SplineMountainChart",
-        tips: ['""'],
-        thumbnailImage: "javascript-spline-mountain-chart.jpg",
+        exampleId: "Charts2DBasicChartTypesSplineMountainChart",
+        imagePath: "javascript-spline-mountain-chart.jpg",
+        description:
+            "This example showcases how to create a **JavaScript Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "This example showcases how to create a **JavaScript, Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",
-                title: "JavaScript Spline Mountain Chart",
-                pageTitle: "JavaScript Spline Mountain Chart | JavaScript Chart Library",
+                    "This example showcases how to create a **javascript Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",
+                title: "javascript Spline Mountain Chart",
+                pageTitle: "javascript Spline Mountain Chart | JavaScript Chart Library",
                 metaDescription:
-                    "JavaScript Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.",
-                markdownContent: "",
+                    "javascript Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "This example showcases how to create a **React, Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",
-                title: "React Spline Mountain Chart",
-                pageTitle: "React Spline Mountain Chart | JavaScript Chart Library",
+                    "This example showcases how to create a **react Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",
+                title: "react Spline Mountain Chart",
+                pageTitle: "react Spline Mountain Chart | JavaScript Chart Library",
                 metaDescription:
-                    "React Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.",
-                markdownContent: "",
+                    "react Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "This example showcases how to create a **Angular, Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",
-                title: "Angular Spline Mountain Chart",
-                pageTitle: "Angular Spline Mountain Chart | JavaScript Chart Library",
+                    "This example showcases how to create a **angular Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",
+                title: "angular Spline Mountain Chart",
+                pageTitle: "angular Spline Mountain Chart | JavaScript Chart Library",
                 metaDescription:
-                    "Angular Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.",
-                markdownContent: "",
+                    "angular Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Mountain Chart Documentation",
             },
         ],
+        path: "spline-mountain-chart",
+        metaKeywords: "mountain, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/BasicChartTypes/SplineMountainChart",
+        thumbnailImage: "javascript-spline-mountain-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

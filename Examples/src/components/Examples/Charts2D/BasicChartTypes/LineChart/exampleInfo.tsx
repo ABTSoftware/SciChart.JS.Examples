@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\basiccharttypes\\linechart",
-        imagePath: "./javascript-line-chart.jpg",
-        description: "",
-        path: "line-chart",
-        metaKeywords: "line, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/BasicChartTypes/LineChart",
-        tips: ['""'],
-        thumbnailImage: "javascript-line-chart.jpg",
+        exampleId: "Charts2DBasicChartTypesLineChart",
+        imagePath: "javascript-line-chart.jpg",
+        description:
+            "Demonstrates all the permutations of JavaScript Line Chart using SciChart.js, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates all the permutations of JavaScript Line Chart using SciChart.js, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.",
-                title: "JavaScript Line Chart",
-                pageTitle: "JavaScript Line Chart | JavaScript Chart Examples | SciChart",
+                title: "javascript Line Chart",
+                pageTitle: "javascript Line Chart | JavaScript Chart Examples | SciChart",
                 metaDescription:
-                    "Discover how to create a high performance JavaScript Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
-                markdownContent: "",
+                    "Discover how to create a high performance javascript Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates all the permutations of JavaScript Line Chart using SciChart.js, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.",
-                title: "React Line Chart",
-                pageTitle: "React Line Chart | JavaScript Chart Examples | SciChart",
+                title: "react Line Chart",
+                pageTitle: "react Line Chart | JavaScript Chart Examples | SciChart",
                 metaDescription:
-                    "Discover how to create a high performance React Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
-                markdownContent: "",
+                    "Discover how to create a high performance react Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates all the permutations of JavaScript Line Chart using SciChart.js, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.",
-                title: "Angular Line Chart",
-                pageTitle: "Angular Line Chart | JavaScript Chart Examples | SciChart",
+                title: "angular Line Chart",
+                pageTitle: "angular Line Chart | JavaScript Chart Examples | SciChart",
                 metaDescription:
-                    "Discover how to create a high performance Angular Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
-                markdownContent: "",
+                    "Discover how to create a high performance angular Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Line Chart Documentation",
             },
         ],
+        path: "line-chart",
+        metaKeywords: "line, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/BasicChartTypes/LineChart",
+        thumbnailImage: "javascript-line-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

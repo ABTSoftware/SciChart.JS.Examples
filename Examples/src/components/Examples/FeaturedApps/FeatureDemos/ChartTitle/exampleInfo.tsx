@@ -4,42 +4,35 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "featuredapps\\featuredemos\\charttitle",
-        imagePath: "./javascript-chart-title.jpg",
-        description: "",
-        path: "chart-title",
-        metaKeywords: "title, text, alignment, multiline, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "FeaturedApps/FeatureDemos/ChartTitle",
-        tips: ['""'],
-        thumbnailImage: "javascript-chart-title.jpg",
+        exampleId: "FeaturedAppsFeatureDemosChartTitle",
+        imagePath: "javascript-chart-title.jpg",
+        description:
+            "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
-                title: "JavaScript Chart Title",
-                pageTitle: "JavaScript Chart Title",
+                title: "javascript Chart Title",
+                pageTitle: "javascript Chart Title",
                 metaDescription: "Demonstrates chart title with different position and alignment options",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
-                title: "React Chart Title",
-                pageTitle: "React Chart Title",
+                title: "react Chart Title",
+                pageTitle: "react Chart Title",
                 metaDescription: "Demonstrates chart title with different position and alignment options",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
-                title: "Angular Chart Title",
-                pageTitle: "Angular Chart Title",
+                title: "angular Chart Title",
+                pageTitle: "angular Chart Title",
                 metaDescription: "Demonstrates chart title with different position and alignment options",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -49,6 +42,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],
+        path: "chart-title",
+        metaKeywords: "title, text, alignment, multiline, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "FeaturedApps/FeatureDemos/ChartTitle",
+        thumbnailImage: "javascript-chart-title.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

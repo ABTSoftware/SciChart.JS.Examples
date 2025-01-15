@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\stylingandtheming\\perpointcoloring",
-        imagePath: "./javascript-chart-color-points-individually-with-paletteprovider.jpg",
-        description: "",
-        path: "chart-color-points-individually-with-paletteprovider",
-        metaKeywords: "palette, provider, api, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/StylingAndTheming/PerPointColoring",
-        tips: ['""'],
-        thumbnailImage: "javascript-chart-color-points-individually-with-paletteprovider.jpg",
+        exampleId: "Charts2DStylingAndThemingPerPointColoring",
+        imagePath: "javascript-chart-color-points-individually-with-paletteprovider.jpg",
+        description:
+            "Demonstrates how create **JavaScript Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "Demonstrates how create **JavaScript, Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how create **javascript Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
                 title: "Coloring Series per-point using the PaletteProvider",
                 pageTitle: "Coloring Series per-point using the PaletteProvider",
                 metaDescription:
                     "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how create **React, Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how create **react Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
                 title: "Coloring Series per-point using the PaletteProvider",
                 pageTitle: "Coloring Series per-point using the PaletteProvider",
                 metaDescription:
                     "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how create **Angular, Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how create **angular Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
                 title: "Coloring Series per-point using the PaletteProvider",
                 pageTitle: "Coloring Series per-point using the PaletteProvider",
                 metaDescription:
                     "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js PaletteProvider documentation",
             },
         ],
+        path: "chart-color-points-individually-with-paletteprovider",
+        metaKeywords: "palette, provider, api, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/StylingAndTheming/PerPointColoring",
+        thumbnailImage: "javascript-chart-color-points-individually-with-paletteprovider.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

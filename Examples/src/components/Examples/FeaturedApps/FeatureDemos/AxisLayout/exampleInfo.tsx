@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "featuredapps\\featuredemos\\axislayout",
-        imagePath: "./javascript-axis-layout.jpg",
-        description: "",
-        path: "chart-axis-layout-options",
-        metaKeywords: "stacked, axis, layout, alignment, vertical, javascript, webgl, canvas",
-        onWebsite: false,
-        filepath: "FeaturedApps/FeatureDemos/AxisLayout",
-        tips: ['""'],
-        thumbnailImage: "javascript-axis-layout.jpg",
+        exampleId: "FeaturedAppsFeatureDemosAxisLayout",
+        imagePath: "javascript-axis-layout.jpg",
+        description:
+            "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
-                title: "JavaScript Chart Axis Layout Options",
-                pageTitle: "JavaScript Chart Axis Layout Options",
+                title: "javascript Chart Axis Layout Options",
+                pageTitle: "javascript Chart Axis Layout Options",
                 metaDescription:
                     "Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
-                title: "React Chart Axis Layout Options",
-                pageTitle: "React Chart Axis Layout Options",
+                title: "react Chart Axis Layout Options",
+                pageTitle: "react Chart Axis Layout Options",
                 metaDescription:
                     "Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
-                title: "Angular Chart Axis Layout Options",
-                pageTitle: "Angular Chart Axis Layout Options",
+                title: "angular Chart Axis Layout Options",
+                pageTitle: "angular Chart Axis Layout Options",
                 metaDescription:
                     "Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "Scichart.js Axis Documentation",
             },
         ],
+        path: "chart-axis-layout-options",
+        metaKeywords: "stacked, axis, layout, alignment, vertical, javascript, webgl, canvas",
+        onWebsite: false,
+        filepath: "FeaturedApps/FeatureDemos/AxisLayout",
+        thumbnailImage: "javascript-axis-layout.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

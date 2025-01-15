@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "builderapi\\customtypes",
-        imagePath: "./javascript-custom-types.jpg",
-        description: "",
-        path: "custom-types",
-        metaKeywords: "custom, chart, javascript, builder, paletteprovider",
-        onWebsite: true,
-        filepath: "BuilderApi/CustomTypes",
-        tips: ['""'],
-        thumbnailImage: "javascript-custom-types.jpg",
+        exampleId: "BuilderApiCustomTypes",
+        imagePath: "javascript-custom-types.jpg",
+        description:
+            "Demonstrates how to use the Builder Api with **Custom Types** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to use the Builder Api with **Custom Types** using SciChart.js, High Performance JavaScript Charts",
                 title: "Custom Types with Builder API",
                 pageTitle: "Custom Types with Builder API",
                 metaDescription:
                     "Demonstrates how to make a custom type such as a PaletteProvider available for use with the Builder Api.You can call methods within the builder api to get references to the objects being built, so you can update them later.",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to use the Builder Api with **Custom Types** using SciChart.js, High Performance JavaScript Charts",
                 title: "Custom Types with Builder API",
                 pageTitle: "Custom Types with Builder API",
                 metaDescription:
                     "Demonstrates how to make a custom type such as a PaletteProvider available for use with the Builder Api.You can call methods within the builder api to get references to the objects being built, so you can update them later.",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to use the Builder Api with **Custom Types** using SciChart.js, High Performance JavaScript Charts",
                 title: "Custom Types with Builder API",
                 pageTitle: "Custom Types with Builder API",
                 metaDescription:
                     "Demonstrates how to make a custom type such as a PaletteProvider available for use with the Builder Api.You can call methods within the builder api to get references to the objects being built, so you can update them later.",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Builder API Documentation",
             },
         ],
+        path: "custom-types",
+        metaKeywords: "custom, chart, javascript, builder, paletteprovider",
+        onWebsite: true,
+        filepath: "BuilderApi/CustomTypes",
+        thumbnailImage: "javascript-custom-types.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

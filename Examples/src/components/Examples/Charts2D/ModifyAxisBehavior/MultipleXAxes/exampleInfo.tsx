@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\modifyaxisbehavior\\multiplexaxes",
-        imagePath: "./javascript-chart-with-multiple-x-axis.jpg",
-        description: "",
-        path: "chart-with-multiple-x-axis",
-        metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/ModifyAxisBehavior/MultipleXAxes",
-        tips: ['""'],
-        thumbnailImage: "javascript-chart-with-multiple-x-axis.jpg",
+        exampleId: "Charts2DModifyAxisBehaviorMultipleXAxes",
+        imagePath: "javascript-chart-with-multiple-x-axis.jpg",
+        description:
+            "Demonstrates how to create a **JavaScript Chart with multiple X,Y axis** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **JavaScript, Chart with multiple X,Y axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "JavaScript Chart with Multiple X Axes",
-                pageTitle: "JavaScript Chart with Multiple X Axes",
+                    "Demonstrates how to create a **javascript Chart with multiple X,Y axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "javascript Chart with Multiple X Axes",
+                pageTitle: "javascript Chart with Multiple X Axes",
                 metaDescription:
-                    "Demonstrates Multiple X & Y Axis on a JavaScript Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
-                markdownContent: "",
+                    "Demonstrates Multiple X & Y Axis on a javascript Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React, Chart with multiple X,Y axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "React Chart with Multiple X Axes",
-                pageTitle: "React Chart with Multiple X Axes",
+                    "Demonstrates how to create a **react Chart with multiple X,Y axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "react Chart with Multiple X Axes",
+                pageTitle: "react Chart with Multiple X Axes",
                 metaDescription:
-                    "Demonstrates Multiple X & Y Axis on a React Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
-                markdownContent: "",
+                    "Demonstrates Multiple X & Y Axis on a react Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular, Chart with multiple X,Y axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "Angular Chart with Multiple X Axes",
-                pageTitle: "Angular Chart with Multiple X Axes",
+                    "Demonstrates how to create a **angular Chart with multiple X,Y axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "angular Chart with Multiple X Axes",
+                pageTitle: "angular Chart with Multiple X Axes",
                 metaDescription:
-                    "Demonstrates Multiple X & Y Axis on a Angular Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
-                markdownContent: "",
+                    "Demonstrates Multiple X & Y Axis on a angular Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],
+        path: "chart-with-multiple-x-axis",
+        metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/ModifyAxisBehavior/MultipleXAxes",
+        thumbnailImage: "javascript-chart-with-multiple-x-axis.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

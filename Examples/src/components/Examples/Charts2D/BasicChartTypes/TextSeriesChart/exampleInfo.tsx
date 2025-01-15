@@ -4,42 +4,35 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\basiccharttypes\\textserieschart",
-        imagePath: "./javascript-text-chart.jpg",
-        description: "",
-        path: "text-chart",
-        metaKeywords: "text, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/BasicChartTypes/TextSeriesChart",
-        tips: ['""'],
-        thumbnailImage: "javascript-text-chart.jpg",
+        exampleId: "Charts2DBasicChartTypesTextSeriesChart",
+        imagePath: "javascript-text-chart.jpg",
+        description:
+            "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
-                title: "JavaScript Text Chart",
-                pageTitle: "JavaScript Text Chart",
-                metaDescription: "Create JavaScript Text Chart with high performance SciChart.js.  ",
-                markdownContent: "",
+                title: "javascript Text Chart",
+                pageTitle: "javascript Text Chart",
+                metaDescription: "Create javascript Text Chart with high performance SciChart.js.  ",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
-                title: "React Text Chart",
-                pageTitle: "React Text Chart",
-                metaDescription: "Create React Text Chart with high performance SciChart.js.  ",
-                markdownContent: "",
+                title: "react Text Chart",
+                pageTitle: "react Text Chart",
+                metaDescription: "Create react Text Chart with high performance SciChart.js.  ",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
-                title: "Angular Text Chart",
-                pageTitle: "Angular Text Chart",
-                metaDescription: "Create Angular Text Chart with high performance SciChart.js.  ",
-                markdownContent: "",
+                title: "angular Text Chart",
+                pageTitle: "angular Text Chart",
+                metaDescription: "Create angular Text Chart with high performance SciChart.js.  ",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -49,6 +42,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],
+        path: "text-chart",
+        metaKeywords: "text, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/BasicChartTypes/TextSeriesChart",
+        thumbnailImage: "javascript-text-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

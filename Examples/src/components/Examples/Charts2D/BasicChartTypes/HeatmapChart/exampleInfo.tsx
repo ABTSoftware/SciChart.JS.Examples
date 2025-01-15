@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\basiccharttypes\\heatmapchart",
-        imagePath: "./javascript-heatmap-chart.jpg",
-        description: "",
-        path: "heatmap-chart",
-        metaKeywords: "heatmap, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/BasicChartTypes/HeatmapChart",
-        tips: ['""'],
-        thumbnailImage: "javascript-heatmap-chart.jpg",
+        exampleId: "Charts2DBasicChartTypesHeatmapChart",
+        imagePath: "javascript-heatmap-chart.jpg",
+        description:
+            "If you want to learn about heatmaps. this demo shows you how to create a **JavaScript Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "If you want to learn about heatmaps. this demo shows you how to create a **JavaScript, Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
-                title: "JavaScript Heatmap Chart",
-                pageTitle: "JavaScript Heatmap Chart | JavaScript Chart Library Examples",
+                    "If you want to learn about heatmaps. this demo shows you how to create a **javascript Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
+                title: "javascript Heatmap Chart",
+                pageTitle: "javascript Heatmap Chart | JavaScript Chart Library Examples",
                 metaDescription:
-                    "Easily create a high performance JavaScript Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
-                markdownContent: "",
+                    "Easily create a high performance javascript Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "If you want to learn about heatmaps. this demo shows you how to create a **React, Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
-                title: "React Heatmap Chart",
-                pageTitle: "React Heatmap Chart | JavaScript Chart Library Examples",
+                    "If you want to learn about heatmaps. this demo shows you how to create a **react Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
+                title: "react Heatmap Chart",
+                pageTitle: "react Heatmap Chart | JavaScript Chart Library Examples",
                 metaDescription:
-                    "Easily create a high performance React Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
-                markdownContent: "",
+                    "Easily create a high performance react Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "If you want to learn about heatmaps. this demo shows you how to create a **Angular, Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
-                title: "Angular Heatmap Chart",
-                pageTitle: "Angular Heatmap Chart | JavaScript Chart Library Examples",
+                    "If you want to learn about heatmaps. this demo shows you how to create a **angular Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
+                title: "angular Heatmap Chart",
+                pageTitle: "angular Heatmap Chart | JavaScript Chart Library Examples",
                 metaDescription:
-                    "Easily create a high performance Angular Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
-                markdownContent: "",
+                    "Easily create a high performance angular Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Heatmap Chart Documentation",
             },
         ],
+        path: "heatmap-chart",
+        metaKeywords: "heatmap, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/BasicChartTypes/HeatmapChart",
+        thumbnailImage: "javascript-heatmap-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

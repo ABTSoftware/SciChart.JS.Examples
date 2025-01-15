@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\basiccharttypes\\ohlcchart",
-        imagePath: "./javascript-ohlc-chart.jpg",
-        description: "",
-        path: "ohlc-chart",
-        metaKeywords: "ohlc, stock, trading, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/BasicChartTypes/OhlcChart",
-        tips: ['""'],
-        thumbnailImage: "javascript-ohlc-chart.jpg",
+        exampleId: "Charts2DBasicChartTypesOhlcChart",
+        imagePath: "javascript-ohlc-chart.jpg",
+        description:
+            "For this example, we demonstrate how to create a **JavaScript OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "For this example, we demonstrate how to create a **JavaScript, OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
-                title: "JavaScript OHLC Chart",
-                pageTitle: "JavaScript OHLC Chart | JavaScript Chart Examples | SciChart",
+                    "For this example, we demonstrate how to create a **javascript OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
+                title: "javascript OHLC Chart",
+                pageTitle: "javascript OHLC Chart | JavaScript Chart Examples | SciChart",
                 metaDescription:
-                    "Easily create JavaScript OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
-                markdownContent: "",
+                    "Easily create javascript OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "For this example, we demonstrate how to create a **React, OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
-                title: "React OHLC Chart",
-                pageTitle: "React OHLC Chart | JavaScript Chart Examples | SciChart",
+                    "For this example, we demonstrate how to create a **react OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
+                title: "react OHLC Chart",
+                pageTitle: "react OHLC Chart | JavaScript Chart Examples | SciChart",
                 metaDescription:
-                    "Easily create React OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
-                markdownContent: "",
+                    "Easily create react OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "For this example, we demonstrate how to create a **Angular, OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
-                title: "Angular OHLC Chart",
-                pageTitle: "Angular OHLC Chart | JavaScript Chart Examples | SciChart",
+                    "For this example, we demonstrate how to create a **angular OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
+                title: "angular OHLC Chart",
+                pageTitle: "angular OHLC Chart | JavaScript Chart Examples | SciChart",
                 metaDescription:
-                    "Easily create Angular OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
-                markdownContent: "",
+                    "Easily create angular OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript OHLC Chart Documentation",
             },
         ],
+        path: "ohlc-chart",
+        metaKeywords: "ohlc, stock, trading, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/BasicChartTypes/OhlcChart",
+        thumbnailImage: "javascript-ohlc-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

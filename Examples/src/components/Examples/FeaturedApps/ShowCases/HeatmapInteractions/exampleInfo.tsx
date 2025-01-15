@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "featuredapps\\showcases\\heatmapinteractions",
-        imagePath: "./javascript-heatmap-interactions.jpg",
-        description: "",
-        path: "heatmap-interactions",
-        metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "FeaturedApps/ShowCases/HeatmapInteractions",
-        tips: ['""'],
-        thumbnailImage: "javascript-heatmap-interactions.jpg",
+        exampleId: "FeaturedAppsShowCasesHeatmapInteractions",
+        imagePath: "javascript-heatmap-interactions.jpg",
+        description:
+            "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
                 title: "Rich Interactions Showcase",
                 pageTitle: "Rich Interactions Showcase",
                 metaDescription:
-                    "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
-                markdownContent: "",
+                    "This demo showcases the incredible realtime performance of our javascript charts by updating the series with millions of data-points!",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
                 title: "Rich Interactions Showcase",
                 pageTitle: "Rich Interactions Showcase",
                 metaDescription:
-                    "This demo showcases the incredible realtime performance of our React charts by updating the series with millions of data-points!",
-                markdownContent: "",
+                    "This demo showcases the incredible realtime performance of our react charts by updating the series with millions of data-points!",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
                 title: "Rich Interactions Showcase",
                 pageTitle: "Rich Interactions Showcase",
                 metaDescription:
-                    "This demo showcases the incredible realtime performance of our Angular charts by updating the series with millions of data-points!",
-                markdownContent: "",
+                    "This demo showcases the incredible realtime performance of our angular charts by updating the series with millions of data-points!",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],
+        path: "heatmap-interactions",
+        metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "FeaturedApps/ShowCases/HeatmapInteractions",
+        thumbnailImage: "javascript-heatmap-interactions.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

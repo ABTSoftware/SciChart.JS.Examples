@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\stylingandtheming\\usepointmarkers",
-        imagePath: "./javascript-chart-custom-pointmarkers.jpg",
-        description: "",
-        path: "chart-custom-pointmarkers",
-        metaKeywords: "data, point, marker, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/StylingAndTheming/UsePointMarkers",
-        tips: ['""'],
-        thumbnailImage: "javascript-chart-custom-pointmarkers.jpg",
+        exampleId: "Charts2DStylingAndThemingUsePointMarkers",
+        imagePath: "javascript-chart-custom-pointmarkers.jpg",
+        description:
+            "Demonstrates how to create **custom data-point markers** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to create **custom data-point markers** using SciChart.js, High Performance JavaScript Charts",
-                title: "JavaScript Point-Markers Chart",
-                pageTitle: "JavaScript Point-Markers Chart",
+                title: "javascript Point-Markers Chart",
+                pageTitle: "javascript Point-Markers Chart",
                 metaDescription:
-                    "Demonstrates the different point-marker types for JavaScript Scatter charts (Square, Circle, Triangle and Custom image point-marker)",
-                markdownContent: "",
+                    "Demonstrates the different point-marker types for javascript Scatter charts (Square, Circle, Triangle and Custom image point-marker)",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to create **custom data-point markers** using SciChart.js, High Performance JavaScript Charts",
-                title: "React Point-Markers Chart",
-                pageTitle: "React Point-Markers Chart",
+                title: "react Point-Markers Chart",
+                pageTitle: "react Point-Markers Chart",
                 metaDescription:
-                    "Demonstrates the different point-marker types for React Scatter charts (Square, Circle, Triangle and Custom image point-marker)",
-                markdownContent: "",
+                    "Demonstrates the different point-marker types for react Scatter charts (Square, Circle, Triangle and Custom image point-marker)",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to create **custom data-point markers** using SciChart.js, High Performance JavaScript Charts",
-                title: "Angular Point-Markers Chart",
-                pageTitle: "Angular Point-Markers Chart",
+                title: "angular Point-Markers Chart",
+                pageTitle: "angular Point-Markers Chart",
                 metaDescription:
-                    "Demonstrates the different point-marker types for Angular Scatter charts (Square, Circle, Triangle and Custom image point-marker)",
-                markdownContent: "",
+                    "Demonstrates the different point-marker types for angular Scatter charts (Square, Circle, Triangle and Custom image point-marker)",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "Point-Markers API documentation",
             },
         ],
+        path: "chart-custom-pointmarkers",
+        metaKeywords: "data, point, marker, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/StylingAndTheming/UsePointMarkers",
+        thumbnailImage: "javascript-chart-custom-pointmarkers.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

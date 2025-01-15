@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\modifyaxisbehavior\\verticalcharts",
-        imagePath: "./javascript-vertical-charts.jpg",
-        description: "",
-        path: "vertical-charts",
-        metaKeywords: "vertical, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/ModifyAxisBehavior/VerticalCharts",
-        tips: ['""'],
-        thumbnailImage: "javascript-vertical-charts.jpg",
+        exampleId: "Charts2DModifyAxisBehaviorVerticalCharts",
+        imagePath: "javascript-vertical-charts.jpg",
+        description:
+            "Demonstrates how to create a **rotated JavaScript Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **rotated ,JavaScript, Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "JavaScript Vertical Charts",
-                pageTitle: "JavaScript Vertical Charts",
+                    "Demonstrates how to create a **rotated javascript Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "javascript Vertical Charts",
+                pageTitle: "javascript Vertical Charts",
                 metaDescription:
                     "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **rotated ,React, Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "React Vertical Charts",
-                pageTitle: "React Vertical Charts",
+                    "Demonstrates how to create a **rotated react Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "react Vertical Charts",
+                pageTitle: "react Vertical Charts",
                 metaDescription:
                     "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **rotated ,Angular, Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "Angular Vertical Charts",
-                pageTitle: "Angular Vertical Charts",
+                    "Demonstrates how to create a **rotated angular Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "angular Vertical Charts",
+                pageTitle: "angular Vertical Charts",
                 metaDescription:
                     "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],
+        path: "vertical-charts",
+        metaKeywords: "vertical, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/ModifyAxisBehavior/VerticalCharts",
+        thumbnailImage: "javascript-vertical-charts.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

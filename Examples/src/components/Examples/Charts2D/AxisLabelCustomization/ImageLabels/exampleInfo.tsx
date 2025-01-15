@@ -4,42 +4,35 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\axislabelcustomization\\imagelabels",
-        imagePath: "./javascript-image-labels.jpg",
-        description: "",
-        path: "image-labels",
-        metaKeywords: "image, axis, label, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/AxisLabelCustomization/ImageLabels",
-        tips: ['""'],
-        thumbnailImage: "javascript-image-labels.jpg",
+        exampleId: "Charts2DAxisLabelCustomizationImageLabels",
+        imagePath: "javascript-image-labels.jpg",
+        description:
+            "Demonstrates how to use **Images as Labels** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to use **Images as Labels** using SciChart.js, High Performance JavaScript Charts",
                 title: "Image labels",
                 pageTitle: "Image labels",
                 metaDescription: "Demonstrates how to use Images as Axis Labels",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to use **Images as Labels** using SciChart.js, High Performance JavaScript Charts",
                 title: "Image labels",
                 pageTitle: "Image labels",
                 metaDescription: "Demonstrates how to use Images as Axis Labels",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to use **Images as Labels** using SciChart.js, High Performance JavaScript Charts",
                 title: "Image labels",
                 pageTitle: "Image labels",
                 metaDescription: "Demonstrates how to use Images as Axis Labels",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -49,6 +42,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Image Labels Documentation",
             },
         ],
+        path: "image-labels",
+        metaKeywords: "image, axis, label, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/AxisLabelCustomization/ImageLabels",
+        thumbnailImage: "javascript-image-labels.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

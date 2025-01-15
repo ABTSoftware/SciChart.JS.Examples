@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\chartannotations\\backgroundannotations",
-        imagePath: "./javascript-background-annotations.jpg",
-        description: "",
-        path: "chart-background-annotations",
-        metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
-        onWebsite: false,
-        filepath: "Charts2D/ChartAnnotations/BackgroundAnnotations",
-        tips: ['""'],
-        thumbnailImage: "javascript-background-annotations.jpg",
+        exampleId: "Charts2DChartAnnotationsBackgroundAnnotations",
+        imagePath: "javascript-background-annotations.jpg",
+        description:
+            "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js, High Performance JavaScript Charts",
-                title: "JavaScript Quadrant Chart using Background Annotations",
-                pageTitle: "JavaScript Quadrant Chart using Background Annotations",
+                title: "javascript Quadrant Chart using Background Annotations",
+                pageTitle: "javascript Quadrant Chart using Background Annotations",
                 metaDescription:
                     "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js Annotations API",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js, High Performance JavaScript Charts",
-                title: "React Quadrant Chart using Background Annotations",
-                pageTitle: "React Quadrant Chart using Background Annotations",
+                title: "react Quadrant Chart using Background Annotations",
+                pageTitle: "react Quadrant Chart using Background Annotations",
                 metaDescription:
                     "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js Annotations API",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js, High Performance JavaScript Charts",
-                title: "Angular Quadrant Chart using Background Annotations",
-                pageTitle: "Angular Quadrant Chart using Background Annotations",
+                title: "angular Quadrant Chart using Background Annotations",
+                pageTitle: "angular Quadrant Chart using Background Annotations",
                 metaDescription:
                     "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js Annotations API",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "Annotations API Documentation",
             },
         ],
+        path: "chart-background-annotations",
+        metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
+        onWebsite: false,
+        filepath: "Charts2D/ChartAnnotations/BackgroundAnnotations",
+        thumbnailImage: "javascript-background-annotations.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

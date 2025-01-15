@@ -4,42 +4,35 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\animations\\genericanimation",
-        imagePath: "./javascript-generic-animation.jpg",
-        description: "",
-        path: "generic-animation",
-        metaKeywords: "generic, animation, javascript",
-        onWebsite: true,
-        filepath: "Charts2D/Animations/GenericAnimation",
-        tips: ['""'],
-        thumbnailImage: "javascript-generic-animation.jpg",
+        exampleId: "Charts2DAnimationsGenericAnimation",
+        imagePath: "javascript-generic-animation.jpg",
+        description:
+            "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
-                title: "JavaScript Generic Animation",
-                pageTitle: "JavaScript Generic Animation",
+                title: "javascript Generic Animation",
+                pageTitle: "javascript Generic Animation",
                 metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
-                title: "React Generic Animation",
-                pageTitle: "React Generic Animation",
+                title: "react Generic Animation",
+                pageTitle: "react Generic Animation",
                 metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
-                title: "Angular Generic Animation",
-                pageTitle: "Angular Generic Animation",
+                title: "angular Generic Animation",
+                pageTitle: "angular Generic Animation",
                 metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -49,6 +42,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "Generic Animation Documentation",
             },
         ],
+        path: "generic-animation",
+        metaKeywords: "generic, animation, javascript",
+        onWebsite: true,
+        filepath: "Charts2D/Animations/GenericAnimation",
+        thumbnailImage: "javascript-generic-animation.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

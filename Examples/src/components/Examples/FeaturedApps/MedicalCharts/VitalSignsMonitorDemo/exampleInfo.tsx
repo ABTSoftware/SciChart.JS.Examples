@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "featuredapps\\medicalcharts\\vitalsignsmonitordemo",
-        imagePath: "./javascript-vital-signs-ecg-medical-chart-example.jpg",
-        description: "",
-        path: "vital-signs-ecg-medical-chart-example",
-        metaKeywords: "ecg, ekg, realtime, medical, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "FeaturedApps/MedicalCharts/VitalSignsMonitorDemo",
-        tips: ['""'],
-        thumbnailImage: "javascript-vital-signs-ecg-medical-chart-example.jpg",
+        exampleId: "FeaturedAppsMedicalChartsVitalSignsMonitorDemo",
+        imagePath: "javascript-vital-signs-ecg-medical-chart-example.jpg",
+        description:
+            "Showcases how SciChart.js can be used in a **Medical context**, drawing ECGs with our High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Showcases how SciChart.js can be used in a **Medical context**, drawing ECGs with our High Performance JavaScript Charts",
-                title: "JavaScript Vital Signs ECG/EKG Medical Demo",
-                pageTitle: "JavaScript Vital Signs ECG/EKG Medical Demo",
+                title: "javascript Vital Signs ECG/EKG Medical Demo",
+                pageTitle: "javascript Vital Signs ECG/EKG Medical Demo",
                 metaDescription:
                     "In this example we are simulating four channels of data showing that SciChart.js can be used to draw real-time\n        ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate, SPO2 blood\n        oxygen, volumetric flow and more.",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Showcases how SciChart.js can be used in a **Medical context**, drawing ECGs with our High Performance JavaScript Charts",
-                title: "React Vital Signs ECG/EKG Medical Demo",
-                pageTitle: "React Vital Signs ECG/EKG Medical Demo",
+                title: "react Vital Signs ECG/EKG Medical Demo",
+                pageTitle: "react Vital Signs ECG/EKG Medical Demo",
                 metaDescription:
                     "In this example we are simulating four channels of data showing that SciChart.js can be used to draw real-time\n        ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate, SPO2 blood\n        oxygen, volumetric flow and more.",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Showcases how SciChart.js can be used in a **Medical context**, drawing ECGs with our High Performance JavaScript Charts",
-                title: "Angular Vital Signs ECG/EKG Medical Demo",
-                pageTitle: "Angular Vital Signs ECG/EKG Medical Demo",
+                title: "angular Vital Signs ECG/EKG Medical Demo",
+                pageTitle: "angular Vital Signs ECG/EKG Medical Demo",
                 metaDescription:
                     "In this example we are simulating four channels of data showing that SciChart.js can be used to draw real-time\n        ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate, SPO2 blood\n        oxygen, volumetric flow and more.",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],
+        path: "vital-signs-ecg-medical-chart-example",
+        metaKeywords: "ecg, ekg, realtime, medical, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "FeaturedApps/MedicalCharts/VitalSignsMonitorDemo",
+        thumbnailImage: "javascript-vital-signs-ecg-medical-chart-example.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

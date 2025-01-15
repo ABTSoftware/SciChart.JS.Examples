@@ -460,6 +460,47 @@ function compareAndCollectErrors(
         return;
     }
 
+    // Special handling for optional fields
+    if (property === "pageLayout" || property === "extraDependencies" || property === "sandboxConfig") {
+        // Skip comparison if both values are undefined/null
+        if (!oldValue && !newValue) return;
+
+        // If one is defined and the other isn't, that's an error
+        if (!oldValue || !newValue) {
+            errors.push({
+                exampleName,
+                property,
+                oldValue: oldValue || "undefined",
+                newValue: newValue || "undefined",
+            });
+            return;
+        }
+
+        // For objects (extraDependencies and sandboxConfig), do a deep comparison
+        if (property === "extraDependencies" || property === "sandboxConfig") {
+            try {
+                const oldStr = JSON.stringify(oldValue, Object.keys(oldValue).sort());
+                const newStr = JSON.stringify(newValue, Object.keys(newValue).sort());
+                if (oldStr !== newStr) {
+                    errors.push({
+                        exampleName,
+                        property,
+                        oldValue: oldStr,
+                        newValue: newStr,
+                    });
+                }
+            } catch (e) {
+                errors.push({
+                    exampleName,
+                    property,
+                    oldValue: String(oldValue),
+                    newValue: String(newValue),
+                });
+            }
+            return;
+        }
+    }
+
     // Regular comparison for other properties
     try {
         const oldStr = typeof oldValue === "function" ? "[Function]" : JSON.stringify(oldValue);
@@ -506,9 +547,12 @@ function compareExampleInfos(currentInfo: any, oldInfo: any, errors: ComparisonE
         "filepath",
         "path",
         "metaKeywords",
-        "markdownContent",
         "documentationLinks",
         "thumbnailImage",
+        "pageLayout",
+        "extraDependencies",
+        "sandboxConfig",
+        "markdownContent",
     ];
 
     staticProps.forEach((prop) => {

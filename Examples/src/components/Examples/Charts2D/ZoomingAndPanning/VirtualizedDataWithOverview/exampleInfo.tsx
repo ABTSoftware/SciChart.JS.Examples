@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\zoomingandpanning\\virtualizeddatawithoverview",
-        imagePath: "./virtualized-data-javascript-chart.jpg",
-        description: "",
-        path: "chart-with-virtualized-data",
-        metaKeywords: "zoom, pan, virtualize, server, overview, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview",
-        tips: ['""'],
-        thumbnailImage: "virtualized-data-javascript-chart.jpg",
+        exampleId: "Charts2DZoomingAndPanningVirtualizedDataWithOverview",
+        imagePath: "virtualized-data-javascript-chart.jpg",
+        description:
+            "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
-                title: "Virtualized JavaScript Charts: Load Data on Zoom/Pan",
-                pageTitle: "Virtualized JavaScript Charts: Load Data on Zoom/Pan",
+                title: "Virtualized javascript Charts: Load Data on Zoom/Pan",
+                pageTitle: "Virtualized javascript Charts: Load Data on Zoom/Pan",
                 metaDescription:
                     "shows how to load data on zoom/pan and how to create an overview chart for this case.",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
-                title: "Virtualized React Charts: Load Data on Zoom/Pan",
-                pageTitle: "Virtualized React Charts: Load Data on Zoom/Pan",
+                title: "Virtualized react Charts: Load Data on Zoom/Pan",
+                pageTitle: "Virtualized react Charts: Load Data on Zoom/Pan",
                 metaDescription:
                     "shows how to load data on zoom/pan and how to create an overview chart for this case.",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
-                title: "Virtualized Angular Charts: Load Data on Zoom/Pan",
-                pageTitle: "Virtualized Angular Charts: Load Data on Zoom/Pan",
+                title: "Virtualized angular Charts: Load Data on Zoom/Pan",
+                pageTitle: "Virtualized angular Charts: Load Data on Zoom/Pan",
                 metaDescription:
                     "shows how to load data on zoom/pan and how to create an overview chart for this case.",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],
+        path: "chart-with-virtualized-data",
+        metaKeywords: "zoom, pan, virtualize, server, overview, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview",
+        thumbnailImage: "virtualized-data-javascript-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

@@ -10,6 +10,10 @@ export interface IExampleMetadata {
     onWebsite: boolean; // Whether the example is shown on the website
     filepath: string; // File path for the example
     thumbnailImage: string;
+    pageLayout?: string;
+    extraDependencies?: Record<string, string>;
+    sandboxConfig?: Record<string, any>;
+    markdownContent?: string | null;
 }
 
 export interface IDocumentationLink {
@@ -19,7 +23,6 @@ export interface IDocumentationLink {
 }
 
 export interface IFrameworkData {
-    component: string; // Name of the framework-specific component
     subtitle: string; // Markdown formatted subtitle for the framework
     title: string; // Framework-specific title
     pageTitle: string; // Framework-specific page title

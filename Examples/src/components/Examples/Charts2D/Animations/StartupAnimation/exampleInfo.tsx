@@ -4,42 +4,35 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\animations\\startupanimation",
-        imagePath: "./javascript-startup-animations.jpg",
-        description: "",
-        path: "startup-animation",
-        metaKeywords: "startup, on-start, animation, javascript",
-        onWebsite: true,
-        filepath: "Charts2D/Animations/StartupAnimation",
-        tips: ['""'],
-        thumbnailImage: "javascript-startup-animations.jpg",
+        exampleId: "Charts2DAnimationsStartupAnimation",
+        imagePath: "javascript-startup-animations.jpg",
+        description:
+            "Demonstrates how to run **Startup Animations** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to run **Startup Animations** using SciChart.js, High Performance JavaScript Charts",
-                title: "JavaScript Startup Animation",
-                pageTitle: "JavaScript Startup Animation",
+                title: "javascript Startup Animation",
+                pageTitle: "javascript Startup Animation",
                 metaDescription: "Demonstrates how to run Startup Animations with JavaScript.",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to run **Startup Animations** using SciChart.js, High Performance JavaScript Charts",
-                title: "React Startup Animation",
-                pageTitle: "React Startup Animation",
+                title: "react Startup Animation",
+                pageTitle: "react Startup Animation",
                 metaDescription: "Demonstrates how to run Startup Animations with JavaScript.",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to run **Startup Animations** using SciChart.js, High Performance JavaScript Charts",
-                title: "Angular Startup Animation",
-                pageTitle: "Angular Startup Animation",
+                title: "angular Startup Animation",
+                pageTitle: "angular Startup Animation",
                 metaDescription: "Demonstrates how to run Startup Animations with JavaScript.",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -49,6 +42,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Startup Animation Documentation",
             },
         ],
+        path: "startup-animation",
+        metaKeywords: "startup, on-start, animation, javascript",
+        onWebsite: true,
+        filepath: "Charts2D/Animations/StartupAnimation",
+        thumbnailImage: "javascript-startup-animations.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

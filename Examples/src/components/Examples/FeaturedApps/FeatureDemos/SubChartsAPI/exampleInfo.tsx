@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "featuredapps\\featuredemos\\subchartsapi",
-        imagePath: "./javascript-subcharts-grid.jpg",
-        description: "",
-        path: "multiple-chart-dashboard-performance-demo",
-        metaKeywords: "javascript, multichart, dashboard, performance, grid, realtime, webgl, canvas",
-        onWebsite: false,
-        filepath: "FeaturedApps/FeatureDemos/SubChartsAPI",
-        tips: ['""'],
-        thumbnailImage: "javascript-subcharts-grid.jpg",
+        exampleId: "FeaturedAppsFeatureDemosSubChartsAPI",
+        imagePath: "javascript-subcharts-grid.jpg",
+        description:
+            "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
-                title: "JavaScript 64-Chart Dashboard Performance Demo",
-                pageTitle: "JavaScript 64-Chart Dashboard Performance Demo",
+                title: "javascript 64-Chart Dashboard Performance Demo",
+                pageTitle: "javascript 64-Chart Dashboard Performance Demo",
                 metaDescription:
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
-                title: "React 64-Chart Dashboard Performance Demo",
-                pageTitle: "React 64-Chart Dashboard Performance Demo",
+                title: "react 64-Chart Dashboard Performance Demo",
+                pageTitle: "react 64-Chart Dashboard Performance Demo",
                 metaDescription:
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
-                title: "Angular 64-Chart Dashboard Performance Demo",
-                pageTitle: "Angular 64-Chart Dashboard Performance Demo",
+                title: "angular 64-Chart Dashboard Performance Demo",
+                pageTitle: "angular 64-Chart Dashboard Performance Demo",
                 metaDescription:
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "Scichart.js SubCharts API Documentation",
             },
         ],
+        path: "multiple-chart-dashboard-performance-demo",
+        metaKeywords: "javascript, multichart, dashboard, performance, grid, realtime, webgl, canvas",
+        onWebsite: false,
+        filepath: "FeaturedApps/FeatureDemos/SubChartsAPI",
+        thumbnailImage: "javascript-subcharts-grid.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

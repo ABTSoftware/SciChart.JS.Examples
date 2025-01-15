@@ -4,42 +4,35 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\animations\\dataanimation",
-        imagePath: "./javascript-data-animation.jpg",
-        description: "",
-        path: "data-animation",
-        metaKeywords: "data, dataset, animation, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/Animations/DataAnimation",
-        tips: ['""'],
-        thumbnailImage: "javascript-data-animation.jpg",
+        exampleId: "Charts2DAnimationsDataAnimation",
+        imagePath: "javascript-data-animation.jpg",
+        description:
+            "Demonstrates how to run **Dataset Animations** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to run **Dataset Animations** using SciChart.js, High Performance JavaScript Charts",
-                title: "JavaScript Chart Data Animation",
-                pageTitle: "JavaScript Chart Data Animation",
+                title: "javascript Chart Data Animation",
+                pageTitle: "javascript Chart Data Animation",
                 metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to run **Dataset Animations** using SciChart.js, High Performance JavaScript Charts",
-                title: "React Chart Data Animation",
-                pageTitle: "React Chart Data Animation",
+                title: "react Chart Data Animation",
+                pageTitle: "react Chart Data Animation",
                 metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to run **Dataset Animations** using SciChart.js, High Performance JavaScript Charts",
-                title: "Angular Chart Data Animation",
-                pageTitle: "Angular Chart Data Animation",
+                title: "angular Chart Data Animation",
+                pageTitle: "angular Chart Data Animation",
                 metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -49,6 +42,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Data Animation Documentation",
             },
         ],
+        path: "data-animation",
+        metaKeywords: "data, dataset, animation, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/Animations/DataAnimation",
+        thumbnailImage: "javascript-data-animation.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

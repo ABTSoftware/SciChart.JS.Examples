@@ -4,42 +4,35 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\multichart\\syncmultichart",
-        imagePath: "./javascript-sync-multi-chart.jpg",
-        description: "",
-        path: "sync-multi-chart",
-        metaKeywords: "axis, synchronise, multiple, charts, overview, zoom, pan, javascript, webgl, canvas",
-        onWebsite: false,
-        filepath: "Charts2D/MultiChart/SyncMultiChart",
-        tips: ['""'],
-        thumbnailImage: "javascript-sync-multi-chart.jpg",
+        exampleId: "Charts2DMultiChartSyncMultiChart",
+        imagePath: "javascript-sync-multi-chart.jpg",
+        description:
+            "This example demonstrates how to synchronise layout and visible range across multiple dynamic charts, and how to synchronise series with an overview chart.using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "This example demonstrates how to synchronise layout and visible range across multiple dynamic charts, and how to synchronise series with an overview chart.using SciChart.js, High Performance JavaScript Charts",
                 title: "Synchronise Multiple Charts",
                 pageTitle: "Synchronise Multiple Charts",
                 metaDescription: "Synchronise multiple dynamic charts and overview",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "This example demonstrates how to synchronise layout and visible range across multiple dynamic charts, and how to synchronise series with an overview chart.using SciChart.js, High Performance JavaScript Charts",
                 title: "Synchronise Multiple Charts",
                 pageTitle: "Synchronise Multiple Charts",
                 metaDescription: "Synchronise multiple dynamic charts and overview",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "This example demonstrates how to synchronise layout and visible range across multiple dynamic charts, and how to synchronise series with an overview chart.using SciChart.js, High Performance JavaScript Charts",
                 title: "Synchronise Multiple Charts",
                 pageTitle: "Synchronise Multiple Charts",
                 metaDescription: "Synchronise multiple dynamic charts and overview",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -54,6 +47,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Overview Documentation",
             },
         ],
+        path: "sync-multi-chart",
+        metaKeywords: "axis, synchronise, multiple, charts, overview, zoom, pan, javascript, webgl, canvas",
+        onWebsite: false,
+        filepath: "Charts2D/MultiChart/SyncMultiChart",
+        thumbnailImage: "javascript-sync-multi-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

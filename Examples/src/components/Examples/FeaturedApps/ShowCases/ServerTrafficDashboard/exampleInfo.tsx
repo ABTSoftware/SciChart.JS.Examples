@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "featuredapps\\showcases\\servertrafficdashboard",
-        imagePath: "./javascript-server-traffic-dashboard.jpg",
-        description: "",
-        path: "server-traffic-dashboard",
-        metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "FeaturedApps/ShowCases/ServerTrafficDashboard",
-        tips: ['""'],
-        thumbnailImage: "javascript-server-traffic-dashboard.jpg",
+        exampleId: "FeaturedAppsShowCasesServerTrafficDashboard",
+        imagePath: "javascript-server-traffic-dashboard.jpg",
+        description:
+            "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
                 title: "Server Traffic Dashboard",
                 pageTitle: "Server Traffic Dashboard",
                 metaDescription:
-                    "This dashboard demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
-                markdownContent: "",
+                    "This dashboard demo showcases the incredible realtime performance of our javascript charts by updating the series with millions of data-points!",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
                 title: "Server Traffic Dashboard",
                 pageTitle: "Server Traffic Dashboard",
                 metaDescription:
-                    "This dashboard demo showcases the incredible realtime performance of our React charts by updating the series with millions of data-points!",
-                markdownContent: "",
+                    "This dashboard demo showcases the incredible realtime performance of our react charts by updating the series with millions of data-points!",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
                 title: "Server Traffic Dashboard",
                 pageTitle: "Server Traffic Dashboard",
                 metaDescription:
-                    "This dashboard demo showcases the incredible realtime performance of our Angular charts by updating the series with millions of data-points!",
-                markdownContent: "",
+                    "This dashboard demo showcases the incredible realtime performance of our angular charts by updating the series with millions of data-points!",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],
+        path: "server-traffic-dashboard",
+        metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "FeaturedApps/ShowCases/ServerTrafficDashboard",
+        thumbnailImage: "javascript-server-traffic-dashboard.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "max-width",
     };
 //// End of computer generated metadata
 

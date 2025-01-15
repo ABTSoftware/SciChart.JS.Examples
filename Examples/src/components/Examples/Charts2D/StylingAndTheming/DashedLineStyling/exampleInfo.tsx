@@ -4,42 +4,35 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\stylingandtheming\\dashedlinestyling",
-        imagePath: "./javascript-dashed-line-chart.jpg",
-        description: "",
-        path: "dashed-line-chart",
-        metaKeywords: "dash, dashed, dotted, line, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/StylingAndTheming/DashedLineStyling",
-        tips: ['""'],
-        thumbnailImage: "javascript-dashed-line-chart.jpg",
+        exampleId: "Charts2DStylingAndThemingDashedLineStyling",
+        imagePath: "javascript-dashed-line-chart.jpg",
+        description:
+            "Demonstrates how create **JavaScript Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "Demonstrates how create **JavaScript, Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how create **javascript Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
                 title: "Dashed Line Styling",
                 pageTitle: "Dashed Line Styling",
-                metaDescription: "Demonstrates dashed line series in JavaScript Charts with SciChart.js",
-                markdownContent: "",
+                metaDescription: "Demonstrates dashed line series in javascript Charts with SciChart.js",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how create **React, Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how create **react Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
                 title: "Dashed Line Styling",
                 pageTitle: "Dashed Line Styling",
-                metaDescription: "Demonstrates dashed line series in React Charts with SciChart.js",
-                markdownContent: "",
+                metaDescription: "Demonstrates dashed line series in react Charts with SciChart.js",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how create **Angular, Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how create **angular Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
                 title: "Dashed Line Styling",
                 pageTitle: "Dashed Line Styling",
-                metaDescription: "Demonstrates dashed line series in Angular Charts with SciChart.js",
-                markdownContent: "",
+                metaDescription: "Demonstrates dashed line series in angular Charts with SciChart.js",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -49,6 +42,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "The Dashed Line Styling Documentation",
             },
         ],
+        path: "dashed-line-chart",
+        metaKeywords: "dash, dashed, dotted, line, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/StylingAndTheming/DashedLineStyling",
+        thumbnailImage: "javascript-dashed-line-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

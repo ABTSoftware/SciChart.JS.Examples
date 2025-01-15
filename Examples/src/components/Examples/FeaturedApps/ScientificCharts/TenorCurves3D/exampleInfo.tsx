@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "featuredapps\\scientificcharts\\tenorcurves3d",
-        imagePath: "./javascript-2d-3d-chart-tenor-curves-example.jpg",
-        description: "",
-        path: "2d-3d-chart-tenor-curves-example",
-        metaKeywords: "tenor, curves, 3d, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "FeaturedApps/ScientificCharts/TenorCurves3D",
-        tips: ['""'],
-        thumbnailImage: "javascript-2d-3d-chart-tenor-curves-example.jpg",
+        exampleId: "FeaturedAppsScientificChartsTenorCurves3D",
+        imagePath: "javascript-2d-3d-chart-tenor-curves-example.jpg",
+        description:
+            "In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.",
                 title: "Tenor Curves Demo",
                 pageTitle: "Tenor Curves Demo",
                 metaDescription:
                     "Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application. An example like this could be used to visualize Tenor curves in a financial setting, or other 2D/3D data combined on a single screen.",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.",
                 title: "Tenor Curves Demo",
                 pageTitle: "Tenor Curves Demo",
                 metaDescription:
                     "Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application. An example like this could be used to visualize Tenor curves in a financial setting, or other 2D/3D data combined on a single screen.",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.",
                 title: "Tenor Curves Demo",
                 pageTitle: "Tenor Curves Demo",
                 metaDescription:
                     "Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application. An example like this could be used to visualize Tenor curves in a financial setting, or other 2D/3D data combined on a single screen.",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript 3D Surface Mesh Chart Documentation",
             },
         ],
+        path: "2d-3d-chart-tenor-curves-example",
+        metaKeywords: "tenor, curves, 3d, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "FeaturedApps/ScientificCharts/TenorCurves3D",
+        thumbnailImage: "javascript-2d-3d-chart-tenor-curves-example.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

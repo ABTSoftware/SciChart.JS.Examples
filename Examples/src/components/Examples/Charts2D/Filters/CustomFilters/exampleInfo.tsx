@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\filters\\customfilters",
-        imagePath: "./javascript-custom-filters.jpg",
-        description: "",
-        path: "custom-filters",
-        metaKeywords: "real-time, filter, transform, updating, aggregation, custom, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/Filters/CustomFilters",
-        tips: ['""'],
-        thumbnailImage: "javascript-custom-filters.jpg",
+        exampleId: "Charts2DFiltersCustomFilters",
+        imagePath: "javascript-custom-filters.jpg",
+        description:
+            "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
                 title: "Custom Filters",
                 pageTitle: "Custom Filters",
                 metaDescription:
                     "Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
                 title: "Custom Filters",
                 pageTitle: "Custom Filters",
                 metaDescription:
                     "Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
                 title: "Custom Filters",
                 pageTitle: "Custom Filters",
                 metaDescription:
                     "Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Custom Filters Documentation",
             },
         ],
+        path: "custom-filters",
+        metaKeywords: "real-time, filter, transform, updating, aggregation, custom, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/Filters/CustomFilters",
+        thumbnailImage: "javascript-custom-filters.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "featuredapps\\featuredemos\\axistypes",
-        imagePath: "./javascript-axis-types.jpg",
-        description: "",
-        path: "axis-types",
-        metaKeywords: "text, axis, date, logarithmic, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "FeaturedApps/FeatureDemos/AxisTypes",
-        tips: ['""'],
-        thumbnailImage: "javascript-axis-types.jpg",
+        exampleId: "FeaturedAppsFeatureDemosAxisTypes",
+        imagePath: "javascript-axis-types.jpg",
+        description:
+            "Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High Performance JavaScript Charts",
                 title: "Axis Types",
                 pageTitle: "Axis Types",
                 metaDescription:
                     "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High Performance JavaScript Charts",
                 title: "Axis Types",
                 pageTitle: "Axis Types",
                 metaDescription:
                     "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High Performance JavaScript Charts",
                 title: "Axis Types",
                 pageTitle: "Axis Types",
                 metaDescription:
                     "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "Scichart.js Axis Documentation",
             },
         ],
+        path: "axis-types",
+        metaKeywords: "text, axis, date, logarithmic, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "FeaturedApps/FeatureDemos/AxisTypes",
+        thumbnailImage: "javascript-axis-types.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

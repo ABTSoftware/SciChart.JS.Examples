@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\tooltipsandhittest\\usingverticalslicemodifier",
-        imagePath: "./javascript-chart-vertical-slice-modifier.jpg",
-        description: "",
-        path: "chart-vertical-slice-modifier",
-        metaKeywords: "tooltips, modifier, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier",
-        tips: ['""'],
-        thumbnailImage: "javascript-chart-vertical-slice-modifier.jpg",
+        exampleId: "Charts2DTooltipsAndHittestUsingVerticalSliceModifier",
+        imagePath: "javascript-chart-vertical-slice-modifier.jpg",
+        description:
+            "Demonstrates how to use **tooltips at fixed positions** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to use **tooltips at fixed positions** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using VerticalSliceModifier",
                 pageTitle: "Using VerticalSliceModifier",
                 metaDescription:
-                    "Demonstrates adding Tooltips at certain positions to a JavaScript Chart with SciChart.js VerticalSliceModifier",
-                markdownContent: "",
+                    "Demonstrates adding Tooltips at certain positions to a javascript Chart with SciChart.js VerticalSliceModifier",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to use **tooltips at fixed positions** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using VerticalSliceModifier",
                 pageTitle: "Using VerticalSliceModifier",
                 metaDescription:
-                    "Demonstrates adding Tooltips at certain positions to a React Chart with SciChart.js VerticalSliceModifier",
-                markdownContent: "",
+                    "Demonstrates adding Tooltips at certain positions to a react Chart with SciChart.js VerticalSliceModifier",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to use **tooltips at fixed positions** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using VerticalSliceModifier",
                 pageTitle: "Using VerticalSliceModifier",
                 metaDescription:
-                    "Demonstrates adding Tooltips at certain positions to a Angular Chart with SciChart.js VerticalSliceModifier",
-                markdownContent: "",
+                    "Demonstrates adding Tooltips at certain positions to a angular Chart with SciChart.js VerticalSliceModifier",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "VerticalSliceModifier documentation",
             },
         ],
+        path: "chart-vertical-slice-modifier",
+        metaKeywords: "tooltips, modifier, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier",
+        thumbnailImage: "javascript-chart-vertical-slice-modifier.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

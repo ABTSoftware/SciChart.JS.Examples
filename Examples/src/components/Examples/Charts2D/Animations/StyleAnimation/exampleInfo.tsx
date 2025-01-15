@@ -4,42 +4,35 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\animations\\styleanimation",
-        imagePath: "./javascript-style-animation.jpg",
-        description: "",
-        path: "style-animation",
-        metaKeywords: "style, animation, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/Animations/StyleAnimation",
-        tips: ['""'],
-        thumbnailImage: "javascript-style-animation.jpg",
+        exampleId: "Charts2DAnimationsStyleAnimation",
+        imagePath: "javascript-style-animation.jpg",
+        description:
+            "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",
-                title: "JavaScript Style Animation",
-                pageTitle: "JavaScript Style Animation",
+                title: "javascript Style Animation",
+                pageTitle: "javascript Style Animation",
                 metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
-                markdownContent: "",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",
-                title: "React Style Animation",
-                pageTitle: "React Style Animation",
+                title: "react Style Animation",
+                pageTitle: "react Style Animation",
                 metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
-                markdownContent: "",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",
-                title: "Angular Style Animation",
-                pageTitle: "Angular Style Animation",
+                title: "angular Style Animation",
+                pageTitle: "angular Style Animation",
                 metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
-                markdownContent: "",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -49,6 +42,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Style Transition Animation Documentation",
             },
         ],
+        path: "style-animation",
+        metaKeywords: "style, animation, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/Animations/StyleAnimation",
+        thumbnailImage: "javascript-style-animation.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

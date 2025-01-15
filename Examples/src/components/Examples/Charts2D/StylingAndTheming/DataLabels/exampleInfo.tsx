@@ -4,39 +4,31 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\stylingandtheming\\datalabels",
-        imagePath: "./javascript-datalabels-chart.jpg",
-        description: "",
-        path: "datalabels",
-        metaKeywords: "data labels, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/StylingAndTheming/DataLabels",
-        tips: ['""'],
-        thumbnailImage: "javascript-datalabels-chart.jpg",
+        exampleId: "Charts2DStylingAndThemingDataLabels",
+        imagePath: "javascript-datalabels-chart.jpg",
+        description: "Shows how you can add **Data Labels** to a chart using SciChart.js",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle: "Shows how you can add **Data Labels** to a chart using SciChart.js",
                 title: "Data Labels",
                 pageTitle: "Data Labels",
-                metaDescription: "Show data labels on JavaScript Chart. Get your free demo now.",
-                markdownContent: "",
+                metaDescription: "Show data labels on javascript Chart. Get your free demo now.",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle: "Shows how you can add **Data Labels** to a chart using SciChart.js",
                 title: "Data Labels",
                 pageTitle: "Data Labels",
-                metaDescription: "Show data labels on React Chart. Get your free demo now.",
-                markdownContent: "",
+                metaDescription: "Show data labels on react Chart. Get your free demo now.",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle: "Shows how you can add **Data Labels** to a chart using SciChart.js",
                 title: "Data Labels",
                 pageTitle: "Data Labels",
-                metaDescription: "Show data labels on Angular Chart. Get your free demo now.",
-                markdownContent: "",
+                metaDescription: "Show data labels on angular Chart. Get your free demo now.",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -46,6 +38,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "Common RenderableSeries Properties",
             },
         ],
+        path: "datalabels",
+        metaKeywords: "data labels, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/StylingAndTheming/DataLabels",
+        thumbnailImage: "javascript-datalabels-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

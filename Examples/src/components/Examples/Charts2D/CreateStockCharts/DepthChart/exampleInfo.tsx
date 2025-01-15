@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\createstockcharts\\depthchart",
-        imagePath: "./javascript-depth-chart.jpg",
-        description: "",
-        path: "depth-chart",
-        metaKeywords: "depth, orderbook, stock, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/CreateStockCharts/DepthChart",
-        tips: ['""'],
-        thumbnailImage: "javascript-depth-chart.jpg",
+        exampleId: "Charts2DCreateStockChartsDepthChart",
+        imagePath: "javascript-depth-chart.jpg",
+        description:
+            "How to create a Market Depth (Order Book) JavaScript Chart using Mountain Series and a Custom Modifier",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "How to create a Market Depth (Order Book) JavaScript Chart using Mountain Series and a Custom Modifier",
-                title: "JavaScript Market Depth Chart",
-                pageTitle: "JavaScript Market Depth Chart",
+                    "How to create a Market Depth (Order Book) javascript Chart using Mountain Series and a Custom Modifier",
+                title: "javascript Market Depth Chart",
+                pageTitle: "javascript Market Depth Chart",
                 metaDescription:
-                    "Create a JavaScript Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
-                markdownContent: "",
+                    "Create a javascript Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "How to create a Market Depth (Order Book) React Chart using Mountain Series and a Custom Modifier",
-                title: "React Market Depth Chart",
-                pageTitle: "React Market Depth Chart",
+                    "How to create a Market Depth (Order Book) react Chart using Mountain Series and a Custom Modifier",
+                title: "react Market Depth Chart",
+                pageTitle: "react Market Depth Chart",
                 metaDescription:
-                    "Create a React Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
-                markdownContent: "",
+                    "Create a react Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "How to create a Market Depth (Order Book) Angular Chart using Mountain Series and a Custom Modifier",
-                title: "Angular Market Depth Chart",
-                pageTitle: "Angular Market Depth Chart",
+                    "How to create a Market Depth (Order Book) angular Chart using Mountain Series and a Custom Modifier",
+                title: "angular Market Depth Chart",
+                pageTitle: "angular Market Depth Chart",
                 metaDescription:
-                    "Create a Angular Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
-                markdownContent: "",
+                    "Create a angular Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],
+        path: "depth-chart",
+        metaKeywords: "depth, orderbook, stock, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/CreateStockCharts/DepthChart",
+        thumbnailImage: "javascript-depth-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

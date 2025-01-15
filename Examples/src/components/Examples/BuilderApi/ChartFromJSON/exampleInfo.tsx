@@ -4,42 +4,35 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "builderapi\\chartfromjson",
-        imagePath: "./javascript-chart-from-json.jpg",
-        description: "",
-        path: "chart-from-json",
-        metaKeywords: "json, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "BuilderApi/ChartFromJSON",
-        tips: ['""'],
-        thumbnailImage: "javascript-chart-from-json.jpg",
+        exampleId: "BuilderApiChartFromJSON",
+        imagePath: "javascript-chart-from-json.jpg",
+        description:
+            "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
                 title: "Chart from JSON",
                 pageTitle: "Chart from JSON",
-                metaDescription: "Demonstrates how to create a JavaScript Chart from JSON using the builder API. ",
-                markdownContent: "",
+                metaDescription: "Demonstrates how to create a javascript Chart from JSON using the builder API. ",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
                 title: "Chart from JSON",
                 pageTitle: "Chart from JSON",
-                metaDescription: "Demonstrates how to create a React Chart from JSON using the builder API. ",
-                markdownContent: "",
+                metaDescription: "Demonstrates how to create a react Chart from JSON using the builder API. ",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
                 title: "Chart from JSON",
                 pageTitle: "Chart from JSON",
-                metaDescription: "Demonstrates how to create a Angular Chart from JSON using the builder API. ",
-                markdownContent: "",
+                metaDescription: "Demonstrates how to create a angular Chart from JSON using the builder API. ",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -49,6 +42,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Builder API Documentation",
             },
         ],
+        path: "chart-from-json",
+        metaKeywords: "json, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "BuilderApi/ChartFromJSON",
+        thumbnailImage: "javascript-chart-from-json.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

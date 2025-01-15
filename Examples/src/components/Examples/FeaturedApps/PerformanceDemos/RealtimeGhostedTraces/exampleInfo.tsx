@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "featuredapps\\performancedemos\\realtimeghostedtraces",
-        imagePath: "./javascript-realtime-ghosted-traces-oscilloscope-chart.jpg",
-        description: "",
-        path: "realtime-ghosted-traces-chart",
-        metaKeywords: "realtime, ghosted, traces, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "FeaturedApps/PerformanceDemos/RealtimeGhostedTraces",
-        tips: ['""'],
-        thumbnailImage: "javascript-realtime-ghosted-traces-oscilloscope-chart.jpg",
+        exampleId: "FeaturedAppsPerformanceDemosRealtimeGhostedTraces",
+        imagePath: "javascript-realtime-ghosted-traces-oscilloscope-chart.jpg",
+        description:
+            "Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance JavaScript Charts",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance JavaScript Charts",
                 title: "Realtime Ghosted Traces",
                 pageTitle: "Realtime Ghosted Traces",
                 metaDescription:
-                    "This demo showcases the realtime performance of our JavaScript Chart by animating several series with thousands of data-points at 60 FPS",
-                markdownContent: "",
+                    "This demo showcases the realtime performance of our javascript Chart by animating several series with thousands of data-points at 60 FPS",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance JavaScript Charts",
                 title: "Realtime Ghosted Traces",
                 pageTitle: "Realtime Ghosted Traces",
                 metaDescription:
-                    "This demo showcases the realtime performance of our React Chart by animating several series with thousands of data-points at 60 FPS",
-                markdownContent: "",
+                    "This demo showcases the realtime performance of our react Chart by animating several series with thousands of data-points at 60 FPS",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance JavaScript Charts",
                 title: "Realtime Ghosted Traces",
                 pageTitle: "Realtime Ghosted Traces",
                 metaDescription:
-                    "This demo showcases the realtime performance of our Angular Chart by animating several series with thousands of data-points at 60 FPS",
-                markdownContent: "",
+                    "This demo showcases the realtime performance of our angular Chart by animating several series with thousands of data-points at 60 FPS",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Performance Tips and Tricks",
             },
         ],
+        path: "realtime-ghosted-traces-chart",
+        metaKeywords: "realtime, ghosted, traces, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "FeaturedApps/PerformanceDemos/RealtimeGhostedTraces",
+        thumbnailImage: "javascript-realtime-ghosted-traces-oscilloscope-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

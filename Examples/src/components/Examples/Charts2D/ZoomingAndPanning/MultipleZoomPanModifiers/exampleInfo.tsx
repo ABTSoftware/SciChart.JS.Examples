@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\zoomingandpanning\\multiplezoompanmodifiers",
-        imagePath: "./zoom-pan-multiple-modifiers.jpg",
-        description: "",
-        path: "zoom-pan-multiple-modifiers",
-        metaKeywords: "zoom, pan, pinch, touch, scale, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers",
-        tips: ['""'],
-        thumbnailImage: "zoom-pan-multiple-modifiers.jpg",
+        exampleId: "Charts2DZoomingAndPanningMultipleZoomPanModifiers",
+        imagePath: "zoom-pan-multiple-modifiers.jpg",
+        description:
+            "Demonstrates different **Zoom and Pan Modifiers on a JavaScript Chart** including Mousewheel, Pinchzoom, Rubber-band zoom.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "Demonstrates different **Zoom and Pan Modifiers on a ,JavaScript, Chart** including Mousewheel, Pinchzoom, Rubber-band zoom.",
-                title: "Zoom and Pan with JavaScript Chart multiple Modifiers",
-                pageTitle: "Zoom and Pan with JavaScript Chart multiple Modifiers",
+                    "Demonstrates different **Zoom and Pan Modifiers on a javascript Chart** including Mousewheel, Pinchzoom, Rubber-band zoom.",
+                title: "Zoom and Pan with javascript Chart multiple Modifiers",
+                pageTitle: "Zoom and Pan with javascript Chart multiple Modifiers",
                 metaDescription:
-                    "Demonstrates how to use multiple Zoom and Pan Modifiers on a JavaScript Chart with SciChart.js",
-                markdownContent: "",
+                    "Demonstrates how to use multiple Zoom and Pan Modifiers on a javascript Chart with SciChart.js",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates different **Zoom and Pan Modifiers on a ,React, Chart** including Mousewheel, Pinchzoom, Rubber-band zoom.",
-                title: "Zoom and Pan with React Chart multiple Modifiers",
-                pageTitle: "Zoom and Pan with React Chart multiple Modifiers",
+                    "Demonstrates different **Zoom and Pan Modifiers on a react Chart** including Mousewheel, Pinchzoom, Rubber-band zoom.",
+                title: "Zoom and Pan with react Chart multiple Modifiers",
+                pageTitle: "Zoom and Pan with react Chart multiple Modifiers",
                 metaDescription:
-                    "Demonstrates how to use multiple Zoom and Pan Modifiers on a React Chart with SciChart.js",
-                markdownContent: "",
+                    "Demonstrates how to use multiple Zoom and Pan Modifiers on a react Chart with SciChart.js",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates different **Zoom and Pan Modifiers on a ,Angular, Chart** including Mousewheel, Pinchzoom, Rubber-band zoom.",
-                title: "Zoom and Pan with Angular Chart multiple Modifiers",
-                pageTitle: "Zoom and Pan with Angular Chart multiple Modifiers",
+                    "Demonstrates different **Zoom and Pan Modifiers on a angular Chart** including Mousewheel, Pinchzoom, Rubber-band zoom.",
+                title: "Zoom and Pan with angular Chart multiple Modifiers",
+                pageTitle: "Zoom and Pan with angular Chart multiple Modifiers",
                 metaDescription:
-                    "Demonstrates how to use multiple Zoom and Pan Modifiers on a Angular Chart with SciChart.js",
-                markdownContent: "",
+                    "Demonstrates how to use multiple Zoom and Pan Modifiers on a angular Chart with SciChart.js",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Zooming and Panning documentation",
             },
         ],
+        path: "zoom-pan-multiple-modifiers",
+        metaKeywords: "zoom, pan, pinch, touch, scale, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers",
+        thumbnailImage: "zoom-pan-multiple-modifiers.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

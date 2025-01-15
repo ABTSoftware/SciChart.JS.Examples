@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\createstockcharts\\realtimetickingstockcharts",
-        imagePath: "./javascript-realtime-ticking-stock-charts.jpg",
-        description: "",
-        path: "realtime-ticking-stock-charts",
-        metaKeywords: "real-time, ticking, updating, stock, chart, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/CreateStockCharts/RealtimeTickingStockCharts",
-        tips: ['""'],
-        thumbnailImage: "javascript-realtime-ticking-stock-charts.jpg",
+        exampleId: "Charts2DCreateStockChartsRealtimeTickingStockCharts",
+        imagePath: "javascript-realtime-ticking-stock-charts.jpg",
+        description:
+            "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
-                    "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. **[object Object]**",
-                title: "JavaScript Realtime Ticking Stock Charts",
-                pageTitle: "JavaScript Realtime Ticking Stock Chart | SciChart.js",
+                    "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
+                title: "javascript Realtime Ticking Stock Charts",
+                pageTitle: "javascript Realtime Ticking Stock Chart | SciChart.js",
                 metaDescription:
-                    "Create a JavaScript Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
-                markdownContent: "",
+                    "Create a javascript Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
-                    "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. **[object Object]**",
-                title: "React Realtime Ticking Stock Charts",
-                pageTitle: "React Realtime Ticking Stock Chart | SciChart.js",
+                    "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
+                title: "react Realtime Ticking Stock Charts",
+                pageTitle: "react Realtime Ticking Stock Chart | SciChart.js",
                 metaDescription:
-                    "Create a React Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
-                markdownContent: "",
+                    "Create a react Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
-                    "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. **[object Object]**",
-                title: "Angular Realtime Ticking Stock Charts",
-                pageTitle: "Angular Realtime Ticking Stock Chart | SciChart.js",
+                    "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
+                title: "angular Realtime Ticking Stock Charts",
+                pageTitle: "angular Realtime Ticking Stock Chart | SciChart.js",
                 metaDescription:
-                    "Create a Angular Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
-                markdownContent: "",
+                    "Create a angular Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Candlestick Chart Documentation",
             },
         ],
+        path: "realtime-ticking-stock-charts",
+        metaKeywords: "real-time, ticking, updating, stock, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/CreateStockCharts/RealtimeTickingStockCharts",
+        thumbnailImage: "javascript-realtime-ticking-stock-charts.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 

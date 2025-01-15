@@ -4,45 +4,38 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "charts2d\\zoomingandpanning\\realtimezoompan",
-        imagePath: "./zoom-and-pan-a-realtime-javascript-chart.jpg",
-        description: "",
-        path: "zoom-pan-realtime-javascript-chart",
-        metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
-        onWebsite: true,
-        filepath: "Charts2D/ZoomingAndPanning/RealtimeZoomPan",
-        tips: ['""'],
-        thumbnailImage: "zoom-and-pan-a-realtime-javascript-chart.jpg",
+        exampleId: "Charts2DZoomingAndPanningRealtimeZoomPan",
+        imagePath: "zoom-and-pan-a-realtime-javascript-chart.jpg",
+        description:
+            "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",
+        tips: [],
         frameworks: {
             javascript: {
-                component: "JavaScriptChartComponent",
                 subtitle:
                     "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",
-                title: "Zoom and Pan a Realtime JavaScript Chart",
-                pageTitle: "Zoom and Pan a Realtime JavaScript Chart",
+                title: "Zoom and Pan a Realtime javascript Chart",
+                pageTitle: "Zoom and Pan a Realtime javascript Chart",
                 metaDescription:
-                    "Demonstrates how to zoom and pan a realtime JavaScript Chart while it is updating, with SciChart.js ZoomState API",
-                markdownContent: "",
+                    "Demonstrates how to zoom and pan a realtime javascript Chart while it is updating, with SciChart.js ZoomState API",
+                markdownContent: null,
             },
             react: {
-                component: "ReactChartComponent",
                 subtitle:
                     "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",
-                title: "Zoom and Pan a Realtime React Chart",
-                pageTitle: "Zoom and Pan a Realtime React Chart",
+                title: "Zoom and Pan a Realtime react Chart",
+                pageTitle: "Zoom and Pan a Realtime react Chart",
                 metaDescription:
-                    "Demonstrates how to zoom and pan a realtime React Chart while it is updating, with SciChart.js ZoomState API",
-                markdownContent: "",
+                    "Demonstrates how to zoom and pan a realtime react Chart while it is updating, with SciChart.js ZoomState API",
+                markdownContent: null,
             },
             angular: {
-                component: "AngularChartComponent",
                 subtitle:
                     "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",
-                title: "Zoom and Pan a Realtime Angular Chart",
-                pageTitle: "Zoom and Pan a Realtime Angular Chart",
+                title: "Zoom and Pan a Realtime angular Chart",
+                pageTitle: "Zoom and Pan a Realtime angular Chart",
                 metaDescription:
-                    "Demonstrates how to zoom and pan a realtime Angular Chart while it is updating, with SciChart.js ZoomState API",
-                markdownContent: "",
+                    "Demonstrates how to zoom and pan a realtime angular Chart while it is updating, with SciChart.js ZoomState API",
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -52,6 +45,14 @@ const metaData: IExampleMetadata =
                 linkTitle: "SciChart.js Zooming and Panning Documentation",
             },
         ],
+        path: "zoom-pan-realtime-javascript-chart",
+        metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/ZoomingAndPanning/RealtimeZoomPan",
+        thumbnailImage: "zoom-and-pan-a-realtime-javascript-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
     };
 //// End of computer generated metadata
 
