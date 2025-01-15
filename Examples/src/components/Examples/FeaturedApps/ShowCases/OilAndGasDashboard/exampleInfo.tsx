@@ -4,52 +4,48 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "documentationhome",
+        exampleId: "featuredapps\\showcases\\oilandgasdashboard",
         imagePath: "./javascript-oil-gas-explorer-dashboard-charts.jpg",
-        title: "DocumentationHome",
-        description: "Todo description",
-        path: "documentationhome",
+        description: "",
+        path: "oil-and-gas-dashboard-showcase",
         metaKeywords: "oil gas vertical chart javascript chart performance",
         onWebsite: true,
         filepath: "FeaturedApps/ShowCases/OilAndGasDashboard",
-        tips: ["Todo Tips."],
+        tips: ['""'],
         thumbnailImage: "javascript-oil-gas-explorer-dashboard-charts.jpg",
         frameworks: {
+            javascript: {
+                component: "JavaScriptChartComponent",
+                subtitle:
+                    "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
+                title: "Oil & Gas Explorer JavaScript Dashboard",
+                pageTitle: "Oil & Gas Explorer JavaScript Dashboard",
+                metaDescription: "Demonstrates how to create Oil and Gas Dashboard",
+                markdownContent: "",
+            },
             react: {
                 component: "ReactChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **React DocumentationHome** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "React DocumentationHome",
-                pageTitle: "React DocumentationHome | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a React DocumentationHome with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
+                title: "Oil & Gas Explorer React Dashboard",
+                pageTitle: "Oil & Gas Explorer React Dashboard",
+                metaDescription: "Demonstrates how to create Oil and Gas Dashboard",
                 markdownContent: "",
             },
             angular: {
                 component: "AngularChartComponent",
                 subtitle:
-                    "Demonstrates how to create a **Angular DocumentationHome** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "Angular DocumentationHome",
-                pageTitle: "Angular DocumentationHome | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create an Angular DocumentationHome with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
-                markdownContent: "",
-            },
-            javascript: {
-                component: "JavaScriptChartComponent",
-                subtitle:
-                    "Demonstrates how to create a **JavaScript DocumentationHome** using SciChart.js, our High Performance [JavaScript Chart Framework](https://www.scichart.com/javascript-chart-features)",
-                title: "JavaScript DocumentationHome",
-                pageTitle: "JavaScript DocumentationHome | JavaScript Charts | View Examples",
-                metaDescription:
-                    "Easily create a JavaScript DocumentationHome with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
+                    "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
+                title: "Oil & Gas Explorer Angular Dashboard",
+                pageTitle: "Oil & Gas Explorer Angular Dashboard",
+                metaDescription: "Demonstrates how to create Oil and Gas Dashboard",
                 markdownContent: "",
             },
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html",
-                title: "Documentation",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
                 linkTitle: "SciChart.js Documentation Home",
             },
         ],

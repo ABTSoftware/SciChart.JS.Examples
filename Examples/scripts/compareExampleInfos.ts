@@ -249,27 +249,68 @@ function decodeHtmlEntities(str: string): string {
         .replace(/&nbsp;/g, " ");
 }
 
+// Helper function to strip links from React components
+function stripLinks(component: any): any {
+    if (!component) return component;
+
+    // If it's a string, return as is
+    if (typeof component === "string") return component;
+
+    // If it's a React element object
+    if (component.type && component.props) {
+        // Skip anchor tags
+        if (component.type === "a") {
+            return component.props.title || component.props.children;
+        }
+
+        // Process children recursively
+        if (component.props.children) {
+            const newChildren = Array.isArray(component.props.children)
+                ? component.props.children.map(stripLinks)
+                : stripLinks(component.props.children);
+
+            return {
+                ...component,
+                props: {
+                    ...component.props,
+                    children: newChildren,
+                },
+            };
+        }
+    }
+
+    // Handle arrays
+    if (Array.isArray(component)) {
+        return component.map(stripLinks);
+    }
+
+    return component;
+}
+
 // Helper function to normalize subtitle content
 function normalizeSubtitle(value: any): string {
     if (!value) return "";
 
-    // First stage: Get a single string representation
+    // First stage: Strip links if it's a React component
+    const strippedValue = typeof value === "function" ? stripLinks(value("JavaScript")) : value;
+
+    // Second stage: Get a single string representation
     let singleString;
-    if (typeof value === "string" && (value.includes('"type"') || value.includes('"props"'))) {
+    if (typeof strippedValue === "string" && (strippedValue.includes('"type"') || strippedValue.includes('"props"'))) {
         // If it's a stringified React component, parse and render it
         try {
-            const parsed = JSON.parse(value);
+            const parsed = JSON.parse(strippedValue);
             singleString = stringifyReactComponent(parsed);
         } catch (e) {
             console.log("Error parsing JSON:", e.message);
-            singleString = value;
+            singleString = strippedValue;
         }
     } else {
         // Otherwise render it directly
-        singleString = stringifyReactComponent(value);
+        singleString = stringifyReactComponent(strippedValue);
     }
 
-    // Second stage: Clean up and normalize the string
+    // Third stage: Clean up and normalize the string
     const normalized = singleString
         .replace(/<[^>]+>/g, "") // Remove HTML tags
         .replace(/\*\*/g, "") // Remove bold markers
@@ -278,7 +319,7 @@ function normalizeSubtitle(value: any): string {
         .toLowerCase() // Convert to lowercase for better comparison
         .trim();
 
-    // Third stage: Decode HTML entities
+    // Fourth stage: Decode HTML entities
     return decodeHtmlEntities(normalized);
 }
 
@@ -301,6 +342,12 @@ function stringifyReactComponent(component: any): string {
 
     // Handle React elements
     if (component.type && component.props) {
+        // Skip anchor tags completely
+        if (component.type === "a") {
+            // Only use the visible text content, ignore href and other attributes
+            return stringifyReactComponent(component.props.children);
+        }
+
         // Get all children content first
         const allChildren: string[] = [];
 
@@ -335,6 +382,8 @@ function stringifyReactComponent(component: any): string {
                 return `\`${content}\``;
             case "br":
                 return "\n";
+            case "p":
+                return content;
             default:
                 return content || "";
         }
@@ -385,6 +434,26 @@ function compareAndCollectErrors(
                 newValue,
                 normalizedOld,
                 normalizedNew,
+                similarity,
+            });
+        }
+        return;
+    }
+
+    // Special handling for metaDescription
+    if (property.includes("metaDescription")) {
+        const oldStr = typeof oldValue === "function" ? oldValue() : String(oldValue);
+        const newStr = typeof newValue === "function" ? newValue() : String(newValue);
+        const similarity = stringSimilarity(oldStr, newStr);
+
+        if (similarity < 0.95) {
+            errors.push({
+                exampleName,
+                property,
+                oldValue: oldStr,
+                newValue: newStr,
+                normalizedOld: oldStr,
+                normalizedNew: newStr,
                 similarity,
             });
         }
@@ -493,7 +562,13 @@ async function runComparison() {
         const oldExampleInfoModule = await importExampleInfo(oldExampleInfoPath);
 
         if (!exampleInfoModule || !oldExampleInfoModule) {
-            // Skip if OldExampleInfo doesn't exist (not all examples need migration)
+            // Report missing OldExampleInfo as an error
+            errors.push({
+                exampleName: dir,
+                property: "missing_file",
+                oldValue: !oldExampleInfoModule ? "Missing OldExampleInfo" : "Missing ExampleInfo",
+                newValue: null,
+            });
             skippedExamples.push(dir);
             skippedCount++;
             continue;
@@ -501,10 +576,17 @@ async function runComparison() {
 
         // Find the ExampleInfo exports
         const currentExport = Object.entries(exampleInfoModule).find(
-            ([key]) => key.toLowerCase().endsWith("exampleinfo") && !key.toLowerCase().startsWith("old")
+            ([key]) =>
+                (key.toLowerCase().endsWith("exampleinfo") ||
+                    key.toLowerCase().endsWith("dashboard") ||
+                    key.toLowerCase().includes("explorer")) &&
+                !key.toLowerCase().startsWith("old")
         );
-        const oldExport = Object.entries(oldExampleInfoModule).find(([key]) =>
-            key.toLowerCase().endsWith("exampleinfo")
+        const oldExport = Object.entries(oldExampleInfoModule).find(
+            ([key]) =>
+                key.toLowerCase().endsWith("exampleinfo") ||
+                key.toLowerCase().endsWith("dashboard") ||
+                key.toLowerCase().includes("explorer")
         );
 
         if (!currentExport || !oldExport) {
@@ -550,8 +632,8 @@ async function runComparison() {
         errors.forEach((error, index) => {
             console.log(`\n${index + 1}. Example: ${error.property} in ${error.exampleName}`);
 
-            if (error.property === "import" || error.property === "export") {
-                console.log(`Failed to ${error.property} example info`);
+            if (error.property === "import" || error.property === "export" || error.property === "missing_file") {
+                console.log(`Error: ${error.oldValue}`);
                 return;
             }
 

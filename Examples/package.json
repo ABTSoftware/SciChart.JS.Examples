@@ -5,7 +5,6 @@
   "private": true,
   "scripts": {
     "compareExamples": "ts-node -P tsconfig.node.json scripts/compareExampleInfos.ts",
-    "updateMetadata": "ts-node -P tsconfig.node.json scripts/updateExampleMetadata.ts",
     "dev": "webpack-dev-server --config webpack.client.no_server.config.js",
     "build": "rimraf ./build && npm run buildVanillaDemo && npm run buildServer && npm run buildClient",
     "start": "node --inspect=9229 ./build/server.js",
