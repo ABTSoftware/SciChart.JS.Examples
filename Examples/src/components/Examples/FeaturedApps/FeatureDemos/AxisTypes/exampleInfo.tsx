@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "featuredapps\\featuredemos\\axistypes",
         imagePath: "./javascript-axis-types.jpg",
-        title: "Axis Types",
         description: "",
         path: "axis-types",
         metaKeywords: "text, axis, date, logarithmic, javascript, webgl, canvas",

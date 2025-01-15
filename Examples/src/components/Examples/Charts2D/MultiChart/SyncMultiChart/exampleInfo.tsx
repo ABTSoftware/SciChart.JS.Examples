@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\multichart\\syncmultichart",
         imagePath: "./javascript-sync-multi-chart.jpg",
-        title: "Synchronise Multiple Charts",
         description: "",
         path: "sync-multi-chart",
         metaKeywords: "axis, synchronise, multiple, charts, overview, zoom, pan, javascript, webgl, canvas",

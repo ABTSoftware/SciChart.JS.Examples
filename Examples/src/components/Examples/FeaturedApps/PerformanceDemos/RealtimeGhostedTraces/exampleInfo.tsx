@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "featuredapps\\performancedemos\\realtimeghostedtraces",
         imagePath: "./javascript-realtime-ghosted-traces-oscilloscope-chart.jpg",
-        title: "Realtime Ghosted Traces",
         description: "",
         path: "realtime-ghosted-traces-chart",
         metaKeywords: "realtime, ghosted, traces, chart, javascript, webgl, canvas",

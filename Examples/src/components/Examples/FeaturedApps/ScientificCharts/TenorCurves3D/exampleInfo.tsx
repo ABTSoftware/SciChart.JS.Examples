@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "featuredapps\\scientificcharts\\tenorcurves3d",
         imagePath: "./javascript-2d-3d-chart-tenor-curves-example.jpg",
-        title: "Tenor Curves Demo",
         description: "",
         path: "2d-3d-chart-tenor-curves-example",
         metaKeywords: "tenor, curves, 3d, chart, javascript, webgl, canvas",

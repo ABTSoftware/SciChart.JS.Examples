@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "builderapi\\chartfromjson",
         imagePath: "./javascript-chart-from-json.jpg",
-        title: "Chart from JSON",
         description: "",
         path: "chart-from-json",
         metaKeywords: "json, chart, javascript, webgl, canvas",

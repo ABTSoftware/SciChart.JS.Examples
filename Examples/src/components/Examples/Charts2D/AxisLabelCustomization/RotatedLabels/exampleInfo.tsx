@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\axislabelcustomization\\rotatedlabels",
         imagePath: "./javascript-rotated-labels-chart.jpg",
-        title: "Rotated Labels and Alignment",
         description: "",
         path: "rotated-labels",
         metaKeywords: "Axis, label, rotated, vertical, javascript, webgl, canvas",

@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\stylingandtheming\\perpointcoloring",
         imagePath: "./javascript-chart-color-points-individually-with-paletteprovider.jpg",
-        title: "Coloring Series per-point using the PaletteProvider",
         description: "",
         path: "chart-color-points-individually-with-paletteprovider",
         metaKeywords: "palette, provider, api, chart, javascript, webgl, canvas",

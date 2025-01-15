@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\axislabelcustomization\\multilinelabels",
         imagePath: "./javascript-multiline-labels.jpg",
-        title: "Multi-line and Rotated Text labels",
         description: "",
         path: "multiline-labels",
         metaKeywords: "text, axis, label, wrap, javascript, webgl, canvas",

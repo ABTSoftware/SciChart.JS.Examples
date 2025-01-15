@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\stylingandtheming\\transparentbackground",
         imagePath: "./javascript-chart-transparent-background.jpg",
-        title: "Background Image with Transparency",
         description: "",
         path: "chart-transparent-background",
         metaKeywords: "styling, transparent, background, chart, javascript, webgl, canvas",

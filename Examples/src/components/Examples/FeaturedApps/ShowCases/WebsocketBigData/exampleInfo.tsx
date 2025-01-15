@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "featuredapps\\showcases\\websocketbigdata",
         imagePath: "./javascript-streaming-data.jpg",
-        title: "Client/Server Websocket Data Streaming",
         description: "",
         path: "chart-websocket-bigdata-demo",
         metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",

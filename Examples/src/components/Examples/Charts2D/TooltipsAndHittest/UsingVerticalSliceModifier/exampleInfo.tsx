@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\tooltipsandhittest\\usingverticalslicemodifier",
         imagePath: "./javascript-chart-vertical-slice-modifier.jpg",
-        title: "Using VerticalSliceModifier",
         description: "",
         path: "chart-vertical-slice-modifier",
         metaKeywords: "tooltips, modifier, chart, javascript, webgl, canvas",

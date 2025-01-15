@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\axislabelcustomization\\imagelabels",
         imagePath: "./javascript-image-labels.jpg",
-        title: "Image labels",
         description: "",
         path: "image-labels",
         metaKeywords: "image, axis, label, javascript, webgl, canvas",

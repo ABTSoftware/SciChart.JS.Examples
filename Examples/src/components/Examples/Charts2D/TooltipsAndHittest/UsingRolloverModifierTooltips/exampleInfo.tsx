@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\tooltipsandhittest\\usingrollovermodifiertooltips",
         imagePath: "./javascript-chart-rollovermodifier-tooltips.jpg",
-        title: "Using Rollover Modifier Tooltips",
         description: "",
         path: "chart-rollovermodifier-tooltips",
         metaKeywords: "rollover, modifier, chart, javascript, webgl, canvas",

@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\legends\\chartlegendsapi",
         imagePath: "./javascript-chart-legends.jpg",
-        title: "Chart Legends API",
         description: "",
         path: "chart-legends",
         metaKeywords: "legend, api, chart, javascript, webgl, canvas",

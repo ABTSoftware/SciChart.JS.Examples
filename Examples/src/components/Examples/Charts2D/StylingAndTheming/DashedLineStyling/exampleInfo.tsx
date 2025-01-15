@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\stylingandtheming\\dashedlinestyling",
         imagePath: "./javascript-dashed-line-chart.jpg",
-        title: "Dashed Line Styling",
         description: "",
         path: "dashed-line-chart",
         metaKeywords: "dash, dashed, dotted, line, chart, javascript, webgl, canvas",

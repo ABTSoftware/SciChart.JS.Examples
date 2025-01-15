@@ -1,4 +1,4 @@
 declare module "*.jpg" {
-    const value: any;
-    export default value;
+    const jpgValue: string;
+    export default jpgValue;
 }

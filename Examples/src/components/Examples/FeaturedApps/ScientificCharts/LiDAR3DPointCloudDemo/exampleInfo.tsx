@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "featuredapps\\scientificcharts\\lidar3dpointclouddemo",
         imagePath: "./javascript-3d-lidar-visualization.jpg",
-        title: "LiDAR 3D Point Cloud of Geospatial Data",
         description: "",
         path: "3d-lidar-visualization",
         metaKeywords: "lidar, 3d, point, cloud, chart, javascript, webgl, canvas",

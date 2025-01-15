@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "featuredapps\\performancedemos\\load500by500",
         imagePath: "./javascript-chart-load-500-series-by-500-points.jpg",
-        title: "Load 500 Series x 500 Points Performance Demo",
         description: "",
         path: "load-500-series-x-500-points-performance-demo",
         metaKeywords: "performance, demo, chart, javascript, webgl, canvas",

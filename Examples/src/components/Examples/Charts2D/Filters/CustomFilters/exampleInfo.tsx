@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\filters\\customfilters",
         imagePath: "./javascript-custom-filters.jpg",
-        title: "Custom Filters",
         description: "",
         path: "custom-filters",
         metaKeywords: "real-time, filter, transform, updating, aggregation, custom, chart, javascript, webgl, canvas",

@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\filters\\trendmaratio",
         imagePath: "./javascript-trend-ma-ratio.jpg",
-        title: "Trendline, Moving Average and Ratio Filters",
         description: "",
         path: "trend-ma-ratio",
         metaKeywords: "trend, line, moving, average, ratio, transform, chart, javascript, webgl, canvas",

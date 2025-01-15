@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\tooltipsandhittest\\seriesselection",
         imagePath: "./javascript-chart-series-selection.jpg",
-        title: "Using Series Selection",
         description: "",
         path: "chart-series-selection",
         metaKeywords: "hit, test, api, chart, javascript, webgl, canvas",

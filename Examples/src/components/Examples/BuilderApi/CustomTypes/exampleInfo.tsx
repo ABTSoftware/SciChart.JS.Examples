@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "builderapi\\customtypes",
         imagePath: "./javascript-custom-types.jpg",
-        title: "Custom Types with Builder API",
         description: "",
         path: "custom-types",
         metaKeywords: "custom, chart, javascript, builder, paletteprovider",

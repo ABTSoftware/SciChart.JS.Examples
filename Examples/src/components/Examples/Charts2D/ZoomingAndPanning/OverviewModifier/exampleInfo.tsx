@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\zoomingandpanning\\overviewmodifier",
         imagePath: "./javascript-overview-chart.jpg",
-        title: "Zoom and Pan with Overview Chart",
         description: "",
         path: "overview",
         metaKeywords: "drag, axis, scale, overview, javascript, webgl, canvas",

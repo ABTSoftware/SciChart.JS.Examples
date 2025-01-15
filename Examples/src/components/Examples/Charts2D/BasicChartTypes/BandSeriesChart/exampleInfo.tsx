@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "bandChart",
         imagePath: "javascript-band-chart.jpg",
-        title: "Band Chart",
         description: "This chart type fills a polygon between two high and low lines...",
         path: "band-chart",
         metaKeywords: "band, chart, javascript, webgl, canvas",

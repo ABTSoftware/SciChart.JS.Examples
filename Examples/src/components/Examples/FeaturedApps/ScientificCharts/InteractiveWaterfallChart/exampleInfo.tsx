@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "featuredapps\\scientificcharts\\interactivewaterfallchart",
         imagePath: "./javascript-interactive-waterfall-chart.jpg",
-        title: "Interactive Waterfall Spectral Chart",
         description: "",
         path: "interactive-waterfall-chart",
         metaKeywords: "waterfall, chart, interactive, javascript, webgl, canvas",

@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\tooltipsandhittest\\usingcursormodifiertooltips",
         imagePath: "./javascript-chart-cursormodifier-crosshairs.jpg",
-        title: "Using CursorModifier Crosshairs",
         description: "",
         path: "chart-cursormodifier-crosshairs",
         metaKeywords: "cursor, modifier, chart, javascript, webgl, canvas",

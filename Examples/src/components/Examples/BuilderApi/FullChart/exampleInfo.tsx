@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "builderapi\\fullchart",
         imagePath: "./javascript-builder-full.jpg",
-        title: "Full Chart using Builder API",
         description: "",
         path: "builder-full",
         metaKeywords: "definition, chart, javascript, webgl, canvas",

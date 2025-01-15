@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "featuredapps\\scientificcharts\\audioanalyzer",
         imagePath: "./javascript-audio-analyzer-fft-example.jpg",
-        title: "Realtime Audio Analyzer Demo",
         description: "",
         path: "audio-analyzer-fft-example",
         metaKeywords: "audio, analyzer, demo, chart, javascript, webgl, canvas",

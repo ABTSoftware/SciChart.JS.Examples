@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         exampleId: "charts2d\\filters\\percentagechange",
         imagePath: "./javascript-percentage-change.jpg",
-        title: "Realtime Percentage Change using Filter",
         description: "",
         path: "percentage-change",
         metaKeywords: "real-time, updating, percentage, transform, chart, javascript, webgl, canvas",
