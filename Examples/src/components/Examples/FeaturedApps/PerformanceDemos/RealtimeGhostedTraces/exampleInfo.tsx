@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance JavaScript Charts",
                 title: "Realtime Ghosted Traces",
                 pageTitle: "Realtime Ghosted Traces",
                 metaDescription:
-                    "This demo showcases the realtime performance of our javascript Chart by animating several series with thousands of data-points at 60 FPS",
+                    "This demo showcases the realtime performance of our JavaScript Chart by animating several series with thousands of data-points at 60 FPS",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance JavaScript Charts",
                 title: "Realtime Ghosted Traces",
                 pageTitle: "Realtime Ghosted Traces",
                 metaDescription:
-                    "This demo showcases the realtime performance of our react Chart by animating several series with thousands of data-points at 60 FPS",
+                    "This demo showcases the realtime performance of our React Chart by animating several series with thousands of data-points at 60 FPS",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance JavaScript Charts",
                 title: "Realtime Ghosted Traces",
                 pageTitle: "Realtime Ghosted Traces",
                 metaDescription:
-                    "This demo showcases the realtime performance of our angular Chart by animating several series with thousands of data-points at 60 FPS",
+                    "This demo showcases the realtime performance of our Angular Chart by animating several series with thousands of data-points at 60 FPS",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

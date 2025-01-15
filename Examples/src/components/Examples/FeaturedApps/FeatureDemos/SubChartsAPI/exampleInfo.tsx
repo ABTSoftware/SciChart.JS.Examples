@@ -10,29 +10,29 @@ const metaData: IExampleMetadata =
             "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
-                title: "javascript 64-Chart Dashboard Performance Demo",
-                pageTitle: "javascript 64-Chart Dashboard Performance Demo",
+                title: "JavaScript 64-Chart Dashboard Performance Demo",
+                pageTitle: "JavaScript 64-Chart Dashboard Performance Demo",
                 metaDescription:
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
-                title: "react 64-Chart Dashboard Performance Demo",
-                pageTitle: "react 64-Chart Dashboard Performance Demo",
+                title: "React 64-Chart Dashboard Performance Demo",
+                pageTitle: "React 64-Chart Dashboard Performance Demo",
                 metaDescription:
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
-                title: "angular 64-Chart Dashboard Performance Demo",
-                pageTitle: "angular 64-Chart Dashboard Performance Demo",
+                title: "Angular 64-Chart Dashboard Performance Demo",
+                pageTitle: "Angular 64-Chart Dashboard Performance Demo",
                 metaDescription:
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript",
                 markdownContent: null,
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

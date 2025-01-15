@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "We have created a simple example that shows you how to create a **JavaScript Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "We have created a simple example that shows you how to create a **javascript Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",
-                title: "javascript Stacked Column Side by Side",
-                pageTitle: "javascript Stacked Group Column Chart | View Examples Now",
+                    "We have created a simple example that shows you how to create a **JavaScript Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",
+                title: "JavaScript Stacked Column Side by Side",
+                pageTitle: "JavaScript Stacked Group Column Chart | View Examples Now",
                 metaDescription:
-                    "Design javascript Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.",
+                    "Design JavaScript Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "We have created a simple example that shows you how to create a **react Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",
-                title: "react Stacked Column Side by Side",
-                pageTitle: "react Stacked Group Column Chart | View Examples Now",
+                    "We have created a simple example that shows you how to create a **React Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",
+                title: "React Stacked Column Side by Side",
+                pageTitle: "React Stacked Group Column Chart | View Examples Now",
                 metaDescription:
-                    "Design react Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.",
+                    "Design React Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "We have created a simple example that shows you how to create a **angular Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",
-                title: "angular Stacked Column Side by Side",
-                pageTitle: "angular Stacked Group Column Chart | View Examples Now",
+                    "We have created a simple example that shows you how to create a **Angular Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",
+                title: "Angular Stacked Column Side by Side",
+                pageTitle: "Angular Stacked Group Column Chart | View Examples Now",
                 metaDescription:
-                    "Design angular Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.",
+                    "Design Angular Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

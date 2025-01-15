@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
                 title: "Dragabble Event Markers",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
                 title: "Dragabble Event Markers",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
                 title: "Dragabble Event Markers",
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

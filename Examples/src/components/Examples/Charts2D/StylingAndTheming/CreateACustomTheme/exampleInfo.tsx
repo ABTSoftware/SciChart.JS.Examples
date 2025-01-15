@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **Custom Theme** for SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to create a **Custom Theme** for SciChart.js, High Performance JavaScript Charts",
-                title: "Create a Custom Theme for javascript Chart",
-                pageTitle: "Create a Custom Theme for javascript Chart",
+                title: "Create a Custom Theme for JavaScript Chart",
+                pageTitle: "Create a Custom Theme for JavaScript Chart",
                 metaDescription:
-                    "Demonstrates how to create a Custom Theme for a SciChart.js javascript Chart using our Theming API",
+                    "Demonstrates how to create a Custom Theme for a SciChart.js JavaScript Chart using our Theming API",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to create a **Custom Theme** for SciChart.js, High Performance JavaScript Charts",
-                title: "Create a Custom Theme for react Chart",
-                pageTitle: "Create a Custom Theme for react Chart",
+                title: "Create a Custom Theme for React Chart",
+                pageTitle: "Create a Custom Theme for React Chart",
                 metaDescription:
-                    "Demonstrates how to create a Custom Theme for a SciChart.js react Chart using our Theming API",
+                    "Demonstrates how to create a Custom Theme for a SciChart.js React Chart using our Theming API",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to create a **Custom Theme** for SciChart.js, High Performance JavaScript Charts",
-                title: "Create a Custom Theme for angular Chart",
-                pageTitle: "Create a Custom Theme for angular Chart",
+                title: "Create a Custom Theme for Angular Chart",
+                pageTitle: "Create a Custom Theme for Angular Chart",
                 metaDescription:
-                    "Demonstrates how to create a Custom Theme for a SciChart.js angular Chart using our Theming API",
+                    "Demonstrates how to create a Custom Theme for a SciChart.js Angular Chart using our Theming API",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

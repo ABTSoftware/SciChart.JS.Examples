@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to use **Images as Labels** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to use **Images as Labels** using SciChart.js, High Performance JavaScript Charts",
                 title: "Image labels",
@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates how to use Images as Axis Labels",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to use **Images as Labels** using SciChart.js, High Performance JavaScript Charts",
                 title: "Image labels",
@@ -26,7 +26,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates how to use Images as Axis Labels",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to use **Images as Labels** using SciChart.js, High Performance JavaScript Charts",
                 title: "Image labels",
@@ -50,6 +50,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

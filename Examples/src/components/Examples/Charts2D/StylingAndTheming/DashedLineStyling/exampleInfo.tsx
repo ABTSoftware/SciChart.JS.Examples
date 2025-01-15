@@ -10,28 +10,28 @@ const metaData: IExampleMetadata =
             "Demonstrates how create **JavaScript Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Demonstrates how create **javascript Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how create **JavaScript Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
                 title: "Dashed Line Styling",
                 pageTitle: "Dashed Line Styling",
-                metaDescription: "Demonstrates dashed line series in javascript Charts with SciChart.js",
+                metaDescription: "Demonstrates dashed line series in JavaScript Charts with SciChart.js",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Demonstrates how create **react Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how create **React Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
                 title: "Dashed Line Styling",
                 pageTitle: "Dashed Line Styling",
-                metaDescription: "Demonstrates dashed line series in react Charts with SciChart.js",
+                metaDescription: "Demonstrates dashed line series in React Charts with SciChart.js",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Demonstrates how create **angular Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how create **Angular Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
                 title: "Dashed Line Styling",
                 pageTitle: "Dashed Line Styling",
-                metaDescription: "Demonstrates dashed line series in angular Charts with SciChart.js",
+                metaDescription: "Demonstrates dashed line series in Angular Charts with SciChart.js",
                 markdownContent: null,
             },
         },
@@ -50,6 +50,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to use the Builder Api with **Custom Types** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to use the Builder Api with **Custom Types** using SciChart.js, High Performance JavaScript Charts",
                 title: "Custom Types with Builder API",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to make a custom type such as a PaletteProvider available for use with the Builder Api.You can call methods within the builder api to get references to the objects being built, so you can update them later.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to use the Builder Api with **Custom Types** using SciChart.js, High Performance JavaScript Charts",
                 title: "Custom Types with Builder API",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to make a custom type such as a PaletteProvider available for use with the Builder Api.You can call methods within the builder api to get references to the objects being built, so you can update them later.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to use the Builder Api with **Custom Types** using SciChart.js, High Performance JavaScript Charts",
                 title: "Custom Types with Builder API",
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

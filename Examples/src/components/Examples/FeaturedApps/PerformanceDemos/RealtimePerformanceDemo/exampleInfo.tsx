@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates appending **millions of points** to a line chart with SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates appending **millions of points** to a line chart with SciChart.js, High Performance JavaScript Charts",
-                title: "Realtime javascript Chart Performance Demo",
-                pageTitle: "Realtime javascript Chart Performance Demo",
+                title: "Realtime JavaScript Chart Performance Demo",
+                pageTitle: "Realtime JavaScript Chart Performance Demo",
                 metaDescription:
-                    "This demo showcases the incredible realtime performance of our javascript charts by updating the series with millions of data-points!",
+                    "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates appending **millions of points** to a line chart with SciChart.js, High Performance JavaScript Charts",
-                title: "Realtime react Chart Performance Demo",
-                pageTitle: "Realtime react Chart Performance Demo",
+                title: "Realtime React Chart Performance Demo",
+                pageTitle: "Realtime React Chart Performance Demo",
                 metaDescription:
-                    "This demo showcases the incredible realtime performance of our react charts by updating the series with millions of data-points!",
+                    "This demo showcases the incredible realtime performance of our React charts by updating the series with millions of data-points!",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates appending **millions of points** to a line chart with SciChart.js, High Performance JavaScript Charts",
-                title: "Realtime angular Chart Performance Demo",
-                pageTitle: "Realtime angular Chart Performance Demo",
+                title: "Realtime Angular Chart Performance Demo",
+                pageTitle: "Realtime Angular Chart Performance Demo",
                 metaDescription:
-                    "This demo showcases the incredible realtime performance of our angular charts by updating the series with millions of data-points!",
+                    "This demo showcases the incredible realtime performance of our Angular charts by updating the series with millions of data-points!",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
                 title: "Custom Filters",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
                 title: "Custom Filters",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
                 title: "Custom Filters",
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

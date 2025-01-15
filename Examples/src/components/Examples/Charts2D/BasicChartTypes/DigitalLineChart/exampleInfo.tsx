@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **JavaScript Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Demonstrates how to create a **javascript Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",
-                title: "javascript Digital Line Chart",
-                pageTitle: "javascript Digital Line Chart | JavaScript Charts | View Now",
+                    "Demonstrates how to create a **JavaScript Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",
+                title: "JavaScript Digital Line Chart",
+                pageTitle: "JavaScript Digital Line Chart | JavaScript Charts | View Now",
                 metaDescription:
-                    "Discover how to create a javascript Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.",
+                    "Discover how to create a JavaScript Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Demonstrates how to create a **react Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",
-                title: "react Digital Line Chart",
-                pageTitle: "react Digital Line Chart | JavaScript Charts | View Now",
+                    "Demonstrates how to create a **React Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",
+                title: "React Digital Line Chart",
+                pageTitle: "React Digital Line Chart | JavaScript Charts | View Now",
                 metaDescription:
-                    "Discover how to create a react Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.",
+                    "Discover how to create a React Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Demonstrates how to create a **angular Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",
-                title: "angular Digital Line Chart",
-                pageTitle: "angular Digital Line Chart | JavaScript Charts | View Now",
+                    "Demonstrates how to create a **Angular Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",
+                title: "Angular Digital Line Chart",
+                pageTitle: "Angular Digital Line Chart | JavaScript Charts | View Now",
                 metaDescription:
-                    "Discover how to create a angular Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.",
+                    "Discover how to create a Angular Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

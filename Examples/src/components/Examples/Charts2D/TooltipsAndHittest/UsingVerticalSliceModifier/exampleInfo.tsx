@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates how to use **tooltips at fixed positions** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to use **tooltips at fixed positions** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using VerticalSliceModifier",
                 pageTitle: "Using VerticalSliceModifier",
                 metaDescription:
-                    "Demonstrates adding Tooltips at certain positions to a javascript Chart with SciChart.js VerticalSliceModifier",
+                    "Demonstrates adding Tooltips at certain positions to a JavaScript Chart with SciChart.js VerticalSliceModifier",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to use **tooltips at fixed positions** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using VerticalSliceModifier",
                 pageTitle: "Using VerticalSliceModifier",
                 metaDescription:
-                    "Demonstrates adding Tooltips at certain positions to a react Chart with SciChart.js VerticalSliceModifier",
+                    "Demonstrates adding Tooltips at certain positions to a React Chart with SciChart.js VerticalSliceModifier",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to use **tooltips at fixed positions** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using VerticalSliceModifier",
                 pageTitle: "Using VerticalSliceModifier",
                 metaDescription:
-                    "Demonstrates adding Tooltips at certain positions to a angular Chart with SciChart.js VerticalSliceModifier",
+                    "Demonstrates adding Tooltips at certain positions to a Angular Chart with SciChart.js VerticalSliceModifier",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

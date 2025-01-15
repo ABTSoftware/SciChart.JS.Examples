@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "This demo demonstrates how create a **JavaScript Donut Chart** with our powerful JavaScript library, SciChart.js.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "This demo demonstrates how create a **javascript Donut Chart** with our powerful JavaScript library, SciChart.js.",
-                title: "javascript Donut Chart",
-                pageTitle: "javascript Donut Chart | JavaScript Charts | SciChart.js",
+                    "This demo demonstrates how create a **JavaScript Donut Chart** with our powerful JavaScript library, SciChart.js.",
+                title: "JavaScript Donut Chart",
+                pageTitle: "JavaScript Donut Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "Create javascript Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
+                    "Create JavaScript Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "This demo demonstrates how create a **react Donut Chart** with our powerful JavaScript library, SciChart.js.",
-                title: "react Donut Chart",
-                pageTitle: "react Donut Chart | JavaScript Charts | SciChart.js",
+                    "This demo demonstrates how create a **React Donut Chart** with our powerful JavaScript library, SciChart.js.",
+                title: "React Donut Chart",
+                pageTitle: "React Donut Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "Create react Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
+                    "Create React Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "This demo demonstrates how create a **angular Donut Chart** with our powerful JavaScript library, SciChart.js.",
-                title: "angular Donut Chart",
-                pageTitle: "angular Donut Chart | JavaScript Charts | SciChart.js",
+                    "This demo demonstrates how create a **Angular Donut Chart** with our powerful JavaScript library, SciChart.js.",
+                title: "Angular Donut Chart",
+                pageTitle: "Angular Donut Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "Create angular Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
+                    "Create Angular Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

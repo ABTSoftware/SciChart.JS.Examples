@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to use a ScaleOffsetFilter to convert data to a **Percentage Change** with realtime updates, using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to use a ScaleOffsetFilter to convert data to a **Percentage Change** with realtime updates, using SciChart.js, High Performance JavaScript Charts",
                 title: "Realtime Percentage Change using Filter",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "How to use a ScaleOffsetFilter to convert data to a percentage change, with realtime updates, rescale on pan",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to use a ScaleOffsetFilter to convert data to a **Percentage Change** with realtime updates, using SciChart.js, High Performance JavaScript Charts",
                 title: "Realtime Percentage Change using Filter",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "How to use a ScaleOffsetFilter to convert data to a percentage change, with realtime updates, rescale on pan",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to use a ScaleOffsetFilter to convert data to a **Percentage Change** with realtime updates, using SciChart.js, High Performance JavaScript Charts",
                 title: "Realtime Percentage Change using Filter",
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

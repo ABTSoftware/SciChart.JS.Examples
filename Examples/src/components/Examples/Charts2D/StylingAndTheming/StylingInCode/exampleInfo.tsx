@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates how to **style or theme a JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Demonstrates how to **style or theme a javascript Chart** using SciChart.js, High Performance JavaScript Charts",
-                title: "Styling a javascript Chart in Code",
-                pageTitle: "Styling a javascript Chart in Code",
+                    "Demonstrates how to **style or theme a JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Styling a JavaScript Chart in Code",
+                pageTitle: "Styling a JavaScript Chart in Code",
                 metaDescription:
-                    "Demonstrates how to style a javascript Chart entirely in code with SciChart.js themeing API",
+                    "Demonstrates how to style a JavaScript Chart entirely in code with SciChart.js themeing API",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Demonstrates how to **style or theme a react Chart** using SciChart.js, High Performance JavaScript Charts",
-                title: "Styling a react Chart in Code",
-                pageTitle: "Styling a react Chart in Code",
+                    "Demonstrates how to **style or theme a React Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Styling a React Chart in Code",
+                pageTitle: "Styling a React Chart in Code",
                 metaDescription:
-                    "Demonstrates how to style a react Chart entirely in code with SciChart.js themeing API",
+                    "Demonstrates how to style a React Chart entirely in code with SciChart.js themeing API",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Demonstrates how to **style or theme a angular Chart** using SciChart.js, High Performance JavaScript Charts",
-                title: "Styling a angular Chart in Code",
-                pageTitle: "Styling a angular Chart in Code",
+                    "Demonstrates how to **style or theme a Angular Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Styling a Angular Chart in Code",
+                pageTitle: "Styling a Angular Chart in Code",
                 metaDescription:
-                    "Demonstrates how to style a angular Chart entirely in code with SciChart.js themeing API",
+                    "Demonstrates how to style a Angular Chart entirely in code with SciChart.js themeing API",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

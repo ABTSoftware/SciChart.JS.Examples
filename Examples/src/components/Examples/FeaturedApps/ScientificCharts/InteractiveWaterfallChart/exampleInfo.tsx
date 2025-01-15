@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
                 title: "Interactive Waterfall Spectral Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
                 title: "Interactive Waterfall Spectral Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
                 title: "Interactive Waterfall Spectral Chart",
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "max-width",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

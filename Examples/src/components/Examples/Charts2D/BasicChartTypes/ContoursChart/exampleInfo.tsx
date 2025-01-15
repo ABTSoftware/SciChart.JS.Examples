@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Our Contours Chart example demonstrates how to create a **JavaScript Contour-map Chart** using our powerful JavaScript Chart Library.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Our Contours Chart example demonstrates how to create a **javascript Contour-map Chart** using our powerful JavaScript Chart Library.",
-                title: "javascript Heatmap Chart With Contours",
-                pageTitle: "javascript Heatmap Chart With Contours Example | SciChart.js",
+                    "Our Contours Chart example demonstrates how to create a **JavaScript Contour-map Chart** using our powerful JavaScript Chart Library.",
+                title: "JavaScript Heatmap Chart With Contours",
+                pageTitle: "JavaScript Heatmap Chart With Contours Example | SciChart.js",
                 metaDescription:
-                    "Design a highly dynamic javascript Heatmap Chart With Contours with SciChart's feature-rich JavaScript Chart Library. Get your free demo today.",
+                    "Design a highly dynamic JavaScript Heatmap Chart With Contours with SciChart's feature-rich JavaScript Chart Library. Get your free demo today.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Our Contours Chart example demonstrates how to create a **react Contour-map Chart** using our powerful JavaScript Chart Library.",
-                title: "react Heatmap Chart With Contours",
-                pageTitle: "react Heatmap Chart With Contours Example | SciChart.js",
+                    "Our Contours Chart example demonstrates how to create a **React Contour-map Chart** using our powerful JavaScript Chart Library.",
+                title: "React Heatmap Chart With Contours",
+                pageTitle: "React Heatmap Chart With Contours Example | SciChart.js",
                 metaDescription:
-                    "Design a highly dynamic react Heatmap Chart With Contours with SciChart's feature-rich JavaScript Chart Library. Get your free demo today.",
+                    "Design a highly dynamic React Heatmap Chart With Contours with SciChart's feature-rich JavaScript Chart Library. Get your free demo today.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Our Contours Chart example demonstrates how to create a **angular Contour-map Chart** using our powerful JavaScript Chart Library.",
-                title: "angular Heatmap Chart With Contours",
-                pageTitle: "angular Heatmap Chart With Contours Example | SciChart.js",
+                    "Our Contours Chart example demonstrates how to create a **Angular Contour-map Chart** using our powerful JavaScript Chart Library.",
+                title: "Angular Heatmap Chart With Contours",
+                pageTitle: "Angular Heatmap Chart With Contours Example | SciChart.js",
                 metaDescription:
-                    "Design a highly dynamic angular Heatmap Chart With Contours with SciChart's feature-rich JavaScript Chart Library. Get your free demo today.",
+                    "Design a highly dynamic Angular Heatmap Chart With Contours with SciChart's feature-rich JavaScript Chart Library. Get your free demo today.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

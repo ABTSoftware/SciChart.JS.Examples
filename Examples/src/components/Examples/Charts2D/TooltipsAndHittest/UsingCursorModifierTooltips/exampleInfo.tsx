@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using CursorModifier Crosshairs",
                 pageTitle: "Using CursorModifier Crosshairs",
                 metaDescription:
-                    "Demonstrates adding a Cursor (Crosshair) to a javascript Chart with SciChart.js CursorModifier",
+                    "Demonstrates adding a Cursor (Crosshair) to a JavaScript Chart with SciChart.js CursorModifier",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using CursorModifier Crosshairs",
                 pageTitle: "Using CursorModifier Crosshairs",
                 metaDescription:
-                    "Demonstrates adding a Cursor (Crosshair) to a react Chart with SciChart.js CursorModifier",
+                    "Demonstrates adding a Cursor (Crosshair) to a React Chart with SciChart.js CursorModifier",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using CursorModifier Crosshairs",
                 pageTitle: "Using CursorModifier Crosshairs",
                 metaDescription:
-                    "Demonstrates adding a Cursor (Crosshair) to a angular Chart with SciChart.js CursorModifier",
+                    "Demonstrates adding a Cursor (Crosshair) to a Angular Chart with SciChart.js CursorModifier",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

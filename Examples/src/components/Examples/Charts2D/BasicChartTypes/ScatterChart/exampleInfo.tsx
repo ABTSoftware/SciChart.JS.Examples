@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "We have created an example that demonstrates how to create a **JavaScript Scatter Chart** using SciChart.js",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "We have created an example that demonstrates how to create a **javascript Scatter Chart** using SciChart.js",
-                title: "javascript Scatter Chart",
-                pageTitle: "javascript Scatter Chart | JavaScript Charts | SciChart.js",
+                    "We have created an example that demonstrates how to create a **JavaScript Scatter Chart** using SciChart.js",
+                title: "JavaScript Scatter Chart",
+                pageTitle: "JavaScript Scatter Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "Create javascript Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
+                    "Create JavaScript Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "We have created an example that demonstrates how to create a **react Scatter Chart** using SciChart.js",
-                title: "react Scatter Chart",
-                pageTitle: "react Scatter Chart | JavaScript Charts | SciChart.js",
+                    "We have created an example that demonstrates how to create a **React Scatter Chart** using SciChart.js",
+                title: "React Scatter Chart",
+                pageTitle: "React Scatter Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "Create react Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
+                    "Create React Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "We have created an example that demonstrates how to create a **angular Scatter Chart** using SciChart.js",
-                title: "angular Scatter Chart",
-                pageTitle: "angular Scatter Chart | JavaScript Charts | SciChart.js",
+                    "We have created an example that demonstrates how to create a **Angular Scatter Chart** using SciChart.js",
+                title: "Angular Scatter Chart",
+                pageTitle: "Angular Scatter Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "Create angular Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
+                    "Create Angular Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

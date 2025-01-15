@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to use **Rotation and Alignment of Axis Labels** with SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to use **Rotation and Alignment of Axis Labels** with SciChart.js, High Performance JavaScript Charts",
                 title: "Rotated Labels and Alignment",
@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Rotate to create vertical axis labels and fit more on an axis",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to use **Rotation and Alignment of Axis Labels** with SciChart.js, High Performance JavaScript Charts",
                 title: "Rotated Labels and Alignment",
@@ -26,7 +26,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Rotate to create vertical axis labels and fit more on an axis",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to use **Rotation and Alignment of Axis Labels** with SciChart.js, High Performance JavaScript Charts",
                 title: "Rotated Labels and Alignment",
@@ -50,6 +50,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

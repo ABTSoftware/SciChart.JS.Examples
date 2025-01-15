@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates how to add and use **MetaData** in a chart using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to add and use **MetaData** in a chart using SciChart.js, High Performance JavaScript Charts",
-                title: "Datapoint Metadata Tooltips on javascript Chart",
-                pageTitle: "Datapoint Metadata Tooltips on javascript Chart",
+                title: "Datapoint Metadata Tooltips on JavaScript Chart",
+                pageTitle: "Datapoint Metadata Tooltips on JavaScript Chart",
                 metaDescription:
-                    "Demonstrates using MetaData in a javascript Chart - add custom data to points for display or to drive visual customisation",
+                    "Demonstrates using MetaData in a JavaScript Chart - add custom data to points for display or to drive visual customisation",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to add and use **MetaData** in a chart using SciChart.js, High Performance JavaScript Charts",
-                title: "Datapoint Metadata Tooltips on react Chart",
-                pageTitle: "Datapoint Metadata Tooltips on react Chart",
+                title: "Datapoint Metadata Tooltips on React Chart",
+                pageTitle: "Datapoint Metadata Tooltips on React Chart",
                 metaDescription:
-                    "Demonstrates using MetaData in a react Chart - add custom data to points for display or to drive visual customisation",
+                    "Demonstrates using MetaData in a React Chart - add custom data to points for display or to drive visual customisation",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to add and use **MetaData** in a chart using SciChart.js, High Performance JavaScript Charts",
-                title: "Datapoint Metadata Tooltips on angular Chart",
-                pageTitle: "Datapoint Metadata Tooltips on angular Chart",
+                title: "Datapoint Metadata Tooltips on Angular Chart",
+                pageTitle: "Datapoint Metadata Tooltips on Angular Chart",
                 metaDescription:
-                    "Demonstrates using MetaData in a angular Chart - add custom data to points for display or to drive visual customisation",
+                    "Demonstrates using MetaData in a Angular Chart - add custom data to points for display or to drive visual customisation",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

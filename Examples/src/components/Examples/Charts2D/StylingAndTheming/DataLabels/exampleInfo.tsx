@@ -9,25 +9,25 @@ const metaData: IExampleMetadata =
         description: "Shows how you can add **Data Labels** to a chart using SciChart.js",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle: "Shows how you can add **Data Labels** to a chart using SciChart.js",
                 title: "Data Labels",
                 pageTitle: "Data Labels",
-                metaDescription: "Show data labels on javascript Chart. Get your free demo now.",
+                metaDescription: "Show data labels on JavaScript Chart. Get your free demo now.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle: "Shows how you can add **Data Labels** to a chart using SciChart.js",
                 title: "Data Labels",
                 pageTitle: "Data Labels",
-                metaDescription: "Show data labels on react Chart. Get your free demo now.",
+                metaDescription: "Show data labels on React Chart. Get your free demo now.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle: "Shows how you can add **Data Labels** to a chart using SciChart.js",
                 title: "Data Labels",
                 pageTitle: "Data Labels",
-                metaDescription: "Show data labels on angular Chart. Get your free demo now.",
+                metaDescription: "Show data labels on Angular Chart. Get your free demo now.",
                 markdownContent: null,
             },
         },
@@ -46,6 +46,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

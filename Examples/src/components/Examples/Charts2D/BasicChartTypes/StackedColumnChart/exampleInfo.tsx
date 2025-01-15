@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "The example on this page demonstrates how to create a **JavaScript Stacked Column Chart** using our feature-rich JavaScript Chart Library, SciChart.js.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "The example on this page demonstrates how to create a **javascript Stacked Column Chart** using our feature-rich JavaScript Chart Library, SciChart.js.",
-                title: "javascript Stacked Column Chart",
-                pageTitle: "javascript Stacked Column Chart | Online JavaScript Charts",
+                    "The example on this page demonstrates how to create a **JavaScript Stacked Column Chart** using our feature-rich JavaScript Chart Library, SciChart.js.",
+                title: "JavaScript Stacked Column Chart",
+                pageTitle: "JavaScript Stacked Column Chart | Online JavaScript Charts",
                 metaDescription:
-                    "Discover how to create a javascript Stacked Column Chart using our feature-rich JavaScript Chart Library, SciChart.js. Get your free demo today!",
+                    "Discover how to create a JavaScript Stacked Column Chart using our feature-rich JavaScript Chart Library, SciChart.js. Get your free demo today!",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "The example on this page demonstrates how to create a **react Stacked Column Chart** using our feature-rich JavaScript Chart Library, SciChart.js.",
-                title: "react Stacked Column Chart",
-                pageTitle: "react Stacked Column Chart | Online JavaScript Charts",
+                    "The example on this page demonstrates how to create a **React Stacked Column Chart** using our feature-rich JavaScript Chart Library, SciChart.js.",
+                title: "React Stacked Column Chart",
+                pageTitle: "React Stacked Column Chart | Online JavaScript Charts",
                 metaDescription:
-                    "Discover how to create a react Stacked Column Chart using our feature-rich JavaScript Chart Library, SciChart.js. Get your free demo today!",
+                    "Discover how to create a React Stacked Column Chart using our feature-rich JavaScript Chart Library, SciChart.js. Get your free demo today!",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "The example on this page demonstrates how to create a **angular Stacked Column Chart** using our feature-rich JavaScript Chart Library, SciChart.js.",
-                title: "angular Stacked Column Chart",
-                pageTitle: "angular Stacked Column Chart | Online JavaScript Charts",
+                    "The example on this page demonstrates how to create a **Angular Stacked Column Chart** using our feature-rich JavaScript Chart Library, SciChart.js.",
+                title: "Angular Stacked Column Chart",
+                pageTitle: "Angular Stacked Column Chart | Online JavaScript Charts",
                 metaDescription:
-                    "Discover how to create a angular Stacked Column Chart using our feature-rich JavaScript Chart Library, SciChart.js. Get your free demo today!",
+                    "Discover how to create a Angular Stacked Column Chart using our feature-rich JavaScript Chart Library, SciChart.js. Get your free demo today!",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

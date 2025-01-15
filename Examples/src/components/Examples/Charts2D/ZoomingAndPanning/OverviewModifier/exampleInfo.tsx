@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to zoom and pan with an **Overview Chart** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to zoom and pan with an **Overview Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Zoom and Pan with Overview Chart",
@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates how to zoom and pan with an Overview Chart",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to zoom and pan with an **Overview Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Zoom and Pan with Overview Chart",
@@ -26,7 +26,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates how to zoom and pan with an Overview Chart",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to zoom and pan with an **Overview Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Zoom and Pan with Overview Chart",
@@ -50,6 +50,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

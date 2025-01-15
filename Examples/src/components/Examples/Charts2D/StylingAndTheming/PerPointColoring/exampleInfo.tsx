@@ -10,27 +10,27 @@ const metaData: IExampleMetadata =
             "Demonstrates how create **JavaScript Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Demonstrates how create **javascript Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how create **JavaScript Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
                 title: "Coloring Series per-point using the PaletteProvider",
                 pageTitle: "Coloring Series per-point using the PaletteProvider",
                 metaDescription:
                     "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Demonstrates how create **react Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how create **React Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
                 title: "Coloring Series per-point using the PaletteProvider",
                 pageTitle: "Coloring Series per-point using the PaletteProvider",
                 metaDescription:
                     "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Demonstrates how create **angular Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how create **Angular Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
                 title: "Coloring Series per-point using the PaletteProvider",
                 pageTitle: "Coloring Series per-point using the PaletteProvider",
                 metaDescription:
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

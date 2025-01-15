@@ -10,27 +10,27 @@ const metaData: IExampleMetadata =
             "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
-                title: "Oil & Gas Explorer javascript Dashboard",
-                pageTitle: "Oil & Gas Explorer javascript Dashboard",
+                title: "Oil & Gas Explorer JavaScript Dashboard",
+                pageTitle: "Oil & Gas Explorer JavaScript Dashboard",
                 metaDescription: "Demonstrates how to create Oil and Gas Dashboard",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
-                title: "Oil & Gas Explorer react Dashboard",
-                pageTitle: "Oil & Gas Explorer react Dashboard",
+                title: "Oil & Gas Explorer React Dashboard",
+                pageTitle: "Oil & Gas Explorer React Dashboard",
                 metaDescription: "Demonstrates how to create Oil and Gas Dashboard",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
-                title: "Oil & Gas Explorer angular Dashboard",
-                pageTitle: "Oil & Gas Explorer angular Dashboard",
+                title: "Oil & Gas Explorer Angular Dashboard",
+                pageTitle: "Oil & Gas Explorer Angular Dashboard",
                 metaDescription: "Demonstrates how to create Oil and Gas Dashboard",
                 markdownContent: null,
             },
@@ -50,6 +50,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "max-width",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

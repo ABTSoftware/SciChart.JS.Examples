@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **JavaScript Chart with Secondary Y axis** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Demonstrates how to create a **javascript Chart with Secondary Y axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "javascript Chart with Secondary Y Axes",
-                pageTitle: "javascript Chart with Secondary Y Axes",
+                    "Demonstrates how to create a **JavaScript Chart with Secondary Y axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Chart with Secondary Y Axes",
+                pageTitle: "JavaScript Chart with Secondary Y Axes",
                 metaDescription:
-                    "Demonstrates Secondary Y Axis on a javascript Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
+                    "Demonstrates Secondary Y Axis on a JavaScript Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Demonstrates how to create a **react Chart with Secondary Y axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "react Chart with Secondary Y Axes",
-                pageTitle: "react Chart with Secondary Y Axes",
+                    "Demonstrates how to create a **React Chart with Secondary Y axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "React Chart with Secondary Y Axes",
+                pageTitle: "React Chart with Secondary Y Axes",
                 metaDescription:
-                    "Demonstrates Secondary Y Axis on a react Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
+                    "Demonstrates Secondary Y Axis on a React Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Demonstrates how to create a **angular Chart with Secondary Y axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "angular Chart with Secondary Y Axes",
-                pageTitle: "angular Chart with Secondary Y Axes",
+                    "Demonstrates how to create a **Angular Chart with Secondary Y axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Chart with Secondary Y Axes",
+                pageTitle: "Angular Chart with Secondary Y Axes",
                 metaDescription:
-                    "Demonstrates Secondary Y Axis on a angular Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
+                    "Demonstrates Secondary Y Axis on a Angular Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

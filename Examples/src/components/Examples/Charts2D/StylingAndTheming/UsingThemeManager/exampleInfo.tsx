@@ -9,31 +9,31 @@ const metaData: IExampleMetadata =
         description: "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
-                title: "Using Theme Manager in javascript Chart",
-                pageTitle: "Using Theme Manager in javascript Chart",
+                title: "Using Theme Manager in JavaScript Chart",
+                pageTitle: "Using Theme Manager in JavaScript Chart",
                 metaDescription:
-                    "Demonstrates our Light and Dark Themes for javascript Charts with SciChart.js ThemeManager API",
+                    "Demonstrates our Light and Dark Themes for JavaScript Charts with SciChart.js ThemeManager API",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
-                title: "Using Theme Manager in react Chart",
-                pageTitle: "Using Theme Manager in react Chart",
+                title: "Using Theme Manager in React Chart",
+                pageTitle: "Using Theme Manager in React Chart",
                 metaDescription:
-                    "Demonstrates our Light and Dark Themes for react Charts with SciChart.js ThemeManager API",
+                    "Demonstrates our Light and Dark Themes for React Charts with SciChart.js ThemeManager API",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
-                title: "Using Theme Manager in angular Chart",
-                pageTitle: "Using Theme Manager in angular Chart",
+                title: "Using Theme Manager in Angular Chart",
+                pageTitle: "Using Theme Manager in Angular Chart",
                 metaDescription:
-                    "Demonstrates our Light and Dark Themes for angular Charts with SciChart.js ThemeManager API",
+                    "Demonstrates our Light and Dark Themes for Angular Charts with SciChart.js ThemeManager API",
                 markdownContent: null,
             },
         },
@@ -52,6 +52,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

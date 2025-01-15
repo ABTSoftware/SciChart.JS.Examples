@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "How to create a Market Depth (Order Book) JavaScript Chart using Mountain Series and a Custom Modifier",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "How to create a Market Depth (Order Book) javascript Chart using Mountain Series and a Custom Modifier",
-                title: "javascript Market Depth Chart",
-                pageTitle: "javascript Market Depth Chart",
+                    "How to create a Market Depth (Order Book) JavaScript Chart using Mountain Series and a Custom Modifier",
+                title: "JavaScript Market Depth Chart",
+                pageTitle: "JavaScript Market Depth Chart",
                 metaDescription:
-                    "Create a javascript Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
+                    "Create a JavaScript Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "How to create a Market Depth (Order Book) react Chart using Mountain Series and a Custom Modifier",
-                title: "react Market Depth Chart",
-                pageTitle: "react Market Depth Chart",
+                    "How to create a Market Depth (Order Book) React Chart using Mountain Series and a Custom Modifier",
+                title: "React Market Depth Chart",
+                pageTitle: "React Market Depth Chart",
                 metaDescription:
-                    "Create a react Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
+                    "Create a React Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "How to create a Market Depth (Order Book) angular Chart using Mountain Series and a Custom Modifier",
-                title: "angular Market Depth Chart",
-                pageTitle: "angular Market Depth Chart",
+                    "How to create a Market Depth (Order Book) Angular Chart using Mountain Series and a Custom Modifier",
+                title: "Angular Market Depth Chart",
+                pageTitle: "Angular Market Depth Chart",
                 metaDescription:
-                    "Create a angular Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
+                    "Create a Angular Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

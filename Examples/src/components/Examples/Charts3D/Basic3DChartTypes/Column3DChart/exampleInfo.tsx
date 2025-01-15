@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "The SciChart.js **JavaScript 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "The SciChart.js **javascript 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",
-                title: "javascript Column 3D Chart",
-                pageTitle: "javascript 3D Column Chart | View 3D JavaScript Charts",
+                    "The SciChart.js **JavaScript 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",
+                title: "JavaScript Column 3D Chart",
+                pageTitle: "JavaScript 3D Column Chart | View 3D JavaScript Charts",
                 metaDescription:
-                    "Create detailed javascript 3D Column Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets",
+                    "Create detailed JavaScript 3D Column Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "The SciChart.js **react 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",
-                title: "react Column 3D Chart",
-                pageTitle: "react 3D Column Chart | View 3D JavaScript Charts",
+                    "The SciChart.js **React 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",
+                title: "React Column 3D Chart",
+                pageTitle: "React 3D Column Chart | View 3D JavaScript Charts",
                 metaDescription:
-                    "Create detailed react 3D Column Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets",
+                    "Create detailed React 3D Column Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "The SciChart.js **angular 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",
-                title: "angular Column 3D Chart",
-                pageTitle: "angular 3D Column Chart | View 3D JavaScript Charts",
+                    "The SciChart.js **Angular 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",
+                title: "Angular Column 3D Chart",
+                pageTitle: "Angular 3D Column Chart | View 3D JavaScript Charts",
                 metaDescription:
-                    "Create detailed angular 3D Column Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets",
+                    "Create detailed Angular 3D Column Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

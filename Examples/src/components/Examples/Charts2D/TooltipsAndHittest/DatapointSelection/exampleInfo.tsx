@@ -10,29 +10,29 @@ const metaData: IExampleMetadata =
             "Demonstrates how to **Select Data Points** on a chart using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to **Select Data Points** on a chart using SciChart.js, High Performance JavaScript Charts",
-                title: "javascript Chart Data Point Selection",
-                pageTitle: "javascript Chart Data Point Selection",
+                title: "JavaScript Chart Data Point Selection",
+                pageTitle: "JavaScript Chart Data Point Selection",
                 metaDescription:
                     "Demonstrates the DatapointSelectionModifier, which provides a UI to select one or many data points, and works with DataPointSelectionPaletteProvider to change the appearance of selected points",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to **Select Data Points** on a chart using SciChart.js, High Performance JavaScript Charts",
-                title: "react Chart Data Point Selection",
-                pageTitle: "react Chart Data Point Selection",
+                title: "React Chart Data Point Selection",
+                pageTitle: "React Chart Data Point Selection",
                 metaDescription:
                     "Demonstrates the DatapointSelectionModifier, which provides a UI to select one or many data points, and works with DataPointSelectionPaletteProvider to change the appearance of selected points",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to **Select Data Points** on a chart using SciChart.js, High Performance JavaScript Charts",
-                title: "angular Chart Data Point Selection",
-                pageTitle: "angular Chart Data Point Selection",
+                title: "Angular Chart Data Point Selection",
+                pageTitle: "Angular Chart Data Point Selection",
                 metaDescription:
                     "Demonstrates the DatapointSelectionModifier, which provides a UI to select one or many data points, and works with DataPointSelectionPaletteProvider to change the appearance of selected points",
                 markdownContent: null,
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

@@ -10,27 +10,27 @@ const metaData: IExampleMetadata =
             "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
-                title: "javascript Generic Animation",
-                pageTitle: "javascript Generic Animation",
+                title: "JavaScript Generic Animation",
+                pageTitle: "JavaScript Generic Animation",
                 metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
-                title: "react Generic Animation",
-                pageTitle: "react Generic Animation",
+                title: "React Generic Animation",
+                pageTitle: "React Generic Animation",
                 metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
-                title: "angular Generic Animation",
-                pageTitle: "angular Generic Animation",
+                title: "Angular Generic Animation",
+                pageTitle: "Angular Generic Animation",
                 metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
                 markdownContent: null,
             },
@@ -50,6 +50,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

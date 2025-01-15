@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Learn how to create a realtime updating **JavaScript 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Learn how to create a realtime updating **javascript 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
-                title: "javascript Realtime Surface Mesh 3D Chart",
-                pageTitle: "javascript Realtime 3D Surface Mesh Chart | View 3D JavaScript Charts",
+                    "Learn how to create a realtime updating **JavaScript 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
+                title: "JavaScript Realtime Surface Mesh 3D Chart",
+                pageTitle: "JavaScript Realtime 3D Surface Mesh Chart | View 3D JavaScript Charts",
                 metaDescription:
-                    "Design a javascript 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.",
+                    "Design a JavaScript 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Learn how to create a realtime updating **react 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
-                title: "react Realtime Surface Mesh 3D Chart",
-                pageTitle: "react Realtime 3D Surface Mesh Chart | View 3D JavaScript Charts",
+                    "Learn how to create a realtime updating **React 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
+                title: "React Realtime Surface Mesh 3D Chart",
+                pageTitle: "React Realtime 3D Surface Mesh Chart | View 3D JavaScript Charts",
                 metaDescription:
-                    "Design a react 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.",
+                    "Design a React 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Learn how to create a realtime updating **angular 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
-                title: "angular Realtime Surface Mesh 3D Chart",
-                pageTitle: "angular Realtime 3D Surface Mesh Chart | View 3D JavaScript Charts",
+                    "Learn how to create a realtime updating **Angular 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
+                title: "Angular Realtime Surface Mesh 3D Chart",
+                pageTitle: "Angular Realtime 3D Surface Mesh Chart | View 3D JavaScript Charts",
                 metaDescription:
-                    "Design a angular 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.",
+                    "Design a Angular 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

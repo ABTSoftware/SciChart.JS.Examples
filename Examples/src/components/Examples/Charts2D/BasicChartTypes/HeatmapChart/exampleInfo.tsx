@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "If you want to learn about heatmaps. this demo shows you how to create a **JavaScript Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "If you want to learn about heatmaps. this demo shows you how to create a **javascript Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
-                title: "javascript Heatmap Chart",
-                pageTitle: "javascript Heatmap Chart | JavaScript Chart Library Examples",
+                    "If you want to learn about heatmaps. this demo shows you how to create a **JavaScript Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
+                title: "JavaScript Heatmap Chart",
+                pageTitle: "JavaScript Heatmap Chart | JavaScript Chart Library Examples",
                 metaDescription:
-                    "Easily create a high performance javascript Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
+                    "Easily create a high performance JavaScript Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "If you want to learn about heatmaps. this demo shows you how to create a **react Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
-                title: "react Heatmap Chart",
-                pageTitle: "react Heatmap Chart | JavaScript Chart Library Examples",
+                    "If you want to learn about heatmaps. this demo shows you how to create a **React Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
+                title: "React Heatmap Chart",
+                pageTitle: "React Heatmap Chart | JavaScript Chart Library Examples",
                 metaDescription:
-                    "Easily create a high performance react Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
+                    "Easily create a high performance React Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "If you want to learn about heatmaps. this demo shows you how to create a **angular Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
-                title: "angular Heatmap Chart",
-                pageTitle: "angular Heatmap Chart | JavaScript Chart Library Examples",
+                    "If you want to learn about heatmaps. this demo shows you how to create a **Angular Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
+                title: "Angular Heatmap Chart",
+                pageTitle: "Angular Heatmap Chart | JavaScript Chart Library Examples",
                 metaDescription:
-                    "Easily create a high performance angular Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
+                    "Easily create a high performance Angular Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

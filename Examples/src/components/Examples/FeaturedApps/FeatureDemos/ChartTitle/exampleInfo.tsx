@@ -10,27 +10,27 @@ const metaData: IExampleMetadata =
             "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
-                title: "javascript Chart Title",
-                pageTitle: "javascript Chart Title",
+                title: "JavaScript Chart Title",
+                pageTitle: "JavaScript Chart Title",
                 metaDescription: "Demonstrates chart title with different position and alignment options",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
-                title: "react Chart Title",
-                pageTitle: "react Chart Title",
+                title: "React Chart Title",
+                pageTitle: "React Chart Title",
                 metaDescription: "Demonstrates chart title with different position and alignment options",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
-                title: "angular Chart Title",
-                pageTitle: "angular Chart Title",
+                title: "Angular Chart Title",
+                pageTitle: "Angular Chart Title",
                 metaDescription: "Demonstrates chart title with different position and alignment options",
                 markdownContent: null,
             },
@@ -50,6 +50,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

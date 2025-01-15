@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates a custom modifier which can convert from single chart to grid layout and back using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back using SciChart.js, High Performance JavaScript Charts",
                 title: "Dynamic Layout Showcase",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back using SciChart.js, High Performance JavaScript Charts",
                 title: "Dynamic Layout Showcase",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back using SciChart.js, High Performance JavaScript Charts",
                 title: "Dynamic Layout Showcase",
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

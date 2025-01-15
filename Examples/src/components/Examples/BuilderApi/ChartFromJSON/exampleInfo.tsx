@@ -10,28 +10,28 @@ const metaData: IExampleMetadata =
             "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
                 title: "Chart from JSON",
                 pageTitle: "Chart from JSON",
-                metaDescription: "Demonstrates how to create a javascript Chart from JSON using the builder API. ",
+                metaDescription: "Demonstrates how to create a JavaScript Chart from JSON using the builder API. ",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
                 title: "Chart from JSON",
                 pageTitle: "Chart from JSON",
-                metaDescription: "Demonstrates how to create a react Chart from JSON using the builder API. ",
+                metaDescription: "Demonstrates how to create a React Chart from JSON using the builder API. ",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
                 title: "Chart from JSON",
                 pageTitle: "Chart from JSON",
-                metaDescription: "Demonstrates how to create a angular Chart from JSON using the builder API. ",
+                metaDescription: "Demonstrates how to create a Angular Chart from JSON using the builder API. ",
                 markdownContent: null,
             },
         },
@@ -50,6 +50,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

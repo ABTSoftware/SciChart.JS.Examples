@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates loading **500 series, each with 500 points (250k points total) instantly**. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates loading **500 series, each with 500 points (250k points total) instantly**. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
                 title: "Load 500 Series x 500 Points Performance Demo",
                 pageTitle: "Load 500 Series x 500 Points Performance Demo",
                 metaDescription:
-                    "This demo showcases the incredible performance of our javascript Chart by loading 500 series with 500 points (250k points) instantly!",
+                    "This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates loading **500 series, each with 500 points (250k points total) instantly**. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
                 title: "Load 500 Series x 500 Points Performance Demo",
                 pageTitle: "Load 500 Series x 500 Points Performance Demo",
                 metaDescription:
-                    "This demo showcases the incredible performance of our react Chart by loading 500 series with 500 points (250k points) instantly!",
+                    "This demo showcases the incredible performance of our React Chart by loading 500 series with 500 points (250k points) instantly!",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates loading **500 series, each with 500 points (250k points total) instantly**. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
                 title: "Load 500 Series x 500 Points Performance Demo",
                 pageTitle: "Load 500 Series x 500 Points Performance Demo",
                 metaDescription:
-                    "This demo showcases the incredible performance of our angular Chart by loading 500 series with 500 points (250k points) instantly!",
+                    "This demo showcases the incredible performance of our Angular Chart by loading 500 series with 500 points (250k points) instantly!",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

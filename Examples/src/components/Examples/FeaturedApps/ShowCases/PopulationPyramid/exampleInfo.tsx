@@ -10,27 +10,27 @@ const metaData: IExampleMetadata =
             "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
-                title: "javascript Population Pyramid",
-                pageTitle: "javascript Population Pyramid",
+                title: "JavaScript Population Pyramid",
+                pageTitle: "JavaScript Population Pyramid",
                 metaDescription: "Population Pyramid of Europe and Africa",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
-                title: "react Population Pyramid",
-                pageTitle: "react Population Pyramid",
+                title: "React Population Pyramid",
+                pageTitle: "React Population Pyramid",
                 metaDescription: "Population Pyramid of Europe and Africa",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
-                title: "angular Population Pyramid",
-                pageTitle: "angular Population Pyramid",
+                title: "Angular Population Pyramid",
+                pageTitle: "Angular Population Pyramid",
                 metaDescription: "Population Pyramid of Europe and Africa",
                 markdownContent: null,
             },
@@ -51,6 +51,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
                 title: "Server Traffic Dashboard",
                 pageTitle: "Server Traffic Dashboard",
                 metaDescription:
-                    "This dashboard demo showcases the incredible realtime performance of our javascript charts by updating the series with millions of data-points!",
+                    "This dashboard demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
                 title: "Server Traffic Dashboard",
                 pageTitle: "Server Traffic Dashboard",
                 metaDescription:
-                    "This dashboard demo showcases the incredible realtime performance of our react charts by updating the series with millions of data-points!",
+                    "This dashboard demo showcases the incredible realtime performance of our React charts by updating the series with millions of data-points!",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
                 title: "Server Traffic Dashboard",
                 pageTitle: "Server Traffic Dashboard",
                 metaDescription:
-                    "This dashboard demo showcases the incredible realtime performance of our angular charts by updating the series with millions of data-points!",
+                    "This dashboard demo showcases the incredible realtime performance of our Angular charts by updating the series with millions of data-points!",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,9 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "max-width",
+        extraDependencies: {
+            "country-flag-icons": "^1.5.7",
+        },
     };
 //// End of computer generated metadata
 

@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "This example demonstrates how to synchronise layout and visible range across multiple dynamic charts, and how to synchronise series with an overview chart.using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "This example demonstrates how to synchronise layout and visible range across multiple dynamic charts, and how to synchronise series with an overview chart.using SciChart.js, High Performance JavaScript Charts",
                 title: "Synchronise Multiple Charts",
@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Synchronise multiple dynamic charts and overview",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "This example demonstrates how to synchronise layout and visible range across multiple dynamic charts, and how to synchronise series with an overview chart.using SciChart.js, High Performance JavaScript Charts",
                 title: "Synchronise Multiple Charts",
@@ -26,7 +26,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Synchronise multiple dynamic charts and overview",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "This example demonstrates how to synchronise layout and visible range across multiple dynamic charts, and how to synchronise series with an overview chart.using SciChart.js, High Performance JavaScript Charts",
                 title: "Synchronise Multiple Charts",
@@ -55,6 +55,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

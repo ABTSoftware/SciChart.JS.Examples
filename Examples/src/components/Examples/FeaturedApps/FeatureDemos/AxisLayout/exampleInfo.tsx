@@ -10,29 +10,29 @@ const metaData: IExampleMetadata =
             "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
-                title: "javascript Chart Axis Layout Options",
-                pageTitle: "javascript Chart Axis Layout Options",
+                title: "JavaScript Chart Axis Layout Options",
+                pageTitle: "JavaScript Chart Axis Layout Options",
                 metaDescription:
                     "Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
-                title: "react Chart Axis Layout Options",
-                pageTitle: "react Chart Axis Layout Options",
+                title: "React Chart Axis Layout Options",
+                pageTitle: "React Chart Axis Layout Options",
                 metaDescription:
                     "Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
-                title: "angular Chart Axis Layout Options",
-                pageTitle: "angular Chart Axis Layout Options",
+                title: "Angular Chart Axis Layout Options",
+                pageTitle: "Angular Chart Axis Layout Options",
                 metaDescription:
                     "Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts",
                 markdownContent: null,
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

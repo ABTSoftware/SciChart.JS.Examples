@@ -10,29 +10,29 @@ const metaData: IExampleMetadata =
             "Showcases how SciChart.js can be used in a **Medical context**, drawing ECGs with our High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Showcases how SciChart.js can be used in a **Medical context**, drawing ECGs with our High Performance JavaScript Charts",
-                title: "javascript Vital Signs ECG/EKG Medical Demo",
-                pageTitle: "javascript Vital Signs ECG/EKG Medical Demo",
+                title: "JavaScript Vital Signs ECG/EKG Medical Demo",
+                pageTitle: "JavaScript Vital Signs ECG/EKG Medical Demo",
                 metaDescription:
                     "In this example we are simulating four channels of data showing that SciChart.js can be used to draw real-time\n        ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate, SPO2 blood\n        oxygen, volumetric flow and more.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Showcases how SciChart.js can be used in a **Medical context**, drawing ECGs with our High Performance JavaScript Charts",
-                title: "react Vital Signs ECG/EKG Medical Demo",
-                pageTitle: "react Vital Signs ECG/EKG Medical Demo",
+                title: "React Vital Signs ECG/EKG Medical Demo",
+                pageTitle: "React Vital Signs ECG/EKG Medical Demo",
                 metaDescription:
                     "In this example we are simulating four channels of data showing that SciChart.js can be used to draw real-time\n        ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate, SPO2 blood\n        oxygen, volumetric flow and more.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Showcases how SciChart.js can be used in a **Medical context**, drawing ECGs with our High Performance JavaScript Charts",
-                title: "angular Vital Signs ECG/EKG Medical Demo",
-                pageTitle: "angular Vital Signs ECG/EKG Medical Demo",
+                title: "Angular Vital Signs ECG/EKG Medical Demo",
+                pageTitle: "Angular Vital Signs ECG/EKG Medical Demo",
                 metaDescription:
                     "In this example we are simulating four channels of data showing that SciChart.js can be used to draw real-time\n        ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate, SPO2 blood\n        oxygen, volumetric flow and more.",
                 markdownContent: null,
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

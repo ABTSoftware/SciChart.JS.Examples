@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Learn how to make a **JavaScript Smooth Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Learn how to make a **javascript Smooth Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
-                title: "javascript Smooth Stacked Mountain Chart",
-                pageTitle: "javascript Smooth Stacked Mountain Chart | JavaScript Chart Library",
+                    "Learn how to make a **JavaScript Smooth Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
+                title: "JavaScript Smooth Stacked Mountain Chart",
+                pageTitle: "JavaScript Smooth Stacked Mountain Chart | JavaScript Chart Library",
                 metaDescription:
-                    "Design a high performance javascript Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
+                    "Design a high performance JavaScript Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Learn how to make a **react Smooth Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
-                title: "react Smooth Stacked Mountain Chart",
-                pageTitle: "react Smooth Stacked Mountain Chart | JavaScript Chart Library",
+                    "Learn how to make a **React Smooth Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
+                title: "React Smooth Stacked Mountain Chart",
+                pageTitle: "React Smooth Stacked Mountain Chart | JavaScript Chart Library",
                 metaDescription:
-                    "Design a high performance react Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
+                    "Design a high performance React Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Learn how to make a **angular Smooth Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
-                title: "angular Smooth Stacked Mountain Chart",
-                pageTitle: "angular Smooth Stacked Mountain Chart | JavaScript Chart Library",
+                    "Learn how to make a **Angular Smooth Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
+                title: "Angular Smooth Stacked Mountain Chart",
+                pageTitle: "Angular Smooth Stacked Mountain Chart | JavaScript Chart Library",
                 metaDescription:
-                    "Design a high performance angular Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
+                    "Design a high performance Angular Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

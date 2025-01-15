@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates all the permutations of JavaScript Line Chart using SciChart.js, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates all the permutations of JavaScript Line Chart using SciChart.js, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.",
-                title: "javascript Line Chart",
-                pageTitle: "javascript Line Chart | JavaScript Chart Examples | SciChart",
+                title: "JavaScript Line Chart",
+                pageTitle: "JavaScript Line Chart | JavaScript Chart Examples | SciChart",
                 metaDescription:
-                    "Discover how to create a high performance javascript Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
+                    "Discover how to create a high performance JavaScript Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates all the permutations of JavaScript Line Chart using SciChart.js, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.",
-                title: "react Line Chart",
-                pageTitle: "react Line Chart | JavaScript Chart Examples | SciChart",
+                title: "React Line Chart",
+                pageTitle: "React Line Chart | JavaScript Chart Examples | SciChart",
                 metaDescription:
-                    "Discover how to create a high performance react Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
+                    "Discover how to create a high performance React Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates all the permutations of JavaScript Line Chart using SciChart.js, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.",
-                title: "angular Line Chart",
-                pageTitle: "angular Line Chart | JavaScript Chart Examples | SciChart",
+                title: "Angular Line Chart",
+                pageTitle: "Angular Line Chart | JavaScript Chart Examples | SciChart",
                 metaDescription:
-                    "Discover how to create a high performance angular Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
+                    "Discover how to create a high performance Angular Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

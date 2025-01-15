@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
                 title: "Rich Interactions Showcase",
                 pageTitle: "Rich Interactions Showcase",
                 metaDescription:
-                    "This demo showcases the incredible realtime performance of our javascript charts by updating the series with millions of data-points!",
+                    "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
                 title: "Rich Interactions Showcase",
                 pageTitle: "Rich Interactions Showcase",
                 metaDescription:
-                    "This demo showcases the incredible realtime performance of our react charts by updating the series with millions of data-points!",
+                    "This demo showcases the incredible realtime performance of our React charts by updating the series with millions of data-points!",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
                 title: "Rich Interactions Showcase",
                 pageTitle: "Rich Interactions Showcase",
                 metaDescription:
-                    "This demo showcases the incredible realtime performance of our angular charts by updating the series with millions of data-points!",
+                    "This demo showcases the incredible realtime performance of our Angular charts by updating the series with millions of data-points!",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

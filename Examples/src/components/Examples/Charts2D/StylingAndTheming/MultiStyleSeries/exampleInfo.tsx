@@ -10,29 +10,29 @@ const metaData: IExampleMetadata =
             "Demonstrates how to use multiple styles on a single series on **JavaScript Charts** using SciChart.js, High Performance JavaScript Charts. This uses a RenderDataTransform to split the data so that we can draw the selected points using additional customised drawingProviders. This means that modifiers still see a single series with the original data.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Demonstrates how to use multiple styles on a single series on **javascript Charts** using SciChart.js, High Performance JavaScript Charts. This uses a RenderDataTransform to split the data so that we can draw the selected points using additional customised drawingProviders. This means that modifiers still see a single series with the original data.",
-                title: "javascript Chart with Multi-Style Series",
-                pageTitle: "javascript Chart with Multi-Style Series",
+                    "Demonstrates how to use multiple styles on a single series on **JavaScript Charts** using SciChart.js, High Performance JavaScript Charts. This uses a RenderDataTransform to split the data so that we can draw the selected points using additional customised drawingProviders. This means that modifiers still see a single series with the original data.",
+                title: "JavaScript Chart with Multi-Style Series",
+                pageTitle: "JavaScript Chart with Multi-Style Series",
                 metaDescription:
                     "Demonstrates how to apply multiple different styles to a single series using RenderDataTransform",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Demonstrates how to use multiple styles on a single series on **react Charts** using SciChart.js, High Performance JavaScript Charts. This uses a RenderDataTransform to split the data so that we can draw the selected points using additional customised drawingProviders. This means that modifiers still see a single series with the original data.",
-                title: "react Chart with Multi-Style Series",
-                pageTitle: "react Chart with Multi-Style Series",
+                    "Demonstrates how to use multiple styles on a single series on **React Charts** using SciChart.js, High Performance JavaScript Charts. This uses a RenderDataTransform to split the data so that we can draw the selected points using additional customised drawingProviders. This means that modifiers still see a single series with the original data.",
+                title: "React Chart with Multi-Style Series",
+                pageTitle: "React Chart with Multi-Style Series",
                 metaDescription:
                     "Demonstrates how to apply multiple different styles to a single series using RenderDataTransform",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Demonstrates how to use multiple styles on a single series on **angular Charts** using SciChart.js, High Performance JavaScript Charts. This uses a RenderDataTransform to split the data so that we can draw the selected points using additional customised drawingProviders. This means that modifiers still see a single series with the original data.",
-                title: "angular Chart with Multi-Style Series",
-                pageTitle: "angular Chart with Multi-Style Series",
+                    "Demonstrates how to use multiple styles on a single series on **Angular Charts** using SciChart.js, High Performance JavaScript Charts. This uses a RenderDataTransform to split the data so that we can draw the selected points using additional customised drawingProviders. This means that modifiers still see a single series with the original data.",
+                title: "Angular Chart with Multi-Style Series",
+                pageTitle: "Angular Chart with Multi-Style Series",
                 metaDescription:
                     "Demonstrates how to apply multiple different styles to a single series using RenderDataTransform",
                 markdownContent: null,
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
                 title: "Client/Server Websocket Data Streaming",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
                 title: "Client/Server Websocket Data Streaming",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
                 title: "Client/Server Websocket Data Streaming",
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

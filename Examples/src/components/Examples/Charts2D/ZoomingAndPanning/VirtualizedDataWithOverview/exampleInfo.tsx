@@ -10,29 +10,29 @@ const metaData: IExampleMetadata =
             "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
-                title: "Virtualized javascript Charts: Load Data on Zoom/Pan",
-                pageTitle: "Virtualized javascript Charts: Load Data on Zoom/Pan",
+                title: "Virtualized JavaScript Charts: Load Data on Zoom/Pan",
+                pageTitle: "Virtualized JavaScript Charts: Load Data on Zoom/Pan",
                 metaDescription:
                     "shows how to load data on zoom/pan and how to create an overview chart for this case.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
-                title: "Virtualized react Charts: Load Data on Zoom/Pan",
-                pageTitle: "Virtualized react Charts: Load Data on Zoom/Pan",
+                title: "Virtualized React Charts: Load Data on Zoom/Pan",
+                pageTitle: "Virtualized React Charts: Load Data on Zoom/Pan",
                 metaDescription:
                     "shows how to load data on zoom/pan and how to create an overview chart for this case.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
-                title: "Virtualized angular Charts: Load Data on Zoom/Pan",
-                pageTitle: "Virtualized angular Charts: Load Data on Zoom/Pan",
+                title: "Virtualized Angular Charts: Load Data on Zoom/Pan",
+                pageTitle: "Virtualized Angular Charts: Load Data on Zoom/Pan",
                 metaDescription:
                     "shows how to load data on zoom/pan and how to create an overview chart for this case.",
                 markdownContent: null,
@@ -53,6 +53,9 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {
+            rxjs: "^7.5.6",
+        },
     };
 //// End of computer generated metadata
 

@@ -10,28 +10,28 @@ const metaData: IExampleMetadata =
             "Demonstrates how Annotation layering a **JavaScript Chart** using SciChart.js, High Performance JavaScript Charts\nNotice the difference between annotations rendered to SVG and Canvas, as well as **annotationLayer** property effect.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Demonstrates how Annotation layering a **javascript Chart** using SciChart.js, High Performance JavaScript Charts\nNotice the difference between annotations rendered to SVG and Canvas, as well as **annotationLayer** property effect.",
-                title: "javascript Chart Annotation Layers",
-                pageTitle: "javascript Chart Annotation Layers",
-                metaDescription: "Demonstrates how layering works a javascript Chart using SciChart.js Annotations API",
+                    "Demonstrates how Annotation layering a **JavaScript Chart** using SciChart.js, High Performance JavaScript Charts\nNotice the difference between annotations rendered to SVG and Canvas, as well as **annotationLayer** property effect.",
+                title: "JavaScript Chart Annotation Layers",
+                pageTitle: "JavaScript Chart Annotation Layers",
+                metaDescription: "Demonstrates how layering works a JavaScript Chart using SciChart.js Annotations API",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Demonstrates how Annotation layering a **react Chart** using SciChart.js, High Performance JavaScript Charts\nNotice the difference between annotations rendered to SVG and Canvas, as well as **annotationLayer** property effect.",
-                title: "react Chart Annotation Layers",
-                pageTitle: "react Chart Annotation Layers",
-                metaDescription: "Demonstrates how layering works a react Chart using SciChart.js Annotations API",
+                    "Demonstrates how Annotation layering a **React Chart** using SciChart.js, High Performance JavaScript Charts\nNotice the difference between annotations rendered to SVG and Canvas, as well as **annotationLayer** property effect.",
+                title: "React Chart Annotation Layers",
+                pageTitle: "React Chart Annotation Layers",
+                metaDescription: "Demonstrates how layering works a React Chart using SciChart.js Annotations API",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Demonstrates how Annotation layering a **angular Chart** using SciChart.js, High Performance JavaScript Charts\nNotice the difference between annotations rendered to SVG and Canvas, as well as **annotationLayer** property effect.",
-                title: "angular Chart Annotation Layers",
-                pageTitle: "angular Chart Annotation Layers",
-                metaDescription: "Demonstrates how layering works a angular Chart using SciChart.js Annotations API",
+                    "Demonstrates how Annotation layering a **Angular Chart** using SciChart.js, High Performance JavaScript Charts\nNotice the difference between annotations rendered to SVG and Canvas, as well as **annotationLayer** property effect.",
+                title: "Angular Chart Annotation Layers",
+                pageTitle: "Angular Chart Annotation Layers",
+                metaDescription: "Demonstrates how layering works a Angular Chart using SciChart.js Annotations API",
                 markdownContent: null,
             },
         },
@@ -50,6 +50,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

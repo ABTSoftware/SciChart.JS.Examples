@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
-                title: "javascript Realtime Ticking Stock Charts",
-                pageTitle: "javascript Realtime Ticking Stock Chart | SciChart.js",
+                title: "JavaScript Realtime Ticking Stock Charts",
+                pageTitle: "JavaScript Realtime Ticking Stock Chart | SciChart.js",
                 metaDescription:
-                    "Create a javascript Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
+                    "Create a JavaScript Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
-                title: "react Realtime Ticking Stock Charts",
-                pageTitle: "react Realtime Ticking Stock Chart | SciChart.js",
+                title: "React Realtime Ticking Stock Charts",
+                pageTitle: "React Realtime Ticking Stock Chart | SciChart.js",
                 metaDescription:
-                    "Create a react Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
+                    "Create a React Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
-                title: "angular Realtime Ticking Stock Charts",
-                pageTitle: "angular Realtime Ticking Stock Chart | SciChart.js",
+                title: "Angular Realtime Ticking Stock Charts",
+                pageTitle: "Angular Realtime Ticking Stock Chart | SciChart.js",
                 metaDescription:
-                    "Create a angular Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
+                    "Create a Angular Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,10 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {
+            "websocket-ts": "^1.1.1",
+            rxjs: "^7.5.6",
+        },
     };
 //// End of computer generated metadata
 

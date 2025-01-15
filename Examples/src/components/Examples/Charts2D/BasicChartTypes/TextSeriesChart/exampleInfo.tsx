@@ -10,28 +10,28 @@ const metaData: IExampleMetadata =
             "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
-                title: "javascript Text Chart",
-                pageTitle: "javascript Text Chart",
-                metaDescription: "Create javascript Text Chart with high performance SciChart.js.  ",
+                title: "JavaScript Text Chart",
+                pageTitle: "JavaScript Text Chart",
+                metaDescription: "Create JavaScript Text Chart with high performance SciChart.js.  ",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
-                title: "react Text Chart",
-                pageTitle: "react Text Chart",
-                metaDescription: "Create react Text Chart with high performance SciChart.js.  ",
+                title: "React Text Chart",
+                pageTitle: "React Text Chart",
+                metaDescription: "Create React Text Chart with high performance SciChart.js.  ",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
-                title: "angular Text Chart",
-                pageTitle: "angular Text Chart",
-                metaDescription: "Create angular Text Chart with high performance SciChart.js.  ",
+                title: "Angular Text Chart",
+                pageTitle: "Angular Text Chart",
+                metaDescription: "Create Angular Text Chart with high performance SciChart.js.  ",
                 markdownContent: null,
             },
         },
@@ -50,6 +50,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

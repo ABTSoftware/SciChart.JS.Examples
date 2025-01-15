@@ -10,27 +10,27 @@ const metaData: IExampleMetadata =
             "Demonstrates how to run **Dataset Animations** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to run **Dataset Animations** using SciChart.js, High Performance JavaScript Charts",
-                title: "javascript Chart Data Animation",
-                pageTitle: "javascript Chart Data Animation",
+                title: "JavaScript Chart Data Animation",
+                pageTitle: "JavaScript Chart Data Animation",
                 metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to run **Dataset Animations** using SciChart.js, High Performance JavaScript Charts",
-                title: "react Chart Data Animation",
-                pageTitle: "react Chart Data Animation",
+                title: "React Chart Data Animation",
+                pageTitle: "React Chart Data Animation",
                 metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to run **Dataset Animations** using SciChart.js, High Performance JavaScript Charts",
-                title: "angular Chart Data Animation",
-                pageTitle: "angular Chart Data Animation",
+                title: "Angular Chart Data Animation",
+                pageTitle: "Angular Chart Data Animation",
                 metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
                 markdownContent: null,
             },
@@ -50,6 +50,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

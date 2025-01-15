@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "For this example, we demonstrate how to create a **JavaScript OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "For this example, we demonstrate how to create a **javascript OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
-                title: "javascript OHLC Chart",
-                pageTitle: "javascript OHLC Chart | JavaScript Chart Examples | SciChart",
+                    "For this example, we demonstrate how to create a **JavaScript OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
+                title: "JavaScript OHLC Chart",
+                pageTitle: "JavaScript OHLC Chart | JavaScript Chart Examples | SciChart",
                 metaDescription:
-                    "Easily create javascript OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
+                    "Easily create JavaScript OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "For this example, we demonstrate how to create a **react OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
-                title: "react OHLC Chart",
-                pageTitle: "react OHLC Chart | JavaScript Chart Examples | SciChart",
+                    "For this example, we demonstrate how to create a **React OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
+                title: "React OHLC Chart",
+                pageTitle: "React OHLC Chart | JavaScript Chart Examples | SciChart",
                 metaDescription:
-                    "Easily create react OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
+                    "Easily create React OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "For this example, we demonstrate how to create a **angular OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
-                title: "angular OHLC Chart",
-                pageTitle: "angular OHLC Chart | JavaScript Chart Examples | SciChart",
+                    "For this example, we demonstrate how to create a **Angular OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
+                title: "Angular OHLC Chart",
+                pageTitle: "Angular OHLC Chart | JavaScript Chart Examples | SciChart",
                 metaDescription:
-                    "Easily create angular OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
+                    "Easily create Angular OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

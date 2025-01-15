@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",
-                title: "Zoom and Pan a Realtime javascript Chart",
-                pageTitle: "Zoom and Pan a Realtime javascript Chart",
+                title: "Zoom and Pan a Realtime JavaScript Chart",
+                pageTitle: "Zoom and Pan a Realtime JavaScript Chart",
                 metaDescription:
-                    "Demonstrates how to zoom and pan a realtime javascript Chart while it is updating, with SciChart.js ZoomState API",
+                    "Demonstrates how to zoom and pan a realtime JavaScript Chart while it is updating, with SciChart.js ZoomState API",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",
-                title: "Zoom and Pan a Realtime react Chart",
-                pageTitle: "Zoom and Pan a Realtime react Chart",
+                title: "Zoom and Pan a Realtime React Chart",
+                pageTitle: "Zoom and Pan a Realtime React Chart",
                 metaDescription:
-                    "Demonstrates how to zoom and pan a realtime react Chart while it is updating, with SciChart.js ZoomState API",
+                    "Demonstrates how to zoom and pan a realtime React Chart while it is updating, with SciChart.js ZoomState API",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",
-                title: "Zoom and Pan a Realtime angular Chart",
-                pageTitle: "Zoom and Pan a Realtime angular Chart",
+                title: "Zoom and Pan a Realtime Angular Chart",
+                pageTitle: "Zoom and Pan a Realtime Angular Chart",
                 metaDescription:
-                    "Demonstrates how to zoom and pan a realtime angular Chart while it is updating, with SciChart.js ZoomState API",
+                    "Demonstrates how to zoom and pan a realtime Angular Chart while it is updating, with SciChart.js ZoomState API",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

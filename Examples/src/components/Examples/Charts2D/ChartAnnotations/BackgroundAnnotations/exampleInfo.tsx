@@ -10,29 +10,29 @@ const metaData: IExampleMetadata =
             "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js, High Performance JavaScript Charts",
-                title: "javascript Quadrant Chart using Background Annotations",
-                pageTitle: "javascript Quadrant Chart using Background Annotations",
+                title: "JavaScript Quadrant Chart using Background Annotations",
+                pageTitle: "JavaScript Quadrant Chart using Background Annotations",
                 metaDescription:
                     "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js Annotations API",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js, High Performance JavaScript Charts",
-                title: "react Quadrant Chart using Background Annotations",
-                pageTitle: "react Quadrant Chart using Background Annotations",
+                title: "React Quadrant Chart using Background Annotations",
+                pageTitle: "React Quadrant Chart using Background Annotations",
                 metaDescription:
                     "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js Annotations API",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js, High Performance JavaScript Charts",
-                title: "angular Quadrant Chart using Background Annotations",
-                pageTitle: "angular Quadrant Chart using Background Annotations",
+                title: "Angular Quadrant Chart using Background Annotations",
+                pageTitle: "Angular Quadrant Chart using Background Annotations",
                 metaDescription:
                     "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js Annotations API",
                 markdownContent: null,
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

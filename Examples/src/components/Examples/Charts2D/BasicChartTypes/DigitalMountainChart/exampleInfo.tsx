@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "For Digital Mountain Charts, you can use this demonstration to see how to create a **JavaScript Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "For Digital Mountain Charts, you can use this demonstration to see how to create a **javascript Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
-                title: "javascript Digital Mountain Chart",
-                pageTitle: "javascript Digital Mountain Chart | JavaScript Chart Example",
+                    "For Digital Mountain Charts, you can use this demonstration to see how to create a **JavaScript Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
+                title: "JavaScript Digital Mountain Chart",
+                pageTitle: "JavaScript Digital Mountain Chart | JavaScript Chart Example",
                 metaDescription:
-                    "Create javascript Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
+                    "Create JavaScript Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "For Digital Mountain Charts, you can use this demonstration to see how to create a **react Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
-                title: "react Digital Mountain Chart",
-                pageTitle: "react Digital Mountain Chart | JavaScript Chart Example",
+                    "For Digital Mountain Charts, you can use this demonstration to see how to create a **React Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
+                title: "React Digital Mountain Chart",
+                pageTitle: "React Digital Mountain Chart | JavaScript Chart Example",
                 metaDescription:
-                    "Create react Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
+                    "Create React Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "For Digital Mountain Charts, you can use this demonstration to see how to create a **angular Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
-                title: "angular Digital Mountain Chart",
-                pageTitle: "angular Digital Mountain Chart | JavaScript Chart Example",
+                    "For Digital Mountain Charts, you can use this demonstration to see how to create a **Angular Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
+                title: "Angular Digital Mountain Chart",
+                pageTitle: "Angular Digital Mountain Chart | JavaScript Chart Example",
                 metaDescription:
-                    "Create angular Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
+                    "Create Angular Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

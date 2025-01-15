@@ -10,29 +10,29 @@ const metaData: IExampleMetadata =
             "Demonstrates how to use the Builder Api to create **Reusable Chart Templates** using SciChart.js Builder API. Use this method when you want to create a template for a chart and add data later.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to use the Builder Api to create **Reusable Chart Templates** using SciChart.js Builder API. Use this method when you want to create a template for a chart and add data later.",
-                title: "javascript Chart with Reusable Templates using Shared Data",
-                pageTitle: "javascript Chart with Reusable Templates using Shared Data",
+                title: "JavaScript Chart with Reusable Templates using Shared Data",
+                pageTitle: "JavaScript Chart with Reusable Templates using Shared Data",
                 metaDescription:
                     "Demonstrates how to use the Builder Api to create Reusable Chart Templates.Data can be easily integrated into a definition and shared between series",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to use the Builder Api to create **Reusable Chart Templates** using SciChart.js Builder API. Use this method when you want to create a template for a chart and add data later.",
-                title: "react Chart with Reusable Templates using Shared Data",
-                pageTitle: "react Chart with Reusable Templates using Shared Data",
+                title: "React Chart with Reusable Templates using Shared Data",
+                pageTitle: "React Chart with Reusable Templates using Shared Data",
                 metaDescription:
                     "Demonstrates how to use the Builder Api to create Reusable Chart Templates.Data can be easily integrated into a definition and shared between series",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to use the Builder Api to create **Reusable Chart Templates** using SciChart.js Builder API. Use this method when you want to create a template for a chart and add data later.",
-                title: "angular Chart with Reusable Templates using Shared Data",
-                pageTitle: "angular Chart with Reusable Templates using Shared Data",
+                title: "Angular Chart with Reusable Templates using Shared Data",
+                pageTitle: "Angular Chart with Reusable Templates using Shared Data",
                 metaDescription:
                     "Demonstrates how to use the Builder Api to create Reusable Chart Templates.Data can be easily integrated into a definition and shared between series",
                 markdownContent: null,
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

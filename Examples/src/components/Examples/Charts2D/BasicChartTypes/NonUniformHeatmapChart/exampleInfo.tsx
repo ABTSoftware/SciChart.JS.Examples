@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "This SciChart demo demonstrates how to create a **JavaScript Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "This SciChart demo demonstrates how to create a **javascript Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
-                title: "javascript Non Uniform Heatmap Chart",
-                pageTitle: "javascript Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
+                    "This SciChart demo demonstrates how to create a **JavaScript Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
+                title: "JavaScript Non Uniform Heatmap Chart",
+                pageTitle: "JavaScript Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
                 metaDescription:
-                    "Create javascript Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
+                    "Create JavaScript Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "This SciChart demo demonstrates how to create a **react Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
-                title: "react Non Uniform Heatmap Chart",
-                pageTitle: "react Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
+                    "This SciChart demo demonstrates how to create a **React Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
+                title: "React Non Uniform Heatmap Chart",
+                pageTitle: "React Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
                 metaDescription:
-                    "Create react Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
+                    "Create React Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "This SciChart demo demonstrates how to create a **angular Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
-                title: "angular Non Uniform Heatmap Chart",
-                pageTitle: "angular Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
+                    "This SciChart demo demonstrates how to create a **Angular Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
+                title: "Angular Non Uniform Heatmap Chart",
+                pageTitle: "Angular Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
                 metaDescription:
-                    "Create angular Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
+                    "Create Angular Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

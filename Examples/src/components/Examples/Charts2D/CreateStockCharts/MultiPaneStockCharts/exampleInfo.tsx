@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Using the default multi-chart sync APIs, create a multi-pane stock chart example with indicator panels. Zooming, panning, cursors are synchronised between the charts. This is a simpler way to create charts than subcharts, but will have a performance hit on some browsers.",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Using the default multi-chart sync APIs, create a multi-pane stock chart example with indicator panels. Zooming, panning, cursors are synchronised between the charts. This is a simpler way to create charts than subcharts, but will have a performance hit on some browsers.",
-                title: "javascript Multi-Pane Stock Charts using Sync Multi-Chart",
-                pageTitle: "javascript Multi-Pane Stock Chart | View JavaScript Charts",
+                title: "JavaScript Multi-Pane Stock Charts using Sync Multi-Chart",
+                pageTitle: "JavaScript Multi-Pane Stock Chart | View JavaScript Charts",
                 metaDescription:
-                    "Create a javascript Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
+                    "Create a JavaScript Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Using the default multi-chart sync APIs, create a multi-pane stock chart example with indicator panels. Zooming, panning, cursors are synchronised between the charts. This is a simpler way to create charts than subcharts, but will have a performance hit on some browsers.",
-                title: "react Multi-Pane Stock Charts using Sync Multi-Chart",
-                pageTitle: "react Multi-Pane Stock Chart | View JavaScript Charts",
+                title: "React Multi-Pane Stock Charts using Sync Multi-Chart",
+                pageTitle: "React Multi-Pane Stock Chart | View JavaScript Charts",
                 metaDescription:
-                    "Create a react Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
+                    "Create a React Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Using the default multi-chart sync APIs, create a multi-pane stock chart example with indicator panels. Zooming, panning, cursors are synchronised between the charts. This is a simpler way to create charts than subcharts, but will have a performance hit on some browsers.",
-                title: "angular Multi-Pane Stock Charts using Sync Multi-Chart",
-                pageTitle: "angular Multi-Pane Stock Chart | View JavaScript Charts",
+                title: "Angular Multi-Pane Stock Charts using Sync Multi-Chart",
+                pageTitle: "Angular Multi-Pane Stock Chart | View JavaScript Charts",
                 metaDescription:
-                    "Create a angular Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
+                    "Create a Angular Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

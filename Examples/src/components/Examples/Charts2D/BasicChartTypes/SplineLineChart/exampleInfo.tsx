@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **JavaScript Spline Line Chart** using SciChart.js, our feature-rich JavaScript Chart Library",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Demonstrates how to create a **javascript Spline Line Chart** using SciChart.js, our feature-rich JavaScript Chart Library",
-                title: "javascript Spline Line Chart",
-                pageTitle: "javascript Spline Line Chart | JavaScript Chart Library",
+                    "Demonstrates how to create a **JavaScript Spline Line Chart** using SciChart.js, our feature-rich JavaScript Chart Library",
+                title: "JavaScript Spline Line Chart",
+                pageTitle: "JavaScript Spline Line Chart | JavaScript Chart Library",
                 metaDescription:
-                    "Discover how to create a javascript Spline Line Chart with SciChart. Demo includes algorithm for smoother lines. Get your free trial now.",
+                    "Discover how to create a JavaScript Spline Line Chart with SciChart. Demo includes algorithm for smoother lines. Get your free trial now.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Demonstrates how to create a **react Spline Line Chart** using SciChart.js, our feature-rich JavaScript Chart Library",
-                title: "react Spline Line Chart",
-                pageTitle: "react Spline Line Chart | JavaScript Chart Library",
+                    "Demonstrates how to create a **React Spline Line Chart** using SciChart.js, our feature-rich JavaScript Chart Library",
+                title: "React Spline Line Chart",
+                pageTitle: "React Spline Line Chart | JavaScript Chart Library",
                 metaDescription:
-                    "Discover how to create a react Spline Line Chart with SciChart. Demo includes algorithm for smoother lines. Get your free trial now.",
+                    "Discover how to create a React Spline Line Chart with SciChart. Demo includes algorithm for smoother lines. Get your free trial now.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Demonstrates how to create a **angular Spline Line Chart** using SciChart.js, our feature-rich JavaScript Chart Library",
-                title: "angular Spline Line Chart",
-                pageTitle: "angular Spline Line Chart | JavaScript Chart Library",
+                    "Demonstrates how to create a **Angular Spline Line Chart** using SciChart.js, our feature-rich JavaScript Chart Library",
+                title: "Angular Spline Line Chart",
+                pageTitle: "Angular Spline Line Chart | JavaScript Chart Library",
                 metaDescription:
-                    "Discover how to create a angular Spline Line Chart with SciChart. Demo includes algorithm for smoother lines. Get your free trial now.",
+                    "Discover how to create a Angular Spline Line Chart with SciChart. Demo includes algorithm for smoother lines. Get your free trial now.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

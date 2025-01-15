@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **JavaScript Spline Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Software",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Demonstrates how to create a **javascript Spline Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Software",
-                title: "javascript Spline Band Chart",
-                pageTitle: "javascript Spline Band Chart | JavaScript Charts | SciChart",
+                    "Demonstrates how to create a **JavaScript Spline Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Software",
+                title: "JavaScript Spline Band Chart",
+                pageTitle: "JavaScript Spline Band Chart | JavaScript Charts | SciChart",
                 metaDescription:
-                    "SciChart's javascript Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.",
+                    "SciChart's JavaScript Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Demonstrates how to create a **react Spline Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Software",
-                title: "react Spline Band Chart",
-                pageTitle: "react Spline Band Chart | JavaScript Charts | SciChart",
+                    "Demonstrates how to create a **React Spline Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Software",
+                title: "React Spline Band Chart",
+                pageTitle: "React Spline Band Chart | JavaScript Charts | SciChart",
                 metaDescription:
-                    "SciChart's react Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.",
+                    "SciChart's React Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Demonstrates how to create a **angular Spline Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Software",
-                title: "angular Spline Band Chart",
-                pageTitle: "angular Spline Band Chart | JavaScript Charts | SciChart",
+                    "Demonstrates how to create a **Angular Spline Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Software",
+                title: "Angular Spline Band Chart",
+                pageTitle: "Angular Spline Band Chart | JavaScript Charts | SciChart",
                 metaDescription:
-                    "SciChart's angular Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.",
+                    "SciChart's Angular Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

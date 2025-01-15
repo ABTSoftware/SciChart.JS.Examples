@@ -10,27 +10,27 @@ const metaData: IExampleMetadata =
             "Demonstrates how to add a legend to a **JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Demonstrates how to add a legend to a **javascript Chart** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how to add a legend to a **JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Chart Legends API",
                 pageTitle: "Chart Legends API",
                 metaDescription:
                     "Demonstrates how to add a Legends to a JavaScript Line Chart using SciChart.js. The legend is created when you add a LegendModifier type to the sciChartSurface.chartModifiers collection.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Demonstrates how to add a legend to a **react Chart** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how to add a legend to a **React Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Chart Legends API",
                 pageTitle: "Chart Legends API",
                 metaDescription:
                     "Demonstrates how to add a Legends to a JavaScript Line Chart using SciChart.js. The legend is created when you add a LegendModifier type to the sciChartSurface.chartModifiers collection.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Demonstrates how to add a legend to a **angular Chart** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how to add a legend to a **Angular Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Chart Legends API",
                 pageTitle: "Chart Legends API",
                 metaDescription:
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

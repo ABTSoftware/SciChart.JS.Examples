@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates how to add **Series Selection** to a chart using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to add **Series Selection** to a chart using SciChart.js, High Performance JavaScript Charts",
                 title: "Using Series Selection",
                 pageTitle: "Using Series Selection",
                 metaDescription:
-                    "Demonstrates Hit-Testing a javascript Chart - point and click on the chart and get feedback about what data-points were clicked",
+                    "Demonstrates Hit-Testing a JavaScript Chart - point and click on the chart and get feedback about what data-points were clicked",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to add **Series Selection** to a chart using SciChart.js, High Performance JavaScript Charts",
                 title: "Using Series Selection",
                 pageTitle: "Using Series Selection",
                 metaDescription:
-                    "Demonstrates Hit-Testing a react Chart - point and click on the chart and get feedback about what data-points were clicked",
+                    "Demonstrates Hit-Testing a React Chart - point and click on the chart and get feedback about what data-points were clicked",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to add **Series Selection** to a chart using SciChart.js, High Performance JavaScript Charts",
                 title: "Using Series Selection",
                 pageTitle: "Using Series Selection",
                 metaDescription:
-                    "Demonstrates Hit-Testing a angular Chart - point and click on the chart and get feedback about what data-points were clicked",
+                    "Demonstrates Hit-Testing a Angular Chart - point and click on the chart and get feedback about what data-points were clicked",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

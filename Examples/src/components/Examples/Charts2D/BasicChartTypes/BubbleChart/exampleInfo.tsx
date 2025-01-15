@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **JavaScript Bubble Chart** This is a JavaScript Chart type which draws point-markers (Ellipse, Square, Triangle, Circle) at X,Y locations",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Demonstrates how to create a **javascript Bubble Chart** This is a JavaScript Chart type which draws point-markers (Ellipse, Square, Triangle, Circle) at X,Y locations",
-                title: "javascript Bubble Chart",
-                pageTitle: "javascript Bubble Chart | Online JavaScript Chart Examples",
+                    "Demonstrates how to create a **JavaScript Bubble Chart** This is a JavaScript Chart type which draws point-markers (Ellipse, Square, Triangle, Circle) at X,Y locations",
+                title: "JavaScript Bubble Chart",
+                pageTitle: "JavaScript Bubble Chart | Online JavaScript Chart Examples",
                 metaDescription:
-                    "Create a high performance javascript Bubble Chart with Sci-Chart. Demo shows how to draw point-markers at X,Y locations. Get your free demo now.",
+                    "Create a high performance JavaScript Bubble Chart with Sci-Chart. Demo shows how to draw point-markers at X,Y locations. Get your free demo now.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Demonstrates how to create a **react Bubble Chart** This is a JavaScript Chart type which draws point-markers (Ellipse, Square, Triangle, Circle) at X,Y locations",
-                title: "react Bubble Chart",
-                pageTitle: "react Bubble Chart | Online JavaScript Chart Examples",
+                    "Demonstrates how to create a **React Bubble Chart** This is a JavaScript Chart type which draws point-markers (Ellipse, Square, Triangle, Circle) at X,Y locations",
+                title: "React Bubble Chart",
+                pageTitle: "React Bubble Chart | Online JavaScript Chart Examples",
                 metaDescription:
-                    "Create a high performance react Bubble Chart with Sci-Chart. Demo shows how to draw point-markers at X,Y locations. Get your free demo now.",
+                    "Create a high performance React Bubble Chart with Sci-Chart. Demo shows how to draw point-markers at X,Y locations. Get your free demo now.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Demonstrates how to create a **angular Bubble Chart** This is a JavaScript Chart type which draws point-markers (Ellipse, Square, Triangle, Circle) at X,Y locations",
-                title: "angular Bubble Chart",
-                pageTitle: "angular Bubble Chart | Online JavaScript Chart Examples",
+                    "Demonstrates how to create a **Angular Bubble Chart** This is a JavaScript Chart type which draws point-markers (Ellipse, Square, Triangle, Circle) at X,Y locations",
+                title: "Angular Bubble Chart",
+                pageTitle: "Angular Bubble Chart | Online JavaScript Chart Examples",
                 metaDescription:
-                    "Create a high performance angular Bubble Chart with Sci-Chart. Demo shows how to draw point-markers at X,Y locations. Get your free demo now.",
+                    "Create a high performance Angular Bubble Chart with Sci-Chart. Demo shows how to draw point-markers at X,Y locations. Get your free demo now.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

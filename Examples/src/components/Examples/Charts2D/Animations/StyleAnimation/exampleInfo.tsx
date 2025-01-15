@@ -10,27 +10,27 @@ const metaData: IExampleMetadata =
             "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",
-                title: "javascript Style Animation",
-                pageTitle: "javascript Style Animation",
+                title: "JavaScript Style Animation",
+                pageTitle: "JavaScript Style Animation",
                 metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",
-                title: "react Style Animation",
-                pageTitle: "react Style Animation",
+                title: "React Style Animation",
+                pageTitle: "React Style Animation",
                 metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",
-                title: "angular Style Animation",
-                pageTitle: "angular Style Animation",
+                title: "Angular Style Animation",
+                pageTitle: "Angular Style Animation",
                 metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
                 markdownContent: null,
             },
@@ -50,6 +50,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

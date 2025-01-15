@@ -187,9 +187,9 @@ async function generateMetadata() {
 
         // Convert for each framework, maintaining proper capitalization
         const frameworkMappings = {
-            JavaScript: "javascript",
-            React: "react",
-            Angular: "angular",
+            JavaScript: "JavaScript",
+            React: "React",
+            Angular: "Angular",
         };
 
         Object.entries(frameworkMappings).forEach(([properCase, lowerCase]) => {
@@ -212,7 +212,7 @@ async function generateMetadata() {
                         ? stringifyReactComponent(subtitle(properCase))
                         : stringifyReactComponent(subtitle);
 
-                frameworks[lowerCase] = {
+                frameworks[properCase] = {
                     subtitle: subtitleString,
                     title: getFrameworkValue("title"),
                     pageTitle: getFrameworkValue("pageTitle"),
@@ -221,7 +221,7 @@ async function generateMetadata() {
                 };
             } catch (e) {
                 console.log(`Error processing framework ${properCase} for ${dir}:`, e);
-                frameworks[lowerCase] = {
+                frameworks[properCase] = {
                     subtitle: "",
                     title: "",
                     pageTitle: "",
@@ -255,7 +255,14 @@ async function generateMetadata() {
             sandboxConfig: oldInfo.sandboxConfig || {},
             markdownContent: oldInfo.markdownContent || null,
             pageLayout: oldInfo.pageLayout || EPageLayout.Default,
-            extraDependencies: oldInfo.extraDependencies || {},
+            extraDependencies: oldInfo.extraDependencies
+                ? Object.fromEntries(
+                      Object.entries(oldInfo.extraDependencies).map(([key, value]) => [
+                          key.includes("-") ? `"${key}"` : key,
+                          value,
+                      ])
+                  )
+                : {},
         });
     }
 

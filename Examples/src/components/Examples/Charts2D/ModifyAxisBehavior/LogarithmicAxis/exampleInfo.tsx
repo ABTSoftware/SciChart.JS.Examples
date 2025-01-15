@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **JavaScript Chart with Logarithmic axis** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Demonstrates how to create a **javascript Chart with Logarithmic axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "javascript Chart with Logarithmic Axis Example",
-                pageTitle: "javascript Chart with Logarithmic Axis Example",
+                    "Demonstrates how to create a **JavaScript Chart with Logarithmic axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Chart with Logarithmic Axis Example",
+                pageTitle: "JavaScript Chart with Logarithmic Axis Example",
                 metaDescription:
-                    "Demonstrates Logarithmic Axis on a javascript Chart using SciChart.js. SciChart supports logarithmic axis with scientific or engineering notation and positive and negative values",
+                    "Demonstrates Logarithmic Axis on a JavaScript Chart using SciChart.js. SciChart supports logarithmic axis with scientific or engineering notation and positive and negative values",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Demonstrates how to create a **react Chart with Logarithmic axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "react Chart with Logarithmic Axis Example",
-                pageTitle: "react Chart with Logarithmic Axis Example",
+                    "Demonstrates how to create a **React Chart with Logarithmic axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "React Chart with Logarithmic Axis Example",
+                pageTitle: "React Chart with Logarithmic Axis Example",
                 metaDescription:
-                    "Demonstrates Logarithmic Axis on a react Chart using SciChart.js. SciChart supports logarithmic axis with scientific or engineering notation and positive and negative values",
+                    "Demonstrates Logarithmic Axis on a React Chart using SciChart.js. SciChart supports logarithmic axis with scientific or engineering notation and positive and negative values",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Demonstrates how to create a **angular Chart with Logarithmic axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "angular Chart with Logarithmic Axis Example",
-                pageTitle: "angular Chart with Logarithmic Axis Example",
+                    "Demonstrates how to create a **Angular Chart with Logarithmic axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Chart with Logarithmic Axis Example",
+                pageTitle: "Angular Chart with Logarithmic Axis Example",
                 metaDescription:
-                    "Demonstrates Logarithmic Axis on a angular Chart using SciChart.js. SciChart supports logarithmic axis with scientific or engineering notation and positive and negative values",
+                    "Demonstrates Logarithmic Axis on a Angular Chart using SciChart.js. SciChart supports logarithmic axis with scientific or engineering notation and positive and negative values",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

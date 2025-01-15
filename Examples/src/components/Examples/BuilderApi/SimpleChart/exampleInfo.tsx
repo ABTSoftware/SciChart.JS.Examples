@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to use the Builder Api to create a **Simple Chart** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Demonstrates how to use the Builder Api to create a **Simple Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Simple Chart using Builder API",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to use the Builder Api to create a simple chart using a definition object. The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Demonstrates how to use the Builder Api to create a **Simple Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Simple Chart using Builder API",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to use the Builder Api to create a simple chart using a definition object. The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Demonstrates how to use the Builder Api to create a **Simple Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Simple Chart using Builder API",
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

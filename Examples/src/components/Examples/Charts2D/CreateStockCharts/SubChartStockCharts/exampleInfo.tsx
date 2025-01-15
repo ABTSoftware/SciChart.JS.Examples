@@ -10,31 +10,31 @@ const metaData: IExampleMetadata =
             "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
                     "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
-                title: "javascript Multi-Pane Stock Charts using Subcharts",
-                pageTitle: "javascript Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
+                title: "JavaScript Multi-Pane Stock Charts using Subcharts",
+                pageTitle: "JavaScript Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
                 metaDescription:
-                    "Create a javascript Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
+                    "Create a JavaScript Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
                     "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
-                title: "react Multi-Pane Stock Charts using Subcharts",
-                pageTitle: "react Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
+                title: "React Multi-Pane Stock Charts using Subcharts",
+                pageTitle: "React Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
                 metaDescription:
-                    "Create a react Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
+                    "Create a React Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
                     "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
-                title: "angular Multi-Pane Stock Charts using Subcharts",
-                pageTitle: "angular Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
+                title: "Angular Multi-Pane Stock Charts using Subcharts",
+                pageTitle: "Angular Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
                 metaDescription:
-                    "Create a angular Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
+                    "Create a Angular Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
                 markdownContent: null,
             },
         },
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 

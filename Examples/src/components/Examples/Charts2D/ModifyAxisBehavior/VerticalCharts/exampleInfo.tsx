@@ -10,29 +10,29 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **rotated JavaScript Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            javascript: {
+            JavaScript: {
                 subtitle:
-                    "Demonstrates how to create a **rotated javascript Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "javascript Vertical Charts",
-                pageTitle: "javascript Vertical Charts",
+                    "Demonstrates how to create a **rotated JavaScript Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Vertical Charts",
+                pageTitle: "JavaScript Vertical Charts",
                 metaDescription:
                     "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
                 markdownContent: null,
             },
-            react: {
+            React: {
                 subtitle:
-                    "Demonstrates how to create a **rotated react Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "react Vertical Charts",
-                pageTitle: "react Vertical Charts",
+                    "Demonstrates how to create a **rotated React Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "React Vertical Charts",
+                pageTitle: "React Vertical Charts",
                 metaDescription:
                     "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
                 markdownContent: null,
             },
-            angular: {
+            Angular: {
                 subtitle:
-                    "Demonstrates how to create a **rotated angular Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "angular Vertical Charts",
-                pageTitle: "angular Vertical Charts",
+                    "Demonstrates how to create a **rotated Angular Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Vertical Charts",
+                pageTitle: "Angular Vertical Charts",
                 metaDescription:
                     "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
                 markdownContent: null,
@@ -53,6 +53,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
+        extraDependencies: {},
     };
 //// End of computer generated metadata
 
