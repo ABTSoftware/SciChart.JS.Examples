@@ -20,6 +20,8 @@ import {
     EExecuteOn,
     TextAnnotation,
     ECoordinateMode,
+    NativeTextAnnotation,
+    EWrapTo,
 } from "scichart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -104,10 +106,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         // use RubberBandXyZoomModifier with Right Mouse Button
         // use easingFunction to animate zoom
         new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton, easingFunction: easing.elastic }),
-        new ZoomPanModifier(),
+        // enable pan withZoomPanModifier, and additionally e PinchZoom to allow zooming with pinch gesture on touch devices by setting enableZoom
+        new ZoomPanModifier({ enableZoom: true }),
         new MouseWheelZoomModifier(),
-        // use PinchZoomModifier to allow zooming with pinch gesture on touch devices
-        new PinchZoomModifier(),
+        // remark: PinchZoom functionality was included into ZoomPanModifier.
+        // if having any conflicts, check the value of modifier.enableZoom
+        // new PinchZoomModifier(),
         // Zoom extents on double click
         new ZoomExtentsModifier({ easingFunction: easing.elastic })
     );
@@ -139,21 +143,21 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             opacity: 0.38,
-            fontSize: 28,
+            fontSize: 20,
         })
     );
     sciChartSurface.annotations.add(
-        new TextAnnotation({
+        new NativeTextAnnotation({
             text: "Try mouse-wheel, left/right mouse drag, mousewheel on axis, pinch zoom, double-click to zoom to fit etc...",
             x1: 0.5,
-            y1: 0.5,
-            yCoordShift: 50,
+            y1: 0.6,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             opacity: 0.45,
             fontSize: 17,
+            wrapTo: EWrapTo.ViewRect,
         })
     );
     return { wasmContext, sciChartSurface };

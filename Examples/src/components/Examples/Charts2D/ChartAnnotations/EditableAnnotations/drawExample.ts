@@ -263,7 +263,7 @@ export const drawExample = (SciChartImage: string) => async (rootElement: string
         tooltipAnnotation
     );
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 

@@ -234,7 +234,7 @@ export const getChartsInitializationAPI = () => {
         sciChartSurface.annotations.add(watermarkAnnotation);
 
         // MODIFIERS
-        sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+        sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
         sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
         sciChartSurface.chartModifiers.add(
@@ -315,7 +315,9 @@ export const getChartsInitializationAPI = () => {
         });
         sciChartSurface.renderableSeries.add(columnSeries);
 
-        sciChartSurface.chartModifiers.add(new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }));
+        sciChartSurface.chartModifiers.add(
+            new ZoomPanModifier({ enableZoom: true, xyDirection: EXyDirection.XDirection })
+        );
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }));
         sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
         sciChartSurface.chartModifiers.add(
@@ -386,7 +388,9 @@ export const getChartsInitializationAPI = () => {
         });
         sciChartSurface.renderableSeries.add(rsiRenderableSeries);
 
-        sciChartSurface.chartModifiers.add(new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }));
+        sciChartSurface.chartModifiers.add(
+            new ZoomPanModifier({ enableZoom: true, xyDirection: EXyDirection.XDirection })
+        );
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }));
         sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
         sciChartSurface.chartModifiers.add(

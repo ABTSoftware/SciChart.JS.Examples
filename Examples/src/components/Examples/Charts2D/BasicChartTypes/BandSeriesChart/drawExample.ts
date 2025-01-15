@@ -74,7 +74,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
 
     // Optional: Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(
+        new ZoomExtentsModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
+        new MouseWheelZoomModifier()
+    );
 
     sciChartSurface.zoomExtents();
     return { wasmContext, sciChartSurface };

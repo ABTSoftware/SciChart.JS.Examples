@@ -63,7 +63,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(stackedMountainCollection);
 
     // Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(
+        new ZoomExtentsModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
+        new MouseWheelZoomModifier()
+    );
 
     const legendModifier = new LegendModifier({
         placement: ELegendPlacement.TopLeft,

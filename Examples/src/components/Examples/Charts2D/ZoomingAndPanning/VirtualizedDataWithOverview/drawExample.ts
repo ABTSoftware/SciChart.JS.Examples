@@ -66,7 +66,7 @@ export const getChartsInitializationApi = () => {
             new ZoomExtentsModifier({ xyDirection: EXyDirection.YDirection }),
             new XAxisDragModifier(),
             new YAxisDragModifier(),
-            new ZoomPanModifier(),
+            new ZoomPanModifier({ enableZoom: true }),
             new MouseWheelZoomModifier()
         );
 

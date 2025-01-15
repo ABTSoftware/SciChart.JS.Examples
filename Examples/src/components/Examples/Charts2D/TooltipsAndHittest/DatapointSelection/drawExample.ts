@@ -16,6 +16,7 @@ import {
     LegendModifier,
     LineSeriesDataLabelProvider,
     DataLabelState,
+    ELegendPlacement,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -166,7 +167,7 @@ export const drawExample = async (
     );
 
     // Add a legend to the chart
-    sciChartSurface.chartModifiers.add(new LegendModifier());
+    sciChartSurface.chartModifiers.add(new LegendModifier({ placement: ELegendPlacement.BottomLeft }));
 
     // Add the DataPointSelectonModifier to the chart.
     // selectionChanged event / callback has the selected points in the arguments

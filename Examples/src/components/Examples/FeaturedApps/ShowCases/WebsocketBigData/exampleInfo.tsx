@@ -3,6 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-streaming-data.jpg";
+import { EPageLayout } from "../../../../../helpers/types/types";
 
 const Subtitle = (frameworkName: string) => (
     <p>
@@ -45,4 +46,5 @@ export const websocketBigDataDemoExampleInfo: TExampleInfo = {
     thumbnailImage: exampleImage,
     markdownContent,
     documentationLinks,
+    pageLayout: EPageLayout.MaxWidth,
 };

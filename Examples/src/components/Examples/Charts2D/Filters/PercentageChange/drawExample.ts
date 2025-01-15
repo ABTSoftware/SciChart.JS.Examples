@@ -116,7 +116,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement, usePerce
         lineSeries2.dataSeries = dataSeries2;
     }
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new RolloverModifier({ rolloverLineStroke: appTheme.VividTeal }));
 

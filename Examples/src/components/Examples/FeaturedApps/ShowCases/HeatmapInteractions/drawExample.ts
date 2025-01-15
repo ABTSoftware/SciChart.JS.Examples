@@ -406,7 +406,7 @@ export const getChartsInitializationApi = () => {
         );
 
         sciChartSurface.chartModifiers.add(
-            new ZoomPanModifier(),
+            new ZoomPanModifier({ enableZoom: true }),
             new ZoomExtentsModifier(),
             new MouseWheelZoomModifier(),
             new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton })

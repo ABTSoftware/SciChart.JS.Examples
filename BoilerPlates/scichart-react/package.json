@@ -23,7 +23,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "scichart": "^3.2.549",
-    "scichart-react": "^0.1.7"
+    "scichart": "^latest",
+    "scichart-react": "^0.1.9"
   }
 }

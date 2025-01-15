@@ -433,11 +433,11 @@ export const drawExample =
             renderTime = new Date().getTime() - renderStart;
             avgRenderTime = (avgRenderTime * loadCount + renderTime) / (loadCount + 1);
             newMessages.push({
-                title: `Average Load Time `,
+                title: `Avg Load Time `,
                 detail: `${avgLoadTime.toFixed(2)} ms`,
             });
             newMessages.push({
-                title: `Average Render Time `,
+                title: `Avg Render Time `,
                 detail: `${avgRenderTime.toFixed(2)} ms`,
             });
             newMessages.push({
@@ -568,7 +568,7 @@ export const drawExample =
             if (sciChartSurface.chartModifiers.size() === 0) {
                 sciChartSurface.chartModifiers.add(
                     new MouseWheelZoomModifier(),
-                    new ZoomPanModifier(),
+                    new ZoomPanModifier({ enableZoom: true }),
                     new ZoomExtentsModifier()
                 );
             }

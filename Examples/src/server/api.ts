@@ -1,9 +1,6 @@
 // api.js - api route module
 // tslint:disable: no-console
-import express = require("express");
-import path = require("path");
-import fs = require("fs");
-import { Request, Response } from "express";
+import express from "express";
 import { TBinanceCandleData } from "../components/Examples/TBinanceCandleData";
 import { candlesADAUSDT } from "./BinanceData/candlesADAUSDT";
 import { candlesBTCUSDT } from "./BinanceData/candlesBTCUSDT";

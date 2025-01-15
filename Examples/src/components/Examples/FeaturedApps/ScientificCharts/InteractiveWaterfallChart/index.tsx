@@ -24,8 +24,8 @@ export default function InteractiveWaterfallChart() {
                 chartsInitializationAPI.configureAfterInit();
             }} // callback executed when all charts within the group are initialized
         >
-            <SciChartReact style={{ flex: 1, flexBasis: "50%" }} initChart={chartsInitializationAPI.initMainChart} />
-            <div style={{ display: "flex", flex: 1, flexBasis: "50%" }}>
+            <SciChartReact style={{ flex: 1, flexBasis: "60%" }} initChart={chartsInitializationAPI.initMainChart} />
+            <div style={{ display: "flex", flex: 1, flexBasis: "40%" }}>
                 <SciChartReact style={{ flex: 1 }} initChart={chartsInitializationAPI.initCrossSectionLeft} />
                 <SciChartReact style={{ flex: 1 }} initChart={chartsInitializationAPI.initCrossSectionRight} />
             </div>

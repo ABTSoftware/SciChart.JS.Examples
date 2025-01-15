@@ -57,7 +57,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Keep first and last labels aligned to their ticks
     xAxis.axisRenderer.keepLabelsWithinAxis = false;
     xAxis.axisTitle = ["Top 5 Coins - Category Axis", "Custom labels using TextLabelProvider"];
-    xAxis.axisTitleStyle.fontSize = 18;
+    xAxis.axisTitleStyle.fontSize = 14;
 
     sciChartSurface.xAxes.add(xAxis);
 
@@ -69,11 +69,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelPostfix: "B",
         labelPrecision: 0,
         axisAlignment: EAxisAlignment.Left,
-        labelStyle: { fontSize: 18 },
+        labelStyle: { fontSize: 14 },
     });
     // Pass array to axisTitle to make it multiline
     yAxis.axisTitle = ["Market Cap - Numeric Axis", "formatting using prefix and postfix"];
-    yAxis.axisTitleStyle.fontSize = 18;
+    yAxis.axisTitleStyle.fontSize = 14;
 
     sciChartSurface.yAxes.add(yAxis);
 
@@ -108,9 +108,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelFormat: ENumericFormat.SignificantFigures,
         labelPrefix: "$",
         axisAlignment: EAxisAlignment.Right,
-        labelStyle: { fontSize: 18 },
+        labelStyle: { fontSize: 14 },
         axisTitle: ["Price - Logarithmic Axis", "base 2, labelFormat: SignificantFigures"],
-        axisTitleStyle: { fontSize: 18 },
+        axisTitleStyle: { fontSize: 14 },
     });
     sciChartSurface.yAxes.add(logYAxis);
 
