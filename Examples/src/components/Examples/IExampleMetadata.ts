@@ -1,3 +1,5 @@
+import { EPageLayout } from "../../helpers/types/types";
+
 export interface IExampleMetadata {
     exampleId: string; // Unique identifier for the example
     imagePath: string; // Path to the example's thumbnail image
@@ -10,7 +12,7 @@ export interface IExampleMetadata {
     onWebsite: boolean; // Whether the example is shown on the website
     filepath: string; // File path for the example
     thumbnailImage: string;
-    pageLayout?: string;
+    pageLayout?: EPageLayout;
     extraDependencies?: Record<string, string>;
     sandboxConfig?: Record<string, any>;
     markdownContent?: string | null;

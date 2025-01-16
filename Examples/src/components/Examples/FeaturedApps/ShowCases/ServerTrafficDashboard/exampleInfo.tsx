@@ -1,5 +1,6 @@
 import { createExampleInfo } from "../../../exampleInfoUtils";
 import { IExampleMetadata } from "../../../IExampleMetadata";
+import { EPageLayout } from "../../../../../helpers/types/types";
 
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
@@ -52,7 +53,7 @@ const metaData: IExampleMetadata =
         thumbnailImage: "javascript-server-traffic-dashboard.jpg",
         sandboxConfig: {},
         markdownContent: null,
-        pageLayout: "max-width",
+        pageLayout: EPageLayout.MaxWidth,
         extraDependencies: {
             "country-flag-icons": "^1.5.7",
         },

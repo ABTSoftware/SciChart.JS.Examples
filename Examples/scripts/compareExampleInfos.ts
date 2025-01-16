@@ -541,6 +541,10 @@ function getValue(value: any, framework?: TFrameworkName) {
 }
 
 function compareExampleInfos(currentInfo: any, oldInfo: any, errors: ComparisonError[], exampleName: string) {
+    console.log(`\nComparing example info for: ${exampleName}`);
+    console.log("Current info keys:", Object.keys(currentInfo));
+    console.log("Old info keys:", Object.keys(oldInfo));
+
     // Compare static properties
     const staticProps = [
         "onWebsite",
@@ -555,37 +559,65 @@ function compareExampleInfos(currentInfo: any, oldInfo: any, errors: ComparisonE
         "markdownContent",
     ];
 
+    console.log("Comparing static properties...");
     staticProps.forEach((prop) => {
-        compareAndCollectErrors(prop, oldInfo[prop], currentInfo[prop], errors, exampleName);
+        console.log(`Comparing property: ${prop}`);
+        try {
+            compareAndCollectErrors(prop, oldInfo[prop], currentInfo[prop], errors, exampleName);
+        } catch (error: any) {
+            console.error(`Error comparing ${prop}:`, error.message);
+            console.error("Stack:", error.stack);
+        }
     });
 
+    console.log("Comparing framework-specific properties...");
     // Compare framework-specific properties
     frameworks.forEach((framework) => {
+        console.log(`\nComparing framework: ${framework}`);
         // Framework-specific properties
         const frameworkProps = ["title", "pageTitle", "subtitle", "metaDescription"];
 
         frameworkProps.forEach((prop) => {
-            const oldValue = getValue(oldInfo[prop], framework);
-            const newValue = getValue(currentInfo[prop], framework);
-            compareAndCollectErrors(`${prop} (${framework})`, oldValue, newValue, errors, exampleName);
+            console.log(`Comparing property: ${prop}`);
+            try {
+                const oldValue = getValue(oldInfo[prop], framework);
+                const newValue = getValue(currentInfo[prop], framework);
+                compareAndCollectErrors(`${prop} (${framework})`, oldValue, newValue, errors, exampleName);
+            } catch (error: any) {
+                console.error(`Error comparing ${prop} for ${framework}:`, error.message);
+                console.error("Stack:", error.stack);
+            }
         });
     });
 }
 
 async function importExampleInfo(filePath: string) {
     try {
+        console.log(`Attempting to import: ${filePath}`);
         // Delete require cache to ensure fresh import
-        delete require.cache[require.resolve(filePath)];
-        return require(filePath);
-    } catch (error) {
-        console.error(`Error importing ${filePath}:`, error.message);
+        const resolvedPath = require.resolve(filePath);
+        console.log(`Resolved path: ${resolvedPath}`);
+        delete require.cache[resolvedPath];
+        const result = require(filePath);
+        console.log(`Successfully imported ${filePath}`);
+        return result;
+    } catch (error: any) {
+        console.error(`Error importing ${filePath}:`);
+        console.error(`Error name: ${error.name}`);
+        console.error(`Error message: ${error.message}`);
+        console.error(`Error stack: ${error.stack}`);
         return null;
     }
 }
 
 async function runComparison() {
+    console.log("Starting comparison...");
     const baseDir = path.join("src", "components", "Examples");
+    console.log("Base directory:", baseDir);
+
     const allExampleDirs = findExampleDirectories();
+    console.log("Found example directories:", allExampleDirs.length);
+
     const errors: ComparisonError[] = [];
     let processedCount = 0;
     let skippedCount = 0;
@@ -602,8 +634,15 @@ async function runComparison() {
         const exampleInfoPath = path.join(process.cwd(), fullPath, "exampleInfo");
         const oldExampleInfoPath = path.join(process.cwd(), fullPath, "OldExampleInfo");
 
+        console.log(`\nProcessing directory: ${dir}`);
+        console.log("Example info path:", exampleInfoPath);
+        console.log("Old example info path:", oldExampleInfoPath);
+
         const exampleInfoModule = await importExampleInfo(exampleInfoPath);
         const oldExampleInfoModule = await importExampleInfo(oldExampleInfoPath);
+
+        if (!exampleInfoModule) console.log("Failed to import example info module");
+        if (!oldExampleInfoModule) console.log("Failed to import old example info module");
 
         if (!exampleInfoModule || !oldExampleInfoModule) {
             // Report missing OldExampleInfo as an error
@@ -705,5 +744,11 @@ async function runComparison() {
 
 // When run directly, execute the comparison
 if (require.main === module) {
-    runComparison().catch(console.error);
+    runComparison().catch((error) => {
+        console.error("Top level error:");
+        console.error(`Error name: ${error.name}`);
+        console.error(`Error message: ${error.message}`);
+        console.error(`Error stack: ${error.stack}`);
+        process.exit(1);
+    });
 }
