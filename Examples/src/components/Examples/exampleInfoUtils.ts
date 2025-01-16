@@ -4,21 +4,50 @@ import { IExampleMetadata } from "./IExampleMetadata";
 import { getExampleImage } from "./exampleImages";
 import { EPageLayout } from "../../helpers/types/types";
 
+export enum EExampleProperty {
+    Title = "title",
+    PageTitle = "pageTitle",
+    Subtitle = "subtitle",
+    MetaDescription = "metaDescription",
+    MarkdownContent = "markdownContent",
+}
+
+const createFrameworkPropertyGetter = <T extends string = TFrameworkName, R = string>(
+    property: EExampleProperty,
+    defaultValue: R = "" as R
+) => {
+    return (metadata: IExampleMetadata) =>
+        (frameworkName: T): R => {
+            const normalizedFramework = frameworkName.toLowerCase();
+            const framework = metadata.frameworks[normalizedFramework];
+
+            if (!framework) {
+                console.warn(`Framework ${frameworkName} not found in metadata`);
+                return defaultValue;
+            }
+
+            const value = framework[property];
+            if (property === EExampleProperty.MarkdownContent) {
+                return (value ?? defaultValue) as R;
+            }
+            return value as R;
+        };
+};
+
 export const createExampleInfo = (metadata: IExampleMetadata): TExampleInfo => ({
     onWebsite: metadata.onWebsite,
-    title: (frameworkName: TFrameworkName) => metadata.frameworks[frameworkName.toLowerCase()].title,
-    pageTitle: (frameworkName: TFrameworkName) => metadata.frameworks[frameworkName.toLowerCase()].pageTitle,
+    title: createFrameworkPropertyGetter(EExampleProperty.Title)(metadata),
+    pageTitle: createFrameworkPropertyGetter(EExampleProperty.PageTitle)(metadata),
     path: metadata.path,
     filepath: metadata.filepath,
-    subtitle: (frameworkName: string) => metadata.frameworks[frameworkName.toLowerCase()].subtitle,
-    metaDescription: (frameworkName: TFrameworkName) =>
-        metadata.frameworks[frameworkName.toLowerCase()].metaDescription,
+    subtitle: createFrameworkPropertyGetter<string, React.ReactElement | string>(
+        EExampleProperty.Subtitle,
+        ""
+    )(metadata),
+    metaDescription: createFrameworkPropertyGetter(EExampleProperty.MetaDescription)(metadata),
     metaKeywords: metadata.metaKeywords,
     thumbnailImage: getExampleImage(metadata.imagePath),
-    markdownContent: (frameworkName: TFrameworkName) => {
-        const res = metadata.frameworks[frameworkName.toLowerCase()].markdownContent;
-        return res ?? "";
-    },
+    markdownContent: createFrameworkPropertyGetter(EExampleProperty.MarkdownContent)(metadata),
     documentationLinks: metadata.documentationLinks,
     sandboxConfig: normalizeValue(metadata.sandboxConfig),
     pageLayout: convertPageLayout(metadata.pageLayout),
