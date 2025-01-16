@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **JavaScript Chart with transparent axes** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to create a **JavaScript Chart with transparent axes** using SciChart.js, High Performance JavaScript Charts",
                 title: "Draw JavaScript Chart Behind Axis",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates the option of the transparent Axes customization on a JavaScript Chart using SciChart.js.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to create a **React Chart with transparent axes** using SciChart.js, High Performance JavaScript Charts",
                 title: "Draw React Chart Behind Axis",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates the option of the transparent Axes customization on a React Chart using SciChart.js.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to create a **Angular Chart with transparent axes** using SciChart.js, High Performance JavaScript Charts",
                 title: "Draw Angular Chart Behind Axis",

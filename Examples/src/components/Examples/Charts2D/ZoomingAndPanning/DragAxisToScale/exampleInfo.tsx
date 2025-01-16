@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to **scale or pan the Axis on a JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to **scale or pan the Axis on a JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Drag JavaScript Chart Axis to Scale or Pan",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to Zoom, Scale or Pan individual Axis on a JavaScript Chart with SciChart.js AxisDragModifiers",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to **scale or pan the Axis on a React Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Drag React Chart Axis to Scale or Pan",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to Zoom, Scale or Pan individual Axis on a React Chart with SciChart.js AxisDragModifiers",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to **scale or pan the Axis on a Angular Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Drag Angular Chart Axis to Scale or Pan",

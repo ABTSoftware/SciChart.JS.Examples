@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "We have created an example that demonstrates how to create a **JavaScript Scatter Chart** using SciChart.js",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "We have created an example that demonstrates how to create a **JavaScript Scatter Chart** using SciChart.js",
                 title: "JavaScript Scatter Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Create JavaScript Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "We have created an example that demonstrates how to create a **React Scatter Chart** using SciChart.js",
                 title: "React Scatter Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Create React Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "We have created an example that demonstrates how to create a **Angular Scatter Chart** using SciChart.js",
                 title: "Angular Scatter Chart",

@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Here we demonstrate how to create a **JavaScript Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Here we demonstrate how to create a **JavaScript Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",
                 title: "JavaScript Fan Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Discover how to create JavaScript Fan Chart with SciChart. Zoom in to see the detail you can go to using our JavaScript Charts. Get your free demo today. ",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Here we demonstrate how to create a **React Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",
                 title: "React Fan Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Discover how to create React Fan Chart with SciChart. Zoom in to see the detail you can go to using our JavaScript Charts. Get your free demo today. ",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Here we demonstrate how to create a **Angular Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",
                 title: "Angular Fan Chart",

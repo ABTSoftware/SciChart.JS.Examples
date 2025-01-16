@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates appending **millions of points** to a line chart with SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates appending **millions of points** to a line chart with SciChart.js, High Performance JavaScript Charts",
                 title: "Realtime JavaScript Chart Performance Demo",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates appending **millions of points** to a line chart with SciChart.js, High Performance JavaScript Charts",
                 title: "Realtime React Chart Performance Demo",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "This demo showcases the incredible realtime performance of our React charts by updating the series with millions of data-points!",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates appending **millions of points** to a line chart with SciChart.js, High Performance JavaScript Charts",
                 title: "Realtime Angular Chart Performance Demo",

@@ -10,7 +10,7 @@
     "dev": "webpack-dev-server --config webpack.client.no_server.config.js",
     "build": "rimraf ./build && npm run buildVanillaDemo && npm run buildServer && npm run buildClient",
     "start": "node ./build/server.js",
-    "buildServer": "rimraf ./build && webpack --config webpack.server.config.js",
+    "buildServer": "webpack --config webpack.server.config.js",
     "buildClient": "webpack --config webpack.client.config.js",
     "buildClient:watch": "webpack --config webpack.client.config.js --watch",
     "buildVanillaDemo": "npm run compileVanillaExamples",
@@ -27,8 +27,7 @@
     "generateFooterLinks": "ts-node before-generate.js && ts-node generate-footer-links.ts && ts-node after-generate.js",
     "prepare": "cd .. && husky install",
     "pretty-quick": "pretty-quick --staged",
-    "updateMarkdown": "node updateMarkdown.js",
-    "convertFrameworks": "ts-node -P tsconfig.node.json scripts/convertFrameworksToLowercase.ts"
+    "updateMarkdown": "node updateMarkdown.js"
   },
   "author": "",
   "license": "ISC",

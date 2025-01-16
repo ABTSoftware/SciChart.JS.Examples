@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
                 title: "Dragabble Event Markers",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
                 title: "Dragabble Event Markers",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
                 title: "Dragabble Event Markers",

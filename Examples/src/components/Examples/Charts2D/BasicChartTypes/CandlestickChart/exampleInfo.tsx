@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "This demo shows you how to create a **JavaScript Candlestick Chart** or Stock Chart using SciChart.js. Data is fetched from Binance and placed on the chart. Two moving averages are added. Zooming, panning and tooltips as well. Switch between Candlestick or Ohlc, or see the **Realtime Ticking Stock Charts** demo which shows how to add live updates.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "This demo shows you how to create a **JavaScript Candlestick Chart** or Stock Chart using SciChart.js. Data is fetched from Binance and placed on the chart. Two moving averages are added. Zooming, panning and tooltips as well. Switch between Candlestick or Ohlc, or see the **Realtime Ticking Stock Charts** demo which shows how to add live updates.",
                 title: "JavaScript Candlestick Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Discover how to create a JavaScript Candlestick Chart or Stock Chart using SciChart.js. For high Performance JavaScript Charts, get your free demo now.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "This demo shows you how to create a **React Candlestick Chart** or Stock Chart using SciChart.js. Data is fetched from Binance and placed on the chart. Two moving averages are added. Zooming, panning and tooltips as well. Switch between Candlestick or Ohlc, or see the **Realtime Ticking Stock Charts** demo which shows how to add live updates.",
                 title: "React Candlestick Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Discover how to create a React Candlestick Chart or Stock Chart using SciChart.js. For high Performance JavaScript Charts, get your free demo now.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "This demo shows you how to create a **Angular Candlestick Chart** or Stock Chart using SciChart.js. Data is fetched from Binance and placed on the chart. Two moving averages are added. Zooming, panning and tooltips as well. Switch between Candlestick or Ohlc, or see the **Realtime Ticking Stock Charts** demo which shows how to add live updates.",
                 title: "Angular Candlestick Chart",

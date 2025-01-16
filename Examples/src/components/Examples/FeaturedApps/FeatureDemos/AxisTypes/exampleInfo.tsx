@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High Performance JavaScript Charts",
                 title: "Axis Types",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High Performance JavaScript Charts",
                 title: "Axis Types",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High Performance JavaScript Charts",
                 title: "Axis Types",

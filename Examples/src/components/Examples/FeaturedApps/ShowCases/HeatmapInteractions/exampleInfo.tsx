@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
                 title: "Rich Interactions Showcase",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
                 title: "Rich Interactions Showcase",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "This demo showcases the incredible realtime performance of our React charts by updating the series with millions of data-points!",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
                 title: "Rich Interactions Showcase",

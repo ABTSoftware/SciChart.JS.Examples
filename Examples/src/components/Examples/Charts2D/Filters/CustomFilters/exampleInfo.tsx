@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
                 title: "Custom Filters",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
                 title: "Custom Filters",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
                 title: "Custom Filters",

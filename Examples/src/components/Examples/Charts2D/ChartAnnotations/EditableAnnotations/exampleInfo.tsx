@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a **JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a **JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "JavaScript Chart Editable Annotations",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a JavaScript Chart using SciChart.js Annotations API",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a **React Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "React Chart Editable Annotations",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a React Chart using SciChart.js Annotations API",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a **Angular Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Angular Chart Editable Annotations",

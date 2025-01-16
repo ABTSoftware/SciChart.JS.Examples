@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using CursorModifier Crosshairs",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates adding a Cursor (Crosshair) to a JavaScript Chart with SciChart.js CursorModifier",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using CursorModifier Crosshairs",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates adding a Cursor (Crosshair) to a React Chart with SciChart.js CursorModifier",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using CursorModifier Crosshairs",

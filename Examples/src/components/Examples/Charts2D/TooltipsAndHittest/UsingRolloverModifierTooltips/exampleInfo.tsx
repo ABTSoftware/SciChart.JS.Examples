@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create **tooltips on mouse-over** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to create **tooltips on mouse-over** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using Rollover Modifier Tooltips",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates adding Tooltips on mouse-move to a JavaScript Chart with SciChart.js RolloverModifier",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to create **tooltips on mouse-over** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using Rollover Modifier Tooltips",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates adding Tooltips on mouse-move to a React Chart with SciChart.js RolloverModifier",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to create **tooltips on mouse-over** using SciChart.js, High Performance JavaScript Charts",
                 title: "Using Rollover Modifier Tooltips",

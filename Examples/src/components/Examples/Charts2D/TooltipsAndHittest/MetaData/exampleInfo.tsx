@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to add and use **MetaData** in a chart using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to add and use **MetaData** in a chart using SciChart.js, High Performance JavaScript Charts",
                 title: "Datapoint Metadata Tooltips on JavaScript Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates using MetaData in a JavaScript Chart - add custom data to points for display or to drive visual customisation",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to add and use **MetaData** in a chart using SciChart.js, High Performance JavaScript Charts",
                 title: "Datapoint Metadata Tooltips on React Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates using MetaData in a React Chart - add custom data to points for display or to drive visual customisation",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to add and use **MetaData** in a chart using SciChart.js, High Performance JavaScript Charts",
                 title: "Datapoint Metadata Tooltips on Angular Chart",

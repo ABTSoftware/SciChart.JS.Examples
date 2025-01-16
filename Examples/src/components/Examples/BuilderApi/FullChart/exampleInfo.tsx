@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to use the Builder Api to create a **Fully Configured Chart** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to use the Builder Api to create a **Fully Configured Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Full Chart using Builder API",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to use the Builder Api to configure axes, series, annotations and modifiers using a definition object. The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to use the Builder Api to create a **Fully Configured Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Full Chart using Builder API",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to use the Builder Api to configure axes, series, annotations and modifiers using a definition object. The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to use the Builder Api to create a **Fully Configured Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Full Chart using Builder API",

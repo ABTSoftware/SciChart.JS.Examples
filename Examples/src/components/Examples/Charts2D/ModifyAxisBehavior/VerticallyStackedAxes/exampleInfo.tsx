@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Vertically-Stacked Axis in SciChart.js allows several traces with independent Y-axis to be placed on the same chart, stacking the Y-Axis and enabling an ECG/EEG-style trace. Great for neurological apps, medical apps, earthquake monitoring.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Vertically-Stacked Axis in SciChart.js allows several traces with independent Y-axis to be placed on the same chart, stacking the Y-Axis and enabling an ECG/EEG-style trace. Great for neurological apps, medical apps, earthquake monitoring.",
                 title: "JavaScript Chart with Vertically Stacked Axes",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates Vertically Stacked Axes on a JavaScript Chart using SciChart.js, allowing data to overlap",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Vertically-Stacked Axis in SciChart.js allows several traces with independent Y-axis to be placed on the same chart, stacking the Y-Axis and enabling an ECG/EEG-style trace. Great for neurological apps, medical apps, earthquake monitoring.",
                 title: "React Chart with Vertically Stacked Axes",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates Vertically Stacked Axes on a React Chart using SciChart.js, allowing data to overlap",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Vertically-Stacked Axis in SciChart.js allows several traces with independent Y-axis to be placed on the same chart, stacking the Y-Axis and enabling an ECG/EEG-style trace. Great for neurological apps, medical apps, earthquake monitoring.",
                 title: "Angular Chart with Vertically Stacked Axes",

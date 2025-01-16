@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "If you want to learn about heatmaps. this demo shows you how to create a **JavaScript Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "If you want to learn about heatmaps. this demo shows you how to create a **JavaScript Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
                 title: "JavaScript Heatmap Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Easily create a high performance JavaScript Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "If you want to learn about heatmaps. this demo shows you how to create a **React Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
                 title: "React Heatmap Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Easily create a high performance React Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "If you want to learn about heatmaps. this demo shows you how to create a **Angular Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
                 title: "Angular Heatmap Chart",

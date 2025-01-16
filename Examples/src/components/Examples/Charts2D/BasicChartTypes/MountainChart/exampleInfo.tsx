@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Use our Mountain Chart example to learn how to create a **JavaScript Mountain Chart** using SciChart.js, our in-house built JavaScript Chart framework.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Use our Mountain Chart example to learn how to create a **JavaScript Mountain Chart** using SciChart.js, our in-house built JavaScript Chart framework.",
                 title: "JavaScript Mountain Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Create JavaScript Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Use our Mountain Chart example to learn how to create a **React Mountain Chart** using SciChart.js, our in-house built JavaScript Chart framework.",
                 title: "React Mountain Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Create React Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Use our Mountain Chart example to learn how to create a **Angular Mountain Chart** using SciChart.js, our in-house built JavaScript Chart framework.",
                 title: "Angular Mountain Chart",

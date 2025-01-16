@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to use **Rotation and Alignment of Axis Labels** with SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to use **Rotation and Alignment of Axis Labels** with SciChart.js, High Performance JavaScript Charts",
                 title: "Rotated Labels and Alignment",
@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Rotate to create vertical axis labels and fit more on an axis",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to use **Rotation and Alignment of Axis Labels** with SciChart.js, High Performance JavaScript Charts",
                 title: "Rotated Labels and Alignment",
@@ -26,7 +26,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Rotate to create vertical axis labels and fit more on an axis",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to use **Rotation and Alignment of Axis Labels** with SciChart.js, High Performance JavaScript Charts",
                 title: "Rotated Labels and Alignment",

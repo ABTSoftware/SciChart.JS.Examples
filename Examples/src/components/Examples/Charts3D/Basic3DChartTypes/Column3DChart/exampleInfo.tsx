@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "The SciChart.js **JavaScript 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "The SciChart.js **JavaScript 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",
                 title: "JavaScript Column 3D Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Create detailed JavaScript 3D Column Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "The SciChart.js **React 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",
                 title: "React Column 3D Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Create detailed React 3D Column Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "The SciChart.js **Angular 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",
                 title: "Angular Column 3D Chart",

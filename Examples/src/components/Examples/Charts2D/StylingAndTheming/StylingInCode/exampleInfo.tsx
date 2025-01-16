@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to **style or theme a JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to **style or theme a JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Styling a JavaScript Chart in Code",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to style a JavaScript Chart entirely in code with SciChart.js themeing API",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to **style or theme a React Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Styling a React Chart in Code",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to style a React Chart entirely in code with SciChart.js themeing API",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to **style or theme a Angular Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Styling a Angular Chart in Code",

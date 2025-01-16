@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how create **JavaScript Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how create **JavaScript Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
                 title: "Dashed Line Styling",
@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates dashed line series in JavaScript Charts with SciChart.js",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how create **React Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
                 title: "Dashed Line Styling",
@@ -26,7 +26,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates dashed line series in React Charts with SciChart.js",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how create **Angular Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
                 title: "Dashed Line Styling",

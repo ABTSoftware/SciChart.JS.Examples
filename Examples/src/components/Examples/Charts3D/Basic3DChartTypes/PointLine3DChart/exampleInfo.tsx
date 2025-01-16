@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Our team demonstrates how to create a **JavaScript 3D Point Line Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Our team demonstrates how to create a **JavaScript 3D Point Line Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
                 title: "JavaScript Point Line 3D Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Create detailed JavaScript 3D Line Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Our team demonstrates how to create a **React 3D Point Line Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
                 title: "React Point Line 3D Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Create detailed React 3D Line Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Our team demonstrates how to create a **Angular 3D Point Line Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
                 title: "Angular Point Line 3D Chart",

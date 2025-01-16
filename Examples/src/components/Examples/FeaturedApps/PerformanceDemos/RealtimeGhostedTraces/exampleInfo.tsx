@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance JavaScript Charts",
                 title: "Realtime Ghosted Traces",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "This demo showcases the realtime performance of our JavaScript Chart by animating several series with thousands of data-points at 60 FPS",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance JavaScript Charts",
                 title: "Realtime Ghosted Traces",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "This demo showcases the realtime performance of our React Chart by animating several series with thousands of data-points at 60 FPS",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance JavaScript Charts",
                 title: "Realtime Ghosted Traces",

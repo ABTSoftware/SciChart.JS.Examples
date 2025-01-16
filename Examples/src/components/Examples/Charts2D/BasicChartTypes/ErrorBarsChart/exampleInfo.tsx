@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "This SciChart demo demonstrates how to create a **JavaScript Error Bars Chart** using SciChart.js our High Performance JavaScript Chart component.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "This SciChart demo demonstrates how to create a **JavaScript Error Bars Chart** using SciChart.js our High Performance JavaScript Chart component.",
                 title: "JavaScript Error Bars Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Create JavaScript Error Bars Chart using high performance SciChart.js. Display uncertainty or statistical confidence of a data-point. Get free demo now.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "This SciChart demo demonstrates how to create a **React Error Bars Chart** using SciChart.js our High Performance JavaScript Chart component.",
                 title: "React Error Bars Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Create React Error Bars Chart using high performance SciChart.js. Display uncertainty or statistical confidence of a data-point. Get free demo now.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "This SciChart demo demonstrates how to create a **Angular Error Bars Chart** using SciChart.js our High Performance JavaScript Chart component.",
                 title: "Angular Error Bars Chart",

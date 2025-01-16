@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "For an example that demonstrates how create a **JavaScript Pie Chart**, our demo code teaches you how to do this with SciChart's JavaScript Charting Library.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "For an example that demonstrates how create a **JavaScript Pie Chart**, our demo code teaches you how to do this with SciChart's JavaScript Charting Library.",
                 title: "JavaScript Pie Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Easily create and customise a high performance JavaScript Pie Chart with 5-star rated SciChart.js. Get your free trial now to access the whole library. ",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "For an example that demonstrates how create a **React Pie Chart**, our demo code teaches you how to do this with SciChart's JavaScript Charting Library.",
                 title: "React Pie Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Easily create and customise a high performance React Pie Chart with 5-star rated SciChart.js. Get your free trial now to access the whole library. ",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "For an example that demonstrates how create a **Angular Pie Chart**, our demo code teaches you how to do this with SciChart's JavaScript Charting Library.",
                 title: "Angular Pie Chart",

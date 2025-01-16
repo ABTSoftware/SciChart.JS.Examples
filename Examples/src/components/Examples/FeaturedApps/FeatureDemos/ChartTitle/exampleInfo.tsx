@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
                 title: "JavaScript Chart Title",
@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates chart title with different position and alignment options",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
                 title: "React Chart Title",
@@ -26,7 +26,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates chart title with different position and alignment options",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
                 title: "Angular Chart Title",

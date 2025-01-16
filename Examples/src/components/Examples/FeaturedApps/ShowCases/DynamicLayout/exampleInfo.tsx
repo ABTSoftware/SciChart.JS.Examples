@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates a custom modifier which can convert from single chart to grid layout and back using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back using SciChart.js, High Performance JavaScript Charts",
                 title: "Dynamic Layout Showcase",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back using SciChart.js, High Performance JavaScript Charts",
                 title: "Dynamic Layout Showcase",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates a custom modifier which can convert from single chart to grid layout and back using SciChart.js, High Performance JavaScript Charts",
                 title: "Dynamic Layout Showcase",

@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates interaction by dragging vertical and horizontal line thresholds on a mountain chart. As the thresholds move, the chart colour updates. The vertical mountain fill is done using a separate renderableSeries and a dataFilter which reshapes the data to draw only the portion above the threshold.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates interaction by dragging vertical and horizontal line thresholds on a mountain chart. As the thresholds move, the chart colour updates. The vertical mountain fill is done using a separate renderableSeries and a dataFilter which reshapes the data to draw only the portion above the threshold.",
                 title: "JavaScript Mountain Chart Draggable Thresholds",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to add draggable thresholds which change the series color in the chart in SciChart.js",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates interaction by dragging vertical and horizontal line thresholds on a mountain chart. As the thresholds move, the chart colour updates. The vertical mountain fill is done using a separate renderableSeries and a dataFilter which reshapes the data to draw only the portion above the threshold.",
                 title: "React Mountain Chart Draggable Thresholds",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to add draggable thresholds which change the series color in the chart in SciChart.js",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates interaction by dragging vertical and horizontal line thresholds on a mountain chart. As the thresholds move, the chart colour updates. The vertical mountain fill is done using a separate renderableSeries and a dataFilter which reshapes the data to draw only the portion above the threshold.",
                 title: "Angular Mountain Chart Draggable Thresholds",

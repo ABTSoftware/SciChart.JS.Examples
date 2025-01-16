@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates all the permutations of JavaScript Line Chart using SciChart.js, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates all the permutations of JavaScript Line Chart using SciChart.js, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.",
                 title: "JavaScript Line Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Discover how to create a high performance JavaScript Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates all the permutations of JavaScript Line Chart using SciChart.js, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.",
                 title: "React Line Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Discover how to create a high performance React Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates all the permutations of JavaScript Line Chart using SciChart.js, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.",
                 title: "Angular Line Chart",

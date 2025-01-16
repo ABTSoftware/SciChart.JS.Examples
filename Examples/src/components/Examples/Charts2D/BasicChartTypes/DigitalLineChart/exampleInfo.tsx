@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **JavaScript Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to create a **JavaScript Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",
                 title: "JavaScript Digital Line Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Discover how to create a JavaScript Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to create a **React Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",
                 title: "React Digital Line Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Discover how to create a React Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to create a **Angular Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",
                 title: "Angular Digital Line Chart",

@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to split lines into multiple segments so they can be individually colored according to thresholds, using SciChart.js, High Performance JavaScript Charts. This uses a RenderDataTransform to calculate the intersections between the data and the thresholds and add additional points.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to split lines into multiple segments so they can be individually colored according to thresholds, using SciChart.js, High Performance JavaScript Charts. This uses a RenderDataTransform to calculate the intersections between the data and the thresholds and add additional points.",
                 title: "JavaScript Chart with lines split by thresholds",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to use a RenderDataTransform to split lines into multiple segments so they can be individually colored according to thresholds",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to split lines into multiple segments so they can be individually colored according to thresholds, using SciChart.js, High Performance JavaScript Charts. This uses a RenderDataTransform to calculate the intersections between the data and the thresholds and add additional points.",
                 title: "React Chart with lines split by thresholds",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to use a RenderDataTransform to split lines into multiple segments so they can be individually colored according to thresholds",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to split lines into multiple segments so they can be individually colored according to thresholds, using SciChart.js, High Performance JavaScript Charts. This uses a RenderDataTransform to calculate the intersections between the data and the thresholds and add additional points.",
                 title: "Angular Chart with lines split by thresholds",

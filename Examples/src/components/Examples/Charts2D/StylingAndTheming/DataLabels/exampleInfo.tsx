@@ -9,21 +9,21 @@ const metaData: IExampleMetadata =
         description: "Shows how you can add **Data Labels** to a chart using SciChart.js",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle: "Shows how you can add **Data Labels** to a chart using SciChart.js",
                 title: "Data Labels",
                 pageTitle: "Data Labels",
                 metaDescription: "Show data labels on JavaScript Chart. Get your free demo now.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle: "Shows how you can add **Data Labels** to a chart using SciChart.js",
                 title: "Data Labels",
                 pageTitle: "Data Labels",
                 metaDescription: "Show data labels on React Chart. Get your free demo now.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle: "Shows how you can add **Data Labels** to a chart using SciChart.js",
                 title: "Data Labels",
                 pageTitle: "Data Labels",

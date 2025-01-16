@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "The example on this page demonstrates how to create a **JavaScript Stacked Column Chart** using our feature-rich JavaScript Chart Library, SciChart.js.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "The example on this page demonstrates how to create a **JavaScript Stacked Column Chart** using our feature-rich JavaScript Chart Library, SciChart.js.",
                 title: "JavaScript Stacked Column Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Discover how to create a JavaScript Stacked Column Chart using our feature-rich JavaScript Chart Library, SciChart.js. Get your free demo today!",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "The example on this page demonstrates how to create a **React Stacked Column Chart** using our feature-rich JavaScript Chart Library, SciChart.js.",
                 title: "React Stacked Column Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Discover how to create a React Stacked Column Chart using our feature-rich JavaScript Chart Library, SciChart.js. Get your free demo today!",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "The example on this page demonstrates how to create a **Angular Stacked Column Chart** using our feature-rich JavaScript Chart Library, SciChart.js.",
                 title: "Angular Stacked Column Chart",

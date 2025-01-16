@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **JavaScript Frequency / Audio Analyzer** with Fourier Transform (Frequency spectra) and a real-time frequency history using heatmaps. ***Note: this example requires microphone permissions to run.***",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to create a **JavaScript Frequency / Audio Analyzer** with Fourier Transform (Frequency spectra) and a real-time frequency history using heatmaps. ***Note: this example requires microphone permissions to run.***",
                 title: "Realtime Audio Analyzer Demo",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrating the capability of SciChart.js to create a JavaScript Audio Analyzer and visualize the Fourier-Transform of an audio waveform in realtime.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to create a **JavaScript Frequency / Audio Analyzer** with Fourier Transform (Frequency spectra) and a real-time frequency history using heatmaps. ***Note: this example requires microphone permissions to run.***",
                 title: "Realtime Audio Analyzer Demo",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrating the capability of SciChart.js to create a JavaScript Audio Analyzer and visualize the Fourier-Transform of an audio waveform in realtime.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to create a **JavaScript Frequency / Audio Analyzer** with Fourier Transform (Frequency spectra) and a real-time frequency history using heatmaps. ***Note: this example requires microphone permissions to run.***",
                 title: "Realtime Audio Analyzer Demo",

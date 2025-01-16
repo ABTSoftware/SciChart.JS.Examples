@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
                 title: "JavaScript Generic Animation",
@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
                 title: "React Generic Animation",
@@ -26,7 +26,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
                 title: "Angular Generic Animation",

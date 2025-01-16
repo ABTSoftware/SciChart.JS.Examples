@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
                 title: "JavaScript Population Pyramid",
@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Population Pyramid of Europe and Africa",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
                 title: "React Population Pyramid",
@@ -26,7 +26,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Population Pyramid of Europe and Africa",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
                 title: "Angular Population Pyramid",

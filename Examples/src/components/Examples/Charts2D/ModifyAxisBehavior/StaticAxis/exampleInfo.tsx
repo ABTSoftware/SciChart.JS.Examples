@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates a realtime **JavaScript static axis chart** - where the ticks and gridlines are fixed, but the labels change.\nWith SciChart.js High Performance JavaScript Charts you can achieve this simply by setting isStaticAxis property to true on the X axis.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates a realtime **JavaScript static axis chart** - where the ticks and gridlines are fixed, but the labels change.\nWith SciChart.js High Performance JavaScript Charts you can achieve this simply by setting isStaticAxis property to true on the X axis.",
                 title: "JavaScript Chart with Static X Axis",
@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates isStaticAxis on a JavaScript Chart using SciChart.js.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates a realtime **React static axis chart** - where the ticks and gridlines are fixed, but the labels change.\nWith SciChart.js High Performance JavaScript Charts you can achieve this simply by setting isStaticAxis property to true on the X axis.",
                 title: "React Chart with Static X Axis",
@@ -26,7 +26,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates isStaticAxis on a React Chart using SciChart.js.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates a realtime **Angular static axis chart** - where the ticks and gridlines are fixed, but the labels change.\nWith SciChart.js High Performance JavaScript Charts you can achieve this simply by setting isStaticAxis property to true on the X axis.",
                 title: "Angular Chart with Static X Axis",

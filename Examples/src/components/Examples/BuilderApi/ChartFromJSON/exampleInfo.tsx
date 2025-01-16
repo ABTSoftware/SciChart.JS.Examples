@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
                 title: "Chart from JSON",
@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates how to create a JavaScript Chart from JSON using the builder API. ",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
                 title: "Chart from JSON",
@@ -26,7 +26,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates how to create a React Chart from JSON using the builder API. ",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
                 title: "Chart from JSON",

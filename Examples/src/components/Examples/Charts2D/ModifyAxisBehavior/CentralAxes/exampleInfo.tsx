@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **JavaScript Chart with central axes** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to create a **JavaScript Chart with central axes** using SciChart.js, High Performance JavaScript Charts",
                 title: "JavaScript Chart with Central Axes",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates Central Axes on a JavaScript Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable layout",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to create a **React Chart with central axes** using SciChart.js, High Performance JavaScript Charts",
                 title: "React Chart with Central Axes",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates Central Axes on a React Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable layout",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to create a **Angular Chart with central axes** using SciChart.js, High Performance JavaScript Charts",
                 title: "Angular Chart with Central Axes",

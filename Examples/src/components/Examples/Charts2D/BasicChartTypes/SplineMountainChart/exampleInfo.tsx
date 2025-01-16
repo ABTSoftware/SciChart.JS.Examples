@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "This example showcases how to create a **JavaScript Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "This example showcases how to create a **JavaScript Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",
                 title: "JavaScript Spline Mountain Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "JavaScript Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "This example showcases how to create a **React Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",
                 title: "React Spline Mountain Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "React Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "This example showcases how to create a **Angular Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",
                 title: "Angular Spline Mountain Chart",

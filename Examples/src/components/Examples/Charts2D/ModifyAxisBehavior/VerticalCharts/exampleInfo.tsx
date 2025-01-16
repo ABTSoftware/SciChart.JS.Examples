@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **rotated JavaScript Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to create a **rotated JavaScript Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
                 title: "JavaScript Vertical Charts",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to create a **rotated React Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
                 title: "React Vertical Charts",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to create a **rotated Angular Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",
                 title: "Angular Vertical Charts",

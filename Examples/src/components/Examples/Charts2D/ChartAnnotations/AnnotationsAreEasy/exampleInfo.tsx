@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to add Annotations (shapes, boxes, lines, text) to a **JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to add Annotations (shapes, boxes, lines, text) to a **JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "JavaScript Chart Annotations",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to place Annotations (lines, arrows, markers, text) over a JavaScript Chart using SciChart.js Annotations API",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to add Annotations (shapes, boxes, lines, text) to a **React Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "React Chart Annotations",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to place Annotations (lines, arrows, markers, text) over a React Chart using SciChart.js Annotations API",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to add Annotations (shapes, boxes, lines, text) to a **Angular Chart** using SciChart.js, High Performance JavaScript Charts",
                 title: "Angular Chart Annotations",

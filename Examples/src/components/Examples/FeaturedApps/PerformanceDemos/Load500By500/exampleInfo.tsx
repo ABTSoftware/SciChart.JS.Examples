@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates loading **500 series, each with 500 points (250k points total) instantly**. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates loading **500 series, each with 500 points (250k points total) instantly**. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
                 title: "Load 500 Series x 500 Points Performance Demo",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates loading **500 series, each with 500 points (250k points total) instantly**. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
                 title: "Load 500 Series x 500 Points Performance Demo",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "This demo showcases the incredible performance of our React Chart by loading 500 series with 500 points (250k points) instantly!",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates loading **500 series, each with 500 points (250k points total) instantly**. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
                 title: "Load 500 Series x 500 Points Performance Demo",

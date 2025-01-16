@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Using the default multi-chart sync APIs, create a multi-pane stock chart example with indicator panels. Zooming, panning, cursors are synchronised between the charts. This is a simpler way to create charts than subcharts, but will have a performance hit on some browsers.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Using the default multi-chart sync APIs, create a multi-pane stock chart example with indicator panels. Zooming, panning, cursors are synchronised between the charts. This is a simpler way to create charts than subcharts, but will have a performance hit on some browsers.",
                 title: "JavaScript Multi-Pane Stock Charts using Sync Multi-Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Create a JavaScript Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Using the default multi-chart sync APIs, create a multi-pane stock chart example with indicator panels. Zooming, panning, cursors are synchronised between the charts. This is a simpler way to create charts than subcharts, but will have a performance hit on some browsers.",
                 title: "React Multi-Pane Stock Charts using Sync Multi-Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Create a React Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Using the default multi-chart sync APIs, create a multi-pane stock chart example with indicator panels. Zooming, panning, cursors are synchronised between the charts. This is a simpler way to create charts than subcharts, but will have a performance hit on some browsers.",
                 title: "Angular Multi-Pane Stock Charts using Sync Multi-Chart",

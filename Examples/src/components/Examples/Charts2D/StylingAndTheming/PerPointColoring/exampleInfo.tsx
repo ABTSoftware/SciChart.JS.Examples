@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how create **JavaScript Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how create **JavaScript Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
                 title: "Coloring Series per-point using the PaletteProvider",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how create **React Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
                 title: "Coloring Series per-point using the PaletteProvider",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how create **Angular Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",
                 title: "Coloring Series per-point using the PaletteProvider",

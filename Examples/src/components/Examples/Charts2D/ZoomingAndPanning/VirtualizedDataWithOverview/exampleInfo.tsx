@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
                 title: "Virtualized JavaScript Charts: Load Data on Zoom/Pan",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "shows how to load data on zoom/pan and how to create an overview chart for this case.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
                 title: "Virtualized React Charts: Load Data on Zoom/Pan",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "shows how to load data on zoom/pan and how to create an overview chart for this case.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
                 title: "Virtualized Angular Charts: Load Data on Zoom/Pan",

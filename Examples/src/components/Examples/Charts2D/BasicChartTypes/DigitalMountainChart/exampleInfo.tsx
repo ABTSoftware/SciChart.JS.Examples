@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "For Digital Mountain Charts, you can use this demonstration to see how to create a **JavaScript Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "For Digital Mountain Charts, you can use this demonstration to see how to create a **JavaScript Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
                 title: "JavaScript Digital Mountain Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Create JavaScript Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "For Digital Mountain Charts, you can use this demonstration to see how to create a **React Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
                 title: "React Digital Mountain Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Create React Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "For Digital Mountain Charts, you can use this demonstration to see how to create a **Angular Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
                 title: "Angular Digital Mountain Chart",

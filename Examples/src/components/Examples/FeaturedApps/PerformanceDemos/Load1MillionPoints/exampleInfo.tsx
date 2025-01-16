@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
                 title: "Load 1 Million Points Performance Demo",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
                 title: "Load 1 Million Points Performance Demo",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
                 title: "Load 1 Million Points Performance Demo",

@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **Custom Theme** for SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to create a **Custom Theme** for SciChart.js, High Performance JavaScript Charts",
                 title: "Create a Custom Theme for JavaScript Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to create a Custom Theme for a SciChart.js JavaScript Chart using our Theming API",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to create a **Custom Theme** for SciChart.js, High Performance JavaScript Charts",
                 title: "Create a Custom Theme for React Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to create a Custom Theme for a SciChart.js React Chart using our Theming API",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to create a **Custom Theme** for SciChart.js, High Performance JavaScript Charts",
                 title: "Create a Custom Theme for Angular Chart",

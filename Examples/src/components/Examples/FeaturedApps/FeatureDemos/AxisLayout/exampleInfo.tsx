@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
                 title: "JavaScript Chart Axis Layout Options",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
                 title: "React Chart Axis Layout Options",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
                 title: "Angular Chart Axis Layout Options",

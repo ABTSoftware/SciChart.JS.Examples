@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **Chart with Transparent Background** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to create a **Chart with Transparent Background** using SciChart.js, High Performance JavaScript Charts",
                 title: "Background Image with Transparency",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to create a JavaScript Chart with background image using transparency in SciChart.js",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to create a **Chart with Transparent Background** using SciChart.js, High Performance JavaScript Charts",
                 title: "Background Image with Transparency",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to create a React Chart with background image using transparency in SciChart.js",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to create a **Chart with Transparent Background** using SciChart.js, High Performance JavaScript Charts",
                 title: "Background Image with Transparency",

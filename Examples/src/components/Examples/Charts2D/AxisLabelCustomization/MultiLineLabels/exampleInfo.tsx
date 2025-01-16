@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to use **Multi-Line Text** for axis labels using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to use **Multi-Line Text** for axis labels using SciChart.js, High Performance JavaScript Charts",
                 title: "Multi-line and Rotated Text labels",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to use **Multi-Line Text** for axis labels using SciChart.js, High Performance JavaScript Charts",
                 title: "Multi-line and Rotated Text labels",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to use **Multi-Line Text** for axis labels using SciChart.js, High Performance JavaScript Charts",
                 title: "Multi-line and Rotated Text labels",

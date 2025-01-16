@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to add **Series Selection** to a chart using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to add **Series Selection** to a chart using SciChart.js, High Performance JavaScript Charts",
                 title: "Using Series Selection",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates Hit-Testing a JavaScript Chart - point and click on the chart and get feedback about what data-points were clicked",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to add **Series Selection** to a chart using SciChart.js, High Performance JavaScript Charts",
                 title: "Using Series Selection",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates Hit-Testing a React Chart - point and click on the chart and get feedback about what data-points were clicked",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to add **Series Selection** to a chart using SciChart.js, High Performance JavaScript Charts",
                 title: "Using Series Selection",

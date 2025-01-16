@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
                 title: "JavaScript Realtime Ticking Stock Charts",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Create a JavaScript Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
                 title: "React Realtime Ticking Stock Charts",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Create a React Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
                 title: "Angular Realtime Ticking Stock Charts",

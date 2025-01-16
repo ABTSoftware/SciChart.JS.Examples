@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
                 title: "JavaScript Text Chart",
@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Create JavaScript Text Chart with high performance SciChart.js.  ",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
                 title: "React Text Chart",
@@ -26,7 +26,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Create React Text Chart with high performance SciChart.js.  ",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
                 title: "Angular Text Chart",

@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",
                 title: "Zoom and Pan a Realtime JavaScript Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to zoom and pan a realtime JavaScript Chart while it is updating, with SciChart.js ZoomState API",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",
                 title: "Zoom and Pan a Realtime React Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to zoom and pan a realtime React Chart while it is updating, with SciChart.js ZoomState API",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",
                 title: "Zoom and Pan a Realtime Angular Chart",

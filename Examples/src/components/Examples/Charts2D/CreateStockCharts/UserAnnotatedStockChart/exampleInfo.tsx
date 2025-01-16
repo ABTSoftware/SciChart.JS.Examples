@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "This demo shows you how to create a **JavaScript User Annotated Stock Chart** using SciChart.js. Custom modifiers allow you to add lines and markers, then use the built in serialisation functions to save and reload the chart, including the data and all your custom annotations.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "This demo shows you how to create a **JavaScript User Annotated Stock Chart** using SciChart.js. Custom modifiers allow you to add lines and markers, then use the built in serialisation functions to save and reload the chart, including the data and all your custom annotations.",
                 title: "JavaScript User Annotated Stock Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "This demo shows you how to create a <strong>{frameworkName} User Annotated Stock Chart</strong> using\n        SciChart.js.  Custom modifiers allow you to add lines and markers, then use the built in serialisation functions to save and reload the chart, including the data and all your custom annotations.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "This demo shows you how to create a **React User Annotated Stock Chart** using SciChart.js. Custom modifiers allow you to add lines and markers, then use the built in serialisation functions to save and reload the chart, including the data and all your custom annotations.",
                 title: "React User Annotated Stock Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "This demo shows you how to create a <strong>{frameworkName} User Annotated Stock Chart</strong> using\n        SciChart.js.  Custom modifiers allow you to add lines and markers, then use the built in serialisation functions to save and reload the chart, including the data and all your custom annotations.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "This demo shows you how to create a **Angular User Annotated Stock Chart** using SciChart.js. Custom modifiers allow you to add lines and markers, then use the built in serialisation functions to save and reload the chart, including the data and all your custom annotations.",
                 title: "Angular User Annotated Stock Chart",

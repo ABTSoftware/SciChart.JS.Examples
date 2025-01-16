@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
                 title: "Interactive Waterfall Spectral Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
                 title: "Interactive Waterfall Spectral Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
                 title: "Interactive Waterfall Spectral Chart",

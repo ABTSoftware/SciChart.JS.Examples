@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
                 title: "Oil & Gas Explorer JavaScript Dashboard",
@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates how to create Oil and Gas Dashboard",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
                 title: "Oil & Gas Explorer React Dashboard",
@@ -26,7 +26,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Demonstrates how to create Oil and Gas Dashboard",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
                 title: "Oil & Gas Explorer Angular Dashboard",

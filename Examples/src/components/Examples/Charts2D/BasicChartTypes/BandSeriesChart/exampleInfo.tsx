@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **JavaScript Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Framework",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to create a **JavaScript Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Framework",
                 title: "JavaScript Band Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Easily create a JavaScript Band Chart or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to create a **React Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Framework",
                 title: "React Band Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Easily create a React Band Chart or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to create a **Angular Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Framework",
                 title: "Angular Band Chart",

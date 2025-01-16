@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Learn how to create a detailed **JavaScript 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Learn how to create a detailed **JavaScript 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
                 title: "JavaScript Surface Mesh 3D Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Design a JavaScript 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Learn how to create a detailed **React 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
                 title: "React Surface Mesh 3D Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Design a React 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Learn how to create a detailed **Angular 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
                 title: "Angular Surface Mesh 3D Chart",

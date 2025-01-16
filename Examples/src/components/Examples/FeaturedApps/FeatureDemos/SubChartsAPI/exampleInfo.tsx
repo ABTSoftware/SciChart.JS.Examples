@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
                 title: "JavaScript 64-Chart Dashboard Performance Demo",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
                 title: "React 64-Chart Dashboard Performance Demo",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
                 title: "Angular 64-Chart Dashboard Performance Demo",

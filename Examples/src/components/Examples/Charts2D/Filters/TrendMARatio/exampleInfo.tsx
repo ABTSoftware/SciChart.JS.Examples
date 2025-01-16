@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how use **Linear Trend, Moving Average and Ratio Filters** with filter chaining, using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how use **Linear Trend, Moving Average and Ratio Filters** with filter chaining, using SciChart.js, High Performance JavaScript Charts",
                 title: "Trendline, Moving Average and Ratio Filters",
@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Chart with Linear Trendline, Moving Average and Ratio Filters with filter chaining",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how use **Linear Trend, Moving Average and Ratio Filters** with filter chaining, using SciChart.js, High Performance JavaScript Charts",
                 title: "Trendline, Moving Average and Ratio Filters",
@@ -26,7 +26,7 @@ const metaData: IExampleMetadata =
                 metaDescription: "Chart with Linear Trendline, Moving Average and Ratio Filters with filter chaining",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how use **Linear Trend, Moving Average and Ratio Filters** with filter chaining, using SciChart.js, High Performance JavaScript Charts",
                 title: "Trendline, Moving Average and Ratio Filters",

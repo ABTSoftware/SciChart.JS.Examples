@@ -9,7 +9,7 @@ const metaData: IExampleMetadata =
         description: "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
                 title: "Using Theme Manager in JavaScript Chart",
@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates our Light and Dark Themes for JavaScript Charts with SciChart.js ThemeManager API",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
                 title: "Using Theme Manager in React Chart",
@@ -27,7 +27,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates our Light and Dark Themes for React Charts with SciChart.js ThemeManager API",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
                 title: "Using Theme Manager in Angular Chart",

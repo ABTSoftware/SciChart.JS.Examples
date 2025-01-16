@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create **custom data-point markers** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to create **custom data-point markers** using SciChart.js, High Performance JavaScript Charts",
                 title: "JavaScript Point-Markers Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates the different point-marker types for JavaScript Scatter charts (Square, Circle, Triangle and Custom image point-marker)",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to create **custom data-point markers** using SciChart.js, High Performance JavaScript Charts",
                 title: "React Point-Markers Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates the different point-marker types for React Scatter charts (Square, Circle, Triangle and Custom image point-marker)",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to create **custom data-point markers** using SciChart.js, High Performance JavaScript Charts",
                 title: "Angular Point-Markers Chart",

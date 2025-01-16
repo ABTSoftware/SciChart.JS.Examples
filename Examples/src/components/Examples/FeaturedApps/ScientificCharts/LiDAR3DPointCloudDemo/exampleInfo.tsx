@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to visualize **LiDAR UAV Data** from the Defra survey using SciChart.js. A 1km x 1km slice of London is visualised as a 3D point-cloud with contour map overlaid. A heatmap legend on the right indicates the heightmap.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to visualize **LiDAR UAV Data** from the Defra survey using SciChart.js. A 1km x 1km slice of London is visualised as a 3D point-cloud with contour map overlaid. A heatmap legend on the right indicates the heightmap.",
                 title: "LiDAR 3D Point Cloud of Geospatial Data",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrating the capability of SciChart.js to create JavaScript 3D Point Cloud charts and visualize LiDAR data from the UK Defra Survey.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to visualize **LiDAR UAV Data** from the Defra survey using SciChart.js. A 1km x 1km slice of London is visualised as a 3D point-cloud with contour map overlaid. A heatmap legend on the right indicates the heightmap.",
                 title: "LiDAR 3D Point Cloud of Geospatial Data",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrating the capability of SciChart.js to create JavaScript 3D Point Cloud charts and visualize LiDAR data from the UK Defra Survey.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to visualize **LiDAR UAV Data** from the Defra survey using SciChart.js. A 1km x 1km slice of London is visualised as a 3D point-cloud with contour map overlaid. A heatmap legend on the right indicates the heightmap.",
                 title: "LiDAR 3D Point Cloud of Geospatial Data",

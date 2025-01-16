@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.",
                 title: "Tenor Curves Demo",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application. An example like this could be used to visualize Tenor curves in a financial setting, or other 2D/3D data combined on a single screen.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.",
                 title: "Tenor Curves Demo",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application. An example like this could be used to visualize Tenor curves in a financial setting, or other 2D/3D data combined on a single screen.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.",
                 title: "Tenor Curves Demo",

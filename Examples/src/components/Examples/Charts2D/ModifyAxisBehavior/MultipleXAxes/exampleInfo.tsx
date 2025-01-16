@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Demonstrates how to create a **JavaScript Chart with multiple X,Y axis** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Demonstrates how to create a **JavaScript Chart with multiple X,Y axis** using SciChart.js, High Performance JavaScript Charts",
                 title: "JavaScript Chart with Multiple X Axes",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates Multiple X & Y Axis on a JavaScript Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Demonstrates how to create a **React Chart with multiple X,Y axis** using SciChart.js, High Performance JavaScript Charts",
                 title: "React Chart with Multiple X Axes",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Demonstrates Multiple X & Y Axis on a React Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Demonstrates how to create a **Angular Chart with multiple X,Y axis** using SciChart.js, High Performance JavaScript Charts",
                 title: "Angular Chart with Multiple X Axes",

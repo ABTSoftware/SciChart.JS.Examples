@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "This example demonstrates how create a **JavaScript Mountain Chart** with animated realtime updates using SciChart.js, our High Performance JavaScript Charts.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "This example demonstrates how create a **JavaScript Mountain Chart** with animated realtime updates using SciChart.js, our High Performance JavaScript Charts.",
                 title: "JavaScript Realtime Mountain Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "JavaScript Realtime Mountain Chart made easy. Add animated, real-time updates with SciChart.js - high performance JavaScript Charts. Get free trial now. ",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "This example demonstrates how create a **React Mountain Chart** with animated realtime updates using SciChart.js, our High Performance JavaScript Charts.",
                 title: "React Realtime Mountain Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "React Realtime Mountain Chart made easy. Add animated, real-time updates with SciChart.js - high performance JavaScript Charts. Get free trial now. ",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "This example demonstrates how create a **Angular Mountain Chart** with animated realtime updates using SciChart.js, our High Performance JavaScript Charts.",
                 title: "Angular Realtime Mountain Chart",

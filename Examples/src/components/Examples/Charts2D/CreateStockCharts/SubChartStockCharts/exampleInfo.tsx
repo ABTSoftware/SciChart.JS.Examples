@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
                 title: "JavaScript Multi-Pane Stock Charts using Subcharts",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "Create a JavaScript Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
                 title: "React Multi-Pane Stock Charts using Subcharts",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "Create a React Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
                 title: "Angular Multi-Pane Stock Charts using Subcharts",

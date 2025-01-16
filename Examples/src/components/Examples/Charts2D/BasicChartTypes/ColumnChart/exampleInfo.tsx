@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
             "Creates a **JavaScript Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
         tips: [],
         frameworks: {
-            JavaScript: {
+            javascript: {
                 subtitle:
                     "Creates a **JavaScript Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "JavaScript Column Chart",
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata =
                     "JavaScript Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
                 markdownContent: null,
             },
-            React: {
+            react: {
                 subtitle:
                     "Creates a **React Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "React Column Chart",
@@ -28,7 +28,7 @@ const metaData: IExampleMetadata =
                     "React Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
                 markdownContent: null,
             },
-            Angular: {
+            angular: {
                 subtitle:
                     "Creates a **Angular Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "Angular Column Chart",
