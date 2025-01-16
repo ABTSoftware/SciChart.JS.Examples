@@ -12,7 +12,7 @@ export interface IExampleMetadata {
     onWebsite: boolean; // Whether the example is shown on the website
     filepath: string; // File path for the example
     thumbnailImage: string;
-    pageLayout?: EPageLayout;
+    pageLayout?: string;
     extraDependencies?: Record<string, string>;
     sandboxConfig?: Record<string, any>;
     markdownContent?: string | null;
