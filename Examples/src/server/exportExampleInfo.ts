@@ -1,4 +1,4 @@
-import express = require("express");
+import express from "express";
 var url = require("url");
 import * as fs from "fs";
 import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";

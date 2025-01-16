@@ -23,7 +23,7 @@ const useStyles = makeStyles()((theme) => ({
 export default function HeatmapInteractions() {
     const { classes } = useStyles();
     const [chartsInitializationAPI] = React.useState(getChartsInitializationApi);
-    const controlsRef = React.useRef<TResolvedReturnType<typeof chartsInitializationAPI.onAllChartsInit>>();
+    const controlsRef = React.useRef<TResolvedReturnType<typeof chartsInitializationAPI.onAllChartsInit>>(undefined);
 
     return (
         <React.Fragment>

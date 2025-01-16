@@ -7,7 +7,7 @@ import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 export default function DrawBehindAxes() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
 
     const [preset, setPreset] = React.useState<number>(0);
 

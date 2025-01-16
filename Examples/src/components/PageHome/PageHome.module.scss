@@ -1,31 +1,5 @@
 @import "../../assets/main.scss";
 
-.ButtonWrapper {
-    display: flex;
-    margin-top: 50px;
-    a {
-        padding: 20px 36px;
-        align-items: center;
-        color: white;
-        background: linear-gradient(114.95deg, #febc48 0%, #e97502 100%);
-
-        border-radius: 4px;
-        cursor: pointer;
-        display: flex;
-        font-size: 15px;
-        font-weight: 500;
-        justify-content: center;
-        line-height: 26.25px;
-        text-decoration-thickness: auto;
-        text-transform: uppercase;
-        user-select: none;
-    }
-    @include sm {
-        align-items: center;
-        justify-content: center;
-    }
-}
-
 .PageHomeWrapper {
     background: $gradient-header;
     .PageHomeHeaderText {

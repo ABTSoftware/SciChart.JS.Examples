@@ -1,4 +1,7 @@
-export type PopulationData = {
+import { parseColorToUIntArgb, type TGradientStop, type IPointMetadata3D } from "scichart";
+import { appTheme } from "../../components/Examples/theme";
+
+type PopulationData = {
     country: string;
     year: number;
     population: number;
@@ -7,7 +10,71 @@ export type PopulationData = {
     gdpPerCapita: number;
 };
 
-export const populationData: PopulationData[] = [
+type TMetadata = IPointMetadata3D & {
+    country: string;
+    color: string;
+    vertexColor: number;
+    pointScale: number;
+};
+
+type TMappedPopulationData = {
+    population: number[];
+    lifeExpectancy: number[];
+    gdpPerCapita: number[];
+    year: number[];
+    metadata: TMetadata[];
+};
+
+function formatMetadata(population: PopulationData[], gradientStops: TGradientStop[]): TMetadata[] {
+    const valuesArray = populationData.map((item) => item.lifeExpectancy);
+    const low = Math.min(...valuesArray);
+    const high = Math.max(...valuesArray);
+
+    const sGradientStops = gradientStops.sort((a, b) => (a.offset > b.offset ? 1 : -1));
+    // Compute a scaling factor from 0...1 where values in valuesArray at the lower end correspond to 0 and
+    // values at the higher end correspond to 1
+    const metaData: TMetadata[] = [];
+    for (const item of population) {
+        const x = item.lifeExpectancy;
+        // scale from 0..1 for the values
+        const valueScale = (x - low) / (high - low);
+        // Find the nearest gradient stop index
+        const index = sGradientStops.findIndex((gs) => gs.offset >= valueScale);
+        // const nextIndex = Math.min(index + 1, sGradientStops.length - 1);
+        // work out the colour of this point
+        const color = sGradientStops[index].color;
+        const vertexColor = parseColorToUIntArgb(color);
+        metaData.push({ country: item.country, pointScale: 0.1 + valueScale, vertexColor, color });
+    }
+    return metaData;
+}
+
+function generateMappedPopulationData(): TMappedPopulationData {
+    // Population dataset from gapminderdata
+    // data format example = [
+    //    { country: "Afghanistan", year: 1952, population: 8425333, continent: "Asia", lifeExpectancy: 28.801, gdpPerCapita: 779.4453145 },
+    // ]
+    const year = populationData.map((item) => item.year);
+    const population = populationData.map((item) => item.population);
+    const lifeExpectancy = populationData.map((item) => item.lifeExpectancy);
+    const gdpPerCapita = populationData.map((item) => item.gdpPerCapita);
+
+    // Metadata in scichart.js 3D controls color and scale of a bubble. It can also hold additional optional properties
+    // Below we format the data for lifeExpectancy into metadata colour coded and scaled depending on the value
+    const metadata = formatMetadata(populationData, [
+        { offset: 1, color: appTheme.VividPink },
+        { offset: 0.9, color: appTheme.VividOrange },
+        { offset: 0.7, color: appTheme.MutedRed },
+        { offset: 0.5, color: appTheme.VividGreen },
+        { offset: 0.3, color: appTheme.VividSkyBlue },
+        { offset: 0.2, color: appTheme.Indigo },
+        { offset: 0, color: appTheme.DarkIndigo },
+    ]);
+
+    return { year, population, lifeExpectancy, gdpPerCapita, metadata };
+}
+
+const populationData: PopulationData[] = [
     {
         country: "Afghanistan",
         year: 1952,
@@ -13641,3 +13708,5 @@ export const populationData: PopulationData[] = [
         gdpPerCapita: 469.7092981,
     },
 ];
+
+export const mappedPopulationData = generateMappedPopulationData();

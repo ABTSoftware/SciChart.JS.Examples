@@ -115,6 +115,8 @@ import { smoothStackedMountainChartExampleInfo } from "../Examples/Charts2D/Basi
 import { lineSplittingThresholdsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds/exampleInfo";
 import { column3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Column3DChart/exampleInfo";
 
+import type { JSX } from "react";
+
 export type TExampleInfo = {
     /**
      * Example title

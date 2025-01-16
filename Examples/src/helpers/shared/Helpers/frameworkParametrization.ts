@@ -1,4 +1,4 @@
-import { useMatch } from "react-router-dom";
+import { useMatch } from "react-router";
 import { EXAMPLES_PAGES } from "../../../components/AppRouter/examplePages";
 
 export enum EPageFramework {
@@ -19,6 +19,8 @@ export const FRAMEWORK_NAME = {
     [EPageFramework.Angular]: "Angular",
     // [EPageFramework.Vue]: "Vue",
 } as const;
+
+export const getFrameworkName = (frameWork: EPageFramework) => FRAMEWORK_NAME[frameWork];
 
 const DEFAULT_FRAMEWORK = EPageFramework.React;
 

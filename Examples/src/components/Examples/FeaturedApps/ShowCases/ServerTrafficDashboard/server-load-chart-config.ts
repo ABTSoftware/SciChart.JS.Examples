@@ -142,7 +142,7 @@ export const createServerLoadChart = async (divElementId: string | HTMLDivElemen
         seriesSelectionModifier,
         legendModifier,
         new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }),
-        new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }),
+        new ZoomPanModifier({ enableZoom: true, xyDirection: EXyDirection.XDirection }),
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
         rolloverModifier
     );

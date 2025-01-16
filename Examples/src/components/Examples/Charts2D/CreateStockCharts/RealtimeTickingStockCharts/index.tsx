@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { createCandlestickChart, sciChartOverview } from "./createCandlestickChart";
 import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
@@ -81,7 +81,7 @@ export default function RealtimeTickingStockCharts() {
         setXRange: (startDate: Date, endDate: Date) => void;
         enableCandlestick: () => void;
         enableOhlc: () => void;
-    }>();
+    }>(undefined);
     const [dataSource, setDataSource] = React.useState<string>("Random");
 
     const handleToggleButtonChanged = (event: any, state: number) => {
@@ -92,8 +92,8 @@ export default function RealtimeTickingStockCharts() {
         if (state === 1) chartControlsRef.current.enableOhlc();
     };
 
-    const handleDataSourceChanged = (event: any, source: string) => {
-        setDataSource(source);
+    const handleDataSourceChanged = (event: any) => {
+        setDataSource(event.target.value);
     };
 
     const initFunc = drawExample(dataSource);
@@ -113,20 +113,26 @@ export default function RealtimeTickingStockCharts() {
                     <ToggleButton value={0}>Candlestick Series</ToggleButton>
                     <ToggleButton value={1}>OHLC Series</ToggleButton>
                 </ToggleButtonGroup>
-                <FormLabel style={{ color: appTheme.VividGreen }}>Data Source</FormLabel>
-                <ToggleButtonGroup
-                    className={commonClasses.ToggleButtonGroup}
-                    exclusive
-                    value={dataSource}
-                    onChange={handleDataSourceChanged}
-                    size="small"
-                    color="primary"
-                    aria-label="small outlined button group"
-                >
-                    <ToggleButton value={"Random"}>Random</ToggleButton>
-                    <ToggleButton value={"com"}>Binance.com</ToggleButton>
-                    <ToggleButton value={"us"}>Binance.us</ToggleButton>
-                </ToggleButtonGroup>
+                <FormControl sx={{ marginTop: "1em" }}>
+                    <InputLabel id="data-source-label" sx={{ color: appTheme.VividGreen }}>
+                        Data Source
+                    </InputLabel>
+                    <Select
+                        variant="outlined"
+                        labelId="data-source-label"
+                        id="data-source-select"
+                        label="Data Source"
+                        sx={{ color: "inherit", "& .MuiSvgIcon-root": { color: "inherit" } }}
+                        size="small"
+                        inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
+                        value={dataSource}
+                        onChange={handleDataSourceChanged}
+                    >
+                        <MenuItem value={"Random"}>Random</MenuItem>
+                        <MenuItem value={"com"}>Binance.com</MenuItem>
+                        <MenuItem value={"us"}>Binance.us</MenuItem>
+                    </Select>
+                </FormControl>
             </div>
             <SciChartReact
                 key={dataSource}

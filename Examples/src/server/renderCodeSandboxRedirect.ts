@@ -288,8 +288,10 @@ const sendCodeSandboxRequest = async (body: string) => {
     const response = await fetch(CODESANDBOX_URL, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
+            // "Content-Type": "application/json",
+            // Accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Length": `${Buffer.byteLength(body)}`,
         },
         body,
     });
@@ -538,8 +540,20 @@ export const getSandboxUrlEndpoint = async (req: Request, res: Response) => {
             const { files, actualFramework } = await getSandboxConfig(folderPath, currentExample, framework, baseUrl);
 
             if (platform === EPlatform.CodeSandbox) {
-                const parms = JSON.stringify({ files });
-                const sbres = await sendCodeSandboxRequest(parms); // may fail
+                const template = getCodeSandboxTemplate(actualFramework);
+                const parameters = getParameters({ files, template });
+                const formData = new URLSearchParams();
+
+                formData.append("parameters", parameters);
+
+                // TPDP check if this is necessary at all
+                if (framework === EPageFramework.Angular) {
+                    formData.append("environment", "server");
+                }
+
+                formData.append("embed", "1");
+                formData.append("query", "file=src/drawExample.ts");
+                const sbres = await sendCodeSandboxRequest(formData.toString()); // may fail
                 const id = await getId(sbres);
                 res.status(200).json({ id, actualFramework });
             } else {
@@ -733,7 +747,7 @@ const getStackblitzTemplate = (framework: EPageFramework) => {
 const getCodeSandboxTemplate = (framework: EPageFramework) => {
     switch (framework) {
         case EPageFramework.Angular:
-            return "angular-cli";
+            return "node";
         case EPageFramework.React:
             return "create-react-app";
         case EPageFramework.Vanilla:

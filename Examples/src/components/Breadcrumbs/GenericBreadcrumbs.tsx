@@ -1,5 +1,5 @@
 import { useContext, useState, MouseEvent, ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import {
     MenuItem,
     Breadcrumbs,
@@ -140,7 +140,7 @@ export function BreadcrumbsWithMenu(props: {
             <Breadcrumbs
                 aria-label="breadcrumbs"
                 maxItems={isXs ? 2 : 8}
-                separator={<NavigateNextIcon fontSize="small" sx={{ color: 'var(--text)' }} />}
+                separator={<NavigateNextIcon fontSize="small" sx={{ color: "var(--text)" }} />}
             >
                 {breadcrumbElements}
             </Breadcrumbs>

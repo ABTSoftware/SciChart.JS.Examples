@@ -7,7 +7,7 @@ import chalk from "chalk";
 import * as React from "react";
 import { Helmet } from "react-helmet";
 import * as ReactDOMServer from "react-dom/server";
-import { StaticRouter } from "react-router-dom/server";
+import { StaticRouter } from "react-router";
 import { ThemeProvider } from "@mui/material/styles";
 import App from "../components/App";
 import { customTheme } from "../theme";
@@ -139,6 +139,10 @@ const getExamplePageKey = (examplePath: string) => {
 
 app.get("/codesandbox/:example", (req: Request, res: Response) => {
     renderSandBoxRedirect(req, res, "codesandbox");
+});
+
+app.get("/stackblitz/:example", (req: Request, res: Response) => {
+    renderSandBoxRedirect(req, res, "stackblitz");
 });
 
 // StackBlitz json endpoints

@@ -1,26 +1,13 @@
 import { Request, Response } from "express";
 import path from "path";
-import { EPageFramework, TFrameworkName } from "../../../helpers/shared/Helpers/frameworkParametrization";
+import { EPageFramework, getFrameworkContent } from "../../../helpers/shared/Helpers/frameworkParametrization";
 import { getSandboxConfig } from "../sandbox";
 import { getRequestedExample } from "../../renderCodeSandboxRedirect";
 import { BadRequestError, IHttpError } from "../../Errors";
 import { TExamplePage } from "../../../components/AppRouter/examplePages";
-
-interface StackBlitzResponse {
-    files: { [key: string]: { content: string } };
-    title: string;
-    description: string;
-    template: string;
-    dependencies: { [key: string]: string };
-    devDependencies: { [key: string]: string };
-    settings: {
-        compile: {
-            clearConsole: boolean;
-            action: string;
-            trigger: string;
-        };
-    };
-}
+import { SandboxConfig } from "../sandbox/sandboxDependencyUtils";
+import { StackBlitzResponse } from "../../../helpers/types/types";
+import { ProjectFiles } from "@stackblitz/sdk";
 
 /**
  * Gets the files and configuration needed for StackBlitz project
@@ -49,7 +36,7 @@ export async function getStackblitzFiles(req: Request, res: Response): Promise<v
         const sandboxConfig = await getSandboxConfig(folderPath, exampleInfo.currentExample, framework, baseUrl);
 
         // Format response for StackBlitz
-        const response = formatStackBlitzResponse(sandboxConfig, exampleInfo.currentExample, framework);
+        const response = formatStackBlitzResponse(sandboxConfig, exampleInfo.currentExample);
 
         res.status(200).json(response);
     } catch (err) {
@@ -67,6 +54,24 @@ function validateFramework(framework: string): EPageFramework {
     return isValidFramework ? (framework as EPageFramework) : EPageFramework.React;
 }
 
+const handleInvalidFrameworkValue = (value: never): never => {
+    throw new Error("Invalid framework value!");
+};
+
+// TODO this was copy-pasted. refactor
+const getStackblitzTemplate = (framework: EPageFramework) => {
+    switch (framework) {
+        case EPageFramework.Angular:
+            return "node";
+        case EPageFramework.React:
+            return "create-react-app";
+        case EPageFramework.Vanilla:
+            return "typescript";
+        default:
+            return handleInvalidFrameworkValue(framework);
+    }
+};
+
 /**
  * Formats sandbox configuration into StackBlitz response format
  * @param sandboxConfig Configuration from sandbox service
@@ -75,44 +80,31 @@ function validateFramework(framework: string): EPageFramework {
  * @returns Formatted StackBlitz response
  */
 function formatStackBlitzResponse(
-    sandboxConfig: any,
-    example: TExamplePage,
-    framework: EPageFramework
+    sandboxConfig: SandboxConfig & { actualFramework: EPageFramework },
+    example: TExamplePage
 ): StackBlitzResponse {
     const { files } = sandboxConfig;
-    const packageJsonContent = files["package.json"]?.content;
-    let packageJsonData;
-
-    try {
-        packageJsonData = packageJsonContent ? JSON.parse(packageJsonContent) : null;
-    } catch (err) {
-        console.error("Error parsing package.json:", err);
-        packageJsonData = null;
-    }
+    const packageJsonContent = files["package.json"]?.content as any;
 
     // Format files for StackBlitz
-    const stackblitzFiles: { [key: string]: { content: string } } = {};
+    const stackblitzFiles: ProjectFiles = {};
     Object.entries(files).forEach(([filename, file]: [string, any]) => {
-        if (filename !== "package.json") {
-            stackblitzFiles[filename] = {
-                content: file.content,
-            };
-        }
+        stackblitzFiles[filename] = file.content;
     });
+    stackblitzFiles["package.json"] = JSON.stringify(packageJsonContent);
 
     // Get the title string by calling the title template function with the framework
-    const title =
-        typeof example.title === "function"
-            ? example.title(framework.toLowerCase() as TFrameworkName)
-            : example.title || "SciChart Example";
+    const title = getFrameworkContent(example.title, sandboxConfig.actualFramework) || "SciChart Example";
+
+    const template = getStackblitzTemplate(sandboxConfig.actualFramework);
 
     return {
         files: stackblitzFiles,
         title,
         description: "SciChart.js Example",
-        template: "typescript",
-        dependencies: packageJsonData?.dependencies || {},
-        devDependencies: packageJsonData?.devDependencies || {},
+        template,
+        dependencies: packageJsonContent?.dependencies || {},
+        devDependencies: packageJsonContent?.devDependencies || {},
         settings: {
             compile: {
                 clearConsole: false,

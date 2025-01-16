@@ -112,7 +112,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
 
     // Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier(), new ZoomExtentsModifier());
+    sciChartSurface.chartModifiers.add(
+        new ZoomPanModifier({ enableZoom: true }),
+        new MouseWheelZoomModifier(),
+        new ZoomExtentsModifier()
+    );
 
     sciChartSurface.zoomExtents();
 

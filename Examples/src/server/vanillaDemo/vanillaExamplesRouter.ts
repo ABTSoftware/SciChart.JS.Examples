@@ -1,7 +1,7 @@
 import * as path from "path";
 import * as fs from "fs";
+import express from "express";
 import { htmlTemplate } from "./vanillaExampleHtmlTemplate";
-import express = require("express");
 import { EXAMPLES_PAGES, TExamplePage } from "../../components/AppRouter/examplePages";
 
 export const vanillaExamplesRouter = express.Router();

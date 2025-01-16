@@ -20,8 +20,8 @@ const orientationSelect = [
 ];
 
 export default function ChartLegendsAPI() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const legendModifierRef = React.useRef<LegendModifier>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
+    const legendModifierRef = React.useRef<LegendModifier>(undefined);
 
     const [placementValue, setPlacementValue] = React.useState<ELegendPlacement>(ELegendPlacement.TopLeft);
     const [orientationValue, setOrientationValue] = React.useState<ELegendOrientation>(ELegendOrientation.Vertical);

@@ -14,7 +14,7 @@ interface EditorFrameProps {
     onBack?: () => void;
     children: ReactNode;
     isLoading?: boolean;
-    iframeRef?: React.RefObject<HTMLIFrameElement>;
+    iframeRef?: React.RefObject<HTMLIFrameElement | null>;
 }
 
 export const EditorFrame: FC<EditorFrameProps> = ({

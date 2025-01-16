@@ -24,7 +24,10 @@ export const getReactSandBoxConfig = async (
     await includeImportedModules(folderPath, files, code, true, true, baseUrl);
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
     code = await includeExternalModules(folderPath, folderPath, files, code, true, true);
-
+    // console.log("creating sandbox", currentExample.title, currentExample.path.replace("/", ""));
+    // for (const f in files) {
+    //    console.log(f);
+    // }
     files = {
         ...commonFiles,
         ...files,

@@ -104,7 +104,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(stackedColumnCollection);
 
     // Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(
+        new ZoomExtentsModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
+        new MouseWheelZoomModifier()
+    );
 
     // Add a legend to the chart to show the series
     sciChartSurface.chartModifiers.add(

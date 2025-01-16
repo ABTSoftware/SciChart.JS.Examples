@@ -23,8 +23,8 @@ const useStyles = makeStyles()((theme) => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function MultiLineLabels() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const labelProviderRef = React.useRef<TextLabelProvider>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
+    const labelProviderRef = React.useRef<TextLabelProvider>(undefined);
 
     const [preset, setPreset] = React.useState<number>(2);
 

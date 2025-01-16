@@ -15,7 +15,6 @@ import {
     IPointMetadata,
     IRenderableSeries,
     IStrokePaletteProvider,
-    ModifierMouseArgs,
     NumberRange,
     NumericAxis,
     PaletteFactory,
@@ -476,28 +475,36 @@ export const getChartsInitializationAPI = () => {
                     fill: appTheme.VividTeal,
                     strokeThickness: 0,
                 }),
-            })
-        );
-
-        // Highlight the gaps with annotations stretched vertically
-        sciChartSurface.annotations.add(
-            new BoxAnnotation({
-                x1: 6,
-                x2: 8,
-                y1: 0.1,
-                y2: 1.0,
-                yCoordinateMode: ECoordinateMode.Relative,
-                fill: appTheme.MutedTeal + "33",
-                strokeThickness: 0,
-            }),
-            new BoxAnnotation({
-                x1: 17,
-                x2: 19,
-                y1: 0.1,
-                y2: 1,
-                yCoordinateMode: ECoordinateMode.Relative,
-                fill: appTheme.MutedTeal + "33",
-                strokeThickness: 0,
+                animation: {
+                    type: EAnimationType.Fade,
+                    options: {
+                        duration: 400,
+                        delay: 250,
+                        onCompleted: () => {
+                            // Highlight the gaps with annotations stretched vertically
+                            sciChartSurface.annotations.add(
+                                new BoxAnnotation({
+                                    x1: 6,
+                                    x2: 8,
+                                    y1: 0.1,
+                                    y2: 1.0,
+                                    yCoordinateMode: ECoordinateMode.Relative,
+                                    fill: appTheme.MutedTeal + "33",
+                                    strokeThickness: 0,
+                                }),
+                                new BoxAnnotation({
+                                    x1: 17,
+                                    x2: 19,
+                                    y1: 0.1,
+                                    y2: 1,
+                                    yCoordinateMode: ECoordinateMode.Relative,
+                                    fill: appTheme.MutedTeal + "33",
+                                    strokeThickness: 0,
+                                })
+                            );
+                        },
+                    },
+                },
             })
         );
 
@@ -553,30 +560,38 @@ export const getChartsInitializationAPI = () => {
                     color: appTheme.PaleSkyBlue,
                     skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious,
                 },
-            })
-        );
-
-        // Add annotations to show the thresholds
-        sciChartSurface.annotations.add(
-            new HorizontalLineAnnotation({
-                stroke: appTheme.VividTeal,
-                strokeDashArray: [2, 2],
-                y1: THRESHOLD_HIGH_LEVEL,
-                labelPlacement: ELabelPlacement.TopRight,
-                labelValue: "High warning",
-                axisLabelFill: appTheme.VividTeal,
-                showLabel: true,
-            })
-        );
-        sciChartSurface.annotations.add(
-            new HorizontalLineAnnotation({
-                stroke: appTheme.VividPink,
-                strokeDashArray: [2, 2],
-                labelPlacement: ELabelPlacement.BottomLeft,
-                y1: THRESHOLD_LOW_LEVEL,
-                labelValue: "Low warning",
-                axisLabelFill: appTheme.VividPink,
-                showLabel: true,
+                animation: {
+                    type: EAnimationType.Wave,
+                    options: {
+                        duration: 400,
+                        delay: 250,
+                        onCompleted: () => {
+                            // Add annotations to show the thresholds
+                            sciChartSurface.annotations.add(
+                                new HorizontalLineAnnotation({
+                                    stroke: appTheme.VividTeal,
+                                    strokeDashArray: [2, 2],
+                                    y1: THRESHOLD_HIGH_LEVEL,
+                                    labelPlacement: ELabelPlacement.TopRight,
+                                    labelValue: "High warning",
+                                    axisLabelFill: appTheme.VividTeal,
+                                    showLabel: true,
+                                })
+                            );
+                            sciChartSurface.annotations.add(
+                                new HorizontalLineAnnotation({
+                                    stroke: appTheme.VividPink,
+                                    strokeDashArray: [2, 2],
+                                    labelPlacement: ELabelPlacement.BottomLeft,
+                                    y1: THRESHOLD_LOW_LEVEL,
+                                    labelValue: "Low warning",
+                                    axisLabelFill: appTheme.VividPink,
+                                    showLabel: true,
+                                })
+                            );
+                        },
+                    },
+                },
             })
         );
 

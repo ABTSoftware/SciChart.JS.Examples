@@ -1,6 +1,5 @@
 import * as path from "path";
-
-import express = require("express");
+import express from "express";
 import { getRequestedExample } from "./renderCodeSandboxRedirect";
 import { getAngularSrc } from "./services/sandbox/angularConfig";
 import { getVanillaSrc } from "./services/sandbox/vanillaTsConfig";

@@ -3,13 +3,15 @@ import {
     ECoordinateMode,
     EHorizontalAnchorPoint,
     EllipsePointMarker,
+    EMultiLineAlignment,
     EVerticalAnchorPoint,
+    EWrapTo,
+    FastLineRenderableSeries,
     MouseWheelZoomModifier,
+    NativeTextAnnotation,
     NumberRange,
     NumericAxis,
     SciChartSurface,
-    SplineLineRenderableSeries,
-    TextAnnotation,
     XyDataSeries,
     ZoomExtentsModifier,
     ZoomPanModifier,
@@ -29,7 +31,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new NumericAxis(wasmContext, {
             axisTitle: "X Axis with Alignment = Left",
             axisAlignment: EAxisAlignment.Left,
-            growBy: new NumberRange(0.1, 0.1),
+            growBy: new NumberRange(0.15, 0.05),
         })
     );
 
@@ -48,7 +50,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Add a line series to the chart. This will be drawn vertically.
     sciChartSurface.renderableSeries.add(
-        new SplineLineRenderableSeries(wasmContext, {
+        new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
             pointMarker: new EllipsePointMarker(wasmContext, {
                 width: 9,
@@ -63,23 +65,24 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Add title / instructions
     sciChartSurface.annotations.add(
-        new TextAnnotation({
-            x1: 0.0,
-            yCoordShift: 10,
-            y1: 0.5,
+        new NativeTextAnnotation({
+            x1: 0.02,
+            y1: 0.02,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
             verticalAnchorPoint: EVerticalAnchorPoint.Top,
             fontSize: 16,
             opacity: 0.77,
             textColor: appTheme.ForegroundColor,
             text: "To rotate a chart in SciChart.js, set XAxis.alignment = Left/Right and YAxis.alignment=Top/Bottom",
+            wrapTo: EWrapTo.ViewRect,
+            multiLineAlignment: EMultiLineAlignment.Left,
         })
     );
 
     // Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 

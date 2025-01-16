@@ -28,14 +28,14 @@ export const defaultJsonDefinition = `{
         "type": "SVGTextAnnotation", "options": { "text": "Builder API Demo", "x1": 0.5, "y1": 0.5, "opacity": 0.33,
               "yCoordShift": -26, "xCoordinateMode": "Relative", "yCoordinateMode": "Relative",
               "horizontalAnchorPoint": "Center", "verticalAnchorPoint": "Center",
-              "fontSize": 42, "fontWeight": "Bold"
+              "fontSize": 36, "fontWeight": "Bold"
             }
         },
         {
             "type": "SVGTextAnnotation", "options": { "text": "Create SciChart charts from JSON", "x1": 0.5, "y1": 0.5, "opacity": 0.33,
                 "yCoordShift": 26, "xCoordinateMode": "Relative", "yCoordinateMode": "Relative",
                 "horizontalAnchorPoint": "Center", "verticalAnchorPoint": "Center",
-                "fontSize": 36, "fontWeight": "Bold"
+                "fontSize": 24, "fontWeight": "Bold"
             }
         }]
 }`;

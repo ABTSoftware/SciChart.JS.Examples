@@ -1,5 +1,5 @@
 import { memo, ReactNode, useContext } from "react";
-import { Routes, Route, Navigate, useSearchParams } from "react-router-dom";
+import { Routes, Route, Navigate, useSearchParams } from "react-router";
 import PageHome from "../PageHome/PageHome";
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import ExamplesRoot from "../Examples/ExamplesRoot";
@@ -7,7 +7,7 @@ import { getExampleComponent } from "./examples";
 import classes from "../Examples/styles/Examples.module.scss";
 import { GalleryItem } from "../../helpers/types/types";
 import NoIndexTag from "../SeoTags/NoIndexTag";
-import { InfoToolbar } from "../Examples/Toolbar";
+// import { InfoToolbar } from "../Examples/Toolbar";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import ChartControlWrapper from "./ChartControlWrapper";
 

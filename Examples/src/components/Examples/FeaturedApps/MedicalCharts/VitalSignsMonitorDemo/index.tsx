@@ -6,7 +6,7 @@ import { drawExample } from "./drawExample";
 
 // REACT COMPONENT
 export default function VitalSignsMonitorDemo() {
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
+    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
     const [infoEcg, setInfoEcg] = React.useState<number>(0);
     const [infoBloodPressure1, setInfoBloodPressure1] = React.useState<number>(0);

@@ -17,6 +17,7 @@ import { CodeActionButtons } from "./CodeActionButtons";
 import { CodePreview } from "../CodePreview/CodePreview";
 import { ExamplesSubtitle } from "./ExamplesSubtitle";
 import { SourceFilesContext } from "./SourceFilesLoading/SourceFilesContext";
+import type { StackBlitzResponse } from "../../helpers/types/types";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -36,12 +37,12 @@ const AppDetailsRouter: FC<TProps> = (props) => {
 
     const [sourceFiles, setSourceFiles] = useState<ExampleSourceFile[]>(initialSourceFilesVariant.files);
     const [selectedFile, setSelectedFile] = useState<ExampleSourceFile>(getInitialSelectedFile);
-    const [pageLayout, setPageLayout] = useState<EPageLayout>();
+    const [pageLayout, setPageLayout] = useState<EPageLayout>(EPageLayout.Default);
     const [isSideBySidePossible, setIsSideBySidePossible] = useState<boolean>();
     const [embedCode, setEmbedCode] = useState<boolean>(false);
     const [sandboxPlatform, setSandboxPlatform] = useState<SandboxPlatform>(SandboxPlatform.CodeSandbox);
     const [sandboxId, setSandboxId] = useState<string>("");
-    const [projectFiles, setProjectFiles] = useState<any>(null);
+    const [projectFiles, setProjectFiles] = useState<StackBlitzResponse>(null);
     const [sourceFramework, setSourceFramework] = useState<EPageFramework | null>(initialSourceFilesVariant.framework);
     const [sandboxFramework, setSandboxFramework] = useState<EPageFramework | null>(null);
 
@@ -68,11 +69,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
 
     useEffect(() => {
         setIsSideBySidePossible(window.innerWidth > 1900);
-        setPageLayout(
-            currentExample.pageLayout ?? (window !== undefined && window.innerWidth > 1900)
-                ? EPageLayout.Default
-                : EPageLayout.MaxWidth
-        );
+        setPageLayout(currentExample.pageLayout ?? EPageLayout.Default);
         window.scrollTo({
             top: 0,
         });

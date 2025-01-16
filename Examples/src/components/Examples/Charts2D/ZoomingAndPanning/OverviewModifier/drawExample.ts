@@ -4,9 +4,12 @@ import {
     EExecuteOn,
     EHorizontalAnchorPoint,
     EllipsePointMarker,
+    EMultiLineAlignment,
     EVerticalAnchorPoint,
+    EWrapTo,
     FastLineRenderableSeries,
     MouseWheelZoomModifier,
+    NativeTextAnnotation,
     NumberRange,
     NumericAxis,
     RubberBandXyZoomModifier,
@@ -64,11 +67,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Add an annotation with instructions over the chart
     sciChartSurface.annotations.add(
-        new TextAnnotation({
-            x1: 0,
-            y1: 0,
-            yCoordShift: 20,
-            xCoordShift: 20,
+        new NativeTextAnnotation({
+            x1: 0.02,
+            y1: 0.02,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
@@ -77,6 +78,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             opacity: 0.55,
             textColor: appTheme.ForegroundColor,
             text: "SciChart.js supports an Overview scrollbar. Zoom the main chart or drag the overview to see it update",
+            wrapTo: EWrapTo.ViewRect,
+            multiLineAlignment: EMultiLineAlignment.Left,
         })
     );
 
@@ -88,7 +91,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // });
 
     // Optional: add some zoom pan interaction
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
     sciChartSurface.chartModifiers.add(new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton }));
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
