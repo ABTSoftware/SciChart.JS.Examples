@@ -36,8 +36,8 @@ const STORAGE_KEY = "Annotated-Charts";
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function UserAnnotatedStockChart() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
+    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
     const [name, setName] = React.useState<string>("");
     const [chartMode, setChartMode] = React.useState<"line" | "marker" | "pan">("line");
     const [savedCharts, setSavedCharts] = React.useState<Record<string, object>>({});

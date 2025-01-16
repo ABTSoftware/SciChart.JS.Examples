@@ -24,8 +24,8 @@ const useStyles = makeStyles()((theme) => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function StackedMountainChart() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const stackedMountainCollectionRef = React.useRef<StackedMountainCollection>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
+    const stackedMountainCollectionRef = React.useRef<StackedMountainCollection>(undefined);
     const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
 
     const handleUsePercentage = (event: any, value: boolean) => {

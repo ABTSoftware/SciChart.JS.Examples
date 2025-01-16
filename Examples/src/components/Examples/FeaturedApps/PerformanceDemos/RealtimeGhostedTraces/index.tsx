@@ -23,7 +23,7 @@ const useStyles = makeStyles()((theme) => ({
 }));
 
 export default function RealtimeGhostedTraces() {
-    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
     const [isStarted, setIsStarted] = useState(false);
     const [stats, setStats] = useState({ numberSeries: 0, numberPoints: 0, fps: 0 });

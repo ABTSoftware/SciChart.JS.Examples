@@ -5,7 +5,7 @@ import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scic
 import { drawExample, overViewOption } from "./drawExample";
 
 export default function Overview() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
 
     return (
         <div className={commonClasses.ChartWrapper}>

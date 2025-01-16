@@ -1,5 +1,5 @@
 import { memo, ReactNode, useContext } from "react";
-import { Routes, Route, Navigate, useSearchParams } from "react-router-dom";
+import { Routes, Route, Navigate, useSearchParams } from "react-router";
 import PageHome from "../PageHome/PageHome";
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import ExamplesRoot from "../Examples/ExamplesRoot";

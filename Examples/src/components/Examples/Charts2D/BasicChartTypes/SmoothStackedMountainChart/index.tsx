@@ -24,7 +24,7 @@ const useStyles = makeStyles()((theme) => ({
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function SmoothStackedMountainChart() {
     const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
+    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
     const handleUsePercentage = (event: any, value: boolean) => {
         if (value !== null) {

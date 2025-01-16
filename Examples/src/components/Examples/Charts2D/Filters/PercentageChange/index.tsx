@@ -24,7 +24,7 @@ const useStyles = makeStyles()((theme) => ({
 export default function PercentageChange() {
     const [usePercentage, setUsePercentage] = React.useState(true);
     const [chartKey, setChartKey] = React.useState(0);
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
 
     const handleUsePercentage = (event: React.MouseEvent<HTMLElement>, newValue: ToggleButtonGroupProps["value"]) => {
         if (newValue !== null) {

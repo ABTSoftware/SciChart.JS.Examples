@@ -23,7 +23,7 @@ import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciC
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
 import AppDetailsRoute from "./AppDetailsRouters/AppDetailsRouter";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { appTheme } from "./Examples/theme";
 import { SciChartSurfaceBase } from "scichart";
 import { ContentSectionRouter } from "./Navigation/AnchorTagRouter";
