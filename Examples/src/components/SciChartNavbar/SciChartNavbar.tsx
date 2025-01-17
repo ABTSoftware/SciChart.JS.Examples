@@ -2,18 +2,10 @@ import { Button } from "@mui/material";
 import { ETheme } from "../../helpers/types/types";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./styles.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // for testing only - to see logged in UI
 // document.cookie = "wordpress_logged_in_=true;expires=Thu,18Dec2023-12:00:00UTC;path=/";
-
-function checkLoginStatus() {
-    const cookies = document.cookie.split("; ");
-    const loggedInCookie = cookies.find((cookie) =>
-        cookie.startsWith("wordpress_logged_in_")
-    );
-    return !!loggedInCookie; 
-};
 
 export default function SciChartNavbar({
     toggleDrawer,
@@ -24,7 +16,15 @@ export default function SciChartNavbar({
     setTheme: (theme: ETheme) => void;
     theme: ETheme;
 }) {
-    const [isLoggedIn] = useState(checkLoginStatus());
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    function checkLoginStatus() {
+        const cookies = document.cookie.split("; ");
+        const loggedInCookie = cookies.find((cookie) =>
+            cookie.startsWith("wordpress_logged_in_")
+        );
+        return !!loggedInCookie; 
+    };
 
     function toggleTheme(){
         const newTheme = (theme == ETheme.dark ? ETheme.light : ETheme.dark);
@@ -54,6 +54,10 @@ export default function SciChartNavbar({
             </svg>
         </button>
     }
+
+    useEffect(() => {
+        setIsLoggedIn(checkLoginStatus());
+    }, []);
 
     return (
         <header id="masthead" className="site-header">
