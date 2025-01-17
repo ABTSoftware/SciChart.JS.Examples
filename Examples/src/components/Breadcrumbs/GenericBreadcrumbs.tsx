@@ -122,6 +122,7 @@ export function BreadcrumbsWithMenu(props: {
                 key={breadcrumb.entry.id}
                 style={{ textDecoration: "none" }}
                 to={breadcrumb.link}
+                title={breadcrumb.title}
                 id="composition-button"
                 aria-controls={open ? "composition-menu" : undefined}
                 aria-expanded={open ? "true" : undefined}
@@ -186,6 +187,7 @@ export function BreadcrumbsWithMenu(props: {
                                                             padding: "6px 16px",
                                                         }}
                                                         to={link}
+                                                        title={item.title}
                                                     >
                                                         {label}
                                                     </Link>
