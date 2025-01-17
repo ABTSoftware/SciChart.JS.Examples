@@ -5,6 +5,7 @@ const config = require("./config/default");
 const autoprefixer = require("autoprefixer");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const filename = (ext) => `[name].[hash].${ext}`;
 
@@ -59,6 +60,14 @@ module.exports = {
         filename: "bundle.js",
         path: path.resolve(__dirname, config.buildConfig.targetDir),
     },
+    // this is already done in the server build process, so probably there is no need doing it here
+    // optimization: {
+    //     minimizer: [
+    //         // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+    //         `...`,
+    //         new CssMinimizerPlugin(),
+    //     ],
+    // },
     plugins: [
         new CopyPlugin({
             patterns: [

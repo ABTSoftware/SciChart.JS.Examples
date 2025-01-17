@@ -3,6 +3,7 @@ import classes from "./index.scss";
 import { Link, useNavigate } from "react-router";
 import { GalleryItem } from "../../helpers/types/types";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { SciImage } from "../../helpers/shared/SciImage";
 
 type TProps = {
     examples: GalleryItem[];
@@ -173,7 +174,7 @@ const Example: React.FC<{
                     {example.items.map((item, index) => (
                         <div key={index} className={classes.card} onClick={() => handleSubmenuClick(item.examplePath)}>
                             <div className={classes.imgWrapper}>
-                                <img src={item.imgPath} alt={item.seoTitle} title={item.title} />
+                                <SciImage src={item.imgPath} alt={item.seoTitle} title={item.title} />
                             </div>
                             <div className={classes.content}>
                                 <h3>{item.title}</h3>

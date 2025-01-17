@@ -4,6 +4,7 @@ const path = require("path");
 const config = require("./config/default");
 const nodeExternals = require("webpack-node-externals");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const ImageminWebpWebpackPlugin = require("imagemin-webp-webpack-plugin");
 
 module.exports = {
     mode: "production",
@@ -73,6 +74,7 @@ module.exports = {
         ],
     },
     plugins: [
+        new ImageminWebpWebpackPlugin(),
         new CopyPlugin({
             patterns: [
                 {
