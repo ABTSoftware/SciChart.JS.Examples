@@ -31,11 +31,11 @@ $drawerWidthMobile: 100%;
 }
 .DrawerDesktop {
     position: sticky;
-    top: 85px;
+    top: 110px;
     order: -1;
     background-color: var(--bg);
     width: $drawerWidthDesktop;
-    max-height: calc(100vh - 68px - 24px); // subtract navHeight and 2 * padding
+    max-height: calc(100vh - $app-bar-height - 40px); // subtract navHeight and 2 * padding
     margin-right: 15px;
     flex-shrink: 0;
     overflow-x: hidden;

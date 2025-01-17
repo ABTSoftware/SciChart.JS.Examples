@@ -1,10 +1,10 @@
 import React from "react";
 import classes from "./AppDetailsRouter.scss";
-import { Icon } from "../buttons/Icon";
+import { Icon, TIconType } from "../buttons/Icon";
 
 interface BaseCodeActionButtonProps {
-    iconName: string;
-    label: string;
+    iconName: TIconType;
+    label?: string;
     className?: string;
     title?: string;
     rel?: string;
@@ -44,12 +44,12 @@ export const CodeActionButton: React.FC<CodeActionButtonProps> = ({
             rel={rel}
         >
             <Icon name={iconName} />
-            <p>{label}</p>
+            {label ? <p>{label}</p> : null}
         </a>
     ) : (
         <span className={`${className} ${classes.actionButton}`} onClick={onClick} title={title} rel={rel}>
             <Icon name={iconName} />
-            <p>{label}</p>
+            {label ? <p>{label}</p> : null}
         </span>
     );
 };

@@ -38,7 +38,7 @@ $drawerWidthDesktop: min(350px, 25vw);
     order: -1;
     background-color: var(--bg);
     width: $drawerWidthDesktop;
-    max-height: calc(100vh - 108px);
+    max-height: calc(100vh - 128px);
     margin-right: 15px;
     flex-shrink: 0;
     overflow-x: hidden;
@@ -123,6 +123,8 @@ $drawerWidthDesktop: min(350px, 25vw);
 
     @media only screen and (max-width: 768px) {
         max-width: 100vw;
+        border: none;
+        border-radius: 0 0 15px 15px;
     }
 
     .layoutButtons {
@@ -609,7 +611,20 @@ $drawerWidthDesktop: min(350px, 25vw);
     }
 
     .btnGithub {
-        background-color: rgb(42, 99, 151);
+        background: var(--light-blue);
+    }
+
+    .btnNpm {
+        background: #cb3837;
+
+        svg {
+            width: 34px;
+            height: 34px;
+        }
+    }
+
+    .btnDocs {
+        background: var(--light-blue)
     }
 
     .btn:hover {

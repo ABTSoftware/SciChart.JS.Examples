@@ -58,11 +58,14 @@ export default function AppFooter() {
                             <div className={classes.dividerBox}></div>
                         </div>
                         <div className={classes.RelatedLinks}>
-                            <a href="https://demo.scichart.com/react" title="SciChart Javascript Demos">
+                            <a href="https://demo.scichart.com/javascript" title="SciChart Javascript Demos">
                                 SciChart Javascript Demos
                             </a>
-                            <a href="https://demo.scichart.com/javascript" title="SciChart React Demos">
+                            <a href="https://demo.scichart.com/react" title="SciChart React Demos">
                                 SciChart React Demos
+                            </a>
+                            <a href="https://demo.scichart.com/angular" title="SciChart Angular Demos">
+                                SciChart Angular Demos
                             </a>
                         </div>
                     </div>

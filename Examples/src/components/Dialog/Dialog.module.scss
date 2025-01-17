@@ -7,30 +7,30 @@
 }
 
 .dialog {
-    background: linear-gradient(to bottom, #ffffff, #f8f9fa);
-    border-radius: 12px;
-    padding: 20px 24px;
+    background: #FFF;
+    color: #111;
+    border-radius: 8px;
+    padding: 10px 12px;
     position: relative;
     max-width: 400px;
     width: 90%;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 5px 10px -5px rgba(0, 0, 0, 0.04);
     animation: slideIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
 }
 
 .closeButton {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 10px;
+    right: 10px;
     border: none;
     background: none;
     font-size: 20px;
     cursor: pointer;
-    padding: 4px;
     color: #6e7681;
+    width: 20px;
+    height: 20px;
     transition: all 0.2s ease;
-    width: 24px;
-    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;

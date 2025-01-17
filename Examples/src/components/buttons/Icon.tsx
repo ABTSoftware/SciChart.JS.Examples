@@ -5,6 +5,8 @@ import * as icons from "./svgIcons";
 import { DEFAULT_ICON } from "./svgIcons";
 import { useIsomorphicLayoutEffect } from "../../helpers/hooks/useIsomorphicLayoutEffect";
 
+export type TIconType = "github" | "codesandbox" | "exampleStackblitz" | "exampleGithub" | "fullscreen" | "npm" | "docs";
+
 const getSvgText = (name: string) => {
     const icos = icons as Record<string, string>;
     return icos[name] ?? DEFAULT_ICON;

@@ -28,6 +28,7 @@ import { appTheme } from "./Examples/theme";
 import { SciChartSurfaceBase } from "scichart";
 import { ContentSectionRouter } from "./Navigation/AnchorTagRouter";
 import GalleryItems from "./GalleryItems";
+import SciChartNavbar from "./SciChartNavbar/SciChartNavbar";
 
 SciChartSurfaceBase.DEFAULT_THEME = appTheme.SciChartJsTheme;
 SciChartDefaults.useSharedCache = true;
@@ -96,9 +97,12 @@ export default function App() {
 
     React.useEffect(() => {
         setTheme(
-            window && window?.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? ETheme.dark
-                : ETheme.light
+            window ? (
+                window.location.search.includes("theme") 
+                    && window.location.search.includes("theme=dark") 
+                        ? ETheme.dark 
+                        : ETheme.light
+            ) : ETheme.light
         );
     }, []);
 
@@ -147,13 +151,17 @@ export default function App() {
                     </Drawer>
                 )}
                 <div className={classes.MainAppContent}>
-                    <AppBarTop
+                    {/* <AppBarTop
                         toggleDrawer={toggleDrawer}
                         currentExample={currentExample}
                         theme={theme}
                         setTheme={setTheme}
+                    /> */}
+                    <SciChartNavbar 
+                        toggleDrawer={toggleDrawer}
+                        theme={theme}
+                        setTheme={setTheme}
                     />
-                    {/* <SciChartNavbar /> */}
 
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 

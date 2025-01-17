@@ -7,11 +7,11 @@
 
     .Logo {
         display: block;
-        height: 68px;
+        height: $app-bar-height;
 
         .LogoSmall {
-            height: 68px;
-            width: 68px;
+            height: $app-bar-height;
+            width: $app-bar-height;
         }
 
         .LogoDefault {
@@ -164,10 +164,8 @@
 
         .ThemeButton {
             @extend %ToolBarButton;
-            height: 100%;
-            border-radius: 8px;
-            font-size: 22px;
-            padding: 6px;
+            
+            
         }
     }
 }

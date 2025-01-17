@@ -2,12 +2,13 @@
 
 .Search {
     display: block;
-    width: 100%;
-    max-width: 40vw;
-    // width: 30vw;
-    // height: 100%;
-    padding: 16px 0;
+    max-width: 44vw;
+    padding: 16px;
     flex: auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
 
     .SearchField {
         @include sm {
@@ -15,12 +16,16 @@
         }
         height: 44px;
         border-radius: 8px;
-        border: 1px solid rgba(127, 127, 127, 0.6);
-        background-color: rgba(127, 127, 127, 0.1);
+        border: none;
+        border: 1px solid var(--border-color);
     }
 
     svg,
     input {
-        color: rgba(127, 127, 127, 0.6);
+        color: var(--text);
+    }
+
+    @include md { 
+        max-width: 100%;
     }
 }
