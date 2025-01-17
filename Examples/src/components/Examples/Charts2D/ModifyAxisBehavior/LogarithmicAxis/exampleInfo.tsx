@@ -1,45 +1,60 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-chart-logarithmic-axis.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const description = `Demonstrates how to create Logarithmic X or Y axis in a JavaScript Chart.
-SciChart supports axis with Logarithmic scale and scientific or engineering notation.
-This example shows how to configure the logarithmic axis.`;
-const tips = [`Try dragging an axis or the chart to zoom and pan around. Double clicking the chart resets the zoom!`];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlLogarithmicAxisDocumentation,
-        title: ExampleStrings.urlTitleLogarithmicAxisDocumentation,
-        linkTitle: "SciChart.js Documentation Home",
-    },
-];
+        exampleId: "Charts2DModifyAxisBehaviorLogarithmicAxis",
+        imagePath: "javascript-chart-logarithmic-axis.jpg",
+        description:
+            "Demonstrates how to create a **JavaScript Chart with Logarithmic axis** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to create a **JavaScript Chart with Logarithmic axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Chart with Logarithmic Axis Example",
+                pageTitle: "JavaScript Chart with Logarithmic Axis Example",
+                metaDescription:
+                    "Demonstrates Logarithmic Axis on a JavaScript Chart using SciChart.js. SciChart supports logarithmic axis with scientific or engineering notation and positive and negative values",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to create a **React Chart with Logarithmic axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "React Chart with Logarithmic Axis Example",
+                pageTitle: "React Chart with Logarithmic Axis Example",
+                metaDescription:
+                    "Demonstrates Logarithmic Axis on a React Chart using SciChart.js. SciChart supports logarithmic axis with scientific or engineering notation and positive and negative values",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to create a **Angular Chart with Logarithmic axis** using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Chart with Logarithmic Axis Example",
+                pageTitle: "Angular Chart with Logarithmic Axis Example",
+                metaDescription:
+                    "Demonstrates Logarithmic Axis on a Angular Chart using SciChart.js. SciChart supports logarithmic axis with scientific or engineering notation and positive and negative values",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Logarithmic%20Axis.html",
+                title: "SciChart.js Logarithmic Axis Documentation",
+                linkTitle: "SciChart.js Documentation Home",
+            },
+        ],
+        path: "chart-logarithmic-axis",
+        metaKeywords: "logarithmic, axis, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/ModifyAxisBehavior/LogarithmicAxis",
+        thumbnailImage: "javascript-chart-logarithmic-axis.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to create a <strong>{frameworkName} Chart with Logarithmic axis</strong> using SciChart.js,
-        High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-const markdownContent: string = undefined;
-
-export const logarithmicAxisExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleLogarithmicAxis,
-    pageTitle: ExampleStrings.titleLogarithmicAxis,
-    path: ExampleStrings.urlLogarithmicAxis,
-    filepath: "Charts2D/ModifyAxisBehavior/LogarithmicAxis",
-    subtitle: Subtitle,
-    metaDescription: (frameworkName: string) =>
-        `Demonstrates Logarithmic Axis on a ${frameworkName} Chart using SciChart.js. SciChart supports logarithmic axis with scientific or engineering notation and positive and negative values`,
-    metaKeywords: "logarithmic, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const logarithmicAxisExampleInfo = createExampleInfo(metaData);

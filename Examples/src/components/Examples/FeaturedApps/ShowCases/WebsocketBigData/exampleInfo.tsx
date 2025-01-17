@@ -1,50 +1,60 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-streaming-data.jpg";
-import { EPageLayout } from "../../../../../helpers/types/types";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-const previewDescription = ``;
-const description = `SciChart can handle realtime data, and lots of it!.  Pick a chart type and use the sliders to adjust the data volume and see how SciChart is able to keep up.
-Data is streamed from the server via websocket and buffered locally so it keeps up with the data even if the render time is more than the update interval.
-Stop the updates then zoom with the mousewheel to see all the data is really there.`;
-const tips = [
-    `For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded
-    appendRange functions on dataseries.`,
-];
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home",
-    },
-];
+        exampleId: "FeaturedAppsShowCasesWebsocketBigData",
+        imagePath: "javascript-streaming-data.jpg",
+        description:
+            "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
+                title: "Client/Server Websocket Data Streaming",
+                pageTitle: "Client/Server Websocket Data Streaming",
+                metaDescription:
+                    "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
+                title: "Client/Server Websocket Data Streaming",
+                pageTitle: "Client/Server Websocket Data Streaming",
+                metaDescription:
+                    "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
+                title: "Client/Server Websocket Data Streaming",
+                pageTitle: "Client/Server Websocket Data Streaming",
+                metaDescription:
+                    "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
+                linkTitle: "SciChart.js Documentation Home",
+            },
+        ],
+        path: "chart-websocket-bigdata-demo",
+        metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "FeaturedApps/ShowCases/WebsocketBigData",
+        thumbnailImage: "javascript-streaming-data.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const markdownContent: string = undefined;
-
-export const websocketBigDataDemoExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleRealtimeBigDataJavaScriptChartDemo,
-    pageTitle: ExampleStrings.titleRealtimeBigDataJavaScriptChartDemo,
-    path: ExampleStrings.urlRealtimeBigDataJavaScriptChartDemo,
-    filepath: "FeaturedApps/ShowCases/WebsocketBigData",
-    subtitle: Subtitle,
-
-    metaDescription: (frameworkName: string) =>
-        `This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!`,
-    metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-    pageLayout: EPageLayout.MaxWidth,
-};
+export const websocketBigDataDemoExampleInfo = createExampleInfo(metaData);

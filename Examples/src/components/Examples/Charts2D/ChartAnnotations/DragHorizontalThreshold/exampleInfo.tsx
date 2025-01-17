@@ -1,45 +1,60 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-chart-drag-horizontal-threshold.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const previewDescription = `Drag Threshold demo shows how to add draggable vertical and horizontal thresholds to a mountain chart and change chart series colour based on the threshold value.`;
-const description = `The Drag Threshold demo shows how to add draggable vertical and horizontal thresholds to a JavaScript chart and change chart series colour based on the threshold value.`;
-const tips = [
-    ` All Annotations have an isEditable property. When true, the annotation can be dragged and resized. Chart colouring may be changed via a rule using the PaletteProvider API.`,
-];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlAnnotationsDocumentation,
-        title: ExampleStrings.urlTitleAnnotationsDocumentation,
-        linkTitle: "Annotations API Documentation",
-    },
-];
+        exampleId: "Charts2DChartAnnotationsDragHorizontalThreshold",
+        imagePath: "javascript-chart-drag-horizontal-threshold.jpg",
+        description:
+            "Demonstrates interaction by dragging vertical and horizontal line thresholds on a mountain chart. As the thresholds move, the chart colour updates. The vertical mountain fill is done using a separate renderableSeries and a dataFilter which reshapes the data to draw only the portion above the threshold.",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates interaction by dragging vertical and horizontal line thresholds on a mountain chart. As the thresholds move, the chart colour updates. The vertical mountain fill is done using a separate renderableSeries and a dataFilter which reshapes the data to draw only the portion above the threshold.",
+                title: "JavaScript Mountain Chart Draggable Thresholds",
+                pageTitle: "JavaScript Mountain Chart Draggable Thresholds",
+                metaDescription:
+                    "Demonstrates how to add draggable thresholds which change the series color in the chart in SciChart.js",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates interaction by dragging vertical and horizontal line thresholds on a mountain chart. As the thresholds move, the chart colour updates. The vertical mountain fill is done using a separate renderableSeries and a dataFilter which reshapes the data to draw only the portion above the threshold.",
+                title: "React Mountain Chart Draggable Thresholds",
+                pageTitle: "React Mountain Chart Draggable Thresholds",
+                metaDescription:
+                    "Demonstrates how to add draggable thresholds which change the series color in the chart in SciChart.js",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates interaction by dragging vertical and horizontal line thresholds on a mountain chart. As the thresholds move, the chart colour updates. The vertical mountain fill is done using a separate renderableSeries and a dataFilter which reshapes the data to draw only the portion above the threshold.",
+                title: "Angular Mountain Chart Draggable Thresholds",
+                pageTitle: "Angular Mountain Chart Draggable Thresholds",
+                metaDescription:
+                    "Demonstrates how to add draggable thresholds which change the series color in the chart in SciChart.js",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Annotations%20API%20Overview.html",
+                title: "The specific page for the SciChart.js Annotations documentation will help you to get started",
+                linkTitle: "Annotations API Documentation",
+            },
+        ],
+        path: "chart-drag-horizontal-threshold",
+        metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/ChartAnnotations/DragHorizontalThreshold",
+        thumbnailImage: "javascript-chart-drag-horizontal-threshold.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates interaction by dragging vertical and horizontal line thresholds on a mountain chart. As the
-        thresholds move, the chart colour updates. The vertical mountain fill is done using a separate renderableSeries
-        and a dataFilter which reshapes the data to draw only the portion above the threshold.
-    </p>
-);
-
-const markdownContent: string = undefined;
-
-export const dragHorizontalThresholdExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleDragHorizontalThreshold,
-    pageTitle: ExampleStrings.titleDragHorizontalThreshold,
-    path: ExampleStrings.urlDragHorizontalThreshold,
-    filepath: "Charts2D/ChartAnnotations/DragHorizontalThreshold",
-    subtitle: Subtitle,
-
-    metaDescription: (frameworkName: string) =>
-        `Demonstrates how to add draggable thresholds which change the series color in the chart in SciChart.js`,
-    metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const dragHorizontalThresholdExampleInfo = createExampleInfo(metaData);

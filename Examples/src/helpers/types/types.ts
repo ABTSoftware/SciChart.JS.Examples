@@ -28,7 +28,10 @@ export enum EPageLayout {
     Default = "default",
 }
 
-export enum ETheme { dark = "dark", light = "light" };
+export enum ETheme {
+    dark = "dark",
+    light = "light",
+}
 
 export type ExampleSourceFile = { name: string; content: string };
 export type SourceFilesVariant = { files: ExampleSourceFile[]; framework: EPageFramework };

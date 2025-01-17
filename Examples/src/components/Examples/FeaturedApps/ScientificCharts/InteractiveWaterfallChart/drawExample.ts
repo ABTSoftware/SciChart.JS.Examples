@@ -215,7 +215,7 @@ export const getChartsInitializationAPI = () => {
 
         // Add zooming behaviours
         sciChartSurface.chartModifiers.add(
-            new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }),
+            new ZoomPanModifier({ enableZoom: true, xyDirection: EXyDirection.XDirection }),
             new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
             new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection })
         );

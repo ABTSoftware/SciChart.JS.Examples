@@ -16,13 +16,13 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: ["style-loader", "css-loader"],
+                use: [{ loader: MiniCssExtractPlugin.loader }, "css-loader", "postcss-loader"],
                 exclude: /node_modules/,
             },
             {
                 test: /\.scss$/,
                 use: [
-                    { loader: "style-loader" },
+                    { loader: MiniCssExtractPlugin.loader },
                     {
                         loader: "css-loader",
                         options: {
@@ -86,9 +86,10 @@ module.exports = {
                 { from: process.env.NOINDEX ? "robotsNoIndex.txt" : "robots.txt", to: "robots.txt" },
             ],
         }),
-        //new BundleAnalyzerPlugin(),
+        // new BundleAnalyzerPlugin(),
         new MiniCssExtractPlugin({
-            filename: filename("styles.css"),
+            // these duplicate style.css extracted in server build
+            filename: "stylesClientBundle.css",
         }),
         require("autoprefixer"),
     ],

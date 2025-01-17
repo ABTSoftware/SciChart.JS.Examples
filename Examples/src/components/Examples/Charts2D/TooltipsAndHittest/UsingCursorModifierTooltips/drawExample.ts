@@ -117,7 +117,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             tooltipLegendTemplate: getTooltipLegendTemplate,
         }),
         // Add further zooming and panning behaviours
-        new ZoomPanModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
         new ZoomExtentsModifier(),
         new MouseWheelZoomModifier()
     );

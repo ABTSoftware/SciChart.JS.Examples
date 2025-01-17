@@ -68,7 +68,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         dataPointWidth: 0.3,
         strokeThickness: 4,
         stroke: appTheme.VividSkyBlue + "77",
-        animation: { type: EAnimationType.Scale, options: { zeroLine: 0,  duration: 500 } },
+        animation: { type: EAnimationType.Scale, options: { zeroLine: 0, duration: 500 } },
     });
     sciChartSurface.renderableSeries.add(errorBarsHorizontalSeries);
 
@@ -93,8 +93,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(errorBarsSeries);
 
     // add some interactivity
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new PinchZoomModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 

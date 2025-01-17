@@ -24,7 +24,7 @@ const useStyles = makeStyles()((theme) => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function LogarithmicAxisExample() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
 
     const [linearXAxis, setLinearXAxis] = React.useState<NumericAxis>();
     const [logXAxis, setLogXAxis] = React.useState<LogarithmicAxis>();

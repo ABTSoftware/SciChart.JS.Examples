@@ -17,29 +17,29 @@
 
     // prevent simulation of hover on touch devices
     @media (hover: hover) {
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.05);
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
 
-        a {
-          color: var(--primary-purple);
-        }
+            a {
+                color: var(--primary-purple);
+            }
 
-        &::after {
-          border-left : 0px solid transparent;
+            &::after {
+                border-left: 0px solid transparent;
+            }
         }
-      }
     }
 
     &:active {
-      background-color: var(--bg-darker);
-      background-size: 100%;
-      transition: background 0s;
-      color: var(--text);
+        background-color: var(--bg-darker);
+        background-size: 100%;
+        transition: background 0s;
+        color: var(--text);
 
-      &::after {
-          border-left: 0px solid $color-dark-green;
-          transition: border-left 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-      }
+        &::after {
+            border-left: 0px solid $color-dark-green;
+            transition: border-left 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        }
     }
 
     &::after {
@@ -49,35 +49,36 @@
 }
 
 %MenuListItem {
-  @extend %ListItem;
+    @extend %ListItem;
 
-  color: var(--text);
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding-bottom: 12px;
-  line-height: 17px;
+    color: var(--text);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    line-height: 17px;
 }
 
 %SelectedListItem {
-  background-color: var(--light-blue);
-  color: #FFF;
+    background-color: var(--light-blue);
+    color: #fff;
 
-  a {
-    color: #FFF;
-  }
+    a {
+        color: #fff;
+    }
 
-  &::after {
-      content: "";
-      cursor: unset;
-      pointer-events: none;
-      display: block;
-      width: 0;
-      height: 0;
-      border-top: 16px solid transparent;
-      border-bottom: 16px solid transparent;
-      position: absolute;
-      right: -16px;
-      border-left: 16px solid $color-dark-green;
-      transition: border-left 0ms cubic-bezier(0.4, 0, 0.2, 1) 150ms;
-  }
+    &::after {
+        content: "";
+        cursor: unset;
+        pointer-events: none;
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 16px solid transparent;
+        border-bottom: 16px solid transparent;
+        position: absolute;
+        right: -16px;
+        border-left: 16px solid $color-dark-green;
+        transition: border-left 0ms cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+    }
 }

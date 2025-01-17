@@ -1,49 +1,63 @@
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-server-traffic-dashboard.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 import { EPageLayout } from "../../../../../helpers/types/types";
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-const previewDescription = ``;
-const description = `SciChart can handle realtime data, and lots of it!.  Pick a chart type and use the sliders to adjust the data volume and see how SciChart is able to keep up.
-Data is streamed from the server via websocket and buffered locally so it keeps up with the data even if the render time is more than the update interval.
-Stop the updates then zoom with the mousewheel to see all the data is really there.`;
-const tips = [
-    `For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded
-    appendRange functions on dataseries.`,
-];
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home",
-    },
-];
+        exampleId: "FeaturedAppsShowCasesServerTrafficDashboard",
+        imagePath: "javascript-server-traffic-dashboard.jpg",
+        description:
+            "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
+                title: "Server Traffic Dashboard",
+                pageTitle: "Server Traffic Dashboard",
+                metaDescription:
+                    "This dashboard demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
+                title: "Server Traffic Dashboard",
+                pageTitle: "Server Traffic Dashboard",
+                metaDescription:
+                    "This dashboard demo showcases the incredible realtime performance of our React charts by updating the series with millions of data-points!",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
+                title: "Server Traffic Dashboard",
+                pageTitle: "Server Traffic Dashboard",
+                metaDescription:
+                    "This dashboard demo showcases the incredible realtime performance of our Angular charts by updating the series with millions of data-points!",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
+                linkTitle: "SciChart.js Documentation Home",
+            },
+        ],
+        path: "server-traffic-dashboard",
+        metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "FeaturedApps/ShowCases/ServerTrafficDashboard",
+        thumbnailImage: "javascript-server-traffic-dashboard.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: EPageLayout.MaxWidth,
+        extraDependencies: {
+            "country-flag-icons": "^1.5.7",
+        },
+    };
+//// End of computer generated metadata
 
-const markdownContent: string = undefined;
-
-export const serverTrafficDashboardDemoExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleServerTrafficDashboard,
-    pageTitle: ExampleStrings.titleServerTrafficDashboard,
-    path: ExampleStrings.urlServerTrafficDashboard,
-    filepath: "FeaturedApps/ShowCases/ServerTrafficDashboard",
-    subtitle: Subtitle,
-    metaDescription: (frameworkName: string) =>
-        `This dashboard demo showcases the incredible realtime performance of our ${frameworkName} charts by updating the series with millions of data-points!`,
-    metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    extraDependencies: { "country-flag-icons": "^1.5.7" },
-    documentationLinks,
-    pageLayout: EPageLayout.MaxWidth
-};
+export const serverTrafficDashboardDemoExampleInfo = createExampleInfo(metaData);

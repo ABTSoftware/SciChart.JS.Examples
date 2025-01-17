@@ -88,7 +88,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function FeatureChartTitle() {
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
+    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
     const [titleText, setTitleText] = React.useState("Multiline\nChart Title");
     const [titlePosition, setTitlePosition] = React.useState(ETitlePosition.Top);

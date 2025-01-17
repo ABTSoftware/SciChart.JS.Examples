@@ -80,7 +80,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(
+        new ZoomExtentsModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
+        new MouseWheelZoomModifier()
+    );
 
     let updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void = () => null;
 

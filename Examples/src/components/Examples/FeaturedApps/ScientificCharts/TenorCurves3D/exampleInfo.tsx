@@ -1,49 +1,60 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-2d-3d-chart-tenor-curves-example.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const description = `Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application. An example
-like this could be used to visualize Tenor curves in a financial setting, or other 2D/3D data combined on a
-single screen.`;
-const tips = [
-    `This example uses a SurfaceMeshRenderable Series3D to render a 2-dimensional array as a heightmap. Line
-charts are shown on the same example to show that 2D & 3D charts can be combined.`,
-    `You can also overlay contours if you use the SurfaceMeshRenderable Series3D and enable contours by setting
-    the DrawMeshAs property.`,
-];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlSurfaceMesh3DChartDocumentation,
-        title: ExampleStrings.urlTitleSurfaceMesh3DChartDocumentation,
-        linkTitle: "JavaScript 3D Surface Mesh Chart Documentation",
-    },
-];
+        exampleId: "FeaturedAppsScientificChartsTenorCurves3D",
+        imagePath: "javascript-2d-3d-chart-tenor-curves-example.jpg",
+        description:
+            "In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.",
+                title: "Tenor Curves Demo",
+                pageTitle: "Tenor Curves Demo",
+                metaDescription:
+                    "Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application. An example like this could be used to visualize Tenor curves in a financial setting, or other 2D/3D data combined on a single screen.",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.",
+                title: "Tenor Curves Demo",
+                pageTitle: "Tenor Curves Demo",
+                metaDescription:
+                    "Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application. An example like this could be used to visualize Tenor curves in a financial setting, or other 2D/3D data combined on a single screen.",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.",
+                title: "Tenor Curves Demo",
+                pageTitle: "Tenor Curves Demo",
+                metaDescription:
+                    "Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application. An example like this could be used to visualize Tenor curves in a financial setting, or other 2D/3D data combined on a single screen.",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20SurfaceMesh%203D%20Chart%20Type.html",
+                title: "SciChart.js 3D Surface Mesh Documentation",
+                linkTitle: "JavaScript 3D Surface Mesh Chart Documentation",
+            },
+        ],
+        path: "2d-3d-chart-tenor-curves-example",
+        metaKeywords: "tenor, curves, 3d, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "FeaturedApps/ScientificCharts/TenorCurves3D",
+        thumbnailImage: "javascript-2d-3d-chart-tenor-curves-example.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor
-        curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.
-    </p>
-);
-
-const markdownContent: string = undefined;
-
-export const tenorCurvesExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleTenorCurvesFeaturedApp,
-    pageTitle: ExampleStrings.titleTenorCurvesFeaturedApp,
-    path: ExampleStrings.urlTenorCurvesFeaturedApp,
-    filepath: "FeaturedApps/ScientificCharts/TenorCurves3D",
-    subtitle: Subtitle,
-    metaDescription:
-        "Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application. " +
-        "An example like this could be used to visualize Tenor curves in a financial setting, " +
-        "or other 2D/3D data combined on a single screen.",
-    metaKeywords: "tenor, curves, 3d, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const tenorCurvesExampleInfo = createExampleInfo(metaData);

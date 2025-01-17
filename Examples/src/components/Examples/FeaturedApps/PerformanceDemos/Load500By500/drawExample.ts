@@ -113,7 +113,11 @@ export const drawExample = async (
     }
 
     // Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(
+        new ZoomExtentsModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
+        new MouseWheelZoomModifier()
+    );
 
     // Buttons for chart
     const loadPoints = () => {

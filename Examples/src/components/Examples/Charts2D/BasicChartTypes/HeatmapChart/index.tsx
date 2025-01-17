@@ -24,7 +24,7 @@ const useStyles = makeStyles()((theme) => ({
 }));
 
 export default function HeatmapChart() {
-    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
     const [isStarted, setIsStarted] = useState(false);
     const [stats, setStats] = useState({ xSize: 0, ySize: 0, fps: 0 });
 

@@ -155,7 +155,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Optional: add some chartmodifiers for interaction and to show the legend
     sciChartSurface.chartModifiers.add(
         new MouseWheelZoomModifier(),
-        new ZoomPanModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
         new ZoomExtentsModifier(),
         new LegendModifier({ placement: ELegendPlacement.BottomLeft, orientation: ELegendOrientation.Horizontal })
     );

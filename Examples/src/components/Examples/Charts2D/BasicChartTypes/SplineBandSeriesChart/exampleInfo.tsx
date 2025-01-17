@@ -1,48 +1,60 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import exampleImage from "./javascript-spline-band-chart.jpg";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const previewDescription = `Band Charts fill a polygon between two high and low lines. The colour of the polygon changes depending on which line Y1 or Y2 is higher.`;
-const description = `This variation on Band charts uses Spline interpolation (smoothing). This JS chart type can be used to draw thresholds, a fill between two lines or areas of interest on a chart.`;
-const tips = [
-    `If you have data where Y1 is greater than Y2 always, you’ll get an envelope effect. Great for rendering
-    confidence intervals, error margins or Bollinger Bands!`,
-];
-
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to create a <strong>{frameworkName} Spline Band Chart</strong> or High-Low Fill using
-        SciChart.js, our High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Chart Software
-        </a>
-    </p>
-);
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlSplineBandChartDocumentation,
-        title: ExampleStrings.urlTitleSplineBandChartDocumentation,
-        linkTitle: "JavaScript Spline Band Documentation",
-    },
-];
+        exampleId: "Charts2DBasicChartTypesSplineBandSeriesChart",
+        imagePath: "javascript-spline-band-chart.jpg",
+        description:
+            "Demonstrates how to create a **JavaScript Spline Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Software",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to create a **JavaScript Spline Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Software",
+                title: "JavaScript Spline Band Chart",
+                pageTitle: "JavaScript Spline Band Chart | JavaScript Charts | SciChart",
+                metaDescription:
+                    "SciChart's JavaScript Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to create a **React Spline Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Software",
+                title: "React Spline Band Chart",
+                pageTitle: "React Spline Band Chart | JavaScript Charts | SciChart",
+                metaDescription:
+                    "SciChart's React Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to create a **Angular Spline Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Software",
+                title: "Angular Spline Band Chart",
+                pageTitle: "Angular Spline Band Chart | JavaScript Charts | SciChart",
+                metaDescription:
+                    "SciChart's Angular Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Spline%20(Smoothed)%20Band%20Series%20Type.html",
+                title: "This specific page in the JavaScript Spline Band Chart documentation will help you to get started",
+                linkTitle: "JavaScript Spline Band Documentation",
+            },
+        ],
+        path: "spline-band-chart",
+        metaKeywords: "band, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/BasicChartTypes/SplineBandSeriesChart",
+        thumbnailImage: "javascript-spline-band-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const markdownContent: string = undefined;
-
-export const splineBandSeriesChartExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleSplineBandChart,
-    pageTitle: ExampleStrings.pageTitleSplineBandChart,
-    path: ExampleStrings.urlSplineBandChart,
-    filepath: "Charts2D/BasicChartTypes/SplineBandSeriesChart",
-    subtitle: Subtitle,
-
-    metaDescription: (frameworkName: string) =>
-        `SciChart's ${frameworkName} Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.`,
-    metaKeywords: "band, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const splineBandSeriesChartExampleInfo = createExampleInfo(metaData);

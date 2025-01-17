@@ -179,7 +179,7 @@ export const drawExample = (dataSource: string) => async (rootElement: string | 
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(
         new ZoomExtentsModifier(),
-        new ZoomPanModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
         new MouseWheelZoomModifier(),
         new CursorModifier({
             crosshairStroke: appTheme.VividOrange,

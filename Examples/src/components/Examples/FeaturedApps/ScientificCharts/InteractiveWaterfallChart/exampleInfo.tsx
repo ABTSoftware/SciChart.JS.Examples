@@ -1,43 +1,60 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-interactive-waterfall-chart.jpg";
-import { EPageLayout } from "../../../../../helpers/types/types";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const previewDescription = `Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.`;
-const description = ``;
-const tips = [``, ``];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "Scichart.js Documentation",
-    },
-];
+        exampleId: "FeaturedAppsScientificChartsInteractiveWaterfallChart",
+        imagePath: "javascript-interactive-waterfall-chart.jpg",
+        description:
+            "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
+                title: "Interactive Waterfall Spectral Chart",
+                pageTitle: "Interactive Waterfall Chart",
+                metaDescription:
+                    "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
+                title: "Interactive Waterfall Spectral Chart",
+                pageTitle: "Interactive Waterfall Chart",
+                metaDescription:
+                    "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
+                title: "Interactive Waterfall Spectral Chart",
+                pageTitle: "Interactive Waterfall Chart",
+                metaDescription:
+                    "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
+                linkTitle: "Scichart.js Documentation",
+            },
+        ],
+        path: "interactive-waterfall-chart",
+        metaKeywords: "waterfall, chart, interactive, javascript, webgl, canvas",
+        onWebsite: false,
+        filepath: "FeaturedApps/ScientificCharts/InteractiveWaterfallChart",
+        thumbnailImage: "javascript-interactive-waterfall-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "max-width",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive
-        selection of points.
-    </p>
-);
-
-const markdownContent: string = undefined;
-
-export const waterfallChartExampleInfo: TExampleInfo = {
-    onWebsite: false,
-    title: "Interactive Waterfall Spectral Chart",
-    pageTitle: "Interactive Waterfall Chart",
-    path: `interactive-waterfall-chart`,
-    filepath: "FeaturedApps/ScientificCharts/InteractiveWaterfallChart",
-    subtitle: Subtitle,
-
-    metaDescription: previewDescription,
-    metaKeywords: "waterfall, chart, interactive, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-    pageLayout: EPageLayout.MaxWidth
-};
+export const waterfallChartExampleInfo = createExampleInfo(metaData);

@@ -136,7 +136,7 @@
     overflow: hidden;
     padding: 0;
     margin: 0;
-    
+
     .SciChartLogo {
         text-align: right;
         margin-bottom: $default-spacing * 2;
@@ -210,21 +210,6 @@
         font-weight: 600;
         font-size: 1.5rem;
         // margin-bottom: 30px;
-    }
-    .Subtitle {
-        margin-bottom: 20px;
-        font-weight: 400;
-        font-size: 1rem;
-        line-height: 30px;
-        a {
-            color: $color-link-text;
-        }
-        a:hover {
-            color: $color-link-text-hover;
-        }
-    }
-    .TextGreen {
-        color: $color-main-green;
     }
 }
 /////*****VitalSignsMonitorDemo*****/////

@@ -1,5 +1,5 @@
-import express = require("express");
-var url = require("url");
+import express from "express";
+import { parse as parseUrl } from "url";
 import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";
 import { getFrameworkContent, EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 
@@ -21,8 +21,8 @@ class OEmbedResponse {
 }
 
 router.get("/", (req, res) => {
-    const requestUrl = req.query["url"];
-    const location = url.parse(requestUrl, true);
+    const requestUrl = req.query["url"] as string;
+    const location = parseUrl(requestUrl, true);
     const examplePath = (location.pathname as string).substring(location.pathname.lastIndexOf("/") + 1);
     const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === examplePath);
     if (currentExampleKey) {

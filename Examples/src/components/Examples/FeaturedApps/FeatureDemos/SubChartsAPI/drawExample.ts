@@ -331,7 +331,7 @@ export const drawGridExample = async (
         if (mainSurface.chartModifiers.size() === 0) {
             mainSurface.chartModifiers.add(
                 new MouseWheelZoomModifier(),
-                new ZoomPanModifier(),
+                new ZoomPanModifier({ enableZoom: true }),
                 new ZoomExtentsModifier()
             );
         }

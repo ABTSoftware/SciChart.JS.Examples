@@ -1,5 +1,4 @@
 import { appTheme } from "../../../theme";
-import { populationData, PopulationData } from "./data";
 
 import {
     SciChart3DSurface,
@@ -19,18 +18,25 @@ import {
     SeriesInfo3D,
     TooltipSvgAnnotation3D,
     XyzSeriesInfo3D,
+    IPointMetadata3D,
 } from "scichart";
 
-type TMetadata = {
+type TMetadata = IPointMetadata3D & {
     country: string;
     color: string;
     vertexColor: number;
     pointScale: number;
 };
 
-// SCICHART CODE
+type TMappedPopulationData = {
+    population: number[];
+    lifeExpectancy: number[];
+    gdpPerCapita: number[];
+    year: number[];
+    metadata: TMetadata[];
+};
 
-export const drawExample = async (rootElement: string | HTMLDivElement) => {
+const initializeChart = async (rootElement: string | HTMLDivElement) => {
     const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
@@ -84,63 +90,43 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelPrecision: 0,
     });
 
-    // Population dataset from gapminderdata
-    // data format example = [
-    //    { country: "Afghanistan", year: 1952, population: 8425333, continent: "Asia", lifeExpectancy: 28.801, gdpPerCapita: 779.4453145 },
-    // ]
-    const year = populationData.map((item) => item.year);
-    const population = populationData.map((item) => item.population);
-    const lifeExpectancy = populationData.map((item) => item.lifeExpectancy);
-    const gdpPerCapita = populationData.map((item) => item.gdpPerCapita);
+    const renderableSeries = new ScatterRenderableSeries3D(wasmContext, {
+        pointMarker: new SpherePointMarker3D(wasmContext, { size: 10 }),
+        opacity: 0.9,
+    });
 
-    // Metadata in scichart.js 3D controls color and scale of a bubble. It can also hold additional optional properties
-    // Below we format the data for lifeExpectancy into metadata colour coded and scaled depending on the value
-    const metadata = formatMetadata(populationData, [
-        { offset: 1, color: appTheme.VividPink },
-        { offset: 0.9, color: appTheme.VividOrange },
-        { offset: 0.7, color: appTheme.MutedRed },
-        { offset: 0.5, color: appTheme.VividGreen },
-        { offset: 0.3, color: appTheme.VividSkyBlue },
-        { offset: 0.2, color: appTheme.Indigo },
-        { offset: 0, color: appTheme.DarkIndigo },
-    ]);
+    sciChart3DSurface.renderableSeries.add(renderableSeries);
 
-    sciChart3DSurface.renderableSeries.add(
-        new ScatterRenderableSeries3D(wasmContext, {
-            dataSeries: new XyzDataSeries3D(wasmContext, {
-                xValues: lifeExpectancy,
-                yValues: gdpPerCapita,
-                zValues: year,
-                metadata,
-            }),
-            pointMarker: new SpherePointMarker3D(wasmContext, { size: 10 }),
-            opacity: 0.9,
-        })
-    );
+    const setData = (data: TMappedPopulationData) => {
+        const { lifeExpectancy, gdpPerCapita, year, metadata } = data;
 
-    return { sciChartSurface: sciChart3DSurface };
+        const dataSeries = new XyzDataSeries3D(wasmContext, {
+            xValues: lifeExpectancy,
+            yValues: gdpPerCapita,
+            zValues: year,
+            metadata,
+        });
+
+        renderableSeries.dataSeries = dataSeries;
+    };
+
+    return { sciChartSurface: sciChart3DSurface, setData };
 };
 
-function formatMetadata(population: PopulationData[], gradientStops: TGradientStop[]): TMetadata[] {
-    const valuesArray = populationData.map((item) => item.lifeExpectancy);
-    const low = Math.min(...valuesArray);
-    const high = Math.max(...valuesArray);
+// TODO link to data source file
+const getData = async (): Promise<TMappedPopulationData> => {
+    const response = await fetch("/api/populationData");
 
-    const sGradientStops = gradientStops.sort((a, b) => (a.offset > b.offset ? 1 : -1));
-    // Compute a scaling factor from 0...1 where values in valuesArray at the lower end correspond to 0 and
-    // values at the higher end correspond to 1
-    const metaData: TMetadata[] = [];
-    for (const item of population) {
-        const x = item.lifeExpectancy;
-        // scale from 0..1 for the values
-        const valueScale = (x - low) / (high - low);
-        // Find the nearest gradient stop index
-        const index = sGradientStops.findIndex((gs) => gs.offset >= valueScale);
-        // const nextIndex = Math.min(index + 1, sGradientStops.length - 1);
-        // work out the colour of this point
-        const color = sGradientStops[index].color;
-        const vertexColor = parseColorToUIntArgb(color);
-        metaData.push({ country: item.country, pointScale: 0.1 + valueScale, vertexColor, color });
+    if (!response.ok) {
+        throw new Error("Population data request unsuccessful!");
     }
-    return metaData;
-}
+
+    return response.json();
+};
+
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
+    const [chart, data] = await Promise.all([initializeChart(rootElement), getData()]);
+    chart.setData(data);
+
+    return chart;
+};

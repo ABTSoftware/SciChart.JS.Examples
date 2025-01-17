@@ -123,6 +123,8 @@ import SmoothStackedMountainChart from "../Examples/Charts2D/BasicChartTypes/Smo
 import { lineSplittingThresholdsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds/exampleInfo";
 import Column3DChart from "../Examples/Charts3D/Basic3DChartTypes/Column3DChart";
 
+import type { JSX } from "react";
+
 export type TMenuItem = {
     id: string;
     title: string;

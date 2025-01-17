@@ -106,10 +106,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         // use RubberBandXyZoomModifier with Right Mouse Button
         // use easingFunction to animate zoom
         new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton, easingFunction: easing.elastic }),
-        new ZoomPanModifier(),
+        // enable pan withZoomPanModifier, and additionally e PinchZoom to allow zooming with pinch gesture on touch devices by setting enableZoom
+        new ZoomPanModifier({ enableZoom: true }),
         new MouseWheelZoomModifier(),
-        // use PinchZoomModifier to allow zooming with pinch gesture on touch devices
-        new PinchZoomModifier(),
+        // remark: PinchZoom functionality was included into ZoomPanModifier.
+        // if having any conflicts, check the value of modifier.enableZoom
+        // new PinchZoomModifier(),
         // Zoom extents on double click
         new ZoomExtentsModifier({ easingFunction: easing.elastic })
     );

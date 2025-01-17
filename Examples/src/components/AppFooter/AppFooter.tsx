@@ -8,7 +8,7 @@ import {
     MENU_ITEMS_FEATURED_APPS_ID,
 } from "../AppRouter/examples";
 import FooterGrid from "./FooterGrid";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import classes from "./AppFooter.module.scss";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import YouTubeIcon from "@mui/icons-material/YouTube";

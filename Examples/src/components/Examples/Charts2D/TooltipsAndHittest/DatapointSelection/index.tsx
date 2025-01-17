@@ -1,21 +1,29 @@
-import * as React from "react";
-import { CSSProperties } from "react";
+import { useRef, useState, CSSProperties } from "react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { SciChartReact } from "scichart-react";
 import { DataPointInfo } from "scichart";
 import { drawExample } from "./drawExample";
+import { useViewType } from "../../../containerSizeHooks";
 
 export default function DatapointSelection() {
-    const [selectedPoints, setSelectedPoints] = React.useState<DataPointInfo[]>([]);
+    const [selectedPoints, setSelectedPoints] = useState<DataPointInfo[]>([]);
+
+    const viewRef = useRef<HTMLDivElement>(null);
+    const viewInfo = useViewType(viewRef);
+    const { isLargeView, isMobileView } = viewInfo ?? {};
 
     return (
-        <div className={commonClasses.FullHeightChartWrapper}>
-            <div style={{ display: "flex", flexDirection: "row", height: "100%" }}>
-                <SciChartReact
-                    style={chartStyle}
-                    initChart={(rootElement) => drawExample(rootElement, setSelectedPoints)}
-                />
+        <div
+            ref={viewRef}
+            className={commonClasses.ChartWrapper}
+            style={{ display: "flex", flexDirection: "row", height: "100%" }}
+        >
+            <SciChartReact
+                style={chartStyle}
+                initChart={(rootElement) => drawExample(rootElement, setSelectedPoints)}
+            />
+            {!isMobileView ? (
                 <div style={pointsBoxStyle}>
                     <h3 style={{ color: appTheme.PaleSkyBlue, margin: 5 }}>Selected Points</h3>
                     <div style={{ ...rowStyle, marginRight: "17px" }}>
@@ -33,7 +41,7 @@ export default function DatapointSelection() {
                         ))}
                     </div>
                 </div>
-            </div>
+            ) : null}
         </div>
     );
 }

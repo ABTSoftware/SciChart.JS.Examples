@@ -1,48 +1,60 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-stacked-grouped-column-chart.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const description = `Demonstrates how to create a JavaScript Stacked Column Chart with side-by-side grouping. This mode of
-Stacked Column Charts groups the columns next to each other, allowing for easy comparison of several
-datasets.`;
-const tips = [
-    `To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much space the column takes up.`,
-];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlStackedColumnChartDocumentation,
-        title: ExampleStrings.urlTitleStackedColumnChartDocumentation,
-        linkTitle: "JavaScript Stacked Column Chart Documentation",
-    },
-];
+        exampleId: "Charts2DBasicChartTypesStackedColumnSideBySide",
+        imagePath: "javascript-stacked-grouped-column-chart.jpg",
+        description:
+            "We have created a simple example that shows you how to create a **JavaScript Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "We have created a simple example that shows you how to create a **JavaScript Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",
+                title: "JavaScript Stacked Column Side by Side",
+                pageTitle: "JavaScript Stacked Group Column Chart | View Examples Now",
+                metaDescription:
+                    "Design JavaScript Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "We have created a simple example that shows you how to create a **React Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",
+                title: "React Stacked Column Side by Side",
+                pageTitle: "React Stacked Group Column Chart | View Examples Now",
+                metaDescription:
+                    "Design React Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "We have created a simple example that shows you how to create a **Angular Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",
+                title: "Angular Stacked Column Side by Side",
+                pageTitle: "Angular Stacked Group Column Chart | View Examples Now",
+                metaDescription:
+                    "Design Angular Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Stacked%20Column%20Series%20Type.html",
+                title: "The specific page for the JavaScript Stacked Column Chart documentation will help you to get started",
+                linkTitle: "JavaScript Stacked Column Chart Documentation",
+            },
+        ],
+        path: "stacked-grouped-column-chart-side-by-side",
+        metaKeywords: "stacked, column, side-by-side, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/BasicChartTypes/StackedColumnSideBySide",
+        thumbnailImage: "javascript-stacked-grouped-column-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        We have created a simple example that shows you how to create a{" "}
-        <strong>{frameworkName} Stacked Column Chart Side-by-side</strong> using our{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Framework">
-            JavaScript Chart Framework
-        </a>
-        .
-    </p>
-);
-
-const markdownContent: string = undefined;
-
-export const stackedColumnSideBySideExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleGroupedColumnChart,
-    pageTitle: ExampleStrings.pageTitleGroupedColumnChart,
-    path: ExampleStrings.urlGroupedColumnChart,
-    filepath: "Charts2D/BasicChartTypes/StackedColumnSideBySide",
-    subtitle: Subtitle,
-    metaDescription: (frameworkName: string) =>
-        `Design ${frameworkName} Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.`,
-    metaKeywords: "stacked, column, side-by-side, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const stackedColumnSideBySideExampleInfo = createExampleInfo(metaData);

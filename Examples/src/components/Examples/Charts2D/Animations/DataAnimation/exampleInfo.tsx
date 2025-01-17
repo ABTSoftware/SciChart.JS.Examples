@@ -1,43 +1,57 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-data-animation.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const previewDescription = ``; //`Demonstrates how to run data animation for a JavaScript Chart.`;
-const description = `Every second new random values are generated for the scatter series and transition from one state to another is animated`;
-const tips: string[] = ["Animations can be chained"];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlDataAnimationDocumentation,
-        title: ExampleStrings.urlTitleDataAnimationDocumentation,
-        linkTitle: "JavaScript Data Animation Documentation",
-    },
-];
+        exampleId: "Charts2DAnimationsDataAnimation",
+        imagePath: "javascript-data-animation.jpg",
+        description:
+            "Demonstrates how to run **Dataset Animations** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to run **Dataset Animations** using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Chart Data Animation",
+                pageTitle: "JavaScript Chart Data Animation",
+                metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to run **Dataset Animations** using SciChart.js, High Performance JavaScript Charts",
+                title: "React Chart Data Animation",
+                pageTitle: "React Chart Data Animation",
+                metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to run **Dataset Animations** using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Chart Data Animation",
+                pageTitle: "Angular Chart Data Animation",
+                metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Dataset%20Animations.html",
+                title: "The specific page for the JavaScript Dataset Animation documentation will help you to get started",
+                linkTitle: "JavaScript Data Animation Documentation",
+            },
+        ],
+        path: "data-animation",
+        metaKeywords: "data, dataset, animation, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/Animations/DataAnimation",
+        thumbnailImage: "javascript-data-animation.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to run <strong>Dataset Animations</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-const markdownContent: string = undefined;
-
-export const dataAnimationExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleDataAnimation,
-    pageTitle: ExampleStrings.titleDataAnimation,
-    path: ExampleStrings.urlDataAnimation,
-    filepath: "Charts2D/Animations/DataAnimation",
-    subtitle: Subtitle,
-
-    metaDescription: (frameworkName: string) => `Demonstrates how to run Dataset Animations with JavaScript.`,
-    metaKeywords: "data, dataset, animation, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const dataAnimationExampleInfo = createExampleInfo(metaData);

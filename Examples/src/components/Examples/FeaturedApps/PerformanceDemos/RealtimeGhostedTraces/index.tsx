@@ -23,7 +23,7 @@ const useStyles = makeStyles()((theme) => ({
 }));
 
 export default function RealtimeGhostedTraces() {
-    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
     const [isStarted, setIsStarted] = useState(false);
     const [stats, setStats] = useState({ numberSeries: 0, numberPoints: 0, fps: 0 });
@@ -48,7 +48,7 @@ export default function RealtimeGhostedTraces() {
                     </Button>
                     <div># Series: {stats.numberSeries}</div>
                     <div># DataPoints: {stats.numberPoints.toLocaleString()}</div>
-                    <div style={{ flex: "none", flexBasis: "4em", textAlign: "left" }}>
+                    <div style={{ flex: "none", flexBasis: "5em", textAlign: "left" }}>
                         FPS: {stats.fps.toFixed(0).padStart(2, "0")}
                     </div>
                 </div>

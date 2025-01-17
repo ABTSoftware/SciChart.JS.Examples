@@ -35,7 +35,7 @@ const useStyles = makeStyles()((theme) => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function SubchartsGrid() {
-    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
     const [isStarted, setIsStarted] = useState(false);
 
     const [messages, setMessages] = useState<TMessage[]>([]);

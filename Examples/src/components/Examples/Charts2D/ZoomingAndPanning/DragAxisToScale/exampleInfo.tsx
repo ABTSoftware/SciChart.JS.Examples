@@ -1,44 +1,60 @@
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import * as React from "react";
-import { ExampleStrings } from "../../../ExampleStrings";
-import exampleImage from "./drag-axis-on-javascript-charts-to-scale-or-pan.jpg";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const description = `Demonstrates how to add behaviour to scale, zoom or pan a chart by dragging the X or Y Axis on the chart.
-Try it out below! Drag an axis to watch the chart re-scale.`;
-const tips = [`Try dragging an axis to zoom or pan the axis. Double clicking the chart resets the zoom!`];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlDragAxisToScaleDocumentation,
-        title: ExampleStrings.urlTitleDragAxisToScaleDocumentation,
-        linkTitle: "SciChart.js Axis Drag documentation",
-    },
-];
+        exampleId: "Charts2DZoomingAndPanningDragAxisToScale",
+        imagePath: "drag-axis-on-javascript-charts-to-scale-or-pan.jpg",
+        description:
+            "Demonstrates how to **scale or pan the Axis on a JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to **scale or pan the Axis on a JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Drag JavaScript Chart Axis to Scale or Pan",
+                pageTitle: "Drag JavaScript Chart Axis to Scale or Pan",
+                metaDescription:
+                    "Demonstrates how to Zoom, Scale or Pan individual Axis on a JavaScript Chart with SciChart.js AxisDragModifiers",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to **scale or pan the Axis on a React Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Drag React Chart Axis to Scale or Pan",
+                pageTitle: "Drag React Chart Axis to Scale or Pan",
+                metaDescription:
+                    "Demonstrates how to Zoom, Scale or Pan individual Axis on a React Chart with SciChart.js AxisDragModifiers",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to **scale or pan the Axis on a Angular Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Drag Angular Chart Axis to Scale or Pan",
+                pageTitle: "Drag Angular Chart Axis to Scale or Pan",
+                metaDescription:
+                    "Demonstrates how to Zoom, Scale or Pan individual Axis on a Angular Chart with SciChart.js AxisDragModifiers",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#YAxisDragModifier.html",
+                title: "SciChart.js Drag Axis to Scale Documentation page",
+                linkTitle: "SciChart.js Axis Drag documentation",
+            },
+        ],
+        path: "chart-drag-axis-to-scale-pan",
+        metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
+        onWebsite: false,
+        filepath: "Charts2D/ZoomingAndPanning/DragAxisToScale",
+        thumbnailImage: "drag-axis-on-javascript-charts-to-scale-or-pan.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to <strong>scale or pan the Axis on a {frameworkName} Chart</strong> using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-const markdownContent: string = undefined;
-
-export const dragAxisToScaleExampleInfo: TExampleInfo = {
-    onWebsite: false,
-    title: ExampleStrings.titleDragAxisToScale,
-    pageTitle: ExampleStrings.titleDragAxisToScale,
-    path: ExampleStrings.urlDragAxisToScale,
-    filepath: "Charts2D/ZoomingAndPanning/DragAxisToScale",
-    subtitle: Subtitle,
-    metaDescription: (frameworkName: string) =>
-        `Demonstrates how to Zoom, Scale or Pan individual Axis on a ${frameworkName} Chart with SciChart.js AxisDragModifiers`,
-    metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const dragAxisToScaleExampleInfo = createExampleInfo(metaData);

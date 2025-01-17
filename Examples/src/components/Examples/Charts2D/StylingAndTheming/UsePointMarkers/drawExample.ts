@@ -1,4 +1,3 @@
-
 import { appTheme } from "../../../theme";
 
 import {
@@ -50,7 +49,7 @@ function createData(wasmContext: TSciChart) {
     return [dataSeries1, dataSeries2, dataSeries3, dataSeries4, dataSeries5];
 }
 
-export const drawExample = (customPointImage: string) =>  async (rootElement: string | HTMLDivElement) => {
+export const drawExample = (customPointImage: string) => async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
@@ -137,7 +136,7 @@ export const drawExample = (customPointImage: string) =>  async (rootElement: st
         })
     );
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
 
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());

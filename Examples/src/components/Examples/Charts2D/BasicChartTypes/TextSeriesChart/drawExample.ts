@@ -45,7 +45,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     sciChartSurface.renderableSeries.add(series);
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier(), new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(
+        new ZoomPanModifier({ enableZoom: true }),
+        new ZoomExtentsModifier(),
+        new MouseWheelZoomModifier()
+    );
 
     return { sciChartSurface, wasmContext };
 };

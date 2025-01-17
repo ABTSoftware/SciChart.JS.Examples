@@ -2,8 +2,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import SubdirectoryArrowRight from "@mui/icons-material/SubdirectoryArrowRight";
 import { Button } from "@mui/material";
 import { FC, useContext, useEffect, useRef, useState } from "react";
-import { Simulate } from "react-dom/test-utils";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router";
 import { baseGithubPath } from "../../constants";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { FRAMEWORK_NAME, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
@@ -155,15 +154,15 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                     </Button>
                                     <Button className={commonClasses.GitHubLink}>
                                         <SubdirectoryArrowRight />
-                                        <a
-                                            href={`/iframe/${examplePage.path}`}
+                                        <Link
+                                            to={`/iframe/${examplePage.path}`}
                                             title="View this example in Full Screen"
                                             target="_blank"
                                             rel="nofollow"
                                             className={commonClasses.ButtonsText}
                                         >
                                             VIEW Full Screen
-                                        </a>
+                                        </Link>
                                     </Button>
                                 </div>
                             </div>

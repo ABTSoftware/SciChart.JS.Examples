@@ -15,7 +15,7 @@ import { StackblitzEditor } from "../CodeSandbox/StackblitzEditor";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { CodeActionButtons } from "./CodeActionButtons";
 import { CodePreview } from "../CodePreview/CodePreview";
-
+import { ExamplesSubtitle } from "./ExamplesSubtitle";
 import { SourceFilesContext } from "./SourceFilesLoading/SourceFilesContext";
 import type { StackBlitzResponse } from "../../helpers/types/types";
 
@@ -68,7 +68,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
     const [openedMenuItems, setOpenedMenuItems] = useState<Record<string, boolean>>(initialOpenedMenuItems);
 
     useEffect(() => {
-        setIsSideBySidePossible(window.innerWidth > 1900);        
+        setIsSideBySidePossible(window.innerWidth > 1900);
         setPageLayout(currentExample.pageLayout ?? EPageLayout.Default);
         window.scrollTo({
             top: 0,
@@ -218,7 +218,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                             </h1>
 
                             {/* Github, stackblitz buttons visible on maxwidth layout */}
-                            {!(isMaxWidth) ? (
+                            {!isMaxWidth ? (
                                 <CodeActionButtons
                                     className={`${classes.tabbtnwrap} ${classes.hiddenSmall}`}
                                     {...{ currentExample, selectedFramework, selectedFile }}
@@ -229,35 +229,23 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                         </div>
 
                         {/* Subtitle // this returns a <p> already */}
-                        <span
-                            style={
-                                isMaxWidth
-                                    ? {
-                                        width: "100%",
-                                        maxWidth: "min(100vh, 100vw)",
-                                        margin: "0 auto",
-                                        textAlign: "start",
-                                    }
-                                    : {}
-                            }
-                        >
-                            {currentExample.subtitle(selectedFramework)}
-                        </span>
+                        <ExamplesSubtitle
+                            content={currentExample.subtitle(selectedFramework)}
+                            isMaxWidth={isMaxWidth}
+                        />
 
                         {/* Main example section */}
                         {embedCode ? (
                             renderEditor()
                         ) : (
                             <div // Chart + Code section
-                                className={`${classes.dynamicFlexWrapper} ${isMaxWidth ? classes.maxWidth: ""}`}
-                            >   
+                                className={`${classes.dynamicFlexWrapper} ${isMaxWidth ? classes.maxWidth : ""}`}
+                            >
                                 <ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />
                                 <CodeActionButtons
                                     {...{ currentExample, selectedFramework, selectedFile }}
                                     onSandboxOpen={handleSandboxOpen}
-                                    className={`${classes.tabbtnwrap} ${
-                                        isMaxWidth ? "" : classes.hiddenLarge
-                                    }`}
+                                    className={`${classes.tabbtnwrap} ${isMaxWidth ? "" : classes.hiddenLarge}`}
                                     style={{ minHeight: 35, height: 35, padding: 0, width: "100%" }}
                                 />
                                 <CodePreview

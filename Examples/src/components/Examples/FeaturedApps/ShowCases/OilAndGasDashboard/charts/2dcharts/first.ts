@@ -78,7 +78,11 @@ export default async function init2dFirstChart(rootELement: string | HTMLDivElem
     sciChartSurface.renderableSeries.add(stackedMountainCollection);
 
     // Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(
+        new ZoomExtentsModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
+        new MouseWheelZoomModifier()
+    );
 
     sciChartSurface.zoomExtents();
 

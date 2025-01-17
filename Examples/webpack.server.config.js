@@ -3,6 +3,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const path = require("path");
 const config = require("./config/default");
 const nodeExternals = require("webpack-node-externals");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
     mode: "production",
@@ -63,6 +64,13 @@ module.exports = {
     },
     resolve: {
         extensions: [".tsx", ".ts", ".js"],
+    },
+    optimization: {
+        minimizer: [
+            // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+            `...`,
+            new CssMinimizerPlugin(),
+        ],
     },
     plugins: [
         new CopyPlugin({

@@ -117,7 +117,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     lineSeries2.rolloverModifierProps.tooltipColor = appTheme.VividPink;
 
     // Add further zooming and panning behaviours
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
