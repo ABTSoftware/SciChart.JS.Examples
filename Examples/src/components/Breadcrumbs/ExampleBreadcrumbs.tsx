@@ -62,7 +62,6 @@ export const ExampleBreadcrumbs = () => {
                             color: 'var(--light-blue)',
 
                             "&:hover": { textDecoration: "underline" },
-                            ".": {},
                         }}
                     >
                         {labelContent}

@@ -112,7 +112,7 @@
             list-style: none;
             flex-direction: column;
             position: absolute;
-            top: 100%;
+            top: calc(100% + 10px);
             left: 0;
             background: var(--nav-bg);
             min-width: 200px;
@@ -132,7 +132,7 @@
             height: 0;
             border-left: 8px solid transparent;
             border-right: 8px solid transparent;
-            background: var(--nav-bg);
+            border-bottom: 8px solid var(--nav-bg);
             z-index: 10;
         }
 
