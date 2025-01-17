@@ -1,38 +1,53 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-datalabels-chart.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const description = `Shows how to add and customise data labels for series using SciChart.js`;
-const tips = [``];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlDatalabelsDocumentation,
-        title: ExampleStrings.urlTitleDatalabelsDocumentation,
-        linkTitle: "Common RenderableSeries Properties",
-    },
-];
+        exampleId: "Charts2DStylingAndThemingDataLabels",
+        imagePath: "javascript-datalabels-chart.jpg",
+        description: "Shows how you can add **Data Labels** to a chart using SciChart.js",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle: "Shows how you can add **Data Labels** to a chart using SciChart.js",
+                title: "Data Labels",
+                pageTitle: "Data Labels",
+                metaDescription: "Show data labels on JavaScript Chart. Get your free demo now.",
+                markdownContent: null,
+            },
+            react: {
+                subtitle: "Shows how you can add **Data Labels** to a chart using SciChart.js",
+                title: "Data Labels",
+                pageTitle: "Data Labels",
+                metaDescription: "Show data labels on React Chart. Get your free demo now.",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle: "Shows how you can add **Data Labels** to a chart using SciChart.js",
+                title: "Data Labels",
+                pageTitle: "Data Labels",
+                metaDescription: "Show data labels on Angular Chart. Get your free demo now.",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#AddingDataLabels.html",
+                title: "SciChart.js DataLabels API Documentation",
+                linkTitle: "Common RenderableSeries Properties",
+            },
+        ],
+        path: "datalabels",
+        metaKeywords: "data labels, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/StylingAndTheming/DataLabels",
+        thumbnailImage: "javascript-datalabels-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Shows how you can add <strong>Data Labels</strong> to a chart using SciChart.js
-    </p>
-);
-
-const markdownContent: string = undefined;
-
-export const datalabelsExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleDatalabels,
-    pageTitle: ExampleStrings.titleDatalabels,
-    path: ExampleStrings.urlDatalabels,
-    filepath: "Charts2D/StylingAndTheming/DataLabels",
-    subtitle: Subtitle,
-    metaDescription: (frameworkName: string) => `Show data labels on ${frameworkName} Chart. Get your free demo now.`,
-    metaKeywords: "data labels, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const datalabelsExampleInfo = createExampleInfo(metaData);

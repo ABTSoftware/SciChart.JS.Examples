@@ -1,50 +1,60 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../ExampleStrings";
-import exampleImage from "./javascript-builder-simple.jpg";
-import { TDocumentationLink } from "../../../../helpers/types/ExampleDescriptionTypes";
+import { createExampleInfo } from "../../exampleInfoUtils";
+import { IExampleMetadata } from "../../IExampleMetadata";
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to use the Builder Api to create a <strong>Simple Chart</strong> using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-const previewDescription = `With the builder api you can define a simple chart in just one line of code using a single object. `;
-const description = `The builder api is designed to make it easier to discover the types and options available in SciChart JS.`;
-const tips = [
-    `Everything in the definition is optional. SciChart will add numeric axes by default.`,
-    `The builder api supports all SciChart 2D features.`,
-    `You can combine the builder api and normal api to utilize the strengths of each`,
-];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlBuilderApiDocumentation,
-        title: ExampleStrings.urlTitleBuilderApiDocumentation,
-        linkTitle: "JavaScript Builder API Documentation",
-    },
-];
+        exampleId: "BuilderApiSimpleChart",
+        imagePath: "javascript-builder-simple.jpg",
+        description:
+            "Demonstrates how to use the Builder Api to create a **Simple Chart** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to use the Builder Api to create a **Simple Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Simple Chart using Builder API",
+                pageTitle: "Simple Chart using Builder API",
+                metaDescription:
+                    "Demonstrates how to use the Builder Api to create a simple chart using a definition object. The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to use the Builder Api to create a **Simple Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Simple Chart using Builder API",
+                pageTitle: "Simple Chart using Builder API",
+                metaDescription:
+                    "Demonstrates how to use the Builder Api to create a simple chart using a definition object. The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to use the Builder Api to create a **Simple Chart** using SciChart.js, High Performance JavaScript Charts",
+                title: "Simple Chart using Builder API",
+                pageTitle: "Simple Chart using Builder API",
+                metaDescription:
+                    "Demonstrates how to use the Builder Api to create a simple chart using a definition object. The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Intro%20to%20the%20Builder%20API.html",
+                title: "This specific page in the JavaScript Builder API documentation will help you to get started",
+                linkTitle: "JavaScript Builder API Documentation",
+            },
+        ],
+        path: "builder-simple",
+        metaKeywords: "definition, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "BuilderApi/SimpleChart",
+        thumbnailImage: "javascript-builder-simple.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const markdownContent: string = undefined;
-
-export const simpleChartExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleBuilderSimpleChart,
-    pageTitle: ExampleStrings.titleBuilderSimpleChart,
-    path: ExampleStrings.urlBuilderSimpleChart,
-    filepath: "BuilderApi/SimpleChart",
-    subtitle: Subtitle,
-
-    metaDescription:
-        "Demonstrates how to use the Builder Api to create a simple chart using a definition object. " +
-        "The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
-    metaKeywords: "definition, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const simpleChartExampleInfo = createExampleInfo(metaData);

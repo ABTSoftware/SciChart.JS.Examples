@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig.json",
+    "ts-node": {
+        "transpileOnly": true,
+        "compilerOptions": {
+            "module": "commonjs"
+        }
+    },
+    "compilerOptions": {
+        "allowJs": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true
+    }
+}

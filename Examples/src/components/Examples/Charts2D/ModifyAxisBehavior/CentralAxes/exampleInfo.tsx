@@ -1,44 +1,60 @@
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import * as React from "react";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-central-axes.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const description = `Demonstrates a chart with axes being placed centrally.
-SciChart supports customization of axes placement. This example shows how to use inner axes and set a layout strategy.`;
-const tips = [`You can create a custom Axis Layout Strategy!`];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlCentralAxesDocumentation,
-        title: ExampleStrings.urlTitleCentralAxesDocumentation,
-        linkTitle: "Central Axis documentation",
-    },
-];
+        exampleId: "Charts2DModifyAxisBehaviorCentralAxes",
+        imagePath: "javascript-central-axes.jpg",
+        description:
+            "Demonstrates how to create a **JavaScript Chart with central axes** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to create a **JavaScript Chart with central axes** using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Chart with Central Axes",
+                pageTitle: "JavaScript Chart with Central Axes",
+                metaDescription:
+                    "Demonstrates Central Axes on a JavaScript Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable layout",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to create a **React Chart with central axes** using SciChart.js, High Performance JavaScript Charts",
+                title: "React Chart with Central Axes",
+                pageTitle: "React Chart with Central Axes",
+                metaDescription:
+                    "Demonstrates Central Axes on a React Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable layout",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to create a **Angular Chart with central axes** using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Chart with Central Axes",
+                pageTitle: "Angular Chart with Central Axes",
+                metaDescription:
+                    "Demonstrates Central Axes on a Angular Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable layout",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#CentralAxisLayout.html",
+                title: "SciChart.js Central Axis Documentation page",
+                linkTitle: "Central Axis documentation",
+            },
+        ],
+        path: "central-axes",
+        metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/ModifyAxisBehavior/CentralAxes",
+        thumbnailImage: "javascript-central-axes.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to create a <strong>{frameworkName} Chart with central axes</strong> using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-const markdownContent: string = undefined;
-
-export const centralAxesExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleCentralAxes,
-    pageTitle: ExampleStrings.titleCentralAxes,
-    path: ExampleStrings.urlCentralAxes,
-    filepath: "Charts2D/ModifyAxisBehavior/CentralAxes",
-    subtitle: Subtitle,
-    metaDescription: (frameworkName: string) =>
-        `Demonstrates Central Axes on a ${frameworkName} Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable layout`,
-    metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const centralAxesExampleInfo = createExampleInfo(metaData);

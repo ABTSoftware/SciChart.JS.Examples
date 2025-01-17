@@ -1,43 +1,57 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-startup-animations.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const previewDescription = ``; //`Demonstrates how to run startup animations for a JavaScript Chart.`;
-const description = `Startup animations run on start and decorate charts`;
-const tips: string[] = ["Choose Fade, Scale, Wave or Sweep animation using the dropdown"];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlStartupAnimationDocumentation,
-        title: ExampleStrings.urlTitleStartupAnimationDocumentation,
-        linkTitle: "JavaScript Startup Animation Documentation",
-    },
-];
+        exampleId: "Charts2DAnimationsStartupAnimation",
+        imagePath: "javascript-startup-animations.jpg",
+        description:
+            "Demonstrates how to run **Startup Animations** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to run **Startup Animations** using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Startup Animation",
+                pageTitle: "JavaScript Startup Animation",
+                metaDescription: "Demonstrates how to run Startup Animations with JavaScript.",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to run **Startup Animations** using SciChart.js, High Performance JavaScript Charts",
+                title: "React Startup Animation",
+                pageTitle: "React Startup Animation",
+                metaDescription: "Demonstrates how to run Startup Animations with JavaScript.",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to run **Startup Animations** using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Startup Animation",
+                pageTitle: "Angular Startup Animation",
+                metaDescription: "Demonstrates how to run Startup Animations with JavaScript.",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Series%20Startup%20Animations.html",
+                title: "The specific page for the JavaScript Startup Animation documentation will help you to get started",
+                linkTitle: "JavaScript Startup Animation Documentation",
+            },
+        ],
+        path: "startup-animation",
+        metaKeywords: "startup, on-start, animation, javascript",
+        onWebsite: true,
+        filepath: "Charts2D/Animations/StartupAnimation",
+        thumbnailImage: "javascript-startup-animations.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to run <strong>Startup Animations</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-const markdownContent: string = undefined;
-
-export const startupAnimationExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleStartupAnimation,
-    pageTitle: ExampleStrings.titleStartupAnimation,
-    path: ExampleStrings.urlStartupAnimation,
-    filepath: "Charts2D/Animations/StartupAnimation",
-    subtitle: Subtitle,
-
-    metaDescription: (frameworkName: string) => `Demonstrates how to run Startup Animations with JavaScript.`,
-    metaKeywords: "startup, on-start, animation, javascript",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const startupAnimationExampleInfo = createExampleInfo(metaData);

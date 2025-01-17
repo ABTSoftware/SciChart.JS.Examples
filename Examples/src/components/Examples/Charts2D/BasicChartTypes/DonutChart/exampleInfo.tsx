@@ -1,48 +1,60 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-donut-chart.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const description = `Donut Charts in SciChart.js support selection, legends, different text labels, animated updates,
-    gradient or solid fills and more.`;
-const tips = [
-    `You can change the fill color of every segment and the style of its label.`,
-    `Every segment can be highlighted by clicking on it or when selected in the legend.`,
-];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlDonutChartDocumentation,
-        title: "Donut Chart",
-        linkTitle: "JavaScript Donut Chart Documentation",
-    },
-];
+        exampleId: "Charts2DBasicChartTypesDonutChart",
+        imagePath: "javascript-donut-chart.jpg",
+        description:
+            "This demo demonstrates how create a **JavaScript Donut Chart** with our powerful JavaScript library, SciChart.js.",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "This demo demonstrates how create a **JavaScript Donut Chart** with our powerful JavaScript library, SciChart.js.",
+                title: "JavaScript Donut Chart",
+                pageTitle: "JavaScript Donut Chart | JavaScript Charts | SciChart.js",
+                metaDescription:
+                    "Create JavaScript Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "This demo demonstrates how create a **React Donut Chart** with our powerful JavaScript library, SciChart.js.",
+                title: "React Donut Chart",
+                pageTitle: "React Donut Chart | JavaScript Charts | SciChart.js",
+                metaDescription:
+                    "Create React Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "This demo demonstrates how create a **Angular Donut Chart** with our powerful JavaScript library, SciChart.js.",
+                title: "Angular Donut Chart",
+                pageTitle: "Angular Donut Chart | JavaScript Charts | SciChart.js",
+                metaDescription:
+                    "Create Angular Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Donut%20Chart%20Type.html",
+                title: "Donut Chart",
+                linkTitle: "JavaScript Donut Chart Documentation",
+            },
+        ],
+        path: "donut-chart",
+        metaKeywords: "donut, chart, javascript, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/BasicChartTypes/DonutChart",
+        thumbnailImage: "javascript-donut-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        This demo demonstrates how create a <strong>{frameworkName} Donut Chart</strong> with our powerful JavaScript
-        library,{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="SciChart.js">
-            SciChart.js
-        </a>
-        .
-    </p>
-);
-
-const markdownContent: string = undefined;
-
-export const donutChartExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleDonutChart,
-    pageTitle: ExampleStrings.pageTitleDonutChart,
-    path: ExampleStrings.urlDonutChart,
-    filepath: "Charts2D/BasicChartTypes/DonutChart",
-    subtitle: Subtitle,
-    metaDescription: (frameworkName: string) =>
-        `Create ${frameworkName} Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.`,
-    metaKeywords: "donut, chart, javascript, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const donutChartExampleInfo = createExampleInfo(metaData);

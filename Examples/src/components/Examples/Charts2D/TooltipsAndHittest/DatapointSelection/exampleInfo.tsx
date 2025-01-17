@@ -1,48 +1,60 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-datapoint-selection.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const previewDescription = `Demonstrates the DataPointSelectionModifier, which provides a UI to select one or many data points,
-and works with DataPointSelectionPaletteProvider to change the appearance of selected points`;
-const description = `Click to select a single point.  Drag to select many points. CTRL + Click or Drag to Union. SHIFT + Click or Drag to subtract`;
-const tips = [
-    `Adding DataPointSelectionModifier will automatically create the metadata required to track selection, but it does not stop you using your own metadata.`,
-    `You don't have to use DataPointSelectionPaletteProvider.  You can create your own and use the metadata.isSelected that is passed to the paletteProvider methods.`,
-];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlDataPointSelectionDocumentation,
-        title: ExampleStrings.urlTitleDataPointSelectionDocumentation,
-        linkTitle: "DataPointSelectionModifier documentation",
-    },
-];
+        exampleId: "Charts2DTooltipsAndHittestDatapointSelection",
+        imagePath: "javascript-datapoint-selection.jpg",
+        description:
+            "Demonstrates how to **Select Data Points** on a chart using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to **Select Data Points** on a chart using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Chart Data Point Selection",
+                pageTitle: "JavaScript Chart Data Point Selection",
+                metaDescription:
+                    "Demonstrates the DatapointSelectionModifier, which provides a UI to select one or many data points, and works with DataPointSelectionPaletteProvider to change the appearance of selected points",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to **Select Data Points** on a chart using SciChart.js, High Performance JavaScript Charts",
+                title: "React Chart Data Point Selection",
+                pageTitle: "React Chart Data Point Selection",
+                metaDescription:
+                    "Demonstrates the DatapointSelectionModifier, which provides a UI to select one or many data points, and works with DataPointSelectionPaletteProvider to change the appearance of selected points",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to **Select Data Points** on a chart using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Chart Data Point Selection",
+                pageTitle: "Angular Chart Data Point Selection",
+                metaDescription:
+                    "Demonstrates the DatapointSelectionModifier, which provides a UI to select one or many data points, and works with DataPointSelectionPaletteProvider to change the appearance of selected points",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#DataPointSelection.html",
+                title: "SciChart.js DataPointSelectionModifier Documentation",
+                linkTitle: "DataPointSelectionModifier documentation",
+            },
+        ],
+        path: "datapoint-selection",
+        metaKeywords: "datapoint, selection, api, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/TooltipsAndHittest/DatapointSelection",
+        thumbnailImage: "javascript-datapoint-selection.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to <strong>Select Data Points</strong> on a chart using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-const markdownContent: string = undefined;
-
-export const dataPointSelectionExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleDataPointSelection,
-    pageTitle: ExampleStrings.titleDataPointSelection,
-    path: ExampleStrings.urlDataPointSelection,
-    filepath: "Charts2D/TooltipsAndHittest/DatapointSelection",
-    subtitle: Subtitle,
-
-    metaDescription: (frameworkName: string) =>
-        `Demonstrates the DatapointSelectionModifier, which provides a UI to select one or many data points, and works with DataPointSelectionPaletteProvider to change the appearance of selected points`,
-    metaKeywords: "datapoint, selection, api, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const dataPointSelectionExampleInfo = createExampleInfo(metaData);

@@ -1,51 +1,60 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-multi-pane-stock-charts.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const previewDescription = `An example which demonstrates creating static multi-pane stock charts in JavaScript with Price data as
-Candlesticks, Volume bars behind the chart, Moving averages, plus how to link several charts together to
-draw Macd and RSI indicators.`;
-const description = ` All charts are synchronized together by using the mouseEventGroup property on chart modifiers and the
-SciChartVerticalGroup type. Technical indicators are for demo purposes only. We recommend using TA-Lib to add more complex indicators to SciChart.js`;
-const tips = [
-    `SciChart.js supports all the features you need to create rich, interactive, realtime JavaScript Stock Chart
-    applications. Including Candlestick/OHLC charts, Band Series for bollinger bands, multi-panes, plus
-    incredible real-time performance.`,
-];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home",
-    },
-];
+        exampleId: "Charts2DCreateStockChartsMultiPaneStockCharts",
+        imagePath: "javascript-multi-pane-stock-charts.jpg",
+        description:
+            "Using the default multi-chart sync APIs, create a multi-pane stock chart example with indicator panels. Zooming, panning, cursors are synchronised between the charts. This is a simpler way to create charts than subcharts, but will have a performance hit on some browsers.",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Using the default multi-chart sync APIs, create a multi-pane stock chart example with indicator panels. Zooming, panning, cursors are synchronised between the charts. This is a simpler way to create charts than subcharts, but will have a performance hit on some browsers.",
+                title: "JavaScript Multi-Pane Stock Charts using Sync Multi-Chart",
+                pageTitle: "JavaScript Multi-Pane Stock Chart | View JavaScript Charts",
+                metaDescription:
+                    "Create a JavaScript Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Using the default multi-chart sync APIs, create a multi-pane stock chart example with indicator panels. Zooming, panning, cursors are synchronised between the charts. This is a simpler way to create charts than subcharts, but will have a performance hit on some browsers.",
+                title: "React Multi-Pane Stock Charts using Sync Multi-Chart",
+                pageTitle: "React Multi-Pane Stock Chart | View JavaScript Charts",
+                metaDescription:
+                    "Create a React Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Using the default multi-chart sync APIs, create a multi-pane stock chart example with indicator panels. Zooming, panning, cursors are synchronised between the charts. This is a simpler way to create charts than subcharts, but will have a performance hit on some browsers.",
+                title: "Angular Multi-Pane Stock Charts using Sync Multi-Chart",
+                pageTitle: "Angular Multi-Pane Stock Chart | View JavaScript Charts",
+                metaDescription:
+                    "Create a Angular Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
+                linkTitle: "SciChart.js Documentation Home",
+            },
+        ],
+        path: "multi-pane-stock-charts-sync-technique",
+        metaKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
+        onWebsite: false,
+        filepath: "Charts2D/CreateStockCharts/MultiPaneStockCharts",
+        thumbnailImage: "javascript-multi-pane-stock-charts.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Using the default multi-chart sync APIs, create a multi-pane stock chart example with indicator panels. Zooming,
-        panning, cursors are synchronised between the charts. This is a simpler way to create charts than subcharts, but
-        will have a performance hit on some browsers.
-    </p>
-);
-
-const markdownContent: string = undefined;
-
-export const multiPaneStockChartsExampleInfo: TExampleInfo = {
-    onWebsite: false,
-    title: ExampleStrings.titleMultiPaneStockChart,
-    pageTitle: ExampleStrings.pageTitleMultiPaneStockChart,
-    path: ExampleStrings.urlMultiPaneStockChart,
-    filepath: "Charts2D/CreateStockCharts/MultiPaneStockCharts",
-    subtitle: Subtitle,
-
-    metaDescription: (frameworkName: string) =>
-        `Create a ${frameworkName} Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.`,
-    metaKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const multiPaneStockChartsExampleInfo = createExampleInfo(metaData);

@@ -1,3 +1,4 @@
+import React from "react";
 import { bandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart/exampleInfo";
 import { splineBandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart/exampleInfo";
 import { digitalBandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/DigitalBandSeriesChart/exampleInfo";
@@ -130,7 +131,7 @@ export type TExampleInfo = {
     /**
      * Content shown below title on example page
      */
-    subtitle: (frameworkName: string) => JSX.Element;
+    subtitle: (frameworkName: string) => React.ReactElement | string;
     /**
      * Page meta description
      */

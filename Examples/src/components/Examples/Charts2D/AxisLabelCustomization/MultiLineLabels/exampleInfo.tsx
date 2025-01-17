@@ -1,48 +1,60 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-multiline-labels.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const previewDescription = `Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider.
-Click the buttons below the chart to see different arrangements.`;
-const description = `TextLabelProvider provides an easy way to map tick values to text.  It can also do word wrapping.  Rotation is now available on all LabelProviders.`;
-const tips = [
-    `If some labels are not appearing, it is probably because there is not enough space for them.  Sometimes adjusting the padding in the labelStyle can help.`,
-    `To see how padding affects label placement try setting sciChartSurface.debugRendering = true;`,
-];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlTextLabelProviderDocumentation,
-        title: ExampleStrings.urlTitleTextLabelProviderDocumentation,
-        linkTitle: "Scichart.js TextlabelProvider Documentation",
-    },
-];
+        exampleId: "Charts2DAxisLabelCustomizationMultiLineLabels",
+        imagePath: "javascript-multiline-labels.jpg",
+        description:
+            "Demonstrates how to use **Multi-Line Text** for axis labels using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to use **Multi-Line Text** for axis labels using SciChart.js, High Performance JavaScript Charts",
+                title: "Multi-line and Rotated Text labels",
+                pageTitle: "Multi-line and Rotated Text labels",
+                metaDescription:
+                    "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to use **Multi-Line Text** for axis labels using SciChart.js, High Performance JavaScript Charts",
+                title: "Multi-line and Rotated Text labels",
+                pageTitle: "Multi-line and Rotated Text labels",
+                metaDescription:
+                    "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to use **Multi-Line Text** for axis labels using SciChart.js, High Performance JavaScript Charts",
+                title: "Multi-line and Rotated Text labels",
+                pageTitle: "Multi-line and Rotated Text labels",
+                metaDescription:
+                    "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#TextStringAxis.html",
+                title: "This specific page in the JavaScript TextLabelProvider documentation will help you to get started",
+                linkTitle: "Scichart.js TextlabelProvider Documentation",
+            },
+        ],
+        path: "multiline-labels",
+        metaKeywords: "text, axis, label, wrap, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/AxisLabelCustomization/MultiLineLabels",
+        thumbnailImage: "javascript-multiline-labels.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to use <strong>Multi-Line Text</strong> for axis labels using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-const markdownContent: string = undefined;
-
-export const multiLineLabelsExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleMultiLineLabels,
-    pageTitle: ExampleStrings.titleMultiLineLabels,
-    path: ExampleStrings.urlMultiLineLabels,
-    filepath: "Charts2D/AxisLabelCustomization/MultiLineLabels",
-    subtitle: Subtitle,
-
-    metaDescription: (frameworkName: string) =>
-        `Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider`,
-    metaKeywords: "text, axis, label, wrap, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const multiLineLabelsExampleInfo = createExampleInfo(metaData);

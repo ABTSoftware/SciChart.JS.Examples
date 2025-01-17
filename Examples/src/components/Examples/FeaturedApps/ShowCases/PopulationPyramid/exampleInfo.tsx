@@ -1,48 +1,58 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-population-pyramid.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Population Pyramid of Europe and Africa using SciChart.js High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-        . This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different
-        series to prevent overlap
-    </p>
-);
-
-const previewDescription = ``;
-const description = `Population Pyramid of Europe and Africa`;
-const tips = [
-    `Pay close attention to the way the 2 YAxes are stacked`,
-    `Check out our new "Engineering" numeric formatter, which is used to format the xAxis and the dataLabels`,
-];
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home",
-    },
-];
+        exampleId: "FeaturedAppsShowCasesPopulationPyramid",
+        imagePath: "javascript-population-pyramid.jpg",
+        description:
+            "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
+                title: "JavaScript Population Pyramid",
+                pageTitle: "JavaScript Population Pyramid",
+                metaDescription: "Population Pyramid of Europe and Africa",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
+                title: "React Population Pyramid",
+                pageTitle: "React Population Pyramid",
+                metaDescription: "Population Pyramid of Europe and Africa",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
+                title: "Angular Population Pyramid",
+                pageTitle: "Angular Population Pyramid",
+                metaDescription: "Population Pyramid of Europe and Africa",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
+                linkTitle: "SciChart.js Documentation Home",
+            },
+        ],
+        path: "population-pyramid",
+        metaKeywords:
+            "population, react, column, stacked, animation, labels, engineering, pyramid, europe, africa, javascript, chart, webgl, canvas",
+        onWebsite: false,
+        filepath: "FeaturedApps/ShowCases/PopulationPyramid",
+        thumbnailImage: "javascript-population-pyramid.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const markdownContent: string = undefined;
-
-export const populationPyramidExampleInfo: TExampleInfo = {
-    onWebsite: false,
-    title: ExampleStrings.titlePopulationPyramid,
-    pageTitle: ExampleStrings.titlePopulationPyramid,
-    path: ExampleStrings.urlPopulationPyramid,
-    filepath: "FeaturedApps/ShowCases/PopulationPyramid",
-    subtitle: Subtitle,
-
-    metaDescription: (frameworkName: string) => `Population Pyramid of Europe and Africa`,
-    metaKeywords:
-        "population, react, column, stacked, animation, labels, engineering, pyramid, europe, africa, javascript, chart, webgl, canvas",
-    thumbnailImage: exampleImage,
-    markdownContent,
-    documentationLinks,
-};
+export const populationPyramidExampleInfo = createExampleInfo(metaData);
