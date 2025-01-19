@@ -31,15 +31,14 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { ExampleDataProvider, IOhlcvValues } from "../../../ExampleData/ExampleDataProvider";
-import { multiPaneData } from "../../../ExampleData/multiPaneData";
+import { fetchMultiPaneData } from "../../../ExampleData/ExampleDataProvider";
 import { appTheme } from "../../../theme";
 
 // tslint:disable:no-empty
 // tslint:disable:max-line-length
 
-const getTradingData = (startPoints?: number, maxPoints?: number): IOhlcvValues => {
-    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = multiPaneData;
+const getTradingData = async (startPoints?: number, maxPoints?: number) => {
+    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = await fetchMultiPaneData();
 
     if (maxPoints !== undefined) {
         return {
@@ -56,9 +55,12 @@ const getTradingData = (startPoints?: number, maxPoints?: number): IOhlcvValues 
 };
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
-        theme: appTheme.SciChartJsTheme,
-    });
+    const [chart, data] = await Promise.all([
+        SciChartSurface.create(rootElement, { theme: appTheme.SciChartJsTheme }),
+        getTradingData(775, 100),
+    ]);
+    const { sciChartSurface, wasmContext } = chart;
+    const { dateValues, openValues, highValues, lowValues, closeValues } = data;
 
     // Add an XAxis, YAxis
     const xAxis = new CategoryAxis(wasmContext, { labelProvider: new SmartDateLabelProvider() });
@@ -73,7 +75,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
 
     // Add a Candlestick series with some values to the chart
-    const { dateValues, openValues, highValues, lowValues, closeValues } = getTradingData(775, 100);
 
     sciChartSurface.renderableSeries.add(
         new FastCandlestickRenderableSeries(wasmContext, {

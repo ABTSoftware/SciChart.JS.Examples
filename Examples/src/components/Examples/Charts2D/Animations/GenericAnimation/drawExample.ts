@@ -11,12 +11,7 @@ import {
     GenericAnimation,
 } from "scichart";
 import { appTheme } from "../../../theme";
-type TMappedPopulationData = {
-    population: number[];
-    lifeExpectancy: number[];
-    gdpPerCapita: number[];
-    year: number[];
-};
+import { fetchPopulationDataData } from "../../../ExampleData/ExampleDataProvider";
 
 const initializeChart = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface with bubble chart
@@ -48,19 +43,8 @@ const initializeChart = async (rootElement: string | HTMLDivElement) => {
     return { sciChartSurface, wasmContext };
 };
 
-// TODO link to data source file
-const getData = async (): Promise<TMappedPopulationData> => {
-    const response = await fetch("/api/populationData");
-
-    if (!response.ok) {
-        throw new Error("Population data request unsuccessful!");
-    }
-
-    return response.json();
-};
-
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
-    const [chart, data] = await Promise.all([initializeChart(rootElement), getData()]);
+    const [chart, data] = await Promise.all([initializeChart(rootElement), fetchPopulationDataData()]);
 
     const { sciChartSurface, wasmContext } = chart;
 

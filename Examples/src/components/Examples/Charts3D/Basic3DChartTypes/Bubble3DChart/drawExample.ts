@@ -21,20 +21,11 @@ import {
     IPointMetadata3D,
 } from "scichart";
 
-type TMetadata = IPointMetadata3D & {
-    country: string;
-    color: string;
-    vertexColor: number;
-    pointScale: number;
-};
-
-type TMappedPopulationData = {
-    population: number[];
-    lifeExpectancy: number[];
-    gdpPerCapita: number[];
-    year: number[];
-    metadata: TMetadata[];
-};
+import {
+    fetchPopulationDataData,
+    TMappedPopulationData,
+    TPopulationMetadata,
+} from "../../../ExampleData/ExampleDataProvider";
 
 const initializeChart = async (rootElement: string | HTMLDivElement) => {
     const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(rootElement, {
@@ -55,7 +46,7 @@ const initializeChart = async (rootElement: string | HTMLDivElement) => {
     tooltipModifier.tooltipDataTemplate = (seriesInfo: SeriesInfo3D, svgAnnotation: TooltipSvgAnnotation3D) => {
         const valuesWithLabels: string[] = [];
         if (seriesInfo && seriesInfo.isHit) {
-            const md = (seriesInfo as XyzSeriesInfo3D).pointMetadata as TMetadata;
+            const md = (seriesInfo as XyzSeriesInfo3D).pointMetadata as TPopulationMetadata;
             valuesWithLabels.push(md.country);
             valuesWithLabels.push(`Life Expectancy: ${seriesInfo.xValue}`);
             valuesWithLabels.push(`GDP Per Capita: ${seriesInfo.yValue}`);
@@ -66,7 +57,7 @@ const initializeChart = async (rootElement: string | HTMLDivElement) => {
     const defaultTemplate = tooltipModifier.tooltipSvgTemplate;
     tooltipModifier.tooltipSvgTemplate = (seriesInfo: SeriesInfo3D, svgAnnotation: TooltipSvgAnnotation3D) => {
         if (seriesInfo) {
-            const md = (seriesInfo as XyzSeriesInfo3D).pointMetadata as TMetadata;
+            const md = (seriesInfo as XyzSeriesInfo3D).pointMetadata as TPopulationMetadata;
             svgAnnotation.containerBackground = md.color;
             svgAnnotation.textStroke = "white";
         }
@@ -113,19 +104,8 @@ const initializeChart = async (rootElement: string | HTMLDivElement) => {
     return { sciChartSurface: sciChart3DSurface, setData };
 };
 
-// TODO link to data source file
-const getData = async (): Promise<TMappedPopulationData> => {
-    const response = await fetch("/api/populationData");
-
-    if (!response.ok) {
-        throw new Error("Population data request unsuccessful!");
-    }
-
-    return response.json();
-};
-
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
-    const [chart, data] = await Promise.all([initializeChart(rootElement), getData()]);
+    const [chart, data] = await Promise.all([initializeChart(rootElement), fetchPopulationDataData()]);
     chart.setData(data);
 
     return chart;

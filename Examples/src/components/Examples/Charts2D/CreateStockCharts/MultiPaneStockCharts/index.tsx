@@ -7,7 +7,7 @@ import { SciChartSurface } from "scichart";
 import { ChartGroupLoader } from "../../../ChartGroupLoader";
 
 export default function MultiPaneStockCharts() {
-    const [chartsInitializationAPI] = React.useState(getChartsInitializationAPI());
+    const [chartsInitializationAPI] = React.useState(getChartsInitializationAPI);
     const [mainChart, setMainChart] = React.useState<SciChartSurface>();
 
     return (

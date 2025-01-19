@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
+  "engines": {
+    "npm": ">=10.9.2",
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "compareExamples": "ts-node -P tsconfig.node.json scripts/compareExampleInfos.ts",
     "generateMetadata": "ts-node -P tsconfig.node.json scripts/generateMetadataFromOld.ts",
