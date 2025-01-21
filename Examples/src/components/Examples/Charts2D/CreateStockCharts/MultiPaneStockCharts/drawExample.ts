@@ -45,12 +45,11 @@ import {
     EVerticalAnchorPoint,
     EAnnotationLayer,
 } from "scichart";
-import { ExampleDataProvider, IOhlcvValues } from "../../../ExampleData/ExampleDataProvider";
-import { multiPaneData } from "../../../ExampleData/multiPaneData";
+import { fetchMultiPaneData } from "../../../ExampleData/ExampleDataProvider";
 import { appTheme } from "../../../theme";
 
-const getTradingData = (startPoints?: number, maxPoints?: number): IOhlcvValues => {
-    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = multiPaneData;
+const getTradingData = async (startPoints?: number, maxPoints?: number) => {
+    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = await fetchMultiPaneData();
 
     if (maxPoints !== undefined) {
         return {
@@ -109,7 +108,8 @@ const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
 export const getChartsInitializationAPI = () => {
     // We can group together charts using VerticalChartGroup type
     const verticalGroup = new SciChartVerticalGroup();
-    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = getTradingData();
+
+    const dataPromise = getTradingData();
 
     let chart1XAxis: CategoryAxis;
     let chart2XAxis: CategoryAxis;
@@ -122,11 +122,16 @@ export const getChartsInitializationAPI = () => {
 
     // CHART 1
     const drawPriceChart = async (rootElement: string | HTMLDivElement) => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
-            // prevent default size settings
-            disableAspect: true,
-            theme: appTheme.SciChartJsTheme,
-        });
+        const [chart, data] = await Promise.all([
+            SciChartSurface.create(rootElement, {
+                // prevent default size settings
+                disableAspect: true,
+                theme: appTheme.SciChartJsTheme,
+            }),
+            dataPromise,
+        ]);
+        const { wasmContext, sciChartSurface } = chart;
+        const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = data;
 
         chart1XAxis = new CategoryAxis(wasmContext, {
             drawLabels: false,
@@ -252,11 +257,14 @@ export const getChartsInitializationAPI = () => {
 
     // CHART 2 - MACD
     const drawMacdChart = async (rootElement: string | HTMLDivElement) => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
-            // prevent default size settings
-            disableAspect: true,
-            theme: appTheme.SciChartJsTheme,
-        });
+        const [{ wasmContext, sciChartSurface }, { dateValues, closeValues }] = await Promise.all([
+            SciChartSurface.create(rootElement, {
+                // prevent default size settings
+                disableAspect: true,
+                theme: appTheme.SciChartJsTheme,
+            }),
+            dataPromise,
+        ]);
 
         chart2XAxis = new CategoryAxis(wasmContext, {
             drawLabels: false,
@@ -335,11 +343,14 @@ export const getChartsInitializationAPI = () => {
 
     // CHART 3 - RSI
     const drawRsiChart = async (rootElement: string | HTMLDivElement) => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
-            // prevent default size settings
-            disableAspect: true,
-            theme: appTheme.SciChartJsTheme,
-        });
+        const [{ wasmContext, sciChartSurface }, { dateValues, closeValues }] = await Promise.all([
+            SciChartSurface.create(rootElement, {
+                // prevent default size settings
+                disableAspect: true,
+                theme: appTheme.SciChartJsTheme,
+            }),
+            dataPromise,
+        ]);
 
         chart3XAxis = new CategoryAxis(wasmContext, {
             autoRange: EAutoRange.Once,

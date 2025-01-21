@@ -2,6 +2,7 @@
 
 .NavigationList {
     margin-bottom: 60px;
+    background-color: var(--bg);
 
     .HomepageListItem {
         @extend %MenuListItem;

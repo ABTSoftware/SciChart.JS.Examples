@@ -75,7 +75,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
         <div className={className} style={style}>
             <CodeActionButton
                 iconName="fullscreen"
-                label="View&nbsp;fullscreen"
+                label="Fullscreen"
                 className={`${classes.btn} ${classes.btnGithub}`}
                 href={`/iframe/${currentExample.path}`}
                 target="_blank"
@@ -95,7 +95,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
             />
             <CodeActionButton
                 iconName="codesandbox"
-                label="Edit"
+                label="&nbsp;Edit"
                 className={`${classes.btn} ${classes.btnDark}`}
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.CodeSandbox)}
                 title={
@@ -105,8 +105,25 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
                 }
             />
             <CodeActionButton
+                iconName="docs"
+                label="Docs"
+                className={`${classes.btn} ${classes.btnDocs}`}
+                href={`https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html`}
+                target="_blank"
+                rel="nofollow"
+                title={`SciChart.js Documentation`}
+            />
+            <CodeActionButton
+                iconName="npm"
+                className={`${classes.btn} ${classes.btnNpm}`}
+                href={`https://www.npmjs.com/package/scichart`}
+                target="_blank"
+                rel="nofollow"
+                title={`Visit SciChart.js on NPM`}
+            />
+            <CodeActionButton
                 iconName="exampleGithub"
-                label="View&nbsp;Source"
+                // label="View&nbsp;Source"
                 className={`${classes.btn} ${classes.btnGithub}`}
                 href={`https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Examples/src/components/Examples/${currentExample.filepath}`}
                 target="_blank"

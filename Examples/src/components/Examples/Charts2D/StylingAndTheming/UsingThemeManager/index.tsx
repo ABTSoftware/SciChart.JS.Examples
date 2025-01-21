@@ -24,7 +24,7 @@ const useStyles = makeStyles()((theme) => ({
 }));
 
 export default function ChartComponent() {
-    const [chartsInitializationAPI] = React.useState(getChartsInitializationAPI());
+    const [chartsInitializationAPI] = React.useState(getChartsInitializationAPI);
 
     const { classes } = useStyles();
 

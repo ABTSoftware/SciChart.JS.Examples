@@ -13,6 +13,7 @@ import { mappedPopulationData } from "./Data/populationData";
 import { TBinanceQueryParams } from "./types/TBinanceQueryParams";
 import { getSandboxUrlEndpoint } from "./renderCodeSandboxRedirect";
 import { getStackblitzFiles } from "./services/stackblitz/getStackblitzFiles";
+import { multiPaneData } from "./Data/multiPaneData";
 
 const router = express.Router();
 
@@ -89,6 +90,10 @@ router.get("/get-binance-candles", (req, res) => {
             break;
     }
     res.send(data);
+});
+
+router.get("/multiPaneData", (req, res) => {
+    res.send(multiPaneData);
 });
 
 router.get("/populationData", (req, res) => {

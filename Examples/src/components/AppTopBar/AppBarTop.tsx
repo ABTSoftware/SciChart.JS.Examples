@@ -92,7 +92,6 @@ const AppBarTop: FC<TProps> = (props) => {
                         </>
                     )}
                     <div className={classes.FlexPlaceholder}></div>
-                    {/* // mui toggle for theme: */}
                     <Button 
                         onClick={toggleTheme} 
                         className={classes.ThemeButton} aria-label="toggle theme"

@@ -28,7 +28,7 @@ import {
     SciChartVerticalGroup,
     Thickness,
 } from "scichart";
-import { multiPaneData } from "../../../ExampleData/multiPaneData";
+import { fetchMultiPaneData } from "../../../ExampleData/ExampleDataProvider";
 import { appTheme } from "../../../theme";
 import { SciChartReact } from "scichart-react";
 
@@ -85,7 +85,14 @@ const getDataForThirdPane = (xValues: number[], closeValues: number[]) => {
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const verticalGroup = new SciChartVerticalGroup();
-    const { dateValues: xValues, openValues, highValues, lowValues, closeValues, volumeValues } = multiPaneData;
+    const {
+        dateValues: xValues,
+        openValues,
+        highValues,
+        lowValues,
+        closeValues,
+        volumeValues,
+    } = await fetchMultiPaneData();
     const { macdArray, signalArray, divergenceArray } = getDataForSecondPane(xValues, closeValues);
     const { rsiArray } = getDataForThirdPane(xValues, closeValues);
 
