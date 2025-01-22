@@ -9,10 +9,23 @@
 
     .code {
         position: absolute;
-        width: 100%;
-        min-height: calc(100% - 64px);
-        height: calc(100% - 64px);
+        width: calc(100% - 24px);
+        height: calc(100% - 64px); // Not ideal, but needed since it's absolute, due to other aspect-ratio issues
         overflow: auto;
+    }
+
+    .copyButton {
+        height: 24px;
+        width: 24px;
+        color: var(--text);
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        cursor: pointer;
+
+        &:hover, &:active {
+            color: #888;
+        }
     }
 }
 
@@ -20,7 +33,7 @@
     position: absolute;
     top: 0; 
     left: 0;
-    width: calc(100% - 24px);
+    width: calc(100% - 64px);
     height: 40px;
     overflow: auto;
     overflow-y: hidden;

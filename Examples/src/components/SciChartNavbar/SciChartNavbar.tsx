@@ -30,12 +30,6 @@ export default function SciChartNavbar({
         const newTheme = (theme == ETheme.dark ? ETheme.light : ETheme.dark);
         document.documentElement.setAttribute('data-theme', newTheme );
         document.querySelector('meta[name="theme-color"]')?.setAttribute('content', getComputedStyle(document.documentElement).getPropertyValue('--bg'));
-        const url = new URL(window.location.href);
-        url.searchParams.set('theme', newTheme);
-        window.history.pushState({},
-            '',
-            url.toString()
-        );
         setTheme(newTheme);
     }
 
@@ -69,9 +63,9 @@ export default function SciChartNavbar({
                         </a>
                     </div>
                     <div className="col col-5 col-md-9 col-xl-10 header-nav"> 
-                <a href="#site-navigation" data-className="menu-open" data-target="body" className="className-toggler d-block d-xl-none position-relative overflow-hidden main-menu-button ms-auto"> 
+                <a href="#site-navigation" data-target="body" className="className-toggler d-block d-xl-none position-relative overflow-hidden main-menu-button ms-auto"> 
                     <i className="d-block start-0 top-0 position-absolute w-100 bg-white"></i> <i className="d-block start-0 bottom-0 position-absolute w-100 bg-white"></i> <span>Menu</span> </a>
-                <div className="className-toggler main-menu-shadow d-block d-xl-none position-fixed top-0 start-0 w-100 h-100" data-target="body" data-className="menu-open"></div>
+                <div className="className-toggler main-menu-shadow d-block d-xl-none position-fixed top-0 start-0 w-100 h-100" data-target="body"></div>
                 <div className="main-menu">
                     <div className="menu-main-nav-container">
                         <ul id="primary-menu" className="menu">
@@ -261,11 +255,11 @@ export default function SciChartNavbar({
                     <div className="icon">
                         <ThemeToggleComponent />
                     </div>
-                    <div className="icon">
+                    <div className="icon menu-burger">
                         <Button onClick={toggleDrawer} aria-label="menu" sx={{ minWidth: 36 }}>
                             <MenuIcon 
                                 sx={{ color: '#888' }}
-                                />
+                            />
                         </Button>
                     </div>
                 </div>

@@ -184,7 +184,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
             </ul>
         );
     };
-
+    
     const isMaxWidth = pageLayout === EPageLayout.MaxWidth || !isSideBySidePossible;
 
     return (
@@ -260,8 +260,18 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                             </div>
                         )}
 
-                        {currentExample?.markdownContent?.length ? (
-                            <MarkdownContent selectedFramework={selectedFramework} currentExample={currentExample} />
+                        {currentExample?.markdownContent ? (
+                            // <MarkdownContent 
+                            //     selectedFramework={selectedFramework} 
+                            //     currentExample={currentExample} 
+                            // />
+                            <p>
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore fuga voluptate quos quia ratione quaerat maxime eos iure accusantium earum a corrupti eaque, voluptatum quis consequuntur rerum optio ipsam similique dignissimos totam saepe beatae aspernatur quas. Dolores itaque praesentium doloribus maiores hic tempora alias inventore explicabo architecto quod? Ut saepe officiis possimus, doloribus soluta impedit totam velit consequatur amet nesciunt quod! Beatae fugiat, repellendus magni tempore qui ipsam laudantium eos doloribus esse recusandae consectetur reiciendis vero suscipit? Nemo, consequuntur minima?
+                                <br/>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor tempora, at minus reiciendis, laborum libero perferendis dicta sint rem quasi repudiandae nam quod? Deserunt fuga qui ab, fugit vitae, pariatur eligendi modi molestias impedit quaerat delectus rerum. Voluptatibus ducimus odio neque amet eaque, repellendus est reprehenderit maiores tempora officiis aperiam!
+                                <br/>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolore atque rerum voluptates. Omnis laboriosam error aliquam, explicabo id fugiat ipsum a asperiores tempore illum illo voluptate ut ex impedit!
+                            </p>
                         ) : null}
                     </div>
                     <GalleryItems examples={seeAlso} />

@@ -1,6 +1,6 @@
 #masthead {
     --height: 90px;
-    --nav-bg: rgb(20, 26, 44);
+    --nav-bg: #1f1f1f;
     font-family: 'Inter', sans-serif;
     font-size: 14px;
 
@@ -254,6 +254,12 @@
             .menu-item > a {
                 padding: 0;
             }
+        }
+
+    }
+    @media screen and (min-width: 960px) {
+        .menu-burger {
+            display: none !important;
         }
     }
 }

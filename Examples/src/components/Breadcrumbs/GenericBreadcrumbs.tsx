@@ -41,7 +41,6 @@ export function BreadcrumbsWithMenu(props: {
             event.preventDefault();
         }
 
-        console.log("handleBreadcrumbClick", breadcrumb.entry.id, openedBreadcrumb?.entry?.id);
         setAnchorEl(event.currentTarget);
         if (breadcrumb.entry.id === openedBreadcrumb?.entry?.id) {
             setOpen(false);
@@ -53,8 +52,6 @@ export function BreadcrumbsWithMenu(props: {
     };
 
     const handleClose = (event: Event | React.SyntheticEvent) => {
-        console.log("handleClose", openedBreadcrumb?.entry?.id);
-
         if (anchorEl.contains(event.target as HTMLElement)) {
             return;
         }
@@ -162,7 +159,12 @@ export function BreadcrumbsWithMenu(props: {
                             transformOrigin: placement === "bottom-start" ? "left top" : "left bottom",
                         }}
                     >
-                        <Paper>
+                        <Paper
+                            sx={{
+                                backgroundColor: 'var(--bg)',
+                                color: 'var(--text)'
+                            }}
+                        >
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList
                                     autoFocusItem={open}

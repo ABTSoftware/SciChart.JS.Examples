@@ -27,6 +27,15 @@ export default function Search() {
                 id="someElement1"
                 freeSolo
                 options={searchItems}
+                componentsProps={{
+                    paper: {
+                        sx: {
+                            backgroundColor: 'var(--bg)',
+                            color: 'var(--text)',
+                            border: '1px solid var(--border-color)',
+                        }
+                    }
+                }}
                 getOptionLabel={(option) => {
                     // Check if option is TSearchItem and return title
                     if (typeof option === "object" && "title" in option) {
@@ -55,9 +64,12 @@ export default function Search() {
                         }}
                         sx={{
                             "& .MuiOutlinedInput-root": {
-                                borderRadius: "8px",
+                                borderRadius: "4px",
                                 height: "44px",
                             },
+                            "& fieldset": {
+                                border: "none"
+                            }
                         }}
                     />
                 )}

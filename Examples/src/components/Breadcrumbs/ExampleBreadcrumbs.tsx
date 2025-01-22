@@ -6,6 +6,7 @@ import { BreadcrumbsWithMenu, TBreadcrumbItem, TBreadcrumbPath } from "./Generic
 import { appTheme } from "../Examples/theme";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { useExampleRouteParams, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { useNavigate } from "react-router-dom";
 
 // TODO TMenuItem is not consistent with tree-like format and doesn't really fit this structure, thus special handling of the leaf nodes is required
 
@@ -97,6 +98,23 @@ export const ExampleBreadcrumbs = () => {
 
                             color: "var(--text)",
                             // "&:hover": { textDecoration: "underline" },
+                        }}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            // Handle same-page navigation
+                            if (window.location.pathname === `/${selectedFramework}`) {
+                                const hash = link.split('#')[1];
+                                const element = document.getElementById(hash);
+                                if (element) {
+                                    element.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'start'
+                                    });
+                                }
+                                window.history.replaceState(null, '', link);
+                            } else {
+                                window.location.href = link;
+                            }
                         }}
                     >
                         {labelContent}

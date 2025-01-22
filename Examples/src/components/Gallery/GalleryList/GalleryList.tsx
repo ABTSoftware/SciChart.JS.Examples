@@ -26,7 +26,7 @@ export default function GalleryList(props: TProps) {
             >
                 <div className={classes.ChartGroupTitle}>
                     <h6>{props.example.chartGroupTitle}</h6>
-                    <span>{props.example.items.length} Demos</span>
+                    <span>{props.example.items.length}&nbsp;Demos</span>
                 </div>
             </div>
             <ul className={classes.Gallery}>
