@@ -388,7 +388,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
 
     return (
         <div className={classes.editorWrapper} onMouseEnter={handleMouseEnter}>
-            <div className={classes.horizontalScroller}>
+            <div className={classes.horizontalScroller} suppressHydrationWarning={true}>
                 {/* VSCode-like horizontal scrollable tabs */}
                 {files
                     .sort((a, b) => {
