@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, Dispatch, SetStateAction } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import classes from "./index.scss";
 import { Link, useNavigate } from "react-router";
 import { GalleryItem } from "../../helpers/types/types";
@@ -18,7 +18,7 @@ enum EGridType {
 
 const GridSelection: React.FC<{
     gridType: EGridType;
-    setGridType: Dispatch<React.SetStateAction<EGridType>>;
+    setGridType: React.Dispatch<React.SetStateAction<EGridType>>;
 }> = ({ gridType, setGridType }) => {
     return (
         <ul className={classes.gridSelection}>
@@ -83,13 +83,14 @@ const GridSelection: React.FC<{
     );
 };
 
-const Example: React.FC<{
+interface ExampleProps {
     example: GalleryItem;
     index: number;
-    setMostVisibleCategory: Dispatch<SetStateAction<string>>;
     gridType: EGridType;
-    setGridType: Dispatch<SetStateAction<EGridType>>;
-}> = ({ example, index, setMostVisibleCategory, gridType, setGridType }) => {
+    setGridType: React.Dispatch<React.SetStateAction<EGridType>>;
+}
+
+const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(({ example, index, gridType, setGridType }, ref) => {
     const navigate = useNavigate();
     const framework = useContext(FrameworkContext);
 
@@ -97,60 +98,17 @@ const Example: React.FC<{
         navigate(`/${framework}/${path}`);
     };
 
-    const sectionRef = React.useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (!setMostVisibleCategory || !sectionRef.current) return () => {};
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                // Track the visible area for all observed elements
-                const visibilityMap = new Map<string, number>();
-
-                entries.forEach((entry) => {
-                    // Calculate the visible area in square pixels
-                    const visibleArea = entry.intersectionRect.width * entry.intersectionRect.height;
-
-                    const category = example.id;
-                    if (category) {
-                        visibilityMap.set(category, visibleArea);
-                    }
-                });
-
-                // Find the component with the maximum visible area
-                let mostVisible = null;
-                let maxVisibleArea = 0;
-
-                visibilityMap.forEach((visibleArea, category) => {
-                    if (visibleArea > maxVisibleArea) {
-                        mostVisible = category;
-                        maxVisibleArea = visibleArea;
-                    }
-                });
-
-                // Update the state only if the most visible changes
-                if (mostVisible) {
-                    setMostVisibleCategory(mostVisible);
-                }
-            },
-            {
-                root: null, // Observe relative to the viewport
-                threshold: [0], // Trigger callback on any visibility change
-            }
-        );
-
-        observer.observe(sectionRef.current);
-
-        return () => {
-            observer.disconnect();
-        };
-    }, [setMostVisibleCategory]);
-
     return (
-        <div key={example.id} ref={sectionRef}>
+        <div>
             <div className={classes.showcaseheadingwrap}>
-                {/* group title */}
-                <h3 id={example.id} style={{ fontSize: "min(calc(4vw + 0.4rem), 1.4rem)" }}>
+                <h3
+                    ref={ref}
+                    id={example.id}
+                    style={{
+                        fontSize: "min(calc(4vw + 0.4rem), 1.4rem)",
+                        scrollMarginTop: 112, // just under the navbar
+                    }}
+                >
                     {`${example.chartGroupTitle} (${"items" in example ? example.items.length : 0} Demo${
                         "items" in example && example.items.length !== 1 ? "s" : ""
                     })`}
@@ -161,15 +119,15 @@ const Example: React.FC<{
             {"items" in example && example.items.length > 0 ? (
                 <section
                     className={`
-                ${classes.gridWrap}
-                ${
-                    gridType === EGridType.Cardview
-                        ? classes.cardView
-                        : gridType === EGridType.Grid2or3
-                        ? classes.gridView2or3
-                        : classes.gridView5or6
-                }
-            `}
+                            ${classes.gridWrap}
+                            ${
+                                gridType === EGridType.Cardview
+                                    ? classes.cardView
+                                    : gridType === EGridType.Grid2or3
+                                    ? classes.gridView2or3
+                                    : classes.gridView5or6
+                            }
+                        `}
                 >
                     {example.items.map((item, index) => (
                         <div key={index} className={classes.card} onClick={() => handleSubmenuClick(item.examplePath)}>
@@ -179,7 +137,7 @@ const Example: React.FC<{
                             <div className={classes.content}>
                                 <h3>{item.title}</h3>
                                 <p>{item.metaDescription || "No description available for this example yet"}</p>
-                                {gridType === EGridType.Cardview ? (
+                                {gridType === EGridType.Cardview && (
                                     <div className={classes.contentButtons}>
                                         <Link to={`/${framework}/${item.examplePath}`} className={classes.button}>
                                             View Example
@@ -205,7 +163,7 @@ const Example: React.FC<{
                                             &nbsp;View&nbsp;Source
                                         </a>
                                     </div>
-                                ) : null}
+                                )}
                             </div>
                         </div>
                     ))}
@@ -215,19 +173,76 @@ const Example: React.FC<{
             )}
         </div>
     );
-};
+});
 
 const GalleryItems: React.FC<TProps> = ({ examples, setMostVisibleCategory }) => {
     const [gridType, setGridType] = useState<EGridType>(EGridType.Grid5or6);
+    const headingRefs = useRef<(HTMLHeadingElement | null)[]>([]);
+    const currentActive = useRef<string | null>(null);
+    const scrollTimeout = useRef<number | null>(null);
+
+    useEffect(() => {
+        const calculateClosest = () => {
+            const referenceLine = window.innerHeight / 3; // 1/3 of height from the top
+            let closestId: string | null = null;
+            let minDistance = Infinity;
+
+            headingRefs.current.forEach((ref) => {
+                if (!ref || !ref.id) return;
+
+                const rect = ref.getBoundingClientRect();
+                if (rect.height === 0) return; // Skip invisible elements
+
+                // Calculate distance from element top to reference line
+                const distance = Math.abs(rect.top - referenceLine);
+
+                // Prioritize elements that are either:
+                // 1. Closer to the reference line, or
+                // 2. Same distance but above the line when scrolling up
+                if (distance < minDistance || (distance === minDistance && rect.top < referenceLine)) {
+                    minDistance = distance;
+                    closestId = ref.id;
+                }
+            });
+
+            return closestId;
+        };
+
+        const handleScroll = () => {
+            // Cancel pending updates
+            if (scrollTimeout.current) {
+                cancelAnimationFrame(scrollTimeout.current);
+            }
+
+            // Schedule new update with RAF-based debounce
+            scrollTimeout.current = requestAnimationFrame(() => {
+                const closestId = calculateClosest();
+                if (closestId && closestId !== currentActive.current) {
+                    currentActive.current = closestId;
+                    setMostVisibleCategory?.(closestId);
+                }
+            });
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            if (scrollTimeout.current) {
+                cancelAnimationFrame(scrollTimeout.current);
+            }
+        };
+    }, [examples, setMostVisibleCategory]);
 
     return (
         <div className={classes.showcaseWrap}>
             {examples.map((group, index) => (
                 <Example
-                    key={index}
+                    key={group.id}
+                    ref={(el) => {
+                        headingRefs.current[index] = el;
+                    }}
                     example={group}
                     index={index}
-                    setMostVisibleCategory={setMostVisibleCategory}
                     gridType={gridType}
                     setGridType={setGridType}
                 />
