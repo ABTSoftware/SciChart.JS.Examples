@@ -30,11 +30,11 @@ export default function Search() {
                 componentsProps={{
                     paper: {
                         sx: {
-                            backgroundColor: 'var(--bg)',
-                            color: 'var(--text)',
-                            border: '1px solid var(--border-color)',
-                        }
-                    }
+                            backgroundColor: "var(--bg)",
+                            color: "var(--text)",
+                            border: "1px solid var(--border-color)",
+                        },
+                    },
                 }}
                 getOptionLabel={(option) => {
                     // Check if option is TSearchItem and return title
@@ -68,8 +68,8 @@ export default function Search() {
                                 height: "44px",
                             },
                             "& fieldset": {
-                                border: "none"
-                            }
+                                border: "none",
+                            },
                         }}
                     />
                 )}

@@ -23,7 +23,8 @@
         right: 16px;
         cursor: pointer;
 
-        &:hover, &:active {
+        &:hover,
+        &:active {
             color: #888;
         }
     }
@@ -31,7 +32,7 @@
 
 .horizontalScroller {
     position: absolute;
-    top: 0; 
+    top: 0;
     left: 0;
     width: calc(100% - 64px);
     height: 40px;

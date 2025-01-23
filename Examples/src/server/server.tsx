@@ -1,4 +1,4 @@
-import express from "express";
+import express, { NextFunction } from "express";
 import cors from "cors";
 import compression from "compression";
 import { Request, Response } from "express";
@@ -121,6 +121,20 @@ function shouldCompress(req: Request, res: Response) {
     }
     return compression.filter(req, res);
 }
+
+app.get("/images/:framework-:example", (req: Request, res: Response, next: NextFunction) => {
+    const params = req.params;
+
+    if (params.framework !== "javascript" && isValidFramework(params.framework as EPageFramework)) {
+        const redirectUrl = `/images/javascript-${params.example}`;
+
+        req.url = redirectUrl;
+
+        // return res.redirect(301, redirectUrl);
+    }
+
+    next();
+});
 
 app.use(express.static(targetDir, { etag: true, maxAge: 0 }));
 app.use("/api", api);

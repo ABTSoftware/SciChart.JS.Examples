@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router";
 import classes from "./Gallery.module.scss";
 import { Tooltip } from "@mui/material";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { SciImage } from "../../helpers/shared/SciImage";
 
 type TProps = {
     imgPath: string;
@@ -20,8 +21,8 @@ const GalleryCard: FC<TProps> = (props) => {
     return (
         <div className={classes.GalleryItemCard}>
             <Link className={classes.GalleryItemCardImage} to={`/${framework}/${examplePath}`}>
-                <Tooltip title={<img src={imgPath} width={600} height={600} alt={seoTitle} />}>
-                    <img src={imgPath} data-title={seoTitle} alt={seoTitle} />
+                <Tooltip title={<SciImage src={imgPath} width={600} height={600} alt={seoTitle} />}>
+                    <SciImage src={imgPath} data-title={seoTitle} alt={seoTitle} />
                 </Tooltip>
                 <h5 className={classes.GalleryItemTitle}>{title}</h5>
             </Link>

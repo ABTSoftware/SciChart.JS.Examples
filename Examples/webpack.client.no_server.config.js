@@ -2,6 +2,8 @@ const { merge } = require("webpack-merge");
 const webpackClientConfig = require("./webpack.client.config.js");
 const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
+const ImageminWebpWebpackPlugin = require("imagemin-webp-webpack-plugin");
+
 const tq3080_DSM_2M = require("./src/server/Data/tq3080_DSM_2M");
 const { candlesADAUSDT } = require("./src/server/BinanceData/candlesADAUSDT");
 const { candlesBTCUSDT } = require("./src/server/BinanceData/candlesBTCUSDT");
@@ -78,6 +80,7 @@ module.exports = {
         ],
     },
     plugins: [
+        new ImageminWebpWebpackPlugin(),
         new CopyPlugin({
             patterns: [
                 { from: "src/static/no_server.index.html", to: "index.html" },
