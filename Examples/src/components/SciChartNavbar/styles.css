@@ -1,7 +1,7 @@
 #masthead {
     --height: 90px;
-    --nav-bg: rgb(20, 26, 44);
-    font-family: 'Inter', sans-serif;
+    --nav-bg: #1f1f1f;
+    font-family: "Inter", sans-serif;
     font-size: 14px;
 
     /* 1. Elements */
@@ -94,17 +94,17 @@
         }
 
         .menu-item > a {
-            color: #FFF;
+            color: #fff;
             text-decoration: none;
             padding: 10px 20px;
             display: inline-block;
             transition: color 0.3s ease;
-            white-space: nowrap; 
-            overflow: hidden; 
+            white-space: nowrap;
+            overflow: hidden;
         }
 
         .menu-item > a:hover {
-            color: #ccc; 
+            color: #ccc;
         }
 
         /* Sub-menu Styling */
@@ -117,14 +117,14 @@
             background: var(--nav-bg);
             min-width: 200px;
             opacity: 0;
-            visibility: hidden;  /* Initially hidden */
+            visibility: hidden; /* Initially hidden */
             transform: translateY(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;  /* Delay visibility change until after transition */
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s; /* Delay visibility change until after transition */
             padding: 10px 0;
         }
 
         .sub-menu::before {
-            content: '';
+            content: "";
             position: absolute;
             top: -7px;
             left: 20px;
@@ -141,7 +141,7 @@
         }
 
         .sub-menu li a {
-            color: #FFF;
+            color: #fff;
             padding: 2px 15px;
             display: block;
             text-decoration: none;
@@ -156,10 +156,10 @@
 
         /* Show submenu on parent hover */
         .menu-item:hover > .sub-menu {
-            visibility: visible;  /* Make it visible when hovered */
+            visibility: visible; /* Make it visible when hovered */
             opacity: 1;
             transform: translateY(0);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s;  /* Reset visibility change delay */
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s; /* Reset visibility change delay */
         }
 
         /* Second-level submenus */
@@ -168,17 +168,17 @@
             left: 100%;
             margin-left: 10px;
             opacity: 0;
-            visibility: hidden;  /* Initially hidden */
+            visibility: hidden; /* Initially hidden */
             transform: translateX(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;  /* Delay visibility change */
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s; /* Delay visibility change */
         }
 
         /* Show second-level submenu only on parent hover */
         .sub-menu li:hover > .sub-menu {
-            visibility: visible;  /* Make it visible when hovered */
+            visibility: visible; /* Make it visible when hovered */
             opacity: 1;
             transform: translateX(0);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s;  /* Reset visibility change delay */
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s; /* Reset visibility change delay */
         }
 
         .menu-item.button {
@@ -208,9 +208,9 @@
             transform: translateX(0);
             background-color: var(--nav-bg);
         }
-        
+
         .menu-item.login .sub-menu::before {
-            content: '';
+            content: "";
             position: absolute;
             top: -7px;
             right: 20px;
@@ -254,6 +254,11 @@
             .menu-item > a {
                 padding: 0;
             }
+        }
+    }
+    @media screen and (min-width: 960px) {
+        .menu-burger {
+            display: none !important;
         }
     }
 }

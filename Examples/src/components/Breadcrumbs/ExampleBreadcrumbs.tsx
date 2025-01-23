@@ -6,6 +6,7 @@ import { BreadcrumbsWithMenu, TBreadcrumbItem, TBreadcrumbPath } from "./Generic
 import { appTheme } from "../Examples/theme";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { useExampleRouteParams, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { useNavigate } from "react-router-dom";
 
 // TODO TMenuItem is not consistent with tree-like format and doesn't really fit this structure, thus special handling of the leaf nodes is required
 
@@ -35,12 +36,14 @@ export const ExampleBreadcrumbs = () => {
                     // Home menu item handling
                     link = `/${selectedFramework}`;
                     title = "Home Page Gallery";
-                    labelContent = <HomeIcon
-                        sx={{
-                            // align in center
-                            verticalAlign: "middle",
-                        }}
-                    />;
+                    labelContent = (
+                        <HomeIcon
+                            sx={{
+                                // align in center
+                                verticalAlign: "middle",
+                            }}
+                        />
+                    );
                     menuItems = [];
                 } else {
                     // inner menu category handling
@@ -59,7 +62,7 @@ export const ExampleBreadcrumbs = () => {
                             overflow: "hidden",
                             textOverflow: { xs: "ellipsis", md: "unset", lg: "unset" },
                             textTransform: "unset",
-                            color: 'var(--light-blue)',
+                            color: "var(--light-blue)",
 
                             "&:hover": { textDecoration: "underline" },
                         }}
@@ -97,6 +100,23 @@ export const ExampleBreadcrumbs = () => {
 
                             color: "var(--text)",
                             // "&:hover": { textDecoration: "underline" },
+                        }}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            // Handle same-page navigation
+                            if (window.location.pathname === `/${selectedFramework}`) {
+                                const hash = link.split("#")[1];
+                                const element = document.getElementById(hash);
+                                if (element) {
+                                    element.scrollIntoView({
+                                        behavior: "smooth",
+                                        block: "start",
+                                    });
+                                }
+                                window.history.replaceState(null, "", link);
+                            } else {
+                                window.location.href = link;
+                            }
                         }}
                     >
                         {labelContent}

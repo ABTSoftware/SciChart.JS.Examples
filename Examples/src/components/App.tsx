@@ -10,8 +10,7 @@ import {
     MENU_ITEMS_3D,
     MENU_ITEMS_FEATURED_APPS,
 } from "./AppRouter/examples";
-import AppBarTop from "./AppTopBar/AppBarTop";
-//import SciChartNavbar from "./SciChartNavbar/SciChartNavbar";
+// import AppBarTop from "./AppTopBar/AppBarTop";
 import DrawerContent from "./DrawerContent/DrawerContent";
 import AppFooter from "./AppFooter/AppFooter";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
@@ -96,14 +95,9 @@ export default function App() {
     }, [navigate]);
 
     React.useEffect(() => {
-        setTheme(
-            window ? (
-                window.location.search.includes("theme") 
-                    && window.location.search.includes("theme=dark") 
-                        ? ETheme.dark 
-                        : ETheme.light
-            ) : ETheme.light
-        );
+        if (typeof window === "undefined") return;
+
+        setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? ETheme.dark : ETheme.light);
     }, []);
 
     React.useEffect(() => {
@@ -146,22 +140,13 @@ export default function App() {
                             testIsOpened={testIsOpened}
                             toggleOpenedMenuItem={toggleOpenedMenuItem}
                             toggleDrawer={toggleDrawer}
+                            currentExample={currentExample}
                             // mostVisibleCategory={mostVisibleCategory} mobile does not need this hover feature
                         />
                     </Drawer>
                 )}
                 <div className={classes.MainAppContent}>
-                    {/* <AppBarTop
-                        toggleDrawer={toggleDrawer}
-                        currentExample={currentExample}
-                        theme={theme}
-                        setTheme={setTheme}
-                    /> */}
-                    <SciChartNavbar 
-                        toggleDrawer={toggleDrawer}
-                        theme={theme}
-                        setTheme={setTheme}
-                    />
+                    <SciChartNavbar toggleDrawer={toggleDrawer} theme={theme} setTheme={setTheme} />
 
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
@@ -175,6 +160,7 @@ export default function App() {
                                         testIsOpened={testIsOpened}
                                         toggleOpenedMenuItem={toggleOpenedMenuItem}
                                         toggleDrawer={toggleDrawer}
+                                        currentExample={currentExample}
                                         mostVisibleCategory={mostVisibleCategory}
                                     />
                                 </div>
