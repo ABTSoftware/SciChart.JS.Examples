@@ -81,6 +81,7 @@ module.exports = {
     //     ],
     // },
     plugins: [
+        new ImageminWebpWebpackPlugin(),
         new CopyPlugin({
             patterns: [
                 { from: "src/static/favicon.ico", to: "" },
