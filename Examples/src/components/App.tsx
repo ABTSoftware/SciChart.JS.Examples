@@ -143,6 +143,7 @@ export default function App() {
                             testIsOpened={testIsOpened}
                             toggleOpenedMenuItem={toggleOpenedMenuItem}
                             toggleDrawer={toggleDrawer}
+                            currentExample={currentExample}
                             // mostVisibleCategory={mostVisibleCategory} mobile does not need this hover feature
                         />
                     </Drawer>
@@ -166,6 +167,7 @@ export default function App() {
                                         testIsOpened={testIsOpened}
                                         toggleOpenedMenuItem={toggleOpenedMenuItem}
                                         toggleDrawer={toggleDrawer}
+                                        currentExample={currentExample}
                                         mostVisibleCategory={mostVisibleCategory}
                                     />
                                 </div>

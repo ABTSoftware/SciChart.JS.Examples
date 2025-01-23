@@ -195,6 +195,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                         testIsOpened={testIsOpened}
                         toggleOpenedMenuItem={toggleOpenedMenuItem}
                         toggleDrawer={() => {}}
+                        currentExample={currentExample}
                     />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 15, width: "100%" }}>

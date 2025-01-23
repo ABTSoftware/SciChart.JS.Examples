@@ -3,13 +3,14 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Navigation from "../Navigation/Navigation";
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 import classes from "./DrawerContent.module.scss";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import Search from "../Search/Search";
 import { EPageFramework } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { useMediaQuery } from "@mui/material";
 import { Theme } from "@mui/material/styles";
+import { TExamplePage } from "../AppRouter/examplePages";
 
 // tslint:disable-next-line:no-var-requires
 const APP_VERSION = require("../../../package.json").dependencies.scichart;
@@ -18,17 +19,9 @@ type TProps = {
     testIsOpened: (id: string) => boolean;
     toggleOpenedMenuItem: (id: string) => void;
     toggleDrawer: () => void;
+    currentExample: TExamplePage;
     mostVisibleCategory?: string;
 };
-
-function changeFramework(framework: EPageFramework) {
-    const path = window.location.pathname.split("/");
-    // replace any of 'react', 'angular' or 'javascript' with the new framework, only if it's new:
-    if (path[1] !== framework) {
-        path[1] = framework;
-        window.location.pathname = path.join("/");
-    }
-}
 
 const FrameworkSVG = {
     [EPageFramework.React]: (
@@ -69,7 +62,7 @@ const FrameworkSVG = {
 
 const DrawerContent: FC<TProps> = (props) => {
     const framework = useContext(FrameworkContext);
-    const { testIsOpened, toggleOpenedMenuItem, toggleDrawer } = props;
+    const { testIsOpened, toggleOpenedMenuItem, toggleDrawer, currentExample } = props;
 
     // TODO md was changed by migration script.requires verification
     const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
@@ -82,13 +75,13 @@ const DrawerContent: FC<TProps> = (props) => {
                 </IconButton>
                 <div className={classes.FrameworkSelect}>
                     {Object.values(EPageFramework).map((fw) => (
-                        <div
+                        <Link
                             key={fw}
                             className={framework === fw ? classes.SelectedFramework : classes.Framework}
-                            onClick={() => changeFramework(fw)}
+                            to={currentExample ? `${fw}/${currentExample.path}` : `/${fw}`}
                         >
                             {FrameworkSVG[fw]}
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
