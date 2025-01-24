@@ -2414,14 +2414,21 @@ Show external placement div</Notes>
                 </TocNode>
                 <TocNode Name="" Id="25ceb960-22eb-44de-a172-8a793164cfc7" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
-                  <ChildNodes />
+                  <ChildNodes>
+                    <TocNode Name="" Id="b90b4195-9fb7-4e21-a5cb-a739d75d7c18" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>a430d22c-a6c5-4a0c-99fa-d94e200cfd60</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="ea306ffa-ea4c-46ed-9312-0cd12ab8379d" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>90649d8d-c2a0-481b-ba5c-fa13ccac61f1</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                  </ChildNodes>
                   <TargetItemId>463874a3-04b9-430b-be53-63863b12a39b</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="b90b4195-9fb7-4e21-a5cb-a739d75d7c18" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>a430d22c-a6c5-4a0c-99fa-d94e200cfd60</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
                 <TocNode Name="" Id="1eba73b8-0311-459c-83a4-978fc7222310" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
@@ -10211,13 +10218,13 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="463874a3-04b9-430b-be53-63863b12a39b" Status="New Topic" CreatedOn="2016-10-21T13:19:00.2595246Z" ModifiedOn="2025-01-21T12:39:32.7393614Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="AxisMarkerAnnotation" BuildFlags="">
+              <Topic Id="463874a3-04b9-430b-be53-63863b12a39b" Status="New Topic" CreatedOn="2016-10-21T13:19:00.2595246Z" ModifiedOn="2025-01-24T12:29:06.5256207Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="AxisMarkerAnnotation" BuildFlags="">
                 <Title m="2016-10-21T13:19:14.1901827Z">AxisMarkerAnnotation</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2025-01-21T12:39:32.7393614Z">&lt;P&gt;The&amp;nbsp;AxisMarkerAnnotation allows you to add a label on to the Axis at a specific X or Y value.&lt;/P&gt;
+                    <Content m="2025-01-24T12:29:06.5256207Z">&lt;P&gt;The&amp;nbsp;AxisMarkerAnnotation allows you to add a label on to the Axis at a specific X or Y value.&lt;/P&gt;
 &lt;P&gt;&lt;IMG border=0 alt="" src="images/Annotations_AxisMarkerAnnotation.png"&gt;&lt;/P&gt;
 &lt;H2&gt;Declaring a AxisMarkerAnnotation in code&lt;/H2&gt;
 &lt;P&gt;The following code will declare an&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axismarkerannotation.html"&gt;AxisMarkerAnnotation&lt;/A&gt; add it&amp;nbsp;to the chart.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
@@ -10257,7 +10264,8 @@ Show external placement div</Notes>
 &lt;TR&gt;
 &lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axismarkerannotation.html#annotationsgripsstroke"&gt;annotationGripsStroke&lt;/A&gt;&lt;/TD&gt;
 &lt;TD&gt;The stroke color for the annotations grips when editing.&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;Creating an AxisMarkerAnnotation &lt;/P&gt;</Content>
                   </TopicSection>
                 </TopicSections>
                 <TopicLinks>
@@ -10640,31 +10648,20 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="a430d22c-a6c5-4a0c-99fa-d94e200cfd60" Status="New Topic" CreatedOn="2021-09-30T08:59:01.5667508Z" ModifiedOn="2024-08-29T16:51:44.0371918Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CustomAxisLabelAnnotation" BuildFlags="">
-                <Title m="2021-10-14T10:17:21.753649Z">Custom AxisMarkerAnnotation</Title>
-                <ContentsTitle m="2021-10-14T10:17:29.0887367Z">Custom AxisMarkerAnnotation</ContentsTitle>
+              <Topic Id="a430d22c-a6c5-4a0c-99fa-d94e200cfd60" Status="New Topic" CreatedOn="2021-09-30T08:59:01.5667508Z" ModifiedOn="2025-01-24T20:33:42.8177591Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CustomAxisLabelAnnotation" BuildFlags="">
+                <Title m="2025-01-24T20:32:23.3975332Z">Image AxisMarkerAnnotation</Title>
+                <ContentsTitle m="2025-01-24T20:32:30.3728814Z">Image AxisMarkerAnnotation</ContentsTitle>
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2024-08-29T16:51:44.0371918Z">&lt;P&gt;SciChart.js allows to create &lt;STRONG&gt;custom axis marker annotations&lt;/STRONG&gt; on axes. This is done by creating&amp;nbsp;&lt;A href="463874a3-04b9-430b-be53-63863b12a39b"&gt;AxisMarkerAnnotation&lt;/A&gt; and passing an&amp;nbsp;&lt;STRONG&gt;image&lt;/STRONG&gt; option into the constructor.&lt;/P&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;const customAxisMarkerAnnotation = new AxisMarkerAnnotation({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; x1: 2,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; isEditable: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; image: htmlImageElement,&lt;BR&gt;});&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;The full example code is below.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;import customAxisMarkerImage from './img/CustomAxisMarkerImage.png';&lt;BR&gt;import {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; SciChartSurface ,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; NumericAxis ,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; NumberRange ,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; createImageAsync,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; AxisMarkerAnnotation&lt;BR&gt;} from "SciChart";&lt;/P&gt;
-&lt;P&gt;export async function customAxisMarkerAnnotationTs(divId) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, 10) }));&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, 10) }));&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const htmlImageElement = await createImageAsync(customAxisMarkerImage);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // pass imageWidth and imageHeight options to specify annotation width and height&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const customAxisMarkerAnnotation = new AxisMarkerAnnotation({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; x1: 2,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; isEditable: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; image: htmlImageElement,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // imageWidth: 100,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // imageHeight: 100&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; });&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.annotations.add(customAxisMarkerAnnotation);&lt;BR&gt;}&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;import { SciChartSurface } from 'scichart/Charting/Visuals/SciChartSurface';&lt;BR&gt;import { NumericAxis } from 'scichart/Charting/Visuals/Axis/NumericAxis';&lt;BR&gt;import customAxisMarkerImage from './img/CustomAxisMarkerImage.png';&lt;BR&gt;import { NumberRange } from 'scichart/Core/NumberRange';&lt;BR&gt;import { createImageAsync } from 'scichart/utils/imageUtil';&lt;BR&gt;import { AxisMarkerAnnotation } from 'scichart/Charting/Visuals/Annotations/AxisMarkerAnnotation';&lt;/P&gt;
-&lt;P&gt;export async function customAxisMarkerAnnotationTs(divId: string) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, 10) }));&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, 10) }));&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const htmlImageElement = await createImageAsync(customAxisMarkerImage);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // pass imageWidth and imageHeight options to specify annotation width and height&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const customAxisMarkerAnnotation = new AxisMarkerAnnotation({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; x1: 2,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; isEditable: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; image: htmlImageElement,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // imageWidth: 100,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // imageHeight: 100&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; });&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.annotations.add(customAxisMarkerAnnotation);&lt;BR&gt;}&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;In this example we are using &lt;STRONG&gt;webpack&amp;nbsp;url-loader&lt;/STRONG&gt; to load &lt;STRONG&gt;customAxisMarkerImage&lt;/STRONG&gt; and &lt;STRONG&gt;createImageAsync&lt;/STRONG&gt; helper function to create &lt;STRONG&gt;htmlImageElement&lt;/STRONG&gt;.&lt;/P&gt;
-&lt;P&gt;This give us a chart with just two axes and an annotation.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/Annotations_CustomAxisMarker.png"&gt;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;On the chart we can see a cloud-shaped custom axis label annotation. The annotation is draggable along the X Axis.&lt;/P&gt;
-&lt;P&gt;It is also possible to set width and height using &lt;STRONG&gt;imageWidth&lt;/STRONG&gt; and &lt;STRONG&gt;imageHeight&lt;/STRONG&gt; options.&lt;/P&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;const customAxisMarkerAnnotation = new AxisMarkerAnnotation({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; x1: 5,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; isEditable: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; image: htmlImageElement,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; imageWidth: 100,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; imageHeight: 100&lt;BR&gt;});&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+                    <Content m="2025-01-24T20:33:42.8177591Z">&lt;P&gt;SciChart.js allows to create &lt;STRONG&gt;custom axis marker annotations&lt;/STRONG&gt; on axes. This is done by creating&amp;nbsp;&lt;A href="463874a3-04b9-430b-be53-63863b12a39b"&gt;AxisMarkerAnnotation&lt;/A&gt; and passing an&amp;nbsp;&lt;STRONG&gt;image&lt;/STRONG&gt; option into the constructor.&lt;/P&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;const htmlImageElement = await createImageAsync(imageUrl);&lt;BR&gt;const customAxisMarkerAnnotation = new AxisMarkerAnnotation({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; y1: 5,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; isEditable: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; image: htmlImageElement,&lt;BR&gt;});&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;The full example code is below.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\Annotations\AxisMarkerAnnotationImage\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\Annotations\AxisMarkerAnnotationImage\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;In this example we are using&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#createimageasync"&gt;createImageAsync()&lt;/A&gt; helper function to create an&amp;nbsp;&lt;A href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement"&gt;htmlImageElement&lt;/A&gt;&lt;STRONG&gt;. &lt;/STRONG&gt;This is then passed to&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axismarkerannotation.html#image"&gt;AxisMarkerAnnotation.image&lt;/A&gt; property. Optionally&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axismarkerannotation.html#imagewidth"&gt;AxisMarkerAnnotation.imageWidth&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axismarkerannotation.html#imageheight"&gt;imageHeight&lt;/A&gt; may be set. &lt;/P&gt;
+&lt;P&gt;Here's the output:&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/Annotations/AxisMarkerAnnotationImage/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;On the chart we can see a cloud-shaped custom axis label annotation. The annotation is draggable along the&amp;nbsp;YAxis.&lt;/P&gt;</Content>
                   </TopicSection>
                 </TopicSections>
                 <TopicLinks>
@@ -10842,6 +10839,27 @@ Show external placement div</Notes>
 &lt;P&gt;// use extended class for creating the annotation&lt;BR&gt;const boxAnnotation = new CustomBoxAnnotation({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; x1: 3,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; x2: 7,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; y1: 3,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; y2: 7,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; isEditable: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; isSelected: true,&lt;BR&gt;});&lt;BR&gt;sciChartSurface.annotations.add(boxAnnotation);&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/Annotations/StylingAdorners3/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+              <Topic Id="90649d8d-c2a0-481b-ba5c-fa13ccac61f1" Status="New Topic" CreatedOn="2025-01-24T20:57:20.6105255Z" ModifiedOn="2025-01-24T21:09:05.4641148Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CustomAxisMarkerAnnotationSVG" BuildFlags="">
+                <Title m="2025-01-24T21:09:05.4600687Z">SVG Axis Marker Annotation</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2025-01-24T21:08:53.2798908Z">&lt;P&gt;&lt;A href="463874a3-04b9-430b-be53-63863b12a39b"&gt;AxisMarkerAnnotations&lt;/A&gt;&amp;nbsp;can also&amp;nbsp;be created with SVG, also using the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axismarkerannotation.html#image"&gt;AxisMarkerAnnotation.image&lt;/A&gt;&amp;nbsp;property. This can be done as follows. &lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;Remember to import&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#createimageasync"&gt;createImageAsync()&lt;/A&gt;&amp;nbsp;and&amp;nbsp;&lt;A href="463874a3-04b9-430b-be53-63863b12a39b"&gt;AxisMarkerAnnotation&lt;/A&gt;&amp;nbsp;for this to work!&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\Annotations\AxisMarkerAnnotationCustomSvg\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\Annotations\AxisMarkerAnnotationCustomSvg\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;In this example we are using&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#createimageasync"&gt;createImageAsync()&lt;/A&gt; helper function to create an&amp;nbsp;&lt;A href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement"&gt;htmlImageElement&lt;/A&gt;&lt;STRONG&gt;&amp;nbsp;&lt;/STRONG&gt;from SVG&lt;STRONG&gt;. &lt;/STRONG&gt;This is then passed to&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axismarkerannotation.html#image"&gt;AxisMarkerAnnotation.image&lt;/A&gt; property. &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axismarkerannotation.html#imagewidth"&gt;AxisMarkerAnnotation.imageWidth&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axismarkerannotation.html#imageheight"&gt;imageHeight&lt;/A&gt; must be set to scale the SVG to the desired size.&lt;/P&gt;
+&lt;P&gt;Here's the output:&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/Annotations/AxisMarkerAnnotationCustomSvg/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;On the chart we can see a custom SVG axis label annotation. The annotation is draggable along the&amp;nbsp;YAxis.&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
                   </TopicSection>
                 </TopicSections>
                 <TopicLinks />
