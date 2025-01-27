@@ -96,7 +96,10 @@ function App() {
           scichart-react to create a simple chart with one X and Y axis
         </p>
       </header>
-      <SciChartReact config={chartConfig} style={{ maxWidth: 900 }} />
+      <SciChartReact
+        config={chartConfig}
+        style={{ maxWidth: 900, height: 600 }}
+      />
     </div>
   );
 }
