@@ -1,9 +1,11 @@
-import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface";
-import { NumericAxis3D } from "scichart/Charting3D/Visuals/Axis/NumericAxis3D";
-import { CameraController } from "scichart/Charting3D/CameraController";
-import { Vector3 } from "scichart/Charting3D/Vector3";
-import { OrbitModifier3D } from "scichart/Charting3D/ChartModifiers/OrbitModifier3D";
-import { MouseWheelZoomModifier3D } from "scichart/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
+import {
+  SciChart3DSurface,
+  NumericAxis3D,
+  CameraController,
+  Vector3,
+  OrbitModifier3D,
+  MouseWheelZoomModifier3D,
+} from "scichart";
 
 async function initSciChart() {
   // Create the SciChart3DSurface in the div 'scichart-root'
@@ -15,7 +17,7 @@ async function initSciChart() {
 
   sciChart3DSurface.camera = new CameraController(wasmContext, {
     position: new Vector3(300, 200, 300),
-    target: new Vector3(0, 50, 0)
+    target: new Vector3(0, 50, 0),
   });
   // Create an X,Y,Z Axis and add to the chart
 

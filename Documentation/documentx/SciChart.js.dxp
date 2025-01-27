@@ -1397,6 +1397,12 @@ Show external placement div</Notes>
                   <TargetItemId>a5d48d77-152d-4142-b184-811540804fde</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
+                <TocNode Name="" Id="eb5e2a8b-7bfa-4179-822f-8b65e3f65b3b" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>6752e46c-a65a-4717-8dac-bb0cfa6c4d3a</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
               </ChildNodes>
             </TocNode>
             <TocNode Name="" Id="c4e7c1de-d106-4ece-9c01-4a8b6d81cc24" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
@@ -3917,15 +3923,15 @@ Show external placement div</Notes>
             <Caption m="2023-07-24T18:13:53.6489646Z">Tutorials React</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="a5d48d77-152d-4142-b184-811540804fde" Status="New Topic" CreatedOn="2023-07-24T09:15:58.4265193Z" ModifiedOn="2024-10-18T15:02:15.1077607Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="TutorialReusableReactComponent" BuildFlags="">
+              <Topic Id="a5d48d77-152d-4142-b184-811540804fde" Status="New Topic" CreatedOn="2023-07-24T09:15:58.4265193Z" ModifiedOn="2025-01-27T09:59:48.2457697Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="TutorialReusableReactComponent" BuildFlags="">
                 <Title m="2024-10-16T16:15:48.2597822Z">Tutorial 01 - Creating a SciChart React Component from the Ground Up</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2024-10-18T15:02:15.1077607Z">&lt;innovasys:widget type="Caution Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
-&lt;P&gt;&lt;STRONG&gt;This tutorial is deprecated and k&lt;/STRONG&gt;&lt;STRONG&gt;ept for historical reasons! &lt;/STRONG&gt;Now we recommend to use&amp;nbsp;&lt;A href="https://www.npmjs.com/package/scichart-react" target=_blank&gt;scichart-react&lt;/A&gt;, an open source react component wrapper for SciChart.js. &lt;/P&gt;
-&lt;P&gt;Skip to the next tutorial:&amp;nbsp;&lt;A href="a954ad8a-89c7-41fc-88fe-cc8c3246b40b"&gt;Create a Line Chart in React with SciChart.js&lt;/A&gt; to learn how&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2025-01-27T09:59:48.2457697Z">&lt;innovasys:widget type="Caution Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;STRONG&gt;This tutorial is deprecated and k&lt;/STRONG&gt;&lt;STRONG&gt;ept for historical reasons!&lt;/STRONG&gt; Now we recommend to use&amp;nbsp;&lt;A href="https://www.npmjs.com/package/scichart-react" target=_blank&gt;scichart-react&lt;/A&gt;, an open source react component wrapper for SciChart.js.&lt;/P&gt;
+&lt;P&gt;Skip to the next tutorial:&amp;nbsp;&lt;A href="6752e46c-a65a-4717-8dac-bb0cfa6c4d3a"&gt;Tutorial 02 - Create a Chart in React using scichart-react&lt;/A&gt;&amp;nbsp; to learn how&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P md-src-pos="2198..2365"&gt;Source code for this tutorial can be found at &lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/" target=_blank&gt;SciChart.Js.Examples&lt;/A&gt;&amp;nbsp;Github Repository under&amp;nbsp;&lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Tutorials/React/reusable-react-component" target=_blank&gt;Tutorials/React/reusable-react-component&lt;/A&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P md-src-pos="2198..2365"&gt;The idea of this tutorial is to create a reusable React component from scratch&amp;nbsp;which could be used as a core setup for instantiating a SciChart.js chart and properly disposing of memory once the chart is no longer needed.&amp;nbsp;&lt;/P&gt;
 &lt;P md-src-pos="2198..2365"&gt;Main criteria and points to consider:&lt;/P&gt;
@@ -4050,6 +4056,20 @@ Show external placement div</Notes>
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Initialising an npm project&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Command line&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
 &lt;P&gt;&amp;gt; npm install --save-dev webpack&lt;BR&gt;&amp;gt; npm install --save-dev webpack-dev-server&lt;BR&gt;&amp;gt; npm install --save-dev webpack-cli&lt;BR&gt;&amp;gt; npm install --save-dev copy-webpack-plugin&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+              <Topic Id="6752e46c-a65a-4717-8dac-bb0cfa6c4d3a" Status="New Topic" CreatedOn="2025-01-27T09:47:15.0550985Z" ModifiedOn="2025-01-27T09:56:55.0928809Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Tutorial2CreatingAChartusingSciChartReact" BuildFlags="">
+                <Title m="2025-01-27T09:56:55.0913556Z">Tutorial 02 - Creating a Chart in React using scichart-react</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2025-01-27T09:47:15.0560565Z">&lt;p&gt; &lt;/p&gt;</Content>
                   </TopicSection>
                 </TopicSections>
                 <TopicLinks />
@@ -16563,7 +16583,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">677</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
