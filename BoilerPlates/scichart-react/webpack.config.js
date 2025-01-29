@@ -27,8 +27,11 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
+        // Required for scichart to load wasm and data files for 2D charts
+        // Loading from CDN is also possible by calling SciChartSurface.loadWasmFromCDN()
         { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
         { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
+        // Optional: if including 3D charts copy these files
         { from: "node_modules/scichart/_wasm/scichart3d.data", to: "" },
         { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
       ],

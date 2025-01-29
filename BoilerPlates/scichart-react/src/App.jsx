@@ -1,5 +1,4 @@
-import React from "react";
-import { SciChartReact } from "scichart-react";
+// #region ExampleA
 import {
   SweepAnimation,
   SciChartJsNavyTheme,
@@ -75,6 +74,21 @@ const chartConfig = {
   ],
 };
 
+const onInit = (initTemplate) => {
+  // After creation with the builder API, onInit allows you to access
+  // and modify the chart state
+  const sciChartSurface = initTemplate.sciChartSurface;
+  const wasmContext = sciChartSurface.webAssemblyContext2D;
+
+  // for example. adding extra series
+  // sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, { ... options }));
+};
+// #endregion
+
+// #region ExampleB
+import React from "react";
+import { SciChartReact } from "scichart-react";
+
 function App() {
   // LICENSING
   // Commercial licenses set your license code here
@@ -98,6 +112,7 @@ function App() {
       </header>
       <SciChartReact
         config={chartConfig}
+        onInit={onInit}
         style={{ maxWidth: 900, height: 600 }}
       />
     </div>
@@ -105,3 +120,4 @@ function App() {
 }
 
 export default App;
+// #endregion
