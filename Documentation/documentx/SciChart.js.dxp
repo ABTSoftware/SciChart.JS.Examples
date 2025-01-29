@@ -430,6 +430,7 @@
       <OtherFile Id="f9367470-9a04-412b-8512-c796d6d10daa" FileName="images\scichart-js-resampling-vs-no-resampling-noisy-sine.png" SourceData="" BuildFlags="" />
       <OtherFile Id="707102ee-aa6e-4a66-a01e-c5fe11febcdf" FileName="images\boilerplate-scichart-react-packagejson.png" SourceData="" BuildFlags="" />
       <OtherFile Id="60e37294-4374-4169-80fc-ffab4a2da28f" FileName="images\scichart-react-first-chart.png" SourceData="" BuildFlags="" />
+      <OtherFile Id="d604c75f-fc17-4de6-8064-ab5c8f6d9eae" FileName="images\scichart-react-tutorial-initchart.png" SourceData="" BuildFlags="" />
     </OtherFiles>
     <DefaultStylesheet>stylesheets\customstyles.css</DefaultStylesheet>
     <DefaultCaptureDirectory></DefaultCaptureDirectory>
@@ -1403,6 +1404,12 @@ Show external placement div</Notes>
                   <CaptionTemplate />
                   <ChildNodes />
                   <TargetItemId>a954ad8a-89c7-41fc-88fe-cc8c3246b40b</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
+                <TocNode Name="" Id="cc0b5fb7-993d-4156-891b-c2d85470a1c3" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>b25c89e3-87b6-4198-917d-17a76b894e5c</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
               </ChildNodes>
@@ -4087,6 +4094,74 @@ Show external placement div</Notes>
 &lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P md-src-pos="2198..2365"&gt;It's advisable to check out the&amp;nbsp;&lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/" target=_blank&gt;SciChart.Js.Examples&lt;/A&gt;&amp;nbsp;Github Repository and run the project under &lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/BoilerPlates/scichart-react" target=_blank&gt;Boilerplates/scichart-react&lt;/A&gt;. You can use this as a basis for future projects with scichart-react and our next set of tutorials will be based on it. Happy coding!&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;What is SciChart-React?&lt;/H2&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+              <Topic Id="b25c89e3-87b6-4198-917d-17a76b894e5c" Status="New Topic" CreatedOn="2025-01-27T22:36:54.3886973Z" ModifiedOn="2025-01-28T19:04:51.0610335Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Tutorial02CreatingChartsWithInitChart" BuildFlags="">
+                <Title m="2025-01-28T19:04:31.6124642Z">Tutorial 02 - Creating a Chart with scichart-react</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2025-01-28T19:04:51.0610335Z">&lt;P&gt;In this tutorial we're going to show how to create a JavaScipt Chart in React using scichart.js and &lt;STRONG&gt;scichart-react&lt;/STRONG&gt;.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;The previous tutorial&amp;nbsp;&lt;A href="a954ad8a-89c7-41fc-88fe-cc8c3246b40b"&gt;Tutorial 01 - Understanding the scichart-react boilerplate&lt;/A&gt; should serve as a reference. We will be using this boilerplate (npm setup, webpack configuration and package.json) as a starting point for the tutorial.&lt;/P&gt;
+&lt;P&gt;Go ahead and copy the boilerplate to a new folder or project. You can get the code from here:&amp;nbsp;&lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/BoilerPlates/scichart-react" target=_blank&gt;Boilerplates/scichart-react&lt;/A&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;The &amp;lt;SciChartReact/&amp;gt; React component&lt;/H2&gt;
+&lt;H3&gt;Props and Configuration&lt;/H3&gt;
+&lt;P&gt;&lt;CODE&gt;&amp;lt;SciChartReact /&amp;gt;&lt;/CODE&gt;&amp;nbsp;&amp;nbsp;has the following props which you can use to configure a chart.&lt;/P&gt;
+&lt;TABLE&gt;
+&lt;TBODY&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;Name&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;STRONG&gt;Description&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;fallback&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;ReactNode a React component that would be rendered while the chart is being initialized&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;onInit&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;a callback function used after the chart is initialized&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;onDelete&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;a callback function used when the component with initialized chart is unmounted&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;innerContainerProps&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;TDivProps props passed to the inner container &amp;lt;div&amp;gt; container where the chart is hosted&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;initChart&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;An initialization function which passes an HTMLDivElement and should return surface instance created on the provided root element.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;config&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;A string with chart definition or configuration object acceptable by SciChart Builder API&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;style&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;Optional style that may be passed to the outer &amp;lt;div&amp;gt; element created by &amp;lt;SciChartReact/&amp;gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;Initializing a chart with&amp;nbsp;&lt;CODE&gt;&amp;lt;SciChartReact /&amp;gt;&lt;/CODE&gt;&amp;nbsp;is simple. At a minimum &amp;nbsp;you must pass either an &lt;STRONG&gt;initChart&lt;/STRONG&gt; function using the programmatic JavaScript API to SciChart, e.g.&amp;nbsp;&lt;A href="6fec8d55-2d62-4262-ba23-beca67cfbb06"&gt;SciChartSurface.create()&lt;/A&gt;, or a &lt;STRONG&gt;config&lt;/STRONG&gt; object using the&amp;nbsp;&lt;A href="295dec01-f48c-4caf-a4c8-5b5ed765ba9f"&gt;JSON Builder API&lt;/A&gt;.&lt;/P&gt;
+&lt;P&gt;You can specify a &lt;STRONG&gt;fallback&lt;/STRONG&gt; ReactNode which will be shown while the chart is initializing. You can pass &lt;STRONG&gt;onInit&lt;/STRONG&gt; and &lt;STRONG&gt;onDelete&lt;/STRONG&gt; callbacks which can be used to setup data&lt;/P&gt;
+&lt;P&gt;&lt;CODE&gt;&amp;lt;SciChartReact /&amp;gt;&lt;/CODE&gt; will create the &amp;lt;div/&amp;gt; where the chart resides. An optional &lt;STRONG&gt;style&lt;/STRONG&gt; may be passed to size or position the outer div. &lt;STRONG&gt;innerContainerProps&lt;/STRONG&gt; are passed&lt;/P&gt;
+&lt;H3&gt;DOM Outputted by &amp;lt;SciChartReact/&amp;gt;&lt;/H3&gt;
+&lt;P&gt;Each&amp;nbsp;&lt;CODE&gt;&amp;lt;SciChartReact /&amp;gt;&lt;/CODE&gt; element outputs three divs. The DOM created by&amp;nbsp;&lt;CODE&gt;&amp;lt;SciChartReact /&amp;gt;&lt;/CODE&gt; looks like this.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;html&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;&amp;lt;div&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp; &amp;lt;div&amp;gt; &amp;lt;!- innerContainerProps&amp;nbsp;property applied here --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;div id="scichart-root"&amp;gt; &amp;lt;!-- Chart hosted here. style property applied here --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp; &amp;lt;/div&amp;gt;&lt;BR&gt;&amp;lt;/div&amp;gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;To set these properties, try something like this:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;&amp;lt;SciChartReact&lt;BR&gt;&amp;nbsp; initChart={initChartFunc} // (divElementId) =&amp;gt; { return { sciChartSurface } };&lt;BR&gt;&amp;nbsp; onInit={onInitFunc} // (initResult) =&amp;gt; console.log(`surface: ${initResult.sciChartSurface.id}`);&lt;BR&gt;&amp;nbsp; onDelete={onDeleteFunc} // (initResult) =&amp;gt; console.log(`surface: ${initResult.sciChartSurface.id}`);&lt;BR&gt;&amp;nbsp; innerContainerProps={{ style: { width: "100%"}}}&lt;BR&gt;&amp;nbsp; style={{ maxWidth: 900, height: 600 }}&lt;BR&gt;/&amp;gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Next we're going to dig into the function signatures for &lt;STRONG&gt;initChart&lt;/STRONG&gt;, &lt;STRONG&gt;onInit&lt;/STRONG&gt; and &lt;STRONG&gt;onDelete&lt;/STRONG&gt; as well as show how &lt;STRONG&gt;innerContainerProps&lt;/STRONG&gt; and style affect the chart layout.&lt;/P&gt;
+&lt;H2&gt;Creating a scichart-react Chart using initChart&lt;/H2&gt;
+&lt;P&gt;So let's create our first chart using scichart-react and &lt;STRONG&gt;initChart&lt;/STRONG&gt; function.&lt;/P&gt;
+&lt;P&gt;Go ahead and copy the&amp;nbsp;&lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/BoilerPlates/scichart-react" target=_blank&gt;Boilerplates/scichart-react&lt;/A&gt;&amp;nbsp;folder into a new project. Change your App.jsx as follows:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;react component&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\..\Tutorials\React\Tutorial_02_Creating_Charts_SciChart_React_initChart\src\App.jsx&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;The&amp;nbsp;&lt;CODE&gt;&amp;lt;SciChartReact /&amp;gt;&lt;/CODE&gt; component renders a single scichart chart. &lt;STRONG&gt;initChart&lt;/STRONG&gt; is the function which is called to setup your chart. We'll show the code for this in the next step. &lt;STRONG&gt;onInit&lt;/STRONG&gt; and &lt;STRONG&gt;onDelete&lt;/STRONG&gt; are optional callbacks on mount/unmount of the react component. Finally &lt;STRONG&gt;innerContainerProps&lt;/STRONG&gt; allows you to style the &amp;lt;div&amp;gt; which contains the chart, while &lt;STRONG&gt;style&lt;/STRONG&gt; is applied to the &amp;lt;div&amp;gt; where the scichart chart is hosted.&lt;/P&gt;
+&lt;P&gt;Here's the code required to initialize the chart, and the optional onInit and onDelete functions:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Tab Caption&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;CS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\..\Tutorials\React\Tutorial_02_Creating_Charts_SciChart_React_initChart\src\App.jsx&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&lt;STRONG&gt;initchart&lt;/STRONG&gt;: is an async function and has a single parameter which is the rootElement (&amp;lt;div&amp;gt; where the chart is hosted). This is created by&amp;nbsp;&lt;CODE&gt;&amp;lt;SciChartReact /&amp;gt;&lt;/CODE&gt; and will be given a unique ID. In this function you can call&amp;nbsp;&lt;A href="6fec8d55-2d62-4262-ba23-beca67cfbb06"&gt;SciChartSurface.create()&lt;/A&gt;, add XAxis and YAxis, add RenderableSeries with data, and add interactivity modifiers.&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;onInit&lt;/STRONG&gt;: is an optional function which has one parameter - initResult. This is called directly after component mount and&amp;nbsp;allows you to access the sciChartSurface and it's wasmContext via&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#webassemblycontext2d"&gt;sciChartSurface.webAssemblyContext2D&lt;/A&gt;. You can also access the HTMLDivElement which hosts the chart via&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html"&gt;sciChartSurface.domChartRoot&lt;/A&gt;.&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;onInit&lt;/STRONG&gt;: is an optional function is called on component unmount. Use this to perform any chart specific cleanup such as disconnecting to data-sources.&lt;/P&gt;
+&lt;H3&gt;Running the code&lt;/H3&gt;
+&lt;P&gt;Let's run the code and see the result!&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;IMG border=0 alt="" src="images/scichart-react-tutorial-initchart.png"&gt;&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;You can get the full source code for this tutorial over at scichart.js.examples on Github under the folder&amp;nbsp;&lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Tutorials/React" target=_blank&gt;Tutorials/React/Tutorial_02_Creating_Charts_SciChart_React_initChart&lt;/A&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;STRONG&gt;A note about SciChartSurface.delete():&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P&gt;&lt;CODE&gt;&amp;lt;SciChartReact /&amp;gt;&lt;/CODE&gt; automatically calls&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#delete"&gt;sciChartSurface.delete()&lt;/A&gt;, ensuring that all wasm memory is disposed on component unmount. This cascades and calls&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xydataseries.html#delete"&gt;dataSeries.delete()&lt;/A&gt; on all data currently in the chart. If you dynamically add/remove series however you will need to delete these as you go along. For more info see the article on&amp;nbsp;&lt;A href="13f5705c-af26-4667-999f-6535e4e07b6c"&gt;Deleting DataSeries Memory&lt;/A&gt;.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
                   </TopicSection>
                 </TopicSections>
                 <TopicLinks />
@@ -16600,7 +16675,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">3036</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
