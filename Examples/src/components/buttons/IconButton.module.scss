@@ -62,3 +62,23 @@
         border-color: var(--button-focus-border);
     }
 }
+
+.iconNoPadding {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    cursor: pointer;
+    transition: var(--transition-slow);
+    outline: none;
+
+    svg {
+        color: #888;
+    }
+
+    &.selected {
+        svg {
+            color: var(--text);
+        }
+    }
+}
