@@ -161,8 +161,8 @@ export function BreadcrumbsWithMenu(props: {
                     >
                         <Paper
                             sx={{
-                                backgroundColor: 'var(--bg)',
-                                color: 'var(--text)'
+                                backgroundColor: "var(--bg)",
+                                color: "var(--text)",
                             }}
                         >
                             <ClickAwayListener onClickAway={handleClose}>

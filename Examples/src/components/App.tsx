@@ -96,12 +96,9 @@ export default function App() {
 
     React.useEffect(() => {
         if (typeof window === "undefined") return;
-    
-        setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches 
-            ? ETheme.dark 
-            : ETheme.light
-        );
-    }, []);    
+
+        setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? ETheme.dark : ETheme.light);
+    }, []);
 
     React.useEffect(() => {
         if (window.location.hostname.includes("scichart.com")) {
@@ -143,16 +140,13 @@ export default function App() {
                             testIsOpened={testIsOpened}
                             toggleOpenedMenuItem={toggleOpenedMenuItem}
                             toggleDrawer={toggleDrawer}
+                            currentExample={currentExample}
                             // mostVisibleCategory={mostVisibleCategory} mobile does not need this hover feature
                         />
                     </Drawer>
                 )}
                 <div className={classes.MainAppContent}>
-                    <SciChartNavbar 
-                        toggleDrawer={toggleDrawer}
-                        theme={theme}
-                        setTheme={setTheme}
-                    />
+                    <SciChartNavbar toggleDrawer={toggleDrawer} theme={theme} setTheme={setTheme} />
 
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
@@ -170,6 +164,7 @@ export default function App() {
                                         testIsOpened={testIsOpened}
                                         toggleOpenedMenuItem={toggleOpenedMenuItem}
                                         toggleDrawer={toggleDrawer}
+                                        currentExample={currentExample}
                                         mostVisibleCategory={mostVisibleCategory}
                                     />
                                 </div>

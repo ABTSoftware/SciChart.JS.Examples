@@ -36,12 +36,14 @@ export const ExampleBreadcrumbs = () => {
                     // Home menu item handling
                     link = `/${selectedFramework}`;
                     title = "Home Page Gallery";
-                    labelContent = <HomeIcon
-                        sx={{
-                            // align in center
-                            verticalAlign: "middle",
-                        }}
-                    />;
+                    labelContent = (
+                        <HomeIcon
+                            sx={{
+                                // align in center
+                                verticalAlign: "middle",
+                            }}
+                        />
+                    );
                     menuItems = [];
                 } else {
                     // inner menu category handling
@@ -60,7 +62,7 @@ export const ExampleBreadcrumbs = () => {
                             overflow: "hidden",
                             textOverflow: { xs: "ellipsis", md: "unset", lg: "unset" },
                             textTransform: "unset",
-                            color: 'var(--light-blue)',
+                            color: "var(--light-blue)",
 
                             "&:hover": { textDecoration: "underline" },
                         }}
@@ -103,15 +105,15 @@ export const ExampleBreadcrumbs = () => {
                             e.preventDefault();
                             // Handle same-page navigation
                             if (window.location.pathname === `/${selectedFramework}`) {
-                                const hash = link.split('#')[1];
+                                const hash = link.split("#")[1];
                                 const element = document.getElementById(hash);
                                 if (element) {
                                     element.scrollIntoView({
-                                        behavior: 'smooth',
-                                        block: 'start'
+                                        behavior: "smooth",
+                                        block: "start",
                                     });
                                 }
-                                window.history.replaceState(null, '', link);
+                                window.history.replaceState(null, "", link);
                             } else {
                                 window.location.href = link;
                             }

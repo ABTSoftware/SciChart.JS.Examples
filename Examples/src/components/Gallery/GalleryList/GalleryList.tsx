@@ -21,9 +21,7 @@ export default function GalleryList(props: TProps) {
 
     return (
         <ComponentWrapper>
-            <div
-                className={classes.ChartGroupHeader}
-            >
+            <div className={classes.ChartGroupHeader}>
                 <div className={classes.ChartGroupTitle}>
                     <h6>{props.example.chartGroupTitle}</h6>
                     <span>{props.example.items.length}&nbsp;Demos</span>
@@ -31,7 +29,8 @@ export default function GalleryList(props: TProps) {
             </div>
             <ul className={classes.Gallery}>
                 {props.example.items.map((item, itemIndex) => {
-                    if (props.slidersNumber !== 1 || itemIndex === 0 || showAll) { // Show all items if only one slider is visible
+                    if (props.slidersNumber !== 1 || itemIndex === 0 || showAll) {
+                        // Show all items if only one slider is visible
                         const key = item.title + item.imgPath;
                         return (
                             <li
