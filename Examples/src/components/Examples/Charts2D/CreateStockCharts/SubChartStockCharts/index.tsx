@@ -567,7 +567,7 @@ const buyMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
         svgString:
             '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
             '<g transform="translate(-53.867218,-75.091687)">' +
-            '<path style="fill:#1cb61c;fill-opacity:0.34117647;stroke:#00b400;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
+            '<path style="fill:#1cb61c;fill-opacity:0.34117647;stroke:#00b400;strokeWidth:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
             'd="m 55.47431,83.481251 c 7.158904,-7.408333 7.158904,-7.408333 7.158904,-7.408333 l 7.158906,7.408333 H 66.212668 V 94.593756 H 59.053761 V 83.481251 Z"' +
             "/>" +
             "</g>" +
@@ -586,7 +586,7 @@ const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
         svgString:
             '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
             '<g transform="translate(-54.616083,-75.548914)">' +
-            '<path style="fill:#b22020;fill-opacity:0.34117648;stroke:#990000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
+            '<path style="fill:#b22020;fill-opacity:0.34117648;stroke:#990000;strokeWidth:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
             'd="m 55.47431,87.025547 c 7.158904,7.408333 7.158904,7.408333 7.158904,7.408333 L 69.79212,87.025547 H 66.212668 V 75.913042 h -7.158907 v 11.112505 z"' +
             "/>" +
             "</g>" +

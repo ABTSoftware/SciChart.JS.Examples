@@ -18,6 +18,8 @@ import { CodePreview } from "../CodePreview/CodePreview";
 import { ExamplesSubtitle } from "./ExamplesSubtitle";
 import { SourceFilesContext } from "./SourceFilesLoading/SourceFilesContext";
 import type { StackBlitzResponse } from "../../helpers/types/types";
+import { ToolbarGroup } from "../buttons/Toolbar";
+import { Tooltip } from "@mui/material";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -210,7 +212,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                             <h1
                                 className={classes.headingtxt}
                                 style={{
-                                    margin: "-10px 0",
+                                    margin: isMaxWidth ? "-10px 0": 0,
                                     marginInline: isMaxWidth ? "auto" : 0,
                                     width: isMaxWidth ? "min(100vh , 100%)" : "auto",
                                 }}
@@ -257,6 +259,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                                     actualFramework={sourceFramework}
                                     examplePath={currentExample.path}
                                     theme={theme}
+                                    isMaxWidth={isMaxWidth}
                                 />
                             </div>
                         )}

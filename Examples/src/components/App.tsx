@@ -21,7 +21,7 @@ import { ETheme, GalleryItem } from "../helpers/types/types";
 import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
-import AppDetailsRoute from "./AppDetailsRouters/AppDetailsRouter";
+import AppDetailsRouter from "./AppDetailsRouters/AppDetailsRouter";
 import { useNavigate } from "react-router";
 import { appTheme } from "./Examples/theme";
 import { SciChartSurfaceBase } from "scichart";
@@ -151,7 +151,11 @@ export default function App() {
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
                     {!isHomePage ? (
-                        <AppDetailsRoute currentExample={currentExample} seeAlso={seeAlso} theme={theme} />
+                        <AppDetailsRouter 
+                            currentExample={currentExample} 
+                            seeAlso={seeAlso} 
+                            theme={theme} 
+                        />
                     ) : (
                         <div className={classes.MainAppWrapper}>
                             {!isMedium ? (
