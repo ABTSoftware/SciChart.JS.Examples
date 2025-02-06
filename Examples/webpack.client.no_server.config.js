@@ -83,6 +83,7 @@ module.exports = {
                 { from: "src/static/no_server.index.html", to: "index.html" },
                 { from: "src/static/webgl-intel.html", to: "webgl-intel.html" },
                 { from: "src/static/favicon.ico", to: "" },
+                { from: "src/components/Examples/**/*.jpg", to: "images/[name][ext]" },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Shale.csv", to: "" },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Density.csv", to: "" },
                 {
