@@ -502,7 +502,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
                 className={classes.code}
                 style={{ 
                     maxHeight: (!isFullscreen && isMaxWidth) ? 0 : "100%", 
-                    position: 'relative',
+                    maxWidth: '100%',
                 }}
             >
                 <SyntaxHighlighter
