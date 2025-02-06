@@ -84,6 +84,7 @@ const initializeChart = async (rootElement: string | HTMLDivElement) => {
     const renderableSeries = new ScatterRenderableSeries3D(wasmContext, {
         pointMarker: new SpherePointMarker3D(wasmContext, { size: 10 }),
         opacity: 0.9,
+        dataSeries: new XyzDataSeries3D(wasmContext),
     });
 
     sciChart3DSurface.renderableSeries.add(renderableSeries);
@@ -91,14 +92,7 @@ const initializeChart = async (rootElement: string | HTMLDivElement) => {
     const setData = (data: TMappedPopulationData) => {
         const { lifeExpectancy, gdpPerCapita, year, metadata } = data;
 
-        const dataSeries = new XyzDataSeries3D(wasmContext, {
-            xValues: lifeExpectancy,
-            yValues: gdpPerCapita,
-            zValues: year,
-            metadata,
-        });
-
-        renderableSeries.dataSeries = dataSeries;
+        (renderableSeries.dataSeries as XyzDataSeries3D).appendRange(lifeExpectancy, gdpPerCapita, year, metadata);
     };
 
     return { sciChartSurface: sciChart3DSurface, setData };
