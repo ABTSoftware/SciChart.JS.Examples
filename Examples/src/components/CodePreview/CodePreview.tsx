@@ -427,7 +427,6 @@ export const CodePreview: FC<CodeEditorProps> = ({
             <div 
                 className={classes.horizontalScroller} 
                 suppressHydrationWarning={true}
-                style={{ minWidth: `calc(100% - 90px)` }}
             >
                 {/* VSCode-like horizontal scrollable tabs */}
                 {files
@@ -511,6 +510,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
                     // @ts-ignore
                     style={theme === ETheme.dark ? DarkStyles : LightStyles}
                     showLineNumbers={true}
+                    lineNumberStyle={{ color: '#888' }}
                     wrapLines
                 >
                     {selectedFile.content}
