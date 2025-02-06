@@ -17,4 +17,9 @@ export const PAGES: Record<string, TPage> = {
         title: "Homepage",
         path: `/javascript`,
     },
+    angularHome: {
+        id: "angularHome",
+        title: "Homepage",
+        path: `/angular`,
+    }
 };

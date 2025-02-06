@@ -64,7 +64,6 @@ const DrawerContent: FC<TProps> = (props) => {
     const framework = useContext(FrameworkContext);
     const { testIsOpened, toggleOpenedMenuItem, toggleDrawer, currentExample } = props;
 
-    // TODO md was changed by migration script.requires verification
     const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
     return (

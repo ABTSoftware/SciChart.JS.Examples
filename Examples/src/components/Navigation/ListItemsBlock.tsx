@@ -2,7 +2,6 @@ import { FC, Fragment, useContext, useEffect, useRef } from "react";
 import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
 import { TMenuItem } from "../AppRouter/examples";
-import { useMatch } from "react-router";
 import MenuListItemText from "../../helpers/shared/MenuListItemText/MenuListItemText";
 import classes from "./ListItemsBlock.module.scss";
 import ListItemCollapseArrowIcon from "./ListItemCollapseArrowIcon";
@@ -22,23 +21,34 @@ type TProps = {
 const ListItemsBlock: FC<TProps> = (props) => {
     const selectedFramework = useContext(FrameworkContext);
     const match = useExampleRouteParams();
-
     const { onExpandClick, checkIsOpened, historyPushPath, title, menuItems, menuItemsId, mostVisibleCategory } = props;
+    
+    const containerRef = useRef<HTMLDivElement>(null);
+    const categoryElements = useRef(new Map<string, HTMLElement>());
 
-    // Ref for the currently active item
-    const activeItemRef = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        // Automatically scroll to the active item
-        if (activeItemRef.current) {
-            activeItemRef.current.scrollIntoView({
-                behavior: "smooth",
-                block: "center",
-            });
+    // Register category elements
+    const registerCategoryElement = (id: string | null, element: HTMLElement | null) => {
+        if (element && id) {
+            categoryElements.current.set(id, element);
         }
-    }, []);
+    };
 
-    // Automatically expand the section containing the active or most visible item
+    // Scroll to most visible category
+    useEffect(() => {
+        if (mostVisibleCategory && containerRef.current) {
+            setTimeout(() => {
+                const element = categoryElements.current.get(mostVisibleCategory);
+                if (element) {
+                    if(mostVisibleCategory === "featuredApps_performanceDemos") {
+                        containerRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
+                    } else {
+                        element.scrollIntoView({ block: "nearest", behavior: "smooth" });
+                    }
+                }
+            }, 10); // Allow for expansion animations
+        }
+    }, [mostVisibleCategory]);
+
     useEffect(() => {
         if (mostVisibleCategory) {
             const activeMenuItem = menuItems.find((item) =>
@@ -57,7 +67,7 @@ const ListItemsBlock: FC<TProps> = (props) => {
     };
 
     return (
-        <div className={classes.ListItemBlock}>
+        <div className={classes.ListItemBlock} ref={containerRef}>
             <div onClick={() => onExpandClick(menuItemsId)} className={classes.CollapsibleMenuListItem}>
                 <MenuListItemText text={title} className={classes.MenuListItemText} />
             </div>
@@ -65,7 +75,9 @@ const ListItemsBlock: FC<TProps> = (props) => {
                 <List component="div" disablePadding>
                     {menuItems.map((el) => (
                         <Fragment key={el.id}>
+                            {/* Parent category element */}
                             <div
+                                ref={(elem) => registerCategoryElement(el.id, elem)}
                                 className={`${classes.CollapsibleMenuListItem} ${
                                     el.id === mostVisibleCategory ? classes.ActiveParentCategory : ""
                                 }`}
@@ -89,13 +101,14 @@ const ListItemsBlock: FC<TProps> = (props) => {
                                     {el.submenu.map((subEl) => (
                                         <div
                                             key={subEl.id}
-                                            ref={isItemActive(subEl.id) ? activeItemRef : null} // Attach ref to the active item
+                                            ref={(elem) => registerCategoryElement(subEl.id, elem)}
                                             className={`${
                                                 isItemActive(subEl.id)
                                                     ? classes.SelectedBottomLevelListItem
                                                     : classes.BottomLevelListItem
                                             } ${subEl.id === mostVisibleCategory ? classes.MostVisible : ""}`}
                                             onClick={() => historyPushPath(`${selectedFramework}/${subEl.path}`)}
+                                            data-category-id={subEl.id}
                                         >
                                             <a
                                                 className={classes.ExampleLink}

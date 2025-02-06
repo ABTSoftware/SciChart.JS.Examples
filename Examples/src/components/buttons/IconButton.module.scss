@@ -71,14 +71,4 @@
     cursor: pointer;
     transition: var(--transition-slow);
     outline: none;
-
-    svg {
-        color: #888;
-    }
-
-    &.selected {
-        svg {
-            color: var(--text);
-        }
-    }
 }

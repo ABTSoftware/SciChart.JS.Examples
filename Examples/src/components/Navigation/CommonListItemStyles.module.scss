@@ -1,6 +1,8 @@
 @import "../../assets/main.scss";
 
 %ListItem {
+    scroll-margin-top: 38px;
+    scroll-margin-bottom: 38px;
     min-height: 38px;
     padding: 6px 20px;
     display: flex;

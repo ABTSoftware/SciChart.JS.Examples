@@ -23,9 +23,9 @@ export const IconButton: React.FC<IconButtonProps> = ({ icon, selected = false, 
     const [isHovered, setIsHovered] = React.useState(false);
 
     const classes = [
-        noPadding ? styles.iconNoPadding : styles.iconButton, 
-        selected ? styles.selected : "", 
-        isHovered ? styles.hovered : "", className
+        noPadding 
+            ? styles.iconNoPadding
+            : (styles.iconButton, selected ? styles.selected : "", isHovered ? styles.hovered : "", className)
     ]
         .filter(Boolean)
         .join(" ");
