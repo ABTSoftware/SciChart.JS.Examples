@@ -1,5 +1,7 @@
 import { useState, useCallback, MutableRefObject } from "react";
-import { useIsomorphicLayoutEffect } from "../../helpers/hooks/useIsomorphicLayoutEffect";
+import { useLayoutEffect, useEffect } from "react";
+
+export const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export const useMeasure = (ref: MutableRefObject<HTMLElement>) => {
     const [bounds, setBounds] = useState<{ width: number; height: number }>(undefined);
