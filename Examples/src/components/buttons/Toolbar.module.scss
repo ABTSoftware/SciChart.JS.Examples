@@ -3,7 +3,7 @@
 .toolbar {
     display: flex;
     align-items: center;
-    background: var(--color-overlay);
+    background: var(--bg);
     border-bottom: 1px solid var(--border-color);
     padding: var(--spacing-xxs) var(--spacing-lg);
     min-height: 1.5625rem;
@@ -14,7 +14,7 @@
     transition: var(--transition-normal);
 
     &:hover {
-        background: var(--color-overlay-hover);
+        background: var(--bg-darker);
         box-shadow: var(--shadow-sm);
 
         .toolbarGroup {

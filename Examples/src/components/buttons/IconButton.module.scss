@@ -17,6 +17,7 @@
         height: var(--icon-size-md);
         transition: var(--transition-slow);
         fill: var(--button-icon-color);
+        stroke: var(--button-icon-color);
         filter: drop-shadow(0 0 0 var(--button-icon-color));
         opacity: 0.75;
     }
@@ -24,7 +25,7 @@
     &:not(.selected) {
         &:hover,
         &.hovered {
-            background-color: var(--color-overlay);
+            background-color: var(--bg);
             border-color: var(--color-border);
             transform: scale(1.05);
 
@@ -63,12 +64,15 @@
     }
 }
 
-.iconNoPadding {
+.noPadding {
     display: flex;
     align-items: center;
     justify-content: center;
     background: transparent;
     cursor: pointer;
-    transition: var(--transition-slow);
     outline: none;
+
+    &.selected, :hover {
+        color: var(--text) !important;
+    }
 }
