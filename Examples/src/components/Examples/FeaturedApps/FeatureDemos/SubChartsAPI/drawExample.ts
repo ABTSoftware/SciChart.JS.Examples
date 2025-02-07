@@ -119,11 +119,11 @@ export const drawGridExample = async (
     const seriesTypes = [
         ESeriesType.LineSeries,
         // ESeriesType.BubbleSeries,
-        ESeriesType.StackedColumnSeries,
+        //ESeriesType.StackedColumnSeries,
         ESeriesType.ColumnSeries,
-        ESeriesType.StackedMountainSeries,
+        //ESeriesType.StackedMountainSeries,
         ESeriesType.BandSeries,
-        // ESeriesType.ScatterSeries,
+        ESeriesType.ScatterSeries,
         ESeriesType.CandlestickSeries,
         // ESeriesType.TextSeries
     ];
@@ -293,7 +293,8 @@ export const drawGridExample = async (
     };
 
     // render time info calculation
-    mainSurface.rendered.subscribe(() => {
+    const lastSubChart = Array.from(subChartsMap.keys())[subChartsNumber - 1];
+    lastSubChart.rendered.subscribe(() => {
         if (!isRunning || loadStart === 0) return;
         const reDrawTime = new Date().getTime() - loadStart;
         avgRenderTime = (avgRenderTime * loadCount + reDrawTime) / (loadCount + 1);
