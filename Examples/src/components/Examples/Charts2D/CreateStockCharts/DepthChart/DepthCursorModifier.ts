@@ -88,11 +88,11 @@ export class DepthCursorModifier extends CustomChartModifier2D implements IRollo
     /**
      * @inheritDoc
      */
-    public applyTheme(themeProvider: IThemeProvider): void {}
+    public override applyTheme(themeProvider: IThemeProvider): void {}
     /**
      * @inheritDoc
      */
-    public onAttach(): void {
+    public override onAttach(): void {
         super.onAttach();
         this.xBuyLineAnnotation = this.createLineAnnotation(this.buyColor, this.axisLabelFill, this.axisLabelStroke);
         this.yBuyLineAnnotation = this.createLineAnnotation(this.buyColor, this.axisLabelFill, this.axisLabelStroke);
@@ -137,7 +137,7 @@ export class DepthCursorModifier extends CustomChartModifier2D implements IRollo
     /**
      * @inheritDoc
      */
-    public onDetach(): void {
+    public override onDetach(): void {
         super.onDetach();
         this.getAnnotations().forEach((l) => this.removeAnnotation(l));
         this.xBuyLineAnnotation = undefined;
@@ -163,7 +163,7 @@ export class DepthCursorModifier extends CustomChartModifier2D implements IRollo
     /**
      * @inheritDoc
      */
-    public modifierMouseMove(args: ModifierMouseArgs): void {
+    public override modifierMouseMove(args: ModifierMouseArgs): void {
         super.modifierMouseMove(args);
         let translatedMousePoint: Point;
         if (!this.mousePoint) {
@@ -184,7 +184,7 @@ export class DepthCursorModifier extends CustomChartModifier2D implements IRollo
     /**
      * @inheritDoc
      */
-    public modifierMouseLeave(args: ModifierMouseArgs): void {
+    public override modifierMouseLeave(args: ModifierMouseArgs): void {
         super.modifierMouseLeave(args);
         this.mousePosition = EMousePosition.OutOfCanvas;
         this.update();
@@ -192,13 +192,13 @@ export class DepthCursorModifier extends CustomChartModifier2D implements IRollo
     /**
      * @inheritDoc
      */
-    public modifierMouseEnter(args: ModifierMouseArgs): void {
+    public override modifierMouseEnter(args: ModifierMouseArgs): void {
         super.modifierMouseEnter(args);
     }
     /**
      * @inheritDoc
      */
-    public onParentSurfaceRendered(): void {
+    public override onParentSurfaceRendered(): void {
         this.update();
     }
 
@@ -233,7 +233,7 @@ export class DepthCursorModifier extends CustomChartModifier2D implements IRollo
         return this.mousePosition;
     }
     /** @inheritDoc */
-    public toJSON() {
+    public override toJSON() {
         const json = super.toJSON();
         const options: ICursorModifierOptions = {
             axisLabelFill: this.axisLabelFill,
@@ -245,7 +245,7 @@ export class DepthCursorModifier extends CustomChartModifier2D implements IRollo
         return json;
     }
 
-    protected notifyPropertyChanged(propertyName: string) {
+    protected override notifyPropertyChanged(propertyName: string) {
         super.notifyPropertyChanged(propertyName);
         if (propertyName === "X_AXIS_ID") {
             this.getAnnotations().forEach((l) => {

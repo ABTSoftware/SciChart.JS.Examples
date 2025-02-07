@@ -1,3 +1,4 @@
+import React from "react";
 import { bandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart/exampleInfo";
 import { splineBandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart/exampleInfo";
 import { digitalBandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/DigitalBandSeriesChart/exampleInfo";
@@ -63,7 +64,7 @@ import { dragAxisToScaleExampleInfo } from "../Examples/Charts2D/ZoomingAndPanni
 import { realtimeZoomPanExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/exampleInfo";
 import { zoomAndPanWithMultipleChartModifiersExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers/exampleInfo";
 import { editableAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations/exampleInfo";
-import { GalleryItem } from "../../helpers/types/types";
+import { EPageLayout, GalleryItem } from "../../helpers/types/types";
 import { dragHorizontalThresholdExampleInfo } from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/exampleInfo";
 import { metaDataExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/MetaData/exampleInfo";
 import { logarithmicAxisExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis/exampleInfo";
@@ -108,28 +109,39 @@ import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncM
 import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo";
 import { multiplePointMarkersExampleInfo } from "../Examples/Charts2D/StylingAndTheming/MultiStyleSeries/exampleInfo";
 import { populationPyramidExampleInfo } from "../Examples/FeaturedApps/ShowCases/PopulationPyramid/exampleInfo";
-import { TDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { TFrameworkTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
 import { smoothStackedMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart/exampleInfo";
 import { lineSplittingThresholdsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds/exampleInfo";
 import { column3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Column3DChart/exampleInfo";
 
+import type { JSX } from "react";
+
 export type TExampleInfo = {
     /**
      * Example title
      */
-    title: TTitleTemplate;
+    title: TFrameworkTemplate;
     /**
      * Meta title
      */
-    pageTitle: TTitleTemplate;
+    pageTitle: TFrameworkTemplate;
     path: string;
 
+    /**
+     * Content shown below title on example page
+     */
+    subtitle: (frameworkName: string) => React.ReactElement | string;
+    /**
+     * Page meta description
+     */
+    metaDescription: TFrameworkTemplate;
+
+    /**
+     * The first link is used in the docs button in the header
+     */
     documentationLinks: TDocumentationLink[];
-    tips?: any;
-    description: TDescriptionTemplate;
-    previewDescription?: any;
-    subtitle: (frameworkName: string) => JSX.Element;
+
     // If this example has been created on scichart.com
     onWebsite?: boolean;
     /**
@@ -137,10 +149,7 @@ export type TExampleInfo = {
      * in the top level menu. See {@link getSeeAlsoGalleryItems}
      */
     seeAlso?: GalleryItem[];
-    /**
-     * Page meta description
-     */
-    metaDescription: TDescriptionTemplate;
+
     /**
      * Page meta keywords
      */
@@ -152,6 +161,11 @@ export type TExampleInfo = {
     extraDependencies?: Record<string, string>;
     codeSandBoxNotWorking?: boolean;
     sandboxConfig?: Record<string, any>;
+    /**
+     * Markdown content for the page, will help with SEO and editing
+     */
+    markdownContent?: TFrameworkTemplate;
+    pageLayout?: EPageLayout;
 };
 
 export type TExamplePage = TPage & TExampleInfo;

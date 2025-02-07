@@ -1,59 +1,109 @@
-import * as express from "express";
-import * as compression from "compression";
-import { Request, Response, NextFunction } from "express";
+import express from "express";
+import cors from "cors";
+import compression from "compression";
+import { Request, Response } from "express";
 import * as bodyParser from "body-parser";
-
-import * as chalk from "chalk";
-import * as cors from "cors";
+import chalk from "chalk";
 import * as React from "react";
 import { Helmet } from "react-helmet";
 import * as ReactDOMServer from "react-dom/server";
-import { ServerStyleSheets, ThemeProvider } from "@material-ui/core/styles";
-import { StaticRouter } from "react-router-dom/server";
-import * as defaultConfig from "../../config/default";
+import { StaticRouter } from "react-router";
+import { ThemeProvider } from "@mui/material/styles";
 import App from "../components/App";
 import { customTheme } from "../theme";
 import { renderIndexHtml } from "./renderIndexHtml";
+import * as defaultConfig from "../../config/default";
 import * as http from "http";
+import { CacheProvider } from "@emotion/react";
+import createCache from "@emotion/cache";
+import createEmotionServer from "@emotion/server/create-instance";
 import { createSocketServer } from "./websockets";
 import { api } from "./api";
-import { renderCodeSandBoxRedirect } from "./renderCodeSandboxRedirect";
+import {
+    getCachedSourceFiles,
+    getSourceFiles,
+    populateSourceFilesCache,
+    renderSandBoxRedirect,
+} from "./renderCodeSandboxRedirect";
 import { oembed } from "./oembed";
-import { findMissingExamples } from "./find-missing-examples";
 import { vanillaExamplesRouter } from "./vanillaDemo/vanillaExamplesRouter";
 import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";
 import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 import { getAvailableVariants } from "./variants";
+import createEmotionCache from "../createEmotionCache";
+import { exportExampleInfo } from "./exportExampleInfo";
+import {
+    defaultSourceFilesVariant,
+    SourceFilesContext,
+} from "../components/AppDetailsRouters/SourceFilesLoading/SourceFilesContext";
+import { SourceFilesVariant } from "../helpers/types/types";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
 const targetDir = defaultConfig.buildConfig.targetDir;
 
-function handleRender(req: Request, res: Response) {
-    if (req.query["codesandbox"]) {
-        if (renderCodeSandBoxRedirect(req, res)) return;
-    }
-    const sheets = new ServerStyleSheets();
+function renderPage(url: string, sourceFilesInfo: SourceFilesVariant = defaultSourceFilesVariant) {
+    // Create an emotion cache for SSR
+    const cache = createEmotionCache();
+    const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
 
     // Render the component to a string.
-    const html = ReactDOMServer.renderToString(
-        sheets.collect(
+    const appHtml = ReactDOMServer.renderToString(
+        <CacheProvider value={cache}>
             <ThemeProvider theme={customTheme}>
-                <StaticRouter location={req.url}>
-                    <App />
-                </StaticRouter>
+                <SourceFilesContext.Provider value={sourceFilesInfo}>
+                    <StaticRouter location={url}>
+                        <App />
+                    </StaticRouter>
+                </SourceFilesContext.Provider>
             </ThemeProvider>
-        )
+        </CacheProvider>
     );
+
+    // Extract the critical CSS
+    const emotionChunks = extractCriticalToChunks(appHtml);
+    const emotionCss = constructStyleTagsFromChunks(emotionChunks);
 
     // SEO tags
     const helmet = Helmet.renderStatic();
 
-    // Grab the CSS from the sheets.
-    const css = sheets.toString();
+    return renderIndexHtml(appHtml, emotionCss, helmet);
+}
 
-    // Send the rendered page back to the client.
-    res.send(renderIndexHtml(html, css, helmet));
+// Prerendered pages cache structure of URL/HTML pairs
+const pageHtmlCache = new Map<string, string>();
+
+function populatePrerenderedPageCache() {
+    for (let framework of Object.values(EPageFramework)) {
+        // generate homepage
+        const url = `/${framework}`;
+        const pageHtml = renderPage(url);
+        pageHtmlCache.set(url, pageHtml);
+
+        // generate example pages
+        for (let key in EXAMPLES_PAGES) {
+            const exampleRoute = EXAMPLES_PAGES[key].path;
+            const url = `/${framework}/${exampleRoute}`;
+            const sourceFileInfo = getCachedSourceFiles(key, framework);
+            const pageHtml = renderPage(url, sourceFileInfo);
+            pageHtmlCache.set(url, pageHtml);
+
+            const iFrameUrl = `/iframe/${exampleRoute}`;
+            const fullScreenExampleHtml = renderPage(iFrameUrl, sourceFileInfo);
+            pageHtmlCache.set(iFrameUrl, fullScreenExampleHtml);
+        }
+    }
+}
+
+function handleRender(req: Request, res: Response) {
+    const cachedPageHtml = pageHtmlCache.get(req.url);
+    if (cachedPageHtml) {
+        res.send(cachedPageHtml);
+    } else {
+        console.log("render on demand", req.url);
+        const pageHtml = renderPage(req.url);
+        res.send(pageHtml);
+    }
 }
 
 const app = express();
@@ -67,25 +117,16 @@ const io = createSocketServer(server);
 
 function shouldCompress(req: Request, res: Response) {
     if (req.headers["x-no-compression"]) {
-        // don't compress responses with this request header
         return false;
     }
-
-    // fallback to standard filter function
     return compression.filter(req, res);
 }
 
-// Server static assets
-app.use(
-    express.static(targetDir, {
-        etag: true,
-        maxAge: 0,
-    })
-);
+app.use(express.static(targetDir, { etag: true, maxAge: 0 }));
 app.use("/api", api);
 app.use("/services/oembed", oembed);
-app.use("/services/findMissingExamples", findMissingExamples);
 app.use("/services/variants", getAvailableVariants);
+app.use("/services/export", exportExampleInfo);
 app.use("/vanillaDemo", vanillaExamplesRouter);
 
 const isValidFramework = (framework: EPageFramework) => Object.values(EPageFramework).includes(framework);
@@ -97,21 +138,28 @@ const getExamplePageKey = (examplePath: string) => {
 };
 
 app.get("/codesandbox/:example", (req: Request, res: Response) => {
-    renderCodeSandBoxRedirect(req, res);
-    //handleRender(req, res);
+    renderSandBoxRedirect(req, res, "codesandbox");
 });
 
-// to fix bad previous redirect
-app.get("/iframe/iframe/:example", (req: Request, res: Response) => {
-    const params = req.params;
-    if (getExamplePageKey(params.example)) {
-        return res.redirect(301, `../${params.example}`);
-    } else {
-        handleRender(req, res);
-    }
+app.get("/stackblitz/:example", (req: Request, res: Response) => {
+    renderSandBoxRedirect(req, res, "stackblitz");
+});
+
+// StackBlitz json endpoints
+app.get("/json/list", (req: Request, res: Response) => {
+    res.json({ files: [] });
+});
+
+app.get("/json/version", (req: Request, res: Response) => {
+    res.json({ version: "1" });
+});
+
+app.get("/source/:example", (req: Request, res: Response) => {
+    getSourceFiles(req, res);
 });
 
 app.get("/iframe/codesandbox/:example", (req: Request, res: Response) => {
+    console.log("/iframe/codesandbox/:example");
     handleRender(req, res);
 });
 
@@ -120,11 +168,13 @@ app.get("/iframe/javascript-:example", (req: Request, res: Response) => {
     if (getExamplePageKey(params.example)) {
         return res.redirect(301, `${params.example}`);
     } else {
+        console.log("/iframe/javascript-:example");
         handleRender(req, res);
     }
 });
 
 app.get("/iframe/:example?", (req: Request, res: Response) => {
+    console.log("/iframe/:example?");
     handleRender(req, res);
 });
 
@@ -133,13 +183,16 @@ app.get("/javascript-:example", (req: Request, res: Response) => {
     if (getExamplePageKey(params.example)) {
         return res.redirect(301, `javascript/${params.example}`);
     } else {
+        console.log("/javascript-:example");
         handleRender(req, res);
     }
 });
 
+// This is doing some useful things in handling framework defaults
 app.get("/:example?", (req: Request, res: Response) => {
     const params = req.params;
-    const exampleKey = getExamplePageKey(req.params.example);
+    const exampleKey = getExamplePageKey(params.example);
+    console.log(exampleKey);
     if (isValidFramework(params.example as EPageFramework)) {
         handleRender(req, res);
     } else if (exampleKey) {
@@ -154,8 +207,12 @@ app.get("*", (req: Request, res: Response) => {
     handleRender(req, res);
 });
 
-server.listen(port, () => {
-    console.log(
-        `Serving at http://${host}:${port} ${chalk.green("✓")}. ${chalk.red("To run in dev mode: npm run dev")}`
-    );
-});
+populateSourceFilesCache()
+    .then(populatePrerenderedPageCache)
+    .then(() => {
+        server.listen(port, () => {
+            console.log(
+                `Serving at http://${host}:${port} ${chalk.green("✓")}. ${chalk.red("To run in dev mode: npm run dev")}`
+            );
+        });
+    });

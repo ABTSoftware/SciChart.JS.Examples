@@ -1,37 +1,57 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-oil-gas-explorer-dashboard-charts.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const Subtitle = (frameworkName: string) => (
-    <p>This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.</p>
-);
-
-const previewDescription = ``;
-const description = `Todo description`;
-const tips = [`Todo Tips.`];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home",
-    },
-];
+        exampleId: "FeaturedAppsShowCasesOilAndGasDashboard",
+        imagePath: "javascript-oil-gas-explorer-dashboard-charts.jpg",
+        description:
+            "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
+                title: "Oil & Gas Explorer JavaScript Dashboard",
+                pageTitle: "Oil & Gas Explorer JavaScript Dashboard",
+                metaDescription: "Demonstrates how to create Oil and Gas Dashboard",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
+                title: "Oil & Gas Explorer React Dashboard",
+                pageTitle: "Oil & Gas Explorer React Dashboard",
+                metaDescription: "Demonstrates how to create Oil and Gas Dashboard",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
+                title: "Oil & Gas Explorer Angular Dashboard",
+                pageTitle: "Oil & Gas Explorer Angular Dashboard",
+                metaDescription: "Demonstrates how to create Oil and Gas Dashboard",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",
+                title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
+                linkTitle: "SciChart.js Documentation Home",
+            },
+        ],
+        path: "oil-and-gas-dashboard-showcase",
+        metaKeywords: "oil gas vertical chart javascript chart performance",
+        onWebsite: true,
+        filepath: "FeaturedApps/ShowCases/OilAndGasDashboard",
+        thumbnailImage: "javascript-oil-gas-explorer-dashboard-charts.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "max-width",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-export const oilAndGasExplorerDashboard: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleOilAndGasExplorerDashboard,
-    pageTitle: ExampleStrings.titleOilAndGasExplorerDashboard,
-    path: ExampleStrings.urlOilAndGasExplorerDashboard,
-    filepath: "FeaturedApps/ShowCases/OilAndGasDashboard",
-    subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
-    metaDescription: (frameworkName: string) => `Demonstrates how to create Oil and Gas Dashboard`,
-    metaKeywords: "Todo keywords",
-    thumbnailImage: exampleImage,
-};
+export const oilAndGasExplorerDashboard = createExampleInfo(metaData);

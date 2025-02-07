@@ -1,18 +1,19 @@
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
-import { axesSetup, generateModifiers, getRandomSinewave } from "./utils";
+import { axesSetup, generateModifiers, getRandomSinewave } from "./chartUtils";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { ELegendOrientation, TLegendItem } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 
 export default async function initGrChart(
-    id: string,
+    rootElement: string | HTMLDivElement,
+    legendPlacementElement: string | HTMLDivElement,
     group: SciChartVerticalGroup,
     pointsCount: number,
     visibleRange: NumberRange
 ) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement);
 
     axesSetup(sciChartSurface, wasmContext, visibleRange, true);
 
@@ -39,9 +40,11 @@ export default async function initGrChart(
     sciChartSurface.renderableSeries.add(lineSeries);
     sciChartSurface.renderableSeries.add(dashedSeries);
     const getLegendItemHtml = generateLegend(sciChartSurface);
-    generateModifiers(sciChartSurface, id, getLegendItemHtml);
+    generateModifiers(sciChartSurface, legendPlacementElement, getLegendItemHtml);
 
     group.addSurfaceToGroup(sciChartSurface);
+
+    return { sciChartSurface };
 }
 
 function generateLegend(sciChartSurface: SciChartSurface) {

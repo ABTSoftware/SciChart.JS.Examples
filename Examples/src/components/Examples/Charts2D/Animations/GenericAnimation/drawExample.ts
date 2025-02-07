@@ -11,9 +11,9 @@ import {
     GenericAnimation,
 } from "scichart";
 import { appTheme } from "../../../theme";
-import { populationData } from "./data";
+import { fetchPopulationDataData } from "../../../ExampleData/ExampleDataProvider";
 
-export const drawExample = async (rootElement: string | HTMLDivElement) => {
+const initializeChart = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface with bubble chart
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
@@ -40,14 +40,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
-    // Population dataset from gapminderdata
-    // data format example = [
-    //    { country: "Afghanistan", year: 1952, population: 8425333, continent: "Asia", lifeExpectancy: 28.801, gdpPerCapita: 779.4453145 },
-    // ]
-    const year = populationData.map((item) => item.year);
-    const lifeExpectancy = populationData.map((item) => item.lifeExpectancy);
-    const gdpPerCapita = populationData.map((item) => item.gdpPerCapita);
-    const population = populationData.map((item) => item.population);
+    return { sciChartSurface, wasmContext };
+};
+
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
+    const [chart, data] = await Promise.all([initializeChart(rootElement), fetchPopulationDataData()]);
+
+    const { sciChartSurface, wasmContext } = chart;
+
+    // TODO link to data source file
+    const { year, lifeExpectancy, gdpPerCapita, population } = data;
 
     const bubbleSeries0 = new FastBubbleRenderableSeries(wasmContext, {
         dataSeries: new XyzDataSeries(wasmContext, { xValues: year, yValues: lifeExpectancy, zValues: gdpPerCapita }),

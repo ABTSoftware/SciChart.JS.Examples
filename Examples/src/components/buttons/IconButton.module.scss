@@ -1,0 +1,74 @@
+@import "./variables.scss";
+
+.iconButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sm);
+    border: 1px solid transparent;
+    border-radius: var(--border-radius-sm);
+    background: transparent;
+    cursor: pointer;
+    transition: var(--transition-slow);
+    outline: none;
+
+    svg {
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+        transition: var(--transition-slow);
+        fill: var(--button-icon-color);
+        filter: drop-shadow(0 0 0 var(--button-icon-color));
+        opacity: 0.75;
+    }
+
+    &:not(.selected) {
+        &:hover,
+        &.hovered {
+            background-color: var(--color-overlay);
+            border-color: var(--color-border);
+            transform: scale(1.05);
+
+            svg {
+                opacity: 0.9;
+                filter: drop-shadow(0 0 var(--spacing-xs) var(--color-shadow));
+            }
+        }
+    }
+
+    &.selected {
+        background-color: var(--button-selected-bg);
+        border-color: var(--button-selected-border);
+
+        svg {
+            fill: var(--button-selected-icon-color);
+            opacity: 0.85;
+            transform: scale(1.05);
+        }
+
+        &:hover,
+        &.hovered {
+            background-color: var(--button-selected-hover-bg);
+            border-color: var(--button-selected-hover-border);
+
+            svg {
+                opacity: 0.95;
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 var(--spacing-xs) var(--button-selected-shadow));
+            }
+        }
+    }
+
+    &:focus {
+        border-color: var(--button-focus-border);
+    }
+}
+
+.iconNoPadding {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    cursor: pointer;
+    transition: var(--transition-slow);
+    outline: none;
+}

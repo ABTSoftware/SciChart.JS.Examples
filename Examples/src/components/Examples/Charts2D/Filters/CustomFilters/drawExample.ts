@@ -44,7 +44,7 @@ class AggregationFilter extends XyFilterBase {
         this.filter(0, this.getOriginalCount());
     }
 
-    protected filterOnAppend(count: number): void {
+    protected override filterOnAppend(count: number): void {
         // Overriding this so we do not have to reprocess the entire series on append
         this.filter(this.getOriginalCount() - count, count);
     }
@@ -70,7 +70,7 @@ class AggregationFilter extends XyFilterBase {
         this.appendRange(keys, yValues);
     }
 
-    protected onClear() {
+    protected override onClear() {
         this.clear();
         this.bins.clear();
     }
@@ -184,22 +184,22 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     let timerId: NodeJS.Timeout;
 
-    // Function called when the user clicks stopDemo button
-    const stopDemo = () => {
+    // Function called when the user clicks stopUpdate button
+    const stopUpdate = () => {
         clearTimeout(timerId);
         timerId = undefined;
         lastX = 0;
     };
 
-    // Function called when the user clicks startDemo button
-    const startDemo = () => {
+    // Function called when the user clicks startUpdate button
+    const startUpdate = () => {
         if (timerId) {
-            stopDemo();
+            stopUpdate();
             dataSeries.clear();
         }
         const updateFunc = () => {
             if (dataSeries.count() >= maxPoints) {
-                stopDemo();
+                stopUpdate();
                 return;
             }
 
@@ -218,5 +218,5 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     sciChartSurface.chartModifiers.add(new LegendModifier());
 
-    return { wasmContext, sciChartSurface, controls: { startDemo, stopDemo } };
+    return { wasmContext, sciChartSurface, controls: { startUpdate, stopUpdate } };
 };

@@ -16,17 +16,20 @@ import {
     ScaleAnimation,
     SciChartSurface,
     SplineBandRenderableSeries,
+    XyyBezierRenderDataTransform,
     XyyDataSeries,
     YAxisDragModifier,
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { XyyBezierRenderDataTransform } from "scichart/Charting/Visuals/RenderableSeries/RenderDataTransforms/BezierRenderDataTransform";
+// import { XyyBezierRenderDataTransform } from "scichart/Charting/Visuals/RenderableSeries/RenderDataTransforms/BezierRenderDataTransform";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { appTheme } from "../../../theme";
-import { xValues } from "../StackedMountainChart/data/stackedMountainChartData";
+//import { xValues } from "../StackedMountainChart/data/stackedMountainChartData";
+
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
+    
     // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,

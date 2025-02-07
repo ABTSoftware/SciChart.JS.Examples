@@ -16,7 +16,7 @@ const MAX_SERIES = 100;
 const WIDTH = 300;
 const HEIGHT = 200;
 
-// Draws a Heatmap chart in real-time over the <div id={divElementId}>
+// Draws a Heatmap chart in real-time
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
@@ -24,8 +24,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     // Add XAxis and YAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
 
     // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
     const initialZValues: number[][] = generateExampleData(WIDTH, HEIGHT, 200, 20, MAX_SERIES);
@@ -61,7 +61,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(heatmapSeries);
 
     // Add interaction
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
@@ -80,18 +80,34 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         timerId = setTimeout(updateChart, 20);
     };
 
-    const startDemo = () => {
+    const startUpdate = () => {
         if (!timerId) {
             updateChart();
         }
     };
 
-    const stopDemo = () => {
+    const stopUpdate = () => {
         clearTimeout(timerId);
         timerId = undefined;
     };
 
-    return { sciChartSurface, wasmContext, heatmapDataSeries, controls: { startDemo, stopDemo } };
+    const subscribeToRenderStats = (callback: (stats: { xSize: number; ySize: number; fps: number }) => void) => {
+        // Handle drawing/updating FPS
+        let lastRendered = Date.now();
+        sciChartSurface.rendered.subscribe(() => {
+            const currentTime = Date.now();
+            const timeDiffSeconds = (currentTime - lastRendered) / 1000;
+            lastRendered = currentTime;
+            const fps = 1 / timeDiffSeconds;
+            callback({
+                xSize: heatmapDataSeries.arrayWidth,
+                ySize: heatmapDataSeries.arrayHeight,
+                fps,
+            });
+        });
+    };
+
+    return { sciChartSurface, subscribeToRenderStats, controls: { startUpdate, stopUpdate } };
 };
 
 // Draws a Heatmap legend over the <div id={divHeatmapLegend}></div>
@@ -103,8 +119,13 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
             loadingAnimationBackground: appTheme.DarkIndigo + "BB",
         },
         yAxisOptions: {
+            isInnerAxis: true,
+            labelStyle: {
+                fontSize: 12,
+                color: appTheme.ForegroundColor,
+            },
             axisBorder: {
-                borderLeft: 1,
+                borderRight: 1,
                 color: appTheme.ForegroundColor + "77",
             },
             majorTickLineStyle: {

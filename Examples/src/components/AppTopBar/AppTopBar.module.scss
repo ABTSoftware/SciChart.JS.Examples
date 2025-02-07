@@ -2,34 +2,64 @@
 
 .AppBar {
     height: $app-bar-height;
+    max-width: 100%;
+    background-color: $color-dark;
+
+    .Logo {
+        display: block;
+        height: $app-bar-height;
+
+        .LogoSmall {
+            height: $app-bar-height;
+            width: $app-bar-height;
+        }
+
+        .LogoDefault {
+            margin-top: 2px;
+            height: 100%;
+            width: 209px;
+        }
+    }
 
     .ToolBar {
-        position: fixed;
+        display: flex;
+        max-width: 100%;
+        background-color: var(--primary);
+    }
+
+    .ToolBarMenu {
         right: 0;
         top: 0;
-        background-color: $color-dark;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex: auto;
         height: $app-bar-height;
-        width: 100%;
-        padding-top: 12px;
-        padding-bottom: 12px;
+        padding: 12px;
+        padding-left: 0px;
         z-index: 1200;
 
-        .Logo {
-            height: 60px;
-            margin-top: 5px;
-            margin-right: $default-spacing * 2;
+        %ToolBarButton {
+            display: block;
+            aspect-ratio: 1 / 1;
+            width: unset;
+            height: 44px;
+            padding: 0px;
+            min-width: unset;
+            min-height: unset;
+            border-radius: 8px;
+            color: $color-primary-white;
         }
 
         .MenuButton {
-            display: none;
-            margin-left: 12px;
-            padding: 9px;
-            color: $color-primary-white;
-            border: 1px solid $color-medium-blue;
-            background: $color-primary-white-alpha;
-            border-radius: 4px;
+            @extend %ToolBarButton;
 
-            @include md {
+            display: none;
+            line-height: 1em;
+            background: $color-primary-white-alpha;
+            // border: 1px solid $color-medium-blue;
+
+            @include sm {
                 display: block;
             }
         }
@@ -39,20 +69,31 @@
         }
 
         .GitHubLink {
+            @extend %ToolBarButton;
+
             display: flex;
-            padding: 12px 12px;
-            margin-left: 12px;
-            border-radius: 4px;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            border-radius: 8px;
             background-color: $color-medium-blue;
-            color: $color-lightest-green;
             text-decoration: none;
         }
 
+        .versionChip {
+            height: 44px;
+            border-radius: 8px;
+            @include md {
+                display: none;
+            }
+        }
+
         .NpmLink {
+            @extend %ToolBarButton;
+
             display: flex;
-            padding: 6px 6px;
-            margin-left: 12px;
-            border-radius: 4px;
+            padding: 6px;
+            border-radius: 8px;
             background-color: $color-red;
             color: $color-primary-white;
             text-decoration: none;
@@ -62,12 +103,11 @@
             display: flex;
             flex: none;
             height: 100%;
-            margin-left: 10px;
-            padding: $default-spacing * 2 $default-spacing * 2;
-            border-radius: 14px;
+            padding: $default-spacing;
             background: $gradient-btn-dark;
+            border-radius: 8px;
 
-            @include sm {
+            @include md {
                 display: none;
             }
 
@@ -104,8 +144,10 @@
 
         .BlueButton {
             background: $gradient-blue;
-            border-radius: 14px;
-            margin-left: 10px;
+            height: 100%;
+            text-align: center;
+            line-height: 1;
+            border-radius: 8px;
             span {
                 font-weight: bold;
                 padding: 6px 15px;
@@ -118,6 +160,12 @@
         .BlueButton:hover {
             background-size: 200% 100%;
             background-position: 0 100%;
+        }
+
+        .ThemeButton {
+            @extend %ToolBarButton;
+            
+            
         }
     }
 }

@@ -1,42 +1,60 @@
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import * as React from "react";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-draw-behind-axes.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const description = `Demonstrates a chart where the series can draw into the axes area.`;
-const tips = [`You can also draw axes over the chart area, and in other positions, buy using Inner Axes`];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlDrawBehindAxesDocumentation,
-        title: ExampleStrings.urlTitleDrawBehindAxesDocumentation,
-        linkTitle: "Central Axis documentation",
-    },
-];
+        exampleId: "Charts2DModifyAxisBehaviorDrawBehindAxes",
+        imagePath: "javascript-draw-behind-axes.jpg",
+        description:
+            "Demonstrates how to create a **JavaScript Chart with transparent axes** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to create a **JavaScript Chart with transparent axes** using SciChart.js, High Performance JavaScript Charts",
+                title: "Draw JavaScript Chart Behind Axis",
+                pageTitle: "Draw JavaScript Chart Behind Axis",
+                metaDescription:
+                    "Demonstrates the option of the transparent Axes customization on a JavaScript Chart using SciChart.js.",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to create a **React Chart with transparent axes** using SciChart.js, High Performance JavaScript Charts",
+                title: "Draw React Chart Behind Axis",
+                pageTitle: "Draw React Chart Behind Axis",
+                metaDescription:
+                    "Demonstrates the option of the transparent Axes customization on a React Chart using SciChart.js.",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to create a **Angular Chart with transparent axes** using SciChart.js, High Performance JavaScript Charts",
+                title: "Draw Angular Chart Behind Axis",
+                pageTitle: "Draw Angular Chart Behind Axis",
+                metaDescription:
+                    "Demonstrates the option of the transparent Axes customization on a Angular Chart using SciChart.js.",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Layout%20-%20Inside%20and%20Central%20Axis.html",
+                title: "SciChart.js Draw Behind Axes Documentation page",
+                linkTitle: "Central Axis documentation",
+            },
+        ],
+        path: "draw-behind-axes",
+        metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/ModifyAxisBehavior/DrawBehindAxes",
+        thumbnailImage: "javascript-draw-behind-axes.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to create a <strong>{frameworkName} Chart with transparent axes</strong> using SciChart.js,
-        High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-export const drawBehindAxesExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleDrawBehindAxes,
-    pageTitle: ExampleStrings.titleDrawBehindAxes,
-    path: ExampleStrings.urlDrawBehindAxes,
-    filepath: "Charts2D/ModifyAxisBehavior/DrawBehindAxes",
-    subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    metaDescription: (frameworkName: string) =>
-        `Demonstrates the option of the transparent Axes customization on a ${frameworkName} Chart using SciChart.js.`,
-    metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-};
+export const drawBehindAxesExampleInfo = createExampleInfo(metaData);

@@ -1,5 +1,5 @@
-import { Button, makeStyles } from "@material-ui/core";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
+import { makeStyles } from "tss-react/mui";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import * as React from "react";
 import {
     AUTO_COLOR,
@@ -18,16 +18,14 @@ import {
 } from "scichart";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { GridLayoutModifier } from "./GridLayoutModifier";
 import { SciChartReact, SciChartSurfaceContext, TResolvedReturnType } from "scichart-react";
 import { useContext } from "react";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
-        theme: appTheme.SciChartJsTheme,
-    });
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement);
 
     // Create an XAxis and YAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -74,51 +72,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     return { wasmContext, sciChartSurface, setIsGridLayoutMode };
 };
 
-const useStyles = makeStyles((theme) => ({
-    flexOuterContainer: {
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        background: appTheme.DarkIndigo,
-    },
-    toolbarRow: {
-        display: "flex",
-        order: 1,
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-        color: appTheme.ForegroundColor,
-    },
-    chartArea: {
-        order: 2,
-        flex: 1,
-    },
-}));
-
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function DynamicLayout() {
-    const localClasses = useStyles();
-
     return (
-        <React.Fragment>
-            <div className={classes.ChartWrapper}>
-                <SciChartReact
-                    className={localClasses.flexOuterContainer}
-                    innerContainerProps={{ className: localClasses.chartArea }}
-                    initChart={drawExample}
-                >
-                    <ChartToolbar />
-                </SciChartReact>
-            </div>
-        </React.Fragment>
+        <SciChartReact className={commonClasses.ChartWithToolbar} initChart={drawExample}>
+            <ChartToolbar />
+        </SciChartReact>
     );
 }
 
 const ChartToolbar = () => {
-    const localClasses = useStyles();
     const initResult = useContext(SciChartSurfaceContext) as TResolvedReturnType<typeof drawExample>;
     const [isGrid, setIsGrid] = React.useState<boolean>(false);
 
@@ -127,22 +91,22 @@ const ChartToolbar = () => {
         setIsGrid(value);
     };
     return (
-        <div className={localClasses.toolbarRow}>
-            <ToggleButtonGroup
-                exclusive
-                value={isGrid}
-                onChange={handleToggleButtonChanged}
-                size="medium"
-                color="primary"
-                aria-label="small outlined button group"
-            >
-                <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
-                    Single Chart
-                </ToggleButton>
-                <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
-                    Chart Per Series
-                </ToggleButton>
-            </ToggleButtonGroup>
-        </div>
+        <ToggleButtonGroup
+            className={commonClasses.ToolbarRow}
+            style={{ order: 1 }}
+            exclusive
+            value={isGrid}
+            onChange={handleToggleButtonChanged}
+            size="medium"
+            color="primary"
+            aria-label="small outlined button group"
+        >
+            <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
+                Single Chart
+            </ToggleButton>
+            <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
+                Chart Per Series
+            </ToggleButton>
+        </ToggleButtonGroup>
     );
 };

@@ -8,13 +8,13 @@ import {
     MENU_ITEMS_FEATURED_APPS_ID,
 } from "../AppRouter/examples";
 import FooterGrid from "./FooterGrid";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import classes from "./AppFooter.module.scss";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import YouTubeIcon from "@material-ui/icons/YouTube";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import Button from "@material-ui/core/Button";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import Button from "@mui/material/Button";
 
 export type TFooterlink = {
     link: string;
@@ -32,6 +32,7 @@ export default function AppFooter() {
     return (
         <>
             <div className={classes.AppFooter}>
+                {/* // removing this section from the footer  */}
                 {/* <FooterGrid
                     historyPushPath={historyPushPath}
                     title="Featured Apps"
@@ -57,11 +58,14 @@ export default function AppFooter() {
                             <div className={classes.dividerBox}></div>
                         </div>
                         <div className={classes.RelatedLinks}>
-                            <a href="https://demo.scichart.com/react" title="SciChart Javascript Demos">
+                            <a href="https://demo.scichart.com/javascript" title="SciChart Javascript Demos">
                                 SciChart Javascript Demos
                             </a>
-                            <a href="https://demo.scichart.com/javascript" title="SciChart React Demos">
+                            <a href="https://demo.scichart.com/react" title="SciChart React Demos">
                                 SciChart React Demos
+                            </a>
+                            <a href="https://demo.scichart.com/angular" title="SciChart Angular Demos">
+                                SciChart Angular Demos
                             </a>
                         </div>
                     </div>

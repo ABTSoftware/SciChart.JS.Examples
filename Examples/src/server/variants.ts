@@ -1,8 +1,8 @@
 import * as path from "path";
-
-import express = require("express");
+import express from "express";
 import { getRequestedExample } from "./renderCodeSandboxRedirect";
-import { getAngularSrc, getVanillaSrc } from "./sandboxForms";
+import { getAngularSrc } from "./services/sandbox/angularConfig";
+import { getVanillaSrc } from "./services/sandbox/vanillaTsConfig";
 import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 import { IHttpError } from "./Errors";
 
@@ -11,7 +11,7 @@ const basePath = path.join(__dirname, "Examples");
 
 router.get("/:example", async (req, res) => {
     try {
-        const currentExample = getRequestedExample(req, res);
+        const currentExample = getRequestedExample(req, res)?.currentExample;
         const folderPath = path.join(basePath, currentExample.filepath);
         const [vanillaSrcFetchResult, angularSrcFetchResult] = await Promise.allSettled([
             getVanillaSrc(folderPath),

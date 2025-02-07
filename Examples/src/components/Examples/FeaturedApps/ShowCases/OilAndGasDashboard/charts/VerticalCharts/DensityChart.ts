@@ -5,16 +5,17 @@ import { ELegendPlacement, ELegendOrientation, TLegendItem } from "scichart/Char
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
-import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
+import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "../vChartUtils";
 import { appTheme } from "../../theme";
 
-export const drawDensityChart = async () => {
-    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("density-chart", {
+export const drawDensityChart = async (rootELement: string | HTMLDivElement) => {
+    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(rootELement, {
         ...getCommonChartConfigs("Density"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
             padding: Thickness.fromNumber(0),
+            id: "densityChart",
         },
     });
 
@@ -55,7 +56,7 @@ export const drawDensityChart = async () => {
     legendModifier.sciChartLegend.getLegendHTML = generateDensityLegend;
     sciChartSurface.chartModifiers.add(legendModifier);
 
-    return sciChartSurface;
+    return { sciChartSurface };
 };
 
 const generateDensityLegend = (

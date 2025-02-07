@@ -88,12 +88,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
-    sciChartSurface.chartModifiers.add(
-        new ZoomPanModifier(),
-        new PinchZoomModifier(),
-        new MouseWheelZoomModifier(),
-        new ZoomPanModifier()
-    );
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }), new MouseWheelZoomModifier());
 
     return { sciChartSurface, wasmContext };
 };

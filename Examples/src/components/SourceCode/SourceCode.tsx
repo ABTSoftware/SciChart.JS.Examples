@@ -1,19 +1,20 @@
 import * as React from "react";
 
-import CloseIcon from "@material-ui/icons/Close";
+import CloseIcon from "@mui/icons-material/Close";
 import classes from "./SourceCode.module.scss";
 
 type TProps = {
     code: string;
+    language: string;
     githubUrl: string;
     onClose: () => void;
 };
 
 const SourceCode: React.FC<TProps> = (props) => {
     const code = `${props.code}`;
-    React.useEffect(() => {
-        window.Prism?.highlightAll();
-    }, []);
+    // React.useEffect(() => {
+    //     // window.Prism?.highlightAll();
+    // }, []);
     return (
         <div className={classes.SourceCode}>
             <div className={classes.SourceCodeHeader}>
@@ -22,7 +23,7 @@ const SourceCode: React.FC<TProps> = (props) => {
             </div>
 
             <div className={classes.SourceCodeWrapper}>
-                <pre className="language-javascript line-numbers">
+                <pre className={`language-${props.language} line-numbers`}>
                     <code
                         style={{
                             fontFamily: "Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace",

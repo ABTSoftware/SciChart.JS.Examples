@@ -48,7 +48,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create the XAxis labelprovider (maps x-value to axis label)
     const labelProvider = new TextLabelProvider({
         labels: dataset.map((row) => "Manufacturer " + row.name + " (2022)"),
-        maxLength: 12,
+        maxLength: 15,
+        rotation: 30,
     });
 
     // Create an XAxis
@@ -65,6 +66,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         maxAutoTicks: 15,
         // add the title
         axisTitle: "Mobile phone manufacturer",
+        growBy: new NumberRange(0.05, 0.05), // add some horizontal padding
     });
 
     // additional axis options
@@ -102,7 +104,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             dataLabels: {
                 horizontalTextPosition: EHorizontalTextPosition.Center,
                 verticalTextPosition: EVerticalTextPosition.Above,
-                style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(0, 0, 20, 0) },
+                style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(0, 0, 5, 0) },
                 color: appTheme.ForegroundColor,
             },
             // each column occupies 50% of available space

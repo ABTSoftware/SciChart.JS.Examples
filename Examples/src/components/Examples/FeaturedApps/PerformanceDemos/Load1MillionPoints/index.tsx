@@ -1,14 +1,17 @@
-import Button from "@material-ui/core/Button";
-import Alert from "@material-ui/lab/Alert";
-import AlertTitle from "@material-ui/lab/AlertTitle";
-import * as React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
+import { makeStyles } from "tss-react/mui";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample, TTimeSpan } from "./drawExample";
+import { useRef, useState } from "react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -16,62 +19,82 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: "column",
         background: appTheme.DarkIndigo,
     },
-    toolbarRow: {
-        display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-        color: appTheme.ForegroundColor,
-    },
+
     chartArea: {
         flex: 1,
     },
 }));
 
 export default function Load1MillionPointsChart() {
-    const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([]);
-    const [controls, setControls] = React.useState<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
+    const [timeSpans, setTimeSpans] = useState<TTimeSpan[]>([]);
+    const [isStarted, setIsStarted] = useState(false);
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(null);
 
     const updateTimeSpans = (newTimeSpans: TTimeSpan[]) => {
         setTimeSpans([...newTimeSpans]);
     };
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
-        <div className={classes.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
+        <div className={commonClasses.ChartWrapper}>
+            <div className={classes.flexOuterContainer}>
                 <SciChartReact
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     initChart={drawExample}
                     onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
-                        setControls(controls);
-                        const autoStartTimerId = setTimeout(() => controls.loadPoints(updateTimeSpans), 0);
+                        controlsRef.current = controls;
+                        controls.subscribeToInfo(updateTimeSpans);
+                        controls.reloadOnce();
 
-                        return () => {
-                            clearTimeout(autoStartTimerId);
-                        };
+                        return controls.stopUpdate;
                     }}
                 />
-                <div className={localClasses.toolbarRow} style={{ minHeight: "140px" }}>
-                    <Button
-                        id="loadPoints"
-                        onClick={() => {
-                            controls.loadPoints(updateTimeSpans);
+                <div className={commonClasses.ToolbarRow} style={{ gap: "0px", paddingRight: "0px" }}>
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "space-between",
+                            height: "100%",
                         }}
-                        style={{ color: appTheme.ForegroundColor }}
                     >
-                        🗘 Reload Test
-                    </Button>
-                    <div style={{ width: "100%", marginLeft: "10px" }}>
+                        <Button
+                            onClick={() => {
+                                if (isStarted) {
+                                    controlsRef.current.stopUpdate();
+                                } else {
+                                    controlsRef.current.startUpdate();
+                                }
+                                setIsStarted(!isStarted);
+                            }}
+                            title="Toggle reload every 200 milliseconds"
+                        >
+                            {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
+                        </Button>
+                        <Button
+                            onClick={() => {
+                                controlsRef.current.reloadOnce();
+                            }}
+                            style={{ color: appTheme.ForegroundColor }}
+                            title="Reload Test"
+                        >
+                            <RefreshIcon />
+                        </Button>
+                    </div>
+                    <div style={{ width: "100%" }}>
                         {timeSpans.length > 0 && (
                             <Alert
                                 key="0"
-                                className={classes.Notification}
-                                style={{ backgroundColor: appTheme.Indigo, color: appTheme.ForegroundColor }}
+                                className={commonClasses.Notification}
+                                sx={{
+                                    backgroundColor: appTheme.Indigo,
+                                    color: appTheme.ForegroundColor,
+                                    textAlign: "left",
+                                }}
+                                severity="info"
                             >
-                                <AlertTitle>Performance Results</AlertTitle>
+                                <AlertTitle className={commonClasses.NotificationTitle}>Performance Results</AlertTitle>
                                 {timeSpans.map((ts, index) => (
                                     <div key={index}>
                                         {ts.title}: {ts.durationMs.toFixed(0)} ms

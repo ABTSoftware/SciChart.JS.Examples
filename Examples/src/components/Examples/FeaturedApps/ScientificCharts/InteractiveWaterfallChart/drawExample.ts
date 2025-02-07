@@ -87,11 +87,11 @@ class CrossSectionPaletteProvider extends DefaultPaletteProvider {
     public selectedIndex: number = -1;
     public shouldUpdate: boolean = true;
 
-    public shouldUpdatePalette(): boolean {
+    public override shouldUpdatePalette(): boolean {
         return this.shouldUpdate;
     }
 
-    public overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity: number): number {
+    public override overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity: number): number {
         if (index === this.selectedIndex || index + 1 === this.selectedIndex || index - 1 === this.selectedIndex) {
             return 0xffff8a42;
         }
@@ -127,7 +127,7 @@ export const getChartsInitializationAPI = () => {
                 axisAlignment: EAxisAlignment.Left,
                 maxAutoTicks: 5,
                 drawMinorGridLines: false,
-                visibleRange: new NumberRange(-60, 60),
+                visibleRange: new NumberRange(-50, 60),
                 isVisible: i === seriesCount - 1,
                 overrideOffset: 3 * -i,
             });
@@ -169,10 +169,10 @@ export const getChartsInitializationAPI = () => {
         dragMeAnnotation = new CustomAnnotation({
             svgString: `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="82">
                   <g>
-                    <line x1="50%" y1="10" x2="50%" y2="40" stroke="#FFBE93" stroke-dasharray="2,2" />
+                    <line x1="50%" y1="10" x2="50%" y2="27" stroke="#FFBE93" stroke-dasharray="2,2" />
                     <circle cx="50%" cy="10" r="5" fill="#FFBE93" />
-                    <rect x="2" y="40" rx="10" ry="10" width="96" height="40" fill="#64BAE433" stroke="#64BAE4" stroke-width="2" />
-                    <text x="50%" y="60" fill="White" text-anchor="middle" alignment-baseline="middle" >Drag me!</text>
+                    <rect x="2" y="27" rx="10" ry="10" width="96" height="30" fill="#64BAE433" stroke="#64BAE4" stroke-width="2" />
+                    <text x="50%" y="42" fill="White" text-anchor="middle" alignment-baseline="middle" >Drag me!</text>
                   </g>
                 </svg>`,
             x1: 133,
@@ -190,13 +190,13 @@ export const getChartsInitializationAPI = () => {
 
         // Place an annotation with further instructions in the top right of the chart
         const promptAnnotation = new CustomAnnotation({
-            svgString: `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="82">
+            svgString: `<svg xmlns="http://www.w3.org/2000/svg" width="130" height="82">
               <g>
-                <line x1="5" y1="77" x2="40" y2="42" stroke="#ffffff" stroke-dasharray="2,2" />
+                <line x1="5" y1="77" x2="40" y2="33" stroke="#ffffff" stroke-dasharray="2,2" />
                 <circle cx="5" cy="77" r="5" fill="#ffffff" />
                 <g>
-                  <rect x="20" y="2" width="98" height="40" rx="10" ry="10" fill="#64BAE433" stroke="#64BAE4" stroke-width="2" />
-                  <text x="68" y="24" fill="white" text-anchor="middle" alignment-baseline="middle" font-size="12">Hover/click chart</text>
+                  <rect x="10" y="2" width="118" height="30" rx="10" ry="10" fill="#64BAE433" stroke="#64BAE4" stroke-width="2" />
+                  <text x="68" y="19" fill="white" text-anchor="middle" alignment-baseline="middle" font-size="12">Hover/click chart</text>
                 </g>
               </g>
             </svg>`,
@@ -215,7 +215,7 @@ export const getChartsInitializationAPI = () => {
 
         // Add zooming behaviours
         sciChartSurface.chartModifiers.add(
-            new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }),
+            new ZoomPanModifier({ enableZoom: true, xyDirection: EXyDirection.XDirection }),
             new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
             new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection })
         );
@@ -383,12 +383,17 @@ export const getChartsInitializationAPI = () => {
             crossSectionPaletteProvider.selectedIndex = dataIndex;
             crossSectionPaletteProvider.shouldUpdate = true;
             mainChartSurface.invalidateElement();
-            crossSectionSliceSeries.clear();
-            for (let i = 0; i < mainChartSurface.renderableSeries.size(); i++) {
-                crossSectionSliceSeries.append(
-                    i,
-                    mainChartSurface.renderableSeries.get(i).dataSeries.getNativeYValues().get(dataIndex)
-                );
+            if (crossSectionSliceSeries) {
+                crossSectionSliceSeries.clear();
+                console.log("crossSectionSliceSeries:", crossSectionSliceSeries);
+                for (let i = 0; i < mainChartSurface.renderableSeries.size(); i++) {
+                    crossSectionSliceSeries.append(
+                        i,
+                        mainChartSurface.renderableSeries.get(i).dataSeries.getNativeYValues().get(dataIndex)
+                    );
+                }
+            } else {
+                console.error("crossSectionSliceSeries is not defined");
             }
         };
 

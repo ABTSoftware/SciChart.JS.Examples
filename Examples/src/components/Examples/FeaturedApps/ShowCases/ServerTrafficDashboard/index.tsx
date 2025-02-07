@@ -1,35 +1,40 @@
 import * as React from "react";
-import { CSSProperties, ChangeEventHandler, MouseEventHandler, useEffect, useRef, useState } from "react";
-import classes from "../../../styles/Examples.module.scss";
-import { TChartConfigResult, synchronizeXVisibleRanges } from "./chart-configurations";
-import {
-    ChartModifierBase2D,
-    NumberRange,
-    SciChartPieSurface,
-    SciChartSubSurface,
-    SciChartSurface,
-    easing,
-} from "scichart";
+import SettingsIcon from "@mui/icons-material/Settings";
+import { CSSProperties, ChangeEventHandler, useEffect, useRef, useState } from "react";
+import commonClasses from "../../../styles/Examples.module.scss";
+import { ChartModifierBase2D, SciChartSubSurface } from "scichart";
 import { GridLayoutModifier } from "./GridLayoutModifier";
 import { ModifierGroup } from "./ModifierGroup";
-import {
-    createRegionStatisticsColumnChart,
-    createRegionStatisticsPieChart,
-    TLocationStatsChartConfigFuncResult,
-} from "./region-statistic-charts";
-import { createMainChart } from "./main-chart-config";
-import { TPageStatsConfigFuncResult, createPageStatisticsChart } from "./page-statistics-chart-config";
-import { TServerStatsChartConfigFuncResult, createServerLoadChart } from "./server-load-chart-config";
-import { TDataEntry, availableLocations, getData } from "./data-generation";
+import { createRegionStatisticsPieChart, getRegionStatisticsColumnChartConfig } from "./region-statistic-charts";
+import { getMainChartConfig } from "./main-chart-config";
+
 import { overviewOptions } from "./Overview";
-import DashboardOverlay from "./DashboardOverlay";
 import ThresholdSlider from "./ThresholdSlider";
-import { IInitResult, SciChartReact as SciChart, SciChartGroup, SciChartNestedOverview } from "scichart-react";
+import { SciChartReact as SciChart, SciChartNestedOverview } from "scichart-react";
 import { appTheme } from "../../../theme";
+import { Dialog, DialogTitle, FormControlLabel, IconButton, Typography } from "@mui/material";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Switch from "@mui/material/Switch";
+import CloseIcon from "@mui/icons-material/Close";
+import { getPageStatisticsChartConfig } from "./page-statistics-chart-config";
+import { getServerLoadChartConfig } from "./server-load-chart-config";
+import { ChartGroupLoader } from "../../../ChartGroupLoader";
+import type {
+    TPageStatsConfigFuncResult,
+    TServerStatsChartConfigFuncResult,
+    TMainChartConfigFuncResult,
+} from "./chart-types";
+import { afterAllChartsInit } from "./after-all-charts-init";
+import { VisibleRangeSynchronizationManager } from "./VisibleRangeSynchronizationManager";
+import { useViewType } from "../../../containerSizeHooks";
 
 function ServerTrafficDashboard() {
+    const ref = useRef<HTMLDivElement>(null);
+    const viewInfo = useViewType(ref);
+    const { isLargeView, isMobileView } = viewInfo ?? {};
+
     const [isVisibleRangeSynced, setIsVisibleRangeSynced] = useState(true);
-    const isVisibleRangeSyncedRef = useRef(true);
     const [isHundredPercentCollection, setIsHundredPercentCollection] = useState(false);
     const [isGridLayout, setIsGridLayout] = useState(false);
 
@@ -38,86 +43,7 @@ function ServerTrafficDashboard() {
     const gridLayoutModifierRef = useRef<GridLayoutModifier>(null);
 
     const [modifierGroup] = useState(new ModifierGroup());
-    const [isDashboardInitialized, setIsDashboardInitialized] = useState(false);
-
-    const configureDataBindings = (initResults: IInitResult[]) => {
-        const [mainChart, pageStatisticChart, serverLoadChart, locationStatisticChart, pieChart] =
-            initResults as TInitResults;
-        const currentData = getData();
-        const unCheckedServers = new Set<string>();
-        const selectedLocations = new Set<string>();
-
-        synchronizeXVisibleRanges(
-            [mainChart.sciChartSurface, pageStatisticChart.sciChartSurface, serverLoadChart.sciChartSurface],
-            () => isVisibleRangeSyncedRef.current
-        );
-
-        const mainSurface = mainChart.sciChartSurface;
-        const mainXAxis = mainSurface.xAxes.get(0);
-
-        // initial animation of visible range
-        const visibleRangeDiff = mainXAxis.visibleRange.diff;
-        const newInitialVisibleRange = new NumberRange(
-            mainXAxis.visibleRange.min + visibleRangeDiff * 0.2,
-            mainXAxis.visibleRange.max - visibleRangeDiff * 0.2
-        );
-
-        const locationFilter = (entry: TDataEntry) =>
-            selectedLocations.size ? selectedLocations.has(entry.location) : true;
-        const serverFilter = (entry: TDataEntry) => !unCheckedServers.has(entry.server);
-
-        const updateLocationStats = () => {
-            const currentRange = mainXAxis.visibleRange;
-
-            const dataFilteredByTime = currentData.filter(
-                (entry) => entry.timestamp >= currentRange.min && entry.timestamp <= currentRange.max
-            );
-            const dataFilteredForLocationStats = dataFilteredByTime.filter(serverFilter);
-            locationStatisticChart.updateData(dataFilteredForLocationStats);
-            pieChart.updateData(dataFilteredForLocationStats);
-        };
-
-        const updateChartData = () => {
-            const commonData = currentData.filter(serverFilter).filter(locationFilter);
-
-            const dataFilteredForServerStats = currentData.filter(locationFilter);
-
-            mainChart.updateData(commonData);
-            pageStatisticChart.updateData(
-                currentData.map((entry: TDataEntry) =>
-                    serverFilter(entry) && locationFilter(entry) ? entry : { ...entry, page: null }
-                )
-            );
-            // server series should be just hidden
-            serverLoadChart.updateData(dataFilteredForServerStats);
-            updateLocationStats();
-        };
-
-        // filter location stats by visible range
-        mainXAxis.visibleRangeChanged.subscribe(updateLocationStats);
-
-        mainXAxis.animateVisibleRange(newInitialVisibleRange, 2000, easing.inOutQuint, () => {
-            // filter data by server accordingly to visible series
-            serverLoadChart.subscribeToServerSelection((server: string, isChecked: boolean) => {
-                if (isChecked) {
-                    unCheckedServers.delete(server);
-                } else {
-                    unCheckedServers.add(server);
-                }
-
-                updateChartData();
-            });
-
-            // filter data  by location
-            locationStatisticChart.subscribeToLocationSelection((location) => {
-                selectedLocations.clear();
-                if (location) {
-                    selectedLocations.add(location);
-                }
-                updateChartData();
-            });
-        });
-    };
+    const [axisSyncManager] = useState(new VisibleRangeSynchronizationManager());
 
     useEffect(() => {
         return () => {
@@ -127,7 +53,7 @@ function ServerTrafficDashboard() {
         };
     }, []);
 
-    const onMainChartInit = (initResult: TChartConfigResult<SciChartSurface>) => {
+    const onMainChartInit = (initResult: TMainChartConfigFuncResult) => {
         const sciChartSurface = initResult.sciChartSurface;
         const modifier = sciChartSurface.chartModifiers.getById("TotalRequestsCursorModifier");
         const rollover = sciChartSurface.chartModifiers.getById("TotalRequestsRolloverModifier");
@@ -154,7 +80,7 @@ function ServerTrafficDashboard() {
     };
 
     const handleSyncVisibleRangeChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        isVisibleRangeSyncedRef.current = !isVisibleRangeSynced;
+        axisSyncManager.enabled = !axisSyncManager.enabled;
         setIsVisibleRangeSynced(!isVisibleRangeSynced);
     };
 
@@ -168,16 +94,15 @@ function ServerTrafficDashboard() {
         const subCharts = serverLoadChartRef.current.sciChartSurface.subCharts;
 
         if (!isGridLayout) {
+            serverLoadChartRef.current.sciChartSurface.titleStyle.color = "transparent";
+
             subCharts.forEach((subChart: SciChartSubSurface) => {
                 const modifier = subChart.chartModifiers.getById("ServerLoadCursorModifier");
                 modifierGroup.add(modifier as ChartModifierBase2D);
             });
-
-            synchronizeXVisibleRanges(
-                [serverLoadChartRef.current.sciChartSurface, ...serverLoadChartRef.current.sciChartSurface.subCharts],
-                () => isVisibleRangeSyncedRef.current
-            );
         } else {
+            serverLoadChartRef.current.sciChartSurface.titleStyle.color = appTheme.ForegroundColor;
+
             subCharts.forEach((subChart: SciChartSubSurface) => {
                 const modifier = subChart.chartModifiers.getById("ServerLoadCursorModifier");
                 modifierGroup.remove(modifier as ChartModifierBase2D);
@@ -187,93 +112,146 @@ function ServerTrafficDashboard() {
         setIsGridLayout(!isGridLayout);
     };
 
-    return (
-        <div className={classes.ChartWrapper} style={{ backgroundColor: "#242529" }}>
-            {isDashboardInitialized ? null : <DashboardOverlay />}
-            <div style={gridStyle}>
-                <SciChartGroup
-                    onInit={(initResults: IInitResult[]) => {
-                        configureDataBindings(initResults);
-                        setIsDashboardInitialized(true);
-                    }}
-                    onDelete={() => {
-                        // TODO cleanup data bindings if needed
-                    }}
-                >
-                    <div style={visibleRangeSyncCheckboxStyle}>
-                        <input
-                            type="checkbox"
-                            checked={isVisibleRangeSynced}
-                            onChange={handleSyncVisibleRangeChange}
-                            value="Sync X Axis visible range"
-                            style={{ color: "#17243d", accentColor: "#0bdef4", marginRight: 4 }}
-                        ></input>
-                        Sync X Axis visible range
-                    </div>
-                    <div style={hundredPercentCheckboxStyle}>
-                        <input
-                            type="checkbox"
-                            checked={isHundredPercentCollection}
-                            onChange={handleUsePercentage}
-                            value="is 100% collection"
-                            style={{ color: "#17243d", accentColor: "#0bdef4", marginRight: 4 }}
-                        ></input>
-                        is 100% collection
-                    </div>
+    const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
-                    <div style={toggleGridLayoutCheckboxStyle}>
-                        <input
-                            type="checkbox"
-                            checked={isGridLayout}
-                            onChange={handleUseGridLayout}
-                            value="is Grid Layout"
-                            style={{ color: "#17243d", accentColor: "#0bdef4", marginRight: 4 }}
-                        ></input>
-                        is Grid Layout
+    const handleClickOpen = () => {
+        setIsDialogOpen(true);
+    };
+
+    const handleClose = () => {
+        setIsDialogOpen(false);
+    };
+
+    const switchStyleOverrides = {
+        width: "100%",
+        margin: 0,
+        padding: "1em",
+        color: appTheme.ForegroundColor,
+        accentColor: "#0bdef4",
+
+        "& .MuiSwitch-track": {
+            opacity: 1,
+            backgroundColor: appTheme.PalePink,
+        },
+    };
+
+    const configurationDialog = (
+        <Dialog
+            onClose={handleClose}
+            open={isDialogOpen}
+            sx={{ color: appTheme.ForegroundColor, "& .MuiDialog-paper": { background: appTheme.DarkIndigo } }}
+        >
+            <DialogTitle>
+                <span style={{ color: appTheme.ForegroundColor }}>Chart Configurations</span>
+                <IconButton
+                    aria-label="close"
+                    onClick={handleClose}
+                    sx={(theme) => ({
+                        position: "absolute",
+                        right: 8,
+                        top: 8,
+                        color: theme.palette.grey[500],
+                    })}
+                >
+                    <CloseIcon />
+                </IconButton>
+            </DialogTitle>
+            <List>
+                <Typography
+                    variant="subtitle2"
+                    fontWeight={"bold"}
+                    sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
+                >
+                    Main Chart
+                </Typography>
+
+                <ListItem disablePadding>
+                    <FormControlLabel
+                        control={<Switch checked={isVisibleRangeSynced} onChange={handleSyncVisibleRangeChange} />}
+                        label="Sync&nbsp;X-Axis&nbsp;visible&nbsp;range"
+                        sx={switchStyleOverrides}
+                    />
+                </ListItem>
+                <Typography
+                    variant="subtitle2"
+                    fontWeight={"bold"}
+                    sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
+                >
+                    URL Statistics Chart
+                </Typography>
+                <ListItem disablePadding>
+                    <FormControlLabel
+                        control={<Switch checked={isHundredPercentCollection} onChange={handleUsePercentage} />}
+                        label="is&nbsp;100%&nbsp;collection"
+                        sx={switchStyleOverrides}
+                    />
+                </ListItem>
+                <Typography
+                    variant="subtitle2"
+                    fontWeight={"bold"}
+                    sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
+                >
+                    Server Load Statistics Chart
+                </Typography>
+                <ListItem disablePadding>
+                    <FormControlLabel
+                        control={<Switch checked={isGridLayout} onChange={handleUseGridLayout} />}
+                        label="is&nbsp;Grid&nbsp;Layout"
+                        sx={switchStyleOverrides}
+                    />
+                </ListItem>
+            </List>
+        </Dialog>
+    );
+
+    return (
+        <div ref={ref} className={commonClasses.ChartWrapper} style={{ backgroundColor: "#242529" }}>
+            {viewInfo ? ( // checks if container was measured
+                <ChartGroupLoader style={gridStyle} onInit={afterAllChartsInit(axisSyncManager)}>
+                    <div style={configButtonWrapperStyle} title="Chart Configurations">
+                        <IconButton
+                            sx={{ color: appTheme.ForegroundColor, pointerEvents: "all", touchAction: "all" }}
+                            onClick={handleClickOpen}
+                        >
+                            <SettingsIcon fontSize="large" />
+                        </IconButton>
+                        {configurationDialog}
                     </div>
 
                     <SciChart
-                        initChart={createMainChart}
+                        initChart={getMainChartConfig(viewInfo)}
                         onInit={onMainChartInit}
                         style={mainChartStyle}
                         innerContainerProps={innerContainerProps}
                     >
-                        <ThresholdSlider />
+                        {!isMobileView ? <ThresholdSlider /> : null}
                         <SciChartNestedOverview style={overviewStyle} options={overviewOptions} />
                     </SciChart>
 
                     <SciChart
-                        initChart={createPageStatisticsChart}
+                        initChart={getPageStatisticsChartConfig(viewInfo)}
                         onInit={onPageStatisticsChartInit}
                         style={pageChartStyle}
                     />
 
                     <SciChart
-                        initChart={createServerLoadChart}
+                        initChart={getServerLoadChartConfig(viewInfo)}
                         onInit={onServerLoadChartInit}
                         style={serverChartStyle}
                     />
 
-                    <SciChart initChart={createRegionStatisticsColumnChart} style={columnChartStyle} />
+                    <SciChart initChart={getRegionStatisticsColumnChartConfig(viewInfo)} style={columnChartStyle} />
 
                     <SciChart initChart={createRegionStatisticsPieChart} style={pieChartStyle} />
-                </SciChartGroup>
-            </div>
+                </ChartGroupLoader>
+            ) : null}
         </div>
     );
 }
 
-type TInitResults = [
-    TChartConfigResult<SciChartSurface>,
-    TPageStatsConfigFuncResult,
-    TServerStatsChartConfigFuncResult,
-    TLocationStatsChartConfigFuncResult,
-    TChartConfigResult<SciChartPieSurface>
-];
-
 const gridStyle: React.CSSProperties = {
     boxSizing: "border-box",
-    padding: "0.5em",
+    // padding: "0.5em",
     height: "100%",
     display: "grid",
     gridTemplateColumns: "repeat(4, 1fr)",
@@ -316,34 +294,11 @@ const pieChartStyle = {
     gridColumn: "span 1",
 };
 
-const hundredPercentCheckboxStyle: CSSProperties = {
-    gridArea: "4 / 1 / 5 / 3",
-    color: appTheme.ForegroundColor,
-    zIndex: 2,
-    justifySelf: "start",
-    alignSelf: "start",
-    marginTop: 10,
-    marginLeft: 10,
-};
-
-const toggleGridLayoutCheckboxStyle: CSSProperties = {
-    gridArea: "4 / 3 / 5 / 3",
-    justifySelf: "start",
-    alignSelf: "start",
-    marginTop: 10,
-    marginLeft: 10,
-    color: appTheme.ForegroundColor,
-    zIndex: 2,
-};
-
-const visibleRangeSyncCheckboxStyle = {
+const configButtonWrapperStyle: CSSProperties = {
     gridArea: "1 / 1 / 2 / 2",
-    color: appTheme.ForegroundColor,
+    pointerEvents: "none",
+    touchAction: "none",
     zIndex: 2,
-    justifySelf: "start",
-    alignSelf: "start",
-    marginTop: 10,
-    marginLeft: 10,
 };
 
 export default ServerTrafficDashboard;

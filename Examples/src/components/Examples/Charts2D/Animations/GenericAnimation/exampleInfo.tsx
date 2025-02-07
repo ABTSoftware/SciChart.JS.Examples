@@ -1,42 +1,57 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-generic-animation.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const previewDescription = ``; //`Demonstrates how to run Generic Animation for a JavaScript Chart.`;
-const description = `Generic Animation gives an opportunity to build complex animations and control progress of each animation separately`;
-const tips: string[] = ["Use START, CANCEL or RESTART buttons to see the control action of Generic Animation"];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlGenericAnimationDocumentation,
-        title: ExampleStrings.urlTitleGenericAnimationDocumentation,
-        linkTitle: "Generic Animation Documentation",
-    },
-];
+        exampleId: "Charts2DAnimationsGenericAnimation",
+        imagePath: "javascript-generic-animation.jpg",
+        description:
+            "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Generic Animation",
+                pageTitle: "JavaScript Generic Animation",
+                metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
+                title: "React Generic Animation",
+                pageTitle: "React Generic Animation",
+                metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Generic Animation",
+                pageTitle: "Angular Generic Animation",
+                metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Generic%20Animations.html",
+                title: "The specific page for the JavaScript Generic Animation documentation will help you to get started",
+                linkTitle: "Generic Animation Documentation",
+            },
+        ],
+        path: "generic-animation",
+        metaKeywords: "generic, animation, javascript",
+        onWebsite: true,
+        filepath: "Charts2D/Animations/GenericAnimation",
+        thumbnailImage: "javascript-generic-animation.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to run <strong>Generic Animation</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-export const genericAnimationExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleGenericAnimation,
-    pageTitle: ExampleStrings.titleGenericAnimation,
-    path: ExampleStrings.urlGenericAnimation,
-    filepath: "Charts2D/Animations/GenericAnimation",
-    subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
-    metaDescription: (frameworkName: string) => `Demonstrates how to run Generic Animation with JavaScript.`,
-    metaKeywords: "generic, animation, javascript",
-    thumbnailImage: exampleImage,
-};
+export const genericAnimationExampleInfo = createExampleInfo(metaData);

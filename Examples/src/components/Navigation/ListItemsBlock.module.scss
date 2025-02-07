@@ -2,6 +2,8 @@
 @import "./CommonListItemStyles.module.scss";
 
 .ListItemBlock {
+    color: var(--text);
+
     .MenuListItemText {
         flex: auto;
     }
@@ -27,16 +29,44 @@
     .ExampleLink {
         font-size: 0.875rem;
         line-height: 17px;
-        margin: 9px 0 10px 40px;
-        color: $font-color;
+        margin-left: 40px;
+        color: var(--text);
         text-decoration: none;
         pointer-events: none;
         cursor: default;
     }
 
     .CollapseArrowButton {
-        background-color: #f9fafa;
-        color: #98a4af;
+        background-color: var(--bg-darker);
+        color: var(--text);
         border-radius: 50%;
+        height: 24px;
+        width: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.ActiveParent {
+    // Styles for categories with an active child
+    background-color: rgba(0, 0, 0, 0.1); // Example style
+}
+
+.ActiveCategory {
+    // Styles for the exact category that matches mostVisibleCategory
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.05); // Example style
+}
+
+.ListItemBlock {
+    .CollapsibleMenuListItem {
+        // Base styles for menu items
+        transition: background-color 0.2s ease;
+
+        // Active parent category styling
+        &.ActiveParentCategory {
+            background-color: rgba(29, 100, 185, 0.2);
+        }
     }
 }

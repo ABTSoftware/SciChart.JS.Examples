@@ -11,8 +11,10 @@ import { TSciChart3D } from "scichart/types/TSciChart3D";
 import { appTheme } from "../theme";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 
-export default async function init3dChart(id: string) {
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(id, { theme: appTheme.SciChartJsTheme });
+export default async function init3dChart(rootELement: string | HTMLDivElement) {
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(rootELement, {
+        theme: appTheme.SciChartJsTheme,
+    });
 
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(300, 300, 300),
@@ -22,9 +24,9 @@ export default async function init3dChart(id: string) {
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
     sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
 
-    sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, { axisTitle: "X Axis" });
-    sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, { axisTitle: "Y Axis" });
-    sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, { axisTitle: "Z Axis" });
+    sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, { axisTitle: "X Axis", isVisible: false });
+    sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, { axisTitle: "Y Axis", isVisible: false });
+    sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, { axisTitle: "Z Axis", isVisible: false });
 
     const defaultPointMarker = new SpherePointMarker3D(wasmContext, { size: 10, fill: "#00FF00" });
     const series = new ScatterRenderableSeries3D(wasmContext, { pointMarker: defaultPointMarker });
@@ -47,7 +49,7 @@ export default async function init3dChart(id: string) {
     sciChart3DSurface.renderableSeries.add(seriesY);
     sciChart3DSurface.renderableSeries.add(seriesZ);
 
-    return sciChart3DSurface;
+    return { sciChartSurface: sciChart3DSurface };
 }
 // HELPER FUNCTIONS FOR DATA GENERATION
 function getData(wasmContext: TSciChart3D) {

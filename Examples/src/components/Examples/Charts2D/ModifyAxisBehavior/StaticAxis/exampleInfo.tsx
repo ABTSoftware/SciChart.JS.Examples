@@ -1,44 +1,57 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-static-axis.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const description = `Demonstrates a realtime chart where the ticks and gridlines are fixed, but the labels change.  
-This is achieved by setting the isStaticAxis property to true on the X axis.`;
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlStaticAxisDocumentation,
-        title: ExampleStrings.urlTitleStaticAxisDocumentation,
-        linkTitle: "Static Axis",
-    },
-];
+        exampleId: "Charts2DModifyAxisBehaviorStaticAxis",
+        imagePath: "javascript-static-axis.jpg",
+        description:
+            "Demonstrates a realtime **JavaScript static axis chart** - where the ticks and gridlines are fixed, but the labels change.\nWith SciChart.js High Performance JavaScript Charts you can achieve this simply by setting isStaticAxis property to true on the X axis.",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates a realtime **JavaScript static axis chart** - where the ticks and gridlines are fixed, but the labels change.\nWith SciChart.js High Performance JavaScript Charts you can achieve this simply by setting isStaticAxis property to true on the X axis.",
+                title: "JavaScript Chart with Static X Axis",
+                pageTitle: "JavaScript Chart with Static X Axis",
+                metaDescription: "Demonstrates isStaticAxis on a JavaScript Chart using SciChart.js.",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates a realtime **React static axis chart** - where the ticks and gridlines are fixed, but the labels change.\nWith SciChart.js High Performance JavaScript Charts you can achieve this simply by setting isStaticAxis property to true on the X axis.",
+                title: "React Chart with Static X Axis",
+                pageTitle: "React Chart with Static X Axis",
+                metaDescription: "Demonstrates isStaticAxis on a React Chart using SciChart.js.",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates a realtime **Angular static axis chart** - where the ticks and gridlines are fixed, but the labels change.\nWith SciChart.js High Performance JavaScript Charts you can achieve this simply by setting isStaticAxis property to true on the X axis.",
+                title: "Angular Chart with Static X Axis",
+                pageTitle: "Angular Chart with Static X Axis",
+                metaDescription: "Demonstrates isStaticAxis on a Angular Chart using SciChart.js.",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Static%20Axis.html",
+                title: "SciChart.js Static xAxis Documentation page",
+                linkTitle: "Static Axis",
+            },
+        ],
+        path: "static-x-axis",
+        metaKeywords: "multiple, axis, static, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/ModifyAxisBehavior/StaticAxis",
+        thumbnailImage: "javascript-static-axis.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates a realtime <strong>{frameworkName} static axis chart</strong> - where the ticks and gridlines are
-        fixed, but the labels change.
-        <br />
-        With SciChart.js High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>{" "}
-        you can achieve this simply by setting isStaticAxis property to true on the X axis.
-    </p>
-);
-
-export const staticAxisExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleStaticAxis,
-    pageTitle: ExampleStrings.titleStaticAxis,
-    path: ExampleStrings.urlStaticAxis,
-    filepath: "Charts2D/ModifyAxisBehavior/StaticAxis",
-    subtitle: Subtitle,
-    documentationLinks,
-    description,
-    metaDescription: (frameworkName: string) =>
-        `Demonstrates isStaticAxis on a ${frameworkName} Chart using SciChart.js.`,
-    metaKeywords: "multiple, axis, static, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-};
+export const staticAxisExampleInfo = createExampleInfo(metaData);

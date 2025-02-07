@@ -1,13 +1,13 @@
 import * as React from "react";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
-import { makeStyles } from "@material-ui/core/styles";
+import commonClasses from "../../../styles/Examples.module.scss";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { makeStyles } from "tss-react/mui";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { AxisBase2D, LogarithmicAxis, NumericAxis, SciChartSurface } from "scichart";
 import { drawExample } from "./drawExample";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -15,14 +15,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: "column",
         background: appTheme.DarkIndigo,
     },
-    toolbarRow: {
-        display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-        color: appTheme.ForegroundColor,
-    },
+
     chartArea: {
         flex: 1,
     },
@@ -31,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function LogarithmicAxisExample() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
 
     const [linearXAxis, setLinearXAxis] = React.useState<NumericAxis>();
     const [logXAxis, setLogXAxis] = React.useState<LogarithmicAxis>();
@@ -85,13 +78,14 @@ export default function LogarithmicAxisExample() {
         sciChartSurface.zoomExtents();
     };
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
-        <div className={classes.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.toolbarRow}>
+        <div className={commonClasses.ChartWrapper}>
+            <div className={classes.flexOuterContainer}>
+                <div className={commonClasses.ToolbarRow}>
                     <ToggleButtonGroup
+                        className={commonClasses.ToggleButtonGroup}
                         exclusive
                         value={preset}
                         onChange={handleToggleButtonChanged}
@@ -112,7 +106,7 @@ export default function LogarithmicAxisExample() {
                 </div>
                 <SciChartReact
                     initChart={drawExample}
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         const { sciChartSurface } = initResult;
                         sciChartSurfaceRef.current = sciChartSurface;

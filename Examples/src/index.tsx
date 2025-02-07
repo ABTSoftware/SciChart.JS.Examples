@@ -1,34 +1,36 @@
-import * as React from "react";
-import { ThemeProvider } from "@material-ui/core/styles";
-import { BrowserRouter } from "react-router-dom";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import { ThemeProvider } from "@mui/material/styles";
+import { BrowserRouter } from "react-router";
 import App from "./components/App";
 import { customTheme } from "./theme";
 import "./components/index.scss";
-// import { createRoot, hydrateRoot } from "react-dom/client";
-import { hydrate } from "react-dom";
+import { CacheProvider } from "@emotion/react";
+import createEmotionCache from "./createEmotionCache";
+import {
+    defaultSourceFilesVariant,
+    SourceFilesContext,
+} from "./components/AppDetailsRouters/SourceFilesLoading/SourceFilesContext";
+
+const cache = createEmotionCache();
 
 function Main() {
-    React.useEffect(() => {
-        const jssStyles = document.querySelector("#jss-server-side");
-        if (jssStyles) {
-            jssStyles.parentElement.removeChild(jssStyles);
-        }
-    }, []);
-
     return (
-        <ThemeProvider theme={customTheme}>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
-        </ThemeProvider>
+        <CacheProvider value={cache}>
+            <ThemeProvider theme={customTheme}>
+                <SourceFilesContext.Provider value={defaultSourceFilesVariant}>
+                    <BrowserRouter>
+                        <App />
+                    </BrowserRouter>
+                </SourceFilesContext.Provider>
+            </ThemeProvider>
+        </CacheProvider>
     );
 }
-hydrate(<Main />, document.querySelector("#react-root"));
 
-// TODO use with React 18
-// if (process.env.NODE_ENV === "production") {
-//     hydrateRoot(document.querySelector("#react-root"), <Main />);
-// } else {
-//     const root = createRoot(document.querySelector("#react-root"))
-//     root.render(<Main />);
-// }
+const rootElement = document.querySelector("#react-root");
+if (process.env.NODE_ENV === "production") {
+    hydrateRoot(rootElement, <Main />);
+} else {
+    const root = createRoot(rootElement);
+    root.render(<Main />);
+}

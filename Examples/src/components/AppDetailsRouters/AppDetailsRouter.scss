@@ -1,0 +1,602 @@
+@import "../../assets/main.scss";
+
+$drawerWidthDesktop: min(350px, 25vw);
+
+.frameworksection {
+    background-color: transparent;
+    margin-top: -4.2rem;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    font-family: "Arial";
+}
+
+.actionButton {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    @media only screen and (max-width: 768px) {
+        p {
+            display: none;
+        }
+    }
+}
+
+.DrawerDesktop {
+    position: sticky;
+    top: 110px;
+    order: -1;
+    background-color: var(--bg);
+    width: $drawerWidthDesktop;
+    max-height: calc(100vh - 128px);
+    margin-right: 15px;
+    flex-shrink: 0;
+    overflow-x: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    @include sm {
+        display: none;
+    }
+}
+
+.FrameworkList {
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .FrameworkListItem {
+        margin: 18px 0 -1px 0;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        position: relative;
+        border-radius: 17px 17px 0 0;
+        padding: 10px 14px 8px 10px;
+        cursor: pointer;
+        color: white;
+
+        &:hover {
+            color: #7593a4;
+        }
+
+        &.active {
+            background: rgb(229, 229, 229);
+            color: #7593a4;
+        }
+
+        a {
+            text-decoration: none;
+            font-family: "Arial";
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 30px;
+            letter-spacing: 0.02em;
+            color: #fff;
+            padding: 15px 0;
+
+            @media only screen and (max-width: 768px) {
+                line-height: 58px;
+            }
+        }
+    }
+}
+
+.mainWrapper {
+    display: flex;
+    padding: 20px;
+    background: var(--bg-darker);
+    @media only screen and (max-width: 768px) {
+        padding: 0;
+    }
+}
+
+.contentwrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 15px;
+    background: var(--bg);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    overflow: hidden;
+    width: 100%;
+
+    @media only screen and (max-width: 768px) {
+        max-width: 100vw;
+        border: none;
+        border-radius: 0 0 15px 15px;
+    }
+
+    .layoutButtons {
+        display: none;
+        margin-left: auto;
+
+        @media screen and (min-width: 1900px) {
+            display: flex;
+        }
+
+        height: 30px;
+        gap: 6px;
+
+        svg {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            fill: rgba(57, 98, 147, 0.5);
+        }
+
+        .active svg {
+            fill: rgb(57, 98, 147);
+        }
+    }
+}
+
+.contentwrapper .chartdescription {
+    padding: 0 0.25rem;
+}
+
+.contentwrapper .dynamicFlexWrapper {
+    position: relative;
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+
+    @media (min-width: 1900px) {
+        flex-direction: row;
+    }
+
+    &.maxWidth {
+        flex-direction: column;
+    }
+}
+
+.contentwrapper .dynamicFlexWrapper > * {
+    width: 100%;
+    height: 100%;
+    max-height: 80vh;
+    max-width: min(100vh, 100vw); // trick to keep chart into view
+    aspect-ratio: 1.5;
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 768px) {
+    .contentwrapper .dynamicFlexWrapper > * {
+        max-width: 100%;
+        aspect-ratio: 1/1.5;
+    }
+}
+
+.tabbtnwrap {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    gap: 10px;
+
+    .btnprimary,
+    .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        gap: 2px;
+        font-size: 14px;
+        font-family: "Arial";
+        line-height: 20px;
+        height: 35px;
+        min-width: 50px;
+        color: white;
+        text-decoration: none;
+        padding: 4px 8px 4px 6px;
+        transition: all 200ms linear;
+        cursor: pointer;
+    }
+
+    .btnprimary {
+        background: linear-gradient(90deg, #1aa2d5 15.5%, #35bfb7 100%);
+    }
+
+    .btnDark {
+        background-color: #212121;
+    }
+
+    .btnGithub {
+        background: var(--light-blue);
+    }
+
+    .btnNpm {
+        background: #cb3837;
+
+        svg {
+            width: 34px;
+            height: 34px;
+        }
+    }
+
+    .btnDocs {
+        background: var(--light-blue);
+    }
+
+    .btn:hover {
+        color: #ccc;
+    }
+
+    &.hiddenSmall {
+        @media only screen and (max-width: 1900px) {
+            display: none;
+        }
+    }
+
+    &.hiddenLarge {
+        @media screen and (min-width: 1900px) {
+            display: none;
+        }
+    }
+}
+
+.mobilehidden {
+    @media only screen and (max-width: 768px) {
+        display: none !important;
+    }
+}
+
+.desktophidden {
+    display: none !important;
+
+    @media only screen and (max-width: 768px) {
+        display: block !important;
+    }
+}
+
+.scichartcontainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: Arial;
+    line-height: 28.5px;
+    font-size: 19px;
+
+    .scichartinfo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(97.32deg, #150b3b 20.12%, #4a348f 68.86%, #b330aa 85.96%, #d86886 99.96%);
+        border-radius: 10px;
+        padding: 20px;
+        color: white;
+
+        p {
+            flex: 1;
+            margin-right: 20px; // Space between text and button
+        }
+
+        a {
+            color: blue;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .gettingstartedbtn {
+            padding: 10px 20px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: #ffdd67;
+            }
+        }
+    }
+
+    .scichartdescription {
+        margin-top: 20px;
+
+        p {
+            margin-bottom: 15px;
+
+            a {
+                color: #5514b4;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .documentationlinkscontainer {
+        margin-top: 30px;
+
+        h3 {
+            text-align: center;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 32px;
+            font-family: Arial;
+        }
+
+        .documentationlinks {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            background-color: #2d5a8c;
+            border-radius: 10px;
+            padding: 20px;
+
+            a {
+                display: block;
+                width: calc(50% - 10px);
+                background-color: #f3f4f6;
+                font-family: "Arial";
+                color: #2d5a8c;
+                padding: 15px;
+                margin-bottom: 10px;
+                text-align: center;
+                border-radius: 5px;
+                text-decoration: none;
+                transition: background-color 0.3s ease, color 0.3s ease;
+
+                &:hover {
+                    background-color: #e0e7ef;
+                    color: #1a1a1a;
+                }
+            }
+        }
+    }
+
+    .candlestickchartscontainer {
+        margin-top: 30px;
+        color: #1a1a1a;
+        font-family: "Arial";
+
+        h2 {
+            text-align: center;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+
+            a {
+                color: #5514b4;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        h3 {
+            margin-top: 30px;
+            color: #1a1a1a;
+            font-size: 1.5rem;
+        }
+
+        ul {
+            margin-top: 20px;
+            padding-left: 20px;
+            font-family: "Arial";
+            list-style: none;
+            list-style-type: disc !important;
+
+            li {
+                margin-bottom: 10px;
+                font-size: 1rem;
+                line-height: 1.5;
+                list-style-type: inherit;
+            }
+        }
+    }
+
+    .whyusescichart {
+        background: linear-gradient(97.32deg, #150b3b 20.12%, #4a348f 68.86%, #b330aa 85.96%, #d86886 99.96%);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+        font-family: "Arial";
+
+        h3 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .benefits {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            ul {
+                list-style-type: none;
+                padding: 0;
+
+                li {
+                    margin: 10px 0;
+                    display: flex;
+                    align-items: center;
+
+                    &::before {
+                        content: "●";
+                        color: white;
+                        margin-right: 10px;
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    .Questions {
+        h2 {
+            display: flex;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-family: "Arial";
+            font-size: 32px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+    }
+
+    .QuestionsBack {
+        border: 1px solid rgba(180, 208, 219, 1);
+        background: rgba(243, 247, 252, 1);
+        color: rgba(5, 10, 48, 1);
+        padding: 30px;
+        border-radius: 10px;
+        margin: 20px 0;
+        font-family: "Arial";
+
+        h3 {
+            color: rgba(5, 10, 48, 1);
+            font-weight: 600;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-family: "Arial";
+            line-height: 36px;
+        }
+    }
+
+    .newblockcontainer {
+        font-family: "Arial";
+        display: flex;
+        background: rgb(5, 10, 48);
+        border-radius: 20px;
+        overflow: hidden;
+
+        .imagecontainer {
+            flex: 1;
+
+            img {
+                max-width: 100%;
+                height: auto;
+                background: rgba(5, 10, 48, 1);
+            }
+        }
+
+        .buttoncontainer {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; // Align buttons vertically
+            gap: 10px; // Spacing between buttons
+
+            h3 {
+                display: flex;
+                align-items: center;
+                font-family: "Arial";
+                justify-content: center;
+                color: white;
+                font-weight: 600;
+                font-size: 32px;
+            }
+
+            button {
+                padding: 17px 5px;
+                background-color: #4a90e2;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                font-family: "Arial";
+                font-weight: 500;
+                width: 88%;
+                margin-left: 30px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #357abd;
+                }
+            }
+        }
+    }
+
+    .codecardscontainer {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+
+        .codecard {
+            width: 100%;
+            padding: 20px;
+            border: 1px solid rgba(180, 208, 219, 1);
+            background: rgba(255, 255, 255, 1);
+            border-radius: 8px;
+            text-align: center;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+            }
+
+            h4 {
+                margin-top: 10px;
+                font-size: 20px;
+                font-weight: bold;
+                font-family: Arial;
+                color: rgba(42, 99, 151, 1);
+                margin-bottom: 10px;
+            }
+
+            .viewsourcebutton {
+                margin-top: 10px;
+                padding: 15px 25px;
+                font-size: 16px;
+                font-family: "Arial";
+                width: 70%;
+                background: linear-gradient(90deg, #1aa2d5 15.5%, #35bfb7 100%);
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #0088cc;
+                }
+            }
+        }
+    }
+}

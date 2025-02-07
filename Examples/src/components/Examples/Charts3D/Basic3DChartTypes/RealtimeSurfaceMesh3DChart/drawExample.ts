@@ -114,13 +114,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         frame++;
     };
     updateFunc();
-    const startAnimation = () => {
+    const startUpdate = () => {
         frame = 0;
         timer = setInterval(updateFunc, 20);
     };
-    const stopAnimation = () => {
+    const stopUpdate = () => {
         clearInterval(timer);
     };
 
-    return { sciChartSurface: sciChart3DSurface, wasmContext, controls: { startAnimation, stopAnimation } };
+    return { sciChartSurface: sciChart3DSurface, wasmContext, controls: { startUpdate, stopUpdate } };
 };

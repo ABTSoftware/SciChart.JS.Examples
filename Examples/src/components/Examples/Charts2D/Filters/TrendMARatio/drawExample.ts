@@ -22,6 +22,9 @@ import {
     XyScaleOffsetFilter,
     ZoomExtentsModifier,
     ZoomPanModifier,
+    NativeTextAnnotation,
+    EWrapTo,
+    EMultiLineAlignment,
 } from "scichart";
 
 const RATIO_YAXIS_ID = "RatioYAxisId";
@@ -133,26 +136,26 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Add a title over the chart with information
     sciChartSurface.annotations.add(
-        new TextAnnotation({
-            x1: 0.5,
-            y1: 0,
-            yCoordShift: 20,
-            xCoordShift: -20,
+        new NativeTextAnnotation({
+            x1: 0.02,
+            y1: 0.02,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
             verticalAnchorPoint: EVerticalAnchorPoint.Top,
             fontSize: 18,
             opacity: 0.55,
             textColor: appTheme.ForegroundColor,
             text: "SciChart.js supports dynamic transforms like Moving Averages, Trendlines, Ratios",
+            wrapTo: EWrapTo.ViewRect,
+            multiLineAlignment: EMultiLineAlignment.Left,
         })
     );
 
     // Optional: add some chartmodifiers for interaction and to show the legend
     sciChartSurface.chartModifiers.add(
         new MouseWheelZoomModifier(),
-        new ZoomPanModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
         new ZoomExtentsModifier(),
         new LegendModifier({ placement: ELegendPlacement.BottomLeft, orientation: ELegendOrientation.Horizontal })
     );

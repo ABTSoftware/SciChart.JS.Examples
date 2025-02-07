@@ -1,5 +1,3 @@
-import * as React from "react";
-import classes from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { visualiseHitTestPoint } from "./visualizeHitTest";
 
@@ -53,7 +51,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     // add an event listener for mouse down. You can access the actual SciChartSurface canvas as
-    // follows, or find element by ID=divElementId in the dom
+    // follows
     sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent) => {
         // Translate the point to the series viewrect before hit-testing
         // Attention!

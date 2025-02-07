@@ -5,14 +5,16 @@ const {
   BoxAnnotation,
   ECoordinateMode,
   AnnotationHoverModifier,
-  EHoverMode
+  EHoverMode,
 } = SciChart;
 
 async function annotationHover(divElementId) {
-  const { wasmContext, sciChartSurface } =
-    await SciChartSurface.create(divElementId, {
+  const { wasmContext, sciChartSurface } = await SciChartSurface.create(
+    divElementId,
+    {
       theme: new SciChartJsNavyTheme(),
-    });
+    }
+  );
   sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
   // #region PrimaryExample
@@ -27,12 +29,12 @@ async function annotationHover(divElementId) {
     y1: 0.4,
     y2: 0.6,
     onHover: (args) => {
-      const { sender, mouseArgs, isHovered }= args;
+      const { sender, mouseArgs, isHovered } = args;
       if (mouseArgs && isHovered) {
         const relativeCoordinates = args.getRelativeCoordinates();
         console.log("The annotation is hovered at", relativeCoordinates);
       }
-    }
+    },
   });
   sciChartSurface.annotations.add(boxAnnotation);
   // Add AnnotationHoverModifier to enable hover behaviour
@@ -80,15 +82,13 @@ async function annotationHover(divElementId) {
 
 annotationHover("scichart-root");
 
-const {
-  chartBuilder,
-  EChart2DModifierType
-} = SciChart;
+const { chartBuilder, EChart2DModifierType } = SciChart;
 
 async function builderExample(divElementId) {
   // #region Example1WithBuilderAPI
-  const { wasmContext, sciChartSurface } =
-    await chartBuilder.build2DChart(divElementId, {
+  const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(
+    divElementId,
+    {
       surface: {
         theme: new SciChartJsNavyTheme(),
       },
@@ -150,7 +150,8 @@ async function builderExample(divElementId) {
           },
         },
       ],
-    });
+    }
+  );
   // #endregion
 
   return { sciChartSurface };

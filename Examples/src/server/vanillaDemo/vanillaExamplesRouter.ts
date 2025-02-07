@@ -1,7 +1,7 @@
 import * as path from "path";
 import * as fs from "fs";
+import express from "express";
 import { htmlTemplate } from "./vanillaExampleHtmlTemplate";
-import express = require("express");
 import { EXAMPLES_PAGES, TExamplePage } from "../../components/AppRouter/examplePages";
 
 export const vanillaExamplesRouter = express.Router();
@@ -55,8 +55,8 @@ vanillaExamplesRouter.get("/:example/:file", async (req, res) => {
             let styles = "";
             try {
                 const [htmlSetup, cssSetup] = await Promise.all([
-                    fs.promises.readFile(htmlPath, "utf8").catch(() => null),
-                    fs.promises.readFile(cssPath, "utf8").catch(() => null),
+                    fs.promises.readFile(htmlPath, "utf8").catch((): string => ""),
+                    fs.promises.readFile(cssPath, "utf8").catch((): string => ""),
                 ]);
 
                 body = htmlSetup;

@@ -252,3 +252,37 @@ export class ExampleDataProvider {
         return { xValues, openValues, highValues, lowValues, closeValues, volumeValues };
     };
 }
+
+export const fetchMultiPaneData = () => {
+    if (typeof window !== "undefined") {
+        return fetch("/api/multiPaneData").then((response) => response.json()) as Promise<IOhlcvValues>;
+    }
+
+    return Promise.resolve({} as IOhlcvValues);
+};
+
+export type TPopulationMetadata = {
+    country: string;
+    color: string;
+    vertexColor: number;
+    pointScale: number;
+};
+
+export type TMappedPopulationData = {
+    population: number[];
+    lifeExpectancy: number[];
+    gdpPerCapita: number[];
+    year: number[];
+    metadata: TPopulationMetadata[];
+};
+
+// TODO link to data source file
+export const fetchPopulationDataData = async (): Promise<TMappedPopulationData> => {
+    const response = await fetch("/api/populationData");
+
+    if (!response.ok) {
+        throw new Error("Population data request unsuccessful!");
+    }
+
+    return response.json();
+};

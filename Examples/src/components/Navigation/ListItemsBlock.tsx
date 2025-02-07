@@ -1,13 +1,12 @@
-import { FC, Fragment, useContext } from "react";
-import Collapse from "@material-ui/core/Collapse";
-import List from "@material-ui/core/List";
+import { FC, Fragment, useContext, useEffect, useRef } from "react";
+import Collapse from "@mui/material/Collapse";
+import List from "@mui/material/List";
 import { TMenuItem } from "../AppRouter/examples";
-import { useMatch } from "react-router-dom";
 import MenuListItemText from "../../helpers/shared/MenuListItemText/MenuListItemText";
 import classes from "./ListItemsBlock.module.scss";
 import ListItemCollapseArrowIcon from "./ListItemCollapseArrowIcon";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import { getTitle, useExampleRouteParams } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { getFrameworkContent, useExampleRouteParams } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TProps = {
     onExpandClick: (id: string) => void;
@@ -16,59 +15,108 @@ type TProps = {
     title: string;
     menuItems: TMenuItem[];
     menuItemsId: string;
+    mostVisibleCategory?: string;
 };
 
 const ListItemsBlock: FC<TProps> = (props) => {
-    const framework = useContext(FrameworkContext);
-    const match = useExampleRouteParams();
     const selectedFramework = useContext(FrameworkContext);
-    const { onExpandClick, checkIsOpened, historyPushPath, title, menuItems, menuItemsId } = props;
+    const match = useExampleRouteParams();
+    const { onExpandClick, checkIsOpened, historyPushPath, title, menuItems, menuItemsId, mostVisibleCategory } = props;
+    
+    const containerRef = useRef<HTMLDivElement>(null);
+    const categoryElements = useRef(new Map<string, HTMLElement>());
+
+    // Register category elements
+    const registerCategoryElement = (id: string | null, element: HTMLElement | null) => {
+        if (element && id) {
+            categoryElements.current.set(id, element);
+        }
+    };
+
+    // Scroll to most visible category
+    useEffect(() => {
+        if (mostVisibleCategory && containerRef.current) {
+            setTimeout(() => {
+                const element = categoryElements.current.get(mostVisibleCategory);
+                if (element) {
+                    if(mostVisibleCategory === "featuredApps_performanceDemos") {
+                        containerRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
+                    } else {
+                        element.scrollIntoView({ block: "nearest", behavior: "smooth" });
+                    }
+                }
+            }, 10); // Allow for expansion animations
+        }
+    }, [mostVisibleCategory]);
+
+    useEffect(() => {
+        if (mostVisibleCategory) {
+            const activeMenuItem = menuItems.find((item) =>
+                item.submenu.some((subItem) => subItem.id === mostVisibleCategory)
+            );
+
+            if (activeMenuItem) {
+                onExpandClick(activeMenuItem.id);
+                onExpandClick(menuItemsId);
+            }
+        }
+    }, [mostVisibleCategory, menuItems, onExpandClick, menuItemsId]);
+
+    const isItemActive = (itemId: string): boolean => {
+        return match?.currentExample?.id === itemId;
+    };
 
     return (
-        <div className={classes.ListItemBlock}>
+        <div className={classes.ListItemBlock} ref={containerRef}>
             <div onClick={() => onExpandClick(menuItemsId)} className={classes.CollapsibleMenuListItem}>
                 <MenuListItemText text={title} className={classes.MenuListItemText} />
-                <ListItemCollapseArrowIcon
-                    className={classes.CollapseArrowButton}
-                    isCollapseOpened={checkIsOpened(menuItemsId)}
-                />
             </div>
-            <Collapse in={checkIsOpened(menuItemsId)} timeout="auto" unmountOnExit>
+            <Collapse in={true} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     {menuItems.map((el) => (
-                        <Fragment key={el.item.id}>
-                            <div className={classes.CollapsibleMenuListItem} onClick={() => onExpandClick(el.item.id)}>
-                                <MenuListItemText text={el.item.name} className={classes.SecondLevelMenuListItemText} />
+                        <Fragment key={el.id}>
+                            {/* Parent category element */}
+                            <div
+                                ref={(elem) => registerCategoryElement(el.id, elem)}
+                                className={`${classes.CollapsibleMenuListItem} ${
+                                    el.id === mostVisibleCategory ? classes.ActiveParentCategory : ""
+                                }`}
+                                onClick={() => onExpandClick(el.id)}
+                                data-category-id={el.id}
+                            >
+                                <MenuListItemText text={el.title} className={classes.SecondLevelMenuListItemText} />
                                 <ListItemCollapseArrowIcon
                                     className={classes.CollapseArrowButton}
-                                    isCollapseOpened={checkIsOpened(el.item.id)}
+                                    isCollapseOpened={
+                                        el.submenu.some((subItem) => isItemActive(subItem.id)) || !checkIsOpened(el.id)
+                                    }
                                 />
-                                {/*{isOpened[el.item.id] ? <ExpandLess /> : <ExpandMore />}*/}
                             </div>
-                            <Collapse in={checkIsOpened(el.item.id)} timeout="auto" unmountOnExit>
+                            <Collapse
+                                in={el.submenu.some((subItem) => isItemActive(subItem.id)) || !checkIsOpened(el.id)}
+                                timeout="auto"
+                                unmountOnExit
+                            >
                                 <List component="div" disablePadding>
                                     {el.submenu.map((subEl) => (
                                         <div
                                             key={subEl.id}
-                                            className={
-                                                match?.currentExample?.path === subEl.path
+                                            ref={(elem) => registerCategoryElement(subEl.id, elem)}
+                                            className={`${
+                                                isItemActive(subEl.id)
                                                     ? classes.SelectedBottomLevelListItem
                                                     : classes.BottomLevelListItem
-                                            }
+                                            } ${subEl.id === mostVisibleCategory ? classes.MostVisible : ""}`}
                                             onClick={() => historyPushPath(`${selectedFramework}/${subEl.path}`)}
+                                            data-category-id={subEl.id}
                                         >
                                             <a
                                                 className={classes.ExampleLink}
                                                 href={`${selectedFramework}/${subEl.path}`}
-                                                title={getTitle(subEl.title, selectedFramework)}
+                                                title={getFrameworkContent(subEl.title, selectedFramework)}
                                             >
-                                                {getTitle(subEl.title, selectedFramework)}
+                                                {getFrameworkContent(subEl.title, selectedFramework)}
                                             </a>
-                                            {/*<ListItemText*/}
-                                            {/*    className={classes.listItemText2}*/}
-                                            {/*    primary={subEl.title}*/}
-                                            {/*    primaryTypographyProps={{ variant: "body2" }}*/}
-                                            {/*/>*/}
                                         </div>
                                     ))}
                                 </List>

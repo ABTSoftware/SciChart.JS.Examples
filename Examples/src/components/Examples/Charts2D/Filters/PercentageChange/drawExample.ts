@@ -46,7 +46,7 @@ const getScaleValue = (dataSeries: XyDataSeries, zeroXValue: number) => {
 class TransformedSeries extends FastLineRenderableSeries {
     public originalSeries: XyDataSeries;
 
-    public getSeriesInfo(hitTestInfo: HitTestInfo): SeriesInfo {
+    public override getSeriesInfo(hitTestInfo: HitTestInfo): SeriesInfo {
         const info = new XySeriesInfo(this, hitTestInfo);
         if (this.originalSeries && info.dataSeriesIndex !== undefined) {
             info.yValue = this.originalSeries.getNativeYValues().get(info.dataSeriesIndex);
@@ -116,7 +116,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement, usePerce
         lineSeries2.dataSeries = dataSeries2;
     }
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new RolloverModifier({ rolloverLineStroke: appTheme.VividTeal }));
 

@@ -2,14 +2,16 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { getColor } from "../utils";
+import { getColor } from "../chartUtils";
 import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import { TSciChart } from "scichart/types/TSciChart";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { appTheme } from "../../theme";
 
-export default async function init2dEightChart(id: string) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme: appTheme.SciChartJsTheme });
+export default async function init2dEightChart(rootELement: string | HTMLDivElement) {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootELement, {
+        theme: appTheme.SciChartJsTheme,
+    });
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, { visibleRange: new NumberRange(-1.5, 3.5), isVisible: false })
     );
@@ -26,7 +28,7 @@ export default async function init2dEightChart(id: string) {
     sciChartSurface.renderableSeries.add(scatterSeriesB);
     sciChartSurface.renderableSeries.add(scatterSeriesR);
 
-    return sciChartSurface;
+    return { sciChartSurface };
 }
 
 function generateData(wasmContext: TSciChart, color: string, xValues: number[], yValues: []) {

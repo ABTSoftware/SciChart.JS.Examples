@@ -1,6 +1,6 @@
 import { appTheme } from "../../../theme";
 
-import { TSciChart } from "scichart";
+import { EWrapTo, NativeTextAnnotation, TSciChart } from "scichart";
 
 import {
     EAxisAlignment,
@@ -34,7 +34,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Add title annotation
     sciChartSurface.annotations.add(
-        new TextAnnotation({
+        new NativeTextAnnotation({
             text: "Vertically Stacked Axis: Custom layout of axis to allow traces to overlap. Useful for ECG charts",
             fontSize: 16,
             textColor: appTheme.ForegroundColor,
@@ -44,6 +44,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
+            wrapTo: EWrapTo.ViewRect,
         })
     );
 

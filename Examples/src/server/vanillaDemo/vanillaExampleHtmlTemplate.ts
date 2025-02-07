@@ -1,9 +1,9 @@
 import { EXAMPLES_PAGES, TExamplePage } from "../../components/AppRouter/examplePages";
-import { EPageFramework, getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { EPageFramework, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 const generateLinkToVanillaExample = (entry: TExamplePage) => {
     const link = `/vanillaDemo/${entry.path}/index.html?nav=1`;
-    return `<li><a href="${link}">${getTitle(entry.title, EPageFramework.Vanilla)}</a>`;
+    return `<li><a href="${link}">${getFrameworkContent(entry.title, EPageFramework.Vanilla)}</a>`;
 };
 
 const generateNav = () => {

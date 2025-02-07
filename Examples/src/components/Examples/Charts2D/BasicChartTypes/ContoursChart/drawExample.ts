@@ -20,8 +20,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     // Create an X & Y Axis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
 
     const heatmapWidth = 300;
     const heatmapHeight = 200;
@@ -74,7 +74,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
 
     // Add interaction
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
@@ -89,8 +89,13 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
             loadingAnimationBackground: appTheme.DarkIndigo + "BB",
         },
         yAxisOptions: {
+            isInnerAxis: true,
+            labelStyle: {
+                fontSize: 12,
+                color: appTheme.ForegroundColor,
+            },
             axisBorder: {
-                borderLeft: 1,
+                borderRight: 1,
                 color: appTheme.ForegroundColor + "77",
             },
             majorTickLineStyle: {

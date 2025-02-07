@@ -11,35 +11,55 @@ async function simpleColumnChart(divElementId) {
     NumberRange,
     EXyDirection,
     MouseWheelZoomModifier,
-    ZoomExtentsModifier
+    ZoomExtentsModifier,
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
 
-  const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+  const { wasmContext, sciChartSurface } = await SciChartSurface.create(
+    divElementId,
+    {
       theme: new SciChartJsNavyTheme(),
       title: "Column Chart with DataPointWidthModes",
-      titleStyle: { fontSize: 20, color: "white" }
+      titleStyle: { fontSize: 20, color: "white" },
     }
   );
 
   const options = {
     axisTitleStyle: { fontSize: 16, color: "white" },
-    growBy: new NumberRange(0, 0.1)
+    growBy: new NumberRange(0, 0.1),
   };
   sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { axisTitle: "Absolute (8px)", id: "Absolute", ...options }));
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { axisTitle: "Range (8units)", id: "Range", ...options }));
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { axisTitle: "Relative (80%)", id: "Relative", ...options }));
+  sciChartSurface.yAxes.add(
+    new NumericAxis(wasmContext, {
+      axisTitle: "Absolute (8px)",
+      id: "Absolute",
+      ...options,
+    })
+  );
+  sciChartSurface.yAxes.add(
+    new NumericAxis(wasmContext, {
+      axisTitle: "Range (8units)",
+      id: "Range",
+      ...options,
+    })
+  );
+  sciChartSurface.yAxes.add(
+    new NumericAxis(wasmContext, {
+      axisTitle: "Relative (80%)",
+      id: "Relative",
+      ...options,
+    })
+  );
 
-  sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy
-    = new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
+  sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy =
+    new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
 
   // To make it clearer what's happening, colour the axis backgrounds & borders
   const axisColors = ["#50C7E0", "#EC0F6C", "#30BC9A"];
   sciChartSurface.yAxes.asArray().forEach((yAxis, index) => {
     yAxis.backgroundColor = axisColors[index] + "22";
-    yAxis.axisBorder = {color: axisColors[index], borderLeft: 1};
+    yAxis.axisBorder = { color: axisColors[index], borderLeft: 1 };
   });
 
   // #region ExampleA
@@ -60,7 +80,7 @@ async function simpleColumnChart(divElementId) {
     dataPointWidthMode: EDataPointWidthMode.Absolute,
     // When dataPointWidthMode=Absolute, this is the width of each column in pixels
     dataPointWidth: 8,
-    dataSeries
+    dataSeries,
   });
   const columnSeries1 = new FastColumnRenderableSeries(wasmContext, {
     fill: "#EC0F6C77",
@@ -70,7 +90,7 @@ async function simpleColumnChart(divElementId) {
     dataPointWidthMode: EDataPointWidthMode.Range,
     // When dataPointWidthMode=Range, this is the width of each column in range units
     dataPointWidth: 8,
-    dataSeries
+    dataSeries,
   });
   const columnSeries2 = new FastColumnRenderableSeries(wasmContext, {
     fill: "#30BC9A77",
@@ -80,7 +100,7 @@ async function simpleColumnChart(divElementId) {
     dataPointWidthMode: EDataPointWidthMode.Relative,
     // When dataPointWidthMode=Range, this is the width of each column in relative units of available space
     dataPointWidth: 0.8,
-    dataSeries
+    dataSeries,
   });
   sciChartSurface.renderableSeries.add(columnSeries0);
   sciChartSurface.renderableSeries.add(columnSeries1);

@@ -21,18 +21,28 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
             <meta name="twitter:site" content="@scichart">
             ${helmet.title.toString()}
             ${helmet.meta.toString()}
+
             <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v29/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2" as="font" type="font/woff2" crossorigin>
+            <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v29/JTUQjIg1_i6t8kCHKm459WxRyS7m.woff2" as="font" type="font/woff2" crossorigin>
+
             <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,600;0,700;1,100;1,400;1,600;1,700&display=swap" rel="stylesheet">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism-okaidia.min.css" />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.css" />
+            <!--
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism-okaidia.min.css" />
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.css" />
+            -->
             <link rel="stylesheet" href="style.css" />
 
-            <style id="jss-server-side">${css}</style>
+            <meta name="emotion-insertion-point" content="" />
+            ${css}
 
-            <script async type="text/javascript" src="bundle.js"></script>
-
+            <script async fetchpriority="high" type="text/javascript" src="bundle.js"></script>
+            <link rel="preload" href="scichart2d.wasm" as="fetch" crossorigin="anonymous" />
+            <link rel="preload" href="scichart2d.data" as="fetch" crossorigin="anonymous" />
+            <link rel="preload" href="scichart3d.wasm" as="fetch" crossorigin="anonymous" />
+            <link rel="preload" href="scichart3d.data" as="fetch" crossorigin="anonymous" />
         </head>
         <body ${helmet.bodyAttributes.toString()} style="margin: 0;">
             <!-- Display a message if JS has been disabled on the browser. -->
@@ -48,12 +58,14 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
             <!-- App -->
             <div id="react-root">${html}</div>
 
+            <!-- 
             <script>
                 window.Prism = window.Prism || {};
                 Prism.manual = true;
             </script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+            -->
 
             <!-- Activecampaign -->
             <script type="text/javascript">

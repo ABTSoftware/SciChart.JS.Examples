@@ -1,10 +1,7 @@
 // api.js - api route module
 // tslint:disable: no-console
-import express = require("express");
-import path = require("path");
-import fs = require("fs");
-import { Request, Response } from "express";
-import { TBinanceCandleData } from "../commonTypes/TBinanceCandleData";
+import express from "express";
+import { TBinanceCandleData } from "../components/Examples/TBinanceCandleData";
 import { candlesADAUSDT } from "./BinanceData/candlesADAUSDT";
 import { candlesBTCUSDT } from "./BinanceData/candlesBTCUSDT";
 import { candlesDOGEUSDT } from "./BinanceData/candlesDOGEUSDT";
@@ -12,7 +9,11 @@ import { candlesETHUSDT } from "./BinanceData/candlesETHUSDT";
 import { candlesXRPUSDT } from "./BinanceData/candlesXRPUSDT";
 import { tq3080_DSM_2M } from "./Data/tq3080_DSM_2M";
 import { TweetData } from "./Data/tweetData";
+import { mappedPopulationData } from "./Data/populationData";
 import { TBinanceQueryParams } from "./types/TBinanceQueryParams";
+import { getSandboxUrlEndpoint } from "./renderCodeSandboxRedirect";
+import { getStackblitzFiles } from "./services/stackblitz/getStackblitzFiles";
+import { multiPaneData } from "./Data/multiPaneData";
 
 const router = express.Router();
 
@@ -90,5 +91,21 @@ router.get("/get-binance-candles", (req, res) => {
     }
     res.send(data);
 });
+
+router.get("/multiPaneData", (req, res) => {
+    res.send(multiPaneData);
+});
+
+router.get("/populationData", (req, res) => {
+    res.send(mappedPopulationData);
+});
+
+// example is the name framework and platform is in the query
+router.get("/sandboxurl/:example", (req, res) => {
+    return getSandboxUrlEndpoint(req, res);
+});
+
+// Get files for StackBlitz
+router.get("/stackblitz/files/:example", getStackblitzFiles);
 
 export { router as api };

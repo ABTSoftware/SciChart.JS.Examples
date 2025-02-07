@@ -1,5 +1,5 @@
-import * as React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { memo, ReactNode, useContext } from "react";
+import { Routes, Route, Navigate, useSearchParams } from "react-router";
 import PageHome from "../PageHome/PageHome";
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import ExamplesRoot from "../Examples/ExamplesRoot";
@@ -7,9 +7,9 @@ import { getExampleComponent } from "./examples";
 import classes from "../Examples/styles/Examples.module.scss";
 import { GalleryItem } from "../../helpers/types/types";
 import NoIndexTag from "../SeoTags/NoIndexTag";
-import { InfoToolbar } from "../Examples/Toolbar";
+// import { InfoToolbar } from "../Examples/Toolbar";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import { useContext } from "react";
+import ChartControlWrapper from "./ChartControlWrapper";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -19,14 +19,7 @@ type TProps = {
 
 const examplePagesKeys = Object.keys(EXAMPLES_PAGES);
 
-const ExampleComponent = React.memo((props: { children: React.ReactNode; examplePage: TExamplePage }) => {
-    return (
-        <>
-            <InfoToolbar examplePage={props.examplePage} />
-            {props.children}
-        </>
-    );
-});
+const ExampleComponent = memo(ChartControlWrapper);
 
 export default function AppRouter(props: TProps) {
     const { currentExample, seeAlso, isIFrame = false } = props;
@@ -36,7 +29,7 @@ export default function AppRouter(props: TProps) {
         const ChartComponent = getExampleComponent(currentExample.id);
 
         return (
-            <div className={classes.ExampleWrapperIFrame}>
+            <div className={`${classes.ExampleWrapperIFrame} AnExampleContainer`}>
                 <NoIndexTag />
                 <Routes>
                     {examplePagesKeys.map((key) => {

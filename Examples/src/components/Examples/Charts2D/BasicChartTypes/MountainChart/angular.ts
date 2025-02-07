@@ -1,15 +1,12 @@
 import { Component } from "@angular/core";
-import { SciChartSurface, SciChart3DSurface } from "scichart";
-
-// @ts-ignore
+import { ScichartAngularComponent } from "scichart-angular";
 import { drawExample } from "./drawExample";
 
-SciChartSurface.loadWasmFromCDN();
-SciChart3DSurface.loadWasmFromCDN();
-
 @Component({
+    standalone: true,
     selector: "app-root",
-    templateUrl: "./app.component.html",
+    imports: [ScichartAngularComponent],
+    template: `<scichart-angular [initChart]="drawExample"></scichart-angular>`,
 })
 export class AppComponent {
     title = "scichart-angular-app";

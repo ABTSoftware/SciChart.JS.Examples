@@ -17,10 +17,7 @@ const SeoTags: FC<TProps> = (props) => {
     const framework = useContext(FrameworkContext);
     const { title, keywords, description, image, url } = props;
     const exampleUrl = `${baseUrl}/${url}`;
-    const canonical =
-        framework === EPageFramework.Vanilla ? (
-            <link rel="canonical" href={`https://www.scichart.com/example/javascript-chart/javscript-${url}/`} />
-        ) : null;
+
     return (
         <Helmet>
             <title>{`${title}`}</title>
@@ -35,7 +32,6 @@ const SeoTags: FC<TProps> = (props) => {
             <meta name="twitter:image:alt" content={title} />
             <meta name="twitter:domain" content={baseUrl} />
             <meta property="twitter:url" content={exampleUrl} />
-            {canonical}
         </Helmet>
     );
 };

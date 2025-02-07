@@ -1,13 +1,12 @@
-import { FC, useContext, useState, useEffect, ChangeEvent } from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import CodeIcon from "@material-ui/icons/Code";
-import BookIcon from "@material-ui/icons/Book";
-import { makeStyles } from "@material-ui/core/styles";
+import { FC, useContext, useState } from "react";
+import AppBar from "@mui/material/AppBar";
+import Button from "@mui/material/Button";
+import Toolbar from "@mui/material/Toolbar";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import BookIcon from "@mui/icons-material/Book";
+import MenuIcon from "@mui/icons-material/Menu";
+import Chip from "@mui/material/Chip";
+import Box from "@mui/material/Box";
 import Search from "../Search/Search";
 import classes from "./AppTopBar.module.scss";
 import Logo from "../../images/scichart-logo-app-bar.svg";
@@ -15,58 +14,30 @@ import LogoSmall from "../../images/scichart-logo-app-bar-mobile.svg";
 import { TExamplePage } from "../AppRouter/examplePages";
 import npm from "./npm.svg";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import { getTitle, EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { FormControl, InputLabel, MenuItem, Select, Tooltip } from "@material-ui/core";
-import { useNavigate } from "react-router-dom";
-import { appTheme } from "../Examples/theme";
+import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { libraryVersion } from "scichart";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { Theme } from "@mui/material";
+import { ETheme } from "../../helpers/types/types";
 
 type TProps = {
     toggleDrawer: () => void;
     currentExample?: TExamplePage;
+    theme: ETheme;
+    setTheme: (theme: ETheme) => void;
 };
 
-const useStyles = makeStyles((theme) => ({
-    formControl: {
-        minWidth: 200,
-        width: 200,
-        marginLeft: 10,
-    },
-    select: {
-        color: "#97a0a8",
-        background: "#030723",
-        width: 200,
-        paddingLeft: 10,
-        "&.Mui-focused": {
-            color: "#4a545b",
-        },
-        "&:hover": {
-            background: "#4a545b",
-            color: appTheme.ForegroundColor,
-        },
-    },
-    label: {
-        paddingLeft: 10,
-
-        color: appTheme.ForegroundColor,
-        "&.Mui-focused": {
-            color: appTheme.ForegroundColor,
-        },
-    },
-    selectIcon: {
-        color: appTheme.ForegroundColor,
-    },
-    "MuiSelect-nativeInput": {
-        width: "100%",
-    },
-}));
-
 const AppBarTop: FC<TProps> = (props) => {
-    const { toggleDrawer, currentExample } = props;
-    const [isMobile, setIsMobile] = useState(false);
-    const [availableFrameworks, setAvailableFrameworks] = useState<EPageFramework[]>([EPageFramework.React]);
+    const { toggleDrawer, currentExample, theme, setTheme } = props;
     const selectedFramework = useContext(FrameworkContext);
-    const navigate = useNavigate();
-    const localClasses = useStyles();
+
+    function toggleTheme(){
+        const newTheme = (theme == ETheme.dark ? ETheme.light : ETheme.dark);
+        document.documentElement.setAttribute('data-theme', newTheme );
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', getComputedStyle(document.documentElement).getPropertyValue('--bg'));
+        setTheme(newTheme);
+    }
+
     const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
     const contextualGithub =
         currentExample?.filepath !== undefined
@@ -74,7 +45,7 @@ const AppBarTop: FC<TProps> = (props) => {
             : "https://github.com/ABTSoftware/SciChart.JS.Examples";
     const contextualGithubTitle =
         currentExample !== undefined
-            ? `View source for ${getTitle(currentExample.title, selectedFramework)} on Github`
+            ? `View source for ${getFrameworkContent(currentExample.title, selectedFramework)} on Github`
             : "Clone SciChart.js.examples on GitHub";
     const docLinks = currentExample?.documentationLinks;
     const contextualDocUrl =
@@ -84,135 +55,95 @@ const AppBarTop: FC<TProps> = (props) => {
     const contextualDocTitle =
         docLinks !== undefined && docLinks.length > 0 ? docLinks[0].title : "SciChart.js Documentation Home";
 
-    useEffect(() => {
-        setIsMobile(window.innerWidth <= 768);
-    }, []);
-
-    type TAvailableFrameworkVariants = {
-        [key in EPageFramework]: string;
-    };
-    useEffect(() => {
-        const fetchAvailableVariants = async (example: TExamplePage): Promise<TAvailableFrameworkVariants> => {
-            const variantsUrl = `services/variants/${example.path}?framework=${selectedFramework}`;
-            const response = await fetch(variantsUrl);
-            const data = (await response.json()) as TAvailableFrameworkVariants;
-            return data;
-        };
-
-        if (currentExample) {
-            fetchAvailableVariants(currentExample).then((variants) => {
-                const frameworks = Object.keys(variants).filter((key) => variants[key as EPageFramework]);
-                setAvailableFrameworks([...(frameworks as EPageFramework[]), EPageFramework.React]);
-            });
-        }
-    }, [currentExample]);
-
-    const isFrameworkVariantAvailable = availableFrameworks?.includes(selectedFramework);
-
-    const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
-        if (currentExample) {
-            navigate(`/${event.target.value as EPageFramework}/${currentExample.path}`);
-        } else {
-            navigate(`/${event.target.value as EPageFramework}`);
-        }
-    };
-
-    const codeSandboxButton = currentExample ? (
-        <Button
-            //disabled={!isFrameworkVariantAvailable}
-            rel="nofollow external"
-            // className={
-            //     isFrameworkVariantAvailable ? classes.PurpleButton : `${classes.PurpleButton} ${classes.DisabledButton}`
-            // }
-            className={classes.PurpleButton}
-            href={`codesandbox/${currentExample.path}?codesandbox=1&framework=${
-                isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React
-            }`}
-            title={
-                isFrameworkVariantAvailable
-                    ? `Edit ${getTitle(currentExample.title, selectedFramework)} in CodeSandbox`
-                    : `Sorry, we have not got ${FRAMEWORK_NAME[selectedFramework]} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
-            }
-            target="_blank"
-        >
-            <CodeIcon fontSize="small" /> &nbsp;Code Sandbox
-        </Button>
-    ) : null;
+    const isMd = useMediaQuery((theme: Theme) => theme.breakpoints.down("md")); // Medium view
 
     return (
         <AppBar position="sticky" className={classes.AppBar}>
-            <Toolbar className={classes.ToolBar}>
-                <a href="https://demo.scichart.com/" title="SciChart Demo">
-                    {isMobile ? (
-                        <img className={classes.Logo} src={LogoSmall} alt="scichart-logo" />
+            <Toolbar className={classes.ToolBar} disableGutters>
+                <a className={classes.Logo} href="https://demo.scichart.com/" title="SciChart Demo">
+                    {typeof window !== "undefined" && window?.innerWidth <= 768 ? (
+                        <img className={classes.LogoSmall} src={LogoSmall} alt="scichart-logo" />
                     ) : (
-                        <img className={classes.Logo} src={Logo} alt="scichart-logo" />
+                        <img className={classes.LogoDefault} src={Logo} alt="scichart-logo" />
                     )}
                 </a>
-                <Search />
-                <div className={classes.FlexPlaceholder}></div>
-                {!isMobile ? (
-                    <FormControl className={localClasses.formControl}>
-                        <InputLabel id="framework-select-label" className={localClasses.label}>
-                            Framework
-                        </InputLabel>
+                <Box className={classes.ToolBarMenu}>
+                    {isMd ? null : (
+                        <>
+                            <a
+                                href="https://www.scichart.com/documentation/js/current/typedoc/index.html"
+                                title="SciChart.js TypeDoc"
+                                target="_blank"
+                            >
+                                <Chip  
+                                    className={classes.versionChip}
+                                    sx={{
+                                        background:
+                                            "linear-gradient(45deg, rgb(42, 99, 151), rgb(113, 55, 149), rgb(160, 36, 142))",
+                                        color: "white",
+                                        fontWeight: 600,
+                                    }}
+                                    label={`v${libraryVersion}`}
+                                    variant="outlined"
+                                />
+                            </a>
 
-                        <Select
-                            inputProps={{ MenuProps: { disableScrollLock: true } }}
-                            labelId="framework-select-label"
-                            id="demo-simple-select"
-                            className={localClasses.select}
-                            classes={{ icon: localClasses.selectIcon }}
-                            value={selectedFramework}
-                            label={FRAMEWORK_NAME[selectedFramework]}
-                            onChange={handleChange}
-                        >
-                            <MenuItem value={EPageFramework.Vanilla}>{FRAMEWORK_NAME[EPageFramework.Vanilla]}</MenuItem>
-                            <MenuItem value={EPageFramework.React}>{FRAMEWORK_NAME[EPageFramework.React]}</MenuItem>
-                            {/* <MenuItem value={EPageFramework.Angular}>{FRAMEWORK_NAME[EPageFramework.Angular]}</MenuItem> */}
-                            {/* <MenuItem value={EPageFramework.Vue}>{FRAMEWORK_NAME[EPageFramework.Vue]}</MenuItem> */}
-                        </Select>
-                    </FormControl>
-                ) : null}
+                            <Search />
+                        </>
+                    )}
+                    <div className={classes.FlexPlaceholder}></div>
+                    <Button 
+                        onClick={toggleTheme} 
+                        className={classes.ThemeButton} aria-label="toggle theme"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor">
+                            {theme == ETheme.dark ? 
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                                : 
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+                            }
+                        </svg>
+                    </Button>
 
-                <Button
-                    className={classes.BlueButton}
-                    href="https://www.scichart.com/getting-started/scichart-javascript/"
-                    target="_blank"
-                    title="Get a FREE Community license"
-                >
-                    Get it FREE
-                </Button>
-                <Button
-                    className={classes.PurpleButton}
-                    href={contextualDocUrl}
-                    title={contextualDocTitle}
-                    target="_blank"
-                >
-                    <BookIcon fontSize="small" />
-                    &nbsp;Docs
-                </Button>
-                {codeSandboxButton}
-                <a className={classes.GitHubLink} href={contextualGithub} title={contextualGithubTitle} target="_blank">
-                    <GitHubIcon fontSize="small" />
-                </a>
-                <a
-                    className={classes.NpmLink}
-                    href="https://www.npmjs.com/package/scichart"
-                    title="npmjs / SciChart"
-                    target="_blank"
-                >
-                    <img src={npm} alt="Npm Logo" width={32} height={32} />
-                </a>
-                <IconButton
-                    onClick={toggleDrawer}
-                    edge="start"
-                    className={classes.MenuButton}
-                    color="inherit"
-                    aria-label="menu"
-                >
-                    <MenuIcon />
-                </IconButton>
+                    <Button
+                        className={classes.BlueButton}
+                        href="https://www.scichart.com/getting-started/scichart-javascript/"
+                        target="_blank"
+                        title="Get a FREE Community license"
+                        style={{ color: "white" }}
+                    >
+                        Get it FREE
+                    </Button>
+                    <Button
+                        className={classes.PurpleButton}
+                        href={contextualDocUrl}
+                        title={contextualDocTitle}
+                        target="_blank"
+                        style={{ color: "white" }}
+                    >
+                        <BookIcon fontSize="small" style={{ color: "white" }} />
+                        &nbsp;Docs
+                    </Button>
+                    <a
+                        className={classes.GitHubLink}
+                        href={contextualGithub}
+                        title={contextualGithubTitle}
+                        target="_blank"
+                    >
+                        <GitHubIcon fontSize="small" />
+                    </a>
+                    <a
+                        className={classes.NpmLink}
+                        href="https://www.npmjs.com/package/scichart"
+                        title="npmjs / SciChart"
+                        target="_blank"
+                    >
+                        <img src={npm} alt="Npm Logo" width={32} height={32} />
+                    </a>
+                    <Button onClick={toggleDrawer} className={classes.MenuButton} aria-label="menu">
+                        <MenuIcon />
+                    </Button>
+                </Box>
             </Toolbar>
         </AppBar>
     );

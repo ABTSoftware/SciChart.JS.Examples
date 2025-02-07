@@ -1,16 +1,17 @@
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
-import { axesSetup, generateDefaultLegend, generateModifiers, getRandomSinewave } from "./utils";
+import { axesSetup, generateDefaultLegend, generateModifiers, getRandomSinewave } from "./chartUtils";
 import { NumberRange } from "scichart/Core/NumberRange";
 
 export default async function initDtChart(
-    id: string,
+    rootElement: string | HTMLDivElement,
+    legendPlacementElement: string | HTMLDivElement,
     group: SciChartVerticalGroup,
     pointsCount: number,
     visibleRange: NumberRange
 ) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement);
 
     axesSetup(sciChartSurface, wasmContext, visibleRange, false);
 
@@ -30,6 +31,8 @@ export default async function initDtChart(
     lineSeries.dataSeries.dataSeriesName = "DT";
     sciChartSurface.renderableSeries.add(lineSeries);
     const getLegendItemHtml = generateDefaultLegend(sciChartSurface, "rgba(4,254,2,255)");
-    generateModifiers(sciChartSurface, id, getLegendItemHtml);
+    generateModifiers(sciChartSurface, legendPlacementElement, getLegendItemHtml);
     group.addSurfaceToGroup(sciChartSurface);
+
+    return { sciChartSurface };
 }

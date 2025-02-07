@@ -7,37 +7,24 @@ import {
     chartReviver,
     localStorageApi,
 } from "scichart";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
-import { drawExample, IChartControls } from "./drawExample";
-import {
-    Button,
-    ButtonGroup,
-    FormControl,
-    FormHelperText,
-    makeStyles,
-    MenuItem,
-    Select,
-    TextField,
-} from "@material-ui/core";
+import commonClasses from "../../../styles/Examples.module.scss";
+import { drawExample } from "./drawExample";
+import { Button, ButtonGroup, MenuItem, Select, TextField } from "@mui/material";
+
+// If you want to keep using makeStyles:
+import { makeStyles } from "tss-react/mui";
+
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
         background: appTheme.DarkIndigo,
-    },
-    toolbarRow: {
-        display: "flex",
-        justifyContent: "space-between",
-        padding: 10,
-        width: "100%",
-        height: 70,
-        color: appTheme.ForegroundColor,
     },
     chartArea: {
         flex: 1,
@@ -49,8 +36,8 @@ const STORAGE_KEY = "Annotated-Charts";
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function UserAnnotatedStockChart() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const controlsRef = React.useRef<IChartControls>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
+    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
     const [name, setName] = React.useState<string>("");
     const [chartMode, setChartMode] = React.useState<"line" | "marker" | "pan">("line");
     const [savedCharts, setSavedCharts] = React.useState<Record<string, object>>({});
@@ -94,13 +81,13 @@ export default function UserAnnotatedStockChart() {
         controlsRef.current.resetChart();
     };
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
         <React.Fragment>
-            <div className={classes.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.toolbarRow}>
+            <div className={commonClasses.ChartWrapper}>
+                <div className={classes.flexOuterContainer}>
+                    <div className={commonClasses.ToolbarRow}>
                         <ToggleButtonGroup
                             style={{ height: "50px" }}
                             exclusive
@@ -192,7 +179,7 @@ export default function UserAnnotatedStockChart() {
                         </ButtonGroup>
                     </div>
                     <SciChartReact
-                        className={localClasses.chartArea}
+                        className={classes.chartArea}
                         initChart={drawExample}
                         onInit={({ sciChartSurface, controls }: TResolvedReturnType<typeof drawExample>) => {
                             sciChartSurfaceRef.current = sciChartSurface;

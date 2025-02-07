@@ -1,42 +1,57 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-style-animation.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const previewDescription = ``; // `Demonstrates how to run style and data animations simultaneously for a JavaScript Chart.`;
-const description = `By clicking the buttons the chart styles and data transform from one value to another`;
-const tips: string[] = ["Use runAnimation or enqueueAnimation method"];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlStyleAnimationDocumentation,
-        title: ExampleStrings.urlTitleStyleAnimationDocumentation,
-        linkTitle: "JavaScript Style Transition Animation Documentation",
-    },
-];
+        exampleId: "Charts2DAnimationsStyleAnimation",
+        imagePath: "javascript-style-animation.jpg",
+        description:
+            "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",
+                title: "JavaScript Style Animation",
+                pageTitle: "JavaScript Style Animation",
+                metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",
+                title: "React Style Animation",
+                pageTitle: "React Style Animation",
+                metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",
+                title: "Angular Style Animation",
+                pageTitle: "Angular Style Animation",
+                metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Series%20Style%20Animations.html",
+                title: "The specific page for the JavaScript Style Transition Animation documentation will help you to get started",
+                linkTitle: "JavaScript Style Transition Animation Documentation",
+            },
+        ],
+        path: "style-animation",
+        metaKeywords: "style, animation, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/Animations/StyleAnimation",
+        thumbnailImage: "javascript-style-animation.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to run <strong>Style Transition Animations</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-export const styleAnimationExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleStyleAnimation,
-    pageTitle: ExampleStrings.titleStyleAnimation,
-    path: ExampleStrings.urlStyleAnimation,
-    filepath: "Charts2D/Animations/StyleAnimation",
-    subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
-    metaDescription: (frameworkName: string) => `Demonstrates how to run Style Transition Animations with JavaScript.`,
-    metaKeywords: "style, animation, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-};
+export const styleAnimationExampleInfo = createExampleInfo(metaData);

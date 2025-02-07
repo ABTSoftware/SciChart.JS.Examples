@@ -1,12 +1,12 @@
-import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
+import Button from "@mui/material/Button";
+import { makeStyles } from "tss-react/mui";
 import * as React from "react";
-import { SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
-import { drawExample, divElementId, divCrossSection, divInput, divHistory } from "./drawExample";
+import commonClasses from "../../../styles/Examples.module.scss";
+import { getChartsInitializationApi } from "./drawExample";
+import { SciChartGroup, SciChartReact, TResolvedReturnType } from "scichart-react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -14,71 +14,91 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: "column",
         background: appTheme.DarkIndigo,
     },
-    toolbarRow: {
-        display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-        color: appTheme.ForegroundColor,
-    },
+
     chartArea: {
         flex: 1,
     },
 }));
 
 export default function HeatmapInteractions() {
-    const localClasses = useStyles();
-    const surfacesRef = React.useRef<SciChartSurface[]>([]);
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then((charts) => {
-            surfacesRef.current = charts;
-        });
-
-        return () => {
-            // check if chart is already initialized
-            if (surfacesRef.current) {
-                surfacesRef.current.forEach((surface) => surface.delete());
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                surfacesRef.current.forEach((surface) => surface.delete());
-            });
-        };
-    }, []);
+    const { classes } = useStyles();
+    const [chartsInitializationAPI] = React.useState(getChartsInitializationApi);
+    const controlsRef = React.useRef<TResolvedReturnType<typeof chartsInitializationAPI.onAllChartsInit>>(undefined);
 
     return (
         <React.Fragment>
-            <div className={classes.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.toolbarRow}>
-                        <Button id="startAnimation" style={{ color: appTheme.ForegroundColor }}>
+            <div className={commonClasses.ChartWrapper}>
+                <div className={classes.flexOuterContainer}>
+                    <div className={commonClasses.ToolbarRow}>
+                        <Button
+                            disabled
+                            onClick={() => {
+                                controlsRef.current.stopUpdate();
+                            }}
+                            style={{ color: appTheme.ForegroundColor }}
+                        >
                             Start
                         </Button>
-                        <Button id="stopAnimation" style={{ color: appTheme.ForegroundColor }}>
+                        <Button
+                            onClick={() => {
+                                controlsRef.current.stopUpdate();
+                            }}
+                            style={{ color: appTheme.ForegroundColor }}
+                        >
                             Stop
                         </Button>
-                        <Button id="twoSource" style={{ color: appTheme.ForegroundColor }}>
+                        <Button
+                            onClick={() => {
+                                controlsRef.current.twoPoint();
+                            }}
+                            style={{ color: appTheme.ForegroundColor }}
+                        >
                             Load basic example
                         </Button>
-                        <Button id="interference" style={{ color: appTheme.ForegroundColor }}>
+                        <Button
+                            onClick={() => {
+                                controlsRef.current.interference();
+                            }}
+                            style={{ color: appTheme.ForegroundColor }}
+                        >
                             Load double slit example
                         </Button>
-                        <Button id="showHelp" style={{ color: appTheme.ForegroundColor }}>
+                        <Button
+                            id="showHelp"
+                            onClick={() => {
+                                controlsRef.current.showHelp();
+                            }}
+                            style={{ color: appTheme.ForegroundColor }}
+                        >
                             Show Help
                         </Button>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "row", flexBasis: 500 }}>
-                        <div id={divElementId} style={{ flexBasis: 500, flexGrow: 1, flexShrink: 1 }} />
-                        <div id={divCrossSection} style={{ flexBasis: 500, flexGrow: 1, flexShrink: 1 }} />
-                    </div>
-                    <div style={{ display: "flex", flexDirection: "row", flexBasis: 500 }}>
-                        <div id={divInput} style={{ flexBasis: 500, flexGrow: 1, flexShrink: 1 }} />
-                        <div id={divHistory} style={{ flexBasis: 500, flexGrow: 1, flexShrink: 1 }} />
-                    </div>
+                    <SciChartGroup
+                        onInit={() => {
+                            controlsRef.current = chartsInitializationAPI.onAllChartsInit();
+                        }}
+                    >
+                        <div style={{ display: "flex", flexDirection: "row", flexBasis: 500 }}>
+                            <SciChartReact
+                                initChart={chartsInitializationAPI.initMainChart}
+                                style={{ flexBasis: 500, flexGrow: 1, flexShrink: 1 }}
+                            />
+                            <SciChartReact
+                                initChart={chartsInitializationAPI.initCrossSectionChart}
+                                style={{ flexBasis: 500, flexGrow: 1, flexShrink: 1 }}
+                            />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "row", flexBasis: 500 }}>
+                            <SciChartReact
+                                initChart={chartsInitializationAPI.inputChart}
+                                style={{ flexBasis: 500, flexGrow: 1, flexShrink: 1 }}
+                            />
+                            <SciChartReact
+                                initChart={chartsInitializationAPI.initHistoryChart}
+                                style={{ flexBasis: 500, flexGrow: 1, flexShrink: 1 }}
+                            />
+                        </div>
+                    </SciChartGroup>
                 </div>
             </div>
         </React.Fragment>

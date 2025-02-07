@@ -1,43 +1,57 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-image-labels.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const previewDescription = `SciChart JS v2 allows you to use anything as an axis label, even an image.`;
-const description = `By default, the LabelProvider uses the size of the texture for layout, so we do not need to override the measurement functions here.
-However, if you want to allow your labels to overlap, you can do this by telling scichart they are smaller than they really are.`;
-const tips = [`Label textures are automatically cached, so complex label rendering will not slow down your chart.`];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlImageLabelsDocumentation,
-        title: ExampleStrings.urlTitleImageLabelsDocumentation,
-        linkTitle: "SciChart.js Image Labels Documentation",
-    },
-];
+        exampleId: "Charts2DAxisLabelCustomizationImageLabels",
+        imagePath: "javascript-image-labels.jpg",
+        description:
+            "Demonstrates how to use **Images as Labels** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to use **Images as Labels** using SciChart.js, High Performance JavaScript Charts",
+                title: "Image labels",
+                pageTitle: "Image labels",
+                metaDescription: "Demonstrates how to use Images as Axis Labels",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to use **Images as Labels** using SciChart.js, High Performance JavaScript Charts",
+                title: "Image labels",
+                pageTitle: "Image labels",
+                metaDescription: "Demonstrates how to use Images as Axis Labels",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to use **Images as Labels** using SciChart.js, High Performance JavaScript Charts",
+                title: "Image labels",
+                pageTitle: "Image labels",
+                metaDescription: "Demonstrates how to use Images as Axis Labels",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#ImageLabels.html",
+                title: "This specific page about JavaScript Chart Image Labels documentation will help you to get started",
+                linkTitle: "SciChart.js Image Labels Documentation",
+            },
+        ],
+        path: "image-labels",
+        metaKeywords: "image, axis, label, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/AxisLabelCustomization/ImageLabels",
+        thumbnailImage: "javascript-image-labels.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to use <strong>Images as Labels</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-export const imageLabelsExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleImageLabels,
-    pageTitle: ExampleStrings.titleImageLabels,
-    path: ExampleStrings.urlImageLabels,
-    filepath: "Charts2D/AxisLabelCustomization/ImageLabels",
-    subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
-    metaDescription: (frameworkName: string) => `Demonstrates how to use Images as Axis Labels`,
-    metaKeywords: "image, axis, label, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-};
+export const imageLabelsExampleInfo = createExampleInfo(metaData);

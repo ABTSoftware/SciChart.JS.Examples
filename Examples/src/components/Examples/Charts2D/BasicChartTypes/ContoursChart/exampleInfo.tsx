@@ -1,48 +1,60 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-heatmap-chart-with-contours.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const description = `Our Heatmap is highly dynamic and enables display of Sonar, MRI/medical imagery, Spectrograms or Audio/Radio analysis in JavaScript.
-    The entire heatmap is represented by a 2D array and is color-mapped to a numeric value.
-    Contour lines are calculated at a specified step value and drawn over the chart automatically.`;
-const tips = [
-    `Contours are calculated using GPU Shader programs so are very fast, but require some tweaking of properties
-on UniformContoursRenderableSeries to get a good visual.`,
-];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlContourChartDocumentation,
-        title: ExampleStrings.urlTitleContourChartDocumentation,
-        linkTitle: "JavaScript Contours Chart Documentation",
-    },
-];
+        exampleId: "Charts2DBasicChartTypesContoursChart",
+        imagePath: "javascript-heatmap-chart-with-contours.jpg",
+        description:
+            "Our Contours Chart example demonstrates how to create a **JavaScript Contour-map Chart** using our powerful JavaScript Chart Library.",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Our Contours Chart example demonstrates how to create a **JavaScript Contour-map Chart** using our powerful JavaScript Chart Library.",
+                title: "JavaScript Heatmap Chart With Contours",
+                pageTitle: "JavaScript Heatmap Chart With Contours Example | SciChart.js",
+                metaDescription:
+                    "Design a highly dynamic JavaScript Heatmap Chart With Contours with SciChart's feature-rich JavaScript Chart Library. Get your free demo today.",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Our Contours Chart example demonstrates how to create a **React Contour-map Chart** using our powerful JavaScript Chart Library.",
+                title: "React Heatmap Chart With Contours",
+                pageTitle: "React Heatmap Chart With Contours Example | SciChart.js",
+                metaDescription:
+                    "Design a highly dynamic React Heatmap Chart With Contours with SciChart's feature-rich JavaScript Chart Library. Get your free demo today.",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Our Contours Chart example demonstrates how to create a **Angular Contour-map Chart** using our powerful JavaScript Chart Library.",
+                title: "Angular Heatmap Chart With Contours",
+                pageTitle: "Angular Heatmap Chart With Contours Example | SciChart.js",
+                metaDescription:
+                    "Design a highly dynamic Angular Heatmap Chart With Contours with SciChart's feature-rich JavaScript Chart Library. Get your free demo today.",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Contours%20Series%20Type.html",
+                title: "The specific page for the JavaScript Contours Chart documentation will help you to get started",
+                linkTitle: "JavaScript Contours Chart Documentation",
+            },
+        ],
+        path: "heatmap-chart-with-contours",
+        metaKeywords: "contour, contours, heatmap, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/BasicChartTypes/ContoursChart",
+        thumbnailImage: "javascript-heatmap-chart-with-contours.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Our Contours Chart example demonstrates how to create a <strong>{frameworkName} Contour-map Chart</strong> using
-        our{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="powerful JavaScript Chart Library">
-            powerful JavaScript Chart Library
-        </a>
-        .
-    </p>
-);
-
-export const contourChartExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleContourChart,
-    pageTitle: ExampleStrings.pageTitleContourChart,
-    path: ExampleStrings.urlContourChart,
-    filepath: "Charts2D/BasicChartTypes/ContoursChart",
-    subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    metaDescription: (frameworkName: string) =>
-        `Design a highly dynamic ${frameworkName} Heatmap Chart With Contours with SciChart's feature-rich JavaScript Chart Library. Get your free demo today.`,
-    metaKeywords: "contour, contours, heatmap, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-};
+export const contourChartExampleInfo = createExampleInfo(metaData);

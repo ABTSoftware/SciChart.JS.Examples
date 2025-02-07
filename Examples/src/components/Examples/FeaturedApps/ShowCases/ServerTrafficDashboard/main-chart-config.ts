@@ -27,24 +27,24 @@ import {
     BasePaletteProvider,
     EStrokePaletteMode,
     EFillPaletteMode,
+    VerticalSliceModifier,
+    ChartModifierBase2D,
+    ECoordinateMode,
 } from "scichart";
 import { appTheme } from "../../../theme";
 import { TDataEntry, getData, getRequestsNumberPerTimestamp } from "./data-generation";
-import { TChartConfigResult } from "./chart-configurations";
-import { TInitFunction } from "scichart-react";
+import { TChartViewOptions } from "./chart-configurations";
 
-export type TMainChartConfigFunc = TInitFunction<
-    SciChartSurface,
-    TChartConfigResult<SciChartSurface> & { updateThreshold: (value: number) => void }
->;
+export const createMainChart = async (divElementId: string | HTMLDivElement, options: TChartViewOptions) => {
+    const { isMobileView, isLargeView } = options;
 
-export const createMainChart: TMainChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
         padding: Thickness.fromString("10 10 2 10"),
         title: "Number of requests for time period",
         titleStyle: {
+            useNativeText: true,
             placeWithinChart: true,
             fontSize: 16,
             color: appTheme.ForegroundColor,
@@ -125,7 +125,7 @@ export const createMainChart: TMainChartConfigFunc = async (divElementId: string
 
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
-        axisTitle: "Date Axis",
+        axisTitle: isLargeView ? "Date Axis" : undefined,
         axisTitleStyle: {
             fontSize: 20,
             color: appTheme.ForegroundColor,
@@ -136,13 +136,13 @@ export const createMainChart: TMainChartConfigFunc = async (divElementId: string
         // useNativeText: true,
     });
     const yAxis = new NumericAxis(wasmContext, {
-        axisTitle: "Requests",
+        axisTitle: isLargeView ? "Requests" : undefined,
         axisTitleStyle: {
             fontSize: 20,
             color: appTheme.ForegroundColor,
         },
         labelStyle: {
-            color: appTheme.ForegroundColor,
+            fontSize: isLargeView ? 12 : 10,
         },
         visibleRangeLimit: new NumberRange(0, 1000),
         labelPrecision: 0,
@@ -179,8 +179,8 @@ export const createMainChart: TMainChartConfigFunc = async (divElementId: string
     const cursorModifier = new CursorModifier({
         id: "TotalRequestsCursorModifier",
         showTooltip: false,
-        showAxisLabels: true,
-        // showXLine: false,
+        showAxisLabels: !isMobileView,
+        showXLine: !isMobileView,
         showYLine: false,
         crosshairStrokeDashArray: [10, 20],
         crosshairStrokeThickness: 2,
@@ -207,12 +207,32 @@ export const createMainChart: TMainChartConfigFunc = async (divElementId: string
         return lines;
     };
 
-    const rolloverModifier = new RolloverModifier({
-        id: "TotalRequestsRolloverModifier",
-        showTooltip: true,
-        showRolloverLine: false,
-        tooltipDataTemplate: getTooltipDataTemplate,
-    });
+    let rolloverModifier: ChartModifierBase2D;
+
+    if (isMobileView) {
+        rolloverModifier = new VerticalSliceModifier({
+            id: "TotalRequestsRolloverModifier",
+            showTooltip: true,
+            // showRolloverLine: false,
+            tooltipDataTemplate: getTooltipDataTemplate,
+
+            x1: 0.75,
+            xCoordinateMode: ECoordinateMode.Relative,
+            isDraggable: true,
+            showRolloverLine: true,
+            rolloverLineStrokeThickness: 2,
+            rolloverLineStroke: appTheme.VividOrange,
+            lineSelectionColor: "transparent",
+        });
+    } else {
+        rolloverModifier = new RolloverModifier({
+            id: "TotalRequestsRolloverModifier",
+            showTooltip: true,
+            showRolloverLine: false,
+            tooltipDataTemplate: getTooltipDataTemplate,
+        });
+    }
+
     sciChartSurface.chartModifiers.add(
         cursorModifier,
         rolloverModifier,
@@ -251,3 +271,6 @@ export const createMainChart: TMainChartConfigFunc = async (divElementId: string
 
     return { sciChartSurface, updateData, updateThreshold };
 };
+
+export const getMainChartConfig = (options: TChartViewOptions) => async (divElementId: string | HTMLDivElement) =>
+    createMainChart(divElementId, options);

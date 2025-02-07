@@ -1,29 +1,36 @@
-import { useMatch } from "react-router-dom";
+import { useMatch } from "react-router";
 import { EXAMPLES_PAGES } from "../../../components/AppRouter/examplePages";
 
 export enum EPageFramework {
     Vanilla = "javascript",
     React = "react",
     Angular = "angular",
-    Vue = "vue",
+    // Vue = "vue",
+}
+
+export enum EPlatform {
+    CodeSandbox = "codesandbox",
+    StackBlitz = "stackblitz",
 }
 
 export const FRAMEWORK_NAME = {
     [EPageFramework.Vanilla]: "JavaScript",
     [EPageFramework.React]: "React",
     [EPageFramework.Angular]: "Angular",
-    [EPageFramework.Vue]: "Vue",
+    // [EPageFramework.Vue]: "Vue",
 } as const;
+
+export const getFrameworkName = (frameWork: EPageFramework) => FRAMEWORK_NAME[frameWork];
 
 const DEFAULT_FRAMEWORK = EPageFramework.React;
 
 export type TPathTemplate = string | ((framework: EPageFramework) => string);
 export type TFrameworkName = "JavaScript" | "Angular" | "React" | "Vue";
-export type TTitleTemplate = string | ((framework: TFrameworkName) => string);
-export type TDescriptionTemplate = string | ((framework: TFrameworkName) => string);
+export type TFrameworkTemplate = string | ((framework: TFrameworkName) => string);
 
-export const getTitle = (title: TTitleTemplate, framework: EPageFramework) => {
-    return typeof title === "string" ? title : title(FRAMEWORK_NAME[framework]);
+export const getFrameworkContent = (content: TFrameworkTemplate, framework: EPageFramework) => {
+    if (!content) return "";
+    return typeof content === "string" ? content : content(FRAMEWORK_NAME[framework]);
 };
 
 const isValidFramework = (framework: string | EPageFramework) =>

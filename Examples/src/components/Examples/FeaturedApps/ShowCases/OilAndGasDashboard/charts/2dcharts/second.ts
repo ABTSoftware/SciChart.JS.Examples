@@ -8,11 +8,13 @@ import { TSciChart } from "scichart/types/TSciChart";
 import { Point } from "scichart/Core/Point";
 import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
 import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
-import { getColor } from "../utils";
+import { getColor } from "../chartUtils";
 import { appTheme } from "../../theme";
 
-export default async function init2dSecondChart(id: string) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme: appTheme.SciChartJsTheme });
+export default async function init2dSecondChart(rootELement: string | HTMLDivElement) {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootELement, {
+        theme: appTheme.SciChartJsTheme,
+    });
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, { visibleRange: new NumberRange(-0.5, 5.5), isVisible: false })
     );
@@ -54,7 +56,7 @@ export default async function init2dSecondChart(id: string) {
         });
     });
 
-    return sciChartSurface;
+    return { sciChartSurface };
 }
 
 function generateData(wasmContext: TSciChart, color: string, xValues: number[], yValues: []) {

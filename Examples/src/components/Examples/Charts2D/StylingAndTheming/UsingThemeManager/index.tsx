@@ -1,65 +1,41 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "tss-react/mui";
 import * as React from "react";
 import { SciChartReact } from "scichart-react";
 import { appTheme } from "../../../theme";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { getChartsInitializationAPI } from "./drawExample";
+import { ChartGroupLoader } from "../../../ChartGroupLoader";
 
 // Styles for the 2x2 grid
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
-        flexDirection: "column",
+        flexWrap: "wrap",
         justifyContent: "space-between",
         background: appTheme.Background,
     },
-    flexContainerRow: {
-        display: "flex",
-        flex: "auto",
-        flexBasis: "50%",
-        justifyContent: "space-between",
-        alignContent: "stretch",
-        margin: 10,
-        width: "calc(100% - 10px)",
-    },
     item: {
         flex: "auto",
-        height: "100%",
-        marginRight: 10,
+        flexBasis: "50%",
+        minWidth: "200px",
     },
 }));
 
 export default function ChartComponent() {
-    const [chartsInitializationAPI] = React.useState(getChartsInitializationAPI());
+    const [chartsInitializationAPI] = React.useState(getChartsInitializationAPI);
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
-        <div className={classes.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.flexContainerRow}>
-                    <SciChartReact
-                        className={localClasses.item}
-                        initChart={chartsInitializationAPI.createNavyThemeChart}
-                    />
-                    <SciChartReact
-                        className={localClasses.item}
-                        initChart={chartsInitializationAPI.createLightThemeChart}
-                    />
-                </div>
-                <div className={localClasses.flexContainerRow}>
-                    <SciChartReact
-                        className={localClasses.item}
-                        initChart={chartsInitializationAPI.createDarkThemeChart}
-                    />
-                    <SciChartReact
-                        className={localClasses.item}
-                        initChart={chartsInitializationAPI.createCustomThemeChart}
-                    />
-                </div>
+        <ChartGroupLoader className={commonClasses.ChartWrapper}>
+            <div className={classes.flexOuterContainer}>
+                <SciChartReact className={classes.item} initChart={chartsInitializationAPI.createNavyThemeChart} />
+                <SciChartReact className={classes.item} initChart={chartsInitializationAPI.createLightThemeChart} />
+                <SciChartReact className={classes.item} initChart={chartsInitializationAPI.createDarkThemeChart} />
+                <SciChartReact className={classes.item} initChart={chartsInitializationAPI.createCustomThemeChart} />
             </div>
-        </div>
+        </ChartGroupLoader>
     );
 }

@@ -1,5 +1,5 @@
 import { appTheme } from "../../../theme";
-import CustomImage from "./scichart-logo-white.png";
+// import CustomImage from "./scichart-logo-white.png";
 import { rocketSvg } from "./416398_exploration_fuel_nasa_rocket_space_icon";
 import {
     SciChartSurface,
@@ -23,7 +23,7 @@ import {
     NativeTextAnnotation,
 } from "scichart";
 
-export const drawExample = async (rootElement: string | HTMLDivElement) => {
+export const drawExample = (CustomImage: string) => async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
@@ -39,7 +39,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.yAxes.add(yAxis);
 
     // Optional: Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
 
     const textColor = appTheme.ForegroundColor;
     const stroke = appTheme.VividSkyBlue;
@@ -173,12 +173,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         textColor,
         verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
     });
-    const customSvgAnnotation = new CustomAnnotation({ x1: 3.3, y1: 2.8, svgString: rocketSvg });
+    const customSvgAnnotation = new CustomAnnotation({ x1: 4.5, y1: 2.8, svgString: rocketSvg });
 
     // Vertical or Horizontal lines with axis Label
     //
     const textVerticalLine = new TextAnnotation({
-        x1: 7,
+        x1: 6.7,
         y1: 3,
         text: "Add Vertical/Horizontal Thresholds",
         textColor,

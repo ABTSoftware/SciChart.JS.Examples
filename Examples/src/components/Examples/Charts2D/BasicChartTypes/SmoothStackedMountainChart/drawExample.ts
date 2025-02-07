@@ -19,11 +19,9 @@ import {
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-export const divElementId = "chart";
-
-export const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
 
@@ -65,7 +63,11 @@ export const drawExample = async () => {
     sciChartSurface.renderableSeries.add(stackedMountainCollection);
 
     // Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(
+        new ZoomExtentsModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
+        new MouseWheelZoomModifier()
+    );
 
     const legendModifier = new LegendModifier({
         placement: ELegendPlacement.TopLeft,
@@ -114,5 +116,10 @@ export const drawExample = async () => {
 
     sciChartSurface.zoomExtents();
 
-    return { wasmContext, sciChartSurface, stackedMountainCollection };
+    const toggleHundredPercentMode = (value: boolean) => {
+        stackedMountainCollection.isOneHundredPercent = value;
+        sciChartSurface.zoomExtents(200);
+    };
+
+    return { sciChartSurface, controls: { toggleHundredPercentMode } };
 };

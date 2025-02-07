@@ -6,16 +6,17 @@ import { ELegendPlacement, ELegendOrientation, TLegendItem } from "scichart/Char
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
-import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
+import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "../vChartUtils";
 import { appTheme } from "../../theme";
 
-export const drawResistivityChart = async () => {
-    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("resistivity-chart", {
+export const drawResistivityChart = async (rootELement: string | HTMLDivElement) => {
+    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(rootELement, {
         ...getCommonChartConfigs("Resistivity"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
             padding: Thickness.fromNumber(0),
+            id: "resistivityChart",
         },
     });
 
@@ -61,7 +62,7 @@ export const drawResistivityChart = async () => {
     legendModifier.sciChartLegend.getLegendHTML = generateResistivityLegend;
     sciChartSurface.chartModifiers.add(legendModifier);
 
-    return sciChartSurface;
+    return { sciChartSurface };
 };
 
 const generateResistivityLegend = (

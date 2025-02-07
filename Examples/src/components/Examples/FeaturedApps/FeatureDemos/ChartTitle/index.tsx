@@ -1,7 +1,7 @@
 import * as React from "react";
-import { FormControl, FormControlLabel, Checkbox, TextField } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import classes from "../../../styles/Examples.module.scss";
+import { FormControlLabel, Checkbox } from "@mui/material";
+import { makeStyles } from "tss-react/mui";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import {
@@ -88,7 +88,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function FeatureChartTitle() {
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
+    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
     const [titleText, setTitleText] = React.useState("Multiline\nChart Title");
     const [titlePosition, setTitlePosition] = React.useState(ETitlePosition.Top);
@@ -136,7 +136,7 @@ export default function FeatureChartTitle() {
         }
     };
 
-    const useStyles = makeStyles((theme) => ({
+    const useStyles = makeStyles()((theme) => ({
         flexContainer: {
             display: "flex",
             flexDirection: "column",
@@ -166,16 +166,17 @@ export default function FeatureChartTitle() {
             flex: "auto",
         },
     }));
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
-        <div className={classes.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
-            <div className={localClasses.flexContainer}>
-                <div className={localClasses.toolbar}>
+        <div className={commonClasses.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+            <div className={classes.flexContainer}>
+                <div className={classes.toolbar}>
                     <FormControlLabel
+                        className={commonClasses.FormControlLabel}
                         control={
                             <textarea
-                                className={localClasses.textarea}
+                                className={classes.textarea}
                                 value={titleText}
                                 onChange={handleChangeTitleText}
                             ></textarea>
@@ -185,9 +186,10 @@ export default function FeatureChartTitle() {
                     />
 
                     <FormControlLabel
+                        className={commonClasses.FormControlLabel}
                         control={
                             <select
-                                className={localClasses.combobox}
+                                className={classes.combobox}
                                 value={titleAlignment}
                                 onChange={selectTitleTextAlignment}
                             >
@@ -203,9 +205,10 @@ export default function FeatureChartTitle() {
                     />
 
                     <FormControlLabel
+                        className={commonClasses.FormControlLabel}
                         control={
                             <select
-                                className={localClasses.combobox}
+                                className={classes.combobox}
                                 value={titlePosition}
                                 onChange={selectTitleTextPosition}
                             >
@@ -221,9 +224,10 @@ export default function FeatureChartTitle() {
                     />
 
                     <FormControlLabel
+                        className={commonClasses.FormControlLabel}
                         control={
                             <select
-                                className={localClasses.combobox}
+                                className={classes.combobox}
                                 value={multilineAlignment}
                                 onChange={selectTitleTextMultilineAlignment}
                             >
@@ -239,6 +243,7 @@ export default function FeatureChartTitle() {
                     />
 
                     <FormControlLabel
+                        className={commonClasses.FormControlLabel}
                         control={
                             <Checkbox
                                 checked={placeWithinChart}

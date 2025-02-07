@@ -2,23 +2,30 @@
 
 .Search {
     display: block;
-    width: 700px;
-
-    @include sm {
-        display: none;
-    }
+    max-width: 44vw;
+    padding: 16px;
+    flex: auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
 
     .SearchField {
-        background-color: $color-dark-grey;
-        border-radius: 4px;
-
-        &:hover {
-            background-color: $color-grey;
+        @include sm {
+            background-color: unset;
         }
+        height: 44px;
+        border-radius: 4px;
+        border: none;
+        border: 1px solid var(--border-color);
     }
 
     svg,
     input {
-        color: $color-light-grey;
+        color: var(--text);
+    }
+
+    @include md {
+        max-width: 100%;
     }
 }

@@ -1,0 +1,77 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+
+    &.browserFill {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: var(--z-index-fullscreen);
+        background: white;
+    }
+}
+
+.toolbar {
+    flex: 0 0 auto;
+    margin-bottom: 1px;
+    position: relative;
+    z-index: 2;
+}
+
+.frameContainer {
+    position: relative;
+    outline: none;
+    height: 500px;
+    z-index: 1;
+
+    .browserFill & {
+        flex: 1;
+        height: 100%;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.platformIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-size-lg);
+    height: var(--icon-size-lg);
+}
+
+.titleGroup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.exampleName {
+    font-weight: 600;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+    padding-left: 12px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}

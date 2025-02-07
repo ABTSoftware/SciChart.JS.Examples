@@ -45,17 +45,11 @@ import {
     EVerticalAnchorPoint,
     EAnnotationLayer,
 } from "scichart";
-import { ExampleDataProvider, IOhlcvValues } from "../../../ExampleData/ExampleDataProvider";
-import { multiPaneData } from "../../../ExampleData/multiPaneData";
+import { fetchMultiPaneData } from "../../../ExampleData/ExampleDataProvider";
 import { appTheme } from "../../../theme";
 
-const divElementId1 = "cc_chart_3_1";
-const divElementId2 = "cc_chart_3_2";
-const divElementId3 = "cc_chart_3_3";
-const divOverviewId = "cc_overview";
-
-const getTradingData = (startPoints?: number, maxPoints?: number): IOhlcvValues => {
-    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = multiPaneData;
+const getTradingData = async (startPoints?: number, maxPoints?: number) => {
+    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = await fetchMultiPaneData();
 
     if (maxPoints !== undefined) {
         return {
@@ -114,7 +108,8 @@ const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
 export const getChartsInitializationAPI = () => {
     // We can group together charts using VerticalChartGroup type
     const verticalGroup = new SciChartVerticalGroup();
-    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = getTradingData();
+
+    const dataPromise = getTradingData();
 
     let chart1XAxis: CategoryAxis;
     let chart2XAxis: CategoryAxis;
@@ -127,11 +122,16 @@ export const getChartsInitializationAPI = () => {
 
     // CHART 1
     const drawPriceChart = async (rootElement: string | HTMLDivElement) => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
-            // prevent default size settings
-            disableAspect: true,
-            theme: appTheme.SciChartJsTheme,
-        });
+        const [chart, data] = await Promise.all([
+            SciChartSurface.create(rootElement, {
+                // prevent default size settings
+                disableAspect: true,
+                theme: appTheme.SciChartJsTheme,
+            }),
+            dataPromise,
+        ]);
+        const { wasmContext, sciChartSurface } = chart;
+        const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = data;
 
         chart1XAxis = new CategoryAxis(wasmContext, {
             drawLabels: false,
@@ -239,7 +239,7 @@ export const getChartsInitializationAPI = () => {
         sciChartSurface.annotations.add(watermarkAnnotation);
 
         // MODIFIERS
-        sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+        sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
         sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
         sciChartSurface.chartModifiers.add(
@@ -257,11 +257,14 @@ export const getChartsInitializationAPI = () => {
 
     // CHART 2 - MACD
     const drawMacdChart = async (rootElement: string | HTMLDivElement) => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
-            // prevent default size settings
-            disableAspect: true,
-            theme: appTheme.SciChartJsTheme,
-        });
+        const [{ wasmContext, sciChartSurface }, { dateValues, closeValues }] = await Promise.all([
+            SciChartSurface.create(rootElement, {
+                // prevent default size settings
+                disableAspect: true,
+                theme: appTheme.SciChartJsTheme,
+            }),
+            dataPromise,
+        ]);
 
         chart2XAxis = new CategoryAxis(wasmContext, {
             drawLabels: false,
@@ -320,7 +323,9 @@ export const getChartsInitializationAPI = () => {
         });
         sciChartSurface.renderableSeries.add(columnSeries);
 
-        sciChartSurface.chartModifiers.add(new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }));
+        sciChartSurface.chartModifiers.add(
+            new ZoomPanModifier({ enableZoom: true, xyDirection: EXyDirection.XDirection })
+        );
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }));
         sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
         sciChartSurface.chartModifiers.add(
@@ -338,11 +343,14 @@ export const getChartsInitializationAPI = () => {
 
     // CHART 3 - RSI
     const drawRsiChart = async (rootElement: string | HTMLDivElement) => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
-            // prevent default size settings
-            disableAspect: true,
-            theme: appTheme.SciChartJsTheme,
-        });
+        const [{ wasmContext, sciChartSurface }, { dateValues, closeValues }] = await Promise.all([
+            SciChartSurface.create(rootElement, {
+                // prevent default size settings
+                disableAspect: true,
+                theme: appTheme.SciChartJsTheme,
+            }),
+            dataPromise,
+        ]);
 
         chart3XAxis = new CategoryAxis(wasmContext, {
             autoRange: EAutoRange.Once,
@@ -391,7 +399,9 @@ export const getChartsInitializationAPI = () => {
         });
         sciChartSurface.renderableSeries.add(rsiRenderableSeries);
 
-        sciChartSurface.chartModifiers.add(new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }));
+        sciChartSurface.chartModifiers.add(
+            new ZoomPanModifier({ enableZoom: true, xyDirection: EXyDirection.XDirection })
+        );
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }));
         sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
         sciChartSurface.chartModifiers.add(

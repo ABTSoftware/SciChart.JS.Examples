@@ -1,5 +1,4 @@
 async function rolloverTooltipTemplate(divElementId) {
-
   const {
     SciChartSurface,
     NumericAxis,
@@ -8,7 +7,7 @@ async function rolloverTooltipTemplate(divElementId) {
     SciChartJsNavyTheme,
     EAutoRange,
     NumberRange,
-    RolloverModifier
+    RolloverModifier,
   } = SciChart;
 
   // or for npm import { SciChartSurface, ... } from "scichart"
@@ -17,23 +16,36 @@ async function rolloverTooltipTemplate(divElementId) {
   const xValues = [];
   const yValues = [];
   const yValues2 = [];
-  for(let i = 0; i < 100; i++) {
+  for (let i = 0; i < 100; i++) {
     xValues.push(i);
-    yValues.push(0.2 * Math.sin(i*0.1) - Math.cos(i * 0.01));
-    yValues2.push(0.5 * Math.cos(i*0.11) - Math.sin(i * 0.015));
+    yValues.push(0.2 * Math.sin(i * 0.1) - Math.cos(i * 0.01));
+    yValues2.push(0.5 * Math.cos(i * 0.11) - Math.sin(i * 0.015));
   }
 
   // #region ExampleA
   // Create a chart surface
-  const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-    theme: new SciChartJsNavyTheme(),
-    title: "Rollover Tooltip Templates",
-    titleStyle: { fontSize: 16 }
-  });
+  const { sciChartSurface, wasmContext } = await SciChartSurface.create(
+    divElementId,
+    {
+      theme: new SciChartJsNavyTheme(),
+      title: "Rollover Tooltip Templates",
+      titleStyle: { fontSize: 16 },
+    }
+  );
 
   // For the example to work, axis must have EAutoRange.Always
-  sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { autoRange: EAutoRange.Always, axisTitle: "X Axis" }));
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-2, 0.5), axisTitle: "Y Axis" }));
+  sciChartSurface.xAxes.add(
+    new NumericAxis(wasmContext, {
+      autoRange: EAutoRange.Always,
+      axisTitle: "X Axis",
+    })
+  );
+  sciChartSurface.yAxes.add(
+    new NumericAxis(wasmContext, {
+      visibleRange: new NumberRange(-2, 0.5),
+      axisTitle: "Y Axis",
+    })
+  );
 
   const rollover = new RolloverModifier();
   sciChartSurface.chartModifiers.add(rollover);
@@ -44,8 +56,8 @@ async function rolloverTooltipTemplate(divElementId) {
     dataSeries: new XyDataSeries(wasmContext, {
       xValues,
       yValues,
-      dataSeriesName: "Series 0"
-    })
+      dataSeriesName: "Series 0",
+    }),
   });
   const lineSeries1 = new FastLineRenderableSeries(wasmContext, {
     stroke: "#50C7E0",
@@ -53,8 +65,8 @@ async function rolloverTooltipTemplate(divElementId) {
     dataSeries: new XyDataSeries(wasmContext, {
       xValues,
       yValues: yValues2,
-      dataSeriesName: "Series 1"
-    })
+      dataSeriesName: "Series 1",
+    }),
   });
   sciChartSurface.renderableSeries.add(lineSeries0);
   sciChartSurface.renderableSeries.add(lineSeries1);
@@ -68,17 +80,13 @@ async function rolloverTooltipTemplate(divElementId) {
               <tspan x="4" dy="1em">${seriesInfo.seriesName}: ${seriesInfo.formattedYValue}</tspan>
           </text>
       </svg>
-    </svg>`
+    </svg>`;
   };
 
   // Add a tooltipTemplate to this series to override the tooltip
   lineSeries0.rolloverModifierProps.tooltipTemplate = tooltipTemplate;
   lineSeries1.rolloverModifierProps.tooltipTemplate = tooltipTemplate;
   // #endregion
-
 }
 
 rolloverTooltipTemplate("scichart-root");
-
-
-

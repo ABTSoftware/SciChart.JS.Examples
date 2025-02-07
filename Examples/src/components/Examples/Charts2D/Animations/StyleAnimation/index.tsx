@@ -1,12 +1,12 @@
 import * as React from "react";
-import classes from "../../../styles/Examples.module.scss";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
-import { makeStyles } from "@material-ui/core/styles";
+import commonClasses from "../../../styles/Examples.module.scss";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { makeStyles } from "tss-react/mui";
 import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -14,14 +14,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: "column",
         background: appTheme.DarkIndigo,
     },
-    toolbarRow: {
-        display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-        color: appTheme.ForegroundColor,
-    },
+
     chartArea: {
         flex: 1,
     },
@@ -40,12 +33,12 @@ export default function StyleAnimation() {
         controls.animateChartStyle(isStyle1);
     };
 
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
-        <div className={classes.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.toolbarRow}>
+        <div className={commonClasses.ChartWrapper}>
+            <div className={classes.flexOuterContainer}>
+                <div className={commonClasses.ToolbarRow}>
                     <ToggleButtonGroup
                         exclusive
                         value={preset}
@@ -67,7 +60,7 @@ export default function StyleAnimation() {
                         setControls(initResult.controls);
                     }}
                     initChart={drawExample}
-                    className={localClasses.chartArea}
+                    className={classes.chartArea}
                 />
             </div>
         </div>

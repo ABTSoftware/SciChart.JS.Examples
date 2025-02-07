@@ -1,15 +1,17 @@
 @import "../../assets/main.scss";
 
 %ListItem {
-    height: 42px;
-    padding: 4px 30px 4px 30px;
+    scroll-margin-top: 38px;
+    scroll-margin-bottom: 38px;
+    min-height: 38px;
+    padding: 6px 20px;
     display: flex;
     align-items: center;
     border: 0;
     background-position: center;
     transition: background 0.8s;
     background: transparent radial-gradient(circle, transparent 1%, #0000000f 1%) center/15000%;
-    color: $font-color;
+    color: var(--text);
     -webkit-tap-highlight-color: transparent;
     font-weight: 500;
     line-height: 17px;
@@ -17,29 +19,29 @@
 
     // prevent simulation of hover on touch devices
     @media (hover: hover) {
-      &:hover {
-        color: $font-color;
-        background-color: rgba(0, 0, 0, 0.04);
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
 
-        a {
-          color: $font-color;
-        }
+            a {
+                color: var(--primary-purple);
+            }
 
-        &::after {
-          border-left : 0px solid transparent;
+            &::after {
+                border-left: 0px solid transparent;
+            }
         }
-      }
     }
 
     &:active {
-      background-color: #0000000f;
-      background-size: 100%;
-      transition: background 0s;
+        background-color: var(--bg-darker);
+        background-size: 100%;
+        transition: background 0s;
+        color: var(--text);
 
-      &::after {
-          border-left: 0px solid $color-dark-green;
-          transition: border-left 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-      }
+        &::after {
+            border-left: 0px solid $color-dark-green;
+            transition: border-left 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        }
     }
 
     &::after {
@@ -49,36 +51,36 @@
 }
 
 %MenuListItem {
-  @extend %ListItem;
+    @extend %ListItem;
 
-  color: $menu-list-item-font-color;
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  line-height: 17px;
+    color: var(--text);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    line-height: 17px;
 }
 
 %SelectedListItem {
-  background-color: $color-medium-blue;
-  color: $color-primary-white;
+    background-color: var(--light-blue);
+    color: #fff;
 
-  a {
-    color: $color-primary-white;
-  }
+    a {
+        color: #fff;
+    }
 
-  &::after {
-      content: "";
-      cursor: unset;
-      pointer-events: none;
-      display: block;
-      width: 0;
-      height: 0;
-      border-top: 16px solid transparent;
-      border-bottom: 16px solid transparent;
-      position: absolute;
-      right: -16px;
-      border-left: 16px solid $color-dark-green;
-      transition: border-left 0ms cubic-bezier(0.4, 0, 0.2, 1) 150ms;
-  }
+    &::after {
+        content: "";
+        cursor: unset;
+        pointer-events: none;
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 16px solid transparent;
+        border-bottom: 16px solid transparent;
+        position: absolute;
+        right: -16px;
+        border-left: 16px solid $color-dark-green;
+        transition: border-left 0ms cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+    }
 }

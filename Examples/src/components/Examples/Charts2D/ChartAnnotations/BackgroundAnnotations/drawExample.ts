@@ -41,7 +41,7 @@ class ContinentPaletteProvider extends DefaultPaletteProvider {
     SouthAmerica = parseColorToUIntArgb(appTheme.VividGreen);
     Africa = parseColorToUIntArgb(appTheme.VividOrange);
 
-    overridePointMarkerArgb(
+    override overridePointMarkerArgb(
         xValue: number,
         yValue: number,
         index: number,
@@ -109,7 +109,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(
-        new ZoomPanModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier(),
         new CursorModifier({

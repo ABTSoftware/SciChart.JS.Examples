@@ -1,7 +1,7 @@
 import { FC, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router";
 import classes from "./Gallery.module.scss";
-import { Tooltip } from "@material-ui/core";
+import { Tooltip } from "@mui/material";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 
 type TProps = {

@@ -1,45 +1,60 @@
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import * as React from "react";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-chart-vertical-slice-modifier.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const previewDescription = `Demonstrates using the VerticalSliceModifier, part of the ChartModifier API, to add tooltips at fixed positions on time-series to the user.`;
-const description = `Tooltips can be positioned absolutely, or by data value, and support dragging by the user.`;
-const tips = [
-    `The x1 property of the modifier.verticalLine is in pixels and can be used to synchronise the position of other annotations relative to the line`,
-];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlVerticalSliceModifierDocumentation,
-        title: ExampleStrings.urlTitleVerticalSliceModifierDocumentation,
-        linkTitle: "VerticalSliceModifier documentation",
-    },
-];
+        exampleId: "Charts2DTooltipsAndHittestUsingVerticalSliceModifier",
+        imagePath: "javascript-chart-vertical-slice-modifier.jpg",
+        description:
+            "Demonstrates how to use **tooltips at fixed positions** using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to use **tooltips at fixed positions** using SciChart.js, High Performance JavaScript Charts",
+                title: "Using VerticalSliceModifier",
+                pageTitle: "Using VerticalSliceModifier",
+                metaDescription:
+                    "Demonstrates adding Tooltips at certain positions to a JavaScript Chart with SciChart.js VerticalSliceModifier",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to use **tooltips at fixed positions** using SciChart.js, High Performance JavaScript Charts",
+                title: "Using VerticalSliceModifier",
+                pageTitle: "Using VerticalSliceModifier",
+                metaDescription:
+                    "Demonstrates adding Tooltips at certain positions to a React Chart with SciChart.js VerticalSliceModifier",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to use **tooltips at fixed positions** using SciChart.js, High Performance JavaScript Charts",
+                title: "Using VerticalSliceModifier",
+                pageTitle: "Using VerticalSliceModifier",
+                metaDescription:
+                    "Demonstrates adding Tooltips at certain positions to a Angular Chart with SciChart.js VerticalSliceModifier",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#VerticalSliceModifier.html",
+                title: "SciChart.js VerticalSliceModifier Documentation",
+                linkTitle: "VerticalSliceModifier documentation",
+            },
+        ],
+        path: "chart-vertical-slice-modifier",
+        metaKeywords: "tooltips, modifier, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier",
+        thumbnailImage: "javascript-chart-vertical-slice-modifier.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to use <strong>tooltips at fixed positions</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-export const usingVerticalSliceModifierExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleVerticalSliceModifier,
-    pageTitle: ExampleStrings.titleVerticalSliceModifier,
-    path: ExampleStrings.urlVerticalSliceModifier,
-    filepath: "Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier",
-    subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
-    metaDescription: (frameworkName: string) =>
-        `Demonstrates adding Tooltips at certain positions to a ${frameworkName} Chart with SciChart.js VerticalSliceModifier`,
-    metaKeywords: "tooltips, modifier, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-};
+export const usingVerticalSliceModifierExampleInfo = createExampleInfo(metaData);

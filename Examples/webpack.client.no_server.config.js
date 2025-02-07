@@ -57,9 +57,22 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                loader: "file-loader",
-                options: {
-                    name: "images/[name].[ext]",
+                type: "asset/resource",
+                generator: {
+                    // Generator options for asset modules
+                    // Emit an output asset from this asset module. This can be set to 'false' to omit emitting e. g. for SSR.
+                    // type: boolean
+                    emit: true,
+
+                    filename: "[name][ext]",
+
+                    // // Customize publicPath for asset modules, available since webpack 5.28.0
+                    // // type: string | ((pathData: PathData, assetInfo?: AssetInfo) => string)
+                    publicPath: "images/",
+
+                    // Emit the asset in the specified folder relative to 'output.path', available since webpack 5.67.0
+                    // type: string | ((pathData: PathData, assetInfo?: AssetInfo) => string)
+                    outputPath: "images/",
                 },
             },
         ],
@@ -70,6 +83,7 @@ module.exports = {
                 { from: "src/static/no_server.index.html", to: "index.html" },
                 { from: "src/static/webgl-intel.html", to: "webgl-intel.html" },
                 { from: "src/static/favicon.ico", to: "" },
+                { from: "src/components/Examples/**/*.jpg", to: "images/[name][ext]" },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Shale.csv", to: "" },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Density.csv", to: "" },
                 {
@@ -88,18 +102,18 @@ module.exports = {
                 { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
                 { from: "sitemap.xml", to: "" },
                 { from: "robots.txt", to: "" },
+                { from: "src/assets", to: "assets" },
             ],
         }),
-        // new CopyPlugin({
-        //     patterns: [{ from: "src/static/no_server.index.html", to: "index.html" }]
-        // })
     ],
     devServer: {
         client: {
             progress: true,
         },
-        // liveReload: true,
-        // hot: true,
+        static: {
+            directory: "src/assets",
+            publicPath: "/assets",
+        },
         allowedHosts: "all",
         historyApiFallback: true,
         onBeforeSetupMiddleware: function (devServer) {
@@ -135,36 +149,3 @@ module.exports = {
         },
     },
 };
-
-// , {
-//     mode: "development",
-//     devtool: "inline-source-map",
-//     watch: true,
-//     plugins: [
-//         new CopyPlugin({
-//             patterns: [
-//                 { from: "src/static/no_server.index.html", to: "index.html" }
-//             ],
-//         })
-//     ],
-//     devServer: {
-//         disableHostCheck: true,
-//         historyApiFallback: true,
-//         proxy: {
-//             "/api/thevirustracker": {
-//                 target: "https://thevirustracker.com",
-//                 pathRewrite: { "^/api/thevirustracker": "" },
-//                 secure: false,
-//                 changeOrigin: true
-//             }
-//         },
-//         before: function(app, server, compiler) {
-//             app.get("/api/license", function(req, res) {
-//                 res.send(betaTrialKey);
-//             });
-//             app.get("/api/lidarData", function(req, res) {
-//                 res.send(tq3080_DSM_2M.tq3080_DSM_2M);
-//             });
-//         }
-//     }
-// });

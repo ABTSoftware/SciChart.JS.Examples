@@ -4,10 +4,13 @@ import {
     EHorizontalAnchorPoint,
     ELabelAlignment,
     EllipsePointMarker,
+    EMultiLineAlignment,
     ENumericFormat,
     EVerticalAnchorPoint,
+    EWrapTo,
     FastLineRenderableSeries,
     MouseWheelZoomModifier,
+    NativeTextAnnotation,
     NumberRange,
     NumericAxis,
     SciChartSurface,
@@ -153,18 +156,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.chartModifiers.add(
         new YAxisDragModifier(),
         new XAxisDragModifier(),
-        new ZoomPanModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier()
     );
 
     // Add a title over the chart with information
     sciChartSurface.annotations.add(
-        new TextAnnotation({
-            x1: 0,
-            y1: 0,
-            yCoordShift: 20,
-            xCoordShift: 20,
+        new NativeTextAnnotation({
+            x1: 0.01,
+            y1: 0.01,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
@@ -172,13 +173,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             fontSize: 18,
             opacity: 0.55,
             textColor: appTheme.ForegroundColor,
-            text: "SciChart.js supports unlimited X,Y axis. Drag an axis to see the series scale",
+            text: "SciChart.js supports unlimited X,Y axis.  Drag an axis to see the series scale",
+            wrapTo: EWrapTo.ViewRect,
+            multiLineAlignment: EMultiLineAlignment.Left,
         })
     );
 
     sciChartSurface.annotations.add(
         new TextAnnotation({
-            x1: 47,
+            x1: 30,
             y1: -3.5,
             fontSize: 18,
             textColor: appTheme.VividSkyBlue,
@@ -189,8 +192,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Note annotations need X,Y Axis Id as well in multi-axis scenarios
     sciChartSurface.annotations.add(
         new TextAnnotation({
-            x1: 74,
-            y1: 4.4,
+            x1: 68,
+            y1: 3.7,
             fontSize: 18,
             textColor: appTheme.VividOrange,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Right,

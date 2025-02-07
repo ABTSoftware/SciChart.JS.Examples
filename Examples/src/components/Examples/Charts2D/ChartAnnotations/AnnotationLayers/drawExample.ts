@@ -16,6 +16,7 @@ import {
     ZoomExtentsModifier,
     FastLineRenderableSeries,
     EllipsePointMarker,
+    EVerticalAnchorPoint,
 } from "scichart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -55,8 +56,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(lineSeries);
 
     sciChartSurface.chartModifiers.add(
-        new ZoomPanModifier(),
-        new PinchZoomModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
         new ZoomExtentsModifier(),
         new MouseWheelZoomModifier()
     );
@@ -66,13 +66,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         stroke: appTheme.VividTeal,
         strokeThickness: 1,
         fill: appTheme.MutedTeal,
-        x1: 400,
-        x2: 550,
-        y1: 80,
-        y2: 230,
+        x1: 4,
+        x2: 5.6,
+        y1: 10,
+        y2: 6.2,
         isEditable: true,
-        xCoordinateMode: ECoordinateMode.Pixel,
-        yCoordinateMode: ECoordinateMode.Pixel,
     });
 
     const boxAnnotationBelowSeries = new BoxAnnotation({
@@ -80,13 +78,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         stroke: appTheme.VividOrange,
         strokeThickness: 3,
         fill: appTheme.MutedOrange,
-        x1: 350,
-        x2: 500,
-        y1: 170,
-        y2: 320,
+        x1: 3.2,
+        x2: 4.8,
+        y1: 8,
+        y2: 4.2,
         isEditable: true,
-        xCoordinateMode: ECoordinateMode.Pixel,
-        yCoordinateMode: ECoordinateMode.Pixel,
     });
 
     const boxAnnotationAboveSeries = new BoxAnnotation({
@@ -94,35 +90,31 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         stroke: appTheme.VividSkyBlue,
         strokeThickness: 3,
         fill: appTheme.MutedSkyBlue,
-        x1: 300,
-        x2: 450,
-        y1: 280,
-        y2: 430,
+        x1: 2.5,
+        x2: 4.2,
+        y1: 5.2,
+        y2: 1.5,
         isEditable: true,
-        xCoordinateMode: ECoordinateMode.Pixel,
-        yCoordinateMode: ECoordinateMode.Pixel,
     });
 
     const backgroundTextAnnotation = new TextAnnotation({
         annotationLayer: EAnnotationLayer.Background,
         id: "textAnnotationBackground",
-        x1: 50,
-        y1: 50,
+        x1: 0.5,
+        y1: 11,
         textColor: "#F1B24A",
         fontSize: 32,
         text: "Background SVG Annotation",
         background: appTheme.VividPurple,
         padding: Thickness.fromString("1 5 5 5"),
         isEditable: true,
-        xCoordinateMode: ECoordinateMode.Pixel,
-        yCoordinateMode: ECoordinateMode.Pixel,
     });
 
     const foregroundTextAnnotation = new TextAnnotation({
         annotationLayer: EAnnotationLayer.AboveChart,
         id: "foregroundTextAnnotation",
-        x1: 50,
-        y1: 350,
+        x1: 0.5,
+        y1: 4,
         textColor: "#F1B24A",
         fontSize: 32,
         fontFamily: "Times New Roman",
@@ -130,8 +122,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         background: appTheme.VividRed,
         padding: Thickness.fromString("1 5 5 5"),
         isEditable: true,
-        xCoordinateMode: ECoordinateMode.Pixel,
-        yCoordinateMode: ECoordinateMode.Pixel,
     });
 
     const backgroundNativeTextAnnotation = new NativeTextAnnotation({
@@ -142,8 +132,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         fontSize: 20,
         fontFamily: "Arial",
         text: "Background",
-        xCoordinateMode: ECoordinateMode.Pixel,
-        yCoordinateMode: ECoordinateMode.Pixel,
     });
     const nativeTextAnnotationBelowSeries = new NativeTextAnnotation({
         annotationLayer: EAnnotationLayer.BelowChart,
@@ -153,8 +141,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         fontSize: 20,
         fontFamily: "Arial",
         text: "Below Chart",
-        xCoordinateMode: ECoordinateMode.Pixel,
-        yCoordinateMode: ECoordinateMode.Pixel,
     });
 
     const foregroundNativeTextAnnotation = new NativeTextAnnotation({
@@ -165,8 +151,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         fontSize: 20,
         fontFamily: "Arial",
         text: "Above Chart",
-        xCoordinateMode: ECoordinateMode.Pixel,
-        yCoordinateMode: ECoordinateMode.Pixel,
     });
 
     sciChartSurface.preRender.subscribe(() => {

@@ -5,7 +5,7 @@ $color-primary-dark-grey: #98a4af;
 $color-primary-white: #ffffff;
 $color-primary-white-alpha: #ffffff33;
 
-$color-link-text: #39B5DB;
+$color-link-text: #39b5db;
 $color-link-text-hover: #44c8f1;
 $color-font-dark: #323640;
 
@@ -22,12 +22,12 @@ $color-main-green: #5cb85c;
 
 $color-dark-blue: #2c353d;
 $color-medium-blue: rgb(42, 99, 151);
-$color-red: #C52B2E;
+$color-red: #c52b2e;
 
 $font-color: #3b5164;
 $menu-list-item-font-color: #1e252b;
 
-$gradient-header: linear-gradient(90deg, #12003e 25%, #1e0056 50%, #40008f 60%, #9c3874 88%, #457bb7 100%);
+$gradient-header: linear-gradient(110deg, #12003e 20%, #1e0056 40%, #40008f 60%, #9c3874 100%);
 $gradient-btn-dark: linear-gradient(90deg, rgb(42, 99, 151), rgb(113, 55, 149), rgb(160, 36, 142));
 $gradient-blue: linear-gradient(90deg, #29aade, #44b6ce, #64c5bb);
 
@@ -40,18 +40,18 @@ $bp-xs: 28.125em; // 450
 $bp-xxs: 0;
 
 // spacing
-$app-bar-height: 68px;
+$app-bar-height: 90px;
 $default-spacing: 8px;
 $default-border-radius: 10px;
 //
 %Container {
-    max-width: 2300px;
+    max-width: 2900px;
     padding: 0 20px;
     @include lg {
-        max-width: 1600px;
+        max-width: 2600px;
     }
     @include md {
-        max-width: 1200px;
+        max-width: 2200px;
 
         padding: 0 10px;
     }

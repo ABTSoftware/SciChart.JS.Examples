@@ -1,7 +1,7 @@
 import * as React from "react";
-import Checkbox from "@material-ui/core/Checkbox";
-import classes from "../../../styles/Examples.module.scss";
-import { makeStyles } from "@material-ui/core/styles";
+import Checkbox from "@mui/material/Checkbox";
+import commonClasses from "../../../styles/Examples.module.scss";
+import { makeStyles } from "tss-react/mui";
 import { ELegendOrientation, ELegendPlacement, LegendModifier, SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";
 import { drawExample } from "./drawExample";
@@ -20,8 +20,8 @@ const orientationSelect = [
 ];
 
 export default function ChartLegendsAPI() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const legendModifierRef = React.useRef<LegendModifier>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
+    const legendModifierRef = React.useRef<LegendModifier>(undefined);
 
     const [placementValue, setPlacementValue] = React.useState<ELegendPlacement>(ELegendPlacement.TopLeft);
     const [orientationValue, setOrientationValue] = React.useState<ELegendOrientation>(ELegendOrientation.Vertical);
@@ -69,7 +69,7 @@ export default function ChartLegendsAPI() {
         }
     };
 
-    const useStyles = makeStyles((theme) => ({
+    const useStyles = makeStyles()((theme) => ({
         flexContainer: {
             display: "flex",
             flexDirection: "column",
@@ -78,7 +78,7 @@ export default function ChartLegendsAPI() {
         },
         toolbar: {
             minHeight: "70px",
-            padding: "10",
+            padding: "10px",
             color: appTheme.ForegroundColor,
             fontSize: "13px",
             flex: "none",
@@ -87,21 +87,21 @@ export default function ChartLegendsAPI() {
         combobox: {
             color: appTheme.Background,
             backgroundColor: appTheme.ForegroundColor,
-            margin: "10",
+            margin: "10px",
         },
         chartElement: {
             width: "100%",
             flex: "auto",
         },
     }));
-    const localClasses = useStyles();
+    const { classes } = useStyles();
 
     return (
         <React.Fragment>
-            <div className={classes.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
-                <div className={localClasses.flexContainer}>
+            <div className={commonClasses.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+                <div className={classes.flexContainer}>
                     {/*The toolbar is here*/}
-                    <div className={localClasses.toolbar}>
+                    <div className={classes.toolbar}>
                         Show Legend?
                         <Checkbox checked={showLegendValue} onChange={handleChangeShowLegend} />
                         Show Visibility Checkboxes?
@@ -111,7 +111,7 @@ export default function ChartLegendsAPI() {
                         <label id="sciChartPlacement-label">
                             Legend Placement
                             <select
-                                className={localClasses.combobox}
+                                className={classes.combobox}
                                 id="sciChartPlacement"
                                 value={placementValue}
                                 onChange={handleChangePlacement}
@@ -126,7 +126,7 @@ export default function ChartLegendsAPI() {
                         <label id="sciChartPlacement-label">
                             Legend Orientation
                             <select
-                                className={localClasses.combobox}
+                                className={classes.combobox}
                                 id="sciChartOrientation"
                                 value={orientationValue}
                                 onChange={handleChangeOrientation}
@@ -143,7 +143,7 @@ export default function ChartLegendsAPI() {
                         <SciChartReact
                             initChart={drawExample}
                             style={{ width: "100%", height: "100%" }}
-                            className={classes.ChartWrapper}
+                            className={commonClasses.ChartWrapper}
                             onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                                 const { sciChartSurface, legendModifier } = initResult;
                                 legendModifierRef.current = legendModifier;

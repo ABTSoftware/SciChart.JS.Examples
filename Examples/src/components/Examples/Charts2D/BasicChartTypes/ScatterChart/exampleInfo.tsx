@@ -1,47 +1,60 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-scatter-chart.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const previewDescription = `Scatter Charts in SciChart.js can render a number of pre-defined point types (Circle, Square, Triangle, Cross). Custom shapes are also possible.`;
-const description = `Each Scatter-chart point can have varying color using our PaletteProvider API. Varying sizes are also possible with the Bubble Chart type.`;
-const tips = [
-    `Perhaps you wanted a scatter point with a line? If so, you can do this using the Line Series type and by
-    setting the pointMarker property.`,
-];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlScatterChartDocumentation,
-        title: ExampleStrings.urlTitleScatterChartDocumentation,
-        linkTitle: "JavaScript Scatter Chart Documentation",
-    },
-];
+        exampleId: "Charts2DBasicChartTypesScatterChart",
+        imagePath: "javascript-scatter-chart.jpg",
+        description:
+            "We have created an example that demonstrates how to create a **JavaScript Scatter Chart** using SciChart.js",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "We have created an example that demonstrates how to create a **JavaScript Scatter Chart** using SciChart.js",
+                title: "JavaScript Scatter Chart",
+                pageTitle: "JavaScript Scatter Chart | JavaScript Charts | SciChart.js",
+                metaDescription:
+                    "Create JavaScript Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "We have created an example that demonstrates how to create a **React Scatter Chart** using SciChart.js",
+                title: "React Scatter Chart",
+                pageTitle: "React Scatter Chart | JavaScript Charts | SciChart.js",
+                metaDescription:
+                    "Create React Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "We have created an example that demonstrates how to create a **Angular Scatter Chart** using SciChart.js",
+                title: "Angular Scatter Chart",
+                pageTitle: "Angular Scatter Chart | JavaScript Charts | SciChart.js",
+                metaDescription:
+                    "Create Angular Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Scatter%20Series%20Type.html",
+                title: "This specific page in the JavaScript Scatter Chart documentation will help you to get started",
+                linkTitle: "JavaScript Scatter Chart Documentation",
+            },
+        ],
+        path: "scatter-chart",
+        metaKeywords: "scatter, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/BasicChartTypes/ScatterChart",
+        thumbnailImage: "javascript-scatter-chart.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        We have created an example that demonstrates how to create a <strong>{frameworkName} Scatter Chart</strong>{" "}
-        using{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="SciChart.js">
-            SciChart.js
-        </a>
-    </p>
-);
-
-export const scatterChartExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleScatterChart,
-    pageTitle: ExampleStrings.pageTitleScatterChart,
-    path: ExampleStrings.urlScatterChart,
-    filepath: "Charts2D/BasicChartTypes/ScatterChart",
-    subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
-    metaDescription: (frameworkName: string) =>
-        `Create ${frameworkName} Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. `,
-    metaKeywords: "scatter, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-};
+export const scatterChartExampleInfo = createExampleInfo(metaData);

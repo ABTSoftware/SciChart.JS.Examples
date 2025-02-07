@@ -1,47 +1,60 @@
-import * as React from "react";
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-chart-metadata.jpg";
+import { createExampleInfo } from "../../../exampleInfoUtils";
+import { IExampleMetadata } from "../../../IExampleMetadata";
 
-const previewDescription = `Demonstrates the Metadata API, which allows you to associate custom data to each point,
-which can be displayed using cursor or rollover modifiers, or used to drive a palletprovider.`;
-const description = `The metadata holds a text value and the value of the previous data point, which is used by the pallet provider to color
-increasing and decreasing parts of the chart.`;
-const tips = [
-    `MetaData can be anything that implements IPointMetadata.  You do not have to assign metadata to every point.`,
-];
-
-const documentationLinks: TDocumentationLink[] = [
+const metaData: IExampleMetadata =
+    //// This metadata is computer generated - do not edit!
     {
-        href: ExampleStrings.urlMetaDataDocumentation,
-        title: ExampleStrings.urlTitleMetaDataDocumentation,
-        linkTitle: "MetaData API documentation",
-    },
-];
+        exampleId: "Charts2DTooltipsAndHittestMetaData",
+        imagePath: "javascript-chart-metadata.jpg",
+        description:
+            "Demonstrates how to add and use **MetaData** in a chart using SciChart.js, High Performance JavaScript Charts",
+        tips: [],
+        frameworks: {
+            javascript: {
+                subtitle:
+                    "Demonstrates how to add and use **MetaData** in a chart using SciChart.js, High Performance JavaScript Charts",
+                title: "Datapoint Metadata Tooltips on JavaScript Chart",
+                pageTitle: "Datapoint Metadata Tooltips on JavaScript Chart",
+                metaDescription:
+                    "Demonstrates using MetaData in a JavaScript Chart - add custom data to points for display or to drive visual customisation",
+                markdownContent: null,
+            },
+            react: {
+                subtitle:
+                    "Demonstrates how to add and use **MetaData** in a chart using SciChart.js, High Performance JavaScript Charts",
+                title: "Datapoint Metadata Tooltips on React Chart",
+                pageTitle: "Datapoint Metadata Tooltips on React Chart",
+                metaDescription:
+                    "Demonstrates using MetaData in a React Chart - add custom data to points for display or to drive visual customisation",
+                markdownContent: null,
+            },
+            angular: {
+                subtitle:
+                    "Demonstrates how to add and use **MetaData** in a chart using SciChart.js, High Performance JavaScript Charts",
+                title: "Datapoint Metadata Tooltips on Angular Chart",
+                pageTitle: "Datapoint Metadata Tooltips on Angular Chart",
+                metaDescription:
+                    "Demonstrates using MetaData in a Angular Chart - add custom data to points for display or to drive visual customisation",
+                markdownContent: null,
+            },
+        },
+        documentationLinks: [
+            {
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#DataSeries%20PointMetaData%20Api.html",
+                title: "The specific page for the SciChart.js documentation for the MetaData API to help you to get started",
+                linkTitle: "MetaData API documentation",
+            },
+        ],
+        path: "chart-metadata",
+        metaKeywords: "metaData, api, chart, javascript, webgl, canvas",
+        onWebsite: true,
+        filepath: "Charts2D/TooltipsAndHittest/MetaData",
+        thumbnailImage: "javascript-chart-metadata.jpg",
+        sandboxConfig: {},
+        markdownContent: null,
+        pageLayout: "default",
+        extraDependencies: {},
+    };
+//// End of computer generated metadata
 
-const Subtitle = (frameworkName: string) => (
-    <p>
-        Demonstrates how to add and use <strong>MetaData</strong> in a chart using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
-
-export const metaDataExampleInfo: TExampleInfo = {
-    onWebsite: true,
-    title: ExampleStrings.titleMetaData,
-    pageTitle: ExampleStrings.titleMetaData,
-    path: ExampleStrings.urlMetaData,
-    filepath: "Charts2D/TooltipsAndHittest/MetaData",
-    subtitle: Subtitle,
-    documentationLinks,
-    tips,
-    description,
-    previewDescription,
-    metaDescription: (frameworkName: string) =>
-        `Demonstrates using MetaData in a ${frameworkName} Chart - add custom data to points for display or to drive visual customisation`,
-    metaKeywords: "metaData, api, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage,
-};
+export const metaDataExampleInfo = createExampleInfo(metaData);

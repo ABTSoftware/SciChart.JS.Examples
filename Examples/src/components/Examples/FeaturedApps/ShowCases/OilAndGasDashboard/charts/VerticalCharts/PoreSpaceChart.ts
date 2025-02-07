@@ -6,16 +6,17 @@ import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/Ellip
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
-import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "./utils";
+import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "../vChartUtils";
 import { appTheme } from "../../theme";
 
-export const drawPoreSpaceChart = async () => {
-    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("pore-space-chart", {
+export const drawPoreSpaceChart = async (rootELement: string | HTMLDivElement) => {
+    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(rootELement, {
         ...getCommonChartConfigs("Pore Space"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
             padding: Thickness.fromNumber(0),
+            id: "poreSpaceChart",
         },
     });
 
@@ -87,7 +88,7 @@ export const drawPoreSpaceChart = async () => {
     legendModifier.sciChartLegend.getLegendHTML = generatePoreLegend;
     sciChartSurface.chartModifiers.add(legendModifier);
 
-    return sciChartSurface;
+    return { sciChartSurface };
 };
 
 const generatePoreLegend = (

@@ -5,16 +5,17 @@ import { ELegendPlacement, ELegendOrientation, TLegendItem } from "scichart/Char
 import { HeatmapColorMap } from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
-import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "./utils";
+import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "../vChartUtils";
 import { appTheme } from "../../theme";
 
-export const drawSonicChart = async () => {
-    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("sonic-chart", {
+export const drawSonicChart = async (rootELement: string | HTMLDivElement) => {
+    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(rootELement, {
         ...getCommonChartConfigs("Sonic"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
             padding: Thickness.fromNumber(0),
+            id: "sonicChart",
         },
     });
 
@@ -77,7 +78,7 @@ export const drawSonicChart = async () => {
     legendModifier.sciChartLegend.getLegendHTML = generateSonicLegend;
     sciChartSurface.chartModifiers.add(legendModifier);
 
-    return sciChartSurface;
+    return { sciChartSurface };
 };
 
 const generateSonicLegend = (

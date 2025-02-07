@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "../../../styles/Examples.module.scss";
+import commonClasses from "../../../styles/Examples.module.scss";
 import { FinChartLegendModifier, IFinanceLegendModifierOptions } from "./FinChartLegendModifier";
 
 import {
@@ -28,10 +28,10 @@ import {
     SciChartVerticalGroup,
     Thickness,
 } from "scichart";
-import { multiPaneData } from "../../../ExampleData/multiPaneData";
+import { fetchMultiPaneData } from "../../../ExampleData/ExampleDataProvider";
 import { appTheme } from "../../../theme";
+import { SciChartReact } from "scichart-react";
 
-export const mainChartWrapper = "cc_chart";
 export const mainChartWrapper2 = "cc_chart2";
 export const subChartWrapper1 = "subChartWrapper1";
 export const subChartWrapper2 = "subChartWrapper2";
@@ -83,9 +83,16 @@ const getDataForThirdPane = (xValues: number[], closeValues: number[]) => {
     return { rsiArray };
 };
 
-export const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const verticalGroup = new SciChartVerticalGroup();
-    const { dateValues: xValues, openValues, highValues, lowValues, closeValues, volumeValues } = multiPaneData;
+    const {
+        dateValues: xValues,
+        openValues,
+        highValues,
+        lowValues,
+        closeValues,
+        volumeValues,
+    } = await fetchMultiPaneData();
     const { macdArray, signalArray, divergenceArray } = getDataForSecondPane(xValues, closeValues);
     const { rsiArray } = getDataForThirdPane(xValues, closeValues);
 
@@ -108,7 +115,7 @@ export const drawExample = async () => {
     const downCol = appTheme.MutedRed;
     const opacity = "AA";
 
-    const { sciChartSurface: mainSurface, wasmContext } = await chartBuilder.build2DChart(mainChartWrapper2, {
+    const { sciChartSurface: mainSurface, wasmContext } = await chartBuilder.build2DChart(rootElement, {
         surface: {
             id: "mainSurface",
             theme: appTheme.SciChartJsTheme,
@@ -480,12 +487,12 @@ export const drawExample = async () => {
         event.preventDefault();
     };
 
-    firstDividerElement.addEventListener("mousedown", mouseDownHandlerFirst);
-    secondDividerElement.addEventListener("mousedown", mouseDownHandlerSecond);
-    container.addEventListener("mousedown", paneMouseDownHandler);
-    container.addEventListener("mouseup", mouseUpHandler);
-    container.addEventListener("mousemove", mouseMoveHandler);
-    container.addEventListener("mouseleave", mouseUpHandler);
+    firstDividerElement.addEventListener("pointerdown", mouseDownHandlerFirst);
+    secondDividerElement.addEventListener("pointerdown", mouseDownHandlerSecond);
+    container.addEventListener("pointerdown", paneMouseDownHandler);
+    container.addEventListener("pointerup", mouseUpHandler);
+    container.addEventListener("pointermove", mouseMoveHandler);
+    container.addEventListener("pointerleave", mouseUpHandler);
 
     firstDividerElement.style.top = `${subSurface1.subPosition.height * 100}%`;
     secondDividerElement.style.top = `${subSurface3.subPosition.y * 100}%`;
@@ -560,7 +567,7 @@ const buyMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
         svgString:
             '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
             '<g transform="translate(-53.867218,-75.091687)">' +
-            '<path style="fill:#1cb61c;fill-opacity:0.34117647;stroke:#00b400;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
+            '<path style="fill:#1cb61c;fill-opacity:0.34117647;stroke:#00b400;strokeWidth:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
             'd="m 55.47431,83.481251 c 7.158904,-7.408333 7.158904,-7.408333 7.158904,-7.408333 l 7.158906,7.408333 H 66.212668 V 94.593756 H 59.053761 V 83.481251 Z"' +
             "/>" +
             "</g>" +
@@ -579,7 +586,7 @@ const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
         svgString:
             '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
             '<g transform="translate(-54.616083,-75.548914)">' +
-            '<path style="fill:#b22020;fill-opacity:0.34117648;stroke:#990000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
+            '<path style="fill:#b22020;fill-opacity:0.34117648;stroke:#990000;strokeWidth:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
             'd="m 55.47431,87.025547 c 7.158904,7.408333 7.158904,7.408333 7.158904,7.408333 L 69.79212,87.025547 H 66.212668 V 75.913042 h -7.158907 v 11.112505 z"' +
             "/>" +
             "</g>" +
@@ -588,30 +595,9 @@ const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
 };
 
 export default function SubChartStockCharts() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
-            sciChartSurfaceRef.current = sciChartSurface;
-        });
-
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
-
     return (
         <div
-            className={classes.ChartsWrapper}
+            className={commonClasses.ChartWrapper}
             id={containerId2}
             style={{
                 position: "relative",
@@ -664,8 +650,8 @@ export default function SubChartStockCharts() {
                     position: "absolute", // important
                 }}
             />
-            <div
-                id={mainChartWrapper2}
+            <SciChartReact
+                initChart={drawExample}
                 style={{
                     minWidth: "100%",
                     maxWidth: "100%",
@@ -674,7 +660,7 @@ export default function SubChartStockCharts() {
                     maxHeight: "100%",
                     height: "100%",
                 }}
-            ></div>
+            />
         </div>
     );
 }

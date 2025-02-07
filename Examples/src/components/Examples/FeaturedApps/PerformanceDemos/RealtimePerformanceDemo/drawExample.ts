@@ -73,8 +73,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     let timerId: NodeJS.Timeout;
 
-    // Function called when the user clicks stopDemo button
-    const stopDemo = () => {
+    // Function called when the user clicks stopUpdate button
+    const stopUpdate = () => {
         clearTimeout(timerId);
         timerId = undefined;
         randomWalkGenerators.forEach((rw) => rw.reset());
@@ -82,16 +82,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         xAxis.autoRange = EAutoRange.Once;
     };
 
-    // Function called when the user clicks startDemo button
-    const startDemo = () => {
+    // Function called when the user clicks startUpdate button
+    const startUpdate = () => {
         // // tslint:disable-next-line:no-debugger
         // debugger;
         if (timerId) {
-            stopDemo();
+            stopUpdate();
         }
         const updateFunc = () => {
             if (dataSeries[0].count() >= maxPoints) {
-                stopDemo();
+                stopUpdate();
                 return;
             }
 
@@ -137,5 +137,5 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         statsCallback(renderStats);
     });
 
-    return { wasmContext, sciChartSurface, controls: { startDemo, stopDemo, setStatsChangedCallback } };
+    return { wasmContext, sciChartSurface, controls: { startUpdate, stopUpdate, setStatsChangedCallback } };
 };
