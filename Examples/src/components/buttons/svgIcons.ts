@@ -4,9 +4,9 @@ export const back = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
     <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
 </svg>`;
 
-export const close = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="18" y1="6" x2="6" y2="18"></line>
-    <line x1="6" y1="6" x2="18" y2="18"></line>
+export const close = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18" stroke-width="2"></line>
+    <line x1="6" y1="6" x2="18" y2="18" stroke-width="2"></line>
 </svg>`;
 
 export const browserfill = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -17,7 +17,7 @@ export const embedded = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24
     <path d="M19 3H5C3.89 3 3 3.89 3 5V19C3 20.11 3.89 21 5 21H19C20.11 21 21 20.11 21 19V5C21 3.89 20.11 3 19 3ZM19 19H5V5H19V19ZM12 17L8 13H16L12 17ZM12 7L16 11H8L12 7Z"/>
 </svg>`;
 
-export const fullscreen = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="2 2 20 20" fill="#fff">
+export const fullscreen = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="2 2 20 20" fill="#fff" stroke-width="0">
     <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
 </svg>`;
 

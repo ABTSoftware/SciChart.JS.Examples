@@ -44,7 +44,7 @@ export default function SciChartNavbar({
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    strokeWidth="1"
+                    strokeWidth="1.5"
                     stroke="#FFF"
                     height="24px"
                     width="24px"
