@@ -12,6 +12,7 @@ import {
   MouseWheelZoomModifier,
 } from "scichart";
 
+// Initialize a SciChartSurface
 export const initChart = async (rootElement) => {
   const { sciChartSurface, wasmContext } = await SciChartSurface.create(
     rootElement,
@@ -20,9 +21,15 @@ export const initChart = async (rootElement) => {
     }
   );
 
-  sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
+  // Add axis
+  sciChartSurface.xAxes.add(
+    new NumericAxis(wasmContext, { axisTitle: "X Axis" })
+  );
+  sciChartSurface.yAxes.add(
+    new NumericAxis(wasmContext, { axisTitle: "Y Axis" })
+  );
 
+  // Add a series with some data
   const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const yValues = [1, 4, 7, 3, 7, 6, 7, 4, 2, 5];
 
@@ -43,19 +50,29 @@ export const initChart = async (rootElement) => {
       strokeThickness: 0,
     }),
   });
+
+  // Setup series rollovermodifier properties
   mountainSeries.rolloverModifierProps.tooltipTextColor = "#fff";
   mountainSeries.rolloverModifierProps.tooltipColor = "SteelBlue";
   mountainSeries.tooltipLabelX = "X";
   mountainSeries.tooltipLabelY = "Y";
   sciChartSurface.renderableSeries.add(mountainSeries);
 
+  // Add some modifiers to the chart
   const rolloverModifier = new RolloverModifier({
     rolloverLineStroke: "LightSteelBlue",
+    snapToDataPoint: true,
   });
-  const rubberBandZoomModifier = new RubberBandXyZoomModifier();
+  const rubberBandZoomModifier = new RubberBandXyZoomModifier({
+    stroke: "#FFFFFF77",
+    fill: "#FFFFFF33",
+    strokeThickness: 1,
+  });
   const zoomPanModifier = new ZoomPanModifier();
   const zoomExtentsModifier = new ZoomExtentsModifier();
   const mouseWheelZoomModifier = new MouseWheelZoomModifier();
+
+  // Set the initial state of zoom, pan and tooltip modifiers
   rolloverModifier.isEnabled = false;
   zoomPanModifier.isEnabled = false;
   rubberBandZoomModifier.isEnabled = true;
@@ -68,6 +85,8 @@ export const initChart = async (rootElement) => {
     mouseWheelZoomModifier
   );
 
+  // Return the SciChartSurface and modifiers. This will be passed to initResult in the onInit callback
+  // by SciChartReact
   return {
     sciChartSurface,
     rolloverModifier,

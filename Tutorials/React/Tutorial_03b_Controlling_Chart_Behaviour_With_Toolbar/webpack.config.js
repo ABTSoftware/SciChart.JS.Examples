@@ -1,3 +1,4 @@
+// #region ExampleA
 const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
@@ -14,8 +15,14 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      {
+        test: /\.css$/, // Add CSS Loader Rule
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
+  // ...
+  // #endregion
   resolve: {
     extensions: [".js", ".jsx"],
   },

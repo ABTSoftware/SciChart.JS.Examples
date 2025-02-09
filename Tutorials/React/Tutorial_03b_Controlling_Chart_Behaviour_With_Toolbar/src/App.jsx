@@ -3,6 +3,7 @@ import { SciChartReact } from "scichart-react";
 import { ToggleButton } from "./ToggleButton";
 import { ChartContext } from "./ChartContext";
 import { initChart } from "./initChart";
+import "./styles.css";
 
 function App() {
   const [chartState, setChartState] = useState(null);
@@ -26,19 +27,7 @@ function App() {
           <ToggleButton label="Tooltip" modifierKey="rolloverModifier" />
           <button
             onClick={() => chartState?.sciChartSurface?.zoomExtents(500)}
-            style={{
-              backgroundColor: "#E0E0E0",
-              color: "#333",
-              border: "none",
-              padding: "8px 16px",
-              borderRadius: "2px",
-              cursor: "pointer",
-              fontSize: "14px",
-              fontWeight: "bold",
-              transition: "background 0.2s, box-shadow 0.2s",
-              boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
-              outline: "none",
-            }}
+            className={`normal-button`}
           >
             Zoom to Fit
           </button>
