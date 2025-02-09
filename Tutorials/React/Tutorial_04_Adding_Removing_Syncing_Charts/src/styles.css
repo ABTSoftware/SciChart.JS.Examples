@@ -1,0 +1,39 @@
+/* Toggle Button (Windows/macOS-style) */
+.toggle-button {
+  background-color: #e0e0e0; /* Default OFF color */
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+.toggle-button.active {
+  background-color: #007aff; /* ON color */
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 122, 255, 0.5);
+}
+
+/* Normal Button (Zoom to Fit) */
+.normal-button {
+  background-color: #e0e0e0; /* Default OFF color */
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+.normal-button:hover {
+  background-color: #55aaff;
+}
