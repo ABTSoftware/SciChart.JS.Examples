@@ -6,7 +6,7 @@ export class DataManager {
     this.data = new Map();
   }
 
-  async fetchData(id, count = 250) {
+  async fetchData(id, count = 100) {
     // Create new generator if doesn't exist
     if (!this.generators.has(id)) {
       const generator = new RandomWalkGenerator();

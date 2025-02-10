@@ -3,6 +3,7 @@ import "./styles.css";
 import { SciChartGroup, SciChartReact } from "scichart-react";
 import { initChart } from "./initChart";
 import { DataManager } from "./DataManager";
+// #region AxisSynchronizer
 import { AxisSynchroniser } from "./AxisSynchronizer";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
   const [axisSynchronizer, setAxisSynchronizer] = useState(
     new AxisSynchroniser()
   );
+  // #endregion
 
   // Create a DataManager class to proxy fetching data
   const [dataManager] = useState(() => new DataManager());

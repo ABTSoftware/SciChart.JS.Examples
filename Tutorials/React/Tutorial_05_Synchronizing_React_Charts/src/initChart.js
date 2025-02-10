@@ -11,22 +11,27 @@ import {
   SciChartJsNavyTheme,
   EAutoRange,
   NumberRange,
-  WaveAnimation,
+  FadeAnimation,
 } from "scichart";
 
 export const initChart = async (divElement, chartId, chartGroupId) => {
   const { sciChartSurface, wasmContext } = await SciChartSurface.create(
     divElement,
     {
-      title: `Chart ${chartId}`,
-      titleStyle: { fontSize: 16 },
       theme: new SciChartJsNavyTheme(),
+      canvasBorder: {
+        borderLeft: 1,
+        borderTop: 1,
+        borderRight: 1,
+        borderBottom: 1,
+        color: "#eee",
+      },
     }
   );
 
   sciChartSurface.xAxes.add(
     new NumericAxis(wasmContext, {
-      axisTitle: "X Axis",
+      axisTitle: `Chart ${chartId}`,
       axisTitleStyle: { fontSize: 12 },
     })
   );
@@ -69,14 +74,14 @@ export const initChart = async (divElement, chartId, chartGroupId) => {
         fill: "SteelBlue",
         stroke: "White",
       }),
-      animation: new WaveAnimation({ duration: 1000, fadeEffect: true }),
+      animation: new FadeAnimation({ duration: 500 }),
     });
 
     // Setup series rollovermodifier properties
     mountainSeries.rolloverModifierProps.tooltipTextColor = "#fff";
     mountainSeries.rolloverModifierProps.tooltipColor = "SteelBlue";
-    mountainSeries.tooltipLabelX = "X";
-    mountainSeries.tooltipLabelY = "Y";
+    mountainSeries.rolloverModifierProps.tooltipLabelX = "X";
+    mountainSeries.rolloverModifierProps.tooltipLabelY = "Y";
 
     sciChartSurface.renderableSeries.add(mountainSeries);
     sciChartSurface.zoomExtents();
