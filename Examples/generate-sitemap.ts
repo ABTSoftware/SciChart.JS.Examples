@@ -45,7 +45,7 @@ console.log("Generating sitemap...");
     });
 
     // Add examples links
-    for (const framework of ["react", "javascript"]) {
+    for (const framework of ["react", "javascript", "angular"]) {
         Object.values(EXAMPLES_PAGES).forEach((el) => {
             if (el.thumbnailImage) {
                 links.push({
