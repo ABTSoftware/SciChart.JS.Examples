@@ -8,15 +8,21 @@ const simpleChart = async (divElement, chartId) => {
     divElement,
     {
       title: `Chart ${chartId}`,
-      titleStyle: { fontSize: 28 },
+      titleStyle: { fontSize: 16 },
       theme: new SciChartJsNavyTheme(),
     }
   );
   sciChartSurface.xAxes.add(
-    new NumericAxis(wasmContext, { axisTitle: "X Axis" })
+    new NumericAxis(wasmContext, {
+      axisTitle: "X Axis",
+      axisTitleStyle: { fontSize: 12 },
+    })
   );
   sciChartSurface.yAxes.add(
-    new NumericAxis(wasmContext, { axisTitle: "Y Axis" })
+    new NumericAxis(wasmContext, {
+      axisTitle: "Y Axis",
+      axisTitleStyle: { fontSize: 12 },
+    })
   );
 
   return { sciChartSurface };
@@ -60,7 +66,7 @@ function App() {
             <SciChartReact
               key={chartId}
               initChart={(div) => simpleChart(div, chartId)}
-              style={{ height: "200px" }}
+              style={{ height: `${100 / charts.length}%` }}
             />
           ))}
         </SciChartGroup>
