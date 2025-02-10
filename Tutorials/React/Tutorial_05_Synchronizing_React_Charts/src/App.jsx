@@ -1,35 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./styles.css";
 import { SciChartGroup, SciChartReact } from "scichart-react";
-import { SciChartSurface, NumericAxis, SciChartJsNavyTheme } from "scichart";
-
-const simpleChart = async (divElement, chartId) => {
-  const { sciChartSurface, wasmContext } = await SciChartSurface.create(
-    divElement,
-    {
-      title: `Chart ${chartId}`,
-      titleStyle: { fontSize: 16 },
-      theme: new SciChartJsNavyTheme(),
-    }
-  );
-  sciChartSurface.xAxes.add(
-    new NumericAxis(wasmContext, {
-      axisTitle: "X Axis",
-      axisTitleStyle: { fontSize: 12 },
-    })
-  );
-  sciChartSurface.yAxes.add(
-    new NumericAxis(wasmContext, {
-      axisTitle: "Y Axis",
-      axisTitleStyle: { fontSize: 12 },
-    })
-  );
-
-  return { sciChartSurface };
-};
+import { initChart } from "./initChart";
+import { DataManager } from "./DataManager";
 
 function App() {
   const [charts, setCharts] = useState([0, 1]); // Initialize with 2 charts
+  const [dataManager] = useState(() => new DataManager());
 
   const addChart = () => {
     setCharts([...charts, charts.length]);
@@ -65,7 +42,11 @@ function App() {
           {charts.map((chartId) => (
             <SciChartReact
               key={chartId}
-              initChart={(div) => simpleChart(div, chartId)}
+              initChart={(div) => initChart(div, chartId)}
+              onInit={async (initResult) => {
+                const data = await dataManager.fetchData(chartId);
+                initResult.setData(data.xValues, data.yValues);
+              }}
               style={{ height: `${100 / charts.length}%` }}
             />
           ))}
