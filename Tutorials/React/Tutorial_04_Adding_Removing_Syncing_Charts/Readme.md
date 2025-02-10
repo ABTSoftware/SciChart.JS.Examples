@@ -1,4 +1,6 @@
-# SciChart.js React Demo
+# SciChart.js React Dynamic Charts Demo
+
+This example demonstrates how to dynamically add and remove synchronized charts using SciChart.js with React. The demo shows how to use the SciChartGroup component to synchronize multiple charts and manage them dynamically through UI controls.
 
 ## Licensing
 
@@ -16,14 +18,41 @@ Additionally, we recommend using the official [React wrapper for SciChart](https
 npm install scichart scichart-react
 ```
 
-## Step 2: Wasm file deployment
+## Step 2: Webpack Configuration
 
-SciChart.js uses WebAssembly files which must be served. The easiest way to do this is to copy the wasm files from the node_modules/scichart/\_wasm folder to your output folder.
+SciChart.js uses WebAssembly files which must be served. The webpack configuration needs to handle both CSS files and WASM files:
 
-e.g. with webpack.config.js:
+```javascript
+const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
+const webpack = require("webpack");
 
-```
- plugins: [
+module.exports = {
+  mode: "production",
+  entry: "./src/index.jsx",
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "build"),
+  },
+  plugins: [
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
@@ -32,129 +61,103 @@ e.g. with webpack.config.js:
         { from: "node_modules/scichart/_wasm/scichart3d.data", to: "" },
         { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
       ],
-    })
-  ],
-```
-
-> Note: other methods to [load wasm from CDN](https://www.scichart.com/documentation/js/current/webframe.html#Deploying%20Wasm%20or%20WebAssembly%20and%20Data%20Files%20with%20your%20app.html) are available to simplify getting started
-
-## Step 3: Creating the chart
-
-After that, you can define a config object to create a SciChartSurface like this.
-
-```javascript
-import React from "react";
-import { SciChartReact } from "scichart-react";
-import {
-  SweepAnimation,
-  SciChartJsNavyTheme,
-  NumberRange,
-  EAxisType,
-  EChart2DModifierType,
-  ESeriesType,
-  EPointMarkerType,
-} from "scichart";
-
-const chartConfig = {
-  surface: {
-    theme: new SciChartJsNavyTheme(),
-    title: "SciChart.js First Chart",
-    titleStyle: { fontSize: 22 },
-  },
-  // Create an XAxis and YAxis with growBy padding
-  xAxes: [
-    {
-      type: EAxisType.NumericAxis,
-      options: {
-        axisTitle: "X Axis",
-        growBy: new NumberRange(0.1, 0.1),
-      },
-    },
-  ],
-  yAxes: [
-    {
-      type: EAxisType.NumericAxis,
-      options: {
-        axisTitle: "Y Axis",
-        growBy: new NumberRange(0.1, 0.1),
-      },
-    },
-  ],
-  // Create a line series with some initial data
-  series: [
-    {
-      type: ESeriesType.LineSeries,
-      xyData: {
-        xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        yValues: [
-          0, 0.0998, 0.1986, 0.2955, 0.3894, 0.4794, 0.5646, 0.6442, 0.7173,
-          0.7833,
-        ],
-      },
-      options: {
-        stroke: "steelblue",
-        strokeThickness: 3,
-        pointMarker: {
-          type: EPointMarkerType.Ellipse,
-          options: {
-            width: 11,
-            height: 11,
-            fill: "#fff",
-          },
-        },
-        animation: new SweepAnimation({
-          duration: 300,
-          fadeEffect: true,
-        }),
-      },
-    },
-  ],
-  // Add some interaction modifiers to show zooming and panning
-  modifiers: [
-    { type: EChart2DModifierType.MouseWheelZoom },
-    {
-      type: EChart2DModifierType.ZoomPan,
-      options: { enableZoom: true },
-    },
-    { type: EChart2DModifierType.ZoomExtents },
+    }),
   ],
 };
 ```
 
-## Step 4: Create a React Component
+## Step 3: Creating the Chart Initialization Function
 
-Charts can be initialized with the SciChartReact Component using the `config` property.
+The chart initialization function creates a simple chart with X and Y axes:
+
+```javascript
+const simpleChart = async (divElement, chartId) => {
+  const { sciChartSurface, wasmContext } = await SciChartSurface.create(
+    divElement,
+    {
+      title: `Chart ${chartId}`,
+      titleStyle: { fontSize: 16 },
+      theme: new SciChartJsNavyTheme(),
+    }
+  );
+  sciChartSurface.xAxes.add(
+    new NumericAxis(wasmContext, {
+      axisTitle: "X Axis",
+      axisTitleStyle: { fontSize: 12 },
+    })
+  );
+  sciChartSurface.yAxes.add(
+    new NumericAxis(wasmContext, {
+      axisTitle: "Y Axis",
+      axisTitleStyle: { fontSize: 12 },
+    })
+  );
+
+  return { sciChartSurface };
+};
+```
+
+## Step 4: Creating the Dynamic Charts React Component
+
+The App component manages an array of charts and provides UI controls to add/remove charts:
 
 ```javascript
 function App() {
-  // LICENSING
-  // Commercial licenses set your license code here
-  // Purchased license keys can be viewed at https://www.scichart.com/profile
-  // How-to steps at https://www.scichart.com/licensing-scichart-js/
-  // SciChartSurface.setRuntimeLicenseKey("YOUR_RUNTIME_KEY");
+  const [charts, setCharts] = useState([0, 1]); // Initialize with 2 charts
 
-  // to use WebAssembly and Data files from CDN instead of the same origin
-  // SciChartSurface.loadWasmFromCDN();
+  const addChart = () => {
+    setCharts([...charts, charts.length]);
+  };
 
-  // Note: for both licensing and WASM configurations - make sure they are set on the client side.
+  const removeChart = () => {
+    if (charts.length > 0) {
+      setCharts(charts.slice(0, -1));
+    }
+  };
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1>SciChart.js with React hello world!</h1>
-        <p>
-          In this example we setup webpack, react and use scichart +
-          scichart-react to create a simple chart with one X and Y axis
-        </p>
+        <h1>&lt;SciChartReact/&gt; chart groups</h1>
       </header>
-      <SciChartReact config={chartConfig} style={{ maxWidth: 900 }} />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "left",
+          backgroundColor: "lightgrey",
+          padding: "10px",
+        }}
+      >
+        <button onClick={addChart} style={{ margin: "0 10px" }}>
+          Add Chart
+        </button>
+        <button onClick={removeChart} style={{ margin: "0 10px" }}>
+          Remove Chart
+        </button>
+      </div>
+      <div style={{ height: "600px" }}>
+        <SciChartGroup>
+          {charts.map((chartId) => (
+            <SciChartReact
+              key={chartId}
+              initChart={(div) => simpleChart(div, chartId)}
+              style={{ height: `${100 / charts.length}%` }}
+            />
+          ))}
+        </SciChartGroup>
+      </div>
     </div>
   );
 }
 ```
 
-For alternative initialization and usage refer to the [scichart-react](https://www.npmjs.com/package/scichart-react).  
-Or check out [our tutorial on how to build and test your own chart wrapper component](https://www.scichart.com/documentation/js/current/webframe.html#TutorialReusableReactComponent.html).
+The component uses:
+
+- React useState to track the charts array
+- SciChartGroup to synchronize all child charts
+- Dynamic height calculation based on number of charts
+- Add/Remove buttons to modify the charts array
+- Each chart is initialized with the simpleChart function
 
 # Running the example
 
@@ -163,13 +166,10 @@ npm install
 npm start
 ```
 
-# SciChart.js Tutorials and Getting Started
+# Learn More
 
-We have a wealth of information on our site showing how to get started with SciChart.js!
+For more information about SciChart.js features and capabilities:
 
-Take a look at:
-
-- [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes community licensing details, first steps and more
-- [Javascript / npm tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2002%20-%20Adding%20Series%20and%20Data.html): using npm, webpack, and scichart.js, create static and dynamic charts with zooming, panning tooltips and more
-- [Vanilla Javascript tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2001%20-%20Including%20SciChart.js%20in%20an%20HTML%20Page.html): using only vanilla javascript and HTML,
-- [Official scichart.js demos](https://demo.scichart.com): view our demos online! Full github source code also available at [github.com/abtsoftware/scichart.js.examples](https://github.com/abtsoftware/scichart.js.examples)
+- [SciChart.js Documentation](https://www.scichart.com/documentation/js/current/webframe.html)
+- [Official Examples](https://demo.scichart.com)
+- [GitHub Examples Repository](https://github.com/abtsoftware/scichart.js.examples)
