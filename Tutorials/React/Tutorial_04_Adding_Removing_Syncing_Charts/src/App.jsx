@@ -1,44 +1,54 @@
-import React, { useState } from "react";
-import { SciChartReact } from "scichart-react";
-import { ToggleButton } from "./ToggleButton";
-import { ChartContext } from "./ChartContext";
-import { initChart } from "./initChart";
+import React from "react";
 import "./styles.css";
+import { SciChartGroup, SciChartReact } from "scichart-react";
+import { SciChartSurface, NumericAxis, SciChartJsNavyTheme } from "scichart";
+
+const simpleChart = async (divElement, chartId) => {
+  const { sciChartSurface, wasmContext } = await SciChartSurface.create(
+    divElement,
+    {
+      title: `Chart ${chartId}`,
+      titleStyle: { fontSize: 28 },
+      theme: new SciChartJsNavyTheme(),
+    }
+  );
+  sciChartSurface.xAxes.add(
+    new NumericAxis(wasmContext, { axisTitle: "X Axis" })
+  );
+  sciChartSurface.yAxes.add(
+    new NumericAxis(wasmContext, { axisTitle: "Y Axis" })
+  );
+
+  return { sciChartSurface };
+};
 
 function App() {
-  const [chartState, setChartState] = useState(null);
-
   return (
-    <ChartContext.Provider value={{ chartState, setChartState }}>
-      <div className="App">
-        <header className="App-header">
-          <h1>&lt;SciChartReact/&gt; with custom chart controls</h1>
-        </header>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "left",
-            backgroundColor: "lightgrey",
-            padding: "10px",
-          }}
-        >
-          <ToggleButton label="Zoom" modifierKey="rubberBandZoomModifier" />
-          <ToggleButton label="Pan" modifierKey="zoomPanModifier" />
-          <ToggleButton label="Tooltip" modifierKey="rolloverModifier" />
-          <button
-            onClick={() => chartState?.sciChartSurface?.zoomExtents(500)}
-            className={`normal-button`}
-          >
-            Zoom to Fit
-          </button>
-        </div>
-        <SciChartReact
-          initChart={initChart}
-          onInit={(initResult) => setChartState(initResult)}
-          style={{ maxWidth: 900, height: 600 }}
-        ></SciChartReact>
+    <div className="App">
+      <header className="App-header">
+        <h1>&lt;SciChartReact/&gt; chart groups</h1>
+      </header>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "left",
+          backgroundColor: "lightgrey",
+          padding: "10px",
+        }}
+      >
+        {/* TODO: Add chart controls here */}
       </div>
-    </ChartContext.Provider>
+      <SciChartGroup>
+        <SciChartReact
+          initChart={(div) => simpleChart(div, 0)}
+          style={{ height: "300px" }}
+        />
+        <SciChartReact
+          initChart={(div) => simpleChart(div, 1)}
+          style={{ height: "300px" }}
+        />
+      </SciChartGroup>
+    </div>
   );
 }
 
