@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 import { SciChartGroup, SciChartReact } from "scichart-react";
 import { SciChartSurface, NumericAxis, SciChartJsNavyTheme } from "scichart";
@@ -23,6 +23,17 @@ const simpleChart = async (divElement, chartId) => {
 };
 
 function App() {
+  const [charts, setCharts] = useState([0, 1]); // Initialize with 2 charts
+
+  const addChart = () => {
+    setCharts([...charts, charts.length]);
+  };
+
+  const removeChart = () => {
+    if (charts.length > 0) {
+      setCharts(charts.slice(0, -1));
+    }
+  };
   return (
     <div className="App">
       <header className="App-header">
@@ -36,18 +47,24 @@ function App() {
           padding: "10px",
         }}
       >
-        {/* TODO: Add chart controls here */}
+        <button onClick={addChart} style={{ margin: "0 10px" }}>
+          Add Chart
+        </button>
+        <button onClick={removeChart} style={{ margin: "0 10px" }}>
+          Remove Chart
+        </button>
       </div>
-      <SciChartGroup>
-        <SciChartReact
-          initChart={(div) => simpleChart(div, 0)}
-          style={{ height: "300px" }}
-        />
-        <SciChartReact
-          initChart={(div) => simpleChart(div, 1)}
-          style={{ height: "300px" }}
-        />
-      </SciChartGroup>
+      <div style={{ height: "600px" }}>
+        <SciChartGroup>
+          {charts.map((chartId) => (
+            <SciChartReact
+              key={chartId}
+              initChart={(div) => simpleChart(div, chartId)}
+              style={{ height: "200px" }}
+            />
+          ))}
+        </SciChartGroup>
+      </div>
     </div>
   );
 }
