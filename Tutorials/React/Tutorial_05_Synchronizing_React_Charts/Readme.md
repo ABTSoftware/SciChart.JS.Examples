@@ -66,98 +66,89 @@ module.exports = {
 };
 ```
 
-## Step 3: Creating the Chart Initialization Function
+## Step 3: Core Components Architecture
 
-The chart initialization function creates a simple chart with X and Y axes:
+The application consists of several key components working together to create synchronized, dynamic charts:
 
-```javascript
-const simpleChart = async (divElement, chartId) => {
-  const { sciChartSurface, wasmContext } = await SciChartSurface.create(
-    divElement,
-    {
-      title: `Chart ${chartId}`,
-      titleStyle: { fontSize: 16 },
-      theme: new SciChartJsNavyTheme(),
-    }
-  );
-  sciChartSurface.xAxes.add(
-    new NumericAxis(wasmContext, {
-      axisTitle: "X Axis",
-      axisTitleStyle: { fontSize: 12 },
-    })
-  );
-  sciChartSurface.yAxes.add(
-    new NumericAxis(wasmContext, {
-      axisTitle: "Y Axis",
-      axisTitleStyle: { fontSize: 12 },
-    })
-  );
+### App.jsx - React Component Management
 
-  return { sciChartSurface };
-};
-```
+The main App component orchestrates the chart creation and synchronization:
 
-## Step 4: Creating the Dynamic Charts React Component
-
-The App component manages an array of charts and provides UI controls to add/remove charts:
+- Uses React useState to manage charts array and AxisSynchronizer state
+- Provides UI controls for adding/removing charts
+- Wraps charts in SciChartGroup for coordination
+- Handles chart lifecycle with onInit/onDelete callbacks
+- Manages data fetching and axis synchronization
 
 ```javascript
-function App() {
-  const [charts, setCharts] = useState([0, 1]); // Initialize with 2 charts
-
-  const addChart = () => {
-    setCharts([...charts, charts.length]);
-  };
-
-  const removeChart = () => {
-    if (charts.length > 0) {
-      setCharts(charts.slice(0, -1));
-    }
-  };
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>&lt;SciChartReact/&gt; chart groups</h1>
-      </header>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "left",
-          backgroundColor: "lightgrey",
-          padding: "10px",
-        }}
-      >
-        <button onClick={addChart} style={{ margin: "0 10px" }}>
-          Add Chart
-        </button>
-        <button onClick={removeChart} style={{ margin: "0 10px" }}>
-          Remove Chart
-        </button>
-      </div>
-      <div style={{ height: "600px" }}>
-        <SciChartGroup>
-          {charts.map((chartId) => (
-            <SciChartReact
-              key={chartId}
-              initChart={(div) => simpleChart(div, chartId)}
-              style={{ height: `${100 / charts.length}%` }}
-            />
-          ))}
-        </SciChartGroup>
-      </div>
-    </div>
-  );
-}
+const [charts, setCharts] = useState([0, 1]); // Initialize with 2 charts
+const [axisSynchronizer, setAxisSynchronizer] = useState(
+  new AxisSynchroniser()
+);
 ```
 
-The component uses:
+### initChart.js - Chart Configuration
 
-- React useState to track the charts array
-- SciChartGroup to synchronize all child charts
-- Dynamic height calculation based on number of charts
-- Add/Remove buttons to modify the charts array
-- Each chart is initialized with the simpleChart function
+Creates and configures individual chart instances:
+
+- Initializes SciChartSurface with styling and borders
+- Configures NumericAxis for X and Y axes
+- Adds interactive modifiers:
+  - ZoomPanModifier for drag operations
+  - MouseWheelZoomModifier for zoom
+  - ZoomExtentsModifier for reset
+  - RolloverModifier for tooltips
+- Provides setData function for updating chart data with animations
+
+### AxisSynchronizer.js - Chart Coordination
+
+Manages synchronized behavior between charts:
+
+- Maintains collection of axes to synchronize
+- Handles visibleRangeChanged events
+- Propagates range changes across charts
+- Provides methods for adding/removing axes as charts change
+
+## Step 4: Data Flow and Chart Lifecycle
+
+### Data Simulation Layer
+
+The application simulates real-world data fetching:
+
+- RandomWalkGenerator creates time-series data
+- DataManager wraps generator with Promise-based API
+- Simulates network delay with setTimeout
+- Caches generators and data by chart ID
+
+### Chart Lifecycle Management
+
+Charts are managed through React component lifecycle:
+
+```javascript
+<SciChartReact
+  key={chartId}
+  initChart={(div) => initChart(div, chartId, "chartGroupId")}
+  onInit={(initResult) => {
+    // Fetch and set data
+    dataManager.fetchData(chartId).then((data) => {
+      initResult.setData(data.xValues, data.yValues);
+    });
+    // Register with axis synchronizer
+    axisSynchronizer.addAxis(initResult.sciChartSurface.xAxes.get(0));
+  }}
+  onDelete={(initResult) => {
+    // Cleanup axis synchronization
+    axisSynchronizer.removeAxis(initResult.sciChartSurface.xAxes.get(0));
+  }}
+/>
+```
+
+This architecture ensures:
+
+- Proper initialization of charts with simulated data
+- Synchronized zooming and panning across charts
+- Clean cleanup when charts are removed
+- Smooth animations when data changes
 
 # Running the example
 
