@@ -9,4 +9,5 @@ export interface ChartSpec {
   chartType: ChartType;
   pointCount: number;
   dataUpdateRate: number;
+  chartTitle: string;
 }

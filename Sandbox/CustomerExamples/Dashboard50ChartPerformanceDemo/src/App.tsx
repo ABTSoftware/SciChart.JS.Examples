@@ -11,18 +11,12 @@ function App() {
       chartType: chartTypes[index % chartTypes.length],
       pointCount: 1000,
       dataUpdateRate: 1,
+      chartTitle: `Chart ${index + 1}`,
     }));
   });
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>SciChart.js with React hello world!</h1>
-        <p>
-          In this example we setup webpack, react and use scichart +
-          scichart-react to create a simple chart with one X and Y axis
-        </p>
-      </header>
       <div
         style={{
           display: "grid",
@@ -32,7 +26,11 @@ function App() {
       >
         <SciChartGroup>
           {charts.map((spec, index) => (
-            <ChartPanel key={index} chartSpec={spec} />
+            <ChartPanel
+              key={index}
+              chartSpec={spec}
+              style={{ width: "100%", height: "200px" }}
+            />
           ))}
         </SciChartGroup>
       </div>

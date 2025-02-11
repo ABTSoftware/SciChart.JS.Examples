@@ -19,6 +19,7 @@ import { ChartSpec, ChartType } from "./ChartSpec";
 
 interface ChartPanelProps {
   chartSpec: ChartSpec;
+  style?: React.CSSProperties;
 }
 
 const createRenderableSeries = (
@@ -67,44 +68,36 @@ const initChart = async (
   const { sciChartSurface, wasmContext } = await SciChartSurface.create(
     rootElement,
     {
-      title: "SciChart.js First Chart",
-      titleStyle: { fontSize: 22 },
+      title: spec.chartTitle,
+      titleStyle: { fontSize: 18 },
+      theme: new SciChartJsNavyTheme(),
     }
   );
 
-  // Set theme
-  sciChartSurface.applyTheme(new SciChartJsNavyTheme());
-
   // Create X Axis
-  const xAxis = new NumericAxis(wasmContext, {
-    axisTitle: "X Axis",
-    growBy: new NumberRange(0.1, 0.1),
-  });
+  sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
 
   // Create Y Axis
-  const yAxis = new NumericAxis(wasmContext, {
-    axisTitle: "Y Axis",
-    growBy: new NumberRange(0.1, 0.1),
-  });
+  sciChartSurface.yAxes.add(
+    new NumericAxis(wasmContext, {
+      growBy: new NumberRange(0.1, 0.1),
+    })
+  );
 
   // Create data series
   const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const yValues = [
     0, 0.0998, 0.1986, 0.2955, 0.3894, 0.4794, 0.5646, 0.6442, 0.7173, 0.7833,
   ];
-  const dataSeries = new XyDataSeries(wasmContext, { xValues, yValues });
 
-  // Create series based on chart type
-  const renderableSeries = createRenderableSeries(
-    wasmContext,
-    dataSeries,
-    spec.chartType
+  // Create series based on chart type and add to chart
+  sciChartSurface.renderableSeries.add(
+    createRenderableSeries(
+      wasmContext,
+      new XyDataSeries(wasmContext, { xValues, yValues }),
+      spec.chartType
+    )
   );
-
-  // Add axes and series to chart
-  sciChartSurface.xAxes.add(xAxis);
-  sciChartSurface.yAxes.add(yAxis);
-  sciChartSurface.renderableSeries.add(renderableSeries);
 
   // Add chart modifiers
   sciChartSurface.chartModifiers.add(
@@ -116,11 +109,11 @@ const initChart = async (
   return { sciChartSurface };
 };
 
-export const ChartPanel: React.FC<ChartPanelProps> = ({ chartSpec }) => {
+export const ChartPanel: React.FC<ChartPanelProps> = ({ chartSpec, style }) => {
   return (
     <SciChartReact
       initChart={(rootElement) => initChart(rootElement, chartSpec)}
-      style={{ maxWidth: 900, height: 300 }}
+      style={style}
     />
   );
 };
