@@ -4,6 +4,7 @@ import { ChartSpec, ChartType } from "./ChartSpec";
 import { SciChartGroup } from "scichart-react";
 import { DraggablePanel } from "./DraggablePanel";
 import { DraggableProvider } from "./DraggableContext";
+import { FpsControl } from "./FpsControl";
 
 function App() {
   // Initialize chart specs. 50 charts of varying types
@@ -25,6 +26,7 @@ function App() {
   return (
     <DraggableProvider>
       <div className="App" style={{ position: "relative", height: "100vh" }}>
+        <FpsControl />
         <SciChartGroup>
           {charts.map((spec, index) => (
             <DraggablePanel key={index} positionable={spec} width="25%">
