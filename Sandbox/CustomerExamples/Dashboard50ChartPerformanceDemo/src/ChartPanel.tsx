@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   SciChartSurface,
   NumericAxis,
@@ -13,9 +13,11 @@ import {
   SciChartJsNavyTheme,
   EllipsePointMarker,
   XyDataSeries,
+  EAutoRange,
 } from "scichart";
 import { SciChartReact } from "scichart-react";
 import { ChartSpec, ChartType } from "./ChartSpec";
+import { DataManager } from "./DataManager";
 
 interface ChartPanelProps {
   chartSpec: ChartSpec;
@@ -75,7 +77,9 @@ const initChart = async (
   );
 
   // Create X Axis
-  sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+  sciChartSurface.xAxes.add(
+    new NumericAxis(wasmContext, { autoRange: EAutoRange.Always })
+  );
 
   // Create Y Axis
   sciChartSurface.yAxes.add(
@@ -85,18 +89,18 @@ const initChart = async (
   );
 
   // Create data series
-  const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const yValues = [
-    0, 0.0998, 0.1986, 0.2955, 0.3894, 0.4794, 0.5646, 0.6442, 0.7173, 0.7833,
-  ];
+  const dataSeries = new XyDataSeries(wasmContext);
 
   // Create series based on chart type and add to chart
   sciChartSurface.renderableSeries.add(
-    createRenderableSeries(
-      wasmContext,
-      new XyDataSeries(wasmContext, { xValues, yValues }),
-      spec.chartType
-    )
+    createRenderableSeries(wasmContext, dataSeries, spec.chartType)
+  );
+
+  // Subscribe to data updates
+  const unsubscribeDataUpdates = DataManager.getInstance().subscribeDataUpdate(
+    (timestamp, xValues, yValues) => {
+      dataSeries.appendRange(xValues, yValues);
+    }
   );
 
   // Add chart modifiers
@@ -106,13 +110,25 @@ const initChart = async (
   //   new ZoomExtentsModifier()
   // );
 
-  return { sciChartSurface };
+  return { sciChartSurface, unsubscribeDataUpdates };
 };
 
 export const ChartPanel: React.FC<ChartPanelProps> = ({ chartSpec, style }) => {
+  const unsubscribeRef = useRef<(() => void) | null>(null);
+
+  useEffect(() => {
+    return () => {
+      // Cleanup subscription when component unmounts
+      if (unsubscribeRef.current) {
+        unsubscribeRef.current();
+      }
+    };
+  }, []);
+
   return (
     <SciChartReact
-      initChart={(rootElement) => initChart(rootElement, chartSpec)}
+      initChart={async (rootElement) => initChart(rootElement, chartSpec)}
+      onDelete={(initResult) => initResult.unsubscribeDataUpdates()}
       style={style}
     />
   );

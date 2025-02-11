@@ -56,6 +56,7 @@ export function DraggablePanel({
         width,
         cursor: isDragging ? "grabbing" : "grab",
         zIndex,
+        border: "1px solid SteelBlue",
       }}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
