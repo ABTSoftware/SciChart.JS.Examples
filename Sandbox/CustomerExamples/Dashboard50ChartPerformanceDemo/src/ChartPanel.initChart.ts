@@ -78,13 +78,13 @@ export const initChart = async (
   // Create X Axis
   sciChartSurface.xAxes.add(
     new NumericAxis(wasmContext, {
-      autoRange: EAutoRange.Always,
       useNativeText: optimized,
       useSharedCache: optimized,
       drawMinorTickLines: !optimized,
       drawMinorGridLines: !optimized,
       drawMajorTickLines: !optimized,
       maxAutoTicks: optimized ? 5 : undefined,
+      labelPrecision: 0,
     })
   );
 
@@ -124,6 +124,11 @@ export const initChart = async (
   const unsubscribeDataUpdates = DataManager.getInstance().subscribeDataUpdate(
     (timestamp, xValues, yValues) => {
       dataSeries.appendRange(xValues, yValues);
+
+      sciChartSurface.xAxes.get(0).visibleRange = new NumberRange(
+        xValues[xValues.length - 1] - spec.pointCount,
+        xValues[xValues.length - 1]
+      );
     }
   );
 
