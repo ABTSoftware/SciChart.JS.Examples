@@ -1,7 +1,19 @@
-import React from "react";
-import Chart from "./Chart";
+import React, { useState } from "react";
+import ChartPanel from "./ChartPanel";
+import { ChartSpec, ChartType } from "./ChartSpec";
+import { SciChartGroup } from "scichart-react";
 
 function App() {
+  // Initialize chart specs. 50 charts of varying types
+  const [charts] = useState<ChartSpec[]>(() => {
+    const chartTypes = Object.values(ChartType);
+    return Array.from({ length: 50 }, (_, index) => ({
+      chartType: chartTypes[index % chartTypes.length],
+      pointCount: 1000,
+      dataUpdateRate: 1,
+    }));
+  });
+
   return (
     <div className="App">
       <header className="App-header">
@@ -11,7 +23,19 @@ function App() {
           scichart-react to create a simple chart with one X and Y axis
         </p>
       </header>
-      <Chart />
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gap: "1rem",
+        }}
+      >
+        <SciChartGroup>
+          {charts.map((spec, index) => (
+            <ChartPanel key={index} chartSpec={spec} />
+          ))}
+        </SciChartGroup>
+      </div>
     </div>
   );
 }
