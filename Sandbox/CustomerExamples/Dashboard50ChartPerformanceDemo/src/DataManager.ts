@@ -22,7 +22,7 @@ export class DataManager {
 
   private update() {
     // Create new data points
-    const pointCount = 10;
+    const pointCount = 1;
     const xValues = new Float64Array(pointCount);
     const yValues = new Float64Array(pointCount);
 

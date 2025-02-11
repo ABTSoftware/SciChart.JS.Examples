@@ -14,7 +14,7 @@ function App() {
     const cols = 4;
     return Array.from({ length: 50 }, (_, index) => ({
       chartType: chartTypes[index % chartTypes.length],
-      pointCount: 1000,
+      pointCount: 200,
       dataUpdateRate: 1,
       chartTitle: `Chart ${index + 1}`,
       position: {

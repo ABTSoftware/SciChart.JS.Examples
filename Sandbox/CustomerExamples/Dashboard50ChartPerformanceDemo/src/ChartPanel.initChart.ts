@@ -1,16 +1,17 @@
 import {
-  SciChartSurface,
-  NumericAxis,
+  EAutoRange,
+  EAxisAlignment,
+  EllipsePointMarker,
+  FastColumnRenderableSeries,
   FastLineRenderableSeries,
   FastMountainRenderableSeries,
-  FastColumnRenderableSeries,
-  XyScatterRenderableSeries,
   NumberRange,
-  SciChartJsNavyTheme,
-  EllipsePointMarker,
-  XyDataSeries,
-  EAutoRange,
+  NumericAxis,
   SciChartDefaults,
+  SciChartJsNavyTheme,
+  SciChartSurface,
+  XyDataSeries,
+  XyScatterRenderableSeries,
 } from "scichart";
 import { ChartSpec, ChartType } from "./ChartSpec";
 import { DataManager } from "./DataManager";
@@ -83,20 +84,31 @@ export const initChart = async (
       drawMinorTickLines: !optimized,
       drawMinorGridLines: !optimized,
       drawMajorTickLines: !optimized,
+      maxAutoTicks: optimized ? 5 : undefined,
     })
   );
 
   // Create Y Axis
-  sciChartSurface.yAxes.add(
-    new NumericAxis(wasmContext, {
-      growBy: new NumberRange(0.1, 0.1),
-      useNativeText: optimized,
-      useSharedCache: optimized,
-      drawMinorTickLines: !optimized,
-      drawMinorGridLines: !optimized,
-      drawMajorTickLines: !optimized,
-    })
-  );
+  const yAxis = new NumericAxis(wasmContext, {
+    growBy: new NumberRange(0.1, 0.1),
+    useNativeText: optimized,
+    useSharedCache: optimized,
+    drawMinorTickLines: !optimized,
+    drawMinorGridLines: !optimized,
+    drawMajorTickLines: !optimized,
+    autoRange: EAutoRange.Always,
+    axisAlignment: EAxisAlignment.Left,
+  });
+  sciChartSurface.yAxes.add(yAxis);
+
+  if (optimized) {
+    yAxis.visibleRange = new NumberRange(0, 1);
+    yAxis.tickProvider.getMajorTicks = (
+      minorDelta,
+      majoredDelta,
+      visibleRange
+    ) => [0, 0.5, 1];
+  }
 
   // Create data series
   const dataSeries = new XyDataSeries(wasmContext, {
