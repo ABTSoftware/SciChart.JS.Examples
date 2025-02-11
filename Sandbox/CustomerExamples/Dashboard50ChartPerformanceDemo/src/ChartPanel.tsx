@@ -100,11 +100,11 @@ const initChart = async (
   );
 
   // Add chart modifiers
-  sciChartSurface.chartModifiers.add(
-    new MouseWheelZoomModifier(),
-    new ZoomPanModifier({ enableZoom: true }),
-    new ZoomExtentsModifier()
-  );
+  // sciChartSurface.chartModifiers.add(
+  //   new MouseWheelZoomModifier(),
+  //   new ZoomPanModifier({ enableZoom: true }),
+  //   new ZoomExtentsModifier()
+  // );
 
   return { sciChartSurface };
 };
