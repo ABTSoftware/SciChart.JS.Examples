@@ -4,7 +4,7 @@ const webpack = require("webpack");
 
 module.exports = {
   mode: "production",
-  entry: "./src/index.jsx",
+  entry: "./src/index.tsx",
   module: {
     rules: [
       {
