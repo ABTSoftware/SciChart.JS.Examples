@@ -1266,10 +1266,10 @@ Show external placement div</Notes>
         <TaskItem Id="dffe7e6e-7979-4018-ad50-f10dd51c7239" Priority="High" AssignedTo="">
           <Title>Document scichart-react in tutorials</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2024-07-25T08:55:53.4651527Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2024-07-25T08:56:03.7234416Z</ModifiedOn>
+          <ModifiedOn>2025-02-11T10:03:48.1607063Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -10938,72 +10938,6 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="7b100b94-ef0c-4cc9-a73a-7ee728f7208d" Status="New Topic" CreatedOn="2016-10-21T13:20:27.3476479Z" ModifiedOn="2019-02-12T19:29:13.2383473Z" ModifiedBy="" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="LineArrowAnnotation" BuildFlags="">
-                <Title m="2016-10-21T13:20:37.00524Z">LineArrowAnnotation</Title>
-                <ContentsTitle />
-                <Notes></Notes>
-                <CanonicalLink></CanonicalLink>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2019-02-12T19:29:13.2383473Z">&lt;P&gt;The&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.annotations.LineArrowAnnotation.html"&gt;LineArrowAnnotation&lt;/A&gt; allows to draw&amp;nbsp;an&amp;nbsp;&lt;STRONG&gt;arrow&lt;/STRONG&gt;&amp;nbsp;from X1,Y1&amp;nbsp;to X2,Y2 position:&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="SciChart_Android_Annotations/ArrowAnnotations_framed.png"&gt;&lt;/P&gt;
-&lt;H2&gt;LineAnnotation Features&lt;/H2&gt;
-&lt;P&gt;Please refer to the&amp;nbsp;&lt;A href="867a28ee-2d60-436c-9f9f-c046f0a3a9b0"&gt;Common Annotation Features&lt;/A&gt; to learn more about the ones&amp;nbsp;inherited from the base class. The Stroke color can be applied via the&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.annotations.LineAnnotationBase~setStroke.html"&gt;&lt;EM&gt;setStroke()&lt;/EM&gt;&lt;/A&gt; method, which expects&amp;nbsp;a&amp;nbsp;&lt;A href="SciChart.Drawing~com.scichart.drawing.common.PenStyle.html"&gt;PenStyle&lt;/A&gt; object. Please refer to the&amp;nbsp;&lt;A href="72c98c63-fe53-4c4b-8d96-3a09c48ce831"&gt;Styling and Theming&lt;/A&gt; section to learn more about pens and brushes in SciChart.&lt;/P&gt;
-&lt;P&gt;Size of the arrow's head can be changed via the&amp;nbsp;&lt;EM&gt;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.annotations.LineArrowAnnotation~setHeadLength.html"&gt;setHeadLength(),&lt;/A&gt;&lt;/EM&gt;&amp;nbsp;&lt;EM&gt;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.annotations.LineArrowAnnotation~setHeadWidth.html"&gt;setHeadWidth()&lt;/A&gt;&lt;/EM&gt; methods.&lt;/P&gt;
-&lt;H2&gt;Position LineAnnotation&lt;/H2&gt;
-&lt;P&gt;A&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.annotations.LineArrowAnnotation.html"&gt;LineArrowAnnotation&lt;/A&gt;&amp;nbsp;is placed on a chart&amp;nbsp;at the position determined by its&amp;nbsp;&lt;STRONG&gt;X1,Y1 and X2,Y2&amp;nbsp;coordinates&lt;/STRONG&gt;, which&amp;nbsp;specify the two line ends. It can be set via the&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.annotations.IAnnotation~setX1.html"&gt;&lt;EM&gt;setX1()&lt;/EM&gt;&lt;/A&gt;, &lt;A href="SciChart.Charting~com.scichart.charting.visuals.annotations.IAnnotation~setY1.html"&gt;&lt;EM&gt;setY1()&lt;/EM&gt;&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.annotations.AnnotationBase~setX2.html"&gt;&lt;EM&gt;setX2()&lt;/EM&gt;&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.annotations.AnnotationBase~setY2.html"&gt;&lt;EM&gt;setY2()&lt;/EM&gt;&lt;/A&gt;&amp;nbsp;methods. The arrow's &lt;STRONG&gt;head is placed at X2,Y2&lt;/STRONG&gt;.&lt;/P&gt;
-&lt;P&gt;In&amp;nbsp;a&amp;nbsp;&lt;A href="e00ca150-579a-4496-98b9-70c83ca9a7bb"&gt;multi-axis scenario&lt;/A&gt;, or if you changed the Ids of your axes, both &lt;STRONG&gt;XAxisId and YAxisId&lt;/STRONG&gt; must be set. This can be done via the&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.annotations.IAnnotation~setXAxisId.html"&gt;&lt;EM&gt;setAxisId()&lt;/EM&gt;,&lt;/A&gt; &lt;A href="SciChart.Charting~com.scichart.charting.visuals.annotations.IAnnotation~setYAxisId.html"&gt;&lt;EM&gt;setYAxisId()&lt;/EM&gt;&lt;/A&gt; methods.&lt;/P&gt;
-&lt;H2&gt;Create LineAnnotation&lt;/H2&gt;
-&lt;P&gt;A &lt;A href="SciChart.Charting~com.scichart.charting.visuals.annotations.LineArrowAnnotation.html"&gt;LineArrowAnnotation&lt;/A&gt;&amp;nbsp;can be added onto a chart using the following code:&lt;/P&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;// assume the surface&amp;nbsp;has been&amp;nbsp;created and configured before&lt;/P&gt;
-&lt;P&gt;ISciChartSurface surface;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;// create an LineAnnotation&lt;/P&gt;
-&lt;P&gt;LineArrowAnnotation lineArrowAnnotation = new LineArrowAnnotation(getActivity());&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;// specify&amp;nbsp;a PenStyle for the&amp;nbsp;Stroke&lt;/P&gt;
-&lt;P&gt;lineArrowAnnotation.setStroke(new SolidPenStyle(0xFF0000FF, true, 4, null));&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;// allow to interact with the&amp;nbsp;annotation in run-time&lt;BR&gt;lineArrowAnnotation.setEditable(true);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;// in a multi-axis scenario, specify the XAxisId and YAxisId&lt;BR&gt;lineArrowAnnotation.setXAxisId("Top_X_Axis");&lt;BR&gt;lineArrowAnnotation.setYAxisId("Left_Y_Axis");&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;// specify&amp;nbsp;size&amp;nbsp;for the arrow's head&lt;/P&gt;
-&lt;P&gt;lineArrowAnnotation.setHeadLength(20f);&lt;BR&gt;lineArrowAnnotation.setHeadWidth(20f);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;// specify a desired position by setting coordinates&lt;/P&gt;
-&lt;P&gt;// the arrow's head is located at X2,Y2&lt;BR&gt;lineArrowAnnotation.setX1(1d);&lt;/P&gt;
-&lt;P&gt;lineArrowAnnotation.setY1(4.6d);&lt;/P&gt;
-&lt;P&gt;lineArrowAnnotation.setX2(10d);&lt;/P&gt;
-&lt;P&gt;lineArrowAnnotation.setY2(9.1d);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;// add the annotation to the Annotations collection of the surface&lt;/P&gt;
-&lt;P&gt;Collections.addAll(surface.getAnnotations(), lineArrowAnnotation);&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Also, a&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.annotations.LineArrowAnnotation.html"&gt;LineArrowAnnotation&lt;/A&gt;&amp;nbsp;can be created using&amp;nbsp;&lt;A href="2142a982-921e-4adf-adfa-77c7cc635c5c"&gt;Chart Builders&lt;/A&gt;:&lt;/P&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;LineAnnotation lineAnnotation = sciChartBuilder.newLineAnnotation()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withPosition(1d, 4d, 2d, 6d)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withStroke(2f, 0xFF555555)&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withIsEditable(true)&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withXAxisId(X_TOP_AXIS)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;.withYAxisId(Y_LEFT_AXIS)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;To learn more about other annotation types, available out of the box in SciChart, please find the comprehensive list in the&amp;nbsp;&lt;A href="06b6036b-fbc1-41e4-905a-52ec73295788"&gt;What Is an Annotation&lt;/A&gt; article.&lt;/P&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks>
-                  <TopicLink Id="89146db9-9df1-46ab-8339-bca506955111" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="06b6036b-fbc1-41e4-905a-52ec73295788" BuildFlags="">
-                    <Title />
-                    <Category />
-                  </TopicLink>
-                  <TopicLink Id="8b91c093-8a55-495d-8128-4a4e582b0337" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="867a28ee-2d60-436c-9f9f-c046f0a3a9b0" BuildFlags="">
-                    <Title />
-                    <Category />
-                  </TopicLink>
-                  <TopicLink Id="85b7bda9-7dd0-458f-8cf7-e0e140ccaa03" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="SciChart.Charting~com.scichart.charting.visuals.annotations.LineArrowAnnotation" BuildFlags="">
-                    <Title />
-                    <Category />
-                  </TopicLink>
-                </TopicLinks>
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
               <Topic Id="72e4491f-8140-49cb-8bd3-85b381967f87" Status="New Topic" CreatedOn="2016-10-21T13:22:54.5131458Z" ModifiedOn="2025-01-20T17:18:45.071956Z" ModifiedBy="" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="TextAnnotation" BuildFlags="">
                 <Title m="2016-10-21T13:23:00.5519906Z">TextAnnotation</Title>
                 <ContentsTitle />
@@ -17120,7 +17054,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Assembly key="dtscrollpos" valuetype="integer">0</Assembly>
-        <Assembly key="scrollPosition" valuetype="integer">7034</Assembly>
+        <Assembly key="scrollPosition" valuetype="integer">4011</Assembly>
         <Assembly key="i-toggle-section-collapsed-i-seealso-section-heading" valuetype="string">true</Assembly>
       </Attributes>
     </TopicEditorState>
