@@ -1,24 +1,20 @@
 import React, { useState } from "react";
 import { useDraggable } from "./DraggableContext";
+import { Positionable } from "./Positionable";
 
 interface DraggablePanelProps {
   children: React.ReactNode;
-  initialPosition: {
-    left: number | string;
-    top: number;
-  };
+  positionable: Positionable;
   width: string;
-  onPositionChange?: (position: { left: number | string; top: number }) => void;
 }
 
 export function DraggablePanel({
   children,
-  initialPosition,
+  positionable,
   width,
-  onPositionChange,
 }: DraggablePanelProps) {
   const { bringToFront } = useDraggable();
-  const [position, setPosition] = useState(initialPosition);
+  const [position, setPosition] = useState(positionable.position);
   const [isDragged, setIsDragged] = useState(false);
   const [zIndex, setZIndex] = useState(1);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
@@ -43,7 +39,7 @@ export function DraggablePanel({
       };
       setPosition(newPosition);
       setIsDragged(true);
-      onPositionChange?.(newPosition);
+      positionable.position = newPosition;
     }
   };
 
