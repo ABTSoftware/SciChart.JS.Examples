@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import ChartPanel from "./ChartPanel";
 import { ChartSpec, ChartType } from "./ChartSpec";
 import { SciChartGroup } from "scichart-react";
@@ -7,6 +7,7 @@ import { DraggableProvider } from "./DraggableContext";
 import { FpsControl } from "./FpsControl";
 
 function App() {
+  const [optimized, setOptimized] = useState(true);
   // Initialize chart specs. 50 charts of varying types
   const [charts] = useState<ChartSpec[]>(() => {
     const chartTypes = Object.values(ChartType);
@@ -25,13 +26,37 @@ function App() {
 
   return (
     <DraggableProvider>
-      <div className="App" style={{ position: "relative", height: "100vh" }}>
+      <div
+        style={{
+          padding: "10px",
+          backgroundColor: "rgba(70, 130, 180, 0.3)",
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          height: "40px",
+          boxSizing: "border-box",
+        }}
+      >
+        <label style={{ color: "#333" }}>
+          <input
+            type="checkbox"
+            defaultChecked={true}
+            onChange={(e) => setOptimized(e.target.checked)}
+          />{" "}
+          Optimize
+        </label>
         <FpsControl />
+      </div>
+      <div
+        className="App"
+        style={{ position: "relative", height: "calc(100vh - 40px)" }}
+      >
         <SciChartGroup>
           {charts.map((spec, index) => (
             <DraggablePanel key={index} positionable={spec} width="25%">
               <ChartPanel
                 chartSpec={spec}
+                optimized={optimized}
                 style={{ width: "100%", height: "200px" }}
               />
             </DraggablePanel>

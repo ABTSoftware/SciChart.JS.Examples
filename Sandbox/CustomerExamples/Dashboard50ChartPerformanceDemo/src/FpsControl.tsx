@@ -44,16 +44,9 @@ export const FpsControl: React.FC = () => {
   return (
     <div
       style={{
-        position: "fixed",
-        top: 20,
-        left: 20,
-        padding: "20px",
-        backgroundColor: "rgba(70, 130, 180, 0.5)",
-        border: "1px solid white",
-        color: "white",
-        borderRadius: "4px",
+        color: "#333",
         fontFamily: "Arial",
-        zIndex: 1000,
+        marginLeft: "auto",
       }}
     >
       FPS: {fps.toFixed(2)}
