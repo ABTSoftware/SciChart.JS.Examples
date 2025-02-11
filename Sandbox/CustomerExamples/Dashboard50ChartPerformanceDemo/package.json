@@ -1,0 +1,33 @@
+{
+  "name": "react-scichart-demo",
+  "version": "1.0.0",
+  "description": "First Tutorial with SciChart.js",
+  "main": "index.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.23.3",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "babel-loader": "^9.1.2",
+    "copy-webpack-plugin": "^12.0.2",
+    "prettier": "^2.1.2",
+    "typescript": "^5.3.3",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "scichart": "^3.5.721",
+    "scichart-react": "^0.1.9"
+  }
+}
