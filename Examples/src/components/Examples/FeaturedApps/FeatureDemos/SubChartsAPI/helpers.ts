@@ -59,9 +59,9 @@ export const generateCandleDataForAppendRange = (open: number, closeValues: numb
     for (const close of closeValues) {
         openValues.push(open);
         let high = Math.max(open, close);
-        highValues.push(extendRandom(high, 5));
+        highValues.push(extendRandom(high, close - open));
         const low = Math.min(open, close);
-        lowValues.push(extendRandom(low, -5));
+        lowValues.push(extendRandom(low, open - close));
         open = close;
     }
     return { openValues, highValues, lowValues, closeValues };
@@ -75,11 +75,11 @@ const generateCandleData = (xValues: number[]) => {
     const closeValues = [];
 
     for (let i = 0; i < xValues.length; i++) {
-        const close = open + Math.random() * 10 - 5;
+        const close = open * (1 + (Math.random() - 0.5) * 0.2);
         let high = Math.max(open, close);
-        highValues.push(extendRandom(high, 5));
+        highValues.push(extendRandom(high, close - open));
         const low = Math.min(open, close);
-        lowValues.push(extendRandom(low, -5));
+        lowValues.push(extendRandom(low, open - close));
         closeValues.push(close);
         openValues.push(open);
         open = close;
@@ -202,7 +202,7 @@ export const prePopulateData = (
 const dsOptions: IBaseDataSeriesOptions = {
     isSorted: true,
     containsNaN: false,
-    fifoCapacity: 6000,
+    fifoCapacity: 5000,
 };
 
 export const createRenderableSeries = (
