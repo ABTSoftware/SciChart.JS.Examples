@@ -17,6 +17,27 @@ import {
 import { ChartSpec, ChartType } from "./ChartSpec";
 import { DataManager } from "../DataManager/DataManager";
 
+// Observer to detect when the chart is in view, to help pause drawing for charts out of viewport
+function observeVisibility(
+  element: HTMLDivElement,
+  callback: (isVisible: boolean) => void
+) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        callback(entry.isIntersecting);
+      }
+    },
+    {
+      root: null, // Observes relative to the viewport
+      threshold: 0.01, // Trigger when even 1% of the element is visible
+    }
+  );
+
+  observer.observe(element);
+  return observer;
+}
+
 // Creates a RenderableSeries based on ChartType
 const createRenderableSeries = (
   wasmContext: TSciChart,
@@ -135,6 +156,19 @@ export const initChart = async (
   sciChartSurface.renderableSeries.add(
     createRenderableSeries(wasmContext, dataSeries, spec.chartType)
   );
+
+  // If property enabled, hide charts out of view
+  if (spec.hideOutOfView) {
+    observeVisibility(sciChartSurface.domChartRoot, (isVisible) => {
+      if (!isVisible && !sciChartSurface.isSuspended) {
+        sciChartSurface.suspendUpdates();
+        console.log(`Chart ${spec.chartTitle} is out of view`);
+      } else if (isVisible && sciChartSurface.isSuspended) {
+        sciChartSurface.resume();
+        console.log(`Chart ${spec.chartTitle} is in view`);
+      }
+    });
+  }
 
   // Subscribe to data updates, returning the unsubscribeDataUpdates function which is called on chart delete
   const unsubscribeDataUpdates = DataManager.getInstance(

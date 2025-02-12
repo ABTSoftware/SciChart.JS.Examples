@@ -14,6 +14,7 @@ function App() {
   const [pointCount, setPointCount] = useState(200);
   const [chartCount, setChartCount] = useState(50);
   const [dataUpdateRate, setDataUpdateRate] = useState(1);
+  const [hideOutOfView, setHideOutOfView] = useState(true);
 
   // Initialize chart specs. 50 charts of varying types
   const [charts, setCharts] = useState<ChartSpec[]>(() => {
@@ -32,6 +33,7 @@ function App() {
       useNativeText: useNativeText,
       reduceAxisElements: reduceAxisElements,
       cacheLabels: cacheLabels,
+      hideOutOfView: hideOutOfView,
     }));
   });
 
@@ -111,6 +113,22 @@ function App() {
             }}
           />{" "}
           Cache Labels
+        </label>
+        <label style={{ color: "#333" }}>
+          <input
+            type="checkbox"
+            defaultChecked={true}
+            onChange={(e) => {
+              setHideOutOfView(e.target.checked);
+              setCharts((charts) =>
+                charts.map((chart) => ({
+                  ...chart,
+                  hideOutOfView: e.target.checked,
+                }))
+              );
+            }}
+          />{" "}
+          Freeze Charts out of view
         </label>
         <div
           style={{

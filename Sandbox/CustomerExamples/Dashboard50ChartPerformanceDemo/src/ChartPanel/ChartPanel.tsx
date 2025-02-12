@@ -10,7 +10,7 @@ interface ChartPanelProps {
 
 export const ChartPanel: React.FC<ChartPanelProps> = ({ chartSpec, style }) => {
   // Use chartSpec properties as part of the key to force re-creation when they change
-  const chartKey = `${chartSpec.drawLabels}-${chartSpec.useNativeText}-${chartSpec.reduceAxisElements}-${chartSpec.cacheLabels}`;
+  const chartKey = `${chartSpec.drawLabels}-${chartSpec.useNativeText}-${chartSpec.reduceAxisElements}-${chartSpec.cacheLabels}-${chartSpec.hideOutOfView}`;
 
   return (
     <SciChartReact
