@@ -38,7 +38,9 @@ function App() {
   });
 
   return (
-    <DraggableProvider>
+    <DraggableProvider
+      style={{ height: "100vh", display: "flex", flexDirection: "column" }}
+    >
       <div
         style={{
           padding: "10px",
@@ -48,6 +50,9 @@ function App() {
           gap: "10px",
           height: "40px",
           boxSizing: "border-box",
+          position: "sticky",
+          top: 0,
+          zIndex: 1000,
         }}
       >
         <label style={{ color: "#333" }}>
@@ -145,7 +150,11 @@ function App() {
       </div>
       <div
         className="App"
-        style={{ position: "relative", height: "calc(100vh - 40px)" }}
+        style={{
+          position: "relative",
+          height: "calc(100vh - 40px)",
+          overflowY: "auto",
+        }}
       >
         <SciChartGroup>
           {charts.map((spec, index) => (

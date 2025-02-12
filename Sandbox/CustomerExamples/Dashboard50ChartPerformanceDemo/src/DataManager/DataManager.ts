@@ -51,6 +51,7 @@ export class DataManager {
   ) {
     this.subscribers.push(callback);
     return () => {
+      console.log(`Unsubscribed from data updates`);
       this.subscribers = this.subscribers.filter((cb) => cb !== callback);
     };
   }
