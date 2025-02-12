@@ -114,13 +114,13 @@ export function DraggablePanel({
     }
 
     if (resizeRef.current.isDragging && !windowState.isMaximized) {
-      const newWidth =
-        resizeRef.current.startWidth + (e.clientX - resizeRef.current.startX);
-      const newHeight =
-        resizeRef.current.startHeight + (e.clientY - resizeRef.current.startY);
+      const deltaX = e.clientX - resizeRef.current.startX;
+      const deltaY = e.clientY - resizeRef.current.startY;
+
+      // Update both dimensions simultaneously
       setPanelSize({
-        width: `${Math.max(200, newWidth)}px`,
-        height: `${Math.max(100, newHeight)}px`,
+        width: `${Math.max(200, resizeRef.current.startWidth + deltaX)}px`,
+        height: `${Math.max(100, resizeRef.current.startHeight + deltaY)}px`,
       });
     }
   };
@@ -134,13 +134,20 @@ export function DraggablePanel({
     resizeRef.current.isDragging = false;
   };
 
-  const startResize = (e: React.MouseEvent) => {
+  const startResize = (e: React.PointerEvent) => {
+    e.stopPropagation();
+    const element = e.currentTarget as HTMLElement;
+    element.setPointerCapture(e.pointerId);
+
+    const panel = element.closest("[data-panel]") as HTMLElement;
+    if (!panel) return;
+
     resizeRef.current = {
       isDragging: true,
       startX: e.clientX,
       startY: e.clientY,
-      startWidth: parseInt(panelSize.width as string),
-      startHeight: parseInt(panelSize.height as string),
+      startWidth: panel.offsetWidth,
+      startHeight: panel.offsetHeight,
     };
     const newZIndex = bringToFront();
     setZIndex(newZIndex);
@@ -148,6 +155,7 @@ export function DraggablePanel({
 
   return (
     <div
+      data-panel
       style={{
         position: "absolute",
         left: isDragged ? `${position.left}px` : position.left,
@@ -160,7 +168,7 @@ export function DraggablePanel({
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
-        transition: "height 0.2s ease-out",
+        transition: windowState.isMinimized ? "height 0.2s ease-out" : "none",
       }}
       onPointerMove={handleMouseMove}
       onPointerUp={handleMouseUp}
@@ -226,24 +234,21 @@ export function DraggablePanel({
       </div>
       {!windowState.isMinimized && (
         <>
-          <div
-            style={{
-              height: windowState.isMaximized ? "calc(100% - 20px)" : "200px",
-            }}
-          >
-            {children}
-          </div>
+          <div style={{ flex: 1, minHeight: 0 }}>{children}</div>
           <div
             style={{
               position: "absolute",
               bottom: 0,
               right: 0,
-              width: "10px",
-              height: "10px",
+              width: "15px",
+              height: "15px",
               cursor: "se-resize",
               backgroundColor: "transparent",
+              backgroundImage: `linear-gradient(135deg, transparent 50%, rgba(70, 130, 180, 0.3) 50%)`,
+              borderLeft: "1px solid rgba(70, 130, 180, 0.5)",
+              borderTop: "1px solid rgba(70, 130, 180, 0.5)",
             }}
-            onMouseDown={startResize}
+            onPointerDown={startResize}
           />
         </>
       )}
