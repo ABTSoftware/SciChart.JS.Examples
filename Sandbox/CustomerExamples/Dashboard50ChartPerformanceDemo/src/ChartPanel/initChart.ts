@@ -131,22 +131,22 @@ export const initChart = async (
   );
 
   // Subscribe to data updates, returning the unsubscribeDataUpdates function which is called on chart delete
-  const unsubscribeDataUpdates = DataManager.getInstance().subscribeDataUpdate(
-    (timestamp, xValues, yValues) => {
-      // Append data to the chart
-      if (xValues.length === 1) {
-        dataSeries.append(xValues[0], yValues[0]);
-      } else {
-        dataSeries.appendRange(xValues, yValues);
-      }
-
-      // Scroll the xAxis
-      sciChartSurface.xAxes.get(0).visibleRange = new NumberRange(
-        xValues[xValues.length - 1] - spec.pointCount,
-        xValues[xValues.length - 1]
-      );
+  const unsubscribeDataUpdates = DataManager.getInstance(
+    spec.dataUpdateRate
+  ).subscribeDataUpdate((timestamp, xValues, yValues) => {
+    // Append data to the chart
+    if (xValues.length === 1) {
+      dataSeries.append(xValues[0], yValues[0]);
+    } else {
+      dataSeries.appendRange(xValues, yValues);
     }
-  );
+
+    // Scroll the xAxis
+    sciChartSurface.xAxes.get(0).visibleRange = new NumberRange(
+      xValues[xValues.length - 1] - spec.pointCount,
+      xValues[xValues.length - 1]
+    );
+  });
 
   // Return the SciChartSurface, and onDeleteChart callback to unsubscribe to data updates on teardown
   return { sciChartSurface, onDeleteChart: unsubscribeDataUpdates };
