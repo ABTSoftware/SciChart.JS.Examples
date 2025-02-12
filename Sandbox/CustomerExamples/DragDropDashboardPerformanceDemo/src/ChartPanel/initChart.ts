@@ -193,9 +193,7 @@ export const initChart = async (
     onDeleteChart: () => {
       unsubscribeDataUpdates();
       if (observer) {
-        console.log(
-          `Disconnecting intersection observer for ${spec.chartTitle}`
-        );
+        console.log(`Disconnecting intersection observer for ${spec.title}`);
         observer.disconnect();
       }
     },
