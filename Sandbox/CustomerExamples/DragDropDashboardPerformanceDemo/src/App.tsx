@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useScrollAnimation } from "./hooks/useScrollAnimation";
 import ChartPanel from "./ChartPanel/ChartPanel";
 import { ChartSpec, ChartType } from "./ChartPanel/ChartSpec";
 import { SciChartGroup } from "scichart-react";
@@ -10,6 +11,8 @@ import { AppHeader } from "./components/AppHeader";
 function AppContent() {
   const { chartState, chartCount, pointCount, dataUpdateRate } =
     useChartState();
+
+  useScrollAnimation();
 
   // Initialize chart specs. 50 charts of varying types
   const [charts, setCharts] = useState<ChartSpec[]>(() => {
