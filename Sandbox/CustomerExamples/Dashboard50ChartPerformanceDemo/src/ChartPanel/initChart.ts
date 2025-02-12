@@ -62,11 +62,10 @@ const createRenderableSeries = (
 
 export const initChart = async (
   rootElement: string | HTMLDivElement,
-  spec: ChartSpec,
-  optimized: boolean = true
+  spec: ChartSpec
 ) => {
   // Apply optimization settings
-  if (optimized) {
+  if (spec.reduceAxisElements) {
     SciChartDefaults.useNativeText = true;
     SciChartDefaults.useSharedCache = true;
   }
@@ -81,37 +80,44 @@ export const initChart = async (
     }
   );
 
+  // Depending on optimization flags, create optimal xAxis settings
+  const axisOptions = {
+    // When useNativeText, also use label Caching
+    useNativeText: spec.useNativeText,
+    useSharedCache: spec.cacheLabels,
+
+    // Hide elements which add to the draw time, but are barely visible due to chart size
+    drawMinorTickLines: !spec.reduceAxisElements,
+    drawMinorGridLines: !spec.reduceAxisElements,
+    drawMajorTickLines: !spec.reduceAxisElements,
+    drawMajorGridLines: !spec.reduceAxisElements,
+    drawMajorBands: !spec.reduceAxisElements,
+    maxAutoTicks: spec.reduceAxisElements ? 5 : undefined, // Reduce number of labels on screen
+
+    // Hide labels if specified
+    drawLabels: spec.drawLabels,
+  };
+
   // Create X Axis
   sciChartSurface.xAxes.add(
     new NumericAxis(wasmContext, {
-      // Depending on optimized flag, create optimal xAxis settings
-      useNativeText: optimized, // use WebGL text
-      useSharedCache: optimized, // Share and cache labels across charts
-      drawMinorTickLines: !optimized, // Hide elements which add to the draw time, but are barely visible due to chart size
-      drawMinorGridLines: !optimized,
-      drawMajorTickLines: !optimized,
-      drawMajorBands: !optimized,
-      maxAutoTicks: optimized ? 5 : undefined, // Reduce number of labels on screen
+      ...axisOptions,
       labelPrecision: 0,
     })
   );
 
   // Create Y Axis
   const yAxis = new NumericAxis(wasmContext, {
+    ...axisOptions,
     // Depending on optimized flag, create optimal xAxis settings
     growBy: new NumberRange(0.1, 0.1),
-    useNativeText: optimized,
-    useSharedCache: optimized,
-    drawMinorTickLines: !optimized,
-    drawMinorGridLines: !optimized,
-    drawMajorTickLines: !optimized,
-    autoRange: optimized ? EAutoRange.Once : EAutoRange.Always, // Reduce autoRanging calculation if not needed (data bounds are known)
     axisAlignment: EAxisAlignment.Left,
   });
   sciChartSurface.yAxes.add(yAxis);
 
-  if (optimized) {
-    yAxis.visibleRange = new NumberRange(0, 1);
+  yAxis.visibleRange = new NumberRange(0, 1);
+
+  if (spec.reduceAxisElements) {
     // Force YAxis ticks to be equal to 0, 0.5, 1.0 always, aesthetically pleasing plus fewer labels
     yAxis.tickProvider.getMajorTicks = (
       minorDelta,

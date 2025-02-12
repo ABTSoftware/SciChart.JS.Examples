@@ -17,4 +17,8 @@ export interface ChartSpec extends Positionable {
     left: number | string;
     top: number;
   };
+  drawLabels: boolean;
+  useNativeText: boolean;
+  reduceAxisElements: boolean;
+  cacheLabels: boolean;
 }
