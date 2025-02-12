@@ -10,14 +10,16 @@ import {
   SciChartDefaults,
   SciChartJsNavyTheme,
   SciChartSurface,
+  TSciChart,
   XyDataSeries,
   XyScatterRenderableSeries,
 } from "scichart";
 import { ChartSpec, ChartType } from "./ChartSpec";
-import { DataManager } from "./DataManager";
+import { DataManager } from "../DataManager/DataManager";
 
+// Creates a RenderableSeries based on ChartType
 const createRenderableSeries = (
-  wasmContext: any,
+  wasmContext: TSciChart,
   dataSeries: XyDataSeries,
   chartType: ChartType
 ) => {
@@ -38,15 +40,19 @@ const createRenderableSeries = (
     case ChartType.Column:
       return new FastColumnRenderableSeries(wasmContext, {
         ...baseOptions,
-        fill: "steelblue",
+        dataPointWidth: 1,
+        fill: "#ae418d",
+        stroke: "#ae418d",
+        strokeThickness: 1,
       });
     case ChartType.Scatter:
       return new XyScatterRenderableSeries(wasmContext, {
         ...baseOptions,
         pointMarker: new EllipsePointMarker(wasmContext, {
-          width: 11,
-          height: 11,
-          fill: "#fff",
+          width: 7,
+          height: 7,
+          fill: "#ff6600",
+          strokeThickness: 0,
         }),
       });
     default:
@@ -132,5 +138,6 @@ export const initChart = async (
     }
   );
 
-  return { sciChartSurface, unsubscribeDataUpdates };
+  // Return the SciChartSurface, and onDeleteChart callback to unsubscribe to data updates on teardown
+  return { sciChartSurface, onDeleteChart: unsubscribeDataUpdates };
 };

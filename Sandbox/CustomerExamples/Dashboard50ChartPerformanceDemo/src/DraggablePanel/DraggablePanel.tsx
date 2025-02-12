@@ -34,8 +34,8 @@ export function DraggablePanel({
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isDragging) {
       const newPosition = {
-        left: e.clientX - dragOffset.x,
-        top: e.clientY - dragOffset.y,
+        left: e.clientX - dragOffset.x + window.scrollX,
+        top: e.clientY - dragOffset.y + window.scrollY,
       };
       setPosition(newPosition);
       setIsDragged(true);

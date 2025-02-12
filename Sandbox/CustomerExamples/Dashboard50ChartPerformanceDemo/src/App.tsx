@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from "react";
-import ChartPanel from "./ChartPanel";
-import { ChartSpec, ChartType } from "./ChartSpec";
+import React, { useState } from "react";
+import ChartPanel from "./ChartPanel/ChartPanel";
+import { ChartSpec, ChartType } from "./ChartPanel/ChartSpec";
 import { SciChartGroup } from "scichart-react";
-import { DraggablePanel } from "./DraggablePanel";
-import { DraggableProvider } from "./DraggableContext";
+import { DraggablePanel } from "./DraggablePanel/DraggablePanel";
+import { DraggableProvider } from "./DraggablePanel/DraggableContext";
 import { FpsControl } from "./FpsControl";
 
 function App() {

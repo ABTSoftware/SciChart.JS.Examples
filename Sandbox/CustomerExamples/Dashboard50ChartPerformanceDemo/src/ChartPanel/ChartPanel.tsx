@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { SciChartReact } from "scichart-react";
 import { ChartSpec } from "./ChartSpec";
-import { initChart } from "./ChartPanel.initChart";
+import { initChart } from "./initChart";
 
 interface ChartPanelProps {
   chartSpec: ChartSpec;
@@ -30,7 +30,7 @@ export const ChartPanel: React.FC<ChartPanelProps> = ({
       initChart={async (rootElement) =>
         initChart(rootElement, chartSpec, optimized)
       }
-      onDelete={(initResult) => initResult.unsubscribeDataUpdates()}
+      onDelete={(initResult) => initResult.onDeleteChart()}
       style={style}
     />
   );

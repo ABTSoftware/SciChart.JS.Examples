@@ -1,3 +1,4 @@
+// A class to simulate data updates for the chart
 export class DataManager {
   private static instance: DataManager;
   private subscribers: ((
