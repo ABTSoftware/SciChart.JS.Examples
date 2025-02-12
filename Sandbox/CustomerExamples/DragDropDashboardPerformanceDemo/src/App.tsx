@@ -22,7 +22,7 @@ function AppContent() {
       chartType: chartTypes[index % chartTypes.length],
       pointCount,
       dataUpdateRate: dataUpdateRate,
-      chartTitle: `Chart ${index + 1}`,
+      title: `Chart ${index + 1}`,
       position: {
         left: `${(index % cols) * 25}%`,
         top: Math.floor(index / cols) * 200,
@@ -70,7 +70,7 @@ function AppContent() {
                 chartSpec={spec}
                 style={{
                   width: "100%",
-                  height: "200px",
+                  height: "100%",
                   willChange: "transform, opacity",
                   transform: "translateZ(0)",
                 }}

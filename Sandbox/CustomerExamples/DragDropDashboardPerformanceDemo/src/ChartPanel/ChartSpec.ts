@@ -13,9 +13,8 @@ export interface ChartSpec extends Positionable {
   chartType: ChartType;
   // number of points per chart (max) and data update rate per tick
   pointCount: number;
+  // Number of points to update per timer tick (for each chart)
   dataUpdateRate: number;
-  // chartTitle
-  chartTitle: string;
   // when true, freeze (don't draw) charts out of view
   hideOutOfView: boolean;
   // Position of the draggable chart window

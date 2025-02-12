@@ -95,8 +95,6 @@ export const initChart = async (
   const { sciChartSurface, wasmContext } = await SciChartSurface.create(
     rootElement,
     {
-      title: spec.chartTitle,
-      titleStyle: { fontSize: 18 },
       theme: new SciChartJsNavyTheme(),
     }
   );
@@ -163,10 +161,10 @@ export const initChart = async (
     observer = observeVisibility(sciChartSurface.domChartRoot, (isVisible) => {
       if (!isVisible && !sciChartSurface.isSuspended) {
         sciChartSurface.suspendUpdates();
-        console.log(`${spec.chartTitle} is out of view`);
+        console.log(`${spec.title} is out of view`);
       } else if (isVisible && sciChartSurface.isSuspended) {
         sciChartSurface.resume();
-        console.log(`${spec.chartTitle} is in view`);
+        console.log(`${spec.title} is in view`);
       }
     });
   }
