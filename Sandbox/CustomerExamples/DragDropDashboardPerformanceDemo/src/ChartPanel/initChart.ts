@@ -158,14 +158,15 @@ export const initChart = async (
   );
 
   // If property enabled, hide charts out of view
+  let observer: IntersectionObserver;
   if (spec.hideOutOfView) {
-    observeVisibility(sciChartSurface.domChartRoot, (isVisible) => {
+    observer = observeVisibility(sciChartSurface.domChartRoot, (isVisible) => {
       if (!isVisible && !sciChartSurface.isSuspended) {
         sciChartSurface.suspendUpdates();
-        console.log(`Chart ${spec.chartTitle} is out of view`);
+        console.log(`${spec.chartTitle} is out of view`);
       } else if (isVisible && sciChartSurface.isSuspended) {
         sciChartSurface.resume();
-        console.log(`Chart ${spec.chartTitle} is in view`);
+        console.log(`${spec.chartTitle} is in view`);
       }
     });
   }
@@ -189,5 +190,16 @@ export const initChart = async (
   });
 
   // Return the SciChartSurface, and onDeleteChart callback to unsubscribe to data updates on teardown
-  return { sciChartSurface, onDeleteChart: unsubscribeDataUpdates };
+  return {
+    sciChartSurface,
+    onDeleteChart: () => {
+      unsubscribeDataUpdates();
+      if (observer) {
+        console.log(
+          `Disconnecting intersection observer for ${spec.chartTitle}`
+        );
+        observer.disconnect();
+      }
+    },
+  };
 };

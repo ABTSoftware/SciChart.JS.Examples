@@ -1,36 +1,15 @@
-import React, { useState, useCallback } from "react";
-import { LabelControl } from "./Controls/LabelControl";
+import React, { useState, useEffect } from "react";
 import ChartPanel from "./ChartPanel/ChartPanel";
 import { ChartSpec, ChartType } from "./ChartPanel/ChartSpec";
 import { SciChartGroup } from "scichart-react";
 import { DraggablePanel } from "./DraggablePanel/DraggablePanel";
 import { DraggableProvider } from "./DraggablePanel/DraggableContext";
-import { FpsControl } from "./FpsControl";
+import { ChartStateProvider, useChartState } from "./context/ChartStateContext";
+import { AppHeader } from "./components/AppHeader";
 
-function App() {
-  const [chartState, setChartState] = useState({
-    reduceAxisElements: true,
-    drawLabels: false,
-    useNativeText: true,
-    cacheLabels: true,
-    hideOutOfView: true,
-  });
-  const [pointCount, setPointCount] = useState(200);
-  const [chartCount, setChartCount] = useState(100);
-  const [dataUpdateRate, setDataUpdateRate] = useState(1);
-
-  const handlePropertyChange = useCallback(
-    (propertyName: string, value: boolean) => {
-      setChartState((prev) => ({ ...prev, [propertyName]: value }));
-      setCharts((charts) =>
-        charts.map((chart) => ({
-          ...chart,
-          [propertyName]: value,
-        }))
-      );
-    },
-    []
-  );
+function AppContent() {
+  const { chartState, chartCount, pointCount, dataUpdateRate } =
+    useChartState();
 
   // Initialize chart specs. 50 charts of varying types
   const [charts, setCharts] = useState<ChartSpec[]>(() => {
@@ -53,73 +32,32 @@ function App() {
     }));
   });
 
+  // Update charts when chartState changes
+  useEffect(() => {
+    setCharts((prevCharts) =>
+      prevCharts.map((chart) => ({
+        ...chart,
+        drawLabels: chartState.drawLabels,
+        useNativeText: chartState.useNativeText,
+        reduceAxisElements: chartState.reduceAxisElements,
+        cacheLabels: chartState.cacheLabels,
+        hideOutOfView: chartState.hideOutOfView,
+      }))
+    );
+  }, [chartState]);
+
   return (
     <DraggableProvider
       style={{ height: "100vh", display: "flex", flexDirection: "column" }}
     >
-      <div
-        style={{
-          padding: "10px",
-          backgroundColor: "rgba(70, 130, 180, 0.3)",
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-          height: "40px",
-          boxSizing: "border-box",
-          position: "sticky",
-          top: 0,
-          zIndex: 1000,
-        }}
-      >
-        <LabelControl
-          label="Reduce Axis Elements"
-          checked={chartState.reduceAxisElements}
-          propertyName="reduceAxisElements"
-          onChange={handlePropertyChange}
-        />
-        <LabelControl
-          label="Draw Labels"
-          checked={chartState.drawLabels}
-          propertyName="drawLabels"
-          onChange={handlePropertyChange}
-        />
-        <LabelControl
-          label="Native Text"
-          checked={chartState.useNativeText}
-          propertyName="useNativeText"
-          onChange={handlePropertyChange}
-        />
-        <LabelControl
-          label="Cache Labels"
-          checked={chartState.cacheLabels}
-          propertyName="cacheLabels"
-          onChange={handlePropertyChange}
-        />
-        <LabelControl
-          label="Freeze Charts out of view"
-          checked={chartState.hideOutOfView}
-          propertyName="hideOutOfView"
-          onChange={handlePropertyChange}
-        />
-        <div
-          style={{
-            marginLeft: "auto",
-            display: "flex",
-            gap: "20px",
-            color: "#333",
-          }}
-        >
-          <span>ChartCount: {chartCount}</span>
-          <span>PointCount: {chartCount * pointCount}</span>
-          <FpsControl />
-        </div>
-      </div>
+      <AppHeader />
       <div
         className="App"
         style={{
           position: "relative",
           height: "calc(100vh - 40px)",
           overflowY: "auto",
+          overflowX: "hidden",
         }}
       >
         <SciChartGroup>
@@ -127,13 +65,26 @@ function App() {
             <DraggablePanel key={index} positionable={spec} width="25%">
               <ChartPanel
                 chartSpec={spec}
-                style={{ width: "100%", height: "200px" }}
+                style={{
+                  width: "100%",
+                  height: "200px",
+                  willChange: "transform, opacity",
+                  transform: "translateZ(0)",
+                }}
               />
             </DraggablePanel>
           ))}
         </SciChartGroup>
       </div>
     </DraggableProvider>
+  );
+}
+
+function App() {
+  return (
+    <ChartStateProvider>
+      <AppContent />
+    </ChartStateProvider>
   );
 }
 
