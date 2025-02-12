@@ -1,3 +1,5 @@
+import { Positionable } from "../DraggablePanel/Positionable";
+
 export enum ChartType {
   Line = "Line",
   Scatter = "Scatter",
@@ -5,8 +7,7 @@ export enum ChartType {
   Column = "Column",
 }
 
-import { Positionable } from "./Positionable";
-
+// Interface to define a chart panel
 export interface ChartSpec extends Positionable {
   chartType: ChartType;
   pointCount: number;

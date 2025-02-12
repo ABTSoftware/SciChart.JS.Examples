@@ -8,6 +8,7 @@ interface DraggablePanelProps {
   width: string;
 }
 
+// A DraggablePanel component that can be dragged around the screen on mouse-down
 export function DraggablePanel({
   children,
   positionable,

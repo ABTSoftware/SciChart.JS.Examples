@@ -10,6 +10,7 @@ const DraggableContext = createContext<DraggableContextType | null>(null);
 export function DraggableProvider({ children }: { children: React.ReactNode }) {
   const [maxZIndex, setMaxZIndex] = useState(1);
 
+  // Brings the current draggable element to the front, called on click/mouse-down
   const bringToFront = () => {
     const newZIndex = maxZIndex + 1;
     setMaxZIndex(newZIndex);

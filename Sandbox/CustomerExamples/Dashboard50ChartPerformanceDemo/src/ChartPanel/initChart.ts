@@ -84,31 +84,35 @@ export const initChart = async (
   // Create X Axis
   sciChartSurface.xAxes.add(
     new NumericAxis(wasmContext, {
-      useNativeText: optimized,
-      useSharedCache: optimized,
-      drawMinorTickLines: !optimized,
+      // Depending on optimized flag, create optimal xAxis settings
+      useNativeText: optimized, // use WebGL text
+      useSharedCache: optimized, // Share and cache labels across charts
+      drawMinorTickLines: !optimized, // Hide elements which add to the draw time, but are barely visible due to chart size
       drawMinorGridLines: !optimized,
       drawMajorTickLines: !optimized,
-      maxAutoTicks: optimized ? 5 : undefined,
+      drawMajorBands: !optimized,
+      maxAutoTicks: optimized ? 5 : undefined, // Reduce number of labels on screen
       labelPrecision: 0,
     })
   );
 
   // Create Y Axis
   const yAxis = new NumericAxis(wasmContext, {
+    // Depending on optimized flag, create optimal xAxis settings
     growBy: new NumberRange(0.1, 0.1),
     useNativeText: optimized,
     useSharedCache: optimized,
     drawMinorTickLines: !optimized,
     drawMinorGridLines: !optimized,
     drawMajorTickLines: !optimized,
-    autoRange: EAutoRange.Always,
+    autoRange: optimized ? EAutoRange.Once : EAutoRange.Always, // Reduce autoRanging calculation if not needed (data bounds are known)
     axisAlignment: EAxisAlignment.Left,
   });
   sciChartSurface.yAxes.add(yAxis);
 
   if (optimized) {
     yAxis.visibleRange = new NumberRange(0, 1);
+    // Force YAxis ticks to be equal to 0, 0.5, 1.0 always, aesthetically pleasing plus fewer labels
     yAxis.tickProvider.getMajorTicks = (
       minorDelta,
       majoredDelta,
@@ -126,11 +130,17 @@ export const initChart = async (
     createRenderableSeries(wasmContext, dataSeries, spec.chartType)
   );
 
-  // Subscribe to data updates
+  // Subscribe to data updates, returning the unsubscribeDataUpdates function which is called on chart delete
   const unsubscribeDataUpdates = DataManager.getInstance().subscribeDataUpdate(
     (timestamp, xValues, yValues) => {
-      dataSeries.appendRange(xValues, yValues);
+      // Append data to the chart
+      if (xValues.length === 1) {
+        dataSeries.append(xValues[0], yValues[0]);
+      } else {
+        dataSeries.appendRange(xValues, yValues);
+      }
 
+      // Scroll the xAxis
       sciChartSurface.xAxes.get(0).visibleRange = new NumberRange(
         xValues[xValues.length - 1] - spec.pointCount,
         xValues[xValues.length - 1]
