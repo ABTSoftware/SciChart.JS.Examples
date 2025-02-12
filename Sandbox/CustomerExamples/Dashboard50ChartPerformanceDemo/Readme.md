@@ -1,4 +1,8 @@
-# SciChart.js React Demo
+# 100 Chart Draggable Dashboard Performance Demo in React/TypeScript
+
+This application demonstrates the exceptional performance capabilities of SciChart.js by rendering 100 real-time, draggable charts simultaneously in a dynamic dashboard environment. Each chart displays live-updating data with configurable update rates, showcasing SciChart.js's ability to handle high-frequency data updates across multiple chart instances while maintaining smooth performance.
+
+The dashboard implements various performance optimization features including WebGL text rendering, label caching, and intelligent chart freezing when out of viewport. Users can interactively toggle these features through the control panel, providing immediate visual feedback on their performance impact. The application utilizes React for component management, TypeScript for type safety, and WebGL-powered SciChart.js for high-performance rendering.
 
 ## Licensing
 
@@ -38,123 +42,128 @@ e.g. with webpack.config.js:
 
 > Note: other methods to [load wasm from CDN](https://www.scichart.com/documentation/js/current/webframe.html#Deploying%20Wasm%20or%20WebAssembly%20and%20Data%20Files%20with%20your%20app.html) are available to simplify getting started
 
-## Step 3: Creating the chart
+## Step 3: Key Implementation Features
 
-After that, you can define a config object to create a SciChartSurface like this.
+### Performance Optimization Features
 
-```javascript
-import React from "react";
-import { SciChartReact } from "scichart-react";
-import {
-  SweepAnimation,
-  SciChartJsNavyTheme,
-  NumberRange,
-  EAxisType,
-  EChart2DModifierType,
-  ESeriesType,
-  EPointMarkerType,
-} from "scichart";
+Charts can be configured with various performance settings through the ChartSpec interface:
 
-const chartConfig = {
-  surface: {
-    theme: new SciChartJsNavyTheme(),
-    title: "SciChart.js First Chart",
-    titleStyle: { fontSize: 22 },
-  },
-  // Create an XAxis and YAxis with growBy padding
-  xAxes: [
-    {
-      type: EAxisType.NumericAxis,
-      options: {
-        axisTitle: "X Axis",
-        growBy: new NumberRange(0.1, 0.1),
-      },
-    },
-  ],
-  yAxes: [
-    {
-      type: EAxisType.NumericAxis,
-      options: {
-        axisTitle: "Y Axis",
-        growBy: new NumberRange(0.1, 0.1),
-      },
-    },
-  ],
-  // Create a line series with some initial data
-  series: [
-    {
-      type: ESeriesType.LineSeries,
-      xyData: {
-        xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        yValues: [
-          0, 0.0998, 0.1986, 0.2955, 0.3894, 0.4794, 0.5646, 0.6442, 0.7173,
-          0.7833,
-        ],
-      },
-      options: {
-        stroke: "steelblue",
-        strokeThickness: 3,
-        pointMarker: {
-          type: EPointMarkerType.Ellipse,
-          options: {
-            width: 11,
-            height: 11,
-            fill: "#fff",
-          },
-        },
-        animation: new SweepAnimation({
-          duration: 300,
-          fadeEffect: true,
-        }),
-      },
-    },
-  ],
-  // Add some interaction modifiers to show zooming and panning
-  modifiers: [
-    { type: EChart2DModifierType.MouseWheelZoom },
-    {
-      type: EChart2DModifierType.ZoomPan,
-      options: { enableZoom: true },
-    },
-    { type: EChart2DModifierType.ZoomExtents },
-  ],
-};
-```
-
-## Step 4: Create a React Component
-
-Charts can be initialized with the SciChartReact Component using the `config` property.
-
-```javascript
-function App() {
-  // LICENSING
-  // Commercial licenses set your license code here
-  // Purchased license keys can be viewed at https://www.scichart.com/profile
-  // How-to steps at https://www.scichart.com/licensing-scichart-js/
-  // SciChartSurface.setRuntimeLicenseKey("YOUR_RUNTIME_KEY");
-
-  // to use WebAssembly and Data files from CDN instead of the same origin
-  // SciChartSurface.loadWasmFromCDN();
-
-  // Note: for both licensing and WASM configurations - make sure they are set on the client side.
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>SciChart.js with React hello world!</h1>
-        <p>
-          In this example we setup webpack, react and use scichart +
-          scichart-react to create a simple chart with one X and Y axis
-        </p>
-      </header>
-      <SciChartReact config={chartConfig} style={{ maxWidth: 900 }} />
-    </div>
-  );
+```typescript
+export interface ChartSpec extends Positionable {
+  drawLabels: boolean; // Toggle axis labels
+  useNativeText: boolean; // Use WebGL text rendering
+  cacheLabels: boolean; // Enable label caching
+  reduceAxisElements: boolean; // Reduce number of axis elements
+  hideOutOfView: boolean; // Freeze charts when out of viewport
 }
 ```
 
-For alternative initialization and usage refer to the [scichart-react](https://www.npmjs.com/package/scichart-react).  
-Or check out [our tutorial on how to build and test your own chart wrapper component](https://www.scichart.com/documentation/js/current/webframe.html#TutorialReusableReactComponent.html).
+### Draggable Chart Panels
+
+Each chart is wrapped in a DraggablePanel component that enables drag-and-drop functionality:
+
+```typescript
+export function DraggablePanel({
+  children,
+  positionable,
+  width,
+}: DraggablePanelProps) {
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (isDragging) {
+      const newPosition = {
+        left: e.clientX - dragOffset.x + window.scrollX,
+        top: e.clientY - dragOffset.y + window.scrollY,
+      };
+      setPosition(newPosition);
+      setIsDragged(true);
+      positionable.position = newPosition;
+    }
+  };
+}
+```
+
+### Chart Component Lifecycle
+
+In `ChartPanel.tsx`, each chart is wrapped in a `<SciChartReact/>` component which manages component lifecycle and cleanup:
+
+```typescript
+export const ChartPanel: React.FC<ChartPanelProps> = ({ chartSpec, style }) => {
+  // Key changes force re-creation when chart properties change
+  const chartKey = `${chartSpec.drawLabels}-${chartSpec.useNativeText}-${chartSpec.reduceAxisElements}-${chartSpec.cacheLabels}`;
+
+  return (
+    <SciChartReact
+      key={chartKey}
+      initChart={async (rootElement) => initChart(rootElement, chartSpec)}
+      onDelete={(initResult) => initResult.onDeleteChart()}
+      style={style}
+    />
+  );
+};
+```
+
+### Chart Initialization and Optimization
+
+The `initChart` function configures each chart with performance optimizations:
+
+```typescript
+export const initChart = async (
+  rootElement: string | HTMLDivElement,
+  spec: ChartSpec
+) => {
+  // Apply optimization settings
+  if (spec.reduceAxisElements) {
+    SciChartDefaults.useNativeText = true;
+    SciChartDefaults.useSharedCache = true;
+  }
+
+  const axisOptions = {
+    useNativeText: spec.useNativeText, // WebGL text rendering
+    useSharedCache: spec.cacheLabels, // Label caching
+    drawMinorGridLines: !spec.reduceAxisElements, // Reduce elements in the axis
+    maxAutoTicks: spec.reduceAxisElements ? 5 : undefined,
+    drawLabels: spec.drawLabels, // Set if labels are drawn
+  };
+};
+```
+
+### Viewport Optimization
+
+In `initChart.ts`, when `ChartSpec.hideOutOfView` is enabled, Charts use `IntersectionObserver` API to pause rendering when scrolled out of view:
+
+```typescript
+if (spec.hideOutOfView) {
+  observeVisibility(sciChartSurface.domChartRoot, (isVisible) => {
+    if (!isVisible && !sciChartSurface.isSuspended) {
+      sciChartSurface.suspendUpdates();
+    } else if (isVisible && sciChartSurface.isSuspended) {
+      sciChartSurface.resume();
+    }
+  });
+}
+```
+
+## Step 4: Performance Monitoring
+
+The application includes real-time FPS monitoring to measure rendering performance:
+
+```typescript
+export const FpsControl: React.FC = () => {
+  useEffect(() => {
+    const calculateFps = () => {
+      frameCount++;
+      const currentTime = performance.now();
+      if (currentTime - lastUpdateTime >= 500) {
+        const fps = (frameCount * 1000) / (currentTime - lastUpdateTime);
+        setFps(fps);
+      }
+      requestAnimationFrame(calculateFps);
+    };
+  }, []);
+
+  return <div>FPS: {fps.toFixed(2)}</div>;
+};
+```
 
 # Running the example
 
@@ -162,6 +171,10 @@ Or check out [our tutorial on how to build and test your own chart wrapper compo
 npm install
 npm start
 ```
+
+We recommend trying out the various options to see the impact on performance in SciChart.js.
+
+For 100 charts, when optimal settings are enabled, the browser will update at 60 FPS.
 
 # SciChart.js Tutorials and Getting Started
 
