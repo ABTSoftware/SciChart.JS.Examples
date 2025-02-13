@@ -12,6 +12,8 @@ interface ChartStateContextType {
   chartState: ChartState;
   handlePropertyChange: (propertyName: string, value: boolean) => void;
   pointCount: number;
+  setPointCount: (value: number) => void;
+  setDataUpdateRate: (value: number) => void;
   chartCount: number;
   dataUpdateRate: number;
 }
@@ -34,7 +36,7 @@ export function ChartStateProvider({
   });
   const [pointCount, setPointCount] = useState(200);
   const [chartCount] = useState(100);
-  const [dataUpdateRate] = useState(1);
+  const [dataUpdateRate, setDataUpdateRate] = useState(1);
 
   const handlePropertyChange = useCallback(
     (propertyName: string, value: boolean | number) => {
@@ -49,6 +51,8 @@ export function ChartStateProvider({
         chartState,
         handlePropertyChange,
         pointCount,
+        setPointCount,
+        setDataUpdateRate,
         chartCount,
         dataUpdateRate,
       }}

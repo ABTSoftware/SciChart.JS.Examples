@@ -13,9 +13,6 @@ function AppContent() {
   const { chartState, chartCount, pointCount, dataUpdateRate } =
     useChartState();
 
-  // There's a lot of charts here! Scroll them into view
-  useScrollAnimation();
-
   // Initialize chart specs. 50 charts of varying types
   const [charts, setCharts] = useState<ChartSpec[]>(() => {
     const chartTypes = Object.values(ChartType);
@@ -23,7 +20,7 @@ function AppContent() {
     return Array.from({ length: chartCount }, (_, index) => ({
       chartType: chartTypes[index % chartTypes.length],
       pointCount,
-      dataUpdateRate: dataUpdateRate,
+      dataUpdateRate,
       title: `Chart ${index + 1}`,
       position: {
         left: `${(index % cols) * 25}%`,
@@ -42,6 +39,8 @@ function AppContent() {
     setCharts((prevCharts) =>
       prevCharts.map((chart) => ({
         ...chart,
+        pointCount,
+        dataUpdateRate,
         drawLabels: chartState.drawLabels,
         useNativeText: chartState.useNativeText,
         reduceAxisElements: chartState.reduceAxisElements,

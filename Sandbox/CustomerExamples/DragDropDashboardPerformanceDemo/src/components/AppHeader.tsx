@@ -5,8 +5,14 @@ import { useChartState } from "../context/ChartStateContext";
 import { DiscreteSlider } from "./DiscreteSlider";
 
 export function AppHeader() {
-  const { chartState, handlePropertyChange, chartCount, pointCount } =
-    useChartState();
+  const {
+    chartState,
+    handlePropertyChange,
+    chartCount,
+    pointCount,
+    setPointCount,
+    setDataUpdateRate,
+  } = useChartState();
 
   return (
     <div
@@ -49,24 +55,25 @@ export function AppHeader() {
         onChange={handlePropertyChange}
       />
       <LabelControl
-        label="Freeze Charts out of view"
+        label="Freeze Hidden Charts"
         checked={chartState.hideOutOfView}
         propertyName="hideOutOfView"
         onChange={handlePropertyChange}
       />
-      {/*<DiscreteSlider*/}
-      {/*  value={pointCount}*/}
-      {/*  onChange={(value) => {*/}
-      {/*    console.log(`pointCount: ${value}`);*/}
-      {/*  }}*/}
-      {/*  marks={[*/}
-      {/*    { value: 0, label: "100" },*/}
-      {/*    { value: 1, label: "1k" },*/}
-      {/*    { value: 2, label: "10k" },*/}
-      {/*    { value: 3, label: "100k" },*/}
-      {/*  ]}*/}
-      {/*  values={[100, 1000, 10000, 100000]}*/}
-      {/*/>*/}
+      <DiscreteSlider
+        value={pointCount}
+        onChange={(value) => {
+          setPointCount(value);
+          setDataUpdateRate(value / 100);
+        }}
+        marks={[
+          { value: 0, label: "100" },
+          { value: 1, label: "1k" },
+          { value: 2, label: "10k" },
+          { value: 3, label: "100k" },
+        ]}
+        values={[100, 1000, 10000, 100000]}
+      />
       <div
         style={{
           marginLeft: "auto",

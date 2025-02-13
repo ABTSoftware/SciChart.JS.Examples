@@ -8,7 +8,7 @@ export class DataManager {
   ) => void)[] = [];
   private currentX: number = 0;
   private readonly intervalId?: number;
-  protected readonly dataUpdateRate: number;
+  protected dataUpdateRate: number;
 
   private constructor(dataUpdateRate: number) {
     // Start the update loop
@@ -20,6 +20,7 @@ export class DataManager {
     if (!DataManager.instance) {
       DataManager.instance = new DataManager(dataUpdateRate);
     }
+    DataManager.instance.dataUpdateRate = dataUpdateRate;
     return DataManager.instance;
   }
 
