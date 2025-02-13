@@ -15,15 +15,20 @@ export function DiscreteSlider({
   values,
 }: DiscreteSliderProps) {
   return (
-    <Box sx={{ width: 120, mx: 2 }}>
+    <Box sx={{ width: 120, mx: 10, marginLeft: "20px", marginRight: "20px" }}>
       <Slider
+        sx={{
+          "& .MuiSlider-markLabel": {
+            fontSize: "0.75rem",
+          },
+        }}
         value={values.indexOf(value)}
         onChange={(_, newIndex) => onChange(values[newIndex as number])}
         min={0}
         max={3}
         step={null} // Discrete values only
         marks={marks}
-        valueLabelDisplay="auto"
+        valueLabelDisplay="on"
         valueLabelFormat={(index) => values[index].toLocaleString()}
       />
     </Box>

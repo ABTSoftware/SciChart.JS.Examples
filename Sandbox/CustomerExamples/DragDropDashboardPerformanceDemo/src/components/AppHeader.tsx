@@ -60,6 +60,7 @@ export function AppHeader() {
         propertyName="hideOutOfView"
         onChange={handlePropertyChange}
       />
+      <span style={{ marginLeft: "20px", color: "#333" }}>Data rate: </span>
       <DiscreteSlider
         value={pointCount}
         onChange={(value) => {

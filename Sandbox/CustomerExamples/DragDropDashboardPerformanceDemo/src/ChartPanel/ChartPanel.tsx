@@ -21,7 +21,10 @@ export const ChartPanel: React.FC<ChartPanelProps> = ({ chartSpec, style }) => {
       key={chartKey}
       fallback={<ChartLoader />}
       initChart={async (rootElement) => initChart(rootElement, chartSpec)}
-      onDelete={(initResult) => initResult.onDeleteChart()}
+      onDelete={(initResult) => {
+        // @ts-ignore
+        initResult.onDeleteChart();
+      }}
       style={style}
     />
   );
