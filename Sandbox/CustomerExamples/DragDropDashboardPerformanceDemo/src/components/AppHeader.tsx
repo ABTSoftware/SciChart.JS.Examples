@@ -2,7 +2,7 @@ import React from "react";
 import { LabelControl } from "../Controls/LabelControl";
 import { FpsControl } from "../FpsControl";
 import { useChartState } from "../context/ChartStateContext";
-import { LogarithmicSlider } from "./LogarithmicSlider";
+import { DiscreteSlider } from "./DiscreteSlider";
 
 export function AppHeader() {
   const { chartState, handlePropertyChange, chartCount, pointCount } =
@@ -21,6 +21,7 @@ export function AppHeader() {
         position: "sticky",
         top: 0,
         zIndex: 1000,
+        fontSize: "14px",
       }}
     >
       <LabelControl
@@ -53,12 +54,18 @@ export function AppHeader() {
         propertyName="hideOutOfView"
         onChange={handlePropertyChange}
       />
-      {/*<LogarithmicSlider*/}
+      {/*<DiscreteSlider*/}
       {/*  value={pointCount}*/}
       {/*  onChange={(value) => {*/}
       {/*    console.log(`pointCount: ${value}`);*/}
-      {/*    setPointCount(value);*/}
       {/*  }}*/}
+      {/*  marks={[*/}
+      {/*    { value: 0, label: "100" },*/}
+      {/*    { value: 1, label: "1k" },*/}
+      {/*    { value: 2, label: "10k" },*/}
+      {/*    { value: 3, label: "100k" },*/}
+      {/*  ]}*/}
+      {/*  values={[100, 1000, 10000, 100000]}*/}
       {/*/>*/}
       <div
         style={{

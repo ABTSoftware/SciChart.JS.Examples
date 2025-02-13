@@ -1,24 +1,21 @@
 import React from "react";
 import { Slider, Box } from "@mui/material";
 
-const marks = [
-  { value: 0, label: "100" },
-  { value: 1, label: "1k" },
-  { value: 2, label: "10k" },
-  { value: 3, label: "100k" },
-];
-
-// Map index to actual values
-const values = [100, 1000, 10000, 100000];
-
 interface DiscreteSliderProps {
   value: number;
   onChange: (value: number) => void;
+  marks: { value: number; label: string }[];
+  values: number[];
 }
 
-export function LogarithmicSlider({ value, onChange }: DiscreteSliderProps) {
+export function DiscreteSlider({
+  value,
+  onChange,
+  marks,
+  values,
+}: DiscreteSliderProps) {
   return (
-    <Box sx={{ width: 200, mx: 2 }}>
+    <Box sx={{ width: 120, mx: 2 }}>
       <Slider
         value={values.indexOf(value)}
         onChange={(_, newIndex) => onChange(values[newIndex as number])}
