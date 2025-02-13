@@ -29,7 +29,7 @@ export function ChartStateProvider({
 }) {
   const [chartState, setChartState] = useState<ChartState>({
     reduceAxisElements: true,
-    drawLabels: false,
+    drawLabels: true,
     useNativeText: true,
     cacheLabels: true,
     hideOutOfView: true,

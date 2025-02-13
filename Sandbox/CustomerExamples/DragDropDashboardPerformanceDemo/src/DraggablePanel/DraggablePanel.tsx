@@ -61,7 +61,9 @@ export function DraggablePanel({
           height: panelSize.height,
         },
       }));
-      setPosition({ left: 0, top: 0 });
+      const container = document.querySelector(".App");
+      const scrollTop = container ? container.scrollTop : 0;
+      setPosition({ left: 0, top: scrollTop });
       setPanelSize({ width: "100%", height: "100%" });
     } else {
       const prevState = windowState.previousState;
