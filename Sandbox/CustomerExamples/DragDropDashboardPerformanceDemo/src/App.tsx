@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useScrollAnimation } from "./hooks/useScrollAnimation";
 import ChartPanel from "./ChartPanel/ChartPanel";
 import { ChartSpec, ChartType } from "./ChartPanel/ChartSpec";
@@ -36,7 +37,7 @@ function AppContent() {
     }));
   });
 
-  // Update charts when chartState changes
+  // Update charts when chartState or pointCount changes
   useEffect(() => {
     setCharts((prevCharts) =>
       prevCharts.map((chart) => ({
@@ -48,7 +49,7 @@ function AppContent() {
         hideOutOfView: chartState.hideOutOfView,
       }))
     );
-  }, [chartState]);
+  }, [chartState, pointCount]);
 
   return (
     <DraggableProvider
@@ -82,11 +83,15 @@ function AppContent() {
   );
 }
 
+const theme = createTheme();
+
 function App() {
   return (
-    <ChartStateProvider>
-      <AppContent />
-    </ChartStateProvider>
+    <ThemeProvider theme={theme}>
+      <ChartStateProvider>
+        <AppContent />
+      </ChartStateProvider>
+    </ThemeProvider>
   );
 }
 

@@ -28,6 +28,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "scichart": "^3.5.721",
-    "scichart-react": "^0.1.9"
+    "scichart-react": "^0.1.9",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.4.4"
   }
 }

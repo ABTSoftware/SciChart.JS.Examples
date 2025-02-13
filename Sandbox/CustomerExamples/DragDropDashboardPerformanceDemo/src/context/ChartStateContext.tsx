@@ -32,12 +32,12 @@ export function ChartStateProvider({
     cacheLabels: true,
     hideOutOfView: true,
   });
-  const [pointCount] = useState(200);
+  const [pointCount, setPointCount] = useState(200);
   const [chartCount] = useState(100);
   const [dataUpdateRate] = useState(1);
 
   const handlePropertyChange = useCallback(
-    (propertyName: string, value: boolean) => {
+    (propertyName: string, value: boolean | number) => {
       setChartState((prev) => ({ ...prev, [propertyName]: value }));
     },
     []

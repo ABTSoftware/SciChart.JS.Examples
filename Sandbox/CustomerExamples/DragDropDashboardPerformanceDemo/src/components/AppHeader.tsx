@@ -2,6 +2,7 @@ import React from "react";
 import { LabelControl } from "../Controls/LabelControl";
 import { FpsControl } from "../FpsControl";
 import { useChartState } from "../context/ChartStateContext";
+import { LogarithmicSlider } from "./LogarithmicSlider";
 
 export function AppHeader() {
   const { chartState, handlePropertyChange, chartCount, pointCount } =
@@ -52,6 +53,13 @@ export function AppHeader() {
         propertyName="hideOutOfView"
         onChange={handlePropertyChange}
       />
+      {/*<LogarithmicSlider*/}
+      {/*  value={pointCount}*/}
+      {/*  onChange={(value) => {*/}
+      {/*    console.log(`pointCount: ${value}`);*/}
+      {/*    setPointCount(value);*/}
+      {/*  }}*/}
+      {/*/>*/}
       <div
         style={{
           marginLeft: "auto",

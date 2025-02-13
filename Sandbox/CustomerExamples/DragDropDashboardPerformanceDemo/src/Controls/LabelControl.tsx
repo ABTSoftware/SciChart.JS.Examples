@@ -1,4 +1,5 @@
 import React from "react";
+import { ChartSpec } from "../ChartPanel/ChartSpec";
 
 interface LabelControlProps {
   label: string;
