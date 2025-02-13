@@ -86,7 +86,7 @@ export const initChart = async (
   spec: ChartSpec
 ) => {
   // Apply optimization settings
-  if (spec.reduceAxisElements) {
+  if (spec.useNativeText) {
     SciChartDefaults.useNativeText = true;
     SciChartDefaults.useSharedCache = true;
   }
@@ -148,6 +148,11 @@ export const initChart = async (
   // Create data series
   const dataSeries = new XyDataSeries(wasmContext, {
     fifoCapacity: spec.pointCount,
+    // dataSeries distribution flags are normally calculated by SciChart
+    // If you know the data-distribution, specifying these flags saves some time on append()
+    containsNaN: false,
+    dataIsSortedInX: true,
+    dataEvenlySpacedInX: true,
   });
 
   // Create series based on chart type and add to chart

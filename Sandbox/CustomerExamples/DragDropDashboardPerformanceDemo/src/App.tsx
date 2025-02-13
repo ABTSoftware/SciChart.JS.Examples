@@ -12,6 +12,7 @@ function AppContent() {
   const { chartState, chartCount, pointCount, dataUpdateRate } =
     useChartState();
 
+  // There's a lot of charts here! Scroll them into view
   useScrollAnimation();
 
   // Initialize chart specs. 50 charts of varying types
@@ -71,8 +72,6 @@ function AppContent() {
                 style={{
                   width: "100%",
                   height: "100%",
-                  willChange: "transform, opacity",
-                  transform: "translateZ(0)",
                 }}
               />
             </DraggablePanel>

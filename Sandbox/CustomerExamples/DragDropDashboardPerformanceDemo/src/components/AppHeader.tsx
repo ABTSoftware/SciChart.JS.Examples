@@ -61,7 +61,9 @@ export function AppHeader() {
         }}
       >
         <span>ChartCount: {chartCount}</span>
-        <span>PointCount: {chartCount * pointCount}</span>
+        <span>
+          PointCount: {(chartCount * pointCount).toLocaleString("en-US")}
+        </span>
         <FpsControl />
       </div>
     </div>
