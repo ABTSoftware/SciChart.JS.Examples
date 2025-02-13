@@ -2,6 +2,7 @@ import React from "react";
 import { SciChartReact } from "scichart-react";
 import { ChartSpec } from "./ChartSpec";
 import { initChart } from "./initChart";
+import ChartLoader from "./ChartLoader";
 
 interface ChartPanelProps {
   chartSpec: ChartSpec;
@@ -16,6 +17,7 @@ export const ChartPanel: React.FC<ChartPanelProps> = ({ chartSpec, style }) => {
   return (
     <SciChartReact
       key={chartKey}
+      fallback={<ChartLoader />}
       initChart={async (rootElement) => initChart(rootElement, chartSpec)}
       onDelete={(initResult) => initResult.onDeleteChart()}
       style={style}
