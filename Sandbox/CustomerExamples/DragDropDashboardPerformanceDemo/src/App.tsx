@@ -13,6 +13,9 @@ function AppContent() {
   const { chartState, chartCount, pointCount, dataUpdateRate } =
     useChartState();
 
+  // That's a lot of charts! Let's show them
+  useScrollAnimation();
+
   // Initialize chart specs. 50 charts of varying types
   const [charts, setCharts] = useState<ChartSpec[]>(() => {
     const chartTypes = Object.values(ChartType);

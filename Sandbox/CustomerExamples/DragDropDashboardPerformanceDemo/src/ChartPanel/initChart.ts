@@ -17,6 +17,27 @@ import {
 import { ChartSpec, ChartType } from "./ChartSpec";
 import { DataManager } from "../DataManager/DataManager";
 
+// using IntersectionObserver to hide charts out of view
+function observeVisibility(
+  element: HTMLDivElement,
+  callback: (isVisible: boolean) => void
+) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        callback(entry.isIntersecting);
+      }
+    },
+    {
+      root: null, // Observes relative to the viewport
+      threshold: 0.01, // Trigger when even 1% of the element is visible
+    }
+  );
+
+  observer.observe(element);
+  return observer;
+}
+
 // Creates a RenderableSeries based on ChartType
 const createRenderableSeries = (
   wasmContext: TSciChart,
