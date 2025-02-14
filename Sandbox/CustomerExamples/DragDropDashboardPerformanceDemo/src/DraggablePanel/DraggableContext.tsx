@@ -7,7 +7,13 @@ interface DraggableContextType {
 
 const DraggableContext = createContext<DraggableContextType | null>(null);
 
-export function DraggableProvider({ children }: { children: React.ReactNode }) {
+export function DraggableProvider({
+  children,
+  style,
+}: {
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+}) {
   const [maxZIndex, setMaxZIndex] = useState(1);
 
   // Brings the current draggable element to the front, called on click/mouse-down
@@ -18,9 +24,11 @@ export function DraggableProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <DraggableContext.Provider value={{ maxZIndex, bringToFront }}>
-      {children}
-    </DraggableContext.Provider>
+    <div style={style}>
+      <DraggableContext.Provider value={{ maxZIndex, bringToFront }}>
+        {children}
+      </DraggableContext.Provider>
+    </div>
   );
 }
 

@@ -16,10 +16,13 @@ export const ChartPanel: React.FC<ChartPanelProps> = ({ chartSpec, style }) => {
     ${chartSpec.hideOutOfView}-${chartSpec.pointCount}-
     ${chartSpec.dataUpdateRate}`;
 
+  const loadingMessage = `${chartSpec.pointCount.toLocaleString(
+    "en-US"
+  )} points, ${chartSpec.dataUpdateRate * 60} per second`;
   return (
     <SciChartReact
       key={chartKey}
-      fallback={<ChartLoader />}
+      fallback={<ChartLoader text={loadingMessage} />}
       initChart={async (rootElement) => initChart(rootElement, chartSpec)}
       onDelete={(initResult) => {
         // @ts-ignore

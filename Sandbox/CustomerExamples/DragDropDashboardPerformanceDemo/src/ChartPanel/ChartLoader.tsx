@@ -1,6 +1,10 @@
 import React from "react";
 
-const ChartLoader: React.FC = () => {
+interface ChartLoaderProps {
+  text?: string;
+}
+
+const ChartLoader: React.FC<ChartLoaderProps> = ({ text = "Loading..." }) => {
   return (
     <div
       style={{
@@ -10,9 +14,10 @@ const ChartLoader: React.FC = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        fontSize: "1.25em",
       }}
     >
-      Loading...
+      {text}
     </div>
   );
 };
