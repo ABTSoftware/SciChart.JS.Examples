@@ -23,7 +23,7 @@ async function simpleSubChart(divElementId) {
     ZoomPanModifier,
     ZoomExtentsModifier,
     MouseWheelZoomModifier,
-    BoxAnnotation,
+    EXyDirection,
     NumberRange,
   } = SciChart;
 
@@ -70,21 +70,25 @@ async function simpleSubChart(divElementId) {
   addSeries(sciChartSurface, "#47bde6", xValues, yValues2);
 
   // Add some interactivity to the parent chart
-  sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-  sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+  sciChartSurface.chartModifiers.add(
+    new ZoomPanModifier({ xyDirection: EXyDirection.XDirection })
+  );
+  sciChartSurface.chartModifiers.add(
+    new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection })
+  );
   sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
 
   // Add a Sub-Charts to the main surface. This will display a rectangle showing the current zoomed in area on the parent chart
   const subChart1 = sciChartSurface.addSubChart({
     // Properties from I2DSubSurfaceOptions affect positioning and rendering of the subchart
-    position: new Rect(0.02, 0.02, 0.4, 0.4),
+    position: new Rect(45, 0.2, 5, 0.2),
     isTransparent: false,
     isVisible: true,
-    coordinateMode: ECoordinateMode.Relative,
+    coordinateMode: ECoordinateMode.DataValue,
     // However all properties from I2DSurfaceOptions are available
     viewportBorder: { border: 3, color: "#77777777" },
     backgroundColor: "#333",
-    title: "2D Overview with Sub-Charts",
+    title: "Sub-chart Positioned at Data-Value",
     titleStyle: { fontSize: 16, color: "#eeeeee77" },
   });
 
@@ -95,25 +99,6 @@ async function simpleSubChart(divElementId) {
   addSeries(subChart1, "#FF6600", xValues, yValues);
   addSeries(subChart1, "#ae418d", xValues, yValues1);
   addSeries(subChart1, "#47bde6", xValues, yValues2);
-
-  // Add a BoxAnnotation to the SubChart
-  const boxAnnotation = new BoxAnnotation({
-    fill: "#FF660033",
-    stroke: "#FF6600",
-    strokeThickness: 2,
-    opacity: 0.5,
-  });
-  subChart1.annotations.add(boxAnnotation);
-
-  // On parent chart zoom, pan, update the box annotation on the subchart
-  sciChartSurface.xAxes.get(0).visibleRangeChanged.subscribe((args) => {
-    boxAnnotation.x1 = args.visibleRange.min;
-    boxAnnotation.x2 = args.visibleRange.max;
-  });
-  sciChartSurface.yAxes.get(0).visibleRangeChanged.subscribe((args) => {
-    boxAnnotation.y1 = args.visibleRange.min;
-    boxAnnotation.y2 = args.visibleRange.max;
-  });
 
   // On the parent chart, programmatically zoom into a region
   setTimeout(() => {
@@ -131,7 +116,7 @@ async function simpleSubChart(divElementId) {
     new TextAnnotation({
       x1: 0.5,
       y1: 0.5,
-      text: "Mousewheel/Drag the parent chart to update the subchart view rect",
+      text: "Drag Zoom horizontally to update the SubChart position",
       horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
       xCoordinateMode: ECoordinateMode.Relative,
       yCoordinateMode: ECoordinateMode.Relative,
@@ -190,10 +175,10 @@ async function builderExample(divElementId) {
         {
           surface: {
             // Properties from I2DSubSurfaceOptions affect positioning and rendering of the subchart
-            position: new Rect(0.02, 0.02, 0.4, 0.4),
+            position: new Rect(47, -0.2, 10, 0.2),
             isTransparent: false,
             isVisible: true,
-            coordinateMode: ECoordinateMode.Relative,
+            coordinateMode: ECoordinateMode.DataValue,
             // However all properties from I2DSurfaceOptions are available
             viewportBorder: { border: 3, color: "#77777777" },
             backgroundColor: "#333",
@@ -217,43 +202,19 @@ async function builderExample(divElementId) {
               },
             },
           ],
-          annotations: [
-            {
-              type: EAnnotationType.RenderContextBoxAnnotation,
-              options: {
-                fill: "#FF660033",
-                stroke: "#FF6600",
-                strokeThickness: 2,
-                opacity: 0.5,
-              },
-            },
-          ],
         },
       ],
     }
   );
 
-  // On parent chart zoom, pan, update the box annotation on the subchart
-  const subChartBoxAnnotation = sciChartSurface.subCharts
-    .at(0)
-    .annotations.get(0);
-  sciChartSurface.xAxes.get(0).visibleRangeChanged.subscribe((args) => {
-    subChartBoxAnnotation.x1 = args.visibleRange.min;
-    subChartBoxAnnotation.x2 = args.visibleRange.max;
-  });
-  sciChartSurface.yAxes.get(0).visibleRangeChanged.subscribe((args) => {
-    subChartBoxAnnotation.y1 = args.visibleRange.min;
-    subChartBoxAnnotation.y2 = args.visibleRange.max;
-  });
-
   // On the parent chart, programmatically zoom into a region
   setTimeout(() => {
     sciChartSurface.xAxes
       .get(0)
-      .animateVisibleRange(new NumberRange(30, 70), 1000);
+      .animateVisibleRange(new NumberRange(35, 65), 1000);
     sciChartSurface.yAxes
       .get(0)
-      .animateVisibleRange(new NumberRange(-0.4, 0.4), 1000);
+      .animateVisibleRange(new NumberRange(-0.6, 0), 1000);
   }, 1000);
   // #endregion
 }
