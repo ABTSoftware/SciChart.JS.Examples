@@ -62,7 +62,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Realtime zooming example
     sciChartSurface.chartModifiers.add(new RubberBandXyZoomModifier());
     // Realtime panning example
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ executeOn: EExecuteOn.MouseRightButton }));
+    sciChartSurface.chartModifiers.add(
+        new ZoomPanModifier({ executeCondition: { button: EExecuteOn.MouseRightButton } })
+    );
 
     // Part 2: Appending data in realtime
     //

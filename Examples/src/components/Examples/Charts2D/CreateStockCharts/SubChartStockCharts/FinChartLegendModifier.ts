@@ -17,6 +17,7 @@ import {
     translateToNotScaled,
     registerType,
     testIsInBounds,
+    ISciChartSubSurface,
 } from "scichart";
 import { TFinanceLegendTemplate, FinChartLegendAnnotation } from "./FinChartLegendAnnotation";
 
@@ -73,7 +74,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
     >();
     private mousePosition: EMousePosition = EMousePosition.OutOfCanvas;
     private mousePositionPaneId: string;
-    private mousePositionSciChartSurface: SciChartSurfaceBase;
+    private mousePositionSciChartSurface: ISciChartSubSurface;
     private translatedMousePoint: Point;
     private readonly legendAnnotations: Map<string, FinChartLegendAnnotation> = new Map<
         string,
@@ -189,7 +190,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
             const x = translateToNotScaled(scaledX);
             const y = translateToNotScaled(scaledY);
 
-            this.parentSurface.subCharts.forEach((scs) => {
+            this.parentSurface.subCharts.forEach((scs: ISciChartSubSurface) => {
                 const xLineAnnotation = this.xLineAnnotations.get(scs.id);
                 const yLineAnnotation = this.yLineAnnotations.get(scs.id);
 
@@ -213,7 +214,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
                 const legendAnnotation = this.legendAnnotations.get(scs.id);
                 legendAnnotation.x1 = x;
                 legendAnnotation.y1 = y;
-                legendAnnotation.activeSciChartSurface = this.mousePositionSciChartSurface as SciChartSurface;
+                legendAnnotation.activeSciChartSurface = this.mousePositionSciChartSurface;
             });
         } else {
             this.parentSurface.subCharts.forEach((scs) => {

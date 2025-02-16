@@ -52,7 +52,7 @@ export class AddIOModifier extends ChartModifierBase2D {
 
     public override modifierMouseDown(args: ModifierMouseArgs): void {
         super.modifierMouseDown(args);
-        if (args.button !== this.executeOn) return;
+        if (args.button !== this.executeCondition.button) return;
 
         const currentPoint = translateFromCanvasToSeriesViewRect(
             args.mousePoint,

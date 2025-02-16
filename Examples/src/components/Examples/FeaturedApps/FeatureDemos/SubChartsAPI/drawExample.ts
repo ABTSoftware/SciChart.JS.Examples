@@ -168,7 +168,7 @@ export const drawGridExample = async (
         };
 
         // create sub-surface
-        const subChartSurface = mainSurface.addSubChart(subChartOptions);
+        const subChartSurface = SciChartSubSurface.createSubSurface(mainSurface, subChartOptions);
 
         // add axes to the sub-surface
         const subChartXAxis = new NumericAxis(wasmContext, {

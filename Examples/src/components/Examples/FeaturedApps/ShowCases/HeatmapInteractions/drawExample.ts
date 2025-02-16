@@ -206,7 +206,7 @@ export const getChartsInitializationApi = () => {
         sciChartSurface.chartModifiers.add(
             new ZoomExtentsModifier(),
             new MouseWheelZoomModifier(),
-            new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton }),
+            new RubberBandXyZoomModifier({ executeCondition: { button: EExecuteOn.MouseRightButton } }),
             new YAxisDragModifier({})
         );
 
@@ -313,7 +313,7 @@ export const getChartsInitializationApi = () => {
 
         sciChartSurface.chartModifiers.add(
             new PointDragModifier(),
-            new ZoomPanModifier({ executeOn: EExecuteOn.MouseRightButton }),
+            new ZoomPanModifier({ executeCondition: { button: EExecuteOn.MouseRightButton } }),
             new MouseWheelZoomModifier()
         );
 
@@ -409,7 +409,7 @@ export const getChartsInitializationApi = () => {
             new ZoomPanModifier({ enableZoom: true }),
             new ZoomExtentsModifier(),
             new MouseWheelZoomModifier(),
-            new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton })
+            new RubberBandXyZoomModifier({ executeCondition: { button: EExecuteOn.MouseRightButton } })
         );
 
         outputSurface = sciChartSurface;

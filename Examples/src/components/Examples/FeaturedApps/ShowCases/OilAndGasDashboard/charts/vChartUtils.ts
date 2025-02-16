@@ -65,22 +65,33 @@ export const getCommonChartConfigs = (axisTitle: string): ISciChart2DDefinition 
     },
 });
 
-export const getCommonChartModifiersConfig = (): TModifierDefinition[] => [
+export const getCommonChartModifiersConfig = (yAxisId: string): TModifierDefinition[] => [
     {
         type: EChart2DModifierType.ZoomExtents,
-        options: { modifierGroup: "VerticalChartsGroup", xyDirection: EXyDirection.XDirection },
+        options: {
+            modifierGroup: "VerticalChartsGroup",
+            xyDirection: EXyDirection.XDirection,
+        },
     },
-    // TODO: Uncomment after v2.1 scichart.js release
-    // { type: EChart2DModifierType.ZoomPan, options: { modifierGroup: "VerticalChartsGroup", excludedYAxisIds: [AxisCore.DEFAULT_AXIS_ID] } },
     {
         type: EChart2DModifierType.ZoomPan,
-        options: { modifierGroup: "VerticalChartsGroup", xyDirection: EXyDirection.XDirection },
+        options: {
+            modifierGroup: "VerticalChartsGroup",
+            excludedYAxisIds: [yAxisId],
+        },
+    },
+    {
+        type: EChart2DModifierType.ZoomPan,
+        options: {
+            modifierGroup: "VerticalChartsGroup",
+            xyDirection: EXyDirection.XDirection,
+        },
     },
     {
         type: EChart2DModifierType.MouseWheelZoom,
         options: {
             modifierGroup: "VerticalChartsGroup",
-            excludedYAxisIds: [AxisCore.DEFAULT_AXIS_ID],
+            excludedYAxisIds: [yAxisId],
             xyDirection: EXyDirection.XDirection,
         },
     },

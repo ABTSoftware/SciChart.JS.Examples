@@ -8,16 +8,25 @@ import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "../vChartUtils";
 import { appTheme } from "../../theme";
+import { EAxisAlignment, EAxisType } from "scichart";
 
 export const drawPoreSpaceChart = async (rootELement: string | HTMLDivElement) => {
+    const yAxisId = "y-axis-id";
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(rootELement, {
         ...getCommonChartConfigs("Pore Space"),
-        modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
             padding: Thickness.fromNumber(0),
             id: "poreSpaceChart",
         },
+        yAxes: {
+            type: EAxisType.NumericAxis,
+            options: {
+                id: yAxisId,
+                axisAlignment: EAxisAlignment.Bottom,
+            },
+        },
+        modifiers: getCommonChartModifiersConfig(yAxisId),
     });
 
     sciChartSurface.yAxes.get(0).visibleRange = new NumberRange(-0.2, 1.6);

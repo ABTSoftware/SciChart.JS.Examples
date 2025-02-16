@@ -191,7 +191,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         const xVal = (state.renderPassData.pointSeries as IOhlcPointSeries).openValues.get(state.index);
         const xCoord = state.renderPassData.yCoordinateCalculator.getCoordinate(xVal);
         const yCoord = state.yCoord() + textBounds.m_fHeight / 2;
-        return new Point(xCoord, yCoord);
+        return {
+            position: new Point(xCoord, yCoord),
+            rotationCenter: new Point(xCoord, yCoord),
+            rotationAngle: 0,
+        };
     };
     dataLabelProvider.getText = (state) => {
         const open = (state.renderPassData.pointSeries as IOhlcPointSeries).openValues.get(state.index);

@@ -7,17 +7,29 @@ import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "../vChartUtils";
 import { appTheme } from "../../theme";
+import { EAxisType } from "scichart/types/AxisType";
+import { EAxisAlignment } from "scichart";
 
 export const drawDensityChart = async (rootELement: string | HTMLDivElement) => {
+    const yAxisId = "y-axis-id";
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(rootELement, {
         ...getCommonChartConfigs("Density"),
-        modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
             padding: Thickness.fromNumber(0),
             id: "densityChart",
         },
+        yAxes: {
+            type: EAxisType.NumericAxis,
+            options: {
+                id: yAxisId,
+                axisAlignment: EAxisAlignment.Bottom,
+            },
+        },
+        modifiers: getCommonChartModifiersConfig(yAxisId),
     });
+
+    console.log("LSKNFGLOASENGLASKM", sciChartSurface);
 
     sciChartSurface.yAxes.get(0).visibleRange = new NumberRange(-0.2, 0.2);
 

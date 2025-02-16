@@ -8,8 +8,10 @@ import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "../vChartUtils";
 import { StackedMountainCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainCollection";
 import { appTheme } from "../../theme";
+import { EAxisAlignment, EAxisType } from "scichart";
 
 export const drawShaleChart = async (rootELement: string | HTMLDivElement) => {
+    const yAxisId = "y-axis-id";
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(rootELement, {
         ...getCommonChartConfigs("Shale"),
         surface: {
@@ -17,7 +19,14 @@ export const drawShaleChart = async (rootELement: string | HTMLDivElement) => {
             theme: { type: appTheme.SciChartJsTheme.type, sciChartBackground: "Transparent" },
             id: "shaleChart",
         },
-        modifiers: getCommonChartModifiersConfig(),
+        yAxes: {
+            type: EAxisType.NumericAxis,
+            options: {
+                id: yAxisId,
+                axisAlignment: EAxisAlignment.Bottom,
+            },
+        },
+        modifiers: getCommonChartModifiersConfig(yAxisId),
     });
 
     sciChartSurface.yAxes.get(0).visibleRange = new NumberRange(0, 100);

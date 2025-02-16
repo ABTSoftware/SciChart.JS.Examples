@@ -76,7 +76,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.chartModifiers.add(
         new YAxisDragModifier(),
         new XAxisDragModifier(),
-        new RubberBandXyZoomModifier({ xyDirection: EXyDirection.XDirection, executeOn: EExecuteOn.MouseRightButton }),
+        new RubberBandXyZoomModifier({
+            xyDirection: EXyDirection.XDirection,
+            executeCondition: { button: EExecuteOn.MouseRightButton },
+        }),
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.YDirection }),
         new ZoomExtentsModifier()
     );

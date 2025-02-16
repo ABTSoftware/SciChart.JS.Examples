@@ -7,16 +7,25 @@ import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "../vChartUtils";
 import { appTheme } from "../../theme";
+import { EAxisAlignment, EAxisType } from "scichart";
 
 export const drawSonicChart = async (rootELement: string | HTMLDivElement) => {
+    const yAxisId = "y-axis-id";
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(rootELement, {
         ...getCommonChartConfigs("Sonic"),
-        modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
             padding: Thickness.fromNumber(0),
             id: "sonicChart",
         },
+        yAxes: {
+            type: EAxisType.NumericAxis,
+            options: {
+                id: yAxisId,
+                axisAlignment: EAxisAlignment.Bottom,
+            },
+        },
+        modifiers: getCommonChartModifiersConfig(yAxisId),
     });
 
     let heatmapZValues: number[][] = [];

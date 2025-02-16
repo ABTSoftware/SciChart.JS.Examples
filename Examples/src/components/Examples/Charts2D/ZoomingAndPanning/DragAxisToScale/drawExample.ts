@@ -32,8 +32,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     };
 
     const setXAxis2 = () => {
-        const xAxis = new NumericAxis(wasmContext);
-        xAxis.id = ID_X_AXIS_2;
+        const xAxis = new NumericAxis(wasmContext, {
+            id: ID_X_AXIS_2,
+        });
         xAxis.axisAlignment = EAxisAlignment.Bottom;
         xAxis.axisTitle = "Drag the X-Axis to Pan";
         xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
@@ -51,8 +52,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     };
 
     const setYAxis2 = () => {
-        const yAxis = new NumericAxis(wasmContext);
-        yAxis.id = ID_Y_AXIS_2;
+        const yAxis = new NumericAxis(wasmContext, {
+            id: ID_Y_AXIS_2,
+        });
         yAxis.axisAlignment = EAxisAlignment.Right;
         yAxis.axisTitle = "Drag the Y-Axis to Scale";
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;

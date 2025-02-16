@@ -14,11 +14,13 @@ import {
     I2DSubSurfaceOptions,
     IGenericAnimation,
     ISciChart2DDefinition,
+    ISciChartSubSurface,
     LegendModifier,
     NumberRange,
     parseColorToTArgb,
     parseTArgbToHtmlColor,
     Rect,
+    SciChartSubSurface,
     SciChartSurface,
     TAxisDefinition,
     TBorder,
@@ -126,7 +128,7 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             },
         };
 
-        const subChart = this.parentSurface.addSubChart(subChartOptions);
+        const subChart = SciChartSubSurface.createSubSurface(this.parentSurface, subChartOptions);
         const xAxisDef = (surfaceDef.xAxes as TAxisDefinition[]).find((a) => a.options.id == rs.xAxisId);
         const yAxisDef = (surfaceDef.yAxes as TAxisDefinition[]).find((a) => a.options.id == rs.yAxisId);
         const modifiers = (surfaceDef.modifiers as TModifierDefinition[]).filter(
@@ -387,7 +389,7 @@ type TAxisStyles = {
 };
 
 type TSurfaceStyles = {
-    viewportBorder: TBorder;
+    // viewportBorder: TBorder;
     titleStyle: TChartTitleStyle;
 };
 
@@ -401,8 +403,8 @@ const collectAxisStyles = (axis: AxisBase2D): TAxisStyles => ({
     axisBorderColor: axis.axisBorder.color,
 });
 
-const collectSurfaceStyles = (surface: SciChartSurface): TSurfaceStyles => ({
-    viewportBorder: surface.viewportBorder,
+const collectSurfaceStyles = (surface: ISciChartSubSurface): TSurfaceStyles => ({
+    // viewportBorder: surface.viewportBorder,
     titleStyle: surface.titleStyle,
 });
 
@@ -422,7 +424,7 @@ const multiplyAxisStylesOpacity = (axis: AxisBase2D, initialStyles: TAxisStyles,
     axis.axisBandsFill = multiplyOpacity(initialStyles.axisBandFill, opacity);
 };
 
-const multiplySurfaceStylesOpacity = (surface: SciChartSurface, initialStyles: TSurfaceStyles, opacity: number) => {
-    surface.viewportBorder = { color: multiplyOpacity(initialStyles.viewportBorder.color, opacity) };
+const multiplySurfaceStylesOpacity = (surface: ISciChartSubSurface, initialStyles: TSurfaceStyles, opacity: number) => {
+    // surface.viewportBorder = { color: multiplyOpacity(initialStyles.viewportBorder.color, opacity) };
     surface.titleStyle = { color: multiplyOpacity(initialStyles.titleStyle.color, opacity) };
 };

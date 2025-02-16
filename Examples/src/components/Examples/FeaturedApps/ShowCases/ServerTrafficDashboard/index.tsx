@@ -2,7 +2,7 @@ import * as React from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { CSSProperties, ChangeEventHandler, useEffect, useRef, useState } from "react";
 import commonClasses from "../../../styles/Examples.module.scss";
-import { ChartModifierBase2D, SciChartSubSurface } from "scichart";
+import { ChartModifierBase2D, ISciChartSubSurface } from "scichart";
 import { GridLayoutModifier } from "./GridLayoutModifier";
 import { ModifierGroup } from "./ModifierGroup";
 import { createRegionStatisticsPieChart, getRegionStatisticsColumnChartConfig } from "./region-statistic-charts";
@@ -96,14 +96,14 @@ function ServerTrafficDashboard() {
         if (!isGridLayout) {
             serverLoadChartRef.current.sciChartSurface.titleStyle.color = "transparent";
 
-            subCharts.forEach((subChart: SciChartSubSurface) => {
+            subCharts.forEach((subChart: ISciChartSubSurface) => {
                 const modifier = subChart.chartModifiers.getById("ServerLoadCursorModifier");
                 modifierGroup.add(modifier as ChartModifierBase2D);
             });
         } else {
             serverLoadChartRef.current.sciChartSurface.titleStyle.color = appTheme.ForegroundColor;
 
-            subCharts.forEach((subChart: SciChartSubSurface) => {
+            subCharts.forEach((subChart: ISciChartSubSurface) => {
                 const modifier = subChart.chartModifiers.getById("ServerLoadCursorModifier");
                 modifierGroup.remove(modifier as ChartModifierBase2D);
             });

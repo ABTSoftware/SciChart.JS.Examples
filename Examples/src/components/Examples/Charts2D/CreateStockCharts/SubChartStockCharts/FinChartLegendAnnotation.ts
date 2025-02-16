@@ -7,6 +7,7 @@ import {
     EAnnotationType,
     ISvgAnnotationBaseOptions,
     SvgAnnotationBase,
+    ISciChartSubSurface,
 } from "scichart";
 
 export type TFinanceLegendTemplate = (legendAnnotation: FinChartLegendAnnotation) => string;
@@ -32,7 +33,7 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
     private paneIdProperty: string;
     private offsetXProperty: number;
     private offsetYProperty: number;
-    private activeSciChartSurfaceProperty: SciChartSurface;
+    private activeSciChartSurfaceProperty: ISciChartSubSurface;
     private titleProperty: string = "Default Title";
 
     /**

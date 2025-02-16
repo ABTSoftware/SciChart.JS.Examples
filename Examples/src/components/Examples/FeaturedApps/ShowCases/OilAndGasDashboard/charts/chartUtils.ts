@@ -58,10 +58,10 @@ export function generateModifiers(
         item: TLegendItem
     ) => string
 ) {
+    const yAxisId = sciChartSurface.yAxes.get(0).id;
+
     sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "first" }));
-    sciChartSurface.chartModifiers.add(
-        new ZoomPanModifier({ modifierGroup: "first", excludedYAxisIds: [AxisCore.DEFAULT_AXIS_ID] })
-    );
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ modifierGroup: "first", excludedYAxisIds: [yAxisId] }));
     // sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
     const legendModifier = new LegendModifier({ showCheckboxes: true, placementDivId: legendPlacementDiv });
     if (getLegendItemHTML) {
