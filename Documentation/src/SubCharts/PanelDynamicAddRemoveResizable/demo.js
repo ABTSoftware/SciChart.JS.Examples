@@ -165,6 +165,7 @@ function setupSplitterEvents(splitter, parentSciChartSurface) {
     isDragging = true;
     activeSplitter = splitter;
     splitter.setPointerCapture(e.pointerId);
+    document.body.style.userSelect = "none"; // Prevent text selection while dragging
   });
 
   splitter.addEventListener("pointermove", (e) => {
@@ -243,14 +244,16 @@ function setupSplitterEvents(splitter, parentSciChartSurface) {
       isDragging = false;
       activeSplitter = null;
       splitter.releasePointerCapture(e.pointerId);
+      document.body.style.userSelect = ""; // Restore text selection
     }
   });
 
-  splitter.addEventListener("pointerleave", (e) => {
+  splitter.addEventListener("pointercancel", (e) => {
     if (isDragging) {
       isDragging = false;
       activeSplitter = null;
       splitter.releasePointerCapture(e.pointerId);
+      document.body.style.userSelect = ""; // Restore text selection
     }
   });
 }
