@@ -12,6 +12,8 @@ const {
   FastLineRenderableSeries,
 } = SciChart;
 
+// or, import { SciChartSurface, ... } from "scichart" for npm
+
 let colorIndex = 0;
 function getRandomColor() {
   return ["#47bde6", "#ae418d", "#e97064", "#68bcae", "#634e96"][
@@ -40,8 +42,6 @@ function updateMinPanelSize() {
   const container = document.getElementById("scichart-root");
   MIN_PANEL_SIZE = 100 / container.offsetHeight;
 }
-
-// or, import { SciChartSurface, ... } from "scichart" for npm
 
 // #region AxisSynchroniser
 // Helper class to synchronize the visible range of multiple axes in multi-chart examples
@@ -81,6 +81,8 @@ class AxisSynchroniser {
 }
 // #endregion
 
+// #region gridSplitterHelperFunctions
+// Function which creates and adds a grid splitter between chart panes
 function createSplitter(index, position) {
   const splitter = document.createElement("div");
   splitter.className = "grid-splitter";
@@ -89,6 +91,7 @@ function createSplitter(index, position) {
   return splitter;
 }
 
+// Updates chart positions and sizes using SciChartSubSurface.subPosition
 function updateChartPositions(parentSciChartSurface) {
   let currentY = 0;
   for (let i = 0; i < panelSizes.length; i++) {
@@ -98,6 +101,7 @@ function updateChartPositions(parentSciChartSurface) {
   }
 }
 
+// Updates grid splitter positions based on panel sizes
 function updateSplitterPositions() {
   const splitters = document.querySelectorAll(".grid-splitter");
   let currentY = 0;
@@ -107,132 +111,7 @@ function updateSplitterPositions() {
   });
 }
 
-// #region addNewChart
-// Function for adding a new SubChart to an existing parent SciChartSurface.
-// All subcharts will be resized to occupy equal height on the parent surface.
-function addCloseButton(chart, index, parentSciChartSurface, axisSynchronizer) {
-  if (parentSciChartSurface.subCharts.length <= 1) return;
-
-  const closeBtn = document.createElement("button");
-  closeBtn.className = "chart-close-button";
-  closeBtn.innerHTML = "×";
-  closeBtn.dataset.chartIndex = index;
-
-  closeBtn.onclick = (e) => {
-    e.stopPropagation();
-    removeSpecificChart(
-      parseInt(closeBtn.dataset.chartIndex),
-      parentSciChartSurface,
-      axisSynchronizer
-    );
-  };
-
-  // Add to the scichart-root container instead
-  document.getElementById("scichart-root").appendChild(closeBtn);
-
-  // Position the button relative to the chart's position
-  const yPos = panelSizes.slice(0, index).reduce((a, b) => a + b, 0);
-  closeBtn.style.top = `calc(${yPos * 100}% + 10px)`;
-}
-
-function updateCloseButtons(parentSciChartSurface, axisSynchronizer) {
-  // Remove all existing close buttons
-  document
-    .querySelectorAll(".chart-close-button")
-    .forEach((btn) => btn.remove());
-
-  // Add new close buttons if there's more than one chart
-  if (parentSciChartSurface.subCharts.length > 1) {
-    parentSciChartSurface.subCharts.forEach((chart, index) => {
-      addCloseButton(chart, index, parentSciChartSurface, axisSynchronizer);
-    });
-  }
-}
-
-function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
-  const chartCount = parentSciChartSurface.subCharts?.length ?? 0;
-
-  // Calculate new panel size
-  if (panelSizes.length === 0) {
-    panelSizes.push(1); // First panel takes full height
-  } else {
-    // Resize existing panels and add new one
-    const newSize = 1 / (chartCount + 1);
-    panelSizes = panelSizes.map(
-      (size) => size * (chartCount / (chartCount + 1))
-    );
-    panelSizes.push(newSize);
-  }
-
-  // Add new chart
-  const newChart = parentSciChartSurface.addSubChart({
-    position: new Rect(0, 0, 1, panelSizes[chartCount]),
-    theme: new SciChartJsNavyTheme(),
-    title: `Chart ${chartCount + 1}`,
-    titleStyle: { fontSize: 14 },
-  });
-
-  // Add splitter if this isn't the first chart
-  if (chartCount > 0) {
-    // Calculate the correct position for the splitter by summing all panel sizes before it
-    const splitterPosition = panelSizes
-      .slice(0, chartCount)
-      .reduce((a, b) => a + b, 0);
-    const splitter = createSplitter(chartCount - 1, splitterPosition);
-    document.getElementById("scichart-root").appendChild(splitter);
-    setupSplitterEvents(splitter, parentSciChartSurface, axisSynchronizer);
-  }
-
-  // Update all chart positions
-  updateChartPositions(parentSciChartSurface);
-  updateSplitterPositions(); // Ensure all splitters are correctly positioned
-
-  // Add axes and modifiers
-  const xAxis = new NumericAxis(wasmContext, {
-    axisTitle: "XAxis",
-    axisTitleStyle: { fontSize: 12 },
-  });
-
-  newChart.xAxes.add(xAxis);
-  newChart.yAxes.add(
-    new NumericAxis(wasmContext, {
-      axisTitle: "YAxis",
-      axisTitleStyle: { fontSize: 12 },
-    })
-  );
-
-  // Add modifiers
-  newChart.chartModifiers.add(new ZoomPanModifier());
-  newChart.chartModifiers.add(new MouseWheelZoomModifier());
-  newChart.chartModifiers.add(new ZoomExtentsModifier());
-
-  // Add random data series
-  const dataSeries = new XyDataSeries(wasmContext);
-  const { xValues, yValues } = generateRandomData();
-  dataSeries.appendRange(xValues, yValues);
-
-  const lineSeries = new FastLineRenderableSeries(wasmContext, {
-    stroke: getRandomColor(),
-    strokeThickness: 2,
-    dataSeries,
-  });
-  newChart.renderableSeries.add(lineSeries);
-
-  // Synchronize the x-axis
-  axisSynchronizer.addAxis(xAxis);
-
-  // Update close buttons for all charts
-  updateCloseButtons(parentSciChartSurface, axisSynchronizer);
-
-  return {
-    sciChartSurface: newChart,
-    wasmContext,
-  };
-}
-// #endregion
-
-// #region removeChart
-// Helper function to remove a Sub-chart pane from a parent SciChartSurface
+// Sets up event handlers for grid splitter for dragging
 function setupSplitterEvents(
   splitter,
   parentSciChartSurface,
@@ -336,6 +215,135 @@ function setupSplitterEvents(
   });
 }
 
+// Function which adds a close button to the chart
+function addCloseButton(chart, index, parentSciChartSurface, axisSynchronizer) {
+  if (parentSciChartSurface.subCharts.length <= 1) return;
+
+  const closeBtn = document.createElement("button");
+  closeBtn.className = "chart-close-button";
+  closeBtn.innerHTML = "×";
+  closeBtn.dataset.chartIndex = index;
+
+  closeBtn.onclick = (e) => {
+    e.stopPropagation();
+    removeSpecificChart(
+      parseInt(closeBtn.dataset.chartIndex),
+      parentSciChartSurface,
+      axisSynchronizer
+    );
+  };
+
+  // Add to the scichart-root container instead
+  document.getElementById("scichart-root").appendChild(closeBtn);
+
+  // Position the button relative to the chart's position
+  const yPos = panelSizes.slice(0, index).reduce((a, b) => a + b, 0);
+  closeBtn.style.top = `calc(${yPos * 100}% + 10px)`;
+}
+
+// Updates the position of close buttons relative to chart panels on resize
+function updateCloseButtons(parentSciChartSurface, axisSynchronizer) {
+  // Remove all existing close buttons
+  document
+    .querySelectorAll(".chart-close-button")
+    .forEach((btn) => btn.remove());
+
+  // Add new close buttons if there's more than one chart
+  if (parentSciChartSurface.subCharts.length > 1) {
+    parentSciChartSurface.subCharts.forEach((chart, index) => {
+      addCloseButton(chart, index, parentSciChartSurface, axisSynchronizer);
+    });
+  }
+}
+// #endregion
+
+// #region addNewChart
+// Function for adding a new SubChart to an existing parent SciChartSurface.
+// All subcharts will be resized to occupy equal height on the parent surface.
+function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
+  const chartCount = parentSciChartSurface.subCharts?.length ?? 0;
+
+  // Calculate new panel size
+  if (panelSizes.length === 0) {
+    panelSizes.push(1); // First panel takes full height
+  } else {
+    // Resize existing panels and add new one
+    const newSize = 1 / (chartCount + 1);
+    panelSizes = panelSizes.map(
+      (size) => size * (chartCount / (chartCount + 1))
+    );
+    panelSizes.push(newSize);
+  }
+
+  // Add new chart
+  const newChart = parentSciChartSurface.addSubChart({
+    position: new Rect(0, 0, 1, panelSizes[chartCount]),
+    theme: new SciChartJsNavyTheme(),
+    title: `Chart ${chartCount + 1}`,
+    titleStyle: { fontSize: 14 },
+  });
+
+  // Add splitter if this isn't the first chart
+  if (chartCount > 0) {
+    // Calculate the correct position for the splitter by summing all panel sizes before it
+    const splitterPosition = panelSizes
+      .slice(0, chartCount)
+      .reduce((a, b) => a + b, 0);
+    const splitter = createSplitter(chartCount - 1, splitterPosition);
+    document.getElementById("scichart-root").appendChild(splitter);
+    setupSplitterEvents(splitter, parentSciChartSurface, axisSynchronizer);
+  }
+
+  // Update all chart positions
+  updateChartPositions(parentSciChartSurface);
+  updateSplitterPositions(); // Ensure all splitters are correctly positioned
+
+  // Add axes and modifiers
+  const xAxis = new NumericAxis(wasmContext, {
+    axisTitle: "XAxis",
+    axisTitleStyle: { fontSize: 12 },
+  });
+
+  newChart.xAxes.add(xAxis);
+  newChart.yAxes.add(
+    new NumericAxis(wasmContext, {
+      axisTitle: "YAxis",
+      axisTitleStyle: { fontSize: 12 },
+    })
+  );
+
+  // Add modifiers
+  newChart.chartModifiers.add(new ZoomPanModifier());
+  newChart.chartModifiers.add(new MouseWheelZoomModifier());
+  newChart.chartModifiers.add(new ZoomExtentsModifier());
+
+  // Add random data series
+  const dataSeries = new XyDataSeries(wasmContext);
+  const { xValues, yValues } = generateRandomData();
+  dataSeries.appendRange(xValues, yValues);
+
+  const lineSeries = new FastLineRenderableSeries(wasmContext, {
+    stroke: getRandomColor(),
+    strokeThickness: 2,
+    dataSeries,
+  });
+  newChart.renderableSeries.add(lineSeries);
+
+  // Synchronize the x-axis
+  axisSynchronizer.addAxis(xAxis);
+
+  // Update close buttons for all charts
+  updateCloseButtons(parentSciChartSurface, axisSynchronizer);
+
+  return {
+    sciChartSurface: newChart,
+    wasmContext,
+  };
+}
+// #endregion
+
+// #region removeChart
+// Helper function to remove a specific Sub-chart pane from a parent SciChartSurface
 function removeSpecificChart(index, parentSciChartSurface, axisSynchronizer) {
   const chartCount = parentSciChartSurface.subCharts?.length ?? 0;
   if (chartCount <= 1) return; // Keep at least one chart
@@ -367,6 +375,7 @@ function removeSpecificChart(index, parentSciChartSurface, axisSynchronizer) {
   updateCloseButtons(parentSciChartSurface, axisSynchronizer);
 }
 
+// Function to reomve the last chart from the SciChartSurface
 function removeChart(parentSciChartSurface, axisSynchronizer) {
   removeSpecificChart(
     parentSciChartSurface.subCharts.length - 1,
@@ -396,7 +405,8 @@ async function createDynamicPanelChart(divElementId) {
   // Create axis synchronizer with initial range
   const axisSynchronizer = new AxisSynchroniser();
 
-  // Create initial chart at 100% width, 100% height
+  // Create initial chart with two sub charts, each occupying 50% height
+  addNewChart(sciChartSurface, wasmContext, axisSynchronizer);
   addNewChart(sciChartSurface, wasmContext, axisSynchronizer);
 
   // Wire up button handlers
@@ -409,7 +419,8 @@ async function createDynamicPanelChart(divElementId) {
   return {
     sciChartSurface,
     addChart: () => addNewChart(sciChartSurface, wasmContext, axisSynchronizer),
-    removeLastChart: () => removeChart(sciChartSurface, axisSynchronizer),
+    removeChart: (index) =>
+      removeSpecificChart(index, sciChartSurface, axisSynchronizer),
   };
 }
 

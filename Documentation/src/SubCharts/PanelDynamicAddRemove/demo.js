@@ -172,7 +172,8 @@ async function createDynamicPanelChart(divElementId) {
   // Create axis synchronizer with initial range
   const axisSynchronizer = new AxisSynchroniser();
 
-  // Create initial chart at 100% width, 100% height
+  // Create initial chart with two sub charts, each occupying 50% height
+  addNewChart(sciChartSurface, wasmContext, axisSynchronizer);
   addNewChart(sciChartSurface, wasmContext, axisSynchronizer);
 
   // Wire up button handlers
