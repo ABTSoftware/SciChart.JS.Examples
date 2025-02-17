@@ -18,7 +18,6 @@ async function createThreePanelChart(divElementId) {
       theme: new SciChartJsNavyTheme(),
     }
   );
-  sciChartSurface.webAssemblyContext2D;
 
   // Add a Sub-Charts to the main surface. This will display a rectangle showing the current zoomed in area on the parent chart
 
