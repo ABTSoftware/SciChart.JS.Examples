@@ -8,7 +8,26 @@ const {
   ZoomExtentsModifier,
   NumericRange,
   EventHandler,
+  XyDataSeries,
+  FastLineRenderableSeries,
 } = SciChart;
+
+let colorIndex = 0;
+function getRandomColor() {
+  return ["#47bde6", "#ae418d", "#e97064", "#68bcae", "#634e96"][
+    colorIndex++ % 5
+  ];
+}
+
+function generateRandomData(count = 100) {
+  const xValues = [];
+  const yValues = [];
+  for (let i = 0; i < count; i++) {
+    xValues.push(i);
+    yValues.push(Math.random() * 100);
+  }
+  return { xValues, yValues };
+}
 
 // or, import { SciChartSurface, ... } from "scichart" for npm
 
@@ -93,6 +112,18 @@ function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
   newChart.chartModifiers.add(new ZoomPanModifier());
   newChart.chartModifiers.add(new MouseWheelZoomModifier());
   newChart.chartModifiers.add(new ZoomExtentsModifier());
+
+  // Add random data series
+  const dataSeries = new XyDataSeries(wasmContext);
+  const { xValues, yValues } = generateRandomData();
+  dataSeries.appendRange(xValues, yValues);
+
+  const lineSeries = new FastLineRenderableSeries(wasmContext, {
+    stroke: getRandomColor(),
+    strokeThickness: 2,
+    dataSeries,
+  });
+  newChart.renderableSeries.add(lineSeries);
 
   // Synchronize the x-axis
   axisSynchronizer.addAxis(xAxis);

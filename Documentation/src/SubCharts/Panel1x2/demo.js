@@ -1,3 +1,18 @@
+let colorIndex = 0;
+function getRandomColor() {
+  return ["#274b92", "#47bde6", "#ae418d", "#e97064", "#68bcae", "#634e96"][
+    colorIndex++ % 6
+  ];
+}
+
+function generateRandomData(count = 100) {
+  const data = [];
+  for (let i = 0; i < count; i++) {
+    data.push({ x: i, y: Math.random() * 100 });
+  }
+  return data;
+}
+
 // #region ExampleA
 // demonstrates how to create a reusable 1x2 panel of charts using SubCharts API
 async function createThreePanelChart(divElementId) {
@@ -7,6 +22,8 @@ async function createThreePanelChart(divElementId) {
     SciChartJsNavyTheme,
     Rect,
     ZoomPanModifier,
+    XyDataSeries,
+    FastLineRenderableSeries,
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -44,7 +61,7 @@ async function createThreePanelChart(divElementId) {
     titleStyle: { fontSize: 14 },
   });
 
-  // Add common axis, interactivity to all charts. Customize this as needed
+  // Add common axis, interactivity and some data to all charts. Customize this as needed
   [subChartTop, subChartBottomLeft, subChartBottomRight].forEach((scs) => {
     scs.xAxes.add(
       new NumericAxis(wasmContext, {
@@ -59,6 +76,22 @@ async function createThreePanelChart(divElementId) {
       })
     );
     scs.chartModifiers.add(new ZoomPanModifier());
+
+    // Add random data series
+    const dataSeries = new XyDataSeries(wasmContext);
+    const randomData = generateRandomData();
+    dataSeries.appendRange(
+      randomData.map((pt) => pt.x),
+      randomData.map((pt) => pt.y)
+    );
+
+    scs.renderableSeries.add(
+      new FastLineRenderableSeries(wasmContext, {
+        stroke: getRandomColor(),
+        strokeThickness: 2,
+        dataSeries,
+      })
+    );
   });
 
   // If you return the charts to the caller, you can now configure series, data and configure them
