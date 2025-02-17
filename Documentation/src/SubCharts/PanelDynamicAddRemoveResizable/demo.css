@@ -46,3 +46,24 @@ body {
   line-height: 6px;
   letter-spacing: 2px;
 }
+
+.chart-close-button {
+  position: absolute;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  background: SteelBlue;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  z-index: 1000;
+}
+
+.chart-close-button:hover {
+  background: LightSteelBlue;
+}

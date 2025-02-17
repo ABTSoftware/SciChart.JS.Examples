@@ -91,6 +91,45 @@ function updateSplitterPositions() {
 // #region addNewChart
 // Function for adding a new SubChart to an existing parent SciChartSurface.
 // All subcharts will be resized to occupy equal height on the parent surface.
+function addCloseButton(chart, index, parentSciChartSurface, axisSynchronizer) {
+  if (parentSciChartSurface.subCharts.length <= 1) return;
+
+  const closeBtn = document.createElement("button");
+  closeBtn.className = "chart-close-button";
+  closeBtn.innerHTML = "×";
+  closeBtn.dataset.chartIndex = index;
+
+  closeBtn.onclick = (e) => {
+    e.stopPropagation();
+    removeSpecificChart(
+      parseInt(closeBtn.dataset.chartIndex),
+      parentSciChartSurface,
+      axisSynchronizer
+    );
+  };
+
+  // Add to the scichart-root container instead
+  document.getElementById("scichart-root").appendChild(closeBtn);
+
+  // Position the button relative to the chart's position
+  const yPos = panelSizes.slice(0, index).reduce((a, b) => a + b, 0);
+  closeBtn.style.top = `calc(${yPos * 100}% + 10px)`;
+}
+
+function updateCloseButtons(parentSciChartSurface, axisSynchronizer) {
+  // Remove all existing close buttons
+  document
+    .querySelectorAll(".chart-close-button")
+    .forEach((btn) => btn.remove());
+
+  // Add new close buttons if there's more than one chart
+  if (parentSciChartSurface.subCharts.length > 1) {
+    parentSciChartSurface.subCharts.forEach((chart, index) => {
+      addCloseButton(chart, index, parentSciChartSurface, axisSynchronizer);
+    });
+  }
+}
+
 function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
   const chartCount = parentSciChartSurface.subCharts?.length ?? 0;
 
@@ -122,7 +161,7 @@ function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
       .reduce((a, b) => a + b, 0);
     const splitter = createSplitter(chartCount - 1, splitterPosition);
     document.getElementById("scichart-root").appendChild(splitter);
-    setupSplitterEvents(splitter, parentSciChartSurface);
+    setupSplitterEvents(splitter, parentSciChartSurface, axisSynchronizer);
   }
 
   // Update all chart positions
@@ -151,6 +190,9 @@ function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
   // Synchronize the x-axis
   axisSynchronizer.addAxis(xAxis);
 
+  // Update close buttons for all charts
+  updateCloseButtons(parentSciChartSurface, axisSynchronizer);
+
   return {
     sciChartSurface: newChart,
     wasmContext,
@@ -160,7 +202,11 @@ function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
 
 // #region removeChart
 // Helper function to remove a Sub-chart pane from a parent SciChartSurface
-function setupSplitterEvents(splitter, parentSciChartSurface) {
+function setupSplitterEvents(
+  splitter,
+  parentSciChartSurface,
+  axisSynchronizer
+) {
   splitter.addEventListener("pointerdown", (e) => {
     isDragging = true;
     activeSplitter = splitter;
@@ -236,6 +282,7 @@ function setupSplitterEvents(splitter, parentSciChartSurface) {
       // Update positions
       updateChartPositions(parentSciChartSurface);
       updateSplitterPositions();
+      updateCloseButtons(parentSciChartSurface, axisSynchronizer);
     }
   });
 
@@ -258,23 +305,25 @@ function setupSplitterEvents(splitter, parentSciChartSurface) {
   });
 }
 
-function removeChart(parentSciChartSurface, axisSynchronizer) {
+function removeSpecificChart(index, parentSciChartSurface, axisSynchronizer) {
   const chartCount = parentSciChartSurface.subCharts?.length ?? 0;
   if (chartCount <= 1) return; // Keep at least one chart
 
-  const chartToRemove = parentSciChartSurface.subCharts[chartCount - 1];
+  const chartToRemove = parentSciChartSurface.subCharts[index];
 
   // Remove axis from synchronizer before removing chart
   axisSynchronizer.removeAxis(chartToRemove.xAxes[0]);
 
   // Remove chart and update panel sizes
   parentSciChartSurface.removeSubChart(chartToRemove);
-  panelSizes.pop();
+  panelSizes.splice(index, 1);
 
-  // Remove last splitter
+  // Remove corresponding splitter
   const splitters = document.querySelectorAll(".grid-splitter");
-  if (splitters.length > 0) {
-    splitters[splitters.length - 1].remove();
+  if (index > 0) {
+    splitters[index - 1].remove();
+  } else if (splitters.length > 0) {
+    splitters[0].remove();
   }
 
   // Normalize remaining panel sizes
@@ -284,6 +333,15 @@ function removeChart(parentSciChartSurface, axisSynchronizer) {
   // Update positions
   updateChartPositions(parentSciChartSurface);
   updateSplitterPositions();
+  updateCloseButtons(parentSciChartSurface, axisSynchronizer);
+}
+
+function removeChart(parentSciChartSurface, axisSynchronizer) {
+  removeSpecificChart(
+    parentSciChartSurface.subCharts.length - 1,
+    parentSciChartSurface,
+    axisSynchronizer
+  );
 }
 // #endregion
 
