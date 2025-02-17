@@ -110,13 +110,18 @@ function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
 
   // Add splitter if this isn't the first chart
   if (chartCount > 0) {
-    const splitter = createSplitter(chartCount - 1, panelSizes[chartCount - 1]);
+    // Calculate the correct position for the splitter by summing all panel sizes before it
+    const splitterPosition = panelSizes
+      .slice(0, chartCount)
+      .reduce((a, b) => a + b, 0);
+    const splitter = createSplitter(chartCount - 1, splitterPosition);
     document.getElementById("scichart-root").appendChild(splitter);
     setupSplitterEvents(splitter, parentSciChartSurface);
   }
 
   // Update all chart positions
   updateChartPositions(parentSciChartSurface);
+  updateSplitterPositions(); // Ensure all splitters are correctly positioned
 
   // Add axes and modifiers
   const xAxis = new NumericAxis(wasmContext, {
