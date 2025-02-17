@@ -14,7 +14,13 @@ const {
 let panelSizes = [];
 let isDragging = false;
 let activeSplitter = null;
-const MIN_PANEL_SIZE = 0.1; // 10% minimum panel height
+let MIN_PANEL_SIZE = 0.05; // Will be calculated based on container height
+
+// Calculate minimum panel size as ratio of container height
+function updateMinPanelSize() {
+  const container = document.getElementById("scichart-root");
+  MIN_PANEL_SIZE = 100 / container.offsetHeight;
+}
 
 // or, import { SciChartSurface, ... } from "scichart" for npm
 
@@ -175,24 +181,56 @@ function setupSplitterEvents(splitter, parentSciChartSurface) {
     const maxY = 1 - MIN_PANEL_SIZE * (panelSizes.length - splitterIndex - 1);
 
     if (mouseY >= minY && mouseY <= maxY) {
-      // Update panel sizes
-      const totalSizeAbove = panelSizes
-        .slice(0, splitterIndex + 1)
-        .reduce((a, b) => a + b, 0);
-      const scale = mouseY / totalSizeAbove;
+      // Get the current positions of adjacent splitters
+      const splitters = Array.from(document.querySelectorAll(".grid-splitter"));
+      const currentSplitterIndex = splitters.indexOf(activeSplitter);
+      const prevSplitterPosition =
+        currentSplitterIndex > 0
+          ? parseFloat(splitters[currentSplitterIndex - 1].style.top) / 100
+          : 0;
+      const nextSplitterPosition =
+        currentSplitterIndex < splitters.length - 1
+          ? parseFloat(splitters[currentSplitterIndex + 1].style.top) / 100
+          : 1;
 
-      // Scale panels above splitter
-      for (let i = 0; i <= splitterIndex; i++) {
-        panelSizes[i] *= scale;
+      // Ensure we don't cross adjacent splitters
+      if (mouseY <= prevSplitterPosition || mouseY >= nextSplitterPosition) {
+        return;
       }
 
-      // Scale panels below splitter
-      const remainingSize = 1 - mouseY;
-      const oldRemainingSize = 1 - totalSizeAbove;
-      const remainingScale = remainingSize / oldRemainingSize;
-      for (let i = splitterIndex + 1; i < panelSizes.length; i++) {
-        panelSizes[i] *= remainingScale;
+      // Only adjust the two panels adjacent to this splitter
+      const upperPanelIndex = splitterIndex;
+      const lowerPanelIndex = splitterIndex + 1;
+
+      // Calculate the total size of the two affected panels
+      const totalAffectedSize =
+        panelSizes[upperPanelIndex] + panelSizes[lowerPanelIndex];
+
+      // Calculate new positions relative to the fixed panels
+      const upperPanelStart =
+        upperPanelIndex > 0
+          ? panelSizes.slice(0, upperPanelIndex).reduce((a, b) => a + b, 0)
+          : 0;
+
+      // Calculate new sizes for the affected panels
+      const newUpperSize = mouseY - upperPanelStart;
+      const newLowerSize = totalAffectedSize - newUpperSize;
+
+      // Get container height for pixel calculations
+      const containerHeight = container.offsetHeight;
+      const minSizeRatio = 100 / containerHeight;
+
+      // Check if either panel would be smaller than 100px
+      if (
+        newUpperSize * containerHeight < 100 ||
+        newLowerSize * containerHeight < 100
+      ) {
+        return;
       }
+
+      // Update only the affected panels
+      panelSizes[upperPanelIndex] = newUpperSize;
+      panelSizes[lowerPanelIndex] = newLowerSize;
 
       // Update positions
       updateChartPositions(parentSciChartSurface);
@@ -256,6 +294,12 @@ async function createDynamicPanelChart(divElementId) {
       theme: new SciChartJsNavyTheme(),
     }
   );
+
+  // Initialize minimum panel size
+  updateMinPanelSize();
+
+  // Update minimum panel size when window resizes
+  window.addEventListener("resize", updateMinPanelSize);
 
   // Create axis synchronizer with initial range
   const axisSynchronizer = new AxisSynchroniser();
