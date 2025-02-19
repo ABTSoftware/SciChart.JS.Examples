@@ -127,51 +127,32 @@ function setupSplitterEvents(
     const mouseY = e.clientY - rect.top;
     const splitterIndex = parseInt(activeSplitter.dataset.index);
 
-    // Calculate minimum and maximum allowed positions
-    const minY =
-      splitterIndex > 0 ? MIN_PANEL_SIZE * (splitterIndex + 1) : MIN_PANEL_SIZE;
-    const maxY =
-      rect.height - MIN_PANEL_SIZE * (panelSizes.length - splitterIndex - 1);
+    // Only adjust the two panels adjacent to this splitter
+    const upperPanelIndex = splitterIndex;
+    const lowerPanelIndex = splitterIndex + 1;
 
-    if (mouseY >= minY && mouseY <= maxY) {
-      // Only adjust the two panels adjacent to this splitter
-      const upperPanelIndex = splitterIndex;
-      const lowerPanelIndex = splitterIndex + 1;
+    // Calculate total size of the affected panels
+    const totalAffectedSize =
+      panelSizes[upperPanelIndex] + panelSizes[lowerPanelIndex];
 
-      // Calculate the total size of the two affected panels
-      const totalAffectedSize =
-        panelSizes[upperPanelIndex] + panelSizes[lowerPanelIndex];
+    // Calculate new sizes
+    const newUpperSize =
+      mouseY - panelSizes.slice(0, upperPanelIndex).reduce((a, b) => a + b, 0);
+    const newLowerSize = totalAffectedSize - newUpperSize;
 
-      // Calculate new positions relative to the fixed panels
-      const upperPanelStart =
-        upperPanelIndex > 0
-          ? panelSizes.slice(0, upperPanelIndex).reduce((a, b) => a + b, 0)
-          : 0;
-
-      // Calculate new sizes for the affected panels
-      const newUpperSize = mouseY - upperPanelStart;
-      const newLowerSize = totalAffectedSize - newUpperSize;
-
-      // Get container height for pixel calculations
-      const containerHeight = container.offsetHeight;
-
-      // Check if either panel would be smaller than 100px
-      if (
-        newUpperSize * containerHeight < MIN_PANEL_SIZE ||
-        newLowerSize * containerHeight < MIN_PANEL_SIZE
-      ) {
-        return;
-      }
-
-      // Update only the affected panels
-      panelSizes[upperPanelIndex] = newUpperSize;
-      panelSizes[lowerPanelIndex] = newLowerSize;
-
-      // Update positions
-      updateChartPositions(parentSciChartSurface);
-      updateSplitterPositions();
-      updateCloseButtons(parentSciChartSurface, axisSynchronizer);
+    // Prevent shrinking below minimum size
+    if (newUpperSize < MIN_PANEL_SIZE || newLowerSize < MIN_PANEL_SIZE) {
+      return;
     }
+
+    // Update panel sizes
+    panelSizes[upperPanelIndex] = newUpperSize;
+    panelSizes[lowerPanelIndex] = newLowerSize;
+
+    // Apply the changes
+    updateChartPositions(parentSciChartSurface);
+    updateSplitterPositions();
+    updateCloseButtons(parentSciChartSurface, axisSynchronizer);
   });
 
   splitter.addEventListener("pointerup", (e) => {
