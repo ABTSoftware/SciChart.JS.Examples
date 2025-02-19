@@ -7,17 +7,17 @@ This folder contains the source for the demo app for SciChart.js, viewable onlin
 ## Compiling & Running
 
 1. Clone the repository to your PC or Mac
-2. ```cd examples``` and ```npm install```
-3. to run the application ```npm run dev```
+2. `cd examples` and `npm install`
+3. to run the application `npm run dev`
 4. Open https://localhost:8080 to see the demo!
 
 _**Note:** This will run the application in development mode._
 
 ## Licensing the SciChart.js demo app
 
-Since version 3.2 SciChart.js runs by default with a FREE Community License.  No need to sign up, start a trial, or enter a license key.  This is for non-commercial use, and limited time commercial evaluation.  For all the details on community licensing, including who can use it, features and restrictions, check out the [community licensing](https://www.scichart.com/community-licensing/) page.
+Since version 3.2 SciChart.js runs by default with a FREE Community License. No need to sign up, start a trial, or enter a license key. This is for non-commercial use, and limited time commercial evaluation. For all the details on community licensing, including who can use it, features and restrictions, check out the [community licensing](https://www.scichart.com/community-licensing/) page.
 
-If you are a paid customer with an activated license, just make sure the SciChart Licensing Wizard is running, and SciChart.js will automatically pick up and use your development license.  For more details on how to activate see [scichart.com/licensing-scichart-js](https://www.scichart.com/licensing-scichart-js/).
+If you are a paid customer with an activated license, just make sure the SciChart Licensing Wizard is running, and SciChart.js will automatically pick up and use your development license. For more details on how to activate see [scichart.com/licensing-scichart-js](https://www.scichart.com/licensing-scichart-js/).
 
 To purchase a full commercial license, visit [store.scichart.com](https://store.scichart.com) or [contact sales](mailto://sales@scichart.com).
 
@@ -26,9 +26,9 @@ To purchase a full commercial license, visit [store.scichart.com](https://store.
 Some of the demos require client & server to be running. To run the demo app in prod mode:
 
 1. Clone the repository to your PC or Mac
-2. ```cd examples``` and ```npm install```
-3. compile the application ```npm run build```
-4. now run the application ```npm start```
+2. `cd examples` and `npm install`
+3. compile the application `npm run build`
+4. now run the application `npm start`
 5. Now open https://localhost:3000 to see the demo!
 
 ## Adding a new example to the demo app
@@ -41,4 +41,16 @@ Find this at [../Readme-AddNewExample.md](../README-AddNewExample.md)
 
 If you find an issue in SciChart, please report it. You can do that either here under Issues, or at [scichart.com/contact-us](https://scichart.com/contact-us).
 
+## How to install a specific SciChart.js version from myget.org
 
+SciChart.js alpha versions are published to myget.org registry (https://www.myget.org/).
+
+**To install a specific version from myget.org**
+
+```
+npm i scichart@2.3.0-alpha.70 --reg https://www.myget.org/F/abtsoftware-bleeding-edge/npm/
+```
+
+```
+npm i scichart@4.0.618 --reg https://www.myget.org/F/abtsoftware-bleeding-edge/npm/
+```
