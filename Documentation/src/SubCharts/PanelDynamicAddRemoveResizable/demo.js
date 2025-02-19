@@ -32,11 +32,44 @@ function generateRandomData(count = 100) {
   return { xValues, yValues };
 }
 
-// Store panel sizes and splitter state
+// Store panel sizes and UI elements
 let panelSizes = []; // Store heights in pixels
-let isDragging = false;
-let activeSplitter = null;
+let chartSplitters = []; // Store splitter instances
+let chartCloseButtons = []; // Store close button instances
 const MIN_PANEL_SIZE = 100; // Minimum panel size in pixels
+
+class ChartCloseButton {
+  constructor(parentElement, index, onClickCallback) {
+    this.element = document.createElement("button");
+    this.element.className = "chart-close-button";
+    this.element.innerHTML = "×";
+    this.buttonIndex = index;
+
+    this.element.onclick = (e) => {
+      e.stopPropagation();
+      onClickCallback(this.buttonIndex);
+    };
+
+    parentElement.appendChild(this.element);
+    this.setVisibility(false); // Initially hidden
+  }
+
+  setPosition(position) {
+    this.element.style.top = `${position + 10}px`;
+  }
+
+  setIndex(index) {
+    this.buttonIndex = index;
+  }
+
+  setVisibility(visible) {
+    this.element.style.display = visible ? "block" : "none";
+  }
+
+  remove() {
+    this.element.remove();
+  }
+}
 
 // #region AxisSynchroniser
 // Helper class to synchronize the visible range of multiple axes in multi-chart examples
@@ -76,14 +109,56 @@ class AxisSynchroniser {
 }
 // #endregion
 
-// #region gridSplitterHelperFunctions
-// Function which creates and adds a grid splitter between chart panes
-function createSplitter(index, position) {
-  const splitter = document.createElement("div");
-  splitter.className = "grid-splitter";
-  splitter.style.top = `${position * 100}%`;
-  splitter.dataset.index = index;
-  return splitter;
+// #region ChartSplitter
+class ChartSplitter {
+  constructor(parentElement, index, position, onDragCallback) {
+    this.element = document.createElement("div");
+    this.element.className = "grid-splitter";
+    this.element.style.top = `${position}px`;
+    this.element.dataset.index = index;
+    this.isDragging = false;
+    this.onDragCallback = onDragCallback;
+
+    this.setupEvents();
+    parentElement.appendChild(this.element);
+  }
+
+  setupEvents() {
+    this.element.addEventListener("pointerdown", (e) => {
+      this.isDragging = true;
+      this.element.setPointerCapture(e.pointerId);
+      document.body.style.userSelect = "none";
+    });
+
+    this.element.addEventListener("pointermove", (e) => {
+      if (!this.isDragging) return;
+
+      const container = this.element.parentElement;
+      const rect = container.getBoundingClientRect();
+      const mouseY = e.clientY - rect.top;
+
+      this.onDragCallback(parseInt(this.element.dataset.index), mouseY);
+    });
+
+    const endDrag = (e) => {
+      if (this.isDragging) {
+        this.isDragging = false;
+        this.element.releasePointerCapture(e.pointerId);
+        document.body.style.userSelect = "";
+      }
+    };
+
+    this.element.addEventListener("pointerup", endDrag);
+    this.element.addEventListener("pointercancel", endDrag);
+  }
+
+  setPosition(position) {
+    this.element.style.top = `${position}px`;
+  }
+
+  remove() {
+    this.element.remove();
+  }
 }
 
 // Updates chart positions and sizes using SciChartSubSurface.subPosition
@@ -99,113 +174,19 @@ function updateChartPositions(parentSciChartSurface) {
 
 // Updates grid splitter positions based on panel sizes
 function updateSplitterPositions() {
-  const splitters = document.querySelectorAll(".grid-splitter");
   let currentY = 0;
-  splitters.forEach((splitter, index) => {
+  chartSplitters.forEach((splitter, index) => {
     currentY += panelSizes[index];
-    splitter.style.top = `${currentY}px`;
+    splitter.setPosition(currentY);
   });
-}
-
-// Sets up event handlers for grid splitter for dragging
-function setupSplitterEvents(
-  splitter,
-  parentSciChartSurface,
-  axisSynchronizer
-) {
-  splitter.addEventListener("pointerdown", (e) => {
-    isDragging = true;
-    activeSplitter = splitter;
-    splitter.setPointerCapture(e.pointerId);
-    document.body.style.userSelect = "none"; // Prevent text selection while dragging
-  });
-
-  splitter.addEventListener("pointermove", (e) => {
-    if (!isDragging || !activeSplitter) return;
-    const container = parentSciChartSurface.domChartRoot;
-    const rect = container.getBoundingClientRect();
-    const mouseY = e.clientY - rect.top;
-    const splitterIndex = parseInt(activeSplitter.dataset.index);
-
-    // Only adjust the two panels adjacent to this splitter
-    const upperPanelIndex = splitterIndex;
-    const lowerPanelIndex = splitterIndex + 1;
-
-    // Calculate total size of the affected panels
-    const totalAffectedSize =
-      panelSizes[upperPanelIndex] + panelSizes[lowerPanelIndex];
-
-    // Calculate new sizes
-    const newUpperSize =
-      mouseY - panelSizes.slice(0, upperPanelIndex).reduce((a, b) => a + b, 0);
-    const newLowerSize = totalAffectedSize - newUpperSize;
-
-    // Prevent shrinking below minimum size
-    if (newUpperSize < MIN_PANEL_SIZE || newLowerSize < MIN_PANEL_SIZE) {
-      return;
-    }
-
-    // Update panel sizes
-    panelSizes[upperPanelIndex] = newUpperSize;
-    panelSizes[lowerPanelIndex] = newLowerSize;
-
-    // Apply the changes
-    updateChartPositions(parentSciChartSurface);
-    updateSplitterPositions();
-    updateCloseButtonPositions();
-  });
-
-  splitter.addEventListener("pointerup", (e) => {
-    if (isDragging) {
-      isDragging = false;
-      activeSplitter = null;
-      splitter.releasePointerCapture(e.pointerId);
-      document.body.style.userSelect = ""; // Restore text selection
-    }
-  });
-
-  splitter.addEventListener("pointercancel", (e) => {
-    if (isDragging) {
-      isDragging = false;
-      activeSplitter = null;
-      splitter.releasePointerCapture(e.pointerId);
-      document.body.style.userSelect = ""; // Restore text selection
-    }
-  });
-}
-
-// Function which adds a close button to the chart
-function addCloseButton(chart, index, parentSciChartSurface, axisSynchronizer) {
-  const closeBtn = document.createElement("button");
-  closeBtn.className = "chart-close-button";
-  closeBtn.innerHTML = "×";
-  closeBtn.dataset.chartIndex = index;
-
-  closeBtn.onclick = (e) => {
-    e.stopPropagation();
-    removeSpecificChart(
-      parseInt(closeBtn.dataset.chartIndex),
-      parentSciChartSurface,
-      axisSynchronizer
-    );
-  };
-
-  // Add to the scichart-root container instead
-  parentSciChartSurface.domChartRoot.appendChild(closeBtn);
-
-  // Position the button relative to the chart's position
-  const yPos = panelSizes.slice(0, index).reduce((a, b) => a + b, 0);
-  closeBtn.style.top = `${yPos + 10}px`;
-
-  return closeBtn;
 }
 
 // Updates the position of close buttons relative to chart panels on resize
 function updateCloseButtonPositions() {
-  const closeButtons = document.querySelectorAll(".chart-close-button");
-  closeButtons.forEach((btn, index) => {
+  chartCloseButtons.forEach((btn, index) => {
+    // Position each button 10px from the top of its corresponding panel
     const yPos = panelSizes.slice(0, index).reduce((a, b) => a + b, 0);
-    btn.style.top = `${yPos + 10}px`;
+    btn.setPosition(yPos);
   });
 }
 // #endregion
@@ -240,15 +221,74 @@ function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
     coordinateMode: ECoordinateMode.Pixel,
   });
 
+  // Add close button for the new chart
+  const newChartButton = new ChartCloseButton(
+    parentSciChartSurface.domChartRoot,
+    chartCount,
+    (index) =>
+      removeSpecificChart(index, parentSciChartSurface, axisSynchronizer)
+  );
+  chartCloseButtons.push(newChartButton);
+  chartCloseButtons.forEach((btn, i) => {
+    btn.setIndex(i);
+    btn.setVisibility(true);
+  });
+  console.log(
+    `chartCloseButtons visibility: ${chartCloseButtons.map(
+      (btn) => btn.element.style.display
+    )}`
+  );
+  console.log(
+    `chartCloseButtons top: ${chartCloseButtons.map(
+      (btn) => btn.element.style.top
+    )}`
+  );
+
+  // Update positions
+  updateCloseButtonPositions();
+
   // Add splitter if this isn't the first chart
   if (chartCount > 0) {
-    // Calculate the correct position for the splitter by summing all panel sizes before it
+    // Calculate the correct position for the splitter
     const splitterPosition = panelSizes
       .slice(0, chartCount)
       .reduce((a, b) => a + b, 0);
-    const splitter = createSplitter(chartCount - 1, splitterPosition);
-    parentSciChartSurface.domChartRoot.appendChild(splitter);
-    setupSplitterEvents(splitter, parentSciChartSurface, axisSynchronizer);
+
+    const splitter = new ChartSplitter(
+      parentSciChartSurface.domChartRoot,
+      chartCount - 1,
+      splitterPosition,
+      (splitterIndex, mouseY) => {
+        // Only adjust the two panels adjacent to this splitter
+        const upperPanelIndex = splitterIndex;
+        const lowerPanelIndex = splitterIndex + 1;
+
+        // Calculate total size of the affected panels
+        const totalAffectedSize =
+          panelSizes[upperPanelIndex] + panelSizes[lowerPanelIndex];
+
+        // Calculate new sizes
+        const newUpperSize =
+          mouseY -
+          panelSizes.slice(0, upperPanelIndex).reduce((a, b) => a + b, 0);
+        const newLowerSize = totalAffectedSize - newUpperSize;
+
+        // Prevent shrinking below minimum size
+        if (newUpperSize < MIN_PANEL_SIZE || newLowerSize < MIN_PANEL_SIZE) {
+          return;
+        }
+
+        // Update panel sizes
+        panelSizes[upperPanelIndex] = newUpperSize;
+        panelSizes[lowerPanelIndex] = newLowerSize;
+
+        // Apply the changes
+        updateChartPositions(parentSciChartSurface);
+        updateSplitterPositions();
+        updateCloseButtonPositions();
+      }
+    );
+    chartSplitters.push(splitter);
   }
 
   // Update all chart positions
@@ -289,26 +329,6 @@ function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
   // Synchronize the x-axis
   axisSynchronizer.addAxis(xAxis);
 
-  // Add close button for new chart if there will be more than one chart
-  if (chartCount > 0) {
-    // Add close buttons for both charts (if this is the second chart)
-    if (chartCount === 1) {
-      addCloseButton(
-        parentSciChartSurface.subCharts[0],
-        0,
-        parentSciChartSurface,
-        axisSynchronizer
-      );
-    }
-    addCloseButton(
-      newChart,
-      chartCount,
-      parentSciChartSurface,
-      axisSynchronizer
-    );
-    updateCloseButtonPositions();
-  }
-
   return {
     sciChartSurface: newChart,
     wasmContext,
@@ -332,29 +352,24 @@ function removeSpecificChart(index, parentSciChartSurface, axisSynchronizer) {
   panelSizes.splice(index, 1);
 
   // Remove corresponding splitter and close buttons
-  const splitters = document.querySelectorAll(".grid-splitter");
-  const closeButtons = document.querySelectorAll(".chart-close-button");
-
   // Remove splitter
   if (index > 0) {
-    splitters[index - 1].remove();
-  } else if (splitters.length > 0) {
-    splitters[0].remove();
+    chartSplitters[index - 1].remove();
+    chartSplitters.splice(index - 1, 1);
+  } else if (chartSplitters.length > 0) {
+    chartSplitters[0].remove();
+    chartSplitters.splice(0, 1);
   }
 
-  // If we're going down to 1 chart, remove all close buttons
-  if (chartCount <= 2) {
-    closeButtons.forEach((btn) => btn.remove());
-  } else {
-    // Remove close button for this chart
-    closeButtons[index].remove();
-    // Update indices of remaining close buttons
-    closeButtons.forEach((btn, i) => {
-      if (i > index) {
-        btn.dataset.chartIndex = i - 1;
-      }
-    });
-  }
+  // Remove close button for this chart
+  chartCloseButtons[index].remove();
+  chartCloseButtons.splice(index, 1);
+
+  // Update indices and visibility of remaining close buttons
+  chartCloseButtons.forEach((btn, i) => {
+    btn.setIndex(i);
+    btn.setVisibility(chartCount > 1);
+  });
 
   // Recalculate panel sizes to fill available space
   const containerHeight = parentSciChartSurface.domChartRoot.clientHeight;
