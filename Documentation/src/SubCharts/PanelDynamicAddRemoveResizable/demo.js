@@ -10,6 +10,7 @@ const {
   EventHandler,
   XyDataSeries,
   FastLineRenderableSeries,
+  ECoordinateMode,
 } = SciChart;
 
 // or, import { SciChartSurface, ... } from "scichart" for npm
@@ -32,16 +33,10 @@ function generateRandomData(count = 100) {
 }
 
 // Store panel sizes and splitter state
-let panelSizes = [];
+let panelSizes = []; // Store heights in pixels
 let isDragging = false;
 let activeSplitter = null;
-let MIN_PANEL_SIZE = 0.05; // Will be calculated based on container height
-
-// Calculate minimum panel size as ratio of container height
-function updateMinPanelSize() {
-  const container = document.getElementById("scichart-root");
-  MIN_PANEL_SIZE = 100 / container.offsetHeight;
-}
+const MIN_PANEL_SIZE = 100; // Minimum panel size in pixels
 
 // #region AxisSynchroniser
 // Helper class to synchronize the visible range of multiple axes in multi-chart examples
@@ -93,10 +88,11 @@ function createSplitter(index, position) {
 
 // Updates chart positions and sizes using SciChartSubSurface.subPosition
 function updateChartPositions(parentSciChartSurface) {
+  const width = parentSciChartSurface.domChartRoot.clientWidth;
   let currentY = 0;
   for (let i = 0; i < panelSizes.length; i++) {
     const chart = parentSciChartSurface.subCharts[i];
-    chart.subPosition = new Rect(0, currentY, 1, panelSizes[i]);
+    chart.subPosition = new Rect(0, currentY, width, panelSizes[i]);
     currentY += panelSizes[i];
   }
 }
@@ -107,7 +103,7 @@ function updateSplitterPositions() {
   let currentY = 0;
   splitters.forEach((splitter, index) => {
     currentY += panelSizes[index];
-    splitter.style.top = `${currentY * 100}%`;
+    splitter.style.top = `${currentY}px`;
   });
 }
 
@@ -126,35 +122,18 @@ function setupSplitterEvents(
 
   splitter.addEventListener("pointermove", (e) => {
     if (!isDragging || !activeSplitter) return;
-
-    const container = document.getElementById("scichart-root");
+    const container = parentSciChartSurface.domChartRoot;
     const rect = container.getBoundingClientRect();
-    const mouseY = (e.clientY - rect.top) / rect.height;
+    const mouseY = e.clientY - rect.top;
     const splitterIndex = parseInt(activeSplitter.dataset.index);
 
     // Calculate minimum and maximum allowed positions
     const minY =
       splitterIndex > 0 ? MIN_PANEL_SIZE * (splitterIndex + 1) : MIN_PANEL_SIZE;
-    const maxY = 1 - MIN_PANEL_SIZE * (panelSizes.length - splitterIndex - 1);
+    const maxY =
+      rect.height - MIN_PANEL_SIZE * (panelSizes.length - splitterIndex - 1);
 
     if (mouseY >= minY && mouseY <= maxY) {
-      // Get the current positions of adjacent splitters
-      const splitters = Array.from(document.querySelectorAll(".grid-splitter"));
-      const currentSplitterIndex = splitters.indexOf(activeSplitter);
-      const prevSplitterPosition =
-        currentSplitterIndex > 0
-          ? parseFloat(splitters[currentSplitterIndex - 1].style.top) / 100
-          : 0;
-      const nextSplitterPosition =
-        currentSplitterIndex < splitters.length - 1
-          ? parseFloat(splitters[currentSplitterIndex + 1].style.top) / 100
-          : 1;
-
-      // Ensure we don't cross adjacent splitters
-      if (mouseY <= prevSplitterPosition || mouseY >= nextSplitterPosition) {
-        return;
-      }
-
       // Only adjust the two panels adjacent to this splitter
       const upperPanelIndex = splitterIndex;
       const lowerPanelIndex = splitterIndex + 1;
@@ -175,12 +154,11 @@ function setupSplitterEvents(
 
       // Get container height for pixel calculations
       const containerHeight = container.offsetHeight;
-      const minSizeRatio = 100 / containerHeight;
 
       // Check if either panel would be smaller than 100px
       if (
-        newUpperSize * containerHeight < 100 ||
-        newLowerSize * containerHeight < 100
+        newUpperSize * containerHeight < MIN_PANEL_SIZE ||
+        newLowerSize * containerHeight < MIN_PANEL_SIZE
       ) {
         return;
       }
@@ -234,11 +212,11 @@ function addCloseButton(chart, index, parentSciChartSurface, axisSynchronizer) {
   };
 
   // Add to the scichart-root container instead
-  document.getElementById("scichart-root").appendChild(closeBtn);
+  parentSciChartSurface.domChartRoot.appendChild(closeBtn);
 
   // Position the button relative to the chart's position
   const yPos = panelSizes.slice(0, index).reduce((a, b) => a + b, 0);
-  closeBtn.style.top = `calc(${yPos * 100}% + 10px)`;
+  closeBtn.style.top = `${yPos + 10}px`;
 }
 
 // Updates the position of close buttons relative to chart panels on resize
@@ -263,24 +241,28 @@ function updateCloseButtons(parentSciChartSurface, axisSynchronizer) {
 function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
   const chartCount = parentSciChartSurface.subCharts?.length ?? 0;
 
-  // Calculate new panel size
+  const containerHeight = parentSciChartSurface.domChartRoot.clientHeight;
+  const containerWidth = parentSciChartSurface.domChartRoot.clientWidth;
+
+  // Calculate new panel size in pixels
   if (panelSizes.length === 0) {
-    panelSizes.push(1); // First panel takes full height
+    panelSizes.push(containerHeight); // First panel takes full height
   } else {
     // Resize existing panels and add new one
-    const newSize = 1 / (chartCount + 1);
+    const newSize = containerHeight / (chartCount + 1);
     panelSizes = panelSizes.map(
-      (size) => size * (chartCount / (chartCount + 1))
+      (size) => (size * chartCount) / (chartCount + 1)
     );
     panelSizes.push(newSize);
   }
 
   // Add new chart
   const newChart = parentSciChartSurface.addSubChart({
-    position: new Rect(0, 0, 1, panelSizes[chartCount]),
+    position: new Rect(0, 0, containerWidth, panelSizes[chartCount]),
     theme: new SciChartJsNavyTheme(),
     title: `Chart ${chartCount + 1}`,
     titleStyle: { fontSize: 14 },
+    coordinateMode: ECoordinateMode.Pixel,
   });
 
   // Add splitter if this isn't the first chart
@@ -290,7 +272,7 @@ function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
       .slice(0, chartCount)
       .reduce((a, b) => a + b, 0);
     const splitter = createSplitter(chartCount - 1, splitterPosition);
-    document.getElementById("scichart-root").appendChild(splitter);
+    parentSciChartSurface.domChartRoot.appendChild(splitter);
     setupSplitterEvents(splitter, parentSciChartSurface, axisSynchronizer);
   }
 
@@ -365,9 +347,10 @@ function removeSpecificChart(index, parentSciChartSurface, axisSynchronizer) {
     splitters[0].remove();
   }
 
-  // Normalize remaining panel sizes
-  const totalSize = panelSizes.reduce((a, b) => a + b, 0);
-  panelSizes = panelSizes.map((size) => size / totalSize);
+  // Recalculate panel sizes to fill available space
+  const containerHeight = parentSciChartSurface.domChartRoot.clientHeight;
+  const newPanelHeight = containerHeight / panelSizes.length;
+  panelSizes = panelSizes.map(() => newPanelHeight);
 
   // Update positions
   updateChartPositions(parentSciChartSurface);
@@ -395,12 +378,6 @@ async function createDynamicPanelChart(divElementId) {
       theme: new SciChartJsNavyTheme(),
     }
   );
-
-  // Initialize minimum panel size
-  updateMinPanelSize();
-
-  // Update minimum panel size when window resizes
-  window.addEventListener("resize", updateMinPanelSize);
 
   // Create axis synchronizer with initial range
   const axisSynchronizer = new AxisSynchroniser();
