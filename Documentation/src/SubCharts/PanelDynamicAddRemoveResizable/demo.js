@@ -152,7 +152,7 @@ function setupSplitterEvents(
     // Apply the changes
     updateChartPositions(parentSciChartSurface);
     updateSplitterPositions();
-    updateCloseButtons(parentSciChartSurface, axisSynchronizer);
+    updateCloseButtonPositions();
   });
 
   splitter.addEventListener("pointerup", (e) => {
@@ -176,8 +176,6 @@ function setupSplitterEvents(
 
 // Function which adds a close button to the chart
 function addCloseButton(chart, index, parentSciChartSurface, axisSynchronizer) {
-  if (parentSciChartSurface.subCharts.length <= 1) return;
-
   const closeBtn = document.createElement("button");
   closeBtn.className = "chart-close-button";
   closeBtn.innerHTML = "×";
@@ -198,21 +196,17 @@ function addCloseButton(chart, index, parentSciChartSurface, axisSynchronizer) {
   // Position the button relative to the chart's position
   const yPos = panelSizes.slice(0, index).reduce((a, b) => a + b, 0);
   closeBtn.style.top = `${yPos + 10}px`;
+
+  return closeBtn;
 }
 
 // Updates the position of close buttons relative to chart panels on resize
-function updateCloseButtons(parentSciChartSurface, axisSynchronizer) {
-  // Remove all existing close buttons
-  document
-    .querySelectorAll(".chart-close-button")
-    .forEach((btn) => btn.remove());
-
-  // Add new close buttons if there's more than one chart
-  if (parentSciChartSurface.subCharts.length > 1) {
-    parentSciChartSurface.subCharts.forEach((chart, index) => {
-      addCloseButton(chart, index, parentSciChartSurface, axisSynchronizer);
-    });
-  }
+function updateCloseButtonPositions() {
+  const closeButtons = document.querySelectorAll(".chart-close-button");
+  closeButtons.forEach((btn, index) => {
+    const yPos = panelSizes.slice(0, index).reduce((a, b) => a + b, 0);
+    btn.style.top = `${yPos + 10}px`;
+  });
 }
 // #endregion
 
@@ -295,8 +289,25 @@ function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
   // Synchronize the x-axis
   axisSynchronizer.addAxis(xAxis);
 
-  // Update close buttons for all charts
-  updateCloseButtons(parentSciChartSurface, axisSynchronizer);
+  // Add close button for new chart if there will be more than one chart
+  if (chartCount > 0) {
+    // Add close buttons for both charts (if this is the second chart)
+    if (chartCount === 1) {
+      addCloseButton(
+        parentSciChartSurface.subCharts[0],
+        0,
+        parentSciChartSurface,
+        axisSynchronizer
+      );
+    }
+    addCloseButton(
+      newChart,
+      chartCount,
+      parentSciChartSurface,
+      axisSynchronizer
+    );
+    updateCloseButtonPositions();
+  }
 
   return {
     sciChartSurface: newChart,
@@ -320,12 +331,29 @@ function removeSpecificChart(index, parentSciChartSurface, axisSynchronizer) {
   parentSciChartSurface.removeSubChart(chartToRemove);
   panelSizes.splice(index, 1);
 
-  // Remove corresponding splitter
+  // Remove corresponding splitter and close buttons
   const splitters = document.querySelectorAll(".grid-splitter");
+  const closeButtons = document.querySelectorAll(".chart-close-button");
+
+  // Remove splitter
   if (index > 0) {
     splitters[index - 1].remove();
   } else if (splitters.length > 0) {
     splitters[0].remove();
+  }
+
+  // If we're going down to 1 chart, remove all close buttons
+  if (chartCount <= 2) {
+    closeButtons.forEach((btn) => btn.remove());
+  } else {
+    // Remove close button for this chart
+    closeButtons[index].remove();
+    // Update indices of remaining close buttons
+    closeButtons.forEach((btn, i) => {
+      if (i > index) {
+        btn.dataset.chartIndex = i - 1;
+      }
+    });
   }
 
   // Recalculate panel sizes to fill available space
@@ -336,7 +364,7 @@ function removeSpecificChart(index, parentSciChartSurface, axisSynchronizer) {
   // Update positions
   updateChartPositions(parentSciChartSurface);
   updateSplitterPositions();
-  updateCloseButtons(parentSciChartSurface, axisSynchronizer);
+  updateCloseButtonPositions();
 }
 
 // Function to reomve the last chart from the SciChartSurface
