@@ -32,11 +32,130 @@ function generateRandomData(count = 100) {
   return { xValues, yValues };
 }
 
-// Store panel sizes and UI elements
-let panelSizes = []; // Store heights in pixels
-let chartSplitters = []; // Store splitter instances
-let chartCloseButtons = []; // Store close button instances
-const MIN_PANEL_SIZE = 100; // Minimum panel size in pixels
+class ChartPanel {
+  static MIN_PANEL_SIZE = 100;
+
+  constructor(parentSciChartSurface, index, wasmContext, axisSynchronizer) {
+    this.parentSciChartSurface = parentSciChartSurface;
+    this.index = index;
+    this.height = 0;
+    this.splitter = null;
+    this.closeButton = null;
+    this.chart = null;
+
+    this.createChart(wasmContext, axisSynchronizer);
+  }
+
+  get containerHeight() {
+    return this.parentSciChartSurface.domChartRoot.clientHeight;
+  }
+
+  get containerWidth() {
+    return this.parentSciChartSurface.domChartRoot.clientWidth;
+  }
+
+  createChart(wasmContext, axisSynchronizer) {
+    this.chart = this.parentSciChartSurface.addSubChart({
+      position: new Rect(0, 0, this.containerWidth, 0),
+      theme: new SciChartJsNavyTheme(),
+      title: `Chart ${this.index + 1}`,
+      titleStyle: { fontSize: 14 },
+      coordinateMode: ECoordinateMode.Pixel,
+    });
+
+    const xAxis = new NumericAxis(wasmContext, {
+      axisTitle: "XAxis",
+      axisTitleStyle: { fontSize: 12 },
+    });
+
+    this.chart.xAxes.add(xAxis);
+    this.chart.yAxes.add(
+      new NumericAxis(wasmContext, {
+        axisTitle: "YAxis",
+        axisTitleStyle: { fontSize: 12 },
+      })
+    );
+
+    this.chart.chartModifiers.add(new ZoomPanModifier());
+    this.chart.chartModifiers.add(new MouseWheelZoomModifier());
+    this.chart.chartModifiers.add(new ZoomExtentsModifier());
+
+    const dataSeries = new XyDataSeries(wasmContext);
+    const { xValues, yValues } = generateRandomData();
+    dataSeries.appendRange(xValues, yValues);
+
+    const lineSeries = new FastLineRenderableSeries(wasmContext, {
+      stroke: getRandomColor(),
+      strokeThickness: 2,
+      dataSeries,
+    });
+    this.chart.renderableSeries.add(lineSeries);
+
+    axisSynchronizer.addAxis(xAxis);
+  }
+
+  createCloseButton(onClose) {
+    this.closeButton = new ChartCloseButton(
+      this.parentSciChartSurface.domChartRoot,
+      this.index,
+      onClose
+    );
+  }
+
+  createSplitter(onDrag) {
+    this.splitter = new ChartSplitter(
+      this.parentSciChartSurface.domChartRoot,
+      this.index,
+      0,
+      onDrag
+    );
+  }
+
+  setHeight(height) {
+    this.height = height;
+    this.chart.subPosition = new Rect(
+      0,
+      this.yPosition,
+      this.containerWidth,
+      height
+    );
+  }
+
+  setIndex(index) {
+    this.index = index;
+    if (this.closeButton) {
+      this.closeButton.setIndex(index);
+    }
+    if (this.splitter) {
+      this.splitter.element.dataset.index = index;
+    }
+  }
+
+  get yPosition() {
+    return chartPanels
+      .slice(0, this.index)
+      .reduce((sum, panel) => sum + panel.height, 0);
+  }
+
+  updatePositions() {
+    if (this.closeButton) {
+      this.closeButton.setPosition(this.yPosition);
+    }
+    if (this.splitter) {
+      this.splitter.setPosition(this.yPosition + this.height);
+    }
+  }
+
+  remove(axisSynchronizer) {
+    axisSynchronizer.removeAxis(this.chart.xAxes[0]);
+    this.parentSciChartSurface.removeSubChart(this.chart);
+    if (this.closeButton) this.closeButton.remove();
+    if (this.splitter) this.splitter.remove();
+  }
+}
+
+// Store chart panels
+let chartPanels = [];
 
 class ChartCloseButton {
   constructor(parentElement, index, onClickCallback) {
@@ -161,175 +280,69 @@ class ChartSplitter {
   }
 }
 
-// Updates chart positions and sizes using SciChartSubSurface.subPosition
-function updateChartPositions(parentSciChartSurface) {
-  const width = parentSciChartSurface.domChartRoot.clientWidth;
-  let currentY = 0;
-  for (let i = 0; i < panelSizes.length; i++) {
-    const chart = parentSciChartSurface.subCharts[i];
-    chart.subPosition = new Rect(0, currentY, width, panelSizes[i]);
-    currentY += panelSizes[i];
-  }
-}
-
-// Updates grid splitter positions based on panel sizes
-function updateSplitterPositions() {
-  let currentY = 0;
-  chartSplitters.forEach((splitter, index) => {
-    currentY += panelSizes[index];
-    splitter.setPosition(currentY);
-  });
-}
-
-// Updates the position of close buttons relative to chart panels on resize
-function updateCloseButtonPositions() {
-  chartCloseButtons.forEach((btn, index) => {
-    // Position each button 10px from the top of its corresponding panel
-    const yPos = panelSizes.slice(0, index).reduce((a, b) => a + b, 0);
-    btn.setPosition(yPos);
-  });
-}
 // #endregion
 
 // #region addNewChart
 // Function for adding a new SubChart to an existing parent SciChartSurface.
 // All subcharts will be resized to occupy equal height on the parent surface.
 function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
-  const chartCount = parentSciChartSurface.subCharts?.length ?? 0;
-
+  const chartCount = chartPanels.length;
   const containerHeight = parentSciChartSurface.domChartRoot.clientHeight;
-  const containerWidth = parentSciChartSurface.domChartRoot.clientWidth;
 
-  // Calculate new panel size in pixels
-  if (panelSizes.length === 0) {
-    panelSizes.push(containerHeight); // First panel takes full height
-  } else {
-    // Resize existing panels and add new one
-    const newSize = containerHeight / (chartCount + 1);
-    panelSizes = panelSizes.map(
-      (size) => (size * chartCount) / (chartCount + 1)
-    );
-    panelSizes.push(newSize);
-  }
-
-  // Add new chart
-  const newChart = parentSciChartSurface.addSubChart({
-    position: new Rect(0, 0, containerWidth, panelSizes[chartCount]),
-    theme: new SciChartJsNavyTheme(),
-    title: `Chart ${chartCount + 1}`,
-    titleStyle: { fontSize: 14 },
-    coordinateMode: ECoordinateMode.Pixel,
-  });
-
-  // Add close button for the new chart
-  const newChartButton = new ChartCloseButton(
-    parentSciChartSurface.domChartRoot,
+  // Create new panel
+  const newPanel = new ChartPanel(
+    parentSciChartSurface,
     chartCount,
-    (index) =>
-      removeSpecificChart(index, parentSciChartSurface, axisSynchronizer)
+    wasmContext,
+    axisSynchronizer
   );
-  chartCloseButtons.push(newChartButton);
-  chartCloseButtons.forEach((btn, i) => {
-    btn.setIndex(i);
-    btn.setVisibility(chartCloseButtons.length > 1);
-  });
+  chartPanels.push(newPanel);
+
+  // Add close button
+  newPanel.createCloseButton((index) =>
+    removeSpecificChart(index, parentSciChartSurface, axisSynchronizer)
+  );
 
   // Add splitter if this isn't the first chart
   if (chartCount > 0) {
-    // Calculate the correct position for the splitter
-    const splitterPosition = panelSizes
-      .slice(0, chartCount)
-      .reduce((a, b) => a + b, 0);
+    const previousPanel = chartPanels[chartCount - 1];
+    previousPanel.createSplitter((splitterIndex, mouseY) => {
+      const upperPanel = chartPanels[splitterIndex];
+      const lowerPanel = chartPanels[splitterIndex + 1];
 
-    const splitter = new ChartSplitter(
-      parentSciChartSurface.domChartRoot,
-      chartCount - 1,
-      splitterPosition,
-      (splitterIndex, mouseY) => {
-        // Only adjust the two panels adjacent to this splitter
-        const upperPanelIndex = splitterIndex;
-        const lowerPanelIndex = splitterIndex + 1;
+      const totalSize = upperPanel.height + lowerPanel.height;
+      const newUpperSize = mouseY - upperPanel.yPosition;
+      const newLowerSize = totalSize - newUpperSize;
 
-        // Calculate total size of the affected panels
-        const totalAffectedSize =
-          panelSizes[upperPanelIndex] + panelSizes[lowerPanelIndex];
-
-        // Calculate new sizes
-        const newUpperSize =
-          mouseY -
-          panelSizes.slice(0, upperPanelIndex).reduce((a, b) => a + b, 0);
-        const newLowerSize = totalAffectedSize - newUpperSize;
-
-        // Prevent shrinking below minimum size
-        if (newUpperSize < MIN_PANEL_SIZE || newLowerSize < MIN_PANEL_SIZE) {
-          return;
-        }
-
-        // Update panel sizes
-        panelSizes[upperPanelIndex] = newUpperSize;
-        panelSizes[lowerPanelIndex] = newLowerSize;
-
-        // Apply the changes
-        updateChartPositions(parentSciChartSurface);
-        updateSplitterPositions();
-        updateCloseButtonPositions();
+      if (
+        newUpperSize < ChartPanel.MIN_PANEL_SIZE ||
+        newLowerSize < ChartPanel.MIN_PANEL_SIZE
+      ) {
+        return;
       }
-    );
-    chartSplitters.push(splitter);
+
+      upperPanel.setHeight(newUpperSize);
+      lowerPanel.setHeight(newLowerSize);
+
+      chartPanels.forEach((panel) => panel.updatePositions());
+    });
   }
 
-  // Update all chart positions
-  updateChartPositions(parentSciChartSurface);
-  updateSplitterPositions(); // Ensure all splitters are correctly positioned
-  updateCloseButtonPositions();
+  // Calculate and set heights
+  const newHeight = containerHeight / (chartCount + 1);
+  chartPanels.forEach((panel) => panel.setHeight(newHeight));
+  chartPanels.forEach((panel) => panel.updatePositions());
 
-  console.log(
-    `chartCloseButtons visibility: ${chartCloseButtons.map(
-      (btn) => btn.element.style.display
-    )}`
-  );
-  console.log(
-    `chartCloseButtons top: ${chartCloseButtons.map(
-      (btn) => btn.element.style.top
-    )}`
-  );
-
-  // Add axes and modifiers
-  const xAxis = new NumericAxis(wasmContext, {
-    axisTitle: "XAxis",
-    axisTitleStyle: { fontSize: 12 },
+  // Show/hide close buttons based on panel count
+  const showCloseButtons = chartPanels.length > 1;
+  chartPanels.forEach((panel) => {
+    if (panel.closeButton) {
+      panel.closeButton.setVisibility(showCloseButtons);
+    }
   });
-
-  newChart.xAxes.add(xAxis);
-  newChart.yAxes.add(
-    new NumericAxis(wasmContext, {
-      axisTitle: "YAxis",
-      axisTitleStyle: { fontSize: 12 },
-    })
-  );
-
-  // Add modifiers
-  newChart.chartModifiers.add(new ZoomPanModifier());
-  newChart.chartModifiers.add(new MouseWheelZoomModifier());
-  newChart.chartModifiers.add(new ZoomExtentsModifier());
-
-  // Add random data series
-  const dataSeries = new XyDataSeries(wasmContext);
-  const { xValues, yValues } = generateRandomData();
-  dataSeries.appendRange(xValues, yValues);
-
-  const lineSeries = new FastLineRenderableSeries(wasmContext, {
-    stroke: getRandomColor(),
-    strokeThickness: 2,
-    dataSeries,
-  });
-  newChart.renderableSeries.add(lineSeries);
-
-  // Synchronize the x-axis
-  axisSynchronizer.addAxis(xAxis);
 
   return {
-    sciChartSurface: newChart,
+    sciChartSurface: newPanel.chart,
     wasmContext,
   };
 }
@@ -338,47 +351,31 @@ function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
 // #region removeChart
 // Helper function to remove a specific Sub-chart pane from a parent SciChartSurface
 function removeSpecificChart(index, parentSciChartSurface, axisSynchronizer) {
-  const chartCount = parentSciChartSurface.subCharts?.length ?? 0;
-  if (chartCount <= 1) return; // Keep at least one chart
+  if (chartPanels.length <= 1) return; // Keep at least one chart
 
-  const chartToRemove = parentSciChartSurface.subCharts[index];
+  // Remove the panel
+  const panelToRemove = chartPanels[index];
+  panelToRemove.remove(axisSynchronizer);
+  chartPanels.splice(index, 1);
 
-  // Remove axis from synchronizer before removing chart
-  axisSynchronizer.removeAxis(chartToRemove.xAxes[0]);
+  // Update indices of remaining panels
+  chartPanels.forEach((panel, i) => panel.setIndex(i));
 
-  // Remove chart and update panel sizes
-  parentSciChartSurface.removeSubChart(chartToRemove);
-  panelSizes.splice(index, 1);
+  // Recalculate heights to fill available space
+  const newHeight =
+    parentSciChartSurface.domChartRoot.clientHeight / chartPanels.length;
+  chartPanels.forEach((panel) => panel.setHeight(newHeight));
 
-  // Remove corresponding splitter and close buttons
-  // Remove splitter
-  if (index > 0) {
-    chartSplitters[index - 1].remove();
-    chartSplitters.splice(index - 1, 1);
-  } else if (chartSplitters.length > 0) {
-    chartSplitters[0].remove();
-    chartSplitters.splice(0, 1);
-  }
+  // Update all positions
+  chartPanels.forEach((panel) => panel.updatePositions());
 
-  // Remove close button for this chart
-  chartCloseButtons[index].remove();
-  chartCloseButtons.splice(index, 1);
-
-  // Update indices and visibility of remaining close buttons
-  chartCloseButtons.forEach((btn, i) => {
-    btn.setIndex(i);
-    btn.setVisibility(chartCloseButtons.length > 1);
+  // Show/hide close buttons based on panel count
+  const showCloseButtons = chartPanels.length > 1;
+  chartPanels.forEach((panel) => {
+    if (panel.closeButton) {
+      panel.closeButton.setVisibility(showCloseButtons);
+    }
   });
-
-  // Recalculate panel sizes to fill available space
-  const containerHeight = parentSciChartSurface.domChartRoot.clientHeight;
-  const newPanelHeight = containerHeight / panelSizes.length;
-  panelSizes = panelSizes.map(() => newPanelHeight);
-
-  // Update positions
-  updateChartPositions(parentSciChartSurface);
-  updateSplitterPositions();
-  updateCloseButtonPositions();
 }
 
 // Function to reomve the last chart from the SciChartSurface
