@@ -231,21 +231,8 @@ function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
   chartCloseButtons.push(newChartButton);
   chartCloseButtons.forEach((btn, i) => {
     btn.setIndex(i);
-    btn.setVisibility(true);
+    btn.setVisibility(chartCloseButtons.length > 1);
   });
-  console.log(
-    `chartCloseButtons visibility: ${chartCloseButtons.map(
-      (btn) => btn.element.style.display
-    )}`
-  );
-  console.log(
-    `chartCloseButtons top: ${chartCloseButtons.map(
-      (btn) => btn.element.style.top
-    )}`
-  );
-
-  // Update positions
-  updateCloseButtonPositions();
 
   // Add splitter if this isn't the first chart
   if (chartCount > 0) {
@@ -294,6 +281,18 @@ function addNewChart(parentSciChartSurface, wasmContext, axisSynchronizer) {
   // Update all chart positions
   updateChartPositions(parentSciChartSurface);
   updateSplitterPositions(); // Ensure all splitters are correctly positioned
+  updateCloseButtonPositions();
+
+  console.log(
+    `chartCloseButtons visibility: ${chartCloseButtons.map(
+      (btn) => btn.element.style.display
+    )}`
+  );
+  console.log(
+    `chartCloseButtons top: ${chartCloseButtons.map(
+      (btn) => btn.element.style.top
+    )}`
+  );
 
   // Add axes and modifiers
   const xAxis = new NumericAxis(wasmContext, {
@@ -368,7 +367,7 @@ function removeSpecificChart(index, parentSciChartSurface, axisSynchronizer) {
   // Update indices and visibility of remaining close buttons
   chartCloseButtons.forEach((btn, i) => {
     btn.setIndex(i);
-    btn.setVisibility(chartCount > 1);
+    btn.setVisibility(chartCloseButtons.length > 1);
   });
 
   // Recalculate panel sizes to fill available space
