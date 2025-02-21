@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#LegendModifier.html",
+                href: "https://www.scichart.com/documentation/js/current/LegendModifier.html",
                 title: "The specific page for the SciChart.js Legends documentation will help you to get started",
                 linkTitle: "Legend API Documentation",
             },

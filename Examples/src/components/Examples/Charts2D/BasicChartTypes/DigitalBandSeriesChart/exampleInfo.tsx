@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#DigitalBandSeriesType.html",
+                href: "https://www.scichart.com/documentation/js/current/DigitalBandSeriesType.html",
                 title: "Digital Band Chart example",
                 linkTitle: "JavaScript Digital Band Documentation",
             },

@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Alignment%20-%20Create%20a%20Vertical%20Chart.html",
+                href: "https://www.scichart.com/documentation/js/current/Axis%20Alignment%20-%20Create%20a%20Vertical%20Chart.html",
                 title: "The specific page for the SciChart.js API documentation for Vertical Charts will help you to get started",
                 linkTitle: "SciChart.js Documentation Home",
             },

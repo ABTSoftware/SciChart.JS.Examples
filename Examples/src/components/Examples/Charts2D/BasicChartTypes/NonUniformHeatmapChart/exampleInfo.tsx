@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The-Non-Uniform-Heatmap-Chart-Type.html",
+                href: "https://www.scichart.com/documentation/js/current/The-Non-Uniform-Heatmap-Chart-Type.html",
                 title: "The specific page for the JavaScript Non Uniform Heatmap Chart documentation will help you to get started",
                 linkTitle: "JavaScript Non Uniform Heatmap Chart Documentation",
             },

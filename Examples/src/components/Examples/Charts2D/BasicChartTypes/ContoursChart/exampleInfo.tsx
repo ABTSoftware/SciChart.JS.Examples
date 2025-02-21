@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Contours%20Series%20Type.html",
+                href: "https://www.scichart.com/documentation/js/current/The%20Contours%20Series%20Type.html",
                 title: "The specific page for the JavaScript Contours Chart documentation will help you to get started",
                 linkTitle: "JavaScript Contours Chart Documentation",
             },

@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#ThePointLine3DChartType.html",
+                href: "https://www.scichart.com/documentation/js/current/ThePointLine3DChartType.html",
                 title: "SciChart.js 3D Point Line Chart Documentation",
                 linkTitle: "JavaScript 3D Point Line Chart Documentation",
             },

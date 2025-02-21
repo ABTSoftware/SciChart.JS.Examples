@@ -40,7 +40,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#TheTextSeriesType.html",
+                href: "https://www.scichart.com/documentation/js/current/TheTextSeriesType.html",
                 title: "The documentation page for the TextSeries in SciChart.js",
                 linkTitle: "SciChart.js Documentation Home",
             },

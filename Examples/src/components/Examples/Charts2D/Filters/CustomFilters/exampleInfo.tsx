@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#Creating%20a%20Custom%20Filter.html",
+                href: "https://www.scichart.com/documentation/js/current/Creating%20a%20Custom%20Filter.html",
                 title: "This specific page in the JavaScript Filters API documentation will help you to get started",
                 linkTitle: "SciChart.js Custom Filters Documentation",
             },

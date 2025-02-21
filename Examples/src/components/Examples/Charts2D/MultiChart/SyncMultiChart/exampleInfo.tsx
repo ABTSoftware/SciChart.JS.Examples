@@ -40,12 +40,12 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2009%20-%20Linking%20Multiple%20Charts.html",
+                href: "https://www.scichart.com/documentation/js/current/Tutorial%2009%20-%20Linking%20Multiple%20Charts.html",
                 title: "This is a tutorial for how to synchronise the axis and modifiers for multiple charts",
                 linkTitle: "SciChart.js Synchronise Charts Tutorial",
             },
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChartOverview.html",
+                href: "https://www.scichart.com/documentation/js/current/SciChartOverview.html",
                 title: "This specific page in the JavaScript SciChartOverview Api documentation will help you to get started",
                 linkTitle: "SciChart.js Overview Documentation",
             },

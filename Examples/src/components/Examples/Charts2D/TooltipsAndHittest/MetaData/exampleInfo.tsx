@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#DataSeries%20PointMetaData%20Api.html",
+                href: "https://www.scichart.com/documentation/js/current/DataSeries%20PointMetaData%20Api.html",
                 title: "The specific page for the SciChart.js documentation for the MetaData API to help you to get started",
                 linkTitle: "MetaData API documentation",
             },

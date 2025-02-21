@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Spline%20(Smoothed)%20Mountain%20Series%20Type.html",
+                href: "https://www.scichart.com/documentation/js/current/The%20Spline%20(Smoothed)%20Mountain%20Series%20Type.html",
                 title: "This specific page in the JavaScript Spline Mountain Chart documentation will help you to get started",
                 linkTitle: "JavaScript Mountain Chart Documentation",
             },

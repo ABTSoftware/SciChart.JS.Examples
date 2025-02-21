@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#TextStringAxis.html",
+                href: "https://www.scichart.com/documentation/js/current/TextStringAxis.html",
                 title: "This specific page in the JavaScript TextLabelProvider documentation will help you to get started",
                 linkTitle: "Scichart.js TextlabelProvider Documentation",
             },

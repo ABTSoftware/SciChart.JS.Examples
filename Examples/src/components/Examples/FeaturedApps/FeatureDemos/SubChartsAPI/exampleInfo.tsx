@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#WhatIsTheSubChartsAPI.html",
+                href: "https://www.scichart.com/documentation/js/current/WhatIsTheSubChartsAPI.html",
                 title: "This specifics page in the JavaScript SubCharts API documentation will help you to get started",
                 linkTitle: "Scichart.js SubCharts API Documentation",
             },

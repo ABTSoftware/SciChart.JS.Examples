@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#Chart%20Styling%20-%20Images%20in%20Background.html",
+                href: "https://www.scichart.com/documentation/js/current/Chart%20Styling%20-%20Images%20in%20Background.html",
                 title: "How to add a background image with transparency documentation",
                 linkTitle: "Custom Theme documentation",
             },

@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Fan%20Charts%20Type.html",
+                href: "https://www.scichart.com/documentation/js/current/The%20Fan%20Charts%20Type.html",
                 title: "The specific page for the JavaScript Fan Chart documentation will help you to get started",
                 linkTitle: "JavaScript Fan Chart Documentation",
             },

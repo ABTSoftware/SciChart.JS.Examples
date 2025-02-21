@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#Chart%20Styling%20-%20Style%20Chart%20Parts%20in%20Code.html",
+                href: "https://www.scichart.com/documentation/js/current/Chart%20Styling%20-%20Style%20Chart%20Parts%20in%20Code.html",
                 title: "How to style chart parts in code documentation",
                 linkTitle: "Custom Theme documentation",
             },

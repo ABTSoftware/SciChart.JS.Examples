@@ -40,7 +40,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#What%20is%20the%20Filters%20API.html",
+                href: "https://www.scichart.com/documentation/js/current/What%20is%20the%20Filters%20API.html",
                 title: "This specific page in the JavaScript Filters API documentation will help you to get started",
                 linkTitle: "JavaScript Filters Api Documentation",
             },

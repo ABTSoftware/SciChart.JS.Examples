@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Alignment%20-%20Setting%20Axis%20Alignment.html",
+                href: "https://www.scichart.com/documentation/js/current/Axis%20Alignment%20-%20Setting%20Axis%20Alignment.html",
                 title: "SciChart.js Multiple XAxis Documentation",
                 linkTitle: "SciChart.js Documentation Home",
             },

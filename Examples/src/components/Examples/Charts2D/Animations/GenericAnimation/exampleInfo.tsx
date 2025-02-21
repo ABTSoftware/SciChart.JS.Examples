@@ -40,7 +40,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#Generic%20Animations.html",
+                href: "https://www.scichart.com/documentation/js/current/Generic%20Animations.html",
                 title: "The specific page for the JavaScript Generic Animation documentation will help you to get started",
                 linkTitle: "Generic Animation Documentation",
             },

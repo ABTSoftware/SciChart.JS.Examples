@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Candlestick%20Series%20type.html",
+                href: "https://www.scichart.com/documentation/js/current/The%20Candlestick%20Series%20type.html",
                 title: "This specific page in the JavaScript Candlestick Chart documentation will help you to get started",
                 linkTitle: "JavaScript Candlestick Chart Documentation",
             },

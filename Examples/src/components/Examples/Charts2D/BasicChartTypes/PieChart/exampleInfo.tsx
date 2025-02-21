@@ -42,7 +42,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Pie%20Chart%20Type.html",
+                href: "https://www.scichart.com/documentation/js/current/The%20Pie%20Chart%20Type.html",
                 title: "The specific page for the JavaScript Pie Chart documentation will help you to get started",
                 linkTitle: "JavaScript Pie Chart Documentation",
             },

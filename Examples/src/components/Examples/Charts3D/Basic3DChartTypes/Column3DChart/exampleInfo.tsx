@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#TheColumn3DChartType.html",
+                href: "https://www.scichart.com/documentation/js/current/TheColumn3DChartType.html",
                 title: "SciChart.js 3D Column Chart Documentation",
                 linkTitle: "JavaScript 3D Column Chart Documentation",
             },

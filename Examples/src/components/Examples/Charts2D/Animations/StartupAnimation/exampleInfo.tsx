@@ -40,7 +40,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#Series%20Startup%20Animations.html",
+                href: "https://www.scichart.com/documentation/js/current/Series%20Startup%20Animations.html",
                 title: "The specific page for the JavaScript Startup Animation documentation will help you to get started",
                 linkTitle: "JavaScript Startup Animation Documentation",
             },

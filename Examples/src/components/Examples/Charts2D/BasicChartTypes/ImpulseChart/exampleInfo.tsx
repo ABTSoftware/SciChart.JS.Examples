@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Lollipop%20(Impulse%20or%20Stem)%20Chart%20Type.html",
+                href: "https://www.scichart.com/documentation/js/current/The%20Lollipop%20(Impulse%20or%20Stem)%20Chart%20Type.html",
                 title: "This specific page in the JavaScript Impulse Chart documentation will help you to get started",
                 linkTitle: "JavaScript Impulse Chart Documentation",
             },

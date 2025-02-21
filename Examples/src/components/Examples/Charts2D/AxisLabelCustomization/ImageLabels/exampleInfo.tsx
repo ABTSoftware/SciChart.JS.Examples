@@ -40,7 +40,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#ImageLabels.html",
+                href: "https://www.scichart.com/documentation/js/current/ImageLabels.html",
                 title: "This specific page about JavaScript Chart Image Labels documentation will help you to get started",
                 linkTitle: "SciChart.js Image Labels Documentation",
             },

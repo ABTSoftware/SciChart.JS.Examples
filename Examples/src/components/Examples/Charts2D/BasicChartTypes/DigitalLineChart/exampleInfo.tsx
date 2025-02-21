@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Digital%20(Step)%20Line%20Series.html",
+                href: "https://www.scichart.com/documentation/js/current/The%20Digital%20(Step)%20Line%20Series.html",
                 title: "The specific page for the JavaScript Digital Line Chart documentation will help you to get started",
                 linkTitle: "JavaScript Digital Line Chart Documentation",
             },

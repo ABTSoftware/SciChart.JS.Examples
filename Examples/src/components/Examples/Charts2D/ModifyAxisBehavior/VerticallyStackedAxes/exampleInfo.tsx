@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Layout%20-%20Vertically%20Stacked%20Axis.html",
+                href: "https://www.scichart.com/documentation/js/current/Axis%20Layout%20-%20Vertically%20Stacked%20Axis.html",
                 title: "The specific page for the SciChart.js documentation for the Vertically Stacked Axes to help you to get started",
                 linkTitle: "SciChart.js Stacked Axes Documentation",
             },

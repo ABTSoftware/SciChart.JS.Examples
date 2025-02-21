@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Scatter%203D%20Chart%20Type.html",
+                href: "https://www.scichart.com/documentation/js/current/The%20Scatter%203D%20Chart%20Type.html",
                 title: "SciChart.js 3D Chart Documentation",
                 linkTitle: "JavaScript 3D Charts Documentation",
             },

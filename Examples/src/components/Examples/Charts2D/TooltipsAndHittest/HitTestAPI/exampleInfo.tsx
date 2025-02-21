@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#Hit-Test%20API.html",
+                href: "https://www.scichart.com/documentation/js/current/Hit-Test%20API.html",
                 title: "SciChart.js Hit-Test API documentation",
                 linkTitle: "Hit-Test API documentation",
             },

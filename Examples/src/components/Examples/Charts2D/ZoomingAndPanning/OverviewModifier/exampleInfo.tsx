@@ -40,7 +40,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#SciChartOverview.html",
+                href: "https://www.scichart.com/documentation/js/current/SciChartOverview.html",
                 title: "This specific page in the JavaScript SciChartOverview Api documentation will help you to get started",
                 linkTitle: "SciChart.js Overview Documentation",
             },

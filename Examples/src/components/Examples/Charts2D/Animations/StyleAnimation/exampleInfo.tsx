@@ -40,7 +40,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#Series%20Style%20Animations.html",
+                href: "https://www.scichart.com/documentation/js/current/Series%20Style%20Animations.html",
                 title: "The specific page for the JavaScript Style Transition Animation documentation will help you to get started",
                 linkTitle: "JavaScript Style Transition Animation Documentation",
             },

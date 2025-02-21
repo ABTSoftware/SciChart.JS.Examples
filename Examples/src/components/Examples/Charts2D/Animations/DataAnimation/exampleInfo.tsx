@@ -40,7 +40,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#Dataset%20Animations.html",
+                href: "https://www.scichart.com/documentation/js/current/Dataset%20Animations.html",
                 title: "The specific page for the JavaScript Dataset Animation documentation will help you to get started",
                 linkTitle: "JavaScript Data Animation Documentation",
             },

@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#Common%20RenderableSeries%20Features.html",
+                href: "https://www.scichart.com/documentation/js/current/Common%20RenderableSeries%20Features.html",
                 title: "Go to the Performance Tips and Tricks page in the SciChart.js Documentation",
                 linkTitle: "SciChart.js Performance Tips and Tricks",
             },

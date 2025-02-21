@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20PaletteProvider%20API.html",
+                href: "https://www.scichart.com/documentation/js/current/The%20PaletteProvider%20API.html",
                 title: "The PaletteProvider API documentation",
                 linkTitle: "SciChart.js PaletteProvider documentation",
             },

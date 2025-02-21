@@ -40,7 +40,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#RotatingAxisLabels.html",
+                href: "https://www.scichart.com/documentation/js/current/RotatingAxisLabels.html",
                 title: "The SciChart.js rotated labels documentation page",
                 linkTitle: "SciChart.js Axis Label Formatting Documentation",
             },

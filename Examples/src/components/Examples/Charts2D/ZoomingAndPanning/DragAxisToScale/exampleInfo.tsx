@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#YAxisDragModifier.html",
+                href: "https://www.scichart.com/documentation/js/current/YAxisDragModifier.html",
                 title: "SciChart.js Drag Axis to Scale Documentation page",
                 linkTitle: "SciChart.js Axis Drag documentation",
             },

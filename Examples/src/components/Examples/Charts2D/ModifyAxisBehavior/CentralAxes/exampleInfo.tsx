@@ -43,7 +43,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#CentralAxisLayout.html",
+                href: "https://www.scichart.com/documentation/js/current/CentralAxisLayout.html",
                 title: "SciChart.js Central Axis Documentation page",
                 linkTitle: "Central Axis documentation",
             },
