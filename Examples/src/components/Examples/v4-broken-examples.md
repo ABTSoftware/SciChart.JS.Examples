@@ -8,7 +8,7 @@
 
 # Tier 2 broken (issues):
 
--   [ ] http://localhost:8080/react/dynamic-layout - outer subchart borders dissapeared
+-   [ ] http://localhost:8080/react/dynamic-layout - outer subchart borders dissapeared - Cannot repro
 -   [ ] http://localhost:8080/react/multiple-chart-dashboard-performance-demo - outer subchart borders dissapeared
 -   [ ] http://localhost:8080/react/heatmap-chart-with-contours - looks bad
 -   [ ] http://localhost:8080/react/chart-background-annotations - y visible range is messed up

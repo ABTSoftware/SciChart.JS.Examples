@@ -42,6 +42,8 @@ export class GridLayoutModifier extends ChartModifierBase2D {
     private makeSubChart(surfaceDef: ISciChart2DDefinition, i: number, width: number, height: number) {
         const rs = this.parentSurface.renderableSeries.get(i);
         const rsDef = (surfaceDef.series as TSeriesDefinition[])[i];
+        // @ts-ignore
+        rsDef.xyData = {};
         const row = Math.floor(i / this.columns);
         const col = i % this.columns;
         const position = new Rect(col * width, row * height, width, height);
