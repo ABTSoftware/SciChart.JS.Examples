@@ -7,6 +7,7 @@ import { EPageLayout, GalleryItem } from "../../helpers/types/types";
 declare var require: any;
 
 export type TExampleInfo = {
+    id: string; // to match TPage
     /**
      * Example title
      */
@@ -469,7 +470,8 @@ function buildExamplesPages(paths: Record<string, { path: string; exportName: st
         if (!moduleExport.filepath) {
             moduleExport.filepath = path;
         }
-        acc[key] = { id: key, ...moduleExport };
+        const rkey = moduleExport.id;
+        acc[rkey] = moduleExport;
         return acc;
     }, {} as Record<string, TExamplePage>);
 }
