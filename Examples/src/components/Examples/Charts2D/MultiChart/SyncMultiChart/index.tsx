@@ -1,40 +1,12 @@
 import * as React from "react";
 import { makeStyles } from "tss-react/mui";
-import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
-import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
+import { appTheme } from "../../../theme";
 
-import {
-    AxisBase2D,
-    buildSeries,
-    EAutoRange,
-    EAxisAlignment,
-    ECoordinateMode,
-    EExecuteOn,
-    EHorizontalAnchorPoint,
-    EllipsePointMarker,
-    EventHandler,
-    EVerticalAnchorPoint,
-    FastLineRenderableSeries,
-    IDeletable,
-    IRenderableSeries,
-    MouseWheelZoomModifier,
-    NumberRange,
-    NumericAxis,
-    OverviewRangeSelectionModifier,
-    RolloverModifier,
-    RubberBandXyZoomModifier,
-    SciChartOverview,
-    SciChartSurface,
-    SciChartVerticalGroup,
-    TextAnnotation,
-    VisibleRangeChangedArgs,
-    XyDataSeries,
-    XyScatterRenderableSeries,
-    ZoomExtentsModifier,
-    ZoomPanModifier,
-} from "scichart";
 import { Button, Checkbox, FormControlLabel, Typography } from "@mui/material";
+import { NumberRange, SciChartSurface, SciChartVerticalGroup } from "scichart";
+import { AxisSynchroniser } from "./AxisSynchroniser";
+import { addToOverview, createChart, createOverview, removeFromOverview } from "./drawExample";
 
 export const divOverview = "multiChartOverview";
 export const divChart1 = "multiChart1";
@@ -42,139 +14,6 @@ export const divChart2 = "multiChart2";
 export const divChart3 = "multiChart3";
 export const divChart4 = "multiChart4";
 export const divChart5 = "multiChart5";
-
-/** A helper class for synchronising arbitrary number of axes */
-class AxisSynchroniser {
-    public visibleRange: NumberRange;
-    private axes: AxisBase2D[] = [];
-    public visibleRangeChanged: EventHandler<VisibleRangeChangedArgs> = new EventHandler<VisibleRangeChangedArgs>();
-
-    public constructor(initialRange: NumberRange, axes?: AxisBase2D[]) {
-        this.visibleRange = initialRange;
-        this.publishChange = this.publishChange.bind(this);
-        if (axes) {
-            axes.forEach((a) => this.addAxis(a));
-        }
-    }
-
-    public publishChange(data: VisibleRangeChangedArgs) {
-        this.visibleRange = data.visibleRange;
-        this.axes.forEach((a) => (a.visibleRange = this.visibleRange));
-        this.visibleRangeChanged.raiseEvent(data);
-    }
-
-    public addAxis(axis: AxisBase2D) {
-        if (!this.axes.includes(axis)) {
-            this.axes.push(axis);
-            axis.visibleRange = this.visibleRange;
-            axis.visibleRangeChanged.subscribe(this.publishChange);
-        }
-    }
-
-    public removeAxis(axis: AxisBase2D) {
-        const index = this.axes.findIndex((a) => a === axis);
-        if (index >= 0) {
-            this.axes.splice(index, 1);
-            axis.visibleRangeChanged.unsubscribe(this.publishChange);
-        }
-    }
-}
-
-const createChart = async (divId: string, id: number) => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divId, {
-        theme: appTheme.SciChartJsTheme,
-        disableAspect: true,
-    });
-
-    // Create and add an XAxis and YAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {}));
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, {
-            autoRange: EAutoRange.Always,
-            growBy: new NumberRange(0.1, 0.1),
-            axisAlignment: EAxisAlignment.Left,
-        })
-    );
-
-    const stroke = appTheme.SciChartJsTheme.getStrokeColor(id, 5, wasmContext);
-    const POINTS = 1000;
-    const data0 = new RandomWalkGenerator().Seed((id + 1) * 10).getRandomWalkSeries(POINTS);
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues: data0.xValues, yValues: data0.yValues }),
-            strokeThickness: 3,
-            stroke,
-        })
-    );
-
-    // Use modifierGroup to trigger the modifier in the same place on multiple charts
-    sciChartSurface.chartModifiers.add(
-        new RolloverModifier({ modifierGroup: "one" }),
-        new RubberBandXyZoomModifier({
-            executeCondition: { button: EExecuteOn.MouseRightButton },
-            modifierGroup: "one",
-        }),
-        // These do not need modifierGroup as the xAxes are synchronised.
-        new ZoomPanModifier({ enableZoom: true }),
-        new ZoomExtentsModifier(),
-        new MouseWheelZoomModifier()
-    );
-
-    return { sciChartSurface, wasmContext };
-};
-
-const createOverview = async (divId: string, axisSynchroniser: AxisSynchroniser) => {
-    // Note this does not use SciChartOverview.
-    // Instead we create a normal chart and then manually add the OverviewRangeSelectionModifier and bind it to the axisSynchroniser
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divId, {
-        theme: appTheme.SciChartJsTheme,
-    });
-
-    // Create and add an XAxis and YAxis
-    const xAxis = new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, 1000), autoRange: EAutoRange.Never });
-    sciChartSurface.xAxes.add(xAxis);
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, {
-            autoRange: EAutoRange.Always,
-            growBy: new NumberRange(0.1, 0.1),
-            axisAlignment: EAxisAlignment.Left,
-        })
-    );
-
-    const rangeSelectionModifier = new OverviewRangeSelectionModifier();
-    // When the range selection is moved, updated the linked charts
-    rangeSelectionModifier.onSelectedAreaChanged = (selectedRange: NumberRange) => {
-        if (!selectedRange.equals(axisSynchroniser.visibleRange)) {
-            axisSynchroniser.publishChange({ visibleRange: selectedRange });
-        }
-    };
-    rangeSelectionModifier.selectedArea = axisSynchroniser.visibleRange;
-    sciChartSurface.chartModifiers.add(rangeSelectionModifier);
-
-    // When charts are moved, update the range selection
-    axisSynchroniser.visibleRangeChanged.subscribe(({ visibleRange }) => {
-        const updatedSelectedRange = visibleRange.clip(xAxis.visibleRange);
-        const shouldUpdateSelectedRange = !updatedSelectedRange.equals(rangeSelectionModifier.selectedArea);
-        if (shouldUpdateSelectedRange) {
-            rangeSelectionModifier.selectedArea = updatedSelectedRange;
-        }
-    });
-    return { wasmContext, sciChartSurface };
-};
-
-const addToOverview = (series: IRenderableSeries, overview: SciChartSurface) => {
-    // Deep clone the series but without the data
-    const cloneSeries = buildSeries(overview.webAssemblyContext2D, series.toJSON(true))[0];
-    // Reference the original data
-    cloneSeries.dataSeries = series.dataSeries;
-    overview.renderableSeries.add(cloneSeries);
-};
-
-const removeFromOverview = (series: IRenderableSeries, overview: SciChartSurface) => {
-    const overviewSeries = overview.renderableSeries.getById(series.id);
-    // Do not delete children as this is using shared data
-    overview.renderableSeries.remove(overviewSeries, false);
-};
 
 type ChartPane = {
     id: number;
