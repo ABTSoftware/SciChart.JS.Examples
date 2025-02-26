@@ -4,7 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        id: "charts2D_StylingAndTheming_DashedLineStyling",
+        id: "chart2D_stylingAndTheming_DashedLineStyling",
         exampleId: "Charts2DStylingAndThemingDashedLineStyling",
         imagePath: "javascript-dashed-line-chart.jpg",
         description:

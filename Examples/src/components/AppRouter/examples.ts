@@ -27,7 +27,7 @@ import GenericAnimations from "../Examples/Charts2D/Animations/GenericAnimation"
 
 import AnnotationsAreEasy from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy";
 import AnnotationLayers from "../Examples/Charts2D/ChartAnnotations/AnnotationLayers";
-import EditableAnnotaions from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations";
+import EditableAnnotations from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations";
 import TradeMarkers from "../Examples/Charts2D/ChartAnnotations/TradeMarkers";
 
 import RealtimeGhostedTraces from "../Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces";
@@ -132,12 +132,6 @@ export type TMenuItem = {
 };
 
 export const MENU_ITEMS_FEATURED_APPS_ID = "MENU_ITEMS_FEATURED_APPS_ID";
-console.log(">>>>> in exampels file EXAMPLES PAGES = ", EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart);
-console.log(
-    ">>>>> in exampels file featuredApps_performanceDemos_RealtimePerformanceDemo = ",
-    EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo
-);
-
 export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     {
         id: "featuredApps_performanceDemos",
@@ -580,12 +574,15 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return AnnotationsAreEasy;
         case EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationLayers.id:
             return AnnotationLayers;
-        case EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations.id:
-            return EditableAnnotaions;
+        /*
+            case EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnnotations.id:
+            return EditableAnnotations;
+     */
         case EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers.id:
             return TradeMarkers;
-        case EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold.id:
-            return DragHorizontalThreshold;
+
+        //    case EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold.id:
+        //        return DragHorizontalThreshold;
         case EXAMPLES_PAGES.chart2D_chartAnnotations_BackgroundAnnotations.id:
             return BackgroundAnnotations;
         case EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.id:
@@ -614,8 +611,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return StaticAxis;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes.id:
             return VerticallyStackedAxes;
-        case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis.id:
-            return LogarithmicAxisExample;
+        //    case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis.id:
+        //        return LogarithmicAxisExample;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes.id:
             return DrawBehindAxes;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart.id:
@@ -654,8 +651,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return SeriesSelection;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips.id:
             return UsingCursorModifierTooltips;
-        case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData.id:
-            return UsingMetaData;
+        // case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData.id:
+        //    return UsingMetaData;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection.id:
             return DatapointSelection;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_VerticalSliceModifier.id:
@@ -672,8 +669,9 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return VirtualizedDataOverview;
         // case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision.id:
         //     return ZoomHighPrecision;
-        case EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels.id:
-            return MultiLineLabels;
+        //  case EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels.id:
+        //      return MultiLineLabels;
+        /*
         case EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels.id:
             return RotatedLabels;
         case EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels.id:
@@ -742,9 +740,11 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return PercentageChange;
         case EXAMPLES_PAGES.chart2D_filters_TrendMARatio.id:
             return TrendMARatio;
+            */
         case EXAMPLES_PAGES.chart2D_filters_CustomFilters.id:
             return CustomFilters;
         default:
+            console.log("NOT found >> ", exampleId);
             throw new Error("Ensure you update examples.ts getExampleComponent() to return an example");
     }
 };

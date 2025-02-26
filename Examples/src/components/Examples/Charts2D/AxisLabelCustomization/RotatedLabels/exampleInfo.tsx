@@ -4,7 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        id: "charts2D_AxisLabelCustomization_RotatedLabels",
+        id: "chart2D_axisLabelCustomization_RotatedLabels",
         exampleId: "Charts2DAxisLabelCustomizationRotatedLabels",
         imagePath: "javascript-rotated-labels-chart.jpg",
         description:

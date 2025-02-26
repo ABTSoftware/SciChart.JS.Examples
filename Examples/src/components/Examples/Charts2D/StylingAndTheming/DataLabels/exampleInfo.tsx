@@ -4,7 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        id: "charts2D_StylingAndTheming_DataLabels",
+        id: "chart2D_stylingAndTheming_DataLabels",
         exampleId: "Charts2DStylingAndThemingDataLabels",
         imagePath: "javascript-datalabels-chart.jpg",
         description: "Shows how you can add **Data Labels** to a chart using SciChart.js",

@@ -478,5 +478,9 @@ function buildExamplesPages(paths: Record<string, { path: string; exportName: st
 
 export const EXAMPLES_PAGES = buildExamplesPages(examplePaths);
 
-//console.log("got examples page>>> ", EXAMPLES_PAGES);
-console.log("EXAMPLES loaded");
+console.log(
+    "EXAMPLES_PAGES ids: ",
+    Object.keys(EXAMPLES_PAGES)
+        .map((key) => `${key}: ${EXAMPLES_PAGES[key].id}\n`)
+        .join(", ")
+);

@@ -4,7 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        id: "charts2D_ModifyAxisBehavior_VerticallyStackedAxes",
+        id: "chart2D_modifyAxisBehavior_VerticallyStackedAxes",
         exampleId: "Charts2DModifyAxisBehaviorVerticallyStackedAxes",
         imagePath: "javascript-vertically-stacked-axes.jpg",
         description:

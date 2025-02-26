@@ -4,7 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        id: "charts2D_StylingAndTheming_LineSplittingThresholds",
+        id: "chart2D_stylingAndTheming_LineSplittingThresholds",
         exampleId: "Charts2DStylingAndThemingLineSplittingThresholds",
         imagePath: "javascript-chart-line-splitting-thresholds.jpg",
         description:

@@ -4,7 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        id: "FeaturedApps_ShowCases_PopulationPyramid",
+        id: "featuredApps_showCases_PopulationPyramid",
         exampleId: "FeaturedAppsShowCasesPopulationPyramid",
         imagePath: "javascript-population-pyramid.jpg",
         description:

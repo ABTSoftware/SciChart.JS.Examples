@@ -4,7 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        id: "charts2D_ChartAnnotations_DragHorizontalThreshold",
+        id: "chart2D_chartAnnotations_DragHorizontalThreshold",
         exampleId: "Charts2DChartAnnotationsDragHorizontalThreshold",
         imagePath: "javascript-chart-drag-horizontal-threshold.jpg",
         description:

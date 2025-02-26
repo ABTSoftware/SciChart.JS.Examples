@@ -4,7 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        id: "charts2D_StylingAndTheming_MultiStyleSeries",
+        id: "chart2D_stylingAndTheming_MultiplePointMarkers",
         exampleId: "Charts2DStylingAndThemingMultiStyleSeries",
         imagePath: "javascript-chart-multi-style-series.jpg",
         description:
