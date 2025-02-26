@@ -64,9 +64,11 @@ const getDataForThirdPane = (xValues: number[], closeValues: number[]) => {
     const rsiArray: number[] = [];
     const gainArray: number[] = [];
     const lossArray: number[] = [];
-    rsiArray.push(NaN);
-    gainArray.push(NaN);
-    lossArray.push(NaN);
+    if (xValues.length) {
+        rsiArray.push(NaN);
+        gainArray.push(NaN);
+        lossArray.push(NaN);
+    }
     for (let i = 1; i < xValues.length; i++) {
         const previousClose = closeValues[i - 1];
         const currentClose = closeValues[i];
