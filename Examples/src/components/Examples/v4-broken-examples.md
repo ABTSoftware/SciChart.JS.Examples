@@ -11,9 +11,3 @@
 -   [ ] http://localhost:8080/react/dynamic-layout - outer subchart borders dissapeared - Cannot repro
 -   [ ] http://localhost:8080/react/multiple-chart-dashboard-performance-demo - outer subchart borders dissapeared - cannot repro
 -   [ ] http://localhost:8080/react/heatmap-chart-with-contours - looks bad - https://abtsoftware.myjetbrains.com/youtrack/issue/SCJS-1915/Contour-Charts-are-not-as-crisp-as-they-used-to-be.
--   [ ] http://localhost:8080/react/builder-simple - Line series jumps up out of visible range - fixed
--   [ ] http://localhost:8080/react/sync-multi-chart - overview errors out
-
-# Other issues:
-
--   [ ] https://demo.scichart.com/react/fan-chart - CodeSandbox - "../../RandomWalkGenerator" is not defined

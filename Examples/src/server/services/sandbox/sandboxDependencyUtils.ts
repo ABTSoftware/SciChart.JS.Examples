@@ -56,6 +56,7 @@ export const includeExternalModules = async (
                     const filepath = path.join(folderPath, externalImport[1] + externalImport[2] + ".ts");
                     const filename = externalImport[2].substring(externalImport[2].lastIndexOf("/") + 1);
                     let csPath = filepath.replace(examplefolderPath, "src").replace(/\\/g, "/");
+                    //console.log(externalImport[1] + externalImport[2], csPath);
                     if (updateImports) {
                         if (!filepath.includes(examplefolderPath)) {
                             csPath = "src/" + filename + ".ts";
@@ -95,12 +96,14 @@ export const includeImportedModules = async (
     updateImports: boolean,
     baseUrl: string
 ) => {
+    //console.log(folderPath);
     const localImports = Array.from(code.matchAll(/from ["']\.\/(.*)["'];/g));
     for (const localImport of localImports) {
         if (localImport.length > 1) {
             let content: string = "";
             let csPath: string = "";
             let dirname: string = "";
+            //console.log(localImport[1]);
             if (localImport[1].endsWith(".png") || localImport[1].endsWith(".jpg")) {
                 if (includeImages) {
                     // handle images
