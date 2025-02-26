@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        id: "charts2D_ZoomingAndPanning_RealtimeZoomPan",
         exampleId: "Charts2DZoomingAndPanningRealtimeZoomPan",
         imagePath: "zoom-and-pan-a-realtime-javascript-chart.jpg",
         description:

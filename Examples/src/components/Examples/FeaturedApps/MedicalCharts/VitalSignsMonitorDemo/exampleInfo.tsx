@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        id: "FeaturedApps_MedicalCharts_VitalSignsMonitorDemo",
         exampleId: "FeaturedAppsMedicalChartsVitalSignsMonitorDemo",
         imagePath: "javascript-vital-signs-ecg-medical-chart-example.jpg",
         description:

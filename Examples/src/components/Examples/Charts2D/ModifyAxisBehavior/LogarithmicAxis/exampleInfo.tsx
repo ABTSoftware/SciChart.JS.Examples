@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        id: "charts2D_ModifyAxisBehavior_LogarithmicAxis",
         exampleId: "Charts2DModifyAxisBehaviorLogarithmicAxis",
         imagePath: "javascript-chart-logarithmic-axis.jpg",
         description:

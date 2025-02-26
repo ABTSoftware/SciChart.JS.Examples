@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        id: "charts2D_ZoomingAndPanning_MultipleZoomPanModifiers",
         exampleId: "Charts2DZoomingAndPanningMultipleZoomPanModifiers",
         imagePath: "zoom-pan-multiple-modifiers.jpg",
         description:

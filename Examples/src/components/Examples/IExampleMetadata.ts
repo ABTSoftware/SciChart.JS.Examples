@@ -1,6 +1,7 @@
 import { EPageLayout } from "../../helpers/types/types";
 
 export interface IExampleMetadata {
+    id: string; // another different unique id!!
     exampleId: string; // Unique identifier for the example
     imagePath: string; // Path to the example's thumbnail image
     description: string; // General description of the example

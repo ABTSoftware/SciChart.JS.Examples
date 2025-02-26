@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        id: "FeaturedApps_ShowCases_EventMarkers",
         exampleId: "FeaturedAppsShowCasesEventMarkers",
         imagePath: "javascript-draggable-event-markers.jpg",
         description:

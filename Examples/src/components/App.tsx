@@ -66,6 +66,7 @@ export default function App() {
 
     const currentExampleId = currentExample?.id;
     // SeeAlso is now optional on exampleInfo. Return this if provided else auto-generate from menu
+    console.log("CALLING see also");
     const seeAlso: GalleryItem[] =
         currentExample?.seeAlso ?? getSeeAlsoGalleryItems(ALL_MENU_ITEMS, currentExample, framework);
 
@@ -151,11 +152,7 @@ export default function App() {
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
                     {!isHomePage ? (
-                        <AppDetailsRouter 
-                            currentExample={currentExample} 
-                            seeAlso={seeAlso} 
-                            theme={theme} 
-                        />
+                        <AppDetailsRouter currentExample={currentExample} seeAlso={seeAlso} theme={theme} />
                     ) : (
                         <div className={classes.MainAppWrapper}>
                             {!isMedium ? (

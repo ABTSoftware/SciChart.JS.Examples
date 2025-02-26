@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        id: "BuilderApi_CustomTypes",
         exampleId: "BuilderApiCustomTypes",
         imagePath: "javascript-custom-types.jpg",
         description:

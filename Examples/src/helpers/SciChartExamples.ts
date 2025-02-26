@@ -5,6 +5,7 @@ import { getFrameworkContent, EPageFramework } from "./shared/Helpers/frameworkP
 import { ExampleStrings } from "../components/Examples/ExampleStrings";
 
 const getGalleryItems = (category: string, menuItem: TMenuItem, framework: EPageFramework) => {
+    console.log("getGalleryItems menuItem=", menuItem);
     return {
         chartGroupTitle: (category !== undefined ? `${category}: ` : "") + menuItem.title,
         id: menuItem.id,
@@ -41,24 +42,29 @@ export const getSeeAlsoGalleryItems = (
     currentExample: TExamplePage,
     framework: EPageFramework
 ) => {
+    console.log(">>> SEE ALSO, allmenuitems=", allMenuItems);
     const galleryItems: GalleryItem[] = [];
     if (currentExample) {
         // Find the top-level menu item that hosts this example
         const topLevelMenu = allMenuItems.find((tm) => tm.submenu.find((sm) => sm.id === currentExample.id));
         // Get all the examples in that menu that is not this example
-        const seeAlsoExamples = topLevelMenu.submenu.filter((sm) => sm.id !== currentExample.id);
-        // Convert to a galleryItem for the See-Also section on each individual example
-        galleryItems.push(
-            getGalleryItems(
-                "See Also",
-                {
-                    id: topLevelMenu.id,
-                    title: topLevelMenu.title,
-                    submenu: seeAlsoExamples,
-                },
-                framework
-            )
-        );
+        if (topLevelMenu) {
+            const seeAlsoExamples = topLevelMenu.submenu.filter((sm) => sm.id !== currentExample.id);
+            // Convert to a galleryItem for the See-Also section on each individual example
+            galleryItems.push(
+                getGalleryItems(
+                    "See Also",
+                    {
+                        id: topLevelMenu.id,
+                        title: topLevelMenu.title,
+                        submenu: seeAlsoExamples,
+                    },
+                    framework
+                )
+            );
+        } else {
+            console.log("Top level menu is null>>");
+        }
     }
     return galleryItems;
 };

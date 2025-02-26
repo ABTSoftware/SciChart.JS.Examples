@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        id: "charts2D_StylingAndTheming_UsingThemeManager",
         exampleId: "Charts2DStylingAndThemingUsingThemeManager",
         imagePath: "javascript-chart-themes.jpg",
         description: "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",

@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        id: "chart2D_Animations_StartupAnimation",
         exampleId: "Charts2DAnimationsStartupAnimation",
         imagePath: "javascript-startup-animations.jpg",
         description:
@@ -37,13 +38,13 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#Series%20Startup%20Animations.html",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#Startup%20Animations.html",
                 title: "The specific page for the JavaScript Startup Animation documentation will help you to get started",
                 linkTitle: "JavaScript Startup Animation Documentation",
             },
         ],
         path: "startup-animation",
-        metaKeywords: "startup, on-start, animation, javascript",
+        metaKeywords: "startup, animation, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/Animations/StartupAnimation",
         thumbnailImage: "javascript-startup-animations.jpg",
