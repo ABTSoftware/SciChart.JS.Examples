@@ -9,6 +9,8 @@ const { candlesDOGEUSDT } = require("./src/server/BinanceData/candlesDOGEUSDT");
 const { candlesETHUSDT } = require("./src/server/BinanceData/candlesETHUSDT");
 const { candlesXRPUSDT } = require("./src/server/BinanceData/candlesXRPUSDT");
 const TweetData = require("./src/server/Data/tweetData");
+const { multiPaneData } = require("./src/server/Data/multiPaneData");
+const { mappedPopulationData } = require("./src/server/Data/populationData");
 
 module.exports = {
     ...webpackClientConfig,
@@ -116,15 +118,21 @@ module.exports = {
         },
         allowedHosts: "all",
         historyApiFallback: true,
-        onBeforeSetupMiddleware: function (devServer) {
+        onBeforeSetupMiddleware: function (devServer: any) {
             const { app } = devServer;
-            app.get("/api/lidarData", function (req, res) {
+            app.get("/api/lidarData", function (req: any, res: any) {
                 res.send(tq3080_DSM_2M.tq3080_DSM_2M);
             });
-            app.get("/api/tweetData", function (req, res) {
+            app.get("/api/tweetData", function (req: any, res: any) {
                 res.send(TweetData.TweetData);
             });
-            app.get("/api/get-binance-candles", function (req, res) {
+            app.get("/api/multiPaneData", function (req: any, res: any) {
+                res.send(multiPaneData);
+            });
+            app.get("/api/populationData", function (req: any, res: any) {
+                res.send(mappedPopulationData);
+            });
+            app.get("/api/get-binance-candles", function (req: any, res: any) {
                 const params = req.query;
                 let data;
                 switch (params.symbol) {
