@@ -253,13 +253,30 @@ export class ExampleDataProvider {
     };
 }
 
-export const fetchMultiPaneData = () => {
-    if (typeof window !== "undefined") {
-        return fetch("/api/multiPaneData").then((response) => response.json()) as Promise<IOhlcvValues>;
-    }
-
-    return Promise.resolve({} as IOhlcvValues);
+const fetchData = (endpoint: string) => {
+    return fetch(endpoint)
+        .then((response) => response.json())
+        .catch((err: Error): null => {
+            console.error(`Chart data fetching error at ${endpoint} :`, err);
+            return null;
+        });
 };
+
+export const fetchMultiPaneData = (): Promise<Required<IOhlcvValues>> =>
+    fetchData("/api/multiPaneData").then((data) => {
+        if (!data) {
+            return {
+                dateValues: [],
+                openValues: [],
+                highValues: [],
+                lowValues: [],
+                closeValues: [],
+                volumeValues: [],
+            };
+        }
+
+        return data;
+    });
 
 export type TPopulationMetadata = {
     country: string;
@@ -277,12 +294,17 @@ export type TMappedPopulationData = {
 };
 
 // TODO link to data source file
-export const fetchPopulationDataData = async (): Promise<TMappedPopulationData> => {
-    const response = await fetch("/api/populationData");
+export const fetchPopulationDataData = async (): Promise<TMappedPopulationData> =>
+    fetchData("/api/populationData").then((data) => {
+        if (!data) {
+            return {
+                population: [],
+                lifeExpectancy: [],
+                gdpPerCapita: [],
+                year: [],
+                metadata: [],
+            };
+        }
 
-    if (!response.ok) {
-        throw new Error("Population data request unsuccessful!");
-    }
-
-    return response.json();
-};
+        return data;
+    });
