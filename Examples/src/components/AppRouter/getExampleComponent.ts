@@ -16,7 +16,6 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
     if (!exampleInfo) {
         throw new Error("cannot fine example " + exampleId);
     }
-    // Use 'filepath' property if available, otherwise fallback to 'path'
     const filePath = exampleInfo.exampleDirectory;
     const componentPath = filePath + "/index.tsx";
     const mod = loadModule(componentPath);
