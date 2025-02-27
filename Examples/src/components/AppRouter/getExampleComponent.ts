@@ -14,7 +14,7 @@ const loadModule = (modulePath: string) => {
 export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
     const exampleInfo = EXAMPLES_PAGES[exampleId];
     if (!exampleInfo) {
-        throw new Error("Ensure you update examples.ts getExampleComponent() to return an example");
+        throw new Error("cannot fine example " + exampleId);
     }
     // Use 'filepath' property if available, otherwise fallback to 'path'
     const filePath = exampleInfo.exampleDirectory;
