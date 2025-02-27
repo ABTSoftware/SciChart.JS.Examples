@@ -66,7 +66,6 @@ export default function App() {
 
     const currentExampleId = currentExample?.id;
     // SeeAlso is now optional on exampleInfo. Return this if provided else auto-generate from menu
-    console.log("CALLING see also");
     const seeAlso: GalleryItem[] =
         currentExample?.seeAlso ?? getSeeAlsoGalleryItems(ALL_MENU_ITEMS, currentExample, framework);
 

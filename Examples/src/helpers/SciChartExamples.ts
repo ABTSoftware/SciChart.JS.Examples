@@ -5,7 +5,6 @@ import { getFrameworkContent, EPageFramework } from "./shared/Helpers/frameworkP
 import { ExampleStrings } from "../components/Examples/ExampleStrings";
 
 const getGalleryItems = (category: string, menuItem: TMenuItem, framework: EPageFramework) => {
-    console.log("getGalleryItems menuItem=", menuItem);
     return {
         chartGroupTitle: (category !== undefined ? `${category}: ` : "") + menuItem.title,
         id: menuItem.id,
@@ -42,7 +41,6 @@ export const getSeeAlsoGalleryItems = (
     currentExample: TExamplePage,
     framework: EPageFramework
 ) => {
-    console.log(">>> SEE ALSO, allmenuitems=", allMenuItems);
     const galleryItems: GalleryItem[] = [];
     if (currentExample) {
         // Find the top-level menu item that hosts this example
@@ -63,7 +61,7 @@ export const getSeeAlsoGalleryItems = (
                 )
             );
         } else {
-            console.log("Top level menu is null>>");
+            //  console.log("Top level menu is null>>");
         }
     }
     return galleryItems;
