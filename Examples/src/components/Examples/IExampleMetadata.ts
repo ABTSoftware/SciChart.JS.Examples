@@ -1,6 +1,5 @@
-import { EPageLayout } from "../../helpers/types/types";
-
 export interface IExampleMetadata {
+    exampleTitle: string;
     id: string; // another different unique id!!
     exampleId: string; // Unique identifier for the example
     imagePath: string; // Path to the example's thumbnail image
@@ -17,6 +16,7 @@ export interface IExampleMetadata {
     extraDependencies?: Record<string, string>;
     sandboxConfig?: Record<string, any>;
     markdownContent?: string | null;
+    reactComponent: string | null;
 }
 
 export interface IDocumentationLink {

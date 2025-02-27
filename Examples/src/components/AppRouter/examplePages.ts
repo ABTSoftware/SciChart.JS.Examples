@@ -118,6 +118,7 @@ import { column3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes
 */
 
 export type TExampleInfo = {
+    exampleTitle: string;
     id: string;
     /**
      * Example title
@@ -167,6 +168,7 @@ export type TExampleInfo = {
      */
     markdownContent?: TFrameworkTemplate;
     pageLayout?: EPageLayout;
+    reactComponent?: string;
 };
 
 export type TExamplePage = TPage & TExampleInfo;
@@ -1435,7 +1437,7 @@ function makeExamplesPagesNew(examples: any[]) {
         const mod = loadModule(path);
         const moduleExport = mod[exportName];
         const id = moduleExport.id;
-        console.log(`${path}`);
+        console.log(`"${path}",`);
         acc[id] = moduleExport;
         return acc;
     }, {});
