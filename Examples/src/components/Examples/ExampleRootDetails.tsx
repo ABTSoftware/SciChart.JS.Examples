@@ -2,7 +2,7 @@ import { useContext, FC, useState, useEffect } from "react";
 import SeoTags from "../SeoTags/SeoTags";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
-import { getExampleComponent } from "../AppRouter/examples";
+import { getExampleComponent } from "../AppRouter/getExampleComponent";
 import { ExampleStrings } from "./ExampleStrings";
 import commonClasses from "./styles/Examples.module.scss";
 import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";

@@ -9,7 +9,7 @@ import { FRAMEWORK_NAME, getFrameworkContent } from "../../helpers/shared/Helper
 import { GalleryItem } from "../../helpers/types/types";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import { TExamplePage } from "../AppRouter/examplePages";
-import { getExampleComponent } from "../AppRouter/examples";
+import { getExampleComponent } from "../AppRouter/getExampleComponent";
 import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";
 import GalleryItems from "../GalleryItems";
 import SeoTags from "../SeoTags/SeoTags";

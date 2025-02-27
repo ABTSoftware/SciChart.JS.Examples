@@ -3,7 +3,7 @@ import { Routes, Route, Navigate, useSearchParams } from "react-router";
 import PageHome from "../PageHome/PageHome";
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import ExamplesRoot from "../Examples/ExamplesRoot";
-import { getExampleComponent } from "./examples";
+import { getExampleComponent } from "./getExampleComponent";
 import classes from "../Examples/styles/Examples.module.scss";
 import { GalleryItem } from "../../helpers/types/types";
 import NoIndexTag from "../SeoTags/NoIndexTag";
