@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "FullChart",
         id: "builderApi_fullchart",
         exampleId: "BuilderApiFullChart",
         imagePath: "javascript-builder-full.jpg",

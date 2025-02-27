@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "DashedLineStyling",
         id: "chart2D_stylingAndTheming_DashedLineStyling",
         exampleId: "Charts2DStylingAndThemingDashedLineStyling",
         imagePath: "javascript-dashed-line-chart.jpg",

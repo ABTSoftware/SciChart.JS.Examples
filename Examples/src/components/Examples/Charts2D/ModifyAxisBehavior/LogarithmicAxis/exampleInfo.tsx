@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "LogarithmicAxis",
         id: "chart2D_modifyAxisBehavior_LogarithmicAxis",
         exampleId: "Charts2DModifyAxisBehaviorLogarithmicAxis",
         imagePath: "javascript-chart-logarithmic-axis.jpg",

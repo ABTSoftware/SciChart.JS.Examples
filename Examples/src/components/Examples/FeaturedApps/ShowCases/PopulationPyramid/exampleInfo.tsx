@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "PopulationPyramid",
         id: "featuredApps_showcases_populationPyramid",
         exampleId: "FeaturedAppsShowCasesPopulationPyramid",
         imagePath: "javascript-population-pyramid.jpg",

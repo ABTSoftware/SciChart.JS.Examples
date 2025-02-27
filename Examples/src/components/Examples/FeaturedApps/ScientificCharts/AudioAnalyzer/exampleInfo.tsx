@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "AudioAnalyzer",
         id: "featuredApps_scientificCharts_AudioAnalyzerDemo",
         exampleId: "FeaturedAppsScientificChartsAudioAnalyzer",
         imagePath: "javascript-audio-analyzer-fft-example.jpg",

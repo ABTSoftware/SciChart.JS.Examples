@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "SharedData",
         id: "builderApi_SharedData",
         exampleId: "BuilderApiSharedData",
         imagePath: "javascript-shared-data.jpg",

@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "EventMarkers",
         id: "featuredApps_showcases_eventMarkers",
         exampleId: "FeaturedAppsShowCasesEventMarkers",
         imagePath: "javascript-draggable-event-markers.jpg",

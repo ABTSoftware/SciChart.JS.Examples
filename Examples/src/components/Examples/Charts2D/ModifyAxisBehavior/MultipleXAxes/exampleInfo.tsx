@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "MultipleXAxes",
         id: "chart2D_modifyAxisBehavior_MultipleXAxes",
         exampleId: "Charts2DModifyAxisBehaviorMultipleXAxes",
         imagePath: "javascript-chart-with-multiple-x-axis.jpg",

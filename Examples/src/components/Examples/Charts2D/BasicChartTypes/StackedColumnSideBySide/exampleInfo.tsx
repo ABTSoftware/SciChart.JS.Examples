@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "StackedColumnSideBySide",
         id: "chart2D_basicCharts_StackedColumnSideBySide",
         exampleId: "Charts2DBasicChartTypesStackedColumnSideBySide",
         imagePath: "javascript-stacked-grouped-column-chart.jpg",

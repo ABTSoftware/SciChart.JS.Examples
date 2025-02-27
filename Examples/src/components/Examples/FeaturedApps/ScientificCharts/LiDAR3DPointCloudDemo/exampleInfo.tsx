@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "LiDAR3DPointCloudDemo",
         id: "featuredApps_scientificCharts_Lidar3DPointCloudDemo",
         exampleId: "FeaturedAppsScientificChartsLiDAR3DPointCloudDemo",
         imagePath: "javascript-3d-lidar-visualization.jpg",

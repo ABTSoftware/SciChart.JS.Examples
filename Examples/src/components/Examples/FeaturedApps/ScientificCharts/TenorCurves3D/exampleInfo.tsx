@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "TenorCurves3DChart",
         id: "featuredApps_scientificCharts_TenorCurvesDemo",
         exampleId: "FeaturedAppsScientificChartsTenorCurves3D",
         imagePath: "javascript-2d-3d-chart-tenor-curves-example.jpg",

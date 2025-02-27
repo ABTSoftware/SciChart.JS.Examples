@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "OilAndGasDashboard",
         id: "featuredApps_showcases_oilandgasdashboard",
         exampleId: "FeaturedAppsShowCasesOilAndGasDashboard",
         imagePath: "javascript-oil-gas-explorer-dashboard-charts.jpg",

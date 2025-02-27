@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "DragHorizontalThreshold",
         id: "chart2D_chartAnnotations_DragHorizontalThreshold",
         exampleId: "Charts2DChartAnnotationsDragHorizontalThreshold",
         imagePath: "javascript-chart-drag-horizontal-threshold.jpg",

@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "DynamicLayout",
         id: "featuredApps_showcases_dynamicLayout",
         exampleId: "FeaturedAppsShowCasesDynamicLayout",
         imagePath: "javascript-dynamic-layout.jpg",

@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "CustomTheme",
         id: "chart2D_stylingAndTheming_CustomTheme",
         exampleId: "Charts2DStylingAndThemingCreateACustomTheme",
         imagePath: "javascript-chart-custom-themed.jpg",

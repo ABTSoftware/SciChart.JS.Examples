@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "CentralAxes",
         id: "chart2D_modifyAxisBehavior_CentralAxes",
         exampleId: "Charts2DModifyAxisBehaviorCentralAxes",
         imagePath: "javascript-central-axes.jpg",

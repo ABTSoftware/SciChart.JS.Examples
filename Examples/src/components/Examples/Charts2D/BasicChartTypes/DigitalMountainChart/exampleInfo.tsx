@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "DigitalMountainChart",
         id: "chart2D_basicCharts_DigitalMountainChart",
         exampleId: "Charts2DBasicChartTypesDigitalMountainChart",
         imagePath: "javascript-digital-mountain-chart.jpg",

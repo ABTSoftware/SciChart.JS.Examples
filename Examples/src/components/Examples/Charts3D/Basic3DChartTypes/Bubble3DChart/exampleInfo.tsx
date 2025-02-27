@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "Bubble3DChart",
         id: "chart3D_basic3DChartTypes_Bubble3DChart",
         exampleId: "Charts3DBasic3DChartTypesBubble3DChart",
         imagePath: "javascript-3d-bubble-chart.jpg",

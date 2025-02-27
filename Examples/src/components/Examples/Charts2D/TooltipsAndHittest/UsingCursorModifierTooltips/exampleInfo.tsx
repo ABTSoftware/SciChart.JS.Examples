@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "UsingCursorModifierTooltips",
         id: "chart2D_tooltipsAndHittest_UsingCursorModifierTooltips",
         exampleId: "Charts2DTooltipsAndHittestUsingCursorModifierTooltips",
         imagePath: "javascript-chart-cursormodifier-crosshairs.jpg",

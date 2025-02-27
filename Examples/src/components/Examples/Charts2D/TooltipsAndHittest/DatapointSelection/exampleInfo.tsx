@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "DatapointSelection",
         id: "chart2D_tooltipsAndHittest_DataPointSelection",
         exampleId: "Charts2DTooltipsAndHittestDatapointSelection",
         imagePath: "javascript-datapoint-selection.jpg",

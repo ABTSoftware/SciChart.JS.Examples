@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "FeatureAxisLayout",
         id: "featuredApps_featureDemos_axisLayout",
         exampleId: "FeaturedAppsFeatureDemosAxisLayout",
         imagePath: "javascript-axis-layout.jpg",

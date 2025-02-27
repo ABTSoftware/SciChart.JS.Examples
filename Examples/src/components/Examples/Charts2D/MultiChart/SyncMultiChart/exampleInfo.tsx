@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "SyncMultiChart",
         id: "chart2D_multiChart_syncMultiChart",
         exampleId: "Charts2DMultiChartSyncMultiChart",
         imagePath: "javascript-sync-multi-chart.jpg",

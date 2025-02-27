@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "UsingVerticalSliceModifier",
         id: "chart2D_tooltipsAndHittest_VerticalSliceModifier",
         exampleId: "Charts2DTooltipsAndHittestUsingVerticalSliceModifier",
         imagePath: "javascript-chart-vertical-slice-modifier.jpg",

@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "DrawBehindAxes",
         id: "chart2D_modifyAxisBehavior_DrawBehindAxes",
         exampleId: "Charts2DModifyAxisBehaviorDrawBehindAxes",
         imagePath: "javascript-draw-behind-axes.jpg",

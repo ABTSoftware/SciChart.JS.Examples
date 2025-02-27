@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "StylingInCode",
         id: "chart2D_stylingAndTheming_StylingInCode",
         exampleId: "Charts2DStylingAndThemingStylingInCode",
         imagePath: "javascript-chart-styling-theming-in-code.jpg",

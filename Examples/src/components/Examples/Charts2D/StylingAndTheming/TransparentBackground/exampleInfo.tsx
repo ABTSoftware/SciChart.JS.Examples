@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "TransparentBackground",
         id: "chart2D_stylingAndTheming_TransparentBackground",
         exampleId: "Charts2DStylingAndThemingTransparentBackground",
         imagePath: "javascript-chart-transparent-background.jpg",

@@ -4,6 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
+        reactComponent: "NonUniformHeatmapChart",
         id: "chart2D_basicCharts_NonUniformHeatmapChart",
         exampleId: "Charts2DBasicChartTypesNonUniformHeatmapChart",
         imagePath: "javascript-non-uniform-heatmap-chart.jpg",
