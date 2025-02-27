@@ -4,7 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        id: "chart2D_tooltipsAndHittest_MetaData.",
+        id: "chart2D_tooltipsAndHittest_MetaData",
         exampleId: "Charts2DTooltipsAndHittestMetaData",
         imagePath: "javascript-chart-metadata.jpg",
         description:

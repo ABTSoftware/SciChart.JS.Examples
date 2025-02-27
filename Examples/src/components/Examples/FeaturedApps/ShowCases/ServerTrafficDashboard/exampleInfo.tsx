@@ -5,7 +5,7 @@ import { EPageLayout } from "../../../../../helpers/types/types";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        id: "featuredApps_showCases_ServerTrafficDashboard",
+        id: "featuredApps_showcases_servertrafficdashboard",
         exampleId: "FeaturedAppsShowCasesServerTrafficDashboard",
         imagePath: "javascript-server-traffic-dashboard.jpg",
         description:

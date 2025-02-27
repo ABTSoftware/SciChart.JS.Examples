@@ -4,7 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        id: "featuredApps_showCases_DynamicLayout",
+        id: "featuredApps_showcases_dynamicLayout",
         exampleId: "FeaturedAppsShowCasesDynamicLayout",
         imagePath: "javascript-dynamic-layout.jpg",
         description:

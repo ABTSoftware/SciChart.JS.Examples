@@ -4,7 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        id: "featuredApps_featureDemos_AxisLayout",
+        id: "featuredApps_featureDemos_axisLayout",
         exampleId: "FeaturedAppsFeatureDemosAxisLayout",
         imagePath: "javascript-axis-layout.jpg",
         description:
