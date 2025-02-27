@@ -14,7 +14,7 @@ const loadModule = (modulePath: string) => {
 export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
     const exampleInfo = EXAMPLES_PAGES[exampleId];
     if (!exampleInfo) {
-        throw new Error("cannot fine example " + exampleId);
+        throw new Error("cannot find example " + exampleId);
     }
     const filePath = exampleInfo.exampleDirectory;
     const componentPath = filePath + "/index.tsx";
@@ -24,6 +24,6 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
     if (!component) {
         throw new Error(`Component ${componentName} not found in module ${componentPath}`);
     }
-    console.log("dyname getExampleComponent exampeId=", exampleId);
+    console.log("dynamic getExampleComponent exampeId=", exampleId);
     return component;
 };
