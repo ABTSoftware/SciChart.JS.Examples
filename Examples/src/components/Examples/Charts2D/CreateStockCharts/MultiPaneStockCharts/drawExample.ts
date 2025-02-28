@@ -373,9 +373,13 @@ export const getChartsInitializationAPI = () => {
         const rsiArray: number[] = [];
         const gainArray: number[] = [];
         const lossArray: number[] = [];
-        rsiArray.push(NaN);
-        gainArray.push(NaN);
-        lossArray.push(NaN);
+
+        if (dateValues.length) {
+            rsiArray.push(NaN);
+            gainArray.push(NaN);
+            lossArray.push(NaN);
+        }
+
         for (let i = 1; i < dateValues.length; i++) {
             const previousClose = closeValues[i - 1];
             const currentClose = closeValues[i];
