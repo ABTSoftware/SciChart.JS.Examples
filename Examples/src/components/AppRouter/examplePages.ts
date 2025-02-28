@@ -3,6 +3,7 @@ import { EPageLayout, GalleryItem } from "../../helpers/types/types";
 import { TPage } from "./pages";
 import { TFrameworkTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { TDocumentationLink } from "../../helpers/types/ExampleDescriptionTypes";
+import EXAMPLE_PAGES_DATA from "./examplePaths";
 
 export type TExampleInfo = {
     exampleTitle: string;
@@ -61,1127 +62,125 @@ export type TExampleInfo = {
 
 export type TExamplePage = TPage & TExampleInfo;
 
+/*
 function asRecord<T extends Record<string, TExamplePage>>(arg: T): T & Record<string, TExamplePage> {
     return arg;
 }
 
-/*
-export const EXAMPLES_PAGES_DATA = {
-    chart2D_Animations_DataAnimation: {
-        id: "chart2D_Animations_DataAnimation",
-        path: "../Examples/Charts2D/Animations/DataAnimation",
-        exportName: "dataAnimationExampleInfo", // dataAnimationExampleInfo
-        info: dataAnimationExampleInfo,
-    },
-    chart2D_Animations_StyleAnimation: {
-        id: "chart2D_Animations_StyleAnimation",
-        path: "../Examples/Charts2D/Animations/StyleAnimation/exampleInfo.tsx",
-        exportName: "styleAnimationExampleInfo",
-        info: styleAnimationExampleInfo,
-    },
-    chart2D_Animations_StartupAnimation: {
-        id: "chart2D_Animations_StartupAnimation",
-        path: "../Examples/Charts2D/Animations/StartupAnimation/exampleInfo.tsx",
-        exportName: "startupAnimationExampleInfo",
-        info: startupAnimationExampleInfo,
-    },
-    chart2D_Animations_GenericAnimation: {
-        id: "chart2D_Animations_GenericAnimation",
-        path: "../Examples/Charts2D/Animations/GenericAnimation/exampleInfo.tsx",
-        exportName: "genericAnimationExampleInfo",
-        info: genericAnimationExampleInfo,
-    },
-    chart2D_basicCharts_BandSeriesChart: {
-        id: "chart2D_basicCharts_BandSeriesChart",
-        path: "../Examples/Charts2D/BasicChartTypes/BandSeriesChart/exampleInfo.tsx",
-        exportName: "bandSeriesChartExampleInfo",
-        info: bandSeriesChartExampleInfo,
-    },
-    chart2D_basicCharts_SplineBandChart: {
-        id: "chart2D_basicCharts_SplineBandChart",
-        path: "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart/exampleInfo.tsx",
-        exportName: "splineBandSeriesChartExampleInfo",
-        info: splineBandSeriesChartExampleInfo,
-    },
-    chart2D_basicCharts_DigitalBandSeriesChart: {
-        id: "chart2D_basicCharts_DigitalBandSeriesChart",
-        path: "../Examples/Charts2D/BasicChartTypes/DigitalBandSeriesChart/exampleInfo.tsx",
-        exportName: "digitalBandSeriesChartExampleInfo",
-        info: digitalBandSeriesChartExampleInfo,
-    },
-    chart2D_basicCharts_FanChart: {
-        id: "chart2D_basicCharts_FanChart",
-        path: "../Examples/Charts2D/BasicChartTypes/FanChart/exampleInfo.tsx",
-        exportName: "fanChartExampleInfo",
-        info: fanChartExampleInfo,
-    },
-    chart2D_basicCharts_BubbleChart: {
-        id: "chart2D_basicCharts_BubbleChart",
-        path: "../Examples/Charts2D/BasicChartTypes/BubbleChart/exampleInfo.tsx",
-        exportName: "bubbleChartExampleInfo",
-        info: bubbleChartExampleInfo,
-    },
-    chart2D_basicCharts_CandlestickChart: {
-        id: "chart2D_basicCharts_CandlestickChart",
-        path: "../Examples/Charts2D/BasicChartTypes/CandlestickChart/exampleInfo.tsx",
-        exportName: "candlestickChartExampleInfo",
-        info: candlestickChartExampleInfo,
-    },
-    chart2D_basicCharts_OhlcChart: {
-        id: "chart2D_basicCharts_OhlcChart",
-        path: "../Examples/Charts2D/BasicChartTypes/OhlcChart/exampleInfo.tsx",
-        exportName: "ohlcChartExampleInfo",
-        info: ohlcChartExampleInfo,
-    },
-    chart2D_basicCharts_ErrorBarsChart: {
-        id: "chart2D_basicCharts_ErrorBarsChart",
-        path: "../Examples/Charts2D/BasicChartTypes/ErrorBarsChart/exampleInfo.tsx",
-        exportName: "errorBarsChartExampleInfo",
-        info: errorBarsChartExampleInfo,
-    },
-    chart2D_basicCharts_ColumnChart: {
-        id: "chart2D_basicCharts_ColumnChart",
-        path: "../Examples/Charts2D/BasicChartTypes/ColumnChart/exampleInfo.tsx",
-        exportName: "columnChartExampleInfo",
-        info: columnChartExampleInfo,
-    },
-    chart2D_basicCharts_ImpulseChart: {
-        id: "chart2D_basicCharts_ImpulseChart",
-        path: "../Examples/Charts2D/BasicChartTypes/ImpulseChart/exampleInfo.tsx",
-        exportName: "impulseChartExampleInfo",
-        info: impulseChartExampleInfo,
-    },
-    chart2D_basicCharts_HeatmapChart: {
-        id: "chart2D_basicCharts_HeatmapChart",
-        path: "../Examples/Charts2D/BasicChartTypes/HeatmapChart/exampleInfo.tsx",
-        exportName: "heatmapChartExampleInfo",
-        info: heatmapChartExampleInfo,
-    },
-    chart2D_basicCharts_NonUniformHeatmapChart: {
-        id: "chart2D_basicCharts_NonUniformHeatmapChart",
-        path: "../Examples/Charts2D/BasicChartTypes/NonUniformHeatmapChart/exampleInfo.tsx",
-        exportName: "nonUniformHeatmapExampleInfo",
-        info: nonUniformHeatmapExampleInfo,
-    },
-    chart2D_basicCharts_ContourChart: {
-        id: "chart2D_basicCharts_ContourChart",
-        path: "../Examples/Charts2D/BasicChartTypes/ContoursChart/exampleInfo.tsx",
-        exportName: "contourChartExampleInfo",
-        info: contourChartExampleInfo,
-    },
-    chart2D_basicCharts_LineChart: {
-        id: "chart2D_basicCharts_LineChart",
-        path: "../Examples/Charts2D/BasicChartTypes/LineChart/exampleInfo.tsx",
-        exportName: "lineChartExampleInfo",
-        info: lineChartExampleInfo,
-    },
-    chart2D_basicCharts_SplineLineChart: {
-        id: "chart2D_basicCharts_SplineLineChart",
-        path: "../Examples/Charts2D/BasicChartTypes/SplineLineChart/exampleInfo.tsx",
-        exportName: "splineLineChartExampleInfo",
-        info: splineLineChartExampleInfo,
-    },
-    chart2D_basicCharts_DigitalLineChart: {
-        id: "chart2D_basicCharts_DigitalLineChart",
-        path: "../Examples/Charts2D/BasicChartTypes/DigitalLineChart/exampleInfo.tsx",
-        exportName: "digitalLineChartExampleInfo",
-        info: digitalLineChartExampleInfo,
-    },
-    chart2D_basicCharts_MountainChart: {
-        id: "chart2D_basicCharts_MountainChart",
-        path: "../Examples/Charts2D/BasicChartTypes/MountainChart/exampleInfo.tsx",
-        exportName: "mountainChartExampleInfo",
-        info: mountainChartExampleInfo,
-    },
-    chart2D_basicCharts_SplineMountainChart: {
-        id: "chart2D_basicCharts_SplineMountainChart",
-        path: "../Examples/Charts2D/BasicChartTypes/SplineMountainChart/exampleInfo.tsx",
-        exportName: "splineMountainChartExampleInfo",
-        info: splineMountainChartExampleInfo,
-    },
-    chart2D_basicCharts_DigitalMountainChart: {
-        id: "chart2D_basicCharts_DigitalMountainChart",
-        path: "../Examples/Charts2D/BasicChartTypes/DigitalMountainChart/exampleInfo.tsx",
-        exportName: "digitalMountainChartExampleInfo",
-        info: digitalMountainChartExampleInfo,
-    },
-    chart2D_basicCharts_ScatterChart: {
-        id: "chart2D_basicCharts_ScatterChart",
-        path: "../Examples/Charts2D/BasicChartTypes/ScatterChart/exampleInfo.tsx",
-        exportName: "scatterChartExampleInfo",
-        info: scatterChartExampleInfo,
-    },
-    chart2D_basicCharts_DonutChart: {
-        id: "chart2D_basicCharts_DonutChart",
-        path: "../Examples/Charts2D/BasicChartTypes/DonutChart/exampleInfo.tsx",
-        exportName: "donutChartExampleInfo",
-        info: donutChartExampleInfo,
-    },
-    chart2D_basicCharts_PieChart: {
-        id: "chart2D_basicCharts_PieChart",
-        path: "../Examples/Charts2D/BasicChartTypes/PieChart/exampleInfo.tsx",
-        exportName: "pieChartExampleInfo",
-        info: pieChartExampleInfo,
-    },
-    chart2D_basicCharts_RealtimeMountainChart: {
-        id: "chart2D_basicCharts_RealtimeMountainChart",
-        path: "../Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/exampleInfo.tsx",
-        exportName: "realTimeMountainChartExampleInfo",
-        info: realTimeMountainChartExampleInfo,
-    },
-    chart2D_basicCharts_TextChart: {
-        id: "chart2D_basicCharts_TextChart",
-        path: "../Examples/Charts2D/BasicChartTypes/TextSeriesChart/exampleInfo.tsx",
-        exportName: "textChartExampleInfo",
-        info: textChartExampleInfo,
-    },
-    chart2D_chartAnnotations_AnnotationsAreEasy: {
-        id: "chart2D_chartAnnotations_AnnotationsAreEasy",
-        path: "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/exampleInfo.tsx",
-        exportName: "annotationsAreEasyExampleInfo",
-        info: annotationsAreEasyExampleInfo,
-    },
-    chart2D_chartAnnotations_AnnotationLayers: {
-        id: "chart2D_chartAnnotations_AnnotationLayers",
-        path: "../Examples/Charts2D/ChartAnnotations/AnnotationLayers/exampleInfo.tsx",
-        exportName: "annotationLayersExampleInfo",
-        info: annotationLayersExampleInfo,
-    },
-    chart2D_chartAnnotations_EditableAnntations: {
-        id: "chart2D_chartAnnotations_EditableAnntations",
-        path: "../Examples/Charts2D/ChartAnnotations/EditableAnnotations/exampleInfo.tsx",
-        exportName: "editableAnnotationsExampleInfo",
-        info: editableAnnotationsExampleInfo,
-    },
-    chart2D_chartAnnotations_TradeMarkers: {
-        id: "chart2D_chartAnnotations_TradeMarkers",
-        path: "../Examples/Charts2D/ChartAnnotations/TradeMarkers/exampleInfo.tsx",
-        exportName: "tradeMarkerAnnotationsExampleInfo",
-        info: tradeMarkerAnnotationsExampleInfo,
-    },
-    chart2D_chartAnnotations_DragHorizontalThreshold: {
-        id: "chart2D_chartAnnotations_DragHorizontalThreshold",
-        path: "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/exampleInfo.tsx",
-        exportName: "dragHorizontalThresholdExampleInfo",
-        info: dragHorizontalThresholdExampleInfo,
-    },
-    chart2D_chartAnnotations_BackgroundAnnotations: {
-        id: "chart2D_chartAnnotations_BackgroundAnnotations",
-        path: "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations/exampleInfo.tsx",
-        exportName: "backgroundAnnotationsExampleInfo",
-        info: backgroundAnnotationsExampleInfo,
-    },
-    featuredApps_performanceDemos_RealtimeGhostedTraces: {
-        id: "featuredApps_performanceDemos_RealtimeGhostedTraces",
-        path: "../Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces/exampleInfo.tsx",
-        exportName: "realtimeGhostedTracesExampleInfo",
-        info: realtimeGhostedTracesExampleInfo,
-    },
-    featuredApps_performanceDemos_LoadOneMillionPoints: {
-        id: "featuredApps_performanceDemos_LoadOneMillionPoints",
-        path: "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/exampleInfo.tsx",
-        exportName: "loadOneMillionPointsExampleInfo",
-        info: loadOneMillionPointsExampleInfo,
-    },
-    chart2D_createStockCharts_MultiPaneStockCharts: {
-        id: "chart2D_createStockCharts_MultiPaneStockCharts",
-        path: "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/exampleInfo.tsx",
-        exportName: "multiPaneStockChartsExampleInfo",
-        info: multiPaneStockChartsExampleInfo,
-    },
-    chart2D_createStockCharts_RealtimeTickingStockCharts: {
-        id: "chart2D_createStockCharts_RealtimeTickingStockCharts",
-        path: "../Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts/exampleInfo.tsx",
-        exportName: "realtimeTickingStockChartsExampleInfo",
-        info: realtimeTickingStockChartsExampleInfo,
-    },
-    chart2D_createStockCharts_SubchartStockCharts: {
-        id: "chart2D_createStockCharts_SubchartStockCharts",
-        path: "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts/exampleInfo.tsx",
-        exportName: "subChartStockChartsExampleInfo",
-        info: subChartStockChartsExampleInfo,
-    },
-    chart2D_createStockCharts_DepthChart: {
-        id: "chart2D_createStockCharts_DepthChart",
-        path: "../Examples/Charts2D/CreateStockCharts/DepthChart/exampleInfo.tsx",
-        exportName: "depthChartExampleInfo",
-        info: depthChartExampleInfo,
-    },
-    chart2D_createStockCharts_SharedChart: {
-        id: "chart2D_createStockCharts_SharedChart",
-        path: "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo.tsx",
-        exportName: "userAnnotatedStockChartExampleInfo",
-        info: userAnnotatedStockChartExampleInfo,
-    },
-    chart2D_legends_ChartLegendsAPI: {
-        id: "chart2D_legends_ChartLegendsAPI",
-        path: "../Examples/Charts2D/Legends/ChartLegendsAPI/exampleInfo.tsx",
-        exportName: "chartLegendsAPIExampleInfo",
-        info: chartLegendsAPIExampleInfo,
-    },
-    chart2D_modifyAxisBehavior_MultipleXAxes: {
-        id: "chart2D_modifyAxisBehavior_MultipleXAxes",
-        path: "../Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes/exampleInfo.tsx",
-        exportName: "multipleXAxesExampleInfo",
-        info: multipleXAxesExampleInfo,
-    },
-    chart2D_modifyAxisBehavior_SecondaryYAxes: {
-        id: "chart2D_modifyAxisBehavior_SecondaryYAxes",
-        path: "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/exampleInfo.tsx",
-        exportName: "secondaryYAxesExampleInfo",
-        info: secondaryYAxesExampleInfo,
-    },
-    chart2D_modifyAxisBehavior_VerticalCharts: {
-        id: "chart2D_modifyAxisBehavior_VerticalCharts",
-        path: "../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/exampleInfo.tsx",
-        exportName: "verticalChartsExampleInfo",
-        info: verticalChartsExampleInfo,
-    },
-    chart2D_modifyAxisBehavior_CentralAxes: {
-        id: "chart2D_modifyAxisBehavior_CentralAxes",
-        path: "../Examples/Charts2D/ModifyAxisBehavior/CentralAxes/exampleInfo.tsx",
-        exportName: "centralAxesExampleInfo",
-        info: centralAxesExampleInfo,
-    },
-    chart2D_modifyAxisBehavior_StaticAxis: {
-        id: "chart2D_modifyAxisBehavior_StaticAxis",
-        path: "../Examples/Charts2D/ModifyAxisBehavior/StaticAxis/exampleInfo.tsx",
-        exportName: "staticAxisExampleInfo",
-        info: staticAxisExampleInfo,
-    },
-    chart2D_modifyAxisBehavior_VerticallyStackedAxes: {
-        id: "chart2D_modifyAxisBehavior_VerticallyStackedAxes",
-        path: "../Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes/exampleInfo.tsx",
-        exportName: "verticallyStackedAxesExampleInfo",
-        info: verticallyStackedAxesExampleInfo,
-    },
-    chart2D_modifyAxisBehavior_LogarithmicAxis: {
-        id: "chart2D_modifyAxisBehavior_LogarithmicAxis",
-        path: "../Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis/exampleInfo.tsx",
-        exportName: "logarithmicAxisExampleInfo",
-        info: logarithmicAxisExampleInfo,
-    },
-    chart2D_modifyAxisBehavior_DrawBehindAxes: {
-        id: "chart2D_modifyAxisBehavior_DrawBehindAxes",
-        path: "../Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes/exampleInfo.tsx",
-        exportName: "drawBehindAxesExampleInfo",
-        info: drawBehindAxesExampleInfo,
-    },
-    chart2D_axisLabelCustomization_MultiLineLabels: {
-        id: "chart2D_axisLabelCustomization_MultiLineLabels",
-        path: "../Examples/Charts2D/AxisLabelCustomization/MultiLineLabels/exampleInfo.tsx",
-        exportName: "multiLineLabelsExampleInfo",
-        info: multiLineLabelsExampleInfo,
-    },
-    chart2D_axisLabelCustomization_ImageLabels: {
-        id: "chart2D_axisLabelCustomization_ImageLabels",
-        path: "../Examples/Charts2D/AxisLabelCustomization/ImageLabels/exampleInfo.tsx",
-        exportName: "imageLabelsExampleInfo",
-        info: imageLabelsExampleInfo,
-    },
-    chart2D_axisLabelCustomization_RotatedLabels: {
-        id: "chart2D_axisLabelCustomization_RotatedLabels",
-        path: "../Examples/Charts2D/AxisLabelCustomization/RotatedLabels/exampleInfo.tsx",
-        exportName: "rotatedLabelsExampleInfo",
-        info: rotatedLabelsExampleInfo,
-    },
-    chart2D_basicCharts_StackedColumnChart: {
-        id: "chart2D_basicCharts_StackedColumnChart",
-        path: "../Examples/Charts2D/BasicChartTypes/StackedColumnChart/exampleInfo.tsx",
-        exportName: "stackedColumnChartExampleInfo",
-        info: stackedColumnChartExampleInfo,
-    },
-    chart2D_basicCharts_StackedColumnSideBySide: {
-        id: "chart2D_basicCharts_StackedColumnSideBySide",
-        path: "../Examples/Charts2D/BasicChartTypes/StackedColumnSideBySide/exampleInfo.tsx",
-        exportName: "stackedColumnSideBySideExampleInfo",
-        info: stackedColumnSideBySideExampleInfo,
-    },
-    chart2D_basicCharts_StackedMountainChart: {
-        id: "chart2D_basicCharts_StackedMountainChart",
-        path: "../Examples/Charts2D/BasicChartTypes/StackedMountainChart/exampleInfo.tsx",
-        exportName: "stackedMountainChartExampleInfo",
-        info: stackedMountainChartExampleInfo,
-    },
-    chart2D_basicCharts_SmoothStackedMountainChart: {
-        id: "chart2D_basicCharts_SmoothStackedMountainChart",
-        path: "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart/exampleInfo.tsx",
-        exportName: "smoothStackedMountainChartExampleInfo",
-        info: smoothStackedMountainChartExampleInfo,
-    },
-    chart2D_stylingAndTheming_UsePointMarkers: {
-        id: "chart2D_stylingAndTheming_UsePointMarkers",
-        path: "../Examples/Charts2D/StylingAndTheming/UsePointMarkers/exampleInfo.tsx",
-        exportName: "usePointMarkersExampleInfo",
-        info: usePointMarkersExampleInfo,
-    },
-    chart2D_stylingAndTheming_UsingThemeManager: {
-        id: "chart2D_stylingAndTheming_UsingThemeManager",
-        path: "../Examples/Charts2D/StylingAndTheming/UsingThemeManager/exampleInfo.tsx",
-        exportName: "usingThemeManagerExampleInfo",
-        info: usingThemeManagerExampleInfo,
-    },
-    chart2D_stylingAndTheming_CustomTheme: {
-        id: "chart2D_stylingAndTheming_CustomTheme",
-        path: "../Examples/Charts2D/StylingAndTheming/CreateACustomTheme/exampleInfo.tsx",
-        exportName: "createACustomThemeExampleInfo",
-        info: createACustomThemeExampleInfo,
-    },
-    chart2D_stylingAndTheming_StylingInCode: {
-        id: "chart2D_stylingAndTheming_StylingInCode",
-        path: "../Examples/Charts2D/StylingAndTheming/StylingInCode/exampleInfo.tsx",
-        exportName: "stylingInCodeExampleInfo",
-        info: stylingInCodeExampleInfo,
-    },
-    chart2D_stylingAndTheming_PerPointColoring: {
-        id: "chart2D_stylingAndTheming_PerPointColoring",
-        path: "../Examples/Charts2D/StylingAndTheming/PerPointColoring/exampleInfo.tsx",
-        exportName: "perPointColoringExampleInfo",
-        info: perPointColoringExampleInfo,
-    },
-    chart2D_stylingAndTheming_DashedLineStyling: {
-        id: "chart2D_stylingAndTheming_DashedLineStyling",
-        path: "../Examples/Charts2D/StylingAndTheming/DashedLineStyling/exampleInfo.tsx",
-        exportName: "dashedLineStylingExampleInfo",
-        info: dashedLineStylingExampleInfo,
-    },
-    chart2D_stylingAndTheming_TransparentBackground: {
-        id: "chart2D_stylingAndTheming_TransparentBackground",
-        path: "../Examples/Charts2D/StylingAndTheming/TransparentBackground/exampleInfo.tsx",
-        exportName: "transparentBackgroundExampleInfo",
-        info: transparentBackgroundExampleInfo,
-    },
-    chart2D_stylingAndTheming_DataLabels: {
-        id: "chart2D_stylingAndTheming_DataLabels",
-        path: "../Examples/Charts2D/StylingAndTheming/DataLabels/exampleInfo.tsx",
-        exportName: "datalabelsExampleInfo",
-        info: datalabelsExampleInfo,
-    },
-    chart2D_stylingAndTheming_MultiplePointMarkers: {
-        id: "chart2D_stylingAndTheming_MultiplePointMarkers",
-        path: "../Examples/Charts2D/StylingAndTheming/MultiStyleSeries/exampleInfo.tsx",
-        exportName: "multiplePointMarkersExampleInfo",
-        info: multiplePointMarkersExampleInfo,
-    },
-    chart2D_stylingAndTheming_LineSplittingThresholds: {
-        id: "chart2D_stylingAndTheming_LineSplittingThresholds",
-        path: "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds/exampleInfo.tsx",
-        exportName: "lineSplittingThresholdsExampleInfo",
-        info: lineSplittingThresholdsExampleInfo,
-    },
-    chart2D_tooltipsAndHittest_HitTestApi: {
-        id: "chart2D_tooltipsAndHittest_HitTestApi",
-        path: "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI/exampleInfo.tsx",
-        exportName: "hitTestApiExampleInfo",
-        info: hitTestApiExampleInfo,
-    },
-    chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips: {
-        id: "chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips",
-        path: "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/exampleInfo.tsx",
-        exportName: "usingRolloverModifierTooltipsExampleInfo",
-        info: usingRolloverModifierTooltipsExampleInfo,
-    },
-    chart2D_tooltipsAndHittest_UsingCursorModifierTooltips: {
-        id: "chart2D_tooltipsAndHittest_UsingCursorModifierTooltips",
-        path: "../Examples/Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips/exampleInfo.tsx",
-        exportName: "usingCursorModifierTooltipsExampleInfo",
-        info: usingCursorModifierTooltipsExampleInfo,
-    },
-    chart2D_tooltipsAndHittest_MetaData: {
-        id: "chart2D_tooltipsAndHittest_MetaData",
-        path: "../Examples/Charts2D/TooltipsAndHittest/MetaData/exampleInfo.tsx",
-        exportName: "metaDataExampleInfo",
-        info: metaDataExampleInfo,
-    },
-    chart2D_tooltipsAndHittest_DataPointSelection: {
-        id: "chart2D_tooltipsAndHittest_DataPointSelection",
-        path: "../Examples/Charts2D/TooltipsAndHittest/DatapointSelection/exampleInfo.tsx",
-        exportName: "dataPointSelectionExampleInfo",
-        info: dataPointSelectionExampleInfo,
-    },
-    chart2D_tooltipsAndHittest_SeriesSelection: {
-        id: "chart2D_tooltipsAndHittest_SeriesSelection",
-        path: "../Examples/Charts2D/TooltipsAndHittest/SeriesSelection/exampleInfo.tsx",
-        exportName: "seriesSelectionExampleInfo",
-        info: seriesSelectionExampleInfo,
-    },
-    chart2D_tooltipsAndHittest_VerticalSliceModifier: {
-        id: "chart2D_tooltipsAndHittest_VerticalSliceModifier",
-        path: "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier/exampleInfo.tsx",
-        exportName: "usingVerticalSliceModifierExampleInfo",
-        info: usingVerticalSliceModifierExampleInfo,
-    },
-    chart2D_zoomAndPanAChart_DragAxisToScale: {
-        id: "chart2D_zoomAndPanAChart_DragAxisToScale",
-        path: "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/exampleInfo.tsx",
-        exportName: "dragAxisToScaleExampleInfo",
-        info: dragAxisToScaleExampleInfo,
-    },
-    chart2D_zoomAndPanAChart_RealtimeZoomPan: {
-        id: "chart2D_zoomAndPanAChart_RealtimeZoomPan",
-        path: "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/exampleInfo.tsx",
-        exportName: "realtimeZoomPanExampleInfo",
-        info: realtimeZoomPanExampleInfo,
-    },
-    chart2D_zoomAndPanAChart_MultipleChartModifiers: {
-        id: "chart2D_zoomAndPanAChart_MultipleChartModifiers",
-        path: "../Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers/exampleInfo.tsx",
-        exportName: "zoomAndPanWithMultipleChartModifiersExampleInfo",
-        info: zoomAndPanWithMultipleChartModifiersExampleInfo,
-    },
-    chart2D_zoomAndPanAChart_Overview: {
-        id: "chart2D_zoomAndPanAChart_Overview",
-        path: "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier/exampleInfo.tsx",
-        exportName: "overviewExampleInfo",
-        info: overviewExampleInfo,
-    },
-    chart2D_zoomAndPanAChart_VirtualizedDataOverview: {
-        id: "chart2D_zoomAndPanAChart_VirtualizedDataOverview",
-        path: "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview/exampleInfo.tsx",
-        exportName: "virtualizedDataOverviewExampleInfo",
-        info: virtualizedDataOverviewExampleInfo,
-    },
-    chart2D_filters_PercentageChange: {
-        id: "chart2D_filters_PercentageChange",
-        path: "../Examples/Charts2D/Filters/PercentageChange/exampleInfo.tsx",
-        exportName: "percentageChangeExampleInfo",
-        info: percentageChangeExampleInfo,
-    },
-    chart2D_filters_TrendMARatio: {
-        id: "chart2D_filters_TrendMARatio",
-        path: "../Examples/Charts2D/Filters/TrendMARatio/exampleInfo.tsx",
-        exportName: "trendMARatioExampleInfo",
-        info: trendMARatioExampleInfo,
-    },
-    chart2D_filters_CustomFilters: {
-        id: "chart2D_filters_CustomFilters",
-        path: "../Examples/Charts2D/Filters/CustomFilters/exampleInfo.tsx",
-        exportName: "customFiltersExampleInfo",
-        info: customFiltersExampleInfo,
-    },
-    chart2D_multiChart_syncMultiChart: {
-        id: "chart2D_multiChart_syncMultiChart",
-        path: "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo.tsx",
-        exportName: "syncMultiChartExampleInfo",
-        info: syncMultiChartExampleInfo,
-    },
-    chart3D_basic3DChartTypes_Bubble3DChart: {
-        id: "chart3D_basic3DChartTypes_Bubble3DChart",
-        path: "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/exampleInfo.tsx",
-        exportName: "bubble3DChartExampleInfo",
-        info: bubble3DChartExampleInfo,
-    },
-    chart3D_basic3DChartTypes_SurfaceMesh3DChart: {
-        id: "chart3D_basic3DChartTypes_SurfaceMesh3DChart",
-        path: "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/exampleInfo.tsx",
-        exportName: "surfaceMesh3DChartExampleInfo",
-        info: surfaceMesh3DChartExampleInfo,
-    },
-    chart3D_basic3DChartTypes_RealtimeSurfaceMesh3DChart: {
-        id: "chart3D_basic3DChartTypes_RealtimeSurfaceMesh3DChart",
-        path: "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart/exampleInfo.tsx",
-        exportName: "realtimeSurfaceMesh3DChartExampleInfo",
-        info: realtimeSurfaceMesh3DChartExampleInfo,
-    },
-    chart3D_basic3DChartTypes_PointLine3DChart: {
-        id: "chart3D_basic3DChartTypes_PointLine3DChart",
-        path: "../Examples/Charts3D/Basic3DChartTypes/PointLine3DChart/exampleInfo.tsx",
-        exportName: "pointLine3DChartExampleInfo",
-        info: pointLine3DChartExampleInfo,
-    },
-    chart3D_basic3DChartTypes_Column3DChart: {
-        id: "chart3D_basic3DChartTypes_Column3DChart",
-        path: "../Examples/Charts3D/Basic3DChartTypes/Column3DChart/exampleInfo.tsx",
-        exportName: "column3DChartExampleInfo",
-        info: column3DChartExampleInfo,
-    },
-    featuredApps_performanceDemos_Load500By500: {
-        id: "featuredApps_performanceDemos_Load500By500",
-        path: "../Examples/FeaturedApps/PerformanceDemos/Load500By500/exampleInfo.tsx",
-        exportName: "load500By500ExampleInfo",
-        info: load500By500ExampleInfo,
-    },
-    featuredApps_performanceDemos_RealtimePerformanceDemo: {
-        id: "featuredApps_performanceDemos_RealtimePerformanceDemo",
-        path: "../Examples/FeaturedApps/PerformanceDemos/RealtimePerformanceDemo/exampleInfo.tsx",
-        exportName: "realtimePerformanceDemoExampleInfo",
-        info: realtimePerformanceDemoExampleInfo,
-    },
-    featuredApps_medicalCharts_VitalSignsMonitorDemo: {
-        id: "featuredApps_medicalCharts_VitalSignsMonitorDemo",
-        path: "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/exampleInfo.tsx",
-        exportName: "vitalSignsMonitorDemoExampleInfo",
-        info: vitalSignsMonitorDemoExampleInfo,
-    },
-    featuredApps_featureDemos_axisTypes: {
-        id: "featuredApps_featureDemos_axisTypes",
-        path: "../Examples/FeaturedApps/FeatureDemos/AxisTypes/exampleInfo.tsx",
-        exportName: "axisTypesExampleInfo",
-        info: axisTypesExampleInfo,
-    },
-    featuredApps_featureDemos_axisLayout: {
-        id: "featuredApps_featureDemos_axisLayout",
-        path: "../Examples/FeaturedApps/FeatureDemos/AxisLayout/exampleInfo.tsx",
-        exportName: "axisLayoutExampleInfo",
-        info: axisLayoutExampleInfo,
-    },
-    featuredApps_featureDemos_chartTitle: {
-        id: "featuredApps_featureDemos_chartTitle",
-        path: "../Examples/FeaturedApps/FeatureDemos/ChartTitle/exampleInfo.tsx",
-        exportName: "chartTitleExampleInfo",
-        info: chartTitleExampleInfo,
-    },
-    featuredApps_featureDemos_subchartsGrid: {
-        id: "featuredApps_featureDemos_subchartsGrid",
-        path: "../Examples/FeaturedApps/FeatureDemos/SubChartsAPI/exampleInfo.tsx",
-        exportName: "subchartsGridExampleInfo",
-        info: subchartsGridExampleInfo,
-    },
-    featuredApps_scientificCharts_Lidar3DPointCloudDemo: {
-        id: "featuredApps_scientificCharts_Lidar3DPointCloudDemo",
-        path: "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/exampleInfo.tsx",
-        exportName: "lidar3DPointCloudExampleInfo",
-        info: lidar3DPointCloudExampleInfo,
-    },
-    featuredApps_scientificCharts_AudioAnalyzerDemo: {
-        id: "featuredApps_scientificCharts_AudioAnalyzerDemo",
-        path: "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer/exampleInfo.tsx",
-        exportName: "audioAnalyzerExampleInfo",
-        info: audioAnalyzerExampleInfo,
-    },
-    featuredApps_scientificCharts_WaterfallChartDemo: {
-        id: "featuredApps_scientificCharts_WaterfallChartDemo",
-        path: "../Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart/exampleInfo.tsx",
-        exportName: "waterfallChartExampleInfo",
-        info: waterfallChartExampleInfo,
-    },
-    featuredApps_scientificCharts_TenorCurvesDemo: {
-        id: "featuredApps_scientificCharts_TenorCurvesDemo",
-        path: "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D/exampleInfo.tsx",
-        exportName: "tenorCurvesExampleInfo",
-        info: tenorCurvesExampleInfo,
-    },
-    featuredApps_showcases_realtimebigdata: {
-        id: "featuredApps_showcases_realtimebigdata",
-        path: "../Examples/FeaturedApps/ShowCases/WebsocketBigData/exampleInfo.tsx",
-        exportName: "websocketBigDataDemoExampleInfo",
-        info: websocketBigDataDemoExampleInfo,
-    },
-    featuredApps_showcases_servertrafficdashboard: {
-        id: "featuredApps_showcases_servertrafficdashboard",
-        path: "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard/exampleInfo.tsx",
-        exportName: "serverTrafficDashboardDemoExampleInfo",
-        info: serverTrafficDashboardDemoExampleInfo,
-    },
-    featuredApps_showcases_oilandgasdashboard: {
-        id: "featuredApps_showcases_oilandgasdashboard",
-        path: "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard/exampleInfo.tsx",
-        exportName: "oilAndGasExplorerDashboard",
-        info: oilAndGasExplorerDashboard,
-    },
-    featuredApps_showcases_richInteractions: {
-        id: "featuredApps_showcases_richInteractions",
-        path: "../Examples/FeaturedApps/ShowCases/HeatmapInteractions/exampleInfo.tsx",
-        exportName: "heatmapInteractionsExampleInfo",
-        info: heatmapInteractionsExampleInfo,
-    },
-    featuredApps_showcases_dynamicLayout: {
-        id: "featuredApps_showcases_dynamicLayout",
-        path: "../Examples/FeaturedApps/ShowCases/DynamicLayout/exampleInfo.tsx",
-        exportName: "dynamicLayoutExampleInfo",
-        info: dynamicLayoutExampleInfo,
-    },
-    featuredApps_showcases_eventMarkers: {
-        id: "featuredApps_showcases_eventMarkers",
-        path: "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo.tsx",
-        exportName: "eventMarkersExampleInfo",
-        info: eventMarkersExampleInfo,
-    },
-    featuredApps_showcases_populationPyramid: {
-        id: "featuredApps_showcases_populationPyramid",
-        path: "../Examples/FeaturedApps/ShowCases/PopulationPyramid/exampleInfo.tsx",
-        exportName: "populationPyramidExampleInfo",
-        info: populationPyramidExampleInfo,
-    },
-    builderApi_simplechart: {
-        id: "builderApi_simplechart",
-        path: "../Examples/BuilderApi/SimpleChart/exampleInfo.tsx",
-        exportName: "simpleChartExampleInfo",
-        info: simpleChartExampleInfo,
-    },
-    builderApi_fullchart: {
-        id: "builderApi_fullchart",
-        path: "../Examples/BuilderApi/FullChart/exampleInfo.tsx",
-        exportName: "fullChartExampleInfo",
-        info: fullChartExampleInfo,
-    },
-    builderApi_chartFromJSON: {
-        id: "builderApi_chartFromJSON",
-        path: "../Examples/BuilderApi/ChartFromJSON/exampleInfo.tsx",
-        exportName: "chartFromJSONExampleInfo",
-        info: chartFromJSONExampleInfo,
-    },
-    builderApi_SharedData: {
-        id: "builderApi_SharedData",
-        path: "../Examples/BuilderApi/SharedData/exampleInfo.tsx",
-        exportName: "sharedDataExampleInfo",
-        info: sharedDataExampleInfo,
-    },
-    builderApi_CustomTypes: {
-        id: "builderApi_CustomTypes",
-        path: "../Examples/BuilderApi/CustomTypes/exampleInfo.tsx",
-        exportName: "customTypesExampleInfo",
-        info: customTypesExampleInfo,
-    },
-};
-*/
-
-export const EXAMPLES_PAGES_DATA = [
-    {
-        path: "../Examples/Charts2D/Animations/DataAnimation",
-        exportName: "dataAnimationExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/Animations/StyleAnimation",
-        exportName: "styleAnimationExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/Animations/StartupAnimation",
-        exportName: "startupAnimationExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/Animations/GenericAnimation",
-        exportName: "genericAnimationExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/BandSeriesChart",
-        exportName: "bandSeriesChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart",
-        exportName: "splineBandSeriesChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/DigitalBandSeriesChart",
-        exportName: "digitalBandSeriesChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/FanChart",
-        exportName: "fanChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/BubbleChart",
-        exportName: "bubbleChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/CandlestickChart",
-        exportName: "candlestickChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/OhlcChart",
-        exportName: "ohlcChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/ErrorBarsChart",
-        exportName: "errorBarsChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/ColumnChart",
-        exportName: "columnChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/ImpulseChart",
-        exportName: "impulseChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/HeatmapChart",
-        exportName: "heatmapChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/NonUniformHeatmapChart",
-        exportName: "nonUniformHeatmapExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/ContoursChart",
-        exportName: "contourChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/LineChart",
-        exportName: "lineChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/SplineLineChart",
-        exportName: "splineLineChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/DigitalLineChart",
-        exportName: "digitalLineChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/MountainChart",
-        exportName: "mountainChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/SplineMountainChart",
-        exportName: "splineMountainChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/DigitalMountainChart",
-        exportName: "digitalMountainChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/ScatterChart",
-        exportName: "scatterChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/DonutChart",
-        exportName: "donutChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/PieChart",
-        exportName: "pieChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/RealTimeMountainChart",
-        exportName: "realTimeMountainChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/TextSeriesChart",
-        exportName: "textChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy",
-        exportName: "annotationsAreEasyExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ChartAnnotations/AnnotationLayers",
-        exportName: "annotationLayersExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ChartAnnotations/EditableAnnotations",
-        exportName: "editableAnnotationsExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ChartAnnotations/TradeMarkers",
-        exportName: "tradeMarkerAnnotationsExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold",
-        exportName: "dragHorizontalThresholdExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations",
-        exportName: "backgroundAnnotationsExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces",
-        exportName: "realtimeGhostedTracesExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints",
-        exportName: "loadOneMillionPointsExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts",
-        exportName: "multiPaneStockChartsExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts",
-        exportName: "realtimeTickingStockChartsExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts",
-        exportName: "subChartStockChartsExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/CreateStockCharts/DepthChart",
-        exportName: "depthChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart",
-        exportName: "userAnnotatedStockChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/Legends/ChartLegendsAPI",
-        exportName: "chartLegendsAPIExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes",
-        exportName: "multipleXAxesExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes",
-        exportName: "secondaryYAxesExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts",
-        exportName: "verticalChartsExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ModifyAxisBehavior/CentralAxes",
-        exportName: "centralAxesExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ModifyAxisBehavior/StaticAxis",
-        exportName: "staticAxisExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes",
-        exportName: "verticallyStackedAxesExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis",
-        exportName: "logarithmicAxisExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes",
-        exportName: "drawBehindAxesExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/AxisLabelCustomization/MultiLineLabels",
-        exportName: "multiLineLabelsExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/AxisLabelCustomization/ImageLabels",
-        exportName: "imageLabelsExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/AxisLabelCustomization/RotatedLabels",
-        exportName: "rotatedLabelsExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/StackedColumnChart",
-        exportName: "stackedColumnChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/StackedColumnSideBySide",
-        exportName: "stackedColumnSideBySideExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/StackedMountainChart",
-        exportName: "stackedMountainChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart",
-        exportName: "smoothStackedMountainChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/StylingAndTheming/UsePointMarkers",
-        exportName: "usePointMarkersExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/StylingAndTheming/UsingThemeManager",
-        exportName: "usingThemeManagerExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/StylingAndTheming/CreateACustomTheme",
-        exportName: "createACustomThemeExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/StylingAndTheming/StylingInCode",
-        exportName: "stylingInCodeExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/StylingAndTheming/PerPointColoring",
-        exportName: "perPointColoringExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/StylingAndTheming/DashedLineStyling",
-        exportName: "dashedLineStylingExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/StylingAndTheming/TransparentBackground",
-        exportName: "transparentBackgroundExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/StylingAndTheming/DataLabels",
-        exportName: "datalabelsExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/StylingAndTheming/MultiStyleSeries",
-        exportName: "multiplePointMarkersExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds",
-        exportName: "lineSplittingThresholdsExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI",
-        exportName: "hitTestApiExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips",
-        exportName: "usingRolloverModifierTooltipsExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips",
-        exportName: "usingCursorModifierTooltipsExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/TooltipsAndHittest/MetaData",
-        exportName: "metaDataExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/TooltipsAndHittest/DatapointSelection",
-        exportName: "dataPointSelectionExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/TooltipsAndHittest/SeriesSelection",
-        exportName: "seriesSelectionExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier",
-        exportName: "usingVerticalSliceModifierExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale",
-        exportName: "dragAxisToScaleExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan",
-        exportName: "realtimeZoomPanExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers",
-        exportName: "zoomAndPanWithMultipleChartModifiersExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier",
-        exportName: "overviewExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview",
-        exportName: "virtualizedDataOverviewExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/Filters/PercentageChange",
-        exportName: "percentageChangeExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/Filters/TrendMARatio",
-        exportName: "trendMARatioExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/Filters/CustomFilters",
-        exportName: "customFiltersExampleInfo",
-    },
-    {
-        path: "../Examples/Charts2D/MultiChart/SyncMultiChart",
-        exportName: "syncMultiChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart",
-        exportName: "bubble3DChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart",
-        exportName: "surfaceMesh3DChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart",
-        exportName: "realtimeSurfaceMesh3DChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts3D/Basic3DChartTypes/PointLine3DChart",
-        exportName: "pointLine3DChartExampleInfo",
-    },
-    {
-        path: "../Examples/Charts3D/Basic3DChartTypes/Column3DChart",
-        exportName: "column3DChartExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/PerformanceDemos/Load500By500",
-        exportName: "load500By500ExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/PerformanceDemos/RealtimePerformanceDemo",
-        exportName: "realtimePerformanceDemoExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo",
-        exportName: "vitalSignsMonitorDemoExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/FeatureDemos/AxisTypes",
-        exportName: "axisTypesExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/FeatureDemos/AxisLayout",
-        exportName: "axisLayoutExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/FeatureDemos/ChartTitle",
-        exportName: "chartTitleExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/FeatureDemos/SubChartsAPI",
-        exportName: "subchartsGridExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo",
-        exportName: "lidar3DPointCloudExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer",
-        exportName: "audioAnalyzerExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart",
-        exportName: "waterfallChartExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D",
-        exportName: "tenorCurvesExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/ShowCases/WebsocketBigData",
-        exportName: "websocketBigDataDemoExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard",
-        exportName: "serverTrafficDashboardDemoExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard",
-        exportName: "oilAndGasExplorerDashboard",
-    },
-    {
-        path: "../Examples/FeaturedApps/ShowCases/HeatmapInteractions",
-        exportName: "heatmapInteractionsExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/ShowCases/DynamicLayout",
-        exportName: "dynamicLayoutExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/ShowCases/EventMarkers",
-        exportName: "eventMarkersExampleInfo",
-    },
-    {
-        path: "../Examples/FeaturedApps/ShowCases/PopulationPyramid",
-        exportName: "populationPyramidExampleInfo",
-    },
-    {
-        path: "../Examples/BuilderApi/SimpleChart",
-        exportName: "simpleChartExampleInfo",
-    },
-    {
-        path: "../Examples/BuilderApi/FullChart",
-        exportName: "fullChartExampleInfo",
-    },
-    {
-        path: "../Examples/BuilderApi/ChartFromJSON",
-        exportName: "chartFromJSONExampleInfo",
-    },
-    {
-        path: "../Examples/BuilderApi/SharedData",
-        exportName: "sharedDataExampleInfo",
-    },
-    {
-        path: "../Examples/BuilderApi/CustomTypes",
-        exportName: "customTypesExampleInfo",
-    },
+const EXAMPLES_PAGES_DATA = [
+    "../Examples/Charts2D/Animations/DataAnimation",
+    "../Examples/Charts2D/Animations/StyleAnimation",
+    "../Examples/Charts2D/Animations/StartupAnimation",
+    "../Examples/Charts2D/Animations/GenericAnimation",
+    "../Examples/Charts2D/BasicChartTypes/BandSeriesChart",
+    "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart",
+    "../Examples/Charts2D/BasicChartTypes/DigitalBandSeriesChart",
+    "../Examples/Charts2D/BasicChartTypes/FanChart",
+    "../Examples/Charts2D/BasicChartTypes/BubbleChart",
+    "../Examples/Charts2D/BasicChartTypes/CandlestickChart",
+    "../Examples/Charts2D/BasicChartTypes/OhlcChart",
+    "../Examples/Charts2D/BasicChartTypes/ErrorBarsChart",
+    "../Examples/Charts2D/BasicChartTypes/ColumnChart",
+    "../Examples/Charts2D/BasicChartTypes/ImpulseChart",
+    "../Examples/Charts2D/BasicChartTypes/HeatmapChart",
+    "../Examples/Charts2D/BasicChartTypes/NonUniformHeatmapChart",
+    "../Examples/Charts2D/BasicChartTypes/ContoursChart",
+    "../Examples/Charts2D/BasicChartTypes/LineChart",
+    "../Examples/Charts2D/BasicChartTypes/SplineLineChart",
+    "../Examples/Charts2D/BasicChartTypes/DigitalLineChart",
+    "../Examples/Charts2D/BasicChartTypes/MountainChart",
+    "../Examples/Charts2D/BasicChartTypes/SplineMountainChart",
+    "../Examples/Charts2D/BasicChartTypes/DigitalMountainChart",
+    "../Examples/Charts2D/BasicChartTypes/ScatterChart",
+    "../Examples/Charts2D/BasicChartTypes/DonutChart",
+    "../Examples/Charts2D/BasicChartTypes/PieChart",
+    "../Examples/Charts2D/BasicChartTypes/RealTimeMountainChart",
+    "../Examples/Charts2D/BasicChartTypes/TextSeriesChart",
+    "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy",
+    "../Examples/Charts2D/ChartAnnotations/AnnotationLayers",
+    "../Examples/Charts2D/ChartAnnotations/EditableAnnotations",
+    "../Examples/Charts2D/ChartAnnotations/TradeMarkers",
+    "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold",
+    "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations",
+    "../Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces",
+    "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints",
+    "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts",
+    "../Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts",
+    "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts",
+    "../Examples/Charts2D/CreateStockCharts/DepthChart",
+    "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart",
+    "../Examples/Charts2D/Legends/ChartLegendsAPI",
+    "../Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes",
+    "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes",
+    "../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts",
+    "../Examples/Charts2D/ModifyAxisBehavior/CentralAxes",
+    "../Examples/Charts2D/ModifyAxisBehavior/StaticAxis",
+    "../Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes",
+    "../Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis",
+    "../Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes",
+    "../Examples/Charts2D/AxisLabelCustomization/MultiLineLabels",
+    "../Examples/Charts2D/AxisLabelCustomization/ImageLabels",
+    "../Examples/Charts2D/AxisLabelCustomization/RotatedLabels",
+    "../Examples/Charts2D/BasicChartTypes/StackedColumnChart",
+    "../Examples/Charts2D/BasicChartTypes/StackedColumnSideBySide",
+    "../Examples/Charts2D/BasicChartTypes/StackedMountainChart",
+    "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart",
+    "../Examples/Charts2D/StylingAndTheming/UsePointMarkers",
+    "../Examples/Charts2D/StylingAndTheming/UsingThemeManager",
+    "../Examples/Charts2D/StylingAndTheming/CreateACustomTheme",
+    "../Examples/Charts2D/StylingAndTheming/StylingInCode",
+    "../Examples/Charts2D/StylingAndTheming/PerPointColoring",
+    "../Examples/Charts2D/StylingAndTheming/DashedLineStyling",
+    "../Examples/Charts2D/StylingAndTheming/TransparentBackground",
+    "../Examples/Charts2D/StylingAndTheming/DataLabels",
+    "../Examples/Charts2D/StylingAndTheming/MultiStyleSeries",
+    "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds",
+    "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI",
+    "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips",
+    "../Examples/Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips",
+    "../Examples/Charts2D/TooltipsAndHittest/MetaData",
+    "../Examples/Charts2D/TooltipsAndHittest/DatapointSelection",
+    "../Examples/Charts2D/TooltipsAndHittest/SeriesSelection",
+    "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier",
+    "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale",
+    "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan",
+    "../Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers",
+    "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier",
+    "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview",
+    "../Examples/Charts2D/Filters/PercentageChange",
+    "../Examples/Charts2D/Filters/TrendMARatio",
+    "../Examples/Charts2D/Filters/CustomFilters",
+    "../Examples/Charts2D/MultiChart/SyncMultiChart",
+    "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart",
+    "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart",
+    "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart",
+    "../Examples/Charts3D/Basic3DChartTypes/PointLine3DChart",
+    "../Examples/Charts3D/Basic3DChartTypes/Column3DChart",
+    "../Examples/FeaturedApps/PerformanceDemos/Load500By500",
+    "../Examples/FeaturedApps/PerformanceDemos/RealtimePerformanceDemo",
+    "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo",
+    "../Examples/FeaturedApps/FeatureDemos/AxisTypes",
+    "../Examples/FeaturedApps/FeatureDemos/AxisLayout",
+    "../Examples/FeaturedApps/FeatureDemos/ChartTitle",
+    "../Examples/FeaturedApps/FeatureDemos/SubChartsAPI",
+    "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo",
+    "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer",
+    "../Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart",
+    "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D",
+    "../Examples/FeaturedApps/ShowCases/WebsocketBigData",
+    "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard",
+    "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard",
+    "../Examples/FeaturedApps/ShowCases/HeatmapInteractions",
+    "../Examples/FeaturedApps/ShowCases/DynamicLayout",
+    "../Examples/FeaturedApps/ShowCases/EventMarkers",
+    "../Examples/FeaturedApps/ShowCases/PopulationPyramid",
+    "../Examples/BuilderApi/SimpleChart",
+    "../Examples/BuilderApi/FullChart",
+    "../Examples/BuilderApi/ChartFromJSON",
+    "../Examples/BuilderApi/SharedData",
+    "../Examples/BuilderApi/CustomTypes",
 ];
+*/
 
 // now update the exaples pages with dynamically loaded module as well
 // and check the ids are the same
@@ -1196,9 +195,8 @@ const loadModule = (modulePath: string) => {
     return examplesContext(relativePath);
 };
 
-function makeExamplesPagesNew(examples: any[]): Record<string, TExamplePage> {
-    const res = examples.reduce((acc: any, example: any) => {
-        const { path, exportName } = example;
+function makeExamplesPagesNew(examples: string[]): Record<string, TExamplePage> {
+    const res = examples.reduce((acc: any, path: string) => {
         const mod = loadModule(path + "/exampleInfo.tsx");
         const moduleExport = mod.default;
         moduleExport.exampleDirectory = path;
@@ -1209,4 +207,4 @@ function makeExamplesPagesNew(examples: any[]): Record<string, TExamplePage> {
     return res;
 }
 
-export const EXAMPLES_PAGES = makeExamplesPagesNew(EXAMPLES_PAGES_DATA);
+export const EXAMPLES_PAGES = makeExamplesPagesNew(EXAMPLE_PAGES_DATA);

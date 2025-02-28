@@ -24,6 +24,5 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
     if (!component) {
         throw new Error(`Component ${componentName} not found in module ${componentPath}`);
     }
-    console.log("dynamic getExampleComponent exampeId=", exampleId);
     return component;
 };

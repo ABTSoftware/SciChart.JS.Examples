@@ -8,9 +8,7 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "compareExamples": "ts-node -P tsconfig.node.json scripts/compareExampleInfos.ts",
-    "generateMetadata": "ts-node -P tsconfig.node.json scripts/generateMetadataFromOld.ts",
-    "updateExampleInfos": "ts-node -P tsconfig.node.json scripts/updateExampleInfos.ts",
+    "generateExamplePaths": "node scripts/generateExamplePaths.js",
     "dev": "webpack-dev-server --config webpack.client.no_server.config.js",
     "build": "rimraf ./build && npm run buildVanillaDemo && npm run buildImages && npm run buildServer && npm run buildClient",
     "start": "node ./build/server.js",
