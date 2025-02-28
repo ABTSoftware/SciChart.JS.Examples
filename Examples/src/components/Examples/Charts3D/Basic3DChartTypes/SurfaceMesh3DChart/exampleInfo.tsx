@@ -60,3 +60,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const surfaceMesh3DChartExampleInfo = createExampleInfo(metaData);
+export default surfaceMesh3DChartExampleInfo;

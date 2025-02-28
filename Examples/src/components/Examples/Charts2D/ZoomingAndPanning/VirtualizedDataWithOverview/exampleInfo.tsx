@@ -62,3 +62,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const virtualizedDataOverviewExampleInfo = createExampleInfo(metaData);
+export default virtualizedDataOverviewExampleInfo;

@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const bandSeriesChartExampleInfo = createExampleInfo(metaData);
+const bandSeriesChartExampleInfo = createExampleInfo(metaData);
+export default bandSeriesChartExampleInfo;

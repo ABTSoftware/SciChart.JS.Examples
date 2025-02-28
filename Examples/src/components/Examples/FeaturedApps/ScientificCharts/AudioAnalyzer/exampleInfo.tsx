@@ -64,3 +64,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const audioAnalyzerExampleInfo = createExampleInfo(metaData);
+export default audioAnalyzerExampleInfo;

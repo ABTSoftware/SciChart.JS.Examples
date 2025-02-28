@@ -59,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const usingThemeManagerExampleInfo = createExampleInfo(metaData);
+export default usingThemeManagerExampleInfo;

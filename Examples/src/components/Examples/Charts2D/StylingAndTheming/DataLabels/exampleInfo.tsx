@@ -53,3 +53,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const datalabelsExampleInfo = createExampleInfo(metaData);
+export default datalabelsExampleInfo;

@@ -60,3 +60,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const pointLine3DChartExampleInfo = createExampleInfo(metaData);
+export default pointLine3DChartExampleInfo;

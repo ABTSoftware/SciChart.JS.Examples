@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const fanChartExampleInfo = createExampleInfo(metaData);
+const fanChartExampleInfo = createExampleInfo(metaData);
+export default fanChartExampleInfo;

@@ -60,3 +60,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const axisTypesExampleInfo = createExampleInfo(metaData);
+export default axisTypesExampleInfo;

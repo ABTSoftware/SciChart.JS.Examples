@@ -60,3 +60,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const customFiltersExampleInfo = createExampleInfo(metaData);
+export default customFiltersExampleInfo;

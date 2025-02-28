@@ -1,3 +1,4 @@
+import { use } from "chai";
 import { createExampleInfo } from "../../../exampleInfoUtils";
 import { IExampleMetadata } from "../../../IExampleMetadata";
 
@@ -60,3 +61,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const usePointMarkersExampleInfo = createExampleInfo(metaData);
+export default usePointMarkersExampleInfo;

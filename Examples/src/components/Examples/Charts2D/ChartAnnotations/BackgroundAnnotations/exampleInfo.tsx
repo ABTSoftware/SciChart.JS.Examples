@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const backgroundAnnotationsExampleInfo = createExampleInfo(metaData);
+const backgroundAnnotationsExampleInfo = createExampleInfo(metaData);
+export default backgroundAnnotationsExampleInfo;

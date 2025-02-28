@@ -60,3 +60,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const perPointColoringExampleInfo = createExampleInfo(metaData);
+export default perPointColoringExampleInfo;

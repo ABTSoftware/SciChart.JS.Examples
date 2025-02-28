@@ -57,3 +57,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const trendMARatioExampleInfo = createExampleInfo(metaData);
+export default trendMARatioExampleInfo;

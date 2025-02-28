@@ -60,3 +60,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const zoomAndPanWithMultipleChartModifiersExampleInfo = createExampleInfo(metaData);
+export default zoomAndPanWithMultipleChartModifiersExampleInfo;

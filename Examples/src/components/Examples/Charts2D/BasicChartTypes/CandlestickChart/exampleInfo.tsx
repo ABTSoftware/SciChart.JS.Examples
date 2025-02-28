@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const candlestickChartExampleInfo = createExampleInfo(metaData);
+const candlestickChartExampleInfo = createExampleInfo(metaData);
+export default candlestickChartExampleInfo;

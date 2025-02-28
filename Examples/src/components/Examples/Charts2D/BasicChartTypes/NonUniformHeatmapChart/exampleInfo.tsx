@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const nonUniformHeatmapExampleInfo = createExampleInfo(metaData);
+const nonUniformHeatmapExampleInfo = createExampleInfo(metaData);
+export default nonUniformHeatmapExampleInfo;

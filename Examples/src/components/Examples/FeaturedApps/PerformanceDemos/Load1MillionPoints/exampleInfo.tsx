@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const loadOneMillionPointsExampleInfo = createExampleInfo(metaData);
+const loadOneMillionPointsExampleInfo = createExampleInfo(metaData);
+export default loadOneMillionPointsExampleInfo;

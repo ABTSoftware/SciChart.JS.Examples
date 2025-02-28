@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const lineChartExampleInfo = createExampleInfo(metaData);
+const lineChartExampleInfo = createExampleInfo(metaData);
+export default lineChartExampleInfo;

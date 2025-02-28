@@ -56,4 +56,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const chartFromJSONExampleInfo = createExampleInfo(metaData);
+const chartFromJSONExampleInfo = createExampleInfo(metaData);
+export default chartFromJSONExampleInfo;

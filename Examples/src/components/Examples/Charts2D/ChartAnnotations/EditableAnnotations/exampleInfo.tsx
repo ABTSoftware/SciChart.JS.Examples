@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const editableAnnotationsExampleInfo = createExampleInfo(metaData);
+const editableAnnotationsExampleInfo = createExampleInfo(metaData);
+export default editableAnnotationsExampleInfo;

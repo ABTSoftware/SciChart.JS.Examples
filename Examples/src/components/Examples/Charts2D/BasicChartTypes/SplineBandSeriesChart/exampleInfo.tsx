@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const splineBandSeriesChartExampleInfo = createExampleInfo(metaData);
+const splineBandSeriesChartExampleInfo = createExampleInfo(metaData);
+export default splineBandSeriesChartExampleInfo;

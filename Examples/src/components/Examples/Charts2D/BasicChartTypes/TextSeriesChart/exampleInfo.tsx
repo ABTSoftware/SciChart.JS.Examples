@@ -56,4 +56,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const textChartExampleInfo = createExampleInfo(metaData);
+const textChartExampleInfo = createExampleInfo(metaData);
+export default textChartExampleInfo;

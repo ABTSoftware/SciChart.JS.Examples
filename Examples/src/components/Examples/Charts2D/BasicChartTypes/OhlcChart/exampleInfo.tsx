@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const ohlcChartExampleInfo = createExampleInfo(metaData);
+const ohlcChartExampleInfo = createExampleInfo(metaData);
+export default ohlcChartExampleInfo;

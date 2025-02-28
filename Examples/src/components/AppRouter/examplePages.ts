@@ -1196,12 +1196,11 @@ const loadModule = (modulePath: string) => {
     return examplesContext(relativePath);
 };
 
-function makeExamplesPagesNew(examples: any[]) {
-    // const res = Object.keys(examples).reduce((acc: any,k: string) => {
+function makeExamplesPagesNew(examples: any[]): Record<string, TExamplePage> {
     const res = examples.reduce((acc: any, example: any) => {
         const { path, exportName } = example;
         const mod = loadModule(path + "/exampleInfo.tsx");
-        const moduleExport = mod[exportName];
+        const moduleExport = mod.default;
         moduleExport.exampleDirectory = path;
         const id = moduleExport.id;
         acc[id] = moduleExport;
@@ -1210,4 +1209,4 @@ function makeExamplesPagesNew(examples: any[]) {
     return res;
 }
 
-export const EXAMPLES_PAGES: Record<string, TExamplePage> = makeExamplesPagesNew(EXAMPLES_PAGES_DATA);
+export const EXAMPLES_PAGES = makeExamplesPagesNew(EXAMPLES_PAGES_DATA);

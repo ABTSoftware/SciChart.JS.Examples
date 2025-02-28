@@ -57,3 +57,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const overviewExampleInfo = createExampleInfo(metaData);
+export default overviewExampleInfo;

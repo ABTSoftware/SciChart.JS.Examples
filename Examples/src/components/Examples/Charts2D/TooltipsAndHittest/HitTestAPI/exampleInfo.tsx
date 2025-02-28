@@ -1,3 +1,4 @@
+import { defer } from "rxjs";
 import { createExampleInfo } from "../../../exampleInfoUtils";
 import { IExampleMetadata } from "../../../IExampleMetadata";
 
@@ -60,3 +61,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const hitTestApiExampleInfo = createExampleInfo(metaData);
+export default hitTestApiExampleInfo;

@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const multipleXAxesExampleInfo = createExampleInfo(metaData);
+const multipleXAxesExampleInfo = createExampleInfo(metaData);
+export default multipleXAxesExampleInfo;

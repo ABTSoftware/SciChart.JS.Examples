@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const donutChartExampleInfo = createExampleInfo(metaData);
+const donutChartExampleInfo = createExampleInfo(metaData);
+export default donutChartExampleInfo;

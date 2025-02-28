@@ -60,3 +60,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const vitalSignsMonitorDemoExampleInfo = createExampleInfo(metaData);
+export default vitalSignsMonitorDemoExampleInfo;

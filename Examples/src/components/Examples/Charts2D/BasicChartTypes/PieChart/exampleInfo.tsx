@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const pieChartExampleInfo = createExampleInfo(metaData);
+const pieChartExampleInfo = createExampleInfo(metaData);
+export default pieChartExampleInfo;

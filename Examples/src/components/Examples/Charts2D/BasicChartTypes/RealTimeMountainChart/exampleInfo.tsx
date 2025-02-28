@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const realTimeMountainChartExampleInfo = createExampleInfo(metaData);
+const realTimeMountainChartExampleInfo = createExampleInfo(metaData);
+export default realTimeMountainChartExampleInfo;

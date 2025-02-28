@@ -58,3 +58,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const populationPyramidExampleInfo = createExampleInfo(metaData);
+export default populationPyramidExampleInfo;

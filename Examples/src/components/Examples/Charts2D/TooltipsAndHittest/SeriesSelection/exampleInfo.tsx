@@ -60,3 +60,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const seriesSelectionExampleInfo = createExampleInfo(metaData);
+export default seriesSelectionExampleInfo;

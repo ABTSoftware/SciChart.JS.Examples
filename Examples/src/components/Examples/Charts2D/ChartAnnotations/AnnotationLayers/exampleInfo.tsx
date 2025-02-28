@@ -56,4 +56,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const annotationLayersExampleInfo = createExampleInfo(metaData);
+const annotationLayersExampleInfo = createExampleInfo(metaData);
+export default annotationLayersExampleInfo;

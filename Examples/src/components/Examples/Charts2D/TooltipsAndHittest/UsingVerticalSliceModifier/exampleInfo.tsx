@@ -60,3 +60,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const usingVerticalSliceModifierExampleInfo = createExampleInfo(metaData);
+export default usingVerticalSliceModifierExampleInfo;

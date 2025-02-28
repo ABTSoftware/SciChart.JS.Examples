@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const impulseChartExampleInfo = createExampleInfo(metaData);
+const impulseChartExampleInfo = createExampleInfo(metaData);
+export default impulseChartExampleInfo;

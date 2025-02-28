@@ -1,3 +1,4 @@
+import exp from "constants";
 import { createExampleInfo } from "../../exampleInfoUtils";
 import { IExampleMetadata } from "../../IExampleMetadata";
 
@@ -60,3 +61,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const customTypesExampleInfo = createExampleInfo(metaData);
+export default customTypesExampleInfo;

@@ -60,3 +60,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const multiplePointMarkersExampleInfo = createExampleInfo(metaData);
+export default multiplePointMarkersExampleInfo;

@@ -60,3 +60,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const lidar3DPointCloudExampleInfo = createExampleInfo(metaData);
+export default lidar3DPointCloudExampleInfo;

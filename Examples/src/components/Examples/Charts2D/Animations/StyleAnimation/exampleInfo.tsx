@@ -56,4 +56,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const styleAnimationExampleInfo = createExampleInfo(metaData);
+const styleAnimationExampleInfo = createExampleInfo(metaData);
+export default styleAnimationExampleInfo;

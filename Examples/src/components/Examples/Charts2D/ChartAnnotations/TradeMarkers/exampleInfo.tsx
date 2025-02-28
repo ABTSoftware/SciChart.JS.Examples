@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const tradeMarkerAnnotationsExampleInfo = createExampleInfo(metaData);
+const tradeMarkerAnnotationsExampleInfo = createExampleInfo(metaData);
+export default tradeMarkerAnnotationsExampleInfo;

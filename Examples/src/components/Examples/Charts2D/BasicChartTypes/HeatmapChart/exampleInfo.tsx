@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const heatmapChartExampleInfo = createExampleInfo(metaData);
+const heatmapChartExampleInfo = createExampleInfo(metaData);
+export default heatmapChartExampleInfo;

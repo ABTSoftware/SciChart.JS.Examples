@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const chartLegendsAPIExampleInfo = createExampleInfo(metaData);
+const chartLegendsAPIExampleInfo = createExampleInfo(metaData);
+export default chartLegendsAPIExampleInfo;

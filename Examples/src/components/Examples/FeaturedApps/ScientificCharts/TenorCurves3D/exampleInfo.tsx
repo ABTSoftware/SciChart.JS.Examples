@@ -60,3 +60,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const tenorCurvesExampleInfo = createExampleInfo(metaData);
+export default tenorCurvesExampleInfo;

@@ -60,3 +60,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const load500By500ExampleInfo = createExampleInfo(metaData);
+export default load500By500ExampleInfo;

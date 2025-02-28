@@ -62,4 +62,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const realtimeTickingStockChartsExampleInfo = createExampleInfo(metaData);
+const realtimeTickingStockChartsExampleInfo = createExampleInfo(metaData);
+export default realtimeTickingStockChartsExampleInfo;

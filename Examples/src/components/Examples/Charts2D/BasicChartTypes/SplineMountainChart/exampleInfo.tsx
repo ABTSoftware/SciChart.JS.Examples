@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const splineMountainChartExampleInfo = createExampleInfo(metaData);
+const splineMountainChartExampleInfo = createExampleInfo(metaData);
+export default splineMountainChartExampleInfo;

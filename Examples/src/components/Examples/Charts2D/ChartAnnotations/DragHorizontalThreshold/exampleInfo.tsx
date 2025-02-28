@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const dragHorizontalThresholdExampleInfo = createExampleInfo(metaData);
+const dragHorizontalThresholdExampleInfo = createExampleInfo(metaData);
+export default dragHorizontalThresholdExampleInfo;

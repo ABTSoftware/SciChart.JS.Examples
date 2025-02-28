@@ -57,3 +57,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const rotatedLabelsExampleInfo = createExampleInfo(metaData);
+export default rotatedLabelsExampleInfo;

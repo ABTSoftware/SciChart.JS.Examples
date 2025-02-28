@@ -59,4 +59,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const realtimeGhostedTracesExampleInfo = createExampleInfo(metaData);
+const realtimeGhostedTracesExampleInfo = createExampleInfo(metaData);
+export default realtimeGhostedTracesExampleInfo;
