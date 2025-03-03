@@ -1,7 +1,6 @@
 export interface IExampleMetadata {
     exampleTitle?: string;
     id: string; // another different unique id!!
-    exampleId: string; // Unique identifier for the example
     imagePath: string; // Path to the example's thumbnail image
     description: string; // General description of the example
     tips: string[]; // Array of tips related to the example

@@ -13,7 +13,7 @@ Each example consists of several components:
 
     -   In `BuilderApi/ChartFromJSON/exampleInfo.tsx`, metadata is set using the function `createExampleInfo` and includes fields such as:
         -   `reactComponent`: Specifies the React component name (e.g. "ChartFromJSON").
-        -   `id` and `exampleId`: Unique identifiers for the example.
+        -   `id`: Unique identifier for the example used as a key for the menu and throughout the app.
         -   `imagePath`: Filename for the example thumbnail.
         -   `description`: A detailed description with embedded markdown for emphasis.
         -   Framework-specific data under the `frameworks` object, where each framework (React, JavaScript, Angular) has its own title, pageTitle, metaDescription, subtitle, and optionally markdownContent.
@@ -63,13 +63,36 @@ Each example consists of several components:
     - **Update Metadata:**  
       Edit the metadata fields to reflect your new example:
         - Set `reactComponent` to the name of your React component.
-        - Choose unique values for `id` and `exampleId`.
+        - Choose unique value for `id`. The pattern is to use the menu path/directory path, but this is not requrired. Examples can be in multiple places in the menu. eg featuredApps_showcases_fancyExample.
         - Update `imagePath` with the new thumbnail image filename.
         - Revise the `description` to accurately describe your example.
         - Modify all framework-specific properties in the `frameworks` object (titles, pageTitles, metaDescriptions, and subtitles).
         - Ensure fields such as `path`, `filepath`, and any extra dependencies are updated as necessary.
 
     **Important:** Although metadata comments (e.g., "This metadata is computer generated") might suggest not to modify it, initial values must be provided by the developer. These values will feed into the dynamic example loading during the build. **IT IS ABSOLUTELY IMPERATIVE THAT THE COMMENTS ARE MAINTAINED IN THE CORRECT PLACE** as this file will be the target for generated content.
+
+    - **Run script to add example to the list known by the app**
+      `npm run generateExamplePaths`
+
+    - **Add to the menu structure in components\AppRouter\examples.ts**
+      Use the id you set earlier. Examples can be in multiple places in the menu.
+        ```
+        {
+          id: "multichart",
+          title: "Multiple Charts",
+          submenu: [
+              EXAMPLES_PAGES.chart2D_multiChart_syncMultiChart,
+              EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
+              EXAMPLES_PAGES.featuredApps_showcases_servertrafficdashboard,
+              // New entry
+              EXAMPLES_PAGES.featuredApps_showcases_fancyExample
+          ],
+        },
+        ```
+
+    ```
+
+    ```
 
 3. **Implement the Example Code**
 
@@ -101,6 +124,7 @@ Each example consists of several components:
     - Ensure that all three framework implementations (React, vanilla JavaScript/TypeScript, and Angular) are updated consistently and correctly point to shared drawing logic.
     - Verify that your metadata fields are updated accurately—even though some parts might be regenerated during the build, the initial configuration must be correct.
     - Familiarize yourself with the dynamic example loading process by examining [examplePages.ts](src/components/AppRouter/examplePages.ts) and [getExampleComponent.ts](src/components/AppRouter/getExampleComponent.ts).
+    - If the example does not show up, check that you ran `npm run generateExamplePaths` and that the example is listed in components\AppRouter\examplePaths.ts
 
 By following these detailed steps and referring to the provided examples in your repository (such as those in the BuilderApi directories), developers can add new examples that seamlessly integrate into the dynamically loaded system across all supported frameworks.
 
