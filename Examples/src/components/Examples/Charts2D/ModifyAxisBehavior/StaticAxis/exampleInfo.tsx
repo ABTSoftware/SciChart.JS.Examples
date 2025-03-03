@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DModifyAxisBehaviorStaticAxis",
+        reactComponent: "StaticAxis",
+        id: "chart2D_modifyAxisBehavior_StaticAxis",
         imagePath: "javascript-static-axis.jpg",
         description:
             "Demonstrates a realtime **JavaScript static axis chart** - where the ticks and gridlines are fixed, but the labels change.\nWith SciChart.js High Performance JavaScript Charts you can achieve this simply by setting isStaticAxis property to true on the X axis.",
@@ -55,3 +56,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const staticAxisExampleInfo = createExampleInfo(metaData);
+export default staticAxisExampleInfo;

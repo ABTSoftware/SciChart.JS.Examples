@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DChartAnnotationsDragHorizontalThreshold",
+        reactComponent: "DragHorizontalThreshold",
+        id: "chart2D_chartAnnotations_DragHorizontalThreshold",
         imagePath: "javascript-chart-drag-horizontal-threshold.jpg",
         description:
             "Demonstrates interaction by dragging vertical and horizontal line thresholds on a mountain chart. As the thresholds move, the chart colour updates. The vertical mountain fill is done using a separate renderableSeries and a dataFilter which reshapes the data to draw only the portion above the threshold.",
@@ -57,4 +58,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const dragHorizontalThresholdExampleInfo = createExampleInfo(metaData);
+const dragHorizontalThresholdExampleInfo = createExampleInfo(metaData);
+export default dragHorizontalThresholdExampleInfo;

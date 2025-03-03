@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DZoomingAndPanningOverviewModifier",
+        reactComponent: "Overview",
+        id: "chart2D_zoomAndPanAChart_Overview",
         imagePath: "javascript-overview-chart.jpg",
         description:
             "Demonstrates how to zoom and pan with an **Overview Chart** using SciChart.js, High Performance JavaScript Charts",
@@ -55,3 +56,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const overviewExampleInfo = createExampleInfo(metaData);
+export default overviewExampleInfo;

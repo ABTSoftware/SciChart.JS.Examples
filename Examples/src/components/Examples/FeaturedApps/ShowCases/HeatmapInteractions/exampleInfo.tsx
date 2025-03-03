@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsShowCasesHeatmapInteractions",
+        reactComponent: "HeatmapInteractions",
+        id: "featuredApps_showcases_richInteractions",
         imagePath: "javascript-heatmap-interactions.jpg",
         description:
             "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",
@@ -58,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const heatmapInteractionsExampleInfo = createExampleInfo(metaData);
+export default heatmapInteractionsExampleInfo;

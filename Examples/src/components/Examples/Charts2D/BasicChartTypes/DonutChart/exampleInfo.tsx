@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesDonutChart",
+        reactComponent: "DonutChart",
+        id: "chart2D_basicCharts_DonutChart",
         imagePath: "javascript-donut-chart.jpg",
         description:
             "This demo demonstrates how create a **JavaScript Donut Chart** with our powerful JavaScript library, SciChart.js.",
@@ -57,4 +58,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const donutChartExampleInfo = createExampleInfo(metaData);
+const donutChartExampleInfo = createExampleInfo(metaData);
+export default donutChartExampleInfo;

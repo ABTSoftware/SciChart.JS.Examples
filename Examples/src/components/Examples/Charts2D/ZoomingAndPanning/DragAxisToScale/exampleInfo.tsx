@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DZoomingAndPanningDragAxisToScale",
+        reactComponent: "DragAxisToScale",
+        id: "chart2D_zoomAndPanAChart_DragAxisToScale",
         imagePath: "drag-axis-on-javascript-charts-to-scale-or-pan.jpg",
         description:
             "Demonstrates how to **scale or pan the Axis on a JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
@@ -58,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const dragAxisToScaleExampleInfo = createExampleInfo(metaData);
+export default dragAxisToScaleExampleInfo;

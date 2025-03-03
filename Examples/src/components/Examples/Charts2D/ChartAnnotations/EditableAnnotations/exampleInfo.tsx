@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DChartAnnotationsEditableAnnotations",
+        reactComponent: "EditableAnnotations",
+        id: "chart2D_chartAnnotations_EditableAnntations",
         imagePath: "javascript-chart-editable-annotations.jpg",
         description:
             "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a **JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
@@ -57,4 +58,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const editableAnnotationsExampleInfo = createExampleInfo(metaData);
+const editableAnnotationsExampleInfo = createExampleInfo(metaData);
+export default editableAnnotationsExampleInfo;

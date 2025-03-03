@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsScientificChartsAudioAnalyzer",
+        reactComponent: "AudioAnalyzer",
+        id: "featuredApps_scientificCharts_AudioAnalyzerDemo",
         imagePath: "javascript-audio-analyzer-fft-example.jpg",
         description:
             "Demonstrates how to create a **JavaScript Frequency / Audio Analyzer** with Fourier Transform (Frequency spectra) and a real-time frequency history using heatmaps. ***Note: this example requires microphone permissions to run.***",
@@ -62,3 +63,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const audioAnalyzerExampleInfo = createExampleInfo(metaData);
+export default audioAnalyzerExampleInfo;

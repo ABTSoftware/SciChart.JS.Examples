@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DAnimationsGenericAnimation",
+        reactComponent: "GenericAnimation",
+        id: "chart2D_Animations_GenericAnimation",
         imagePath: "javascript-generic-animation.jpg",
         description:
             "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",
@@ -54,4 +55,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const genericAnimationExampleInfo = createExampleInfo(metaData);
+const genericAnimationExampleInfo = createExampleInfo(metaData);
+export default genericAnimationExampleInfo;

@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesTextSeriesChart",
+        reactComponent: "TextSeriesChart",
+        id: "chart2D_basicCharts_TextChart",
         imagePath: "javascript-text-chart.jpg",
         description:
             "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",
@@ -54,4 +55,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const textChartExampleInfo = createExampleInfo(metaData);
+const textChartExampleInfo = createExampleInfo(metaData);
+export default textChartExampleInfo;

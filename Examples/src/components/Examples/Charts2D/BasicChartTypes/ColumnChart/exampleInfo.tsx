@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesColumnChart",
+        reactComponent: "ColumnChart",
+        id: "chart2D_basicCharts_ColumnChart",
         imagePath: "javascript-column-chart.jpg",
         description:
             "Creates a **JavaScript Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
@@ -57,4 +58,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const columnChartExampleInfo = createExampleInfo(metaData);
+const columnChartExampleInfo = createExampleInfo(metaData);
+export default columnChartExampleInfo;

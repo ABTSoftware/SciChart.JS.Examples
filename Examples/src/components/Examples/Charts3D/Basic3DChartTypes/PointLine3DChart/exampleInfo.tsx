@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts3DBasic3DChartTypesPointLine3DChart",
+        reactComponent: "PointLine3DChart",
+        id: "chart3D_basic3DChartTypes_PointLine3DChart",
         imagePath: "javascript-3d-point-line-chart.jpg",
         description:
             "Our team demonstrates how to create a **JavaScript 3D Point Line Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
@@ -58,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const pointLine3DChartExampleInfo = createExampleInfo(metaData);
+export default pointLine3DChartExampleInfo;

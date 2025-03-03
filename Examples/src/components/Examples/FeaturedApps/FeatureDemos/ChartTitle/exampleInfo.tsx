@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsFeatureDemosChartTitle",
+        reactComponent: "FeatureChartTitle",
+        id: "featuredApps_featureDemos_chartTitle",
         imagePath: "javascript-chart-title.jpg",
         description:
             "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",
@@ -55,3 +56,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const chartTitleExampleInfo = createExampleInfo(metaData);
+export default chartTitleExampleInfo;

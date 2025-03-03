@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesStackedColumnSideBySide",
+        reactComponent: "StackedColumnSideBySide",
+        id: "chart2D_basicCharts_StackedColumnSideBySide",
         imagePath: "javascript-stacked-grouped-column-chart.jpg",
         description:
             "We have created a simple example that shows you how to create a **JavaScript Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",
@@ -58,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const stackedColumnSideBySideExampleInfo = createExampleInfo(metaData);
+export default stackedColumnSideBySideExampleInfo;

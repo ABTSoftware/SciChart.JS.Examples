@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesFanChart",
+        reactComponent: "FanChart",
+        id: "chart2D_basicCharts_FanChart",
         imagePath: "javascript-fan-chart.jpg",
         description:
             "Here we demonstrate how to create a **JavaScript Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",
@@ -57,4 +58,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const fanChartExampleInfo = createExampleInfo(metaData);
+const fanChartExampleInfo = createExampleInfo(metaData);
+export default fanChartExampleInfo;

@@ -1,10 +1,12 @@
+import { defer } from "rxjs";
 import { createExampleInfo } from "../../../exampleInfoUtils";
 import { IExampleMetadata } from "../../../IExampleMetadata";
 
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DTooltipsAndHittestHitTestAPI",
+        reactComponent: "HitTestAPI",
+        id: "chart2D_tooltipsAndHittest_HitTestApi",
         imagePath: "javascript-chart-hit-test-on-click.jpg",
         description:
             "Demonstrates how to add **Hit-Test on click behavior** to a chart using SciChart.js, High Performance JavaScript Charts",
@@ -58,3 +60,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const hitTestApiExampleInfo = createExampleInfo(metaData);
+export default hitTestApiExampleInfo;

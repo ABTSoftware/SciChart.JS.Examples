@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "BuilderApiSharedData",
+        reactComponent: "SharedData",
+        id: "builderApi_SharedData",
         imagePath: "javascript-shared-data.jpg",
         description:
             "Demonstrates how to use the Builder Api to create **Reusable Chart Templates** using SciChart.js Builder API. Use this method when you want to create a template for a chart and add data later.",
@@ -58,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const sharedDataExampleInfo = createExampleInfo(metaData);
+export default sharedDataExampleInfo;

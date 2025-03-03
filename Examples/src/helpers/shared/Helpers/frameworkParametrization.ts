@@ -81,5 +81,6 @@ export const useExampleRouteParams = () => {
 
     const currentExample = EXAMPLES_PAGES[examplePageKey];
 
-    return { isIFrame: false, isHomePage, framework, currentExample };
+    const res = { isIFrame: false, isHomePage, framework, currentExample };
+    return res;
 };

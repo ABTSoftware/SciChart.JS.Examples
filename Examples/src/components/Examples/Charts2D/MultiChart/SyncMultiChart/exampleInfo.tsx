@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DMultiChartSyncMultiChart",
+        reactComponent: "SyncMultiChart",
+        id: "chart2D_multiChart_syncMultiChart",
         imagePath: "javascript-sync-multi-chart.jpg",
         description:
             "This example demonstrates how to synchronise layout and visible range across multiple dynamic charts, and how to synchronise series with an overview chart.using SciChart.js, High Performance JavaScript Charts",
@@ -60,3 +61,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const syncMultiChartExampleInfo = createExampleInfo(metaData);
+export default syncMultiChartExampleInfo;

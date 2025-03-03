@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DStylingAndThemingUsingThemeManager",
+        reactComponent: "UsingThemeManager",
+        id: "chart2D_stylingAndTheming_UsingThemeManager",
         imagePath: "javascript-chart-themes.jpg",
         description: "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
         tips: [],
@@ -57,3 +58,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const usingThemeManagerExampleInfo = createExampleInfo(metaData);
+export default usingThemeManagerExampleInfo;

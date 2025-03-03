@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesBubbleChart",
+        reactComponent: "BubbleChart",
+        id: "chart2D_basicCharts_BubbleChart",
         imagePath: "javascript-bubble-chart.jpg",
         description:
             "Demonstrates how to create a **JavaScript Bubble Chart** This is a JavaScript Chart type which draws point-markers (Ellipse, Square, Triangle, Circle) at X,Y locations",
@@ -58,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const bubbleChartExampleInfo = createExampleInfo(metaData);
+export default bubbleChartExampleInfo;

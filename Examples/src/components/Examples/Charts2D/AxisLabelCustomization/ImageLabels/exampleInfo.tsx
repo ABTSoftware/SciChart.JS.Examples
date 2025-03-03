@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DAxisLabelCustomizationImageLabels",
+        reactComponent: "ImageLabels",
+        id: "chart2D_axisLabelCustomization_ImageLabels",
         imagePath: "javascript-image-labels.jpg",
         description:
             "Demonstrates how to use **Images as Labels** using SciChart.js, High Performance JavaScript Charts",
@@ -55,3 +56,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const imageLabelsExampleInfo = createExampleInfo(metaData);
+export default imageLabelsExampleInfo;

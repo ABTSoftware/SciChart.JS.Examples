@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesSplineMountainChart",
+        reactComponent: "SplineMountainChart",
+        id: "chart2D_basicCharts_SplineMountainChart",
         imagePath: "javascript-spline-mountain-chart.jpg",
         description:
             "This example showcases how to create a **JavaScript Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",
@@ -57,4 +58,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const splineMountainChartExampleInfo = createExampleInfo(metaData);
+const splineMountainChartExampleInfo = createExampleInfo(metaData);
+export default splineMountainChartExampleInfo;

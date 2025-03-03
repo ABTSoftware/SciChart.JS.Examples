@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesDigitalLineChart",
+        reactComponent: "DigitalLineChart",
+        id: "chart2D_basicCharts_DigitalLineChart",
         imagePath: "javascript-digital-line-chart.jpg",
         description:
             "Demonstrates how to create a **JavaScript Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",
@@ -57,4 +58,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const digitalLineChartExampleInfo = createExampleInfo(metaData);
+const digitalLineChartExampleInfo = createExampleInfo(metaData);
+export default digitalLineChartExampleInfo;

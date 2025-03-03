@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesErrorBarsChart",
+        reactComponent: "ErrorBarsChart",
+        id: "chart2D_basicCharts_ErrorBarsChart",
         imagePath: "javascript-error-bars-chart.jpg",
         description:
             "This SciChart demo demonstrates how to create a **JavaScript Error Bars Chart** using SciChart.js our High Performance JavaScript Chart component.",
@@ -57,4 +58,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const errorBarsChartExampleInfo = createExampleInfo(metaData);
+const errorBarsChartExampleInfo = createExampleInfo(metaData);
+export default errorBarsChartExampleInfo;

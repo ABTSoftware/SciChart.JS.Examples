@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DChartAnnotationsTradeMarkers",
+        reactComponent: "TradeMarkers",
+        id: "chart2D_chartAnnotations_TradeMarkers",
         imagePath: "javascript-stock-chart-buy-sell-markers.jpg",
         description:
             "Demonstrates how to add Hoverable Buy/Sell Markers (annotations) and News/Dividend bullets to a **JavaScript Stock Chart** using SciChart.js, High Performance JavaScript Charts",
@@ -57,4 +58,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const tradeMarkerAnnotationsExampleInfo = createExampleInfo(metaData);
+const tradeMarkerAnnotationsExampleInfo = createExampleInfo(metaData);
+export default tradeMarkerAnnotationsExampleInfo;

@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesRealTimeMountainChart",
+        reactComponent: "RealTimeMountainChart",
+        id: "chart2D_basicCharts_RealtimeMountainChart",
         imagePath: "javascript-realtime-mountain-chart.jpg",
         description:
             "This example demonstrates how create a **JavaScript Mountain Chart** with animated realtime updates using SciChart.js, our High Performance JavaScript Charts.",
@@ -57,4 +58,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const realTimeMountainChartExampleInfo = createExampleInfo(metaData);
+const realTimeMountainChartExampleInfo = createExampleInfo(metaData);
+export default realTimeMountainChartExampleInfo;

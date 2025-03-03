@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DAxisLabelCustomizationMultiLineLabels",
+        reactComponent: "MultiLineLabels",
+        id: "chart2D_axisLabelCustomization_MultiLineLabels",
         imagePath: "javascript-multiline-labels.jpg",
         description:
             "Demonstrates how to use **Multi-Line Text** for axis labels using SciChart.js, High Performance JavaScript Charts",
@@ -58,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const multiLineLabelsExampleInfo = createExampleInfo(metaData);
+export default multiLineLabelsExampleInfo;

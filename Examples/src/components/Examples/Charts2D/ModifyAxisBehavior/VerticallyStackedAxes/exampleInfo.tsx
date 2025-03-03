@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DModifyAxisBehaviorVerticallyStackedAxes",
+        reactComponent: "VerticallyStackedAxes",
+        id: "chart2D_modifyAxisBehavior_VerticallyStackedAxes",
         imagePath: "javascript-vertically-stacked-axes.jpg",
         description:
             "Vertically-Stacked Axis in SciChart.js allows several traces with independent Y-axis to be placed on the same chart, stacking the Y-Axis and enabling an ECG/EEG-style trace. Great for neurological apps, medical apps, earthquake monitoring.",
@@ -58,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const verticallyStackedAxesExampleInfo = createExampleInfo(metaData);
+export default verticallyStackedAxesExampleInfo;

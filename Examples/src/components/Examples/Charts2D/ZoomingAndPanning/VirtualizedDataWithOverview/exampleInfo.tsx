@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DZoomingAndPanningVirtualizedDataWithOverview",
+        reactComponent: "VirtualizedDataOverview",
+        id: "chart2D_zoomAndPanAChart_VirtualizedDataOverview",
         imagePath: "virtualized-data-javascript-chart.jpg",
         description:
             "Whenever the visible range changes, the chart requests data from the server, which returns a reduced view of the dataset, in this case using a very simple `take every nth point` method. The overview is created manually because it does not share data with the main chart but has a reduced view of the entire dataset.",
@@ -60,3 +61,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const virtualizedDataOverviewExampleInfo = createExampleInfo(metaData);
+export default virtualizedDataOverviewExampleInfo;

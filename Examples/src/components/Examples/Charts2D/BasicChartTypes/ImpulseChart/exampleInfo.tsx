@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesImpulseChart",
+        reactComponent: "ImpulseChart",
+        id: "chart2D_basicCharts_ImpulseChart",
         imagePath: "javascript-impulse-chart.jpg",
         description:
             "Use this demonstration to learn how to create a **JavaScript Impulse Chart** using SciChart.js, our own High Performance JavaScript Chart Library.",
@@ -57,4 +58,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const impulseChartExampleInfo = createExampleInfo(metaData);
+const impulseChartExampleInfo = createExampleInfo(metaData);
+export default impulseChartExampleInfo;

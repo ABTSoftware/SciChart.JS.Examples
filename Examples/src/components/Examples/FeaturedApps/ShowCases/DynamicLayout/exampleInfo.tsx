@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsShowCasesDynamicLayout",
+        reactComponent: "DynamicLayout",
+        id: "featuredApps_showcases_dynamicLayout",
         imagePath: "javascript-dynamic-layout.jpg",
         description:
             "Demonstrates a custom modifier which can convert from single chart to grid layout and back using SciChart.js, High Performance JavaScript Charts",
@@ -58,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const dynamicLayoutExampleInfo = createExampleInfo(metaData);
+export default dynamicLayoutExampleInfo;

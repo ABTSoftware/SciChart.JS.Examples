@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DModifyAxisBehaviorCentralAxes",
+        reactComponent: "CentralAxes",
+        id: "chart2D_modifyAxisBehavior_CentralAxes",
         imagePath: "javascript-central-axes.jpg",
         description:
             "Demonstrates how to create a **JavaScript Chart with central axes** using SciChart.js, High Performance JavaScript Charts",
@@ -58,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const centralAxesExampleInfo = createExampleInfo(metaData);
+export default centralAxesExampleInfo;

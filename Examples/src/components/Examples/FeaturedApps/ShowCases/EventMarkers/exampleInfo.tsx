@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsShowCasesEventMarkers",
+        reactComponent: "EventMarkers",
+        id: "featuredApps_showcases_eventMarkers",
         imagePath: "javascript-draggable-event-markers.jpg",
         description:
             "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
@@ -58,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const eventMarkersExampleInfo = createExampleInfo(metaData);
+export default eventMarkersExampleInfo;

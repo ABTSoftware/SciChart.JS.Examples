@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsFeatureDemosSubChartsAPI",
+        reactComponent: "SubchartsGrid",
+        id: "featuredApps_featureDemos_subchartsGrid",
         imagePath: "javascript-subcharts-grid.jpg",
         description:
             "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",
@@ -58,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const subchartsGridExampleInfo = createExampleInfo(metaData);
+export default subchartsGridExampleInfo;

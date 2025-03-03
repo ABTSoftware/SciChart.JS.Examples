@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesScatterChart",
+        reactComponent: "ScatterChart",
+        id: "chart2D_basicCharts_ScatterChart",
         imagePath: "javascript-scatter-chart.jpg",
         description:
             "We have created an example that demonstrates how to create a **JavaScript Scatter Chart** using SciChart.js",
@@ -57,4 +58,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const scatterChartExampleInfo = createExampleInfo(metaData);
+const scatterChartExampleInfo = createExampleInfo(metaData);
+export default scatterChartExampleInfo;

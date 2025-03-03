@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DStylingAndThemingLineSplittingThresholds",
+        reactComponent: "LineSplittingThresholds",
+        id: "chart2D_stylingAndTheming_LineSplittingThresholds",
         imagePath: "javascript-chart-line-splitting-thresholds.jpg",
         description:
             "Demonstrates how to split lines into multiple segments so they can be individually colored according to thresholds, using SciChart.js, High Performance JavaScript Charts. This uses a RenderDataTransform to calculate the intersections between the data and the thresholds and add additional points.",
@@ -58,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const lineSplittingThresholdsExampleInfo = createExampleInfo(metaData);
+export default lineSplittingThresholdsExampleInfo;

@@ -151,11 +151,7 @@ export default function App() {
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
                     {!isHomePage ? (
-                        <AppDetailsRouter 
-                            currentExample={currentExample} 
-                            seeAlso={seeAlso} 
-                            theme={theme} 
-                        />
+                        <AppDetailsRouter currentExample={currentExample} seeAlso={seeAlso} theme={theme} />
                     ) : (
                         <div className={classes.MainAppWrapper}>
                             {!isMedium ? (

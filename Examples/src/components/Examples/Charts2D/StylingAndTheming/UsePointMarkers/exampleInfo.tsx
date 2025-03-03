@@ -1,10 +1,12 @@
+import { use } from "chai";
 import { createExampleInfo } from "../../../exampleInfoUtils";
 import { IExampleMetadata } from "../../../IExampleMetadata";
 
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DStylingAndThemingUsePointMarkers",
+        reactComponent: "UsePointMarkers",
+        id: "chart2D_stylingAndTheming_UsePointMarkers",
         imagePath: "javascript-chart-custom-pointmarkers.jpg",
         description:
             "Demonstrates how to create **custom data-point markers** using SciChart.js, High Performance JavaScript Charts",
@@ -58,3 +60,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const usePointMarkersExampleInfo = createExampleInfo(metaData);
+export default usePointMarkersExampleInfo;

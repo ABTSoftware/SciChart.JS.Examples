@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DZoomingAndPanningMultipleZoomPanModifiers",
+        reactComponent: "MultipleZoomPanModifiers",
+        id: "chart2D_zoomAndPanAChart_MultipleChartModifiers",
         imagePath: "zoom-pan-multiple-modifiers.jpg",
         description:
             "Demonstrates different **Zoom and Pan Modifiers on a JavaScript Chart** including Mousewheel, Pinchzoom, Rubber-band zoom.",
@@ -58,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const zoomAndPanWithMultipleChartModifiersExampleInfo = createExampleInfo(metaData);
+export default zoomAndPanWithMultipleChartModifiersExampleInfo;

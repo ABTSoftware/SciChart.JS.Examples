@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DChartAnnotationsAnnotationLayers",
+        reactComponent: "AnnotationLayers",
+        id: "chart2D_chartAnnotations_AnnotationLayers",
         imagePath: "javascript-chart-annotation-layers.jpg",
         description:
             "Demonstrates how Annotation layering a **JavaScript Chart** using SciChart.js, High Performance JavaScript Charts\nNotice the difference between annotations rendered to SVG and Canvas, as well as **annotationLayer** property effect.",
@@ -54,4 +55,5 @@ const metaData: IExampleMetadata =
     };
 //// End of computer generated metadata
 
-export const annotationLayersExampleInfo = createExampleInfo(metaData);
+const annotationLayersExampleInfo = createExampleInfo(metaData);
+export default annotationLayersExampleInfo;

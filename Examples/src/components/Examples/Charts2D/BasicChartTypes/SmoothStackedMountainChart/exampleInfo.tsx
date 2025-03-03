@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesSmoothStackedMountainChart",
+        reactComponent: "SmoothStackedMountainChart",
+        id: "chart2D_basicCharts_SmoothStackedMountainChart",
         imagePath: "javascript-smooth-stacked-mountain-chart.jpg",
         description:
             "Learn how to make a **JavaScript Smooth Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
@@ -58,3 +59,4 @@ const metaData: IExampleMetadata =
 //// End of computer generated metadata
 
 export const smoothStackedMountainChartExampleInfo = createExampleInfo(metaData);
+export default smoothStackedMountainChartExampleInfo;
