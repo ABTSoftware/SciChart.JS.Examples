@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "Column3DChart",
         id: "chart3D_basic3DChartTypes_Column3DChart",
-        exampleId: "Charts3DBasic3DChartTypesColumn3DChart",
         imagePath: "javascript-3d-column-chart.jpg",
         description:
             "The SciChart.js **JavaScript 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",

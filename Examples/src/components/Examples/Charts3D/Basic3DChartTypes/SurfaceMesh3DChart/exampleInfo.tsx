@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "SurfaceMesh3DChart",
         id: "chart3D_basic3DChartTypes_SurfaceMesh3DChart",
-        exampleId: "Charts3DBasic3DChartTypesSurfaceMesh3DChart",
         imagePath: "javascript-3d-surface-mesh-chart.jpg",
         description:
             "Learn how to create a detailed **JavaScript 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",

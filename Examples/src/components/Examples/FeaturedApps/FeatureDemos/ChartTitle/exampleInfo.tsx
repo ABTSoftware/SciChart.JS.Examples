@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "FeatureChartTitle",
         id: "featuredApps_featureDemos_chartTitle",
-        exampleId: "FeaturedAppsFeatureDemosChartTitle",
         imagePath: "javascript-chart-title.jpg",
         description:
             "A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.",

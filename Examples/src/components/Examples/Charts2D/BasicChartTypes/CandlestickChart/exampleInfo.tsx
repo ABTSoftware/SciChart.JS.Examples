@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "CandlestickChart",
         id: "chart2D_basicCharts_CandlestickChart",
-        exampleId: "Charts2DCandlestickChart",
         imagePath: "javascript-candlestick-chart.jpg",
         description:
             "Demonstrates how to create a JavaScript Candlestick Chart using SciChart.js, High Performance JavaScript Charts",

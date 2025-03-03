@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "StylingInCode",
         id: "chart2D_stylingAndTheming_StylingInCode",
-        exampleId: "Charts2DStylingAndThemingStylingInCode",
         imagePath: "javascript-chart-styling-theming-in-code.jpg",
         description:
             "Demonstrates how to **style or theme a JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",

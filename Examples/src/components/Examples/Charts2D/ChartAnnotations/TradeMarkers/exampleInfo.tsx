@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "TradeMarkers",
         id: "chart2D_chartAnnotations_TradeMarkers",
-        exampleId: "Charts2DChartAnnotationsTradeMarkers",
         imagePath: "javascript-stock-chart-buy-sell-markers.jpg",
         description:
             "Demonstrates how to add Hoverable Buy/Sell Markers (annotations) and News/Dividend bullets to a **JavaScript Stock Chart** using SciChart.js, High Performance JavaScript Charts",

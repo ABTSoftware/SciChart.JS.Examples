@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "EditableAnnotations",
         id: "chart2D_chartAnnotations_EditableAnntations",
-        exampleId: "Charts2DChartAnnotationsEditableAnnotations",
         imagePath: "javascript-chart-editable-annotations.jpg",
         description:
             "Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a **JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",

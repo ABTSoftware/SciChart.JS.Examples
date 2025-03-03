@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "AudioAnalyzer",
         id: "featuredApps_scientificCharts_AudioAnalyzerDemo",
-        exampleId: "FeaturedAppsScientificChartsAudioAnalyzer",
         imagePath: "javascript-audio-analyzer-fft-example.jpg",
         description:
             "Demonstrates how to create a **JavaScript Frequency / Audio Analyzer** with Fourier Transform (Frequency spectra) and a real-time frequency history using heatmaps. ***Note: this example requires microphone permissions to run.***",

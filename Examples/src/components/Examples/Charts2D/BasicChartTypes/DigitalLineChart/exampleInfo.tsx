@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "DigitalLineChart",
         id: "chart2D_basicCharts_DigitalLineChart",
-        exampleId: "Charts2DBasicChartTypesDigitalLineChart",
         imagePath: "javascript-digital-line-chart.jpg",
         description:
             "Demonstrates how to create a **JavaScript Digital Line Chart** using SciChart.js, our powerful JavaScript Charts",

@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "HeatmapInteractions",
         id: "featuredApps_showcases_richInteractions",
-        exampleId: "FeaturedAppsShowCasesHeatmapInteractions",
         imagePath: "javascript-heatmap-interactions.jpg",
         description:
             "Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance JavaScript Charts",

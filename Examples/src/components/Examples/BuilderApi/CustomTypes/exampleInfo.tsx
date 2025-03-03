@@ -7,7 +7,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "CustomTypes",
         id: "builderApi_CustomTypes",
-        exampleId: "BuilderApiCustomTypes",
         imagePath: "javascript-custom-types.jpg",
         description:
             "Demonstrates how to use the Builder Api with **Custom Types** using SciChart.js, High Performance JavaScript Charts",

@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "RealtimeTickingStockCharts",
         id: "chart2D_createStockCharts_RealtimeTickingStockCharts",
-        exampleId: "Charts2DCreateStockChartsRealtimeTickingStockCharts",
         imagePath: "javascript-realtime-ticking-stock-charts.jpg",
         description:
             "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",

@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "DepthChart",
         id: "chart2D_createStockCharts_DepthChart",
-        exampleId: "Charts2DCreateStockChartsDepthChart",
         imagePath: "javascript-depth-chart.jpg",
         description:
             "How to create a Market Depth (Order Book) JavaScript Chart using Mountain Series and a Custom Modifier",

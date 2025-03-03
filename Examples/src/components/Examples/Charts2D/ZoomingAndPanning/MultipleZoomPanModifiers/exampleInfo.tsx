@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "MultipleZoomPanModifiers",
         id: "chart2D_zoomAndPanAChart_MultipleChartModifiers",
-        exampleId: "Charts2DZoomingAndPanningMultipleZoomPanModifiers",
         imagePath: "zoom-pan-multiple-modifiers.jpg",
         description:
             "Demonstrates different **Zoom and Pan Modifiers on a JavaScript Chart** including Mousewheel, Pinchzoom, Rubber-band zoom.",

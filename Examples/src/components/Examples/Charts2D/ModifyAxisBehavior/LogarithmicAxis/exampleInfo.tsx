@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "LogarithmicAxis",
         id: "chart2D_modifyAxisBehavior_LogarithmicAxis",
-        exampleId: "Charts2DModifyAxisBehaviorLogarithmicAxis",
         imagePath: "javascript-chart-logarithmic-axis.jpg",
         description:
             "Demonstrates how to create a **JavaScript Chart with Logarithmic axis** using SciChart.js, High Performance JavaScript Charts",

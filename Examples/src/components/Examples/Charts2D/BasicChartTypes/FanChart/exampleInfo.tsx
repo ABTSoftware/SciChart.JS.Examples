@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "FanChart",
         id: "chart2D_basicCharts_FanChart",
-        exampleId: "Charts2DBasicChartTypesFanChart",
         imagePath: "javascript-fan-chart.jpg",
         description:
             "Here we demonstrate how to create a **JavaScript Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",

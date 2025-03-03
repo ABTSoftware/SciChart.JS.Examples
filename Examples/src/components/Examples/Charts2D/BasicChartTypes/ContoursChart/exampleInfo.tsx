@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "ContoursChart",
         id: "chart2D_basicCharts_ContourChart",
-        exampleId: "Charts2DBasicChartTypesContoursChart",
         imagePath: "javascript-heatmap-chart-with-contours.jpg",
         description:
             "Our Contours Chart example demonstrates how to create a **JavaScript Contour-map Chart** using our powerful JavaScript Chart Library.",

@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "FeatureAxisLayout",
         id: "featuredApps_featureDemos_axisLayout",
-        exampleId: "FeaturedAppsFeatureDemosAxisLayout",
         imagePath: "javascript-axis-layout.jpg",
         description:
             "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",

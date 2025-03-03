@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "SyncMultiChart",
         id: "chart2D_multiChart_syncMultiChart",
-        exampleId: "Charts2DMultiChartSyncMultiChart",
         imagePath: "javascript-sync-multi-chart.jpg",
         description:
             "This example demonstrates how to synchronise layout and visible range across multiple dynamic charts, and how to synchronise series with an overview chart.using SciChart.js, High Performance JavaScript Charts",

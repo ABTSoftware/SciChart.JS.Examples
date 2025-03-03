@@ -7,7 +7,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "OilAndGasDashboard",
         id: "featuredApps_showcases_oilandgasdashboard",
-        exampleId: "FeaturedAppsShowCasesOilAndGasDashboard",
         imagePath: "javascript-oil-gas-explorer-dashboard-charts.jpg",
         description:
             "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",

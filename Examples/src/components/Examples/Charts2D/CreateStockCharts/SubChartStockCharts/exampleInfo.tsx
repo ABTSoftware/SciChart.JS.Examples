@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "SubChartStockCharts",
         id: "chart2D_createStockCharts_SubchartStockCharts",
-        exampleId: "Charts2DCreateStockChartsSubChartStockCharts",
         imagePath: "javascript-subcharts-multi-pane-stock-charts.jpg",
         description:
             "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",

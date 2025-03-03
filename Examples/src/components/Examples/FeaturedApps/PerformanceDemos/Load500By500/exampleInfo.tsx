@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "Load500By500",
         id: "featuredApps_performanceDemos_Load500By500",
-        exampleId: "FeaturedAppsPerformanceDemosLoad500By500",
         imagePath: "javascript-chart-load-500-series-by-500-points.jpg",
         description:
             "Demonstrates loading **500 series, each with 500 points (250k points total) instantly**. Click the **Reload** button at the bottom of the demo to see the chart draw again.",

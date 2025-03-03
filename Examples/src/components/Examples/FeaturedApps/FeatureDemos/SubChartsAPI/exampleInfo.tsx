@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "SubchartsGrid",
         id: "featuredApps_featureDemos_subchartsGrid",
-        exampleId: "FeaturedAppsFeatureDemosSubChartsAPI",
         imagePath: "javascript-subcharts-grid.jpg",
         description:
             "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.",

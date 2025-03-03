@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "WaterfallChart",
         id: "featuredApps_scientificCharts_WaterfallChartDemo",
-        exampleId: "FeaturedAppsScientificChartsInteractiveWaterfallChart",
         imagePath: "javascript-interactive-waterfall-chart.jpg",
         description:
             "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",

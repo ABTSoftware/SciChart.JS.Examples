@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "GenericAnimation",
         id: "chart2D_Animations_GenericAnimation",
-        exampleId: "Charts2DAnimationsGenericAnimation",
         imagePath: "javascript-generic-animation.jpg",
         description:
             "Demonstrates how to run **Generic Animation** using SciChart.js, High Performance JavaScript Charts",

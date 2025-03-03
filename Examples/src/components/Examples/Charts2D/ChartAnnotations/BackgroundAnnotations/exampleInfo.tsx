@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "BackgroundAnnotations",
         id: "chart2D_chartAnnotations_BackgroundAnnotations",
-        exampleId: "Charts2DChartAnnotationsBackgroundAnnotations",
         imagePath: "javascript-background-annotations.jpg",
         description:
             "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js, High Performance JavaScript Charts",

@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "VitalSignsMonitorDemo",
         id: "featuredApps_medicalCharts_VitalSignsMonitorDemo",
-        exampleId: "FeaturedAppsMedicalChartsVitalSignsMonitorDemo",
         imagePath: "javascript-vital-signs-ecg-medical-chart-example.jpg",
         description:
             "Showcases how SciChart.js can be used in a **Medical context**, drawing ECGs with our High Performance JavaScript Charts",

@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "CustomFilters",
         id: "chart2D_filters_CustomFilters",
-        exampleId: "Charts2DFiltersCustomFilters",
         imagePath: "javascript-custom-filters.jpg",
         description:
             "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",

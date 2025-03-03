@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "PercentageChange",
         id: "chart2D_filters_PercentageChange",
-        exampleId: "Charts2DFiltersPercentageChange",
         imagePath: "javascript-percentage-change.jpg",
         description:
             "Demonstrates how to use a ScaleOffsetFilter to convert data to a **Percentage Change** with realtime updates, using SciChart.js, High Performance JavaScript Charts",

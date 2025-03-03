@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "DataLabels",
         id: "chart2D_stylingAndTheming_DataLabels",
-        exampleId: "Charts2DStylingAndThemingDataLabels",
         imagePath: "javascript-datalabels-chart.jpg",
         description: "Shows how you can add **Data Labels** to a chart using SciChart.js",
         tips: [],

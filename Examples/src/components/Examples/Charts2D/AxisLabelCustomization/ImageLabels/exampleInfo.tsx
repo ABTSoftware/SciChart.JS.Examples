@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "ImageLabels",
         id: "chart2D_axisLabelCustomization_ImageLabels",
-        exampleId: "Charts2DAxisLabelCustomizationImageLabels",
         imagePath: "javascript-image-labels.jpg",
         description:
             "Demonstrates how to use **Images as Labels** using SciChart.js, High Performance JavaScript Charts",

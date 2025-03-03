@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "DatapointSelection",
         id: "chart2D_tooltipsAndHittest_DataPointSelection",
-        exampleId: "Charts2DTooltipsAndHittestDatapointSelection",
         imagePath: "javascript-datapoint-selection.jpg",
         description:
             "Demonstrates how to **Select Data Points** on a chart using SciChart.js, High Performance JavaScript Charts",

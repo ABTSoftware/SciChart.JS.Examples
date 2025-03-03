@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "UsingCursorModifierTooltips",
         id: "chart2D_tooltipsAndHittest_UsingCursorModifierTooltips",
-        exampleId: "Charts2DTooltipsAndHittestUsingCursorModifierTooltips",
         imagePath: "javascript-chart-cursormodifier-crosshairs.jpg",
         description:
             "Demonstrates how to create **crosshairs on mouseover** using SciChart.js, High Performance JavaScript Charts",

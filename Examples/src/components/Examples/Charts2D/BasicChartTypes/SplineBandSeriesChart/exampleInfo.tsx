@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "SplineBandSeriesChart",
         id: "chart2D_basicCharts_SplineBandChart",
-        exampleId: "Charts2DBasicChartTypesSplineBandSeriesChart",
         imagePath: "javascript-spline-band-chart.jpg",
         description:
             "Demonstrates how to create a **JavaScript Spline Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Software",

@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "PerPointColoring",
         id: "chart2D_stylingAndTheming_PerPointColoring",
-        exampleId: "Charts2DStylingAndThemingPerPointColoring",
         imagePath: "javascript-chart-color-points-individually-with-paletteprovider.jpg",
         description:
             "Demonstrates how create **JavaScript Charts with per-point coloring** using SciChart.js, High Performance JavaScript Charts",

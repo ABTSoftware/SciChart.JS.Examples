@@ -7,7 +7,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "HitTestAPI",
         id: "chart2D_tooltipsAndHittest_HitTestApi",
-        exampleId: "Charts2DTooltipsAndHittestHitTestAPI",
         imagePath: "javascript-chart-hit-test-on-click.jpg",
         description:
             "Demonstrates how to add **Hit-Test on click behavior** to a chart using SciChart.js, High Performance JavaScript Charts",

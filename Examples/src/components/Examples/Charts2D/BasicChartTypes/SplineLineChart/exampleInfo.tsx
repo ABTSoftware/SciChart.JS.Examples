@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "SplineLineChart",
         id: "chart2D_basicCharts_SplineLineChart",
-        exampleId: "Charts2DBasicChartTypesSplineLineChart",
         imagePath: "javascript-spline-smoothed-line-chart.jpg",
         description:
             "Demonstrates how to create a **JavaScript Spline Line Chart** using SciChart.js, our feature-rich JavaScript Chart Library",

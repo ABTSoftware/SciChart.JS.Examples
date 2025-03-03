@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "RealTimeMountainChart",
         id: "chart2D_basicCharts_RealtimeMountainChart",
-        exampleId: "Charts2DBasicChartTypesRealTimeMountainChart",
         imagePath: "javascript-realtime-mountain-chart.jpg",
         description:
             "This example demonstrates how create a **JavaScript Mountain Chart** with animated realtime updates using SciChart.js, our High Performance JavaScript Charts.",

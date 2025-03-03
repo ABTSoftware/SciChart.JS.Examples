@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "UsingRolloverModifierTooltips",
         id: "chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips",
-        exampleId: "Charts2DTooltipsAndHittestUsingRolloverModifierTooltips",
         imagePath: "javascript-chart-rollovermodifier-tooltips.jpg",
         description:
             "Demonstrates how to create **tooltips on mouse-over** using SciChart.js, High Performance JavaScript Charts",

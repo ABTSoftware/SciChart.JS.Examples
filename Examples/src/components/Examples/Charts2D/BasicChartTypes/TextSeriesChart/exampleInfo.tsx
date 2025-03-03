@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "TextSeriesChart",
         id: "chart2D_basicCharts_TextChart",
-        exampleId: "Charts2DBasicChartTypesTextSeriesChart",
         imagePath: "javascript-text-chart.jpg",
         description:
             "This example demonstrates **FastTextRenderableSeries** using SciChart.js. The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet.",

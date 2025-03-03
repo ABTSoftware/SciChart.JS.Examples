@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "VerticalCharts",
         id: "chart2D_modifyAxisBehavior_VerticalCharts",
-        exampleId: "Charts2DModifyAxisBehaviorVerticalCharts",
         imagePath: "javascript-vertical-charts.jpg",
         description:
             "Demonstrates how to create a **rotated JavaScript Chart with vertical X-Axis** using SciChart.js, High Performance JavaScript Charts",

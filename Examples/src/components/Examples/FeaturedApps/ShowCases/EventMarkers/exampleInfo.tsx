@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "EventMarkers",
         id: "featuredApps_showcases_eventMarkers",
-        exampleId: "FeaturedAppsShowCasesEventMarkers",
         imagePath: "javascript-draggable-event-markers.jpg",
         description:
             "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",

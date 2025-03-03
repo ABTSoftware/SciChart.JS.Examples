@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "SplineMountainChart",
         id: "chart2D_basicCharts_SplineMountainChart",
-        exampleId: "Charts2DBasicChartTypesSplineMountainChart",
         imagePath: "javascript-spline-mountain-chart.jpg",
         description:
             "This example showcases how to create a **JavaScript Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",

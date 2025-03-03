@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "RotatedLabels",
         id: "chart2D_axisLabelCustomization_RotatedLabels",
-        exampleId: "Charts2DAxisLabelCustomizationRotatedLabels",
         imagePath: "javascript-rotated-labels-chart.jpg",
         description:
             "Demonstrates how to use **Rotation and Alignment of Axis Labels** with SciChart.js, High Performance JavaScript Charts",

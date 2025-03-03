@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "PieChart",
         id: "chart2D_basicCharts_PieChart",
-        exampleId: "Charts2DBasicChartTypesPieChart",
         imagePath: "javascript-pie-chart.jpg",
         description:
             "For an example that demonstrates how create a **JavaScript Pie Chart**, our demo code teaches you how to do this with SciChart's JavaScript Charting Library.",

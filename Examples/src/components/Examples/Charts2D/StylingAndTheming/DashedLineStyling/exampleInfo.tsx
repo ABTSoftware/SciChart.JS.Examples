@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "DashedLineStyling",
         id: "chart2D_stylingAndTheming_DashedLineStyling",
-        exampleId: "Charts2DStylingAndThemingDashedLineStyling",
         imagePath: "javascript-dashed-line-chart.jpg",
         description:
             "Demonstrates how create **JavaScript Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",

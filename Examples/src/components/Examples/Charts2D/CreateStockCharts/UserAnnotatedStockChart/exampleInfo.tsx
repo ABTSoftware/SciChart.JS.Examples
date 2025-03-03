@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "UserAnnotatedStockChart",
         id: "chart2D_createStockCharts_SharedChart",
-        exampleId: "Charts2DCreateStockChartsUserAnnotatedStockChart",
         imagePath: "javascript-user-annotated-stock-chart.jpg",
         description:
             "This demo shows you how to create a **JavaScript User Annotated Stock Chart** using SciChart.js. Custom modifiers allow you to add lines and markers, then use the built in serialisation functions to save and reload the chart, including the data and all your custom annotations.",

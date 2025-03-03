@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "ImpulseChart",
         id: "chart2D_basicCharts_ImpulseChart",
-        exampleId: "Charts2DBasicChartTypesImpulseChart",
         imagePath: "javascript-impulse-chart.jpg",
         description:
             "Use this demonstration to learn how to create a **JavaScript Impulse Chart** using SciChart.js, our own High Performance JavaScript Chart Library.",

@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "HeatmapChart",
         id: "chart2D_basicCharts_HeatmapChart",
-        exampleId: "Charts2DBasicChartTypesHeatmapChart",
         imagePath: "javascript-heatmap-chart.jpg",
         description:
             "If you want to learn about heatmaps. this demo shows you how to create a **JavaScript Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",

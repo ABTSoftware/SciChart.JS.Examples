@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "DrawBehindAxes",
         id: "chart2D_modifyAxisBehavior_DrawBehindAxes",
-        exampleId: "Charts2DModifyAxisBehaviorDrawBehindAxes",
         imagePath: "javascript-draw-behind-axes.jpg",
         description:
             "Demonstrates how to create a **JavaScript Chart with transparent axes** using SciChart.js, High Performance JavaScript Charts",

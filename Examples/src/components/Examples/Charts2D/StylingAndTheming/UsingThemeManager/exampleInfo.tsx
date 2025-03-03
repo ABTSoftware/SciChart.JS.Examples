@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "UsingThemeManager",
         id: "chart2D_stylingAndTheming_UsingThemeManager",
-        exampleId: "Charts2DStylingAndThemingUsingThemeManager",
         imagePath: "javascript-chart-themes.jpg",
         description: "Demonstrates the **light and dark theme** in SciChart.js, High Performance JavaScript Charts",
         tips: [],

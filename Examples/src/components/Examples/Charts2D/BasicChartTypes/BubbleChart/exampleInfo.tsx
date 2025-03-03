@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "BubbleChart",
         id: "chart2D_basicCharts_BubbleChart",
-        exampleId: "Charts2DBasicChartTypesBubbleChart",
         imagePath: "javascript-bubble-chart.jpg",
         description:
             "Demonstrates how to create a **JavaScript Bubble Chart** This is a JavaScript Chart type which draws point-markers (Ellipse, Square, Triangle, Circle) at X,Y locations",

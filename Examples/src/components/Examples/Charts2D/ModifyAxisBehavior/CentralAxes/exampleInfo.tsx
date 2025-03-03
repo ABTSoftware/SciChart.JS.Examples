@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "CentralAxes",
         id: "chart2D_modifyAxisBehavior_CentralAxes",
-        exampleId: "Charts2DModifyAxisBehaviorCentralAxes",
         imagePath: "javascript-central-axes.jpg",
         description:
             "Demonstrates how to create a **JavaScript Chart with central axes** using SciChart.js, High Performance JavaScript Charts",

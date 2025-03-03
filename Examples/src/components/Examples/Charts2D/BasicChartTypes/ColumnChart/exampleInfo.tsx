@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "ColumnChart",
         id: "chart2D_basicCharts_ColumnChart",
-        exampleId: "Charts2DBasicChartTypesColumnChart",
         imagePath: "javascript-column-chart.jpg",
         description:
             "Creates a **JavaScript Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",

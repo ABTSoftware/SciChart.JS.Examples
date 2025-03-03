@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "OhlcChart",
         id: "chart2D_basicCharts_OhlcChart",
-        exampleId: "Charts2DBasicChartTypesOhlcChart",
         imagePath: "javascript-ohlc-chart.jpg",
         description:
             "For this example, we demonstrate how to create a **JavaScript OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",

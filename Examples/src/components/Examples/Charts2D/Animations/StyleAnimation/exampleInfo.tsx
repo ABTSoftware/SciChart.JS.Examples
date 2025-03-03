@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "StyleAnimation",
         id: "chart2D_Animations_StyleAnimation",
-        exampleId: "Charts2DAnimationsStyleAnimation",
         imagePath: "javascript-style-animation.jpg",
         description:
             "Demonstrates how to run **Style Transition Animations** using SciChart.js, High Performance JavaScript Charts",

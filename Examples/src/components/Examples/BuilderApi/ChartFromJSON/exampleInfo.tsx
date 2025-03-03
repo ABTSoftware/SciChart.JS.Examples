@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "ChartFromJSON",
         id: "builderApi_chartFromJSON",
-        exampleId: "BuilderApiChartFromJSON",
         imagePath: "javascript-chart-from-json.jpg",
         description:
             "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",

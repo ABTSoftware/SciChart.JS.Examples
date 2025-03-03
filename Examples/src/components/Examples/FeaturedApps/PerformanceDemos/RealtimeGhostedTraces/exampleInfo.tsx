@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "RealtimeGhostedTraces",
         id: "featuredApps_performanceDemos_RealtimeGhostedTraces",
-        exampleId: "FeaturedAppsPerformanceDemosRealtimeGhostedTraces",
         imagePath: "javascript-realtime-ghosted-traces-oscilloscope-chart.jpg",
         description:
             "Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance JavaScript Charts",

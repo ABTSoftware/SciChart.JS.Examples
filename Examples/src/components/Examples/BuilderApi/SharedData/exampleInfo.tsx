@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "SharedData",
         id: "builderApi_SharedData",
-        exampleId: "BuilderApiSharedData",
         imagePath: "javascript-shared-data.jpg",
         description:
             "Demonstrates how to use the Builder Api to create **Reusable Chart Templates** using SciChart.js Builder API. Use this method when you want to create a template for a chart and add data later.",

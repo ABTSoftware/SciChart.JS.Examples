@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "PointLine3DChart",
         id: "chart3D_basic3DChartTypes_PointLine3DChart",
-        exampleId: "Charts3DBasic3DChartTypesPointLine3DChart",
         imagePath: "javascript-3d-point-line-chart.jpg",
         description:
             "Our team demonstrates how to create a **JavaScript 3D Point Line Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",

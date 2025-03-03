@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "DonutChart",
         id: "chart2D_basicCharts_DonutChart",
-        exampleId: "Charts2DBasicChartTypesDonutChart",
         imagePath: "javascript-donut-chart.jpg",
         description:
             "This demo demonstrates how create a **JavaScript Donut Chart** with our powerful JavaScript library, SciChart.js.",

@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "MultiLineLabels",
         id: "chart2D_axisLabelCustomization_MultiLineLabels",
-        exampleId: "Charts2DAxisLabelCustomizationMultiLineLabels",
         imagePath: "javascript-multiline-labels.jpg",
         description:
             "Demonstrates how to use **Multi-Line Text** for axis labels using SciChart.js, High Performance JavaScript Charts",

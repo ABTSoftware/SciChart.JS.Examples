@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "Load1MillionPoints",
         id: "featuredApps_performanceDemos_LoadOneMillionPoints",
-        exampleId: "FeaturedAppsPerformanceDemosLoad1MillionPoints",
         imagePath: "javascript-chart-performance-load-one-million-points.jpg",
         description:
             "Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds. Click the **Reload** button at the bottom of the demo to see the chart draw again.",

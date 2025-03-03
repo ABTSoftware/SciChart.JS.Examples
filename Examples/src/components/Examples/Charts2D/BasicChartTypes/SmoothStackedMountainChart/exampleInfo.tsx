@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "SmoothStackedMountainChart",
         id: "chart2D_basicCharts_SmoothStackedMountainChart",
-        exampleId: "Charts2DBasicChartTypesSmoothStackedMountainChart",
         imagePath: "javascript-smooth-stacked-mountain-chart.jpg",
         description:
             "Learn how to make a **JavaScript Smooth Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",

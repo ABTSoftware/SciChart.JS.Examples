@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "DragAxisToScale",
         id: "chart2D_zoomAndPanAChart_DragAxisToScale",
-        exampleId: "Charts2DZoomingAndPanningDragAxisToScale",
         imagePath: "drag-axis-on-javascript-charts-to-scale-or-pan.jpg",
         description:
             "Demonstrates how to **scale or pan the Axis on a JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",

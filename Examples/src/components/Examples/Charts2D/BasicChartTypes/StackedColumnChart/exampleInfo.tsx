@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "StackedColumnChart",
         id: "chart2D_basicCharts_StackedColumnChart",
-        exampleId: "Charts2DBasicChartTypesStackedColumnChart",
         imagePath: "javascript-stacked-column-chart.jpg",
         description:
             "The example on this page demonstrates how to create a **JavaScript Stacked Column Chart** using our feature-rich JavaScript Chart Library, SciChart.js.",

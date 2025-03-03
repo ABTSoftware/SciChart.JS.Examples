@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "ScatterChart",
         id: "chart2D_basicCharts_ScatterChart",
-        exampleId: "Charts2DBasicChartTypesScatterChart",
         imagePath: "javascript-scatter-chart.jpg",
         description:
             "We have created an example that demonstrates how to create a **JavaScript Scatter Chart** using SciChart.js",

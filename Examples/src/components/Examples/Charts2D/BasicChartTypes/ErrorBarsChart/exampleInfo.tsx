@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "ErrorBarsChart",
         id: "chart2D_basicCharts_ErrorBarsChart",
-        exampleId: "Charts2DBasicChartTypesErrorBarsChart",
         imagePath: "javascript-error-bars-chart.jpg",
         description:
             "This SciChart demo demonstrates how to create a **JavaScript Error Bars Chart** using SciChart.js our High Performance JavaScript Chart component.",

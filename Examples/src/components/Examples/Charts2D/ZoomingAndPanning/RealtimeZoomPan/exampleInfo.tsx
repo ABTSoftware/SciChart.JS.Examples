@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "RealtimeZoomPan",
         id: "chart2D_zoomAndPanAChart_RealtimeZoomPan",
-        exampleId: "Charts2DZoomingAndPanningRealtimeZoomPan",
         imagePath: "zoom-and-pan-a-realtime-javascript-chart.jpg",
         description:
             "Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to reset zoom and start automatically scrolling again.",

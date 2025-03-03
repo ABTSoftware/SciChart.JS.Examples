@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "UsingVerticalSliceModifier",
         id: "chart2D_tooltipsAndHittest_VerticalSliceModifier",
-        exampleId: "Charts2DTooltipsAndHittestUsingVerticalSliceModifier",
         imagePath: "javascript-chart-vertical-slice-modifier.jpg",
         description:
             "Demonstrates how to use **tooltips at fixed positions** using SciChart.js, High Performance JavaScript Charts",

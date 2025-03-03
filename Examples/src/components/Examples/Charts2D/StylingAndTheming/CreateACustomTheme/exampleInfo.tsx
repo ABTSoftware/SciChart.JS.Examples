@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "CustomTheme",
         id: "chart2D_stylingAndTheming_CustomTheme",
-        exampleId: "Charts2DStylingAndThemingCreateACustomTheme",
         imagePath: "javascript-chart-custom-themed.jpg",
         description:
             "Demonstrates how to create a **Custom Theme** for SciChart.js, High Performance JavaScript Charts",

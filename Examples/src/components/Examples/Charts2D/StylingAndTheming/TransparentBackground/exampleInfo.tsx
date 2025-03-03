@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "TransparentBackground",
         id: "chart2D_stylingAndTheming_TransparentBackground",
-        exampleId: "Charts2DStylingAndThemingTransparentBackground",
         imagePath: "javascript-chart-transparent-background.jpg",
         description:
             "Demonstrates how to create a **Chart with Transparent Background** using SciChart.js, High Performance JavaScript Charts",

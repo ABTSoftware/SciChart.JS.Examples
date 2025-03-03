@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "TrendMARatio",
         id: "chart2D_filters_TrendMARatio",
-        exampleId: "Charts2DFiltersTrendMARatio",
         imagePath: "javascript-trend-ma-ratio.jpg",
         description:
             "Demonstrates how use **Linear Trend, Moving Average and Ratio Filters** with filter chaining, using SciChart.js, High Performance JavaScript Charts",

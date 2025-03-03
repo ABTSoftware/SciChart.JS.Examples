@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "Overview",
         id: "chart2D_zoomAndPanAChart_Overview",
-        exampleId: "Charts2DZoomingAndPanningOverviewModifier",
         imagePath: "javascript-overview-chart.jpg",
         description:
             "Demonstrates how to zoom and pan with an **Overview Chart** using SciChart.js, High Performance JavaScript Charts",

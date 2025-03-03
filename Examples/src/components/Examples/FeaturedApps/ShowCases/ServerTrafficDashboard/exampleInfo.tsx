@@ -7,7 +7,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "ServerTrafficDashboard",
         id: "featuredApps_showcases_servertrafficdashboard",
-        exampleId: "FeaturedAppsShowCasesServerTrafficDashboard",
         imagePath: "javascript-server-traffic-dashboard.jpg",
         description:
             "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",

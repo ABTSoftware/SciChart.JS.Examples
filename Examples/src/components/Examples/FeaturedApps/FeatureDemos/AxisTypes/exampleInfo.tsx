@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "FeatureAxisTypes",
         id: "featuredApps_featureDemos_axisTypes",
-        exampleId: "FeaturedAppsFeatureDemosAxisTypes",
         imagePath: "javascript-axis-types.jpg",
         description:
             "Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High Performance JavaScript Charts",

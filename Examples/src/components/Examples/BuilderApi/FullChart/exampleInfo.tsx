@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "FullChart",
         id: "builderApi_fullchart",
-        exampleId: "BuilderApiFullChart",
         imagePath: "javascript-builder-full.jpg",
         description:
             "Demonstrates how to use the Builder Api to create a **Fully Configured Chart** using SciChart.js, High Performance JavaScript Charts",

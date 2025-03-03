@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "NonUniformHeatmapChart",
         id: "chart2D_basicCharts_NonUniformHeatmapChart",
-        exampleId: "Charts2DBasicChartTypesNonUniformHeatmapChart",
         imagePath: "javascript-non-uniform-heatmap-chart.jpg",
         description:
             "This SciChart demo demonstrates how to create a **JavaScript Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",

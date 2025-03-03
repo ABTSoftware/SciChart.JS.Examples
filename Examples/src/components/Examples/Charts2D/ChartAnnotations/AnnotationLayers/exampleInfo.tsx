@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "AnnotationLayers",
         id: "chart2D_chartAnnotations_AnnotationLayers",
-        exampleId: "Charts2DChartAnnotationsAnnotationLayers",
         imagePath: "javascript-chart-annotation-layers.jpg",
         description:
             "Demonstrates how Annotation layering a **JavaScript Chart** using SciChart.js, High Performance JavaScript Charts\nNotice the difference between annotations rendered to SVG and Canvas, as well as **annotationLayer** property effect.",

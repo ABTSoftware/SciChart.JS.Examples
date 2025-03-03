@@ -7,7 +7,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "UsePointMarkers",
         id: "chart2D_stylingAndTheming_UsePointMarkers",
-        exampleId: "Charts2DStylingAndThemingUsePointMarkers",
         imagePath: "javascript-chart-custom-pointmarkers.jpg",
         description:
             "Demonstrates how to create **custom data-point markers** using SciChart.js, High Performance JavaScript Charts",

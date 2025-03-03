@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "MultipleXAxes",
         id: "chart2D_modifyAxisBehavior_MultipleXAxes",
-        exampleId: "Charts2DModifyAxisBehaviorMultipleXAxes",
         imagePath: "javascript-chart-with-multiple-x-axis.jpg",
         description:
             "Demonstrates how to create a **JavaScript Chart with multiple X,Y axis** using SciChart.js, High Performance JavaScript Charts",

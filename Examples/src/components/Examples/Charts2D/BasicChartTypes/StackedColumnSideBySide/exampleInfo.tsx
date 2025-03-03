@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "StackedColumnSideBySide",
         id: "chart2D_basicCharts_StackedColumnSideBySide",
-        exampleId: "Charts2DBasicChartTypesStackedColumnSideBySide",
         imagePath: "javascript-stacked-grouped-column-chart.jpg",
         description:
             "We have created a simple example that shows you how to create a **JavaScript Stacked Column Chart Side-by-side** using our JavaScript Chart Framework.",

@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "Bubble3DChart",
         id: "chart3D_basic3DChartTypes_Bubble3DChart",
-        exampleId: "Charts3DBasic3DChartTypesBubble3DChart",
         imagePath: "javascript-3d-bubble-chart.jpg",
         description:
             "Our team demonstrates how to create a **JavaScript 3D Bubble Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",

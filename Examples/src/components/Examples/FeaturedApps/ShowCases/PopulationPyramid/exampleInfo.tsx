@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "PopulationPyramid",
         id: "featuredApps_showcases_populationPyramid",
-        exampleId: "FeaturedAppsShowCasesPopulationPyramid",
         imagePath: "javascript-population-pyramid.jpg",
         description:
             "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",

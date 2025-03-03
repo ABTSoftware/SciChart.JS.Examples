@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "DynamicLayout",
         id: "featuredApps_showcases_dynamicLayout",
-        exampleId: "FeaturedAppsShowCasesDynamicLayout",
         imagePath: "javascript-dynamic-layout.jpg",
         description:
             "Demonstrates a custom modifier which can convert from single chart to grid layout and back using SciChart.js, High Performance JavaScript Charts",

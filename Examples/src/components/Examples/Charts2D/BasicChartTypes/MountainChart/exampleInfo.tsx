@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "MountainChart",
         id: "chart2D_basicCharts_MountainChart",
-        exampleId: "Charts2DBasicChartTypesMountainChart",
         imagePath: "javascript-mountain-chart.jpg",
         description:
             "Use our Mountain Chart example to learn how to create a **JavaScript Mountain Chart** using SciChart.js, our in-house built JavaScript Chart framework.",

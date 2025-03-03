@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "RealtimeBigDataShowcase",
         id: "featuredApps_showcases_realtimebigdata",
-        exampleId: "FeaturedAppsShowCasesWebsocketBigData",
         imagePath: "javascript-streaming-data.jpg",
         description:
             "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",

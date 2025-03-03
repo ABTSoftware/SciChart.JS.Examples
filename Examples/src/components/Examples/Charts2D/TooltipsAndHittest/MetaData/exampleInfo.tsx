@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "UsingMetaData",
         id: "chart2D_tooltipsAndHittest_MetaData",
-        exampleId: "Charts2DTooltipsAndHittestMetaData",
         imagePath: "javascript-chart-metadata.jpg",
         description:
             "Demonstrates how to add and use **MetaData** in a chart using SciChart.js, High Performance JavaScript Charts",

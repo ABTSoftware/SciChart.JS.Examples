@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "StartupAnimation",
         id: "chart2D_Animations_StartupAnimation",
-        exampleId: "Charts2DAnimationsStartupAnimation",
         imagePath: "javascript-startup-animations.jpg",
         description:
             "Demonstrates how to run **Startup Animations** using SciChart.js, High Performance JavaScript Charts",

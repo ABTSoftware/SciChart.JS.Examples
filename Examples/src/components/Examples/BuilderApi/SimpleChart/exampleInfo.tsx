@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "SimpleChart",
         id: "builderApi_simplechart",
-        exampleId: "BuilderApiSimpleChart",
         imagePath: "javascript-builder-simple.jpg",
         description:
             "Demonstrates how to use the Builder Api to create a **Simple Chart** using SciChart.js, High Performance JavaScript Charts",

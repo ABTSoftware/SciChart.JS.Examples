@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "SeriesSelection",
         id: "chart2D_tooltipsAndHittest_SeriesSelection",
-        exampleId: "Charts2DTooltipsAndHittestSeriesSelection",
         imagePath: "javascript-chart-series-selection.jpg",
         description:
             "Demonstrates how to add **Series Selection** to a chart using SciChart.js, High Performance JavaScript Charts",

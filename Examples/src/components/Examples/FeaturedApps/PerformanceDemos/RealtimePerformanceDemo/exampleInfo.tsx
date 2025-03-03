@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "RealtimePerformanceDemo",
         id: "featuredApps_performanceDemos_RealtimePerformanceDemo",
-        exampleId: "FeaturedAppsPerformanceDemosRealtimePerformanceDemo",
         imagePath: "javascript-chart-realtime-performance-demo.jpg",
         description:
             "Demonstrates appending **millions of points** to a line chart with SciChart.js, High Performance JavaScript Charts",

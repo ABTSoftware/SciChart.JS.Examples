@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "TenorCurves3DChart",
         id: "featuredApps_scientificCharts_TenorCurvesDemo",
-        exampleId: "FeaturedAppsScientificChartsTenorCurves3D",
         imagePath: "javascript-2d-3d-chart-tenor-curves-example.jpg",
         description:
             "In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.",

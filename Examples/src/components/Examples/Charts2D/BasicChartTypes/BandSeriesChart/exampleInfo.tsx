@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "BandSeriesChart",
         id: "chart2D_basicCharts_BandSeriesChart",
-        exampleId: "Charts2DBasicChartTypesBandSeriesChart",
         imagePath: "javascript-band-chart.jpg",
         description:
             "Demonstrates how to create a **JavaScript Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Framework",

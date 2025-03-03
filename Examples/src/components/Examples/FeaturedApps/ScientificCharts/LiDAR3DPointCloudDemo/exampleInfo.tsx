@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "LiDAR3DPointCloudDemo",
         id: "featuredApps_scientificCharts_Lidar3DPointCloudDemo",
-        exampleId: "FeaturedAppsScientificChartsLiDAR3DPointCloudDemo",
         imagePath: "javascript-3d-lidar-visualization.jpg",
         description:
             "Demonstrates how to visualize **LiDAR UAV Data** from the Defra survey using SciChart.js. A 1km x 1km slice of London is visualised as a 3D point-cloud with contour map overlaid. A heatmap legend on the right indicates the heightmap.",

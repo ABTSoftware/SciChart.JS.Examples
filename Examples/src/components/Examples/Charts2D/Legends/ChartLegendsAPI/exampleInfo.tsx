@@ -6,7 +6,6 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "ChartLegendsAPI",
         id: "chart2D_legends_ChartLegendsAPI",
-        exampleId: "Charts2DLegendsChartLegendsAPI",
         imagePath: "javascript-chart-legends.jpg",
         description:
             "Demonstrates how to add a legend to a **JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
