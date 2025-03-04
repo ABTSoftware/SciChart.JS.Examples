@@ -1,7 +1,5 @@
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 
-import type { JSX } from "react";
-
 export type TMenuItem = {
     id: string;
     title: string;
@@ -92,6 +90,9 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_PieChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DonutChart,
             EXAMPLES_PAGES.chart2D_chartAnnotations_BackgroundAnnotations,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarColumnChart,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarWindroseColumnChart,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarRadialColumnChart
         ],
     },
     {

@@ -22,7 +22,7 @@ import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciC
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
 import AppDetailsRouter from "./AppDetailsRouters/AppDetailsRouter";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { appTheme } from "./Examples/theme";
 import { SciChartSurfaceBase } from "scichart";
 import { ContentSectionRouter } from "./Navigation/AnchorTagRouter";
@@ -32,8 +32,23 @@ import SciChartNavbar from "./SciChartNavbar/SciChartNavbar";
 SciChartSurfaceBase.DEFAULT_THEME = appTheme.SciChartJsTheme;
 SciChartDefaults.useSharedCache = true;
 
+const NotFound = () => (
+    <div style={{ 
+        textAlign: 'center', 
+        padding: '50px 20px',
+        minHeight: '60vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center'
+    }}>
+        <h1>404 - Page Not Found</h1>
+        <p>The page you're looking for doesn't exist or has been moved.</p>
+        <Link to="/react">Go back to the home page</Link>
+    </div>
+);
+
 export default function App() {
-    const { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
+    const { isIFrame, isHomePage, currentExample, framework, is404 } = useExampleRouteParams();
     const navigate = useNavigate(); // Hook to programmatically navigate
 
     const [theme, setTheme] = React.useState<ETheme>();
@@ -147,35 +162,37 @@ export default function App() {
                 )}
                 <div className={classes.MainAppContent}>
                     <SciChartNavbar toggleDrawer={toggleDrawer} theme={theme} setTheme={setTheme} />
-
-                    {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
-
-                    {!isHomePage ? (
-                        <AppDetailsRouter currentExample={currentExample} seeAlso={seeAlso} theme={theme} />
-                    ) : (
+                    
+                    {is404 ? 
+                        <NotFound />
+                        :
+                        isHomePage ? (
                         <div className={classes.MainAppWrapper}>
                             {!isMedium ? (
-                                <div className={classes.DrawerDesktop}>
-                                    <DrawerContent
-                                        testIsOpened={testIsOpened}
-                                        toggleOpenedMenuItem={toggleOpenedMenuItem}
-                                        toggleDrawer={toggleDrawer}
-                                        currentExample={currentExample}
-                                        mostVisibleCategory={mostVisibleCategory}
-                                    />
-                                </div>
-                            ) : null}
-                            {isHomePage ? (
+                                    <div className={classes.DrawerDesktop}>
+                                        <DrawerContent
+                                            testIsOpened={testIsOpened}
+                                            toggleOpenedMenuItem={toggleOpenedMenuItem}
+                                            toggleDrawer={toggleDrawer}
+                                            currentExample={currentExample}
+                                            mostVisibleCategory={mostVisibleCategory}
+                                        />
+                                    </div>
+                                ) : null}
+
                                 <div className={classes.GalleryAppWrapper}>
                                     <GalleryItems
                                         examples={allGalleryItems}
                                         setMostVisibleCategory={setMostVisibleCategory}
                                     />
                                 </div>
-                            ) : (
-                                <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
-                            )}
-                        </div>
+                            </div>
+                        ) : (
+                        <AppDetailsRouter 
+                            currentExample={currentExample} 
+                            seeAlso={seeAlso} 
+                            theme={theme} 
+                        />
                     )}
 
                     <AppFooter />

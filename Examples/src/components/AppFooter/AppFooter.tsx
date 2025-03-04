@@ -15,6 +15,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Button from "@mui/material/Button";
+import { libraryVersion } from "scichart";
 
 export type TFooterlink = {
     link: string;
@@ -119,6 +120,9 @@ export default function AppFooter() {
                             <div className={classes.dividerBox}></div>
                         </div>
                         <div className={classes.RelatedLinks}>
+                            <a href="https://www.scichart.com/changelog/scichart-js/" title="Changelog">
+                                View v{libraryVersion} Changelog
+                            </a>
                             <a href="https://www.scichart.com/downloads/" title="Download FREE Trials">
                                 Download FREE Trials
                             </a>

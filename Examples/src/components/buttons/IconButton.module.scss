@@ -65,12 +65,10 @@
 }
 
 .noPadding {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: transparent;
     cursor: pointer;
     outline: none;
+    stroke: var(--button-icon-color);
 
     &.selected, :hover {
         color: var(--text) !important;

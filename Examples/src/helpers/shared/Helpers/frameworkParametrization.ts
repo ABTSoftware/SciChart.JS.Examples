@@ -49,6 +49,7 @@ export const useExampleRouteParams = () => {
     let framework: EPageFramework;
     let examplePageKey: string;
     let isHomePage = false;
+    let is404 = false;
 
     const matchIframeRoute = useMatch("/iframe/:example");
     const matchWithFrameworkAndExample = useMatch("/:framework/:example");
@@ -58,13 +59,22 @@ export const useExampleRouteParams = () => {
     if (matchIframeRoute) {
         examplePageKey = getExamplePageKey(EPageFramework.Vanilla, matchIframeRoute.params.example);
         const currentExample = EXAMPLES_PAGES[examplePageKey];
-        return { isIFrame: true, isHomePage: false, framework: EPageFramework.Vanilla, currentExample };
+        if (!currentExample) {
+            is404 = true;
+        }
+        return { isIFrame: true, isHomePage: false, framework: EPageFramework.Vanilla, currentExample, is404 };
     }
 
     if (matchWithFrameworkAndExample) {
         if (isValidFramework(matchWithFrameworkAndExample.params.framework)) {
             framework = matchWithFrameworkAndExample.params.framework as EPageFramework;
             examplePageKey = getExamplePageKey(framework, matchWithFrameworkAndExample.params.example);
+            if(!examplePageKey) {
+                is404 = true;
+            }
+        } else {
+            is404 = true;
+            framework = DEFAULT_FRAMEWORK;
         }
     } else if (matchWithOneParam) {
         if (isValidFramework(matchWithOneParam.params.exampleOrFramework)) {
@@ -72,15 +82,20 @@ export const useExampleRouteParams = () => {
             isHomePage = true;
         } else {
             examplePageKey = getExamplePageKey(EPageFramework.Vanilla, matchWithOneParam.params.exampleOrFramework);
-            framework = EPageFramework.Vanilla;
+            if (!examplePageKey) {
+                is404 = true;
+            }
+            framework = DEFAULT_FRAMEWORK;
         }
     } else if (matchHome) {
-        framework = DEFAULT_FRAMEWORK;
         isHomePage = true;
+        framework = DEFAULT_FRAMEWORK;
+    } else {
+        is404 = true;
+        framework = DEFAULT_FRAMEWORK;
     }
 
     const currentExample = EXAMPLES_PAGES[examplePageKey];
 
-    const res = { isIFrame: false, isHomePage, framework, currentExample };
-    return res;
+    return { isIFrame: false, isHomePage, framework, currentExample, is404 };
 };
