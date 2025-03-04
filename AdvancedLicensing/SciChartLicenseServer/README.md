@@ -9,6 +9,9 @@ The zip file here contains binaries for
 - Linux x64
 - Linux arm
 - Linux arm64
+- MUSL arm64 (Alpine Linux)
+- MacOS arm64 (Apple)
+- MacOS x64 (Intel)
 
 ## How Server side Licensing Works
 
