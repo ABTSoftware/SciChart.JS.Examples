@@ -15,7 +15,7 @@ export interface IExampleMetadata {
     extraDependencies?: Record<string, string>;
     sandboxConfig?: Record<string, any>;
     markdownContent?: string | null;
-    reactComponent: string | null;
+    reactComponent?: string | null;
 }
 
 export interface IDocumentationLink {
