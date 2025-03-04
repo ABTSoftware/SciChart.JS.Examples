@@ -1,0 +1,11 @@
+---
+name: SciChart.js documentation snippet for DataSeries - Intro
+description: A documentation snippet for SciChart.JS from scichart.com/javascript-chart-documentation.  Find out more about SciChart at scichart.com/javascript-chart-features
+authors:
+    - SciChart Ltd
+resources:
+    - https://cdn.jsdelivr.net/npm/scichart/index.min.js
+normalize_css: no
+panel_js: 0
+panel_html: 0
+panel_css: 0
