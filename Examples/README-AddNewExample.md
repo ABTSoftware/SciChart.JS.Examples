@@ -103,13 +103,17 @@ Each example consists of several components:
     - **Angular Implementation:**  
       Develop an Angular component (such as `angular.ts`) that imports the drawing function and integrates it using SciChart’s Angular component (`ScichartAngularComponent`). The example should demonstrate the Angular-specific way of handling components and data binding.
 
-4. **Share Data and Libraries**  
+4. **Update sitemap**
+   Run script to add the new example to the sitemap
+   `npm run generateSitemap`
+
+5. **Share Data and Libraries**  
    By keeping all example files in one folder, you guarantee:
 
     - Consistent access to shared resources like themes (e.g., `appTheme`) and utility functions.
     - Simplified dependency management since all implementations refer to the same drawing logic.
 
-5. **Dynamic Loading of Examples**  
+6. **Dynamic Loading of Examples**  
    The system automatically incorporates new examples using the following approach:
 
     - **Webpack Context:**  
@@ -119,7 +123,7 @@ Each example consists of several components:
 
     Reviewing these two files will provide further insight into how your new example will be integrated during runtime.
 
-6. **Final Notes and Recommendations**
+7. **Final Notes and Recommendations**
     - Always start by copying a fully working `exampleInfo` file from an existing example.
     - Ensure that all three framework implementations (React, vanilla JavaScript/TypeScript, and Angular) are updated consistently and correctly point to shared drawing logic.
     - Verify that your metadata fields are updated accurately—even though some parts might be regenerated during the build, the initial configuration must be correct.
