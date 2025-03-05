@@ -368,6 +368,8 @@ const mapAnnotationTypeToName = (type: EAnnotationType): string => {
             return "ArcAnnotation";
         case EAnnotationType.SVGPolarPointerAnnotation:
             return "PolarPointerAnnotation";
+        case EAnnotationType.RenderContextLineArrowAnnotation:
+            return "LineArrowAnnotation";
         default: {
             const handleInvalidType = (value: never): never => {
                 throw new Error(`Invalid annotation type: ${value}`);
