@@ -277,8 +277,16 @@ $drawerWidthDesktop: min(350px, 25vw);
     flex-direction: column;
     gap: 10px;
     font-family: Arial;
-    line-height: 28.5px;
-    font-size: 19px;
+    line-height: 1.5em;
+    font-size: 1.1em;
+
+    code {
+        font-family: Consolas, monospace;
+        font-size: 1.1em;
+        background-color: var(--markdown-code-background);
+        padding: 0px 5px 0px 5px;
+        color: var(--markdown-code-text);
+    }
 
     .scichartinfo {
         display: flex;
