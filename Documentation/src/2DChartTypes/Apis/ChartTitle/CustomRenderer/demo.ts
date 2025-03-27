@@ -53,9 +53,9 @@ async function customChartTitleRenderer(divElementId: string) {
             );
         }
 
-        draw(renderContext: WebGlRenderContext2D): void {
-            super.draw(renderContext);
-            this.subRenderer.draw(renderContext);
+        draw(renderContext: WebGlRenderContext2D, clipRect: Rect): void {
+            super.draw(renderContext, clipRect);
+            this.subRenderer.draw(renderContext, clipRect);
         }
 
         delete(): void {
