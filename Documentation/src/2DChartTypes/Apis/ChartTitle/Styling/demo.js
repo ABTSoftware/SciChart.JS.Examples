@@ -4,12 +4,9 @@ async function titleStyling(divElementId) {
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(
-        divElementId,
-        {
-            theme: new SciChartJsNavyTheme(),
-        }
-    );
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        theme: new SciChartJsNavyTheme(),
+    });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
@@ -23,7 +20,7 @@ async function titleStyling(divElementId) {
         color: "#EC0F6C",
         fontWeight: "900",
         fontStyle: "italic",
-    }
+    };
 }
 
 titleStyling("scichart-root");

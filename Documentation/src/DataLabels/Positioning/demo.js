@@ -1,18 +1,11 @@
-
 async function dataLabelSkipModes(divElementId) {
-    const {
-        SciChartSurface,
-        NumericAxis,
-        EllipsePointMarker,
-        XyDataSeries,
-        NumberRange,
-        SciChartJsNavyTheme,
-    } = SciChart;
+    const { SciChartSurface, NumericAxis, EllipsePointMarker, XyDataSeries, NumberRange, SciChartJsNavyTheme } =
+        SciChart;
 
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
         title: "Data Labels Positioning Modes",
-        titleStyle: { fontSize: 20 }
+        titleStyle: { fontSize: 20 },
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
@@ -24,11 +17,12 @@ async function dataLabelSkipModes(divElementId) {
     });
 
     const pointMarker = new EllipsePointMarker(wasmContext, {
-          width: 10,
-          height: 10,
-          strokeThickness: 2,
-          stroke: "SteelBlue",
-          fill: "LightSteelBlue"});
+        width: 10,
+        height: 10,
+        strokeThickness: 2,
+        stroke: "SteelBlue",
+        fill: "LightSteelBlue",
+    });
 
     // #region ExampleA
     const {
@@ -37,7 +31,7 @@ async function dataLabelSkipModes(divElementId) {
         EDataLabelSkipMode,
         EVerticalTextPosition,
         EHorizontalTextPosition,
-        Thickness
+        Thickness,
     } = SciChart;
 
     // or for npm: import { FastLineRenderableSeries, ... } from "scichart"
@@ -58,14 +52,14 @@ async function dataLabelSkipModes(divElementId) {
             style: {
                 fontFamily: "Arial",
                 fontSize: 18,
-                padding: new Thickness(0,5,5,0)
+                padding: new Thickness(0, 5, 5, 0),
             },
-            color: "#EEE"
-        }
+            color: "#EEE",
+        },
     });
     // #endregion
 
     sciChartSurface.renderableSeries.add(lineSeries);
 }
 
-dataLabelSkipModes('scichart-root')
+dataLabelSkipModes("scichart-root");

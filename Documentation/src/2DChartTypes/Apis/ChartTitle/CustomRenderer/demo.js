@@ -24,7 +24,12 @@ async function customChartTitleRenderer(divElementId) {
             this.subRenderer.layout(chartViewRect);
             const ydiff = this.viewRect.height - this.subRenderer.viewRect.height;
             // @ts-ignore since accessing a protected property
-            this.subRenderer.viewRectProperty = scichart_1.Rect.create(this.subRenderer.viewRect.x, this.subRenderer.viewRect.y + ydiff / 2, this.subRenderer.viewRect.width, this.subRenderer.viewRect.height);
+            this.subRenderer.viewRectProperty = scichart_1.Rect.create(
+                this.subRenderer.viewRect.x,
+                this.subRenderer.viewRect.y + ydiff / 2,
+                this.subRenderer.viewRect.width,
+                this.subRenderer.viewRect.height
+            );
         }
         draw(renderContext) {
             super.draw(renderContext);

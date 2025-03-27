@@ -1,13 +1,7 @@
 async function drawExample(divElementId) {
     // Demonstrates how to configure chart titles SciChart.js
-    const {
-        SciChartSurface,
-        NumericAxis,
-        ZoomPanModifier,
-        CursorModifier,
-        FastLineRenderableSeries,
-        XyDataSeries
-    } = SciChart;
+    const { SciChartSurface, NumericAxis, ZoomPanModifier, CursorModifier, FastLineRenderableSeries, XyDataSeries } =
+        SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
@@ -21,8 +15,8 @@ async function drawExample(divElementId) {
                 dataSeriesName: "Line Series",
                 xValues: [0, 10, 13, 15, 17, 18, 19, 20, 26],
                 yValues: [0, 1, 5, 1, 5, 1, 8, 9, 3],
-                dataIsSortedInX: false
-            })
+                dataIsSortedInX: false,
+            }),
         })
     );
 
@@ -40,10 +34,7 @@ async function drawExample(divElementId) {
         }
     }
 
-    sciChartSurface.chartModifiers.add(
-        new CustomZoomPanModifier(),
-        new CustomCursorModifier()
-    );
+    sciChartSurface.chartModifiers.add(new CustomZoomPanModifier(), new CustomCursorModifier());
 }
 
 drawExample("scichart-root");

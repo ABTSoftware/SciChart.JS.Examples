@@ -5,23 +5,13 @@ async function drawExample(divElementId) {
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(
-        divElementId
-    );
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
 
     // Create an X and Y Axis with title
-    sciChartSurface.xAxes.add(
-        new NumericAxis(wasmContext, { id: "xAxis1", axisTitle: "xAxis1" })
-    );
-    sciChartSurface.xAxes.add(
-        new NumericAxis(wasmContext, { id: "xAxis2", axisTitle: "xAxis2" })
-    );
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, { id: "yAxis1", axisTitle: "yAxis1" })
-    );
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, { id: "yAxis2", axisTitle: "yAxis2" })
-    );
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { id: "xAxis1", axisTitle: "xAxis1" }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { id: "xAxis2", axisTitle: "xAxis2" }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { id: "yAxis1", axisTitle: "yAxis1" }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { id: "yAxis2", axisTitle: "yAxis2" }));
 
     const pinchZoomModifier = new PinchZoomModifier({
         horizontalGrowFactor: 0.001,
@@ -43,42 +33,39 @@ async function builderExample(divElementId) {
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
-    const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(
-        divElementId,
-        {
-            xAxes: [
-                {
-                    type: EAxisType.NumericAxis,
-                    options: { id: "xAxis1", axisTitle: "xAxis1" },
+    const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
+        xAxes: [
+            {
+                type: EAxisType.NumericAxis,
+                options: { id: "xAxis1", axisTitle: "xAxis1" },
+            },
+            {
+                type: EAxisType.NumericAxis,
+                options: { id: "xAxis2", axisTitle: "xAxis2" },
+            },
+        ],
+        yAxes: [
+            {
+                type: EAxisType.NumericAxis,
+                options: { id: "yAxis1", axisTitle: "yAxis1" },
+            },
+            {
+                type: EAxisType.NumericAxis,
+                options: { id: "yAxis2", axisTitle: "yAxis2" },
+            },
+        ],
+        modifiers: [
+            {
+                type: EChart2DModifierType.PinchZoom,
+                options: {
+                    horizontalGrowFactor: 0.001,
+                    verticalGrowFactor: 0.001,
+                    excludedXAxisIds: ["xAxis2"],
+                    includedYAxisIds: ["yAxis1"],
                 },
-                {
-                    type: EAxisType.NumericAxis,
-                    options: { id: "xAxis2", axisTitle: "xAxis2" },
-                },
-            ],
-            yAxes: [
-                {
-                    type: EAxisType.NumericAxis,
-                    options: { id: "yAxis1", axisTitle: "yAxis1" },
-                },
-                {
-                    type: EAxisType.NumericAxis,
-                    options: { id: "yAxis2", axisTitle: "yAxis2" },
-                },
-            ],
-            modifiers: [
-                {
-                    type: EChart2DModifierType.PinchZoom,
-                    options: {
-                        horizontalGrowFactor: 0.001,
-                        verticalGrowFactor: 0.001,
-                        excludedXAxisIds: ["xAxis2"],
-                        includedYAxisIds: ["yAxis1"],
-                    },
-                },
-            ],
-        }
-    );
+            },
+        ],
+    });
     // #endregion
 }
 

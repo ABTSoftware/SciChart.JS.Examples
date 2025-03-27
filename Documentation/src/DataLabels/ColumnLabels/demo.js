@@ -1,16 +1,23 @@
-const {
-    chartBuilder,
-    ESeriesType,
-    EAxisType,
-    EAxisAlignment,
-    NumberRange,
-    EColumnDataLabelPosition,
-  } = SciChart;
+const { chartBuilder, ESeriesType, EAxisType, EAxisAlignment, NumberRange, EColumnDataLabelPosition } = SciChart;
 
 async function dataLabelColumns(divElementId) {
     const { sciChartSurface, wasmContext } = await chartBuilder.buildChart(divElementId, {
-        xAxes: [ { type: EAxisType.NumericAxis, options: { growBy: new NumberRange(0.1, 0.1), axisAlignment: EAxisAlignment.Left }}],
-        yAxes: [ { type: EAxisType.NumericAxis, options: { growBy: new NumberRange(0.1, 0.1), axisAlignment: EAxisAlignment.Bottom, flippedCoordinates: false }}],
+        xAxes: [
+            {
+                type: EAxisType.NumericAxis,
+                options: { growBy: new NumberRange(0.1, 0.1), axisAlignment: EAxisAlignment.Left },
+            },
+        ],
+        yAxes: [
+            {
+                type: EAxisType.NumericAxis,
+                options: {
+                    growBy: new NumberRange(0.1, 0.1),
+                    axisAlignment: EAxisAlignment.Bottom,
+                    flippedCoordinates: false,
+                },
+            },
+        ],
         series: {
             type: ESeriesType.ColumnSeries,
             xyData: {
@@ -28,10 +35,10 @@ async function dataLabelColumns(divElementId) {
                         fontSize: 18,
                         //padding: new Thickness(0, 0, 0 ,0)
                     },
-                    color: "#EEE"
-                }
+                    color: "#EEE",
+                },
             },
-        }
+        },
     });
 }
-dataLabelColumns('scichart-root')
+dataLabelColumns("scichart-root");
