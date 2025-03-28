@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function axisStyling(divElementId) {
     // #region ExampleA
     // Demonstrates how to style axis borders and background in SciChart.js
@@ -6,7 +8,7 @@ async function axisStyling(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     const yAxis = new NumericAxis(wasmContext, {
@@ -15,9 +17,9 @@ async function axisStyling(divElementId) {
         axisTitle: "Right Axis",
         axisBorder: {
             borderLeft: 1,
-            color: "#368BC1", // Blue color
+            color: "#368BC1" // Blue color
         },
-        backgroundColor: "#368BC111",
+        backgroundColor: "#368BC111"
     });
 
     const leftYAxis = new NumericAxis(wasmContext, {
@@ -26,9 +28,9 @@ async function axisStyling(divElementId) {
         axisTitle: "Left Axis",
         axisBorder: {
             borderRight: 1,
-            color: "#228B22", // Green color
+            color: "#228B22" // Green color
         },
-        backgroundColor: "#228B2222",
+        backgroundColor: "#228B2222"
     });
 
     const xAxis = new NumericAxis(wasmContext, {
@@ -36,9 +38,9 @@ async function axisStyling(divElementId) {
         axisTitle: "X Axis",
         axisBorder: {
             borderTop: 1,
-            color: "#EEEEEE", // Green color
+            color: "#EEEEEE" // Green color
         },
-        backgroundColor: "#EEEEEE11",
+        backgroundColor: "#EEEEEE11"
     });
 
     sciChartSurface.yAxes.add(yAxis, leftYAxis);
@@ -64,10 +66,10 @@ async function builderExample(divElementId) {
                 axisTitle: "X Axis",
                 axisBorder: {
                     borderTop: 1,
-                    color: "#EEEEEE", // Green color
+                    color: "#EEEEEE" // Green color
                 },
-                backgroundColor: "#EEEEEE11",
-            },
+                backgroundColor: "#EEEEEE11"
+            }
         },
         yAxes: [
             {
@@ -78,10 +80,10 @@ async function builderExample(divElementId) {
                     axisTitle: "Right Axis",
                     axisBorder: {
                         borderLeft: 1,
-                        color: "#368BC1", // Blue color
+                        color: "#368BC1" // Blue color
                     },
-                    backgroundColor: "#368BC111",
-                },
+                    backgroundColor: "#368BC111"
+                }
             },
             {
                 type: EAxisType.NumericAxis,
@@ -91,12 +93,12 @@ async function builderExample(divElementId) {
                     axisTitle: "Left Axis",
                     axisBorder: {
                         borderRight: 1,
-                        color: "#228B22", // Green color
+                        color: "#228B22" // Green color
                     },
-                    backgroundColor: "#228B2222",
-                },
-            },
-        ],
+                    backgroundColor: "#228B2222"
+                }
+            }
+        ]
     });
     // #endregion
 }

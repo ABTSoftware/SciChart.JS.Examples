@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const { NumericLabelProvider } = SciChart;
 
@@ -80,7 +82,7 @@ async function labelProviderClass(divElementId) {
         ECoordinateMode,
         EHorizontalAnchorPoint,
         ZoomPanModifier,
-        MouseWheelZoomModifier,
+        MouseWheelZoomModifier
     } = SciChart;
 
     const addChartTitle = (sciChartSurface, titleText, subTitleText) => {
@@ -97,7 +99,7 @@ async function labelProviderClass(divElementId) {
                 opacity: 0.5,
                 fontSize: 32,
                 fontWeight: "Bold",
-                textColor: "White",
+                textColor: "White"
             })
         );
         sciChartSurface.annotations.add(
@@ -110,7 +112,7 @@ async function labelProviderClass(divElementId) {
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                 opacity: 0.4,
                 fontSize: 17,
-                textColor: "White",
+                textColor: "White"
             })
         );
     };
@@ -118,7 +120,7 @@ async function labelProviderClass(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     addChartTitle(
@@ -140,9 +142,9 @@ async function labelProviderClass(divElementId) {
                 labelPrefix: "$",
                 labelPostfix: " USD",
                 labelPrecision: 2,
-                labelFormat: ENumericFormat.SignificantFigures,
+                labelFormat: ENumericFormat.SignificantFigures
             }),
-            visibleRange: new NumberRange(1, 1e12),
+            visibleRange: new NumberRange(1, 1e12)
         })
     );
 
@@ -151,7 +153,7 @@ async function labelProviderClass(divElementId) {
             axisTitle: "X Axis with comma separators",
             // Enable comma formatting for large labels
             labelProvider: new CustomNumericLabelProvider({ customFormat: "Commas", labelPrecision: 1 }),
-            visibleRange: new NumberRange(0, 1e10),
+            visibleRange: new NumberRange(0, 1e10)
         })
     );
     // #endregion
@@ -180,10 +182,10 @@ async function builderExample(divElementId) {
                     labelPrefix: "$",
                     labelPostfix: " USD",
                     labelPrecision: 2,
-                    labelFormat: ENumericFormat.SignificantFigures,
+                    labelFormat: ENumericFormat.SignificantFigures
                 }),
-                visibleRange: new NumberRange(1, 1e12),
-            },
+                visibleRange: new NumberRange(1, 1e12)
+            }
         },
         xAxes: {
             type: EAxisType.NumericAxis,
@@ -191,10 +193,10 @@ async function builderExample(divElementId) {
                 axisTitle: "X Axis with comma separators",
                 // Enable comma formatting for large labels
                 labelProvider: new CustomNumericLabelProvider({ customFormat: "Commas", labelPrecision: 1 }),
-                visibleRange: new NumberRange(0, 1e10),
-            },
+                visibleRange: new NumberRange(0, 1e10)
+            }
         },
-        modifiers: [{ type: EChart2DModifierType.MouseWheelZoom }, { type: EChart2DModifierType.ZoomPan }],
+        modifiers: [{ type: EChart2DModifierType.MouseWheelZoom }, { type: EChart2DModifierType.ZoomPan }]
     });
     // #endregion
 }

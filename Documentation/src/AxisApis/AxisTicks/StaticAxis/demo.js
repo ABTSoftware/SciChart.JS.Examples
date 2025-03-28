@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function staticAxis(divElementId) {
     // #region ExampleA
     // Demonstrates how to configure a chart with Static Axis in SciChart.js
@@ -6,26 +8,26 @@ async function staticAxis(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Adjust major/minor gridline style to make it clearer for the demo
     const styleOptions = {
         majorGridLineStyle: { color: "#50C7E077" },
-        minorGridLineStyle: { color: "#50C7E033" },
+        minorGridLineStyle: { color: "#50C7E033" }
     };
 
     const xAxis = new NumericAxis(wasmContext, {
         axisTitle: "isStaticAxis = true, maxAutoTicks = 10",
         isStaticAxis: true,
         maxAutoTicks: 10,
-        ...styleOptions,
+        ...styleOptions
     });
 
     const yAxis = new NumericAxis(wasmContext, {
         axisTitle: "yAxis.isStaticAxis = false",
         growBy: new NumberRange(0.1, 0.1),
-        ...styleOptions,
+        ...styleOptions
     });
 
     sciChartSurface.xAxes.add(xAxis);
@@ -41,14 +43,14 @@ async function staticAxis(divElementId) {
         y1: 0.5,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         opacity: 0.33,
-        textColor: "White",
+        textColor: "White"
     };
     sciChartSurface.annotations.add(
         new TextAnnotation({
             text: "Static Axis Example",
             fontSize: 36,
             yCoordShift: -125,
-            ...options,
+            ...options
         })
     );
     sciChartSurface.annotations.add(
@@ -56,7 +58,7 @@ async function staticAxis(divElementId) {
             text: "Drag to pan the chart to see xAxis.isStaticAxis behaviour",
             fontSize: 20,
             yCoordShift: -75,
-            ...options,
+            ...options
         })
     );
 
@@ -65,10 +67,10 @@ async function staticAxis(divElementId) {
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: [1, 2, 3, 4, 5],
-                yValues: [1, 2, 1, 2, 1],
+                yValues: [1, 2, 1, 2, 1]
             }),
             stroke: "#FF6600",
-            strokeThickness: 3,
+            strokeThickness: 3
         })
     );
 
@@ -92,15 +94,15 @@ async function builderExample(divElementId) {
             options: {
                 axisTitle: "isStaticAxis = true, maxAutoTicks = 5",
                 isStaticAxis: true,
-                maxAutoTicks: 5,
-            },
+                maxAutoTicks: 5
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
             options: {
-                axisTitle: "yAxis.isStaticAxis = false",
-            },
-        },
+                axisTitle: "yAxis.isStaticAxis = false"
+            }
+        }
     });
     // #endregion
 
@@ -109,10 +111,10 @@ async function builderExample(divElementId) {
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: [1, 2, 3, 4, 5],
-                yValues: [1, 2, 1, 2, 1],
+                yValues: [1, 2, 1, 2, 1]
             }),
             stroke: "#FF6600",
-            strokeThickness: 3,
+            strokeThickness: 3
         })
     );
 

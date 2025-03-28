@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 const { TextAnnotation, NumericAxis, SciChartSurface, SciChartJsNavyTheme, ECoordinateMode, EHorizontalAnchorPoint } =
     SciChart;
 
@@ -5,7 +7,7 @@ const { TextAnnotation, NumericAxis, SciChartSurface, SciChartJsNavyTheme, ECoor
 
 async function addAnnotationToChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -19,10 +21,10 @@ async function addAnnotationToChart(divElementId) {
         fontSize: 24,
         fontFamily: "Arial",
         text: "{{ DRAG ME! }}",
-        isEditable: true,
+        isEditable: true
     });
 
-    textAnnotation.dragDelta.subscribe((args) => {
+    textAnnotation.dragDelta.subscribe(args => {
         textAnnotation.text = `I was dragged to ${textAnnotation.x1.toFixed(2)}, ${textAnnotation.y1.toFixed(2)}`;
     });
 
@@ -42,7 +44,7 @@ async function addAnnotationToChart(divElementId) {
                 opacity: 0.5,
                 fontSize: 32,
                 fontWeight: "Bold",
-                textColor: "White",
+                textColor: "White"
             })
         );
         sciChartSurface.annotations.add(
@@ -55,7 +57,7 @@ async function addAnnotationToChart(divElementId) {
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                 opacity: 0.4,
                 fontSize: 17,
-                textColor: "White",
+                textColor: "White"
             })
         );
     };

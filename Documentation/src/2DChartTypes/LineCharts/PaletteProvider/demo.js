@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const { DefaultPaletteProvider, EStrokePaletteMode, parseColorToUIntArgb } = SciChart;
 
@@ -29,7 +31,7 @@ async function drawLineChartWithPalette(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -43,7 +45,7 @@ async function drawLineChartWithPalette(divElementId) {
 
     const xyDataSeries = new XyDataSeries(wasmContext, {
         xValues,
-        yValues,
+        yValues
     });
 
     // The ThresholdLinePaletteProvider we created before is applied to a FastLineRenderableSeries
@@ -51,7 +53,7 @@ async function drawLineChartWithPalette(divElementId) {
         stroke: "#F48420",
         strokeThickness: 5,
         dataSeries: xyDataSeries,
-        paletteProvider: new ThresholdLinePaletteProvider("#30BC9A", (yValue) => yValue > -0.8),
+        paletteProvider: new ThresholdLinePaletteProvider("#30BC9A", yValue => yValue > -0.8)
     });
 
     sciChartSurface.renderableSeries.add(lineSeries);
@@ -69,7 +71,7 @@ async function drawLineChartWithPalette(divElementId) {
             opacity: 0.6,
             labelPlacement: ELabelPlacement.BottomRight,
             labelValue: "Values above this line are green",
-            showLabel: true,
+            showLabel: true
         })
     );
 }
@@ -88,7 +90,7 @@ async function builderExample(divElementId) {
     chartBuilder.registerType(
         EBaseType.PaletteProvider,
         "ThresholdLinePaletteProvider",
-        (options) => new ThresholdLinePaletteProvider(options.stroke, options.rule)
+        options => new ThresholdLinePaletteProvider(options.stroke, options.rule)
     );
 
     // Now use the Builder-API to build the chart
@@ -99,7 +101,7 @@ async function builderExample(divElementId) {
                 type: ESeriesType.LineSeries,
                 xyData: {
                     xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-                    yValues: [2.5, 3.5, 3.7, 3.99, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0],
+                    yValues: [2.5, 3.5, 3.7, 3.99, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0]
                 },
                 options: {
                     stroke: "#FF6600",
@@ -110,14 +112,14 @@ async function builderExample(divElementId) {
                         customType: "ThresholdLinePaletteProvider",
                         options: {
                             stroke: "Green",
-                            rule: (yValue) => yValue >= 4.0,
-                        },
-                    },
+                            rule: yValue => yValue >= 4.0
+                        }
+                    }
                     // Note: Assigning an instance is also valid, e.g.
                     // paletteProvider: new ThresholdLinePaletteProvider("Green", yValue => yValue >= 4.0)
-                },
-            },
-        ],
+                }
+            }
+        ]
     });
     // #endregion
 }

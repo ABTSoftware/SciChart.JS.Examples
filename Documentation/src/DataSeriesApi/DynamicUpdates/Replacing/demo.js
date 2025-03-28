@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function dataSeriesReplacing(divElementId) {
     const {
         SciChartSurface,
@@ -6,7 +8,7 @@ async function dataSeriesReplacing(divElementId) {
         XyDataSeries,
         SciChartJsNavyTheme,
         EAutoRange,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or for npm import { SciChartSurface, ... } from "scichart"
@@ -15,7 +17,7 @@ async function dataSeriesReplacing(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
         title: "Replacing all Data example every 20ms",
-        titleStyle: { fontSize: 16 },
+        titleStyle: { fontSize: 16 }
     });
 
     // For the example to work, axis must have EAutoRange.Always
@@ -25,7 +27,7 @@ async function dataSeriesReplacing(divElementId) {
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             visibleRange: new NumberRange(-2, 0.5),
-            axisTitle: "Y Axis fixed range [-1, 1]",
+            axisTitle: "Y Axis fixed range [-1, 1]"
         })
     );
 
@@ -34,7 +36,7 @@ async function dataSeriesReplacing(divElementId) {
     const xyDataSeries = new XyDataSeries(wasmContext, {
         // Optional: pass X,Y values to DataSeries constructor for fast initialization
         xValues: [],
-        yValues: [],
+        yValues: []
     });
 
     // Create a renderableSeries and assign the dataSeries
@@ -42,7 +44,7 @@ async function dataSeriesReplacing(divElementId) {
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: xyDataSeries,
             strokeThickness: 3,
-            stroke: "#50C7E0",
+            stroke: "#50C7E0"
         })
     );
 

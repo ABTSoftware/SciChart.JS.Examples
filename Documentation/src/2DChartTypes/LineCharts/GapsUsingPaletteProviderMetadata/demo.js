@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 const { DefaultPaletteProvider, EStrokePaletteMode, parseColorToUIntArgb } = SciChart;
 
 // or, for npm, import { DefaultPaletteProvider, ... } from "scichart"
@@ -38,13 +40,13 @@ async function drawLineChartWithPalette(divElementId) {
         XyDataSeries,
         SciChartJsNavyTheme,
         NumberRange,
-        LegendModifier,
+        LegendModifier
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
@@ -72,7 +74,7 @@ async function drawLineChartWithPalette(divElementId) {
         xValues,
         yValues,
         metadata: metadataValues,
-        dataSeriesName: "Gaps with Metadata",
+        dataSeriesName: "Gaps with Metadata"
     });
 
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
@@ -80,18 +82,18 @@ async function drawLineChartWithPalette(divElementId) {
         strokeThickness: 5,
         dataSeries: xyDataSeries,
         // Using the PaletteProvider to colour points which are null to transparent
-        paletteProvider: new GapsPaletteProvider("#F4842022", (metadata) => metadata.isNull === true),
+        paletteProvider: new GapsPaletteProvider("#F4842022", metadata => metadata.isNull === true),
         // Data-labels included to debug which datapoints are 'null'
         dataLabels: {
             style: {
                 fontFamily: "Arial",
-                fontSize: 16,
+                fontSize: 16
             },
-            color: "#EEE",
-        },
+            color: "#EEE"
+        }
     });
 
-    lineSeries.dataLabelProvider.getText = (dataLabelState) => {
+    lineSeries.dataLabelProvider.getText = dataLabelState => {
         return `${dataLabelState.xVal()}`;
     };
 
@@ -106,13 +108,13 @@ async function drawLineChartWithPalette(divElementId) {
         dataLabels: {
             style: {
                 fontFamily: "Arial",
-                fontSize: 16,
+                fontSize: 16
             },
-            color: "#EEE",
-        },
+            color: "#EEE"
+        }
     });
 
-    nanLineSeries.dataLabelProvider.getText = (dataLabelState) => {
+    nanLineSeries.dataLabelProvider.getText = dataLabelState => {
         return `${dataLabelState.xVal()}`;
     };
 

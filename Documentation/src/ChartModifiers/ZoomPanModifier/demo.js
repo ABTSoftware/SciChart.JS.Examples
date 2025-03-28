@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function zoomPan2D(divElementId) {
     const {
         SciChartSurface,
@@ -8,13 +10,13 @@ async function zoomPan2D(divElementId) {
         TextAnnotation,
         ECoordinateMode,
         EHorizontalAnchorPoint,
-        EVerticalAnchorPoint,
+        EVerticalAnchorPoint
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -34,8 +36,8 @@ async function zoomPan2D(divElementId) {
             strokeThickness: 5,
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
-                yValues,
-            }),
+                yValues
+            })
         })
     );
 
@@ -45,8 +47,8 @@ async function zoomPan2D(divElementId) {
             strokeThickness: 5,
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
-                yValues: yValues2,
-            }),
+                yValues: yValues2
+            })
         })
     );
 
@@ -63,7 +65,7 @@ async function zoomPan2D(divElementId) {
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             opacity: 0.33,
             fontSize: 36,
-            fontWeight: "Bold",
+            fontWeight: "Bold"
         })
     );
     sciChartSurface.annotations.add(
@@ -77,7 +79,7 @@ async function zoomPan2D(divElementId) {
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             opacity: 0.45,
-            fontSize: 17,
+            fontSize: 17
         })
     );
 
@@ -95,7 +97,7 @@ async function zoomPan2D(divElementId) {
             enableZoom: true,
             // Optional parameters specify the amount of pinch zooming in X/Y  Default is 0.005
             horizontalGrowFactor: 0.005,
-            verticalGrowFactor: 0.005,
+            verticalGrowFactor: 0.005
             // Optional parameters to include/exclude X/Y axis from zooming by axis.id
             // If not specified, by default, all axis are included in zooming
             // either use:
@@ -135,10 +137,10 @@ async function builderExample(divElementId) {
                     enableZoom: true,
                     // Optional parameters specify the amount of pinch zooming in X/Y  Default is 0.005
                     horizontalGrowFactor: 0.005,
-                    verticalGrowFactor: 0.005,
-                },
-            },
-        ],
+                    verticalGrowFactor: 0.005
+                }
+            }
+        ]
     });
     // #endregion
 }

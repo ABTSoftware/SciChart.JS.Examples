@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function chartWithDateTimeNumericAxis(divElementId) {
     // Demonstrates how to configure a DateTimeNumericAxis in SciChart.js
     const {
@@ -14,14 +16,14 @@ async function chartWithDateTimeNumericAxis(divElementId) {
         EHorizontalAnchorPoint,
         EVerticalAnchorPoint,
         FastLineRenderableSeries,
-        XyDataSeries,
+        XyDataSeries
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     // #region ExampleA
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // If you want to show an XAxis with dates between 1st March 2023 and 10th March 2023
@@ -33,7 +35,7 @@ async function chartWithDateTimeNumericAxis(divElementId) {
         axisTitle: "X Axis / DateTime",
         // We need to specify some visibleRange to see these two dates
         // SciChart.js expects linux timestamp / 1000
-        visibleRange: new NumberRange(minDate.getTime() / 1000, maxDate.getTime() / 1000),
+        visibleRange: new NumberRange(minDate.getTime() / 1000, maxDate.getTime() / 1000)
     });
 
     // Add the xAxis to the chart
@@ -43,7 +45,7 @@ async function chartWithDateTimeNumericAxis(divElementId) {
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             axisTitle: "Y Axis, Numeric",
-            axisAlignment: EAxisAlignment.Left,
+            axisAlignment: EAxisAlignment.Left
         })
     );
 
@@ -61,7 +63,7 @@ async function chartWithDateTimeNumericAxis(divElementId) {
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
             strokeThickness: 3,
-            stroke: "#50C7E0",
+            stroke: "#50C7E0"
         })
     );
     // Note console log out xValues to see they are unix timestamps / 1000
@@ -84,7 +86,7 @@ async function chartWithDateTimeNumericAxis(divElementId) {
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             opacity: 0.33,
             fontSize: 36,
-            fontWeight: "Bold",
+            fontWeight: "Bold"
         })
     );
     sciChartSurface.annotations.add(
@@ -98,7 +100,7 @@ async function chartWithDateTimeNumericAxis(divElementId) {
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             opacity: 0.45,
-            fontSize: 17,
+            fontSize: 17
         })
     );
 }
@@ -134,26 +136,26 @@ async function builderExample(divElementId) {
                 axisTitle: "X Axis / DateTime",
                 // We need to specify some visibleRange to see these two dates
                 // SciChart.js expects linux timestamp / 1000
-                visibleRange: new NumberRange(minDate.getTime() / 1000, maxDate.getTime() / 1000),
-            },
+                visibleRange: new NumberRange(minDate.getTime() / 1000, maxDate.getTime() / 1000)
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
             options: {
                 axisTitle: "Y Axis, Left, default formatting",
-                axisAlignment: EAxisAlignment.Left,
-            },
+                axisAlignment: EAxisAlignment.Left
+            }
         },
         series: [
             {
                 type: ESeriesType.LineSeries,
                 options: {
                     strokeThickness: 3,
-                    stroke: "#50C7E0",
+                    stroke: "#50C7E0"
                 },
-                xyData: { xValues, yValues },
-            },
-        ],
+                xyData: { xValues, yValues }
+            }
+        ]
     });
     // #endregion
 }

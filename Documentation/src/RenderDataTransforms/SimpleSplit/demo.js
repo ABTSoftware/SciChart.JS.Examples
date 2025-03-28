@@ -1,4 +1,6 @@
-"use strict";
+import * as SciChart from "scichart";
+
+("use strict");
 
 const scichart_1 = SciChart;
 // #region ExampleA
@@ -44,49 +46,49 @@ class SplitBySelectedDataTransform extends scichart_1.XyyBaseRenderDataTransform
 // #endregion
 async function simpleSplit(divElementId) {
     const { sciChartSurface, wasmContext } = await scichart_1.SciChartSurface.create(divElementId, {
-        theme: new scichart_1.SciChartJsNavyTheme(),
+        theme: new scichart_1.SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new scichart_1.NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(
         new scichart_1.NumericAxis(wasmContext, {
-            growBy: new scichart_1.NumberRange(0.1, 0.1),
+            growBy: new scichart_1.NumberRange(0.1, 0.1)
         })
     );
     // #region ExampleB
     const xValues = (0, scichart_1.makeIncArray)(50);
-    const yValues = (0, scichart_1.makeIncArray)(50, 1, (y) => Math.sin(y * 0.2));
+    const yValues = (0, scichart_1.makeIncArray)(50, 1, y => Math.sin(y * 0.2));
     // Create metaData with some points selected
-    const metadata = xValues.map((x) => ({ isSelected: x > 10 && x < 20 }));
+    const metadata = xValues.map(x => ({ isSelected: x > 10 && x < 20 }));
     const renderableSeries = new scichart_1.XyScatterRenderableSeries(wasmContext, {
         dataSeries: new scichart_1.XyDataSeries(wasmContext, {
             xValues,
             yValues,
-            metadata,
+            metadata
             //containsNaN: true,
         }),
         pointMarker: new scichart_1.TrianglePointMarker(wasmContext, {
             width: 10,
             height: 10,
             stroke: "green",
-            fill: "green",
-        }),
+            fill: "green"
+        })
     });
     // Create a second PointMarkerDrawingProvider with a ySelector so that it uses y1Values
     const selectedPointDrawingProvider = new scichart_1.PointMarkerDrawingProvider(
         wasmContext,
         renderableSeries,
-        (ps) => ps.y1Values
+        ps => ps.y1Values
     );
     // Create a different pointMarker
     const squarePM = new scichart_1.SquarePointMarker(wasmContext, {
         width: 10,
         height: 10,
         stroke: "red",
-        fill: "red",
+        fill: "red"
     });
     // Tell the new drawingProvider to use the new pointmarker instead of the one from the series.
     selectedPointDrawingProvider.getProperties = () => ({
-        pointMarker: squarePM,
+        pointMarker: squarePM
     });
     // Add the new drawingProvider to the series
     renderableSeries.drawingProviders.push(selectedPointDrawingProvider);
@@ -101,10 +103,10 @@ async function simpleSplit(divElementId) {
     sciChartSurface.chartModifiers.add(
         new scichart_1.DataPointSelectionModifier({
             allowClickSelect: true,
-            onSelectionChanged: (args) => {
+            onSelectionChanged: args => {
                 // Since the transform depends on the selection state, we must tell the transform that it must run when the selection changes.
                 renderableSeries.renderDataTransform.requiresTransform = true;
-            },
+            }
         })
     );
     // #endregion

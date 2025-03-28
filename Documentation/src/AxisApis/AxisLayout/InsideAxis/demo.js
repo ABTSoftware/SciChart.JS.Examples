@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function innerAxis(divElementId) {
     // Demonstrates how to configure an inner axis in SciChart.js
     const { SciChartSurface, NumericAxis, SciChartJsNavyTheme } = SciChart;
@@ -5,7 +7,7 @@ async function innerAxis(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // #region ExampleA
@@ -14,7 +16,7 @@ async function innerAxis(divElementId) {
         isInnerAxis: true,
         axisTitle: "Inner axis",
         // To allow easier visualisation of axis position
-        backgroundColor: "#50C7E022",
+        backgroundColor: "#50C7E022"
     });
 
     // Add the xAxis to the chart
@@ -26,7 +28,7 @@ async function innerAxis(divElementId) {
         new NumericAxis(wasmContext, {
             axisTitle: "Outer axis",
             // To allow easier visualisation of axis position
-            backgroundColor: "#F4842022",
+            backgroundColor: "#F4842022"
         })
     );
 
@@ -42,7 +44,7 @@ async function innerAxis(divElementId) {
             stroke: "#FF333355",
             strokeThickness: 5,
             xCoordinateMode: ECoordinateMode.Relative,
-            yCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative
         })
     );
 
@@ -57,7 +59,7 @@ async function innerAxis(divElementId) {
             opacity: 0.4,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center
         })
     );
 }
@@ -79,17 +81,17 @@ async function builderExample(divElementId) {
                 isInnerAxis: true,
                 axisTitle: "Inner axis",
                 // To allow easier visualisation of axis position
-                backgroundColor: "#50C7E022",
-            },
+                backgroundColor: "#50C7E022"
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
             options: {
                 axisTitle: "Outer axis",
                 // To allow easier visualisation of axis position
-                backgroundColor: "#F4842022",
-            },
-        },
+                backgroundColor: "#F4842022"
+            }
+        }
     });
     // #endregion
 }

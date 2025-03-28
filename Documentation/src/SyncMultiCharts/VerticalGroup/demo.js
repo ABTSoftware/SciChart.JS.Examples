@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function synchronizeTwoChartsBasicExample() {
     // #region ExampleA
     // Create two charts for Synchronization
@@ -7,7 +9,7 @@ async function synchronizeTwoChartsBasicExample() {
 
     const createSciChartSurface = async (divId, isFirstChart) => {
         const { wasmContext, sciChartSurface } = await SciChartSurface.create(divId, {
-            theme: new SciChartJsNavyTheme(),
+            theme: new SciChartJsNavyTheme()
         });
         // Create some deliberate differences between chart 0 and chart 1
         sciChartSurface.background = isFirstChart ? "#22365B" : "#18304A";
@@ -15,14 +17,14 @@ async function synchronizeTwoChartsBasicExample() {
 
         sciChartSurface.xAxes.add(
             new NumericAxis(wasmContext, {
-                axisTitle: isFirstChart ? "XAxis 0" : "XAxis 1",
+                axisTitle: isFirstChart ? "XAxis 0" : "XAxis 1"
             })
         );
         sciChartSurface.yAxes.add(
             new NumericAxis(wasmContext, {
                 // Create some deliberate differences between chart 0 and chart 1
                 labelPrecision: isFirstChart ? 2 : 4,
-                axisTitle: isFirstChart ? "YAxis 0" : "YAxis 1",
+                axisTitle: isFirstChart ? "YAxis 0" : "YAxis 1"
             })
         );
 
@@ -41,8 +43,8 @@ async function synchronizeTwoChartsBasicExample() {
                 strokeThickness: 5,
                 dataSeries: new XyDataSeries(wasmContext, {
                     xValues,
-                    yValues,
-                }),
+                    yValues
+                })
             })
         );
 
@@ -61,10 +63,10 @@ async function synchronizeTwoChartsBasicExample() {
     const { SciChartVerticalGroup, ZoomPanModifier, MouseWheelZoomModifier, RolloverModifier } = SciChart;
 
     // Step1: Synchronize the two chart visibleRanges
-    sciChartSurface0.xAxes.get(0).visibleRangeChanged.subscribe((data1) => {
+    sciChartSurface0.xAxes.get(0).visibleRangeChanged.subscribe(data1 => {
         sciChartSurface1.xAxes.get(0).visibleRange = data1.visibleRange;
     });
-    sciChartSurface1.xAxes.get(0).visibleRangeChanged.subscribe((data1) => {
+    sciChartSurface1.xAxes.get(0).visibleRangeChanged.subscribe(data1 => {
         sciChartSurface0.xAxes.get(0).visibleRange = data1.visibleRange;
     });
 
@@ -103,7 +105,7 @@ async function synchronizeTwoChartsBasicExample() {
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center
         };
         scs.annotations.add(
             new TextAnnotation({
@@ -111,7 +113,7 @@ async function synchronizeTwoChartsBasicExample() {
                 textColor: "#FFFFFF77",
                 fontSize: 20,
                 yCoordShift: -30,
-                text: isFirstChart ? "SciChartSurface #0" : "SciChartSurface #1",
+                text: isFirstChart ? "SciChartSurface #0" : "SciChartSurface #1"
             })
         );
         scs.annotations.add(
@@ -119,7 +121,7 @@ async function synchronizeTwoChartsBasicExample() {
                 ...watermarkOptions,
                 text: "Drag to zoom, or mousewheel the chart to view synchronization",
                 textColor: "#FFFFFF44",
-                fontSize: 16,
+                fontSize: 16
             })
         );
     };

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const { RolloverModifier } = SciChart;
 
@@ -34,7 +36,7 @@ async function rolloverPlacementOnClick(divElementId) {
         XyDataSeries,
         SciChartJsNavyTheme,
         EAutoRange,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or for npm import { SciChartSurface, ... } from "scichart"
@@ -44,7 +46,7 @@ async function rolloverPlacementOnClick(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
         title: "Place Rollover and persist on CTRL+Click",
-        titleStyle: { fontSize: 16 },
+        titleStyle: { fontSize: 16 }
     });
 
     // For the example to work, axis must have EAutoRange.Always
@@ -62,7 +64,7 @@ async function rolloverPlacementOnClick(divElementId) {
     const xyDataSeries = new XyDataSeries(wasmContext, {
         // Optional: pass X,Y values to DataSeries constructor for fast initialization
         xValues: [],
-        yValues: [],
+        yValues: []
     });
 
     // Create a renderableSeries and assign the dataSeries
@@ -70,7 +72,7 @@ async function rolloverPlacementOnClick(divElementId) {
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: xyDataSeries,
             strokeThickness: 3,
-            stroke: "#50C7E0",
+            stroke: "#50C7E0"
         })
     );
 

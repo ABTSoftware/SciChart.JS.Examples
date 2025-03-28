@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // Generates some example data for this demo, returning a 2D array of numbers [zIndex][xIndex]
 const generateData = (xSize, zSize) => {
     const heightmapArray = [];
@@ -29,7 +31,7 @@ async function columnRenderableSeries3D(divElementId) {
         MouseWheelZoomModifier3D,
         OrbitModifier3D,
         ResetCamera3DModifier,
-        XyzDataSeries3D,
+        XyzDataSeries3D
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -40,19 +42,19 @@ async function columnRenderableSeries3D(divElementId) {
         worldDimensions: new Vector3(300, 200, 300),
         cameraOptions: {
             position: new Vector3(-270, 230, -160),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     // Declare your axis like this
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "X Axis",
+        axisTitle: "X Axis"
     });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Y Axis",
+        axisTitle: "Y Axis"
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Z Axis",
+        axisTitle: "Z Axis"
     });
 
     // Create a 2D array and fill this with data. returns 2D array [zIndex][xIndex]
@@ -77,7 +79,7 @@ async function columnRenderableSeries3D(divElementId) {
         xValues,
         yValues,
         zValues,
-        dataSeriesName: "Column Series 3D",
+        dataSeriesName: "Column Series 3D"
     });
 
     // Add the 3D column series to the chart
@@ -87,7 +89,7 @@ async function columnRenderableSeries3D(divElementId) {
             fill: "#F48420",
             dataPointWidthX: 0.5,
             dataPointWidthZ: 0.5,
-            pointMarker: new CubePointMarker3D(wasmContext),
+            pointMarker: new CubePointMarker3D(wasmContext)
         })
     );
 

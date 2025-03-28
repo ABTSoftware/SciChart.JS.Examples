@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // This function generates data for the heatmap series example
 function generateExampleData(width, height, cpMax, index, maxIndex) {
     const { zeroArray2D } = SciChart;
@@ -35,14 +37,14 @@ async function updatingHeatmapChart(divElementId) {
         HeatmapColorMap,
         UniformHeatmapDataSeries,
         UniformHeatmapRenderableSeries,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     // Create a SciChartSurface with X & Y Axis
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -60,7 +62,7 @@ async function updatingHeatmapChart(divElementId) {
         xStep: 1,
         yStart: 0,
         yStep: 1,
-        zValues: initialZValues,
+        zValues: initialZValues
     });
 
     // Create a Heatmap RenderableSeries with the color map. ColorMap.minimum/maximum defines the values in
@@ -78,9 +80,9 @@ async function updatingHeatmapChart(divElementId) {
                 { offset: 0.5, color: "#67BDAF" },
                 { offset: 0.3, color: "#50C7E0" },
                 { offset: 0.2, color: "#264B93" },
-                { offset: 0, color: "#14233C" },
-            ],
-        }),
+                { offset: 0, color: "#14233C" }
+            ]
+        })
     });
 
     sciChartSurface.renderableSeries.add(heatmapSeries);

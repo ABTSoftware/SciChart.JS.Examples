@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleTextChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a text chart with SciChart.js
@@ -7,13 +9,13 @@ async function simpleTextChart(divElementId) {
         FastTextRenderableSeries,
         XyTextDataSeries,
         SciChartJsNavyTheme,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, 9) }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, 9) }));
@@ -23,16 +25,16 @@ async function simpleTextChart(divElementId) {
         dataSeries: new XyTextDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5, 6],
             yValues: [3, 5, 6, 4, 2, 5],
-            textValues: ["This", "text", "is", "drawn", "using", "FastTextRenderableSeries"],
+            textValues: ["This", "text", "is", "drawn", "using", "FastTextRenderableSeries"]
         }),
         // font and size is required for text to be drawn
         dataLabels: {
             style: {
                 fontFamily: "Arial",
-                fontSize: 18,
+                fontSize: 18
             },
-            color: "white",
-        },
+            color: "white"
+        }
     });
     sciChartSurface.renderableSeries.add(textSeries);
     // #endregion
@@ -59,7 +61,7 @@ async function builderExample(divElementId) {
                 xyTextData: {
                     xValues: [1, 2, 3, 4, 5, 6],
                     yValues: [3, 5, 6, 4, 2, 5],
-                    textValues: ["This", "text", "is", "drawn", "using", "FastTextRenderableSeries"],
+                    textValues: ["This", "text", "is", "drawn", "using", "FastTextRenderableSeries"]
                 },
                 options: {
                     stroke: "#0066FF",
@@ -67,13 +69,13 @@ async function builderExample(divElementId) {
                     dataLabels: {
                         style: {
                             fontFamily: "Arial",
-                            fontSize: 18,
+                            fontSize: 18
                         },
-                        color: "white",
-                    },
-                },
-            },
-        ],
+                        color: "white"
+                    }
+                }
+            }
+        ]
     });
     // #endregion
 }

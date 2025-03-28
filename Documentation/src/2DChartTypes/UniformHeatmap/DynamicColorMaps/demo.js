@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // This function generates data for the heatmap series example
 function generateExampleData(width, height, cpMax, index, maxIndex) {
     const { zeroArray2D } = SciChart;
@@ -42,7 +44,7 @@ async function dynamicColorMaps(divElementIdChart, divElementIdLegend) {
         BoxAnnotation,
         ECoordinateMode,
         EHorizontalAnchorPoint,
-        EVerticalAnchorPoint,
+        EVerticalAnchorPoint
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -57,7 +59,7 @@ async function dynamicColorMaps(divElementIdChart, divElementIdLegend) {
                 fill: "#14233C77",
                 strokeThickness: 0,
                 xCoordinateMode: ECoordinateMode.Relative,
-                yCoordinateMode: ECoordinateMode.Relative,
+                yCoordinateMode: ECoordinateMode.Relative
             })
         );
         // Note: we will be improving titles shortly in scichart.js v3.1
@@ -74,7 +76,7 @@ async function dynamicColorMaps(divElementIdChart, divElementIdLegend) {
                 opacity: 0.77,
                 fontSize: 28,
                 fontWeight: "Bold",
-                textColor: "White",
+                textColor: "White"
             })
         );
         sciChartSurface.annotations.add(
@@ -89,14 +91,14 @@ async function dynamicColorMaps(divElementIdChart, divElementIdLegend) {
                 verticalAnchorPoint: EVerticalAnchorPoint.Top,
                 opacity: 0.77,
                 fontSize: 14,
-                textColor: "White",
+                textColor: "White"
             })
         );
     };
 
     // Create a SciChartSurface with X & Y Axis
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementIdChart, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(150, 350) }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(80, 200) }));
@@ -119,7 +121,7 @@ async function dynamicColorMaps(divElementIdChart, divElementIdLegend) {
         xStep: 1,
         yStart: 0,
         yStep: 1,
-        zValues: initialZValues,
+        zValues: initialZValues
     });
 
     // #region ExampleA
@@ -137,8 +139,8 @@ async function dynamicColorMaps(divElementIdChart, divElementIdLegend) {
             { offset: 0.5, color: "#67BDAF" },
             { offset: 0.3, color: "#50C7E0" },
             { offset: 0.2, color: "#264B9377" },
-            { offset: 0, color: "Transparent" },
-        ],
+            { offset: 0, color: "Transparent" }
+        ]
     });
 
     // Create a Heatmap RenderableSeries with the color map
@@ -147,7 +149,7 @@ async function dynamicColorMaps(divElementIdChart, divElementIdLegend) {
             dataSeries: heatmapDataSeries,
             useLinearTextureFiltering: false,
             fillValuesOutOfRange: true,
-            colorMap,
+            colorMap
         })
     );
 
@@ -156,9 +158,9 @@ async function dynamicColorMaps(divElementIdChart, divElementIdLegend) {
         theme: {
             ...new SciChartJsNavyTheme(),
             sciChartBackground: "#14233CBB",
-            loadingAnimationBackground: "#14233CBB",
+            loadingAnimationBackground: "#14233CBB"
         },
-        colorMap,
+        colorMap
     });
 
     // The HeatmapLegend is implemented using a SciChartSurface, You can access the inner chart
@@ -168,7 +170,7 @@ async function dynamicColorMaps(divElementIdChart, divElementIdLegend) {
     const axisAnnotation = new AxisMarkerAnnotation({
         y1: colorMap.maximum * 0.9,
         isEditable: true,
-        onDrag: (args) => {
+        onDrag: args => {
             // First step: prevent dragging outside the min/max
             if (axisAnnotation.y1 > 200) axisAnnotation.y1 = 200;
             if (axisAnnotation.y1 < 0) axisAnnotation.y1 = 0;
@@ -181,10 +183,10 @@ async function dynamicColorMaps(divElementIdChart, divElementIdLegend) {
                 { offset: 0.5, color: "#67BDAF" },
                 { offset: 0.3, color: "#50C7E0" },
                 { offset: 0.2, color: "#264B9377" },
-                { offset: 0, color: "Transparent" },
+                { offset: 0, color: "Transparent" }
             ];
             colorMap.gradientStops = gradientStops;
-        },
+        }
     });
 
     // Add it to the legend's SciChartSurface

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function digitalLineChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a digitral line chart with SciChart.js
@@ -6,7 +8,7 @@ async function digitalLineChart(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -20,7 +22,7 @@ async function digitalLineChart(divElementId) {
 
     const xyDataSeries = new XyDataSeries(wasmContext, {
         xValues,
-        yValues,
+        yValues
     });
 
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
@@ -28,7 +30,7 @@ async function digitalLineChart(divElementId) {
         strokeThickness: 5,
         dataSeries: xyDataSeries,
         // set flag isDigitalLine = true to enable a digital (step) line
-        isDigitalLine: true,
+        isDigitalLine: true
     });
 
     sciChartSurface.renderableSeries.add(lineSeries);
@@ -58,16 +60,16 @@ async function builderExample(divElementId) {
                 type: ESeriesType.LineSeries,
                 xyData: {
                     xValues,
-                    yValues,
+                    yValues
                 },
                 options: {
                     stroke: "#0066FF",
                     strokeThickness: 5,
                     // set flag isDigitalLine = true to enable a digital (step) line
-                    isDigitalLine: true,
-                },
-            },
-        ],
+                    isDigitalLine: true
+                }
+            }
+        ]
     });
     // #endregion
 }

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function testIsVisibleOnChart(divElementId) {
     // Demonstrates how to listen to isVisible changes in SciChart.js
     const {
@@ -11,13 +13,13 @@ async function testIsVisibleOnChart(divElementId) {
         TextAnnotation,
         ECoordinateMode,
         EHorizontalAnchorPoint,
-        EVerticalAnchorPoint,
+        EVerticalAnchorPoint
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -32,7 +34,7 @@ async function testIsVisibleOnChart(divElementId) {
         xCoordinateMode: ECoordinateMode.Relative,
         yCoordinateMode: ECoordinateMode.Relative,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center
     });
     sciChartSurface.annotations.add(textAnnotation);
 
@@ -50,22 +52,22 @@ async function testIsVisibleOnChart(divElementId) {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues,
             yValues,
-            dataSeriesName: "Scatter Series",
+            dataSeriesName: "Scatter Series"
         }),
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 7,
             height: 7,
             strokeThickness: 2,
             fill: "steelblue",
-            stroke: "LightSteelBlue",
+            stroke: "LightSteelBlue"
         }),
         onIsVisibleChanged: (sourceSeries, isVisible) => {
             console.log(`Series ${sourceSeries.type} was set to isVisible=${isVisible}`);
-        },
+        }
     });
 
     // You can also subscribe to isVisibleChanged like this
-    scatterSeries.isVisibleChanged.subscribe((seriesVisibleChangedArgs) => {
+    scatterSeries.isVisibleChanged.subscribe(seriesVisibleChangedArgs => {
         // See SeriesVisibleChangedArgs in typedoc
         const renderableSeries = seriesVisibleChangedArgs.sourceSeries;
         const isVisible = seriesVisibleChangedArgs.isVisible;

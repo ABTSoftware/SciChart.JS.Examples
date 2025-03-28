@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 const { chartBuilder, ESeriesType, EAxisType, EAxisAlignment, NumberRange, EColumnDataLabelPosition } = SciChart;
 
 async function dataLabelColumns(divElementId) {
@@ -5,8 +7,8 @@ async function dataLabelColumns(divElementId) {
         xAxes: [
             {
                 type: EAxisType.NumericAxis,
-                options: { growBy: new NumberRange(0.1, 0.1), axisAlignment: EAxisAlignment.Left },
-            },
+                options: { growBy: new NumberRange(0.1, 0.1), axisAlignment: EAxisAlignment.Left }
+            }
         ],
         yAxes: [
             {
@@ -14,15 +16,15 @@ async function dataLabelColumns(divElementId) {
                 options: {
                     growBy: new NumberRange(0.1, 0.1),
                     axisAlignment: EAxisAlignment.Bottom,
-                    flippedCoordinates: false,
-                },
-            },
+                    flippedCoordinates: false
+                }
+            }
         ],
         series: {
             type: ESeriesType.ColumnSeries,
             xyData: {
                 xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                yValues: [-3, -4, 0, 6, 6.3, 6.3, 7, 7.2, 7.8, 8, 8, 8],
+                yValues: [-3, -4, 0, 6, 6.3, 6.3, 7, 7.2, 7.8, 8, 8, 8]
             },
             options: {
                 stroke: "SteelBlue",
@@ -32,13 +34,13 @@ async function dataLabelColumns(divElementId) {
                     positionMode: EColumnDataLabelPosition.Outside,
                     style: {
                         fontFamily: "Arial",
-                        fontSize: 18,
+                        fontSize: 18
                         //padding: new Thickness(0, 0, 0 ,0)
                     },
-                    color: "#EEE",
-                },
-            },
-        },
+                    color: "#EEE"
+                }
+            }
+        }
     });
 }
 dataLabelColumns("scichart-root");

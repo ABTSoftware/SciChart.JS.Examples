@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function digitalBandChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a band chart using SciChart.js
@@ -6,7 +8,7 @@ async function digitalBandChart(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -33,7 +35,7 @@ async function digitalBandChart(divElementId) {
         fillY1: "#50C7E033",
         strokeThickness: 2,
         // optional parameter defines a step-line
-        isDigitalLine: true,
+        isDigitalLine: true
     });
 
     sciChartSurface.renderableSeries.add(bandSeries);
@@ -73,7 +75,7 @@ async function builderExample(divElementId) {
                 xyyData: {
                     xValues,
                     yValues,
-                    y1Values,
+                    y1Values
                 },
                 options: {
                     stroke: "#FF1919FF",
@@ -82,10 +84,10 @@ async function builderExample(divElementId) {
                     fillY1: "#FF191933",
                     strokeThickness: 2,
                     // optional parameter defines a step-line
-                    isDigitalLine: true,
-                },
-            },
-        ],
+                    isDigitalLine: true
+                }
+            }
+        ]
     });
     // #endregion
 }

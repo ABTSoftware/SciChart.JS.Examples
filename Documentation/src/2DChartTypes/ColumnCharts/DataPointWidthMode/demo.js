@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleColumnChart(divElementId) {
     // Demonstrates how to create a Column chart with SciChart.js
     const {
@@ -11,7 +13,7 @@ async function simpleColumnChart(divElementId) {
         NumberRange,
         EXyDirection,
         MouseWheelZoomModifier,
-        ZoomExtentsModifier,
+        ZoomExtentsModifier
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -19,33 +21,33 @@ async function simpleColumnChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
         title: "Column Chart with DataPointWidthModes",
-        titleStyle: { fontSize: 20, color: "white" },
+        titleStyle: { fontSize: 20, color: "white" }
     });
 
     const options = {
         axisTitleStyle: { fontSize: 16, color: "white" },
-        growBy: new NumberRange(0, 0.1),
+        growBy: new NumberRange(0, 0.1)
     };
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             axisTitle: "Absolute (8px)",
             id: "Absolute",
-            ...options,
+            ...options
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             axisTitle: "Range (8units)",
             id: "Range",
-            ...options,
+            ...options
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             axisTitle: "Relative (80%)",
             id: "Relative",
-            ...options,
+            ...options
         })
     );
 
@@ -77,7 +79,7 @@ async function simpleColumnChart(divElementId) {
         dataPointWidthMode: EDataPointWidthMode.Absolute,
         // When dataPointWidthMode=Absolute, this is the width of each column in pixels
         dataPointWidth: 8,
-        dataSeries,
+        dataSeries
     });
     const columnSeries1 = new FastColumnRenderableSeries(wasmContext, {
         fill: "#EC0F6C77",
@@ -87,7 +89,7 @@ async function simpleColumnChart(divElementId) {
         dataPointWidthMode: EDataPointWidthMode.Range,
         // When dataPointWidthMode=Range, this is the width of each column in range units
         dataPointWidth: 8,
-        dataSeries,
+        dataSeries
     });
     const columnSeries2 = new FastColumnRenderableSeries(wasmContext, {
         fill: "#30BC9A77",
@@ -97,7 +99,7 @@ async function simpleColumnChart(divElementId) {
         dataPointWidthMode: EDataPointWidthMode.Relative,
         // When dataPointWidthMode=Range, this is the width of each column in relative units of available space
         dataPointWidth: 0.8,
-        dataSeries,
+        dataSeries
     });
     sciChartSurface.renderableSeries.add(columnSeries0);
     sciChartSurface.renderableSeries.add(columnSeries1);
@@ -131,7 +133,7 @@ async function builderExample(divElementId) {
                 type: ESeriesType.ColumnSeries,
                 xyData: {
                     xValues,
-                    yValues,
+                    yValues
                 },
                 options: {
                     fill: "rgba(176, 196, 222, 0.5)",
@@ -140,10 +142,10 @@ async function builderExample(divElementId) {
                     // Use this with sparse data
                     dataPointWidthMode: EDataPointWidthMode.Range,
                     // This is now "x range per column"
-                    dataPointWidth: 8,
-                },
-            },
-        ],
+                    dataPointWidth: 8
+                }
+            }
+        ]
     });
     // #endregion
 }

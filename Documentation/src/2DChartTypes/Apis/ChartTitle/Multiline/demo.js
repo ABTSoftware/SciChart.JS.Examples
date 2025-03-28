@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function multilineTitle(divElementId) {
     // Demonstrates how to add multiline chart title in SciChart.js
     const { SciChartSurface, SciChartJsNavyTheme, NumericAxis, EMultiLineAlignment } = SciChart;
@@ -5,7 +7,7 @@ async function multilineTitle(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -16,7 +18,7 @@ async function multilineTitle(divElementId) {
     // Modify multiline text related options for the title
     sciChartSurface.titleStyle = {
         multilineAlignment: EMultiLineAlignment.Right,
-        lineSpacing: 1.5,
+        lineSpacing: 1.5
     };
 }
 

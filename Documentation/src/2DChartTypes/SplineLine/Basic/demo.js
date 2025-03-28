@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleSplineLineChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a line chart with SciChart.js
@@ -8,13 +10,13 @@ async function simpleSplineLineChart(divElementId) {
         EllipsePointMarker,
         XyDataSeries,
         SciChartJsNavyTheme,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
@@ -28,7 +30,7 @@ async function simpleSplineLineChart(divElementId) {
 
     const xyDataSeries = new XyDataSeries(wasmContext, {
         xValues,
-        yValues,
+        yValues
     });
 
     // Create a spline line series
@@ -43,8 +45,8 @@ async function simpleSplineLineChart(divElementId) {
             width: 7,
             height: 7,
             fill: "white",
-            strokeThickness: 0,
-        }),
+            strokeThickness: 0
+        })
     });
 
     sciChartSurface.renderableSeries.add(splineLineSeries);
@@ -86,12 +88,12 @@ async function builderExample(divElementId) {
                             width: 7,
                             height: 7,
                             fill: "white",
-                            strokeThickness: 0,
-                        },
-                    },
-                },
-            },
-        ],
+                            strokeThickness: 0
+                        }
+                    }
+                }
+            }
+        ]
     });
     // #endregion
 }

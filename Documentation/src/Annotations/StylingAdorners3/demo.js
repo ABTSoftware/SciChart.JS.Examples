@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 const {
     BoxAnnotation,
     CustomAnnotation,
@@ -10,7 +12,7 @@ const {
     EVerticalAnchorPoint,
     ECoordinateMode,
     SciChartJsNavyTheme,
-    EDraggingGripPoint,
+    EDraggingGripPoint
 } = SciChart;
 
 // #region ExampleA
@@ -60,7 +62,7 @@ class CustomBoxAnnotation extends BoxAnnotation {
 
 async function addAnnotationToChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(2, 8) }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(2, 8) }));
@@ -72,7 +74,7 @@ async function addAnnotationToChart(divElementId) {
         y1: 3,
         y2: 7,
         isEditable: true,
-        isSelected: true,
+        isSelected: true
     });
     sciChartSurface.annotations.add(boxAnnotation);
 }

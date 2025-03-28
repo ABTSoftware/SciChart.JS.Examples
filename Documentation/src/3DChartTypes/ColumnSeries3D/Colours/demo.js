@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function columnRenderableSeries3D(divElementId) {
     const {
         SciChart3DSurface,
@@ -10,7 +12,7 @@ async function columnRenderableSeries3D(divElementId) {
         OrbitModifier3D,
         ResetCamera3DModifier,
         XyzDataSeries3D,
-        parseColorToUIntArgb,
+        parseColorToUIntArgb
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -22,19 +24,19 @@ async function columnRenderableSeries3D(divElementId) {
         worldDimensions: new Vector3(300, 200, 300),
         cameraOptions: {
             position: new Vector3(-270, 230, -160),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     // Declare your axis like this
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "X Axis",
+        axisTitle: "X Axis"
     });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Y Axis",
+        axisTitle: "Y Axis"
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Z Axis",
+        axisTitle: "Z Axis"
     });
 
     // Metadata colours are in ARGB format, e.g. 0xFFFF0000 is red, 0xFF00FF00 is green
@@ -59,7 +61,7 @@ async function columnRenderableSeries3D(divElementId) {
         "orange",
         "#67BDAF",
         "SteelBlue",
-        "#67BDAF",
+        "#67BDAF"
     ];
 
     // Declare a dataSeries with xValues, yValues (heights), zValues
@@ -69,7 +71,7 @@ async function columnRenderableSeries3D(divElementId) {
         xValues: [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4],
         yValues: [0, 1, 2, 3, 4, 3, 2, 4, 5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 4, 5],
         zValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
-        metadata: htmlColors.map((c) => ({ vertexColor: parseColorToUIntArgb(c) })),
+        metadata: htmlColors.map(c => ({ vertexColor: parseColorToUIntArgb(c) }))
     });
 
     sciChart3DSurface.renderableSeries.add(
@@ -79,7 +81,7 @@ async function columnRenderableSeries3D(divElementId) {
             dataPointWidthZ: 0.7,
             // Per column coloring using metadata
             useMetadataColors: true,
-            pointMarker: new CylinderPointMarker3D(wasmContext),
+            pointMarker: new CylinderPointMarker3D(wasmContext)
         })
     );
     // #endregion

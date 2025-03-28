@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function tooltipSvgCursorModifier(divElementId) {
     const {
         SciChartSurface,
@@ -10,7 +12,7 @@ async function tooltipSvgCursorModifier(divElementId) {
         EHorizontalAnchorPoint,
         ECoordinateMode,
         EllipsePointMarker,
-        adjustTooltipPosition,
+        adjustTooltipPosition
     } = SciChart;
 
     // or for npm import { SciChartSurface, ... } from "scichart"
@@ -18,7 +20,7 @@ async function tooltipSvgCursorModifier(divElementId) {
     // Create a chart surface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
-        titleStyle: { fontSize: 16 },
+        titleStyle: { fontSize: 16 }
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -53,7 +55,7 @@ async function tooltipSvgCursorModifier(divElementId) {
     const cursorModifier = new CursorModifier({
         showTooltip: true,
         showAxisLabels: true,
-        tooltipSvgTemplate,
+        tooltipSvgTemplate
     });
     sciChartSurface.chartModifiers.add(cursorModifier);
     // #endregion
@@ -77,9 +79,9 @@ async function tooltipSvgCursorModifier(divElementId) {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
                 yValues,
-                dataSeriesName: "Sinewave 1",
+                dataSeriesName: "Sinewave 1"
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -90,9 +92,9 @@ async function tooltipSvgCursorModifier(divElementId) {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
                 yValues: yValues2,
-                dataSeriesName: "Sinewave 2",
+                dataSeriesName: "Sinewave 2"
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -104,14 +106,14 @@ async function tooltipSvgCursorModifier(divElementId) {
         y1: 0.0,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         opacity: 0.33,
-        textColor: "White",
+        textColor: "White"
     };
     sciChartSurface.annotations.add(
         new TextAnnotation({
             text: "CursorModifier Tooltip SVG",
             fontSize: 36,
             yCoordShift: 25,
-            ...options,
+            ...options
         })
     );
     sciChartSurface.annotations.add(
@@ -119,7 +121,7 @@ async function tooltipSvgCursorModifier(divElementId) {
             text: "Move the mouse over the chart to see cursor & tooltip",
             fontSize: 20,
             yCoordShift: 75,
-            ...options,
+            ...options
         })
     );
 }

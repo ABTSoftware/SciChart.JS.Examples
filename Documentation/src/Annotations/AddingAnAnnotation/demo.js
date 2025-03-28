@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const {
     BoxAnnotation,
@@ -7,14 +9,14 @@ const {
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
     ECoordinateMode,
-    SciChartJsNavyTheme,
+    SciChartJsNavyTheme
 } = SciChart;
 
 // or for npm import { SciChartSurface, ... } from "scichart"
 
 async function addAnnotationToChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -27,7 +29,7 @@ async function addAnnotationToChart(divElementId) {
             x1: 2.0,
             x2: 8.0,
             y1: 3.0,
-            y2: 7.0,
+            y2: 7.0
         }),
         new BoxAnnotation({
             stroke: "#FF3333",
@@ -36,7 +38,7 @@ async function addAnnotationToChart(divElementId) {
             x1: 2.0,
             x2: 8.0,
             y1: 3.0,
-            y2: 7.0,
+            y2: 7.0
         }),
         new BoxAnnotation({
             stroke: "#33FF33",
@@ -45,7 +47,7 @@ async function addAnnotationToChart(divElementId) {
             x1: 3.0,
             x2: 9.0,
             y1: 4.0,
-            y2: 8.0,
+            y2: 8.0
         }),
         new TextAnnotation({
             x1: 100,
@@ -57,7 +59,7 @@ async function addAnnotationToChart(divElementId) {
             textColor: "yellow",
             fontSize: 26,
             fontFamily: "Arial",
-            text: "TEXT ANNOTATION",
+            text: "TEXT ANNOTATION"
         })
     );
 }
@@ -82,8 +84,8 @@ async function builderExample(divElementId) {
                     x1: 2.0,
                     x2: 8.0,
                     y1: 3.0,
-                    y2: 7.0,
-                },
+                    y2: 7.0
+                }
             },
             {
                 type: EAnnotationType.RenderContextBoxAnnotation,
@@ -94,8 +96,8 @@ async function builderExample(divElementId) {
                     x1: 3.0,
                     x2: 9.0,
                     y1: 4.0,
-                    y2: 8.0,
-                },
+                    y2: 8.0
+                }
             },
             {
                 type: EAnnotationType.SVGTextAnnotation,
@@ -109,10 +111,10 @@ async function builderExample(divElementId) {
                     textColor: "yellow",
                     fontSize: 26,
                     fontFamily: "Times New Roman",
-                    text: "TEXT ANNOTATION",
-                },
-            },
-        ],
+                    text: "TEXT ANNOTATION"
+                }
+            }
+        ]
     });
     // #endregion
 }

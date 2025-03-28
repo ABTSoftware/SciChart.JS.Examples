@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function labelAlignment(divElementId) {
     // #region ExampleA
     // Demonstrates how to configure label alignment in SciChart.js
@@ -9,13 +11,13 @@ async function labelAlignment(divElementId) {
         EAxisAlignment,
         ELabelAlignment,
         NumberRange,
-        ENumericFormat,
+        ENumericFormat
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Create an XAxis on the bottom
@@ -23,7 +25,7 @@ async function labelAlignment(divElementId) {
         axisTitle: "X Axis, center aligned labels",
         keepLabelsWithinAxis: false,
         axisBorder: { color: "#50C7E077", borderTop: 1 },
-        backgroundColor: "#50C7E022",
+        backgroundColor: "#50C7E022"
     });
 
     // Add the xAxis to the chart
@@ -39,7 +41,7 @@ async function labelAlignment(divElementId) {
             visibleRange: new NumberRange(0.1, 1e6),
             logBase: 10,
             axisBorder: { color: "#50C7E077", borderRight: 1 },
-            backgroundColor: "#50C7E022",
+            backgroundColor: "#50C7E022"
         })
     );
 
@@ -53,7 +55,7 @@ async function labelAlignment(divElementId) {
             visibleRange: new NumberRange(0.1, 1e6),
             logBase: 10,
             axisBorder: { color: "#50C7E077", borderLeft: 1 },
-            backgroundColor: "#50C7E022",
+            backgroundColor: "#50C7E022"
         })
     );
     // #endregion
@@ -71,7 +73,7 @@ async function builderExample(divElementId) {
         ELabelAlignment,
         EAxisType,
         ENumericFormat,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -84,8 +86,8 @@ async function builderExample(divElementId) {
                 axisTitle: "X Axis, center aligned labels",
                 keepLabelsWithinAxis: false,
                 axisBorder: { color: "#50C7E077", borderTop: 1 },
-                backgroundColor: "#50C7E022",
-            },
+                backgroundColor: "#50C7E022"
+            }
         },
         yAxes: [
             {
@@ -98,8 +100,8 @@ async function builderExample(divElementId) {
                     visibleRange: new NumberRange(0.1, 1e6),
                     logBase: 10,
                     axisBorder: { color: "#50C7E077", borderRight: 1 },
-                    backgroundColor: "#50C7E022",
-                },
+                    backgroundColor: "#50C7E022"
+                }
             },
             {
                 type: EAxisType.LogarithmicAxis,
@@ -111,10 +113,10 @@ async function builderExample(divElementId) {
                     visibleRange: new NumberRange(0.1, 1e6),
                     logBase: 10,
                     axisBorder: { color: "#50C7E077", borderLeft: 1 },
-                    backgroundColor: "#50C7E022",
-                },
-            },
-        ],
+                    backgroundColor: "#50C7E022"
+                }
+            }
+        ]
     });
     // #endregion
 }

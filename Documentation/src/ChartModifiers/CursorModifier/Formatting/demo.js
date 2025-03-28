@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function formatCursorModifier(divElementId) {
     const {
         SciChartSurface,
@@ -10,7 +12,7 @@ async function formatCursorModifier(divElementId) {
         TextAnnotation,
         EHorizontalAnchorPoint,
         ECoordinateMode,
-        EllipsePointMarker,
+        EllipsePointMarker
     } = SciChart;
 
     // or for npm import { SciChartSurface, ... } from "scichart"
@@ -19,7 +21,7 @@ async function formatCursorModifier(divElementId) {
     // Create a chart surface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
-        titleStyle: { fontSize: 16 },
+        titleStyle: { fontSize: 16 }
     });
 
     sciChartSurface.xAxes.add(
@@ -29,7 +31,7 @@ async function formatCursorModifier(divElementId) {
             labelFormat: ENumericFormat.Decimal,
             // label format options applied to cursors & tooltips
             cursorLabelPrecision: 4,
-            cursorLabelFormat: ENumericFormat.Decimal,
+            cursorLabelFormat: ENumericFormat.Decimal
         })
     );
     sciChartSurface.yAxes.add(
@@ -39,7 +41,7 @@ async function formatCursorModifier(divElementId) {
             labelFormat: ENumericFormat.Decimal,
             // label format options applied to cursors & tooltips
             cursorLabelPrecision: 4,
-            cursorLabelFormat: ENumericFormat.Decimal,
+            cursorLabelFormat: ENumericFormat.Decimal
         })
     );
 
@@ -47,7 +49,7 @@ async function formatCursorModifier(divElementId) {
     const cursorModifier = new CursorModifier({
         showTooltip: true,
         showAxisLabels: true,
-        hitTestRadius: 10,
+        hitTestRadius: 10
     });
     sciChartSurface.chartModifiers.add(cursorModifier);
     // #endregion
@@ -71,9 +73,9 @@ async function formatCursorModifier(divElementId) {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
                 yValues,
-                dataSeriesName: "Sinewave 1",
+                dataSeriesName: "Sinewave 1"
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -84,9 +86,9 @@ async function formatCursorModifier(divElementId) {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
                 yValues: yValues2,
-                dataSeriesName: "Sinewave 2",
+                dataSeriesName: "Sinewave 2"
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -98,14 +100,14 @@ async function formatCursorModifier(divElementId) {
         y1: 0.0,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         opacity: 0.33,
-        textColor: "White",
+        textColor: "White"
     };
     sciChartSurface.annotations.add(
         new TextAnnotation({
             text: "CursorModifier Formatting",
             fontSize: 36,
             yCoordShift: 25,
-            ...options,
+            ...options
         })
     );
     sciChartSurface.annotations.add(
@@ -113,7 +115,7 @@ async function formatCursorModifier(divElementId) {
             text: "Move the mouse over the chart to see cursor & tooltip",
             fontSize: 20,
             yCoordShift: 75,
-            ...options,
+            ...options
         })
     );
 }
@@ -137,8 +139,8 @@ async function builderExample(divElementId) {
                 labelFormat: ENumericFormat.Decimal,
                 // label format options applied to cursors & tooltips
                 cursorLabelPrecision: 4,
-                cursorLabelFormat: ENumericFormat.Decimal,
-            },
+                cursorLabelFormat: ENumericFormat.Decimal
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
@@ -148,8 +150,8 @@ async function builderExample(divElementId) {
                 labelFormat: ENumericFormat.Decimal,
                 // label format options applied to cursors & tooltips
                 cursorLabelPrecision: 4,
-                cursorLabelFormat: ENumericFormat.Decimal,
-            },
+                cursorLabelFormat: ENumericFormat.Decimal
+            }
         },
         modifiers: [
             {
@@ -157,10 +159,10 @@ async function builderExample(divElementId) {
                 options: {
                     showTooltip: true,
                     showAxisLabels: true,
-                    hitTestRadius: 10,
-                },
-            },
-        ],
+                    hitTestRadius: 10
+                }
+            }
+        ]
     });
     // #endregion
 
@@ -182,9 +184,9 @@ async function builderExample(divElementId) {
             strokeThickness: 5,
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
-                yValues,
+                yValues
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -194,9 +196,9 @@ async function builderExample(divElementId) {
             strokeThickness: 5,
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
-                yValues: yValues2,
+                yValues: yValues2
             }),
-            pointMarker,
+            pointMarker
         })
     );
 }

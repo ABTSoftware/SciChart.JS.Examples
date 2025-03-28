@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // Seeded random approximation (required for tests / data generation consistency)
 let randomSeed = 0;
 function random() {
@@ -51,13 +53,13 @@ async function simpleFanChart(divElementId) {
         FastBandRenderableSeries,
         XyDataSeries,
         XyyDataSeries,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -65,13 +67,13 @@ async function simpleFanChart(divElementId) {
     // get data for the fan chart
     // format is [{ date, actual, varMax, var4, var3, var2, var1, varMin }]
     const varianceData = getVarianceData();
-    const xValues = varianceData.map((v) => v.date);
+    const xValues = varianceData.map(v => v.date);
 
     // Add a line series with the Xy data (the actual data)
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: varianceData.map((v) => v.actual) }),
-            stroke: "#EC0F6C",
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: varianceData.map(v => v.actual) }),
+            stroke: "#EC0F6C"
         })
     );
 
@@ -80,36 +82,36 @@ async function simpleFanChart(divElementId) {
         new FastBandRenderableSeries(wasmContext, {
             dataSeries: new XyyDataSeries(wasmContext, {
                 xValues,
-                yValues: varianceData.map((v) => v.varMin),
-                y1Values: varianceData.map((v) => v.varMax),
+                yValues: varianceData.map(v => v.varMin),
+                y1Values: varianceData.map(v => v.varMax)
             }),
             opacity: 0.15,
             fill: "#EC0F6C",
-            strokeY1: "#00000000",
+            strokeY1: "#00000000"
         })
     );
     sciChartSurface.renderableSeries.add(
         new FastBandRenderableSeries(wasmContext, {
             dataSeries: new XyyDataSeries(wasmContext, {
                 xValues,
-                yValues: varianceData.map((v) => v.var1),
-                y1Values: varianceData.map((v) => v.var4),
+                yValues: varianceData.map(v => v.var1),
+                y1Values: varianceData.map(v => v.var4)
             }),
             opacity: 0.33,
             fill: "#EC0F6C",
-            strokeY1: "#00000000",
+            strokeY1: "#00000000"
         })
     );
     sciChartSurface.renderableSeries.add(
         new FastBandRenderableSeries(wasmContext, {
             dataSeries: new XyyDataSeries(wasmContext, {
                 xValues,
-                yValues: varianceData.map((v) => v.var2),
-                y1Values: varianceData.map((v) => v.var3),
+                yValues: varianceData.map(v => v.var2),
+                y1Values: varianceData.map(v => v.var3)
             }),
             opacity: 0.5,
             fill: "#EC0F6C",
-            strokeY1: "#00000000",
+            strokeY1: "#00000000"
         })
     );
     // #endregion
@@ -133,14 +135,14 @@ async function builderExample(divElementId) {
     const varianceData = getVarianceData();
 
     // Convert to arrays expected by scichart.js. There are more efficient ways to do this!
-    const xValues = varianceData.map((v) => v.date);
-    const yValues = varianceData.map((v) => v.actual);
-    const varMinValues = varianceData.map((v) => v.varMin);
-    const varMaxValues = varianceData.map((v) => v.varMax);
-    const var1Values = varianceData.map((v) => v.var1);
-    const var2Values = varianceData.map((v) => v.var2);
-    const var3Values = varianceData.map((v) => v.var3);
-    const var4Values = varianceData.map((v) => v.var4);
+    const xValues = varianceData.map(v => v.date);
+    const yValues = varianceData.map(v => v.actual);
+    const varMinValues = varianceData.map(v => v.varMin);
+    const varMaxValues = varianceData.map(v => v.varMax);
+    const var1Values = varianceData.map(v => v.var1);
+    const var2Values = varianceData.map(v => v.var2);
+    const var3Values = varianceData.map(v => v.var3);
+    const var4Values = varianceData.map(v => v.var4);
 
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
         surface: { theme: { type: EThemeProviderType.Dark } },
@@ -149,8 +151,8 @@ async function builderExample(divElementId) {
                 type: ESeriesType.LineSeries,
                 xyData: { xValues, yValues },
                 options: {
-                    stroke: "#EC0F6C",
-                },
+                    stroke: "#EC0F6C"
+                }
             },
             {
                 type: ESeriesType.BandSeries,
@@ -158,8 +160,8 @@ async function builderExample(divElementId) {
                 options: {
                     opacity: 0.15,
                     fill: "#EC0F6C",
-                    strokeY1: "#00000000",
-                },
+                    strokeY1: "#00000000"
+                }
             },
             {
                 type: ESeriesType.BandSeries,
@@ -167,8 +169,8 @@ async function builderExample(divElementId) {
                 options: {
                     opacity: 0.33,
                     fill: "#EC0F6C",
-                    strokeY1: "#00000000",
-                },
+                    strokeY1: "#00000000"
+                }
             },
             {
                 type: ESeriesType.BandSeries,
@@ -176,10 +178,10 @@ async function builderExample(divElementId) {
                 options: {
                     opacity: 0.5,
                     fill: "#EC0F6C",
-                    strokeY1: "#00000000",
-                },
-            },
-        ],
+                    strokeY1: "#00000000"
+                }
+            }
+        ]
     });
     // #endregion
 }

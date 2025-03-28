@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const { DefaultPaletteProvider, EStrokePaletteMode, parseColorToUIntArgb } = SciChart;
 
@@ -38,13 +40,13 @@ async function drawBubbleChartWithPalette(divElementId) {
         EllipsePointMarker,
         SciChartJsNavyTheme,
         ELabelPlacement,
-        HorizontalLineAnnotation,
+        HorizontalLineAnnotation
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -61,7 +63,7 @@ async function drawBubbleChartWithPalette(divElementId) {
     const xyzDataSeries = new XyzDataSeries(wasmContext, {
         xValues,
         yValues,
-        zValues: sizes,
+        zValues: sizes
     });
 
     // #region ExampleB
@@ -74,10 +76,10 @@ async function drawBubbleChartWithPalette(divElementId) {
             width: 64,
             height: 64,
             strokeThickness: 0,
-            fill: "#4682b477",
+            fill: "#4682b477"
         }),
         // PaletteProvider feature allows coloring per-point based on a rule
-        paletteProvider: new BubblePaletteProvider("Red", (yValue) => yValue > -0.8),
+        paletteProvider: new BubblePaletteProvider("Red", yValue => yValue > -0.8)
     });
 
     sciChartSurface.renderableSeries.add(bubbleSeries);
@@ -95,7 +97,7 @@ async function drawBubbleChartWithPalette(divElementId) {
             axisLabelFill: "White",
             labelPlacement: ELabelPlacement.BottomRight,
             labelValue: "Values above this line are red",
-            showLabel: true,
+            showLabel: true
         })
     );
 }
@@ -123,7 +125,7 @@ async function builderExample(divElementId) {
     chartBuilder.registerType(
         EBaseType.PaletteProvider,
         "BubblePaletteProvider",
-        (options) => new BubblePaletteProvider(options.fill, options.rule)
+        options => new BubblePaletteProvider(options.fill, options.rule)
     );
 
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
@@ -134,7 +136,7 @@ async function builderExample(divElementId) {
                 xyzData: {
                     xValues,
                     yValues,
-                    zValues: sizes,
+                    zValues: sizes
                 },
                 options: {
                     pointMarker: {
@@ -144,8 +146,8 @@ async function builderExample(divElementId) {
                             width: 64,
                             height: 64,
                             strokeThickness: 0,
-                            fill: "#4682b477",
-                        },
+                            fill: "#4682b477"
+                        }
                     },
                     // Now you can instantiate using parameters below
                     paletteProvider: {
@@ -153,14 +155,14 @@ async function builderExample(divElementId) {
                         customType: "BubblePaletteProvider",
                         options: {
                             fill: "Red",
-                            rule: (yValue) => yValue >= -0.8,
-                        },
-                    },
+                            rule: yValue => yValue >= -0.8
+                        }
+                    }
                     // Note: Assigning an instance is also valid, e.g.
                     // paletteProvider: new BubblePaletteProvider("Green", "Red", yValue => yValue >= 4.0)
-                },
-            },
-        ],
+                }
+            }
+        ]
     });
     // #endregion
 }

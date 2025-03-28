@@ -1,10 +1,12 @@
-"use strict";
+import * as SciChart from "scichart";
+
+("use strict");
 
 const scichart_1 = SciChart;
 async function customChartTitleRenderer(divElementId) {
     // Demonstrates how to add a basic chart title in SciChart.js
     const { wasmContext, sciChartSurface } = await scichart_1.SciChartSurface.create(divElementId, {
-        theme: new scichart_1.SciChartJsNavyTheme(),
+        theme: new scichart_1.SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new scichart_1.NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new scichart_1.NumericAxis(wasmContext));
@@ -46,7 +48,7 @@ async function customChartTitleRenderer(divElementId) {
     sciChartSurface.chartTitleRenderer = new SubTitleRenderer(wasmContext, "A Subtitle", {
         ...sciChartSurface.titleStyle,
         fontSize: 30,
-        alignment: scichart_1.ETextAlignment.Right,
+        alignment: scichart_1.ETextAlignment.Right
     });
 }
 customChartTitleRenderer("scichart-root");

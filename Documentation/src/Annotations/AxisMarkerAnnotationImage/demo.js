@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const {
     AxisMarkerAnnotation,
@@ -7,14 +9,14 @@ const {
     SciChartJsNavyTheme,
     createImageAsync,
     TextAnnotation,
-    EHorizontalAnchorPoint,
+    EHorizontalAnchorPoint
 } = SciChart;
 
 // or for npm import { SciChartSurface, ... } from "scichart"
 
 async function addAnnotationToChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -30,7 +32,7 @@ async function addAnnotationToChart(divElementId) {
             image: htmlImageElement,
             // Optional: Set imageWidth and imageHeight, else it will default to image size
             imageWidth: 48,
-            imageHeight: 48,
+            imageHeight: 48
         })
     );
 
@@ -41,7 +43,7 @@ async function addAnnotationToChart(divElementId) {
             y1: 5.2,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
             fontSize: 16,
-            text: "Draggable Axis Marker with a custom image -->",
+            text: "Draggable Axis Marker with a custom image -->"
         })
     );
 }
@@ -68,10 +70,10 @@ async function builderExample(divElementId) {
                     image: htmlImageElement,
                     // Optional: Set imageWidth and imageHeight, else it will default to image size
                     imageWidth: 48,
-                    imageHeight: 48,
-                },
-            },
-        ],
+                    imageHeight: 48
+                }
+            }
+        ]
     });
     // #endregion
 }

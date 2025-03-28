@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function labelProviderFormatLabel(divElementId) {
     const {
         SciChartSurface,
@@ -6,7 +8,7 @@ async function labelProviderFormatLabel(divElementId) {
         NumberRange,
         TextAnnotation,
         ECoordinateMode,
-        EHorizontalAnchorPoint,
+        EHorizontalAnchorPoint
     } = SciChart;
 
     const addChartTitle = (sciChartSurface, titleText, subTitleText) => {
@@ -23,7 +25,7 @@ async function labelProviderFormatLabel(divElementId) {
                 opacity: 0.5,
                 fontSize: 32,
                 fontWeight: "Bold",
-                textColor: "White",
+                textColor: "White"
             })
         );
         sciChartSurface.annotations.add(
@@ -36,7 +38,7 @@ async function labelProviderFormatLabel(divElementId) {
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                 opacity: 0.4,
                 fontSize: 17,
-                textColor: "White",
+                textColor: "White"
             })
         );
     };
@@ -44,7 +46,7 @@ async function labelProviderFormatLabel(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     addChartTitle(
@@ -59,9 +61,9 @@ async function labelProviderFormatLabel(divElementId) {
     const xAxis = new NumericAxis(wasmContext, {
         axisTitle: "X Axis with formatLabel",
         visibleRange: new NumberRange(0, 16),
-        maxAutoTicks: 16,
+        maxAutoTicks: 16
     });
-    xAxis.labelProvider.formatLabel = (dataValue) => {
+    xAxis.labelProvider.formatLabel = dataValue => {
         return "0x" + dataValue.toString(16);
     };
     sciChartSurface.xAxes.add(xAxis);
@@ -83,17 +85,17 @@ async function builderExample(divElementId) {
             options: {
                 axisTitle: "X Axis with formatLabel",
                 visibleRange: new NumberRange(0, 16),
-                maxAutoTicks: 16,
-            },
+                maxAutoTicks: 16
+            }
         },
         yAxes: {
-            type: EAxisType.NumericAxis,
-        },
+            type: EAxisType.NumericAxis
+        }
     });
 
     // Setting the labelprovider properties on the labelProvider itself
     const labelProvider = sciChartSurface.xAxes.get(0).labelProvider;
-    labelProvider.formatLabel = (dataValue) => {
+    labelProvider.formatLabel = dataValue => {
         return "0x" + dataValue.toString(16);
     };
     // #endregion

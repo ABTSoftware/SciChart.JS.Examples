@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const { DefaultPaletteProvider, EStrokePaletteMode, parseColorToUIntArgb } = SciChart;
 
@@ -39,13 +41,13 @@ async function drawScatterChartWithPalette(divElementId) {
         EllipsePointMarker,
         SciChartJsNavyTheme,
         HorizontalLineAnnotation,
-        ELabelPlacement,
+        ELabelPlacement
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -66,10 +68,10 @@ async function drawScatterChartWithPalette(divElementId) {
             height: 7,
             strokeThickness: 1,
             fill: "steelblue",
-            stroke: "LightSteelBlue",
+            stroke: "LightSteelBlue"
         }),
         // PaletteProvider feature allows coloring per-point based on a rule
-        paletteProvider: new ScatterPaletteProvider("Red", "Purple", (yValue) => yValue > 0.0),
+        paletteProvider: new ScatterPaletteProvider("Red", "Purple", yValue => yValue > 0.0)
     });
 
     sciChartSurface.renderableSeries.add(scatterSeries);
@@ -82,7 +84,7 @@ async function drawScatterChartWithPalette(divElementId) {
             axisLabelFill: "White",
             labelPlacement: ELabelPlacement.BottomRight,
             labelValue: "Values above this line are red",
-            showLabel: true,
+            showLabel: true
         })
     );
     // #endregion
@@ -100,7 +102,7 @@ async function builderExample(divElementId) {
         EThemeProviderType,
         EPointMarkerType,
         EAnnotationType,
-        ELabelPlacement,
+        ELabelPlacement
     } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -117,7 +119,7 @@ async function builderExample(divElementId) {
     chartBuilder.registerType(
         EBaseType.PaletteProvider,
         "ScatterPaletteProvider",
-        (options) => new ScatterPaletteProvider(options.stroke, options.fill, options.rule)
+        options => new ScatterPaletteProvider(options.stroke, options.fill, options.rule)
     );
 
     // Use the Builder-API to build the chart and apply a paletteprovider
@@ -128,7 +130,7 @@ async function builderExample(divElementId) {
                 type: ESeriesType.ScatterSeries,
                 xyData: {
                     xValues,
-                    yValues,
+                    yValues
                 },
                 options: {
                     stroke: "White",
@@ -140,8 +142,8 @@ async function builderExample(divElementId) {
                             height: 7,
                             strokeThickness: 1,
                             fill: "steelblue",
-                            stroke: "LightSteelBlue",
-                        },
+                            stroke: "LightSteelBlue"
+                        }
                     },
                     // Now you can instantiate using parameters below
                     paletteProvider: {
@@ -150,13 +152,13 @@ async function builderExample(divElementId) {
                         options: {
                             stroke: "Red",
                             fill: "Purple",
-                            rule: (yValue) => yValue >= 0.0,
-                        },
-                    },
+                            rule: yValue => yValue >= 0.0
+                        }
+                    }
                     // Note: Assigning an instance is also valid, e.g.
                     // paletteProvider: new ScatterPaletteProvider("Green", "Red", yValue => yValue >= 4.0)
-                },
-            },
+                }
+            }
         ],
         annotations: [
             {
@@ -167,10 +169,10 @@ async function builderExample(divElementId) {
                     axisLabelFill: "White",
                     labelPlacement: ELabelPlacement.BottomRight,
                     labelValue: "Values above this line are red",
-                    showLabel: true,
-                },
-            },
-        ],
+                    showLabel: true
+                }
+            }
+        ]
     });
     // #endregion
 }

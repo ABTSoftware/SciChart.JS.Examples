@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const { NumericLabelProvider } = SciChart;
 
@@ -78,7 +80,7 @@ async function labelProvider3D(divElementId) {
         OrbitModifier3D,
         ResetCamera3DModifier,
         NumberRange,
-        ENumericFormat,
+        ENumericFormat
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -90,8 +92,8 @@ async function labelProvider3D(divElementId) {
         worldDimensions: new Vector3(300, 200, 300),
         cameraOptions: {
             position: new Vector3(-300, 300, -300),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     // Declare an X,Y,Z axis using custom labelProviders
@@ -100,12 +102,12 @@ async function labelProvider3D(divElementId) {
         visibleRange: new NumberRange(1000, 1000000),
         labelProvider: new CustomNumericLabelProvider({
             customFormat: "Commas",
-            labelPrecision: 0,
-        }),
+            labelPrecision: 0
+        })
     });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Y Axis [Default]",
-        visibleRange: new NumberRange(0, 100),
+        visibleRange: new NumberRange(0, 100)
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Z Axis [KMBT]",
@@ -117,8 +119,8 @@ async function labelProvider3D(divElementId) {
             labelPrefix: "$",
             labelPostfix: " USD",
             labelPrecision: 2,
-            labelFormat: ENumericFormat.SignificantFigures,
-        }),
+            labelFormat: ENumericFormat.SignificantFigures
+        })
     });
     // #endregion
 

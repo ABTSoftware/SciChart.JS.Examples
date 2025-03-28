@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function updatingPieChart(divElementId) {
     // Demonstrates how to create a pie chart with SciChart.js
     const { SciChartPieSurface, EPieType, SciChartJsNavyTheme, PieSegment } = SciChart;
@@ -10,7 +12,7 @@ async function updatingPieChart(divElementId) {
         theme: new SciChartJsNavyTheme(),
         pieType: EPieType.Pie,
         animate: true,
-        animationFrames: 30,
+        animationFrames: 30
     });
 
     // Disable the legend for this example
@@ -19,19 +21,19 @@ async function updatingPieChart(divElementId) {
     // Create pie segments and add to the chart
     const pieSegment1 = new PieSegment({
         color: "#F48420",
-        value: 5,
+        value: 5
     });
     const pieSegment2 = new PieSegment({
         color: "#30BC9A",
-        value: 10,
+        value: 10
     });
     const pieSegment3 = new PieSegment({
         color: "#EC0F6C",
-        value: 15,
+        value: 15
     });
     const pieSegment4 = new PieSegment({
         color: "#50C7E0",
-        value: 20,
+        value: 20
     });
     sciChartPieSurface.pieSegments.add(pieSegment1, pieSegment2, pieSegment3, pieSegment4);
 

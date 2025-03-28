@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleBandChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a band chart using SciChart.js
@@ -6,7 +8,7 @@ async function simpleBandChart(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -31,7 +33,7 @@ async function simpleBandChart(divElementId) {
         strokeY1: "#50C7E0",
         fill: "#F4842033",
         fillY1: "#50C7E033",
-        strokeThickness: 2,
+        strokeThickness: 2
     });
 
     sciChartSurface.renderableSeries.add(bandSeries);
@@ -71,17 +73,17 @@ async function builderExample(divElementId) {
                 xyyData: {
                     xValues,
                     yValues,
-                    y1Values,
+                    y1Values
                 },
                 options: {
                     stroke: "#FF1919FF",
                     strokeY1: "#279B27FF",
                     fill: "#279B2733",
                     fillY1: "#FF191933",
-                    strokeThickness: 2,
-                },
-            },
-        ],
+                    strokeThickness: 2
+                }
+            }
+        ]
     });
     // #endregion
 }

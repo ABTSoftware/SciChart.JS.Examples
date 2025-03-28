@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const {
     BoxAnnotation,
@@ -10,14 +12,14 @@ const {
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
     ECoordinateMode,
-    SciChartJsNavyTheme,
+    SciChartJsNavyTheme
 } = SciChart;
 
 // or for npm import { SciChartSurface, ... } from "scichart"
 
 async function addAnnotationToChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(2, 8) }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(2, 8) }));
@@ -33,7 +35,7 @@ async function addAnnotationToChart(divElementId) {
             x1: 3.5,
             x2: 5,
             y1: 4,
-            y2: 5,
+            y2: 5
         }),
         new BoxAnnotation({
             fill: "#FF191955",
@@ -42,7 +44,7 @@ async function addAnnotationToChart(divElementId) {
             x1: 4,
             x2: 5.5,
             y1: 4.5,
-            y2: 5.5,
+            y2: 5.5
         }),
         new BoxAnnotation({
             fill: "#1964FF55",
@@ -51,7 +53,7 @@ async function addAnnotationToChart(divElementId) {
             x1: 4.5,
             x2: 6,
             y1: 5,
-            y2: 6,
+            y2: 6
         })
     );
 }
@@ -73,8 +75,8 @@ async function builderExample(divElementId) {
                     fontSize: 12,
                     text: "Draw Boxes",
                     x1: 3.3,
-                    y1: 6.3,
-                },
+                    y1: 6.3
+                }
             },
             {
                 type: EAnnotationType.RenderContextBoxAnnotation,
@@ -85,8 +87,8 @@ async function builderExample(divElementId) {
                     x1: 3.5,
                     x2: 5,
                     y1: 4,
-                    y2: 5,
-                },
+                    y2: 5
+                }
             },
             {
                 type: EAnnotationType.RenderContextBoxAnnotation,
@@ -97,8 +99,8 @@ async function builderExample(divElementId) {
                     x1: 4,
                     x2: 5.5,
                     y1: 4.5,
-                    y2: 5.5,
-                },
+                    y2: 5.5
+                }
             },
             {
                 type: EAnnotationType.RenderContextBoxAnnotation,
@@ -109,10 +111,10 @@ async function builderExample(divElementId) {
                     x1: 4.5,
                     x2: 6,
                     y1: 5,
-                    y2: 6,
-                },
-            },
-        ],
+                    y2: 6
+                }
+            }
+        ]
     });
     // #endregion
 }

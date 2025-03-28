@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function categoryAxisVsValueAxis() {
     // Compares CategoryAxis vs. Value Axis in SciChart.js
     const {
@@ -16,7 +18,7 @@ async function categoryAxisVsValueAxis() {
         ENumericFormat,
         LegendModifier,
         ELegendOrientation,
-        ELegendPlacement,
+        ELegendPlacement
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -36,7 +38,7 @@ async function categoryAxisVsValueAxis() {
                 opacity: 0.77,
                 fontSize: 28,
                 fontWeight: "Bold",
-                textColor: "White",
+                textColor: "White"
             })
         );
         sciChartSurface.annotations.add(
@@ -51,7 +53,7 @@ async function categoryAxisVsValueAxis() {
                 verticalAnchorPoint: EVerticalAnchorPoint.Top,
                 opacity: 0.77,
                 fontSize: 14,
-                textColor: "White",
+                textColor: "White"
             })
         );
     };
@@ -62,7 +64,7 @@ async function categoryAxisVsValueAxis() {
                 dataSeries: new XyDataSeries(sciChartSurface.webAssemblyContext2D, {
                     xValues,
                     yValues,
-                    dataSeriesName,
+                    dataSeriesName
                 }),
                 stroke,
                 strokeThickness: 2,
@@ -70,22 +72,22 @@ async function categoryAxisVsValueAxis() {
                     width: 7,
                     height: 7,
                     fill: stroke,
-                    stroke,
-                }),
+                    stroke
+                })
             })
         );
     };
 
-    const addLegend = (sciChartSurface) => {
+    const addLegend = sciChartSurface => {
         sciChartSurface.chartModifiers.add(
             new LegendModifier({
                 orientation: ELegendOrientation.Horizontal,
-                placement: ELegendPlacement.BottomLeft,
+                placement: ELegendPlacement.BottomLeft
             })
         );
     };
 
-    const createCategoryAxisChart = async (divElementId) => {
+    const createCategoryAxisChart = async divElementId => {
         // #region ExampleA
         // With the following data
         const xValues = [1, 9, 10, 20];
@@ -95,14 +97,14 @@ async function categoryAxisVsValueAxis() {
 
         // create a chart
         const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-            theme: new SciChartJsNavyTheme(),
+            theme: new SciChartJsNavyTheme()
         });
 
         // Add a Category XAxis with numeric formatting
         sciChartSurface.xAxes.add(
             new CategoryAxis(wasmContext, {
                 axisTitle: "Category Axis",
-                labelFormat: ENumericFormat.Decimal,
+                labelFormat: ENumericFormat.Decimal
             })
         );
         sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.2, 0.2) }));
@@ -116,7 +118,7 @@ async function categoryAxisVsValueAxis() {
         addLegend(sciChartSurface);
     };
 
-    const createValueAxisChart = async (divElementId) => {
+    const createValueAxisChart = async divElementId => {
         // #region ExampleB
         // With the following data
         const xValues = [1, 9, 10, 20];
@@ -124,7 +126,7 @@ async function categoryAxisVsValueAxis() {
         const dogs = [7, 5, 4, 3];
         const fish = [8, 7, 3, 2];
         const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-            theme: new SciChartJsNavyTheme(),
+            theme: new SciChartJsNavyTheme()
         });
 
         sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisTitle: "Numeric Axis" }));

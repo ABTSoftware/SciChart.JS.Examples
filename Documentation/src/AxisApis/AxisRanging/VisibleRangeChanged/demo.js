@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function visibleRangeChanged(divElementId) {
     const {
         SciChartSurface,
@@ -8,7 +10,7 @@ async function visibleRangeChanged(divElementId) {
         MouseWheelZoomModifier,
         ECoordinateMode,
         EHorizontalAnchorPoint,
-        EVerticalAnchorPoint,
+        EVerticalAnchorPoint
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -23,13 +25,13 @@ async function visibleRangeChanged(divElementId) {
         opacity: 0.77,
         fontSize: 28,
         fontWeight: "Bold",
-        textColor: "White",
+        textColor: "White"
     };
 
     // #region ExampleA
     // Create a chart with X,Y axis
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -38,12 +40,12 @@ async function visibleRangeChanged(divElementId) {
     // Add a label showing the status
     const textAnnotation = new TextAnnotation({
         text: "Drag to pan the chart",
-        ...options,
+        ...options
     });
     sciChartSurface.annotations.add(textAnnotation);
 
     // subscribe to visibleRangeChanged on yAxis
-    sciChartSurface.yAxes.get(0).visibleRangeChanged.subscribe((args) => {
+    sciChartSurface.yAxes.get(0).visibleRangeChanged.subscribe(args => {
         const message = `yAxis range: ${args.visibleRange.min.toFixed(2)}, ${args.visibleRange.max.toFixed(2)}`;
         console.log(message);
         textAnnotation.text = message;
@@ -66,13 +68,13 @@ async function builderExample(divElementId) {
         EChart2DModifierType,
         ECoordinateMode,
         EHorizontalAnchorPoint,
-        EVerticalAnchorPoint,
+        EVerticalAnchorPoint
     } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
     const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
-    const yValues = xValues.map((x) => Math.sin(x * 0.2));
+    const yValues = xValues.map(x => Math.sin(x * 0.2));
 
     // #region ExampleB
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
@@ -80,14 +82,14 @@ async function builderExample(divElementId) {
         xAxes: {
             type: EAxisType.NumericAxis,
             options: {
-                axisTitle: "X Axis",
-            },
+                axisTitle: "X Axis"
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
             options: {
-                axisTitle: "Y Axis",
-            },
+                axisTitle: "Y Axis"
+            }
         },
         modifiers: [{ type: EChart2DModifierType.ZoomPan }],
         annotations: [
@@ -104,16 +106,16 @@ async function builderExample(divElementId) {
                     opacity: 0.77,
                     fontSize: 28,
                     fontWeight: "Bold",
-                    textColor: "White",
-                },
-            },
-        ],
+                    textColor: "White"
+                }
+            }
+        ]
     });
 
     const yAxis = sciChartSurface.yAxes.get(0);
     const textAnnotation = sciChartSurface.annotations.get(0);
 
-    yAxis.visibleRangeChanged.subscribe((args) => {
+    yAxis.visibleRangeChanged.subscribe(args => {
         const message = `yAxis range: ${args.visibleRange.min.toFixed(2)}, ${args.visibleRange.max.toFixed(2)}`;
         console.log(message);
         textAnnotation.text = message;

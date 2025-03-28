@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function orthogonalProjection(divElementId) {
     const {
         SciChart3DSurface,
@@ -7,7 +9,7 @@ async function orthogonalProjection(divElementId) {
         ECameraProjectionMode,
         MouseWheelZoomModifier3D,
         OrbitModifier3D,
-        ResetCamera3DModifier,
+        ResetCamera3DModifier
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -18,17 +20,17 @@ async function orthogonalProjection(divElementId) {
         cameraOptions: {
             id: "Primary Camera",
             position: new Vector3(400, 400, 400),
-            target: new Vector3(0, 100, 0),
-        },
+            target: new Vector3(0, 100, 0)
+        }
     });
 
     // Start off with the default camera
     const camera = sciChart3DSurface.camera;
 
     // Debug log as before
-    camera.propertyChanged.subscribe((args) => {
+    camera.propertyChanged.subscribe(args => {
         const cameraDebug = camera.debugOutput();
-        document.getElementById("debug-camera").innerHTML = cameraDebug.map((line) => `<p>${line}</p>`).join("");
+        document.getElementById("debug-camera").innerHTML = cameraDebug.map(line => `<p>${line}</p>`).join("");
     });
 
     // Switch to orthogonal projection

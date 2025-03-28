@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 const {
     BoxAnnotation,
     CustomAnnotation,
@@ -10,14 +12,14 @@ const {
     EVerticalAnchorPoint,
     ECoordinateMode,
     SciChartJsNavyTheme,
-    EAnnotationLayer,
+    EAnnotationLayer
 } = SciChart;
 
 // or for npm import { SciChartSurface, ... } from "scichart"
 
 async function addAnnotationToChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -38,7 +40,7 @@ async function addAnnotationToChart(divElementId) {
             textColor: "#FFFFFF22",
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
-            annotationLayer: EAnnotationLayer.BelowChart,
+            annotationLayer: EAnnotationLayer.BelowChart
         })
     );
     // #endregion
@@ -67,10 +69,10 @@ async function builderExample(divElementId) {
                     textColor: "#FFFFFF22",
                     xCoordinateMode: ECoordinateMode.Relative,
                     yCoordinateMode: ECoordinateMode.Relative,
-                    annotationLayer: EAnnotationLayer.BelowChart,
-                },
-            },
-        ],
+                    annotationLayer: EAnnotationLayer.BelowChart
+                }
+            }
+        ]
     });
     // #endregion
 }

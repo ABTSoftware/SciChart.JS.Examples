@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const { DefaultPaletteProvider, EStrokePaletteMode, parseColorToUIntArgb } = SciChart;
 
@@ -38,13 +40,13 @@ async function drawMountainChartWithPalette(divElementId) {
         GradientParams,
         XyDataSeries,
         Point,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -73,11 +75,11 @@ async function drawMountainChartWithPalette(divElementId) {
         // when a gradient is required, use fillLinearGradient
         fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "rgba(70,130,180,0.77)", offset: 0 },
-            { color: "rgba(70,130,180,0.0)", offset: 1 },
+            { color: "rgba(70,130,180,0.0)", offset: 1 }
         ]),
         isDigitalLine: true,
         // Apply the paletteprovider
-        paletteProvider: new MountainPaletteProvider(threshold),
+        paletteProvider: new MountainPaletteProvider(threshold)
     });
 
     sciChartSurface.renderableSeries.add(mountainSeries);
@@ -98,7 +100,7 @@ async function builderExample(divElementId) {
     chartBuilder.registerType(
         EBaseType.PaletteProvider,
         "MountainPaletteProvider",
-        (options) => new MountainPaletteProvider(options.threshold)
+        options => new MountainPaletteProvider(options.threshold)
     );
 
     // Create some data
@@ -120,7 +122,7 @@ async function builderExample(divElementId) {
                 type: ESeriesType.MountainSeries,
                 xyData: {
                     xValues,
-                    yValues,
+                    yValues
                 },
                 options: {
                     stroke: "#4682b4",
@@ -130,10 +132,10 @@ async function builderExample(divElementId) {
                     fillLinearGradient: {
                         gradientStops: [
                             { color: "rgba(70,130,180,0.77)", offset: 0.0 },
-                            { color: "rgba(70,130,180,0.0)", offset: 1 },
+                            { color: "rgba(70,130,180,0.0)", offset: 1 }
                         ],
                         startPoint: { x: 0, y: 0 },
-                        endPoint: { x: 0, y: 1 },
+                        endPoint: { x: 0, y: 1 }
                     },
                     isDigitalLine: true,
                     // Now you can instantiate using parameters below
@@ -141,14 +143,14 @@ async function builderExample(divElementId) {
                         type: EPaletteProviderType.Custom,
                         customType: "MountainPaletteProvider",
                         options: {
-                            threshold: 75,
-                        },
-                    },
+                            threshold: 75
+                        }
+                    }
                     // Note: Assigning an instance is also valid, e.g.
                     // paletteProvider: new ThresholdLinePaletteProvider("Green", yValue => yValue >= 4.0)
-                },
-            },
-        ],
+                }
+            }
+        ]
     });
     // #endregion
 }

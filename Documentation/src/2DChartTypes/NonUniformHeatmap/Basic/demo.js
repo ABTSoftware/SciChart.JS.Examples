@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 function generateHeatmapData() {
     const heatmapWidth = 7;
     const heatmapHeight = 4;
@@ -24,14 +26,14 @@ async function nonUniformHeatmapChart(divElementId) {
         HeatmapColorMap,
         NonUniformHeatmapRenderableSeries,
         NonUniformHeatmapDataSeries,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     // Create a SciChartSurface with X & Y Axis
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -50,8 +52,8 @@ async function nonUniformHeatmapChart(divElementId) {
     const yRangeOffsetsSource = [100, 250, 390, 410, 600];
 
     // mapping functions that will calculate cell offsets based on heatmap width and height (zValues dimension sizes)
-    const xCellOffsets = (i) => xRangeOffsetsSource[i];
-    const yCellOffsets = (i) => yRangeOffsetsSource[i];
+    const xCellOffsets = i => xRangeOffsetsSource[i];
+    const yCellOffsets = i => yRangeOffsetsSource[i];
 
     // Create the non-uniform heatmap series
     const heatmapSeries = new NonUniformHeatmapRenderableSeries(wasmContext, {
@@ -70,8 +72,8 @@ async function nonUniformHeatmapChart(divElementId) {
                 { offset: 0.5, color: "#67BDAF" },
                 { offset: 0.7, color: "#DC7969" },
                 { offset: 0.9, color: "#F48420" },
-                { offset: 1, color: "#EC0F6C" },
-            ],
+                { offset: 1, color: "#EC0F6C" }
+            ]
         }),
         // optional settings
         opacity: 0.77,
@@ -80,8 +82,8 @@ async function nonUniformHeatmapChart(divElementId) {
         // Optional datalabels may be placed in cell
         dataLabels: {
             style: { fontFamily: "Arial", fontSize: 16 },
-            color: "White",
-        },
+            color: "White"
+        }
     });
 
     sciChartSurface.renderableSeries.add(heatmapSeries);
@@ -108,8 +110,8 @@ async function builderExample(divElementId) {
     const yRangeOffsetsSource = [100, 250, 390, 410, 600];
 
     // mapping functions that will calculate cell offsets based on heatmap width and height (zValues dimension sizes)
-    const xCellOffsets = (i) => xRangeOffsetsSource[i];
-    const yCellOffsets = (i) => yRangeOffsetsSource[i];
+    const xCellOffsets = i => xRangeOffsetsSource[i];
+    const yCellOffsets = i => yRangeOffsetsSource[i];
 
     const colorMap = new HeatmapColorMap({
         minimum: 0,
@@ -121,8 +123,8 @@ async function builderExample(divElementId) {
             { offset: 0.5, color: "#67BDAF" },
             { offset: 0.7, color: "#DC7969" },
             { offset: 0.9, color: "#F48420" },
-            { offset: 1, color: "#EC0F6C" },
-        ],
+            { offset: 1, color: "#EC0F6C" }
+        ]
     });
 
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
@@ -133,15 +135,15 @@ async function builderExample(divElementId) {
                 colorMap,
                 dataLabels: {
                     style: { fontFamily: "Arial", fontSize: 16 },
-                    color: "White",
-                },
+                    color: "White"
+                }
             },
             heatmapData: {
                 zValues,
                 xCellOffsets,
-                yCellOffsets,
-            },
-        },
+                yCellOffsets
+            }
+        }
     });
     // #endregion
 }

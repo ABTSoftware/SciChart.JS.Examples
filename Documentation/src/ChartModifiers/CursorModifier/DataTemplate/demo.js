@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function cursorDataTemplates(divElementId) {
     const {
         SciChartSurface,
@@ -9,7 +11,7 @@ async function cursorDataTemplates(divElementId) {
         TextAnnotation,
         EHorizontalAnchorPoint,
         ECoordinateMode,
-        EllipsePointMarker,
+        EllipsePointMarker
     } = SciChart;
 
     // or for npm import { SciChartSurface, ... } from "scichart"
@@ -18,7 +20,7 @@ async function cursorDataTemplates(divElementId) {
     // Create a chart surface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
-        titleStyle: { fontSize: 16 },
+        titleStyle: { fontSize: 16 }
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -34,7 +36,7 @@ async function cursorDataTemplates(divElementId) {
             // each element in this array = 1 line in the tooltip
             const lineItems = [];
             // See SeriesInfo docs at https://scichart.com/documentation/js/current/typedoc/classes/xyseriesinfo.html
-            seriesInfos.forEach((si) => {
+            seriesInfos.forEach(si => {
                 // If hit (within hitTestRadius of point)
                 if (si.isHit) {
                     // SeriesInfo.seriesName comes from dataSeries.dataSeriesName
@@ -58,7 +60,7 @@ async function cursorDataTemplates(divElementId) {
             });
 
             return lineItems;
-        },
+        }
     });
     sciChartSurface.chartModifiers.add(cursorModifier);
 
@@ -83,9 +85,9 @@ async function cursorDataTemplates(divElementId) {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
                 yValues,
-                dataSeriesName: "Sinewave 1",
+                dataSeriesName: "Sinewave 1"
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -96,9 +98,9 @@ async function cursorDataTemplates(divElementId) {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
                 yValues: yValues2,
-                dataSeriesName: "Sinewave 2",
+                dataSeriesName: "Sinewave 2"
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -110,14 +112,14 @@ async function cursorDataTemplates(divElementId) {
         y1: 0.0,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         opacity: 0.33,
-        textColor: "White",
+        textColor: "White"
     };
     sciChartSurface.annotations.add(
         new TextAnnotation({
             text: "CursorModifier Custom DataTemplates",
             fontSize: 36,
             yCoordShift: 25,
-            ...options,
+            ...options
         })
     );
     sciChartSurface.annotations.add(
@@ -125,7 +127,7 @@ async function cursorDataTemplates(divElementId) {
             text: "Move the mouse over the chart to see cursor & tooltip",
             fontSize: 20,
             yCoordShift: 75,
-            ...options,
+            ...options
         })
     );
 
@@ -161,10 +163,10 @@ async function builderExample(divElementId) {
                     crosshairStroke: "#ff6600",
                     crosshairStrokeThickness: 1,
                     tooltipContainerBackground: "#000",
-                    tooltipTextStroke: "#ff6600",
-                },
-            },
-        ],
+                    tooltipTextStroke: "#ff6600"
+                }
+            }
+        ]
     });
     // #endregion
 
@@ -186,9 +188,9 @@ async function builderExample(divElementId) {
             strokeThickness: 5,
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
-                yValues,
+                yValues
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -198,9 +200,9 @@ async function builderExample(divElementId) {
             strokeThickness: 5,
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
-                yValues: yValues2,
+                yValues: yValues2
             }),
-            pointMarker,
+            pointMarker
         })
     );
 }

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // Helper function to fetch candlestick data from Binance via Rest API
 const getCandles = async (symbol, interval, limit = 300) => {
     let url = `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}`;
@@ -16,7 +18,7 @@ const getCandles = async (symbol, interval, limit = 300) => {
         const lowValues = [];
         const closeValues = [];
         const volumeValues = [];
-        data.forEach((candle) => {
+        data.forEach(candle => {
             const [timestamp, open, high, low, close, volume] = candle;
             dateValues.push(timestamp / 1000); // SciChart expects Unix Timestamp / 1000
             openValues.push(parseFloat(open));
@@ -52,13 +54,13 @@ async function chartWithCategoryAxis(divElementId) {
         OhlcDataSeries,
         SmartDateLabelProvider,
         NumberRange,
-        EAutoRange,
+        EAutoRange
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Creating a CategoryAxis as an XAxis on the bottom
@@ -70,7 +72,7 @@ async function chartWithCategoryAxis(divElementId) {
             axisTitle: "Category X Axis",
             axisAlignment: EAxisAlignment.Bottom,
             // set a date format for labels
-            labelProvider: new SmartDateLabelProvider(),
+            labelProvider: new SmartDateLabelProvider()
         })
     );
 
@@ -83,7 +85,7 @@ async function chartWithCategoryAxis(divElementId) {
             labelFormat: ENumericFormat.Decimal,
             axisAlignment: EAxisAlignment.Right,
             autoRange: EAutoRange.Always,
-            growBy: new NumberRange(0.1, 0.1),
+            growBy: new NumberRange(0.1, 0.1)
         })
     );
 
@@ -104,13 +106,13 @@ async function chartWithCategoryAxis(divElementId) {
             openValues,
             highValues,
             lowValues,
-            closeValues,
+            closeValues
         }),
         dataPointWidth: 0.7,
         brushUp: "#33ff3377",
         brushDown: "#ff333377",
         strokeUp: "#77ff77",
-        strokeDown: "#ff7777",
+        strokeDown: "#ff7777"
     });
     sciChartSurface.renderableSeries.add(candlestickSeries);
 
@@ -132,7 +134,7 @@ async function chartWithCategoryAxis(divElementId) {
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             opacity: 0.33,
             fontSize: 36,
-            fontWeight: "Bold",
+            fontWeight: "Bold"
         })
     );
     sciChartSurface.annotations.add(
@@ -146,7 +148,7 @@ async function chartWithCategoryAxis(divElementId) {
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             opacity: 0.45,
-            fontSize: 17,
+            fontSize: 17
         })
     );
 

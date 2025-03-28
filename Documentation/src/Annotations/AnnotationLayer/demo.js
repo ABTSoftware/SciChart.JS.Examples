@@ -1,10 +1,12 @@
+import * as SciChart from "scichart";
+
 async function annotationLayers(divElementId) {
     const { SciChartSurface, NumericAxis, FastLineRenderableSeries, XyDataSeries, SciChartJsNavyTheme } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -18,13 +20,13 @@ async function annotationLayers(divElementId) {
 
     const xyDataSeries = new XyDataSeries(wasmContext, {
         xValues,
-        yValues,
+        yValues
     });
 
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#FF6600",
         strokeThickness: 5,
-        dataSeries: xyDataSeries,
+        dataSeries: xyDataSeries
     });
 
     sciChartSurface.renderableSeries.add(lineSeries);
@@ -40,7 +42,7 @@ async function annotationLayers(divElementId) {
         x1: 65,
         x2: 85,
         y1: -0.55,
-        y2: -0.7,
+        y2: -0.7
     });
 
     const belowChart = new BoxAnnotation({
@@ -50,7 +52,7 @@ async function annotationLayers(divElementId) {
         x1: 10,
         x2: 30,
         y1: -0.75,
-        y2: -0.9,
+        y2: -0.9
     });
 
     const background = new BoxAnnotation({
@@ -60,7 +62,7 @@ async function annotationLayers(divElementId) {
         x1: 50,
         x2: 70,
         y1: -0.85,
-        y2: -1.0,
+        y2: -1.0
     });
 
     sciChartSurface.annotations.add(aboveChart, belowChart, background);
@@ -73,21 +75,21 @@ async function annotationLayers(divElementId) {
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
         x1: 75,
-        y1: -0.55,
+        y1: -0.55
     });
     const belowText = new NativeTextAnnotation({
         text: "EAnnotationLayer.BelowChart\nBehind Series",
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
         x1: 20,
-        y1: -0.75,
+        y1: -0.75
     });
     const backgroundText = new NativeTextAnnotation({
         text: "EAnnotationLayer.Background\nBehind Gridlines",
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
         x1: 60,
-        y1: -0.85,
+        y1: -0.85
     });
     sciChartSurface.annotations.add(aboveText, belowText, backgroundText);
 }
@@ -104,7 +106,7 @@ async function builderExample(divElementId) {
         EAnnotationType,
         EAnnotationLayer,
         EHorizontalAnchorPoint,
-        EVerticalAnchorPoint,
+        EVerticalAnchorPoint
     } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -116,13 +118,13 @@ async function builderExample(divElementId) {
                 type: ESeriesType.SplineLineSeries,
                 xyData: {
                     xValues: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-                    yValues: [-1, -0.9, -0.8, -0.9, -1.1, -1.1, -0.9, -0.6, -0.5, -0.6, -0.7],
+                    yValues: [-1, -0.9, -0.8, -0.9, -1.1, -1.1, -0.9, -0.6, -0.5, -0.6, -0.7]
                 },
                 options: {
                     stroke: "#FF6600",
-                    strokeThickness: 5,
-                },
-            },
+                    strokeThickness: 5
+                }
+            }
         ],
         annotations: [
             {
@@ -134,8 +136,8 @@ async function builderExample(divElementId) {
                     x1: 65,
                     x2: 85,
                     y1: -0.55,
-                    y2: -0.7,
-                },
+                    y2: -0.7
+                }
             },
 
             {
@@ -147,8 +149,8 @@ async function builderExample(divElementId) {
                     x1: 10,
                     x2: 30,
                     y1: -0.75,
-                    y2: -0.9,
-                },
+                    y2: -0.9
+                }
             },
 
             {
@@ -160,8 +162,8 @@ async function builderExample(divElementId) {
                     x1: 50,
                     x2: 70,
                     y1: -0.85,
-                    y2: -1.0,
-                },
+                    y2: -1.0
+                }
             },
             {
                 type: EAnnotationType.RenderContextNativeTextAnnotation,
@@ -170,8 +172,8 @@ async function builderExample(divElementId) {
                     horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                     verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
                     x1: 75,
-                    y1: -0.55,
-                },
+                    y1: -0.55
+                }
             },
             {
                 type: EAnnotationType.RenderContextNativeTextAnnotation,
@@ -181,8 +183,8 @@ async function builderExample(divElementId) {
                     horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                     verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
                     x1: 20,
-                    y1: -0.75,
-                },
+                    y1: -0.75
+                }
             },
             {
                 type: EAnnotationType.RenderContextNativeTextAnnotation,
@@ -192,10 +194,10 @@ async function builderExample(divElementId) {
                     horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                     verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
                     x1: 60,
-                    y1: -0.85,
-                },
-            },
-        ],
+                    y1: -0.85
+                }
+            }
+        ]
     });
     // #endregion
 }

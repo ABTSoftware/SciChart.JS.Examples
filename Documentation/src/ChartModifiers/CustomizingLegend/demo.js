@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function customLegend(divElementId) {
     const {
         SciChartSurface,
@@ -8,13 +10,13 @@ async function customLegend(divElementId) {
         LegendModifier,
         ELegendPlacement,
         ELegendOrientation,
-        AUTO_COLOR,
+        AUTO_COLOR
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -27,8 +29,8 @@ async function customLegend(divElementId) {
                 dataSeries: new XyDataSeries(wasmContext, {
                     dataSeriesName: `Series ${i + 1}`,
                     xValues,
-                    yValues: xValues.map((x) => x + i),
-                }),
+                    yValues: xValues.map(x => x + i)
+                })
             })
         );
     }
@@ -39,7 +41,7 @@ async function customLegend(divElementId) {
         placement: ELegendPlacement.TopLeft,
         orientation: ELegendOrientation.Vertical,
         showCheckboxes: true,
-        showSeriesMarkers: true,
+        showSeriesMarkers: true
     });
     // Override the itemHtml
     const { getLegendItemHtml } = SciChart;

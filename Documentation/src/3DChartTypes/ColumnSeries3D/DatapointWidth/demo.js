@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function columnRenderableSeries3D(divElementId) {
     const {
         SciChart3DSurface,
@@ -10,7 +12,7 @@ async function columnRenderableSeries3D(divElementId) {
         OrbitModifier3D,
         ResetCamera3DModifier,
         XyzDataSeries3D,
-        parseColorToUIntArgb,
+        parseColorToUIntArgb
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -21,19 +23,19 @@ async function columnRenderableSeries3D(divElementId) {
         worldDimensions: new Vector3(300, 200, 300),
         cameraOptions: {
             position: new Vector3(-270, 230, -160),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     // Declare your axis like this
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "X Axis",
+        axisTitle: "X Axis"
     });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Y Axis",
+        axisTitle: "Y Axis"
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Z Axis",
+        axisTitle: "Z Axis"
     });
 
     // Metadata colours are in ARGB format, e.g. 0xFFFF0000 is red, 0xFF00FF00 is green
@@ -58,15 +60,15 @@ async function columnRenderableSeries3D(divElementId) {
         "orange",
         "#67BDAF",
         "SteelBlue",
-        "#67BDAF",
+        "#67BDAF"
     ];
 
     // #region ExampleA
     const xValues = [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4];
     const yValues = [0, 1, 2, 3, 4, 3, 2, 4, 5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 4, 5];
     const zValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
-    const metadata = htmlColors.map((c) => ({
-        vertexColor: parseColorToUIntArgb(c),
+    const metadata = htmlColors.map(c => ({
+        vertexColor: parseColorToUIntArgb(c)
     }));
 
     const colSeries = new ColumnRenderableSeries3D(wasmContext, {
@@ -74,11 +76,11 @@ async function columnRenderableSeries3D(divElementId) {
             xValues,
             yValues,
             zValues,
-            metadata,
+            metadata
         }),
         useMetadataColors: true,
         dataPointWidthX: 0.95,
-        pointMarker: new CubePointMarker3D(wasmContext),
+        pointMarker: new CubePointMarker3D(wasmContext)
     });
 
     // Custom Width calculation to fit all the columns into the available width

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function chartWithCategoryAxis(divElementId) {
     // Demonstrates how to configure a DateTimeNumericAxis in SciChart.js
     const {
@@ -13,14 +15,14 @@ async function chartWithCategoryAxis(divElementId) {
         ECoordinateMode,
         EHorizontalAnchorPoint,
         EVerticalAnchorPoint,
-        ENumericFormat,
+        ENumericFormat
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     // #region ExampleA
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Unix Epoch for March 1st 2023 & March 2nd 2023
@@ -41,7 +43,7 @@ async function chartWithCategoryAxis(divElementId) {
             axisTitle: "Category X Axis",
             axisAlignment: EAxisAlignment.Bottom,
             // set a date format for labels
-            labelFormat: ENumericFormat.Date_DDMMYY,
+            labelFormat: ENumericFormat.Date_DDMMYY
         })
     );
 
@@ -49,7 +51,7 @@ async function chartWithCategoryAxis(divElementId) {
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             axisTitle: "Numeric Y Axis",
-            axisAlignment: EAxisAlignment.Left,
+            axisAlignment: EAxisAlignment.Left
         })
     );
     // #endregion
@@ -70,7 +72,7 @@ async function chartWithCategoryAxis(divElementId) {
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             opacity: 0.33,
             fontSize: 36,
-            fontWeight: "Bold",
+            fontWeight: "Bold"
         })
     );
     sciChartSurface.annotations.add(
@@ -84,7 +86,7 @@ async function chartWithCategoryAxis(divElementId) {
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             opacity: 0.45,
-            fontSize: 17,
+            fontSize: 17
         })
     );
 }
@@ -118,17 +120,17 @@ async function builderExample(divElementId) {
                 axisTitle: "Category X Axis",
                 axisAlignment: EAxisAlignment.Bottom,
                 // set a date format for labels
-                labelFormat: ENumericFormat.Date_DDMMYY,
-            },
+                labelFormat: ENumericFormat.Date_DDMMYY
+            }
         },
 
         yAxes: {
             type: EAxisType.NumericAxis,
             options: {
                 axisTitle: "Numeric Y Axis",
-                axisAlignment: EAxisAlignment.Left,
-            },
-        },
+                axisAlignment: EAxisAlignment.Left
+            }
+        }
     });
     // #endregion
 }

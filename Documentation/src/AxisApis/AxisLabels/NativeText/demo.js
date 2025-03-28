@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function nativeText(divElementId) {
     // #region ExampleA
     // Demonstrates native text vs. standard text in SciChart.js
@@ -8,7 +10,7 @@ async function nativeText(divElementId) {
         EAxisAlignment,
         ELabelAlignment,
         SciChartDefaults,
-        Thickness,
+        Thickness
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -21,11 +23,11 @@ async function nativeText(divElementId) {
         fontSize: "14",
         color: "white",
         padding: new Thickness(0, 0, 0, 0),
-        alignment: ELabelAlignment.Auto,
+        alignment: ELabelAlignment.Auto
     };
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Enable native text for a specific axis
@@ -36,7 +38,7 @@ async function nativeText(divElementId) {
             // fontStyle and FontWeight are not supported for native text
             labelStyle,
             axisTitle: "Native X",
-            backgroundColor: "#50C7E011",
+            backgroundColor: "#50C7E011"
         }),
         new NumericAxis(wasmContext, {
             // Disable native text for a specfic axis
@@ -45,7 +47,7 @@ async function nativeText(divElementId) {
             // Same style for comparison
             labelStyle,
             axisTitle: "Normal X",
-            backgroundColor: "#50C7E011",
+            backgroundColor: "#50C7E011"
         })
     );
     sciChartSurface.yAxes.add(
@@ -57,7 +59,7 @@ async function nativeText(divElementId) {
             useNativeText: false,
             axisAlignment: EAxisAlignment.Left,
             axisTitle: "Normal Y",
-            backgroundColor: "#50C7E011",
+            backgroundColor: "#50C7E011"
         })
     );
 }
@@ -79,7 +81,7 @@ async function builderExample(divElementId) {
         fontSize: "14",
         color: "white",
         padding: new Thickness(0, 0, 0, 0),
-        alignment: ELabelAlignment.Auto,
+        alignment: ELabelAlignment.Auto
     };
 
     const { sciChartSurface, wasmContext } = await chartBuilder.buildChart(divElementId, {
@@ -92,8 +94,8 @@ async function builderExample(divElementId) {
                     // fontStyle and FontWeight are not supported for native text
                     labelStyle,
                     axisTitle: "Native X",
-                    backgroundColor: "#50C7E011",
-                },
+                    backgroundColor: "#50C7E011"
+                }
             },
             {
                 type: EAxisType.NumericAxis,
@@ -104,15 +106,15 @@ async function builderExample(divElementId) {
                     // Same style for comparison
                     labelStyle,
                     axisTitle: "Normal X",
-                    backgroundColor: "#50C7E011",
-                },
-            },
+                    backgroundColor: "#50C7E011"
+                }
+            }
         ],
         yAxes: [
             {
                 // Native text with default values
                 type: EAxisType.NumericAxis,
-                options: { axisTitle: "Native Y", labelStyle, backgroundColor: "#50C7E011" },
+                options: { axisTitle: "Native Y", labelStyle, backgroundColor: "#50C7E011" }
             },
             {
                 type: EAxisType.NumericAxis,
@@ -122,10 +124,10 @@ async function builderExample(divElementId) {
                     useNativeText: false,
                     axisAlignment: EAxisAlignment.Left,
                     axisTitle: "Normal Y",
-                    backgroundColor: "#50C7E011",
-                },
-            },
-        ],
+                    backgroundColor: "#50C7E011"
+                }
+            }
+        ]
     });
     // #endregion
 }

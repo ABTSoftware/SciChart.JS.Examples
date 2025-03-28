@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function multipleAxis(divElementId) {
     // Demonstrates how to configure multiple axis in SciChart.js
     const {
@@ -7,7 +9,7 @@ async function multipleAxis(divElementId) {
         ELabelAlignment,
         EAxisAlignment,
         NumberRange,
-        ENumericFormat,
+        ENumericFormat
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -17,23 +19,23 @@ async function multipleAxis(divElementId) {
 
     const titleStyle1 = {
         color: "#50C7E0",
-        fontSize: 30,
+        fontSize: 30
     };
     const labelStyle1 = {
-        color: "#50C7E0",
+        color: "#50C7E0"
     };
     const titleStyle2 = {
         color: "#F48420",
-        fontSize: 30,
+        fontSize: 30
     };
     const labelStyle2 = {
         color: "#F48420",
-        alignment: ELabelAlignment.Right,
+        alignment: ELabelAlignment.Right
     };
 
     // #region ExampleA
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Add a primary X,Y Axis pair
@@ -46,8 +48,8 @@ async function multipleAxis(divElementId) {
             backgroundColor: "#50C7E022",
             axisBorder: {
                 borderTop: 1,
-                color: "#50C7E0",
-            },
+                color: "#50C7E0"
+            }
         })
     );
 
@@ -61,8 +63,8 @@ async function multipleAxis(divElementId) {
             backgroundColor: "#50C7E022",
             axisBorder: {
                 borderRight: 1,
-                color: "#50C7E0",
-            },
+                color: "#50C7E0"
+            }
         })
     );
 
@@ -78,8 +80,8 @@ async function multipleAxis(divElementId) {
             backgroundColor: "#F4842022",
             axisBorder: {
                 borderBottom: 1,
-                color: "#F48420",
-            },
+                color: "#F48420"
+            }
         })
     );
 
@@ -96,8 +98,8 @@ async function multipleAxis(divElementId) {
             backgroundColor: "#F4842022",
             axisBorder: {
                 borderLeft: 1,
-                color: "#F48420",
-            },
+                color: "#F48420"
+            }
         })
     );
     // #endregion
@@ -114,18 +116,18 @@ async function builderExample(divElementId) {
 
     const titleStyle1 = {
         color: "#50C7E0",
-        fontSize: 30,
+        fontSize: 30
     };
     const labelStyle1 = {
-        color: "#50C7E0",
+        color: "#50C7E0"
     };
     const titleStyle2 = {
         color: "#F48420",
-        fontSize: 30,
+        fontSize: 30
     };
     const labelStyle2 = {
         color: "#F48420",
-        alignment: ELabelAlignment.Right,
+        alignment: ELabelAlignment.Right
     };
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -144,9 +146,9 @@ async function builderExample(divElementId) {
                     backgroundColor: "#50C7E022",
                     axisBorder: {
                         borderTop: 1,
-                        color: "#50C7E0",
-                    },
-                },
+                        color: "#50C7E0"
+                    }
+                }
             },
             {
                 type: EAxisType.NumericAxis,
@@ -159,10 +161,10 @@ async function builderExample(divElementId) {
                     backgroundColor: "#F4842022",
                     axisBorder: {
                         borderBottom: 1,
-                        color: "#F48420",
-                    },
-                },
-            },
+                        color: "#F48420"
+                    }
+                }
+            }
         ],
         yAxes: [
             {
@@ -176,9 +178,9 @@ async function builderExample(divElementId) {
                     backgroundColor: "#50C7E022",
                     axisBorder: {
                         borderRight: 1,
-                        color: "#50C7E0",
-                    },
-                },
+                        color: "#50C7E0"
+                    }
+                }
             },
             {
                 type: EAxisType.NumericAxis,
@@ -194,11 +196,11 @@ async function builderExample(divElementId) {
                     backgroundColor: "#F4842022",
                     axisBorder: {
                         borderLeft: 1,
-                        color: "#F48420",
-                    },
-                },
-            },
-        ],
+                        color: "#F48420"
+                    }
+                }
+            }
+        ]
     });
     // #endregion
 }

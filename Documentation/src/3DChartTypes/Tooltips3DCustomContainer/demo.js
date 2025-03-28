@@ -1,4 +1,6 @@
-const generateData = (index) => {
+import * as SciChart from "scichart";
+
+const generateData = index => {
     const gaussianRandom = (mean, stdev) => {
         const u = 1 - Math.random(); // Converting [0,1) to (0,1]
         const v = Math.random();
@@ -32,7 +34,7 @@ async function tooltips3DCustomisation(divElementId) {
         EllipsePointMarker3D,
         uintArgbColorLerp,
         parseColorToUIntArgb,
-        parseArgbToHtmlColor,
+        parseArgbToHtmlColor
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -43,8 +45,8 @@ async function tooltips3DCustomisation(divElementId) {
         worldDimensions: new Vector3(300, 200, 300),
         cameraOptions: {
             position: new Vector3(-300, 300, 300),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     const growBy = new NumberRange(0.2, 0.2);
@@ -62,7 +64,7 @@ async function tooltips3DCustomisation(divElementId) {
             opacity: 0.9,
             stroke: "#EC0F6C",
             strokeThickness: 3,
-            pointMarker: new EllipsePointMarker3D(wasmContext, { size: 3 }),
+            pointMarker: new EllipsePointMarker3D(wasmContext, { size: 3 })
         })
     );
 
@@ -85,12 +87,12 @@ async function tooltips3DCustomisation(divElementId) {
                 yValues: dataset1.yValues,
                 zValues: dataset1.zValues,
                 metadata,
-                dataSeriesName: "Series B",
+                dataSeriesName: "Series B"
             }),
             opacity: 0.9,
             stroke: "#50C7E0",
             strokeThickness: 3,
-            pointMarker: new EllipsePointMarker3D(wasmContext, { size: 3 }),
+            pointMarker: new EllipsePointMarker3D(wasmContext, { size: 3 })
         })
     );
 
@@ -101,12 +103,12 @@ async function tooltips3DCustomisation(divElementId) {
                 xValues: dataset2.xValues,
                 yValues: dataset2.yValues,
                 zValues: dataset2.zValues,
-                dataSeriesName: "Series C",
+                dataSeriesName: "Series C"
             }),
             opacity: 0.9,
             stroke: "#F48420",
             strokeThickness: 3,
-            pointMarker: new EllipsePointMarker3D(wasmContext, { size: 3 }),
+            pointMarker: new EllipsePointMarker3D(wasmContext, { size: 3 })
         })
     );
 
@@ -118,7 +120,7 @@ async function tooltips3DCustomisation(divElementId) {
         tooltipContainerBackground: "#537ABD",
         tooltipTextStroke: "White",
         tooltipLegendOffsetX: 10,
-        tooltipLegendOffsetY: 10,
+        tooltipLegendOffsetY: 10
     });
 
     // Customize the tooltip container like this

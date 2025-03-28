@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function dataLabelProviderGetText(divElementId) {
     const {
         SciChartSurface,
@@ -7,14 +9,14 @@ async function dataLabelProviderGetText(divElementId) {
         XyDataSeries,
         NumberRange,
         EMultiLineAlignment,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     // Create a chart with X,Y axis
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.2) }));
@@ -30,11 +32,11 @@ async function dataLabelProviderGetText(divElementId) {
             height: 10,
             strokeThickness: 2,
             stroke: "SteelBlue",
-            fill: "LightSteelBlue",
+            fill: "LightSteelBlue"
         }),
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8],
+            yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8]
         }),
         // dataLabels style must be specified to show labels
         dataLabels: {
@@ -42,15 +44,15 @@ async function dataLabelProviderGetText(divElementId) {
                 fontFamily: "Arial",
                 fontSize: 16,
                 lineSpacing: 4,
-                multiLineAlignment: EMultiLineAlignment.Left,
+                multiLineAlignment: EMultiLineAlignment.Left
             },
-            color: "#EEE",
-        },
+            color: "#EEE"
+        }
     });
 
     // Override default dataLabelProvider.getText() function
     // See type DataLabelState for available data
-    lineSeries.dataLabelProvider.getText = (dataLabelState) => {
+    lineSeries.dataLabelProvider.getText = dataLabelState => {
         return `Point index ${dataLabelState.index}\n[x: ${dataLabelState.xVal()}, y: ${dataLabelState.yVal()}]`;
     };
     // #endregion ExampleA
@@ -73,7 +75,7 @@ async function builderExample(divElementId) {
                 type: ESeriesType.LineSeries,
                 xyData: {
                     xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                    yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8],
+                    yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8]
                 },
                 options: {
                     stroke: "#0066FF",
@@ -85,24 +87,24 @@ async function builderExample(divElementId) {
                             height: 10,
                             strokeThickness: 2,
                             stroke: "SteelBlue",
-                            fill: "LightSteelBlue",
-                        },
+                            fill: "LightSteelBlue"
+                        }
                     },
                     // Data labels are enabled here. Simply set style, color
                     dataLabels: {
                         style: {
                             fontFamily: "Arial",
-                            fontSize: 16,
+                            fontSize: 16
                         },
-                        color: "#EEE",
-                    },
-                },
-            },
-        ],
+                        color: "#EEE"
+                    }
+                }
+            }
+        ]
     });
 
     // Note you can access dataLabelProvider from a constructed chart as follows
-    sciChartSurface.renderableSeries.get(0).dataLabelProvider.getText = (dataLabelState) => {
+    sciChartSurface.renderableSeries.get(0).dataLabelProvider.getText = dataLabelState => {
         return `Point index ${dataLabelState.index}\n[x: ${dataLabelState.xVal()}, y: ${dataLabelState.yVal()}]`;
     };
     // #endregion

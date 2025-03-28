@@ -1,8 +1,10 @@
+import * as SciChart from "scichart";
+
 // or for npm ... import { BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy } from "scichart";
 const {
     BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy,
     BottomAlignedOuterAxisLayoutStrategy,
-    getHorizontalAxisRequiredSize,
+    getHorizontalAxisRequiredSize
 } = SciChart;
 
 // Example of creating a custom layout manager. First requested here https://www.scichart.com/questions/js/is-it-possible-to-create-two-xaxis-where-one-is-normal-and-the-other-one-is-horizontally-stacked-axis-layout
@@ -60,7 +62,7 @@ async function customLayoutManager(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Apply your layout manager
@@ -77,28 +79,28 @@ async function customLayoutManager(divElementId) {
         axisTitle: ID_X_AXIS_1,
         drawMajorBands: true,
         drawMajorGridLines: true,
-        drawMinorGridLines: true,
+        drawMinorGridLines: true
     });
     const xAxis2 = new NumericAxis(wasmContext, {
         id: ID_X_AXIS_2,
         axisTitle: ID_X_AXIS_2,
-        ...options,
+        ...options
     });
     const xAxis3 = new NumericAxis(wasmContext, {
         id: ID_X_AXIS_3,
         axisTitle: ID_X_AXIS_3,
-        ...options,
+        ...options
     });
     const xAxis4 = new NumericAxis(wasmContext, {
         id: ID_X_AXIS_4,
         axisTitle: ID_X_AXIS_4,
-        ...options,
+        ...options
     });
     const yAxis1 = new NumericAxis(wasmContext, {
         axisTitle: "yAxis",
         backgroundColor: "#50C7E022",
         axisBorder: { color: "#50C7E0", borderLeft: 1 },
-        axisTitleStyle: { fontSize: 13 },
+        axisTitleStyle: { fontSize: 13 }
     });
 
     // Add the axis to the chart
@@ -121,21 +123,21 @@ async function customLayoutManager(divElementId) {
         y1: 0.5,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         opacity: 0.33,
-        textColor: "White",
+        textColor: "White"
     };
     sciChartSurface.annotations.add(
         new TextAnnotation({
             text: "Custom Layout Manager Example",
             fontSize: 36,
             yCoordShift: -50,
-            ...textOpts,
+            ...textOpts
         })
     );
     sciChartSurface.annotations.add(
         new TextAnnotation({
             text: "Reversing the order of Stacked and Stretched X-Axis",
             fontSize: 20,
-            ...textOpts,
+            ...textOpts
         })
     );
 }

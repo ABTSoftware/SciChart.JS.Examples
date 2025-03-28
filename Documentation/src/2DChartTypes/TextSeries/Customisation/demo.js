@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function customTextChart(divElementId) {
     // Demonstrates how to create a text chart with SciChart.js
     const {
@@ -9,13 +11,13 @@ async function customTextChart(divElementId) {
         NumberRange,
         EHorizontalTextPosition,
         EVerticalTextPosition,
-        parseColorToUIntArgb,
+        parseColorToUIntArgb
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, 9) }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-5, 5) }));
@@ -32,22 +34,22 @@ async function customTextChart(divElementId) {
         dataSeries: new XyTextDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5, 6],
             yValues: [1, 1, 1, 1, 1, 1],
-            textValues: ["This", "text", "is", "drawn", "using", "FastTextRenderableSeries"],
+            textValues: ["This", "text", "is", "drawn", "using", "FastTextRenderableSeries"]
         }),
         // font and size is required for text to be drawn
         dataLabels: {
             style: {
                 // Set custom font
                 fontFamily: "notoserif",
-                fontSize: 18,
+                fontSize: 18
             },
             color: "white",
             // Set text position relative to the data point
             horizontalTextPosition: EHorizontalTextPosition.Center,
             verticalTextPosition: EVerticalTextPosition.Center,
             // force the label sizes to be calculated as we need them below
-            calculateTextBounds: true,
-        },
+            calculateTextBounds: true
+        }
     });
 
     // Handle further customisation of positioning and color
@@ -59,7 +61,7 @@ async function customTextChart(divElementId) {
         }
     };
 
-    textSeries.dataLabelProvider.onAfterGenerate = (dataLabels) => {
+    textSeries.dataLabelProvider.onAfterGenerate = dataLabels => {
         for (let i = 0; i < dataLabels.length; i++) {
             const label = dataLabels[i];
             if (i < dataLabels.length - 1) {

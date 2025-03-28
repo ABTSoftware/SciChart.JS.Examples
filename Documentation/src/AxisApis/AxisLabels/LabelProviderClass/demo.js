@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const { DateLabelProvider } = SciChart;
 
@@ -45,7 +47,7 @@ class DynamicDateLabelProvider extends DateLabelProvider {
             return date.toLocaleDateString("en-GB", {
                 year: "2-digit",
                 month: "2-digit",
-                day: "2-digit",
+                day: "2-digit"
             });
         }
     }
@@ -68,7 +70,7 @@ async function labelProviderClass(divElementId) {
         ECoordinateMode,
         EHorizontalAnchorPoint,
         ZoomPanModifier,
-        MouseWheelZoomModifier,
+        MouseWheelZoomModifier
     } = SciChart;
 
     const addChartTitle = (sciChartSurface, titleText, subTitleText) => {
@@ -85,7 +87,7 @@ async function labelProviderClass(divElementId) {
                 opacity: 0.5,
                 fontSize: 32,
                 fontWeight: "Bold",
-                textColor: "White",
+                textColor: "White"
             })
         );
         sciChartSurface.annotations.add(
@@ -98,7 +100,7 @@ async function labelProviderClass(divElementId) {
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                 opacity: 0.4,
                 fontSize: 17,
-                textColor: "White",
+                textColor: "White"
             })
         );
     };
@@ -106,7 +108,7 @@ async function labelProviderClass(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     addChartTitle(
@@ -126,7 +128,7 @@ async function labelProviderClass(divElementId) {
         // Note see DateTimeNumericAxis docs about unix timestamps / 1000
         visibleRange: new NumberRange(minDate.getTime() / 1000, maxDate.getTime() / 1000),
         // Apply the custom labelprovider we created before
-        labelProvider: new DynamicDateLabelProvider(),
+        labelProvider: new DynamicDateLabelProvider()
     });
     sciChartSurface.xAxes.add(xAxis);
     // #endregion
@@ -155,13 +157,13 @@ async function builderExample(divElementId) {
                 // Note see DateTimeNumericAxis docs about unix timestamps / 1000
                 visibleRange: new NumberRange(minDate.getTime() / 1000, maxDate.getTime() / 1000),
                 // Apply the custom labelprovider we created before
-                labelProvider: new DynamicDateLabelProvider(),
-            },
+                labelProvider: new DynamicDateLabelProvider()
+            }
         },
         yAxes: {
-            type: EAxisType.NumericAxis,
+            type: EAxisType.NumericAxis
         },
-        modifiers: [{ type: EChart2DModifierType.MouseWheelZoom }],
+        modifiers: [{ type: EChart2DModifierType.MouseWheelZoom }]
     });
     // #endregion
 }

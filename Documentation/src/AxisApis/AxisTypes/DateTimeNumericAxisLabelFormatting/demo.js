@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function labelFormattingWithDateTimeNumericAxis(divElementId) {
     // Demonstrates how to configure a DateTimeNumericAxis in SciChart.js
     const {
@@ -14,13 +16,13 @@ async function labelFormattingWithDateTimeNumericAxis(divElementId) {
         EHorizontalAnchorPoint,
         EVerticalAnchorPoint,
         ENumericFormat,
-        DateLabelProvider,
+        DateLabelProvider
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // #region ExampleA
@@ -33,11 +35,11 @@ async function labelFormattingWithDateTimeNumericAxis(divElementId) {
         axisTitle: "X Axis / DateTime",
         visibleRange: new NumberRange(minDate.getTime() / 1000, maxDate.getTime() / 1000),
         // Specify a DateLabelProvider with format to override the built-in behaviour
-        labelProvider: new DateLabelProvider({ labelFormat: ENumericFormat.Date_DDMMYYYY }),
+        labelProvider: new DateLabelProvider({ labelFormat: ENumericFormat.Date_DDMMYYYY })
     });
 
     // When zoomed in to less than one day, switch the date format
-    xAxis.visibleRangeChanged.subscribe((arg) => {
+    xAxis.visibleRangeChanged.subscribe(arg => {
         const SECONDS_IN_DAY = 86400;
         const SECONDS_IN_HOUR = 3600;
         if (arg.visibleRange.max - arg.visibleRange.min < SECONDS_IN_HOUR) {
@@ -60,7 +62,7 @@ async function labelFormattingWithDateTimeNumericAxis(divElementId) {
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             axisTitle: "Y Axis, Numeric",
-            axisAlignment: EAxisAlignment.Left,
+            axisAlignment: EAxisAlignment.Left
         })
     );
 
@@ -80,7 +82,7 @@ async function labelFormattingWithDateTimeNumericAxis(divElementId) {
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             opacity: 0.33,
             fontSize: 36,
-            fontWeight: "Bold",
+            fontWeight: "Bold"
         })
     );
     sciChartSurface.annotations.add(
@@ -94,7 +96,7 @@ async function labelFormattingWithDateTimeNumericAxis(divElementId) {
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             opacity: 0.45,
-            fontSize: 17,
+            fontSize: 17
         })
     );
 }
@@ -111,7 +113,7 @@ async function builderExample(divElementId) {
         EAxisType,
         ENumericFormat,
         ELabelProviderType,
-        EChart2DModifierType,
+        EChart2DModifierType
     } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -133,24 +135,24 @@ async function builderExample(divElementId) {
                 labelProvider: {
                     type: ELabelProviderType.Date,
                     options: {
-                        labelFormat: ENumericFormat.Date_DDMMYYYY,
-                    },
-                },
-            },
+                        labelFormat: ENumericFormat.Date_DDMMYYYY
+                    }
+                }
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
             options: {
                 axisTitle: "Y Axis, Left, default formatting",
-                axisAlignment: EAxisAlignment.Left,
-            },
+                axisAlignment: EAxisAlignment.Left
+            }
         },
-        modifiers: [{ type: EChart2DModifierType.MouseWheelZoom }],
+        modifiers: [{ type: EChart2DModifierType.MouseWheelZoom }]
     });
 
     const xAxis = sciChartSurface.xAxes.get(0);
     // When zoomed in to less than one day, switch the date format
-    xAxis.visibleRangeChanged.subscribe((arg) => {
+    xAxis.visibleRangeChanged.subscribe(arg => {
         const SECONDS_IN_DAY = 86400;
         const SECONDS_IN_HOUR = 3600;
         if (arg.visibleRange.max - arg.visibleRange.min < SECONDS_IN_HOUR) {

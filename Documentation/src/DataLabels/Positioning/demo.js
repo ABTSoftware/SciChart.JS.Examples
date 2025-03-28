@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function dataLabelSkipModes(divElementId) {
     const { SciChartSurface, NumericAxis, EllipsePointMarker, XyDataSeries, NumberRange, SciChartJsNavyTheme } =
         SciChart;
@@ -5,7 +7,7 @@ async function dataLabelSkipModes(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
         title: "Data Labels Positioning Modes",
-        titleStyle: { fontSize: 20 },
+        titleStyle: { fontSize: 20 }
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
@@ -13,7 +15,7 @@ async function dataLabelSkipModes(divElementId) {
 
     const dataSeries = new XyDataSeries(wasmContext, {
         xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        yValues: [4.3, 5, 5, 6, 8, 6.8, 7, 7, 7.2, 6.5, 6.5, 7],
+        yValues: [4.3, 5, 5, 6, 8, 6.8, 7, 7, 7.2, 6.5, 6.5, 7]
     });
 
     const pointMarker = new EllipsePointMarker(wasmContext, {
@@ -21,7 +23,7 @@ async function dataLabelSkipModes(divElementId) {
         height: 10,
         strokeThickness: 2,
         stroke: "SteelBlue",
-        fill: "LightSteelBlue",
+        fill: "LightSteelBlue"
     });
 
     // #region ExampleA
@@ -31,7 +33,7 @@ async function dataLabelSkipModes(divElementId) {
         EDataLabelSkipMode,
         EVerticalTextPosition,
         EHorizontalTextPosition,
-        Thickness,
+        Thickness
     } = SciChart;
 
     // or for npm: import { FastLineRenderableSeries, ... } from "scichart"
@@ -52,10 +54,10 @@ async function dataLabelSkipModes(divElementId) {
             style: {
                 fontFamily: "Arial",
                 fontSize: 18,
-                padding: new Thickness(0, 5, 5, 0),
+                padding: new Thickness(0, 5, 5, 0)
             },
-            color: "#EEE",
-        },
+            color: "#EEE"
+        }
     });
     // #endregion
 

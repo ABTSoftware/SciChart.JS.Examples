@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function chartWithDateTimeNumericAxis(divElementId) {
     // Demonstrates how to configure an axis with rotated labels in scichart.js
     const { SciChartSurface, SciChartJsNavyTheme, NumericAxis, ENumericFormat, NumberRange } = SciChart;
@@ -6,7 +8,7 @@ async function chartWithDateTimeNumericAxis(divElementId) {
 
     // #region ExampleA
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     const xAxis = new NumericAxis(wasmContext, {
@@ -19,7 +21,7 @@ async function chartWithDateTimeNumericAxis(divElementId) {
         // Rotation is in degrees clockwise. Negative numbers are OK
         rotation: 90,
         // Turn off minor gridlines, since majors are now closer together
-        drawMinorGridLines: false,
+        drawMinorGridLines: false
     });
 
     // Add the xAxis to the chart
@@ -31,7 +33,7 @@ async function chartWithDateTimeNumericAxis(divElementId) {
             axisTitle: "Y Axis, -25 Degree Rotation",
             rotation: -25,
             labelFormat: ENumericFormat.Decimal,
-            labelPrecision: 4,
+            labelPrecision: 4
         })
     );
     // #endregion
@@ -61,8 +63,8 @@ async function builderExample(divElementId) {
                 // Rotation is in degrees clockwise. Negative numbers are OK
                 rotation: 90,
                 // Turn off minor gridlines, since majors are now closer together
-                drawMinorGridLines: false,
-            },
+                drawMinorGridLines: false
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
@@ -70,9 +72,9 @@ async function builderExample(divElementId) {
                 axisTitle: "Y Axis, Numeric",
                 rotation: 25,
                 labelFormat: ENumericFormat.Decimal,
-                labelPrecision: 4,
-            },
-        },
+                labelPrecision: 4
+            }
+        }
     });
     // #endregion
 }

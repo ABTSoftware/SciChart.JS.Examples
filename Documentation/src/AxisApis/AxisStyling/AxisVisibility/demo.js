@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function axisVisibility(divElementId) {
     // #region ExampleA
     // Demonstrates how to show/hide axis parts SciChart.js
@@ -8,14 +10,14 @@ async function axisVisibility(divElementId) {
         TextAnnotation,
         ECoordinateMode,
         EHorizontalAnchorPoint,
-        EVerticalAnchorPoint,
+        EVerticalAnchorPoint
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         // Choose a light theme to make this obvious
-        theme: new SciChartJSLightTheme(),
+        theme: new SciChartJSLightTheme()
     });
 
     // Create a X-Axis hiding elements
@@ -28,14 +30,14 @@ async function axisVisibility(divElementId) {
             drawMinorGridLines: false,
             drawMajorGridlines: true,
             drawMinorTicks: true,
-            drawMajorTicks: false,
+            drawMajorTicks: false
         })
     );
 
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             // Hide the entire axis
-            isVisible: false,
+            isVisible: false
         })
     );
     // #endregion
@@ -49,7 +51,7 @@ async function axisVisibility(divElementId) {
         xCoordinateMode: ECoordinateMode.Relative,
         yCoordinateMode: ECoordinateMode.Relative,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center
     });
     sciChartSurface.annotations.add(textAnnotation);
 }
@@ -75,16 +77,16 @@ async function builderExample(divElementId) {
                 drawMinorGridLines: false,
                 drawMajorGridlines: true,
                 drawMinorTicks: true,
-                drawMajorTicks: false,
-            },
+                drawMajorTicks: false
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
             options: {
                 // Hide the entire axis
-                isVisible: false,
-            },
-        },
+                isVisible: false
+            }
+        }
     });
     // #endregion
 }

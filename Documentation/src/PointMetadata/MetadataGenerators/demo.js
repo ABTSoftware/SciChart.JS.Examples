@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 // Create a metadata class. Confirms to interface I1DMetadataGenerator
 class ExampleMetadataGenerator {
@@ -8,7 +10,7 @@ class ExampleMetadataGenerator {
         this.type = "ExampleMetadataGenerator";
     }
     // This is called by SciChart to get the metadata to set when the dataSeries is created
-    getMetadata = () => this.stringValues.map((s) => ({ stringValue: s }));
+    getMetadata = () => this.stringValues.map(s => ({ stringValue: s }));
     // Unused for this example. Used to create a clone of metadata template for each datapoint
     getSingleMetadata = () => ({ stringValue: "" });
     // Required for serialization and builder API
@@ -28,13 +30,13 @@ async function metadataGenerators(divElementId) {
         NumberRange,
         RolloverModifier,
         EBaseType,
-        chartBuilder,
+        chartBuilder
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     const growBy = new NumberRange(0.1, 0.1);
@@ -46,14 +48,14 @@ async function metadataGenerators(divElementId) {
     chartBuilder.registerType(
         EBaseType.MetadataGenerator,
         "ExampleMetadataGenerator",
-        (data) => new ExampleMetadataGenerator(data)
+        data => new ExampleMetadataGenerator(data)
     );
 
     // Assign a Metadata generator instance to create metadata dynamically
     const dataSeries = new XyDataSeries(wasmContext, {
         xValues: [1, 2, 3, 4, 5],
         yValues: [4.3, 5.3, 6, 6.3, 6.4],
-        metadata: { type: "ExampleMetadataGenerator", data: ["Here's", "Some", "Metadata", "From", "Generator"] },
+        metadata: { type: "ExampleMetadataGenerator", data: ["Here's", "Some", "Metadata", "From", "Generator"] }
     });
     // #endregion
 
@@ -61,18 +63,18 @@ async function metadataGenerators(divElementId) {
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
             dataSeries,
-            pointMarker: new EllipsePointMarker(wasmContext, { width: 11, height: 11, fill: "White" }),
+            pointMarker: new EllipsePointMarker(wasmContext, { width: 11, height: 11, fill: "White" })
         })
     );
     // Add a RolloverModifier configured to output X,Y,Metadata.stringValue and customValue
     sciChartSurface.chartModifiers.add(
         new RolloverModifier({
             snapToDataPoint: true,
-            tooltipDataTemplate: (seriesInfo) => [
+            tooltipDataTemplate: seriesInfo => [
                 `X: ${seriesInfo.formattedXValue}`,
                 `Y: ${seriesInfo.formattedYValue}`,
-                `Metadata.stringValue: ${seriesInfo.pointMetadata?.stringValue ?? "null"}`,
-            ],
+                `Metadata.stringValue: ${seriesInfo.pointMetadata?.stringValue ?? "null"}`
+            ]
         })
     );
     // #endregion
@@ -85,14 +87,14 @@ async function metadataGenerators(divElementId) {
         y1: 0.5,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         opacity: 0.33,
-        textColor: "White",
+        textColor: "White"
     };
     sciChartSurface.annotations.add(
         new TextAnnotation({
             text: "Metadata Generators Example",
             fontSize: 36,
             yCoordShift: -125,
-            ...options,
+            ...options
         })
     );
     sciChartSurface.annotations.add(
@@ -100,7 +102,7 @@ async function metadataGenerators(divElementId) {
             text: "Hover over the chart to see metadata",
             fontSize: 20,
             yCoordShift: -75,
-            ...options,
+            ...options
         })
     );
 }
@@ -119,7 +121,7 @@ async function builderExample(divElementId) {
     chartBuilder.registerType(
         EBaseType.MetadataGenerator,
         "ExampleMetadataGenerator",
-        (data) => new ExampleMetadataGenerator(data)
+        data => new ExampleMetadataGenerator(data)
     );
 
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
@@ -133,8 +135,8 @@ async function builderExample(divElementId) {
                     yValues: [4.3, 5.3, 6, 6.3, 6.4],
                     metadata: {
                         type: "ExampleMetadataGenerator",
-                        data: ["Here's", "Some", "Metadata", "From", "Generator"],
-                    },
+                        data: ["Here's", "Some", "Metadata", "From", "Generator"]
+                    }
                 },
                 // ...
                 // #endregion
@@ -145,11 +147,11 @@ async function builderExample(divElementId) {
                         options: {
                             width: 11,
                             height: 11,
-                            fill: "White",
-                        },
-                    },
-                },
-            },
+                            fill: "White"
+                        }
+                    }
+                }
+            }
         ],
 
         // Configure a Rollovermodifier to display metadata
@@ -158,14 +160,14 @@ async function builderExample(divElementId) {
                 type: EChart2DModifierType.Rollover,
                 options: {
                     snapToDataPoint: true,
-                    tooltipDataTemplate: (seriesInfo) => [
+                    tooltipDataTemplate: seriesInfo => [
                         `X: ${seriesInfo.formattedXValue}`,
                         `Y: ${seriesInfo.formattedYValue}`,
-                        `Metadata.stringValue: ${seriesInfo.pointMetadata?.stringValue ?? "null"}`,
-                    ],
-                },
-            },
-        ],
+                        `Metadata.stringValue: ${seriesInfo.pointMetadata?.stringValue ?? "null"}`
+                    ]
+                }
+            }
+        ]
     });
 }
 

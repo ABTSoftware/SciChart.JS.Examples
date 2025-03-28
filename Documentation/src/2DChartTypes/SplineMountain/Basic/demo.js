@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleSplineMountainChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a spline mountain chart with SciChart.js
@@ -10,13 +12,13 @@ async function simpleSplineMountainChart(divElementId) {
         SciChartJsNavyTheme,
         NumberRange,
         GradientParams,
-        Point,
+        Point
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
@@ -30,7 +32,7 @@ async function simpleSplineMountainChart(divElementId) {
 
     const xyDataSeries = new XyDataSeries(wasmContext, {
         xValues,
-        yValues,
+        yValues
     });
 
     // Create a spline mountain series
@@ -41,7 +43,7 @@ async function simpleSplineMountainChart(divElementId) {
         // when a gradient is required, use fillLinearGradient
         fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "rgba(70,130,180,0.77)", offset: 0 },
-            { color: "rgba(70,130,180,0.0)", offset: 1 },
+            { color: "rgba(70,130,180,0.0)", offset: 1 }
         ]),
         strokeThickness: 5,
         zeroLineY: 0.0,
@@ -53,8 +55,8 @@ async function simpleSplineMountainChart(divElementId) {
             width: 7,
             height: 7,
             fill: "white",
-            strokeThickness: 0,
-        }),
+            strokeThickness: 0
+        })
     });
 
     sciChartSurface.renderableSeries.add(splineMountainSeries);
@@ -94,10 +96,10 @@ async function builderExample(divElementId) {
                     fillLinearGradient: {
                         gradientStops: [
                             { color: "rgba(70,130,180,0.77)", offset: 0.0 },
-                            { color: "rgba(70,130,180,0.0)", offset: 1 },
+                            { color: "rgba(70,130,180,0.0)", offset: 1 }
                         ],
                         startPoint: { x: 0, y: 0 },
-                        endPoint: { x: 0, y: 1 },
+                        endPoint: { x: 0, y: 1 }
                     },
                     pointMarker: {
                         type: EPointMarkerType.Ellipse,
@@ -105,12 +107,12 @@ async function builderExample(divElementId) {
                             width: 7,
                             height: 7,
                             fill: "white",
-                            strokeThickness: 0,
-                        },
-                    },
-                },
-            },
-        ],
+                            strokeThickness: 0
+                        }
+                    }
+                }
+            }
+        ]
     });
     // #endregion
 }

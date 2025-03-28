@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 const {
     BoxAnnotation,
     CustomAnnotation,
@@ -10,14 +12,14 @@ const {
     EVerticalAnchorPoint,
     ECoordinateMode,
     SciChartJsNavyTheme,
-    EDraggingGripPoint,
+    EDraggingGripPoint
 } = SciChart;
 
 // or for npm import { SciChartSurface, ... } from "scichart"
 
 async function addAnnotationToChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(2, 8) }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(2, 8) }));
@@ -40,7 +42,7 @@ async function addAnnotationToChart(divElementId) {
         selectionBoxDelta: 30,
         selectionBoxThickness: 9,
         // Modify the number of grip points
-        dragPoints: [EDraggingGripPoint.Body, EDraggingGripPoint.x2y1],
+        dragPoints: [EDraggingGripPoint.Body, EDraggingGripPoint.x2y1]
     });
     sciChartSurface.annotations.add(boxAnnotation);
     // #endregion
@@ -76,10 +78,10 @@ async function builderExample(divElementId) {
                     selectionBoxDelta: 30,
                     selectionBoxThickness: 9,
                     // Modify the number of grip points
-                    dragPoints: [EDraggingGripPoint.Body, EDraggingGripPoint.x2y1],
-                },
-            },
-        ],
+                    dragPoints: [EDraggingGripPoint.Body, EDraggingGripPoint.x2y1]
+                }
+            }
+        ]
     });
     // #endregion
 }

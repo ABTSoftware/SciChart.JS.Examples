@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function centralAxisConfigure(divElementId) {
     // Demonstrates how to configure a central axis in SciChart.js
     const {
@@ -5,13 +7,13 @@ async function centralAxisConfigure(divElementId) {
         NumericAxis,
         SciChartJsNavyTheme,
         CentralAxesLayoutManager,
-        EInnerAxisPlacementCoordinateMode,
+        EInnerAxisPlacementCoordinateMode
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // #region ExampleA
@@ -20,7 +22,7 @@ async function centralAxisConfigure(divElementId) {
         horizontalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.DataValue,
         verticalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Pixel,
         horizontalAxisPosition: 3,
-        verticalAxisPosition: 100,
+        verticalAxisPosition: 100
     });
 
     // Continue to add your X,Y axis as before
@@ -33,8 +35,8 @@ async function centralAxisConfigure(divElementId) {
             backgroundColor: "#50C7E022",
             axisBorder: {
                 borderTop: 1,
-                color: "#50C7E0",
-            },
+                color: "#50C7E0"
+            }
         })
     );
     sciChartSurface.yAxes.add(
@@ -43,8 +45,8 @@ async function centralAxisConfigure(divElementId) {
             backgroundColor: "#F4842022",
             axisBorder: {
                 borderRight: 1,
-                color: "#F48420",
-            },
+                color: "#F48420"
+            }
         })
     );
 }
@@ -68,9 +70,9 @@ async function builderExample(divElementId) {
                     horizontalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.DataValue,
                     verticalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Pixel,
                     horizontalAxisPosition: 3,
-                    verticalAxisPosition: 100,
-                },
-            },
+                    verticalAxisPosition: 100
+                }
+            }
         },
         // etc...
         // #endregion
@@ -81,9 +83,9 @@ async function builderExample(divElementId) {
                 backgroundColor: "#50C7E022",
                 axisBorder: {
                     borderTop: 1,
-                    color: "#50C7E0",
-                },
-            },
+                    color: "#50C7E0"
+                }
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
@@ -92,10 +94,10 @@ async function builderExample(divElementId) {
                 backgroundColor: "#F4842022",
                 axisBorder: {
                     borderRight: 1,
-                    color: "#F48420",
-                },
-            },
-        },
+                    color: "#F48420"
+                }
+            }
+        }
     });
 }
 

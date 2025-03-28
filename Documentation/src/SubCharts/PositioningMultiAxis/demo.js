@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 const xValues = [];
 const yValues = [];
 const yValues1 = [];
@@ -25,7 +27,7 @@ async function simpleSubChart(divElementId) {
         MouseWheelZoomModifier,
         EXyDirection,
         NumberRange,
-        EAxisAlignment,
+        EAxisAlignment
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -38,43 +40,43 @@ async function simpleSubChart(divElementId) {
                 strokeThickness: 5,
                 dataSeries: new XyDataSeries(wasmContext, {
                     xValues: x,
-                    yValues: y,
+                    yValues: y
                 }),
-                opacity: sciChartSurface.isSubSurface ? 0.5 : 1,
+                opacity: sciChartSurface.isSubSurface ? 0.5 : 1
             })
         );
     };
 
     // Create a parent (regular) SciChartSurface which will contain the sub-chart
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Create multiple X,Y axis on the parent chart and programmatically zoom into part of the data
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             growBy: new NumberRange(0.1, 0.1),
-            axisTitle: "XAxis Bottom",
+            axisTitle: "XAxis Bottom"
         })
     );
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             id: "XAxisTop",
             axisTitle: "XAxis Top",
-            axisAlignment: EAxisAlignment.Top,
+            axisAlignment: EAxisAlignment.Top
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             axisTitle: "YAxis Right",
-            growBy: new NumberRange(0.1, 0.1),
+            growBy: new NumberRange(0.1, 0.1)
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             id: "YAxisLeft",
             axisTitle: "YAxis Left",
-            axisAlignment: EAxisAlignment.Left,
+            axisAlignment: EAxisAlignment.Left
         })
     );
 
@@ -101,7 +103,7 @@ async function simpleSubChart(divElementId) {
         viewportBorder: { border: 3, color: "#77777777" },
         backgroundColor: "#333",
         title: "Sub-chart Positioned on Left/Top Axis",
-        titleStyle: { fontSize: 16, color: "#eeeeee77" },
+        titleStyle: { fontSize: 16, color: "#eeeeee77" }
     });
 
     // Add x,y axis to the subchart
@@ -129,7 +131,7 @@ async function simpleSubChart(divElementId) {
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
             opacity: 0.5,
-            fontSize: 20,
+            fontSize: 20
         })
     );
 }
@@ -148,7 +150,7 @@ async function builderExample(divElementId) {
         ECoordinateMode,
         EAxisAlignment,
         NumberRange,
-        EChart2DModifierType,
+        EChart2DModifierType
     } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -163,9 +165,9 @@ async function builderExample(divElementId) {
                 options: {
                     id: "XAxisTop",
                     axisTitle: "XAxis Top",
-                    axisAlignment: EAxisAlignment.Top,
-                },
-            },
+                    axisAlignment: EAxisAlignment.Top
+                }
+            }
         ],
         yAxes: [
             { type: EAxisType.NumericAxis, options: { axisTitle: "YAxis Right" } },
@@ -174,27 +176,27 @@ async function builderExample(divElementId) {
                 options: {
                     id: "YAxisLeft",
                     axisTitle: "YAxis Left",
-                    axisAlignment: EAxisAlignment.Left,
-                },
-            },
+                    axisAlignment: EAxisAlignment.Left
+                }
+            }
         ],
         series: [
             {
                 type: ESeriesType.LineSeries,
                 xyData: {
                     xValues,
-                    yValues: yValues1,
+                    yValues: yValues1
                 },
                 options: {
                     stroke: "#0066FF",
-                    strokeThickness: 5,
-                },
-            },
+                    strokeThickness: 5
+                }
+            }
         ],
         modifiers: [
             { type: EChart2DModifierType.ZoomPan },
             { type: EChart2DModifierType.ZoomExtents },
-            { type: EChart2DModifierType.MouseWheelZoom },
+            { type: EChart2DModifierType.MouseWheelZoom }
         ],
         // Subchart definition is here
         subCharts: [
@@ -211,7 +213,7 @@ async function builderExample(divElementId) {
                     viewportBorder: { border: 3, color: "#77777777" },
                     backgroundColor: "#333",
                     title: "Sub-chart Positioned on Left/Top Axis",
-                    titleStyle: { fontSize: 16, color: "#eeeeee77" },
+                    titleStyle: { fontSize: 16, color: "#eeeeee77" }
                 },
                 // Define the x,y axis on Subchart
                 xAxes: { type: EAxisType.NumericAxis, options: { isVisible: false } },
@@ -222,16 +224,16 @@ async function builderExample(divElementId) {
                         type: ESeriesType.LineSeries,
                         xyData: {
                             xValues,
-                            yValues: yValues1,
+                            yValues: yValues1
                         },
                         options: {
                             stroke: "#0066FF",
-                            strokeThickness: 5,
-                        },
-                    },
-                ],
-            },
-        ],
+                            strokeThickness: 5
+                        }
+                    }
+                ]
+            }
+        ]
     });
 
     // On the parent chart, programmatically zoom into a region

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function dataLabelsMetadata(divElementId) {
     // #region ExampleA
     const {
@@ -7,14 +9,14 @@ async function dataLabelsMetadata(divElementId) {
         EllipsePointMarker,
         XyDataSeries,
         NumberRange,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or for npm: import { SciChartSurface, ... } from "scichart"
 
     // Create a SciChartSurface with X,Y Axis
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
@@ -31,7 +33,7 @@ async function dataLabelsMetadata(divElementId) {
                 height: 10,
                 strokeThickness: 2,
                 stroke: "SteelBlue",
-                fill: "LightSteelBlue",
+                fill: "LightSteelBlue"
             }),
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -48,19 +50,19 @@ async function dataLabelsMetadata(divElementId) {
                     { text: "Lemons", isSelected: false },
                     { text: "Limes", isSelected: false },
                     { text: "Papaya", isSelected: false },
-                    { text: "Guava", isSelected: false },
-                ],
+                    { text: "Guava", isSelected: false }
+                ]
             }),
             // Next, add the dataLabels. Simply setting dataLabel style makes labels visible
             // We also pass a metaDataSelector which is a function that can be used to format labels from metadata objects
             dataLabels: {
-                metaDataSelector: (metaData) => metaData.text,
+                metaDataSelector: metaData => metaData.text,
                 style: {
                     fontFamily: "Arial",
-                    fontSize: 16,
+                    fontSize: 16
                 },
-                color: "#EEE",
-            },
+                color: "#EEE"
+            }
         })
     );
     // #endregion
@@ -95,8 +97,8 @@ async function builderExample(divElementId) {
                         { text: "Lemons", isSelected: false },
                         { text: "Limes", isSelected: false },
                         { text: "Papaya", isSelected: false },
-                        { text: "Guava", isSelected: false },
-                    ],
+                        { text: "Guava", isSelected: false }
+                    ]
                 },
                 options: {
                     stroke: "SteelBlue",
@@ -108,22 +110,22 @@ async function builderExample(divElementId) {
                             height: 10,
                             strokeThickness: 2,
                             stroke: "SteelBlue",
-                            fill: "LightSteelBlue",
-                        },
+                            fill: "LightSteelBlue"
+                        }
                     },
                     // Next, add the dataLabels. Simply setting dataLabel style makes labels visible
                     // We also pass a metaDataSelector which is a function that can be used to format labels from metadata objects
                     dataLabels: {
-                        metaDataSelector: (metaData) => metaData.text,
+                        metaDataSelector: metaData => metaData.text,
                         style: {
                             fontFamily: "Arial",
-                            fontSize: 16,
+                            fontSize: 16
                         },
-                        color: "#EEE",
-                    },
-                },
-            },
-        ],
+                        color: "#EEE"
+                    }
+                }
+            }
+        ]
     });
     // #endregion
 }

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleScatterChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a scatter chart with SciChart.js
@@ -7,13 +9,13 @@ async function simpleScatterChart(divElementId) {
         XyDataSeries,
         XyScatterRenderableSeries,
         EllipsePointMarker,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -27,7 +29,7 @@ async function simpleScatterChart(divElementId) {
 
     const xyDataSeries = new XyDataSeries(wasmContext, {
         xValues,
-        yValues,
+        yValues
     });
 
     const scatterSeries = new XyScatterRenderableSeries(wasmContext, {
@@ -37,8 +39,8 @@ async function simpleScatterChart(divElementId) {
             height: 7,
             strokeThickness: 2,
             fill: "steelblue",
-            stroke: "LightSteelBlue",
-        }),
+            stroke: "LightSteelBlue"
+        })
     });
 
     sciChartSurface.renderableSeries.add(scatterSeries);
@@ -69,7 +71,7 @@ async function builderExample(divElementId) {
                 type: ESeriesType.ScatterSeries,
                 xyData: {
                     xValues,
-                    yValues,
+                    yValues
                 },
                 options: {
                     pointMarker: {
@@ -79,12 +81,12 @@ async function builderExample(divElementId) {
                             height: 7,
                             strokeThickness: 1,
                             fill: "steelblue",
-                            stroke: "LightSteelBlue",
-                        },
-                    },
-                },
-            },
-        ],
+                            stroke: "LightSteelBlue"
+                        }
+                    }
+                }
+            }
+        ]
     });
     // #endregion
 }

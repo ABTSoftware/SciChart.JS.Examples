@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function loggarithmicAxisConfig(divElementId) {
     // Demonstrates how to configure a logarithmic axis in SciChart.js
     const {
@@ -7,13 +9,13 @@ async function loggarithmicAxisConfig(divElementId) {
         ENumericFormat,
         NumberRange,
         ELogarithmicMajorTickMode,
-        ELogarithmicMinorTickMode,
+        ELogarithmicMinorTickMode
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // #region ExampleA
@@ -29,7 +31,7 @@ async function loggarithmicAxisConfig(divElementId) {
             majorGridLineStyle: { color: "#50C7E077" },
             minorGridLineStyle: { color: "#50C7E033" },
             axisTitle: "Log(10) Axis with equally spaced gridlines",
-            visibleRange: new NumberRange(1, 10_000_000),
+            visibleRange: new NumberRange(1, 10_000_000)
         })
     );
 
@@ -47,7 +49,7 @@ async function loggarithmicAxisConfig(divElementId) {
             majorGridLineStyle: { color: "#50C7E077" },
             minorGridLineStyle: { color: "#50C7E033" },
             axisTitle: "Log(2) Axis configured for financial",
-            visibleRange: new NumberRange(100, 1000),
+            visibleRange: new NumberRange(100, 1000)
         })
     );
     // #endregion
@@ -64,7 +66,7 @@ async function builderExample(divElementId) {
         ENumericFormat,
         EAxisType,
         ELogarithmicMinorTickMode,
-        ELogarithmicMajorTickMode,
+        ELogarithmicMajorTickMode
     } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -84,8 +86,8 @@ async function builderExample(divElementId) {
                 majorGridLineStyle: { color: "#50C7E077" },
                 minorGridLineStyle: { color: "#50C7E033" },
                 axisTitle: "Log(10) Axis with equally spaced gridlines",
-                visibleRange: new NumberRange(1, 10_000_000),
-            },
+                visibleRange: new NumberRange(1, 10_000_000)
+            }
         },
         yAxes: {
             type: EAxisType.LogarithmicAxis,
@@ -101,9 +103,9 @@ async function builderExample(divElementId) {
                 majorGridLineStyle: { color: "#50C7E077" },
                 minorGridLineStyle: { color: "#50C7E033" },
                 axisTitle: "Log(2) Axis configured for financial",
-                visibleRange: new NumberRange(100, 1000),
-            },
-        },
+                visibleRange: new NumberRange(100, 1000)
+            }
+        }
     });
     // #endregion
 }

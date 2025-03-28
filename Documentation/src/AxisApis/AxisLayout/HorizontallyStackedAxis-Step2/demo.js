@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function horizontallyStackedAxis(divElementId) {
     const {
         SciChartSurface,
@@ -7,13 +9,13 @@ async function horizontallyStackedAxis(divElementId) {
         FastLineRenderableSeries,
         XyDataSeries,
         BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // #region ExampleA
@@ -25,7 +27,7 @@ async function horizontallyStackedAxis(divElementId) {
             backgroundColor: "#50C7E022",
             axisBorder: { color: "#50C7E0", borderRight: 1 },
             axisAlignment: EAxisAlignment.Left,
-            growBy: new NumberRange(0.1, 0.1),
+            growBy: new NumberRange(0.1, 0.1)
         })
     );
 
@@ -48,15 +50,15 @@ async function horizontallyStackedAxis(divElementId) {
     });
 
     // Let's add some series to the chart to show how they also behave with axis
-    const getOptions = (index) => {
+    const getOptions = index => {
         const xValues = Array.from(Array(50).keys());
-        const yValues = xValues.map((x) => Math.sin(x * 0.4 + index));
+        const yValues = xValues.map(x => Math.sin(x * 0.4 + index));
 
         return {
             xAxisId: `XAxis${index}`,
             stroke: axisColors[index],
             strokeThickness: 2,
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues })
         };
     };
 
@@ -75,10 +77,10 @@ async function builderExample(divElementId) {
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
     const xValues = Array.from(Array(50).keys());
-    const yValues = xValues.map((x) => Math.sin(x * 0.4));
-    const yValues1 = xValues.map((x) => Math.sin(x * 0.4 + 1));
-    const yValues2 = xValues.map((x) => Math.sin(x * 0.4 + 2));
-    const yValues3 = xValues.map((x) => Math.sin(x * 0.4 + 3));
+    const yValues = xValues.map(x => Math.sin(x * 0.4));
+    const yValues1 = xValues.map(x => Math.sin(x * 0.4 + 1));
+    const yValues2 = xValues.map(x => Math.sin(x * 0.4 + 2));
+    const yValues3 = xValues.map(x => Math.sin(x * 0.4 + 3));
 
     // #region ExampleB
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
@@ -90,8 +92,8 @@ async function builderExample(divElementId) {
                 axisTitleStyle: { fontSize: 13 },
                 backgroundColor: "#50C7E022",
                 axisBorder: { color: "#50C7E0", borderRight: 1 },
-                axisAlignment: EAxisAlignment.Left,
-            },
+                axisAlignment: EAxisAlignment.Left
+            }
         },
         xAxes: [
             {
@@ -100,8 +102,8 @@ async function builderExample(divElementId) {
                     id: "XAxis0",
                     axisTitle: "X Axis 0",
                     backgroundColor: "#50C7E022",
-                    axisBorder: { borderTop: 1, color: "#50C7E0" },
-                },
+                    axisBorder: { borderTop: 1, color: "#50C7E0" }
+                }
             },
             {
                 type: EAxisType.NumericAxis,
@@ -109,8 +111,8 @@ async function builderExample(divElementId) {
                     id: "XAxis1",
                     axisTitle: "X Axis 0",
                     backgroundColor: "#EC0F6C22",
-                    axisBorder: { borderTop: 1, color: "#EC0F6C" },
-                },
+                    axisBorder: { borderTop: 1, color: "#EC0F6C" }
+                }
             },
             {
                 type: EAxisType.NumericAxis,
@@ -118,8 +120,8 @@ async function builderExample(divElementId) {
                     id: "XAxis2",
                     axisTitle: "X Axis 0",
                     backgroundColor: "#30BC9A22",
-                    axisBorder: { borderTop: 1, color: "#30BC9A" },
-                },
+                    axisBorder: { borderTop: 1, color: "#30BC9A" }
+                }
             },
             {
                 type: EAxisType.NumericAxis,
@@ -127,32 +129,32 @@ async function builderExample(divElementId) {
                     id: "XAxis3",
                     axisTitle: "X Axis 0",
                     backgroundColor: "#F4842022",
-                    axisBorder: { borderTop: 1, color: "#F48420" },
-                },
-            },
+                    axisBorder: { borderTop: 1, color: "#F48420" }
+                }
+            }
         ],
         series: [
             {
                 type: ESeriesType.LineSeries,
                 options: { stroke: "#50C7E0", strokeThickness: 2, xAxisId: "XAxis0" },
-                xyData: { xValues, yValues },
+                xyData: { xValues, yValues }
             },
             {
                 type: ESeriesType.LineSeries,
                 options: { stroke: "#EC0F6C", strokeThickness: 2, xAxisId: "XAxis1" },
-                xyData: { xValues, yValues: yValues1 },
+                xyData: { xValues, yValues: yValues1 }
             },
             {
                 type: ESeriesType.LineSeries,
                 options: { stroke: "#30BC9A", strokeThickness: 2, xAxisId: "XAxis2" },
-                xyData: { xValues, yValues: yValues2 },
+                xyData: { xValues, yValues: yValues2 }
             },
             {
                 type: ESeriesType.LineSeries,
                 options: { stroke: "#F48420", strokeThickness: 2, xAxisId: "XAxis3" },
-                xyData: { xValues, yValues: yValues3 },
-            },
-        ],
+                xyData: { xValues, yValues: yValues3 }
+            }
+        ]
     });
     // #endregion
 }

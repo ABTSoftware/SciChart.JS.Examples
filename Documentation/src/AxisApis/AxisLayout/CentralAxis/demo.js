@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function centralAxis(divElementId) {
     // #region ExampleA
     // Demonstrates how to configure a central axis in SciChart.js
@@ -6,7 +8,7 @@ async function centralAxis(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Apply the CentralAxesLayoutManager to the SciChartSurface
@@ -19,8 +21,8 @@ async function centralAxis(divElementId) {
             backgroundColor: "#50C7E022",
             axisBorder: {
                 borderTop: 1,
-                color: "#50C7E0",
-            },
+                color: "#50C7E0"
+            }
         })
     );
     sciChartSurface.yAxes.add(
@@ -29,8 +31,8 @@ async function centralAxis(divElementId) {
             backgroundColor: "#F4842022",
             axisBorder: {
                 borderRight: 1,
-                color: "#F48420",
-            },
+                color: "#F48420"
+            }
         })
     );
     // #endregion
@@ -48,7 +50,7 @@ async function builderExample(divElementId) {
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
         surface: {
             theme: { type: EThemeProviderType.Dark },
-            layoutManager: { type: ELayoutManagerType.CentralAxes },
+            layoutManager: { type: ELayoutManagerType.CentralAxes }
         },
         xAxes: {
             type: EAxisType.NumericAxis,
@@ -57,9 +59,9 @@ async function builderExample(divElementId) {
                 backgroundColor: "#50C7E022",
                 axisBorder: {
                     borderTop: 1,
-                    color: "#50C7E0",
-                },
-            },
+                    color: "#50C7E0"
+                }
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
@@ -68,10 +70,10 @@ async function builderExample(divElementId) {
                 backgroundColor: "#F4842022",
                 axisBorder: {
                     borderRight: 1,
-                    color: "#F48420",
-                },
-            },
-        },
+                    color: "#F48420"
+                }
+            }
+        }
     });
     // #endregion
 }

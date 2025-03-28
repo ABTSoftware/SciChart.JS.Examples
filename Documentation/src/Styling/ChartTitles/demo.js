@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function chartTitles(divElementId) {
     // #region ExampleA
     // Demonstrates how to configure chart titles SciChart.js
@@ -8,7 +10,7 @@ async function chartTitles(divElementId) {
         Thickness,
         EMultiLineAlignment,
         ETextAlignment,
-        ETitlePosition,
+        ETitlePosition
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -24,8 +26,8 @@ async function chartTitles(divElementId) {
             placeWithinChart: false, // When true, place inside chart, else outside
             multiLineAlignment: EMultiLineAlignment.Left, // When \n present how does multiline text align (Left, Center, Right)
             alignment: ETextAlignment.Center, // Alignment of title (Left, Center, Right)
-            position: ETitlePosition.Top, // Vertical position of title (Top, Bottom, Left, Right)
-        },
+            position: ETitlePosition.Top // Vertical position of title (Top, Bottom, Left, Right)
+        }
     });
 
     // Create an X and Y Axis with title
@@ -46,7 +48,7 @@ async function builderExample(divElementId) {
         Thickness,
         EMultiLineAlignment,
         ETextAlignment,
-        ETitlePosition,
+        ETitlePosition
     } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -63,17 +65,17 @@ async function builderExample(divElementId) {
                 placeWithinChart: false,
                 multiLineAlignment: EMultiLineAlignment.Center,
                 alignment: ETextAlignment.Center,
-                position: ETitlePosition.Top,
-            },
+                position: ETitlePosition.Top
+            }
         },
         xAxes: {
             type: EAxisType.NumericAxis,
-            options: { axisTitle: "X Axis" },
+            options: { axisTitle: "X Axis" }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
-            options: { axisTitle: "Y Axis" },
-        },
+            options: { axisTitle: "Y Axis" }
+        }
     });
     // #endregion
 }

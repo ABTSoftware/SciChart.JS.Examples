@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function conversionOfCoordinatesIn3D(divElementId) {
     const { SciChart3DSurface, NumericAxis3D, Vector3, SciChartJsNavyTheme } = SciChart;
 
@@ -12,8 +14,8 @@ async function conversionOfCoordinatesIn3D(divElementId) {
         // Optional initial camera position and target
         cameraOptions: {
             position: new Vector3(300, 300, 300),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, { axisTitle: "X Axis" });

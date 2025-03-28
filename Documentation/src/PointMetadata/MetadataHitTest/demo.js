@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function metadataHitTest(divElementId) {
     // Demonstrates how to add PointMetadata to a DataSeries and consume it in SciChart.js
     const {
@@ -8,13 +10,13 @@ async function metadataHitTest(divElementId) {
         SciChartJsNavyTheme,
         EllipsePointMarker,
         NumberRange,
-        DpiHelper,
+        DpiHelper
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     const growBy = new NumberRange(0.1, 0.1);
@@ -31,8 +33,8 @@ async function metadataHitTest(divElementId) {
             { stringValue: "Some", customValue: 7 },
             { stringValue: "Metadata" },
             { stringValue: "With", customValue: 99 },
-            { stringValue: "Hit-Test" },
-        ],
+            { stringValue: "Hit-Test" }
+        ]
     });
 
     // Add a line series with the metadata
@@ -44,13 +46,13 @@ async function metadataHitTest(divElementId) {
                 height: 11,
                 fill: "#364BA0",
                 stroke: "#50C7E0",
-                strokeThickness: 2,
-            }),
+                strokeThickness: 2
+            })
         })
     );
 
     // Perform a hit-test operation using mousedown event on the SciChartSurface <div>
-    sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent) => {
+    sciChartSurface.domCanvas2D.addEventListener("mousedown", mouseEvent => {
         const mouseClickX = mouseEvent.offsetX;
         const mouseClickY = mouseEvent.offsetY;
         console.log("mouseClickX", mouseClickX, "mouseClickY", mouseClickY);
@@ -90,14 +92,14 @@ async function metadataHitTest(divElementId) {
         y1: 0.5,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         opacity: 0.33,
-        textColor: "White",
+        textColor: "White"
     };
     sciChartSurface.annotations.add(
         new TextAnnotation({
             text: "Metadata Hit-Test Example",
             fontSize: 36,
             yCoordShift: -125,
-            ...options,
+            ...options
         })
     );
     sciChartSurface.annotations.add(
@@ -105,7 +107,7 @@ async function metadataHitTest(divElementId) {
             text: "Click chart data-points to extract metadata",
             fontSize: 20,
             yCoordShift: -75,
-            ...options,
+            ...options
         })
     );
 }

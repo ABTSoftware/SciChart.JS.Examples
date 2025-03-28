@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function rotatingLabels(divElementId) {
     // Demonstrates how to configure a text axis in SciChart.js
     // using TextLabelProvider & NumericAxis
@@ -10,13 +12,13 @@ async function rotatingLabels(divElementId) {
         XyDataSeries,
         GradientParams,
         Point,
-        ELabelAlignment,
+        ELabelAlignment
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // #region ExampleA
@@ -32,13 +34,13 @@ async function rotatingLabels(divElementId) {
                 // These will be auto-wrapped
                 "Apples and Bananas",
                 "Strawberries and Raspberries",
-                "Lemons Limes and Oranges",
+                "Lemons Limes and Oranges"
             ],
-            maxLength: 7,
+            maxLength: 7
         }),
         labelStyle: {
-            alignment: ELabelAlignment.Center,
-        },
+            alignment: ELabelAlignment.Center
+        }
     });
     sciChartSurface.xAxes.add(xAxis);
     // #endregion
@@ -51,14 +53,14 @@ async function rotatingLabels(divElementId) {
         new FastColumnRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: [0, 1, 2, 3, 4, 5],
-                yValues: [0.1, 0.2, 0.4, 0.8, 1.1, 1.2],
+                yValues: [0.1, 0.2, 0.4, 0.8, 1.1, 1.2]
             }),
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: "rgba(70,130,180,0.77)", offset: 0 },
-                { color: "rgba(70,130,180,0.0)", offset: 1 },
+                { color: "rgba(70,130,180,0.0)", offset: 1 }
             ]),
             stroke: "#FFFFFF77",
-            strokeThickness: 2,
+            strokeThickness: 2
         })
     );
 }
@@ -88,40 +90,40 @@ async function builderExample(divElementId) {
                             // These will be auto-wrapped
                             "Apples and Bananas",
                             "Strawberries and Raspberries",
-                            "Lemons Limes and Oranges",
+                            "Lemons Limes and Oranges"
                         ],
-                        maxLength: 7,
-                    },
-                },
-            },
+                        maxLength: 7
+                    }
+                }
+            }
         },
         // ... );
         // #endregion
         yAxes: {
             type: EAxisType.NumericAxis,
-            options: {},
+            options: {}
         },
         series: [
             {
                 type: ESeriesType.ColumnSeries,
                 xyData: {
                     xValues: [0, 1, 2, 3, 4, 5],
-                    yValues: [0.1, 0.2, 0.4, 0.8, 1.1, 1.2],
+                    yValues: [0.1, 0.2, 0.4, 0.8, 1.1, 1.2]
                 },
                 options: {
                     fillLinearGradient: {
                         gradientStops: [
                             { color: "rgba(70,130,180,0.77)", offset: 0.0 },
-                            { color: "rgba(70,130,180,0.0)", offset: 1 },
+                            { color: "rgba(70,130,180,0.0)", offset: 1 }
                         ],
                         startPoint: { x: 0, y: 0 },
-                        endPoint: { x: 0, y: 1 },
+                        endPoint: { x: 0, y: 1 }
                     },
                     stroke: "#FFFFFF77",
-                    strokeThickness: 2,
-                },
-            },
-        ],
+                    strokeThickness: 2
+                }
+            }
+        ]
     });
 }
 

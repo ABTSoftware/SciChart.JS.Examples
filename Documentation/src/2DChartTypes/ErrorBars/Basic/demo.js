@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleErrorBarsChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a chart with error bars using SciChart.js
@@ -9,13 +11,13 @@ async function simpleErrorBarsChart(divElementId) {
         EErrorMode,
         EErrorDirection,
         EDataPointWidthMode,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -29,7 +31,7 @@ async function simpleErrorBarsChart(divElementId) {
         xValues,
         yValues,
         highValues,
-        lowValues,
+        lowValues
     });
 
     const errorBarsSeries = new FastErrorBarsRenderableSeries(wasmContext, {
@@ -41,7 +43,7 @@ async function simpleErrorBarsChart(divElementId) {
         errorDirection: EErrorDirection.Vertical,
         // More optional parameters. Defaults are 0.5, Relative
         dataPointWidth: 0.5,
-        dataPointWidthMode: EDataPointWidthMode.Relative,
+        dataPointWidthMode: EDataPointWidthMode.Relative
     });
 
     sciChartSurface.renderableSeries.add(errorBarsSeries);
@@ -70,14 +72,14 @@ async function builderExample(divElementId) {
                     xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8],
                     yValues: [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0],
                     highValues: [3.7, 3.8, 4.0, 5.3, 5.9, 5.7, 5.0, 4.3, 3.2],
-                    lowValues: [2.2, 3.4, 3.3, 3.8, 5.0, 4.8, 3.5, 3.0, 1.8],
+                    lowValues: [2.2, 3.4, 3.3, 3.8, 5.0, 4.8, 3.5, 3.0, 1.8]
                 },
                 options: {
                     stroke: "#50C7E0",
-                    strokeThickness: 3,
-                },
-            },
-        ],
+                    strokeThickness: 3
+                }
+            }
+        ]
     });
     // #endregion
 }

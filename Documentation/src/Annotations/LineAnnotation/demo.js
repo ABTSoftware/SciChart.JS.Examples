@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const {
     BoxAnnotation,
@@ -10,14 +12,14 @@ const {
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
     ECoordinateMode,
-    SciChartJsNavyTheme,
+    SciChartJsNavyTheme
 } = SciChart;
 
 // or for npm import { SciChartSurface, ... } from "scichart"
 
 async function addAnnotationToChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -28,7 +30,7 @@ async function addAnnotationToChart(divElementId) {
             fontSize: 16,
             text: "In SciChart.js, you can add arbitrary lines",
             x1: 0.3,
-            y1: 6.3,
+            y1: 6.3
         }),
 
         new LineAnnotation({
@@ -37,7 +39,7 @@ async function addAnnotationToChart(divElementId) {
             x1: 1,
             x2: 6,
             y1: 1,
-            y2: 8,
+            y2: 8
         }),
         new LineAnnotation({
             stroke: "#FF6600",
@@ -46,7 +48,7 @@ async function addAnnotationToChart(divElementId) {
             x1: 1.5,
             x2: 8,
             y1: 1,
-            y2: 7,
+            y2: 7
         })
     );
 }
@@ -68,8 +70,8 @@ async function builderExample(divElementId) {
                     fontSize: 12,
                     text: "You can draw lines",
                     x1: 0.3,
-                    y1: 6.3,
-                },
+                    y1: 6.3
+                }
             },
             {
                 type: EAnnotationType.RenderContextLineAnnotation,
@@ -79,8 +81,8 @@ async function builderExample(divElementId) {
                     x1: 1,
                     x2: 2,
                     y1: 4,
-                    y2: 6,
-                },
+                    y2: 6
+                }
             },
             {
                 type: EAnnotationType.RenderContextLineAnnotation,
@@ -91,10 +93,10 @@ async function builderExample(divElementId) {
                     x1: 1.2,
                     x2: 2.5,
                     y1: 3.8,
-                    y2: 6,
-                },
-            },
-        ],
+                    y2: 6
+                }
+            }
+        ]
     });
     // #endregion
 }

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const { DefaultPaletteProvider, EStrokePaletteMode, parseColorToUIntArgb } = SciChart;
 
@@ -29,7 +31,7 @@ class LineAndPointMarkerPaletteProvider extends DefaultPaletteProvider {
             // Override pointmarker color here
             return {
                 stroke: this.stroke,
-                fill: this.stroke,
+                fill: this.stroke
             };
         }
         // Default color here
@@ -48,13 +50,13 @@ async function palettedImpulseChart(divElementId) {
         XyDataSeries,
         EllipsePointMarker,
         SciChartJsNavyTheme,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0, 0.1) }));
@@ -74,7 +76,7 @@ async function palettedImpulseChart(divElementId) {
         size: 10,
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
         // Apply the PaletteProvider to the impulse series
-        paletteProvider: new LineAndPointMarkerPaletteProvider("#F48420", (y) => y < 0.0),
+        paletteProvider: new LineAndPointMarkerPaletteProvider("#F48420", y => y < 0.0)
     });
 
     sciChartSurface.renderableSeries.add(impulseSeries);
@@ -103,7 +105,7 @@ async function builderExample(divElementId) {
     chartBuilder.registerType(
         EBaseType.PaletteProvider,
         "LineAndPointMarkerPaletteProvider",
-        (options) => new LineAndPointMarkerPaletteProvider(options.stroke, options.rule)
+        options => new LineAndPointMarkerPaletteProvider(options.stroke, options.rule)
     );
 
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
@@ -113,7 +115,7 @@ async function builderExample(divElementId) {
                 type: ESeriesType.ImpulseSeries,
                 xyData: {
                     xValues,
-                    yValues,
+                    yValues
                 },
                 options: {
                     fill: "#50C7E0",
@@ -126,14 +128,14 @@ async function builderExample(divElementId) {
                         customType: "LineAndPointMarkerPaletteProvider",
                         options: {
                             stroke: "#F48420",
-                            rule: (y) => y < 0.0,
-                        },
-                    },
+                            rule: y => y < 0.0
+                        }
+                    }
                     // Note: Assigning an instance is also valid, e.g.
                     // paletteProvider: new LineAndPointMarkerPaletteProvider()
-                },
-            },
-        ],
+                }
+            }
+        ]
     });
     // #endregion
 }

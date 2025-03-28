@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // Seeded random approximation (required for tests / data generation consistency)
 let randomSeed = 0;
 function random() {
@@ -21,13 +23,13 @@ async function drawMountainChartsWithGaps(divElementId) {
         ZoomPanModifier,
         ZoomExtentsModifier,
         EHorizontalAnchorPoint,
-        EVerticalAnchorPoint,
+        EVerticalAnchorPoint
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -58,8 +60,8 @@ async function drawMountainChartsWithGaps(divElementId) {
         // when a gradient is required, use fillLinearGradient
         fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "rgba(70,130,180,0.77)", offset: 0 },
-            { color: "rgba(70,130,180,0.0)", offset: 1 },
-        ]),
+            { color: "rgba(70,130,180,0.0)", offset: 1 }
+        ])
     });
 
     // Create the 'alternative style' mountain series which renders yValuesInv
@@ -72,8 +74,8 @@ async function drawMountainChartsWithGaps(divElementId) {
         // when a gradient is required, use fillLinearGradient
         fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "#F4842033", offset: 0 },
-            { color: "#F4842000", offset: 1 },
-        ]),
+            { color: "#F4842000", offset: 1 }
+        ])
     });
 
     // #endregion
@@ -90,7 +92,7 @@ async function drawMountainChartsWithGaps(divElementId) {
             textColor: "LightSteelBlue",
             fontSize: 16,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
-            verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
+            verticalAnchorPoint: EVerticalAnchorPoint.Bottom
         })
     );
     sciChartSurface.annotations.add(
@@ -112,7 +114,7 @@ async function builderExample(divElementId) {
         EThemeProviderType,
         EAnnotationType,
         EHorizontalAnchorPoint,
-        EVerticalAnchorPoint,
+        EVerticalAnchorPoint
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -136,7 +138,7 @@ async function builderExample(divElementId) {
                 type: ESeriesType.MountainSeries,
                 xyData: {
                     xValues,
-                    yValues,
+                    yValues
                 },
                 options: {
                     stroke: "#4682b4",
@@ -147,13 +149,13 @@ async function builderExample(divElementId) {
                     fillLinearGradient: {
                         gradientStops: [
                             { color: "rgba(70,130,180,0.77)", offset: 0.0 },
-                            { color: "rgba(70,130,180,0.0)", offset: 1 },
+                            { color: "rgba(70,130,180,0.0)", offset: 1 }
                         ],
                         startPoint: { x: 0, y: 0 },
-                        endPoint: { x: 0, y: 1 },
-                    },
-                },
-            },
+                        endPoint: { x: 0, y: 1 }
+                    }
+                }
+            }
         ],
         annotations: [
             {
@@ -165,14 +167,14 @@ async function builderExample(divElementId) {
                     textColor: "LightSteelBlue",
                     fontSize: 16,
                     horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
-                    verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
-                },
+                    verticalAnchorPoint: EVerticalAnchorPoint.Bottom
+                }
             },
             {
                 type: EAnnotationType.RenderContextLineAnnotation,
-                options: { x1: 70, x2: 105, y1: 104, y2: 102, stroke: "LightSteelBlue", strokeThickness: 2 },
-            },
-        ],
+                options: { x1: 70, x2: 105, y1: 104, y2: 102, stroke: "LightSteelBlue", strokeThickness: 2 }
+            }
+        ]
     });
     // #endregion
 }
