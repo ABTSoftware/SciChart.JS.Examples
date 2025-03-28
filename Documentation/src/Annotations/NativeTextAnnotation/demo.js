@@ -1,5 +1,7 @@
 import * as SciChart from "scichart";
 
+/**@import {NativeTextAnnotation} from "scichart" */
+
 // #region ExampleA
 const {
     SciChartSurface,
@@ -179,7 +181,9 @@ async function builderExample(divElementId) {
     console.log("Native font was loaded? " + result);
 
     // Scaling the last NativeTextAnnotation
-    const scaleAnnotation = sciChartSurface.annotations.getById("scaleAnnotation");
+    const scaleAnnotation = /** @type {NativeTextAnnotation} */ (
+        sciChartSurface.annotations.getById("scaleAnnotation")
+    );
     const scaleAnimation = new GenericAnimation({
         from: 0,
         to: 1,

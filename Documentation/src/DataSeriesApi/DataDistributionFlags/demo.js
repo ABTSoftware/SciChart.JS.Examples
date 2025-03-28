@@ -30,8 +30,8 @@ async function dataSeriesApi(divElementId) {
         // Providing them in advance can improve performance for big-data
         // Note: undefined behaviour will occur if these flags are set incorrectly
         dataIsSortedInX: true,
-        dataIsEvenlySpaced: true,
-        dataContainsNaN: false
+        dataEvenlySpacedInX: true,
+        containsNaN: false
     });
     // #endregion
 
@@ -65,7 +65,7 @@ async function builderExample(divElementId) {
                     yValues: [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0],
                     dataIsSortedInX: true,
                     dataEvenlySpacedInX: true,
-                    dataContainsNaN: false
+                    containsNaN: false
                 },
                 options: {
                     stroke: "#FF6600",

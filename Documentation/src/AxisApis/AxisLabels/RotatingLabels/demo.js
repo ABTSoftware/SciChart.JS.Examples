@@ -43,7 +43,7 @@ chartWithDateTimeNumericAxis("scichart-root");
 
 async function builderExample(divElementId) {
     // Demonstrates how to create a chart with rotated labels with the builder API
-    const { chartBuilder, EThemeProviderType, ENumericFormat, EAxisType } = SciChart;
+    const { chartBuilder, EThemeProviderType, ENumericFormat, EAxisType, NumberRange } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
 

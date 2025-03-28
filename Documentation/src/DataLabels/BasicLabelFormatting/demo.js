@@ -65,6 +65,7 @@ async function builderExample(divElementId) {
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
+    /** @type {import("scichart").TPointMarkerDefinition} */
     const pointMarker = {
         type: EPointMarkerType.Ellipse,
         options: {

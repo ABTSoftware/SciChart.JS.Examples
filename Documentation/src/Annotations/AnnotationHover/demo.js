@@ -1,5 +1,7 @@
 import * as SciChart from "scichart";
 
+/** @import {BoxAnnotation} from "scichart" */
+
 const {
     SciChartSurface,
     SciChartJsNavyTheme,
@@ -45,8 +47,8 @@ async function annotationHover(divElementId) {
         notifyPositionUpdate: true,
         onHover: args => {
             const { mouseArgs, includedEntities, hoveredEntities, unhoveredEntities } = args;
-            const hoveredAnnotations = hoveredEntities;
-            const unhoveredAnnotations = unhoveredEntities;
+            const hoveredAnnotations = /** @type {BoxAnnotation[]} */ (hoveredEntities);
+            const unhoveredAnnotations = /** @type {BoxAnnotation[]} */ (unhoveredEntities);
             hoveredAnnotations.forEach(annotation => {
                 annotation.fill = "#34eb8c";
                 annotation.strokeThickness = 3;
@@ -76,7 +78,7 @@ async function annotationHover(divElementId) {
 
 annotationHover("scichart-root");
 
-const { chartBuilder, EChart2DModifierType } = SciChart;
+const { chartBuilder, EChart2DModifierType, EAnnotationType } = SciChart;
 
 async function builderExample(divElementId) {
     // #region Example1WithBuilderAPI
@@ -87,7 +89,7 @@ async function builderExample(divElementId) {
         // Add an annotation with hover behaviour
         annotations: [
             {
-                type: scichart_1.EAnnotationType.RenderContextBoxAnnotation,
+                type: EAnnotationType.RenderContextBoxAnnotation,
                 options: {
                     id: "boxAnnotation",
                     xCoordinateMode: ECoordinateMode.Relative,
@@ -120,8 +122,8 @@ async function builderExample(divElementId) {
                     notifyPositionUpdate: true,
                     onHover: args => {
                         const { mouseArgs, includedEntities, hoveredEntities, unhoveredEntities } = args;
-                        const hoveredAnnotations = hoveredEntities;
-                        const unhoveredAnnotations = unhoveredEntities;
+                        const hoveredAnnotations = /** @type {BoxAnnotation[]} */ (hoveredEntities);
+                        const unhoveredAnnotations = /** @type {BoxAnnotation[]} */ (unhoveredEntities);
                         hoveredAnnotations.forEach(annotation => {
                             annotation.fill = "#34eb8c";
                             annotation.strokeThickness = 3;

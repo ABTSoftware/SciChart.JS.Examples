@@ -179,7 +179,7 @@ async function builderExample(divElementId) {
                 type: EAnnotationType.RenderContextNativeTextAnnotation,
                 options: {
                     text: "EAnnotationLayer.BelowChart\nBehind Series",
-                    fonstSize: 24,
+                    fontSize: 24,
                     horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                     verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
                     x1: 20,
@@ -190,7 +190,7 @@ async function builderExample(divElementId) {
                 type: EAnnotationType.RenderContextNativeTextAnnotation,
                 options: {
                     text: "EAnnotationLayer.Background\nBehind Gridlines",
-                    fonstSize: 24,
+                    fontSize: 24,
                     horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                     verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
                     x1: 60,

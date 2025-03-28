@@ -16,6 +16,7 @@ async function simpleSubChart(divElementId) {
     // Demonstrates how to use the Sub-Charts API to create child charts in a parent chart
     const {
         SciChartSurface,
+        SciChartSubSurface,
         NumericAxis,
         FastLineRenderableSeries,
         XyDataSeries,
@@ -74,7 +75,7 @@ async function simpleSubChart(divElementId) {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
 
     // Add a Sub-Charts to the main surface. This will display a rectangle showing the current zoomed in area on the parent chart
-    const subChart1 = sciChartSurface.addSubChart({
+    const subChart1 = SciChartSubSurface.createSubSurface(sciChartSurface, {
         // Properties from I2DSubSurfaceOptions affect positioning and rendering of the subchart
         position: new Rect(45, 0.2, 5, 0.2),
         isTransparent: false,
@@ -82,7 +83,7 @@ async function simpleSubChart(divElementId) {
         coordinateMode: ECoordinateMode.DataValue,
         // However all properties from I2DSurfaceOptions are available
         viewportBorder: { border: 3, color: "#77777777" },
-        backgroundColor: "#333",
+        background: "#333",
         title: "Sub-chart Positioned at Data-Value",
         titleStyle: { fontSize: 16, color: "#eeeeee77" }
     });
@@ -170,7 +171,7 @@ async function builderExample(divElementId) {
                     coordinateMode: ECoordinateMode.DataValue,
                     // However all properties from I2DSurfaceOptions are available
                     viewportBorder: { border: 3, color: "#77777777" },
-                    backgroundColor: "#333",
+                    background: "#333",
                     title: "2D Overview with Sub-Charts",
                     titleStyle: { fontSize: 16, color: "#eeeeee77" }
                 },

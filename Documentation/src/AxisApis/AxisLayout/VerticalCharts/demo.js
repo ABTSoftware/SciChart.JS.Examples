@@ -71,7 +71,7 @@ verticalCharts("scichart-root");
 async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to configure a vertical chart in SciChart.js using the Builder API
-    const { chartBuilder, EThemeProviderType, EAxisType, EAxisAlignment } = SciChart;
+    const { chartBuilder, EThemeProviderType, EAxisType, EAxisAlignment, ESeriesType } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
 

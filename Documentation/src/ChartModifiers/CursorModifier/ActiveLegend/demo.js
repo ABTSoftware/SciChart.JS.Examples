@@ -30,7 +30,7 @@ const getCandles = async (symbol, interval, limit = 300) => {
         return { dateValues, openValues, highValues, lowValues, closeValues, volumeValues };
     } catch (err) {
         console.error(err);
-        return [];
+        return {};
     }
 };
 

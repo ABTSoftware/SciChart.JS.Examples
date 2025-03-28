@@ -62,10 +62,10 @@ async function tickProvider(divElementId) {
     // Add the xAxis to the chart
     sciChartSurface.xAxes.add(xAxis);
 
-    // You can also apply a tickprovider in constructor options
+    // TODO You can also apply a tickprovider in constructor options
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
-            tickProvider: new CustomTickProvider(wasmContext),
+            // tickProvider: new CustomTickProvider(wasmContext),
             ...styleOptions
         })
     );

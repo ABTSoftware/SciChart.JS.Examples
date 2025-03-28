@@ -20,7 +20,7 @@ async function nativeText(divElementId) {
 
     const labelStyle = {
         fontFamily: "arial",
-        fontSize: "14",
+        fontSize: 14,
         color: "white",
         padding: new Thickness(0, 0, 0, 0),
         alignment: ELabelAlignment.Auto
@@ -78,13 +78,13 @@ async function builderExample(divElementId) {
 
     const labelStyle = {
         fontFamily: "arial",
-        fontSize: "14",
+        fontSize: 14,
         color: "white",
         padding: new Thickness(0, 0, 0, 0),
         alignment: ELabelAlignment.Auto
     };
 
-    const { sciChartSurface, wasmContext } = await chartBuilder.buildChart(divElementId, {
+    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(divElementId, {
         xAxes: [
             {
                 type: EAxisType.NumericAxis,

@@ -1,5 +1,9 @@
 import * as SciChart from "scichart";
 
+/**
+ * @import {BoxAnnotation} from "scichart"
+ */
+
 async function manualLegend(divElementId) {
     const { SciChartSurface, NumericAxis, BoxAnnotation, SciChartJsNavyTheme, ManualLegend } = SciChart;
 
@@ -47,9 +51,13 @@ async function manualLegend(divElementId) {
 
     // #region ExampleA
     // Create Legend items.  Here we create one per annotation
-    const legendItems = sciChartSurface.annotations
-        .asArray()
-        .map(a => ({ name: a.id, color: a.fill, id: a.id, checked: true, showMarker: true }));
+    const legendItems = /** @type {BoxAnnotation[]} */ (sciChartSurface.annotations.asArray()).map(a => ({
+        name: a.id,
+        color: a.fill,
+        id: a.id,
+        checked: true,
+        showMarker: true
+    }));
     // Create the legend.  It is automatically attached to the surface passed as the second parameter.
     // You can also create it without the surface and later call ml.attachTo
     const ml = new ManualLegend(

@@ -24,8 +24,8 @@ async function axisStyling(divElementId) {
                 fontWeight: "bold",
                 fontStyle: "italic"
             },
-            majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDasharray: [10, 5] },
-            minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDasharray: [2, 2] },
+            majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDashArray: [10, 5] },
+            minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDashArray: [2, 2] },
             majorTickLineStyle: { strokeThickness: 1, color: "Blue", tickSize: 8 },
             minorTickLineStyle: { strokeThickness: 1, color: "Red", tickSize: 4 },
             labelStyle: {
@@ -50,8 +50,8 @@ async function axisStyling(divElementId) {
                 fontWeight: "bold",
                 color: "#DC143C"
             },
-            majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDasharray: [10, 5] },
-            minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDasharray: [2, 2] },
+            majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDashArray: [10, 5] },
+            minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDashArray: [2, 2] },
             majorTickLineStyle: { strokeThickness: 1, color: "#ADFF2F", tickSize: 8 },
             minorTickLineStyle: { strokeThickness: 1, color: "#EE82EE", tickSize: 4 },
             labelStyle: {
@@ -100,8 +100,8 @@ async function builderExample(divElementId) {
                     fontWeight: "bold",
                     fontStyle: "italic"
                 },
-                majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDasharray: [10, 5] },
-                minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDasharray: [2, 2] },
+                majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDashArray: [10, 5] },
+                minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDashArray: [2, 2] },
                 majorTickLineStyle: { strokeThickness: 1, color: "Blue", tickSize: 8 },
                 minorTickLineStyle: { strokeThickness: 1, color: "Red", tickSize: 4 },
                 labelStyle: {
@@ -125,8 +125,8 @@ async function builderExample(divElementId) {
                     fontWeight: "bold",
                     color: "#DC143C"
                 },
-                majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDasharray: [10, 5] },
-                minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDasharray: [2, 2] },
+                majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDashArray: [10, 5] },
+                minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDashArray: [2, 2] },
                 majorTickLineStyle: { strokeThickness: 1, color: "#ADFF2F", tickSize: 8 },
                 minorTickLineStyle: { strokeThickness: 1, color: "#EE82EE", tickSize: 4 },
                 labelStyle: {

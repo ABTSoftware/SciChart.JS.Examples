@@ -95,7 +95,7 @@ chartWithCategoryAxis("scichart-root");
 
 async function builderExample(divElementId) {
     // Demonstrates how to create a line chart with SciChart.js using the Builder API
-    const { chartBuilder, EThemeProviderType, NumberRange, EAxisAlignment, EAxisType } = SciChart;
+    const { chartBuilder, EThemeProviderType, NumberRange, EAxisAlignment, EAxisType, ENumericFormat } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
 

@@ -16,6 +16,7 @@ class CustomNumericLabelProvider extends NumericLabelProvider {
     }
 
     // Called for each label
+    // @ts-ignore TODO base class defines instance member as accessor
     formatLabel(dataValue) {
         if (this.customFormat === "Default") {
             return super.formatLabel(dataValue);
@@ -26,9 +27,12 @@ class CustomNumericLabelProvider extends NumericLabelProvider {
             // Format large numbers with K, M, B abbreviations e.g. 1.5M
             return this.formatNumberKMBT(dataValue);
         }
+
+        return "";
     }
 
     // Called for each tooltip/cursor label
+    // @ts-ignore TODO base class defines instance member as accessor
     formatCursorLabel(dataValue) {
         return this.formatLabel(dataValue);
     }

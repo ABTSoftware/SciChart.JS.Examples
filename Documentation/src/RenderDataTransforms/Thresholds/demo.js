@@ -1,15 +1,28 @@
-import * as SciChart from "scichart";
-
-("use strict");
-
-const scichart_1 = SciChart;
+import {
+    FastLineRenderableSeries,
+    MouseWheelZoomModifier,
+    NumberRange,
+    NumericAxis,
+    SciChartSurface,
+    XyDataSeries,
+    XyBaseRenderDataTransform,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
+    ObservableArrayBase,
+    SciChartJsNavyTheme,
+    EllipsePointMarker,
+    parseColorToUIntArgb,
+    DefaultPaletteProvider,
+    EStrokePaletteMode,
+    HorizontalLineAnnotation
+} from "scichart";
 // #region ExampleA
-class ThresholdRenderDataTransform extends scichart_1.XyBaseRenderDataTransform {
+class ThresholdRenderDataTransform extends XyBaseRenderDataTransform {
+    // Using XyBaseRenderDataTransform here as we are converting to XyPointSeries
+    thresholds = new ObservableArrayBase();
     constructor(parentSeries, wasmContext, thresholds) {
         // Apply to line drawing only
         super(parentSeries, wasmContext, [parentSeries.drawingProviders[0]]);
-        // Using XyBaseRenderDataTransform here as we are converting to XyPointSeries
-        this.thresholds = new scichart_1.ObservableArrayBase();
         this.thresholds.add(...thresholds);
         this.onThresholdsChanged = this.onThresholdsChanged.bind(this);
         this.thresholds.collectionChanged.subscribe(this.onThresholdsChanged);
@@ -104,14 +117,16 @@ class ThresholdRenderDataTransform extends scichart_1.XyBaseRenderDataTransform 
 // #endregion
 // #region ExampleB
 const colorNames = ["green", "blue", "yellow", "red"];
-const colors = colorNames.map(c => (0, scichart_1.parseColorToUIntArgb)(c));
-class ThresholdPaletteProvider extends scichart_1.DefaultPaletteProvider {
+const colors = colorNames.map(c => parseColorToUIntArgb(c));
+class ThresholdPaletteProvider extends DefaultPaletteProvider {
+    strokePaletteMode = EStrokePaletteMode.SOLID;
+    lastY;
+    thresholds;
     get isRangeIndependant() {
         return true;
     }
     constructor(thresholds) {
         super();
-        this.strokePaletteMode = scichart_1.EStrokePaletteMode.SOLID;
         this.thresholds = thresholds;
     }
     overrideStrokeArgb(xValue, yValue, index, opacity, metadata) {
@@ -131,27 +146,27 @@ class ThresholdPaletteProvider extends scichart_1.DefaultPaletteProvider {
 }
 // #endregion
 async function thresholds(divElementId) {
-    const { sciChartSurface, wasmContext } = await scichart_1.SciChartSurface.create(divElementId, {
-        theme: new scichart_1.SciChartJsNavyTheme()
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: new SciChartJsNavyTheme()
     });
     // sciChartSurface.debugRendering = true;
-    const xAxis = new scichart_1.NumericAxis(wasmContext);
+    const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
-    const yAxis = new scichart_1.NumericAxis(wasmContext, {
-        growBy: new scichart_1.NumberRange(0.05, 0.05)
+    const yAxis = new NumericAxis(wasmContext, {
+        growBy: new NumberRange(0.05, 0.05)
     });
     sciChartSurface.yAxes.add(yAxis);
     // #region ExampleC
     // Create a series
-    const lineSeries = new scichart_1.FastLineRenderableSeries(wasmContext, {
-        pointMarker: new scichart_1.EllipsePointMarker(wasmContext, {
+    const lineSeries = new FastLineRenderableSeries(wasmContext, {
+        pointMarker: new EllipsePointMarker(wasmContext, {
             stroke: "black",
             strokeThickness: 0,
             fill: "black",
             width: 10,
             height: 10
         }),
-        dataSeries: new scichart_1.XyDataSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, {
             xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             yValues: [0, 1, 2, 3, 6, 4, 1, 1, 7, 5, 4]
         }),
@@ -176,7 +191,7 @@ async function thresholds(divElementId) {
     // #endregion
     // A function to create and add annotations to represent the thresholds
     const makeThresholdAnnotation = i => {
-        const thresholdAnn = new scichart_1.HorizontalLineAnnotation({
+        const thresholdAnn = new HorizontalLineAnnotation({
             isEditable: true,
             stroke: colorNames[i + 1],
             y1: thresholds[i],
@@ -203,9 +218,9 @@ async function thresholds(divElementId) {
     for (let i = 0; i < thresholds.length; i++) {
         makeThresholdAnnotation(i);
     }
-    sciChartSurface.chartModifiers.add(new scichart_1.ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new scichart_1.ZoomExtentsModifier());
-    sciChartSurface.chartModifiers.add(new scichart_1.MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
+    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
     //sciChartSurface.chartModifiers.add(new RolloverModifier());
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };

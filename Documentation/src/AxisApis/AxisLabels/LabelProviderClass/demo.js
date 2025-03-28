@@ -18,6 +18,7 @@ class DynamicDateLabelProvider extends DateLabelProvider {
     }
 
     // Called for each label
+    // @ts-ignore TODO base class defines instance member as accessor
     formatLabel(dataValue) {
         const axisRange = this.parentAxis.visibleRange;
         // assuming label dataValue is a unix timestamp / 1000 (attached to Date axis)
@@ -53,6 +54,7 @@ class DynamicDateLabelProvider extends DateLabelProvider {
     }
 
     // Called for each tooltip/cursor label
+    // @ts-ignore TODO base class defines instance member as accessor
     formatCursorLabel(dataValue) {
         return this.formatLabel(dataValue);
     }

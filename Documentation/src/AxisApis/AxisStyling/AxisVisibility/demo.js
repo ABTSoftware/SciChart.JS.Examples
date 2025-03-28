@@ -28,9 +28,9 @@ async function axisVisibility(divElementId) {
             drawMajorBands: true,
             drawLabels: false,
             drawMinorGridLines: false,
-            drawMajorGridlines: true,
-            drawMinorTicks: true,
-            drawMajorTicks: false
+            drawMajorGridLines: true,
+            drawMinorTickLines: true,
+            drawMajorTickLines: false
         })
     );
 
@@ -75,9 +75,9 @@ async function builderExample(divElementId) {
                 drawMajorBands: true,
                 drawLabels: false,
                 drawMinorGridLines: false,
-                drawMajorGridlines: true,
-                drawMinorTicks: true,
-                drawMajorTicks: false
+                drawMajorGridLines: true,
+                drawMinorTickLines: true,
+                drawMajorTickLines: false
             }
         },
         yAxes: {

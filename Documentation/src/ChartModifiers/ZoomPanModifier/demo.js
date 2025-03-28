@@ -109,8 +109,6 @@ async function zoomPan2D(divElementId) {
         })
     );
 
-    // Add the modifier to the chart
-    sciChartSurface.chartModifiers.add(new PinchZoomModifier());
     // #endregion
 }
 

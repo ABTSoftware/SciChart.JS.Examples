@@ -109,7 +109,15 @@ multipleAxis("scichart-root");
 
 async function builderExample(divElementId) {
     // Demonstrates how to configure multiple axis in SciChart.js using the Builder API
-    const { chartBuilder, EThemeProviderType, EAxisType, ELabelAlignment } = SciChart;
+    const {
+        chartBuilder,
+        EThemeProviderType,
+        EAxisType,
+        ELabelAlignment,
+        NumberRange,
+        ENumericFormat,
+        EAxisAlignment
+    } = SciChart;
 
     const ID_X_AXIS_2 = "xAxis2";
     const ID_Y_AXIS_2 = "yAxis2";

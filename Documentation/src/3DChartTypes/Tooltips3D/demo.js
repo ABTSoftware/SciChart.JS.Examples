@@ -138,7 +138,7 @@ async function tooltips3D(divElementId) {
     // Optional parameters help define tooltip operation
     const tooltipModifier = new TooltipModifier3D({
         isCrosshairVisible: true,
-        isTooltipVisible: true,
+        showTooltip: true,
         crosshairStroke: "#83D2F5",
         crosshairStrokeThickness: 3,
         tooltipContainerBackground: "#537ABD",

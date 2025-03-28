@@ -113,7 +113,7 @@ async function builderExample(divElementId) {
     });
 
     const yAxis = sciChartSurface.yAxes.get(0);
-    const textAnnotation = sciChartSurface.annotations.get(0);
+    const textAnnotation = /** @type {import("scichart").TextAnnotation} */ (sciChartSurface.annotations.get(0));
 
     yAxis.visibleRangeChanged.subscribe(args => {
         const message = `yAxis range: ${args.visibleRange.min.toFixed(2)}, ${args.visibleRange.max.toFixed(2)}`;

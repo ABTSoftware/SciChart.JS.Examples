@@ -24,7 +24,7 @@ async function chartTitles(divElementId) {
             padding: Thickness.fromString("14 8 4 8"), // Top, Right, Bottom, Left padding
             useNativeText: false, // Use WebGL accelerated text
             placeWithinChart: false, // When true, place inside chart, else outside
-            multiLineAlignment: EMultiLineAlignment.Left, // When \n present how does multiline text align (Left, Center, Right)
+            multilineAlignment: EMultiLineAlignment.Left, // When \n present how does multiline text align (Left, Center, Right)
             alignment: ETextAlignment.Center, // Alignment of title (Left, Center, Right)
             position: ETitlePosition.Top // Vertical position of title (Top, Bottom, Left, Right)
         }
@@ -63,7 +63,7 @@ async function builderExample(divElementId) {
                 padding: Thickness.fromString("14 0 4 0"),
                 useNativeText: true,
                 placeWithinChart: false,
-                multiLineAlignment: EMultiLineAlignment.Center,
+                multilineAlignment: EMultiLineAlignment.Center,
                 alignment: ETextAlignment.Center,
                 position: ETitlePosition.Top
             }

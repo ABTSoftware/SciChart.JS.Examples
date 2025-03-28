@@ -154,7 +154,7 @@ async function dynamicColorMaps(divElementIdChart, divElementIdLegend) {
     );
 
     // Create the heatmapLegend with the same colorMap
-    const { heatmapLegend, wasmContext2 } = await HeatmapLegend.create(divElementIdLegend, {
+    const { heatmapLegend } = await HeatmapLegend.create(divElementIdLegend, {
         theme: {
             ...new SciChartJsNavyTheme(),
             sciChartBackground: "#14233CBB",

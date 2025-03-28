@@ -61,7 +61,6 @@ async function dataSeriesAppending(divElementId) {
         // Just putting this in to reset the dataseries after N updates. We don't want the codepen example to grow infinitely!
         if (++updateCount % 250 === 0) {
             xyDataSeries.clear();
-            j = 0;
             updateCount = 0;
         }
     };

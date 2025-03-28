@@ -8,7 +8,7 @@ import {
     FastLineRenderableSeries,
     NumericAxis,
     XyDataSeries,
-    makeIncArray,
+    makeIncArray
 } from "scichart";
 
 // Custom PaletteProvider for line series
@@ -45,7 +45,7 @@ async function lineChartWithPaletteProvider(divElementId: string) {
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
     const xValues = makeIncArray(250);
-    const yValues = makeIncArray(250, 1, (y) => Math.sin(y * 0.05));
+    const yValues = makeIncArray(250, 1, y => Math.sin(y * 0.05));
     // Create a line series with your custom PaletteProvider
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
@@ -53,7 +53,7 @@ async function lineChartWithPaletteProvider(divElementId: string) {
             strokeThickness: 5,
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
             // The LinePaletteProvider (declared above) implements per-point coloring for line series
-            paletteProvider: new LinePaletteProvider("#55FF55", (yValue) => yValue > 0.5),
+            paletteProvider: new LinePaletteProvider("#55FF55", yValue => yValue > 0.5)
         })
     );
     sciChartSurface.zoomExtents();

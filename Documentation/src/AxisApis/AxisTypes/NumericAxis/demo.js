@@ -95,10 +95,9 @@ async function builderExample(divElementId) {
         yAxes: {
             type: EAxisType.NumericAxis,
             options: {
-                axisTitle: "Y Axis, Left, default formatting",
+                // axisTitle: "Y Axis, Left, default formatting",
                 axisAlignment: EAxisAlignment.Left,
                 axisTitle: "Y Axis, Left, 4 dp",
-                axisAlignment: EAxisAlignment.Left,
                 labelFormat: ENumericFormat.Decimal,
                 cursorLabelFormat: ENumericFormat.Decimal,
                 labelPrecision: 4,

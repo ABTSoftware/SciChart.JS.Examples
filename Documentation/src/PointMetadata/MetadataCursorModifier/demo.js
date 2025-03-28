@@ -54,7 +54,7 @@ async function metadataCursorModifier(divElementId) {
     // Add a RolloverModifier configured to output X,Y,Metadata.stringValue and customValue
     sciChartSurface.chartModifiers.add(
         new CursorModifier({
-            snapToDataPoint: true,
+            // snapToDataPoint: true,
             showTooltip: true,
             hitTestRadius: 10,
             tooltipDataTemplate: (seriesInfos, tooltipTitle) => {
@@ -148,7 +148,7 @@ async function builderExample(divElementId) {
             {
                 type: EChart2DModifierType.Cursor,
                 options: {
-                    snapToDataPoint: true,
+                    // snapToDataPoint: true,
                     showTooltip: true,
                     hitTestRadius: 10,
                     tooltipDataTemplate: (seriesInfos, tooltipTitle) => {

@@ -35,7 +35,6 @@ async function synchronizeVerticalChartsBasicExample() {
                 axisTitle: isFirstChart ? "YAxis 0" : "YAxis 1",
                 axisAlignment: EAxisAlignment.Top,
                 rotation: -90,
-                fontSize: 16,
                 axisBorder: { borderBottom: 3, color: "#55698E" }
             })
         );
@@ -144,4 +143,4 @@ async function synchronizeVerticalChartsBasicExample() {
     enrichChart(sciChartSurface1, false);
 }
 
-synchronizeVerticalChartsBasicExample("chart0", "chart1");
+synchronizeVerticalChartsBasicExample();

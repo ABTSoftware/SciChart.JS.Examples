@@ -1,11 +1,20 @@
-import * as SciChart from "scichart";
-
-("use strict");
-
-const scichart_1 = SciChart;
+import {
+    DataPointSelectionModifier,
+    makeIncArray,
+    NumberRange,
+    NumericAxis,
+    PointMarkerDrawingProvider,
+    SciChartJsNavyTheme,
+    SciChartSurface,
+    SquarePointMarker,
+    TrianglePointMarker,
+    XyDataSeries,
+    XyScatterRenderableSeries,
+    XyyBaseRenderDataTransform
+} from "scichart";
 // #region ExampleA
 // Using XyyBaseRenderDataTransform here because you cannot extend the abstract BaseRenderDataTransform when using browser bundle
-class SplitBySelectedDataTransform extends scichart_1.XyyBaseRenderDataTransform {
+class SplitBySelectedDataTransform extends XyyBaseRenderDataTransform {
     runTransformInternal(renderPassData) {
         // Guard in case the incoming data is empty
         // If you want to do nothing and draw the original data, you don't need to copy it, you can just return renderPassData.pointSeries
@@ -45,28 +54,24 @@ class SplitBySelectedDataTransform extends scichart_1.XyyBaseRenderDataTransform
 }
 // #endregion
 async function simpleSplit(divElementId) {
-    const { sciChartSurface, wasmContext } = await scichart_1.SciChartSurface.create(divElementId, {
-        theme: new scichart_1.SciChartJsNavyTheme()
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: new SciChartJsNavyTheme()
     });
-    sciChartSurface.xAxes.add(new scichart_1.NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(
-        new scichart_1.NumericAxis(wasmContext, {
-            growBy: new scichart_1.NumberRange(0.1, 0.1)
-        })
-    );
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
     // #region ExampleB
-    const xValues = (0, scichart_1.makeIncArray)(50);
-    const yValues = (0, scichart_1.makeIncArray)(50, 1, y => Math.sin(y * 0.2));
+    const xValues = makeIncArray(50);
+    const yValues = makeIncArray(50, 1, y => Math.sin(y * 0.2));
     // Create metaData with some points selected
     const metadata = xValues.map(x => ({ isSelected: x > 10 && x < 20 }));
-    const renderableSeries = new scichart_1.XyScatterRenderableSeries(wasmContext, {
-        dataSeries: new scichart_1.XyDataSeries(wasmContext, {
+    const renderableSeries = new XyScatterRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, {
             xValues,
             yValues,
             metadata
             //containsNaN: true,
         }),
-        pointMarker: new scichart_1.TrianglePointMarker(wasmContext, {
+        pointMarker: new TrianglePointMarker(wasmContext, {
             width: 10,
             height: 10,
             stroke: "green",
@@ -74,13 +79,13 @@ async function simpleSplit(divElementId) {
         })
     });
     // Create a second PointMarkerDrawingProvider with a ySelector so that it uses y1Values
-    const selectedPointDrawingProvider = new scichart_1.PointMarkerDrawingProvider(
+    const selectedPointDrawingProvider = new PointMarkerDrawingProvider(
         wasmContext,
         renderableSeries,
         ps => ps.y1Values
     );
     // Create a different pointMarker
-    const squarePM = new scichart_1.SquarePointMarker(wasmContext, {
+    const squarePM = new SquarePointMarker(wasmContext, {
         width: 10,
         height: 10,
         stroke: "red",
@@ -101,7 +106,7 @@ async function simpleSplit(divElementId) {
     sciChartSurface.renderableSeries.add(renderableSeries);
     // Add Datapoint selection to allow updating the state on which the transform depends
     sciChartSurface.chartModifiers.add(
-        new scichart_1.DataPointSelectionModifier({
+        new DataPointSelectionModifier({
             allowClickSelect: true,
             onSelectionChanged: args => {
                 // Since the transform depends on the selection state, we must tell the transform that it must run when the selection changes.

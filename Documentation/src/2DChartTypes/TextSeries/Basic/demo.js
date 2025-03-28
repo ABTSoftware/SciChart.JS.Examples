@@ -64,8 +64,6 @@ async function builderExample(divElementId) {
                     textValues: ["This", "text", "is", "drawn", "using", "FastTextRenderableSeries"]
                 },
                 options: {
-                    stroke: "#0066FF",
-                    strokeThickness: 5,
                     dataLabels: {
                         style: {
                             fontFamily: "Arial",

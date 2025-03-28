@@ -1,5 +1,7 @@
 import * as SciChart from "scichart";
 
+/** @import {BoxAnnotation} from "scichart" */
+
 const {
     EChart2DModifierType,
     EAnnotationType,
@@ -8,7 +10,6 @@ const {
     AnnotationHoverEventArgs,
     BoxAnnotation,
     EHoverMode,
-    IAnnotation,
     NumericAxis,
     SciChartJsNavyTheme,
     SciChartSurface,
@@ -84,7 +85,7 @@ async function annotationHoverTargets(divElementId) {
         const { includedEntities } = args;
 
         // annotations returned by the targetsSelector
-        const includedAnnotations = includedEntities;
+        const includedAnnotations = /** @type {BoxAnnotation[]} */ (includedEntities);
 
         includedAnnotations.forEach((annotation, index) => {
             if (annotation.isHovered) {

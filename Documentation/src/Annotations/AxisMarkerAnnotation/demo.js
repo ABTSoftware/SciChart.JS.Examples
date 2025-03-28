@@ -22,7 +22,7 @@ async function addAnnotationToChart(divElementId) {
             backgroundColor: "SteelBlue",
             color: "White",
             fontFamily: "Arial",
-            fontWeight: 700
+            fontWeight: "700"
         }),
         // An AxisMarkerAnnotation at Y=7 with a custom label
         new AxisMarkerAnnotation({

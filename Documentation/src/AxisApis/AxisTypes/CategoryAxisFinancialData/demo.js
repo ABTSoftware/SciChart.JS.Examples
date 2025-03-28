@@ -30,7 +30,7 @@ const getCandles = async (symbol, interval, limit = 300) => {
         return { dateValues, openValues, highValues, lowValues, closeValues, volumeValues };
     } catch (err) {
         console.error(err);
-        return [];
+        return {};
     }
 };
 
@@ -158,4 +158,4 @@ async function chartWithCategoryAxis(divElementId) {
 
 chartWithCategoryAxis("scichart-root");
 
-if (location.search.includes("builder=1")) builderExample("scichart-root");
+// if (location.search.includes("builder=1")) builderExample("scichart-root");

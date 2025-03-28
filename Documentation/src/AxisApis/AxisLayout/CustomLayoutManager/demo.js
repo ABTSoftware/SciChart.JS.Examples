@@ -33,7 +33,7 @@ class CustomAxisLayoutStrategy extends BottomAlignedOuterHorizontallyStackedAxis
 
         // calculate height required by the first axis and then the total height
         const firstAxisSize = getHorizontalAxisRequiredSize(firstAxis.axisLayoutState);
-        chartLayoutState.bottomOuterAreaSize = firstAxisSize + stackedAreaSize;
+        return firstAxisSize + stackedAreaSize;
     }
 
     // Override layoutAxes from the base class

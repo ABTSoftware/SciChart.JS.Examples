@@ -130,4 +130,4 @@ async function synchronizeTwoChartsBasicExample() {
     enrichChart(sciChartSurface1, false);
 }
 
-synchronizeTwoChartsBasicExample("chart0", "chart1");
+synchronizeTwoChartsBasicExample();

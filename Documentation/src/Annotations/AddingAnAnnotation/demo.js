@@ -3,6 +3,8 @@ import * as SciChart from "scichart";
 // #region ExampleA
 const {
     BoxAnnotation,
+    TextAnnotation,
+    LineAnnotation,
     NumericAxis,
     SciChartSurface,
     NumberRange,
@@ -69,7 +71,7 @@ addAnnotationToChart("scichart-root");
 
 async function builderExample(divElementId) {
     // #region ExampleB
-    const { chartBuilder, EAnnotationType, ECoordinateMode } = SciChart;
+    const { chartBuilder, EAnnotationType, ECoordinateMode, EVerticalAnchorPoint, EHorizontalAnchorPoint } = SciChart;
 
     // or for npm import { SciChartSurface, ... } from "scichart"
 
@@ -104,10 +106,10 @@ async function builderExample(divElementId) {
                 options: {
                     x1: 100,
                     y1: 0.5,
-                    xCoordinateMode: "Pixel",
-                    yCoordinateMode: "Relative",
-                    horizontalAnchorPoint: "Left",
-                    verticalAnchorPoint: "Center",
+                    xCoordinateMode: ECoordinateMode.Pixel,
+                    yCoordinateMode: ECoordinateMode.Relative,
+                    horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+                    verticalAnchorPoint: EVerticalAnchorPoint.Center,
                     textColor: "yellow",
                     fontSize: 26,
                     fontFamily: "Times New Roman",

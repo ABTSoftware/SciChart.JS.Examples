@@ -3,7 +3,7 @@ import * as SciChart from "scichart";
 const { chartBuilder, ESeriesType, EAxisType, EAxisAlignment, NumberRange, EColumnDataLabelPosition } = SciChart;
 
 async function dataLabelColumns(divElementId) {
-    const { sciChartSurface, wasmContext } = await chartBuilder.buildChart(divElementId, {
+    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(divElementId, {
         xAxes: [
             {
                 type: EAxisType.NumericAxis,
