@@ -15,6 +15,7 @@
         "noFallthroughCasesInSwitch": true,
         "module": "ESNext",
         "target": "ESNext",
+        "moduleResolution": "node",
         "jsx": "react",
         "allowJs": true,
         "typeRoots": ["./node_modules/@types"],

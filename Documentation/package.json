@@ -8,7 +8,7 @@
         "compile": "tsc && npm run prettier",
         "compileServer": "tsc --project tsconfig.server.json",
         "compileJsSnippets": "tsc --project tsconfig.js.json",
-        "build": "npm run compileServer && npm run compile && npm run compileJsSnippets && npm run copySciChart && npm run gen",
+        "build": "npm run compileServer && npm run compile && npm run copySciChart && npm run gen",
         "copySciChart": "copy-files-from-to --config copy-files-from-to.json",
         "start": "node server/server.js",
         "dev": "ts-node server/server.ts",
