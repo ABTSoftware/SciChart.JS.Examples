@@ -172,7 +172,7 @@ async function thresholds(divElementId) {
         }),
         dataLabels: {
             style: {
-                fontFamily: "Arial",
+                fontFamily: "Default",
                 fontSize: 10
             },
             color: "white"

@@ -60,7 +60,7 @@ async function addAnnotationToChart(divElementId) {
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             textColor: "yellow",
             fontSize: 26,
-            fontFamily: "Arial",
+            fontFamily: "Default",
             text: "TEXT ANNOTATION"
         })
     );

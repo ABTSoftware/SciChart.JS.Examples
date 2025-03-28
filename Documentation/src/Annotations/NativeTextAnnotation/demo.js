@@ -56,7 +56,7 @@ async function addAnnotationToChart(divElementId) {
             x1: 1,
             y1: 5,
             text: "Native text supports\nmultiline and rotation",
-            fontFamily: "arial",
+            fontFamily: "Default",
             fontSize: 24,
             rotation: 30,
             textColor: "orange"
@@ -69,7 +69,7 @@ async function addAnnotationToChart(divElementId) {
             x1: 5,
             y1: 5,
             text: "Native text can automatically wrap to the chart area or the annotation width.  ",
-            fontFamily: "arial",
+            fontFamily: "Default",
             fontSize: 24,
             isEditable: true,
             wrapTo: EWrapTo.ViewRect
@@ -81,7 +81,7 @@ async function addAnnotationToChart(divElementId) {
         x1: 5,
         y1: 3,
         text: "Native text can be scaled\nwithout changing the font size",
-        fontFamily: "arial",
+        fontFamily: "Default",
         fontSize: 16,
         scale: 1
     });
@@ -130,7 +130,7 @@ async function builderExample(divElementId) {
                     x1: 1,
                     y1: 5,
                     text: "Native text supports\nmultiline and rotation",
-                    fontFamily: "arial",
+                    fontFamily: "Default",
                     fontSize: 24,
                     rotation: 30,
                     textColor: "orange"
@@ -152,7 +152,7 @@ async function builderExample(divElementId) {
                     x1: 5,
                     y1: 5,
                     text: "Native text can automatically wrap to the chart area or the annotation width.  ",
-                    fontFamily: "arial",
+                    fontFamily: "Default",
                     fontSize: 24,
                     isEditable: true,
                     wrapTo: EWrapTo.ViewRect
@@ -165,7 +165,7 @@ async function builderExample(divElementId) {
                     x1: 5,
                     y1: 3,
                     text: "Native text can be scaled\nwithout changing the font size",
-                    fontFamily: "arial",
+                    fontFamily: "Default",
                     fontSize: 16
                 }
             }

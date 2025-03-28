@@ -33,7 +33,7 @@ async function dataLabelColumns(divElementId) {
                 dataLabels: {
                     positionMode: EColumnDataLabelPosition.Outside,
                     style: {
-                        fontFamily: "Arial",
+                        fontFamily: "Default",
                         fontSize: 18
                         //padding: new Thickness(0, 0, 0 ,0)
                     },

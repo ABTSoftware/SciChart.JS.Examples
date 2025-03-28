@@ -19,7 +19,7 @@ async function nativeText(divElementId) {
     SciChartDefaults.useNativeText = true;
 
     const labelStyle = {
-        fontFamily: "arial",
+        fontFamily: "Default",
         fontSize: 14,
         color: "white",
         padding: new Thickness(0, 0, 0, 0),
@@ -77,7 +77,7 @@ async function builderExample(divElementId) {
     SciChartDefaults.useNativeText = true;
 
     const labelStyle = {
-        fontFamily: "arial",
+        fontFamily: "Default",
         fontSize: 14,
         color: "white",
         padding: new Thickness(0, 0, 0, 0),

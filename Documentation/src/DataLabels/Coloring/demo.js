@@ -35,7 +35,7 @@ async function dataLabelColoring(divElementId) {
         dataLabels: {
             positionMode: EColumnDataLabelPosition.Outside,
             style: {
-                fontFamily: "Arial",
+                fontFamily: "Default",
                 fontSize: 18,
                 padding: new Thickness(3, 0, 3, 0)
             },

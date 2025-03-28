@@ -21,7 +21,7 @@ async function addAnnotationToChart(divElementId) {
             fontStyle: "Bold",
             backgroundColor: "SteelBlue",
             color: "White",
-            fontFamily: "Arial",
+            fontFamily: "Default",
             fontWeight: "700"
         }),
         // An AxisMarkerAnnotation at Y=7 with a custom label
@@ -31,7 +31,7 @@ async function addAnnotationToChart(divElementId) {
             fontStyle: "Bold",
             backgroundColor: "#FF6600",
             color: "Black",
-            fontFamily: "Arial",
+            fontFamily: "Default",
             formattedValue: "Custom Label"
         })
     );
@@ -56,7 +56,7 @@ async function builderExample(divElementId) {
                     fontStyle: "Bold",
                     backgroundColor: "SteelBlue",
                     color: "White",
-                    fontFamily: "Arial"
+                    fontFamily: "Default"
                 }
             },
             {
@@ -67,7 +67,7 @@ async function builderExample(divElementId) {
                     fontStyle: "Bold",
                     backgroundColor: "#FF6600",
                     color: "Black",
-                    fontFamily: "Arial",
+                    fontFamily: "Default",
                     formattedValue: "Custom Label"
                 }
             }

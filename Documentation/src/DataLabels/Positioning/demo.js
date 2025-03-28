@@ -52,7 +52,7 @@ async function dataLabelSkipModes(divElementId) {
             verticalTextPosition: EVerticalTextPosition.Above,
             horizontalTextPosition: EHorizontalTextPosition.Left,
             style: {
-                fontFamily: "Arial",
+                fontFamily: "Default",
                 fontSize: 18,
                 padding: new Thickness(0, 5, 5, 0)
             },

@@ -41,7 +41,7 @@ async function dataLabelProviderGetText(divElementId) {
         // dataLabels style must be specified to show labels
         dataLabels: {
             style: {
-                fontFamily: "Arial",
+                fontFamily: "Default",
                 fontSize: 16,
                 lineSpacing: 4,
                 multiLineAlignment: EMultiLineAlignment.Left
@@ -93,7 +93,7 @@ async function builderExample(divElementId) {
                     // Data labels are enabled here. Simply set style, color
                     dataLabels: {
                         style: {
-                            fontFamily: "Arial",
+                            fontFamily: "Default",
                             fontSize: 16
                         },
                         color: "#EEE"

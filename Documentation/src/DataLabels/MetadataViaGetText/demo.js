@@ -56,7 +56,7 @@ async function dataLabelsMetadataFromGetText(divElementId) {
             // Next, add the dataLabels. Simply setting dataLabel style makes labels visible
             dataLabels: {
                 style: {
-                    fontFamily: "Arial",
+                    fontFamily: "Default",
                     fontSize: 13
                 },
                 skipMode: EDataLabelSkipMode.ShowAll,

@@ -76,7 +76,7 @@ async function simpleHeatmapChart(divElementId) {
         }),
         // Optional datalabels may be placed in cell
         dataLabels: {
-            style: { fontFamily: "Arial", fontSize: 16 },
+            style: { fontFamily: "Default", fontSize: 16 },
             color: "White"
         }
     });

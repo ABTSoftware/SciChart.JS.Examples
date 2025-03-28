@@ -18,7 +18,7 @@ async function titleStyling(divElementId) {
     // Apply some styling to the chart title
     sciChartSurface.titleStyle = {
         fontSize: 30,
-        fontFamily: "Arial",
+        fontFamily: "Default",
         color: "#EC0F6C",
         fontWeight: "900",
         fontStyle: "italic"

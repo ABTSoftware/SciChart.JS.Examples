@@ -30,7 +30,7 @@ async function simpleTextChart(divElementId) {
         // font and size is required for text to be drawn
         dataLabels: {
             style: {
-                fontFamily: "Arial",
+                fontFamily: "Default",
                 fontSize: 18
             },
             color: "white"
@@ -66,7 +66,7 @@ async function builderExample(divElementId) {
                 options: {
                     dataLabels: {
                         style: {
-                            fontFamily: "Arial",
+                            fontFamily: "Default",
                             fontSize: 18
                         },
                         color: "white"

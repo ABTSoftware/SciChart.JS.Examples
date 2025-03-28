@@ -58,7 +58,7 @@ async function dataLabelsMetadata(divElementId) {
             dataLabels: {
                 metaDataSelector: metaData => metaData.text,
                 style: {
-                    fontFamily: "Arial",
+                    fontFamily: "Default",
                     fontSize: 16
                 },
                 color: "#EEE"
@@ -118,7 +118,7 @@ async function builderExample(divElementId) {
                     dataLabels: {
                         metaDataSelector: metaData => metaData.text,
                         style: {
-                            fontFamily: "Arial",
+                            fontFamily: "Default",
                             fontSize: 16
                         },
                         color: "#EEE"

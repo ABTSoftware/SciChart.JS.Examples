@@ -19,7 +19,7 @@ async function axisStyling(divElementId) {
             axisBandsFill: "#FF665555",
             axisTitleStyle: {
                 fontSize: 16,
-                fontFamily: "Arial",
+                fontFamily: "Default",
                 color: "#4682b4",
                 fontWeight: "bold",
                 fontStyle: "italic"
@@ -33,7 +33,7 @@ async function axisStyling(divElementId) {
                 fontWeight: "bold",
                 fontStyle: "Italic",
                 color: "#4682b4",
-                fontFamily: "Arial"
+                fontFamily: "Default"
             }
         })
     );
@@ -57,7 +57,7 @@ async function axisStyling(divElementId) {
             labelStyle: {
                 fontSize: 15,
                 color: "#DC143C",
-                fontFamily: "Arial"
+                fontFamily: "Default"
             }
         })
     );
@@ -95,7 +95,7 @@ async function builderExample(divElementId) {
                 axisBandsFill: "#FF665555",
                 axisTitleStyle: {
                     fontSize: 16,
-                    fontFamily: "Arial",
+                    fontFamily: "Default",
                     color: "#4682b4",
                     fontWeight: "bold",
                     fontStyle: "italic"
@@ -109,7 +109,7 @@ async function builderExample(divElementId) {
                     fontWeight: "bold",
                     fontStyle: "Italic",
                     color: "#4682b4",
-                    fontFamily: "Arial"
+                    fontFamily: "Default"
                 }
             }
         },
@@ -132,7 +132,7 @@ async function builderExample(divElementId) {
                 labelStyle: {
                     fontSize: 15,
                     color: "#DC143C",
-                    fontFamily: "Arial"
+                    fontFamily: "Default"
                 }
             }
         }

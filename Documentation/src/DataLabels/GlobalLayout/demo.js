@@ -43,7 +43,7 @@ async function dataLabelGlobalLayout(divElementId) {
         // dataLabels style must be specified to show labels
         dataLabels: {
             style: {
-                fontFamily: "Arial",
+                fontFamily: "Default",
                 fontSize: 18
             },
             color: "SteelBlue"
@@ -69,7 +69,7 @@ async function dataLabelGlobalLayout(divElementId) {
         // dataLabels style must be specified to show labels
         dataLabels: {
             style: {
-                fontFamily: "Arial",
+                fontFamily: "Default",
                 fontSize: 18
             },
             color: "Darkorange"

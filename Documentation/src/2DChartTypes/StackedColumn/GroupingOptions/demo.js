@@ -38,7 +38,7 @@ async function stackedColumnOptions() {
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                 verticalAnchorPoint: EVerticalAnchorPoint.Top,
                 text: title,
-                fontFamily: "Arial",
+                fontFamily: "Default",
                 fontSize: 16,
                 textColor: "#EEE"
             })

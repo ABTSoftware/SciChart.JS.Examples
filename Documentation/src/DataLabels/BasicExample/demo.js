@@ -42,7 +42,7 @@ async function dataLabelsBasicExample(divElementId) {
             // Data labels are enabled here. Simply set style, color
             dataLabels: {
                 style: {
-                    fontFamily: "Arial",
+                    fontFamily: "Default",
                     fontSize: 16
                 },
                 color: "#EEE"
@@ -86,7 +86,7 @@ async function builderExample(divElementId) {
                     // Data labels are enabled here. Simply set style, color
                     dataLabels: {
                         style: {
-                            fontFamily: "Arial",
+                            fontFamily: "Default",
                             fontSize: 16
                         },
                         color: "#EEE"

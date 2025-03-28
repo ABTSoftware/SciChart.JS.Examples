@@ -86,7 +86,7 @@ async function drawLineChartWithPalette(divElementId) {
         // Data-labels included to debug which datapoints are 'null'
         dataLabels: {
             style: {
-                fontFamily: "Arial",
+                fontFamily: "Default",
                 fontSize: 16
             },
             color: "#EEE"
@@ -107,7 +107,7 @@ async function drawLineChartWithPalette(divElementId) {
         // Data-labels included to debug which datapoints are 'null'
         dataLabels: {
             style: {
-                fontFamily: "Arial",
+                fontFamily: "Default",
                 fontSize: 16
             },
             color: "#EEE"

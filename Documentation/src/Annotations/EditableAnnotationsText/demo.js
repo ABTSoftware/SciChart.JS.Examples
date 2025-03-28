@@ -19,7 +19,7 @@ async function addAnnotationToChart(divElementId) {
         x1: 1,
         y1: 3,
         fontSize: 24,
-        fontFamily: "Arial",
+        fontFamily: "Default",
         text: "{{ DRAG ME! }}",
         isEditable: true
     });

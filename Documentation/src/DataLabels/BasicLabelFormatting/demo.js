@@ -47,7 +47,7 @@ async function dataLabelsBasicFormatting(divElementId) {
                 numericFormat: ENumericFormat.Decimal,
                 precision: 4,
                 style: {
-                    fontFamily: "Arial",
+                    fontFamily: "Default",
                     fontSize: 16
                 },
                 color: "#EEE"
@@ -99,7 +99,7 @@ async function builderExample(divElementId) {
                         numericFormat: ENumericFormat.Decimal,
                         precision: 4,
                         style: {
-                            fontFamily: "Arial",
+                            fontFamily: "Default",
                             fontSize: 16
                         },
                         color: "#EEE"
