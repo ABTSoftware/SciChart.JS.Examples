@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function chartWithLogarithmicAxis(divElementId) {
     // #region ExampleA
     // Demonstrates how to configure a logarithmic axis in SciChart.js
@@ -6,7 +8,7 @@ async function chartWithLogarithmicAxis(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Create an X and Y Axis
@@ -20,7 +22,7 @@ async function chartWithLogarithmicAxis(divElementId) {
         majorGridLineStyle: { color: "#50C7E077" },
         minorGridLineStyle: { color: "#50C7E033" },
         axisTitle: "Log(10) Axis with Exponential Format",
-        visibleRange: new NumberRange(1, 10_000_000),
+        visibleRange: new NumberRange(1, 10_000_000)
     });
     sciChartSurface.xAxes.add(xAxisLogarithmic);
 
@@ -36,7 +38,7 @@ async function chartWithLogarithmicAxis(divElementId) {
         majorGridLineStyle: { color: "#50C7E077" },
         minorGridLineStyle: { color: "#50C7E033" },
         axisTitle: "Log(10) Axis with Scientific Format",
-        visibleRange: new NumberRange(0.1, 1_000_000),
+        visibleRange: new NumberRange(0.1, 1_000_000)
     });
     sciChartSurface.yAxes.add(yAxisLogarithmic);
     // #endregion
@@ -65,8 +67,8 @@ async function builderExample(divElementId) {
                 majorGridLineStyle: { color: "#EEEEEE77" },
                 minorGridLineStyle: { color: "#EEEEEE33" },
                 axisTitle: "Log(10) Axis with Exponential Format",
-                visibleRange: new NumberRange(1, 10_000_000),
-            },
+                visibleRange: new NumberRange(1, 10_000_000)
+            }
         },
         yAxes: {
             type: EAxisType.LogarithmicAxis,
@@ -79,9 +81,9 @@ async function builderExample(divElementId) {
                 majorGridLineStyle: { color: "#EEEEEE77" },
                 minorGridLineStyle: { color: "#EEEEEE33" },
                 axisTitle: "Log(10) Axis with Scientific Format",
-                visibleRange: new NumberRange(0.1, 1_000_000),
-            },
-        },
+                visibleRange: new NumberRange(0.1, 1_000_000)
+            }
+        }
     });
     // #endregion
 }

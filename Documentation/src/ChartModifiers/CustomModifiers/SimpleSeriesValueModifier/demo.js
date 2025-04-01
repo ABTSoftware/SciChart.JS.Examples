@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const { CustomChartModifier2D, AxisMarkerAnnotation } = SciChart;
 
@@ -47,12 +49,12 @@ class SimpleSeriesValueModifier extends CustomChartModifier2D {
     }
 
     createMarkers() {
-        this.parentSurface.renderableSeries.asArray().forEach((series) => {
+        this.parentSurface.renderableSeries.asArray().forEach(series => {
             const annotation = new AxisMarkerAnnotation({
                 // Axis marker fill
                 backgroundColor: series.stroke,
                 // Axis text color
-                color: "White",
+                color: "White"
                 // TODO: You could choose white or black for text depending on the color of the series
                 // TODO: You could choose a different property from the series for different series types, e.g. candle, mountain, column
             });
@@ -72,13 +74,13 @@ async function customSeriesValueModifier(divElementId) {
         SciChartJsNavyTheme,
         MouseWheelZoomModifier,
         ZoomPanModifier,
-        ZoomExtentsModifier,
+        ZoomExtentsModifier
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -98,8 +100,8 @@ async function customSeriesValueModifier(divElementId) {
             strokeThickness: 5,
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
-                yValues,
-            }),
+                yValues
+            })
         })
     );
 
@@ -109,8 +111,8 @@ async function customSeriesValueModifier(divElementId) {
             strokeThickness: 5,
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
-                yValues: yValues2,
-            }),
+                yValues: yValues2
+            })
         })
     );
 

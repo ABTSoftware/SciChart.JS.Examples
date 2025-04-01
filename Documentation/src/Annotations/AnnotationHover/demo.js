@@ -1,3 +1,7 @@
+import * as SciChart from "scichart";
+
+/** @import {BoxAnnotation} from "scichart" */
+
 const {
     SciChartSurface,
     SciChartJsNavyTheme,
@@ -5,12 +9,12 @@ const {
     BoxAnnotation,
     ECoordinateMode,
     AnnotationHoverModifier,
-    EHoverMode,
+    EHoverMode
 } = SciChart;
 
 async function annotationHover(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -25,13 +29,13 @@ async function annotationHover(divElementId) {
         x2: 0.4,
         y1: 0.4,
         y2: 0.6,
-        onHover: (args) => {
+        onHover: args => {
             const { sender, mouseArgs, isHovered } = args;
             if (mouseArgs && isHovered) {
                 const relativeCoordinates = args.getRelativeCoordinates();
                 console.log("The annotation is hovered at", relativeCoordinates);
             }
-        },
+        }
     });
     sciChartSurface.annotations.add(boxAnnotation);
     // Add AnnotationHoverModifier to enable hover behaviour
@@ -41,31 +45,31 @@ async function annotationHover(divElementId) {
         hoverMode: EHoverMode.AbsoluteTopmost,
         notifyOutEvent: true,
         notifyPositionUpdate: true,
-        onHover: (args) => {
+        onHover: args => {
             const { mouseArgs, includedEntities, hoveredEntities, unhoveredEntities } = args;
-            const hoveredAnnotations = hoveredEntities;
-            const unhoveredAnnotations = unhoveredEntities;
-            hoveredAnnotations.forEach((annotation) => {
+            const hoveredAnnotations = /** @type {BoxAnnotation[]} */ (hoveredEntities);
+            const unhoveredAnnotations = /** @type {BoxAnnotation[]} */ (unhoveredEntities);
+            hoveredAnnotations.forEach(annotation => {
                 annotation.fill = "#34eb8c";
                 annotation.strokeThickness = 3;
             });
-            unhoveredAnnotations.forEach((annotation) => {
+            unhoveredAnnotations.forEach(annotation => {
                 annotation.fill = "#3d34eb";
                 annotation.strokeThickness = 1;
             });
-        },
+        }
     });
     sciChartSurface.chartModifiers.add(annotationHoverModifier);
     // #endregion
     // #region AnnotationEventHandler
     // subscribe via Event Handler
-    boxAnnotation.hovered.subscribe((args) => {
+    boxAnnotation.hovered.subscribe(args => {
         // ...
     });
     // #endregion
     // #region ModifierEventHandler
     // subscribe via Event Handler
-    annotationHoverModifier.hoverChanged.subscribe((args) => {
+    annotationHoverModifier.hoverChanged.subscribe(args => {
         // ...
     });
     // #endregion
@@ -74,18 +78,18 @@ async function annotationHover(divElementId) {
 
 annotationHover("scichart-root");
 
-const { chartBuilder, EChart2DModifierType } = SciChart;
+const { chartBuilder, EChart2DModifierType, EAnnotationType } = SciChart;
 
 async function builderExample(divElementId) {
     // #region Example1WithBuilderAPI
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
         surface: {
-            theme: new SciChartJsNavyTheme(),
+            theme: new SciChartJsNavyTheme()
         },
         // Add an annotation with hover behaviour
         annotations: [
             {
-                type: scichart_1.EAnnotationType.RenderContextBoxAnnotation,
+                type: EAnnotationType.RenderContextBoxAnnotation,
                 options: {
                     id: "boxAnnotation",
                     xCoordinateMode: ECoordinateMode.Relative,
@@ -96,15 +100,15 @@ async function builderExample(divElementId) {
                     x2: 0.4,
                     y1: 0.4,
                     y2: 0.6,
-                    onHover: (args) => {
+                    onHover: args => {
                         const { sender, mouseArgs, isHovered } = args;
                         if (mouseArgs && isHovered) {
                             const relativeCoordinates = args.getRelativeCoordinates();
                             console.log("The annotation is hovered at", relativeCoordinates);
                         }
-                    },
-                },
-            },
+                    }
+                }
+            }
         ],
         // Add AnnotationHoverModifier to enable hover behaviour
         modifiers: [
@@ -116,22 +120,22 @@ async function builderExample(divElementId) {
                     hoverMode: EHoverMode.AbsoluteTopmost,
                     notifyOutEvent: true,
                     notifyPositionUpdate: true,
-                    onHover: (args) => {
+                    onHover: args => {
                         const { mouseArgs, includedEntities, hoveredEntities, unhoveredEntities } = args;
-                        const hoveredAnnotations = hoveredEntities;
-                        const unhoveredAnnotations = unhoveredEntities;
-                        hoveredAnnotations.forEach((annotation) => {
+                        const hoveredAnnotations = /** @type {BoxAnnotation[]} */ (hoveredEntities);
+                        const unhoveredAnnotations = /** @type {BoxAnnotation[]} */ (unhoveredEntities);
+                        hoveredAnnotations.forEach(annotation => {
                             annotation.fill = "#34eb8c";
                             annotation.strokeThickness = 3;
                         });
-                        unhoveredAnnotations.forEach((annotation) => {
+                        unhoveredAnnotations.forEach(annotation => {
                             annotation.fill = "#3d34eb";
                             annotation.strokeThickness = 1;
                         });
-                    },
-                },
-            },
-        ],
+                    }
+                }
+            }
+        ]
     });
     // #endregion
 

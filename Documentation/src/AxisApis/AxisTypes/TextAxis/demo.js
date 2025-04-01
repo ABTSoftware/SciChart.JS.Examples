@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function chartWithTextAxis(divElementId) {
     // #region ExampleA
     // Demonstrates how to configure a text axis in SciChart.js
@@ -10,19 +12,19 @@ async function chartWithTextAxis(divElementId) {
         FastColumnRenderableSeries,
         XyDataSeries,
         GradientParams,
-        Point,
+        Point
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Create the labelProvider
     const labelProvider = new TextLabelProvider({
         // When passed as an array, labels will be used in order
-        labels: ["Bananas", "Apples", "Oranges", "Strawberries", "Plums"],
+        labels: ["Bananas", "Apples", "Oranges", "Strawberries", "Plums"]
     });
 
     // Create an XAxis with a TextLabelProvider
@@ -37,14 +39,14 @@ async function chartWithTextAxis(divElementId) {
         new FastColumnRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: [0, 1, 2, 3, 4],
-                yValues: [0.1, 0.2, 0.4, 0.8, 1.1],
+                yValues: [0.1, 0.2, 0.4, 0.8, 1.1]
             }),
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: "rgba(70,130,180,0.77)", offset: 0 },
-                { color: "rgba(70,130,180,0.0)", offset: 1 },
+                { color: "rgba(70,130,180,0.0)", offset: 1 }
             ]),
             stroke: "#FFFFFF77",
-            strokeThickness: 2,
+            strokeThickness: 2
         })
     );
     // #endregion
@@ -68,36 +70,36 @@ async function builderExample(divElementId) {
                     type: ELabelProviderType.Text,
                     options: {
                         // When passed as an array, labels will be used in order
-                        labels: ["Bananas", "Apples", "Oranges", "Strawberries", "Plums"],
-                    },
-                },
-            },
+                        labels: ["Bananas", "Apples", "Oranges", "Strawberries", "Plums"]
+                    }
+                }
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
-            options: {},
+            options: {}
         },
         series: [
             {
                 type: ESeriesType.ColumnSeries,
                 xyData: {
                     xValues: [0, 1, 2, 3, 4],
-                    yValues: [0.1, 0.2, 0.4, 0.8, 1.1],
+                    yValues: [0.1, 0.2, 0.4, 0.8, 1.1]
                 },
                 options: {
                     fillLinearGradient: {
                         gradientStops: [
                             { color: "rgba(70,130,180,0.77)", offset: 0.0 },
-                            { color: "rgba(70,130,180,0.0)", offset: 1 },
+                            { color: "rgba(70,130,180,0.0)", offset: 1 }
                         ],
                         startPoint: { x: 0, y: 0 },
-                        endPoint: { x: 0, y: 1 },
+                        endPoint: { x: 0, y: 1 }
                     },
                     stroke: "#FFFFFF77",
-                    strokeThickness: 2,
-                },
-            },
-        ],
+                    strokeThickness: 2
+                }
+            }
+        ]
     });
     // #endregion
 }

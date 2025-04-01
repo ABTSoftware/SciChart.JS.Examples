@@ -1,3 +1,7 @@
+import * as SciChart from "scichart";
+
+/**@import {NativeTextAnnotation} from "scichart" */
+
 // #region ExampleA
 const {
     SciChartSurface,
@@ -6,14 +10,14 @@ const {
     EWrapTo,
     NativeTextAnnotation,
     GenericAnimation,
-    SciChartJsNavyTheme,
+    SciChartJsNavyTheme
 } = SciChart;
 
 // or for npm import { SciChartSurface, ... } from "scichart"
 
 async function addAnnotationToChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -24,7 +28,7 @@ async function addAnnotationToChart(divElementId) {
             x1: 1,
             y1: 9,
             text: "The default font is Arial, which does not need to be hosted or registered",
-            fontSize: 18,
+            fontSize: 18
         })
     );
 
@@ -42,7 +46,7 @@ async function addAnnotationToChart(divElementId) {
             y1: 7,
             text: "This text uses a custom font",
             fontFamily: "MyCustomFont",
-            fontSize: 24,
+            fontSize: 24
         })
     );
 
@@ -52,10 +56,10 @@ async function addAnnotationToChart(divElementId) {
             x1: 1,
             y1: 5,
             text: "Native text supports\nmultiline and rotation",
-            fontFamily: "arial",
+            fontFamily: "Default",
             fontSize: 24,
             rotation: 30,
-            textColor: "orange",
+            textColor: "orange"
         })
     );
 
@@ -65,10 +69,10 @@ async function addAnnotationToChart(divElementId) {
             x1: 5,
             y1: 5,
             text: "Native text can automatically wrap to the chart area or the annotation width.  ",
-            fontFamily: "arial",
+            fontFamily: "Default",
             fontSize: 24,
             isEditable: true,
-            wrapTo: EWrapTo.ViewRect,
+            wrapTo: EWrapTo.ViewRect
         })
     );
 
@@ -77,9 +81,9 @@ async function addAnnotationToChart(divElementId) {
         x1: 5,
         y1: 3,
         text: "Native text can be scaled\nwithout changing the font size",
-        fontFamily: "arial",
+        fontFamily: "Default",
         fontSize: 16,
-        scale: 1,
+        scale: 1
     });
     sciChartSurface.annotations.add(scaledText);
     const scaleAnimation = new GenericAnimation({
@@ -95,7 +99,7 @@ async function addAnnotationToChart(divElementId) {
         },
         onCompleted: () => {
             scaleAnimation.reset();
-        },
+        }
     });
     sciChartSurface.addAnimation(scaleAnimation);
 }
@@ -117,8 +121,8 @@ async function builderExample(divElementId) {
                     x1: 1,
                     y1: 9,
                     text: "The default font is Arial, which does not need to be hosted or registered",
-                    fontSize: 18,
-                },
+                    fontSize: 18
+                }
             },
             {
                 type: EAnnotationType.RenderContextNativeTextAnnotation,
@@ -126,11 +130,11 @@ async function builderExample(divElementId) {
                     x1: 1,
                     y1: 5,
                     text: "Native text supports\nmultiline and rotation",
-                    fontFamily: "arial",
+                    fontFamily: "Default",
                     fontSize: 24,
                     rotation: 30,
-                    textColor: "orange",
-                },
+                    textColor: "orange"
+                }
             },
             {
                 type: EAnnotationType.RenderContextNativeTextAnnotation,
@@ -139,8 +143,8 @@ async function builderExample(divElementId) {
                     y1: 7,
                     text: "This text uses a font from the internet",
                     fontFamily: "MyCustomFont",
-                    fontSize: 24,
-                },
+                    fontSize: 24
+                }
             },
             {
                 type: EAnnotationType.RenderContextNativeTextAnnotation,
@@ -148,11 +152,11 @@ async function builderExample(divElementId) {
                     x1: 5,
                     y1: 5,
                     text: "Native text can automatically wrap to the chart area or the annotation width.  ",
-                    fontFamily: "arial",
+                    fontFamily: "Default",
                     fontSize: 24,
                     isEditable: true,
-                    wrapTo: EWrapTo.ViewRect,
-                },
+                    wrapTo: EWrapTo.ViewRect
+                }
             },
             {
                 type: EAnnotationType.RenderContextNativeTextAnnotation,
@@ -161,11 +165,11 @@ async function builderExample(divElementId) {
                     x1: 5,
                     y1: 3,
                     text: "Native text can be scaled\nwithout changing the font size",
-                    fontFamily: "arial",
-                    fontSize: 16,
-                },
-            },
-        ],
+                    fontFamily: "Default",
+                    fontSize: 16
+                }
+            }
+        ]
     });
 
     // Registering the custom font
@@ -177,7 +181,9 @@ async function builderExample(divElementId) {
     console.log("Native font was loaded? " + result);
 
     // Scaling the last NativeTextAnnotation
-    const scaleAnnotation = sciChartSurface.annotations.getById("scaleAnnotation");
+    const scaleAnnotation = /** @type {NativeTextAnnotation} */ (
+        sciChartSurface.annotations.getById("scaleAnnotation")
+    );
     const scaleAnimation = new GenericAnimation({
         from: 0,
         to: 1,
@@ -191,7 +197,7 @@ async function builderExample(divElementId) {
         },
         onCompleted: () => {
             scaleAnimation.reset();
-        },
+        }
     });
     sciChartSurface.addAnimation(scaleAnimation);
     // #endregion

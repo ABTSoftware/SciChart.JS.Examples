@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const {
     BoxAnnotation,
@@ -10,14 +12,14 @@ const {
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
     ECoordinateMode,
-    SciChartJsNavyTheme,
+    SciChartJsNavyTheme
 } = SciChart;
 
 // or for npm import { SciChartSurface, ... } from "scichart"
 
 async function addAnnotationToChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -36,7 +38,7 @@ async function addAnnotationToChart(divElementId) {
         new CustomAnnotation({
             x1: 4,
             y1: 5,
-            svgString: rocketSvg,
+            svgString: rocketSvg
         })
     );
 }
@@ -68,10 +70,10 @@ async function builderExample(divElementId) {
                     y1: 5,
                     verticalAnchorPoint: EVerticalAnchorPoint.Top,
                     horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-                    svgString: rocketSvg,
-                },
-            },
-        ],
+                    svgString: rocketSvg
+                }
+            }
+        ]
     });
     // #endregion
 }

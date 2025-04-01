@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleBubbleChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a bubble chart with SciChart.js
@@ -7,13 +9,13 @@ async function simpleBubbleChart(divElementId) {
         XyzDataSeries,
         FastBubbleRenderableSeries,
         EllipsePointMarker,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -30,7 +32,7 @@ async function simpleBubbleChart(divElementId) {
     const xyzDataSeries = new XyzDataSeries(wasmContext, {
         xValues,
         yValues,
-        zValues: sizes,
+        zValues: sizes
     });
 
     const bubbleSeries = new FastBubbleRenderableSeries(wasmContext, {
@@ -40,8 +42,8 @@ async function simpleBubbleChart(divElementId) {
             width: 64,
             height: 64,
             strokeThickness: 0,
-            fill: "#4682b477",
-        }),
+            fill: "#4682b477"
+        })
     });
 
     sciChartSurface.renderableSeries.add(bubbleSeries);
@@ -78,7 +80,7 @@ async function builderExample(divElementId) {
                 xyzData: {
                     xValues,
                     yValues,
-                    zValues: sizes,
+                    zValues: sizes
                 },
                 options: {
                     pointMarker: {
@@ -88,12 +90,12 @@ async function builderExample(divElementId) {
                             width: 64,
                             height: 64,
                             strokeThickness: 0,
-                            fill: "#4682b477",
-                        },
-                    },
-                },
-            },
-        ],
+                            fill: "#4682b477"
+                        }
+                    }
+                }
+            }
+        ]
     });
     // #endregion
 }

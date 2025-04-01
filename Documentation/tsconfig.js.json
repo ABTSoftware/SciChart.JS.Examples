@@ -1,18 +1,11 @@
 {
-    "ts-node": {
-        "compilerOptions": {
-            "module": "CommonJS",
-            "target": "es2021"
-        },
-        "include": ["server/*.ts"]
-    },
     "compilerOptions": {
         "sourceMap": false,
         "strict": false,
         "noImplicitAny": false,
         "strictNullChecks": false,
-        "strictFunctionTypes": true,
-        "strictBindCallApply": true,
+        "strictFunctionTypes": false,
+        "strictBindCallApply": false,
         "strictPropertyInitialization": false,
         "noImplicitThis": true,
         "alwaysStrict": false,
@@ -22,17 +15,22 @@
         "noFallthroughCasesInSwitch": true,
         "module": "ESNext",
         "target": "ESNext",
-        "moduleResolution": "bundler",
+        "moduleResolution": "node",
         "jsx": "react",
         "allowJs": true,
         "typeRoots": ["./node_modules/@types"],
-        "esModuleInterop": false,
+        "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "lib": ["es2021", "dom"]
-        // "baseUrl": "./Documentation",
-        // "paths": {"scichart": ["node_modules/scichart"]}
+        "lib": ["es2021", "dom"],
+        "noEmit": true,
+        "checkJs": true
     },
-    "include": ["src/**/*.ts"],
+    "noEmitOnError": true,
+    "emitDeclarationOnly": false,
+    "include": [
+        // this config is only for snippets made with JS
+        "src/**/*.js"
+    ],
     "exclude": ["node_modules"]
 }

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function axisStyling(divElementId) {
     // #region ExampleA
     // Demonstrates how to style numeric axis in SciChart.js
@@ -6,7 +8,7 @@ async function axisStyling(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Create and style xAxis
@@ -17,13 +19,13 @@ async function axisStyling(divElementId) {
             axisBandsFill: "#FF665555",
             axisTitleStyle: {
                 fontSize: 16,
-                fontFamily: "Arial",
+                fontFamily: "Default",
                 color: "#4682b4",
                 fontWeight: "bold",
-                fontStyle: "italic",
+                fontStyle: "italic"
             },
-            majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDasharray: [10, 5] },
-            minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDasharray: [2, 2] },
+            majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDashArray: [10, 5] },
+            minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDashArray: [2, 2] },
             majorTickLineStyle: { strokeThickness: 1, color: "Blue", tickSize: 8 },
             minorTickLineStyle: { strokeThickness: 1, color: "Red", tickSize: 4 },
             labelStyle: {
@@ -31,8 +33,8 @@ async function axisStyling(divElementId) {
                 fontWeight: "bold",
                 fontStyle: "Italic",
                 color: "#4682b4",
-                fontFamily: "Arial",
-            },
+                fontFamily: "Default"
+            }
         })
     );
 
@@ -46,17 +48,17 @@ async function axisStyling(divElementId) {
                 fontSize: 25,
                 fontFamily: "Montserrat",
                 fontWeight: "bold",
-                color: "#DC143C",
+                color: "#DC143C"
             },
-            majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDasharray: [10, 5] },
-            minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDasharray: [2, 2] },
+            majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDashArray: [10, 5] },
+            minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDashArray: [2, 2] },
             majorTickLineStyle: { strokeThickness: 1, color: "#ADFF2F", tickSize: 8 },
             minorTickLineStyle: { strokeThickness: 1, color: "#EE82EE", tickSize: 4 },
             labelStyle: {
                 fontSize: 15,
                 color: "#DC143C",
-                fontFamily: "Arial",
-            },
+                fontFamily: "Default"
+            }
         })
     );
 
@@ -66,8 +68,8 @@ async function axisStyling(divElementId) {
             axisTitle: ["Right Axis", "Rotation: 0"],
             axisTitleStyle: {
                 fontSize: 18,
-                rotation: 0,
-            },
+                rotation: 0
+            }
         })
     );
     // #endregion
@@ -93,13 +95,13 @@ async function builderExample(divElementId) {
                 axisBandsFill: "#FF665555",
                 axisTitleStyle: {
                     fontSize: 16,
-                    fontFamily: "Arial",
+                    fontFamily: "Default",
                     color: "#4682b4",
                     fontWeight: "bold",
-                    fontStyle: "italic",
+                    fontStyle: "italic"
                 },
-                majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDasharray: [10, 5] },
-                minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDasharray: [2, 2] },
+                majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDashArray: [10, 5] },
+                minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDashArray: [2, 2] },
                 majorTickLineStyle: { strokeThickness: 1, color: "Blue", tickSize: 8 },
                 minorTickLineStyle: { strokeThickness: 1, color: "Red", tickSize: 4 },
                 labelStyle: {
@@ -107,9 +109,9 @@ async function builderExample(divElementId) {
                     fontWeight: "bold",
                     fontStyle: "Italic",
                     color: "#4682b4",
-                    fontFamily: "Arial",
-                },
-            },
+                    fontFamily: "Default"
+                }
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
@@ -121,19 +123,19 @@ async function builderExample(divElementId) {
                     fontSize: 25,
                     fontFamily: "Montserrat",
                     fontWeight: "bold",
-                    color: "#DC143C",
+                    color: "#DC143C"
                 },
-                majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDasharray: [10, 5] },
-                minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDasharray: [2, 2] },
+                majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDashArray: [10, 5] },
+                minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDashArray: [2, 2] },
                 majorTickLineStyle: { strokeThickness: 1, color: "#ADFF2F", tickSize: 8 },
                 minorTickLineStyle: { strokeThickness: 1, color: "#EE82EE", tickSize: 4 },
                 labelStyle: {
                     fontSize: 15,
                     color: "#DC143C",
-                    fontFamily: "Arial",
-                },
-            },
-        },
+                    fontFamily: "Default"
+                }
+            }
+        }
     });
     // #endregion
 }

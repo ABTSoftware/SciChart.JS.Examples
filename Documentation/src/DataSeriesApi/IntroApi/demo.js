@@ -1,10 +1,12 @@
+import * as SciChart from "scichart";
+
 const { SciChartSurface, NumericAxis, FastLineRenderableSeries, XyDataSeries, SciChartJsNavyTheme } = SciChart;
 
 // or for npm import { SciChartSurface, ... } from "scichart"
 
 async function dataSeriesApi(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -25,12 +27,12 @@ async function dataSeriesApi(divElementId) {
         // Optional: pass X,Y values to DataSeries constructor for fast initialization
         // each are Arrays of numbers or Float64Array (typed array for best performance)
         xValues,
-        yValues,
+        yValues
     });
 
     // Create a renderableSeries and assign the dataSeries
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
-        dataSeries: xyDataSeries,
+        dataSeries: xyDataSeries
     });
 
     // add to the chart
@@ -58,14 +60,14 @@ async function builderExample(divElementId) {
                 // This section creates a DataSeries with X,Y values
                 xyData: {
                     xValues,
-                    yValues,
+                    yValues
                 },
                 options: {
                     stroke: "#FF6600",
-                    strokeThickness: 2,
-                },
-            },
-        ],
+                    strokeThickness: 2
+                }
+            }
+        ]
     });
 
     // However this is also valid (either xyData, or onew XyDataSeries)

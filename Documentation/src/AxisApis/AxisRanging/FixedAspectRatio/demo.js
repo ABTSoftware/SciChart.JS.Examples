@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function fixedAspectRatio(divElementId) {
     const {
         SciChartSurface,
@@ -13,7 +15,7 @@ async function fixedAspectRatio(divElementId) {
         RubberBandXyZoomModifier,
         XyScatterRenderableSeries,
         XyDataSeries,
-        XPointMarker,
+        XPointMarker
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -21,15 +23,15 @@ async function fixedAspectRatio(divElementId) {
     // #region ExampleA
     // Create a chart with X,Y axis
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     const xAxis = new NumericAxis(wasmContext, {
-        majorGridLineStyle: { color: "white" },
+        majorGridLineStyle: { color: "white" }
     });
     sciChartSurface.xAxes.add(xAxis);
     const yAxis = new NumericAxis(wasmContext, {
-        majorGridLineStyle: { color: "white" },
+        majorGridLineStyle: { color: "white" }
     });
     sciChartSurface.yAxes.add(yAxis);
 
@@ -42,7 +44,7 @@ async function fixedAspectRatio(divElementId) {
     // subscribe to visibleRangeChanged on each Axis
     // avoid infinte loop due to floating point problems
     const epsilon = 1e-10;
-    xAxis.visibleRangeChanged.subscribe((data) => {
+    xAxis.visibleRangeChanged.subscribe(data => {
         const yRange = yAxis.visibleRange;
         if (Math.abs(yRange.diff / data.visibleRange.diff - ratio) > epsilon) {
             const newYDiff = ratio * data.visibleRange.diff;
@@ -50,7 +52,7 @@ async function fixedAspectRatio(divElementId) {
             yAxis.visibleRange = new NumberRange(yRange.min - halfDiff, yRange.max + halfDiff);
         }
     });
-    yAxis.visibleRangeChanged.subscribe((data) => {
+    yAxis.visibleRangeChanged.subscribe(data => {
         const xRange = xAxis.visibleRange;
         if (Math.abs(data.visibleRange.diff / xRange.diff - ratio) > epsilon) {
             const newXDiff = data.visibleRange.diff / ratio;
@@ -65,12 +67,12 @@ async function fixedAspectRatio(divElementId) {
             pointMarker: new XPointMarker(wasmContext, {
                 stroke: "red",
                 width: 10,
-                height: 10,
+                height: 10
             }),
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: [-2, 0, 2, -2, 0, 2, -2, 0, 2],
-                yValues: [-2, -2, -2, 0, 0, 0, 2, 2, 2],
-            }),
+                yValues: [-2, -2, -2, 0, 0, 0, 2, 2, 2]
+            })
         })
     );
 

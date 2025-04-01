@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // Helper class to fetch candlestick data from Binance via Rest API
 const getCandles = async (symbol, interval, limit = 300) => {
     let url = `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}`;
@@ -16,7 +18,7 @@ const getCandles = async (symbol, interval, limit = 300) => {
         const lowValues = [];
         const closeValues = [];
         const volumeValues = [];
-        data.forEach((candle) => {
+        data.forEach(candle => {
             const [timestamp, open, high, low, close, volume] = candle;
             dateValues.push(timestamp / 1000); // SciChart expects Unix Timestamp / 1000
             openValues.push(parseFloat(open));
@@ -28,7 +30,7 @@ const getCandles = async (symbol, interval, limit = 300) => {
         return { dateValues, openValues, highValues, lowValues, closeValues, volumeValues };
     } catch (err) {
         console.error(err);
-        return [];
+        return {};
     }
 };
 
@@ -41,13 +43,13 @@ async function simpleCandlestickChart(divElementId) {
         NumericAxis,
         FastCandlestickRenderableSeries,
         OhlcDataSeries,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new CategoryAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { labelPrefix: "$", labelPrecision: 2 }));
@@ -65,7 +67,7 @@ async function simpleCandlestickChart(divElementId) {
         openValues,
         highValues,
         lowValues,
-        closeValues,
+        closeValues
     });
 
     // Create and add the Candlestick series
@@ -76,7 +78,7 @@ async function simpleCandlestickChart(divElementId) {
         brushUp: "#33ff3377",
         brushDown: "#ff333377",
         strokeUp: "#77ff77",
-        strokeDown: "#ff7777",
+        strokeDown: "#ff7777"
     });
     sciChartSurface.renderableSeries.add(candlestickSeries);
     // #endregion
@@ -116,7 +118,7 @@ async function builderExample(divElementId) {
                     openValues,
                     highValues,
                     lowValues,
-                    closeValues,
+                    closeValues
                 },
                 options: {
                     dataPointWidth: 0.7,
@@ -124,10 +126,10 @@ async function builderExample(divElementId) {
                     brushDown: "#ff333377",
                     strokeUp: "#77ff77",
                     strokeDown: "#ff7777",
-                    strokeThickness: 1,
-                },
-            },
-        ],
+                    strokeThickness: 1
+                }
+            }
+        ]
     });
     // #endregion
 }

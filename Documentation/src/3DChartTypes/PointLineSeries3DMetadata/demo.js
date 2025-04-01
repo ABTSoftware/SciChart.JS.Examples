@@ -1,4 +1,6 @@
-const generateData = (index) => {
+import * as SciChart from "scichart";
+
+const generateData = index => {
     const gaussianRandom = (mean, stdev) => {
         const u = 1 - Math.random(); // Converting [0,1) to (0,1]
         const v = Math.random();
@@ -34,7 +36,7 @@ async function pointLineRenderableSeries3D(divElementId) {
         ResetCamera3DModifier,
         NumberRange,
         parseColorToUIntArgb,
-        uintArgbColorLerp,
+        uintArgbColorLerp
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -45,8 +47,8 @@ async function pointLineRenderableSeries3D(divElementId) {
         worldDimensions: new Vector3(300, 200, 300),
         cameraOptions: {
             position: new Vector3(-300, 300, -300),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     // Declare your axis like this
@@ -78,7 +80,7 @@ async function pointLineRenderableSeries3D(divElementId) {
             stroke: "#EC0F6C",
             strokeThickness: 3,
             // pointMarkers are optional
-            pointMarker: new EllipsePointMarker3D(wasmContext, { size: 3 }),
+            pointMarker: new EllipsePointMarker3D(wasmContext, { size: 3 })
         })
     );
     // #endregion

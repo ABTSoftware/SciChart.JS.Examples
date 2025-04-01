@@ -1,9 +1,11 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 // or for npm ... import { BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy } from "scichart";
 const {
     BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy,
     BottomAlignedOuterAxisLayoutStrategy,
-    getHorizontalAxisRequiredSize,
+    getHorizontalAxisRequiredSize
 } = SciChart;
 
 // Example of creating a custom layout manager. First requested here https://www.scichart.com/questions/js/is-it-possible-to-create-two-xaxis-where-one-is-normal-and-the-other-one-is-horizontally-stacked-axis-layout
@@ -31,7 +33,7 @@ class CustomAxisLayoutStrategy extends BottomAlignedOuterHorizontallyStackedAxis
 
         // calculate height required by the first axis and then the total height
         const firstAxisSize = getHorizontalAxisRequiredSize(firstAxis.axisLayoutState);
-        chartLayoutState.bottomOuterAreaSize = firstAxisSize + stackedAreaSize;
+        return firstAxisSize + stackedAreaSize;
     }
 
     // Override layoutAxes from the base class
@@ -55,7 +57,7 @@ async function customLayoutManager(divElementId) {
 
     // #region ExampleB
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Apply your layout manager
@@ -72,28 +74,28 @@ async function customLayoutManager(divElementId) {
         axisTitle: ID_X_AXIS_1,
         drawMajorBands: true,
         drawMajorGridLines: true,
-        drawMinorGridLines: true,
+        drawMinorGridLines: true
     });
     const xAxis2 = new NumericAxis(wasmContext, {
         id: ID_X_AXIS_2,
         axisTitle: ID_X_AXIS_2,
-        ...options,
+        ...options
     });
     const xAxis3 = new NumericAxis(wasmContext, {
         id: ID_X_AXIS_3,
         axisTitle: ID_X_AXIS_3,
-        ...options,
+        ...options
     });
     const xAxis4 = new NumericAxis(wasmContext, {
         id: ID_X_AXIS_4,
         axisTitle: ID_X_AXIS_4,
-        ...options,
+        ...options
     });
     const yAxis1 = new NumericAxis(wasmContext, {
         axisTitle: "yAxis",
         backgroundColor: "#50C7E022",
         axisBorder: { color: "#50C7E0", borderLeft: 1 },
-        axisTitleStyle: { fontSize: 13 },
+        axisTitleStyle: { fontSize: 13 }
     });
 
     // Add the axis to the chart
@@ -117,19 +119,19 @@ async function customLayoutManager(divElementId) {
         MouseWheelZoomModifier,
         FastLineRenderableSeries,
         XyDataSeries,
-        TextAnnotation,
+        TextAnnotation
     } = SciChart;
 
     // Let's add some series to the chart to show how they also behave with axis
     const getOptions = (index, offset = 0) => {
         const xValues = Array.from(Array(50).keys());
-        const yValues = xValues.map((x) => Math.sin(x * 0.4 + index) + offset);
+        const yValues = xValues.map(x => Math.sin(x * 0.4 + index) + offset);
 
         return {
             xAxisId: `xAxis${index}`,
             stroke: axisColors[index],
             strokeThickness: 3,
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues })
         };
     };
 
@@ -144,7 +146,7 @@ async function customLayoutManager(divElementId) {
             text: "Blue series uses xAxis0 and is stretched horizontally",
             x1: 0,
             y1: 2,
-            textColor: axisColors[0],
+            textColor: axisColors[0]
         })
     );
 
@@ -154,7 +156,7 @@ async function customLayoutManager(divElementId) {
             x1: 0,
             y1: 1.1,
             xAxisId: ID_X_AXIS_2,
-            textColor: axisColors[1],
+            textColor: axisColors[1]
         })
     );
 
@@ -164,7 +166,7 @@ async function customLayoutManager(divElementId) {
             x1: 0,
             y1: 1.1,
             xAxisId: ID_X_AXIS_3,
-            textColor: axisColors[2],
+            textColor: axisColors[2]
         })
     );
 
@@ -174,7 +176,7 @@ async function customLayoutManager(divElementId) {
             x1: 0,
             y1: 1.1,
             xAxisId: ID_X_AXIS_4,
-            textColor: axisColors[3],
+            textColor: axisColors[3]
         })
     );
 

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function verticallyStackedAxis(divElementId) {
     const {
         SciChartSurface,
@@ -5,13 +7,13 @@ async function verticallyStackedAxis(divElementId) {
         SciChartJsNavyTheme,
         EAxisAlignment,
         FastLineRenderableSeries,
-        XyDataSeries,
+        XyDataSeries
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // #region ExampleA
@@ -21,7 +23,7 @@ async function verticallyStackedAxis(divElementId) {
             axisTitle: "X Axis",
             axisTitleStyle: { fontSize: 13 },
             backgroundColor: "#50C7E022",
-            axisBorder: { color: "#50C7E0", borderTop: 1 },
+            axisBorder: { color: "#50C7E0", borderTop: 1 }
         })
     );
 
@@ -31,56 +33,56 @@ async function verticallyStackedAxis(divElementId) {
         new NumericAxis(wasmContext, {
             id: "YAxis0",
             axisTitle: "Y Axis 0",
-            axisAlignment: EAxisAlignment.Left,
+            axisAlignment: EAxisAlignment.Left
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             id: "YAxis1",
             axisTitle: "Y Axis 1",
-            axisAlignment: EAxisAlignment.Left,
+            axisAlignment: EAxisAlignment.Left
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             id: "YAxis2",
             axisTitle: "Y Axis 2",
-            axisAlignment: EAxisAlignment.Left,
+            axisAlignment: EAxisAlignment.Left
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             id: "YAxis3",
             axisTitle: "Y Axis 3",
-            axisAlignment: EAxisAlignment.Left,
+            axisAlignment: EAxisAlignment.Left
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             id: "YAxis4",
             axisTitle: "Y Axis 4",
-            axisAlignment: EAxisAlignment.Left,
+            axisAlignment: EAxisAlignment.Left
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             id: "YAxis5",
             axisTitle: "Y Axis 5",
-            axisAlignment: EAxisAlignment.Left,
+            axisAlignment: EAxisAlignment.Left
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             id: "YAxis6",
             axisTitle: "Y Axis 6",
-            axisAlignment: EAxisAlignment.Left,
+            axisAlignment: EAxisAlignment.Left
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             id: "YAxis7",
             axisTitle: "Y Axis 7",
-            axisAlignment: EAxisAlignment.Left,
+            axisAlignment: EAxisAlignment.Left
         })
     );
 
@@ -93,15 +95,15 @@ async function verticallyStackedAxis(divElementId) {
     });
 
     // Let's add some series to the chart to show how they also behave with axis
-    const getOptions = (index) => {
+    const getOptions = index => {
         const xValues = Array.from(Array(50).keys());
-        const yValues = xValues.map((x) => Math.sin(x * 0.4 + index));
+        const yValues = xValues.map(x => Math.sin(x * 0.4 + index));
 
         return {
             yAxisId: `YAxis${index}`,
             stroke: axisColors[index] + "77",
             strokeThickness: 2,
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues })
         };
     };
 
@@ -132,43 +134,43 @@ async function builderExample(divElementId) {
                 axisTitle: "X Axis",
                 axisTitleStyle: { fontSize: 13 },
                 backgroundColor: "#50C7E022",
-                axisBorder: { color: "#50C7E0", borderTop: 1 },
-            },
+                axisBorder: { color: "#50C7E0", borderTop: 1 }
+            }
         },
         yAxes: [
             {
                 type: EAxisType.NumericAxis,
-                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left },
+                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left }
             },
             {
                 type: EAxisType.NumericAxis,
-                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left },
+                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left }
             },
             {
                 type: EAxisType.NumericAxis,
-                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left },
+                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left }
             },
             {
                 type: EAxisType.NumericAxis,
-                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left },
+                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left }
             },
             {
                 type: EAxisType.NumericAxis,
-                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left },
+                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left }
             },
             {
                 type: EAxisType.NumericAxis,
-                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left },
+                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left }
             },
             {
                 type: EAxisType.NumericAxis,
-                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left },
+                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left }
             },
             {
                 type: EAxisType.NumericAxis,
-                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left },
-            },
-        ],
+                options: { id: "YAxis0", axisTitle: "Y Axis 0", axisAlignment: EAxisAlignment.Left }
+            }
+        ]
     });
 
     const axisColors = ["#50C7E0", "#EC0F6C", "#30BC9A", "#F48420", "#364BA0", "#882B91", "#67BDAF", "#C52E60"];

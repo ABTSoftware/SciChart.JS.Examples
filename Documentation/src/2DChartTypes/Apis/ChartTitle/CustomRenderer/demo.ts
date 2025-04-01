@@ -7,13 +7,13 @@ import {
     Rect,
     TChartTitleStyle,
     TSciChart,
-    WebGlRenderContext2D,
+    WebGlRenderContext2D
 } from "scichart";
 
 async function customChartTitleRenderer(divElementId: string) {
     // Demonstrates how to add a basic chart title in SciChart.js
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -53,9 +53,9 @@ async function customChartTitleRenderer(divElementId: string) {
             );
         }
 
-        draw(renderContext: WebGlRenderContext2D): void {
-            super.draw(renderContext);
-            this.subRenderer.draw(renderContext);
+        draw(renderContext: WebGlRenderContext2D, clipRect: Rect): void {
+            super.draw(renderContext, clipRect);
+            this.subRenderer.draw(renderContext, clipRect);
         }
 
         delete(): void {
@@ -71,7 +71,7 @@ async function customChartTitleRenderer(divElementId: string) {
     sciChartSurface.chartTitleRenderer = new SubTitleRenderer(wasmContext, "A Subtitle", {
         ...sciChartSurface.titleStyle,
         fontSize: 30,
-        alignment: ETextAlignment.Right,
+        alignment: ETextAlignment.Right
     } as Required<TChartTitleStyle>);
 }
 

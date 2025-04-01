@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function dataSeriesAppending(divElementId) {
     const { SciChartSurface, NumericAxis, FastLineRenderableSeries, XyDataSeries, SciChartJsNavyTheme, EAutoRange } =
         SciChart;
@@ -8,7 +10,7 @@ async function dataSeriesAppending(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
         title: "Appending Data example every 20ms",
-        titleStyle: { fontSize: 16 },
+        titleStyle: { fontSize: 16 }
     });
 
     // For the example to work, axis must have EAutoRange.Always
@@ -33,7 +35,7 @@ async function dataSeriesAppending(divElementId) {
     const xyDataSeries = new XyDataSeries(wasmContext, {
         // Optional: pass X,Y values to DataSeries constructor for fast initialization
         xValues,
-        yValues,
+        yValues
     });
 
     // Create a renderableSeries and assign the dataSeries
@@ -41,7 +43,7 @@ async function dataSeriesAppending(divElementId) {
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: xyDataSeries,
             strokeThickness: 3,
-            stroke: "#50C7E0",
+            stroke: "#50C7E0"
         })
     );
 
@@ -59,7 +61,6 @@ async function dataSeriesAppending(divElementId) {
         // Just putting this in to reset the dataseries after N updates. We don't want the codepen example to grow infinitely!
         if (++updateCount % 250 === 0) {
             xyDataSeries.clear();
-            j = 0;
             updateCount = 0;
         }
     };

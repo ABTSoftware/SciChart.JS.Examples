@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function labelproviderProperties(divElementId) {
     const {
         SciChartSurface,
@@ -12,7 +14,7 @@ async function labelproviderProperties(divElementId) {
         LogarithmicAxis,
         ZoomPanModifier,
         MouseWheelZoomModifier,
-        Thickness,
+        Thickness
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -30,7 +32,7 @@ async function labelproviderProperties(divElementId) {
                 opacity: 0.5,
                 fontSize: 32,
                 fontWeight: "Bold",
-                textColor: "White",
+                textColor: "White"
             })
         );
         sciChartSurface.annotations.add(
@@ -43,13 +45,13 @@ async function labelproviderProperties(divElementId) {
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                 opacity: 0.4,
                 fontSize: 17,
-                textColor: "White",
+                textColor: "White"
             })
         );
     };
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     addChartTitle(sciChartSurface, "ENumericFormats example", "Shows some different ENumericFormat values on axis");
@@ -63,7 +65,7 @@ async function labelproviderProperties(divElementId) {
             labelFormat: ENumericFormat.Date_DDMMYYYY,
             axisTitle: "ENumericFormat.Date_DDMMYYYY",
             visibleRange: new NumberRange(1577833200, 1640991600),
-            axisTitleStyle: { fontSize: 16, padding: new Thickness(20, 10, 10, 10) },
+            axisTitleStyle: { fontSize: 16, padding: new Thickness(20, 10, 10, 10) }
         })
     );
 
@@ -73,7 +75,7 @@ async function labelproviderProperties(divElementId) {
             axisTitle: "ENumericFormat.Scientific",
             visibleRange: new NumberRange(1, 1000000000000),
             axisAlignment: EAxisAlignment.Top,
-            axisTitleStyle: { fontSize: 16, padding: new Thickness(10, 10, 20, 10) },
+            axisTitleStyle: { fontSize: 16, padding: new Thickness(10, 10, 20, 10) }
         })
     );
 
@@ -86,7 +88,7 @@ async function labelproviderProperties(divElementId) {
             labelPrefix: "$",
             labelPostfix: " USD",
             axisTitle: "ENumericFormat.Decimal",
-            axisTitleStyle: { fontSize: 16 },
+            axisTitleStyle: { fontSize: 16 }
         })
     );
 
@@ -98,7 +100,7 @@ async function labelproviderProperties(divElementId) {
             visibleRange: new NumberRange(1, 1000000000000),
             labelPrecision: 0,
             axisAlignment: EAxisAlignment.Left,
-            axisTitleStyle: { fontSize: 16 },
+            axisTitleStyle: { fontSize: 16 }
         })
     );
     // #endregion
@@ -126,9 +128,9 @@ async function builderExample(divElementId) {
                     visibleRange: new NumberRange(1577833200, 1640991600),
                     axisTitleStyle: {
                         fontSize: 16,
-                        padding: new Thickness(20, 10, 10, 10),
-                    },
-                },
+                        padding: new Thickness(20, 10, 10, 10)
+                    }
+                }
             },
             {
                 type: EAxisType.LogarithmicAxis,
@@ -139,10 +141,10 @@ async function builderExample(divElementId) {
                     axisAlignment: EAxisAlignment.Top,
                     axisTitleStyle: {
                         fontSize: 16,
-                        padding: new Thickness(10, 10, 20, 10),
-                    },
-                },
-            },
+                        padding: new Thickness(10, 10, 20, 10)
+                    }
+                }
+            }
         ],
         yAxes: [
             {
@@ -154,8 +156,8 @@ async function builderExample(divElementId) {
                     labelPrefix: "$",
                     labelPostfix: " USD",
                     axisTitle: "ENumericFormat.Decimal",
-                    axisTitleStyle: { fontSize: 16 },
-                },
+                    axisTitleStyle: { fontSize: 16 }
+                }
             },
             {
                 type: EAxisType.NumericAxis,
@@ -165,10 +167,10 @@ async function builderExample(divElementId) {
                     visibleRange: new NumberRange(1, 1000000000000),
                     labelPrecision: 0,
                     axisAlignment: EAxisAlignment.Left,
-                    axisTitleStyle: { fontSize: 16 },
-                },
-            },
-        ],
+                    axisTitleStyle: { fontSize: 16 }
+                }
+            }
+        ]
     });
     // #endregion
 }

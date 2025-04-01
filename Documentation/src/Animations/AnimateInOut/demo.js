@@ -1,4 +1,6 @@
-const animateInOut = async (divElementId) => {
+import * as SciChart from "scichart";
+
+const animateInOut = async divElementId => {
     const {
         SciChartSurface,
         NumericAxis,
@@ -10,12 +12,12 @@ const animateInOut = async (divElementId) => {
         ZoomPanModifier,
         MouseWheelZoomModifier,
         SplineLineRenderableSeries,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Create an xAxis, yAxis
@@ -39,7 +41,7 @@ const animateInOut = async (divElementId) => {
                             // Restore the data to the original values (before the animate out) so it can be animated in again.
                             // This only works in an onComplete
                             series.dataSeries.revertAnimationVectors();
-                        },
+                        }
                     })
                 );
                 // Restart this animation after the others have run
@@ -47,7 +49,7 @@ const animateInOut = async (divElementId) => {
                     series.isVisible = true;
                     series.runAnimation(inOutAnimation(series, 0));
                 }, 4 * DURATION);
-            },
+            }
         });
     // #endregion
 
@@ -58,7 +60,7 @@ const animateInOut = async (divElementId) => {
         const lineSeries = new SplineLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
             stroke: AUTO_COLOR,
-            strokeThickness: 4,
+            strokeThickness: 4
         });
 
         sciChartSurface.renderableSeries.add(lineSeries);
@@ -73,10 +75,10 @@ const animateInOut = async (divElementId) => {
                         new ScaleAnimation({
                             duration: 700,
                             reverse: true,
-                            fadeEffect: true,
+                            fadeEffect: true
                         })
                     );
-                },
+                }
             });
             // #endregion
         } else {

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function dataLabelGlobalLayout(divElementId) {
     // #region ExampleA
     const {
@@ -8,7 +10,7 @@ async function dataLabelGlobalLayout(divElementId) {
         XyDataSeries,
         NumberRange,
         testIsInBounds,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -18,7 +20,7 @@ async function dataLabelGlobalLayout(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
         title: "Skip overlapping labels across series",
-        titleStyle: { fontSize: 20 },
+        titleStyle: { fontSize: 20 }
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
@@ -32,20 +34,20 @@ async function dataLabelGlobalLayout(divElementId) {
             height: 10,
             strokeThickness: 2,
             stroke: "SteelBlue",
-            fill: "LightSteelBlue",
+            fill: "LightSteelBlue"
         }),
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            yValues: [4.3, 5, 5, 6, 8, 6.8, 7, 7, 7.2, 6.5, 6.5, 7],
+            yValues: [4.3, 5, 5, 6, 8, 6.8, 7, 7, 7.2, 6.5, 6.5, 7]
         }),
         // dataLabels style must be specified to show labels
         dataLabels: {
             style: {
-                fontFamily: "Arial",
-                fontSize: 18,
+                fontFamily: "Default",
+                fontSize: 18
             },
-            color: "SteelBlue",
-        },
+            color: "SteelBlue"
+        }
     });
 
     sciChartSurface.renderableSeries.add(lineSeries);
@@ -58,20 +60,20 @@ async function dataLabelGlobalLayout(divElementId) {
             height: 10,
             strokeThickness: 2,
             stroke: "Darkorange",
-            fill: "Tan",
+            fill: "Tan"
         }),
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            yValues: [4.5, 4.9, 5.1, 6.2, 7, 6.5, 7, 7.5, 7.1, 6.2, 5.5, 6],
+            yValues: [4.5, 4.9, 5.1, 6.2, 7, 6.5, 7, 7.5, 7.1, 6.2, 5.5, 6]
         }),
         // dataLabels style must be specified to show labels
         dataLabels: {
             style: {
-                fontFamily: "Arial",
-                fontSize: 18,
+                fontFamily: "Default",
+                fontSize: 18
             },
-            color: "Darkorange",
-        },
+            color: "Darkorange"
+        }
     });
 
     sciChartSurface.renderableSeries.add(lineSeries2);
@@ -105,7 +107,7 @@ async function dataLabelGlobalLayout(divElementId) {
                     label.text = "";
                 }
             }
-        },
+        }
     };
     // #endregion ExampleA
 }

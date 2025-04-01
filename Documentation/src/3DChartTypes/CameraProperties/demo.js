@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function cameraProperties(divElementId) {
     const {
         SciChart3DSurface,
@@ -7,7 +9,7 @@ async function cameraProperties(divElementId) {
         CameraController,
         MouseWheelZoomModifier3D,
         OrbitModifier3D,
-        ResetCamera3DModifier,
+        ResetCamera3DModifier
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -18,15 +20,15 @@ async function cameraProperties(divElementId) {
         // Optional camera options passed into create Method
         cameraOptions: {
             position: new Vector3(300, 300, 300),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     // A camera may be attached to a chart after creation
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         id: "Primary Camera",
         position: new Vector3(300, 300, 300),
-        target: new Vector3(0, 50, 0),
+        target: new Vector3(0, 50, 0)
     });
     // #endregion
 
@@ -34,12 +36,12 @@ async function cameraProperties(divElementId) {
     const camera = sciChart3DSurface.camera;
 
     // propertyChanged is raised each time any property changes on the camera
-    camera.propertyChanged.subscribe((args) => {
+    camera.propertyChanged.subscribe(args => {
         // Log current properties to console. debugOutput returns array of strings
         const cameraDebug = camera.debugOutput();
 
         // Output the same information to a div on the page
-        document.getElementById("debug-camera").innerHTML = cameraDebug.map((line) => `<p>${line}</p>`).join("");
+        document.getElementById("debug-camera").innerHTML = cameraDebug.map(line => `<p>${line}</p>`).join("");
     });
     // #endregion
 

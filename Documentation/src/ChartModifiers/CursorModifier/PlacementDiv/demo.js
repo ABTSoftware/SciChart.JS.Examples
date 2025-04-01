@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // Helper class to fetch candlestick data from Binance via Rest API
 const getCandles = async (symbol, interval, limit = 300) => {
     let url = `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}`;
@@ -16,7 +18,7 @@ const getCandles = async (symbol, interval, limit = 300) => {
         const lowValues = [];
         const closeValues = [];
         const volumeValues = [];
-        data.forEach((candle) => {
+        data.forEach(candle => {
             const [timestamp, open, high, low, close, volume] = candle;
             dateValues.push(timestamp / 1000); // SciChart expects Unix Timestamp / 1000
             openValues.push(parseFloat(open));
@@ -28,7 +30,7 @@ const getCandles = async (symbol, interval, limit = 300) => {
         return { dateValues, openValues, highValues, lowValues, closeValues, volumeValues };
     } catch (err) {
         console.error(err);
-        return [];
+        return {};
     }
 };
 
@@ -51,13 +53,13 @@ async function cursorModifierActiveLegendsOnCandles(divElementId) {
         XyDataSeries,
         parseColorToTArgb,
         FastLineRenderableSeries,
-        XyMovingAverageFilter,
+        XyMovingAverageFilter
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new CategoryAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { labelPrefix: "$", labelPrecision: 2 }));
@@ -82,14 +84,14 @@ async function cursorModifierActiveLegendsOnCandles(divElementId) {
             highValues,
             lowValues,
             closeValues,
-            dataSeriesName: "BTC/USDT",
+            dataSeriesName: "BTC/USDT"
         }),
         strokeThickness: 1,
         dataPointWidth: 0.7,
         brushUp: "#33ff3377",
         brushDown: "#ff333377",
         strokeUp: "#77ff77",
-        strokeDown: "#ff7777",
+        strokeDown: "#ff7777"
     });
     sciChartSurface.renderableSeries.add(candlestickSeries);
 
@@ -99,8 +101,8 @@ async function cursorModifierActiveLegendsOnCandles(divElementId) {
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyMovingAverageFilter(candlestickSeries.dataSeries, {
                 dataSeriesName: "Moving Average (20)",
-                length: 20,
-            }),
+                length: 20
+            })
         })
     );
 
@@ -108,8 +110,8 @@ async function cursorModifierActiveLegendsOnCandles(divElementId) {
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyMovingAverageFilter(candlestickSeries.dataSeries, {
                 dataSeriesName: "Moving Average (50)",
-                length: 50,
-            }),
+                length: 50
+            })
         })
     );
 
@@ -119,12 +121,12 @@ async function cursorModifierActiveLegendsOnCandles(divElementId) {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: dateValues,
                 yValues: volumeValues,
-                dataSeriesName: "Volume",
+                dataSeriesName: "Volume"
             }),
             yAxisId: "VolumeAxisId",
             strokeThickness: 0,
             dataPointWidth: 0.7,
-            opacity: 0.47,
+            opacity: 0.47
         })
     );
 
@@ -139,7 +141,7 @@ async function cursorModifierActiveLegendsOnCandles(divElementId) {
     const cursorModifier = new CursorModifier({
         placementDivId: "legend-root",
         showTooltip: true,
-        tooltipContainerBackground: "#4682b433",
+        tooltipContainerBackground: "#4682b433"
     });
     sciChartSurface.chartModifiers.add(cursorModifier);
     // #endregion

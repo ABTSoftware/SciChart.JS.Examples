@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleSplineBandChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a Spline Band chart using SciChart.js
@@ -7,13 +9,13 @@ async function simpleSplineBandChart(divElementId) {
         SplineBandRenderableSeries,
         XyyDataSeries,
         SciChartJsNavyTheme,
-        EllipsePointMarker,
+        EllipsePointMarker
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -41,8 +43,8 @@ async function simpleSplineBandChart(divElementId) {
             width: 7,
             height: 7,
             fill: "white",
-            strokeThickness: 0,
-        }),
+            strokeThickness: 0
+        })
     });
 
     sciChartSurface.renderableSeries.add(bandSeries);
@@ -79,7 +81,7 @@ async function builderExample(divElementId) {
                 xyyData: {
                     xValues,
                     yValues,
-                    y1Values,
+                    y1Values
                 },
                 options: {
                     stroke: "#FF1919FF",
@@ -94,12 +96,12 @@ async function builderExample(divElementId) {
                             height: 7,
                             strokeThickness: 1,
                             fill: "steelblue",
-                            stroke: "LightSteelBlue",
-                        },
-                    },
-                },
-            },
-        ],
+                            stroke: "LightSteelBlue"
+                        }
+                    }
+                }
+            }
+        ]
     });
     // #endregion
 }

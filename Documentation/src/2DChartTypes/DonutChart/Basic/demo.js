@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleDonutChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a pie chart with SciChart.js
@@ -9,7 +11,7 @@ async function simpleDonutChart(divElementId) {
         ELegendPlacement,
         ELegendOrientation,
         GradientParams,
-        Point,
+        Point
     } = SciChart;
 
     // or, for npm, import { SciChartPieSurface, ... } from "scichart"
@@ -20,7 +22,7 @@ async function simpleDonutChart(divElementId) {
         theme: new SciChartJsNavyTheme(),
         pieType: EPieType.Donut,
         holeRadius: 0.6,
-        animate: true,
+        animate: true
     });
 
     // Additional legend options
@@ -37,16 +39,16 @@ async function simpleDonutChart(divElementId) {
         text: "Green",
         colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "#1D976C", offset: 0 },
-            { color: "#93F9B9", offset: 1 },
-        ]),
+            { color: "#93F9B9", offset: 1 }
+        ])
     });
     const pieSegment2 = new PieSegment({
         value: 10,
         text: "Red",
         colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "#DD5E89", offset: 0 },
-            { color: "#F7BB97", offset: 1 },
-        ]),
+            { color: "#F7BB97", offset: 1 }
+        ])
     });
     const pieSegment3 = new PieSegment({
         value: 20,
@@ -54,16 +56,16 @@ async function simpleDonutChart(divElementId) {
         colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "#1FA2FF", offset: 0 },
             { color: "#12D8FA", offset: 0.5 },
-            { color: "#A6FFCB", offset: 1 },
-        ]),
+            { color: "#A6FFCB", offset: 1 }
+        ])
     });
     const pieSegment4 = new PieSegment({
         value: 15,
         text: "Yellow",
         colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "#F09819", offset: 0 },
-            { color: "#EDDE5D", offset: 1 },
-        ]),
+            { color: "#EDDE5D", offset: 1 }
+        ])
     });
     sciChartPieSurface.pieSegments.add(pieSegment1, pieSegment2, pieSegment3, pieSegment4);
     // #endregion
@@ -84,14 +86,14 @@ async function builderExample(divElementId) {
             surface: {
                 theme: { type: EThemeProviderType.Dark },
                 holeRadius: 0.6,
-                pieType: EPieType.Donut,
+                pieType: EPieType.Donut
             },
             segments: [
                 { text: "This", value: 10, color: "red", labelStyle: { color: "white " } },
                 { text: "That", value: 5, color: "blue", labelStyle: { color: "white " } },
-                { text: "Other", value: 7, color: "green", labelStyle: { color: "white " } },
-            ],
-        },
+                { text: "Other", value: 7, color: "green", labelStyle: { color: "white " } }
+            ]
+        }
     });
 
     // Alternative API
@@ -99,13 +101,13 @@ async function builderExample(divElementId) {
         surface: {
             theme: { type: EThemeProviderType.Dark },
             pieType: EPieType.Donut,
-            holeRadius: 0.6,
+            holeRadius: 0.6
         },
         segments: [
             { text: "This", value: 10, color: "red", labelStyle: { color: "white " } },
             { text: "That", value: 5, color: "blue", labelStyle: { color: "white " } },
-            { text: "Other", value: 7, color: "green", labelStyle: { color: "white " } },
-        ],
+            { text: "Other", value: 7, color: "green", labelStyle: { color: "white " } }
+        ]
     });
     // #endregion
 }

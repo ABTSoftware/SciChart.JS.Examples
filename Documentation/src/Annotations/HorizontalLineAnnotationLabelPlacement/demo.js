@@ -1,10 +1,12 @@
+import * as SciChart from "scichart";
+
 const { HorizontalLineAnnotation, NumericAxis, SciChartSurface, ELabelPlacement, SciChartJsNavyTheme } = SciChart;
 
 // or for npm import { SciChartSurface, ... } from "scichart"
 
 async function addAnnotationToChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -21,7 +23,7 @@ async function addAnnotationToChart(divElementId) {
             y1: 9,
             axisLabelFill: "#FF6600",
             axisLabelStroke: "#333",
-            axisFontSize: 20,
+            axisFontSize: 20
         }),
         // Vertically line with a custom label value
         new HorizontalLineAnnotation({
@@ -34,7 +36,7 @@ async function addAnnotationToChart(divElementId) {
             axisLabelFill: "#3388FF",
             labelValue: "Custom Label",
             axisLabelStroke: "White",
-            axisFontSize: 20,
+            axisFontSize: 20
         })
     );
     // #endregion
@@ -60,8 +62,8 @@ async function builderExample(divElementId) {
                     y1: 9,
                     axisLabelFill: "#FF6600",
                     axisLabelStroke: "#333",
-                    axisFontSize: 20,
-                },
+                    axisFontSize: 20
+                }
             },
             {
                 type: EAnnotationType.RenderContextHorizontalLineAnnotation,
@@ -75,10 +77,10 @@ async function builderExample(divElementId) {
                     axisLabelFill: "#3388FF",
                     labelValue: "Custom Label",
                     axisLabelStroke: "White",
-                    axisFontSize: 20,
-                },
-            },
-        ],
+                    axisFontSize: 20
+                }
+            }
+        ]
     });
     // #endregion
 }

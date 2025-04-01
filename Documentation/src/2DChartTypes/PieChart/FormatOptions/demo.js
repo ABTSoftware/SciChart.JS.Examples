@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function formatPieChart(divElementId) {
     // Demonstrates how to create a pie chart with SciChart.js
     const { SciChartPieSurface, Point, SciChartJsNavyTheme, PieSegment, PieLabelProvider, EPieType } = SciChart;
@@ -10,7 +12,7 @@ async function formatPieChart(divElementId) {
         theme: new SciChartJsNavyTheme(),
         pieType: EPieType.Pie,
         animate: true,
-        seriesSpacing: 5,
+        seriesSpacing: 5
     });
     // Set this to adjust the radial position of the labels
     // When positioning outside the pie, you may want to make further fine adjustments to label positions using the labelOffset as shown below
@@ -33,7 +35,7 @@ async function formatPieChart(divElementId) {
         labelOffset: new Point(10, 0),
         // labelStyles can be overridden per segment.
         // These will be merged onto the surface style so the resulting style here is fontSize: 14, color: "#f8f682"
-        labelStyle: { color: "#F48420" },
+        labelStyle: { color: "#F48420" }
     });
 
     const pieSegment2 = new PieSegment({
@@ -41,7 +43,7 @@ async function formatPieChart(divElementId) {
         value: 10,
         text: "Apples",
         radiusAdjustment: 1.1,
-        labelOffset: new Point(0, -20),
+        labelOffset: new Point(0, -20)
     });
     // If you set a property on the segment labelProvider, it will override the one on the surface
     pieSegment2.labelProvider.getSegmentText = (segment, total) => "Some Apples";
@@ -53,16 +55,16 @@ async function formatPieChart(divElementId) {
         text: "Strawberries",
         labelProvider: new PieLabelProvider({ labelPrefix: "Strawberries: " }),
         labelOffset: new Point(-25, 0),
-        labelStyle: { color: "#EC0F6C" },
+        labelStyle: { color: "#EC0F6C" }
     });
 
     const pieSegment4 = new PieSegment({
         color: "#50C7E0",
         value: 15,
-        text: "Grapes",
+        text: "Grapes"
     });
     // Overriding a property on the segment labelProvider implicitly creates a new default PieLabelProvider that overries the one set on the surface
-    pieSegment4.labelProvider.formatLabel = (dataValue) => dataValue.toFixed(2) + "%";
+    pieSegment4.labelProvider.formatLabel = dataValue => dataValue.toFixed(2) + "%";
 
     sciChartPieSurface.pieSegments.add(pieSegment1, pieSegment2, pieSegment3, pieSegment4);
     // #endregion

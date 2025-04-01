@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function gridlineLabelSpacing(divElementId) {
     const {
         SciChart3DSurface,
@@ -7,7 +9,7 @@ async function gridlineLabelSpacing(divElementId) {
         NumberRange,
         MouseWheelZoomModifier3D,
         OrbitModifier3D,
-        ResetCamera3DModifier,
+        ResetCamera3DModifier
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -18,8 +20,8 @@ async function gridlineLabelSpacing(divElementId) {
         worldDimensions: new Vector3(300, 200, 300),
         cameraOptions: {
             position: new Vector3(-300, 300, -300),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     // #region ExampleA
@@ -30,7 +32,7 @@ async function gridlineLabelSpacing(divElementId) {
         visibleRange: new NumberRange(0, 10),
         autoTicks: true, // default value is true. Major/Minor Deltas are calculated automatically
         maxAutoTicks: 5, // Hint: 5 major gridlines and labels
-        minorsPerMajor: 4, // Exact: 4 minor gridlines per major gridline
+        minorsPerMajor: 4 // Exact: 4 minor gridlines per major gridline
     });
     // #endregion
 
@@ -40,12 +42,12 @@ async function gridlineLabelSpacing(divElementId) {
         visibleRange: new NumberRange(0, 10),
         autoTicks: false, // Major/Minor Deltas are specified manually
         majorDelta: 5,
-        minorDelta: 1,
+        minorDelta: 1
     });
     // #endregion
     // #region ExampleC
     const {
-        NumericTickProvider, // or import { NumericTickProvider } from "scichart";
+        NumericTickProvider // or import { NumericTickProvider } from "scichart";
     } = SciChart;
 
     // Custom TickProvider implementation
@@ -63,7 +65,7 @@ async function gridlineLabelSpacing(divElementId) {
             return [
                 0.2, 0.4, 0.6, 0.8, 1.2, 1.4, 1.6, 1.8, 2.2, 2.4, 2.6, 2.8, 3.0, 3.2, 3.4, 3.6, 3.8, 4.2, 4.4, 4.6, 4.8,
                 5.0, 5.2, 5.4, 5.6, 5.8, 6.0, 6.2, 6.4, 6.6, 6.8, 7.0, 7.2, 7.4, 7.6, 7.8, 8.2, 8.4, 8.6, 8.8, 9.0, 9.2,
-                9.4, 9.6, 9.8,
+                9.4, 9.6, 9.8
             ];
         }
 
@@ -79,7 +81,7 @@ async function gridlineLabelSpacing(divElementId) {
     // Create the X-Axis
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Z [Custom Spacing]",
-        visibleRange: new NumberRange(0, 10),
+        visibleRange: new NumberRange(0, 10)
     });
 
     // Apply the tick provider

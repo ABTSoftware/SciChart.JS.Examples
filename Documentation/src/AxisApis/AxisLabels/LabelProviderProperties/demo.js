@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function labelproviderProperties(divElementId) {
     const {
         SciChartSurface,
@@ -6,7 +8,7 @@ async function labelproviderProperties(divElementId) {
         ENumericFormat,
         TextAnnotation,
         ECoordinateMode,
-        EHorizontalAnchorPoint,
+        EHorizontalAnchorPoint
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -25,7 +27,7 @@ async function labelproviderProperties(divElementId) {
                 opacity: 0.5,
                 fontSize: 32,
                 fontWeight: "Bold",
-                textColor: "White",
+                textColor: "White"
             })
         );
         sciChartSurface.annotations.add(
@@ -38,13 +40,13 @@ async function labelproviderProperties(divElementId) {
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                 opacity: 0.4,
                 fontSize: 17,
-                textColor: "White",
+                textColor: "White"
             })
         );
     };
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     addChartTitle(
@@ -62,7 +64,7 @@ async function labelproviderProperties(divElementId) {
             cursorLabelFormat: ENumericFormat.Decimal,
             labelPrecision: 4,
             labelPrefix: "$",
-            labelPostfix: " USD",
+            labelPostfix: " USD"
         })
     );
 
@@ -95,12 +97,12 @@ async function builderExample(divElementId) {
                 cursorLabelFormat: ENumericFormat.Decimal,
                 labelPrecision: 4,
                 labelPrefix: "$",
-                labelPostfix: " USD",
-            },
+                labelPostfix: " USD"
+            }
         },
         yAxes: {
-            type: EAxisType.NumericAxis,
-        },
+            type: EAxisType.NumericAxis
+        }
     });
 
     // Setting the labelprovider properties on the labelProvider itself

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function numericAxis3D(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a 3D chart with X,Y,Z axis in SciChart.js
@@ -10,7 +12,7 @@ async function numericAxis3D(divElementId) {
         ENumericFormat,
         MouseWheelZoomModifier3D,
         OrbitModifier3D,
-        ResetCamera3DModifier,
+        ResetCamera3DModifier
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -21,8 +23,8 @@ async function numericAxis3D(divElementId) {
         worldDimensions: new Vector3(300, 200, 300),
         cameraOptions: {
             position: new Vector3(300, 300, 300),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     // Create an xAxis and assign to SciChart3DSurface
@@ -44,7 +46,7 @@ async function numericAxis3D(divElementId) {
         maxAutoTicks: 5,
         // Offset our labels so that they dont overlap
         titleOffset: 50,
-        tickLabelsOffset: 10,
+        tickLabelsOffset: 10
     });
 
     // Create the Y-Axis and assign to SciChart3DSurface
@@ -58,7 +60,7 @@ async function numericAxis3D(divElementId) {
         maxAutoTicks: 5,
         // Offset our labels so that they dont overlap
         titleOffset: 50,
-        tickLabelsOffset: 10,
+        tickLabelsOffset: 10
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Z Axis, 0 dp",
@@ -70,7 +72,7 @@ async function numericAxis3D(divElementId) {
         maxAutoTicks: 5,
         // Offset our labels so that they dont overlap
         titleOffset: 50,
-        tickLabelsOffset: 10,
+        tickLabelsOffset: 10
     });
 
     // Optional: add zooming, panning for the example

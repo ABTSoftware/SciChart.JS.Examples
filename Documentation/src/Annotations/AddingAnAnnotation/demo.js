@@ -1,20 +1,24 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const {
     BoxAnnotation,
+    TextAnnotation,
+    LineAnnotation,
     NumericAxis,
     SciChartSurface,
     NumberRange,
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
     ECoordinateMode,
-    SciChartJsNavyTheme,
+    SciChartJsNavyTheme
 } = SciChart;
 
 // or for npm import { SciChartSurface, ... } from "scichart"
 
 async function addAnnotationToChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -27,7 +31,7 @@ async function addAnnotationToChart(divElementId) {
             x1: 2.0,
             x2: 8.0,
             y1: 3.0,
-            y2: 7.0,
+            y2: 7.0
         }),
         new BoxAnnotation({
             stroke: "#FF3333",
@@ -36,7 +40,7 @@ async function addAnnotationToChart(divElementId) {
             x1: 2.0,
             x2: 8.0,
             y1: 3.0,
-            y2: 7.0,
+            y2: 7.0
         }),
         new BoxAnnotation({
             stroke: "#33FF33",
@@ -45,7 +49,7 @@ async function addAnnotationToChart(divElementId) {
             x1: 3.0,
             x2: 9.0,
             y1: 4.0,
-            y2: 8.0,
+            y2: 8.0
         }),
         new TextAnnotation({
             x1: 100,
@@ -56,8 +60,8 @@ async function addAnnotationToChart(divElementId) {
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             textColor: "yellow",
             fontSize: 26,
-            fontFamily: "Arial",
-            text: "TEXT ANNOTATION",
+            fontFamily: "Default",
+            text: "TEXT ANNOTATION"
         })
     );
 }
@@ -67,7 +71,7 @@ addAnnotationToChart("scichart-root");
 
 async function builderExample(divElementId) {
     // #region ExampleB
-    const { chartBuilder, EAnnotationType, ECoordinateMode } = SciChart;
+    const { chartBuilder, EAnnotationType, ECoordinateMode, EVerticalAnchorPoint, EHorizontalAnchorPoint } = SciChart;
 
     // or for npm import { SciChartSurface, ... } from "scichart"
 
@@ -82,8 +86,8 @@ async function builderExample(divElementId) {
                     x1: 2.0,
                     x2: 8.0,
                     y1: 3.0,
-                    y2: 7.0,
-                },
+                    y2: 7.0
+                }
             },
             {
                 type: EAnnotationType.RenderContextBoxAnnotation,
@@ -94,25 +98,25 @@ async function builderExample(divElementId) {
                     x1: 3.0,
                     x2: 9.0,
                     y1: 4.0,
-                    y2: 8.0,
-                },
+                    y2: 8.0
+                }
             },
             {
                 type: EAnnotationType.SVGTextAnnotation,
                 options: {
                     x1: 100,
                     y1: 0.5,
-                    xCoordinateMode: "Pixel",
-                    yCoordinateMode: "Relative",
-                    horizontalAnchorPoint: "Left",
-                    verticalAnchorPoint: "Center",
+                    xCoordinateMode: ECoordinateMode.Pixel,
+                    yCoordinateMode: ECoordinateMode.Relative,
+                    horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+                    verticalAnchorPoint: EVerticalAnchorPoint.Center,
                     textColor: "yellow",
                     fontSize: 26,
                     fontFamily: "Times New Roman",
-                    text: "TEXT ANNOTATION",
-                },
-            },
-        ],
+                    text: "TEXT ANNOTATION"
+                }
+            }
+        ]
     });
     // #endregion
 }

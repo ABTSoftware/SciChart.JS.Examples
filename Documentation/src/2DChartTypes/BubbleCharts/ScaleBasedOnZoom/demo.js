@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function scaleBasedOnZoom(divElementId) {
     // Demonstrates how to create a bubble chart with SciChart.js
     const {
@@ -6,13 +8,13 @@ async function scaleBasedOnZoom(divElementId) {
         XyzDataSeries,
         FastBubbleRenderableSeries,
         EllipsePointMarker,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -33,8 +35,8 @@ async function scaleBasedOnZoom(divElementId) {
             width: 256,
             height: 256,
             strokeThickness: 0,
-            fill: "#4682b477",
-        }),
+            fill: "#4682b477"
+        })
     });
 
     // Adjust zMultiplier based on zoom level

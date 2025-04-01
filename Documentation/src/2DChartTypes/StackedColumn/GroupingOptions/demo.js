@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function stackedColumnOptions() {
     // Demonstrates how to create a Column chart with SciChart.js
     const {
@@ -14,7 +16,7 @@ async function stackedColumnOptions() {
         EHorizontalAnchorPoint,
         EVerticalAnchorPoint,
         ECoordinateMode,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -36,9 +38,9 @@ async function stackedColumnOptions() {
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                 verticalAnchorPoint: EVerticalAnchorPoint.Top,
                 text: title,
-                fontFamily: "Arial",
+                fontFamily: "Default",
                 fontSize: 16,
-                textColor: "#EEE",
+                textColor: "#EEE"
             })
         );
     };
@@ -46,7 +48,7 @@ async function stackedColumnOptions() {
     const createStackedExample = async (divElementId, title) => {
         // #region ExampleA
         const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-            theme: new SciChartJsNavyTheme(),
+            theme: new SciChartJsNavyTheme()
         });
         sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
         sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0, 0.1) }));
@@ -61,7 +63,7 @@ async function stackedColumnOptions() {
                 stroke: "#E4F5FC",
                 strokeThickness: 1,
                 opacity: 0.8,
-                stackedGroupId: "StackedGroupId",
+                stackedGroupId: "StackedGroupId"
             })
         );
 
@@ -72,7 +74,7 @@ async function stackedColumnOptions() {
                 stroke: "#E4F5FC",
                 strokeThickness: 1,
                 opacity: 0.8,
-                stackedGroupId: "StackedGroupId",
+                stackedGroupId: "StackedGroupId"
             })
         );
 
@@ -83,7 +85,7 @@ async function stackedColumnOptions() {
                 stroke: "#E4F5FC",
                 strokeThickness: 1,
                 opacity: 0.8,
-                stackedGroupId: "StackedGroupId",
+                stackedGroupId: "StackedGroupId"
             })
         );
 
@@ -102,7 +104,7 @@ async function stackedColumnOptions() {
     const createGroupedExample = async (divElementId, title) => {
         // #region ExampleB
         const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-            theme: new SciChartJsNavyTheme(),
+            theme: new SciChartJsNavyTheme()
         });
         sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
         sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0, 0.1) }));
@@ -117,7 +119,7 @@ async function stackedColumnOptions() {
                 stroke: "#E4F5FC",
                 strokeThickness: 1,
                 opacity: 0.8,
-                stackedGroupId: "StackedGroupId-First",
+                stackedGroupId: "StackedGroupId-First"
             })
         );
 
@@ -128,7 +130,7 @@ async function stackedColumnOptions() {
                 stroke: "#E4F5FC",
                 strokeThickness: 1,
                 opacity: 0.8,
-                stackedGroupId: "StackedGroupId-Second",
+                stackedGroupId: "StackedGroupId-Second"
             })
         );
 
@@ -139,7 +141,7 @@ async function stackedColumnOptions() {
                 stroke: "#E4F5FC",
                 strokeThickness: 1,
                 opacity: 0.8,
-                stackedGroupId: "StackedGroupId-Third",
+                stackedGroupId: "StackedGroupId-Third"
             })
         );
 
@@ -158,7 +160,7 @@ async function stackedColumnOptions() {
     const createMixedExample = async (divElementId, title) => {
         // #region ExampleC
         const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-            theme: new SciChartJsNavyTheme(),
+            theme: new SciChartJsNavyTheme()
         });
         sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
         sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0, 0.1) }));
@@ -173,7 +175,7 @@ async function stackedColumnOptions() {
                 stroke: "#E4F5FC",
                 strokeThickness: 1,
                 opacity: 0.8,
-                stackedGroupId: "StackedGroupId-First",
+                stackedGroupId: "StackedGroupId-First"
             })
         );
 
@@ -184,7 +186,7 @@ async function stackedColumnOptions() {
                 stroke: "#E4F5FC",
                 strokeThickness: 1,
                 opacity: 0.8,
-                stackedGroupId: "StackedGroupId-First",
+                stackedGroupId: "StackedGroupId-First"
             })
         );
 
@@ -195,7 +197,7 @@ async function stackedColumnOptions() {
                 stroke: "#E4F5FC",
                 strokeThickness: 1,
                 opacity: 0.8,
-                stackedGroupId: "StackedGroupId-Second",
+                stackedGroupId: "StackedGroupId-Second"
             })
         );
 
@@ -214,14 +216,14 @@ async function stackedColumnOptions() {
     const create100PercentExample = async (divElementId, title) => {
         // #region ExampleD
         const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-            theme: new SciChartJsNavyTheme(),
+            theme: new SciChartJsNavyTheme()
         });
         sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
         sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0, 0.1) }));
 
         const stackedCollection = new StackedColumnCollection(wasmContext, {
             // Simply set isOneHundredPercent to enable 100% stacking
-            isOneHundredPercent: true,
+            isOneHundredPercent: true
         });
 
         // Using the same stackedGroupId causes stacking (one above another)
@@ -232,7 +234,7 @@ async function stackedColumnOptions() {
                 stroke: "#E4F5FC",
                 strokeThickness: 1,
                 opacity: 0.8,
-                stackedGroupId: "StackedGroupId",
+                stackedGroupId: "StackedGroupId"
             })
         );
 
@@ -243,7 +245,7 @@ async function stackedColumnOptions() {
                 stroke: "#E4F5FC",
                 strokeThickness: 1,
                 opacity: 0.8,
-                stackedGroupId: "StackedGroupId",
+                stackedGroupId: "StackedGroupId"
             })
         );
 
@@ -254,7 +256,7 @@ async function stackedColumnOptions() {
                 stroke: "#E4F5FC",
                 strokeThickness: 1,
                 opacity: 0.8,
-                stackedGroupId: "StackedGroupId",
+                stackedGroupId: "StackedGroupId"
             })
         );
 

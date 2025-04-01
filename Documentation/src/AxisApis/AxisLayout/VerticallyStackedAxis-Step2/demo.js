@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function verticallyStackedAxis(divElementId) {
     const {
         SciChartSurface,
@@ -6,13 +8,13 @@ async function verticallyStackedAxis(divElementId) {
         EAxisAlignment,
         LeftAlignedOuterVerticallyStackedAxisLayoutStrategy,
         FastLineRenderableSeries,
-        XyDataSeries,
+        XyDataSeries
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // #region ExampleA
@@ -26,7 +28,7 @@ async function verticallyStackedAxis(divElementId) {
             axisTitle: "X Axis",
             axisTitleStyle: { fontSize: 13 },
             backgroundColor: "#50C7E022",
-            axisBorder: { color: "#50C7E0", borderTop: 1 },
+            axisBorder: { color: "#50C7E0", borderTop: 1 }
         })
     );
 
@@ -66,15 +68,15 @@ async function verticallyStackedAxis(divElementId) {
     });
 
     // Let's add some series to the chart to show how they also behave with axis
-    const getOptions = (index) => {
+    const getOptions = index => {
         const xValues = Array.from(Array(50).keys());
-        const yValues = xValues.map((x) => Math.sin(x * 0.4 + index));
+        const yValues = xValues.map(x => Math.sin(x * 0.4 + index));
 
         return {
             yAxisId: `YAxis${index}`,
             stroke: axisColors[index],
             strokeThickness: 2,
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues })
         };
     };
 

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 const {
     AxisMarkerAnnotation,
     NumericAxis,
@@ -7,7 +9,7 @@ const {
     TextAnnotation,
     ECoordinateMode,
     EHorizontalAnchorPoint,
-    Point,
+    Point
 } = SciChart;
 
 // or for npm import { SciChartSurface, ... } from "scichart"
@@ -49,7 +51,7 @@ class DiscreteAxisMarker extends AxisMarkerAnnotation {
 
 async function addAnnotationToChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -58,7 +60,7 @@ async function addAnnotationToChart(divElementId) {
         new DiscreteAxisMarker({
             isEditable: true,
             y1: 5,
-            formattedValue: "Drag Me!",
+            formattedValue: "Drag Me!"
         })
     );
 
@@ -75,7 +77,7 @@ async function addAnnotationToChart(divElementId) {
                 opacity: 0.5,
                 fontSize: 32,
                 fontWeight: "Bold",
-                textColor: "White",
+                textColor: "White"
             })
         );
         sciChartSurface.annotations.add(
@@ -88,7 +90,7 @@ async function addAnnotationToChart(divElementId) {
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                 opacity: 0.4,
                 fontSize: 17,
-                textColor: "White",
+                textColor: "White"
             })
         );
     };

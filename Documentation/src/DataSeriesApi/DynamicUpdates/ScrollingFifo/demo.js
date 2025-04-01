@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function dataSeriesScrollingFifo(divElementId) {
     const {
         SciChartSurface,
@@ -6,7 +8,7 @@ async function dataSeriesScrollingFifo(divElementId) {
         XyDataSeries,
         SciChartJsNavyTheme,
         EAutoRange,
-        libraryVersion,
+        libraryVersion
     } = SciChart;
 
     // or for npm import { SciChartSurface, ... } from "scichart"
@@ -15,7 +17,7 @@ async function dataSeriesScrollingFifo(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
         title: "Scrolling Data using fifoCapacity",
-        titleStyle: { fontSize: 16 },
+        titleStyle: { fontSize: 16 }
     });
 
     // For the example to work, axis must have EAutoRange.Always
@@ -40,7 +42,7 @@ async function dataSeriesScrollingFifo(divElementId) {
     const xyDataSeries = new XyDataSeries(wasmContext, {
         xValues,
         yValues,
-        fifoCapacity: 1200, // set fifoCapacity to 1200. Requires scichart.js v3.2 or later
+        fifoCapacity: 1200 // set fifoCapacity to 1200. Requires scichart.js v3.2 or later
     });
 
     console.log(`version is ${libraryVersion}`);
@@ -51,7 +53,7 @@ async function dataSeriesScrollingFifo(divElementId) {
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: xyDataSeries,
             strokeThickness: 3,
-            stroke: "#50C7E0",
+            stroke: "#50C7E0"
         })
     );
 

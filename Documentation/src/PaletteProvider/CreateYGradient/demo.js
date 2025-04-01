@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 const {
     SciChartSurface,
     FastLineRenderableSeries,
@@ -12,12 +14,12 @@ const {
     SciChartJsNavyTheme,
     MouseWheelZoomModifier,
     ZoomPanModifier,
-    ZoomExtentsModifier,
+    ZoomExtentsModifier
 } = SciChart;
 
 async function lineChartWithyGradient(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     // Create XAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -25,7 +27,7 @@ async function lineChartWithyGradient(divElementId) {
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
 
     const xValues = makeIncArray(30);
-    const yValues = makeIncArray(30, 1, (y) => Math.sin(y * 0.2) + Math.sin(y * 0.1));
+    const yValues = makeIncArray(30, 1, y => Math.sin(y * 0.2) + Math.sin(y * 0.1));
 
     // #region ExampleA
     const yGradientPalette = PaletteFactory.createYGradient(
@@ -33,7 +35,7 @@ async function lineChartWithyGradient(divElementId) {
         new GradientParams(new Point(0, 0), new Point(0, 1), [
             { offset: 0, color: "#3333FF" },
             { offset: 0.5, color: "#33FFAA" },
-            { offset: 1, color: "#FF6600" },
+            { offset: 1, color: "#FF6600" }
         ]),
         // the range of y-values to apply the gradient to
         new NumberRange(0, 1.5),
@@ -44,7 +46,7 @@ async function lineChartWithyGradient(divElementId) {
             enablePointMarkers: true, // Applies to pointmarkers if present
             strokeOpacity: 1.0,
             pointMarkerOpacity: 0.7,
-            fillOpacity: 0.0,
+            fillOpacity: 0.0
         }
     );
 
@@ -55,9 +57,9 @@ async function lineChartWithyGradient(divElementId) {
             pointMarker: new EllipsePointMarker(wasmContext, {
                 width: 20,
                 height: 20,
-                strokeThickness: 0,
+                strokeThickness: 0
             }),
-            paletteProvider: yGradientPalette,
+            paletteProvider: yGradientPalette
         })
     );
     // #endregion

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function drawExample(divElementId) {
     // #region ExampleA
     // Demonstrates how to configure chart titles SciChart.js
@@ -17,7 +19,7 @@ async function drawExample(divElementId) {
         horizontalGrowFactor: 0.001,
         verticalGrowFactor: 0.001,
         excludedXAxisIds: ["xAxis2"],
-        includedYAxisIds: ["yAxis1"],
+        includedYAxisIds: ["yAxis1"]
     });
 
     sciChartSurface.chartModifiers.add(pinchZoomModifier);
@@ -37,22 +39,22 @@ async function builderExample(divElementId) {
         xAxes: [
             {
                 type: EAxisType.NumericAxis,
-                options: { id: "xAxis1", axisTitle: "xAxis1" },
+                options: { id: "xAxis1", axisTitle: "xAxis1" }
             },
             {
                 type: EAxisType.NumericAxis,
-                options: { id: "xAxis2", axisTitle: "xAxis2" },
-            },
+                options: { id: "xAxis2", axisTitle: "xAxis2" }
+            }
         ],
         yAxes: [
             {
                 type: EAxisType.NumericAxis,
-                options: { id: "yAxis1", axisTitle: "yAxis1" },
+                options: { id: "yAxis1", axisTitle: "yAxis1" }
             },
             {
                 type: EAxisType.NumericAxis,
-                options: { id: "yAxis2", axisTitle: "yAxis2" },
-            },
+                options: { id: "yAxis2", axisTitle: "yAxis2" }
+            }
         ],
         modifiers: [
             {
@@ -61,10 +63,10 @@ async function builderExample(divElementId) {
                     horizontalGrowFactor: 0.001,
                     verticalGrowFactor: 0.001,
                     excludedXAxisIds: ["xAxis2"],
-                    includedYAxisIds: ["yAxis1"],
-                },
-            },
-        ],
+                    includedYAxisIds: ["yAxis1"]
+                }
+            }
+        ]
     });
     // #endregion
 }

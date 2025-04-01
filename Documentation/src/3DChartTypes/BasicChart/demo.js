@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simple3DChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a 3D chart with X,Y,Z axis in SciChart.js
@@ -8,7 +10,7 @@ async function simple3DChart(divElementId) {
         SciChartJsNavyTheme,
         MouseWheelZoomModifier3D,
         OrbitModifier3D,
-        ResetCamera3DModifier,
+        ResetCamera3DModifier
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -22,8 +24,8 @@ async function simple3DChart(divElementId) {
         // Optional initial camera position and target
         cameraOptions: {
             position: new Vector3(300, 300, 300),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     // SciChart.js 3D supports only a single x,y,z axis. Declare your axis like this

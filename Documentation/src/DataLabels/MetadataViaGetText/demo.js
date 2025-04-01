@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function dataLabelsMetadataFromGetText(divElementId) {
     const {
         SciChartSurface,
@@ -7,14 +9,14 @@ async function dataLabelsMetadataFromGetText(divElementId) {
         XyDataSeries,
         NumberRange,
         SciChartJsNavyTheme,
-        EDataLabelSkipMode,
+        EDataLabelSkipMode
     } = SciChart;
 
     // or for npm: import { SciChartSurface, ... } from "scichart"
 
     // Create a SciChartSurface with X,Y Axis
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.2, 0.2) }));
@@ -31,7 +33,7 @@ async function dataLabelsMetadataFromGetText(divElementId) {
                 height: 10,
                 strokeThickness: 2,
                 stroke: "SteelBlue",
-                fill: "LightSteelBlue",
+                fill: "LightSteelBlue"
             }),
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -48,25 +50,25 @@ async function dataLabelsMetadataFromGetText(divElementId) {
                     { text: "Lemons", isSelected: false },
                     { text: "Limes", isSelected: false },
                     { text: "Papaya", isSelected: false },
-                    { text: "Guava", isSelected: false },
-                ],
+                    { text: "Guava", isSelected: false }
+                ]
             }),
             // Next, add the dataLabels. Simply setting dataLabel style makes labels visible
             dataLabels: {
                 style: {
-                    fontFamily: "Arial",
-                    fontSize: 13,
+                    fontFamily: "Default",
+                    fontSize: 13
                 },
                 skipMode: EDataLabelSkipMode.ShowAll,
-                color: "#EEE",
-            },
+                color: "#EEE"
+            }
         })
     );
 
     // #region ExampleA
     // Assuming metadata has been constructed in the dataseries and dataLabels enabled,
     // you can format labels with metadata using dataLabelProvider.getText(dataLabelState)
-    sciChartSurface.renderableSeries.get(0).dataLabelProvider.getText = (dataLabelState) => {
+    sciChartSurface.renderableSeries.get(0).dataLabelProvider.getText = dataLabelState => {
         return `index=${dataLabelState.index}, 
         x,y=[${dataLabelState.xVal()}, ${dataLabelState.yVal()}], 
         metadata="${dataLabelState.getMetaData()?.text}"`;

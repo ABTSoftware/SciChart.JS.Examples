@@ -1,17 +1,18 @@
-"use strict";
-
-const scichart_1 = SciChart;
+import { SciChartSurface, SciChartJsNavyTheme, NumericAxis, ChartTitleRenderer, ETextAlignment, Rect } from "scichart";
 async function customChartTitleRenderer(divElementId) {
     // Demonstrates how to add a basic chart title in SciChart.js
-    const { wasmContext, sciChartSurface } = await scichart_1.SciChartSurface.create(divElementId, {
-        theme: new scichart_1.SciChartJsNavyTheme(),
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        theme: new SciChartJsNavyTheme()
     });
-    sciChartSurface.xAxes.add(new scichart_1.NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new scichart_1.NumericAxis(wasmContext));
-    class SubTitleRenderer extends scichart_1.ChartTitleRenderer {
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
+    class SubTitleRenderer extends ChartTitleRenderer {
+        subTitle;
+        subTitleStyleProperty;
+        subRenderer;
         constructor(webAssemblyContext, subtitle, subTitleStyle) {
             super(webAssemblyContext);
-            this.subRenderer = new scichart_1.ChartTitleRenderer(webAssemblyContext);
+            this.subRenderer = new ChartTitleRenderer(webAssemblyContext);
             this.subTitle = subtitle;
             this.subTitleStyleProperty = subTitleStyle;
         }
@@ -24,16 +25,16 @@ async function customChartTitleRenderer(divElementId) {
             this.subRenderer.layout(chartViewRect);
             const ydiff = this.viewRect.height - this.subRenderer.viewRect.height;
             // @ts-ignore since accessing a protected property
-            this.subRenderer.viewRectProperty = scichart_1.Rect.create(
+            this.subRenderer.viewRectProperty = Rect.create(
                 this.subRenderer.viewRect.x,
                 this.subRenderer.viewRect.y + ydiff / 2,
                 this.subRenderer.viewRect.width,
                 this.subRenderer.viewRect.height
             );
         }
-        draw(renderContext) {
-            super.draw(renderContext);
-            this.subRenderer.draw(renderContext);
+        draw(renderContext, clipRect) {
+            super.draw(renderContext, clipRect);
+            this.subRenderer.draw(renderContext, clipRect);
         }
         delete() {
             super.delete();
@@ -46,7 +47,7 @@ async function customChartTitleRenderer(divElementId) {
     sciChartSurface.chartTitleRenderer = new SubTitleRenderer(wasmContext, "A Subtitle", {
         ...sciChartSurface.titleStyle,
         fontSize: 30,
-        alignment: scichart_1.ETextAlignment.Right,
+        alignment: ETextAlignment.Right
     });
 }
 customChartTitleRenderer("scichart-root");

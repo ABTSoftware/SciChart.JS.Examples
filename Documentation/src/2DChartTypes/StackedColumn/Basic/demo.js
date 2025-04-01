@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleStackedColumnChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a Column chart with SciChart.js
@@ -7,13 +9,13 @@ async function simpleStackedColumnChart(divElementId) {
         StackedColumnRenderableSeries,
         StackedColumnCollection,
         XyDataSeries,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -34,7 +36,7 @@ async function simpleStackedColumnChart(divElementId) {
         stroke: "#E4F5FC",
         strokeThickness: 2,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        stackedGroupId: "StackedGroupId"
     });
 
     const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
@@ -43,7 +45,7 @@ async function simpleStackedColumnChart(divElementId) {
         stroke: "#E4F5FC",
         strokeThickness: 2,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        stackedGroupId: "StackedGroupId"
     });
 
     const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
@@ -52,7 +54,7 @@ async function simpleStackedColumnChart(divElementId) {
         stroke: "#E4F5FC",
         strokeThickness: 2,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        stackedGroupId: "StackedGroupId"
     });
 
     const rendSeries4 = new StackedColumnRenderableSeries(wasmContext, {
@@ -61,7 +63,7 @@ async function simpleStackedColumnChart(divElementId) {
         stroke: "#E4F5FC",
         strokeThickness: 2,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        stackedGroupId: "StackedGroupId"
     });
 
     const rendSeries5 = new StackedColumnRenderableSeries(wasmContext, {
@@ -70,7 +72,7 @@ async function simpleStackedColumnChart(divElementId) {
         stroke: "#E4F5FC",
         strokeThickness: 2,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        stackedGroupId: "StackedGroupId"
     });
 
     // To add the series to the chart, put them in a StackedColumnCollection
@@ -114,31 +116,31 @@ async function builderExample(divElementId) {
                     {
                         type: ESeriesType.StackedColumnSeries,
                         options: { stackedGroupId: "StackedGroupId", fill: "#882B91", stroke: "#E4F5FC" },
-                        xyData: { xValues, yValues: yValues1 },
+                        xyData: { xValues, yValues: yValues1 }
                     },
                     {
                         type: ESeriesType.StackedColumnSeries,
                         options: { stackedGroupId: "StackedGroupId", fill: "#EC0F6C", stroke: "#E4F5FC" },
-                        xyData: { xValues, yValues: yValues2 },
+                        xyData: { xValues, yValues: yValues2 }
                     },
                     {
                         type: ESeriesType.StackedColumnSeries,
                         options: { stackedGroupId: "StackedGroupId", fill: "#F48420", stroke: "#E4F5FC" },
-                        xyData: { xValues, yValues: yValues3 },
+                        xyData: { xValues, yValues: yValues3 }
                     },
                     {
                         type: ESeriesType.StackedColumnSeries,
                         options: { stackedGroupId: "StackedGroupId", fill: "#50C7E0", stroke: "#E4F5FC" },
-                        xyData: { xValues, yValues: yValues4 },
+                        xyData: { xValues, yValues: yValues4 }
                     },
                     {
                         type: ESeriesType.StackedColumnSeries,
                         options: { stackedGroupId: "StackedGroupId", fill: "#30BC9A", stroke: "#E4F5FC" },
-                        xyData: { xValues, yValues: yValues5 },
-                    },
-                ],
-            },
-        ],
+                        xyData: { xValues, yValues: yValues5 }
+                    }
+                ]
+            }
+        ]
     });
     // #endregion
 }

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function axisAutoTicks(divElementId) {
     // #region ExampleA
     // Demonstrates how to configure axis autoticks in SciChart.js
@@ -6,13 +8,13 @@ async function axisAutoTicks(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Adjust major/minor gridline style to make it clearer for the demo
     const styleOptions = {
         majorGridLineStyle: { color: "#50C7E077" },
-        minorGridLineStyle: { color: "#50C7E033" },
+        minorGridLineStyle: { color: "#50C7E033" }
     };
 
     const xAxis = new NumericAxis(wasmContext, {
@@ -24,7 +26,7 @@ async function axisAutoTicks(divElementId) {
         maxAutoTicks: 10,
         // For every major gridline, this defines how many minor gridlines there are. Default is 5.
         minorsPerMajor: 2,
-        ...styleOptions,
+        ...styleOptions
     });
 
     // Properties may also be set after instantiation, e.g.
@@ -37,7 +39,7 @@ async function axisAutoTicks(divElementId) {
         autoTicks: true,
         maxAutoTicks: 5,
         minorsPerMajor: 4,
-        ...styleOptions,
+        ...styleOptions
     });
 
     sciChartSurface.xAxes.add(xAxis);
@@ -62,8 +64,8 @@ async function builderExample(divElementId) {
                 axisTitle: "maxAutoTicks 10, minorsPerMajor 2",
                 autoTicks: true,
                 maxAutoTicks: 10,
-                minorsPerMajor: 2,
-            },
+                minorsPerMajor: 2
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
@@ -71,9 +73,9 @@ async function builderExample(divElementId) {
                 axisTitle: "maxAutoTicks 5, minorsPerMajor 4",
                 autoTicks: true,
                 maxAutoTicks: 5,
-                minorsPerMajor: 4,
-            },
-        },
+                minorsPerMajor: 4
+            }
+        }
     });
     // #endregion
 }

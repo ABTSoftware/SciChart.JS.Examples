@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // Generates some example data for this demo, returning a 2D array of numbers [zIndex][xIndex]
 const generateData = (xSize, zSize) => {
     const heightmapArray = [];
@@ -31,7 +33,7 @@ async function surfaceMesh3DChart(divElementId) {
         SurfaceMeshRenderableSeries3D,
         GradientColorPalette,
         EMeshPaletteMode,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -43,15 +45,15 @@ async function surfaceMesh3DChart(divElementId) {
         worldDimensions: new Vector3(300, 200, 300),
         cameraOptions: {
             position: new Vector3(-300, 300, -300),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     // Declare your X,Y,Z axis
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, { axisTitle: "X Axis" });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Y Axis",
-        visibleRange: new NumberRange(0, 1),
+        visibleRange: new NumberRange(0, 1)
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, { axisTitle: "Z Axis" });
 
@@ -62,7 +64,7 @@ async function surfaceMesh3DChart(divElementId) {
         yValues: heightmapArray,
         xStep: 1, // Defines each cell in X occupies 1 data point on the X axis
         zStep: 1, // Defines each cell in Z occupies 1 data point on the Z axis
-        dataSeriesName: "Uniform Surface Mesh",
+        dataSeriesName: "Uniform Surface Mesh"
     });
 
     // Create the color map. GradientColorPalette maps heightMap values to a color range
@@ -73,8 +75,8 @@ async function surfaceMesh3DChart(divElementId) {
             { offset: 0.3, color: "#67BDAF" },
             { offset: 0.2, color: "#50C7E0" },
             { offset: 0.1, color: "#264B93" },
-            { offset: 0, color: "#14233C" },
-        ],
+            { offset: 0, color: "#14233C" }
+        ]
     });
 
     // Finally, create a SurfaceMeshRenderableSeries3D and add to the chart
@@ -88,7 +90,7 @@ async function surfaceMesh3DChart(divElementId) {
         drawSkirt: false, // Draws solid wall to zero
         drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME, // Draw mesh as solid, wireframe or solid wireframe
         meshPaletteMode: EMeshPaletteMode.HEIGHT_MAP_SOLID_CELLS, // Interpolation mode for cell colors
-        meshColorPalette: colorMap,
+        meshColorPalette: colorMap
     });
 
     sciChart3DSurface.renderableSeries.add(series);

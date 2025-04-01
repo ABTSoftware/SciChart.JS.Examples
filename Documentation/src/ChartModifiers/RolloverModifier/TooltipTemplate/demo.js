@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function rolloverTooltipTemplate(divElementId) {
     const {
         SciChartSurface,
@@ -7,7 +9,7 @@ async function rolloverTooltipTemplate(divElementId) {
         SciChartJsNavyTheme,
         EAutoRange,
         NumberRange,
-        RolloverModifier,
+        RolloverModifier
     } = SciChart;
 
     // or for npm import { SciChartSurface, ... } from "scichart"
@@ -27,20 +29,20 @@ async function rolloverTooltipTemplate(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
         title: "Rollover Tooltip Templates",
-        titleStyle: { fontSize: 16 },
+        titleStyle: { fontSize: 16 }
     });
 
     // For the example to work, axis must have EAutoRange.Always
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             autoRange: EAutoRange.Always,
-            axisTitle: "X Axis",
+            axisTitle: "X Axis"
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             visibleRange: new NumberRange(-2, 0.5),
-            axisTitle: "Y Axis",
+            axisTitle: "Y Axis"
         })
     );
 
@@ -53,8 +55,8 @@ async function rolloverTooltipTemplate(divElementId) {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues,
             yValues,
-            dataSeriesName: "Series 0",
-        }),
+            dataSeriesName: "Series 0"
+        })
     });
     const lineSeries1 = new FastLineRenderableSeries(wasmContext, {
         stroke: "#50C7E0",
@@ -62,8 +64,8 @@ async function rolloverTooltipTemplate(divElementId) {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues,
             yValues: yValues2,
-            dataSeriesName: "Series 1",
-        }),
+            dataSeriesName: "Series 1"
+        })
     });
     sciChartSurface.renderableSeries.add(lineSeries0);
     sciChartSurface.renderableSeries.add(lineSeries1);

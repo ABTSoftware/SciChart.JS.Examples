@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const { DefaultPaletteProvider, EStrokePaletteMode, parseColorToUIntArgb } = SciChart;
 
@@ -32,14 +34,14 @@ async function metadataPaletteProviders(divElementId) {
         SciChartJsNavyTheme,
         EllipsePointMarker,
         NumberRange,
-        RolloverModifier,
+        RolloverModifier
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     // #region ExampleB
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     const growBy = new NumberRange(0.1, 0.1);
@@ -58,8 +60,8 @@ async function metadataPaletteProviders(divElementId) {
             { color: "#50C7E0" },
             undefined, // nothing at this index
             { color: "#EC0F6C" },
-            { color: "#ff6600" },
-        ],
+            { color: "#ff6600" }
+        ]
     });
 
     // Add a line series with the metadata and palette provider
@@ -73,8 +75,8 @@ async function metadataPaletteProviders(divElementId) {
                 width: 5,
                 height: 5,
                 fill: "White",
-                strokeThickness: 0,
-            }),
+                strokeThickness: 0
+            })
         })
     );
     // #endregion
@@ -83,12 +85,12 @@ async function metadataPaletteProviders(divElementId) {
     sciChartSurface.chartModifiers.add(
         new RolloverModifier({
             snapToDataPoint: true,
-            tooltipDataTemplate: (seriesInfo) => [
+            tooltipDataTemplate: seriesInfo => [
                 `X: ${seriesInfo.formattedXValue}`,
                 `Y: ${seriesInfo.formattedYValue}`,
                 `index: ${seriesInfo.dataSeriesIndex}`,
-                `Metadata.color: ${seriesInfo.pointMetadata?.color ?? "null"}`,
-            ],
+                `Metadata.color: ${seriesInfo.pointMetadata?.color ?? "null"}`
+            ]
         })
     );
 
@@ -100,14 +102,14 @@ async function metadataPaletteProviders(divElementId) {
         y1: 0.5,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         opacity: 0.33,
-        textColor: "White",
+        textColor: "White"
     };
     sciChartSurface.annotations.add(
         new TextAnnotation({
             text: "Metadata & PaletteProviders Example",
             fontSize: 36,
             yCoordShift: -125,
-            ...options,
+            ...options
         })
     );
     sciChartSurface.annotations.add(
@@ -115,7 +117,7 @@ async function metadataPaletteProviders(divElementId) {
             text: "Using Metadata to colour line segments",
             fontSize: 20,
             yCoordShift: -75,
-            ...options,
+            ...options
         })
     );
 }
@@ -132,13 +134,13 @@ async function builderExample(divElementId) {
         EChart2DModifierType,
         EPointMarkerType,
         EBaseType,
-        EPaletteProviderType,
+        EPaletteProviderType
     } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
     // Register the custom LinePaletteProvider with the chartBuilder
-    chartBuilder.registerType(EBaseType.PaletteProvider, "LinePaletteProvider", (options) => new LinePaletteProvider());
+    chartBuilder.registerType(EBaseType.PaletteProvider, "LinePaletteProvider", options => new LinePaletteProvider());
 
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
         surface: { theme: { type: EThemeProviderType.Dark } },
@@ -157,15 +159,15 @@ async function builderExample(divElementId) {
                         { color: "#50C7E0" },
                         undefined, // nothing at this index
                         { color: "#EC0F6C" },
-                        { color: "#ff6600" },
-                    ],
+                        { color: "#ff6600" }
+                    ]
                 },
                 options: {
                     stroke: "#C52E60",
                     // Now you can instantiate using parameters below
                     paletteProvider: {
                         type: EPaletteProviderType.Custom,
-                        customType: "LinePaletteProvider",
+                        customType: "LinePaletteProvider"
                     },
                     // Note: Assigning an instance is also valid, e.g.
                     // paletteProvider: new ThresholdLinePaletteProvider("Green", yValue => yValue >= 4.0)
@@ -174,11 +176,11 @@ async function builderExample(divElementId) {
                         options: {
                             width: 5,
                             height: 5,
-                            fill: "White",
-                        },
-                    },
-                },
-            },
+                            fill: "White"
+                        }
+                    }
+                }
+            }
         ],
         // Configure a Rollovermodifier to display metadata
         modifiers: [
@@ -186,15 +188,15 @@ async function builderExample(divElementId) {
                 type: EChart2DModifierType.Rollover,
                 options: {
                     snapToDataPoint: true,
-                    tooltipDataTemplate: (seriesInfo) => [
+                    tooltipDataTemplate: seriesInfo => [
                         `X: ${seriesInfo.formattedXValue}`,
                         `Y: ${seriesInfo.formattedYValue}`,
                         `index: ${seriesInfo.dataSeriesIndex}`,
-                        `Metadata.color: ${seriesInfo.pointMetadata?.color ?? "null"}`,
-                    ],
-                },
-            },
-        ],
+                        `Metadata.color: ${seriesInfo.pointMetadata?.color ?? "null"}`
+                    ]
+                }
+            }
+        ]
     });
     // #endregion
 }

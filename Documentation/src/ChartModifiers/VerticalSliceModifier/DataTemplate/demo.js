@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function formattingVerticalSliceModifier(divElementId) {
     const {
         SciChartSurface,
@@ -14,7 +16,7 @@ async function formattingVerticalSliceModifier(divElementId) {
         EllipsePointMarker,
         ZoomPanModifier,
         ZoomExtentsModifier,
-        MouseWheelZoomModifier,
+        MouseWheelZoomModifier
     } = SciChart;
 
     // or for npm import { SciChartSurface, ... } from "scichart"
@@ -22,19 +24,19 @@ async function formattingVerticalSliceModifier(divElementId) {
     // Create a chart surface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
-        titleStyle: { fontSize: 16 },
+        titleStyle: { fontSize: 16 }
     });
 
     // For the example to work, axis must have EAutoRange.Always
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
-            axisTitle: "X Axis",
+            axisTitle: "X Axis"
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             visibleRange: new NumberRange(-2, 0.5),
-            axisTitle: "Y Axis",
+            axisTitle: "Y Axis"
         })
     );
 
@@ -77,7 +79,7 @@ async function formattingVerticalSliceModifier(divElementId) {
         // Shows the default tooltip
         showTooltip: true,
         // The tooltip data template
-        tooltipDataTemplate,
+        tooltipDataTemplate
     });
     const vSlice2 = new VerticalSliceModifier({
         x1: 30.0,
@@ -91,7 +93,7 @@ async function formattingVerticalSliceModifier(divElementId) {
         // Shows the default tooltip
         showTooltip: true,
         // The tooltip data template
-        tooltipDataTemplate,
+        tooltipDataTemplate
     });
     sciChartSurface.chartModifiers.add(vSlice1, vSlice2);
     // #endregion
@@ -110,7 +112,7 @@ async function formattingVerticalSliceModifier(divElementId) {
         width: 7,
         height: 7,
         fill: "white",
-        strokeThickness: 0,
+        strokeThickness: 0
     });
 
     sciChartSurface.renderableSeries.add(
@@ -120,9 +122,9 @@ async function formattingVerticalSliceModifier(divElementId) {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
                 yValues,
-                dataSeriesName: "Sinewave 1",
+                dataSeriesName: "Sinewave 1"
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -133,9 +135,9 @@ async function formattingVerticalSliceModifier(divElementId) {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
                 yValues: yValues2,
-                dataSeriesName: "Sinewave 2",
+                dataSeriesName: "Sinewave 2"
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -147,14 +149,14 @@ async function formattingVerticalSliceModifier(divElementId) {
         y1: 0.0,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         opacity: 0.33,
-        textColor: "White",
+        textColor: "White"
     };
     sciChartSurface.annotations.add(
         new TextAnnotation({
             text: "VerticalSliceModifier 6 Decimal Places",
             fontSize: 36,
             yCoordShift: 25,
-            ...options,
+            ...options
         })
     );
     sciChartSurface.annotations.add(
@@ -162,7 +164,7 @@ async function formattingVerticalSliceModifier(divElementId) {
             text: "Shows how axis.cursorTextFormatting affects VerticalSlice tooltips",
             fontSize: 20,
             yCoordShift: 75,
-            ...options,
+            ...options
         })
     );
 
@@ -184,7 +186,7 @@ async function builderExample(divElementId) {
         EChart2DModifierType,
         ENumericFormat,
         EAxisType,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -231,8 +233,8 @@ async function builderExample(divElementId) {
                     // Shows the default tooltip
                     showTooltip: true,
                     // Add the tooltip data template
-                    tooltipDataTemplate,
-                },
+                    tooltipDataTemplate
+                }
             },
             {
                 type: EChart2DModifierType.VerticalSlice,
@@ -248,10 +250,10 @@ async function builderExample(divElementId) {
                     // Shows the default tooltip
                     showTooltip: true,
                     // Add the tooltip data template
-                    tooltipDataTemplate,
-                },
-            },
-        ],
+                    tooltipDataTemplate
+                }
+            }
+        ]
     });
     // #endregion
 
@@ -269,7 +271,7 @@ async function builderExample(divElementId) {
         width: 7,
         height: 7,
         fill: "white",
-        strokeThickness: 0,
+        strokeThickness: 0
     });
 
     sciChartSurface.renderableSeries.add(
@@ -278,9 +280,9 @@ async function builderExample(divElementId) {
             strokeThickness: 5,
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
-                yValues,
+                yValues
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -290,9 +292,9 @@ async function builderExample(divElementId) {
             strokeThickness: 5,
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
-                yValues: yValues2,
+                yValues: yValues2
             }),
-            pointMarker,
+            pointMarker
         })
     );
 }

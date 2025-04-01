@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function numericAxisFormattedAsDates3D(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a 3D chart with X,Y,Z axis in SciChart.js
@@ -10,7 +12,7 @@ async function numericAxisFormattedAsDates3D(divElementId) {
         ENumericFormat,
         MouseWheelZoomModifier3D,
         OrbitModifier3D,
-        ResetCamera3DModifier,
+        ResetCamera3DModifier
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -21,8 +23,8 @@ async function numericAxisFormattedAsDates3D(divElementId) {
         worldDimensions: new Vector3(300, 200, 300),
         cameraOptions: {
             position: new Vector3(300, 300, 300),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     // If you want to show an XAxis with dates between 1st March 2023 and 10th March 2023
@@ -37,15 +39,15 @@ async function numericAxisFormattedAsDates3D(divElementId) {
         visibleRange: new NumberRange(minDate.getTime() / 1000, maxDate.getTime() / 1000),
         // Enable formatting as dates. Expects values on this axis to be in seconds since 1970-01-01
         labelFormat: ENumericFormat.Date_DDMMYYYY,
-        titleOffset: 100,
+        titleOffset: 100
     });
 
     // Create the Y and Z-Axis and assign to SciChart3DSurface
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Y Axis",
+        axisTitle: "Y Axis"
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Z Axis",
+        axisTitle: "Z Axis"
     });
 
     // Optional: add zooming, panning for the example

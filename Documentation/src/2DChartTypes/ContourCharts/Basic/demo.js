@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // This function generates data for the heatmap series example
 function generateExampleData(index, heatmapWidth, heatmapHeight, colorPaletteMax) {
     const { zeroArray2D } = SciChart;
@@ -37,14 +39,14 @@ async function simpleContoursChart(divElementId) {
         UniformHeatmapDataSeries,
         UniformHeatmapRenderableSeries,
         UniformContoursRenderableSeries,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     // Create a SciChartSurface with X & Y Axis
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -65,7 +67,7 @@ async function simpleContoursChart(divElementId) {
         xStart: 0,
         xStep: 1,
         yStart: 0,
-        yStep: 1,
+        yStep: 1
     });
 
     // Create a Contours RenderableSeries with the same data
@@ -73,7 +75,7 @@ async function simpleContoursChart(divElementId) {
         dataSeries: heatmapDataSeries,
         zMin: 20,
         zMax: colorPaletteMax,
-        zStep: 20,
+        zStep: 20
     });
 
     // Add it to the scichartsurface
@@ -95,9 +97,9 @@ async function simpleContoursChart(divElementId) {
                 { offset: 0.5, color: "#67BDAF" },
                 { offset: 0.3, color: "#50C7E0" },
                 { offset: 0.2, color: "#264B93" },
-                { offset: 0, color: "#14233C" },
-            ],
-        }),
+                { offset: 0, color: "#14233C" }
+            ]
+        })
     });
 
     // Add to the SciChartSurface
@@ -137,8 +139,8 @@ async function builderExample(divElementId) {
             { offset: 0.5, color: "#67BDAF" },
             { offset: 0.3, color: "#50C7E0" },
             { offset: 0.2, color: "#264B93" },
-            { offset: 0, color: "#14233C" },
-        ],
+            { offset: 0, color: "#14233C" }
+        ]
     });
 
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
@@ -149,15 +151,15 @@ async function builderExample(divElementId) {
                 options: {
                     zMin: 20,
                     zMax: colorPaletteMax,
-                    zStep: 20,
+                    zStep: 20
                 },
                 heatmapData: {
                     zValues,
                     xStart: 0,
                     xStep: 1,
                     yStart: 0,
-                    yStep: 1,
-                },
+                    yStep: 1
+                }
             },
             {
                 type: ESeriesType.UniformHeatmapSeries,
@@ -167,10 +169,10 @@ async function builderExample(divElementId) {
                     xStart: 0,
                     xStep: 1,
                     yStart: 0,
-                    yStep: 1,
-                },
-            },
-        ],
+                    yStep: 1
+                }
+            }
+        ]
     });
     // #endregion
 }

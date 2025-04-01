@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function surfaceMesh3DChart(divElementId) {
     // Demonstrates how to create a 3D surface mesh chart with X,Y,Z axis in SciChart.js
     const {
@@ -14,7 +16,7 @@ async function surfaceMesh3DChart(divElementId) {
         SurfaceMeshRenderableSeries3D,
         GradientColorPalette,
         EMeshPaletteMode,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -25,8 +27,8 @@ async function surfaceMesh3DChart(divElementId) {
         worldDimensions: new Vector3(300, 200, 300),
         cameraOptions: {
             position: new Vector3(-300, 300, -300),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     // Declare your X,Y,Z axis
@@ -44,8 +46,8 @@ async function surfaceMesh3DChart(divElementId) {
             yValues: [
                 [0, 1, 2, 3, 4],
                 [5, 6, 7, 8, 9],
-                [10, 11, 12, 13, 14],
-            ],
+                [10, 11, 12, 13, 14]
+            ]
         }),
         meshColorPalette: new GradientColorPalette(wasmContext, {
             gradientStops: [
@@ -54,8 +56,8 @@ async function surfaceMesh3DChart(divElementId) {
                 { offset: 0.3, color: "#67BDAF" },
                 { offset: 0.2, color: "#50C7E0" },
                 { offset: 0.1, color: "#264B93" },
-                { offset: 0, color: "#14233C" }, // yValues <= minimum mapped to this color
-            ],
+                { offset: 0, color: "#14233C" } // yValues <= minimum mapped to this color
+            ]
         }),
         opacity: 0.77,
         stroke: "White",
@@ -63,7 +65,7 @@ async function surfaceMesh3DChart(divElementId) {
         drawSkirt: false,
         lightingFactor: 0,
         drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME, // Draw mesh as solid, wireframe or solid wireframe
-        meshPaletteMode: EMeshPaletteMode.HEIGHT_MAP_SOLID_CELLS, // Interpolation mode for cell colors
+        meshPaletteMode: EMeshPaletteMode.HEIGHT_MAP_SOLID_CELLS // Interpolation mode for cell colors
     });
 
     sciChart3DSurface.renderableSeries.add(series);

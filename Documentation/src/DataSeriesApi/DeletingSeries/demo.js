@@ -1,10 +1,12 @@
+import * as SciChart from "scichart";
+
 const { SciChartSurface, NumericAxis, FastLineRenderableSeries, XyDataSeries, SciChartJsNavyTheme } = SciChart;
 
 // or for npm import { SciChartSurface, ... } from "scichart"
 
 async function dataSeriesApi(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     sciChartSurface.title = "This example purely outputs to console";
@@ -23,7 +25,7 @@ async function dataSeriesApi(divElementId) {
     console.log(`Example A: Creating, clearing and deleting a dataseries`);
     const xyDataSeries = new XyDataSeries(wasmContext, {
         xValues,
-        yValues,
+        yValues
     });
     // Clear it - does not delete memory, just removes all data-points
     xyDataSeries.clear();
@@ -37,8 +39,8 @@ async function dataSeriesApi(divElementId) {
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues,
-            yValues,
-        }),
+            yValues
+        })
     });
 
     // #region ExampleB
@@ -47,7 +49,7 @@ async function dataSeriesApi(divElementId) {
     oldSeries.delete();
     lineSeries.dataSeries = new XyDataSeries(wasmContext, {
         xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        yValues: [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0],
+        yValues: [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0]
     });
 
     console.log(`oldSeries is deleted: ${oldSeries.getIsDeleted()}`);
@@ -65,8 +67,8 @@ async function dataSeriesApi(divElementId) {
     const lineSeries2 = new FastLineRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues,
-            yValues,
-        }),
+            yValues
+        })
     });
     sciChartSurface.renderableSeries.add(lineSeries2);
 

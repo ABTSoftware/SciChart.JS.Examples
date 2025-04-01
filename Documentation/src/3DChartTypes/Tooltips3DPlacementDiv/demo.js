@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function tooltips3D(divElementId) {
     const {
         SciChart3DSurface,
@@ -15,7 +17,7 @@ async function tooltips3D(divElementId) {
         PointLineRenderableSeries3D,
         EDrawMeshAs,
         TooltipModifier3D,
-        EMeshPaletteMode,
+        EMeshPaletteMode
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -26,19 +28,19 @@ async function tooltips3D(divElementId) {
         worldDimensions: new Vector3(300, 200, 300),
         cameraOptions: {
             position: new Vector3(-300, 300, 300),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "X Axis",
+        axisTitle: "X Axis"
     });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Y Axis",
-        visibleRange: new NumberRange(0, 3),
+        visibleRange: new NumberRange(0, 3)
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Z Axis",
+        axisTitle: "Z Axis"
     });
 
     sciChart3DSurface.renderableSeries.add(
@@ -49,9 +51,9 @@ async function tooltips3D(divElementId) {
                     [0.6, 0.4, 0.6, 0.1, 0.7],
                     [0.2, 0.4, 0.3, 0.4, 0.0],
                     [0.6, 0.4, 0.6, 0.1, 0.7],
-                    [0.1, 0.4, 0.4, 0.2, 0.8],
+                    [0.1, 0.4, 0.4, 0.2, 0.8]
                 ],
-                dataSeriesName: "Surface mesh",
+                dataSeriesName: "Surface mesh"
             }),
             meshColorPalette: new GradientColorPalette(wasmContext, {
                 gradientStops: [
@@ -60,8 +62,8 @@ async function tooltips3D(divElementId) {
                     { offset: 0.3, color: "#67BDAF" },
                     { offset: 0.2, color: "#50C7E0" },
                     { offset: 0.1, color: "#264B93" },
-                    { offset: 0, color: "#14233C" }, // yValues <= minimum mapped to this color
-                ],
+                    { offset: 0, color: "#14233C" } // yValues <= minimum mapped to this color
+                ]
             }),
             minimum: 0,
             maximum: 1,
@@ -71,7 +73,7 @@ async function tooltips3D(divElementId) {
             strokeThickness: 2,
             lightingFactor: 0.2,
             meshPaletteMode: EMeshPaletteMode.HEIGHT_MAP_SOLID_CELLS,
-            drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME,
+            drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME
         })
     );
 
@@ -86,7 +88,7 @@ async function tooltips3D(divElementId) {
         tooltipLegendOffsetY: 10,
 
         // Allows placement of tooltip in a custom div anywhere in your app
-        placementDivId: "tooltipContainerDivId",
+        placementDivId: "tooltipContainerDivId"
     });
 
     sciChart3DSurface.chartModifiers.add(tooltipModifier);

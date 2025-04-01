@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function synchronizeVerticalChartsBasicExample() {
     // #region ExampleA
     // Create Vertical Charts for synchronization
@@ -7,14 +9,14 @@ async function synchronizeVerticalChartsBasicExample() {
         FastLineRenderableSeries,
         XyDataSeries,
         SciChartJsNavyTheme,
-        EAxisAlignment,
+        EAxisAlignment
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const createSciChartSurface = async (divId, isFirstChart) => {
         const { wasmContext, sciChartSurface } = await SciChartSurface.create(divId, {
-            theme: new SciChartJsNavyTheme(),
+            theme: new SciChartJsNavyTheme()
         });
         // Create some deliberate differences between chart 0 and chart 1
         sciChartSurface.background = isFirstChart ? "#22365B" : "#18304A";
@@ -23,7 +25,7 @@ async function synchronizeVerticalChartsBasicExample() {
         sciChartSurface.xAxes.add(
             new NumericAxis(wasmContext, {
                 axisTitle: isFirstChart ? "XAxis 0" : "XAxis 1",
-                axisAlignment: EAxisAlignment.Right,
+                axisAlignment: EAxisAlignment.Right
             })
         );
         sciChartSurface.yAxes.add(
@@ -33,8 +35,7 @@ async function synchronizeVerticalChartsBasicExample() {
                 axisTitle: isFirstChart ? "YAxis 0" : "YAxis 1",
                 axisAlignment: EAxisAlignment.Top,
                 rotation: -90,
-                fontSize: 16,
-                axisBorder: { borderBottom: 3, color: "#55698E" },
+                axisBorder: { borderBottom: 3, color: "#55698E" }
             })
         );
 
@@ -53,8 +54,8 @@ async function synchronizeVerticalChartsBasicExample() {
                 strokeThickness: 5,
                 dataSeries: new XyDataSeries(wasmContext, {
                     xValues,
-                    yValues,
-                }),
+                    yValues
+                })
             })
         );
 
@@ -75,10 +76,10 @@ async function synchronizeVerticalChartsBasicExample() {
     // or, for npm, import { SciChartHorizontalGroup, ... } from "scichart"
 
     // Step 1: Synchronize the two chart visibleRanges
-    sciChartSurface0.xAxes.get(0).visibleRangeChanged.subscribe((data1) => {
+    sciChartSurface0.xAxes.get(0).visibleRangeChanged.subscribe(data1 => {
         sciChartSurface1.xAxes.get(0).visibleRange = data1.visibleRange;
     });
-    sciChartSurface1.xAxes.get(0).visibleRangeChanged.subscribe((data1) => {
+    sciChartSurface1.xAxes.get(0).visibleRangeChanged.subscribe(data1 => {
         sciChartSurface0.xAxes.get(0).visibleRange = data1.visibleRange;
     });
 
@@ -117,7 +118,7 @@ async function synchronizeVerticalChartsBasicExample() {
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center
         };
         scs.annotations.add(
             new TextAnnotation({
@@ -125,7 +126,7 @@ async function synchronizeVerticalChartsBasicExample() {
                 textColor: "#FFFFFF77",
                 fontSize: 20,
                 yCoordShift: -30,
-                text: isFirstChart ? "SciChartSurface #0" : "SciChartSurface #1",
+                text: isFirstChart ? "SciChartSurface #0" : "SciChartSurface #1"
             })
         );
         scs.annotations.add(
@@ -133,7 +134,7 @@ async function synchronizeVerticalChartsBasicExample() {
                 ...watermarkOptions,
                 text: "Drag to zoom, or mousewheel",
                 textColor: "#FFFFFF44",
-                fontSize: 16,
+                fontSize: 16
             })
         );
     };
@@ -142,4 +143,4 @@ async function synchronizeVerticalChartsBasicExample() {
     enrichChart(sciChartSurface1, false);
 }
 
-synchronizeVerticalChartsBasicExample("chart0", "chart1");
+synchronizeVerticalChartsBasicExample();

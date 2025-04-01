@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleLineChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a line chart with SciChart.js
@@ -6,7 +8,7 @@ async function simpleLineChart(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -20,13 +22,13 @@ async function simpleLineChart(divElementId) {
 
     const xyDataSeries = new XyDataSeries(wasmContext, {
         xValues,
-        yValues,
+        yValues
     });
 
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#FF6600",
         strokeThickness: 5,
-        dataSeries: xyDataSeries,
+        dataSeries: xyDataSeries
     });
 
     sciChartSurface.renderableSeries.add(lineSeries);
@@ -53,14 +55,14 @@ async function builderExample(divElementId) {
                 type: ESeriesType.LineSeries,
                 xyData: {
                     xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-                    yValues: [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0],
+                    yValues: [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0]
                 },
                 options: {
                     stroke: "#0066FF",
-                    strokeThickness: 5,
-                },
-            },
-        ],
+                    strokeThickness: 5
+                }
+            }
+        ]
     });
     // #endregion
 }

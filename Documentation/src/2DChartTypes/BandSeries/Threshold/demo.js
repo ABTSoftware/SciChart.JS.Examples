@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function bandChartThresholds(divElementId) {
     // Demonstrates how to create a band chart using SciChart.js
     const { SciChartSurface, NumericAxis, FastBandRenderableSeries, XyyDataSeries, SciChartJsNavyTheme } = SciChart;
@@ -5,7 +7,7 @@ async function bandChartThresholds(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -31,7 +33,7 @@ async function bandChartThresholds(divElementId) {
         strokeY1: "#50C7E0", // render Y1 transparent as blue
         fill: "#FF191933", // have different fills above/below the threshold. This is fill above
         fillY1: "#50C7E033", // fill below
-        strokeThickness: 2,
+        strokeThickness: 2
     });
 
     sciChartSurface.renderableSeries.add(bandSeries);
@@ -49,7 +51,7 @@ async function bandChartThresholds(divElementId) {
             opacity: 0.6,
             labelPlacement: ELabelPlacement.BottomRight,
             labelValue: "Values above this line are red",
-            showLabel: true,
+            showLabel: true
         })
     );
 
@@ -88,17 +90,17 @@ async function builderExample(divElementId) {
                 xyyData: {
                     xValues,
                     yValues,
-                    y1Values,
+                    y1Values
                 },
                 options: {
                     stroke: "Transparent", // render Y stroke as transparent
                     strokeY1: "#50C7E0", // render Y1 transparent as blue
                     fill: "#FF191933", // have different fills above/below the threshold. This is fill above
                     fillY1: "#50C7E033", // fill below
-                    strokeThickness: 2,
-                },
-            },
-        ],
+                    strokeThickness: 2
+                }
+            }
+        ]
     });
     // #endregion
 }

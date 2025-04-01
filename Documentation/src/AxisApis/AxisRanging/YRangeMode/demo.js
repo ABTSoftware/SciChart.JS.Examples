@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function yRangeMode(divElementId) {
     const {
         SciChartSurface,
@@ -16,7 +18,7 @@ async function yRangeMode(divElementId) {
         NativeTextAnnotation,
         ECoordinateMode,
         EHorizontalAnchorPoint,
-        EVerticalAnchorPoint,
+        EVerticalAnchorPoint
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -24,7 +26,7 @@ async function yRangeMode(divElementId) {
     // #region ExampleA
     // Create a chart with X,Y axis
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy =
@@ -34,13 +36,13 @@ async function yRangeMode(divElementId) {
     const yAxis2 = new NumericAxis(wasmContext, {
         id: "y2",
         stackedAxisLength: "30%",
-        autoRange: EAutoRange.Always,
+        autoRange: EAutoRange.Always
     });
     const yAxis3 = new NumericAxis(wasmContext, { id: "y3", isVisible: false });
     const yAxis4 = new NumericAxis(wasmContext, {
         id: "y4",
         stackedAxisLength: "30%",
-        autoRange: EAutoRange.Always,
+        autoRange: EAutoRange.Always
     });
     const yAxis5 = new NumericAxis(wasmContext, { id: "y5", isVisible: false });
 
@@ -61,7 +63,7 @@ async function yRangeMode(divElementId) {
         dataSeries,
         pointMarker: new EllipsePointMarker(wasmContext),
         stroke: "red",
-        yRangeMode: EYRangeMode.Drawn,
+        yRangeMode: EYRangeMode.Drawn
     });
     sciChartSurface.renderableSeries.add(lineSeriesDrawn);
 
@@ -70,7 +72,7 @@ async function yRangeMode(divElementId) {
         dataSeries,
         pointMarker: new EllipsePointMarker(wasmContext),
         stroke: "green",
-        yRangeMode: EYRangeMode.Visible,
+        yRangeMode: EYRangeMode.Visible
     });
     sciChartSurface.renderableSeries.add(lineSeriesVisible);
 
@@ -84,7 +86,7 @@ async function yRangeMode(divElementId) {
             x1: 0.1,
             y1: 0.1,
             text: "Click to set outlying point just outside visible range",
-            onClick: (args) => (xAxis.visibleRange = new NumberRange(0, 19.5)),
+            onClick: args => (xAxis.visibleRange = new NumberRange(0, 19.5))
         })
     );
 
@@ -98,7 +100,7 @@ async function yRangeMode(divElementId) {
             x1: 0.1,
             y1: 0.5,
             text: "Click to show yRangeMode.Visible issue when zoomed in",
-            onClick: (args) => (xAxis.visibleRange = new NumberRange(5.1, 9.9)),
+            onClick: args => (xAxis.visibleRange = new NumberRange(5.1, 9.9))
         })
     );
 
@@ -112,12 +114,12 @@ async function yRangeMode(divElementId) {
             x1: 0.1,
             y1: 0.5,
             text: "ClipToYRange is Off.  Click to toggle.",
-            onClick: (args) => {
+            onClick: args => {
                 lineSeriesVisible.clipToYRange = !lineSeriesVisible.clipToYRange;
                 args.sender.text = `ClipToYRange is ${
                     lineSeriesVisible.clipToYRange ? "On" : "Off"
                 }.  Click to toggle.`;
-            },
+            }
         })
     );
 

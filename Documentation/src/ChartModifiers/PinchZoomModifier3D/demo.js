@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function drawExample(divElementId) {
     // Demonstrates how to configure chart titles SciChart.js
     const { SciChart3DSurface, CameraController, Vector3, NumericAxis3D, PinchZoomModifier3D } = SciChart;
@@ -8,7 +10,7 @@ async function drawExample(divElementId) {
 
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(300, 300, 300),
-        target: new Vector3(0, 50, 0),
+        target: new Vector3(0, 50, 0)
     });
 
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext);

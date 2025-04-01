@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function basicCursorModifier(divElementId) {
     const {
         SciChartSurface,
@@ -11,7 +13,7 @@ async function basicCursorModifier(divElementId) {
         TextAnnotation,
         EHorizontalAnchorPoint,
         ECoordinateMode,
-        EllipsePointMarker,
+        EllipsePointMarker
     } = SciChart;
 
     // or for npm import { SciChartSurface, ... } from "scichart"
@@ -20,20 +22,20 @@ async function basicCursorModifier(divElementId) {
     // Create a chart surface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
-        titleStyle: { fontSize: 16 },
+        titleStyle: { fontSize: 16 }
     });
 
     // For the example to work, axis must have EAutoRange.Always
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             autoRange: EAutoRange.Always,
-            axisTitle: "X Axis",
+            axisTitle: "X Axis"
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             visibleRange: new NumberRange(-2, 0.5),
-            axisTitle: "Y Axis",
+            axisTitle: "Y Axis"
         })
     );
 
@@ -53,7 +55,7 @@ async function basicCursorModifier(divElementId) {
         crosshairStroke: "#ff6600",
         crosshairStrokeThickness: 1,
         tooltipContainerBackground: "#000",
-        tooltipTextStroke: "#ff6600",
+        tooltipTextStroke: "#ff6600"
     });
     sciChartSurface.chartModifiers.add(cursorModifier);
 
@@ -73,7 +75,7 @@ async function basicCursorModifier(divElementId) {
         width: 7,
         height: 7,
         fill: "white",
-        strokeThickness: 0,
+        strokeThickness: 0
     });
 
     sciChartSurface.renderableSeries.add(
@@ -83,9 +85,9 @@ async function basicCursorModifier(divElementId) {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
                 yValues,
-                dataSeriesName: "Sinewave 1",
+                dataSeriesName: "Sinewave 1"
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -96,9 +98,9 @@ async function basicCursorModifier(divElementId) {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
                 yValues: yValues2,
-                dataSeriesName: "Sinewave 2",
+                dataSeriesName: "Sinewave 2"
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -110,14 +112,14 @@ async function basicCursorModifier(divElementId) {
         y1: 0.0,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         opacity: 0.33,
-        textColor: "White",
+        textColor: "White"
     };
     sciChartSurface.annotations.add(
         new TextAnnotation({
             text: "CursorModifier Example",
             fontSize: 36,
             yCoordShift: 25,
-            ...options,
+            ...options
         })
     );
     sciChartSurface.annotations.add(
@@ -125,7 +127,7 @@ async function basicCursorModifier(divElementId) {
             text: "Move the mouse over the chart to see cursor & tooltip",
             fontSize: 20,
             yCoordShift: 75,
-            ...options,
+            ...options
         })
     );
 }
@@ -159,10 +161,10 @@ async function builderExample(divElementId) {
                     crosshairStroke: "#ff6600",
                     crosshairStrokeThickness: 1,
                     tooltipContainerBackground: "#000",
-                    tooltipTextStroke: "#ff6600",
-                },
-            },
-        ],
+                    tooltipTextStroke: "#ff6600"
+                }
+            }
+        ]
     });
     // #endregion
 
@@ -180,7 +182,7 @@ async function builderExample(divElementId) {
         width: 7,
         height: 7,
         fill: "white",
-        strokeThickness: 0,
+        strokeThickness: 0
     });
 
     sciChartSurface.renderableSeries.add(
@@ -189,9 +191,9 @@ async function builderExample(divElementId) {
             strokeThickness: 5,
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
-                yValues,
+                yValues
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -201,9 +203,9 @@ async function builderExample(divElementId) {
             strokeThickness: 5,
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
-                yValues: yValues2,
+                yValues: yValues2
             }),
-            pointMarker,
+            pointMarker
         })
     );
 }

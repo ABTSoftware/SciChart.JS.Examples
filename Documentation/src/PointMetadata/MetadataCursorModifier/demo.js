@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function metadataCursorModifier(divElementId) {
     // #region ExampleA
     // Demonstrates how to add PointMetadata to a DataSeries and consume it in SciChart.js
@@ -9,13 +11,13 @@ async function metadataCursorModifier(divElementId) {
         SciChartJsNavyTheme,
         EllipsePointMarker,
         NumberRange,
-        CursorModifier,
+        CursorModifier
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     const growBy = new NumberRange(0.1, 0.1);
@@ -31,8 +33,8 @@ async function metadataCursorModifier(divElementId) {
             undefined, // nothing at this index
             { stringValue: "Some" },
             {}, // empty object at this index
-            { stringValue: "Metadata", customValue: 99 },
-        ],
+            { stringValue: "Metadata", customValue: 99 }
+        ]
     });
 
     // Add a line series with the metadata
@@ -44,19 +46,19 @@ async function metadataCursorModifier(divElementId) {
                 height: 11,
                 fill: "#364BA0",
                 stroke: "#50C7E0",
-                strokeThickness: 2,
-            }),
+                strokeThickness: 2
+            })
         })
     );
 
     // Add a RolloverModifier configured to output X,Y,Metadata.stringValue and customValue
     sciChartSurface.chartModifiers.add(
         new CursorModifier({
-            snapToDataPoint: true,
+            // snapToDataPoint: true,
             showTooltip: true,
             hitTestRadius: 10,
             tooltipDataTemplate: (seriesInfos, tooltipTitle) => {
-                const seriesInfo = seriesInfos?.find((s) => s.isHit);
+                const seriesInfo = seriesInfos?.find(s => s.isHit);
                 if (seriesInfo) {
                     // Each element in the array is a line in the tooltip
                     // This can be used to show the data from a single data-point where seriesInfo.isHit = true
@@ -65,11 +67,11 @@ async function metadataCursorModifier(divElementId) {
                         `X: ${seriesInfo.formattedXValue}`,
                         `Y: ${seriesInfo.formattedYValue}`,
                         `Metadata.stringValue: ${seriesInfo.pointMetadata?.stringValue ?? "null"}`,
-                        `Metadata.customValue: ${seriesInfo.pointMetadata?.customValue ?? "null"}`,
+                        `Metadata.customValue: ${seriesInfo.pointMetadata?.customValue ?? "null"}`
                     ];
                 }
                 return [];
-            },
+            }
         })
     );
     // #endregion
@@ -82,14 +84,14 @@ async function metadataCursorModifier(divElementId) {
         y1: 0.5,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         opacity: 0.33,
-        textColor: "White",
+        textColor: "White"
     };
     sciChartSurface.annotations.add(
         new TextAnnotation({
             text: "Metadata and CursorModifier Example",
             fontSize: 36,
             yCoordShift: -125,
-            ...options,
+            ...options
         })
     );
     sciChartSurface.annotations.add(
@@ -97,7 +99,7 @@ async function metadataCursorModifier(divElementId) {
             text: "Hover over the chart to see metadata",
             fontSize: 20,
             yCoordShift: -75,
-            ...options,
+            ...options
         })
     );
 }
@@ -125,8 +127,8 @@ async function builderExample(divElementId) {
                         undefined, // nothing at this index
                         { stringValue: "Some" },
                         {}, // empty object at this index
-                        { stringValue: "Metadata", customValue: 99 },
-                    ],
+                        { stringValue: "Metadata", customValue: 99 }
+                    ]
                 },
                 options: {
                     stroke: "#C52E60",
@@ -135,22 +137,22 @@ async function builderExample(divElementId) {
                         options: {
                             width: 11,
                             height: 11,
-                            fill: "White",
-                        },
-                    },
-                },
-            },
+                            fill: "White"
+                        }
+                    }
+                }
+            }
         ],
         // Configure a Rollovermodifier to display metadata
         modifiers: [
             {
                 type: EChart2DModifierType.Cursor,
                 options: {
-                    snapToDataPoint: true,
+                    // snapToDataPoint: true,
                     showTooltip: true,
                     hitTestRadius: 10,
                     tooltipDataTemplate: (seriesInfos, tooltipTitle) => {
-                        const seriesInfo = seriesInfos?.find((s) => s.isHit);
+                        const seriesInfo = seriesInfos?.find(s => s.isHit);
                         if (seriesInfo) {
                             // Each element in the array is a line in the tooltip
                             // This can be used to show the data from a single data-point where seriesInfo.isHit = true
@@ -159,14 +161,14 @@ async function builderExample(divElementId) {
                                 `X: ${seriesInfo.formattedXValue}`,
                                 `Y: ${seriesInfo.formattedYValue}`,
                                 `Metadata.stringValue: ${seriesInfo.pointMetadata?.stringValue ?? "null"}`,
-                                `Metadata.customValue: ${seriesInfo.pointMetadata?.customValue ?? "null"}`,
+                                `Metadata.customValue: ${seriesInfo.pointMetadata?.customValue ?? "null"}`
                             ];
                         }
                         return [];
-                    },
-                },
-            },
-        ],
+                    }
+                }
+            }
+        ]
     });
     // #endregion
 }

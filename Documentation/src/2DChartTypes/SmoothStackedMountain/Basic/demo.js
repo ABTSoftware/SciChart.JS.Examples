@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleStackedMountainChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a Column chart with SciChart.js
@@ -7,13 +9,13 @@ async function simpleStackedMountainChart(divElementId) {
         SmoothStackedMountainRenderableSeries,
         StackedMountainCollection,
         XyDataSeries,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -32,70 +34,64 @@ async function simpleStackedMountainChart(divElementId) {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues,
             yValues: yValues1,
-            dataSeriesName: "EU",
+            dataSeriesName: "EU"
         }),
         fill: "#882B91",
         stroke: "#E4F5FC",
         strokeThickness: 2,
-        opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        opacity: 0.8
     });
 
     const rendSeries2 = new SmoothStackedMountainRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues,
             yValues: yValues2,
-            dataSeriesName: "Asia",
+            dataSeriesName: "Asia"
         }),
         fill: "#EC0F6C",
         stroke: "#E4F5FC",
         strokeThickness: 2,
-        opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        opacity: 0.8
     });
 
     const rendSeries3 = new SmoothStackedMountainRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues,
             yValues: yValues3,
-            dataSeriesName: "USA",
+            dataSeriesName: "USA"
         }),
         fill: "#F48420",
         stroke: "#E4F5FC",
         strokeThickness: 2,
-        opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        opacity: 0.8
     });
 
     const rendSeries4 = new SmoothStackedMountainRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues,
             yValues: yValues4,
-            dataSeriesName: "UK",
+            dataSeriesName: "UK"
         }),
         fill: "#50C7E0",
         stroke: "#E4F5FC",
         strokeThickness: 2,
-        opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        opacity: 0.8
     });
 
     const rendSeries5 = new SmoothStackedMountainRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues,
             yValues: yValues5,
-            dataSeriesName: "Latam",
+            dataSeriesName: "Latam"
         }),
         fill: "#30BC9A",
         stroke: "#E4F5FC",
         strokeThickness: 2,
-        opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        opacity: 0.8
     });
 
     // To add the series to the chart, put them in a StackedMountainCollection
     const stackedMountainCollection = new StackedMountainCollection(wasmContext);
-    stackedMountainCollection.dataPointWidth = 0.6;
     stackedMountainCollection.add(rendSeries1, rendSeries2, rendSeries3, rendSeries4, rendSeries5);
 
     // Add the Stacked Mountain collection to the chart
@@ -132,53 +128,48 @@ async function builderExample(divElementId) {
                 type: ESeriesType.StackedMountainCollection,
                 series: [
                     {
-                        type: ESeriesType.StackedMountainRenderableSeries,
+                        type: ESeriesType.SmoothStackedMountainSeries,
                         options: {
-                            stackedGroupId: "StackedGroupId",
                             fill: "#882B91",
-                            stroke: "#E4F5FC",
+                            stroke: "#E4F5FC"
                         },
-                        xyData: { xValues, yValues: yValues1 },
+                        xyData: { xValues, yValues: yValues1 }
                     },
                     {
-                        type: ESeriesType.StackedMountainRenderableSeries,
+                        type: ESeriesType.SmoothStackedMountainSeries,
                         options: {
-                            stackedGroupId: "StackedGroupId",
                             fill: "#EC0F6C",
-                            stroke: "#E4F5FC",
+                            stroke: "#E4F5FC"
                         },
-                        xyData: { xValues, yValues: yValues2 },
+                        xyData: { xValues, yValues: yValues2 }
                     },
                     {
-                        type: ESeriesType.StackedMountainRenderableSeries,
+                        type: ESeriesType.SmoothStackedMountainSeries,
                         options: {
-                            stackedGroupId: "StackedGroupId",
                             fill: "#F48420",
-                            stroke: "#E4F5FC",
+                            stroke: "#E4F5FC"
                         },
-                        xyData: { xValues, yValues: yValues3 },
+                        xyData: { xValues, yValues: yValues3 }
                     },
                     {
-                        type: ESeriesType.StackedMountainRenderableSeries,
+                        type: ESeriesType.SmoothStackedMountainSeries,
                         options: {
-                            stackedGroupId: "StackedGroupId",
                             fill: "#50C7E0",
-                            stroke: "#E4F5FC",
+                            stroke: "#E4F5FC"
                         },
-                        xyData: { xValues, yValues: yValues4 },
+                        xyData: { xValues, yValues: yValues4 }
                     },
                     {
-                        type: ESeriesType.StackedMountainRenderableSeries,
+                        type: ESeriesType.SmoothStackedMountainSeries,
                         options: {
-                            stackedGroupId: "StackedGroupId",
                             fill: "#30BC9A",
-                            stroke: "#E4F5FC",
+                            stroke: "#E4F5FC"
                         },
-                        xyData: { xValues, yValues: yValues5 },
-                    },
-                ],
-            },
-        ],
+                        xyData: { xValues, yValues: yValues5 }
+                    }
+                ]
+            }
+        ]
     });
     // #endregion
 }

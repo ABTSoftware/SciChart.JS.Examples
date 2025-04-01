@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const {
     BoxAnnotation,
@@ -10,14 +12,14 @@ const {
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
     ECoordinateMode,
-    SciChartJsNavyTheme,
+    SciChartJsNavyTheme
 } = SciChart;
 
 // or for npm import { SciChartSurface, ... } from "scichart"
 
 async function addAnnotationToChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -29,13 +31,13 @@ async function addAnnotationToChart(divElementId) {
             text: "Annotations are Easy!",
             fontSize: 24,
             x1: 0.3,
-            y1: 9.7,
+            y1: 9.7
         }),
         new TextAnnotation({
             text: "You can create text",
             fontSize: 18,
             x1: 1,
-            y1: 9,
+            y1: 9
         }),
 
         // Add TextAnnotations with anchor points
@@ -44,21 +46,21 @@ async function addAnnotationToChart(divElementId) {
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
             x1: 2,
-            y1: 8,
+            y1: 8
         }),
         new TextAnnotation({
             text: "Anchor Right",
             horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
             verticalAnchorPoint: EVerticalAnchorPoint.Top,
             x1: 2,
-            y1: 8,
+            y1: 8
         }),
         new TextAnnotation({
             text: "or Anchor Left",
             horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
             verticalAnchorPoint: EVerticalAnchorPoint.Top,
             x1: 2,
-            y1: 8,
+            y1: 8
         })
     );
 }
@@ -80,8 +82,8 @@ async function builderExample(divElementId) {
                     text: "Annotations are Easy!",
                     fontSize: 24,
                     x1: 0.3,
-                    y1: 9.7,
-                },
+                    y1: 9.7
+                }
             },
             {
                 type: EAnnotationType.SVGTextAnnotation,
@@ -89,8 +91,8 @@ async function builderExample(divElementId) {
                     text: "You can create text",
                     fontSize: 18,
                     x1: 1,
-                    y1: 9,
-                },
+                    y1: 9
+                }
             },
             {
                 type: EAnnotationType.SVGTextAnnotation,
@@ -99,8 +101,8 @@ async function builderExample(divElementId) {
                     horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                     verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
                     x1: 2,
-                    y1: 8,
-                },
+                    y1: 8
+                }
             },
             {
                 type: EAnnotationType.SVGTextAnnotation,
@@ -109,8 +111,8 @@ async function builderExample(divElementId) {
                     horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
                     verticalAnchorPoint: EVerticalAnchorPoint.Top,
                     x1: 2,
-                    y1: 8,
-                },
+                    y1: 8
+                }
             },
             {
                 type: EAnnotationType.SVGTextAnnotation,
@@ -119,10 +121,10 @@ async function builderExample(divElementId) {
                     horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
                     verticalAnchorPoint: EVerticalAnchorPoint.Top,
                     x1: 2,
-                    y1: 8,
-                },
-            },
-        ],
+                    y1: 8
+                }
+            }
+        ]
     });
     // #endregion
 }

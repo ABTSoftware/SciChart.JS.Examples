@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function axisVisibility(divElementId) {
     // Demonstrates how to maximise a specific series using hidden axis in SciChart.js
     const {
@@ -11,7 +13,7 @@ async function axisVisibility(divElementId) {
         FastLineRenderableSeries,
         XyDataSeries,
         EAutoRange,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -31,44 +33,52 @@ async function axisVisibility(divElementId) {
     // #region ExampleA
     // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Add some Series to the chart
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
+            xAxisId: "xAxis",
+            yAxisId: "yAxis",
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: "Series A" }),
             stroke: "#50C7E0",
-            strokeThickness: 3,
+            strokeThickness: 3
         })
     );
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
+            xAxisId: "xAxis",
+            yAxisId: "yAxis",
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues1, dataSeriesName: "Series B" }),
             stroke: "#F48420",
-            strokeThickness: 3,
+            strokeThickness: 3
         })
     );
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
+            xAxisId: "xAxis",
+            yAxisId: "yAxis",
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues2, dataSeriesName: "Series C" }),
             stroke: "#EC0F6C",
-            strokeThickness: 3,
+            strokeThickness: 3
         })
     );
 
     // Default X-Axis
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
-            axisTitle: "X Axis",
+            id: "xAxis",
+            axisTitle: "X Axis"
         })
     );
 
     // Default YAxis
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
+            id: "yAxis",
             axisTitle: "Y Axis",
-            growBy: new NumberRange(0.1, 0.1),
+            growBy: new NumberRange(0.1, 0.1)
         })
     );
 
@@ -77,7 +87,7 @@ async function axisVisibility(divElementId) {
         new NumericAxis(wasmContext, {
             id: "HiddenYAxis",
             isVisible: false,
-            autoRange: EAutoRange.Always,
+            autoRange: EAutoRange.Always
         })
     );
 
@@ -85,31 +95,36 @@ async function axisVisibility(divElementId) {
     const checkboxes = Array.from(document.getElementsByClassName("checkbox"));
 
     // Function invoked when a checkbox is checked/unchecked
-    const onCheckedChanged = (e) => {
+    const onCheckedChanged = e => {
         // find a renderableSeries by dataSeriesName matching checkbox id
         const series = sciChartSurface.renderableSeries
             .asArray()
-            .find((rs) => rs.dataSeries.dataSeriesName === e.target.id);
+            .find(rs => rs.dataSeries.dataSeriesName === e.target.id);
+
+        if (!series) return;
+
         if (e.target.checked) {
             // If the series is checked, show it on the hidden YAxis with AutoRange.Always
             console.log("Maximising " + series.dataSeries.dataSeriesName);
             series.yAxisId = "HiddenYAxis";
         } else {
             // Else, put it back on the default axis / default scaling
-            series.yAxisId = NumericAxis.DEFAULT_AXIS_ID;
+            series.yAxisId = "yAxis";
             console.log("Setting " + series.dataSeries.dataSeriesName + " to default axis");
         }
     };
 
     // get checkboxes by class name and add event listener to change event
-    checkboxes.forEach((element) => {
-        element.addEventListener("change", (e) => {
+    checkboxes.forEach(element => {
+        element.addEventListener("change", e => {
             onCheckedChanged(e);
+            // @ts-ignore
             if (e.target.checked) {
                 // uncheck other checkboxes
                 checkboxes
-                    .filter((cb) => cb.id !== e.target.id)
-                    .forEach((cb) => {
+                    .filter(cb => cb.id !== e.target.id)
+                    .forEach(cb => {
+                        // @ts-ignore
                         cb.checked = false;
                         onCheckedChanged({ target: cb });
                     });
@@ -127,7 +142,7 @@ async function axisVisibility(divElementId) {
         xCoordinateMode: ECoordinateMode.Relative,
         yCoordinateMode: ECoordinateMode.Relative,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center
     });
     sciChartSurface.annotations.add(textAnnotation);
 }

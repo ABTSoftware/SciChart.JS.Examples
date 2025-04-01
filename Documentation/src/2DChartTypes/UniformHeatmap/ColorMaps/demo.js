@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // This function generates data for the heatmap series example
 function generateExampleData(width, height, cpMax, index, maxIndex) {
     const { zeroArray2D } = SciChart;
@@ -35,14 +37,14 @@ async function heatmapColorMaps(divElementId) {
         UniformHeatmapDataSeries,
         UniformHeatmapRenderableSeries,
         SciChartJsNavyTheme,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     // Create a SciChartSurface with X & Y Axis
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(150, 350) }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(80, 200) }));
@@ -60,7 +62,7 @@ async function heatmapColorMaps(divElementId) {
         xStep: 1,
         yStart: 0,
         yStep: 1,
-        zValues: initialZValues,
+        zValues: initialZValues
     });
 
     // #region ExampleA
@@ -80,9 +82,9 @@ async function heatmapColorMaps(divElementId) {
                 { offset: 0.5, color: "#67BDAF" },
                 { offset: 0.3, color: "#50C7E0" },
                 { offset: 0.2, color: "#264B9377" }, // Start to fade out the transparency here
-                { offset: 0, color: "Transparent" }, // Set the zero value as Transparent. Corresponds to zValue <= minimum
-            ],
-        }),
+                { offset: 0, color: "Transparent" } // Set the zero value as Transparent. Corresponds to zValue <= minimum
+            ]
+        })
     });
 
     sciChartSurface.renderableSeries.add(heatmapSeries);
@@ -102,23 +104,23 @@ async function heatmapLegend(divElementId) {
         theme: {
             ...new SciChartJsNavyTheme(),
             sciChartBackground: "#14233CBB",
-            loadingAnimationBackground: "#14233CBB",
+            loadingAnimationBackground: "#14233CBB"
         },
         yAxisOptions: {
             axisBorder: {
                 borderLeft: 1,
-                color: "#FFFFFF77",
+                color: "#FFFFFF77"
             },
             majorTickLineStyle: {
                 color: "White",
                 tickSize: 6,
-                strokeThickness: 1,
+                strokeThickness: 1
             },
             minorTickLineStyle: {
                 color: "White",
                 tickSize: 3,
-                strokeThickness: 1,
-            },
+                strokeThickness: 1
+            }
         },
         colorMap: {
             minimum: 0,
@@ -130,9 +132,9 @@ async function heatmapLegend(divElementId) {
                 { offset: 0.5, color: "#67BDAF" },
                 { offset: 0.3, color: "#50C7E0" },
                 { offset: 0.2, color: "#264B9377" }, // Start to fade out the transparency here
-                { offset: 0, color: "Transparent" }, // Set the zero value as Transparent. Corresponds to zValue <= minimum
-            ],
-        },
+                { offset: 0, color: "Transparent" } // Set the zero value as Transparent. Corresponds to zValue <= minimum
+            ]
+        }
     });
     // #endregion
 }

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function axisAutoTicksFalse(divElementId) {
     // #region ExampleA
     // Demonstrates how to configure axis autoticks in SciChart.js
@@ -6,13 +8,13 @@ async function axisAutoTicksFalse(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Adjust major/minor gridline style to make it clearer for the demo
     const styleOptions = {
         majorGridLineStyle: { color: "#50C7E077" },
-        minorGridLineStyle: { color: "#50C7E033" },
+        minorGridLineStyle: { color: "#50C7E033" }
     };
 
     const xAxis = new NumericAxis(wasmContext, {
@@ -23,7 +25,7 @@ async function axisAutoTicksFalse(divElementId) {
         majorDelta: 2,
         // Have a minor gridline every 1 unit on the axis
         minorDelta: 1,
-        ...styleOptions,
+        ...styleOptions
     });
 
     // Properties may also be set after instantiation, e.g.
@@ -36,7 +38,7 @@ async function axisAutoTicksFalse(divElementId) {
         autoTicks: false,
         majorDelta: 1,
         minorDelta: 0.2,
-        ...styleOptions,
+        ...styleOptions
     });
 
     sciChartSurface.xAxes.add(xAxis);
@@ -61,8 +63,8 @@ async function builderExample(divElementId) {
                 axisTitle: "majorDelta 2, minorDelta 1",
                 autoTicks: false,
                 majorDelta: 2,
-                minorDelta: 1,
-            },
+                minorDelta: 1
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
@@ -70,9 +72,9 @@ async function builderExample(divElementId) {
                 axisTitle: "majorDelta 2, minorDelta 1",
                 autoTicks: false,
                 majorDelta: 1,
-                minorDelta: 0.2,
-            },
-        },
+                minorDelta: 0.2
+            }
+        }
     });
     // #endregion
 }

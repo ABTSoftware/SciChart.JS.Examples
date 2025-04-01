@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function resetCameraModifier3D(divElementId) {
     const { SciChart3DSurface, NumericAxis3D, Vector3, SciChartJsNavyTheme } = SciChart;
 
@@ -12,8 +14,8 @@ async function resetCameraModifier3D(divElementId) {
         // Optional initial camera position and target
         cameraOptions: {
             position: new Vector3(-650, 700, 200),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     // SciChart.js 3D supports only a single x,y,z axis. Declare your axis like this
@@ -24,12 +26,12 @@ async function resetCameraModifier3D(divElementId) {
     const camera = sciChart3DSurface.camera;
 
     // propertyChanged is raised each time any property changes on the camera
-    camera.propertyChanged.subscribe((args) => {
+    camera.propertyChanged.subscribe(args => {
         // Log current properties to console. debugOutput returns array of strings
         const cameraDebug = camera.debugOutput();
 
         // Output the same information to a div on the page
-        document.getElementById("debug-camera").innerHTML = cameraDebug.map((line) => `<p>${line}</p>`).join("");
+        document.getElementById("debug-camera").innerHTML = cameraDebug.map(line => `<p>${line}</p>`).join("");
     });
     camera.target = new Vector3(0, 60, 0);
 
@@ -48,8 +50,8 @@ async function resetCameraModifier3D(divElementId) {
             destination: {
                 radius: 450,
                 pitch: 30,
-                yaw: 45,
-            },
+                yaw: 45
+            }
         })
     );
     // #endregion

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function metadataTemplates(divElementId) {
     // Demonstrates how to add PointMetadata to a DataSeries and consume it in SciChart.js
     const {
@@ -8,13 +10,13 @@ async function metadataTemplates(divElementId) {
         SciChartJsNavyTheme,
         EllipsePointMarker,
         NumberRange,
-        RolloverModifier,
+        RolloverModifier
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     const growBy = new NumberRange(0.1, 0.1);
@@ -26,7 +28,7 @@ async function metadataTemplates(divElementId) {
     const dataSeries = new XyDataSeries(wasmContext, {
         xValues: [1, 2, 3, 4, 5],
         yValues: [4.3, 5.3, 6, 6.3, 6.4],
-        metadata: { stringValue: "All the same value", customValue: 7 },
+        metadata: { stringValue: "All the same value", customValue: 7 }
     });
 
     // Update just a metadata value
@@ -42,19 +44,19 @@ async function metadataTemplates(divElementId) {
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
             dataSeries,
-            pointMarker: new EllipsePointMarker(wasmContext, { width: 11, height: 11, fill: "White" }),
+            pointMarker: new EllipsePointMarker(wasmContext, { width: 11, height: 11, fill: "White" })
         })
     );
     // Add a RolloverModifier configured to output X,Y,Metadata.stringValue and customValue
     sciChartSurface.chartModifiers.add(
         new RolloverModifier({
             snapToDataPoint: true,
-            tooltipDataTemplate: (seriesInfo) => [
+            tooltipDataTemplate: seriesInfo => [
                 `X: ${seriesInfo.formattedXValue}`,
                 `Y: ${seriesInfo.formattedYValue}`,
                 `Metadata.stringValue: ${seriesInfo.pointMetadata?.stringValue ?? "null"}`,
-                `Metadata.customValue: ${seriesInfo.pointMetadata?.customValue ?? "null"}`,
-            ],
+                `Metadata.customValue: ${seriesInfo.pointMetadata?.customValue ?? "null"}`
+            ]
         })
     );
     // #endregion
@@ -67,14 +69,14 @@ async function metadataTemplates(divElementId) {
         y1: 0.5,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         opacity: 0.33,
-        textColor: "White",
+        textColor: "White"
     };
     sciChartSurface.annotations.add(
         new TextAnnotation({
             text: "Metadata Templates Example",
             fontSize: 36,
             yCoordShift: -125,
-            ...options,
+            ...options
         })
     );
     sciChartSurface.annotations.add(
@@ -82,7 +84,7 @@ async function metadataTemplates(divElementId) {
             text: "Hover over the chart to see metadata",
             fontSize: 20,
             yCoordShift: -75,
-            ...options,
+            ...options
         })
     );
 }
@@ -105,7 +107,7 @@ async function builderExample(divElementId) {
                 xyData: {
                     xValues: [1, 2, 3, 4, 5],
                     yValues: [4.3, 5.3, 6, 6.3, 6.4],
-                    metadata: { stringValue: "All the same value", customValue: 7 },
+                    metadata: { stringValue: "All the same value", customValue: 7 }
                 },
                 // ...
                 // #endregion
@@ -116,11 +118,11 @@ async function builderExample(divElementId) {
                         options: {
                             width: 11,
                             height: 11,
-                            fill: "White",
-                        },
-                    },
-                },
-            },
+                            fill: "White"
+                        }
+                    }
+                }
+            }
         ],
         // Configure a Rollovermodifier to display metadata
         modifiers: [
@@ -128,15 +130,15 @@ async function builderExample(divElementId) {
                 type: EChart2DModifierType.Rollover,
                 options: {
                     snapToDataPoint: true,
-                    tooltipDataTemplate: (seriesInfo) => [
+                    tooltipDataTemplate: seriesInfo => [
                         `X: ${seriesInfo.formattedXValue}`,
                         `Y: ${seriesInfo.formattedYValue}`,
                         `Metadata.stringValue: ${seriesInfo.pointMetadata?.stringValue ?? "null"}`,
-                        `Metadata.customValue: ${seriesInfo.pointMetadata?.customValue ?? "null"}`,
-                    ],
-                },
-            },
-        ],
+                        `Metadata.customValue: ${seriesInfo.pointMetadata?.customValue ?? "null"}`
+                    ]
+                }
+            }
+        ]
     });
 }
 

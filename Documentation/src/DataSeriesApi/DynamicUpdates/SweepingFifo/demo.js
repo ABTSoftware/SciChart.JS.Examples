@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function dataSeriesScrollingFifo(divElementId) {
     const {
         SciChartSurface,
@@ -8,7 +10,7 @@ async function dataSeriesScrollingFifo(divElementId) {
         EAutoRange,
         CategoryAxis,
         libraryVersion,
-        EllipsePointMarker,
+        EllipsePointMarker
     } = SciChart;
 
     // or for npm import { SciChartSurface, ... } from "scichart"
@@ -17,7 +19,7 @@ async function dataSeriesScrollingFifo(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
         title: "Sweeping Data using fifoSweeping",
-        titleStyle: { fontSize: 16 },
+        titleStyle: { fontSize: 16 }
     });
 
     // For the example to work, axis must have EAutoRange.Always
@@ -45,7 +47,7 @@ async function dataSeriesScrollingFifo(divElementId) {
         yValues,
         fifoCapacity: 1000, // set fifoCapacity. Requires scichart.js v3.2 or later
         fifoSweeping: true,
-        fifoSweepingGap: 20,
+        fifoSweepingGap: 20
     });
 
     console.log(`version is ${libraryVersion}`);
@@ -59,10 +61,10 @@ async function dataSeriesScrollingFifo(divElementId) {
                 width: 11,
                 height: 11,
                 fill: "#fff",
-                lastPointOnly: true,
+                lastPointOnly: true
             }),
             strokeThickness: 3,
-            stroke: "#50C7E0",
+            stroke: "#50C7E0"
         })
     );
 

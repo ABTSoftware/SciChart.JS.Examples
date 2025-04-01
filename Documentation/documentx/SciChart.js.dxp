@@ -4514,7 +4514,7 @@ Show external placement div</Notes>
 &lt;LI&gt;&lt;A href="#RolloverModifier"&gt;RolloverModifier&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="#CursorModifier"&gt;CursorModifier&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="#Ignorefs"&gt;Ignore fs should be removed or updated in webpack.config&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="#TGridLineStyle"&gt;TGridLineStyle.strokeDasharray renamed&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="#TGridLineStyle"&gt;TGridLineStyle.strokeDashArray renamed&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="#TEasing"&gt;TEasing renamed&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="#ICandlestickSeriesOptions"&gt;ICandlestickSeriesOptions renamed&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="#RubberBandSvgRect"&gt;RubberBandSvgRect renamed&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
@@ -4577,9 +4577,9 @@ Show external placement div</Notes>
 &lt;P&gt;&lt;STRONG&gt;new webpack.IgnorePlugin(/(fs)/)&lt;/STRONG&gt;&lt;/P&gt;
 &lt;P&gt;This is no longer required due to upgrades to our build, and may cause problems (especially with the filters api) as it ignores &lt;STRONG&gt;any&lt;/STRONG&gt; file containing the string fs.&amp;nbsp; If you do still need to ignore the fs package specifically (as some packages depend on it for node.js support but this breaks when in a browser), then use this line:&lt;/P&gt;
 &lt;P&gt;&lt;STRONG&gt;new webpack.IgnorePlugin(/^fs$/);&lt;/STRONG&gt;&lt;/P&gt;
-&lt;H2&gt;TGridLineStyle.strokeDasharray renamed&lt;/H2&gt;
-&lt;P&gt;&lt;A id=TGridLineStyle name=TGridLineStyle&gt;&lt;/A&gt;TGridLineStyle.strokeDasharray renamed to TGridLineStyle.strokeDashArray&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;TGridLineStyle changes&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;// Before&lt;BR&gt;xAxis.majorGridLineStyle.strokeDasharray = [4, 2];&lt;/P&gt;
+&lt;H2&gt;TGridLineStyle.strokeDashArray renamed&lt;/H2&gt;
+&lt;P&gt;&lt;A id=TGridLineStyle name=TGridLineStyle&gt;&lt;/A&gt;TGridLineStyle.strokeDashArray renamed to TGridLineStyle.strokeDashArray&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;TGridLineStyle changes&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;// Before&lt;BR&gt;xAxis.majorGridLineStyle.strokeDashArray = [4, 2];&lt;/P&gt;
 &lt;P&gt;// After&lt;BR&gt;xAxis.majorGridLineStyle.strokeDashArray = [4, 2];&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;TEasing type renamed&lt;/H2&gt;
 &lt;P&gt;Renamed from &lt;STRONG&gt;TEasing&lt;/STRONG&gt; to &lt;STRONG&gt;TEasingFn&lt;/STRONG&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;&lt;A id=TEasing name=TEasing&gt;&lt;/A&gt;TEasing changes&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;

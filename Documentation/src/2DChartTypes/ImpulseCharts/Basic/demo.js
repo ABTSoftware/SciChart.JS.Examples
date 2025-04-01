@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleImpulseChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create an Impulse (or Stem, Lollipop) chart with SciChart.js
@@ -8,13 +10,13 @@ async function simpleImpulseChart(divElementId) {
         XyDataSeries,
         EllipsePointMarker,
         SciChartJsNavyTheme,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0, 0.1) }));
@@ -35,7 +37,7 @@ async function simpleImpulseChart(divElementId) {
         size: 10,
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
         // Optional: define the pointmarker type. Note: size, stroke, fill properties are on the parent series
-        pointMarker: new EllipsePointMarker(wasmContext),
+        pointMarker: new EllipsePointMarker(wasmContext)
     });
 
     sciChartSurface.renderableSeries.add(impulseSeries);
@@ -66,17 +68,17 @@ async function builderExample(divElementId) {
                 type: ESeriesType.ImpulseSeries,
                 xyData: {
                     xValues,
-                    yValues,
+                    yValues
                 },
                 options: {
                     fill: "rgba(176, 196, 222, 0.5)",
                     stroke: "rgba(176, 196, 222, 1)",
                     strokeThickness: 2,
                     size: 10,
-                    pointMarker: { type: EPointMarkerType.Ellipse },
-                },
-            },
-        ],
+                    pointMarker: { type: EPointMarkerType.Ellipse }
+                }
+            }
+        ]
     });
     // #endregion
 }

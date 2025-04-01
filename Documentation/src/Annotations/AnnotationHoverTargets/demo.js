@@ -1,3 +1,7 @@
+import * as SciChart from "scichart";
+
+/** @import {BoxAnnotation} from "scichart" */
+
 const {
     EChart2DModifierType,
     EAnnotationType,
@@ -6,17 +10,16 @@ const {
     AnnotationHoverEventArgs,
     BoxAnnotation,
     EHoverMode,
-    IAnnotation,
     NumericAxis,
     SciChartJsNavyTheme,
     SciChartSurface,
     chartBuilder,
-    AnnotationHoverModifier,
+    AnnotationHoverModifier
 } = SciChart;
 
 async function annotationHoverTargets(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -38,7 +41,7 @@ async function annotationHoverTargets(divElementId) {
             x1: 0.1 + (annotationSize + gap) * i,
             x2: 0.1 + annotationSize + (annotationSize + gap) * i,
             y1: 0.7,
-            y2: 0.5,
+            y2: 0.5
         });
         hoverableAnnotations.push(annotation);
         sciChartSurface.annotations.add(annotation);
@@ -51,7 +54,7 @@ async function annotationHoverTargets(divElementId) {
         textColor: "black",
         fontSize: 24,
         x1: 0.1,
-        y1: 0.3,
+        y1: 0.3
     });
 
     const nonHoverableAnnotation = new BoxAnnotation({
@@ -62,27 +65,27 @@ async function annotationHoverTargets(divElementId) {
         x1: 0.1,
         x2: 0.6,
         y1: 0.4,
-        y2: 0.2,
+        y2: 0.2
     });
 
     sciChartSurface.annotations.add(nonHoverableAnnotation, textAnnotation);
 
     // #region ModifierTargetsSelector
-    const targetsSelector = (modifier) => hoverableAnnotations;
+    const targetsSelector = modifier => hoverableAnnotations;
 
     const annotationHoverModifier = new AnnotationHoverModifier({
         targets: targetsSelector,
-        hoverMode: EHoverMode.Multi,
+        hoverMode: EHoverMode.Multi
     });
     // #endregion
 
     sciChartSurface.chartModifiers.add(annotationHoverModifier);
 
-    annotationHoverModifier.hoverChanged.subscribe((args) => {
+    annotationHoverModifier.hoverChanged.subscribe(args => {
         const { includedEntities } = args;
 
         // annotations returned by the targetsSelector
-        const includedAnnotations = includedEntities;
+        const includedAnnotations = /** @type {BoxAnnotation[]} */ (includedEntities);
 
         includedAnnotations.forEach((annotation, index) => {
             if (annotation.isHovered) {

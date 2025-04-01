@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleHeatmapChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a uniform heatmap chart with SciChart.js
@@ -7,14 +9,14 @@ async function simpleHeatmapChart(divElementId) {
         HeatmapColorMap,
         UniformHeatmapDataSeries,
         UniformHeatmapRenderableSeries,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     // Create a SciChartSurface with X & Y Axis
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -54,7 +56,7 @@ async function simpleHeatmapChart(divElementId) {
             xStart: 10,
             xStep: 1,
             yStart: 10,
-            yStep: 1,
+            yStep: 1
         }),
         // zValues mapped to colours using the colorMap.
         // zValue[y][x] when compared to HeatmapColorMap.maximum corresponds to gradientstop offset=1
@@ -69,14 +71,14 @@ async function simpleHeatmapChart(divElementId) {
                 { offset: 0.5, color: "#67BDAF" },
                 { offset: 0.3, color: "#50C7E0" },
                 { offset: 0.2, color: "#264B93" },
-                { offset: 0, color: "#14233C" },
-            ],
+                { offset: 0, color: "#14233C" }
+            ]
         }),
         // Optional datalabels may be placed in cell
         dataLabels: {
-            style: { fontFamily: "Arial", fontSize: 16 },
-            color: "White",
-        },
+            style: { fontFamily: "Default", fontSize: 16 },
+            color: "White"
+        }
     });
 
     sciChartSurface.renderableSeries.add(heatmapSeries);
@@ -100,7 +102,7 @@ async function builderExample(divElementId) {
     const zValues = [
         [0, 2, 3.4],
         [5, 3, 4],
-        [3, 1.5, -1],
+        [3, 1.5, -1]
     ];
 
     const colorMap = new HeatmapColorMap({
@@ -109,8 +111,8 @@ async function builderExample(divElementId) {
         gradientStops: [
             { offset: 0, color: "yellow" },
             { offset: 0.5, color: "blue" },
-            { offset: 1, color: "red" },
-        ],
+            { offset: 1, color: "red" }
+        ]
     });
 
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
@@ -123,9 +125,9 @@ async function builderExample(divElementId) {
                 xStart: 10,
                 xStep: 1,
                 yStart: 10,
-                yStep: 1,
-            },
-        },
+                yStep: 1
+            }
+        }
     });
     // #endregion
 }

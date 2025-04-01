@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function dataLabelsBasicFormatting(divElementId) {
     // Demonstrates how to add DataLabels with simple formatting to a chart with SciChart.js
     const {
@@ -7,14 +9,14 @@ async function dataLabelsBasicFormatting(divElementId) {
         EllipsePointMarker,
         XyDataSeries,
         SciChartJsNavyTheme,
-        ENumericFormat,
+        ENumericFormat
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     // Create a chart with X, Y axis
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -25,11 +27,11 @@ async function dataLabelsBasicFormatting(divElementId) {
         height: 10,
         strokeThickness: 2,
         stroke: "SteelBlue",
-        fill: "LightSteelBlue",
+        fill: "LightSteelBlue"
     });
     const dataSeries = new XyDataSeries(wasmContext, {
         xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8],
+        yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8]
     });
 
     // #region ExampleA
@@ -45,11 +47,11 @@ async function dataLabelsBasicFormatting(divElementId) {
                 numericFormat: ENumericFormat.Decimal,
                 precision: 4,
                 style: {
-                    fontFamily: "Arial",
-                    fontSize: 16,
+                    fontFamily: "Default",
+                    fontSize: 16
                 },
-                color: "#EEE",
-            },
+                color: "#EEE"
+            }
         })
     );
     // #endregion
@@ -63,6 +65,7 @@ async function builderExample(divElementId) {
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
+    /** @type {import("scichart").TPointMarkerDefinition} */
     const pointMarker = {
         type: EPointMarkerType.Ellipse,
         options: {
@@ -70,8 +73,8 @@ async function builderExample(divElementId) {
             height: 10,
             strokeThickness: 2,
             stroke: "SteelBlue",
-            fill: "LightSteelBlue",
-        },
+            fill: "LightSteelBlue"
+        }
     };
 
     // #region ExampleB
@@ -82,7 +85,7 @@ async function builderExample(divElementId) {
                 type: ESeriesType.LineSeries,
                 xyData: {
                     xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                    yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8],
+                    yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8]
                 },
                 options: {
                     stroke: "#0066FF",
@@ -96,14 +99,14 @@ async function builderExample(divElementId) {
                         numericFormat: ENumericFormat.Decimal,
                         precision: 4,
                         style: {
-                            fontFamily: "Arial",
-                            fontSize: 16,
+                            fontFamily: "Default",
+                            fontSize: 16
                         },
-                        color: "#EEE",
-                    },
-                },
-            },
-        ],
+                        color: "#EEE"
+                    }
+                }
+            }
+        ]
     });
     // #endregion
 }

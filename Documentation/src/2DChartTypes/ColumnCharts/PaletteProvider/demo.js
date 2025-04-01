@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 // #region ExampleA
 const { DefaultPaletteProvider, EStrokePaletteMode, parseColorToUIntArgb } = SciChart;
 
@@ -36,7 +38,7 @@ async function drawColumnChartWithPalette(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -45,7 +47,7 @@ async function drawColumnChartWithPalette(divElementId) {
     // Create some data
     const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
     const yValues = [
-        0.1, 0.2, 0.4, 0.8, 1.1, 1.5, 2.4, 4.6, 8.1, 11.7, 14.4, 16.0, 13.7, 10.1, 6.4, 3.5, 2.5, 1.4, 0.4, 0.1,
+        0.1, 0.2, 0.4, 0.8, 1.1, 1.5, 2.4, 4.6, 8.1, 11.7, 14.4, 16.0, 13.7, 10.1, 6.4, 3.5, 2.5, 1.4, 0.4, 0.1
     ];
 
     // Create and add a column series
@@ -55,7 +57,7 @@ async function drawColumnChartWithPalette(divElementId) {
         strokeThickness: 2,
         dataPointWidth: 0.7,
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-        paletteProvider: new ColumnPaletteProvider(10),
+        paletteProvider: new ColumnPaletteProvider(10)
     });
 
     sciChartSurface.renderableSeries.add(columnSeries);
@@ -76,13 +78,13 @@ async function builderExample(divElementId) {
     chartBuilder.registerType(
         EBaseType.PaletteProvider,
         "ColumnPaletteProvider",
-        (options) => new ColumnPaletteProvider(options.threshold)
+        options => new ColumnPaletteProvider(options.threshold)
     );
 
     // Create some data
     const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
     const yValues = [
-        0.1, 0.2, 0.4, 0.8, 1.1, 1.5, 2.4, 4.6, 8.1, 11.7, 14.4, 16.0, 13.7, 10.1, 6.4, 3.5, 2.5, 1.4, 0.4, 0.1,
+        0.1, 0.2, 0.4, 0.8, 1.1, 1.5, 2.4, 4.6, 8.1, 11.7, 14.4, 16.0, 13.7, 10.1, 6.4, 3.5, 2.5, 1.4, 0.4, 0.1
     ];
 
     // Now use the Builder-API to build the chart
@@ -93,7 +95,7 @@ async function builderExample(divElementId) {
                 type: ESeriesType.ColumnSeries,
                 xyData: {
                     xValues,
-                    yValues,
+                    yValues
                 },
                 options: {
                     fill: "rgba(176, 196, 222, 0.5)",
@@ -105,14 +107,14 @@ async function builderExample(divElementId) {
                         type: EPaletteProviderType.Custom,
                         customType: "ColumnPaletteProvider",
                         options: {
-                            threshold: 10,
-                        },
-                    },
+                            threshold: 10
+                        }
+                    }
                     // Note: Assigning an instance is also valid, e.g.
                     // paletteProvider: new ColumnPaletteProvider(10)
-                },
-            },
-        ],
+                }
+            }
+        ]
     });
     // #endregion
 }

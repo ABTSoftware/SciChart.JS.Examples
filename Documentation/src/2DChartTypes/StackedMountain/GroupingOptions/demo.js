@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function percent100StackedColumnChart(divElementId) {
     // Demonstrates how to create a Column chart with SciChart.js
     const {
@@ -6,13 +8,13 @@ async function percent100StackedColumnChart(divElementId) {
         StackedMountainRenderableSeries,
         StackedMountainCollection,
         XyDataSeries,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -32,8 +34,7 @@ async function percent100StackedColumnChart(divElementId) {
         fill: "#882B91",
         stroke: "#E4F5FC",
         strokeThickness: 2,
-        opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        opacity: 0.8
     });
 
     const rendSeries2 = new StackedMountainRenderableSeries(wasmContext, {
@@ -41,8 +42,7 @@ async function percent100StackedColumnChart(divElementId) {
         fill: "#EC0F6C",
         stroke: "#E4F5FC",
         strokeThickness: 2,
-        opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        opacity: 0.8
     });
 
     const rendSeries3 = new StackedMountainRenderableSeries(wasmContext, {
@@ -50,8 +50,7 @@ async function percent100StackedColumnChart(divElementId) {
         fill: "#F48420",
         stroke: "#E4F5FC",
         strokeThickness: 2,
-        opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        opacity: 0.8
     });
 
     const rendSeries4 = new StackedMountainRenderableSeries(wasmContext, {
@@ -59,8 +58,7 @@ async function percent100StackedColumnChart(divElementId) {
         fill: "#50C7E0",
         stroke: "#E4F5FC",
         strokeThickness: 2,
-        opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        opacity: 0.8
     });
 
     // #region ExampleA
@@ -70,13 +68,11 @@ async function percent100StackedColumnChart(divElementId) {
         fill: "#30BC9A",
         stroke: "#E4F5FC",
         strokeThickness: 2,
-        opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        opacity: 0.8
     });
 
     // To add the series to the chart, put them in a StackedMountainCollection
     const stackedMountainCollection = new StackedMountainCollection(wasmContext);
-    stackedMountainCollection.dataPointWidth = 0.6;
     // Set the isOneHundredPercent option to enable 100% stacking
     stackedMountainCollection.isOneHundredPercent = true;
     stackedMountainCollection.add(rendSeries1, rendSeries2, rendSeries3, rendSeries4, rendSeries5);

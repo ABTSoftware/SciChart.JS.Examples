@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 const xValues = [];
 const yValues = [];
 const yValues1 = [];
@@ -14,6 +16,7 @@ async function simpleSubChart(divElementId) {
     // Demonstrates how to use the Sub-Charts API to create child charts in a parent chart
     const {
         SciChartSurface,
+        SciChartSubSurface,
         NumericAxis,
         FastLineRenderableSeries,
         XyDataSeries,
@@ -24,7 +27,7 @@ async function simpleSubChart(divElementId) {
         ZoomExtentsModifier,
         MouseWheelZoomModifier,
         BoxAnnotation,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -37,27 +40,27 @@ async function simpleSubChart(divElementId) {
                 strokeThickness: 5,
                 dataSeries: new XyDataSeries(wasmContext, {
                     xValues: x,
-                    yValues: y,
+                    yValues: y
                 }),
-                opacity: sciChartSurface.isSubSurface ? 0.5 : 1,
+                opacity: sciChartSurface.isSubSurface ? 0.5 : 1
             })
         );
     };
 
     // Create a parent (regular) SciChartSurface which will contain the sub-chart
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Create X,Y axis on the parent chart and programmatically zoom into part of the data
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
-            growBy: new NumberRange(0.1, 0.1),
+            growBy: new NumberRange(0.1, 0.1)
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
-            growBy: new NumberRange(0.1, 0.1),
+            growBy: new NumberRange(0.1, 0.1)
         })
     );
 
@@ -72,7 +75,7 @@ async function simpleSubChart(divElementId) {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
 
     // Add a Sub-Charts to the main surface. This will display a rectangle showing the current zoomed in area on the parent chart
-    const subChart1 = sciChartSurface.addSubChart({
+    const subChart1 = SciChartSubSurface.createSubSurface(sciChartSurface, {
         // Properties from I2DSubSurfaceOptions affect positioning and rendering of the subchart
         position: new Rect(0.02, 0.02, 0.4, 0.4),
         isTransparent: false,
@@ -80,9 +83,9 @@ async function simpleSubChart(divElementId) {
         coordinateMode: ECoordinateMode.Relative,
         // However all properties from I2DSurfaceOptions are available
         viewportBorder: { border: 3, color: "#77777777" },
-        backgroundColor: "#333",
+        background: "#333",
         title: "2D Overview with Sub-Charts",
-        titleStyle: { fontSize: 16, color: "#eeeeee77" },
+        titleStyle: { fontSize: 16, color: "#eeeeee77" }
     });
 
     // Add x,y axis to the subchart
@@ -98,16 +101,16 @@ async function simpleSubChart(divElementId) {
         fill: "#FF660033",
         stroke: "#FF6600",
         strokeThickness: 2,
-        opacity: 0.5,
+        opacity: 0.5
     });
     subChart1.annotations.add(boxAnnotation);
 
     // On parent chart zoom, pan, update the box annotation on the subchart
-    sciChartSurface.xAxes.get(0).visibleRangeChanged.subscribe((args) => {
+    sciChartSurface.xAxes.get(0).visibleRangeChanged.subscribe(args => {
         boxAnnotation.x1 = args.visibleRange.min;
         boxAnnotation.x2 = args.visibleRange.max;
     });
-    sciChartSurface.yAxes.get(0).visibleRangeChanged.subscribe((args) => {
+    sciChartSurface.yAxes.get(0).visibleRangeChanged.subscribe(args => {
         boxAnnotation.y1 = args.visibleRange.min;
         boxAnnotation.y2 = args.visibleRange.max;
     });
@@ -129,7 +132,7 @@ async function simpleSubChart(divElementId) {
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
             opacity: 0.5,
-            fontSize: 20,
+            fontSize: 20
         })
     );
 }
@@ -148,7 +151,7 @@ async function builderExample(divElementId) {
         ECoordinateMode,
         EAnnotationType,
         NumberRange,
-        EChart2DModifierType,
+        EChart2DModifierType
     } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -163,18 +166,18 @@ async function builderExample(divElementId) {
                 type: ESeriesType.LineSeries,
                 xyData: {
                     xValues,
-                    yValues: yValues1,
+                    yValues: yValues1
                 },
                 options: {
                     stroke: "#0066FF",
-                    strokeThickness: 5,
-                },
-            },
+                    strokeThickness: 5
+                }
+            }
         ],
         modifiers: [
             { type: EChart2DModifierType.ZoomPan },
             { type: EChart2DModifierType.ZoomExtents },
-            { type: EChart2DModifierType.MouseWheelZoom },
+            { type: EChart2DModifierType.MouseWheelZoom }
         ],
         // Subchart definition is here
         subCharts: [
@@ -187,9 +190,9 @@ async function builderExample(divElementId) {
                     coordinateMode: ECoordinateMode.Relative,
                     // However all properties from I2DSurfaceOptions are available
                     viewportBorder: { border: 3, color: "#77777777" },
-                    backgroundColor: "#333",
+                    background: "#333",
                     title: "2D Overview with Sub-Charts",
-                    titleStyle: { fontSize: 16, color: "#eeeeee77" },
+                    titleStyle: { fontSize: 16, color: "#eeeeee77" }
                 },
                 // Define the x,y axis on Subchart
                 xAxes: { type: EAxisType.NumericAxis, options: { isVisible: false } },
@@ -200,13 +203,13 @@ async function builderExample(divElementId) {
                         type: ESeriesType.LineSeries,
                         xyData: {
                             xValues,
-                            yValues: yValues1,
+                            yValues: yValues1
                         },
                         options: {
                             stroke: "#0066FF",
-                            strokeThickness: 5,
-                        },
-                    },
+                            strokeThickness: 5
+                        }
+                    }
                 ],
                 annotations: [
                     {
@@ -215,21 +218,21 @@ async function builderExample(divElementId) {
                             fill: "#FF660033",
                             stroke: "#FF6600",
                             strokeThickness: 2,
-                            opacity: 0.5,
-                        },
-                    },
-                ],
-            },
-        ],
+                            opacity: 0.5
+                        }
+                    }
+                ]
+            }
+        ]
     });
 
     // On parent chart zoom, pan, update the box annotation on the subchart
     const subChartBoxAnnotation = sciChartSurface.subCharts.at(0).annotations.get(0);
-    sciChartSurface.xAxes.get(0).visibleRangeChanged.subscribe((args) => {
+    sciChartSurface.xAxes.get(0).visibleRangeChanged.subscribe(args => {
         subChartBoxAnnotation.x1 = args.visibleRange.min;
         subChartBoxAnnotation.x2 = args.visibleRange.max;
     });
-    sciChartSurface.yAxes.get(0).visibleRangeChanged.subscribe((args) => {
+    sciChartSurface.yAxes.get(0).visibleRangeChanged.subscribe(args => {
         subChartBoxAnnotation.y1 = args.visibleRange.min;
         subChartBoxAnnotation.y2 = args.visibleRange.max;
     });

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function simpleDigitalMountainChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a digital Mountain (Area) chart with SciChart.js
@@ -8,13 +10,13 @@ async function simpleDigitalMountainChart(divElementId) {
         GradientParams,
         XyDataSeries,
         Point,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -41,10 +43,10 @@ async function simpleDigitalMountainChart(divElementId) {
         // when a gradient is required, use fillLinearGradient
         fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "rgba(70,130,180,0.77)", offset: 0 },
-            { color: "rgba(70,130,180,0.0)", offset: 1 },
+            { color: "rgba(70,130,180,0.0)", offset: 1 }
         ]),
         // property isDigitalLine makes the chart type a step line
-        isDigitalLine: true,
+        isDigitalLine: true
     });
 
     sciChartSurface.renderableSeries.add(mountainSeries);
@@ -78,7 +80,7 @@ async function builderExample(divElementId) {
                 type: ESeriesType.MountainSeries,
                 xyData: {
                     xValues,
-                    yValues,
+                    yValues
                 },
                 options: {
                     stroke: "#4682b4",
@@ -88,15 +90,15 @@ async function builderExample(divElementId) {
                     fillLinearGradient: {
                         gradientStops: [
                             { color: "rgba(70,130,180,0.77)", offset: 0.0 },
-                            { color: "rgba(70,130,180,0.0)", offset: 1 },
+                            { color: "rgba(70,130,180,0.0)", offset: 1 }
                         ],
                         startPoint: { x: 0, y: 0 },
-                        endPoint: { x: 0, y: 1 },
+                        endPoint: { x: 0, y: 1 }
                     },
-                    isDigitalLine: true,
-                },
-            },
-        ],
+                    isDigitalLine: true
+                }
+            }
+        ]
     });
     // #endregion
 }

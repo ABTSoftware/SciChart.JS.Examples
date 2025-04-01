@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function tooltips3D(divElementId) {
     const {
         SciChart3DSurface,
@@ -15,7 +17,7 @@ async function tooltips3D(divElementId) {
         PointLineRenderableSeries3D,
         EDrawMeshAs,
         TooltipModifier3D,
-        EMeshPaletteMode,
+        EMeshPaletteMode
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -26,24 +28,24 @@ async function tooltips3D(divElementId) {
         worldDimensions: new Vector3(300, 200, 300),
         cameraOptions: {
             position: new Vector3(-300, 300, 300),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "X Axis",
         visibleRange: new NumberRange(0, 10),
-        autoRange: EAutoRange.Never,
+        autoRange: EAutoRange.Never
     });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Y Axis",
         visibleRange: new NumberRange(0, 10),
-        autoRange: EAutoRange.Never,
+        autoRange: EAutoRange.Never
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Z Axis",
         visibleRange: new NumberRange(0, 10),
-        autoRange: EAutoRange.Never,
+        autoRange: EAutoRange.Never
     });
 
     sciChart3DSurface.renderableSeries.add(
@@ -53,8 +55,8 @@ async function tooltips3D(divElementId) {
                 xValues: [4, 4.1, 4.3],
                 yValues: [4, 4.1, 4.3],
                 zValues: [4, 4.1, 4.3],
-                dataSeriesName: "Orange",
-            }),
+                dataSeriesName: "Orange"
+            })
         })
     );
 
@@ -65,8 +67,8 @@ async function tooltips3D(divElementId) {
                 xValues: [5, 5.1, 5.3],
                 yValues: [5, 5.1, 5.3],
                 zValues: [5, 5.1, 5.3],
-                dataSeriesName: "Blue",
-            }),
+                dataSeriesName: "Blue"
+            })
         })
     );
 
@@ -77,8 +79,8 @@ async function tooltips3D(divElementId) {
                 xValues: [6, 6.1, 6.3],
                 yValues: [6, 6.1, 6.3],
                 zValues: [6, 6.1, 6.3],
-                dataSeriesName: "Green",
-            }),
+                dataSeriesName: "Green"
+            })
         })
     );
 
@@ -92,9 +94,9 @@ async function tooltips3D(divElementId) {
                     [0.6, 0.4, 0.6, 0.1, 0.7],
                     [0.2, 0.4, 0.3, 0.4, 0.0],
                     [0.6, 0.4, 0.6, 0.1, 0.7],
-                    [0.1, 0.4, 0.4, 0.2, 0.8],
+                    [0.1, 0.4, 0.4, 0.2, 0.8]
                 ],
-                dataSeriesName: "Surface mesh",
+                dataSeriesName: "Surface mesh"
             }),
             meshColorPalette: new GradientColorPalette(wasmContext, {
                 gradientStops: [
@@ -103,8 +105,8 @@ async function tooltips3D(divElementId) {
                     { offset: 0.3, color: "#67BDAF" },
                     { offset: 0.2, color: "#50C7E0" },
                     { offset: 0.1, color: "#264B93" },
-                    { offset: 0, color: "#14233C" }, // yValues <= minimum mapped to this color
-                ],
+                    { offset: 0, color: "#14233C" } // yValues <= minimum mapped to this color
+                ]
             }),
             minimum: 0,
             maximum: 1,
@@ -114,7 +116,7 @@ async function tooltips3D(divElementId) {
             strokeThickness: 1.5,
             lightingFactor: 0.2,
             meshPaletteMode: EMeshPaletteMode.HEIGHT_MAP_SOLID_CELLS,
-            drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME,
+            drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME
         })
     );
 
@@ -125,9 +127,9 @@ async function tooltips3D(divElementId) {
                 dataSeriesName: "PointLine 3D",
                 xValues: [0, 0, 0, 0, 0],
                 yValues: [6, 6.1, 6.3, 5.5, 6.0],
-                zValues: [2, 4, 6, 8, 10],
+                zValues: [2, 4, 6, 8, 10]
             }),
-            pointMarker: new SpherePointMarker3D(wasmContext, { size: 10, fill: "#00FF00" }),
+            pointMarker: new SpherePointMarker3D(wasmContext, { size: 10, fill: "#00FF00" })
         })
     );
 
@@ -136,13 +138,13 @@ async function tooltips3D(divElementId) {
     // Optional parameters help define tooltip operation
     const tooltipModifier = new TooltipModifier3D({
         isCrosshairVisible: true,
-        isTooltipVisible: true,
+        showTooltip: true,
         crosshairStroke: "#83D2F5",
         crosshairStrokeThickness: 3,
         tooltipContainerBackground: "#537ABD",
         tooltipTextStroke: "White",
         tooltipLegendOffsetX: 10,
-        tooltipLegendOffsetY: 10,
+        tooltipLegendOffsetY: 10
     });
 
     sciChart3DSurface.chartModifiers.add(tooltipModifier);

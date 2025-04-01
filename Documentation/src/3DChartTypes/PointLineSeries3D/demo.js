@@ -1,4 +1,6 @@
-const generateData = (index) => {
+import * as SciChart from "scichart";
+
+const generateData = index => {
     const gaussianRandom = (mean, stdev) => {
         const u = 1 - Math.random(); // Converting [0,1) to (0,1]
         const v = Math.random();
@@ -34,7 +36,7 @@ async function pointLineRenderableSeries3D(divElementId) {
         OrbitModifier3D,
         ResetCamera3DModifier,
         NumberRange,
-        EAutoRange,
+        EAutoRange
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -45,23 +47,23 @@ async function pointLineRenderableSeries3D(divElementId) {
         worldDimensions: new Vector3(300, 200, 300),
         cameraOptions: {
             position: new Vector3(-300, 300, -300),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     // Declare your axis like this
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "X Axis",
-        autoRange: EAutoRange.Once,
+        autoRange: EAutoRange.Once
     });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Y Axis",
-        autoRange: EAutoRange.Once,
+        autoRange: EAutoRange.Once
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Z Axis",
         autoRange: EAutoRange.Once,
-        growBy: new NumberRange(0.2, 0.2),
+        growBy: new NumberRange(0.2, 0.2)
     });
 
     // returns data in arrays of numbers e.g. xValues = [0,1,2,3,4], yValues = [0,1,2,3,4], zValues = [0,1,2,3,4]
@@ -73,7 +75,7 @@ async function pointLineRenderableSeries3D(divElementId) {
             dataSeries: new XyzDataSeries3D(wasmContext, { xValues, yValues, zValues }),
             opacity: 0.9,
             stroke: "#EC0F6C",
-            strokeThickness: 3,
+            strokeThickness: 3
         })
     );
 
@@ -84,13 +86,13 @@ async function pointLineRenderableSeries3D(divElementId) {
             dataSeries: new XyzDataSeries3D(wasmContext, {
                 xValues: dataset1.xValues,
                 yValues: dataset1.yValues,
-                zValues: dataset1.zValues,
+                zValues: dataset1.zValues
             }),
             opacity: 0.9,
             stroke: "#50C7E0",
             strokeThickness: 3,
             // Pointmarkers are optional. Many different pointmarker types are supported
-            pointMarker: new EllipsePointMarker3D(wasmContext, { size: 3 }),
+            pointMarker: new EllipsePointMarker3D(wasmContext, { size: 3 })
         })
     );
 
@@ -100,11 +102,11 @@ async function pointLineRenderableSeries3D(divElementId) {
             dataSeries: new XyzDataSeries3D(wasmContext, {
                 xValues: dataset2.xValues,
                 yValues: dataset2.yValues,
-                zValues: dataset2.zValues,
+                zValues: dataset2.zValues
             }),
             opacity: 0.9,
             stroke: "#F48420",
-            strokeThickness: 3,
+            strokeThickness: 3
         })
     );
 

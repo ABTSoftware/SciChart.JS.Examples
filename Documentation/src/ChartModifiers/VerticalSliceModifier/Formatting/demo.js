@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function formattingVerticalSliceModifier(divElementId) {
     const {
         SciChartSurface,
@@ -14,7 +16,7 @@ async function formattingVerticalSliceModifier(divElementId) {
         EllipsePointMarker,
         ZoomPanModifier,
         ZoomExtentsModifier,
-        MouseWheelZoomModifier,
+        MouseWheelZoomModifier
     } = SciChart;
 
     // or for npm import { SciChartSurface, ... } from "scichart"
@@ -23,7 +25,7 @@ async function formattingVerticalSliceModifier(divElementId) {
     // Create a chart surface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
-        titleStyle: { fontSize: 16 },
+        titleStyle: { fontSize: 16 }
     });
 
     // For the example to work, axis must have EAutoRange.Always
@@ -35,7 +37,7 @@ async function formattingVerticalSliceModifier(divElementId) {
             labelFormat: ENumericFormat.Decimal,
             // label format options applied to cursors & tooltips
             cursorLabelPrecision: 2,
-            cursorLabelFormat: ENumericFormat.Decimal,
+            cursorLabelFormat: ENumericFormat.Decimal
         })
     );
     sciChartSurface.yAxes.add(
@@ -47,7 +49,7 @@ async function formattingVerticalSliceModifier(divElementId) {
             labelFormat: ENumericFormat.Decimal,
             // label format options applied to cursors & tooltips
             cursorLabelPrecision: 6,
-            cursorLabelFormat: ENumericFormat.Decimal,
+            cursorLabelFormat: ENumericFormat.Decimal
         })
     );
 
@@ -62,7 +64,7 @@ async function formattingVerticalSliceModifier(divElementId) {
         rolloverLineStroke: "#FF6600",
         lineSelectionColor: "#FF6600",
         // Shows the default tooltip
-        showTooltip: true,
+        showTooltip: true
     });
     vSlice1.verticalLine.showLabel = true;
     vSlice1.verticalLine.axisLabelFill = "#FF6600";
@@ -77,7 +79,7 @@ async function formattingVerticalSliceModifier(divElementId) {
         rolloverLineStroke: "#50C7E0",
         lineSelectionColor: "#50C7E0",
         // Shows the default tooltip
-        showTooltip: true,
+        showTooltip: true
     });
     vSlice2.verticalLine.showLabel = true;
     vSlice2.verticalLine.axisLabelFill = "#50C7E0";
@@ -99,7 +101,7 @@ async function formattingVerticalSliceModifier(divElementId) {
         width: 7,
         height: 7,
         fill: "white",
-        strokeThickness: 0,
+        strokeThickness: 0
     });
 
     sciChartSurface.renderableSeries.add(
@@ -109,9 +111,9 @@ async function formattingVerticalSliceModifier(divElementId) {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
                 yValues,
-                dataSeriesName: "Sinewave 1",
+                dataSeriesName: "Sinewave 1"
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -122,9 +124,9 @@ async function formattingVerticalSliceModifier(divElementId) {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
                 yValues: yValues2,
-                dataSeriesName: "Sinewave 2",
+                dataSeriesName: "Sinewave 2"
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -136,14 +138,14 @@ async function formattingVerticalSliceModifier(divElementId) {
         y1: 0.0,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         opacity: 0.33,
-        textColor: "White",
+        textColor: "White"
     };
     sciChartSurface.annotations.add(
         new TextAnnotation({
             text: "VerticalSliceModifier 6 Decimal Places",
             fontSize: 36,
             yCoordShift: 25,
-            ...options,
+            ...options
         })
     );
     sciChartSurface.annotations.add(
@@ -151,7 +153,7 @@ async function formattingVerticalSliceModifier(divElementId) {
             text: "Shows how axis.cursorTextFormatting affects VerticalSlice tooltips",
             fontSize: 20,
             yCoordShift: 75,
-            ...options,
+            ...options
         })
     );
 
@@ -173,7 +175,7 @@ async function builderExample(divElementId) {
         EChart2DModifierType,
         ENumericFormat,
         EAxisType,
-        NumberRange,
+        NumberRange
     } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -189,8 +191,8 @@ async function builderExample(divElementId) {
                 labelFormat: ENumericFormat.Decimal,
                 // label format options applied to cursors & tooltips
                 cursorLabelPrecision: 2,
-                cursorLabelFormat: ENumericFormat.Decimal,
-            },
+                cursorLabelFormat: ENumericFormat.Decimal
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
@@ -202,8 +204,8 @@ async function builderExample(divElementId) {
                 labelFormat: ENumericFormat.Decimal,
                 // label format options applied to cursors & tooltips
                 cursorLabelPrecision: 6,
-                cursorLabelFormat: ENumericFormat.Decimal,
-            },
+                cursorLabelFormat: ENumericFormat.Decimal
+            }
         },
         modifiers: [
             {
@@ -218,8 +220,8 @@ async function builderExample(divElementId) {
                     rolloverLineStroke: "#FF6600",
                     lineSelectionColor: "#FF6600",
                     // Shows the default tooltip
-                    showTooltip: true,
-                },
+                    showTooltip: true
+                }
             },
             {
                 type: EChart2DModifierType.VerticalSlice,
@@ -233,10 +235,10 @@ async function builderExample(divElementId) {
                     rolloverLineStroke: "#50C7E0",
                     lineSelectionColor: "#50C7E0",
                     // Shows the default tooltip
-                    showTooltip: true,
-                },
-            },
-        ],
+                    showTooltip: true
+                }
+            }
+        ]
     });
     // #endregion
 
@@ -254,7 +256,7 @@ async function builderExample(divElementId) {
         width: 7,
         height: 7,
         fill: "white",
-        strokeThickness: 0,
+        strokeThickness: 0
     });
 
     sciChartSurface.renderableSeries.add(
@@ -263,9 +265,9 @@ async function builderExample(divElementId) {
             strokeThickness: 5,
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
-                yValues,
+                yValues
             }),
-            pointMarker,
+            pointMarker
         })
     );
 
@@ -275,9 +277,9 @@ async function builderExample(divElementId) {
             strokeThickness: 5,
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
-                yValues: yValues2,
+                yValues: yValues2
             }),
-            pointMarker,
+            pointMarker
         })
     );
 }

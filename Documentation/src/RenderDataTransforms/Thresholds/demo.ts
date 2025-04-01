@@ -29,7 +29,7 @@ import {
     parseColorToUIntArgb,
     DefaultPaletteProvider,
     EStrokePaletteMode,
-    HorizontalLineAnnotation,
+    HorizontalLineAnnotation
 } from "scichart";
 
 // #region ExampleA
@@ -140,7 +140,7 @@ class ThresholdRenderDataTransform extends XyBaseRenderDataTransform {
 
 // #region ExampleB
 const colorNames = ["green", "blue", "yellow", "red"];
-const colors = colorNames.map((c) => parseColorToUIntArgb(c));
+const colors = colorNames.map(c => parseColorToUIntArgb(c));
 
 class ThresholdPaletteProvider extends DefaultPaletteProvider {
     strokePaletteMode = EStrokePaletteMode.SOLID;
@@ -181,14 +181,14 @@ class ThresholdPaletteProvider extends DefaultPaletteProvider {
 
 async function thresholds(divElementId: string) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     // sciChartSurface.debugRendering = true;
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
 
     const yAxis = new NumericAxis(wasmContext, {
-        growBy: new NumberRange(0.05, 0.05),
+        growBy: new NumberRange(0.05, 0.05)
     });
     sciChartSurface.yAxes.add(yAxis);
 
@@ -200,20 +200,20 @@ async function thresholds(divElementId: string) {
             strokeThickness: 0,
             fill: "black",
             width: 10,
-            height: 10,
+            height: 10
         }),
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            yValues: [0, 1, 2, 3, 6, 4, 1, 1, 7, 5, 4],
+            yValues: [0, 1, 2, 3, 6, 4, 1, 1, 7, 5, 4]
         }),
         dataLabels: {
             style: {
                 fontFamily: "Arial",
-                fontSize: 10,
+                fontSize: 10
             },
-            color: "white",
+            color: "white"
         },
-        strokeThickness: 5,
+        strokeThickness: 5
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -234,9 +234,9 @@ async function thresholds(divElementId: string) {
             stroke: colorNames[i + 1],
             y1: thresholds[i],
             showLabel: true,
-            strokeThickness: 3,
+            strokeThickness: 3
         });
-        thresholdAnn.dragDelta.subscribe((args) => {
+        thresholdAnn.dragDelta.subscribe(args => {
             if (
                 (i < colorNames.length - 2 && thresholdAnn.y1 >= thresholds[i + 1]) ||
                 (i > 0 && thresholdAnn.y1 <= thresholds[i - 1])

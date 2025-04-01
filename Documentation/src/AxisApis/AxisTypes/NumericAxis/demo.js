@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function chartWithNumericAxis(divElementId) {
     // #region ExampleA
     // Demonstrates how to configure a numeric axis in SciChart.js
@@ -6,7 +8,7 @@ async function chartWithNumericAxis(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
 
     // Create an XAxis on the bottom
@@ -25,7 +27,7 @@ async function chartWithNumericAxis(divElementId) {
         // Enable decision labels with 4 significant figures
         labelFormat: ENumericFormat.Decimal,
         cursorLabelFormat: ENumericFormat.Decimal,
-        labelPrecision: 4,
+        labelPrecision: 4
     });
 
     // Add the xAxis to the chart
@@ -40,7 +42,7 @@ async function chartWithNumericAxis(divElementId) {
             cursorLabelFormat: ENumericFormat.Decimal,
             labelPrecision: 4,
             labelPrefix: "$",
-            labelPostfix: " USD",
+            labelPostfix: " USD"
         })
     );
     // #endregion
@@ -51,10 +53,10 @@ async function chartWithNumericAxis(divElementId) {
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-                yValues: [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0],
+                yValues: [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0]
             }),
             stroke: "#0066FF",
-            strokeThickness: 3,
+            strokeThickness: 3
         })
     );
 }
@@ -87,36 +89,35 @@ async function builderExample(divElementId) {
                 // Enable decision labels with 4 significant figures
                 labelFormat: ENumericFormat.Decimal,
                 cursorLabelFormat: ENumericFormat.Decimal,
-                labelPrecision: 2,
-            },
+                labelPrecision: 2
+            }
         },
         yAxes: {
             type: EAxisType.NumericAxis,
             options: {
-                axisTitle: "Y Axis, Left, default formatting",
+                // axisTitle: "Y Axis, Left, default formatting",
                 axisAlignment: EAxisAlignment.Left,
                 axisTitle: "Y Axis, Left, 4 dp",
-                axisAlignment: EAxisAlignment.Left,
                 labelFormat: ENumericFormat.Decimal,
                 cursorLabelFormat: ENumericFormat.Decimal,
                 labelPrecision: 4,
                 labelPrefix: "$",
-                labelPostfix: " USD",
-            },
+                labelPostfix: " USD"
+            }
         },
         series: [
             {
                 type: ESeriesType.LineSeries,
                 xyData: {
                     xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-                    yValues: [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0],
+                    yValues: [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0]
                 },
                 options: {
                     stroke: "#0066FF",
-                    strokeThickness: 5,
-                },
-            },
-        ],
+                    strokeThickness: 5
+                }
+            }
+        ]
     });
     // #endregion
 }

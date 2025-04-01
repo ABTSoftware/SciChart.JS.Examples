@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 const generateData = () => {
     const gaussianRandom = (mean, stdev) => {
         const u = 1 - Math.random(); // Converting [0,1) to (0,1]
@@ -33,7 +35,7 @@ async function scatter3DChart(divElementId) {
         OrbitModifier3D,
         ResetCamera3DModifier,
         NumberRange,
-        parseColorToUIntArgb,
+        parseColorToUIntArgb
     } = SciChart;
 
     // or, for npm, import { SciChart3DSurface, ... } from "scichart"
@@ -44,22 +46,22 @@ async function scatter3DChart(divElementId) {
         worldDimensions: new Vector3(300, 200, 300),
         cameraOptions: {
             position: new Vector3(-300, 300, -300),
-            target: new Vector3(0, 50, 0),
-        },
+            target: new Vector3(0, 50, 0)
+        }
     });
 
     // Declare your axis like this
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "X Axis",
-        visibleRange: new NumberRange(-3, 3),
+        visibleRange: new NumberRange(-3, 3)
     });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Y Axis",
-        visibleRange: new NumberRange(-3, 3),
+        visibleRange: new NumberRange(-3, 3)
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Z Axis",
-        visibleRange: new NumberRange(-3, 3),
+        visibleRange: new NumberRange(-3, 3)
     });
 
     // #region ExampleA
@@ -83,12 +85,12 @@ async function scatter3DChart(divElementId) {
                 xValues,
                 yValues,
                 zValues,
-                metadata, // Optional metadata here. Property vertexColor is read to color the point
+                metadata // Optional metadata here. Property vertexColor is read to color the point
             }),
             // When metadata colours are provided, the pointMarker.fill is ignored
             pointMarker: new SpherePointMarker3D(wasmContext, {
-                size: 7,
-            }),
+                size: 7
+            })
         })
     );
     // #endregion

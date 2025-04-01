@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 const getCandles = async (symbol, interval, limit = 300) => {
     let url = `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}`;
     if (limit) {
@@ -15,7 +17,7 @@ const getCandles = async (symbol, interval, limit = 300) => {
         const lowValues = [];
         const closeValues = [];
         const volumeValues = [];
-        data.forEach((candle) => {
+        data.forEach(candle => {
             const [timestamp, open, high, low, close, volume] = candle;
             dateValues.push(timestamp / 1000); // SciChart expects Unix Timestamp / 1000
             openValues.push(parseFloat(open));
@@ -27,7 +29,7 @@ const getCandles = async (symbol, interval, limit = 300) => {
         return { dateValues, openValues, highValues, lowValues, closeValues, volumeValues };
     } catch (err) {
         console.error(err);
-        return [];
+        return {};
     }
 };
 
@@ -42,13 +44,13 @@ async function candlestickAndVolumeChart(divElementId) {
         XyDataSeries,
         OhlcDataSeries,
         NumberRange,
-        SciChartJsNavyTheme,
+        SciChartJsNavyTheme
     } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new CategoryAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { labelPrefix: "$", labelPrecision: 2 }));
@@ -73,7 +75,7 @@ async function candlestickAndVolumeChart(divElementId) {
             yAxisId: "VolumeAxisId",
             strokeThickness: 0,
             dataPointWidth: 0.7,
-            opacity: 0.47,
+            opacity: 0.47
         })
     );
 
@@ -86,14 +88,14 @@ async function candlestickAndVolumeChart(divElementId) {
             openValues,
             highValues,
             lowValues,
-            closeValues,
+            closeValues
         }),
         strokeThickness: 1,
         dataPointWidth: 0.7,
         brushUp: "#33ff3377",
         brushDown: "#ff333377",
         strokeUp: "#77ff77",
-        strokeDown: "#ff7777",
+        strokeDown: "#ff7777"
     });
     sciChartSurface.renderableSeries.add(candlestickSeries);
 
@@ -127,8 +129,8 @@ async function builderExample(divElementId) {
             { type: EAxisType.NumericAxis, options: { labelPrefix: "$", labelPrecision: 2 } },
             {
                 type: EAxisType.NumericAxis,
-                options: { isVisible: false, id: "VolumeAxisId", growBy: new NumberRange(0, 4) },
-            },
+                options: { isVisible: false, id: "VolumeAxisId", growBy: new NumberRange(0, 4) }
+            }
         ],
         series: [
             {
@@ -138,7 +140,7 @@ async function builderExample(divElementId) {
                     openValues,
                     highValues,
                     lowValues,
-                    closeValues,
+                    closeValues
                 },
                 options: {
                     dataPointWidth: 0.7,
@@ -146,23 +148,23 @@ async function builderExample(divElementId) {
                     brushDown: "#ff333377",
                     strokeUp: "#77ff77",
                     strokeDown: "#ff7777",
-                    strokeThickness: 1,
-                },
+                    strokeThickness: 1
+                }
             },
             {
                 type: ESeriesType.ColumnSeries,
                 xyData: {
                     xValues: dateValues,
-                    yValues: volumeValues,
+                    yValues: volumeValues
                 },
                 options: {
                     yAxisId: "VolumeAxisId",
                     strokeThickness: 0,
                     dataPointWidth: 0.7,
-                    opacity: 0.47,
-                },
-            },
-        ],
+                    opacity: 0.47
+                }
+            }
+        ]
     });
     // #endregion
 }

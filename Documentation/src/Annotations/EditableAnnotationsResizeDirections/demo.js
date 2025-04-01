@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 const {
     BoxAnnotation,
     TextAnnotation,
@@ -6,14 +8,14 @@ const {
     EHorizontalAnchorPoint,
     NumericAxis,
     SciChartSurface,
-    SciChartJsNavyTheme,
+    SciChartJsNavyTheme
 } = SciChart;
 
 // or for npm import { SciChartSurface, ... } from "scichart"
 
 async function addAnnotationToChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme()
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
@@ -28,10 +30,10 @@ async function addAnnotationToChart(divElementId) {
         isEditable: true,
         isSelected: true,
         // Restricts resize direction in the X-direction only
-        resizeDirections: EXyDirection.XDirection,
+        resizeDirections: EXyDirection.XDirection
     });
     // Restricts drag direction in the X-direction only
-    boxAnnotation.dragDelta.subscribe((arg) => {
+    boxAnnotation.dragDelta.subscribe(arg => {
         boxAnnotation.y1 = 3;
         boxAnnotation.y2 = 7;
     });
@@ -51,7 +53,7 @@ async function addAnnotationToChart(divElementId) {
                 opacity: 0.5,
                 fontSize: 32,
                 fontWeight: "Bold",
-                textColor: "White",
+                textColor: "White"
             })
         );
         sciChartSurface.annotations.add(
@@ -64,7 +66,7 @@ async function addAnnotationToChart(divElementId) {
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                 opacity: 0.4,
                 fontSize: 17,
-                textColor: "White",
+                textColor: "White"
             })
         );
     };
@@ -92,10 +94,10 @@ async function builderExample(divElementId) {
                     isEditable: true,
                     isSelected: true,
                     // custom resize direction
-                    resizeDirections: EXyDirection.XDirection,
-                },
-            },
-        ],
+                    resizeDirections: EXyDirection.XDirection
+                }
+            }
+        ]
     });
     // #endregion
 }
