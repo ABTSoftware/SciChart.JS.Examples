@@ -111,7 +111,7 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             // Start full size
             position: this.translateRectToRelativeCoordinates(subChartsAreaRect),
             coordinateMode: ECoordinateMode.Relative,
-            subChartPadding: Thickness.fromString("0 0 0 0"),
+            padding: Thickness.fromString("0 0 0 0"),
             viewportBorder: {
                 color: borderInitialColor,
                 borderRight: 2,

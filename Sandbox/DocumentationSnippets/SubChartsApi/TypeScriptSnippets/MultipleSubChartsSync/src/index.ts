@@ -62,7 +62,7 @@ export const createChart = async (rootDivElementId: string) => {
         const position = new Rect(columnIndex * width, rowIndex * height, width, height);
 
         const subChartOptions: I2DSubSurfaceOptions = {
-            subChartPadding: Thickness.fromNumber(10),
+            padding: Thickness.fromNumber(10),
             id: `subChart-${subChartIndex}`,
             position,
         };
@@ -113,7 +113,7 @@ export const createChartWithBuilderApi = async (rootDivElementId: string) => {
         subCharts.push({
             surface: {
                 id: `subChart-${subChartIndex}`,
-                subChartPadding: Thickness.fromNumber(10),
+                padding: Thickness.fromNumber(10),
                 position,
             },
             xAxes: {

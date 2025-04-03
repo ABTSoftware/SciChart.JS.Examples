@@ -24,6 +24,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout,
             EXAMPLES_PAGES.featuredApps_showcases_eventMarkers,
             EXAMPLES_PAGES.featuredApps_showcases_populationPyramid,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarLineShowcase,
         ],
     },
     {
@@ -90,9 +91,23 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_PieChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DonutChart,
             EXAMPLES_PAGES.chart2D_chartAnnotations_BackgroundAnnotations,
-            EXAMPLES_PAGES.chart2D_polarCharts_PolarColumnChart,
+
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarPartialArc,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarLabelMode,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarLineChart,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarMountainChart,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarStackedMountainChart,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarBandChart,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarColumnChart,            
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarColumnCategoryChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarWindroseColumnChart,
-            EXAMPLES_PAGES.chart2D_polarCharts_PolarRadialColumnChart
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarRangeColumnChart,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarRadialColumnChart,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarStackedRadialColumnChart,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarPieChart,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarRadarChart,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarGaugesChart,
+            
         ],
     },
     {

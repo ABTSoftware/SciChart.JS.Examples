@@ -101,7 +101,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const axisAlignment = EAxisAlignment.Right;
 
     const commonSubChartSurfaceOptions: I2DSubSurfaceOptions = {
-        subChartPadding: Thickness.fromNumber(10),
+        padding: Thickness.fromNumber(10),
         isTransparent: false,
         theme: appTheme.SciChartJsTheme,
     };
@@ -329,7 +329,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 surface: {
                     ...commonSubChartSurfaceOptions,
                     position: new Rect(0, 0.8, 1, 0.2),
-                    subChartPadding: Thickness.fromNumber(10),
+                    padding: Thickness.fromNumber(10),
                     id: "subChart3",
                     isTransparent: false,
                     subChartContainerId: subChartWrapper3,

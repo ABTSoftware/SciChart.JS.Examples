@@ -1,5 +1,4 @@
 import {
-    PolarColumnRenderableSeries,
     PolarMouseWheelZoomModifier,
     PolarZoomExtentsModifier,
     PolarPanModifier,
@@ -9,23 +8,24 @@ import {
     EPolarAxisMode, 
     NumberRange, 
     EAxisAlignment, 
-    GradientParams, 
-    Point, 
     EXyDirection,
-    EDataPointWidthMode,
-    EColumnMode,
     PolarCategoryAxis,
     TextLabelProvider,
-    ShadowEffect,
-    XyxDataSeries,
     PolarStackedColumnCollection,
     PolarStackedColumnRenderableSeries,
-    EPolarLabelMode
+    EPolarLabelMode,
+    WaveAnimation,
+    PolarLegendModifier,
+    ELegendPlacement,
+    Thickness,
+    ETitlePosition,
+    GradientParams,
+    Point
 } from "scichart";
 import { appTheme } from "../../../theme";
 
 const DATA: Record<string, number[]> = {
-    "Norway": [132, 125, 111],
+    "Norway": [122, 125, 111],
     "USA": [105, 110, 88],
     "Germany": [92, 88, 60],
     "Canada": [73, 64, 62],
@@ -38,37 +38,47 @@ const DATA: Record<string, number[]> = {
 }
 const COUNTRIES = Object.keys(DATA);
 
-const MEDAL_COLORS = [
-    appTheme.PaleOrange, // Gold - does not show at all, series starts with "appTheme.PaleBlue"
-    appTheme.PaleBlue, // Silver
-    appTheme.MutedRed // Bronze
-]
+const MEDALS = [
+    {
+        type: "Gold",
+        color: appTheme.MutedOrange,
+    },
+    {
+        type: "Silver",
+        color: appTheme.PaleBlue,
+    },
+    {
+        type: "Bronze",
+        color: appTheme.MutedRed,
+    }
+];
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
-        drawSeriesBehindAxis: true,
-        title: "Winter Olympic medals per existing country (TOP 10)",
+        title: "Winter Olympic medals per country",
         titleStyle: {
             fontSize: 24,
-            color: "white"
         }
     });
 
+    // Create Polar, Radial axes
     const xAxis = new PolarCategoryAxis(wasmContext, {
         polarAxisMode: EPolarAxisMode.Radial,
-        visibleRange: new NumberRange(-1, 10),
         axisAlignment: EAxisAlignment.Left,
+        visibleRange: new NumberRange(-1, 9),
         autoTicks: false,
+        labelStyle: {
+            color: "white",
+        },
         majorDelta: 1,
-        useNativeText: true, // Norway will be outmost, Finland innermost
-        flippedCoordinates: true,
+        useNativeText: true,
+        flippedCoordinates: true, // Norway will be outermost, Finland innermost
+        zoomExtentsToInitialRange: true,
         innerRadius: 0.1, // donut hole
         drawMinorTickLines: false,
         drawMinorGridLines: false,
-        drawMajorTickLines: false,
-        startAngle: Math.PI / 2,
-        polarLabelMode: EPolarLabelMode.Horizontal
+        startAngle: Math.PI,
     });
     xAxis.labelProvider = new TextLabelProvider({
         labels: Object.keys(DATA),
@@ -78,47 +88,60 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const yAxis = new PolarNumericAxis(wasmContext, {
         polarAxisMode: EPolarAxisMode.Angular,
         axisAlignment: EAxisAlignment.Top,
-
-        flippedCoordinates: true,
+        polarLabelMode: EPolarLabelMode.Parallel,
         drawMinorTickLines: false,
         drawMinorGridLines: false,
-        drawMajorGridLines: false,
         drawMajorTickLines: false,
+        flippedCoordinates: true,
         labelPrecision: 0,
         useNativeText: true,
         autoTicks: false,
         majorDelta: 25,
-        startAngle: Math.PI / 2,
-        // totalAngle: Math.PI * 3 / 2
+        startAngle: Math.PI,
+        totalAngle: Math.PI * 3 / 2 // 270 degrees, 3/4 of the circle
     });
     sciChartSurface.yAxes.add(yAxis);
 
+    // SERIES
     const collection = new PolarStackedColumnCollection(wasmContext);
-
+    // collection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
+    
+    const xValues = Array.from({ length: COUNTRIES.length }, (_, i) => i);
     for(let i = 0; i < 3; i++){
         const polarColumn = new PolarStackedColumnRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
-                xValues: Array.from({ length: COUNTRIES.length }, (_, i) => i),
-                yValues: COUNTRIES.map(country => DATA[country][i])
+                xValues,
+                yValues: COUNTRIES.map(country => DATA[country][i]),
+                dataSeriesName: MEDALS[i].type,
             }),
-            // stroke: "white",
-            fill: MEDAL_COLORS[i],
+            stroke: "white",
+            strokeThickness: 1,
+            fill: MEDALS[i].color, // keep the "fill" although overriden by "fillLinearGradient" for legend marker color
+            fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+                { color: MEDALS[i].color, offset: 0.5 },
+                { color: "#333333", offset: 1 },
+            ]),
         });
         collection.add(polarColumn);
     }
 
     sciChartSurface.renderableSeries.add(collection);
 
-    // CHART MODIFIERS
+    // MODIFIERS
     sciChartSurface.chartModifiers.add(
         new PolarPanModifier({
             xyDirection: EXyDirection.XyDirection,
             zoomSize: true,
             growFactor: 1
+        }),
+        new PolarZoomExtentsModifier(),
+        new PolarMouseWheelZoomModifier(),
+        new PolarLegendModifier({
+            placement: ELegendPlacement.TopLeft,
+            backgroundColor: "rgba(0,0,0,0.3)",
+            showCheckboxes: true,
         })
     );
-    sciChartSurface.chartModifiers.add(new PolarZoomExtentsModifier());
-    sciChartSurface.chartModifiers.add(new PolarMouseWheelZoomModifier());
 
     return { sciChartSurface, wasmContext };
 };

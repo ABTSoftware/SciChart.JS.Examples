@@ -11,17 +11,28 @@ import {
     PolarStackedColumnCollection,
     PolarStackedColumnRenderableSeries,
     TFormatLabelFn,
-    NumericLabelProvider
+    NumericLabelProvider,
+    EDataPointWidthMode,
+    WaveAnimation
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-function getRandomWalkInBounds(min: number, max: number, count: number) {
-    const result = [min];
+function getBiasedRandomWalkInBounds(min: number, max: number, count: number) {
+    // Generate the base random walk
+    const baseValues = [min];
     for (let i = 1; i < count; i++) {
-        const next = result[i - 1] + Math.random() - 0.5;
-        result.push(Math.min(max, Math.max(min, next)));
+        const next = baseValues[i - 1] + Math.random() - 0.5;
+        baseValues.push(Math.min(max, Math.max(min, next)));
     }
-    return result;
+
+    // Apply an angular bias so that the random walk values become
+    return baseValues.map((val, i) => {
+        const angle = (i * 360) / count;
+        const angleRad = (angle * Math.PI) / 180;
+        // bias ranges from 0.5 to 1.5: peaks at 0°/180°, dips at 90°/270°
+        const bias = 1 + 0.3 * Math.sin(2 * angleRad);
+        return val * bias;
+    });
 }
 
 /**
@@ -41,7 +52,7 @@ class CustomNESWLabelProvider extends NumericLabelProvider {
     }
 }
 
-const COLUMN_COUNT = 36;
+const COLUMN_COUNT = 24;
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
@@ -52,11 +63,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const radialYAxis = new PolarNumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Right,
         polarAxisMode: EPolarAxisMode.Radial,
+        // visibleRange: new NumberRange(0, 7.5), 
         drawLabels: false,
         drawMinorGridLines: false,
         drawMajorTickLines: false,
         drawMinorTickLines: false,
-        innerRadius: 0.1 // donut hole
+        innerRadius: 0.05 // donut hole
     });
     sciChartSurface.yAxes.add(radialYAxis);
 
@@ -70,40 +82,41 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelProvider: new CustomNESWLabelProvider(),
         autoTicks: false,
         majorDelta: 15,
+        zoomExtentsToInitialRange: true
     });
     sciChartSurface.xAxes.add(polarXAxis);
 
     const xValues = Array.from({length: COLUMN_COUNT}, (_, i) => i * 360 / COLUMN_COUNT); // [0, 10, ..., 350],
     const yValues = [
-        getRandomWalkInBounds(1, 2, COLUMN_COUNT),
-        getRandomWalkInBounds(0.3, 1, COLUMN_COUNT),
-        getRandomWalkInBounds(0.3, 1, COLUMN_COUNT),
-        getRandomWalkInBounds(0.4, 1, COLUMN_COUNT),
-        getRandomWalkInBounds(0.5, 2, COLUMN_COUNT),
-        getRandomWalkInBounds(0.2, 2, COLUMN_COUNT),
-        getRandomWalkInBounds(1, 2, COLUMN_COUNT) ////// not included, but adds to the visible range 
+        getBiasedRandomWalkInBounds(1, 2, COLUMN_COUNT),
+        getBiasedRandomWalkInBounds(0.3, 1, COLUMN_COUNT),
+        getBiasedRandomWalkInBounds(0.3, 1, COLUMN_COUNT),
+        getBiasedRandomWalkInBounds(0.5, 2, COLUMN_COUNT),
+        getBiasedRandomWalkInBounds(0.2, 0.4, COLUMN_COUNT),
     ];
 
     const COLORS = [
-        // appTheme.VividRed, ///// not included
         appTheme.DarkIndigo,
         appTheme.Indigo,
         appTheme.VividSkyBlue,
-        appTheme.VividGreen,
-        appTheme.MutedRed,
         appTheme.VividOrange,
         appTheme.VividPink,
-        "#FFF"
     ]
 
-    const collection = new PolarStackedColumnCollection(wasmContext);
+    const collection = new PolarStackedColumnCollection(wasmContext, {
+        isOneHundredPercent: false,
+    });
+    // collection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
+    
 
     for(let i = 0; i < yValues.length; i++) {
         const dataSeries = new XyDataSeries(wasmContext, { xValues, yValues: yValues[i] });
         const polarColumn = new PolarStackedColumnRenderableSeries(wasmContext, {
             dataSeries,
             fill: COLORS[i],
-            // column stroke ??
+            stroke: "white",
+            strokeThickness: 1,
+            dataPointWidthMode: EDataPointWidthMode.Range,
         });
         collection.add(polarColumn);
     }
@@ -115,6 +128,5 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new PolarMouseWheelZoomModifier()
     );
 
-    // sciChartSurface.zoomExtents(); // this breaks the visibleRange
     return { sciChartSurface, wasmContext };
 };

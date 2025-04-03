@@ -153,7 +153,7 @@ export const drawGridExample = async (
             parentXAxisId: mainXAxis.id,
             parentYAxisId: mainYAxis.id,
             coordinateMode: subChartPositioningCoordinateMode,
-            subChartPadding: Thickness.fromNumber(1),
+            padding: Thickness.fromNumber(1),
             viewportBorder: {
                 color: "rgba(150, 74, 148, 0.51)",
                 border: 2,

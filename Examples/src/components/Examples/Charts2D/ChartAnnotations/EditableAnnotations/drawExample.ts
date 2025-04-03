@@ -370,6 +370,8 @@ const mapAnnotationTypeToName = (type: EAnnotationType): string => {
             return "PolarPointerAnnotation";
         case EAnnotationType.RenderContextLineArrowAnnotation:
             return "LineArrowAnnotation";
+        // case EAnnotationType.RenderContextPolarArcAnnotation:
+        //     return "PolarArcAnnotation"
         default: {
             const handleInvalidType = (value: never): never => {
                 throw new Error(`Invalid annotation type: ${value}`);
