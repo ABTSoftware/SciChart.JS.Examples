@@ -1,9 +1,9 @@
 import { Router, static as makeStaticRouter, Request, Response } from "express";
 import * as defaultConfig from "../../../config/default";
 import { api } from "../api";
-import { oembed } from "../oembed";
-import { getAvailableVariants } from "../variants";
-import { exportExampleInfo } from "../exportExampleInfo";
+import { oembed } from "./oembed";
+import { getAvailableVariants } from "./variants";
+import { exportExampleInfo } from "./exportExampleInfo";
 import { vanillaExamplesRouter } from "../vanillaDemo/vanillaExamplesRouter";
 import { EXAMPLES_PAGES } from "../../components/AppRouter/examplePages";
 import { EPageFramework } from "../../helpers/shared/Helpers/frameworkParametrization";
