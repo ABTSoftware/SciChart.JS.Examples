@@ -17,6 +17,7 @@ import {
     Thickness,
     TModifierDefinition,
     TSeriesDefinition,
+    TXywhCoordinates,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -132,10 +133,10 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             const xAxis = subChart.xAxes.get(0);
             const yAxis = subChart.yAxes.get(0);
             const labelColor = xAxis.labelStyle.color;
-            const animation = new GenericAnimation<Rect>({
-                from: subChart.subPosition,
+            const animation = new GenericAnimation<TXywhCoordinates>({
+                from: subChart.subPosition as TXywhCoordinates,
                 to: new Rect(0, 0, 1, 1),
-                onAnimate: (from: Rect, to: Rect, progress: number) => {
+                onAnimate: (from: TXywhCoordinates, to: TXywhCoordinates, progress: number) => {
                     const x = DoubleAnimator.interpolate(from.x, to.x, progress);
                     const y = DoubleAnimator.interpolate(from.y, to.y, progress);
                     const w = DoubleAnimator.interpolate(from.width, to.width, progress);

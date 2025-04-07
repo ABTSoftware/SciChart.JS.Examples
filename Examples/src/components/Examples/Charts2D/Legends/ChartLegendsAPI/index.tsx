@@ -31,7 +31,7 @@ export default function ChartLegendsAPI() {
 
     const handleChangePlacement = (event: React.ChangeEvent<{ value: unknown }>) => {
         if (legendModifierRef.current) {
-            const newValue = +event.target.value as ELegendPlacement;
+            const newValue = event.target.value as ELegendPlacement;
             setPlacementValue(newValue);
             legendModifierRef.current.sciChartLegend.placement = newValue;
         }
@@ -39,7 +39,7 @@ export default function ChartLegendsAPI() {
 
     const handleChangeOrientation = (event: React.ChangeEvent<{ value: unknown }>) => {
         if (legendModifierRef.current) {
-            const newValue = +event.target.value as ELegendOrientation;
+            const newValue = event.target.value as ELegendOrientation;
             setOrientationValue(newValue);
             legendModifierRef.current.sciChartLegend.orientation = newValue;
         }

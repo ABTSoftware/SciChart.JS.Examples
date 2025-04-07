@@ -29,8 +29,10 @@ import {
     Thickness,
     TModifierDefinition,
     TSeriesDefinition,
+    TSubSurfacePosition,
     TTextStyle,
     TTickLineStyle,
+    TXywhCoordinates,
     VisibleRangeChangedArgs,
 } from "scichart";
 import { ChartModifierBase2D } from "scichart/Charting/ChartModifiers/ChartModifierBase2D";
@@ -189,10 +191,10 @@ export class GridLayoutModifier extends ChartModifierBase2D {
 
         const axisInitialStyles = collectAxisStyles(xAxis);
         const surfaceInitialStyles = collectSurfaceStyles(subChart);
-        const positionAnimation = new GenericAnimation<Rect>({
-            from: subChart.subPosition,
+        const positionAnimation = new GenericAnimation<TXywhCoordinates>({
+            from: subChart.subPosition as TXywhCoordinates,
             to: position,
-            onAnimate: (from: Rect, to: Rect, progress: number) => {
+            onAnimate: (from: TXywhCoordinates, to: TXywhCoordinates, progress: number) => {
                 const x = DoubleAnimator.interpolate(from.x, to.x, progress);
                 const y = DoubleAnimator.interpolate(from.y, to.y, progress);
                 const w = DoubleAnimator.interpolate(from.width, to.width, progress);
@@ -321,10 +323,10 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             const axisInitialStyles = collectAxisStyles(xAxis);
             const surfaceInitialStyles = collectSurfaceStyles(subChart);
 
-            const subChartRepositioningAnimation = new GenericAnimation<Rect>({
-                from: subChart.subPosition,
+            const subChartRepositioningAnimation = new GenericAnimation<TXywhCoordinates>({
+                from: subChart.subPosition as TXywhCoordinates,
                 to: this.translateRectToRelativeCoordinates(subChartsAreaRect),
-                onAnimate: (from: Rect, to: Rect, progress: number) => {
+                onAnimate: (from: TXywhCoordinates, to: TXywhCoordinates, progress: number) => {
                     const x = DoubleAnimator.interpolate(from.x, to.x, progress);
                     const y = DoubleAnimator.interpolate(from.y, to.y, progress);
                     const w = DoubleAnimator.interpolate(from.width, to.width, progress);
