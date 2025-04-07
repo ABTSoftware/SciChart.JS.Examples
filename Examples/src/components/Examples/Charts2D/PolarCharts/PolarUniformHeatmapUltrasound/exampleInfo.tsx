@@ -49,7 +49,7 @@ const metaData: IExampleMetadata =
         path: "polar-uniform-heatmap-chart",
         metaKeywords: "polar, heatmap, uniform, ultrasound, chart, javascript, webgl, canvas",
         onWebsite: true,
-        filepath: "Charts2D/PolarCharts/PolarUniformHeatmapChart",
+        filepath: "Charts2D/PolarCharts/PolarUniformHeatmapUltrasound",
         thumbnailImage: "javascript-polar-column-chart.jpg",
         sandboxConfig: {},
         markdownContent: null,
