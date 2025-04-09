@@ -1,4 +1,4 @@
-import { Router, static as makeStaticRouter, Request, Response } from "express";
+import { Router, static as makeStaticRouter, Request, Response, NextFunction } from "express";
 import * as defaultConfig from "../../../config/default";
 import { api } from "../api";
 import { oembed } from "./oembed";
@@ -37,6 +37,7 @@ mainRouter.get("/stackblitz/:example", (req: Request, res: Response) => {
     renderSandBoxRedirect(req, res, "stackblitz");
 });
 
+// TODO is this one still needed
 // StackBlitz json endpoints
 mainRouter.get("/json/list", (req: Request, res: Response) => {
     res.json({ files: [] });
@@ -60,13 +61,11 @@ mainRouter.get("/iframe/javascript-:example", (req: Request, res: Response) => {
     if (getExamplePageKey(params.example)) {
         return res.redirect(301, `${params.example}`);
     } else {
-        console.log("/iframe/javascript-:example");
         res.send(handleRender(req.url));
     }
 });
 
 mainRouter.get("/iframe/:example?", (req: Request, res: Response) => {
-    console.log("/iframe/:example?");
     res.send(handleRender(req.url));
 });
 

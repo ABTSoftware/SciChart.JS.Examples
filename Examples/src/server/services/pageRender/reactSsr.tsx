@@ -15,6 +15,7 @@ import {
 import { SourceFilesVariant } from "../../../helpers/types/types";
 import { renderIndexHtml } from "../../renderIndexHtml";
 import createEmotionCache from "../../../createEmotionCache";
+import { baseAppPath } from "../../../constants";
 
 export function renderPage(url: string, sourceFilesInfo: SourceFilesVariant = defaultSourceFilesVariant) {
     // Create an emotion cache for SSR
@@ -26,7 +27,7 @@ export function renderPage(url: string, sourceFilesInfo: SourceFilesVariant = de
         <CacheProvider value={cache}>
             <ThemeProvider theme={customTheme}>
                 <SourceFilesContext.Provider value={sourceFilesInfo}>
-                    <StaticRouter location={url}>
+                    <StaticRouter basename={baseAppPath} location={url}>
                         <App />
                     </StaticRouter>
                 </SourceFilesContext.Provider>

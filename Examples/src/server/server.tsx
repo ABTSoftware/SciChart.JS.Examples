@@ -11,6 +11,8 @@ import { createSocketServer } from "./websockets";
 import { populateSourceFilesCache } from "./renderCodeSandboxRedirect";
 import { populatePrerenderedPageCache } from "./services/pageRender";
 import { mainRouter } from "./routes/MainRouter";
+import { morganMiddleware } from "./middlewares/loggingMiddleware";
+import { baseAppPath } from "../constants";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
@@ -20,6 +22,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(compression({ filter: shouldCompress }));
+// enables requests logging
+// app.use(morganMiddleware);
+app.use(baseAppPath, mainRouter);
 
 const server = http.createServer(app);
 const io = createSocketServer(server);
@@ -31,15 +36,15 @@ function shouldCompress(req: Request, res: Response) {
     return compression.filter(req, res);
 }
 
-app.use(mainRouter);
-
 // Prerendered pages cache structure of URL/HTML pairs
 populateSourceFilesCache()
     .then(populatePrerenderedPageCache)
     .then(() => {
         server.listen(port, () => {
             console.log(
-                `Serving at http://${host}:${port} ${chalk.green("✓")}. ${chalk.red("To run in dev mode: npm run dev")}`
+                `Serving at http://${host}:${port}${baseAppPath} ${chalk.green("✓")}. ${chalk.red(
+                    "To run in dev mode: npm run dev"
+                )}`
             );
         });
     });
