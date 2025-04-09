@@ -65,7 +65,7 @@ export async function getStackBlitzFiles(
     framework: EPageFramework = EPageFramework.React
 ): Promise<StackBlitzResponse> {
     try {
-        const response = await fetch(`/api/stackblitz/files/${examplePath}?framework=${framework}`);
+        const response = await fetch(`api/stackblitz/files/${examplePath}?framework=${framework}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
