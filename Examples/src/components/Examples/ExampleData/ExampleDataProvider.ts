@@ -254,6 +254,10 @@ export class ExampleDataProvider {
 }
 
 const fetchData = (endpoint: string) => {
+    if (typeof window === "undefined") {
+        return Promise.resolve(null);
+    }
+
     return fetch(endpoint)
         .then((response) => response.json())
         .catch((err: Error): null => {
