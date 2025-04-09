@@ -12,7 +12,7 @@ import { handleRender } from "../services/pageRender";
 
 const targetDir = defaultConfig.buildConfig.targetDir;
 
-export const mainRouter = Router();
+export const mainRouter = Router({ mergeParams: true });
 
 mainRouter.use(makeStaticRouter(targetDir, { etag: true, maxAge: 0 }));
 mainRouter.use("/api", api);
@@ -84,9 +84,8 @@ mainRouter.get("/javascript-:example", (req: Request, res: Response) => {
 mainRouter.get("/:example?", (req: Request, res: Response) => {
     const params = req.params;
     const exampleKey = getExamplePageKey(params.example);
-    console.log(exampleKey);
     if (isValidFramework(params.example as EPageFramework)) {
-        handleRender(req.url);
+        res.send(handleRender(req.url));
     } else if (exampleKey) {
         const redirectUrl = `react/${params.example}`;
         res.redirect(301, redirectUrl);
