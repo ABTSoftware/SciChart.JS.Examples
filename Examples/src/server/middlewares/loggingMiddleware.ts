@@ -1,3 +1,4 @@
+import type { Request } from "express";
 import morgan, { StreamOptions } from "morgan";
 
 import { Logger } from "../services/logging";
@@ -15,13 +16,17 @@ const skip = () => {
     return false;
 };
 
+morgan.token("route", (req: Request) => {
+    return req.route ? req.route.path : "N/A";
+});
+
 // Build the morgan middleware
 export const morganMiddleware = morgan(
     // Define message format string (this is the default one).
     // The message format is made from tokens, and each token is
     // defined inside the Morgan library.
     // You can create your custom token to show what do you want from a request.
-    ":method :url :status :res[content-length] - :response-time ms",
+    ":method :url :route :status :res[content-length] - :response-time ms",
     // Options: in this case, I overwrote the stream and the skip logic.
     // See the methods above.
     { stream, skip }
