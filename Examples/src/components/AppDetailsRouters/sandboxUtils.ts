@@ -32,7 +32,7 @@ export function extractSandboxId(url: string, platform: SandboxPlatform): string
 }
 
 // Function to get make sandbox
-const GET_SANDBOX_URL = "/api/sandboxurl/";
+const GET_SANDBOX_URL = "api/sandboxurl/";
 export async function getSandboxUrl(
     examplePath: string,
     framework: EPageFramework = EPageFramework.React,
