@@ -1,5 +1,5 @@
-import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import { appTheme } from "../../../theme";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 
 import {
     MouseWheelZoomModifier,

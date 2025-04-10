@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+}
+#scichart-root {
+    width: 100%;
+    height: 100vh;
+}
+
+.sub-chart-container {
+    position: absolute;
+    border: 1px solid red;
+}
+
+.chart-html-section {
+    pointer-events: all;
+    position: absolute;
+}
+
+.left-section {
+    width: 100px;
+    height: 100%;
+    background-color: rgba(212, 245, 66, 0.5);
+}
+
+.right-section {
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100%;
+    background-color: rgba(226, 78, 14, 0.5);
+}
+
+.top-section {
+    top: 0;
+    width: calc(100% - 200px);
+    height: 50px;
+    position: absolute;
+    left: 100px;
+    background-color: rgba(236, 66, 245, 0.5);
+}
+
+.bottom-section {
+    bottom: 0;
+    width: calc(100% - 200px);
+    height: 50px;
+    position: absolute;
+    left: 100px;
+    background-color: rgba(66, 245, 224, 0.5);
+}

@@ -44,7 +44,9 @@ body {
     --border-color: #343434;
 
     --primary: #121212;
-    --light-blue: rgb(42, 99, 151);
+    --light-blue: rgb(62, 136, 205);
+    --markdown-code-text: rgb(160, 196, 150); // 132, 193, 152 // 200, 200, 146 // (200, 200, 14)
+    --markdown-code-background: #333;
 }
 
 @media (prefers-color-scheme: light) {
@@ -54,6 +56,9 @@ body {
         --bg-darker: #e5e5e5;
         --border-color: #b4d0db;
         --primary: #050a30;
+        --light-blue: rgb(42, 99, 151);
+        --markdown-code-text: #ff4444;
+        --markdown-code-background: #e5e5e5;
     }
 }
 
@@ -64,6 +69,9 @@ body {
     --bg-darker: #1f1f1f;
     --border-color: #343434;
     --primary: #121212;
+    --light-blue: rgb(62, 136, 205);
+    --markdown-code-text: rgb(160, 196, 150);
+    --markdown-code-background: #333;
 }
 
 [data-theme="light"] {
@@ -72,6 +80,11 @@ body {
     --bg-darker: #e5e5e5;
     --border-color: #b4d0db;
     --primary: #050a30;
+    --light-blue: rgb(42, 99, 151);
+    --markdown-code-text: #ff4444;
+    --markdown-code-background: #e5e5e5;
+    --link-text: rgb(65, 188, 157);
+    --link-text-hover: rgb(65, 188, 157);
 }
 
 ::-webkit-scrollbar {
