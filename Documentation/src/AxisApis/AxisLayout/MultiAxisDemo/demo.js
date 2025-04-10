@@ -14,9 +14,6 @@ async function multipleAxis(divElementId) {
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
-    const ID_X_AXIS_2 = "xAxis2";
-    const ID_Y_AXIS_2 = "yAxis2";
-
     const titleStyle1 = {
         color: "#50C7E0",
         fontSize: 30
@@ -69,39 +66,36 @@ async function multipleAxis(divElementId) {
     );
 
     // Add a secondary X,Y Axis pair
-    // Series are tied to the axis via the ID_
-    sciChartSurface.xAxes.add(
-        new NumericAxis(wasmContext, {
-            id: ID_X_AXIS_2,
-            axisTitleStyle: titleStyle2,
-            labelStyle: labelStyle2,
-            axisAlignment: EAxisAlignment.Top,
-            axisTitle: "X Axis Top",
-            backgroundColor: "#F4842022",
-            axisBorder: {
-                borderBottom: 1,
-                color: "#F48420"
-            }
-        })
-    );
+    // Capture the axis instance as you may need it's Id which is auto generated
+    const xAxis2 = new NumericAxis(wasmContext, {
+        id: ID_X_AXIS_2,
+        axisTitleStyle: titleStyle2,
+        labelStyle: labelStyle2,
+        axisAlignment: EAxisAlignment.Top,
+        axisTitle: "X Axis Top",
+        backgroundColor: "#F4842022",
+        axisBorder: {
+            borderBottom: 1,
+            color: "#F48420"
+        }
+    });
+    sciChartSurface.xAxes.add(xAxis2);
 
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, {
-            id: ID_Y_AXIS_2,
-            axisTitleStyle: titleStyle2,
-            labelStyle: labelStyle2,
-            axisAlignment: EAxisAlignment.Right,
-            axisTitle: "Y Axis Right",
-            labelFormat: ENumericFormat.Decimal,
-            labelPrecision: 2,
-            growBy: new NumberRange(0.1, 0.1),
-            backgroundColor: "#F4842022",
-            axisBorder: {
-                borderLeft: 1,
-                color: "#F48420"
-            }
-        })
-    );
+    const yAxis2 = new NumericAxis(wasmContext, {
+        axisTitleStyle: titleStyle2,
+        labelStyle: labelStyle2,
+        axisAlignment: EAxisAlignment.Right,
+        axisTitle: "Y Axis Right",
+        labelFormat: ENumericFormat.Decimal,
+        labelPrecision: 2,
+        growBy: new NumberRange(0.1, 0.1),
+        backgroundColor: "#F4842022",
+        axisBorder: {
+            borderLeft: 1,
+            color: "#F48420"
+        }
+    });
+    sciChartSurface.yAxes.add(yAxis2);
     // #endregion
 }
 
@@ -161,6 +155,7 @@ async function builderExample(divElementId) {
             {
                 type: EAxisType.NumericAxis,
                 options: {
+                    // When using the BuilderAPI, we have to fall back to pre-selected axis Ids.
                     id: ID_X_AXIS_2,
                     axisTitleStyle: titleStyle2,
                     labelStyle: labelStyle2,
@@ -193,6 +188,7 @@ async function builderExample(divElementId) {
             {
                 type: EAxisType.NumericAxis,
                 options: {
+                    // When using the BuilderAPI, we have to fall back to pre-selected axis Ids.
                     id: ID_Y_AXIS_2,
                     axisTitleStyle: titleStyle2,
                     labelStyle: labelStyle2,
