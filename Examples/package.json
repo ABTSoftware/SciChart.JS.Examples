@@ -9,6 +9,9 @@
   },
   "scripts": {
     "generateExamplePaths": "node scripts/generateExamplePaths.js",
+    "compareExamples": "ts-node -P tsconfig.node.json scripts/compareExampleInfos.ts",
+    "generateMetadata": "ts-node -P tsconfig.node.json scripts/generateMetadataFromOld.ts",
+    "updateExampleInfos": "ts-node -P tsconfig.node.json scripts/updateExampleInfos.ts",
     "dev": "webpack-dev-server --config webpack.client.no_server.config.ts",
     "build": "rimraf ./build && npm run buildVanillaDemo && npm run buildImages && npm run buildServer && npm run buildClient",
     "start": "node ./build/server.js",

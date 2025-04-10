@@ -188,6 +188,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
     };
 
     const isMaxWidth = pageLayout === EPageLayout.MaxWidth || !isSideBySidePossible;
+    const md = getFrameworkContent(currentExample.markdownContent, selectedFramework);
 
     return (
         <div>
@@ -212,7 +213,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                             <h1
                                 className={classes.headingtxt}
                                 style={{
-                                    margin: isMaxWidth ? "-10px 0": 0,
+                                    margin: isMaxWidth ? "-10px 0" : 0,
                                     marginInline: isMaxWidth ? "auto" : 0,
                                     width: isMaxWidth && !embedCode ? "min(100vh , 100%)" : "auto",
                                 }}
@@ -263,13 +264,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                                 />
                             </div>
                         )}
-
-                        {/* {currentExample?.markdownContent ? (
-                            // <MarkdownContent
-                            //     selectedFramework={selectedFramework}
-                            //     currentExample={currentExample}
-                            // />
-                        ) : null} */}
+                        <MarkdownContent selectedFramework={selectedFramework} currentExample={currentExample} />
                     </div>
                     <GalleryItems examples={seeAlso} />
                 </div>

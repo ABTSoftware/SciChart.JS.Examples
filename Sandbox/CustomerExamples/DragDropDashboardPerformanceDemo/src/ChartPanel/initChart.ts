@@ -17,27 +17,6 @@ import {
 import { ChartSpec, ChartType } from "./ChartSpec";
 import { DataManager } from "../DataManager/DataManager";
 
-// using IntersectionObserver to hide charts out of view
-function observeVisibility(
-  element: HTMLDivElement,
-  callback: (isVisible: boolean) => void
-) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        callback(entry.isIntersecting);
-      }
-    },
-    {
-      root: null, // Observes relative to the viewport
-      threshold: 0.01, // Trigger when even 1% of the element is visible
-    }
-  );
-
-  observer.observe(element);
-  return observer;
-}
-
 // Creates a RenderableSeries based on ChartType
 const createRenderableSeries = (
   wasmContext: TSciChart,
@@ -96,6 +75,9 @@ export const initChart = async (
     rootElement,
     {
       theme: new SciChartJsNavyTheme(),
+      // NEW to SciChart.js 3.5.727!
+      // Freezes drawing (but not data updates) on charts which are outside the viewport
+      freezeWhenOutOfView: spec.hideOutOfView,
     }
   );
 
@@ -160,20 +142,6 @@ export const initChart = async (
     createRenderableSeries(wasmContext, dataSeries, spec.chartType)
   );
 
-  // If property enabled, hide charts out of view
-  let observer: IntersectionObserver;
-  if (spec.hideOutOfView) {
-    observer = observeVisibility(sciChartSurface.domChartRoot, (isVisible) => {
-      if (!isVisible && !sciChartSurface.isSuspended) {
-        sciChartSurface.suspendUpdates();
-        console.log(`${spec.title} is out of view`);
-      } else if (isVisible && sciChartSurface.isSuspended) {
-        sciChartSurface.resume();
-        console.log(`${spec.title} is in view`);
-      }
-    });
-  }
-
   // Subscribe to data updates, returning the unsubscribeDataUpdates function which is called on chart delete
   const unsubscribeDataUpdates = DataManager.getInstance(
     spec.dataUpdateRate
@@ -197,10 +165,6 @@ export const initChart = async (
     sciChartSurface,
     onDeleteChart: () => {
       unsubscribeDataUpdates();
-      if (observer) {
-        console.log(`Disconnecting intersection observer for ${spec.title}`);
-        observer.disconnect();
-      }
     },
   };
 };
