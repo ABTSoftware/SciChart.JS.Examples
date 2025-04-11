@@ -1,10 +1,10 @@
 import * as path from "path";
 import express from "express";
-import { getRequestedExample } from "./renderCodeSandboxRedirect";
-import { getAngularSrc } from "./services/sandbox/angularConfig";
-import { getVanillaSrc } from "./services/sandbox/vanillaTsConfig";
-import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
-import { IHttpError } from "./Errors";
+import { getRequestedExample } from "../renderCodeSandboxRedirect";
+import { getAngularSrc } from "../services/sandbox/angularConfig";
+import { getVanillaSrc } from "../services/sandbox/vanillaTsConfig";
+import { EPageFramework } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { IHttpError } from "../Errors";
 
 const router = express.Router();
 const basePath = path.join(__dirname, "Examples");

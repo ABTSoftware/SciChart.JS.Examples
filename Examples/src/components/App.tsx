@@ -24,13 +24,24 @@ import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParame
 import AppDetailsRouter from "./AppDetailsRouters/AppDetailsRouter";
 import { useNavigate } from "react-router";
 import { appTheme } from "./Examples/theme";
-import { SciChartSurfaceBase } from "scichart";
+import { SciChart3DSurface, SciChartSurfaceBase } from "scichart";
 import { ContentSectionRouter } from "./Navigation/AnchorTagRouter";
 import GalleryItems from "./GalleryItems";
 import SciChartNavbar from "./SciChartNavbar/SciChartNavbar";
+import { baseAppPath } from "../constants";
 
 SciChartSurfaceBase.DEFAULT_THEME = appTheme.SciChartJsTheme;
 SciChartDefaults.useSharedCache = true;
+
+SciChartSurface.configure({
+    wasmUrl: `${baseAppPath}/scichart2d.wasm`,
+    dataUrl: `${baseAppPath}/scichart2d.data`,
+});
+
+SciChart3DSurface.configure({
+    wasmUrl: `${baseAppPath}/scichart3d.wasm`,
+    dataUrl: `${baseAppPath}/scichart3d.data`,
+});
 
 export default function App() {
     const { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
@@ -151,11 +162,7 @@ export default function App() {
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
                     {!isHomePage ? (
-                        <AppDetailsRouter 
-                            currentExample={currentExample} 
-                            seeAlso={seeAlso} 
-                            theme={theme} 
-                        />
+                        <AppDetailsRouter currentExample={currentExample} seeAlso={seeAlso} theme={theme} />
                     ) : (
                         <div className={classes.MainAppWrapper}>
                             {!isMedium ? (
