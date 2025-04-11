@@ -28,7 +28,7 @@
     "startClientTsc": "webpack --config webpack.client.dev.config.js",
     "prettier": "prettier src/**/*.{js,ts,tsx} --write",
     "testUnit": "mocha --require ts-node/register \"testUnit/**/*.test.ts\"",
-    "generateSitemap": "ts-node before-generate.js && ts-node generate-sitemap.ts && ts-node after-generate.js",
+    "generateSitemap": "node build/generateSitemapScript.js",
     "prepare": "cd .. && husky install",
     "pretty-quick": "pretty-quick --staged",
     "updateMarkdown": "node updateMarkdown.js"
