@@ -57,18 +57,22 @@ const COLUMN_COUNT = 24;
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
-        drawSeriesBehindAxis: true
     });
 
     const radialYAxis = new PolarNumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Right,
         polarAxisMode: EPolarAxisMode.Radial,
-        // visibleRange: new NumberRange(0, 7.5), 
-        drawLabels: false,
         drawMinorGridLines: false,
         drawMajorTickLines: false,
         drawMinorTickLines: false,
-        innerRadius: 0.05 // donut hole
+        labelStyle: {
+            color: "white"
+        },
+        startAngle: Math.PI / 2, // draw labels at 12 o'clock
+        autoTicks: false,
+        majorDelta: 1,
+        labelPrecision: 0,
+        innerRadius: 0.05 // center hole
     });
     sciChartSurface.yAxes.add(radialYAxis);
 
@@ -98,7 +102,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const COLORS = [
         appTheme.DarkIndigo,
         appTheme.Indigo,
-        appTheme.VividSkyBlue,
+        appTheme.VividGreen,
         appTheme.VividOrange,
         appTheme.VividPink,
     ]
@@ -106,16 +110,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const collection = new PolarStackedColumnCollection(wasmContext, {
         isOneHundredPercent: false,
     });
-    // collection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
+    collection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
     
-
     for(let i = 0; i < yValues.length; i++) {
         const dataSeries = new XyDataSeries(wasmContext, { xValues, yValues: yValues[i] });
         const polarColumn = new PolarStackedColumnRenderableSeries(wasmContext, {
             dataSeries,
             fill: COLORS[i],
-            stroke: "white",
-            strokeThickness: 1,
+            stroke: appTheme.DarkIndigo,
+            strokeThickness: 2,
             dataPointWidthMode: EDataPointWidthMode.Range,
         });
         collection.add(polarColumn);

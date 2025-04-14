@@ -58,8 +58,6 @@ export default function ChartComponent() {
                     </ToggleButtonGroup>
 
                     <Button
-                        variant="contained"
-                        color="primary"
                         onClick={() => handleToggleIsInnerAxis()}
                         style={{ marginLeft: "auto" }}
                     >

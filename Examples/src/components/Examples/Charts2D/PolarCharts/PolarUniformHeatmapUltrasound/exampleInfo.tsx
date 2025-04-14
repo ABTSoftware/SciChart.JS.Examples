@@ -4,9 +4,9 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        reactComponent: "PolarUniformHeatmapChart",
-        id: "chart2D_polarCharts_PolarUniformHeatmapChart",
-        imagePath: "javascript-polar-uniform-heatmap-chart.jpg",
+        reactComponent: "PolarUniformHeatmapUltrasound",
+        id: "chart2D_polarCharts_PolarUniformHeatmapUltrasound",
+        imagePath: "javascript-polar-uniform-heatmap-ultrasound.jpg",
         description:
             "Creates a **JavaScript Polar Ultrasound Heatmap** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
         tips: [],
@@ -46,7 +46,7 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Polar Ultrasound Heatmap Documentation",
             },
         ],
-        path: "polar-uniform-heatmap-chart",
+        path: "polar-uniform-heatmap-ultrasound",
         metaKeywords: "polar, heatmap, uniform, ultrasound, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/PolarCharts/PolarUniformHeatmapUltrasound",

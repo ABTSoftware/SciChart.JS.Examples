@@ -1,59 +1,53 @@
 import {
-    PolarColumnRenderableSeries,
     PolarMouseWheelZoomModifier,
     PolarZoomExtentsModifier,
     PolarPanModifier,
     XyDataSeries,
     PolarNumericAxis,
     SciChartPolarSurface,
-    EColor, 
     EPolarAxisMode, 
     NumberRange, 
-    EAxisAlignment, 
-    Thickness, 
-    GradientParams, 
-    Point, 
+    EAxisAlignment,  
     EPolarLabelMode,
     WaveAnimation,
-    ScaleAnimation,
     PolarMountainRenderableSeries,
     PolarStackedMountainCollection,
     PolarStackedMountainRenderableSeries,
     PolarLegendModifier,
-    BaseDataSeries
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const MountainsDatasets = [
     {
-        yValues: [2.7, 1.4, 2.3, 0.8, 2.1, 1.2, 2.4, 2.7, 1.3],
-        fillColor: appTheme.VividPurple,
+        yValues: [2.7, 1.4, 2.3, 2.1, 1.2, 1.5, 2.4, 1.5, 2.7, 1.3],
+        fillColor: appTheme.DarkIndigo,
     },
     {
-        yValues: [3.2, 0.9, 0.2, 2.5, 1.3, 2.8, 2.1, 1.2, 2.4],
-        fillColor: appTheme.VividPink,
+        yValues: [3.2, 0.9, 2, 2.5, 1.3, 2.8, 2.1, 2, 1.2, 2.4],
+        fillColor: appTheme.VividBlue,
     },
     {
-        yValues: [1.5, 2.3, 1.7, 2.2, 2.8, 2.9, 1.2, 2.1, 1.1],
-        fillColor: appTheme.VividSkyBlue,
-    },
-    {
-        yValues: [1.0, 1.8, 2.7, 1.3, 2.2, 0.3, 1.6, 3.1, 1.2],
+        yValues: [0.3, 2.3, 1.7, 3.2, 2, 2.9, 1, 2, 2.1, 1.1],
         fillColor: appTheme.VividOrange,
+    },
+    {
+        yValues: [2.1, 1.8, 2.7, 0.5, 2.2, 0.3, 3, 1.6, 2.1, 1],
+        fillColor: appTheme.VividPink,
     },
 ];
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
-        drawSeriesBehindAxis: true
     });
 
     // add Radial Y axis
     const radialYAxis = new PolarNumericAxis(wasmContext, {
         polarAxisMode: EPolarAxisMode.Radial,
         axisAlignment: EAxisAlignment.Right,
+
+        visibleRange: new NumberRange(0, 9),
         drawMinorTickLines: false,
         drawMajorTickLines: false,
         useNativeText: true,
@@ -73,7 +67,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         polarAxisMode: EPolarAxisMode.Angular,
         axisAlignment: EAxisAlignment.Top,
 
-        visibleRange: new NumberRange(0, 9),
+        visibleRange: new NumberRange(0, 10),
         polarLabelMode: EPolarLabelMode.Parallel,
         
         startAngle: Math.PI / 2, // start at 12 o'clock
@@ -98,7 +92,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 xValues: [...xValues, xValues[xValues.length - 1] + 1], // add 1 more xValue to close the loop
                 yValues: [...yValues, yValues[0]] // close the loop by drawing to the first yValue
             }),
-            fill: fillColor + "88",
+            fill: fillColor + "BB", // 75% opacity
             stroke: "white",
             strokeThickness: 1,
         });
@@ -106,47 +100,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     })
     sciChartSurface.renderableSeries.add(mountainCollection);
 
-    const legendModifier = new PolarLegendModifier({
-        showCheckboxes: true,
-    });
     sciChartSurface.chartModifiers.add(
         new PolarPanModifier(),
         new PolarZoomExtentsModifier(),
         new PolarMouseWheelZoomModifier(),
-        legendModifier
-    );
-
-    // animate the series in when the legend checkboxes are toggled
-    mountainCollection.asArray().forEach((series) =>
-        series.isVisibleChanged.subscribe((data) => {
-            if (data.isVisible) {
-                // If you want to zoom to the new range when making a series visible, you need to force a recalculation of the Accumulated values first
-                //stackedMountainCollection.setAccumulatedValuesDirty();
-                //stackedMountainCollection.updateAccumulatedVectors();
-                //sciChartSurface.zoomExtents();
-                data.sourceSeries.runAnimation(
-                    new ScaleAnimation({ duration: 500 })
-                );
-            } else {
-                // To animate out, we have to trick the series into remaining visible while the animation runs.
-                // We set the backing value of isVisible to true, and only set it false when the animation completes
-                // @ts-ignore
-                data.sourceSeries.isVisibleProperty = true;
-                data.sourceSeries.runAnimation(
-                    new ScaleAnimation({
-                        duration: 500,
-                        reverse: true,
-                        onCompleted: () => {
-                            (data.sourceSeries.dataSeries as BaseDataSeries).revertAnimationVectors();
-                            // @ts-ignore
-                            data.sourceSeries.isVisibleProperty = false;
-                            // Force the legend to update
-                            legendModifier.sciChartLegend.invalidateLegend();
-                            //sciChartSurface.zoomExtents();
-                        },
-                    })
-                );
-            }
+        new PolarLegendModifier({
+            showCheckboxes: true,
+            backgroundColor: "#88888833",
         })
     );
 

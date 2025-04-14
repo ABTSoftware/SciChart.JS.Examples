@@ -14,13 +14,11 @@ import {
     PolarStackedColumnCollection,
     PolarStackedColumnRenderableSeries,
     EPolarLabelMode,
-    WaveAnimation,
     PolarLegendModifier,
     ELegendPlacement,
-    Thickness,
-    ETitlePosition,
     GradientParams,
-    Point
+    Point,
+    FadeAnimation
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -67,17 +65,20 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         polarAxisMode: EPolarAxisMode.Radial,
         axisAlignment: EAxisAlignment.Left,
         visibleRange: new NumberRange(-1, 9),
+        zoomExtentsToInitialRange: true,
+
         autoTicks: false,
+        majorDelta: 1,
+
         labelStyle: {
             color: "white",
         },
-        majorDelta: 1,
         useNativeText: true,
         flippedCoordinates: true, // Norway will be outermost, Finland innermost
-        zoomExtentsToInitialRange: true,
         innerRadius: 0.1, // donut hole
         drawMinorTickLines: false,
         drawMinorGridLines: false,
+        drawMajorTickLines: false,
         startAngle: Math.PI,
     });
     xAxis.labelProvider = new TextLabelProvider({
@@ -104,7 +105,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // SERIES
     const collection = new PolarStackedColumnCollection(wasmContext);
-    // collection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
+    collection.animation = new FadeAnimation({ duration: 1000, fadeEffect: true });
     
     const xValues = Array.from({ length: COUNTRIES.length }, (_, i) => i);
     for(let i = 0; i < 3; i++){
@@ -115,11 +116,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 dataSeriesName: MEDALS[i].type,
             }),
             stroke: "white",
-            strokeThickness: 1,
+            strokeThickness: 1.5,
             fill: MEDALS[i].color, // keep the "fill" although overriden by "fillLinearGradient" for legend marker color
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: MEDALS[i].color, offset: 0.5 },
-                { color: "#333333", offset: 1 },
+                { color: "#222222", offset: 1 },
             ]),
         });
         collection.add(polarColumn);

@@ -7,7 +7,7 @@ import commonClasses from "../../../styles/Examples.module.scss";
 
 export default function ChartComponent() {
     const [totalAngle, setTotalAngle] = useState<number>(0.004);
-    const [innerRadius, setInnerRadius] = useState<number>(0.998);
+    const [innerRadius, setInnerRadius] = useState<number>(0.9977);
 
     const isUpdatingFromAnimation = useRef<boolean>(false);
     
@@ -93,7 +93,7 @@ export default function ChartComponent() {
 
                     <div style={{ flex: 1, paddingInline: 20 }}>
                         <Typography variant="body1" color="white">
-                            Total Angle: <strong>{(totalAngle / Math.PI).toFixed(3)} * π</strong>
+                            Total Angle: <strong>{(totalAngle / Math.PI).toFixed(3)} * π</strong> or <strong>{(totalAngle).toFixed(3)}</strong>
                         </Typography>
 
                         <input

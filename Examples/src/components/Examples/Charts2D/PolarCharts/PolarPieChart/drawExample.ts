@@ -69,7 +69,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         stroke: "white",
         strokeThickness: 1,
-        columnXMode: EColumnMode.Width,
+        // columnXMode: EColumnMode.Width,
         paletteProvider: new MetadataPaletteProvider()
     });
 

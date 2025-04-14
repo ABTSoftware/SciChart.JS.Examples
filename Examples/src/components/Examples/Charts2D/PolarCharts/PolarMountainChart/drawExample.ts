@@ -43,7 +43,6 @@ const MountainsDatasets = [
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
-        drawSeriesBehindAxis: true
     });
 
     const radialYAxis = new PolarNumericAxis(wasmContext, {

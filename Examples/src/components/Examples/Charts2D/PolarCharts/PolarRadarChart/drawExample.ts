@@ -16,6 +16,7 @@ import {
     PolarLegendModifier,
     BezierRenderDataTransform,
     EllipsePointMarker,
+    PolarLineRenderableSeries,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -90,7 +91,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         useNativeText: true,
         labelFormat: ENumericFormat.NoFormat,
         startAngle: Math.PI / 2, // start at 12 o'clock
-
     });
     angularXAxis.polarLabelMode = EPolarLabelMode.Parallel;
     sciChartSurface.xAxes.add(angularXAxis);
@@ -98,36 +98,38 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const xValues = Array.from({ length: LABELS.length + 1 }, (_, i) => i); 
     // +1 to complete the radar chart without overlap of first and last labels
     
-    for(let i = 0; i < DATA_SET.length; i++) {
-        const polarMountain = new PolarMountainRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, {
-                xValues: xValues,
-                yValues: [...DATA_SET[i].values, DATA_SET[i].values[0]], // +1 append first value to complete the radar chart
-                dataSeriesName: DATA_SET[i].name
-            }),
-            stroke: DATA_SET[i].color,
-            fill: DATA_SET[i].color + "20", // "20" out of "FF" -> makes it ~12.5% opaque
-            strokeThickness: 4,
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                width: 10,
-                height: 10,
-                strokeThickness: 2,
-                fill: DATA_SET[i].color,
-                stroke: EColor.White,
-            }),
-            animation: new FadeAnimation({ 
-                duration: 1000,
-            })
-        });
-        polarMountain.renderDataTransform = new BezierRenderDataTransform(
-            polarMountain, 
-            wasmContext, 
-            [polarMountain.drawingProviders[0]]
-        );
-        (polarMountain.renderDataTransform as BezierRenderDataTransform).interpolationPoints = 30;
-        
-        sciChartSurface.renderableSeries.add(polarMountain);
-    }
+    const polarMountain = new PolarMountainRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, {
+            xValues: xValues,
+            yValues: [...DATA_SET[0].values, DATA_SET[0].values[0]], // +1 append first value to complete the radar chart
+            dataSeriesName: DATA_SET[0].name
+        }),
+        stroke: DATA_SET[0].color,
+        fill: DATA_SET[0].color + "30",
+        strokeThickness: 4,
+        animation: new FadeAnimation({ duration: 1000 })
+    });
+    sciChartSurface.renderableSeries.add(polarMountain);
+
+    // You can just as well use a PolarLineRenderableSeries
+    const polarLine = new PolarLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, {
+            xValues: xValues,
+            yValues: [...DATA_SET[1].values, DATA_SET[1].values[0]], // +1 append first value to complete the radar chart
+            dataSeriesName: DATA_SET[1].name
+        }),
+        stroke: DATA_SET[1].color,
+        strokeThickness: 4,
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 10,
+            height: 10,
+            strokeThickness: 2,
+            fill: DATA_SET[1].color,
+            stroke: EColor.White,
+        }),
+        animation: new FadeAnimation({ duration: 1000 })
+    });
+    sciChartSurface.renderableSeries.add(polarLine);
 
     sciChartSurface.chartModifiers.add(
         new PolarPanModifier(),

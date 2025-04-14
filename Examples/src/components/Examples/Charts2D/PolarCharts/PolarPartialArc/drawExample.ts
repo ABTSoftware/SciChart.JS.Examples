@@ -14,6 +14,7 @@ import {
     EXyDirection,
     GenericAnimation,
     easing,
+    NumberRange,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -41,11 +42,18 @@ export const drawExample = async (
     const radialYAxis = new PolarNumericAxis(wasmContext, {
         polarAxisMode: EPolarAxisMode.Radial,
         axisAlignment: EAxisAlignment.Right,
-        flippedCoordinates: false,
         drawMinorGridLines: false,
         useNativeText: true,
         drawLabels: true,
         labelPrecision: 0,
+
+        majorGridLineStyle: {
+            color: "gray",
+            strokeThickness: 1,
+        },
+        isInnerAxis: true,
+        visibleRange: new NumberRange(0, 10),
+        zoomExtentsToInitialRange: true,
 
         innerRadius: innerRadius,
         startAngle: Math.PI / 2,
@@ -58,9 +66,14 @@ export const drawExample = async (
         axisAlignment: EAxisAlignment.Top,
         labelPrecision: 0,
 
-        flippedCoordinates: false,
+        flippedCoordinates: true,
         drawMinorGridLines: false,
         useNativeText: true,
+
+        majorGridLineStyle: {
+            color: "gray",
+            strokeThickness: 1,
+        },
 
         totalAngle,
         startAngle: Math.PI / 2,
@@ -68,20 +81,24 @@ export const drawExample = async (
     sciChartSurface.xAxes.add(angularXAxis);
 
     // Add a basic line series to better visualize the polar chart
-    const NR_OF_POINTS = 89;
+    const PETAL_NUMBER = 6; 
+    const POINTS_PER_PETAL = 100; 
 
     const polarlineSeries = new PolarLineRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
-            xValues: Array.from({length: NR_OF_POINTS}, (_, i) => i),
-            yValues: Array.from({length: NR_OF_POINTS}, (_, i) => Math.sin(i / 2) * 5 + 5),
+            xValues: Array.from({length: PETAL_NUMBER * POINTS_PER_PETAL + 1}, (_, i) => i / POINTS_PER_PETAL ),
+            yValues: Array.from({length: PETAL_NUMBER * POINTS_PER_PETAL + 1}, (_, i) => {
+                const angleFraction = i / (PETAL_NUMBER * POINTS_PER_PETAL);
+                return 5 + 5 * Math.sin(2 * Math.PI * angleFraction * PETAL_NUMBER);
+            })
         }),
-        stroke: appTheme.MutedOrange,
+        stroke: appTheme.VividOrange,
         interpolateLine: true,
         strokeThickness: 3,
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 8,
             height: 8,
-            stroke: appTheme.MutedOrange,
+            stroke: appTheme.VividOrange,
             fill: appTheme.DarkIndigo
         }),
     });

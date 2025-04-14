@@ -77,6 +77,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             changePolarLabelMode,
             toggleIsInnerAxis: (isInnerAxis: boolean) => {
                 angularXAxis.isInnerAxis = isInnerAxis;
+                radialYAxis.isInnerAxis = isInnerAxis;
             }
         } 
     };

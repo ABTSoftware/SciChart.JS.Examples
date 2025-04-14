@@ -65,7 +65,6 @@ const DATA_UK = {
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
-        drawSeriesBehindAxis: true,
         title: "Cunsumer prices relative to past year in UK, 2024",
         titleStyle: {
             fontSize: 24,
