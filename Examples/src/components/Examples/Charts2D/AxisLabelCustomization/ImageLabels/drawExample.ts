@@ -56,6 +56,8 @@ export const drawExample = (emojiUrls: string[]) => async (rootElement: string |
         maxAutoTicks: 15,
         axisTitle: "Mobile phone manufacturer",
         growBy: new NumberRange(0.02, 0.02),
+        // required for image labels
+        useNativeText: false,
     });
     // We need the data value as plain text
     xAxis.labelProvider.numericFormat = ENumericFormat.NoFormat;

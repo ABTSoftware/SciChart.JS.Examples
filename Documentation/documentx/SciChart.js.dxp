@@ -4969,17 +4969,16 @@ Show external placement div</Notes>
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
-          <Topic Id="c0d68764-22bd-4d5b-90df-d0724a6ca580" Status="New Topic" CreatedOn="2025-04-08T15:12:45.0346411Z" ModifiedOn="2025-04-10T15:47:01.7859053Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Breaking Changes in SciChart.js v4.x" BuildFlags="">
+          <Topic Id="c0d68764-22bd-4d5b-90df-d0724a6ca580" Status="New Topic" CreatedOn="2025-04-08T15:12:45.0346411Z" ModifiedOn="2025-04-15T13:47:03.1214319Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Breaking Changes in SciChart.js v4.x" BuildFlags="">
             <Title m="2025-04-08T15:14:29.2072674Z">Breaking Changes in SciChart.js v4.x from v3.x</Title>
             <ContentsTitle m="2025-04-10T15:37:00.7059051Z">Breaking Changes in SciChart.js v4.x from v3.x</ContentsTitle>
             <Notes></Notes>
             <TopicSections>
               <TopicSection Name="BodyText">
-                <Content m="2025-04-10T15:47:01.7859053Z">&lt;P&gt;SciChart.js v4 is a very big release with many new features and many fixes and improvements&amp;nbsp;that have required some breaking changes to the api from v3.&amp;nbsp; Many of these are typo fixes or improved ways of doing the same thing.&amp;nbsp; Below you will find migration guides for all the issues you might hit.&lt;/P&gt;
+                <Content m="2025-04-15T13:47:03.1214319Z">&lt;P&gt;SciChart.js v4 is a very big release with many new features and many fixes and improvements&amp;nbsp;that have required some breaking changes to the api from v3.&amp;nbsp; Many of these are typo fixes or improved ways of doing the same thing.&amp;nbsp; Below you will find migration guides for all the issues you might hit.&lt;/P&gt;
 &lt;P&gt;We in the the process of updating our documentation and examples for all the changes and new features.&amp;nbsp; let us know if you find something that is out of date.&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="#datafiles"&gt;.data file has been removed&lt;/A&gt;.&amp;nbsp; Now embedded in wasm file 
-&lt;LI&gt;&lt;A href="#ArialFont"&gt;Arial font for NativeText&lt;/A&gt; changed to Default 
 &lt;LI&gt;&lt;A href="#SciChartDefaults.useNativeText"&gt;SciChartDefaults.useNativeText&lt;/A&gt; is now true by default 
 &lt;LI&gt;&lt;A href="#AnnotationClipping"&gt;SciChartSurface.svgClippingMode&lt;/A&gt; replaced by annotation.clipping 
 &lt;LI&gt;&lt;A href="#DataLabelProvider.getPosition"&gt;DataLabelProvider.getPosition()&lt;/A&gt; return type changed 
@@ -5000,9 +4999,6 @@ Show external placement div</Notes>
 &lt;LI&gt;&lt;A href="#DoubleRange"&gt;DoubleRange&lt;/A&gt; -&amp;gt; SCRTDoubleRange &lt;/LI&gt;&lt;/UL&gt;
 &lt;H2&gt;&lt;A id=datafiles name=datafiles&gt;&lt;/A&gt;.data files removed&lt;/H2&gt;
 &lt;P&gt;The scichart.data file (and scichart3d.data file) which contained various assets, has been merged into the main wasm file, shrinking the total size of the file to be loaded and increasing startup time.&amp;nbsp; If you are serving wasm locally and your build process copies the wasm and data files from node_modules, you may need to remove the config for copying the .data files or you may receive file-not-found errors.&lt;/P&gt;
-&lt;H2&gt;&lt;A id=ArialFont name=ArialFont&gt;&lt;/A&gt;Arial font for NativeText changed to Default&lt;/H2&gt;
-&lt;P&gt;In order to reduce the wasm file size and increase startup time we have replaced the bundled Arial font with the much smaller (but very similar)&amp;nbsp;DroidSans which is now referred to as "Default". In places where native text rendering is used, (dataLabels, NativeTextAnnotation, axis labels), the fontFamily "Arial" should be deleted entirely to use the default font or replaced with "Default".&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Here are most of the places where this change should be applied:&lt;/P&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;dataLabels or dataLabelProvider&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;const columnSeries = new FastColumnRenderableSeries(wasmContext, {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; fill: "red",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; stroke: "blue",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataLabels: {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; style: {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; fontSize: 10,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; fontFamily: "Arial" // No longer required&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; },&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; color: "white"&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;});&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;NativeTextAnnotation&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;const nativeTextAnnotation = new NativeTextAnnotation({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; x1: 1,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; y1: 2,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; textColor: "white",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; fontSize: 14,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; fontFamily: "Arial", // No longer required&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; text: "NativeTextAnnotation",&lt;BR&gt;});&amp;nbsp;&amp;nbsp;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;axis.labelStyle&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;labelStyle: TTextStyle = {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; alignment: ELabelAlignment.Center,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; fontFamily: "Arial", // &amp;lt;- No longer required&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; fontSize: 16,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; color: "White"&lt;BR&gt;};&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;If you do not do this,&amp;nbsp;you will see console errors of SciChart attempting to load Arial.ttf from the server.&amp;nbsp;If you wish to use Arial specifically, see the documentation on&amp;nbsp;&lt;A href="e5a3627c-906d-4bb5-a81d-981df6e3e96b#FontLoading"&gt;Native Font Loading&lt;/A&gt;.&amp;nbsp;&lt;/P&gt;
 &lt;H2&gt;&lt;A id=SciChartDefaults.useNativeText name=SciChartDefaults.useNativeText&gt;&lt;/A&gt;SciChartDefaults.useNativeText now defaults true&lt;/H2&gt;
 &lt;P&gt;&lt;STRONG&gt;SciChartDefaults.useNativeText&lt;/STRONG&gt; has been changed to default to true, which means that by default,&amp;nbsp;axis labels will be rendered using WebGL instead of by Canvas, unless useNativeText is set false on the axis or labelProvider.&amp;nbsp; There are pros and cons to using them:&lt;/P&gt;
 &lt;TABLE&gt;
@@ -5017,8 +5013,8 @@ Show external placement div</Notes>
 &lt;TD&gt;Slow to create new labels, but caching means redrawing of static labels is ok.&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
 &lt;TD width=157&gt;&lt;STRONG&gt;Font support&lt;/STRONG&gt;&lt;/TD&gt;
-&lt;TD width=374&gt;Default font&amp;nbsp;is similar, but not exactly Arial.&amp;nbsp; Using other fonts requires hosting them yourself.&amp;nbsp; See the section above&amp;nbsp;&lt;/TD&gt;
-&lt;TD&gt;Default font is still Arial.&amp;nbsp; Any font supported by the browser can be used.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TD width=374&gt;Default font&amp;nbsp;Arial Using other fonts requires hosting them yourself.&amp;nbsp; See&amp;nbsp;&lt;A href="e5a3627c-906d-4bb5-a81d-981df6e3e96b"&gt;native font loading.&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;Default font&amp;nbsp;Arial.&amp;nbsp; Any font supported by the browser can be used.&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
 &lt;TD width=157&gt;&lt;STRONG&gt;fontWeight and fontStyle&lt;/STRONG&gt;&lt;/TD&gt;
 &lt;TD width=374&gt;Not supported&lt;/TD&gt;
@@ -5031,7 +5027,7 @@ Show external placement div</Notes>
 &lt;TD width=157&gt;&lt;STRONG&gt;Other features&lt;/STRONG&gt;&lt;/TD&gt;
 &lt;TD width=374 colSpan=2&gt;Size, color, rotation, multiline all supported by both&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;If you do not have any special requirements for your labels, we recommend using the new native text defaults and removing the "Arial" font from labelStyle.&amp;nbsp; If you have specific axes&amp;nbsp;using features not supported by native text, just set useNativeText: false on that axis.&lt;/P&gt;
+&lt;P&gt;If you do not have any special requirements for your labels, we recommend using the new native text defaults.&amp;nbsp; If you have specific axes&amp;nbsp;using features not supported by native text, just set useNativeText: false on that axis.&lt;/P&gt;
 &lt;H2&gt;&lt;A id=AnnotationClipping name=AnnotationClipping&gt;&lt;/A&gt;SciChartSurface.svgClippingMode&lt;/H2&gt;
 &lt;P&gt;&lt;STRONG&gt;SciChartSurface.svgClippingMode&lt;/STRONG&gt; functionality and corresponding &lt;STRONG&gt;ESvgClippingMode&lt;/STRONG&gt; enum were removed in favour of a new API which&amp;nbsp;supports clipping settings per annotation (both WebGL and SVG rendered).&amp;nbsp; All annotations now support the following:&lt;/P&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Annotation clipping&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
 &lt;P&gt;// The clipping mode of the annotation&lt;BR&gt;IAnnotation.clipping: EAnnotationClippingMode&lt;/P&gt;
@@ -17073,7 +17069,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">944</Attribute>
         <Attribute key="i-toggle-section-collapsed-i-seealso-section-heading" valuetype="string">true</Attribute>
       </Attributes>
     </TopicEditorState>

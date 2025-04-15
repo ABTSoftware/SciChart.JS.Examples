@@ -43,6 +43,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelFormat: ENumericFormat.Scientific,
         labelPrecision: 2,
         minorsPerMajor: 10,
+        useNativeText: false,
     });
     sciChartSurface.xAxes.add(xAxisLogarithmic);
 
@@ -54,6 +55,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelFormat: ENumericFormat.Scientific,
         labelPrecision: 2,
         minorsPerMajor: 10,
+        useNativeText: false,
     });
     sciChartSurface.yAxes.add(yAxisLogarithmic);
 
