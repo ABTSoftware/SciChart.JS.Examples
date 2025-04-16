@@ -52,8 +52,7 @@ mainRouter.get("/source/:example", (req: Request, res: Response) => {
 });
 
 mainRouter.get("/iframe/codesandbox/:example", (req: Request, res: Response) => {
-    console.log("/iframe/codesandbox/:example");
-    res.send(handleRender(req.url));
+    res.send(handleRender(req.originalUrl));
 });
 
 mainRouter.get("/iframe/javascript-:example", (req: Request, res: Response) => {
@@ -61,12 +60,12 @@ mainRouter.get("/iframe/javascript-:example", (req: Request, res: Response) => {
     if (getExamplePageKey(params.example)) {
         return res.redirect(301, `${params.example}`);
     } else {
-        res.send(handleRender(req.url));
+        res.send(handleRender(req.originalUrl));
     }
 });
 
 mainRouter.get("/iframe/:example?", (req: Request, res: Response) => {
-    res.send(handleRender(req.url));
+    res.send(handleRender(req.originalUrl));
 });
 
 mainRouter.get("/javascript-:example", (req: Request, res: Response) => {
@@ -74,8 +73,7 @@ mainRouter.get("/javascript-:example", (req: Request, res: Response) => {
     if (getExamplePageKey(params.example)) {
         return res.redirect(301, `javascript/${params.example}`);
     } else {
-        console.log("/javascript-:example");
-        res.send(handleRender(req.url));
+        res.send(handleRender(req.originalUrl));
     }
 });
 
@@ -84,7 +82,7 @@ mainRouter.get("/:example?", (req: Request, res: Response) => {
     const params = req.params;
     const exampleKey = getExamplePageKey(params.example);
     if (isValidFramework(params.example as EPageFramework)) {
-        res.send(handleRender(req.url));
+        res.send(handleRender(req.originalUrl));
     } else if (exampleKey) {
         const redirectUrl = `react/${params.example}`;
         res.redirect(301, redirectUrl);
@@ -94,5 +92,5 @@ mainRouter.get("/:example?", (req: Request, res: Response) => {
 });
 
 mainRouter.get("*", (req: Request, res: Response) => {
-    res.send(handleRender(req.url));
+    res.send(handleRender(req.originalUrl));
 });

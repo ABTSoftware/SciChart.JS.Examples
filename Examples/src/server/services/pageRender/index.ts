@@ -11,7 +11,7 @@ export function handleRender(url: string) {
     if (cachedPageHtml) {
         return cachedPageHtml;
     } else {
-        console.log("render on demand", url);
+        console.warn("render on demand", url);
         const pageHtml = renderPage(url);
         return pageHtml;
     }

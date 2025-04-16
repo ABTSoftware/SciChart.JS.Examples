@@ -29,5 +29,5 @@ export const morganMiddleware = morgan(
     ":method :url :route :status :res[content-length] - :response-time ms",
     // Options: in this case, I overwrote the stream and the skip logic.
     // See the methods above.
-    { stream, skip }
+    { stream, skip, immediate: false }
 );
