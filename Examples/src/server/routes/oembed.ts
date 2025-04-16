@@ -1,7 +1,7 @@
 import express from "express";
 import { parse as parseUrl } from "url";
-import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";
-import { getFrameworkContent, EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
+import { EXAMPLES_PAGES } from "../../components/AppRouter/examplePages";
+import { getFrameworkContent, EPageFramework } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 const router = express.Router();
 

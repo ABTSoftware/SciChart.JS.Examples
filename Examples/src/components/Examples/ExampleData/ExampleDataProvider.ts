@@ -254,6 +254,10 @@ export class ExampleDataProvider {
 }
 
 const fetchData = (endpoint: string) => {
+    if (typeof window === "undefined") {
+        return Promise.resolve(null);
+    }
+
     return fetch(endpoint)
         .then((response) => response.json())
         .catch((err: Error): null => {
@@ -263,7 +267,7 @@ const fetchData = (endpoint: string) => {
 };
 
 export const fetchMultiPaneData = (): Promise<Required<IOhlcvValues>> =>
-    fetchData("/api/multiPaneData").then((data) => {
+    fetchData("api/multiPaneData").then((data) => {
         if (!data) {
             return {
                 dateValues: [],
@@ -295,7 +299,7 @@ export type TMappedPopulationData = {
 
 // TODO link to data source file
 export const fetchPopulationDataData = async (): Promise<TMappedPopulationData> =>
-    fetchData("/api/populationData").then((data) => {
+    fetchData("api/populationData").then((data) => {
         if (!data) {
             return {
                 population: [],
@@ -308,3 +312,5 @@ export const fetchPopulationDataData = async (): Promise<TMappedPopulationData> 
 
         return data;
     });
+
+export const fetchLidarData = () => fetchData("api/lidardata");

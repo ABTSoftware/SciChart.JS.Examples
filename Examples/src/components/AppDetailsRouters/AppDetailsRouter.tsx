@@ -81,7 +81,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
         setProjectFiles(null);
         setSandboxFramework(null);
 
-        fetch("/source/" + currentExample.path + "?framework=" + selectedFramework)
+        fetch("source/" + currentExample.path + "?framework=" + selectedFramework)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");

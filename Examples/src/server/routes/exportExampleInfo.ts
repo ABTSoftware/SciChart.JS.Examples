@@ -1,8 +1,8 @@
 import express from "express";
 var url = require("url");
 import * as fs from "fs";
-import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";
-import { TFrameworkName, TFrameworkTemplate } from "../helpers/shared/Helpers/frameworkParametrization";
+import { EXAMPLES_PAGES } from "../../components/AppRouter/examplePages";
+import { TFrameworkName, TFrameworkTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 const router = express.Router();
 

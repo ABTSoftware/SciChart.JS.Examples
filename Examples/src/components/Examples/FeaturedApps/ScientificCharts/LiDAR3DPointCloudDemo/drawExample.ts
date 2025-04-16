@@ -22,6 +22,7 @@ import {
 } from "scichart";
 import { AscData, AscReader } from "./AscReader";
 import { appTheme } from "../../../theme";
+import { fetchLidarData } from "../../../ExampleData/ExampleDataProvider";
 
 type TMetadata = {
     vertexColor: number;
@@ -184,14 +185,7 @@ async function getDataFromServer() {
 
     // See our source-code file tq3080_DSM_2M.js for format on this ASC Point cloud data
     // find the source online at github: https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src/server/Data/t
-    const hostname = window.location.hostname;
-    const port = window.location.port;
-    let host = hostname.includes("scichart.com") || hostname.includes("localhost") ? "" : "https://demo.scichart.com";
-
-    if (hostname === "localhost" && port === "4200") {
-        host = "https://demo.scichart.com";
-    }
-    const rawData = await fetch(host + "/api/lidardata");
+    const rawData = await fetchLidarData();
     const ascData: AscData = reader.parse(await rawData.text());
 
     // Prepare metadata to contain the color values from ASCData

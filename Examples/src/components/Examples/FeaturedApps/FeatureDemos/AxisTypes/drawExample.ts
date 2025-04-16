@@ -130,7 +130,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         (async () => {
             const response = await fetch(
-                `/api/get-binance-candles?interval=1w&symbol=${symbol}&limit=500&endTime=${endDate}`
+                `api/get-binance-candles?interval=1w&symbol=${symbol}&limit=500&endTime=${endDate}`
             );
             const data: TBinanceCandleData = await response.json();
             priceDataSeries.appendRange(data.xValues, data.closeValues);

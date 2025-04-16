@@ -29,7 +29,7 @@ Some of the demos require client & server to be running. To run the demo app in 
 2. `cd examples` and `npm install`
 3. compile the application `npm run build`
 4. now run the application `npm start`
-5. Now open https://localhost:3000 to see the demo!
+5. Now open https://localhost:3000/demo to see the demo! Note that in production mode the app runs with a base path of /demo
 
 ## Adding a new example to the demo app
 
@@ -40,17 +40,3 @@ Find this at [../Readme-AddNewExample.md](../README-AddNewExample.md)
 ## Reporting issues or requesting demos/features
 
 If you find an issue in SciChart, please report it. You can do that either here under Issues, or at [scichart.com/contact-us](https://scichart.com/contact-us).
-
-## How to install a specific SciChart.js version from myget.org
-
-SciChart.js alpha versions are published to myget.org registry (https://www.myget.org/).
-
-**To install a specific version from myget.org**
-
-```
-npm i scichart@2.3.0-alpha.70 --reg https://www.myget.org/F/abtsoftware-bleeding-edge/npm/
-```
-
-```
-npm i scichart@4.0.618 --reg https://www.myget.org/F/abtsoftware-bleeding-edge/npm/
-```
