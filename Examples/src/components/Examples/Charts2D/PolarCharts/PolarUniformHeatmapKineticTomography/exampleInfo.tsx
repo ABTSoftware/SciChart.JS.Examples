@@ -49,7 +49,7 @@ const metaData: IExampleMetadata =
         path: "polar-heatmap-kinetic-tomography-chart",
         metaKeywords: "polar, heatmap, kinetic, tomography, javascript, webgl, canvas",
         onWebsite: true,
-        filepath: "Charts2D/PolarCharts/PolarHeatmapKineticTomography",
+        filepath: "Charts2D/PolarCharts/PolarUniformHeatmapKineticTomography",
         thumbnailImage: "javascript-polar-kinetic-tomography-chart.jpg",
         sandboxConfig: {},
         markdownContent: null,
