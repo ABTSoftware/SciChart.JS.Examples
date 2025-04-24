@@ -313,4 +313,4 @@ export const fetchPopulationDataData = async (): Promise<TMappedPopulationData> 
         return data;
     });
 
-export const fetchLidarData = () => fetchData("api/lidardata");
+export const fetchLidarData = () => fetch("api/lidardata");
