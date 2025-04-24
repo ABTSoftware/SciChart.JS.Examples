@@ -263,7 +263,7 @@ export const getChartsInitializationApi = () => {
                 isSorted: true,
                 xValues,
                 yValues: makeYValues(freq),
-                metadata: { isSelected: false },
+                // metadata: { isSelected: false },
             });
             const lineSeries = new SplineLineRenderableSeries(wasmContext, {
                 id: color,
