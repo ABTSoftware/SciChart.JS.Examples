@@ -149,6 +149,9 @@ export const createRegionStatisticsColumnChart = async (
 
     // Required to stop these country textures showing up on other charts
     xAxis.labelProvider.useSharedCache = false;
+
+    xAxis.labelProvider.useNativeText = false;
+
     xAxis.labelProvider.getLabelTexture = (
         labelText: string,
         textureManager: TextureManager,
