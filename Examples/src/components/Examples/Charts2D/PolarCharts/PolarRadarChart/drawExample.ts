@@ -89,10 +89,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         flippedCoordinates: true, // go clockwise
         drawMinorGridLines: false,
         useNativeText: true,
+        polarLabelMode: EPolarLabelMode.Horizontal,
         labelFormat: ENumericFormat.NoFormat,
         startAngle: Math.PI / 2, // start at 12 o'clock
     });
-    angularXAxis.polarLabelMode = EPolarLabelMode.Parallel;
     sciChartSurface.xAxes.add(angularXAxis);
 
     const xValues = Array.from({ length: LABELS.length + 1 }, (_, i) => i); 

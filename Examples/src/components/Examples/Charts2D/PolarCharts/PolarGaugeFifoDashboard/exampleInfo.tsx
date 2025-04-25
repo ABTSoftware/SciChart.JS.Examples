@@ -6,7 +6,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "PolarGaugeFifoDashboard",
         id: "chart2D_polarCharts_PolarGaugeFifoDashboard",
-        imagePath: "javascript-polar-column-chart.jpg",
+        imagePath: "javascript-polar-gauge-fifo-chart.jpg",
         description:
             "Creates a **JavaScript Polar Gauge Fifo Dashboard** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
         tips: [],
@@ -50,7 +50,7 @@ const metaData: IExampleMetadata =
         metaKeywords: "polar, column, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/PolarCharts/PolarGaugeFifoDashboard",
-        thumbnailImage: "javascript-polar-column-chart.jpg",
+        thumbnailImage: "javascript-polar-gauge-fifo-chart.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",

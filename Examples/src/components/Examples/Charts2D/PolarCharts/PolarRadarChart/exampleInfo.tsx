@@ -50,7 +50,7 @@ const metaData: IExampleMetadata =
         metaKeywords: "polar, radar, spider, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/PolarCharts/PolarRadarChart",
-        thumbnailImage: "javascript-polar-column-chart.jpg",
+        thumbnailImage: "javascript-polar-radar-chart.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",

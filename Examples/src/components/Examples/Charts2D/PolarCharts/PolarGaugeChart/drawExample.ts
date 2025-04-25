@@ -26,6 +26,7 @@ import {
     EColumnMode,
     XyxDataSeries,
     EColumnYMode,
+    EAutoRange,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -52,7 +53,7 @@ export const getChartsInitializationAPI = () => {
             axisAlignment: EAxisAlignment.Right,
 
             // start labels in sync with angular axis
-            startAngle: (Math.PI * 3) / 2 + Math.PI / 4,
+            startAngle: - Math.PI / 4,
 
             drawLabels: false,
             drawMinorGridLines: false,
@@ -71,7 +72,7 @@ export const getChartsInitializationAPI = () => {
             flippedCoordinates: true,
             useNativeText: true,
             totalAngle: (Math.PI * 3) / 2,
-            startAngle: (Math.PI * 3) / 2 + Math.PI / 4,
+            startAngle: - Math.PI / 4,
 
             drawMinorGridLines: false,
             drawMajorGridLines: false,
@@ -152,6 +153,7 @@ export const getChartsInitializationAPI = () => {
             polarAxisMode: EPolarAxisMode.Angular,
             axisAlignment: EAxisAlignment.Top,
             flippedCoordinates: true,
+            visibleRange: new NumberRange(-10, 10),
             useNativeText: true,
             startAngle: 0,
             totalAngleDegrees: 90,
@@ -249,7 +251,7 @@ export const getChartsInitializationAPI = () => {
             flippedCoordinates: true,
             useNativeText: true,
             totalAngle: (Math.PI * 3) / 2,
-            startAngle: Math.PI * 2 - Math.PI / 4,
+            startAngle: - Math.PI / 4,
             autoTicks: false,
             majorDelta: 10,
 
@@ -374,7 +376,7 @@ export const getChartsInitializationAPI = () => {
             padding: new Thickness(0, 0, 0, 0),
         });
 
-        const localPointerValue = 34;
+        const localPointerValue = 31;
 
         const radialXAxis = new PolarNumericAxis(wasmContext, {
             polarAxisMode: EPolarAxisMode.Radial,
@@ -383,7 +385,7 @@ export const getChartsInitializationAPI = () => {
             visibleRange: new NumberRange(0, 10),
             zoomExtentsToInitialRange: true,
 
-            startAngle: (Math.PI * 3) / 2 + Math.PI / 4,
+            startAngle: - Math.PI / 4,
 
             drawLabels: false,
             drawMinorGridLines: false,
@@ -408,7 +410,7 @@ export const getChartsInitializationAPI = () => {
             flippedCoordinates: true,
             useNativeText: true,
             totalAngle: (Math.PI * 3) / 2,
-            startAngle: (Math.PI * 3) / 2 + Math.PI / 4,
+            startAngle: - Math.PI / 4,
 
             drawMinorGridLines: false,
             drawMajorGridLines: false,
@@ -532,8 +534,8 @@ export const getChartsInitializationAPI = () => {
 
             flippedCoordinates: true,
             useNativeText: true,
-            totalAngle: (Math.PI * 3) / 2,
-            startAngle: (Math.PI * 3) / 2 + Math.PI / 4,
+            totalAngleDegrees: 220,
+            startAngleDegrees: -20, // (180 )
 
             drawMinorGridLines: false,
             drawMajorGridLines: false,
@@ -546,6 +548,7 @@ export const getChartsInitializationAPI = () => {
         });
         sciChartSurface.yAxes.add(angularYAxis);
 
+        // the gray background arc
         const backgroundArc = new PolarArcAnnotation({
             x2: 8.1,
             x1: 10,
@@ -558,9 +561,8 @@ export const getChartsInitializationAPI = () => {
         });
         sciChartSurface.annotations.add(backgroundArc);
 
-        // Add 3 background arc sectors
+        // Add 3 thin background arc sectors
         let hasPointerPassedValue = false;
-
         columnYValues.forEach((yVal, i) => {
             const thinArc = new PolarArcAnnotation({
                 x2: 7.6,
@@ -627,33 +629,7 @@ export const getChartsInitializationAPI = () => {
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         });
-
         sciChartSurface.annotations.add(pointerAnnotation, centeredText);
-
-        function configurePointerValUpdate(newVal: number) {
-            // update all stuff such as the columns with id1, id2, etc AND pointer location (x1) and color
-            pointerAnnotation.x1 = newVal;
-            pointerAnnotation.pointerArrowStyle.stroke = columnYValues
-                .map((_, i) => GRADIENT_COLROS[i])
-                .find((color, i) => {
-                    return columnYValues[i] >= newVal;
-                });
-
-            // now others:
-            columnYValues.forEach((yVal, i) => {
-                const valueArc = sciChartSurface.annotations.getById(`arc${i}`);
-                if (valueArc) {
-                    valueArc.y2 = hasPointerPassedValue ? columnYValues[i - 1] ?? 0 : yVal > newVal ? newVal : yVal;
-                }
-                if (yVal >= newVal) {
-                    hasPointerPassedValue = true;
-                }
-            });
-        }
-
-        // setInterval(() => {
-        //     configurePointerValUpdate(Math.random() * 70 + 20);
-        // }, 2000);
 
         return { sciChartSurface, wasmContext };
     };
@@ -662,8 +638,6 @@ export const getChartsInitializationAPI = () => {
         const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
             padding: new Thickness(15, 15, 15, 15), // optional padding to match the others 5 gauges with outer labels
         });
-
-        const POINTER_VALUE = 3.2;
 
         const radialXAxis = new PolarNumericAxis(wasmContext, {
             visibleRange: new NumberRange(0, 10),

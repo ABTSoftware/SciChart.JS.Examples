@@ -6,7 +6,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "PolarRadialColumnChart",
         id: "chart2D_polarCharts_PolarStackedRadialColumnChart",
-        imagePath: "javascript-polar-column-chart.jpg",
+        imagePath: "javascript-polar-stacked-radial-column-chart.jpg",
         description:
             "Creates a **JavaScript Stacked Radial Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
         tips: [],
@@ -50,7 +50,7 @@ const metaData: IExampleMetadata =
         metaKeywords: "polar, stacked, radial, column, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/PolarCharts/PolarRadialColumnChart",
-        thumbnailImage: "javascript-polar-column-chart.jpg",
+        thumbnailImage: "javascript-polar-stacked-radial-column-chart.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",

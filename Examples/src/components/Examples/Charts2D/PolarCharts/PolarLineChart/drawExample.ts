@@ -22,7 +22,8 @@ import {
     SplineRenderDataTransform,
     EHorizontalTextPosition,
     EVerticalTextPosition,
-    EDataLabelSkipMode
+    EDataLabelSkipMode,
+    PolarCursorModifier
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -133,7 +134,7 @@ export const getChartsInitializationAPI = () => {
     const line2 = async (rootElement: string | HTMLDivElement) => {
         const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
             ...COMMON_POLAR_SURFACE_OPTIONS,
-            title: "Polar Line Function Traces",
+            title: "Line Function Traces",
         });
         
         // Add the yAxis
@@ -234,16 +235,17 @@ export const getChartsInitializationAPI = () => {
     const line3 = async (rootElement: string | HTMLDivElement) => {
         const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
             ...COMMON_POLAR_SURFACE_OPTIONS,
-            title: "Polar Spiral Line",
+            title: "Spiral Line",
         });
 
         const NR_POINTS = 31;
+        const OFFSET = 20
         
         // Add the yAxis
         const radialYAxis = new PolarNumericAxis(wasmContext, {
             ...COMMON_RADIAL_AXIS_OPTIONS,
 
-            visibleRange: new NumberRange(-10, NR_POINTS),
+            visibleRange: new NumberRange(0, NR_POINTS + OFFSET),
             zoomExtentsToInitialRange: true,
             drawLabels: false
         });
@@ -262,7 +264,7 @@ export const getChartsInitializationAPI = () => {
         const polarLine = new PolarLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: xValues,
-                yValues: Array.from({ length: NR_POINTS }, (_, i) => i),
+                yValues: Array.from({ length: NR_POINTS }, (_, i) => i + OFFSET),
             }),
             stroke: appTheme.VividTeal + "88",
             strokeThickness: 4,
@@ -388,7 +390,7 @@ export const getChartsInitializationAPI = () => {
     const line5 = async (rootElement: string | HTMLDivElement) => {
         const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
             ...COMMON_POLAR_SURFACE_OPTIONS,
-            title: "Polar Line dataLabels",
+            title: "Line dataLabels",
         });
         
         // Add the yAxis
@@ -470,16 +472,17 @@ export const getChartsInitializationAPI = () => {
     const line6 = async (rootElement: string | HTMLDivElement) => {
         const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
             ...COMMON_POLAR_SURFACE_OPTIONS,
-            title: "Palette Provider Polar Spiral Line",
+            title: "Palette Provider Sprial Line",
         });
 
         const NR_POINTS = 40;
+        const OFFSET = 30;
         
         // Add the yAxis
         const radialYAxis = new PolarNumericAxis(wasmContext, {
             ...COMMON_RADIAL_AXIS_OPTIONS,
 
-            visibleRange: new NumberRange(-10, NR_POINTS),
+            visibleRange: new NumberRange(0, NR_POINTS + OFFSET),
             zoomExtentsToInitialRange: true,
             drawLabels: false
         });
@@ -519,7 +522,7 @@ export const getChartsInitializationAPI = () => {
         const polarLine = new PolarLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: Array.from({ length: NR_POINTS }, (_, i) => (i+1) % 10),
-                yValues: Array.from({ length: NR_POINTS }, (_, i) => i)
+                yValues: Array.from({ length: NR_POINTS }, (_, i) => i + OFFSET)
             }),
             stroke: appTheme.VividTeal,
             strokeThickness: 4,
@@ -532,7 +535,8 @@ export const getChartsInitializationAPI = () => {
         sciChartSurface.chartModifiers.add(
             new PolarPanModifier(),
             new PolarZoomExtentsModifier(),
-            new PolarMouseWheelZoomModifier()
+            new PolarMouseWheelZoomModifier(),
+            new PolarCursorModifier()
         );
 
         sciChartSurface.zoomExtents();

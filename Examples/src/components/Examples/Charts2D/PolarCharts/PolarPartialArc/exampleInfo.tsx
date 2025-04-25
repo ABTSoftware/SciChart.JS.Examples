@@ -6,7 +6,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "PolarPartialArc",
         id: "chart2D_polarCharts_PolarPartialArc",
-        imagePath: "javascript-polar-column-chart.jpg",
+        imagePath: "javascript-polar-partial-chart.jpg",
         description:
             "Creates a **JavaScript Polar Partial Arc** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
         tips: [],
@@ -50,7 +50,7 @@ const metaData: IExampleMetadata =
         metaKeywords: "polar, label, polarPartialArc, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/PolarCharts/PolarPartialArc",
-        thumbnailImage: "javascript-polar-column-chart.jpg",
+        thumbnailImage: "javascript-polar-partial-chart.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",

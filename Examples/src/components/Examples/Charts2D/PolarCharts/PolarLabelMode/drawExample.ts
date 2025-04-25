@@ -44,6 +44,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawMinorTickLines: false,
 
         zoomExtentsToInitialRange: true,
+        labelStyle: {
+            color: "white",
+            fontSize: 16
+        },
     });
     sciChartSurface.xAxes.add(angularXAxis);
 

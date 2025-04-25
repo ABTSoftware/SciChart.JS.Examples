@@ -88,6 +88,14 @@ export default function ChartFromJSON() {
                         variant="outlined"
                         value={json}
                         onChange={handleChangeJSON}
+                        sx={{
+                            "& .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "var(--text)",
+                            }, 
+                            "& .MuiInputBase-input": {
+                                color: "var(--text)",
+                            }
+                        }}
                     />
                 </div>
                 <div

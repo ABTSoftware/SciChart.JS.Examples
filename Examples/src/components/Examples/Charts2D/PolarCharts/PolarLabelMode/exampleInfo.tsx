@@ -6,7 +6,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "PolarLabelMode",
         id: "chart2D_polarCharts_PolarLabelMode",
-        imagePath: "javascript-polar-column-chart.jpg",
+        imagePath: "javascript-polar-label-modes.jpg",
         description:
             "Creates a **JavaScript Polar Label Modes** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
         tips: [],
@@ -50,7 +50,7 @@ const metaData: IExampleMetadata =
         metaKeywords: "polar, label, polarLabelMode, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/PolarCharts/PolarLabelMode",
-        thumbnailImage: "javascript-polar-column-chart.jpg",
+        thumbnailImage: "javascript-polar-label-modes.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",

@@ -98,6 +98,7 @@ module.exports = {
                 },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Sonic.csv", to: "" },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Texture.csv", to: "" },
+                { from: "src/components/Examples/Charts2D/PolarCharts/PolarUniformHeatmapUltrasound/heatmap_data.csv", to: "" },
                 // { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
                 // { from: "node_modules/scichart/_wasm/scichart3d.data", to: "" },

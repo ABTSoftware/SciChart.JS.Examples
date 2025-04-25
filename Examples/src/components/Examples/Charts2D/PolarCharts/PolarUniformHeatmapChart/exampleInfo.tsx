@@ -6,7 +6,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "PolarUniformHeatmapChart",
         id: "chart2D_polarCharts_PolarUniformHeatmapChart",
-        imagePath: "javascript-polar-column-chart.jpg",
+        imagePath: "javascript-polar-uniform-heatmap-chart.jpg",
         description:
             "Creates a **JavaScript Polar Uniform Heatmap Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
         tips: [],
@@ -50,7 +50,7 @@ const metaData: IExampleMetadata =
         metaKeywords: "polar, heatmap, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/PolarCharts/PolarUniformHeatmapChart",
-        thumbnailImage: "javascript-polar-column-chart.jpg",
+        thumbnailImage: "javascript-polar-uniform-heatmap-chart.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",

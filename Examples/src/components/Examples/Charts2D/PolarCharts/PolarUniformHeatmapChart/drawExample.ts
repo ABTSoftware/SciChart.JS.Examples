@@ -71,7 +71,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const heatmapSeries = new PolarUniformHeatmapRenderableSeries(wasmContext, {
         dataSeries: new UniformHeatmapDataSeries(wasmContext, {
-            zValues: generateHeatmapData(HEATMAP_WIDTH, HEATMAP_HEIGHT, 1999), // 1335, 1331, 1330, 1994, 1999
+            zValues: generateHeatmapData(HEATMAP_WIDTH, HEATMAP_HEIGHT, 1999),
             xStart: 0,
             xStep: 1,
             yStart: 0,

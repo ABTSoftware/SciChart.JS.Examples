@@ -18,7 +18,9 @@ import {
     ELegendPlacement,
     GradientParams,
     Point,
-    FadeAnimation
+    FadeAnimation,
+    SweepAnimation,
+    WaveAnimation
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -105,7 +107,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // SERIES
     const collection = new PolarStackedColumnCollection(wasmContext);
-    collection.animation = new FadeAnimation({ duration: 1000, fadeEffect: true });
+    collection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
     
     const xValues = Array.from({ length: COUNTRIES.length }, (_, i) => i);
     for(let i = 0; i < 3; i++){

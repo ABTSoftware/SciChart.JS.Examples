@@ -10,8 +10,8 @@ import {
     SciChartSurface,
     SweepAnimation,
     XyDataSeries,
-    ZoomExtentsModifier,
     Thickness,
+    ZoomExtentsModifier,
 } from "scichart";
 import { appTheme } from "../../../theme";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
@@ -30,7 +30,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         title: "Logarithmic X & Y Axis",
         titleStyle: {
             fontSize: 20,
-            fontWeight: "Bold",
+            fontWeight: "bold",
             placeWithinChart: true,
             color: appTheme.ForegroundColor + "C4",
             padding: Thickness.fromString("10 0 4 0"),

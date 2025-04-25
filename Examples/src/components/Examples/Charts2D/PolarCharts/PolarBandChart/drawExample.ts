@@ -53,12 +53,31 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     sciChartSurface.xAxes.add(polarXAxis);
 
-    // interpolated band
+    // regular (non-interpolated) band
     const polarBand1 = new PolarBandRenderableSeries(wasmContext, {
         dataSeries: new XyyDataSeries(wasmContext, {
             xValues: [0, 1, 2, 3, 4, 5],
             yValues: [1, 2, 3, 4, 5, 6],
-            y1Values: [6, 5, 1, 5, 4, 2]
+            y1Values: [6, 5, 1, 5, 4, 2],
+            dataSeriesName: "Regular Band",
+        }),
+        stroke: appTheme.VividOrange,
+        strokeY1: appTheme.VividSkyBlue,
+        fill: appTheme.VividOrange + "88",
+        fillY1: appTheme.VividSkyBlue + "88",
+        strokeThickness: 3,
+        interpolateLine: false, // not interpolated
+        animation: new SweepAnimation({ duration: 400, delay: 400 }),
+    });
+    sciChartSurface.renderableSeries.add(polarBand1);
+
+    // interpolated band
+    const polarBand2 = new PolarBandRenderableSeries(wasmContext, {
+        dataSeries: new XyyDataSeries(wasmContext, {
+            xValues: [6, 7, 8, 9, 10, 11],
+            yValues: [1, 2, 3, 4, 5, 6],
+            y1Values: [6, 5, 1, 5, 4, 2],
+            dataSeriesName: "Interpolated Band",
         }),
         stroke: appTheme.VividPink,
         strokeY1: appTheme.VividGreen,
@@ -67,23 +86,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         strokeThickness: 3,
         interpolateLine: true,
         animation: new SweepAnimation({ duration: 400 }),
-    });
-    sciChartSurface.renderableSeries.add(polarBand1);
-
-    // non-interpolated band
-    const polarBand2 = new PolarBandRenderableSeries(wasmContext, {
-        dataSeries: new XyyDataSeries(wasmContext, {
-            xValues: [6, 7, 8, 9, 10, 11],
-            yValues: [1, 2, 3, 4, 5, 6],
-            y1Values: [6, 5, 1, 5, 4, 2]
-        }),
-        stroke: appTheme.VividOrange,
-        strokeY1: appTheme.VividSkyBlue,
-        fill: appTheme.VividOrange + "88",
-        fillY1: appTheme.VividSkyBlue + "88",
-        strokeThickness: 3,
-        interpolateLine: false,
-        animation: new SweepAnimation({ duration: 400, delay: 400 }),
     });
     sciChartSurface.renderableSeries.add(polarBand2);
 

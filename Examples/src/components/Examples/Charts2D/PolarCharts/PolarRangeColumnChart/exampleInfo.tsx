@@ -6,7 +6,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "PolarRangeColumnChart",
         id: "chart2D_polarCharts_PolarRangeColumnChart",
-        imagePath: "javascript-polar-column-chart.jpg",
+        imagePath: "javascript-polar-range-column-chart.jpg",
         description:
             "Creates a **JavaScript Polar Range Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
         tips: [],
@@ -50,7 +50,7 @@ const metaData: IExampleMetadata =
         metaKeywords: "polar, range, xyxy, column, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/PolarCharts/PolarRangeColumnChart",
-        thumbnailImage: "javascript-polar-column-chart.jpg",
+        thumbnailImage: "javascript-polar-range-column-chart.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",

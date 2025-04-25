@@ -6,7 +6,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "PolarWindroseColumnChart",
         id: "chart2D_polarCharts_PolarWindroseColumnChart",
-        imagePath: "javascript-polar-column-chart.jpg",
+        imagePath: "javascript-polar-windrose-column-chart.jpg",
         description:
             "Creates a **JavaScript Windrose Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
         tips: [],

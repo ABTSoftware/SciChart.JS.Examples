@@ -6,7 +6,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "PolarMountainChart",
         id: "chart2D_polarCharts_PolarMountainChart",
-        imagePath: "javascript-polar-column-chart.jpg",
+        imagePath: "javascript-polar-mountain-chart.jpg",
         description:
             "Creates a **JavaScript Polar Mountain Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
         tips: [],
@@ -50,7 +50,7 @@ const metaData: IExampleMetadata =
         metaKeywords: "polar, mountain, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/PolarCharts/PolarMountainChart",
-        thumbnailImage: "javascript-polar-column-chart.jpg",
+        thumbnailImage: "javascript-polar-mountain-chart.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",

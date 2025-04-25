@@ -8,27 +8,15 @@ import {
     EPolarAxisMode, 
     NumberRange, 
     EAxisAlignment, 
-    EXyDirection,
-    PolarCategoryAxis,
-    TextLabelProvider,
-    PolarStackedColumnCollection,
-    PolarStackedColumnRenderableSeries,
     EPolarLabelMode,
     PolarColumnRenderableSeries,
-    GradientParams,
-    Point,
-    EDataPointWidthMode,
-    IStrokePaletteProvider,
-    IFillPaletteProvider,
-    IRenderableSeries,
-    EFillPaletteMode,
-    IPointMetadata,
     EStrokePaletteMode,
     parseColorToUIntArgb,
-    IPaletteProvider,
     DefaultPaletteProvider,
     Thickness,
     EColumnDataLabelPosition,
+    WaveAnimation,
+    PolarArcZoomModifier
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -142,18 +130,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             precision: 0,
             labelYPositionMode: EColumnDataLabelPosition.Inside,
             polarLabelMode: EPolarLabelMode.Parallel,
-        }
+        }, 
+        animation: new WaveAnimation({ duration: 500 })
     });
 
     sciChartSurface.renderableSeries.add(polarColumn);
 
     // CHART MODIFIERS
     sciChartSurface.chartModifiers.add(
-        new PolarPanModifier({
-            xyDirection: EXyDirection.XyDirection,
-            zoomSize: true,
-            growFactor: 1
-        })
+        new PolarArcZoomModifier()
     );
     sciChartSurface.chartModifiers.add(new PolarZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new PolarMouseWheelZoomModifier());

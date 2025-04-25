@@ -6,7 +6,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "PolarLineChart",
         id: "chart2D_polarCharts_PolarLineChart",
-        imagePath: "javascript-polar-column-chart.jpg",
+        imagePath: "javascript-polar-line-chart.jpg",
         description:
             "Creates a **JavaScript Polar Line Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
         tips: [],
@@ -47,10 +47,10 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "polar-line-chart",
-        metaKeywords: "polar, column, chart, javascript, webgl, canvas",
+        metaKeywords: "polar, line, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/PolarCharts/PolarLineChart",
-        thumbnailImage: "javascript-polar-column-chart.jpg",
+        thumbnailImage: "javascript-polar-line-chart.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",

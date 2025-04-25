@@ -9,12 +9,7 @@ import {
     PolarCategoryAxis,
     PolarColumnRenderableSeries,
     XyyDataSeries,
-    PolarLineRenderableSeries,
-    XyDataSeries,
-    SplineRenderDataTransform,
-    BezierRenderDataTransform,
-    EColumnMode,
-    ZoomPanModifier
+    SweepAnimation
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -91,7 +86,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         dataPointWidth: 1, 
         fill: appTheme.VividSkyBlue + "44",
-        stroke: appTheme.VividSkyBlue
+        stroke: appTheme.VividSkyBlue,
+        animation: new SweepAnimation({ duration: 800 })
     })
     sciChartSurface.renderableSeries.add(columns);
 
