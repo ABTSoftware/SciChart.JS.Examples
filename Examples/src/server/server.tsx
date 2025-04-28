@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(compression({ filter: shouldCompress }));
 // enables requests logging
-// app.use(morganMiddleware);
+app.use(morganMiddleware);
 app.use(baseAppPath, mainRouter);
 
 const server = http.createServer(app);
