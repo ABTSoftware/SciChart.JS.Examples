@@ -32,7 +32,7 @@ export function extractSandboxId(url: string, platform: SandboxPlatform): string
 }
 
 // Function to get make sandbox
-const GET_SANDBOX_URL = "/api/sandboxurl/";
+const GET_SANDBOX_URL = "api/sandboxurl/";
 export async function getSandboxUrl(
     examplePath: string,
     framework: EPageFramework = EPageFramework.React,
@@ -65,7 +65,7 @@ export async function getStackBlitzFiles(
     framework: EPageFramework = EPageFramework.React
 ): Promise<StackBlitzResponse> {
     try {
-        const response = await fetch(`/api/stackblitz/files/${examplePath}?framework=${framework}`);
+        const response = await fetch(`api/stackblitz/files/${examplePath}?framework=${framework}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

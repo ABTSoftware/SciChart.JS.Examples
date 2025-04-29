@@ -4,6 +4,7 @@ import * as fs from "fs";
 import { PAGES } from "./src/components/AppRouter/pages";
 import { EXAMPLES_PAGES } from "./src/components/AppRouter/examplePages";
 import { EPageFramework } from "./src/helpers/shared/Helpers/frameworkParametrization";
+import { baseAppPath } from "./src/constants";
 
 enum EChangeFreq {
     Always = "always",
@@ -23,7 +24,7 @@ type TLink = {
     img?: { url: string }[];
 };
 
-const basePath = "https://demo.scichart.com";
+const basePath = "https://scichart.com";
 
 console.log("Generating sitemap...");
 
@@ -49,15 +50,15 @@ console.log("Generating sitemap...");
         Object.values(EXAMPLES_PAGES).forEach((el) => {
             if (el.thumbnailImage) {
                 links.push({
-                    url: framework + "/" + el.path,
+                    url: `${baseAppPath}/${framework}/${el.path}`,
                     changefreq: EChangeFreq.Weekly,
                     priority: 0.5,
                     lastmod,
-                    img: [{ url: `/images/${el.thumbnailImage}` }],
+                    img: [{ url: `${baseAppPath}/${el.thumbnailImage}` }],
                 });
             } else {
                 links.push({
-                    url: framework + "/" + el.path,
+                    url: `${baseAppPath}/${framework}/${el.path}`,
                     changefreq: EChangeFreq.Weekly,
                     priority: 0.5,
                     lastmod,

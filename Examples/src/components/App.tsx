@@ -22,18 +22,46 @@ import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciC
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
 import AppDetailsRouter from "./AppDetailsRouters/AppDetailsRouter";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { appTheme } from "./Examples/theme";
-import { SciChartSurfaceBase } from "scichart";
+import { SciChart3DSurface, SciChartSurfaceBase } from "scichart";
 import { ContentSectionRouter } from "./Navigation/AnchorTagRouter";
 import GalleryItems from "./GalleryItems";
 import SciChartNavbar from "./SciChartNavbar/SciChartNavbar";
+import { baseAppPath } from "../constants";
 
 SciChartSurfaceBase.DEFAULT_THEME = appTheme.SciChartJsTheme;
 SciChartDefaults.useSharedCache = true;
 
+const NotFound = () => (
+    <div
+        style={{
+            textAlign: "center",
+            padding: "50px 20px",
+            minHeight: "60vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+        }}
+    >
+        <h1>404 - Page Not Found</h1>
+        <p>The page you're looking for doesn't exist or has been moved.</p>
+        <Link to="/react">Go back to the home page</Link>
+    </div>
+);
+
+SciChartSurface.configure({
+    wasmUrl: `${baseAppPath}/scichart2d.wasm`,
+    dataUrl: `${baseAppPath}/scichart2d.data`,
+});
+
+SciChart3DSurface.configure({
+    wasmUrl: `${baseAppPath}/scichart3d.wasm`,
+    dataUrl: `${baseAppPath}/scichart3d.data`,
+});
+
 export default function App() {
-    const { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
+    const { isIFrame, isHomePage, currentExample, framework, is404 } = useExampleRouteParams();
     const navigate = useNavigate(); // Hook to programmatically navigate
 
     const [theme, setTheme] = React.useState<ETheme>();
@@ -103,7 +131,7 @@ export default function App() {
     React.useEffect(() => {
         if (window.location.hostname.includes("scichart.com")) {
             SciChartSurface.setRuntimeLicenseKey(
-                "pqBR9USXrUYonp3XxWCzOXU7ReW/ATBFgopoC8UunDgJAZuC54FOEnpCOzSq3OOZWTtVhOqxG9cVDoaVpHvazfysu40/7jhBsb6by6GAQ4ndAJ4t8lTqXQpiaNGSmEIox/Lguq4dU5ijX1B5hzzsop4AYoWJeuKh0+VTxNtLhjq9yvCWuNtrveKiGGofcUK1N1R00T8DAdK3Q0o849f/UhGY+5xGWVGCwglQT+zT+ARFX/j6jRJ19nxVvpTjOu4/e5DmdH5Lm/dMW6EGIWQjvhmeqHSZixwwkJJaH7XIJzZ5IHUTmm567R4RujVNRITaJJLFX2eLmxtryE0pdc83RrJoSBtPBVQv6WNt+ve8l+vci4Kga9u55dd72nhTnzUTuiZQ9Lsyq+rJsr9cQrH6wHDKyQqqYlLzbxjcGZPAmh/QD6EyNec02wXJLYYqvDRxit1nYWajeA6V0G6lT8Yc8xe4PIPk5Wpr7Wt8q4YjcxOnPPWzwcYcid/jGvyxXq7E/pTai7TH6ol2FYaDKdb+EjqUPtImYcxJu4nAr1SRlmAbc+cdImjnWdRGncQBlQKSZFdipOHS0TMVJcDnFYRjOD7Y8A8fpK372Qzl8CpJn2mJhgW21S+522Ym5A6VXCI4aKWVVkb0XTBER9F0DCUb2N2zW8Hd6aj3US6L21g+mEt/EGwjw/cyOPz2ElXvuANOP/sG34U2HG8eUfGANWqEDbCUn2XGUrLbOLaL8bItVlqKmwa/fBgJ6AOw0c7WRn7BPpUG6w=="
+                "shxKbfsTuNZPuUvgOGmB86JpC1O6sF/i9U7xaDYpPElY8ZsqUe83JjR6lUV+dZG7LWdO+/pEqECULJESzyFKBapZW1VeENYWi7Iuwzm5jXRg1GmjJDFprbvaJ5YSETDE4xOO5q5x36H93Za54vnZEhJFW0sk5S1vYHYbMJSyeSCvVkRgNPosuHuwKHjrzDToyh1qnr4gvCXFeNVCQnvHXQs8si6r2vhZ7S7vLeLqm4NseZ8kRe3QhGSPcThjHNumKEqg9oUn8ZjoG7hjCnexNoLYynV7CjRlHmmi0eS8hNz0bcoBWm6ctmW+9R2MU3CNcWh4hcVe92ghauAA5bUoIRa8qseFQJAJVamsfiWVJ7EC1GF+CLO68iGrZ7HpKg0SvLTODDAtrBYHKOzuZJH5x9sl5gzEwy9U5eOoS6oCPzCjOoPU4Ph7U9GHfFujxzGcgEC0UB57p0kEpQWaSJNJeaNLnJd3A448ja86X3iQT9mkVfCeoOGdavHMOpDuyoSuMxzGNQE198hqN1rQKE8Zr5U+I29XYBuJ5yg94tv7kaPpooJIMaJCMytb+0ivEFdje23dGriu7GtdM9TaZNGUDMT/nbPxrvdcoDEgjBRtxQ7ApoVX+PXJShzHBWjQTnDa8Em+/c/UZgFDmcFAwh86WUtO1bcT8rbRawbW4xhCdDZ3XuuWYuL0JJ8FVmKafK0m60Irzl40M8wh/9Ntl1I8ir5l+CVM+PXHL9t0O/AXbYI53gsTPpBD91xV/PYibNZ3BroAWOjwPHr3OLOd7Ro="
             );
         }
 
@@ -150,13 +178,9 @@ export default function App() {
 
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
-                    {!isHomePage ? (
-                        <AppDetailsRouter 
-                            currentExample={currentExample} 
-                            seeAlso={seeAlso} 
-                            theme={theme} 
-                        />
-                    ) : (
+                    {is404 ? (
+                        <NotFound />
+                    ) : isHomePage ? (
                         <div className={classes.MainAppWrapper}>
                             {!isMedium ? (
                                 <div className={classes.DrawerDesktop}>
@@ -169,17 +193,16 @@ export default function App() {
                                     />
                                 </div>
                             ) : null}
-                            {isHomePage ? (
-                                <div className={classes.GalleryAppWrapper}>
-                                    <GalleryItems
-                                        examples={allGalleryItems}
-                                        setMostVisibleCategory={setMostVisibleCategory}
-                                    />
-                                </div>
-                            ) : (
-                                <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
-                            )}
+
+                            <div className={classes.GalleryAppWrapper}>
+                                <GalleryItems
+                                    examples={allGalleryItems}
+                                    setMostVisibleCategory={setMostVisibleCategory}
+                                />
+                            </div>
                         </div>
+                    ) : (
+                        <AppDetailsRouter currentExample={currentExample} seeAlso={seeAlso} theme={theme} />
                     )}
 
                     <AppFooter />

@@ -28,8 +28,8 @@ const initChart = async (rootElement) => {
 
   const mountainSeries = new SplineMountainRenderableSeries(wasmContext, {
     dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-    fill: "#3ca832",
-    stroke: "#eb911c",
+    fill: "SteelBlue",
+    stroke: "White",
     strokeThickness: 4,
     opacity: 0.4,
   });
@@ -41,6 +41,8 @@ const initChart = async (rootElement) => {
     showYLine: true,
     showXLine: true,
     showAxisLabels: true,
+    crosshairStroke: "White",
+    crosshairStrokeDashArray: [5, 5],
   });
   cursor.isEnabled = false;
   sciChartSurface.chartModifiers.add(cursor);

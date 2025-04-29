@@ -10,6 +10,7 @@ import {
     defaultSourceFilesVariant,
     SourceFilesContext,
 } from "./components/AppDetailsRouters/SourceFilesLoading/SourceFilesContext";
+import { baseAppPath } from "./constants";
 
 const cache = createEmotionCache();
 
@@ -18,7 +19,7 @@ function Main() {
         <CacheProvider value={cache}>
             <ThemeProvider theme={customTheme}>
                 <SourceFilesContext.Provider value={defaultSourceFilesVariant}>
-                    <BrowserRouter>
+                    <BrowserRouter basename={baseAppPath}>
                         <App />
                     </BrowserRouter>
                 </SourceFilesContext.Provider>
