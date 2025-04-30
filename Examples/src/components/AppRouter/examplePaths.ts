@@ -44,6 +44,7 @@ export default [
     "../Examples/Charts2D/BasicChartTypes/StackedMountainChart",
     "../Examples/Charts2D/BasicChartTypes/TextSeriesChart",
     "../Examples/Charts2D/BasicChartTypes/TreemapChart",
+    "../Examples/Charts2D/BasicChartTypes/TriangleSeriesChart",
     "../Examples/Charts2D/ChartAnnotations/AnnotationLayers",
     "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy",
     "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations",
@@ -139,5 +140,5 @@ export default [
     "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard",
     "../Examples/FeaturedApps/ShowCases/PopulationPyramid",
     "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard",
-    "../Examples/FeaturedApps/ShowCases/WebsocketBigData"
+    "../Examples/FeaturedApps/ShowCases/WebsocketBigData",
 ];
