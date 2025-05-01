@@ -17120,7 +17120,7 @@ Show external placement div</Notes>
           <PropertyValue m="2020-08-03T15:04:24.854012Z">SciChart_JS_User_Manual.html</PropertyValue>
         </PropertyDefinitionValue>
         <PropertyDefinitionValue PropertyDefinitionId="31a70858-084a-43e7-a307-43e2cdae0808">
-          <PropertyValue m="2020-11-04T17:50:50.8988554Z">https://www.scichart.com/documentation/js/current/</PropertyValue>
+          <PropertyValue m="2025-05-01T13:13:43.7003766Z">https://www.scichart.com/documentation/js/v4/</PropertyValue>
         </PropertyDefinitionValue>
         <PropertyDefinitionValue PropertyDefinitionId="c58acc35-6e43-42f0-bf51-b3afa633f0cc">
           <PropertyValue m="2020-11-04T17:50:41.7073038Z">https://www.scichart.com/javascript-chart-features/</PropertyValue>
@@ -17129,13 +17129,19 @@ Show external placement div</Notes>
           <PropertyValue m="2020-08-03T15:01:34.13942Z">JavaScript</PropertyValue>
         </PropertyDefinitionValue>
         <PropertyDefinitionValue PropertyDefinitionId="dffa9b8e-bb62-4b2f-be87-ccd1375cf6b9">
-          <PropertyValue m="2023-01-13T17:13:13.9884312Z">v3.x</PropertyValue>
+          <PropertyValue m="2025-05-01T13:13:17.0535789Z">v4.x</PropertyValue>
         </PropertyDefinitionValue>
         <PropertyDefinitionValue PropertyDefinitionId="08de2c63-c533-49c3-a1d7-52b3995b9bec">
           <PropertyValue m="2024-01-12T16:58:30.920619Z">SCICHART ® is a Registered Trademark in the UK, US and EU. Copyright SciChart Ltd 2011-2024.</PropertyValue>
         </PropertyDefinitionValue>
         <PropertyDefinitionValue PropertyDefinitionId="76de16a8-8dcb-462c-b636-b20ff0b3c3a1">
           <PropertyValue m="2023-12-11T16:20:11.3037271Z">&lt;a href="%%DocumentationRoot%%sitemap.xml" target="_blank"&gt;Sitemap&lt;/a&gt; | &lt;a href="mailto:support@scichart.com?subject=Documentation Feedback: %%FileName%%"&gt;Send Feedback&lt;/a&gt;</PropertyValue>
+        </PropertyDefinitionValue>
+        <PropertyDefinitionValue PropertyDefinitionId="fae242a8-4947-4bbd-bdd0-272730ca8301">
+          <PropertyValue m="2025-05-01T13:13:29.1320378Z">v3.x</PropertyValue>
+        </PropertyDefinitionValue>
+        <PropertyDefinitionValue PropertyDefinitionId="aee45763-585f-4ca4-9021-77f296edaf80">
+          <PropertyValue m="2025-05-01T13:13:39.10955Z">https://www.scichart.com/documentation/js/current/</PropertyValue>
         </PropertyDefinitionValue>
       </PropertyDefinitionValues>
       <DefaultTemplateName>Material</DefaultTemplateName>
@@ -17879,9 +17885,9 @@ Show external placement div</Notes>
 &lt;meta name="keywords" content="JavaScript,Chart, Charting, JavaScript Chart, JavaScript Charting, JavaScript Realtime Chart, JavaScript High Performance Chart, Fast JavaScript Charts, Best JavaScript Charts, Fastest JavaScript Chart"/&gt;
 &lt;meta property="og:locale" content="en_US"/&gt;
 &lt;meta property="og:type" content="article"/&gt;
-&lt;meta property="og:description" content="JavaScript Chart Documentation for the SciChart JavaScript v3.x SDK. Featuring many JavaScript Chart Types, you can create rich JavaScript, React and TypeScript applications with our powerful API"/&gt;
+&lt;meta property="og:description" content="JavaScript Chart Documentation for the SciChart JavaScript v4.x SDK. Featuring many JavaScript Chart Types, you can create rich JavaScript, React and TypeScript applications with our powerful API"/&gt;
 &lt;meta name="twitter:card" content="summary"/&gt;
-&lt;meta name="twitter:description" content="JavaScript Chart Documentation for the SciChart JavaScript v3.x SDK. Featuring many JavaScript Chart Types, you can create rich JavaScript, React and TypeScript applications with our powerful API"/&gt;
+&lt;meta name="twitter:description" content="JavaScript Chart Documentation for the SciChart JavaScript v4.x SDK. Featuring many JavaScript Chart Types, you can create rich JavaScript, React and TypeScript applications with our powerful API"/&gt;
 &lt;meta name="twitter:site" content="@scichart"/&gt;
 &lt;meta name="twitter:creator" content="@scichart"/&gt;
 &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"&gt;
