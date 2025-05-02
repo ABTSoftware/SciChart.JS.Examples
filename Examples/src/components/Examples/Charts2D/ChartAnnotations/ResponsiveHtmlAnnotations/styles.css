@@ -1,0 +1,33 @@
+.responsiveTextAnnotationContainer {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    container-type: size;
+    container-name: annotation-container;
+    align-items: center;
+    overflow: hidden;
+    color: black;
+    border: 1px solid black;
+}
+
+.responsiveTextAnnotation {
+    font-weight: 600;
+    align-self: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform: rotate(-90deg);
+    display: inline-block;
+    word-wrap: normal;
+    white-space: nowrap;
+    font-size: min(1em, 8cqh);
+    max-width: max(1cqh, 100cqh);
+}
+
+@container annotation-container (min-width: 130px) {
+    .responsiveTextAnnotation {
+        font-size: min(2em, 8cqw);
+        max-width: max(1cqh, 100cqw);
+        transform: rotate(0deg);
+    }
+}
