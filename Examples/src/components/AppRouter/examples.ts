@@ -36,6 +36,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
             EXAMPLES_PAGES.featuredApps_scientificCharts_WaterfallChartDemo,
+            // EXAMPLES_PAGES.featuredApps_scientificCharts_PhasorDiagramChart,
         ],
     },
     {
@@ -212,6 +213,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_VirtualizedDataOverview,
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_PolarModifiers,
             //EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision,
         ],
     },

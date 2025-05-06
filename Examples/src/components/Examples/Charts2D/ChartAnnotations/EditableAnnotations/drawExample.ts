@@ -372,6 +372,7 @@ const mapAnnotationTypeToName = (type: EAnnotationType): string => {
             return "LineArrowAnnotation";
         case EAnnotationType.RenderContextPolarArcAnnotation:
             return "PolarArcAnnotation";
+        // @ts-ignore
         case EAnnotationType.RenderContextCustomAnnotation:
             return "RenderContextCustomAnnotation";
         default: {

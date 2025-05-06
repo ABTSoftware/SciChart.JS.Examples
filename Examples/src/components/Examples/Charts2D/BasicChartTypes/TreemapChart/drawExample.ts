@@ -2,11 +2,6 @@ import {
     SciChartSurface,
     NumericAxis,
     NumberRange,
-    FastRectangleRenderableSeries,
-    EColumnMode,
-    EColumnYMode,
-    EResamplingMode,
-    XyxyDataSeries,
     IFillPaletteProvider,
     EFillPaletteMode,
     EStrokePaletteMode,
@@ -18,54 +13,60 @@ import {
     MouseWheelZoomModifier,
     ZoomExtentsModifier,
     ZoomPanModifier,
-    ENumericFormat,
-    formatNumber,
-    RectangleSeriesDataLabelProvider,
-    IRectangleSeriesDataLabelProviderOptions,
     SeriesSelectionModifier,
     EDataLabelSkipMode,
     EMultiLineAlignment,
-    TextureManager,
-    TTextStyle,
-    Rect,
+    FastRectangleRenderableSeries,
+    EResamplingMode,
+    EColumnMode,
+    EColumnYMode,
+    XyxyDataSeries,
+    RectangleSeriesDataLabelProvider,
+    IRectangleSeriesDataLabelProviderOptions,
+    formatNumber,
+    ENumericFormat
 } from "scichart";
-import { 
-    HierarchyNode, 
-    HierarchyRectangularNode, 
-    stratify, 
-    treemap 
-} from "d3-hierarchy";
 import { appTheme } from "../../../theme";
 
-/**
- * Custom DataLabelProvider for calculation when to show label fully, partially or not at all
- */
-class MarketDataLabelProvider extends RectangleSeriesDataLabelProvider {
-    constructor(options?: IRectangleSeriesDataLabelProviderOptions) {
-        super(options);
-    }
+import { stratify, treemap } from "d3-hierarchy";
+// choose in between one of the two
+const d3 = require("./d3-hierarchy.js"); 
 
-    // Override "getText" method to provide custom text for the data labels
-    getText(state: any): string {
-        const metadata = state.getMetaData() as unknown as TreeDataItem;
-        const colWidth = state.columnWidth; // width of updates with scroll
-
-        if((metadata.value * colWidth) > 20000) { // full name + percentage
-            return `${metadata.name.length > 10 ? metadata.shortName : metadata.name}`
-                + `\n${formatNumber(metadata.progress, ENumericFormat.Decimal, this.precision)}%`;
-        }
-        if((metadata.value * colWidth) > 10000) { // short name + percentage
-            return `${metadata.shortName}`
-                + `\n${formatNumber(metadata.progress, ENumericFormat.Decimal, this.precision)}%`;
-        }
-        if((metadata.value * colWidth) > 3000) { // short name INITIAL only
-            return `${metadata.shortName.slice(0, 1)}`
-        }
-        return null; // no label
-    }
+type RectangluarNode = {
+    x0: number;
+    y0: number;
+    x1: number;
+    y1: number;
+    data: TTreemapDataItem;
 }
 
-class FastRectanglePaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
+type TTreemapDataItem = {
+    /**
+     * Unique name of the company
+     */
+    name: string;
+    /**
+     * Short name of the company - optional
+     */
+    shortName?: string;
+    /**
+     * Parent node name
+     */
+    parent: string;
+    /**
+     * Number of Billions the company is worth
+     */
+    value: number;
+    /**
+     * Percentage gained / lost in the selected period
+     */
+    progress?: number;
+};
+
+/**
+ * PaletteProvider for the {@link TreemapRenderableSeries} to manage the colors of rectangles  
+ */
+class StockTreemapPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
     public readonly fillPaletteMode = EFillPaletteMode.SOLID;
     public readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
 
@@ -91,7 +92,7 @@ class FastRectanglePaletteProvider implements IStrokePaletteProvider, IFillPalet
         _opacity?: number,
         metadata?: IPointMetadata
     ): number | undefined {
-        const percentage = (metadata as unknown as TreeDataItem).progress;
+        const percentage = (metadata as unknown as TTreemapDataItem).progress;
         
         // Handle 0% case explicitly to avoid division issues
         if (percentage === 0) return this._gray;
@@ -159,27 +160,44 @@ class FastRectanglePaletteProvider implements IStrokePaletteProvider, IFillPalet
     }
 }
 
-type TreeDataItem = {
-    name: string;
-    /**
-     * Short name of the company
-     */
-    shortName?: string;
-    parent: string;
-    /**
-     * Number of Billions the company is worth
-     */
-    value: number;
-    /**
-     * Percentage gained / lost in the selected period
-     */
-    progress?: number;
-};
+/**
+ * DataLabelProvider for the {@link TreemapRenderableSeries} to manage the labels of rectangles  
+ * in the treemap - the bigger the rectangle, the more information is shown
+ */
+class TreemapDataLabelProvider extends RectangleSeriesDataLabelProvider {
+    constructor(options?: IRectangleSeriesDataLabelProviderOptions) {
+        super(options);
+    }
 
-const WIDTH = 15; 
+    // Override "getText" method to provide dynamic text based on rectangle size
+    getText(state: any): string {
+        const metadata = state.getMetaData() as TTreemapDataItem;
+        const colWidth = state.columnWidth; // width updates with scroll
+        
+        // No label for items without value
+        if (metadata.value === null || metadata.value === undefined) {
+            return null;
+        }
+
+        // Different text formats based on available space
+        if((metadata.value * colWidth) > 30000) {
+            return `${metadata.name}`
+                + `\n${formatNumber(metadata.progress, ENumericFormat.Decimal, this.precision)}%`;
+        }
+        if((metadata.value * colWidth) > 15000) {
+            return `${metadata.shortName || metadata.name}`
+                + `\n${formatNumber(metadata.progress, ENumericFormat.Decimal, this.precision)}%`;
+        }
+        if((metadata.value * colWidth) > 1500) {
+            return `${(metadata.shortName || metadata.name).slice(0, 1)}`;
+        }
+        return null; // No label for small rectangles
+    }
+}
+
+const WIDTH = 15;
 const HEIGHT = 10;
-
-const RAW_DATA: TreeDataItem[] = [
+const RAW_DATA: TTreemapDataItem[] = [
     { name: "Technology", parent: "", value: null },
 
     { name: "Apple", parent: "Technology", value: 4000, progress: 16.2, shortName: "AAPL" },
@@ -224,9 +242,40 @@ const RAW_DATA: TreeDataItem[] = [
     { name: "Fiverr", parent: "Technology", value: 3, progress: -2.5, shortName: "FVR" },
 ];
 
-export async function drawExample(
-    rootElement: string | HTMLDivElement,
-) {
+// This shows you how to use one of D3's broad layout strategies with the Performance of SciChart
+// using a local file as "d3-hierarchy.js" from this folder (no need to install from npm another dependency)
+function prepareDataUsingD3Local(data: TTreemapDataItem[]): RectangluarNode[] {
+    const root = d3.stratify()
+        .id((d: TTreemapDataItem) => d.name)
+        .parentId((d: TTreemapDataItem) => d.parent)(data);
+
+    root.sum((d: TTreemapDataItem) => + d.value);
+
+    d3.treemap()
+        .size([WIDTH, HEIGHT])
+        .padding(0.1)
+        (root); // create the treemap layout
+
+    return root.leaves() as RectangluarNode[];
+}
+
+// uses NPM's "d3-hierarchy" package - recommended if you don't mind an extra 5kb dependency
+function prepareDataUsingD3External(data: TTreemapDataItem[]): RectangluarNode[] {
+    const root = stratify()
+        .id((d) => (d as TTreemapDataItem).name)
+        .parentId((d) => (d as TTreemapDataItem).parent)(data);
+
+    root.sum((d) => +(d as TTreemapDataItem).value);
+
+    treemap()
+        .size([WIDTH, HEIGHT])
+        .padding(0.1)
+        (root); // create the treemap layout
+
+    return root.leaves() as unknown as RectangluarNode[];
+}
+
+export async function drawExample(rootElement: string | HTMLDivElement) {
     // Initialize SciChartSurface. Don't forget to await!
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
@@ -236,43 +285,33 @@ export async function drawExample(
     const xAxis = new NumericAxis(wasmContext, {
         axisTitle: "X Axis",
         isVisible: false,
-        growBy: new NumberRange(0.01, 0.01),
     })
     sciChartSurface.xAxes.add(xAxis);
 
     const yAxis = new NumericAxis(wasmContext, {
         axisTitle: "Y Axis",
-        visibleRange: new NumberRange(0, 10),
-        growBy: new NumberRange(0.01, 0.01),
         isVisible: false,
         flippedCoordinates: true,
     })
     sciChartSurface.yAxes.add(yAxis);
 
-    // Prepare the data using D3.js
-    const root = stratify()
-        .id((d) => (d as TreeDataItem).name)
-        .parentId((d) => (d as TreeDataItem).parent)(RAW_DATA);
+    const treemapData = prepareDataUsingD3Local(RAW_DATA); 
+    // const treemapData = prepareDataUsingD3External(RAW_DATA); // use this if you don't mind a 5kb dependency -> ("d3-hierarchy")
 
-    root.sum((d) => +(d as TreeDataItem).value);
-
-    treemap().size([WIDTH, HEIGHT]).padding(0.06)(root); // create the treemap layout
-    const treemapData: HierarchyNode<unknown>[] = root.leaves(); // get only the leaves of the treemap
-
-    // Rectangle Series
+    // Draw the Rectangle Series
     const rectangleSeries = new FastRectangleRenderableSeries(wasmContext, {
         dataSeries: new XyxyDataSeries(wasmContext, {
-            xValues: treemapData.map((d) => (d as HierarchyRectangularNode<unknown>).x0),
-            yValues: treemapData.map((d) => (d as HierarchyRectangularNode<unknown>).y0),
-            x1Values: treemapData.map((d) => (d as HierarchyRectangularNode<unknown>).x1),
-            y1Values: treemapData.map((d) => (d as HierarchyRectangularNode<unknown>).y1),
-            metadata: treemapData.map((d) => d.data) as IPointMetadata[],
+            xValues: treemapData.map(d => d.x0),
+            yValues: treemapData.map(d => d.y0),
+            x1Values: treemapData.map(d => d.x1),
+            y1Values: treemapData.map(d => d.y1),
+            metadata: treemapData.map(d => d.data) as any[],
         }),
         columnXMode: EColumnMode.StartEnd,
         columnYMode: EColumnYMode.TopBottom,
         strokeThickness: 2,
         resamplingMode: EResamplingMode.None,
-        dataLabelProvider: new MarketDataLabelProvider({
+        dataLabelProvider: new TreemapDataLabelProvider({
             skipMode: EDataLabelSkipMode.ShowAll,
             color: "white",
             style: {
@@ -282,14 +321,14 @@ export async function drawExample(
             },
             horizontalTextPosition: EHorizontalTextPosition.Center,
             verticalTextPosition: EVerticalTextPosition.Center,
-            metaDataSelector: (md) => {
-                return (md as unknown as TreeDataItem).name;
+            metaDataSelector: (md: unknown) => {
+                return (md as TTreemapDataItem).name;
             },
         }),
         // send min and max value percentages to the palette provider as 2 params
-        paletteProvider: new FastRectanglePaletteProvider({
-            minValue: Math.min(...treemapData.map((d) => (d.data as TreeDataItem).progress)),
-            maxValue: Math.max(...treemapData.map((d) => (d.data as TreeDataItem).progress)),
+        paletteProvider: new StockTreemapPaletteProvider({
+            minValue: Math.min(...treemapData.map((d) => (d.data as TTreemapDataItem).progress)),
+            maxValue: Math.max(...treemapData.map((d) => (d.data as TTreemapDataItem).progress)),
         }),
     });
     sciChartSurface.renderableSeries.add(rectangleSeries);
@@ -298,7 +337,6 @@ export async function drawExample(
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier(),
         new ZoomPanModifier(),
-        new SeriesSelectionModifier({ enableHover: true, enableSelection: true }),
     )
 
     return { sciChartSurface, wasmContext };

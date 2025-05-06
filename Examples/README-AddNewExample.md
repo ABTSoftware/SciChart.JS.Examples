@@ -103,17 +103,28 @@ Each example consists of several components:
     - **Angular Implementation:**  
       Develop an Angular component (such as `angular.ts`) that imports the drawing function and integrates it using SciChart’s Angular component (`ScichartAngularComponent`). The example should demonstrate the Angular-specific way of handling components and data binding.
 
-4. **Update sitemap**
-   Run script to add the new example to the sitemap
-   `npm run generateSitemap`
+4. **Create Thumbnail for the Example**  
 
-5. **Share Data and Libraries**  
+    This image should be saved in the same folder as the example and referenced in the `exampleInfo.tsx` file under the `imagePath` and `thumbnailImage` field. It should also have a unique name, related to the example it represents.
+
+    - Recommended resolution: **750 x 500px**.  
+    > For this you can either use Snipping Tool for Windows, or Preview for Mac (also, for Retina displays, the preview should be at **375 x 250px** since it will be scaled up to 750 x 500px)
+    - Recommended format: **JPG**.
+    - Recommended size is between: **20kb** and **50kb**.
+    > For format & size compression, I really like this repo: [pic-smaller](https://github.com/joye61/pic-smaller), since compressing more than 10 images at a time online often requires subscriptions. Tutorial to use locally: https://github.com/joye61/pic-smaller/blob/master/README.md#develop
+
+5. **Update sitemap by running:**
+```bash
+npm run generateSitemap # this will generate a new `sitemap.xml` file
+```
+
+1. **Share Data and Libraries**  
    By keeping all example files in one folder, you guarantee:
 
     - Consistent access to shared resources like themes (e.g., `appTheme`) and utility functions.
     - Simplified dependency management since all implementations refer to the same drawing logic.
 
-6. **Dynamic Loading of Examples**  
+2. **Dynamic Loading of Examples**  
    The system automatically incorporates new examples using the following approach:
 
     - **Webpack Context:**  
@@ -123,7 +134,7 @@ Each example consists of several components:
 
     Reviewing these two files will provide further insight into how your new example will be integrated during runtime.
 
-7. **Final Notes and Recommendations**
+3. **Final Notes and Recommendations**
     - Always start by copying a fully working `exampleInfo` file from an existing example.
     - Ensure that all three framework implementations (React, vanilla JavaScript/TypeScript, and Angular) are updated consistently and correctly point to shared drawing logic.
     - Verify that your metadata fields are updated accurately—even though some parts might be regenerated during the build, the initial configuration must be correct.
