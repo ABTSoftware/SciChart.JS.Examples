@@ -23,4 +23,6 @@ ssh $server "tar -xzvf ${appRoot}/build.tar.gz -C ${appRoot}"
 echo "Build files have been copied to the server."
 ssh $server "rm ${appRoot}/build.tar.gz"
 rm build.tar.gz
-ssh $server ". ~/.nvm/nvm.sh; cd ${appRoot}; PORT=${appPort} pm2-runtime start build/server.js --name ${appName}"
+ssh $server ". ~/.nvm/nvm.sh; cd ${appRoot}; PORT=${appPort} pm2 start build/server.js --name ${appName}"
+echo "Here we output last 1000 lines of pm2 error log in case the app does not start"
+ssh $server "tail -n 1000 .pm2/logs/${appName}-error.log"
