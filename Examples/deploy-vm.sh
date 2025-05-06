@@ -23,4 +23,7 @@ ssh $server "tar -xzvf ${appRoot}/build.tar.gz -C ${appRoot}"
 echo "Build files have been copied to the server."
 ssh $server "rm ${appRoot}/build.tar.gz"
 rm build.tar.gz
-ssh $server ". ~/.nvm/nvm.sh; cd ${appRoot}; PORT=${appPort} pm2 start build/server.js --name ${appName}"
+ssh $server ". ~/.nvm/nvm.sh; cd ${appRoot}; PORT=${appPort} pm2 start build/server.js --name ${appName} --no-autorestart"
+sleep 1
+echo "checking if build/server.js has started, if it fails build and check if you can start examples app in production mode locally"
+ssh $server ". ~/.nvm/nvm.sh; pm2 describe ${appName} | grep status | grep -q online || exit 1"
