@@ -40,7 +40,7 @@ const metaData: IExampleMetadata =
         path: "responsive-html-annotations",
         metaKeywords: "custom, chart, javascript, annotation",
         onWebsite: true,
-        filepath: "ChartAnnotations/ResponsiveHtmlAnnotations",
+        filepath: "Charts2D/ChartAnnotations/ResponsiveHtmlAnnotations",
         thumbnailImage: "javascript-responsive-html-annotations.jpg",
         sandboxConfig: {},
         markdownContent: null,
