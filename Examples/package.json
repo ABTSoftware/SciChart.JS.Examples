@@ -71,7 +71,7 @@
     "rehype-raw": "^7.0.0",
     "request": "^2.88.2",
     "rxjs": "^7.5.6",
-    "scichart": "^4.0.0-beta.733",
+    "scichart": "^4.0.0-beta.734",
     "scichart-react": "^0.2.0-beta.1",
     "socket.io": "^4.5.2",
     "socket.io-client": "^4.7.5",
