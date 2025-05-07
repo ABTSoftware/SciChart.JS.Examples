@@ -24,13 +24,13 @@ import {
     RectangleSeriesDataLabelProvider,
     IRectangleSeriesDataLabelProviderOptions,
     formatNumber,
-    ENumericFormat
+    ENumericFormat,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
 import { stratify, treemap } from "d3-hierarchy";
 // choose in between one of the two
-const d3 = require("./d3-hierarchy.js"); 
+// const d3 = require("./d3-hierarchy.js");
 
 type RectangluarNode = {
     x0: number;
@@ -38,7 +38,7 @@ type RectangluarNode = {
     x1: number;
     y1: number;
     data: TTreemapDataItem;
-}
+};
 
 type TTreemapDataItem = {
     /**
@@ -64,7 +64,7 @@ type TTreemapDataItem = {
 };
 
 /**
- * PaletteProvider for the {@link TreemapRenderableSeries} to manage the colors of rectangles  
+ * PaletteProvider for the {@link TreemapRenderableSeries} to manage the colors of rectangles
  */
 class StockTreemapPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
     public readonly fillPaletteMode = EFillPaletteMode.SOLID;
@@ -77,7 +77,7 @@ class StockTreemapPaletteProvider implements IStrokePaletteProvider, IFillPalett
     private _minValue: number = -20;
     private _maxValue: number = 20;
 
-    constructor({minValue, maxValue}: {minValue: number, maxValue: number}) {
+    constructor({ minValue, maxValue }: { minValue: number; maxValue: number }) {
         this._minValue = minValue ?? this._minValue;
         this._maxValue = maxValue ?? this._maxValue;
     }
@@ -93,7 +93,7 @@ class StockTreemapPaletteProvider implements IStrokePaletteProvider, IFillPalett
         metadata?: IPointMetadata
     ): number | undefined {
         const percentage = (metadata as unknown as TTreemapDataItem).progress;
-        
+
         // Handle 0% case explicitly to avoid division issues
         if (percentage === 0) return this._gray;
 
@@ -113,10 +113,10 @@ class StockTreemapPaletteProvider implements IStrokePaletteProvider, IFillPalett
 
         // Extract ARGB components from colors
         const getComponents = (color: number) => ({
-            a: (color >>> 24) & 0xFF,
-            r: (color >>> 16) & 0xFF,
-            g: (color >>> 8) & 0xFF,
-            b: color & 0xFF
+            a: (color >>> 24) & 0xff,
+            r: (color >>> 16) & 0xff,
+            g: (color >>> 8) & 0xff,
+            b: color & 0xff,
         });
 
         const start = getComponents(startColor);
@@ -145,9 +145,9 @@ class StockTreemapPaletteProvider implements IStrokePaletteProvider, IFillPalett
         if (fill) {
             const brightnessFactor = 1.6;
             // Extract RGB components
-            let r = (fill >> 16) & 0xFF;
-            let g = (fill >> 8) & 0xFF;
-            let b = fill & 0xFF;
+            let r = (fill >> 16) & 0xff;
+            let g = (fill >> 8) & 0xff;
+            let b = fill & 0xff;
             // Increase brightness and clamp to the max 255
             r = Math.min(255, Math.round(r * brightnessFactor));
             g = Math.min(255, Math.round(g * brightnessFactor));
@@ -161,7 +161,7 @@ class StockTreemapPaletteProvider implements IStrokePaletteProvider, IFillPalett
 }
 
 /**
- * DataLabelProvider for the {@link TreemapRenderableSeries} to manage the labels of rectangles  
+ * DataLabelProvider for the {@link TreemapRenderableSeries} to manage the labels of rectangles
  * in the treemap - the bigger the rectangle, the more information is shown
  */
 class TreemapDataLabelProvider extends RectangleSeriesDataLabelProvider {
@@ -173,22 +173,23 @@ class TreemapDataLabelProvider extends RectangleSeriesDataLabelProvider {
     getText(state: any): string {
         const metadata = state.getMetaData() as TTreemapDataItem;
         const colWidth = state.columnWidth; // width updates with scroll
-        
+
         // No label for items without value
         if (metadata.value === null || metadata.value === undefined) {
             return null;
         }
 
         // Different text formats based on available space
-        if((metadata.value * colWidth) > 30000) {
-            return `${metadata.name}`
-                + `\n${formatNumber(metadata.progress, ENumericFormat.Decimal, this.precision)}%`;
+        if (metadata.value * colWidth > 30000) {
+            return `${metadata.name}` + `\n${formatNumber(metadata.progress, ENumericFormat.Decimal, this.precision)}%`;
         }
-        if((metadata.value * colWidth) > 15000) {
-            return `${metadata.shortName || metadata.name}`
-                + `\n${formatNumber(metadata.progress, ENumericFormat.Decimal, this.precision)}%`;
+        if (metadata.value * colWidth > 15000) {
+            return (
+                `${metadata.shortName || metadata.name}` +
+                `\n${formatNumber(metadata.progress, ENumericFormat.Decimal, this.precision)}%`
+            );
         }
-        if((metadata.value * colWidth) > 1500) {
+        if (metadata.value * colWidth > 1500) {
             return `${(metadata.shortName || metadata.name).slice(0, 1)}`;
         }
         return null; // No label for small rectangles
@@ -244,20 +245,20 @@ const RAW_DATA: TTreemapDataItem[] = [
 
 // This shows you how to use one of D3's broad layout strategies with the Performance of SciChart
 // using a local file as "d3-hierarchy.js" from this folder (no need to install from npm another dependency)
-function prepareDataUsingD3Local(data: TTreemapDataItem[]): RectangluarNode[] {
-    const root = d3.stratify()
-        .id((d: TTreemapDataItem) => d.name)
-        .parentId((d: TTreemapDataItem) => d.parent)(data);
+// function prepareDataUsingD3Local(data: TTreemapDataItem[]): RectangluarNode[] {
+//     const root = d3.stratify()
+//         .id((d: TTreemapDataItem) => d.name)
+//         .parentId((d: TTreemapDataItem) => d.parent)(data);
 
-    root.sum((d: TTreemapDataItem) => + d.value);
+//     root.sum((d: TTreemapDataItem) => + d.value);
 
-    d3.treemap()
-        .size([WIDTH, HEIGHT])
-        .padding(0.1)
-        (root); // create the treemap layout
+//     d3.treemap()
+//         .size([WIDTH, HEIGHT])
+//         .padding(0.1)
+//         (root); // create the treemap layout
 
-    return root.leaves() as RectangluarNode[];
-}
+//     return root.leaves() as RectangluarNode[];
+// }
 
 // uses NPM's "d3-hierarchy" package - recommended if you don't mind an extra 5kb dependency
 function prepareDataUsingD3External(data: TTreemapDataItem[]): RectangluarNode[] {
@@ -267,10 +268,7 @@ function prepareDataUsingD3External(data: TTreemapDataItem[]): RectangluarNode[]
 
     root.sum((d) => +(d as TTreemapDataItem).value);
 
-    treemap()
-        .size([WIDTH, HEIGHT])
-        .padding(0.1)
-        (root); // create the treemap layout
+    treemap().size([WIDTH, HEIGHT]).padding(0.1)(root); // create the treemap layout
 
     return root.leaves() as unknown as RectangluarNode[];
 }
@@ -285,27 +283,27 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     const xAxis = new NumericAxis(wasmContext, {
         axisTitle: "X Axis",
         isVisible: false,
-    })
+    });
     sciChartSurface.xAxes.add(xAxis);
 
     const yAxis = new NumericAxis(wasmContext, {
         axisTitle: "Y Axis",
         isVisible: false,
         flippedCoordinates: true,
-    })
+    });
     sciChartSurface.yAxes.add(yAxis);
 
-    const treemapData = prepareDataUsingD3Local(RAW_DATA); 
+    const treemapData = prepareDataUsingD3External(RAW_DATA);
     // const treemapData = prepareDataUsingD3External(RAW_DATA); // use this if you don't mind a 5kb dependency -> ("d3-hierarchy")
 
     // Draw the Rectangle Series
     const rectangleSeries = new FastRectangleRenderableSeries(wasmContext, {
         dataSeries: new XyxyDataSeries(wasmContext, {
-            xValues: treemapData.map(d => d.x0),
-            yValues: treemapData.map(d => d.y0),
-            x1Values: treemapData.map(d => d.x1),
-            y1Values: treemapData.map(d => d.y1),
-            metadata: treemapData.map(d => d.data) as any[],
+            xValues: treemapData.map((d) => d.x0),
+            yValues: treemapData.map((d) => d.y0),
+            x1Values: treemapData.map((d) => d.x1),
+            y1Values: treemapData.map((d) => d.y1),
+            metadata: treemapData.map((d) => d.data) as any[],
         }),
         columnXMode: EColumnMode.StartEnd,
         columnYMode: EColumnYMode.TopBottom,
@@ -333,11 +331,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     });
     sciChartSurface.renderableSeries.add(rectangleSeries);
 
-    sciChartSurface.chartModifiers.add(
-        new MouseWheelZoomModifier(),
-        new ZoomExtentsModifier(),
-        new ZoomPanModifier(),
-    )
+    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier(), new ZoomExtentsModifier(), new ZoomPanModifier());
 
     return { sciChartSurface, wasmContext };
 }
