@@ -30,7 +30,7 @@ export const drawExample = (CustomImage: string) => async (rootElement: string |
     });
 
     // Create an XAxis and YAxis
-    const xAxis = new NumericAxis(wasmContext);
+    const xAxis = new NumericAxis(wasmContext, { useNativeText: false });
     xAxis.visibleRange = new NumberRange(0, 10);
     sciChartSurface.xAxes.add(xAxis);
 

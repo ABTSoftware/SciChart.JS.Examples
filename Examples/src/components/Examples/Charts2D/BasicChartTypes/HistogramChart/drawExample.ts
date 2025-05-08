@@ -4,9 +4,6 @@ import {
     ZoomExtentsModifier,
     MouseWheelZoomModifier,
     SciChartSurface,
-    Thickness,
-    ETextAlignment,
-    ETitlePosition,
     ENumericFormat,
     EAxisAlignment,
     FastRectangleRenderableSeries,
@@ -14,12 +11,10 @@ import {
     EColumnYMode,
     EColumnMode,
     EDataPointWidthMode,
-    EResamplingMode,
     NumberRange,
     EHorizontalTextPosition,
     EVerticalTextPosition,
-    DataLabelProvider,
-    formatNumber,
+    ICustomTextureOptions,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -44,7 +39,7 @@ const populationData = {
 };
 
 const BREAK_POINTS = [
-    0, 10, 15, 20, 30, 45, 60, 70, 80, 90
+    0, 20, 30, 45, 65, 70, 80
 ];
 
 function prepareRectangleData() {
@@ -83,6 +78,77 @@ function prepareRectangleData() {
     return { xValues, yValues, x1Values, y1Values };
 }
 
+class StickFigureTextureOptions implements ICustomTextureOptions {
+    options: { stroke: string };
+    textureHeight: number = 84;
+    textureWidth: number = 84;
+    repeat?: boolean = true;
+
+    public constructor(options: { stroke: string, repeat: boolean }) {
+        this.options = options;
+    }
+
+    public createTexture(
+        context: CanvasRenderingContext2D,
+        options: { fill: string; opacity: number; stroke: string }
+    ) {
+        context.fillStyle = options.fill;
+        context.fillRect(0, 0, this.textureWidth, this.textureHeight);
+        context.strokeStyle = options.stroke;
+
+        // Set up transformation: move to center, rotate, move back for 
+        context.translate(this.textureWidth / 2, this.textureHeight / 2);
+        context.translate(-this.textureWidth / 2, -this.textureHeight / 2);
+
+        // Proportional values
+        const centerX = this.textureWidth / 2;
+        const headRadius = Math.min(this.textureWidth, this.textureHeight) * 0.16; // 16% of smaller dimension
+        const headY = this.textureHeight * 0.25;
+        const bodyTopY = headY + headRadius;
+        const bodyBottomY = this.textureHeight * 0.63;
+        const armY = bodyTopY + this.textureHeight * 0.06;
+        const armSpan = this.textureWidth * 0.38; // arms reach out 19% each side
+        const legY = bodyBottomY;
+        const legSpan = this.textureWidth * 0.25; // legs out 12.5% each side
+        const legBottomY = this.textureHeight * 0.97;
+
+        // Head
+        context.beginPath();
+        context.arc(centerX, headY, headRadius, 0, Math.PI * 2);
+        context.stroke();
+
+        // Body
+        context.beginPath();
+        context.moveTo(centerX, bodyTopY);
+        context.lineTo(centerX, bodyBottomY);
+        context.stroke();
+
+        // Left Arm
+        context.beginPath();
+        context.moveTo(centerX, armY);
+        context.lineTo(centerX - armSpan, armY + this.textureHeight * 0.09);
+        context.stroke();
+
+        // Right Arm
+        context.beginPath();
+        context.moveTo(centerX, armY);
+        context.lineTo(centerX + armSpan, armY + this.textureHeight * 0.09);
+        context.stroke();
+
+        // Left Leg
+        context.beginPath();
+        context.moveTo(centerX, legY);
+        context.lineTo(centerX - legSpan, legBottomY);
+        context.stroke();
+
+        // Right Leg
+        context.beginPath();
+        context.moveTo(centerX, legY);
+        context.lineTo(centerX + legSpan, legBottomY);
+        context.stroke();
+    }
+}
+
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
@@ -103,16 +169,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawMajorTickLines: false,
         drawMinorTickLines: false,
         axisTitleStyle: {
-            fontSize: 14,
+            fontSize: 13,
             fontFamily: "Arial",
             color: "#ffffff",
             fontStyle: "italic",
         },
         growBy: new NumberRange(0.02, 0.02),
     });
-    
-    // Custom label formatter to improve readability
-    xAxis.labelProvider.formatLabel = (value: number) => {
+    xAxis.labelProvider.formatLabel = (value: number) => { // Custom label formatter to improve readability
         if (BREAK_POINTS.includes(value)) {
             return value.toString();
         }
@@ -157,27 +221,32 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         columnYMode: EColumnYMode.TopBottom,
         dataPointWidthMode: EDataPointWidthMode.Range,
         stroke: "white",
-        fill: appTheme.DarkIndigo,
         opacity: 0.8,
-        topCornerRadius: 14,
+        fill: appTheme.DarkIndigo,
+        topCornerRadius: 8,
         bottomCornerRadius: 0,
+        customTextureOptions: new StickFigureTextureOptions({ 
+            stroke: appTheme.MutedBlue,
+            repeat: true,
+        }),
         dataLabels: {
             color: "#EEE",
             style: {
                 fontSize: 12,
             },
+            precision: 0,
             numericFormat: ENumericFormat.Engineering, 
             verticalTextPosition: EVerticalTextPosition.Above,
             horizontalTextPosition: EHorizontalTextPosition.Right,
         }
     });
     sciChartSurface.renderableSeries.add(rectangleSeries);
-    
+
     // Add interactivity modifiers
     sciChartSurface.chartModifiers.add(
         new ZoomPanModifier({ enableZoom: true }),
         new ZoomExtentsModifier(),
-        new MouseWheelZoomModifier()
+        new MouseWheelZoomModifier(),
     );
     
     return { sciChartSurface, wasmContext };

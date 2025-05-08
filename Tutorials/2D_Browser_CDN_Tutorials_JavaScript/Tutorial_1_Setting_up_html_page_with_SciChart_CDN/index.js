@@ -45,10 +45,9 @@ initSciChart();
 SciChartSurface.useWasmFromCDN();
 
 // This is equivalent to calling SciChartSurface.configure() with the URLs from the CDN for wasm/data files
-const libraryVersion = "3.4.662";
+const libraryVersion = "4.0.0";
 SciChartSurface.configure({
-  dataUrl: `https://cdn.jsdelivr.net/npm/scichart@4.0.0-beta.711-beta.707-beta.629${libraryVersion}/_wasm/scichart2d.data`,
-  wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@4.0.0-beta.711-beta.707-beta.629${libraryVersion}/_wasm/scichart2d.wasm`,
+  wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@${libraryVersion}/_wasm/scichart2d.wasm`,
 });
 
 // This code doesn't actually need to be called when using index.min.js, however

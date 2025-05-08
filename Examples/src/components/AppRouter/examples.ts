@@ -23,7 +23,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_showcases_richInteractions,
             EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout,
             EXAMPLES_PAGES.featuredApps_showcases_eventMarkers,
-            EXAMPLES_PAGES.featuredApps_showcases_populationPyramid
+            EXAMPLES_PAGES.featuredApps_showcases_populationPyramid,
         ],
     },
     {
@@ -36,6 +36,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
             EXAMPLES_PAGES.featuredApps_scientificCharts_WaterfallChartDemo,
+            // EXAMPLES_PAGES.featuredApps_scientificCharts_PhasorDiagramChart,
         ],
     },
     {
@@ -75,6 +76,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             // EXAMPLES_PAGES.chart2D_basicCharts_GanttChart, // uncomment when ready
             EXAMPLES_PAGES.chart2D_basicCharts_ErrorBarsChart,
             EXAMPLES_PAGES.chart2D_basicCharts_BoxPlotChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_TriangleSeriesChart,
             EXAMPLES_PAGES.chart2D_basicCharts_TreemapChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart,
             EXAMPLES_PAGES.chart2D_basicCharts_TextChart,
@@ -103,7 +105,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_polarCharts_PolarLineChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarSplineLineChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarLineTemperatureAverage,
-            EXAMPLES_PAGES.chart2D_polarCharts_PolarColumnChart,            
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarColumnChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarColumnCategoryChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarRangeColumnChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarWindroseColumnChart,
@@ -137,6 +139,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations,
             EXAMPLES_PAGES.chart2D_chartAnnotations_BackgroundAnnotations,
             EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationLayers,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_ResponsiveHtmlAnnotations,
         ],
     },
     {
@@ -210,6 +213,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_VirtualizedDataOverview,
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_PolarModifiers,
             //EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision,
         ],
     },

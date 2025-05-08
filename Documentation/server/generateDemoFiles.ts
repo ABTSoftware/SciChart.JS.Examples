@@ -12,9 +12,11 @@ class Entry {
     hasHtml: boolean = false;
     hasCss: boolean = false;
     isTS: boolean = false;
-    constructor(path: string) {
-        this.url = path.substring(baseDir.length).replaceAll("\\", "/");
-        this.name = path.substring(path.lastIndexOf("\\") + 1);
+
+    constructor(pathStr: string) {
+        const normalizedPath = path.normalize(pathStr);
+        this.url = normalizedPath.substring(baseDir.length).replace(/\\/g, "/");
+        this.name = path.basename(normalizedPath);
     }
 }
 
@@ -112,7 +114,7 @@ panel_css: 0`
     }
 };
 
-const makeNav = (entry: Entry, categoryName: string) => {
+const makeNav = (entry: Entry, categoryName: string | undefined) => {
     if (entry.isDemo) {
         makeDemoFiles(entry);
     }
@@ -165,7 +167,7 @@ walk(baseDir, (err, entry) => {
             padding: 0;
         }
         li {
-            padding: 4px 8px;
+            padding: 5px 8px 5px 14px;
         }
         li.hidden {
             display: none;
@@ -173,14 +175,25 @@ walk(baseDir, (err, entry) => {
         .highlight {
             background-color: yellow;
         }
+        .active {
+            background-color: #38f;
+            color: white;
+        }
+        .active a {
+            color: white;
+        }
     </style>
     <div id="searchContainer">
         <input type="text" id="searchBox" placeholder="Search...">
         <button id="clearButton">&times;</button>
     </div>
     <script>
-        document.getElementById('searchBox').addEventListener('keyup', filterList);
-        document.getElementById('clearButton').addEventListener('click', clearSearch);
+        // Add event listeners after DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('searchBox').addEventListener('keyup', filterList);
+            document.getElementById('clearButton').addEventListener('click', clearSearch);
+            highlightCurrentPage();
+        });
 
         function clearSearch() {
             document.getElementById('searchBox').value = '';
@@ -193,6 +206,56 @@ walk(baseDir, (err, entry) => {
                 item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\\/span>/g, '$1');                
             });
             console.log("Cleared search from " + items.length + " items");
+        }
+
+        // Extracts the path from a full URL
+        function cleanLink(url) {
+            try {
+                let path;
+                
+                // Handle both absolute and relative URLs
+                if (url.includes('://')) {
+                    // For absolute URLs, parse and extract pathname
+                    const urlObj = new URL(url);
+                    path = urlObj.pathname;
+                } else {
+                    // For relative URLs, just use as is
+                    path = url;
+                }
+                
+                // Normalize path by removing trailing slash if it exists
+                // (unless it's the root path '/')
+                if (path.length > 1 && path.endsWith('/')) {
+                    path = path.slice(0, -1);
+                }
+                
+                return path;
+            } catch (e) {
+                console.error("Error parsing URL:", e);
+                return url;
+            }
+        }
+
+        function highlightCurrentPage() {
+            // Get the current path and normalize it (remove trailing slash)
+            let currentPath = window.location.pathname;
+            if (currentPath.length > 1 && currentPath.endsWith('/')) {
+                currentPath = currentPath.slice(0, -1);
+            }
+            
+            const links = document.querySelectorAll('#list a');            
+            links.forEach(link => {
+                const linkPath = cleanLink(link.getAttribute('href'));
+                
+                if (linkPath === currentPath) {
+                    const listItem = link.parentElement;
+                    listItem.classList.add('active');
+                    
+                    setTimeout(() => {
+                        listItem.scrollIntoView({ behavior: 'instant', block: 'center' });
+                    }, 100);
+                }
+            });
         }
         
         function filterList() {

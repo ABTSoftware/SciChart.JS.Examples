@@ -109,14 +109,24 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
         this.titleProperty = value;
     }
 
-    public update(xCalc: CoordinateCalculatorBase, yCalc: CoordinateCalculatorBase): void {
+    public update(
+        xCalc: CoordinateCalculatorBase,
+        yCalc: CoordinateCalculatorBase,
+        xCoordSvgTrans: number,
+        yCoordSvgTrans: number
+    ): void {
         if (this.svg) {
             this.delete();
         }
-        this.create(xCalc, yCalc);
+        this.create(xCalc, yCalc, xCoordSvgTrans, yCoordSvgTrans);
     }
 
-    protected create(xCalc: CoordinateCalculatorBase, yCalc: CoordinateCalculatorBase) {
+    protected create(
+        xCalc: CoordinateCalculatorBase,
+        yCalc: CoordinateCalculatorBase,
+        xCoordSvgTrans: number,
+        yCoordSvgTrans: number
+    ) {
         if (this.template) {
             this.xIndex = this.isMouseOverSeriesArea ? Math.round(xCalc.getDataValue(this.x1)) : undefined;
             if (this.xIndex === undefined) {
@@ -126,8 +136,8 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
             const svgNode = document.createRange().createContextualFragment(svgString);
             this.svgRoot.appendChild(svgNode);
             this.setSvg(this.svgRoot.lastChild as SVGElement);
-            this.svg.setAttribute("x", this.offsetX.toString());
-            this.svg.setAttribute("y", this.offsetY.toString());
+            this.svg.setAttribute("x", (xCoordSvgTrans + this.offsetX).toString());
+            this.svg.setAttribute("y", (yCoordSvgTrans + this.offsetY).toString());
         }
     }
 

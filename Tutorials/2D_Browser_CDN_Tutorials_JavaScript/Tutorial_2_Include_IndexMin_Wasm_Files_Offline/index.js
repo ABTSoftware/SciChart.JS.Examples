@@ -37,7 +37,6 @@ async function initSciChart() {
 // Note that SciChartSurface.configure must be called once before any SciChartSurface is instantiated
 
 SciChartSurface.configure({
-  dataUrl: `scichart/v3.4.662/scichart2d.data`,
   wasmUrl: `scichart/v3.4.662/scichart2d.wasm`,
 });
 
