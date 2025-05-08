@@ -13,7 +13,7 @@
         "start": "node server/server.js",
         "dev": "ts-node server/server.ts",
         "gen": "ts-node server/generateDemoFiles.ts",
-        "prettier": "prettier **/*.{js,jsx,ts,tsx} --write"
+        "prettier": "prettier **/*.{js,ts} --write"
     },
     "keywords": [],
     "author": "",

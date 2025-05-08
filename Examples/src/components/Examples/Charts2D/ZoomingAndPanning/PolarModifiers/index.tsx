@@ -75,7 +75,8 @@ export default function ChartComponent() {
                     display: 'flex', 
                     flexDirection: 'column', 
                     alignItems: 'center', 
-                    gap: 10, padding: 10
+                    gap: 10, padding: 10,
+                    position: "relative",
                 }}>
                     <h3>Polar Modifiers:</h3>
 
@@ -105,14 +106,13 @@ export default function ChartComponent() {
                     {/* conflict handling */}
                     {conflictWarning && (
                         <div style={{
+                            position: "absolute",
                             color: "red",
                             fontSize: 14,
-                            marginTop: 10,
-                            position: "absolute",
                             bottom: 0,
-                            margin: 10
+                            margin: 14,
                         }}>
-                            {conflictWarning}
+                            <span>{conflictWarning}</span>
                         </div>
                     )}
                 </div>

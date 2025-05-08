@@ -4,23 +4,26 @@ const path = require("path");
 const fs = require("fs");
 const baseDir = path.join(__dirname, "../src");
 class Entry {
-    constructor(path) {
+    constructor(pathStr) {
         this.entries = [];
         this.isDemo = false;
         this.hasDetails = false;
         this.hasHtml = false;
         this.hasCss = false;
         this.isTS = false;
-        this.url = path.substring(baseDir.length).replaceAll("\\", "/");
-        this.name = path.substring(path.lastIndexOf("\\") + 1);
+        const normalizedPath = path.normalize(pathStr);
+        this.url = normalizedPath.substring(baseDir.length).replace(/\\/g, "/");
+        this.name = path.basename(normalizedPath);
     }
 }
 var walk = function (dir, done) {
     fs.readdir(dir, function (err, list) {
-        if (err) return done(err);
+        if (err)
+            return done(err);
         var pending = list.length;
         const entry = new Entry(dir);
-        if (!pending) return done(null, entry);
+        if (!pending)
+            return done(null, entry);
         list.forEach(file => {
             file = path.resolve(dir, file);
             fs.stat(file, (err, stat) => {
@@ -29,29 +32,37 @@ var walk = function (dir, done) {
                         if (res) {
                             entry.entries.push(res);
                         }
-                        if (!--pending) done(null, entry);
+                        if (!--pending)
+                            done(null, entry);
                     });
-                } else {
+                }
+                else {
                     const fileName = path.basename(file);
                     if (fileName === "demo.js") {
                         entry.isDemo = true;
-                    } else if (fileName === "demo.html") {
+                    }
+                    else if (fileName === "demo.html") {
                         entry.hasHtml = true;
-                    } else if (fileName === "demo.css") {
+                    }
+                    else if (fileName === "demo.css") {
                         entry.hasCss = true;
-                    } else if (fileName === "demo.details") {
+                    }
+                    else if (fileName === "demo.details") {
                         entry.hasDetails = true;
-                    } else if (fileName === "demo.ts") {
+                    }
+                    else if (fileName === "demo.ts") {
                         entry.isTS = true;
                     }
-                    if (!--pending) done(null, entry);
+                    if (!--pending)
+                        done(null, entry);
                 }
             });
         });
     });
 };
-const makeDemoFiles = entry => {
-    if (!entry.isDemo) return;
+const makeDemoFiles = (entry) => {
+    if (!entry.isDemo)
+        return;
     if (entry.isTS) {
         const jsPath = path.join(baseDir, entry.url, "demo.js");
         console.log("Fixing js for ", entry.url);
@@ -75,24 +86,18 @@ const makeDemoFiles = entry => {
     if (!entry.hasCss) {
         console.log("Writing demo.css for ", entry.url);
         const cssPath = path.join(baseDir, entry.url, "demo.css");
-        fs.promises.writeFile(
-            cssPath,
-            `body { margin: 0; }
-#scichart-root { width: 100%; height: 100vh; }`
-        );
+        fs.promises.writeFile(cssPath, `body { margin: 0; }
+#scichart-root { width: 100%; height: 100vh; }`);
     }
     if (!entry.hasDetails) {
         console.log("Writing demo.details for ", entry.url);
         const detailsPath = path.join(baseDir, entry.url, "demo.details");
-        const title =
-            "SciChart.js documentation snippet for " +
+        const title = "SciChart.js documentation snippet for " +
             entry.url
                 .split("/")
                 .filter(v => v.length > 0)
                 .join(" - ");
-        fs.promises.writeFile(
-            detailsPath,
-            `---
+        fs.promises.writeFile(detailsPath, `---
 name: ${title}
 description: A documentation snippet for SciChart.JS from scichart.com/javascript-chart-documentation.  Find out more about SciChart at scichart.com/javascript-chart-features
 authors:
@@ -102,8 +107,7 @@ resources:
 normalize_css: no
 panel_js: 0
 panel_html: 0
-panel_css: 0`
-        );
+panel_css: 0`);
     }
 };
 const makeNav = (entry, categoryName) => {
@@ -128,7 +132,8 @@ const makeNav = (entry, categoryName) => {
     return html;
 };
 walk(baseDir, (err, entry) => {
-    if (!entry) return;
+    if (!entry)
+        return;
     //console.log(JSON.stringify(entry, undefined, 2));
     let html = `<style>
         body {
@@ -158,7 +163,7 @@ walk(baseDir, (err, entry) => {
             padding: 0;
         }
         li {
-            padding: 4px 8px;
+            padding: 5px 8px 5px 14px;
         }
         li.hidden {
             display: none;
@@ -166,14 +171,25 @@ walk(baseDir, (err, entry) => {
         .highlight {
             background-color: yellow;
         }
+        .active {
+            background-color: #38f;
+            color: white;
+        }
+        .active a {
+            color: white;
+        }
     </style>
     <div id="searchContainer">
         <input type="text" id="searchBox" placeholder="Search...">
         <button id="clearButton">&times;</button>
     </div>
     <script>
-        document.getElementById('searchBox').addEventListener('keyup', filterList);
-        document.getElementById('clearButton').addEventListener('click', clearSearch);
+        // Add event listeners after DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('searchBox').addEventListener('keyup', filterList);
+            document.getElementById('clearButton').addEventListener('click', clearSearch);
+            highlightCurrentPage();
+        });
 
         function clearSearch() {
             document.getElementById('searchBox').value = '';
@@ -186,6 +202,56 @@ walk(baseDir, (err, entry) => {
                 item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\\/span>/g, '$1');                
             });
             console.log("Cleared search from " + items.length + " items");
+        }
+
+        // Extracts the path from a full URL
+        function cleanLink(url) {
+            try {
+                let path;
+                
+                // Handle both absolute and relative URLs
+                if (url.includes('://')) {
+                    // For absolute URLs, parse and extract pathname
+                    const urlObj = new URL(url);
+                    path = urlObj.pathname;
+                } else {
+                    // For relative URLs, just use as is
+                    path = url;
+                }
+                
+                // Normalize path by removing trailing slash if it exists
+                // (unless it's the root path '/')
+                if (path.length > 1 && path.endsWith('/')) {
+                    path = path.slice(0, -1);
+                }
+                
+                return path;
+            } catch (e) {
+                console.error("Error parsing URL:", e);
+                return url;
+            }
+        }
+
+        function highlightCurrentPage() {
+            // Get the current path and normalize it (remove trailing slash)
+            let currentPath = window.location.pathname;
+            if (currentPath.length > 1 && currentPath.endsWith('/')) {
+                currentPath = currentPath.slice(0, -1);
+            }
+            
+            const links = document.querySelectorAll('#list a');            
+            links.forEach(link => {
+                const linkPath = cleanLink(link.getAttribute('href'));
+                
+                if (linkPath === currentPath) {
+                    const listItem = link.parentElement;
+                    listItem.classList.add('active');
+                    
+                    setTimeout(() => {
+                        listItem.scrollIntoView({ behavior: 'instant', block: 'center' });
+                    }, 100);
+                }
+            });
         }
         
         function filterList() {
