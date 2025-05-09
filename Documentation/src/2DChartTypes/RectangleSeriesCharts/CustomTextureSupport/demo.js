@@ -1,15 +1,5 @@
-import {
-    EColumnMode,
-    EColumnYMode,
-    SciChartSurface,
-    NumericAxis,
-    SciChartJsNavyTheme,
-    FastRectangleRenderableSeries,
-    XyxyDataSeries,
-    applyOpacityToHtmlColor
-} from "scichart";
-
-export class StickFigureTextureOptions {
+import { EColumnMode, EColumnYMode, SciChartSurface, NumericAxis, SciChartJsNavyTheme, FastRectangleRenderableSeries, XyxyDataSeries, applyOpacityToHtmlColor } from "scichart";
+class StickFigureTextureOptions {
     isPerPrimitive = false;
     options;
     textureHeight = 32;

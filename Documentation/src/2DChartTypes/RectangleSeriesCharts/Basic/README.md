@@ -42,7 +42,7 @@ Rectangle Series could be used for displaying
 - **opacity** - An Opacity factor of the Series that controls its semi-transparency level, where value 1 means the Series is opaque; 0 - transparent.
 - **defaultY1** - Sets a common y1 value for all rectangles if y1Values are not provided. Default 0
 - **customTextureOptions** - Options that creates a custom texture brush
-- **dataLabels** - Options to pass to the DataLabelProvider. Set a style with font and size to enable per-point text for this series.
+- **dataLabels** - Options to pass to the DataLabelProvider. Set a style with font and size to enable per-point text for this series. By default y value is dispayed here
 
     ```javascript
         dataLabels: {
@@ -52,3 +52,5 @@ Rectangle Series could be used for displaying
             color: "black"
         }
     ```
+- **topCornerRadius** - Corner radius for top left and top right corners
+- **bottomCornerRadius** - Corner radius for bottom left and bottom right corners
