@@ -50,7 +50,7 @@ async function rectangleSeriesAnimated(divElementId) {
     const dataAnimation = new GenericAnimation({
         from: initialData,
         to: getData(),
-        duration: 1000,
+        duration: 2000,
         ease: easing.inOutSine,
         onAnimate: (from, to, progress) => {
             const newXValues = [];

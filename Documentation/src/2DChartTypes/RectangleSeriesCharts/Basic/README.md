@@ -1,6 +1,30 @@
 # The Rectangle Series Type
 
-Rectangle Series can be created using the FastRectangleRenderableSeries type.
+Rectangle Series can be created using the [FastRectangleRenderableSeries](https://www.scichart.com/documentation/js/v4/typedoc/classes/fastrectanglerenderableseries.html) type.
+
+Here is simple Rectangle Series made using [XyxyDataSeries](https://www.scichart.com/documentation/js/v4/typedoc/classes/xyxydataseries.html):
+
+```javascript 
+    const xValues = [0, 6, 10, 17];
+    const yValues = [0, 6, 2, 5];
+    const x1Values = [5, 9, 15, 25];
+    const y1Values = [5, 9, 8, 10];
+
+    const rectangleSeries = new FastRectangleRenderableSeries(wasmContext, {
+        dataSeries: new XyxyDataSeries(wasmContext, {
+            xValues,
+            yValues,
+            x1Values,
+            y1Values
+        }),
+        columnXMode: EColumnMode.StartEnd, // x, x1
+        columnYMode: EColumnYMode.TopBottom, // y, y1
+        fill: "steelblue",
+        stroke: "white",
+        strokeThickness: 1,
+        opacity: 1
+    });
+```
 
 Rectangle Series could be used for displaying
 
@@ -14,19 +38,19 @@ Rectangle Series could be used for displaying
 
 ## Properties
 
-- **columnXMode** - This determines how the x values and optional x1 values are interpreted
+- **columnXMode** ([EColumnMode](https://www.scichart.com/documentation/js/v4/typedoc/enums/ecolumnmode.html)) - This determines how the x values and optional x1 values are interpreted. 
 
-    - EColumnMode.Mid
-    - EColumnMode.Start
-    - EColumnMode.MidWidth
-    - EColumnMode.StartWidth
-    - EColumnMode.StartEnd
+    - EColumnMode.Mid - each column is centered on its X-value. This means the center of the column aligns directly with the X data point, rather than the left or right edge. This is typically the default and most intuitive way to display columns, as it visually associates each bar with its data value on the axis
+    - EColumnMode.Start - each column is drawn so that its left edge aligns exactly with the X data value
+    - EColumnMode.MidWidth - each column is centered on its X data value, but the centering takes into account the full width of the column
+    - EColumnMode.StartWidth - each column (bar) should be positioned so its left edge aligns with the X data value, and the column's width extends to the right from that point. This means the X value marks the start (left boundary) of the column, and the entire width of the column is drawn to the right of this value
+    - EColumnMode.StartEnd - each column’s left and right X positions are explicitly defined by two separate values-the "start" and "end" of the column. Instead of specifying a single X value and a width, you provide both the starting and ending X coordinates for each bar
 
-- **columnYMode** - This determines how the y values and optional y1 values are interpreted
+- **columnYMode** ([EColumnYMode](https://www.scichart.com/documentation/js/v4/typedoc/enums/ecolumnymode.html)) - This determines how the y values and optional y1 values are interpreted. 
 
-    - EColumnYMode.TopBottom
-    - EColumnYMode.TopHeight
-    - EColumnYMode.CenterHeight
+    - EColumnYMode.TopBottom - is a mode used to define the vertical positioning of columns (bars) by specifying both the top and bottom Y-values for each column. Instead of providing just a single Y-value (for example, the height or value of the bar), you provide two Y-values: one for the top edge and one for the bottom edge of the column
+    - EColumnYMode.TopHeight - is a mode for defining the vertical positioning of columns (bars) where you specify the top Y-value and the height of each column, rather than the top and bottom Y-values
+    - EColumnYMode.CenterHeight - is a mode that defines the vertical positioning of columns (bars) by specifying a center Y-value and a height for each column
 
 - **dataPointWidth** - Sets a value used to calculate the width of rectangles in X direction. By default the value is treated as data range, since rectangle series do not tend to be evenly spaced. To specify if the value should be treated as relative, absolute, or based on range use dataPointWidthMode Note that Absolute mode does not work well with autoRange due to circularity between the range calculation and the axis layout.
 
