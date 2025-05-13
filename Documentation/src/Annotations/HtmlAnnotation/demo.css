@@ -1,0 +1,5 @@
+.styledCustomAnnotation {
+    pointer-events: all;
+    background-color: grey;
+    padding: 4px;
+}
