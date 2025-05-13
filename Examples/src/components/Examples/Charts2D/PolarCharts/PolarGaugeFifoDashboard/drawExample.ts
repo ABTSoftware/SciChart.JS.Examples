@@ -51,7 +51,6 @@ const drawGaugeSubchart = async (
         color: gradientColors[i]
     }));
 
-    // Create axes (unchanged from your original code)
     const radialXAxis = new PolarNumericAxis(parentSurface.webAssemblyContext2D, {
         polarAxisMode: EPolarAxisMode.Radial,
         axisAlignment: EAxisAlignment.Right,
@@ -146,21 +145,6 @@ const drawGaugeSubchart = async (
             }, i * 16.67); // ~60 FPS
         }
     }
-
-    sciChartSurface.addAnimation(
-        new GenericAnimation({
-            duration: 2000,
-            from: {
-                y2: 0
-            },
-            to: {
-                y2: 0
-            },
-            ease: easing.inOutCirc,
-            onAnimate: (anim) => {}
-        })
-    )
-
 
     // Optimized update function
     function updateGaugeValue(newVal: number) {

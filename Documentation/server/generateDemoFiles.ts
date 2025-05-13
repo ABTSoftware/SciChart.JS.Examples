@@ -35,7 +35,10 @@ var walk = function (dir: string, done: (err: any, entry?: Entry) => void) {
                         if (res) {
                             entry.entries.push(res);
                         }
-                        if (!--pending) done(null, entry);
+                        if (!--pending) {
+                            entry.entries.sort((a, b) => a.name.localeCompare(b.name)); 
+                            done(null, entry);
+                        }
                     });
                 } else {
                     const fileName = path.basename(file);
@@ -50,7 +53,10 @@ var walk = function (dir: string, done: (err: any, entry?: Entry) => void) {
                     } else if (fileName === "demo.ts") {
                         entry.isTS = true;
                     }
-                    if (!--pending) done(null, entry);
+                    if (!--pending) {
+                        entry.entries.sort((a, b) => a.name.localeCompare(b.name)); 
+                        done(null, entry);
+                    }
                 }
             });
         });
@@ -144,9 +150,9 @@ walk(baseDir, (err, entry) => {
             font-family: Arial, sans-serif;
         }
         #searchContainer {
-            position: relative;
+            position: sticky;
+            top: 0;
             width: 300px;
-            margin-bottom: 20px;
         }
         #searchBox {
             padding: 10px;
@@ -261,7 +267,6 @@ walk(baseDir, (err, entry) => {
         function filterList() {
             let filter = document.getElementById('searchBox').value.toLowerCase();
             let items = document.querySelectorAll('#list li');
-            console.log("Filtering, items ", items.length);
 
             if (filter === '') {
                 clearSearch();
