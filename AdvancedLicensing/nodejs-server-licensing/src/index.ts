@@ -23,6 +23,11 @@ const CLIENT_KEY = "enter-your-client-key-here";
 SciChartSurface.setRuntimeLicenseKey(CLIENT_KEY);
 
 const initSciChart = async () => {
+  // In order to avoid licensing blink
+  const dummyChart = await SciChartSurface.create("chart");
+  dummyChart.sciChartSurface.delete();
+  document.getElementById("chart").style.visibility = "visible";
+
   const { wasmContext, sciChartSurface } = await SciChartSurface.create(
     "chart"
   );
