@@ -5,34 +5,34 @@ async function PolarMouseWheelZoom(divElementId) {
         SciChartPolarSurface,
         PolarNumericAxis,
         XyyDataSeries,
-        SciChartJsNavyTheme,
+        SciChartJSDarkTheme,
         TextAnnotation,
         ECoordinateMode,
         EHorizontalAnchorPoint,
         EVerticalAnchorPoint,
         PolarBandRenderableSeries,
         PolarZoomExtentsModifier,
+        EPolarAxisMode
     } = SciChart;
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartPolarSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme()
+        theme: new SciChartJSDarkTheme()
     });
     sciChartSurface.xAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: SciChart.EPolarAxisMode.Angular
+        polarAxisMode: EPolarAxisMode.Angular
     }));
     sciChartSurface.yAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: SciChart.EPolarAxisMode.Radial
+        polarAxisMode: EPolarAxisMode.Radial
     }));
 
     sciChartSurface.renderableSeries.add(
         new PolarBandRenderableSeries(wasmContext, {
-            stroke: "#50C7E0",
-            strokeThickness: 5,
+            strokeThickness: 3,
             dataSeries: new XyyDataSeries(wasmContext, {
-                xValues: Array.from({ length: 10 }, (_, i) => i),
-                yValues: Array.from({ length: 10 }, (_, i) => Math.sin(i * 0.2)),
-                y1Values: Array.from({ length: 10 }, (_, i) => Math.cos(i * 0.2))
+                xValues: Array.from({ length: 12 }, (_, i) => i),
+                yValues: Array.from({ length: 12 }, (_, i) => Math.sin(i * 0.2)),
+                y1Values: Array.from({ length: 12 }, (_, i) => Math.cos(i * 0.2))
             })
         })
     );
@@ -51,9 +51,7 @@ async function PolarMouseWheelZoom(divElementId) {
             opacity: 0.33,
             fontSize: 36,
             fontWeight: "Bold"
-        })
-    );
-    sciChartSurface.annotations.add(
+        }),
         new TextAnnotation({
             text: "Scroll mouse wheel to pan or zoom (depending on \"defaultActionType\")",
             x1: 0,
@@ -77,7 +75,8 @@ async function PolarMouseWheelZoom(divElementId) {
         new PolarMouseWheelZoomModifier({
             growFactor: 0.002,
             zoomSize: false,
-            defaultActionType: EActionType.Pan
+            defaultActionType: EActionType.Pan // default value - pans the polar chart
+            // defaultActionType: EActionType.Zoom // for scaling the polar chart
         }),
         new PolarZoomExtentsModifier() // optional - double click to reset
     );
@@ -89,13 +88,31 @@ PolarMouseWheelZoom("scichart-root");
 async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to configure the PolarMouseWheelZoomModifier in SciChart.js using the Builder API
-    const { chartBuilder, EThemeProviderType, EAxisType, EChart2DModifierType, easing, EPolarAxisMode } = SciChart;
+    const { 
+        chartBuilder, 
+        EThemeProviderType, 
+        EAxisType, 
+        EChart2DModifierType, 
+        EPolarAxisMode,
+        ESeriesType
+    } = SciChart;
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DPolarChart(divElementId, {
         surface: { theme: { type: EThemeProviderType.Dark } },
         xAxes: { type: EAxisType.NumericAxis, options: { polarAxisMode: EPolarAxisMode.Angular } },
         yAxes: { type: EAxisType.NumericAxis, options: { polarAxisMode: EPolarAxisMode.Radial } },
+        series: {
+            type: ESeriesType.PolarBandSeries,
+            options: {
+                strokeThickness: 3,
+                dataSeries: {
+                    xValues: Array.from({ length: 12 }, (_, i) => i),
+                    yValues: Array.from({ length: 12 }, (_, i) => Math.sin(i * 0.2)),
+                    y1Values: Array.from({ length: 12 }, (_, i) => Math.cos(i * 0.2))
+                }
+            }
+        },
         modifiers: [
             {
                 type: EChart2DModifierType.PolarMouseWheelZoom,

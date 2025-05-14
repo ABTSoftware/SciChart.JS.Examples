@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 const {
     SciChartSurface,
     NumericAxis,

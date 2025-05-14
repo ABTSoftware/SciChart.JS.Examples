@@ -1,10 +1,10 @@
 import * as SciChart from "scichart";
 
-async function PolarCursorModifier(divElementId) {
+async function PolarLegendModifier(divElementId) {
     const {
         SciChartPolarSurface,
-        PolarNumericAxis,
         EPolarAxisMode,
+        PolarNumericAxis,
         XyDataSeries,
         SciChartJSDarkTheme,
         TextAnnotation,
@@ -12,37 +12,48 @@ async function PolarCursorModifier(divElementId) {
         EHorizontalAnchorPoint,
         EVerticalAnchorPoint,
         PolarColumnRenderableSeries,
+        PolarLineRenderableSeries
     } = SciChart;
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartPolarSurface.create(divElementId, {
         theme: new SciChartJSDarkTheme()
     });
+
     sciChartSurface.xAxes.add(new PolarNumericAxis(wasmContext, {
         polarAxisMode: EPolarAxisMode.Angular
     }));
     sciChartSurface.yAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Radial,
-        visibleRange: new NumberRange(0, 1)
+        polarAxisMode: EPolarAxisMode.Radial
     }));
 
     sciChartSurface.renderableSeries.add(
         new PolarColumnRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: Array.from({ length: 10 }, (_, i) => i),
-                yValues: Array.from({ length: 10 }, (_, i) => Math.sin(i * 0.1))
+                yValues: Array.from({ length: 10 }, (_, i) => Math.sin(i * 0.1)),
+                dataSeriesName: "Sine"
             }),
-            fill: "#111155",
+            fill: "#55aaff44",
             stroke: "#55aaff",
             dataPointWidth: 0.6,
-            strokeThickness: 1,
+            strokeThickness: 2,
+        }),
+        new PolarLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: Array.from({ length: 10 }, (_, i) => i),
+                yValues: Array.from({ length: 10 }, (_, i) => Math.cos(i * 0.1)),
+                dataSeriesName: "Cosine"
+            }),
+            stroke: "#ff8800",
+            strokeThickness: 4,
         })
     );
 
     // Add annotations to tell the user what to do
     sciChartSurface.annotations.add(
         new TextAnnotation({
-            text: "PolarCursorModifier",
+            text: "PolarLegendModifier",
             x1: 0,
             y1: 0,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
@@ -53,46 +64,29 @@ async function PolarCursorModifier(divElementId) {
             opacity: 0.33,
             fontSize: 36,
             fontWeight: "Bold"
-        }),
-        new TextAnnotation({
-            text: "Hover mouse over the chart to see it in action.",
-            x1: 0,
-            y1: 0,
-            xCoordinateMode: ECoordinateMode.Relative,
-            yCoordinateMode: ECoordinateMode.Relative,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-            verticalAnchorPoint: EVerticalAnchorPoint.Center,
-            yCoordShift: 30,
-            opacity: 0.45,
-            fontSize: 17
         })
     );
 
     // #region ExampleA
-    const { PolarCursorModifier, EAngularAxisLabelPlacement, ERadialAxisLabelPlacement } = SciChart;
-    // or for npm: import { PolarCursorModifier, EAngularAxisLabelPlacement, ERadialAxisLabelPlacement } from "scichart";
+    const { PolarLegendModifier } = SciChart;
+    // or for npm: import { PolarLegendModifier } from "scichart";
 
-    // Add PolarCursorModifier behaviour to the chart
+    // Add PolarLegendModifier behaviour to the chart
     sciChartSurface.chartModifiers.add(
-        new PolarCursorModifier({
-            lineColor: "#55aaff",
-            lineThickness: 2,
-            axisLabelFill: "#55aaff",
-            angularAxisLabelPlacement: EAngularAxisLabelPlacement.Center,
-            radialAxisLabelPlacement: ERadialAxisLabelPlacement.Center,
-            showRadialLine: true, 
-            showCircularLine: true
+        new PolarLegendModifier({
+            showCheckboxes: true,
+            showSeriesMarkers: true,
         }),
     );
     // #endregion
 }
 
-PolarCursorModifier("scichart-root");
+PolarLegendModifier("scichart-root");
 
 async function builderExample(divElementId) {
     // #region ExampleB
-    // Demonstrates how to configure the PolarCursorModifier in SciChart.js using the Builder API
-    const {  
+    // Demonstrates how to configure the PolarLegendModifier in SciChart.js using the Builder API
+    const {
         chartBuilder, 
         EAxisType, 
         EChart2DModifierType, 
@@ -106,16 +100,31 @@ async function builderExample(divElementId) {
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DPolarChart(divElementId, {
         xAxes: { type: EAxisType.NumericAxis, options: { polarAxisMode: EPolarAxisMode.Angular } },
         yAxes: { type: EAxisType.NumericAxis, options: { polarAxisMode: EPolarAxisMode.Radial } },
-        series: [
+        renderableSeries: [
             {
-                type: ESeriesType.PolarLineSeries,
+                type: ESeriesType.PolarColumnRenderableSeries,
                 options: {
-                    stroke: "#50C7E0",
-                    strokeThickness: 5,
                     dataSeries: {
                         xValues: Array.from({ length: 10 }, (_, i) => i),
-                        yValues: Array.from({ length: 10 }, (_, i) => Math.sin(i * 0.1))
-                    }
+                        yValues: Array.from({ length: 10 }, (_, i) => Math.sin(i * 0.1)),
+                        dataSeriesName: "Sine"
+                    },
+                    fill: "#55aaff44",
+                    stroke: "#55aaff",
+                    dataPointWidth: 0.6,
+                    strokeThickness: 2,
+                }
+            },
+            {
+                type: ESeriesType.PolarLineRenderableSeries,
+                options: {
+                    dataSeries: {
+                        xValues: Array.from({ length: 10 }, (_, i) => i),
+                        yValues: Array.from({ length: 10 }, (_, i) => Math.cos(i * 0.1)),
+                        dataSeriesName: "Cosine"
+                    },
+                    stroke: "#ff8800",
+                    strokeThickness: 4,
                 }
             }
         ],

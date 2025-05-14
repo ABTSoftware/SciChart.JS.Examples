@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function basicSeriesSelection(divElementId) {
     // #region ExampleA
     const {

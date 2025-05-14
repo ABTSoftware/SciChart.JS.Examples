@@ -23,6 +23,7 @@ import {
     ELegendOrientation,
     TLegendItem,
     getLegendItemHtml,
+    EActionType,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -173,7 +174,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         customMarkerLegendModifier,
         new PolarPanModifier(),
         new PolarZoomExtentsModifier(),
-        new PolarMouseWheelZoomModifier(),
+        new PolarMouseWheelZoomModifier({
+            defaultActionType: EActionType.Zoom
+        }),
     );
 
     return { sciChartSurface, wasmContext };

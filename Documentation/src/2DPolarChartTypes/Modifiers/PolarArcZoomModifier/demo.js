@@ -5,29 +5,27 @@ async function PolarArcZoom(divElementId) {
         SciChartPolarSurface,
         PolarNumericAxis,
         XyDataSeries,
-        SciChartJsNavyTheme,
         TextAnnotation,
         ECoordinateMode,
         EHorizontalAnchorPoint,
         EVerticalAnchorPoint,
         PolarLineRenderableSeries,
-        easing,
         PolarZoomExtentsModifier,
+        SciChartJSDarkTheme,
+        EPolarAxisMode,
+        NumberRange
     } = SciChart;
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartPolarSurface.create(divElementId, {
-        // theme: new SciChartJsNavyTheme()
+        theme: new SciChartJSDarkTheme()
     });
     sciChartSurface.xAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: SciChart.EPolarAxisMode.Angular,
-        majorGridLineStyle: { stroke: "#666666", strokeThickness: 1 },
-        drawMajorGridLines: true
+        polarAxisMode: EPolarAxisMode.Angular,
     }));
     sciChartSurface.yAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: SciChart.EPolarAxisMode.Radial,
-        majorGridLineStyle: { stroke: "#666666", strokeThickness: 1 },
-        drawMajorGridLines: true
+        polarAxisMode: EPolarAxisMode.Radial,
+        visibleRange: new NumberRange(0, 1)
     }));
 
     sciChartSurface.renderableSeries.add(
@@ -55,9 +53,7 @@ async function PolarArcZoom(divElementId) {
             opacity: 0.33,
             fontSize: 36,
             fontWeight: "Bold"
-        })
-    );
-    sciChartSurface.annotations.add(
+        }),
         new TextAnnotation({
             text: "Drag mouse from one point to another to zoom.",
             x1: 0,
@@ -73,8 +69,8 @@ async function PolarArcZoom(divElementId) {
     );
 
     // #region ExampleA
-    const { PolarArcZoomModifier } = SciChart;
-    // or for npm: import { PolarArcZoomModifier } from "scichart";
+    const { PolarArcZoomModifier, easing } = SciChart;
+    // or for npm: import { PolarArcZoomModifier, easing } from "scichart";
 
     // Add PolarArcZoomModifier behaviour to the chart
     sciChartSurface.chartModifiers.add(
@@ -98,14 +94,34 @@ PolarArcZoom("scichart-root");
 async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to configure the PolarArcZoomModifier in SciChart.js using the Builder API
-    const { chartBuilder, EThemeProviderType, EAxisType, EChart2DModifierType, easing, EPolarAxisMode } = SciChart;
-
+    const { 
+        chartBuilder, 
+        EThemeProviderType, 
+        EAxisType, 
+        EChart2DModifierType, 
+        easing, 
+        EPolarAxisMode, 
+        ESeriesType 
+    } = SciChart;
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DPolarChart(divElementId, {
         surface: { theme: { type: EThemeProviderType.Dark } },
         xAxes: { type: EAxisType.NumericAxis, options: { polarAxisMode: EPolarAxisMode.Angular } },
         yAxes: { type: EAxisType.NumericAxis, options: { polarAxisMode: EPolarAxisMode.Radial } },
+        series: [
+            {
+                type: ESeriesType.PolarLineSeries,
+                options: {
+                    stroke: "#50C7E0",
+                    strokeThickness: 5,
+                    dataSeries: {
+                        xValues: Array.from({ length: 10 }, (_, i) => i),
+                        yValues: Array.from({ length: 10 }, (_, i) => Math.sin(i * 0.1))
+                    }
+                }
+            }
+        ],
         modifiers: [
             {
                 type: EChart2DModifierType.PolarArcZoom,
