@@ -18,11 +18,23 @@ async function triangleSeriesStripChart(divElementId) {
     const growBy = new NumberRange(0.1, 0.1);
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy }));
+    // const coordinates = [
+    //     [0, 0],
+    //     [0, 200],
+    //     [200, 0],
+    //     [200, 200]
+    // ];
     const coordinates = [
-        [0, 0],
-        [0, 200],
-        [200, 0],
-        [200, 200]
+        [0, 150],
+        [0, 50],
+        [50, 0],
+        [150, 0],
+        [200, 50],
+        [200, 150],
+        [150, 200],
+        [50, 200],
+        [0, 150],
+        [0, 50]
     ];
     const dataSeries = new XyDataSeries(wasmContext, {
         xValues: coordinates.map(p => p[0]),
@@ -39,16 +51,16 @@ async function triangleSeriesStripChart(divElementId) {
         onAttached() {}
         onDetached() {}
         overrideFillArgb(_xValue, _yValue, index, _opacity) {
-            return parseColorToUIntArgb(Math.floor(index / 3) % 2 === 0 ? "cornflowerblue" : "lightgray");
+            // return parseColorToUIntArgb(Math.floor(index / 3) % 2 === 0 ? "cornflowerblue" : "lightgray");
             console.log(Math.floor(index / 3));
-            // return parseColorToUIntArgb(colors[Math.floor(index / 3)]);
+            return parseColorToUIntArgb(colors[Math.floor(index / 3)]);
         }
     }
     const italySeries = new TriangleRenderableSeries(wasmContext, {
         dataSeries,
         drawMode: ETriangleSeriesDrawMode.Strip,
-        fill: "cornflowerblue"
-        // paletteProvider: new TrianglePaletteProvider()
+        fill: "cornflowerblue",
+        paletteProvider: new TrianglePaletteProvider()
     });
     sciChartSurface.renderableSeries.add(italySeries);
     // Add zoom/pan controls

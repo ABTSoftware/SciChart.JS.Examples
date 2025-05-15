@@ -7,7 +7,9 @@ async function basicTriangleSeriesChart(divElementId) {
         SciChartJsNavyTheme,
         TriangleRenderableSeries,
         XyDataSeries,
-        ETriangleSeriesDrawMode
+        ETriangleSeriesDrawMode,
+        ZoomPanModifier,
+        ZoomExtentsModifier
     } = SciChart;
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme()
@@ -49,6 +51,7 @@ async function basicTriangleSeriesChart(divElementId) {
         paletteProvider: new TrianglePaletteProvider()
     });
     sciChartSurface.renderableSeries.add(polygonSeries);
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier());
 }
 basicTriangleSeriesChart("scichart-root");
 // async function builderExample(divElementId) {
