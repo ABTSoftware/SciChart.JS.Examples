@@ -23,12 +23,19 @@ async function triangleSeriesPolygonChart(divElementId) {
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy }));
 
     const coordinates = [
-        [0, 0],
-        [0, 200],
-        [200, 0],
-        [200, 200]
+        [100, 100],
+        [0, 50],
+        [50, 0],
+        [50, 0],
+        [150, 0],
+        [200, 50],
+        [200, 150],
+        [150, 200],
+        [50, 200],
+        [0, 150],
+        [0, 50]
     ];
-    
+
     const dataSeries = new XyDataSeries(wasmContext, {
         xValues: coordinates.map(p => p[0]),
         yValues: coordinates.map(p => p[1])
@@ -49,30 +56,3 @@ async function triangleSeriesPolygonChart(divElementId) {
 }
 
 triangleSeriesPolygonChart("scichart-root");
-
-// async function builderExample(divElementId) {
-//     const { chartBuilder, ESeriesType, EThemeProviderType, ETriangleSeriesDrawMode } = SciChart;
-
-//     const xValues = [200, 200, 400, 400, 400, 200];
-//     const yValues = [400, 200, 200, 220, 420, 420];
-
-//     const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
-//         surface: { theme: { type: EThemeProviderType.Navy } },
-//         series: [
-//             {
-//                 type: ESeriesType.TriangleSeries,
-//                 xyData: {
-//                     xValues,
-//                     yValues
-//                 },
-//                 options: {
-//                     isDigitalLine: false,
-//                     fill: "white",
-//                     drawMode: ETriangleSeriesDrawMode.List
-//                 }
-//             }
-//         ]
-//     });
-// }
-
-// if (location.search.includes("builder=1")) builderExample("scichart-root");
