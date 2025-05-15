@@ -3,30 +3,30 @@ import * as SciChart from "scichart";
 async function PolarPieChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a basic polar pie chart using SciChart.js
-    const { 
-        SciChartPolarSurface, 
-        PolarNumericAxis, 
+    const {
+        SciChartPolarSurface,
+        PolarNumericAxis,
         PolarColumnRenderableSeries,
         EPolarAxisMode,
         NumberRange,
         XyxDataSeries,
         Thickness,
         EColumnMode,
-        MetadataPaletteProvider,
+        MetadataPaletteProvider
     } = SciChart;
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(divElementId, {
-        padding: Thickness.fromNumber(30),
+        padding: Thickness.fromNumber(30)
     });
 
-    const COLORS = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF"]
+    const COLORS = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF"];
     const metadata = [];
 
     for (let i = 0; i < 6; i++) {
-        metadata.push({ 
-            isSelected: false, 
-            fill: COLORS[i],
+        metadata.push({
+            isSelected: false,
+            fill: COLORS[i]
         });
     }
 
@@ -44,8 +44,8 @@ async function PolarPieChart(divElementId) {
         isVisible: false
         //startAngle: Math.PI / 4,
     });
-    sciChartSurface.xAxes.add(polarAxis)
-    
+    sciChartSurface.xAxes.add(polarAxis);
+
     const xWidthValues = [10, 20, 30, 40, 50, 60];
     const xValues = [];
     const x1Values = [];
@@ -77,8 +77,7 @@ async function PolarPieChart(divElementId) {
         const lastValueIndex = polarColumn.dataSeries.count();
 
         console.log("getXRange", xValues, lastValueIndex);
-        
-        
+
         return new NumberRange(0, xValues.get(lastValueIndex - 1));
     };
 
@@ -90,14 +89,7 @@ PolarPieChart("scichart-root");
 async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to create a band chart with SciChart.js using the Builder API
-    const { 
-        EPolarAxisMode,
-        EAxisAlignment,
-        EPolarLabelMode,
-        NumberRange,
-        GradientParams,
-        Point
-    } = SciChart;
+    const { EPolarAxisMode, EAxisAlignment, EPolarLabelMode, NumberRange, GradientParams, Point } = SciChart;
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await chartBuilder.buildChart(divElementId, {
@@ -117,7 +109,7 @@ async function builderExample(divElementId) {
                 majorDelta: 1,
                 startAngle: Math.PI / 2,
                 flippedCoordinates: true,
-                polarLabelMode: EPolarLabelMode.Parallel,
+                polarLabelMode: EPolarLabelMode.Parallel
             }
         ],
         yAxes: [
@@ -135,7 +127,7 @@ async function builderExample(divElementId) {
                 innerRadius: 0.1,
                 startAngle: Math.PI / 2,
                 drawLabels: false,
-                majorGridLineStyle: { strokeThickness: 1, color: "#666666" },
+                majorGridLineStyle: { strokeThickness: 1, color: "#666666" }
             }
         ],
         series: [
@@ -143,7 +135,7 @@ async function builderExample(divElementId) {
                 type: ESeriesType.PolarColumnRenderableSeries,
                 xyyData: {
                     xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-                    yValues: [2.6, 5.3, 3.5, 2.7, 4.8, 3.8, 5, 4.5, 3.5],
+                    yValues: [2.6, 5.3, 3.5, 2.7, 4.8, 3.8, 5, 4.5, 3.5]
                 },
                 options: {
                     stroke: "red",
@@ -159,7 +151,7 @@ async function builderExample(divElementId) {
                         { color: "transparent", offset: 1 }
                     ]),
                     interpolateLine: true,
-                    scaleGradientToYRange: true,  
+                    scaleGradientToYRange: true
                 }
             }
         ]

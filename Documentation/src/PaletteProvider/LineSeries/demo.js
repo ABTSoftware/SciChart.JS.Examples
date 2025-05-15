@@ -1,4 +1,12 @@
-import { EStrokePaletteMode, parseColorToUIntArgb, SciChartSurface, FastLineRenderableSeries, NumericAxis, XyDataSeries, makeIncArray } from "scichart";
+import {
+    EStrokePaletteMode,
+    parseColorToUIntArgb,
+    SciChartSurface,
+    FastLineRenderableSeries,
+    NumericAxis,
+    XyDataSeries,
+    makeIncArray
+} from "scichart";
 // Custom PaletteProvider for line series
 class LinePaletteProvider {
     strokePaletteMode = EStrokePaletteMode.SOLID;
@@ -8,8 +16,8 @@ class LinePaletteProvider {
         this.rule = rule;
         this.stroke = parseColorToUIntArgb(stroke);
     }
-    onAttached(parentSeries) { }
-    onDetached() { }
+    onAttached(parentSeries) {}
+    onDetached() {}
     // This function is called for every data-point.
     // Return undefined to use the default color for the line,
     // else, return a custom colour as an ARGB color code, e.g. 0xFFFF0000 is red
@@ -26,13 +34,15 @@ async function lineChartWithPaletteProvider(divElementId) {
     const xValues = makeIncArray(250);
     const yValues = makeIncArray(250, 1, y => Math.sin(y * 0.05));
     // Create a line series with your custom PaletteProvider
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        stroke: "SteelBlue",
-        strokeThickness: 5,
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-        // The LinePaletteProvider (declared above) implements per-point coloring for line series
-        paletteProvider: new LinePaletteProvider("#55FF55", yValue => yValue > 0.5)
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            stroke: "SteelBlue",
+            strokeThickness: 5,
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+            // The LinePaletteProvider (declared above) implements per-point coloring for line series
+            paletteProvider: new LinePaletteProvider("#55FF55", yValue => yValue > 0.5)
+        })
+    );
     sciChartSurface.zoomExtents();
 }
 lineChartWithPaletteProvider("scichart-root");

@@ -53,7 +53,7 @@ async function addAnnotationToChart(divElementId) {
                 fill: "#113388",
                 stroke: "#3399FF",
                 strokeThickness: 3
-            },
+            }
         }),
         new LineArrowAnnotation({
             id: "double_ended",
@@ -108,7 +108,7 @@ async function addAnnotationToChart(divElementId) {
                 stroke: "#FF0077",
                 strokeThickness: 3
             }
-        }),
+        })
     );
 }
 

@@ -1,7 +1,14 @@
 import * as SciChart from "scichart";
 import { NumberRange } from "scichart";
 async function basicTriangleSeriesChart(divElementId) {
-    const { SciChartSurface, NumericAxis, SciChartJsNavyTheme, TriangleRenderableSeries, XyDataSeries, ETriangleSeriesDrawMode } = SciChart;
+    const {
+        SciChartSurface,
+        NumericAxis,
+        SciChartJsNavyTheme,
+        TriangleRenderableSeries,
+        XyDataSeries,
+        ETriangleSeriesDrawMode
+    } = SciChart;
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme()
     });
@@ -20,8 +27,8 @@ async function basicTriangleSeriesChart(divElementId) {
     };
     class TrianglePaletteProvider {
         fillPaletteMode = SciChart.EFillPaletteMode.SOLID;
-        onAttached() { }
-        onDetached() { }
+        onAttached() {}
+        onDetached() {}
         overrideFillArgb(_xValue, _yValue, index, _opacity) {
             // return SciChart.parseColorToUIntArgb(Math.floor(index / 3) % 2 === 0 ? "cornflowerblue" : "lightgray");
             console.log(Math.floor(index / 3));

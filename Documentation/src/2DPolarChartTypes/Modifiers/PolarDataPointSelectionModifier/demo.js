@@ -12,19 +12,23 @@ async function PolarArcZoom(divElementId) {
         EHorizontalAnchorPoint,
         EVerticalAnchorPoint,
         PolarXyScatterRenderableSeries,
-        PolarZoomExtentsModifier,
+        PolarZoomExtentsModifier
     } = SciChart;
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartPolarSurface.create(divElementId, {
         theme: new SciChartJSDarkTheme()
     });
-    sciChartSurface.xAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Angular
-    }));
-    sciChartSurface.yAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Radial
-    }));
+    sciChartSurface.xAxes.add(
+        new PolarNumericAxis(wasmContext, {
+            polarAxisMode: EPolarAxisMode.Angular
+        })
+    );
+    sciChartSurface.yAxes.add(
+        new PolarNumericAxis(wasmContext, {
+            polarAxisMode: EPolarAxisMode.Radial
+        })
+    );
 
     sciChartSurface.renderableSeries.add(
         new PolarXyScatterRenderableSeries(wasmContext, {
@@ -76,10 +80,10 @@ async function PolarArcZoom(divElementId) {
             enableHover: true,
             enableSelection: true,
 
-            onSelectionChanged: (args) => {
+            onSelectionChanged: args => {
                 console.log("1 seriesSelectionModifier constructor onSelectionChanged");
             },
-            onHoverChanged: (args) => {
+            onHoverChanged: args => {
                 console.log("1 seriesSelectionModifier constructor onHoverChanged");
             }
         }),

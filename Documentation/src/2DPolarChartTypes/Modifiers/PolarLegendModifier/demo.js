@@ -20,12 +20,16 @@ async function PolarLegendModifier(divElementId) {
         theme: new SciChartJSDarkTheme()
     });
 
-    sciChartSurface.xAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Angular
-    }));
-    sciChartSurface.yAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Radial
-    }));
+    sciChartSurface.xAxes.add(
+        new PolarNumericAxis(wasmContext, {
+            polarAxisMode: EPolarAxisMode.Angular
+        })
+    );
+    sciChartSurface.yAxes.add(
+        new PolarNumericAxis(wasmContext, {
+            polarAxisMode: EPolarAxisMode.Radial
+        })
+    );
 
     sciChartSurface.renderableSeries.add(
         new PolarColumnRenderableSeries(wasmContext, {
@@ -37,7 +41,7 @@ async function PolarLegendModifier(divElementId) {
             fill: "#55aaff44",
             stroke: "#55aaff",
             dataPointWidth: 0.6,
-            strokeThickness: 2,
+            strokeThickness: 2
         }),
         new PolarLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
@@ -46,7 +50,7 @@ async function PolarLegendModifier(divElementId) {
                 dataSeriesName: "Cosine"
             }),
             stroke: "#ff8800",
-            strokeThickness: 4,
+            strokeThickness: 4
         })
     );
 
@@ -75,8 +79,8 @@ async function PolarLegendModifier(divElementId) {
     sciChartSurface.chartModifiers.add(
         new PolarLegendModifier({
             showCheckboxes: true,
-            showSeriesMarkers: true,
-        }),
+            showSeriesMarkers: true
+        })
     );
     // #endregion
 }
@@ -87,13 +91,13 @@ async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to configure the PolarLegendModifier in SciChart.js using the Builder API
     const {
-        chartBuilder, 
-        EAxisType, 
-        EChart2DModifierType, 
-        EPolarAxisMode, 
-        EAngularAxisLabelPlacement, 
-        ERadialAxisLabelPlacement, 
-        ESeriesType 
+        chartBuilder,
+        EAxisType,
+        EChart2DModifierType,
+        EPolarAxisMode,
+        EAngularAxisLabelPlacement,
+        ERadialAxisLabelPlacement,
+        ESeriesType
     } = SciChart;
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
@@ -112,7 +116,7 @@ async function builderExample(divElementId) {
                     fill: "#55aaff44",
                     stroke: "#55aaff",
                     dataPointWidth: 0.6,
-                    strokeThickness: 2,
+                    strokeThickness: 2
                 }
             },
             {
@@ -124,7 +128,7 @@ async function builderExample(divElementId) {
                         dataSeriesName: "Cosine"
                     },
                     stroke: "#ff8800",
-                    strokeThickness: 4,
+                    strokeThickness: 4
                 }
             }
         ],

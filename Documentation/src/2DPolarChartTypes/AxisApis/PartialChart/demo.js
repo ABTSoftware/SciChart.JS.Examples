@@ -1,8 +1,6 @@
 import * as SciChart from "scichart";
 
-async function PolarLineChart(divElementId) {
-    // #region ExampleA
-    // Demonstrates how to create a basic polar line chart using SciChart.js
+async function polarPartialChart(divElementId) {
     const {
         SciChartPolarSurface,
         PolarNumericAxis,
@@ -13,59 +11,52 @@ async function PolarLineChart(divElementId) {
         NumberRange,
         XyDataSeries,
         Thickness,
-        GradientParams,
-        Point
+        PolarZoomExtentsModifier,
+        PolarMouseWheelZoomModifier
     } = SciChart;
-    // or, for npm, import { SciChartSurface, ... } from "scichart"
 
-    const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(divElementId, {
-        padding: Thickness.fromNumber(30)
-    });
+    const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(divElementId);
 
+    const startAngleDegrees = 0;
     const angularXAxis = new PolarNumericAxis(wasmContext, {
+        totalAngleDegrees: 180,
+        startAngleDegrees: 90,
         polarAxisMode: EPolarAxisMode.Angular,
         axisAlignment: EAxisAlignment.Top,
-        visibleRange: new NumberRange(0, 12),
-        useNativeText: true,
-        drawMajorGridLines: true,
-        drawMajorTickLines: false,
-        drawMinorTickLines: false,
-        drawMinorGridLines: false,
-        autoTicks: false,
-        majorDelta: 1,
-        labelPrecision: 0
+        visibleRange: new NumberRange(0, 10),
+        majorGridLineStyle: { strokeThickness: 1, color: "CCCCCC" },
+        minorGridLineStyle: { strokeThickness: 1, color: "77777777" },
+        labelStyle: { padding: new Thickness(10, 0, 0, 0) },
+        zoomExtentsToInitialRange: true
     });
+    angularXAxis.polarLabelMode = EPolarLabelMode.Parallel;
     sciChartSurface.xAxes.add(angularXAxis);
 
     const radialYAxis = new PolarNumericAxis(wasmContext, {
-        axisAlignment: EAxisAlignment.Right,
+        startAngleDegrees,
         polarAxisMode: EPolarAxisMode.Radial,
-        visibleRange: new NumberRange(0, 8),
-        autoTicks: false,
-        labelPrecision: 0,
-        majorDelta: 1,
-        drawMajorGridLines: true,
-        drawMajorTickLines: false,
-        drawMajorTickLines: false,
-        majorGridLineStyle: { strokeThickness: 1, color: "#666666" }
+        axisAlignment: EAxisAlignment.Right,
+        visibleRange: new NumberRange(0, 7),
+        majorGridLineStyle: { strokeThickness: 3, color: "CCCCCC" },
+        zoomExtentsToInitialRange: true
     });
     sciChartSurface.yAxes.add(radialYAxis);
 
+    const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const yValues = xValues.map(x => 5 + Math.sin(x));
     const polarLine = new PolarLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, {
-            xValues: Array.from({ length: 20 }, (_, i) => i),
-            yValues: Array.from({ length: 20 }, (_, i) => 1 + i / 3)
-        }),
-        stroke: "pink",
-        strokeThickness: 4,
-        clipToTotalAngle: false // set to true if you want to clip anything outside the total angle
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+        stroke: "green",
+        strokeThickness: 5
     });
     sciChartSurface.renderableSeries.add(polarLine);
 
+    sciChartSurface.chartModifiers.add(new PolarZoomExtentsModifier());
+    sciChartSurface.chartModifiers.add(new PolarMouseWheelZoomModifier());
     return { sciChartSurface, wasmContext };
 }
 
-PolarLineChart("scichart-root");
+polarPartialChart("scichart-root");
 
 async function builderExample(divElementId) {
     // #region ExampleB

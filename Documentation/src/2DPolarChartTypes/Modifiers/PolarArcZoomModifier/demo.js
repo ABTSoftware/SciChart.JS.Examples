@@ -20,13 +20,17 @@ async function PolarArcZoom(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartPolarSurface.create(divElementId, {
         theme: new SciChartJSDarkTheme()
     });
-    sciChartSurface.xAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Angular,
-    }));
-    sciChartSurface.yAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Radial,
-        visibleRange: new NumberRange(0, 1)
-    }));
+    sciChartSurface.xAxes.add(
+        new PolarNumericAxis(wasmContext, {
+            polarAxisMode: EPolarAxisMode.Angular
+        })
+    );
+    sciChartSurface.yAxes.add(
+        new PolarNumericAxis(wasmContext, {
+            polarAxisMode: EPolarAxisMode.Radial,
+            visibleRange: new NumberRange(0, 1)
+        })
+    );
 
     sciChartSurface.renderableSeries.add(
         new PolarLineRenderableSeries(wasmContext, {
@@ -81,7 +85,7 @@ async function PolarArcZoom(divElementId) {
             stroke: "white",
             isAnimated: true,
             animationDuration: 2000,
-            easingFunction: easing.outCubic,
+            easingFunction: easing.outCubic
             // xyDirection: EXyDirection.XyDirection
         }),
         new PolarZoomExtentsModifier() // optional - double click to reset
@@ -94,15 +98,8 @@ PolarArcZoom("scichart-root");
 async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to configure the PolarArcZoomModifier in SciChart.js using the Builder API
-    const { 
-        chartBuilder, 
-        EThemeProviderType, 
-        EAxisType, 
-        EChart2DModifierType, 
-        easing, 
-        EPolarAxisMode, 
-        ESeriesType 
-    } = SciChart;
+    const { chartBuilder, EThemeProviderType, EAxisType, EChart2DModifierType, easing, EPolarAxisMode, ESeriesType } =
+        SciChart;
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DPolarChart(divElementId, {

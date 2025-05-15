@@ -18,12 +18,16 @@ async function PolarPanModifier(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartPolarSurface.create(divElementId, {
         theme: new SciChartJSDarkTheme()
     });
-    sciChartSurface.xAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Angular
-    }));
-    sciChartSurface.yAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Radial
-    }));
+    sciChartSurface.xAxes.add(
+        new PolarNumericAxis(wasmContext, {
+            polarAxisMode: EPolarAxisMode.Angular
+        })
+    );
+    sciChartSurface.yAxes.add(
+        new PolarNumericAxis(wasmContext, {
+            polarAxisMode: EPolarAxisMode.Radial
+        })
+    );
 
     sciChartSurface.renderableSeries.add(
         new PolarUniformHeatmapRenderableSeries(wasmContext, {
@@ -75,7 +79,7 @@ async function PolarPanModifier(divElementId) {
             yCoordShift: 50,
             opacity: 0.45,
             fontSize: 17
-        }),
+        })
     );
 
     // #region ExampleA
@@ -88,7 +92,7 @@ async function PolarPanModifier(divElementId) {
             primaryPanMode: EPolarPanModifierPanMode.PolarStartAngle,
 
             secondaryPanMode: EPolarPanModifierPanMode.Cartesian,
-            secondaryExecuteCondition: (e) => e.modifierKeys.ctrl,
+            secondaryExecuteCondition: e => e.modifierKeys.ctrl
         }),
         new PolarZoomExtentsModifier() // optional - double click to reset
     );

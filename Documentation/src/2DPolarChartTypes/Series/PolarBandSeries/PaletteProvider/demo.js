@@ -13,7 +13,7 @@ class PolarBandPaletteProvider extends DefaultPaletteProvider {
     lightOrange = parseColorToUIntArgb("#DD880044");
 
     overrideFillArgb(xValue, yValue, index) {
-        if (xValue >= 3 && xValue < 6 || xValue >= 9 && xValue < 12) {
+        if ((xValue >= 3 && xValue < 6) || (xValue >= 9 && xValue < 12)) {
             return this.lightOrange;
         } else {
             return undefined;
@@ -21,7 +21,7 @@ class PolarBandPaletteProvider extends DefaultPaletteProvider {
     }
 
     overrideStrokeArgb(xValue, yValue, index) {
-        if (xValue > 3 && xValue <= 6 || xValue > 9 && xValue <= 12) {
+        if ((xValue > 3 && xValue <= 6) || (xValue > 9 && xValue <= 12)) {
             return this.orange;
         } else {
             return undefined; // use the default stroke color
@@ -33,21 +33,21 @@ class PolarBandPaletteProvider extends DefaultPaletteProvider {
 async function paletteProviderBandChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a polar band chart using SciChart.js
-    const { 
-        SciChartPolarSurface, 
-        PolarNumericAxis, 
+    const {
+        SciChartPolarSurface,
+        PolarNumericAxis,
         PolarBandRenderableSeries,
         EPolarAxisMode,
         EAxisAlignment,
         EPolarLabelMode,
         NumberRange,
-        XyyDataSeries, 
-        Thickness,
+        XyyDataSeries,
+        Thickness
     } = SciChart;
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(divElementId, {
-        padding: Thickness.fromNumber(30),
+        padding: Thickness.fromNumber(30)
     });
 
     const angularXAxis = new PolarNumericAxis(wasmContext, {
@@ -76,7 +76,7 @@ async function paletteProviderBandChart(divElementId) {
         drawMajorTickLines: false,
         drawMajorTickLines: false,
         labelPrecision: 0,
-        majorGridLineStyle: { strokeThickness: 1, color: "#666666" },
+        majorGridLineStyle: { strokeThickness: 1, color: "#666666" }
     });
     sciChartSurface.yAxes.add(radialYAxis);
 
@@ -84,15 +84,15 @@ async function paletteProviderBandChart(divElementId) {
         dataSeries: new XyyDataSeries(wasmContext, {
             xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
             yValues: [1, 2.5, 3, 1, 2.5, 3, 1, 2.5, 3, 1, 2.5, 3, 1],
-            y1Values: [2, 5, 6, 2, 5, 6, 2, 5, 6, 2, 5, 6, 2],
+            y1Values: [2, 5, 6, 2, 5, 6, 2, 5, 6, 2, 5, 6, 2]
         }),
         stroke: "#FF0000",
         fill: "#FF000044",
         strokeThickness: 3,
-        paletteProvider: new PolarBandPaletteProvider(),
+        paletteProvider: new PolarBandPaletteProvider()
     });
     sciChartSurface.renderableSeries.add(polarBand1);
-    
+
     return { sciChartSurface, wasmContext };
 }
 
@@ -101,11 +101,7 @@ paletteProviderBandChart("scichart-root");
 async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to create a band chart with SciChart.js using the Builder API
-    const { 
-        EPolarAxisMode,
-        EAxisAlignment,
-        EPolarLabelMode,
-    } = SciChart;
+    const { EPolarAxisMode, EAxisAlignment, EPolarLabelMode } = SciChart;
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await chartBuilder.buildChart(divElementId, {
@@ -138,7 +134,7 @@ async function builderExample(divElementId) {
                 drawMajorTickLines: false,
                 drawMajorTickLines: false,
                 labelPrecision: 0,
-                majorGridLineStyle: { strokeThickness: 1, color: "#666666" },
+                majorGridLineStyle: { strokeThickness: 1, color: "#666666" }
             }
         ],
         series: [
@@ -147,13 +143,13 @@ async function builderExample(divElementId) {
                 xyyData: {
                     xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                     yValues: [1, 2.5, 3, 1, 2.5, 3, 1, 2.5, 3, 1, 2.5, 3, 1],
-                    y1Values: [2, 5, 6, 2, 5, 6, 2, 5, 6, 2, 5, 6, 2],
+                    y1Values: [2, 5, 6, 2, 5, 6, 2, 5, 6, 2, 5, 6, 2]
                 },
                 options: {
                     stroke: "#FF0000",
                     fill: "#FF000044",
                     strokeThickness: 3,
-                    paletteProvider: new PolarBandPaletteProvider(),
+                    paletteProvider: new PolarBandPaletteProvider()
                 }
             }
         ]

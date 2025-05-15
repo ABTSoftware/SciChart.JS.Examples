@@ -10,15 +10,15 @@ async function drawGaugeChartArc(divElementId) {
         PolarArcAnnotation,
         PolarNumericAxis,
         EPolarAxisMode,
-        PolarPointerAnnotation,
+        PolarPointerAnnotation
     } = SciChart;
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartPolarSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
-        padding: Thickness.fromNumber(20),
+        padding: Thickness.fromNumber(20)
     });
-    
+
     const gaugeValue = Math.random() * 10; // Random start value between 0 and 10 for the gauge to point to
     const gaugeTotalAngle = Math.PI * 1.3;
     const gaugeRange = new NumberRange(0, 10);
@@ -33,7 +33,7 @@ async function drawGaugeChartArc(divElementId) {
     }));
 
     // Current color calculation
-    const getColorForValue = (value) => {
+    const getColorForValue = value => {
         const threshold = colorThresholds.find(t => value <= t.threshold);
         return threshold ? threshold.color : gradientColors[gradientColors.length - 1];
     };
@@ -41,17 +41,17 @@ async function drawGaugeChartArc(divElementId) {
     // Create axes
     const angularXAxis = new PolarNumericAxis(wasmContext, {
         polarAxisMode: EPolarAxisMode.Angular,
-        visibleRange: gaugeRange, 
+        visibleRange: gaugeRange,
         flippedCoordinates: true, // go clockwise
         totalAngle: gaugeTotalAngle,
         startAngle: (Math.PI - gaugeTotalAngle) / 2, // to center the bottom gap
-        isVisible: false,
+        isVisible: false
     });
     sciChartSurface.xAxes.add(angularXAxis);
 
     const radialYAxis = new PolarNumericAxis(wasmContext, {
         polarAxisMode: EPolarAxisMode.Radial,
-        isVisible: false,
+        isVisible: false
     });
     sciChartSurface.yAxes.add(radialYAxis);
 
@@ -59,7 +59,7 @@ async function drawGaugeChartArc(divElementId) {
     const backgroundArc = new PolarArcAnnotation({
         y1: 9.4, // outer radius of the arc (how far to the edge it ends at)
         y2: 7, // inner radius of the arc (how far to the center it starts at)
-        x1: gaugeRange.min, 
+        x1: gaugeRange.min,
         x2: gaugeRange.max,
         fill: "#88888822",
         strokeThickness: 0
@@ -68,7 +68,7 @@ async function drawGaugeChartArc(divElementId) {
     const initialColor = getColorForValue(gaugeValue);
 
     // the arc showing the current value
-    const valueArc = new PolarArcAnnotation({ 
+    const valueArc = new PolarArcAnnotation({
         y1: 9.4, // outer radius
         y2: 7, // inner radius
         x1: gaugeRange.min, // start angle
@@ -83,9 +83,9 @@ async function drawGaugeChartArc(divElementId) {
         const thinArc = new PolarArcAnnotation({
             y1: 10, // outer radius
             y2: 9.7, // inner radius
-            x1: columnYValues[i-1] ?? 0, // start angle
+            x1: columnYValues[i - 1] ?? 0, // start angle
             x2: yVal > columnYValues[i] ? columnYValues[i] : yVal, // end angle
-            fill: gradientColors[i], 
+            fill: gradientColors[i],
             strokeThickness: 0
         });
         sciChartSurface.annotations.add(thinArc);
@@ -106,7 +106,7 @@ async function drawGaugeChartArc(divElementId) {
             size: 0.15,
             stroke: "gray",
             strokeWidth: 5,
-            fill: "black",
+            fill: "black"
         },
         pointerStyle: {
             fill: "gray",
@@ -114,8 +114,8 @@ async function drawGaugeChartArc(divElementId) {
             strokeThickness: 0,
             backExtensionSize: 0.2,
             baseSize: 0.1
-        },
-    })
+        }
+    });
     sciChartSurface.annotations.add(polarPointer);
 }
 

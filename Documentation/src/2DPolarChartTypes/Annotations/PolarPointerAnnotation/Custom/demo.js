@@ -14,15 +14,15 @@ async function drawGaugeChartArc(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartPolarSurface.create(divElementId, {
-        padding: Thickness.fromNumber(20),
+        padding: Thickness.fromNumber(20)
     });
-    
+
     // Create axes
     const angularXAxis = new PolarNumericAxis(wasmContext, {
         polarAxisMode: EPolarAxisMode.Angular,
         flippedCoordinates: true, // go clockwise
-        totalAngle: Math.PI * 3 / 2,
-        startAngle: -Math.PI / 4,
+        totalAngle: (Math.PI * 3) / 2,
+        startAngle: -Math.PI / 4
     });
     sciChartSurface.xAxes.add(angularXAxis);
 
@@ -30,7 +30,7 @@ async function drawGaugeChartArc(divElementId) {
         polarAxisMode: EPolarAxisMode.Radial,
         startAngle: -Math.PI / 4,
         innerRadius: 0.2,
-        majorGridLineStyle: { strokeThickness: 1, color: "#666666" },
+        majorGridLineStyle: { strokeThickness: 1, color: "#666666" }
     });
     sciChartSurface.yAxes.add(radialYAxis);
 
@@ -44,25 +44,25 @@ async function drawGaugeChartArc(divElementId) {
         pointerStyle: {
             baseSize: 0.05, // relative to the pointer length
             fill: "#195",
-            stroke: "#195",
+            stroke: "#195"
         },
 
         // optional - arrowhead at the tip of the pointer
-        pointerArrowStyle: { 
+        pointerArrowStyle: {
             stroke: "#195",
             strokeLineJoin: EStrokeLineJoin.Round,
             fill: "#241",
             height: 0.2,
             width: 0.1,
-            headDepth: 0.8,
+            headDepth: 0.8
         },
-        
+
         // optional - circle at the base of the pointer
-        pointerCenterStyle: { 
+        pointerCenterStyle: {
             size: 0.05, // relative to the pointer length
             fill: "#241",
-            stroke: "#195",
-        },
+            stroke: "#195"
+        }
     });
 
     // You can override 1. the Stick (pointer) path
@@ -78,9 +78,9 @@ async function drawGaugeChartArc(divElementId) {
             fill="${customPointer.pointerStyleProperty.fill}"
             stroke="${customPointer.pointerStyleProperty.stroke}"  
             stroke-width="${customPointer.pointerStyleProperty.strokeWidth}"
-        />`; 
-    }
-    
+        />`;
+    };
+
     // 2. Center path
     customPointer.getPointerCenterSvg = (pointerLength, centerSize) => {
         return `<rect
@@ -94,7 +94,7 @@ async function drawGaugeChartArc(divElementId) {
             stroke-width=${customPointer.pointerCenterStyleProperty.strokeWidth}
             fill=${customPointer.pointerCenterStyleProperty.fill}
         />`;
-    }
+    };
 
     // 3. The arrowhead path
     customPointer.getPointerArrowSvg = (pointerLength, height, width, headDepth) => {
@@ -108,13 +108,10 @@ async function drawGaugeChartArc(divElementId) {
                 M${size - height / 2} ${pointerLength - width / 2}
                 l${height / 2} ${width / 2}
                 l-${height / 2} ${width / 2}
-                ${headDepth === 0
-                    ? ""
-                    : `l${((1 - headDepth) * height) / 2} ${-width / 2}Z`
-                }
+                ${headDepth === 0 ? "" : `l${((1 - headDepth) * height) / 2} ${-width / 2}Z`}
             " 
         />`;
-    }
+    };
     // The above methods are the default implementations, but you can override them if you want to
 
     sciChartSurface.annotations.add(customPointer);

@@ -19,12 +19,16 @@ async function PolarMouseWheelZoom(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartPolarSurface.create(divElementId, {
         theme: new SciChartJSDarkTheme()
     });
-    sciChartSurface.xAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Angular
-    }));
-    sciChartSurface.yAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Radial
-    }));
+    sciChartSurface.xAxes.add(
+        new PolarNumericAxis(wasmContext, {
+            polarAxisMode: EPolarAxisMode.Angular
+        })
+    );
+    sciChartSurface.yAxes.add(
+        new PolarNumericAxis(wasmContext, {
+            polarAxisMode: EPolarAxisMode.Radial
+        })
+    );
 
     sciChartSurface.renderableSeries.add(
         new PolarBandRenderableSeries(wasmContext, {
@@ -53,7 +57,7 @@ async function PolarMouseWheelZoom(divElementId) {
             fontWeight: "Bold"
         }),
         new TextAnnotation({
-            text: "Scroll mouse wheel to pan or zoom (depending on \"defaultActionType\")",
+            text: 'Scroll mouse wheel to pan or zoom (depending on "defaultActionType")',
             x1: 0,
             y1: 0,
             xCoordinateMode: ECoordinateMode.Relative,
@@ -88,14 +92,7 @@ PolarMouseWheelZoom("scichart-root");
 async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to configure the PolarMouseWheelZoomModifier in SciChart.js using the Builder API
-    const { 
-        chartBuilder, 
-        EThemeProviderType, 
-        EAxisType, 
-        EChart2DModifierType, 
-        EPolarAxisMode,
-        ESeriesType
-    } = SciChart;
+    const { chartBuilder, EThemeProviderType, EAxisType, EChart2DModifierType, EPolarAxisMode, ESeriesType } = SciChart;
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DPolarChart(divElementId, {

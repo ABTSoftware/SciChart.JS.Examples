@@ -19,17 +19,21 @@ async function PolarZoomExtents(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartPolarSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme()
     });
-    sciChartSurface.xAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Radial,
-        axisAlignment: EAxisAlignment.Left,
-        innerRadius: 0.1,
-        startAngleDegrees: 90
-    }));
-    sciChartSurface.yAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Angular,
-        axisAlignment: EAxisAlignment.Bottom,
-        startAngleDegrees: 90,
-    }));
+    sciChartSurface.xAxes.add(
+        new PolarNumericAxis(wasmContext, {
+            polarAxisMode: EPolarAxisMode.Radial,
+            axisAlignment: EAxisAlignment.Left,
+            innerRadius: 0.1,
+            startAngleDegrees: 90
+        })
+    );
+    sciChartSurface.yAxes.add(
+        new PolarNumericAxis(wasmContext, {
+            polarAxisMode: EPolarAxisMode.Angular,
+            axisAlignment: EAxisAlignment.Bottom,
+            startAngleDegrees: 90
+        })
+    );
 
     sciChartSurface.renderableSeries.add(
         new PolarColumnRenderableSeries(wasmContext, {
@@ -38,7 +42,7 @@ async function PolarZoomExtents(divElementId) {
             strokeThickness: 2,
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: Array.from({ length: 5 }, (_, i) => i),
-                yValues: Array.from({ length: 5 }, (_, i) => 1 + Math.sin(i * 0.3)),
+                yValues: Array.from({ length: 5 }, (_, i) => 1 + Math.sin(i * 0.3))
             })
         })
     );
@@ -92,7 +96,7 @@ async function PolarZoomExtents(divElementId) {
             resetCenterPoint: true,
             resetInnerRadius: true,
             animationDuration: 1000
-        }),
+        })
     );
     // #endregion
 }
@@ -108,9 +112,9 @@ async function builderExample(divElementId) {
     const { wasmContext, sciChartSurface } = await chartBuilder.build2DPolarChart(divElementId, {
         surface: { theme: { type: EThemeProviderType.Dark } },
         xAxes: [
-            { 
-                type: EAxisType.NumericAxis, 
-                options: { 
+            {
+                type: EAxisType.NumericAxis,
+                options: {
                     polarAxisMode: EPolarAxisMode.Radial,
                     axisAlignment: EAxisAlignment.Left,
                     innerRadius: 0.1,
@@ -119,9 +123,9 @@ async function builderExample(divElementId) {
             }
         ],
         yAxes: [
-            { 
-                type: EAxisType.NumericAxis, 
-                options: { 
+            {
+                type: EAxisType.NumericAxis,
+                options: {
                     polarAxisMode: EPolarAxisMode.Angular,
                     axisAlignment: EAxisAlignment.Bottom,
                     startAngleDegrees: 90
@@ -138,7 +142,7 @@ async function builderExample(divElementId) {
                     type: "XyDataSeries",
                     options: {
                         xValues: Array.from({ length: 5 }, (_, i) => i),
-                        yValues: Array.from({ length: 5 }, (_, i) => 1 + Math.sin(i * 0.3)),
+                        yValues: Array.from({ length: 5 }, (_, i) => 1 + Math.sin(i * 0.3))
                     }
                 }
             }

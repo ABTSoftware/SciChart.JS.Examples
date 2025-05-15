@@ -61,7 +61,7 @@ async function triangleSeriesStripChart(divElementId) {
     const italySeries = new TriangleRenderableSeries(wasmContext, {
         dataSeries,
         drawMode: ETriangleSeriesDrawMode.Strip,
-        fill: "cornflowerblue",
+        fill: "cornflowerblue"
         // paletteProvider: new TrianglePaletteProvider()
     });
 

@@ -17,15 +17,15 @@ async function drawGaugeChartColumn(divElementId) {
         EVerticalAnchorPoint,
         EHorizontalAnchorPoint,
         EAxisAlignment,
-        EPolarLabelMode,
+        EPolarLabelMode
     } = SciChart;
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartPolarSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
-        padding: Thickness.fromNumber(20),
+        padding: Thickness.fromNumber(20)
     });
-    
+
     const gaugeTotalAngle = Math.PI * 1.3;
     const startValue = Math.random() * 100; // Random start value between 0 and 10
     const gaugeRange = new NumberRange(0, 100);
@@ -35,45 +35,43 @@ async function drawGaugeChartColumn(divElementId) {
     // Create axes
     const angularXAxis = new PolarNumericAxis(wasmContext, {
         polarAxisMode: EPolarAxisMode.Angular,
-        visibleRange: gaugeRange, 
+        visibleRange: gaugeRange,
         flippedCoordinates: true, // go clockwise
         totalAngle: gaugeTotalAngle,
         startAngle: (Math.PI - gaugeTotalAngle) / 2, // to center the bottom gap
-        isVisible: false,
+        isVisible: false
     });
     sciChartSurface.xAxes.add(angularXAxis);
 
     const radialYAxis = new PolarNumericAxis(wasmContext, {
         polarAxisMode: EPolarAxisMode.Radial,
         visibleRange: new NumberRange(0, 10),
-        isVisible: false,
+        isVisible: false
     });
     sciChartSurface.yAxes.add(radialYAxis);
 
     // Current color calculation
-    const getColorForValue = (value) => {
+    const getColorForValue = value => {
         const threshold = columnYValues.find(t => value <= t);
-        
-        return threshold 
-            ? gradientColors[columnYValues.indexOf(threshold)] 
-            : gradientColors[gradientColors.length - 1];
+
+        return threshold ? gradientColors[columnYValues.indexOf(threshold)] : gradientColors[gradientColors.length - 1];
     };
     const currentColor = getColorForValue(startValue);
 
     columnYValues.forEach((val, i) => {
         const gradientColumn = new PolarColumnRenderableSeries(wasmContext, {
             dataSeries: new XyxyDataSeries(wasmContext, {
-                xValues: [columnYValues[i-1] ?? 0],
+                xValues: [columnYValues[i - 1] ?? 0],
                 x1Values: [val > columnYValues[i] ? columnYValues[i] : val],
                 yValues: [9.7],
-                y1Values: [10],
+                y1Values: [10]
             }),
             columnXMode: EColumnMode.StartEnd,
             fill: gradientColors[i],
-            strokeThickness: 0,
+            strokeThickness: 0
         });
         sciChartSurface.renderableSeries.add(gradientColumn);
-    })
+    });
 
     // Optional - add a gray column to show the potential full range of the gauge
     const grayColumn = new PolarColumnRenderableSeries(wasmContext, {
@@ -81,11 +79,11 @@ async function drawGaugeChartColumn(divElementId) {
             xValues: [gaugeRange.min],
             x1Values: [gaugeRange.max],
             yValues: [7],
-            y1Values: [9.5],
+            y1Values: [9.5]
         }),
         columnXMode: EColumnMode.StartEnd,
         fill: "#88888844",
-        strokeThickness: 0,
+        strokeThickness: 0
     });
     sciChartSurface.renderableSeries.add(grayColumn);
 
@@ -95,11 +93,11 @@ async function drawGaugeChartColumn(divElementId) {
             xValues: [gaugeRange.min],
             x1Values: [startValue],
             yValues: [7],
-            y1Values: [9.5],
+            y1Values: [9.5]
         }),
         columnXMode: EColumnMode.StartEnd,
         fill: currentColor,
-        strokeThickness: 0,
+        strokeThickness: 0
     });
     sciChartSurface.renderableSeries.add(columnSeries);
 
@@ -113,7 +111,7 @@ async function drawGaugeChartColumn(divElementId) {
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
 
         textColor: currentColor,
-        fontSize: 52,
+        fontSize: 52
     });
     sciChartSurface.annotations.add(centeredText);
 }

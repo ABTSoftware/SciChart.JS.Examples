@@ -28,7 +28,7 @@ async function triangleSeriesPolygonChart(divElementId) {
         [200, 0],
         [200, 200]
     ];
-    
+
     const dataSeries = new XyDataSeries(wasmContext, {
         xValues: coordinates.map(p => p[0]),
         yValues: coordinates.map(p => p[1])

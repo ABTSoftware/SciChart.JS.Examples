@@ -31,7 +31,7 @@ async function rectangleSeriesAnimated(divElementId) {
     const rectangleSeries = new FastRectangleRenderableSeries(wasmContext, {
         dataSeries,
         columnXMode: EColumnMode.StartEnd,
-        columnYMode: EColumnYMode.TopBottom, 
+        columnYMode: EColumnYMode.TopBottom,
         fill: "white",
         stroke: "steelblue",
         strokeThickness: 1,

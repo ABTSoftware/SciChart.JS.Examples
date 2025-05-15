@@ -3,15 +3,15 @@ import * as SciChart from "scichart";
 async function gradientFillBandChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a polar band chart using SciChart.js
-    const { 
-        SciChartPolarSurface, 
-        PolarNumericAxis, 
+    const {
+        SciChartPolarSurface,
+        PolarNumericAxis,
         PolarBandRenderableSeries,
         EPolarAxisMode,
         EAxisAlignment,
         EPolarLabelMode,
         NumberRange,
-        XyyDataSeries, 
+        XyyDataSeries,
         Thickness,
         GradientParams,
         Point
@@ -19,7 +19,7 @@ async function gradientFillBandChart(divElementId) {
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(divElementId, {
-        padding: Thickness.fromNumber(30),
+        padding: Thickness.fromNumber(30)
     });
 
     const angularXAxis = new PolarNumericAxis(wasmContext, {
@@ -48,7 +48,7 @@ async function gradientFillBandChart(divElementId) {
         drawMajorTickLines: false,
         drawMajorTickLines: false,
         labelPrecision: 0,
-        majorGridLineStyle: { strokeThickness: 1, color: "#666666" },
+        majorGridLineStyle: { strokeThickness: 1, color: "#666666" }
     });
     sciChartSurface.yAxes.add(radialYAxis);
 
@@ -56,7 +56,7 @@ async function gradientFillBandChart(divElementId) {
         dataSeries: new XyyDataSeries(wasmContext, {
             xValues: [0, 1, 2, 3, 4, 5],
             yValues: [1, 2, 3, 4, 5, 6],
-            y1Values: [6, 5, 1, 6, 4, 3],
+            y1Values: [6, 5, 1, 6, 4, 3]
         }),
         stroke: "red",
         strokeY1: "blue",
@@ -71,10 +71,10 @@ async function gradientFillBandChart(divElementId) {
             { color: "transparent", offset: 1 }
         ]),
         interpolateLine: true,
-        scaleGradientToYRange: true,  
+        scaleGradientToYRange: true
     });
     sciChartSurface.renderableSeries.add(polarBand1);
-    
+
     return { sciChartSurface, wasmContext };
 }
 
@@ -83,14 +83,7 @@ gradientFillBandChart("scichart-root");
 async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to create a band chart with SciChart.js using the Builder API
-    const { 
-        EPolarAxisMode,
-        EAxisAlignment,
-        EPolarLabelMode,
-        NumberRange,
-        GradientParams,
-        Point
-    } = SciChart;
+    const { EPolarAxisMode, EAxisAlignment, EPolarLabelMode, NumberRange, GradientParams, Point } = SciChart;
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await chartBuilder.buildChart(divElementId, {
@@ -123,7 +116,7 @@ async function builderExample(divElementId) {
                 drawMajorTickLines: false,
                 drawMajorTickLines: false,
                 labelPrecision: 0,
-                majorGridLineStyle: { strokeThickness: 1, color: "#666666" },
+                majorGridLineStyle: { strokeThickness: 1, color: "#666666" }
             }
         ],
         series: [
@@ -132,7 +125,7 @@ async function builderExample(divElementId) {
                 xyyData: {
                     xValues: [0, 1, 2, 3, 4, 5],
                     yValues: [1, 2, 3, 4, 5, 6],
-                    y1Values: [6, 5, 1, 6, 4, 3],
+                    y1Values: [6, 5, 1, 6, 4, 3]
                 },
                 options: {
                     stroke: "red",
@@ -148,7 +141,7 @@ async function builderExample(divElementId) {
                         { color: "transparent", offset: 1 }
                     ]),
                     interpolateLine: true,
-                    scaleGradientToYRange: true,  
+                    scaleGradientToYRange: true
                 }
             }
         ]

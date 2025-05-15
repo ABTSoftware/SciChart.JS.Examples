@@ -11,20 +11,24 @@ async function PolarCursorModifier(divElementId) {
         ECoordinateMode,
         EHorizontalAnchorPoint,
         EVerticalAnchorPoint,
-        PolarColumnRenderableSeries,
+        PolarColumnRenderableSeries
     } = SciChart;
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await SciChartPolarSurface.create(divElementId, {
         theme: new SciChartJSDarkTheme()
     });
-    sciChartSurface.xAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Angular
-    }));
-    sciChartSurface.yAxes.add(new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Radial,
-        visibleRange: new NumberRange(0, 1)
-    }));
+    sciChartSurface.xAxes.add(
+        new PolarNumericAxis(wasmContext, {
+            polarAxisMode: EPolarAxisMode.Angular
+        })
+    );
+    sciChartSurface.yAxes.add(
+        new PolarNumericAxis(wasmContext, {
+            polarAxisMode: EPolarAxisMode.Radial,
+            visibleRange: new NumberRange(0, 1)
+        })
+    );
 
     sciChartSurface.renderableSeries.add(
         new PolarColumnRenderableSeries(wasmContext, {
@@ -35,7 +39,7 @@ async function PolarCursorModifier(divElementId) {
             fill: "#111155",
             stroke: "#55aaff",
             dataPointWidth: 0.6,
-            strokeThickness: 1,
+            strokeThickness: 1
         })
     );
 
@@ -80,9 +84,9 @@ async function PolarCursorModifier(divElementId) {
             axisLabelFill: "#55aaff",
             angularAxisLabelPlacement: EAngularAxisLabelPlacement.Center,
             radialAxisLabelPlacement: ERadialAxisLabelPlacement.Center,
-            showRadialLine: true, 
+            showRadialLine: true,
             showCircularLine: true
-        }),
+        })
     );
     // #endregion
 }
@@ -92,14 +96,14 @@ PolarCursorModifier("scichart-root");
 async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to configure the PolarCursorModifier in SciChart.js using the Builder API
-    const {  
-        chartBuilder, 
-        EAxisType, 
-        EChart2DModifierType, 
-        EPolarAxisMode, 
-        EAngularAxisLabelPlacement, 
-        ERadialAxisLabelPlacement, 
-        ESeriesType 
+    const {
+        chartBuilder,
+        EAxisType,
+        EChart2DModifierType,
+        EPolarAxisMode,
+        EAngularAxisLabelPlacement,
+        ERadialAxisLabelPlacement,
+        ESeriesType
     } = SciChart;
     // or, for npm, import { chartBuilder, ... } from "scichart"
 

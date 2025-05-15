@@ -3,21 +3,21 @@ import * as SciChart from "scichart";
 async function PolarColumnChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a basic polar column chart using SciChart.js
-    const { 
-        SciChartPolarSurface, 
-        PolarNumericAxis, 
+    const {
+        SciChartPolarSurface,
+        PolarNumericAxis,
         EPolarAxisMode,
         EAxisAlignment,
         NumberRange,
-        XyDataSeries, 
+        XyDataSeries,
         Thickness,
         PolarStackedColumnRenderableSeries,
-        PolarStackedColumnCollection,
+        PolarStackedColumnCollection
     } = SciChart;
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(divElementId, {
-        padding: Thickness.fromNumber(30),
+        padding: Thickness.fromNumber(30)
     });
 
     // Create Polar, Radial axes
@@ -36,7 +36,7 @@ async function PolarColumnChart(divElementId) {
         drawMinorTickLines: false,
         drawMinorGridLines: false,
         majorGridLineStyle: { strokeThickness: 1, color: "#666666" },
-        drawMajorTickLines: false,
+        drawMajorTickLines: false
     });
     sciChartSurface.xAxes.add(xAxis);
 
@@ -50,7 +50,7 @@ async function PolarColumnChart(divElementId) {
         flippedCoordinates: true,
         labelPrecision: 0,
         useNativeText: true,
-        totalAngle: Math.PI * 3 / 2 // 270 degrees
+        totalAngle: (Math.PI * 3) / 2 // 270 degrees
     });
     sciChartSurface.yAxes.add(yAxis);
 
@@ -65,7 +65,7 @@ async function PolarColumnChart(divElementId) {
             yValues: [3, 2, 3, 5, 4, 6, 3]
         }),
         fill: "#44CC8866",
-        stroke: "#44CC88",
+        stroke: "#44CC88"
     });
     const polarColumn2 = new PolarStackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
@@ -81,12 +81,12 @@ async function PolarColumnChart(divElementId) {
             yValues: [3, 5, 1, 3, 5, 1, 8]
         }),
         fill: "#33BBEE66",
-        stroke: "#33BBEE",
+        stroke: "#33BBEE"
     });
     collection.add(polarColumn1, polarColumn2, polarColumn3);
 
     sciChartSurface.renderableSeries.add(collection);
-    
+
     return { sciChartSurface, wasmContext };
 }
 
@@ -95,14 +95,7 @@ PolarColumnChart("scichart-root");
 async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to create a band chart with SciChart.js using the Builder API
-    const { 
-        EPolarAxisMode,
-        EAxisAlignment,
-        EPolarLabelMode,
-        NumberRange,
-        GradientParams,
-        Point
-    } = SciChart;
+    const { EPolarAxisMode, EAxisAlignment, EPolarLabelMode, NumberRange, GradientParams, Point } = SciChart;
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await chartBuilder.buildChart(divElementId, {
@@ -122,7 +115,7 @@ async function builderExample(divElementId) {
                 majorDelta: 1,
                 startAngle: Math.PI / 2,
                 flippedCoordinates: true,
-                polarLabelMode: EPolarLabelMode.Parallel,
+                polarLabelMode: EPolarLabelMode.Parallel
             }
         ],
         yAxes: [
@@ -140,7 +133,7 @@ async function builderExample(divElementId) {
                 innerRadius: 0.1,
                 startAngle: Math.PI / 2,
                 drawLabels: false,
-                majorGridLineStyle: { strokeThickness: 1, color: "#666666" },
+                majorGridLineStyle: { strokeThickness: 1, color: "#666666" }
             }
         ],
         series: [
@@ -148,7 +141,7 @@ async function builderExample(divElementId) {
                 type: ESeriesType.PolarColumnRenderableSeries,
                 xyyData: {
                     xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-                    yValues: [2.6, 5.3, 3.5, 2.7, 4.8, 3.8, 5, 4.5, 3.5],
+                    yValues: [2.6, 5.3, 3.5, 2.7, 4.8, 3.8, 5, 4.5, 3.5]
                 },
                 options: {
                     stroke: "red",
@@ -164,7 +157,7 @@ async function builderExample(divElementId) {
                         { color: "transparent", offset: 1 }
                     ]),
                     interpolateLine: true,
-                    scaleGradientToYRange: true,  
+                    scaleGradientToYRange: true
                 }
             }
         ]

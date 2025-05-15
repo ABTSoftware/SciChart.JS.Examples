@@ -3,15 +3,15 @@ import * as SciChart from "scichart";
 async function simpleBandChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create a polar band chart using SciChart.js
-    const { 
-        SciChartPolarSurface, 
-        PolarNumericAxis, 
+    const {
+        SciChartPolarSurface,
+        PolarNumericAxis,
         PolarBandRenderableSeries,
         EPolarAxisMode,
         EAxisAlignment,
         EPolarLabelMode,
         NumberRange,
-        XyyDataSeries, 
+        XyyDataSeries,
         SciChartJsNavyTheme
     } = SciChart;
     // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -26,7 +26,7 @@ async function simpleBandChart(divElementId) {
         visibleRange: new NumberRange(0, 8),
         majorGridLineStyle: { strokeThickness: 1, color: "#666666" },
         drawMinorGridLines: false,
-        useNativeText: true,
+        useNativeText: true
     });
     sciChartSurface.xAxes.add(angularXAxis);
 
@@ -38,7 +38,7 @@ async function simpleBandChart(divElementId) {
         labelPrecision: 0,
         autoTicks: false,
         majorDelta: 1,
-        innerRadius: 0.2,
+        innerRadius: 0.2
     });
     sciChartSurface.yAxes.add(radialYAxis);
 
@@ -65,14 +65,8 @@ simpleBandChart("scichart-root");
 async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to create a band chart with SciChart.js using the Builder API
-    const { 
-        chartBuilder, 
-        ESeriesType, 
-        EThemeProviderType, 
-        ESciChartSurfaceType,
-        EPolarAxisMode,
-        NumberRange,
-    } = SciChart;
+    const { chartBuilder, ESeriesType, EThemeProviderType, ESciChartSurfaceType, EPolarAxisMode, NumberRange } =
+        SciChart;
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
     const { wasmContext, sciChartSurface } = await chartBuilder.buildChart(divElementId, {
@@ -84,7 +78,7 @@ async function builderExample(divElementId) {
                 visibleRange: new NumberRange(0, 8),
                 majorGridLineStyle: { strokeThickness: 1, color: "#666666" },
                 drawMinorGridLines: false,
-                useNativeText: true,
+                useNativeText: true
             }
         ],
         yAxes: [
@@ -96,7 +90,7 @@ async function builderExample(divElementId) {
                 innerRadius: 0.2,
                 labelPrecision: 0,
                 autoTicks: false,
-                majorDelta: 1,
+                majorDelta: 1
             }
         ],
         series: [

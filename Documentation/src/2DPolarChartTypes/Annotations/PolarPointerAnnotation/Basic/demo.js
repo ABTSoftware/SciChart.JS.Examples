@@ -16,20 +16,20 @@ async function drawGaugeChartArc(divElementId) {
 
     const { wasmContext, sciChartSurface } = await SciChartPolarSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme(),
-        padding: Thickness.fromNumber(20),
+        padding: Thickness.fromNumber(20)
     });
-    
+
     // Create axes
     const angularXAxis = new PolarNumericAxis(wasmContext, {
         polarAxisMode: EPolarAxisMode.Angular,
         flippedCoordinates: true, // go clockwise
         totalAngle: Math.PI,
-        startAngle: 0,
+        startAngle: 0
     });
     sciChartSurface.xAxes.add(angularXAxis);
 
     const radialYAxis = new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Radial,
+        polarAxisMode: EPolarAxisMode.Radial
     });
     sciChartSurface.yAxes.add(radialYAxis);
 
@@ -48,7 +48,7 @@ async function drawGaugeChartArc(divElementId) {
         },
 
         // optional - arrowhead at the tip of the pointer
-        // pointerArrowStyle: { 
+        // pointerArrowStyle: {
         //     stroke: "#F00",
         //     strokeThickness: 2,
         //     strokeLineJoin: EStrokeLineJoin.Round,
@@ -57,11 +57,11 @@ async function drawGaugeChartArc(divElementId) {
         //     width: 0.1,
         //     headDepth: 0.8
         // },
-        
+
         // optional - circle at the base of the pointer
-        pointerCenterStyle: { 
+        pointerCenterStyle: {
             size: 0.12, // relative to the pointer height
-            fill: "#111",
+            fill: "#111"
         },
 
         isStrokeAboveCenter: true

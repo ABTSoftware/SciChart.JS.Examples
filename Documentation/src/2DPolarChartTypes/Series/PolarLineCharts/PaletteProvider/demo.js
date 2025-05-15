@@ -3,19 +3,19 @@ import * as SciChart from "scichart";
 async function PolarLineChart(divElementId) {
     // #region ExampleA
     // Demonstrates how to create an interpolated polar line chart using SciChart.js
-    const { 
-        SciChartPolarSurface, 
+    const {
+        SciChartPolarSurface,
         DefaultPaletteProvider,
-        PolarNumericAxis, 
+        PolarNumericAxis,
         PolarLineRenderableSeries,
         EPolarAxisMode,
         EAxisAlignment,
         EPolarLabelMode,
         NumberRange,
-        XyDataSeries, 
+        XyDataSeries,
         Thickness,
         EStrokePaletteMode,
-        parseColorToUIntArgb,
+        parseColorToUIntArgb
     } = SciChart;
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
@@ -26,16 +26,14 @@ async function PolarLineChart(divElementId) {
             this.rule = rule;
             this.stroke = parseColorToUIntArgb(stroke);
         }
-    
+
         overrideStrokeArgb(xValue, yValue, index, opacity, metadata) {
-            return this.rule(yValue, xValue) 
-                ? this.stroke 
-                : undefined;
+            return this.rule(yValue, xValue) ? this.stroke : undefined;
         }
     }
 
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(divElementId, {
-        padding: Thickness.fromNumber(30),
+        padding: Thickness.fromNumber(30)
     });
 
     const angularXAxis = new PolarNumericAxis(wasmContext, {
@@ -49,7 +47,7 @@ async function PolarLineChart(divElementId) {
         drawMinorGridLines: false,
         autoTicks: false,
         majorDelta: 1,
-        labelPrecision: 0,
+        labelPrecision: 0
     });
     sciChartSurface.xAxes.add(angularXAxis);
 
@@ -63,7 +61,7 @@ async function PolarLineChart(divElementId) {
         drawMajorGridLines: true,
         drawMajorTickLines: false,
         drawMajorTickLines: false,
-        majorGridLineStyle: { strokeThickness: 1, color: "#666666" },
+        majorGridLineStyle: { strokeThickness: 1, color: "#666666" }
     });
     sciChartSurface.yAxes.add(radialYAxis);
 
@@ -76,12 +74,12 @@ async function PolarLineChart(divElementId) {
         strokeThickness: 5,
         interpolateLine: true,
         paletteProvider: new ThresholdLinePaletteProvider(
-            "#FFFFFF", 
-            (yValue, xValue) => (Math.floor(xValue / 3) % 2 === 0)
-        ),
+            "#FFFFFF",
+            (yValue, xValue) => Math.floor(xValue / 3) % 2 === 0
+        )
     });
     sciChartSurface.renderableSeries.add(polarLine);
-    
+
     return { sciChartSurface, wasmContext };
 }
 
@@ -90,7 +88,7 @@ PolarLineChart("scichart-root");
 async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to create an interpolated polar line chart with SciChart.js using the Builder API
-    const { 
+    const {
         EPolarAxisMode,
         EAxisAlignment,
         EPolarLabelMode,
@@ -99,7 +97,7 @@ async function builderExample(divElementId) {
         DefaultPaletteProvider,
         EThemeProviderType,
         EStrokePaletteMode,
-        parseColorToUIntArgb,
+        parseColorToUIntArgb
     } = SciChart;
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
@@ -110,11 +108,9 @@ async function builderExample(divElementId) {
             this.rule = rule;
             this.stroke = parseColorToUIntArgb(stroke);
         }
-    
+
         overrideStrokeArgb(xValue, yValue, index, opacity, metadata) {
-            return this.rule(yValue, xValue) 
-                ? this.stroke 
-                : undefined;
+            return this.rule(yValue, xValue) ? this.stroke : undefined;
         }
     }
 
@@ -133,7 +129,7 @@ async function builderExample(divElementId) {
                 drawMinorGridLines: false,
                 autoTicks: false,
                 majorDelta: 1,
-                polarLabelMode: EPolarLabelMode.Parallel,
+                polarLabelMode: EPolarLabelMode.Parallel
             }
         ],
         yAxes: [
@@ -148,7 +144,7 @@ async function builderExample(divElementId) {
                 drawMajorTickLines: false,
                 drawMajorTickLines: false,
                 labelPrecision: 0,
-                majorGridLineStyle: { strokeThickness: 1, color: "#666666" },
+                majorGridLineStyle: { strokeThickness: 1, color: "#666666" }
             }
         ],
         series: [
@@ -163,8 +159,8 @@ async function builderExample(divElementId) {
                     strokeThickness: 4,
                     interpolateLine: true,
                     paletteProvider: new ThresholdLinePaletteProvider(
-                        "#FFFFFF", 
-                        (yValue, xValue) => (Math.floor(xValue / 3) % 2 === 0)
+                        "#FFFFFF",
+                        (yValue, xValue) => Math.floor(xValue / 3) % 2 === 0
                     )
                 }
             }

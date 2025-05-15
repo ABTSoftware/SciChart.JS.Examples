@@ -10,7 +10,7 @@ import {
     RectangleDataLabelState,
     formatNumber,
     ENumericFormat,
-    EMultiLineAlignment,
+    EMultiLineAlignment
 } from "scichart";
 
 export class MyRectangleSeriesDataLabelProvider extends RectangleSeriesDataLabelProvider {
@@ -22,14 +22,15 @@ export class MyRectangleSeriesDataLabelProvider extends RectangleSeriesDataLabel
         } else {
             const diff = Math.abs(state.x1Val() - state.xVal());
             if (this.engineeringPrefix) {
-                return "Width:\n" + formatNumber(diff, this.numericFormat, this.precision, this.engineeringPrefixProperty);
+                return (
+                    "Width:\n" + formatNumber(diff, this.numericFormat, this.precision, this.engineeringPrefixProperty)
+                );
             } else {
                 return "Width:\n" + formatNumber(diff, this.numericFormat ?? ENumericFormat.Decimal, this.precision);
             }
         }
     }
 }
-
 
 async function rectangleSeriesTexture(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
@@ -52,7 +53,7 @@ async function rectangleSeriesTexture(divElementId) {
             y1Values
         }),
         columnXMode: EColumnMode.StartEnd,
-        columnYMode: EColumnYMode.TopBottom, 
+        columnYMode: EColumnYMode.TopBottom,
         fill: "white",
         stroke: "steelblue",
         strokeThickness: 4,
@@ -63,10 +64,10 @@ async function rectangleSeriesTexture(divElementId) {
             style: {
                 fontSize: 13,
                 multiLineAlignment: EMultiLineAlignment.Center,
-                lineSpacing: 5,
+                lineSpacing: 5
             },
             color: "black"
-        },)
+        })
     });
 
     sciChartSurface.renderableSeries.add(rectangleSeries);
