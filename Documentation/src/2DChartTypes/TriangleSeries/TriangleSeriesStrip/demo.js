@@ -1,16 +1,4 @@
-import {
-    SciChartSurface,
-    NumericAxis,
-    SciChartJsNavyTheme,
-    TriangleRenderableSeries,
-    XyDataSeries,
-    ETriangleSeriesDrawMode,
-    ZoomPanModifier,
-    ZoomExtentsModifier,
-    EFillPaletteMode,
-    parseColorToUIntArgb,
-    NumberRange
-} from "scichart";
+import { SciChartSurface, NumericAxis, SciChartJsNavyTheme, TriangleRenderableSeries, XyDataSeries, ETriangleSeriesDrawMode, ZoomPanModifier, ZoomExtentsModifier, EFillPaletteMode, parseColorToUIntArgb, NumberRange } from "scichart";
 async function triangleSeriesStripChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme()
@@ -48,21 +36,23 @@ async function triangleSeriesStripChart(divElementId) {
     };
     class TrianglePaletteProvider {
         fillPaletteMode = EFillPaletteMode.SOLID;
-        onAttached() {}
-        onDetached() {}
-        overrideFillArgb(_xValue, _yValue, index, _opacity) {
+        onAttached() { }
+        onDetached() { }
+        overrideFillArgb(_xValue, _yValue, index, opacity) {
             // return parseColorToUIntArgb(Math.floor(index / 3) % 2 === 0 ? "cornflowerblue" : "lightgray");
-            console.log(Math.floor(index / 3));
-            return parseColorToUIntArgb(colors[Math.floor(index / 3)]);
+            // console.log(Math.floor(index / 3));
+            const opacityFix = Math.round(opacity * 255);
+            return parseColorToUIntArgb(colors[Math.floor(index / 3)], opacityFix);
         }
     }
-    const italySeries = new TriangleRenderableSeries(wasmContext, {
+    const triangleSeries = new TriangleRenderableSeries(wasmContext, {
         dataSeries,
         drawMode: ETriangleSeriesDrawMode.Strip,
         fill: "cornflowerblue",
+        opacity: 0.5,
         paletteProvider: new TrianglePaletteProvider()
     });
-    sciChartSurface.renderableSeries.add(italySeries);
+    sciChartSurface.renderableSeries.add(triangleSeries);
     // Add zoom/pan controls
     sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier());
     return sciChartSurface;

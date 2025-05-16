@@ -1,21 +1,4 @@
-import {
-    FastLineRenderableSeries,
-    MouseWheelZoomModifier,
-    NumberRange,
-    NumericAxis,
-    SciChartSurface,
-    XyDataSeries,
-    XyBaseRenderDataTransform,
-    ZoomExtentsModifier,
-    ZoomPanModifier,
-    ObservableArrayBase,
-    SciChartJsNavyTheme,
-    EllipsePointMarker,
-    parseColorToUIntArgb,
-    DefaultPaletteProvider,
-    EStrokePaletteMode,
-    HorizontalLineAnnotation
-} from "scichart";
+import { FastLineRenderableSeries, MouseWheelZoomModifier, NumberRange, NumericAxis, SciChartSurface, XyDataSeries, XyBaseRenderDataTransform, ZoomExtentsModifier, ZoomPanModifier, ObservableArrayBase, SciChartJsNavyTheme, EllipsePointMarker, parseColorToUIntArgb, DefaultPaletteProvider, EStrokePaletteMode, HorizontalLineAnnotation } from "scichart";
 // #region ExampleA
 class ThresholdRenderDataTransform extends XyBaseRenderDataTransform {
     // Using XyBaseRenderDataTransform here as we are converting to XyPointSeries
@@ -83,7 +66,8 @@ class ThresholdRenderDataTransform extends XyBaseRenderDataTransform {
                     // use original data index so metadata works
                     indexes.push_back(i);
                     level--;
-                    if (level === 0) break;
+                    if (level === 0)
+                        break;
                 }
             }
             if (level < numThresholds && lastY <= this.thresholds.get(level)) {
@@ -101,7 +85,8 @@ class ThresholdRenderDataTransform extends XyBaseRenderDataTransform {
                     yValues.push_back(t);
                     indexes.push_back(i);
                     level++;
-                    if (level === numThresholds) break;
+                    if (level === numThresholds)
+                        break;
                 }
             }
             lastY = y;
@@ -189,7 +174,7 @@ async function thresholds(divElementId) {
     lineSeries.paletteProvider = paletteProvider;
     // #endregion
     // A function to create and add annotations to represent the thresholds
-    const makeThresholdAnnotation = i => {
+    const makeThresholdAnnotation = (i) => {
         const thresholdAnn = new HorizontalLineAnnotation({
             isEditable: true,
             stroke: colorNames[i + 1],
@@ -198,13 +183,12 @@ async function thresholds(divElementId) {
             strokeThickness: 3
         });
         thresholdAnn.dragDelta.subscribe(args => {
-            if (
-                (i < colorNames.length - 2 && thresholdAnn.y1 >= thresholds[i + 1]) ||
-                (i > 0 && thresholdAnn.y1 <= thresholds[i - 1])
-            ) {
+            if ((i < colorNames.length - 2 && thresholdAnn.y1 >= thresholds[i + 1]) ||
+                (i > 0 && thresholdAnn.y1 <= thresholds[i - 1])) {
                 // Prevent reordering thresholds
                 thresholdAnn.y1 = thresholds[i];
-            } else {
+            }
+            else {
                 // Update threshold from annotation position
                 thresholds[i] = thresholdAnn.y1;
                 paletteProvider.thresholds = thresholds;

@@ -1,18 +1,17 @@
-import * as SciChart from "scichart";
+import {
+    SciChartSurface,
+    NumericAxis,
+    SciChartJsNavyTheme,
+    TriangleRenderableSeries,
+    XyDataSeries,
+    ETriangleSeriesDrawMode,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    NumberRange
+} from "scichart";
+
 
 async function triangleSeriesPolygonChart(divElementId) {
-    const {
-        SciChartSurface,
-        NumericAxis,
-        SciChartJsNavyTheme,
-        TriangleRenderableSeries,
-        XyDataSeries,
-        ETriangleSeriesDrawMode,
-        ZoomPanModifier,
-        ZoomExtentsModifier,
-        NumberRange
-    } = SciChart;
-
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme()
     });
@@ -21,6 +20,13 @@ async function triangleSeriesPolygonChart(divElementId) {
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy }));
+
+    // const coordinates = [
+    //     [0, 0],
+    //     [0, 200],
+    //     [200, 0],
+    //     [200, 200]
+    // ];
 
     const coordinates = [
         [100, 100],
@@ -41,13 +47,14 @@ async function triangleSeriesPolygonChart(divElementId) {
         yValues: coordinates.map(p => p[1])
     });
 
-    const italySeries = new TriangleRenderableSeries(wasmContext, {
+    const triangleSeries = new TriangleRenderableSeries(wasmContext, {
         dataSeries,
         drawMode: ETriangleSeriesDrawMode.Polygon, // triangle connects two last points and the first point
-        fill: "cornflowerblue"
+        fill: "cornflowerblue",
+        opacity: 0.5
     });
 
-    sciChartSurface.renderableSeries.add(italySeries);
+    sciChartSurface.renderableSeries.add(triangleSeries);
 
     // Add zoom/pan controls
     sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier());

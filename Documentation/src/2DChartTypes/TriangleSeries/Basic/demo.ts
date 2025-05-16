@@ -1,17 +1,19 @@
-import * as SciChart from "scichart";
-import { NumberRange } from "scichart";
+import {
+    NumberRange,
+    SciChartSurface,
+    NumericAxis,
+    SciChartJsNavyTheme,
+    TriangleRenderableSeries,
+    XyDataSeries,
+    ETriangleSeriesDrawMode,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    IFillPaletteProvider,
+    EFillPaletteMode,
+    parseColorToUIntArgb
+} from "scichart";
 
 async function basicTriangleSeriesChart(divElementId) {
-    const {
-        SciChartSurface,
-        NumericAxis,
-        SciChartJsNavyTheme,
-        TriangleRenderableSeries,
-        XyDataSeries,
-        ETriangleSeriesDrawMode,
-        ZoomPanModifier,
-        ZoomExtentsModifier
-    } = SciChart;
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme()
@@ -35,8 +37,8 @@ async function basicTriangleSeriesChart(divElementId) {
         3: "#8e44ad"
     };
 
-    class TrianglePaletteProvider implements SciChart.IFillPaletteProvider {
-        public readonly fillPaletteMode = SciChart.EFillPaletteMode.SOLID;
+    class TrianglePaletteProvider implements IFillPaletteProvider {
+        public readonly fillPaletteMode = EFillPaletteMode.SOLID;
 
         public onAttached(): void {}
 
@@ -47,7 +49,7 @@ async function basicTriangleSeriesChart(divElementId) {
 
             console.log(Math.floor(index / 3));
 
-            return SciChart.parseColorToUIntArgb(colors[Math.floor(index / 3)]);
+            return parseColorToUIntArgb(colors[Math.floor(index / 3)]);
         }
     }
 

@@ -62,23 +62,26 @@ async function triangleSeriesStripChart(divElementId) {
 
         public onDetached(): void {}
 
-        public overrideFillArgb(_xValue: number, _yValue: number, index: number, _opacity?: number): number {
+        public overrideFillArgb(_xValue: number, _yValue: number, index: number, opacity: number): number {
             // return parseColorToUIntArgb(Math.floor(index / 3) % 2 === 0 ? "cornflowerblue" : "lightgray");
 
-            console.log(Math.floor(index / 3));
+            // console.log(Math.floor(index / 3));
 
-            return parseColorToUIntArgb(colors[Math.floor(index / 3)]);
+            const opacityFix = Math.round(opacity * 255);
+
+            return parseColorToUIntArgb(colors[Math.floor(index / 3)], opacityFix);
         }
     }
 
-    const italySeries = new TriangleRenderableSeries(wasmContext, {
+    const triangleSeries = new TriangleRenderableSeries(wasmContext, {
         dataSeries,
         drawMode: ETriangleSeriesDrawMode.Strip,
         fill: "cornflowerblue",
+        opacity: 0.5,
         paletteProvider: new TrianglePaletteProvider()
     });
 
-    sciChartSurface.renderableSeries.add(italySeries);
+    sciChartSurface.renderableSeries.add(triangleSeries);
 
     // Add zoom/pan controls
     sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier());

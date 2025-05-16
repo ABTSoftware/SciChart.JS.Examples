@@ -1,13 +1,4 @@
-import {
-    EColumnMode,
-    EColumnYMode,
-    SciChartSurface,
-    NumericAxis,
-    SciChartJsNavyTheme,
-    FastRectangleRenderableSeries,
-    XyxyDataSeries,
-    applyOpacityToHtmlColor
-} from "scichart";
+import { EColumnMode, EColumnYMode, SciChartSurface, NumericAxis, SciChartJsNavyTheme, FastRectangleRenderableSeries, XyxyDataSeries, applyOpacityToHtmlColor } from "scichart";
 class StickFigureTextureOptions {
     isPerPrimitive = false;
     options;
