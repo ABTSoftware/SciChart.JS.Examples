@@ -10,7 +10,6 @@ import {
     NumberRange
 } from "scichart";
 
-
 async function triangleSeriesPolygonChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme()

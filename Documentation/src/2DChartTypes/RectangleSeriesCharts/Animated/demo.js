@@ -1,4 +1,14 @@
-import { EColumnMode, EColumnYMode, SciChartSurface, NumericAxis, SciChartJsNavyTheme, FastRectangleRenderableSeries, XyxyDataSeries, GenericAnimation, easing } from "scichart";
+import {
+    EColumnMode,
+    EColumnYMode,
+    SciChartSurface,
+    NumericAxis,
+    SciChartJsNavyTheme,
+    FastRectangleRenderableSeries,
+    XyxyDataSeries,
+    GenericAnimation,
+    easing
+} from "scichart";
 async function rectangleSeriesAnimated(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme()
@@ -41,10 +51,8 @@ async function rectangleSeriesAnimated(divElementId) {
         };
     };
     const interpolateNumber = (from, to, progress) => {
-        if (progress < 0)
-            return from;
-        if (progress > 1)
-            return to;
+        if (progress < 0) return from;
+        if (progress > 1) return to;
         return from + (to - from) * progress;
     };
     const dataAnimation = new GenericAnimation({

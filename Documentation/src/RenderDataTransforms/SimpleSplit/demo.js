@@ -1,4 +1,17 @@
-import { DataPointSelectionModifier, makeIncArray, NumberRange, NumericAxis, PointMarkerDrawingProvider, SciChartJsNavyTheme, SciChartSurface, SquarePointMarker, TrianglePointMarker, XyDataSeries, XyScatterRenderableSeries, XyyBaseRenderDataTransform } from "scichart";
+import {
+    DataPointSelectionModifier,
+    makeIncArray,
+    NumberRange,
+    NumericAxis,
+    PointMarkerDrawingProvider,
+    SciChartJsNavyTheme,
+    SciChartSurface,
+    SquarePointMarker,
+    TrianglePointMarker,
+    XyDataSeries,
+    XyScatterRenderableSeries,
+    XyyBaseRenderDataTransform
+} from "scichart";
 // #region ExampleA
 // Using XyyBaseRenderDataTransform here because you cannot extend the abstract BaseRenderDataTransform when using browser bundle
 class SplitBySelectedDataTransform extends XyyBaseRenderDataTransform {
@@ -30,8 +43,7 @@ class SplitBySelectedDataTransform extends XyyBaseRenderDataTransform {
             if (md.isSelected) {
                 yValues.push_back(Number.NaN);
                 y1Values.push_back(oldY.get(i));
-            }
-            else {
+            } else {
                 yValues.push_back(oldY.get(i));
                 y1Values.push_back(Number.NaN);
             }
@@ -67,7 +79,11 @@ async function simpleSplit(divElementId) {
         })
     });
     // Create a second PointMarkerDrawingProvider with a ySelector so that it uses y1Values
-    const selectedPointDrawingProvider = new PointMarkerDrawingProvider(wasmContext, renderableSeries, ps => ps.y1Values);
+    const selectedPointDrawingProvider = new PointMarkerDrawingProvider(
+        wasmContext,
+        renderableSeries,
+        ps => ps.y1Values
+    );
     // Create a different pointMarker
     const squarePM = new SquarePointMarker(wasmContext, {
         width: 10,
@@ -82,16 +98,22 @@ async function simpleSplit(divElementId) {
     // Add the new drawingProvider to the series
     renderableSeries.drawingProviders.push(selectedPointDrawingProvider);
     // Create the transform and add it to the series.  Pass the drawingProviders array as this transform applies to all of them
-    renderableSeries.renderDataTransform = new SplitBySelectedDataTransform(renderableSeries, wasmContext, renderableSeries.drawingProviders);
+    renderableSeries.renderDataTransform = new SplitBySelectedDataTransform(
+        renderableSeries,
+        wasmContext,
+        renderableSeries.drawingProviders
+    );
     sciChartSurface.renderableSeries.add(renderableSeries);
     // Add Datapoint selection to allow updating the state on which the transform depends
-    sciChartSurface.chartModifiers.add(new DataPointSelectionModifier({
-        allowClickSelect: true,
-        onSelectionChanged: args => {
-            // Since the transform depends on the selection state, we must tell the transform that it must run when the selection changes.
-            renderableSeries.renderDataTransform.requiresTransform = true;
-        }
-    }));
+    sciChartSurface.chartModifiers.add(
+        new DataPointSelectionModifier({
+            allowClickSelect: true,
+            onSelectionChanged: args => {
+                // Since the transform depends on the selection state, we must tell the transform that it must run when the selection changes.
+                renderableSeries.renderDataTransform.requiresTransform = true;
+            }
+        })
+    );
     // #endregion
     sciChartSurface.zoomExtents();
 }

@@ -1,17 +1,29 @@
-import { EColumnMode, EColumnYMode, SciChartSurface, NumericAxis, SciChartJsNavyTheme, FastRectangleRenderableSeries, XyxyDataSeries, RectangleSeriesDataLabelProvider, formatNumber, ENumericFormat, EMultiLineAlignment } from "scichart";
+import {
+    EColumnMode,
+    EColumnYMode,
+    SciChartSurface,
+    NumericAxis,
+    SciChartJsNavyTheme,
+    FastRectangleRenderableSeries,
+    XyxyDataSeries,
+    RectangleSeriesDataLabelProvider,
+    formatNumber,
+    ENumericFormat,
+    EMultiLineAlignment
+} from "scichart";
 export class MyRectangleSeriesDataLabelProvider extends RectangleSeriesDataLabelProvider {
     getText(state) {
         const usefinal = !this.updateTextInAnimation && state.parentSeries.isRunningAnimation;
         const yval = usefinal ? state.yValAfterAnimation() : state.yVal();
         if (isNaN(yval)) {
             return undefined;
-        }
-        else {
+        } else {
             const diff = Math.abs(state.x1Val() - state.xVal());
             if (this.engineeringPrefix) {
-                return ("Width:\n" + formatNumber(diff, this.numericFormat, this.precision, this.engineeringPrefixProperty));
-            }
-            else {
+                return (
+                    "Width:\n" + formatNumber(diff, this.numericFormat, this.precision, this.engineeringPrefixProperty)
+                );
+            } else {
                 return "Width:\n" + formatNumber(diff, this.numericFormat ?? ENumericFormat.Decimal, this.precision);
             }
         }

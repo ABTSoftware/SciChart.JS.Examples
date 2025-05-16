@@ -14,7 +14,6 @@ import {
 } from "scichart";
 
 async function basicTriangleSeriesChart(divElementId) {
-
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme()
     });
