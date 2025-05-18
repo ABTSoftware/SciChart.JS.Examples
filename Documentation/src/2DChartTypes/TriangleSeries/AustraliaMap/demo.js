@@ -277,7 +277,8 @@ async function australiaMap(divElementId) {
         dataSeries: dataSeriesTasmania,
         drawMode: ETriangleSeriesDrawMode.Polygon, // triangle connects two last points and the first point
         fill: "cornflowerblue",
-        opacity: 0.5
+        polygonVertices: 0, // Sets the number of vertices per polygon. Applies only for drawMode ETriangleSeriesDrawMode.Polygon
+        opacity: 0.5,
     });
 
     sciChartSurface.renderableSeries.add(triangleSeriesAustralia);

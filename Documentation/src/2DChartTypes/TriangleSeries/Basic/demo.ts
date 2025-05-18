@@ -43,12 +43,14 @@ async function basicTriangleSeriesChart(divElementId) {
 
         public onDetached(): void {}
 
-        public overrideFillArgb(_xValue: number, _yValue: number, index: number, _opacity?: number): number {
+        public overrideFillArgb(_xValue: number, _yValue: number, index: number, opacity: number): number {
             // return SciChart.parseColorToUIntArgb(Math.floor(index / 3) % 2 === 0 ? "cornflowerblue" : "lightgray");
 
             console.log(Math.floor(index / 3));
 
-            return parseColorToUIntArgb(colors[Math.floor(index / 3)]);
+            const opacityRound = Math.round(opacity * 255);
+
+            return parseColorToUIntArgb(colors[Math.floor(index / 3)], opacityRound);
         }
     }
 
@@ -58,12 +60,18 @@ async function basicTriangleSeriesChart(divElementId) {
             yValues: sYValues
         }),
         isDigitalLine: false,
-        // fill: "steelblue",
-        // opacity: 0.2,
-        // stroke: "#ffffff",
-        // strokeThickness: 4,
+        opacity: 0.5,
         drawMode: ETriangleSeriesDrawMode.List, // Polygon / List / Strip
-        paletteProvider: new TrianglePaletteProvider()
+        paletteProvider: new TrianglePaletteProvider(),
+        // dataLabels: {
+        //     style: {
+        //         fontSize: 14
+        //     },
+        //     color: "white",
+        //     precision: 0,
+        //     pointGapThreshold: 0,
+        //     skipNumber: 0
+        // }
     });
 
     sciChartSurface.renderableSeries.add(polygonSeries);

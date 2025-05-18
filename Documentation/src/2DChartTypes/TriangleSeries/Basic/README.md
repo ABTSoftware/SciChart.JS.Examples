@@ -2,7 +2,9 @@
 
 Triangle Series can be created using the [TriangleRenderableSeries](https://www.scichart.com/documentation/js/v4/typedoc/classes/trianglerenderableseries.html) type.
 
-Here is simple Rectangle Series made using [XyDataSeries](https://www.scichart.com/documentation/js/v4/typedoc/classes/xydataseries.html):
+The TriangleRenderableSeries class in SciChart.js is a specialized renderable series used for visualizing data as a series of triangles on a 2D chart. It extends the base BaseRenderableSeries class and provides additional properties and methods tailored for rendering triangle shapes.
+
+Here is a simple Triangle Series made using [XyDataSeries](https://www.scichart.com/documentation/js/v4/typedoc/classes/xydataseries.html):
 
 ```javascript
 const sXValues = [200, 400, 400, 200, 200, 400, 420, 420, 620, 620, 620, 420];
@@ -12,39 +14,50 @@ const polygonSeries = new TriangleRenderableSeries(wasmContext, {
     dataSeries: new XyDataSeries(wasmContext, {
         xValues: sXValues,
         yValues: sYValues
-    }),
-    isDigitalLine: false,
+ }),
     fill: "white",
     drawMode: ETriangleSeriesDrawMode.List // Polygon / List / Strip
 });
 sciChartSurface.renderableSeries.add(polygonSeries);
 ```
 
-Triangle Series could be used for displaying
+## Overview
 
-- Polygons ?
-- Maps ?
-
-- strip mode, polygons
+The TriangleRenderableSeries is designed to plot data points as triangles, often used for custom scatter plots, mesh visualizations, or highlighting specific data points with a triangle marker. It supports full customization, including stroke, fill, and point marker options.
 
 ## Properties
 
+- **drawMode** Determines how the triangles are rendered on the chart. Options are
+    - ETriangleSeriesDrawMode.List - In this mode, each group of three consecutive points in the list defines an independent triangle. The triangles are not connected, every set of three points forms a separate triangle.
+    - ETriangleSeriesDrawMode.Polygon - In this mode, each group of two consecutive points and the first one in the list defines a triangle. The triangles are connected in a way that they share the same point defined by the first point on the list.
+    - ETriangleSeriesDrawMode.Strip - In this mode, each group of three consecutive points in the list defines a triangle. The triangles are connected, every point is connected to the last two points.
+- **fill** The fill color of the triangle.
+- **dataSeries** The data series containing the X, and Y values to plot.
+- **isVisible** Determines whether the series is visible on the chart.
+- **polygonVertices** Sets the number of points per polygon. Applies only for drawMode ETriangleSeriesDrawMode.Polygon
+
 **ETriangleSeriesDrawMode.Strip** is a rendering mode used with the TriangleSeries in SciChart.js, which is a high-performance JavaScript charting library for scientific and financial applications.
 
-**How ETriangleSeriesDrawMode.Strip Works**
+## Polygon and Strip mode explained by using the same set of data
 
-When you use the Strip mode, the series connects a sequence of points as a continuous "triangle strip." In computer graphics, a triangle strip is an efficient way to render connected triangles by sharing vertices between adjacent triangles. This approach reduces the amount of data needed and improves rendering performance.
+Polygon and Strip modes are explained by using the same set of four coordinates.
 
-- Vertex Connection: In Strip mode, after the first triangle is defined by three points (A, B, C), each subsequent point (D, E, ...) forms a new triangle by connecting to the previous two points. For example, the second triangle uses points (B, C, D), the third triangle uses (C, D, E), and so on.
+```
+const coordinates = [
+ [0, 0],
+ [0, 200],
+ [200, 0],
+ [200, 200]
+];
+```
 
-- Rendering Efficiency: This mode is particularly efficient for rendering surfaces or filled areas where the triangles share edges, such as mesh plots or terrain surfaces.
+Here is the result using Polygon mode. Each group of two consecutive points and the first one in the list defines a triangle.
+Out of these four points from this data set we have two triangles [[0, 0],[0, 200],[200, 0]] and [[0, 0],[200, 0], [200, 200]]
 
-- Visual Appearance: The result is a smooth, connected strip of triangles, which can be used to represent surfaces or bands in 2D or 3D charts.
+![TriangleSeriesPolygon](images/TriangleSeriesPolygon.png)
 
-**Typical Usage**
+Here is the result using Strip mode mode. Each group of three consecutive points in the list defines a triangle.
+Out of these four points from this data set we also have two triangles [[0, 0],[0, 200],[200, 0]] and [[0, 200],[200, 0], [200, 200]]
 
-- Surface Plots: Triangle strips are commonly used in surface or mesh plots where you want to efficiently display a grid or a band of connected triangles.
+![TriangleSeriesStrip](images/TriangleSeriesStrip.png)
 
-- Filled Areas: Useful for visualizing filled areas between lines or curves, where performance and smooth appearance are important.
-
-**Example (Generalized)**
