@@ -7,12 +7,19 @@ import {
     deleteSafe,
     EAutoRange,
     EAxisAlignment,
+    EColumnMode,
+    EColumnYMode,
     ECoordinateMode,
+    EDataPointWidthMode,
     EHorizontalAnchorPoint,
+    ENumericFormat,
+    EResamplingMode,
     EVerticalAnchorPoint,
     EXyDirection,
     FastCandlestickRenderableSeries,
     FastLineRenderableSeries,
+    FastRectangleRenderableSeries,
+    formatNumber,
     hitTestHelpers,
     HitTestInfo,
     IChartModifierBaseOptions,
@@ -24,11 +31,14 @@ import {
     NumericAxis,
     OhlcDataSeries,
     Point,
+    RectangleDataLabelState,
+    RectangleSeriesDataLabelProvider,
     SciChartSurface,
     SweepAnimation,
     TextAnnotation,
     translateFromCanvasToSeriesViewRect,
     XyDataSeries,
+    XyxDataSeries,
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
@@ -38,79 +48,79 @@ import { appTheme } from "../../../theme";
 const EventXStep = 6;
 
 // A custom modifier that allows selection and editing of candles.
-class CandleDragModifier extends CustomChartModifier2D {
-    private series: BaseOhlcRenderableSeries;
-    private dataSeries: OhlcDataSeries;
-    private annotation: LineAnnotation;
-    private selectedIndex: number = -1;
+// class CandleDragModifier extends CustomChartModifier2D {
+//     private series: BaseOhlcRenderableSeries;
+//     private dataSeries: OhlcDataSeries;
+//     private annotation: LineAnnotation;
+//     private selectedIndex: number = -1;
 
-    public constructor(series: BaseOhlcRenderableSeries, options?: IChartModifierBaseOptions) {
-        super(options);
-        this.series = series;
-        this.dataSeries = series.dataSeries as OhlcDataSeries;
-    }
+//     public constructor(series: BaseOhlcRenderableSeries, options?: IChartModifierBaseOptions) {
+//         super(options);
+//         this.series = series;
+//         this.dataSeries = series.dataSeries as OhlcDataSeries;
+//     }
 
-    public override onAttach(): void {
-        super.onAttach();
-        // Create an annotation where only the selection box will be visible
-        this.annotation = new LineAnnotation({
-            xAxisId: this.series.xAxisId,
-            yAxisId: this.series.yAxisId,
-            strokeThickness: 0,
-            stroke: "transparent",
-            selectionBoxStroke: "#88888888",
-            isEditable: true,
-            resizeDirections: EXyDirection.YDirection,
-        });
-        // Update the selected data point when the annotation is dragged
-        this.annotation.dragDelta.subscribe((data) => {
-            if (this.selectedIndex >= 0) {
-                const x = this.dataSeries.getNativeXValues().get(this.selectedIndex);
-                const newX = x + Math.floor((this.annotation.x1 - x + EventXStep / 2) / EventXStep) * EventXStep;
-                // Do not allow close to be less than open as this breaks our custom hitTest
-                this.dataSeries.updateXohlc(
-                    this.selectedIndex,
-                    newX,
-                    this.annotation.y1,
-                    Math.max(this.annotation.y1 + 5, this.annotation.y2),
-                    this.annotation.y1,
-                    Math.max(this.annotation.y1 + 5, this.annotation.y2),
-                    this.dataSeries.getMetadataAt(this.selectedIndex)
-                );
-            }
-        });
-        // Manually set the selected status of the point using metadata.  This will drive the DataPointSelectionPaletteProvider
-        this.annotation.selectedChanged.subscribe((data) => {
-            this.dataSeries.getMetadataAt(this.selectedIndex).isSelected = data;
-        });
-        this.parentSurface.modifierAnnotations.add(this.annotation);
-    }
+//     public override onAttach(): void {
+//         super.onAttach();
+//         // Create an annotation where only the selection box will be visible
+//         this.annotation = new LineAnnotation({
+//             xAxisId: this.series.xAxisId,
+//             yAxisId: this.series.yAxisId,
+//             strokeThickness: 0,
+//             stroke: "transparent",
+//             selectionBoxStroke: "#88888888",
+//             isEditable: true,
+//             resizeDirections: EXyDirection.YDirection,
+//         });
+//         // Update the selected data point when the annotation is dragged
+//         this.annotation.dragDelta.subscribe((data) => {
+//             if (this.selectedIndex >= 0) {
+//                 const x = this.dataSeries.getNativeXValues().get(this.selectedIndex);
+//                 const newX = x + Math.floor((this.annotation.x1 - x + EventXStep / 2) / EventXStep) * EventXStep;
+//                 // Do not allow close to be less than open as this breaks our custom hitTest
+//                 this.dataSeries.updateXohlc(
+//                     this.selectedIndex,
+//                     newX,
+//                     this.annotation.y1,
+//                     Math.max(this.annotation.y1 + 5, this.annotation.y2),
+//                     this.annotation.y1,
+//                     Math.max(this.annotation.y1 + 5, this.annotation.y2),
+//                     this.dataSeries.getMetadataAt(this.selectedIndex)
+//                 );
+//             }
+//         });
+//         // Manually set the selected status of the point using metadata.  This will drive the DataPointSelectionPaletteProvider
+//         this.annotation.selectedChanged.subscribe((data) => {
+//             this.dataSeries.getMetadataAt(this.selectedIndex).isSelected = data;
+//         });
+//         this.parentSurface.modifierAnnotations.add(this.annotation);
+//     }
 
-    public override onDetach(): void {
-        this.parentSurface.modifierAnnotations.remove(this.annotation);
-        this.annotation = deleteSafe(this.annotation);
-    }
+//     public override onDetach(): void {
+//         this.parentSurface.modifierAnnotations.remove(this.annotation);
+//         this.annotation = deleteSafe(this.annotation);
+//     }
 
-    public override modifierMouseUp(args: ModifierMouseArgs): void {
-        const point = args.mousePoint;
-        const hitTestInfo = this.series.hitTestProvider.hitTest(point.x, point.y, 0);
-        if (hitTestInfo.isHit) {
-            if (this.selectedIndex >= 0 && this.selectedIndex !== hitTestInfo.dataSeriesIndex) {
-                this.dataSeries.getMetadataAt(this.selectedIndex).isSelected = false;
-            }
-            // Place the annotation over the selected box
-            this.selectedIndex = hitTestInfo.dataSeriesIndex;
-            this.annotation.x1 = hitTestInfo.xValue;
-            this.annotation.x2 = hitTestInfo.xValue;
-            this.annotation.y1 = hitTestInfo.openValue;
-            this.annotation.y2 = hitTestInfo.closeValue;
-            // Make the annotation selected.  Both these lines are required.
-            this.annotation.isSelected = true;
-            this.dataSeries.getMetadataAt(this.selectedIndex).isSelected = true;
-            this.parentSurface.adornerLayer.selectedAnnotation = this.annotation;
-        }
-    }
-}
+//     public override modifierMouseUp(args: ModifierMouseArgs): void {
+//         const point = args.mousePoint;
+//         const hitTestInfo = this.series.hitTestProvider.hitTest(point.x, point.y, 0);
+//         if (hitTestInfo.isHit) {
+//             if (this.selectedIndex >= 0 && this.selectedIndex !== hitTestInfo.dataSeriesIndex) {
+//                 this.dataSeries.getMetadataAt(this.selectedIndex).isSelected = false;
+//             }
+//             // Place the annotation over the selected box
+//             this.selectedIndex = hitTestInfo.dataSeriesIndex;
+//             this.annotation.x1 = hitTestInfo.xValue;
+//             this.annotation.x2 = hitTestInfo.xValue;
+//             this.annotation.y1 = hitTestInfo.openValue;
+//             this.annotation.y2 = hitTestInfo.closeValue;
+//             // Make the annotation selected.  Both these lines are required.
+//             this.annotation.isSelected = true;
+//             this.dataSeries.getMetadataAt(this.selectedIndex).isSelected = true;
+//             this.parentSurface.adornerLayer.selectedAnnotation = this.annotation;
+//         }
+//     }
+// }
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
@@ -142,28 +152,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
-    // Hidden axes for event series
-    const eventXAxis = new NumericAxis(wasmContext, {
-        id: "EventX",
-        visibleRange: new NumberRange(0, 100),
-        autoRange: EAutoRange.Never,
-        axisAlignment: EAxisAlignment.Left,
-        isVisible: false,
-        zoomExtentsToInitialRange: true,
-        flippedCoordinates: true,
-    });
-    sciChartSurface.xAxes.add(eventXAxis);
-    const eventYAxis = new NumericAxis(wasmContext, {
-        id: "EventY",
-        axisAlignment: EAxisAlignment.Bottom,
-        isVisible: false,
-        flippedCoordinates: true,
-    });
-    // Sync the event y axis to the main x axis
-    xAxis.visibleRangeChanged.subscribe((data) => (eventYAxis.visibleRange = data.visibleRange));
-    sciChartSurface.yAxes.add(eventYAxis);
+    const eventDataSeries = new XyxDataSeries(wasmContext);
 
-    const eventDataSeries = new OhlcDataSeries(wasmContext);
     // Create event data.  Prevent overlap of events
     const rows = new Map<number, number>();
     const EVENTCOUNT = 30;
@@ -182,89 +172,151 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             }
             rows.set(row, end);
         }
-        eventDataSeries.append(row, start, end, start, end, { isSelected: false });
+        // eventDataSeries.append(  start,row, end,{ isSelected: false });
+
+        eventDataSeries.append(start, row, end, { isSelected: false });
+
+        console.log(start, row, end, { isSelected: false });
     }
 
-    // FastCandlestickRenderableSeries does not have a DataLabelProvider by default
-    const dataLabelProvider = new DataLabelProvider({ style: { fontFamily: "Arial", fontSize: 14 }, color: "white" });
-    dataLabelProvider.getPosition = (state, textBounds) => {
-        const xVal = (state.renderPassData.pointSeries as IOhlcPointSeries).openValues.get(state.index);
-        const xCoord = state.renderPassData.yCoordinateCalculator.getCoordinate(xVal);
-        const yCoord = state.yCoord() + textBounds.m_fHeight / 2;
-        return {
-            position: new Point(xCoord, yCoord),
-            rotationCenter: new Point(xCoord, yCoord),
-            rotationAngle: 0,
-        };
-    };
-    dataLabelProvider.getText = (state) => {
-        const open = (state.renderPassData.pointSeries as IOhlcPointSeries).openValues.get(state.index);
-        const close = (state.renderPassData.pointSeries as IOhlcPointSeries).closeValues.get(state.index);
-        return (close - open).toFixed(1);
-    };
+    // const dataLabelProvider = new DataLabelProvider({ style: { fontSize: 12 }, color: "white" });
 
-    // Create the event series
-    const eventSeries = new FastCandlestickRenderableSeries(wasmContext, {
-        dataSeries: eventDataSeries,
-        dataPointWidth: 30, // Normally this would be invalid but it is passed to the override below
-        xAxisId: "EventX",
-        yAxisId: "EventY",
-        dataLabelProvider,
-        paletteProvider: new DataPointSelectionPaletteProvider({ fill: "ff0000cc" }),
-    });
-    // use fixed pixel width
-    eventSeries.getDataPointWidth = (coordCalc, widthFraction) => widthFraction;
-    // custom hitTest that works with multiple candles on the same x value
-    eventSeries.hitTestProvider.hitTest = (x, y, hitTestRadius) => {
-        const hitTestPoint = translateFromCanvasToSeriesViewRect(new Point(x, y), sciChartSurface.seriesViewRect);
-        if (!hitTestPoint) {
-            return HitTestInfo.empty();
-        }
-        let nearestIndex = -1;
-        const halfWidth = eventSeries.dataPointWidth / 2; // Only works here because we are using fixed width
-        const xHitCoord = hitTestPoint.y; // Because vertical chart
-        const yHitCoord = hitTestPoint.x;
-        const xValues = eventDataSeries.getNativeXValues();
-        const openValues = eventDataSeries.getNativeOpenValues();
-        const closeValues = eventDataSeries.getNativeCloseValues();
-        const xCoordinateCalculator = eventXAxis.getCurrentCoordinateCalculator();
-        const yCoordinateCalculator = eventYAxis.getCurrentCoordinateCalculator();
-        for (let i = 0; i < eventDataSeries.count(); i++) {
-            const xCoord = xCoordinateCalculator.getCoordinate(xValues.get(i));
-            const dx = Math.abs(xCoord - xHitCoord);
-            // Half data point width
-            if (dx <= halfWidth) {
-                const openCoord = yCoordinateCalculator.getCoordinate(openValues.get(i));
-                const closeCoord = yCoordinateCalculator.getCoordinate(closeValues.get(i));
-                if (openCoord <= yHitCoord && yHitCoord <= closeCoord) {
-                    nearestIndex = i;
+    // dataLabelProvider.getText = (state) => {
+    //     // const open = (state.renderPassData.pointSeries as IOhlcPointSeries).openValues.get(state.index);
+    //     // const close = (state.renderPassData.pointSeries as IOhlcPointSeries).closeValues.get(state.index);
+    //     // return (close - open).toFixed(1);
+
+    //     const i = state.index;
+
+    //     console.log(state.renderPassData.pointSeries)
+    //     console.log(state.renderPassData)
+
+    //     return `${i}`;
+    // };
+
+    class MyRectangleSeriesDataLabelProvider extends RectangleSeriesDataLabelProvider {
+        public getText(state: RectangleDataLabelState): string {
+            const usefinal = !this.updateTextInAnimation && state.parentSeries.isRunningAnimation;
+            const yval = usefinal ? state.yValAfterAnimation() : state.yVal();
+            if (isNaN(yval)) {
+                return undefined;
+            } else {
+                const diff = Math.abs(state.x1Val() - state.xVal());
+                if (this.engineeringPrefix) {
+                    return formatNumber(diff, this.numericFormat, this.precision, this.engineeringPrefixProperty);
+                } else {
+                    return formatNumber(diff, this.numericFormat ?? ENumericFormat.Decimal, this.precision);
                 }
             }
         }
-        if (nearestIndex > -1) {
-            const hitTestInfo = hitTestHelpers.createHitTestInfo(
-                eventSeries,
-                xCoordinateCalculator,
-                yCoordinateCalculator,
-                true,
-                eventDataSeries,
-                xValues,
-                closeValues,
-                xHitCoord,
-                yHitCoord,
-                nearestIndex,
-                hitTestRadius
-            );
-            hitTestInfo.isHit = true;
-            hitTestInfo.openValue = openValues.get(nearestIndex);
-            hitTestInfo.highValue = eventDataSeries.getNativeHighValues().get(nearestIndex);
-            hitTestInfo.lowValue = eventDataSeries.getNativeLowValues().get(nearestIndex);
-            hitTestInfo.closeValue = closeValues.get(nearestIndex);
-            return hitTestInfo;
-        } else {
-            return HitTestInfo.empty();
-        }
-    };
+    }
+
+    const eventSeries = new FastRectangleRenderableSeries(wasmContext, {
+        dataSeries: eventDataSeries,
+        columnXMode: EColumnMode.StartEnd,
+        columnYMode: EColumnYMode.CenterHeight,
+        defaultY1: 6,
+        // dataPointWidthMode: EDataPointWidthMode.Absolute,
+        // dataPointWidth: 30,
+        stroke: "red",
+        strokeThickness: 1,
+        fill: "ff0000cc",
+        opacity: 0.5,
+        // xAxisId: "EventX",
+        // yAxisId: "EventY",
+        // defaultY1,
+        // resamplingMode: EResamplingMode.Auto,
+        // topCornerRadius: 20,
+        // bottomCornerRadius: 10,
+        // customTextureOptions: new BrickCustomTextureOptions({ stroke: "black" }),
+
+        // dataPointWidth()
+        dataLabelProvider: new MyRectangleSeriesDataLabelProvider({
+            style: {
+                fontSize: 12,
+            },
+            color: "white",
+        }),
+        // dataLabelProvider,
+    });
+
+    // (eventSeries.dataLabelProvider as DataLabelProvider).getText = (state) => {
+    //     const i = state.index;
+
+    //     console.log(state);
+
+    //     // if (state?.lastLabel?.rect) {
+
+    //     //     // return `${state.dataPointWidth(i)}`;
+    //     // }
+
+    //     // if (state.dataLabels.length === 29) {
+    //     //     console.log(state.xVal(), state.dataLabels[i], i);
+    //     // }
+
+    //     //state.dataLabels[i].dataX
+    //     return `${i}`;
+    // };
+
+    // class CustomDataLabelProvider extends DataLabelProvider {
+    //     public override getText(state: any): string {
+    //         return "11";
+    //     }
+    // }
+
+    // eventSeries.dataLabelProvider = new CustomDataLabelProvider();
+
+    // custom hitTest that works with multiple candles on the same x value
+    // eventSeries.hitTestProvider.hitTest = (x, y, hitTestRadius) => {
+    //     const hitTestPoint = translateFromCanvasToSeriesViewRect(new Point(x, y), sciChartSurface.seriesViewRect);
+    //     if (!hitTestPoint) {
+    //         return HitTestInfo.empty();
+    //     }
+    //     let nearestIndex = -1;
+    //     const halfWidth = eventSeries.dataPointWidth / 2; // Only works here because we are using fixed width
+    //     const xHitCoord = hitTestPoint.y; // Because vertical chart
+    //     const yHitCoord = hitTestPoint.x;
+    //     const xValues = eventDataSeries.getNativeXValues();
+    //     const openValues = eventDataSeries.getNativeXValues();
+    //     const closeValues = eventDataSeries.getNativeXValues();
+    //     const xCoordinateCalculator = eventXAxis.getCurrentCoordinateCalculator();
+    //     const yCoordinateCalculator = eventYAxis.getCurrentCoordinateCalculator();
+    //     for (let i = 0; i < eventDataSeries.count(); i++) {
+    //         const xCoord = xCoordinateCalculator.getCoordinate(xValues.get(i));
+    //         const dx = Math.abs(xCoord - xHitCoord);
+    //         // Half data point width
+    //         if (dx <= halfWidth) {
+    //             const openCoord = yCoordinateCalculator.getCoordinate(openValues.get(i));
+    //             const closeCoord = yCoordinateCalculator.getCoordinate(closeValues.get(i));
+    //             if (openCoord <= yHitCoord && yHitCoord <= closeCoord) {
+    //                 nearestIndex = i;
+    //             }
+    //         }
+    //     }
+    //     if (nearestIndex > -1) {
+    //         const hitTestInfo = hitTestHelpers.createHitTestInfo(
+    //             eventSeries,
+    //             xCoordinateCalculator,
+    //             yCoordinateCalculator,
+    //             true,
+    //             eventDataSeries,
+    //             xValues,
+    //             closeValues,
+    //             xHitCoord,
+    //             yHitCoord,
+    //             nearestIndex,
+    //             hitTestRadius
+    //         );
+    //         hitTestInfo.isHit = true;
+    //         hitTestInfo.openValue = openValues.get(nearestIndex);
+    //         hitTestInfo.highValue = eventDataSeries.getNativeXValues().get(nearestIndex);
+    //         hitTestInfo.lowValue = eventDataSeries.getNativeXValues().get(nearestIndex);
+    //         hitTestInfo.closeValue = closeValues.get(nearestIndex);
+    //         return hitTestInfo;
+    //     } else {
+    //         return HitTestInfo.empty();
+    //     }
+    // };
 
     sciChartSurface.renderableSeries.add(eventSeries);
 
@@ -281,22 +333,22 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         new MouseWheelZoomModifier({ excludedYAxisIds: ["EventY"], excludedXAxisIds: ["EventX"] }),
         new ZoomPanModifier({ excludedXAxisIds: ["EventX"] }),
-        new CandleDragModifier(eventSeries)
+        // new CandleDragModifier(eventSeries)
     );
 
     // Add instructions
-    sciChartSurface.annotations.add(
-        new TextAnnotation({
-            x1: 0.01,
-            y1: 0.03,
-            xCoordinateMode: ECoordinateMode.Relative,
-            yCoordinateMode: ECoordinateMode.Relative,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-            verticalAnchorPoint: EVerticalAnchorPoint.Top,
-            text: "The boxes are rendered with a fast candlestick series, but can be selected and dragged like an annotation.",
-            textColor: appTheme.ForegroundColor + "77",
-        })
-    );
+    // sciChartSurface.annotations.add(
+    //     new TextAnnotation({
+    //         x1: 0.01,
+    //         y1: 0.03,
+    //         xCoordinateMode: ECoordinateMode.Relative,
+    //         yCoordinateMode: ECoordinateMode.Relative,
+    //         horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+    //         verticalAnchorPoint: EVerticalAnchorPoint.Top,
+    //         text: "The boxes are rendered with a fast candlestick series, but can be selected and dragged like an annotation.",
+    //         textColor: appTheme.ForegroundColor + "77",
+    //     })
+    // );
 
     xAxis.visibleRange = xAxis.getMaximumRange();
 
