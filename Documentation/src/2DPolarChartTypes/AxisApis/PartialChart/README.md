@@ -40,3 +40,16 @@ const radialYAxis = new PolarNumericAxis(wasmContext, {
 ```
 
 Here you will find the full editable example.
+
+## Flipped Angular axis
+
+If there is need for angular axis to go clock-wise use `flippedCoordinates`
+
+```typescript
+const angularXAxis = new PolarNumericAxis(wasmContext, {
+    ...
+    flippedCoordinates: true
+});
+```
+
+The way it works it just flips the angular axis coordinates, therefore `startAngle` property works the same way, it calculates the start angle from not-flipped angular axis.
