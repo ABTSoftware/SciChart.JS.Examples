@@ -63,7 +63,9 @@ async function drawHtmlAnnotationsExample(divElementId) {
             color: "white",
             background: "linear-gradient(135deg, #1f1c2c, #928dab)",
             border: "1px dotted black",
-            borderRadius: "15px"
+            borderRadius: "15px",
+            textOverflow: "ellipsis",
+            overflow: "hidden"
         }
     });
 
