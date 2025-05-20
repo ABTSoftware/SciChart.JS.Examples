@@ -1,6 +1,7 @@
 import {
     AUTO_COLOR,
     BaseOhlcRenderableSeries,
+    BoxAnnotation,
     CustomChartModifier2D,
     DataLabelProvider,
     DataPointSelectionPaletteProvider,
@@ -45,82 +46,87 @@ import {
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import { appTheme } from "../../../theme";
 
-const EventXStep = 6;
+const defaultHeight = 6;
+class RectangleDragModifier extends CustomChartModifier2D {
+    private series: FastRectangleRenderableSeries;
+    private dataSeries: XyxDataSeries;
+    private annotation: BoxAnnotation;
+    private selectedIndex: number = -1;
 
-// A custom modifier that allows selection and editing of candles.
-// class CandleDragModifier extends CustomChartModifier2D {
-//     private series: BaseOhlcRenderableSeries;
-//     private dataSeries: OhlcDataSeries;
-//     private annotation: LineAnnotation;
-//     private selectedIndex: number = -1;
+    public constructor(series: FastRectangleRenderableSeries, options?: IChartModifierBaseOptions) {
+        super(options);
+        this.series = series;
+        this.dataSeries = series.dataSeries as XyxDataSeries;
+    }
 
-//     public constructor(series: BaseOhlcRenderableSeries, options?: IChartModifierBaseOptions) {
-//         super(options);
-//         this.series = series;
-//         this.dataSeries = series.dataSeries as OhlcDataSeries;
-//     }
+    public override onAttach(): void {
+        super.onAttach();
+        // Create an annotation where only the selection box will be visible
 
-//     public override onAttach(): void {
-//         super.onAttach();
-//         // Create an annotation where only the selection box will be visible
-//         this.annotation = new LineAnnotation({
-//             xAxisId: this.series.xAxisId,
-//             yAxisId: this.series.yAxisId,
-//             strokeThickness: 0,
-//             stroke: "transparent",
-//             selectionBoxStroke: "#88888888",
-//             isEditable: true,
-//             resizeDirections: EXyDirection.YDirection,
-//         });
-//         // Update the selected data point when the annotation is dragged
-//         this.annotation.dragDelta.subscribe((data) => {
-//             if (this.selectedIndex >= 0) {
-//                 const x = this.dataSeries.getNativeXValues().get(this.selectedIndex);
-//                 const newX = x + Math.floor((this.annotation.x1 - x + EventXStep / 2) / EventXStep) * EventXStep;
-//                 // Do not allow close to be less than open as this breaks our custom hitTest
-//                 this.dataSeries.updateXohlc(
-//                     this.selectedIndex,
-//                     newX,
-//                     this.annotation.y1,
-//                     Math.max(this.annotation.y1 + 5, this.annotation.y2),
-//                     this.annotation.y1,
-//                     Math.max(this.annotation.y1 + 5, this.annotation.y2),
-//                     this.dataSeries.getMetadataAt(this.selectedIndex)
-//                 );
-//             }
-//         });
-//         // Manually set the selected status of the point using metadata.  This will drive the DataPointSelectionPaletteProvider
-//         this.annotation.selectedChanged.subscribe((data) => {
-//             this.dataSeries.getMetadataAt(this.selectedIndex).isSelected = data;
-//         });
-//         this.parentSurface.modifierAnnotations.add(this.annotation);
-//     }
+        console.log(this.series);
+        this.annotation = new BoxAnnotation({
+            xAxisId: this.series.xAxisId,
+            yAxisId: this.series.yAxisId,
+            strokeThickness: 0,
+            stroke: "transparent",
+            selectionBoxStroke: "#88888888",
+            isEditable: true,
+            resizeDirections: EXyDirection.XDirection,
+        });
 
-//     public override onDetach(): void {
-//         this.parentSurface.modifierAnnotations.remove(this.annotation);
-//         this.annotation = deleteSafe(this.annotation);
-//     }
+        // Update the selected data point when the annotation is dragged
+        this.annotation.dragDelta.subscribe((data) => {
+            if (this.selectedIndex >= 0) {
+                // const y = this.dataSeries.getNativeXValues().get(this.selectedIndex);
+                // const newY =
+                //     y + Math.floor((this.annotation.y1 - y + defaultHeight / 2) / defaultHeight) * defaultHeight;
+                const newX = this.annotation.x1;
+                const tempY = this.annotation.y1;
+                // Do not allow close to be less than open as this breaks our custom hitTest
+                this.dataSeries.update(
+                    this.selectedIndex,
+                    tempY, //y
+                    newX, //x1
 
-//     public override modifierMouseUp(args: ModifierMouseArgs): void {
-//         const point = args.mousePoint;
-//         const hitTestInfo = this.series.hitTestProvider.hitTest(point.x, point.y, 0);
-//         if (hitTestInfo.isHit) {
-//             if (this.selectedIndex >= 0 && this.selectedIndex !== hitTestInfo.dataSeriesIndex) {
-//                 this.dataSeries.getMetadataAt(this.selectedIndex).isSelected = false;
-//             }
-//             // Place the annotation over the selected box
-//             this.selectedIndex = hitTestInfo.dataSeriesIndex;
-//             this.annotation.x1 = hitTestInfo.xValue;
-//             this.annotation.x2 = hitTestInfo.xValue;
-//             this.annotation.y1 = hitTestInfo.openValue;
-//             this.annotation.y2 = hitTestInfo.closeValue;
-//             // Make the annotation selected.  Both these lines are required.
-//             this.annotation.isSelected = true;
-//             this.dataSeries.getMetadataAt(this.selectedIndex).isSelected = true;
-//             this.parentSurface.adornerLayer.selectedAnnotation = this.annotation;
-//         }
-//     }
-// }
+                    this.dataSeries.getMetadataAt(this.selectedIndex)
+                );
+            }
+        });
+
+        // Manually set the selected status of the point using metadata.  This will drive the DataPointSelectionPaletteProvider
+        this.annotation.selectedChanged.subscribe((data) => {
+            this.dataSeries.getMetadataAt(this.selectedIndex).isSelected = data;
+        });
+        this.parentSurface.modifierAnnotations.add(this.annotation);
+    }
+
+    public override onDetach(): void {
+        this.parentSurface.modifierAnnotations.remove(this.annotation);
+        this.annotation = deleteSafe(this.annotation);
+    }
+
+    public override modifierMouseUp(args: ModifierMouseArgs): void {
+        const point = args.mousePoint;
+        const hitTestInfo = this.series.hitTestProvider.hitTest(point.x, point.y, 0);
+        if (hitTestInfo.isHit) {
+            console.log("hit", hitTestInfo);
+
+            if (this.selectedIndex >= 0 && this.selectedIndex !== hitTestInfo.dataSeriesIndex) {
+                this.dataSeries.getMetadataAt(this.selectedIndex).isSelected = false;
+            }
+            // Place the annotation over the selected box
+            this.selectedIndex = hitTestInfo.dataSeriesIndex;
+            this.annotation.x1 = hitTestInfo.xValue;
+            this.annotation.x2 = hitTestInfo.xValue;
+            this.annotation.y1 = hitTestInfo.yValue;
+            this.annotation.y2 = hitTestInfo.yValue;
+            // Make the annotation selected.  Both these lines are required.
+            this.annotation.isSelected = true;
+            this.dataSeries.getMetadataAt(this.selectedIndex).isSelected = true;
+            this.parentSurface.adornerLayer.selectedAnnotation = this.annotation;
+        }
+    }
+}
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
@@ -167,7 +173,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         } else {
             let last = rows.get(row);
             while (last > start) {
-                row -= EventXStep;
+                row -= defaultHeight;
                 last = rows.get(row) ?? 0;
             }
             rows.set(row, end);
@@ -176,23 +182,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         eventDataSeries.append(start, row, end, { isSelected: false });
 
-        console.log(start, row, end, { isSelected: false });
+        // console.log(start, row, end, { isSelected: false });
     }
-
-    // const dataLabelProvider = new DataLabelProvider({ style: { fontSize: 12 }, color: "white" });
-
-    // dataLabelProvider.getText = (state) => {
-    //     // const open = (state.renderPassData.pointSeries as IOhlcPointSeries).openValues.get(state.index);
-    //     // const close = (state.renderPassData.pointSeries as IOhlcPointSeries).closeValues.get(state.index);
-    //     // return (close - open).toFixed(1);
-
-    //     const i = state.index;
-
-    //     console.log(state.renderPassData.pointSeries)
-    //     console.log(state.renderPassData)
-
-    //     return `${i}`;
-    // };
 
     class MyRectangleSeriesDataLabelProvider extends RectangleSeriesDataLabelProvider {
         public getText(state: RectangleDataLabelState): string {
@@ -215,13 +206,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         dataSeries: eventDataSeries,
         columnXMode: EColumnMode.StartEnd,
         columnYMode: EColumnYMode.CenterHeight,
-        defaultY1: 6,
+        defaultY1: defaultHeight,
         // dataPointWidthMode: EDataPointWidthMode.Absolute,
         // dataPointWidth: 30,
-        stroke: "red",
+        stroke: "ff0000cc",
         strokeThickness: 1,
         fill: "ff0000cc",
-        opacity: 0.5,
+        opacity: 0.8,
         // xAxisId: "EventX",
         // yAxisId: "EventY",
         // defaultY1,
@@ -240,32 +231,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         // dataLabelProvider,
     });
 
-    // (eventSeries.dataLabelProvider as DataLabelProvider).getText = (state) => {
-    //     const i = state.index;
-
-    //     console.log(state);
-
-    //     // if (state?.lastLabel?.rect) {
-
-    //     //     // return `${state.dataPointWidth(i)}`;
-    //     // }
-
-    //     // if (state.dataLabels.length === 29) {
-    //     //     console.log(state.xVal(), state.dataLabels[i], i);
-    //     // }
-
-    //     //state.dataLabels[i].dataX
-    //     return `${i}`;
-    // };
-
-    // class CustomDataLabelProvider extends DataLabelProvider {
-    //     public override getText(state: any): string {
-    //         return "11";
-    //     }
-    // }
-
-    // eventSeries.dataLabelProvider = new CustomDataLabelProvider();
-
     // custom hitTest that works with multiple candles on the same x value
     // eventSeries.hitTestProvider.hitTest = (x, y, hitTestRadius) => {
     //     const hitTestPoint = translateFromCanvasToSeriesViewRect(new Point(x, y), sciChartSurface.seriesViewRect);
@@ -273,21 +238,30 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     //         return HitTestInfo.empty();
     //     }
     //     let nearestIndex = -1;
-    //     const halfWidth = eventSeries.dataPointWidth / 2; // Only works here because we are using fixed width
-    //     const xHitCoord = hitTestPoint.y; // Because vertical chart
-    //     const yHitCoord = hitTestPoint.x;
+    //     const halfHeight = eventSeries.defaultY1 / 2; // Only works here because we are using fixed width
+
+    //     const xHitCoord = hitTestPoint.x;
+    //     const yHitCoord = hitTestPoint.y;
+
     //     const xValues = eventDataSeries.getNativeXValues();
-    //     const openValues = eventDataSeries.getNativeXValues();
-    //     const closeValues = eventDataSeries.getNativeXValues();
-    //     const xCoordinateCalculator = eventXAxis.getCurrentCoordinateCalculator();
-    //     const yCoordinateCalculator = eventYAxis.getCurrentCoordinateCalculator();
+    //     const yValues = eventDataSeries.getNativeYValues();
+    //     const x1Values = eventDataSeries.getNativeXValues(); // how to get x1Values here ??
+
+    //     console.log({xValues})
+
+    //     // const openValues = eventDataSeries.getNativeXValues();
+    //     // const closeValues = eventDataSeries.getNativeXValues();
+
+    //     const xCoordinateCalculator = xAxis.getCurrentCoordinateCalculator();
+    //     const yCoordinateCalculator = yAxis.getCurrentCoordinateCalculator();
+
     //     for (let i = 0; i < eventDataSeries.count(); i++) {
-    //         const xCoord = xCoordinateCalculator.getCoordinate(xValues.get(i));
-    //         const dx = Math.abs(xCoord - xHitCoord);
+    //         const yCoord = yCoordinateCalculator.getCoordinate(yValues.get(i));
+    //         const dx = Math.abs(yCoord - yHitCoord);
     //         // Half data point width
-    //         if (dx <= halfWidth) {
-    //             const openCoord = yCoordinateCalculator.getCoordinate(openValues.get(i));
-    //             const closeCoord = yCoordinateCalculator.getCoordinate(closeValues.get(i));
+    //         if (dx <= halfHeight) {
+    //             const openCoord = yCoordinateCalculator.getCoordinate(xValues.get(i));
+    //             const closeCoord = yCoordinateCalculator.getCoordinate(x1Values.get(i));
     //             if (openCoord <= yHitCoord && yHitCoord <= closeCoord) {
     //                 nearestIndex = i;
     //             }
@@ -301,17 +275,20 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     //             true,
     //             eventDataSeries,
     //             xValues,
-    //             closeValues,
+    //             x1Values,
     //             xHitCoord,
     //             yHitCoord,
     //             nearestIndex,
     //             hitTestRadius
     //         );
     //         hitTestInfo.isHit = true;
-    //         hitTestInfo.openValue = openValues.get(nearestIndex);
-    //         hitTestInfo.highValue = eventDataSeries.getNativeXValues().get(nearestIndex);
-    //         hitTestInfo.lowValue = eventDataSeries.getNativeXValues().get(nearestIndex);
-    //         hitTestInfo.closeValue = closeValues.get(nearestIndex);
+
+    //         hitTestInfo.xValue = xValues.get(nearestIndex);
+    //         hitTestInfo.yValue = yValues.get(nearestIndex);
+
+
+    //         // hitTestInfo.highValue = eventDataSeries.getNativeXValues().get(nearestIndex);
+    //         // hitTestInfo.lowValue = eventDataSeries.getNativeXValues().get(nearestIndex);
     //         return hitTestInfo;
     //     } else {
     //         return HitTestInfo.empty();
@@ -333,7 +310,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         new MouseWheelZoomModifier({ excludedYAxisIds: ["EventY"], excludedXAxisIds: ["EventX"] }),
         new ZoomPanModifier({ excludedXAxisIds: ["EventX"] }),
-        // new CandleDragModifier(eventSeries)
+        new RectangleDragModifier(eventSeries)
     );
 
     // Add instructions
