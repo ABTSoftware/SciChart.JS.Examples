@@ -15,6 +15,7 @@ import {
     EHorizontalAnchorPoint,
     ENumericFormat,
     EResamplingMode,
+    EValueName,
     EVerticalAnchorPoint,
     EXyDirection,
     FastCandlestickRenderableSeries,
@@ -232,68 +233,68 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     // custom hitTest that works with multiple candles on the same x value
-    // eventSeries.hitTestProvider.hitTest = (x, y, hitTestRadius) => {
-    //     const hitTestPoint = translateFromCanvasToSeriesViewRect(new Point(x, y), sciChartSurface.seriesViewRect);
-    //     if (!hitTestPoint) {
-    //         return HitTestInfo.empty();
-    //     }
-    //     let nearestIndex = -1;
-    //     const halfHeight = eventSeries.defaultY1 / 2; // Only works here because we are using fixed width
+    eventSeries.hitTestProvider.hitTest = (x, y, hitTestRadius) => {
+        const hitTestPoint = translateFromCanvasToSeriesViewRect(new Point(x, y), sciChartSurface.seriesViewRect);
+        if (!hitTestPoint) {
+            return HitTestInfo.empty();
+        }
+        let nearestIndex = -1;
+        const halfHeight = eventSeries.defaultY1 / 2; // Only works here because we are using fixed width
 
-    //     const xHitCoord = hitTestPoint.x;
-    //     const yHitCoord = hitTestPoint.y;
+        const xHitCoord = hitTestPoint.x;
+        const yHitCoord = hitTestPoint.y;
 
-    //     const xValues = eventDataSeries.getNativeXValues();
-    //     const yValues = eventDataSeries.getNativeYValues();
-    //     const x1Values = eventDataSeries.getNativeXValues(); // how to get x1Values here ??
+        const xValues = eventDataSeries.getNativeXValues();
+        const yValues = eventDataSeries.getNativeYValues();
+        const x1Values = eventDataSeries.getYValuesByName(EValueName.X1); // how to get x1Values here ??
 
-    //     console.log({xValues})
+        console.log({xValues})
 
-    //     // const openValues = eventDataSeries.getNativeXValues();
-    //     // const closeValues = eventDataSeries.getNativeXValues();
+        // const openValues = eventDataSeries.getNativeXValues();
+        // const closeValues = eventDataSeries.getNativeXValues();
 
-    //     const xCoordinateCalculator = xAxis.getCurrentCoordinateCalculator();
-    //     const yCoordinateCalculator = yAxis.getCurrentCoordinateCalculator();
+        const xCoordinateCalculator = xAxis.getCurrentCoordinateCalculator();
+        const yCoordinateCalculator = yAxis.getCurrentCoordinateCalculator();
 
-    //     for (let i = 0; i < eventDataSeries.count(); i++) {
-    //         const yCoord = yCoordinateCalculator.getCoordinate(yValues.get(i));
-    //         const dx = Math.abs(yCoord - yHitCoord);
-    //         // Half data point width
-    //         if (dx <= halfHeight) {
-    //             const openCoord = yCoordinateCalculator.getCoordinate(xValues.get(i));
-    //             const closeCoord = yCoordinateCalculator.getCoordinate(x1Values.get(i));
-    //             if (openCoord <= yHitCoord && yHitCoord <= closeCoord) {
-    //                 nearestIndex = i;
-    //             }
-    //         }
-    //     }
-    //     if (nearestIndex > -1) {
-    //         const hitTestInfo = hitTestHelpers.createHitTestInfo(
-    //             eventSeries,
-    //             xCoordinateCalculator,
-    //             yCoordinateCalculator,
-    //             true,
-    //             eventDataSeries,
-    //             xValues,
-    //             x1Values,
-    //             xHitCoord,
-    //             yHitCoord,
-    //             nearestIndex,
-    //             hitTestRadius
-    //         );
-    //         hitTestInfo.isHit = true;
+        for (let i = 0; i < eventDataSeries.count(); i++) {
+            const yCoord = yCoordinateCalculator.getCoordinate(yValues.get(i));
+            const dx = Math.abs(yCoord - yHitCoord);
+            // Half data point width
+            if (dx <= halfHeight) {
+                const openCoord = yCoordinateCalculator.getCoordinate(xValues.get(i));
+                const closeCoord = yCoordinateCalculator.getCoordinate(x1Values.get(i));
+                if (openCoord <= yHitCoord && yHitCoord <= closeCoord) {
+                    nearestIndex = i;
+                }
+            }
+        }
+        if (nearestIndex > -1) {
+            const hitTestInfo = hitTestHelpers.createHitTestInfo(
+                eventSeries,
+                xCoordinateCalculator,
+                yCoordinateCalculator,
+                true,
+                eventDataSeries,
+                xValues,
+                x1Values,
+                xHitCoord,
+                yHitCoord,
+                nearestIndex,
+                hitTestRadius
+            );
+            hitTestInfo.isHit = true;
 
-    //         hitTestInfo.xValue = xValues.get(nearestIndex);
-    //         hitTestInfo.yValue = yValues.get(nearestIndex);
+            hitTestInfo.xValue = xValues.get(nearestIndex);
+            hitTestInfo.yValue = yValues.get(nearestIndex);
 
 
-    //         // hitTestInfo.highValue = eventDataSeries.getNativeXValues().get(nearestIndex);
-    //         // hitTestInfo.lowValue = eventDataSeries.getNativeXValues().get(nearestIndex);
-    //         return hitTestInfo;
-    //     } else {
-    //         return HitTestInfo.empty();
-    //     }
-    // };
+            // hitTestInfo.highValue = eventDataSeries.getNativeXValues().get(nearestIndex);
+            // hitTestInfo.lowValue = eventDataSeries.getNativeXValues().get(nearestIndex);
+            return hitTestInfo;
+        } else {
+            return HitTestInfo.empty();
+        }
+    };
 
     sciChartSurface.renderableSeries.add(eventSeries);
 
