@@ -10,9 +10,11 @@ import {
     NumberRange
 } from "scichart";
 
+import "./poly2tri.min.js";
+
 const tasmania = [
-    [146, -42],
-    [147.68925947488418, -40.808258152022674],
+    // [146, -42],
+    // [147.68925947488418, -40.808258152022674],
     [146.3641207216237, -41.13769540788336],
     [145.3979781434948, -40.79254851660594],
     [144.7437545106797, -40.70397511165767],
@@ -30,8 +32,8 @@ const tasmania = [
 ];
 
 const australia = [
-    [135, -25],
-    [126.14871382050114, -32.21596607842059],
+    // [135, -25],
+    // [126.14871382050114, -32.21596607842059],
     [127.1028674663383, -32.28226694105106],
     [129.53579389863972, -31.590422865527465],
     [131.32633060112084, -31.49580331800104],
@@ -225,6 +227,46 @@ const australia = [
     [126.14871382050114, -32.21596607842059]
 ];
 
+function parsePoints(data) {
+    return data.map(d => {
+        return new poly2tri.Point(d[0], d[1]);
+    });
+}
+
+// tasmania
+var tasmaniaPoly2triContour = parsePoints(tasmania);
+
+const tasmaniaPoly2triSwctx = new poly2tri.SweepContext(tasmaniaPoly2triContour);
+
+tasmaniaPoly2triSwctx.triangulate();
+
+var triangles = tasmaniaPoly2triSwctx.getTriangles() || [];
+
+let tasmaniaData = triangles
+    .map(d => {
+        return d.points_.map(p => {
+            return [p.x, p.y];
+        });
+    })
+    .flat();
+
+// australia
+var australiaPoly2triContour = parsePoints(australia);
+
+const australiaPoly2triSwctx = new poly2tri.SweepContext(australiaPoly2triContour);
+
+australiaPoly2triSwctx.triangulate();
+
+var triangles = australiaPoly2triSwctx.getTriangles() || [];
+
+let australiaData = triangles
+    .map(d => {
+        return d.points_.map(p => {
+            return [p.x, p.y];
+        });
+    })
+    .flat();
+
 async function australiaMap(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme()
@@ -235,50 +277,29 @@ async function australiaMap(divElementId) {
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy }));
 
-    // const coordinates = [
-    //     [0, 0],
-    //     [0, 200],
-    //     [200, 0],
-    //     [200, 200]
-    // ];
-
-    // const coordinates = [
-    //     [100, 100],
-    //     [0, 50],
-    //     [50, 0],
-    //     [50, 0],
-    //     [150, 0],
-    //     [200, 50],
-    //     [200, 150],
-    //     [150, 200],
-    //     [50, 200],
-    //     [0, 150],
-    //     [0, 50]
-    // ];
-
     const dataSeriesAustralia = new XyDataSeries(wasmContext, {
-        xValues: australia.map(p => p[0]),
-        yValues: australia.map(p => p[1])
+        xValues: australiaData.map(p => p[0]),
+        yValues: australiaData.map(p => p[1])
     });
 
     const triangleSeriesAustralia = new TriangleRenderableSeries(wasmContext, {
         dataSeries: dataSeriesAustralia,
-        drawMode: ETriangleSeriesDrawMode.Polygon, // triangle connects two last points and the first point
+        drawMode: ETriangleSeriesDrawMode.List, // triangle connects two last points and the first point
         fill: "cornflowerblue",
         opacity: 0.5
     });
 
     const dataSeriesTasmania = new XyDataSeries(wasmContext, {
-        xValues: tasmania.map(p => p[0]),
-        yValues: tasmania.map(p => p[1])
+        xValues: tasmaniaData.map(p => p[0]),
+        yValues: tasmaniaData.map(p => p[1])
     });
 
     const triangleSeriesTasmania = new TriangleRenderableSeries(wasmContext, {
         dataSeries: dataSeriesTasmania,
-        drawMode: ETriangleSeriesDrawMode.Polygon, // triangle connects two last points and the first point
+        drawMode: ETriangleSeriesDrawMode.List, // triangle connects two last points and the first point
         fill: "cornflowerblue",
         polygonVertices: 0, // Sets the number of vertices per polygon. Applies only for drawMode ETriangleSeriesDrawMode.Polygon
-        opacity: 0.5,
+        opacity: 0.5
     });
 
     sciChartSurface.renderableSeries.add(triangleSeriesAustralia);
