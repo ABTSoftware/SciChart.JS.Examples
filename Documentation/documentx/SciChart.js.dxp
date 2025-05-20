@@ -3063,7 +3063,7 @@ Show external placement div</Notes>
         <TocNode Name="" Id="1c13e83a-a693-4031-94a0-df13003d6ee0" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
           <CaptionTemplate m="2016-06-21T08:22:54.2836035Z">API Documentation</CaptionTemplate>
           <ChildNodes>
-            <TocNode Name="" Id="ab66fb7c-54cd-4672-8d5d-6beadf29069e" IconIndex="-1" IsNew="false" Target="https://www.scichart.com/documentation/js/current/typedoc/index.html" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="URL">
+            <TocNode Name="" Id="ab66fb7c-54cd-4672-8d5d-6beadf29069e" IconIndex="-1" IsNew="false" Target="https://www.scichart.com/documentation/js/v4/typedoc/index.html" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="URL">
               <CaptionTemplate m="2020-10-09T14:02:42.9136848Z">TypeDoc API Documentation</CaptionTemplate>
               <ChildNodes />
             </TocNode>
