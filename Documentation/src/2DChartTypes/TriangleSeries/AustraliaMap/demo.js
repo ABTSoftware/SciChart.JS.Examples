@@ -233,16 +233,16 @@ function parsePoints(data) {
     });
 }
 
-// tasmania
-var tasmaniaPoly2triContour = parsePoints(tasmania);
+// australia
+let australiaPoly2triContour = parsePoints(australia);
 
-const tasmaniaPoly2triSwctx = new poly2tri.SweepContext(tasmaniaPoly2triContour);
+const australiaPoly2triSwctx = new poly2tri.SweepContext(australiaPoly2triContour);
 
-tasmaniaPoly2triSwctx.triangulate();
+australiaPoly2triSwctx.triangulate();
 
-var triangles = tasmaniaPoly2triSwctx.getTriangles() || [];
+let australiaPoly2triTriangles = australiaPoly2triSwctx.getTriangles() || [];
 
-let tasmaniaData = triangles
+let australiaData = australiaPoly2triTriangles
     .map(d => {
         return d.points_.map(p => {
             return [p.x, p.y];
@@ -250,16 +250,16 @@ let tasmaniaData = triangles
     })
     .flat();
 
-// australia
-var australiaPoly2triContour = parsePoints(australia);
+// tasmania
+let tasmaniaPoly2triContour = parsePoints(tasmania);
 
-const australiaPoly2triSwctx = new poly2tri.SweepContext(australiaPoly2triContour);
+const tasmaniaPoly2triSwctx = new poly2tri.SweepContext(tasmaniaPoly2triContour);
 
-australiaPoly2triSwctx.triangulate();
+tasmaniaPoly2triSwctx.triangulate();
 
-var triangles = australiaPoly2triSwctx.getTriangles() || [];
+let tasmaniaPoly2triTriangles = tasmaniaPoly2triSwctx.getTriangles() || [];
 
-let australiaData = triangles
+let tasmaniaData = tasmaniaPoly2triTriangles
     .map(d => {
         return d.points_.map(p => {
             return [p.x, p.y];
