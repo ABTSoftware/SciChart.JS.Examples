@@ -477,10 +477,10 @@ export const drawExample =
                 socket.connect();
             } else {
                 if (window.location.hostname === "localhost" && parseInt(window.location.port) > 8000) {
-                    socket = io("http://localhost:3000");
+                    socket = io("http://localhost:3000", { path: "/demo/" });
                     console.log("3000");
                 } else {
-                    socket = io();
+                    socket = io({ path: "/demo/socket.io" });
                     console.log("local");
                 }
                 socket.on("data", (message: any) => {
