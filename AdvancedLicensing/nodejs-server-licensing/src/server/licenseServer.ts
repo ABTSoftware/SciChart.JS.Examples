@@ -13,9 +13,7 @@ const libraryName =
 const libraryPath = path.join(__dirname, libraryName);
 
 const debug = (msg: string, ...args: any[]) => {
-  if (process.env.NODE_ENV == "development") {
-    console.log(msg, args);
-  }
+  console.log(msg, args);
 };
 
 const library = "SciChartLicenseServer";
@@ -53,14 +51,14 @@ let nativeLicenseServer = define({
 debug("nativeLicenseServer created");
 
 // The app name you set here must match one you have added on the MyAccount page before generating a key pair.
-debug("app name", process.env.npm_package_name);
-nativeLicenseServer.SciChartLicenseServer_SetAssemblyName([
-  process.env.npm_package_name,
-]);
+const APP_NAME = "scichart-nodejs-server-licensing";
+debug("app name", APP_NAME);
+nativeLicenseServer.SciChartLicenseServer_SetAssemblyName([APP_NAME]);
 
 // Set the Server key
+const SERVER_KEY = "enter-your-server-key-here";
 const isValid = nativeLicenseServer.SciChartLicenseServer_SetRuntimeLicenseKey([
-  "server key here",
+  SERVER_KEY,
 ]);
 debug("SciChartLicenseServer_SetRuntimeLicenseKey", isValid);
 if (!isValid) {
@@ -69,6 +67,7 @@ if (!isValid) {
 }
 
 router.get("/", (req, res) => {
+  debug("Query parameters: ", req.query);
   const challenge = req.query.challenge.toString();
   debug("Received license challenge: ", challenge);
   const result = nativeLicenseServer.SciChartLicenseServer_ValidateChallenge([
