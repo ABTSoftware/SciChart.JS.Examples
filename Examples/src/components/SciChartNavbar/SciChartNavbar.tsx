@@ -186,10 +186,10 @@ export default function SciChartNavbar({
                                                 className="line menu-item menu-item-type-post_type menu-item-object-page menu-item-598"
                                             >
                                                 <a
-                                                    href="https://www.scichart.com/why-scichart-world-className-tech-support/"
+                                                    href="https://www.scichart.com/why-scichart-world-class-tech-support/"
                                                     title="SciChart Testomianals about Tech Support "
                                                 >
-                                                    World ClassName Tech Support
+                                                    World Class Tech Support
                                                 </a>
                                             </li>
                                             <li
