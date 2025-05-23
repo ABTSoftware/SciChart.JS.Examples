@@ -10,7 +10,9 @@ import {
     NumberRange
 } from "scichart";
 
-import "./poly2tri.min.js";
+// import "./poly2tri.min.js";
+
+import constrainedDelaunayTriangulation from "./triangulation.js";
 
 const tasmania = [
     // [146, -42],
@@ -227,45 +229,51 @@ const australia = [
     [126.14871382050114, -32.21596607842059]
 ];
 
-function parsePoints(data) {
-    return data.map(d => {
-        return new poly2tri.Point(d[0], d[1]);
-    });
-}
+// function parsePoints(data) {
+//     return data.map(d => {
+//         return new poly2tri.Point(d[0], d[1]);
+//     });
+// }
 
-// australia
-let australiaPoly2triContour = parsePoints(australia);
+// // australia
+// let australiaPoly2triContour = parsePoints(australia);
 
-const australiaPoly2triSwctx = new poly2tri.SweepContext(australiaPoly2triContour);
+// const australiaPoly2triSwctx = new poly2tri.SweepContext(australiaPoly2triContour);
 
-australiaPoly2triSwctx.triangulate();
+// australiaPoly2triSwctx.triangulate();
 
-let australiaPoly2triTriangles = australiaPoly2triSwctx.getTriangles() || [];
+// let australiaPoly2triTriangles = australiaPoly2triSwctx.getTriangles() || [];
 
-let australiaData = australiaPoly2triTriangles
-    .map(d => {
-        return d.points_.map(p => {
-            return [p.x, p.y];
-        });
-    })
-    .flat();
+// let australiaData = australiaPoly2triTriangles
+//     .map(d => {
+//         return d.points_.map(p => {
+//             return [p.x, p.y];
+//         });
+//     })
+//     .flat();
 
-// tasmania
-let tasmaniaPoly2triContour = parsePoints(tasmania);
+// // tasmania
+// let tasmaniaPoly2triContour = parsePoints(tasmania);
 
-const tasmaniaPoly2triSwctx = new poly2tri.SweepContext(tasmaniaPoly2triContour);
+// const tasmaniaPoly2triSwctx = new poly2tri.SweepContext(tasmaniaPoly2triContour);
 
-tasmaniaPoly2triSwctx.triangulate();
+// tasmaniaPoly2triSwctx.triangulate();
 
-let tasmaniaPoly2triTriangles = tasmaniaPoly2triSwctx.getTriangles() || [];
+// let tasmaniaPoly2triTriangles = tasmaniaPoly2triSwctx.getTriangles() || [];
 
-let tasmaniaData = tasmaniaPoly2triTriangles
-    .map(d => {
-        return d.points_.map(p => {
-            return [p.x, p.y];
-        });
-    })
-    .flat();
+// let tasmaniaData = tasmaniaPoly2triTriangles
+//     .map(d => {
+//         return d.points_.map(p => {
+//             return [p.x, p.y];
+//         });
+//     })
+//     .flat();
+
+let tasmaniaData = constrainedDelaunayTriangulation(tasmania).flat();
+
+let australiaData = constrainedDelaunayTriangulation(australia).flat();
+
+console.log(tasmaniaData);
 
 async function australiaMap(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
