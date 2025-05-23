@@ -2866,7 +2866,7 @@ Show external placement div</Notes>
             <TocNode Name="" Id="fcb5ab2b-4c10-4f07-b022-8d1c0f61e8b2" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
               <CaptionTemplate m="2021-09-17T08:38:37.5361172Z">Miscellaneous APIs</CaptionTemplate>
               <ChildNodes>
-                <TocNode Name="" Id="2db46c38-6f40-4ee9-b101-906f7082a37f" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                <TocNode Name="" Id="2db46c38-6f40-4ee9-b101-906f7082a37f" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
                   <TargetItemId>d2be691e-df29-43c3-9a57-0130024efa03</TargetItemId>
@@ -10146,14 +10146,14 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="d2be691e-df29-43c3-9a57-0130024efa03" Status="New Topic" CreatedOn="2021-09-16T17:07:44.7980484Z" ModifiedOn="2021-09-30T09:22:43.1932107Z" ModifiedBy="" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Retina Support and Browser Zoom" BuildFlags="">
+              <Topic Id="d2be691e-df29-43c3-9a57-0130024efa03" Status="New Topic" CreatedOn="2021-09-16T17:07:44.7980484Z" ModifiedOn="2025-02-20T00:18:47.1485039Z" ModifiedBy="ABT-WORKHORSE\aburn" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Retina Support and Browser Zoom" BuildFlags="">
                 <Title m="2021-09-30T09:22:43.1921988Z">Retina Support and Browser Zoom</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <CanonicalLink></CanonicalLink>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2021-09-30T09:22:30.6838868Z">&lt;P&gt;SciChart.js v2.x now supports sharp graphics on high resolution Retina displays, as well as Browser Zoom functionality.&lt;/P&gt;
+                    <Content m="2025-02-20T00:18:47.1485039Z">&lt;P&gt;SciChart.js v2.x now supports sharp graphics on high resolution Retina displays, as well as Browser Zoom functionality.&lt;/P&gt;
 &lt;P&gt;Previously in SciChart.js, retina displays would look low quality, and when the browser is zoomed the image that SciChart renders to would simply be scaled.&lt;/P&gt;
 &lt;P&gt;In SciChart.js v2, every element is now rendered at the native resolution and scaled down for display. This results in the following benefits:&lt;/P&gt;
 &lt;OL&gt;
@@ -10167,7 +10167,7 @@ Show external placement div</Notes>
 &lt;P&gt;&lt;IMG border=0 alt="" src="images/BrowserZoom_Comparison2.png"&gt;&lt;/P&gt;
 &lt;H2&gt;Enabling &amp;amp; Disabling Retina DPI / Browser Zoom Support&lt;/H2&gt;
 &lt;P&gt;By default, Retina &amp;amp;amp; high DPI support is built in, you don't have to do anything to enable it.&lt;/P&gt;
-&lt;P&gt;However, if you wanted to disable automatic scaling with DPI then you can use the following code:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Disable DPI scaling&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;import { DpiHelper} from "scichart/Charting/Visuals/TextureManager/DpiHelper";&lt;BR&gt;&lt;BR&gt;// Note: you will need to call this before any SciChartSurface is created&lt;BR&gt;DpiHelper.IsDpiScaleEnabled = false;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;However, if you wanted to disable automatic scaling with DPI then you can use the following code:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Disable DPI scaling&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;import { DpiHelper} from "scichart";&lt;BR&gt;&lt;BR&gt;// Note: you will need to call this before any SciChartSurface is created&lt;BR&gt;DpiHelper.IsDpiScaleEnabled = false;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Performance Considerations when Dpi Scaling&lt;/H2&gt;
 &lt;P&gt;When SciChart.js is used on a high resolution display such as Retina, the chart will be rendered at 4x the number of pixels visible on screen. For example a 1,000 x 1,000 chart (1M Pixels) will be rendered at 2,000 x 2,000 (4M Pixels) before scaling down to the correct size.&lt;/P&gt;
 &lt;P&gt;Higher number of pixels means more work for the browser to display the chart. If you notice any performance degredation on your application you can disable Dpi scaling using the code above.&lt;/P&gt;
@@ -10335,14 +10335,14 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="e5a3627c-906d-4bb5-a81d-981df6e3e96b" Status="New Topic" CreatedOn="2021-09-16T17:08:17.8047838Z" ModifiedOn="2023-01-18T15:56:13.6476627Z" ModifiedBy="" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Native Text Api" BuildFlags="">
+              <Topic Id="e5a3627c-906d-4bb5-a81d-981df6e3e96b" Status="New Topic" CreatedOn="2021-09-16T17:08:17.8047838Z" ModifiedOn="2025-02-20T00:19:28.2387731Z" ModifiedBy="ABT-WORKHORSE\aburn" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Native Text Api" BuildFlags="">
                 <Title />
                 <ContentsTitle />
                 <Notes></Notes>
                 <CanonicalLink></CanonicalLink>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-01-18T15:56:13.6476627Z">&lt;P&gt;The Native Text api is new in SciChart v3.&amp;nbsp; It uses industry standard font libraries compiled into webassembly to render text directly using webGL, supporting all types of fonts including right to left text, shaped fonts such as Arabic and Chinese.&amp;nbsp; This first version of the api is not complete and we welcome your feedback to shape it going forward.&lt;/P&gt;
+                    <Content m="2025-02-20T00:19:28.2387731Z">&lt;P&gt;The Native Text api is new in SciChart v3.&amp;nbsp; It uses industry standard font libraries compiled into webassembly to render text directly using webGL, supporting all types of fonts including right to left text, shaped fonts such as Arabic and Chinese.&amp;nbsp; This first version of the api is not complete and we welcome your feedback to shape it going forward.&lt;/P&gt;
 &lt;H2&gt;&lt;A id=FontLoading name=FontLoading&gt;&lt;/A&gt;Font Loading&lt;/H2&gt;
 &lt;P&gt;Only Arial is included in the webassembly data as standard.&amp;nbsp; Other fonts must either be hosted on your server, or registered if coming from a remote location.&amp;nbsp; In either case, fonts are only downloaded once, and are then cached in the browser (in indexdb).&lt;/P&gt;
 &lt;H3&gt;Hosting fonts on your server&lt;/H3&gt;
@@ -10377,7 +10377,7 @@ Show external placement div</Notes>
 &lt;P&gt;SciChart automatically calls font.End on all fonts at the end of the render cycle.&amp;nbsp; If you want the native text to draw earlier so other chart elements can draw over it, you can call font.End yourself, but for optimum performance you want to do this as little as possible.&lt;/P&gt;
 &lt;H3&gt;Rotation&lt;/H3&gt;
 &lt;P&gt;To get a rotation vector use the following code:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Rotation vector&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;import { getVector4 } from "scichart/Charting/Visuals/Helpers/NativeObject"&lt;/P&gt;
+&lt;P&gt;import { getVector4 } from "scichart"&lt;/P&gt;
 &lt;P&gt;const rotationVector = getVector4(&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; webAssemblyContext2D,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; rotationCenterX,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; rotationCenterY,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; rotationInRadians,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 0&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; );&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;Like textBounds this returns a single shared instance so you do not need to delete it.&lt;/P&gt;
 &lt;H3&gt;Scaling&lt;/H3&gt;
@@ -15701,398 +15701,6 @@ Show external placement div</Notes>
                   </TopicSection>
                 </TopicSections>
                 <TopicLinks />
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
-              <Topic Id="66c2a477-19b7-4c68-9aea-10c01c54774f" Status="In Progress" CreatedOn="2019-08-30T13:01:32.6708223Z" ModifiedOn="2024-10-16T16:17:34.8330148Z" ModifiedBy="" PageTypeName="" AutoIndex="false" HelpContextIds="" Name="OLD 3D Tutorial  01 - Charting Concepts" BuildFlags="">
-                <Title m="2020-09-11T17:11:48.7875532Z">OLD 3D Tutorial  01 - Charting Concepts</Title>
-                <ContentsTitle m="2019-09-23T16:36:08.8189086Z">Charting Concepts</ContentsTitle>
-                <Notes></Notes>
-                <CanonicalLink></CanonicalLink>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2019-09-25T18:07:25.7951881Z">&lt;H2&gt;Understanding Charts, Basic Definitions&lt;/H2&gt;
-&lt;P&gt;In order to understand charts, it is necessary to learn some basic concepts first.&lt;/P&gt;
-&lt;P&gt;Here we will cover:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;Two Dimensional Charts 
-&lt;LI&gt;3D charts 
-&lt;LI&gt;Right Hand Coordinates 
-&lt;LI&gt;Left-hand Charts 
-&lt;LI&gt;Camera 3D 
-&lt;LI&gt;World Coordinates &lt;/LI&gt;&lt;/UL&gt;
-&lt;H2&gt;Two Dimensional Charts&lt;/H2&gt;
-&lt;P&gt;The &lt;STRONG&gt;Cartesian Plane&lt;/STRONG&gt; is how data is represented in two dimensions.&lt;/P&gt;
-&lt;P&gt;The two dimensions are &lt;STRONG&gt;height&lt;/STRONG&gt; and &lt;STRONG&gt;width&lt;/STRONG&gt;. In mathematics these are the x and y axes, respectively. A 3D chart adds &lt;STRONG&gt;depth&lt;/STRONG&gt;, which is labelled Z. The cartesian plane looks this this, where the pink line is the function y=f(x), where y is some function, like sales = 2 * ad budget. The points x-y are given (x,y). The &lt;STRONG&gt;origin&lt;/STRONG&gt; is the point where x=0 and y=0.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/cartesianPlane.png"&gt;&amp;nbsp;&lt;/P&gt;
-&lt;H2&gt;3D Charts&lt;/H2&gt;
-&lt;P&gt;In 3D charts, we introduce a 3rd axis, &lt;STRONG&gt;z&lt;/STRONG&gt;. Points on the chart are (x,y,z). This z axis is at a right angle to x and y. This creates the illusion that the graph is 3 dimensional.&lt;/P&gt;
-&lt;H2&gt;Right-Hand Coordinates&lt;/H2&gt;
-&lt;P&gt;When the z axis points outward this is called a &lt;STRONG&gt;right-handed coordinate system&lt;/STRONG&gt;. When it points inward it is called &lt;STRONG&gt;left-handed&lt;/STRONG&gt;.&lt;/P&gt;
-&lt;P&gt;In the &lt;STRONG&gt;right-handed coordinate system&lt;/STRONG&gt; positive rotation about the axis is counter clockwise.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/rightHandCoordinate.jpg"&gt;&lt;/P&gt;
-&lt;P&gt;Charts in SciChart are left-hand by default with the y axis point up, the x axis horizontal, and the z axis pointing inward. Rotation is clockwise. Rotation about the vertical axis is called &lt;STRONG&gt;yaw&lt;/STRONG&gt; and &lt;STRONG&gt;rotation&lt;/STRONG&gt; about the horizontal axis is called pitch, just like the terms used in aviation.&lt;/P&gt;
-&lt;H2&gt;Left-Hand Coordinates&lt;/H2&gt;
-&lt;P&gt;In the chart below the chart is rotated (yaw) 45 degrees in the clockwise direction. In the chart on the right it is 90 degrees. For both charts the rotation about the axis is 45 degrees, which is the default value.&lt;/P&gt;
-&lt;TABLE&gt;
-&lt;TBODY&gt;
-&lt;TR&gt;
-&lt;TH&gt;
-&lt;P align=center&gt;45 degrees&lt;/P&gt;&lt;/TH&gt;
-&lt;TH&gt;
-&lt;P align=center&gt;90 degrees&lt;/P&gt;&lt;/TH&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD align=center&gt;&lt;IMG border=0 alt="" src="images/yaw45min.jpg" width="75%"&gt;&lt;/TD&gt;
-&lt;TD align=center&gt;&lt;IMG border=0 alt="" src="images/yaw90min.jpg" width="75%"&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;
-&lt;P&gt;&lt;/P&gt;
-&lt;P&gt;Here is the xyz origin and axis in the middle of the box as it is when using the World Coordinate System&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/leftHand1.png" p=""&gt;&lt;/P&gt;
-&lt;H2&gt;Camera 3D&lt;/H2&gt;
-&lt;P&gt;The &lt;STRONG&gt;Camera&lt;/STRONG&gt; is a SciChart object. Think of this as the location from which you are viewing the chart, just like you were floating above the surface and looking down at it with a pair of binoculars. We explain this using the concepts below. A camera has an xyz position and &lt;STRONG&gt;pitch&lt;/STRONG&gt; (up and down) and &lt;STRONG&gt;yaw&lt;/STRONG&gt; (rotation).&lt;/P&gt;
-&lt;P&gt;&lt;STRONG&gt;Camera coordinates&lt;/STRONG&gt; are three dimensional &lt;STRONG&gt;world coordinates&lt;/STRONG&gt; projected on a two dimensional plane.&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/Camera3DExplanation.png"&gt;&lt;/P&gt;
-&lt;P&gt;This graphic shows how you can change the pitch and yaw of the camera. Notice that the red, green, and blue xyz graphic to show the orientation of the world coordinate system.&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/ModifyCamera3DProperties.gif"&gt;&lt;/P&gt;
-&lt;H2&gt;World Coordinates&lt;/H2&gt;
-&lt;P&gt;World coordinates are the (x,y,z) coordinates used to locate an object in 3D space. You can transform camera coordinates to world coordinates and vice versa. SciChart does this mathematics when it renders a 3D object onto 2D surface of a tablet or mobile device screen.&lt;/P&gt;
-&lt;P&gt;In terms of charting, the origin (0,0,0) is located in the middle of the box shown below which represents 3D space.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/worldcoordinates1.png"&gt;&lt;/P&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks>
-                  <TopicLink Id="da59b1bf-d8bb-4126-bb2b-a9823bc1e380" CategoryId="" TopicLinkCategorySource="SpecificValue" Target="ms-its:Univerity of Amsterdam,Image Processing and Computer Vision::/Univerity of Amsterdam,Image Processing and Computer Vision" BuildFlags="">
-                    <Title m="2019-09-24T09:11:02.067747Z">University of Amsterdam, Image Processing and Computer Vision</Title>
-                    <Category />
-                  </TopicLink>
-                </TopicLinks>
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
-              <Topic Id="b6028fd1-9906-48ac-9d08-dd81e45997dd" Status="In Progress" CreatedOn="2019-09-02T10:38:10.9905454Z" ModifiedOn="2024-10-16T16:17:34.8339987Z" ModifiedBy="" PageTypeName="" AutoIndex="false" HelpContextIds="" Name="OLD 3D Tutorial  02 - Add SciChart Libraries to Android Studio" BuildFlags="">
-                <Title m="2020-09-11T17:12:03.2366438Z">OLD 3D Tutorial  02 - Add SciChart Libraries to Android Studio</Title>
-                <ContentsTitle />
-                <Notes></Notes>
-                <CanonicalLink></CanonicalLink>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2019-09-25T18:11:58.6027116Z">&lt;P&gt;You can use Gradle or Maven to include the .aar files in Android Studio. Here we use Gradle.&lt;/P&gt;
-&lt;H2&gt;Create Android Basic Activity App&lt;/H2&gt;
-&lt;P&gt;1. First, in Android Studio create a project with a &lt;STRONG&gt;Basic&lt;/STRONG&gt; activity.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/configureYourProject.png"&gt;&amp;nbsp;&lt;/P&gt;
-&lt;H2&gt;Using Gradle&lt;/H2&gt;
-&lt;P&gt;2. Open the "&lt;STRONG&gt;build.gradle&lt;/STRONG&gt;" that says &lt;STRONG&gt;(Module:app)&lt;/STRONG&gt; and declare a new Maven repository in the "&lt;STRONG&gt;repositories&lt;/STRONG&gt;" node inside the "&lt;STRONG&gt;allprojects&lt;/STRONG&gt;" node. Use the URL from above.&lt;/P&gt;
-&lt;P&gt;The screenshot below shows where the file can be found in the Project window in Android Studio:&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/gradle2.png"&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;3. Download and unzip &lt;STRONG&gt;SciChart Android v3&lt;/STRONG&gt;. Copy these files into the folder &lt;STRONG&gt;app/libs&lt;/STRONG&gt; in your project folder:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;charting-release.aar 
-&lt;LI&gt;drawing-release.aar 
-&lt;LI&gt;charting3d-release.aar 
-&lt;LI&gt;extensions-release.aar 
-&lt;LI&gt;core-release.aar 
-&lt;LI&gt;extensions3d-release.aar 
-&lt;LI&gt;data-release.aar &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;4. Add to sections first &lt;STRONG&gt;flatDir&lt;/STRONG&gt; to tell Gradle what folder to look into:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;repositories&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;repositories {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // add app\libs folder as libs source&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; flatDir {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dirs 'libs'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;}&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;5. Then add the SciChart .aar files to the &lt;STRONG&gt;dependencies&lt;/STRONG&gt; section:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;dependencies&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;dependencies {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; implementation 'com.android.support:recyclerview-v7:28.0.0'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; implementation 'com.android.support:appcompat-v7:28.0.0'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; implementation 'com.android.support:design:28.0.0'&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; implementation 'de.greenrobot:eventbus:2.4.0'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; implementation 'com.daasuu:EasingInterpolator:1.0.0'&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; implementation 'com.jakewharton:butterknife:8.8.1'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // you can reference aar from app\libs folder&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; implementation 'com.scichart:charting:+@aar'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; implementation 'com.scichart:charting3d:+@aar'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; implementation 'com.scichart:core:+@aar'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; implementation 'com.scichart:drawing:+@aar'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; implementation 'com.scichart:data:+@aar'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; implementation 'com.scichart:extensions:+@aar'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; implementation 'com.scichart:extensions3d:+@aar'&amp;nbsp;&lt;BR&gt;}&lt;/P&gt;
-&lt;P&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks>
-                  <TopicLink Id="b490bbc1-b301-4485-9bdc-6cf2154d0f79" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="2247b20c-4be1-42cb-ad24-125310703f67" BuildFlags="">
-                    <Title m="2019-09-24T09:14:22.8396314Z">Referencing from Maven and java docs</Title>
-                    <Category />
-                  </TopicLink>
-                </TopicLinks>
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
-              <Topic Id="699aad4b-9271-4f53-bcff-48cd49a70752" Status="In Progress" CreatedOn="2019-09-23T16:15:11.006571Z" ModifiedOn="2024-10-16T16:17:34.8339987Z" ModifiedBy="" PageTypeName="" AutoIndex="false" HelpContextIds="" Name="OLD 3D Tutorial  03 - Creating a Chart and Add a Data Series" BuildFlags="">
-                <Title m="2020-09-11T17:12:08.1236238Z">OLD 3D Tutorial  03 - Creating a Chart and Add a Data Series</Title>
-                <ContentsTitle />
-                <Notes></Notes>
-                <CanonicalLink></CanonicalLink>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2019-09-25T17:58:04.7475946Z">&lt;P&gt;There are four key files here. Two Java classes and two layouts:&lt;/P&gt;
-&lt;P&gt;1. MainActivity.java&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;Create a reference to &lt;STRONG&gt;CreateScatter3DChartFragment exampleFragment&lt;/STRONG&gt; 
-&lt;LI&gt;Reads the SciChart license. 
-&lt;LI&gt;Inits &lt;STRONG&gt;SciChartBuilder.init(this)&lt;/STRONG&gt; and &lt;STRONG&gt;SciChart3DBuilder.init(this)&lt;/STRONG&gt;; 
-&lt;LI&gt;Inflates &lt;STRONG&gt;activity_main&lt;/STRONG&gt;. &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;2. CreateScatter3DChartFragment.java&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;Extends &lt;STRONG&gt;android.app.Fragment&lt;/STRONG&gt;. 
-&lt;LI&gt;Inflates &lt;STRONG&gt;R.layout.example_single_chart3d_fragment&lt;/STRONG&gt;. 
-&lt;LI&gt;Creates a &lt;STRONG&gt;Camera3D camera&lt;/STRONG&gt; which is used to project world coordinates (x,y,z) onto a 2D plane, i.e., the device screen. 
-&lt;LI&gt;Populates &lt;STRONG&gt;XyzDataSeries3D dataSeries&lt;/STRONG&gt; with data. 
-&lt;LI&gt;Inits a &lt;STRONG&gt;SciChart3DBuilder&lt;/STRONG&gt; which it uses to create &lt;STRONG&gt;SciChartSurface3D surface3d&lt;/STRONG&gt;. 
-&lt;LI&gt;Creates an &lt;STRONG&gt;EllipsePointMarker3D pointMarker3D&lt;/STRONG&gt;. 
-&lt;LI&gt;Passes the &lt;STRONG&gt;dataseries&lt;/STRONG&gt; and &lt;STRONG&gt;pointMarker3D&lt;/STRONG&gt; into the RenderableSeries &lt;STRONG&gt;ScatterRenderableSeries3D&lt;/STRONG&gt;. &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;3. activity_main.xml&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;Contains the fragment &lt;STRONG&gt;com.scichart.examples.fragments.charts3d.CreateScatter3DChartFragment&lt;/STRONG&gt; in a &lt;STRONG&gt;LinearLayout&lt;/STRONG&gt;. &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;4. example_single_chart3D_fragment.xml&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;Inflates &lt;STRONG&gt;com.scichart.charting3d.visuals.SciChartSurface3D&lt;/STRONG&gt;. &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;Step by step, this is:&lt;/P&gt;
-&lt;H2&gt;Add the license to MainActivity&lt;/H2&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;License&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;super.onCreate(bundle);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; String license = "&amp;lt;LicenseContract&amp;gt;\n" +&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "&amp;nbsp; &amp;lt;Customer&amp;gt;xxxxxxxx&amp;lt;/Customer&amp;gt;\n" +&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "&amp;nbsp; &amp;lt;OrderId&amp;gt;Documentation Use Only&amp;lt;/OrderId&amp;gt;\n" +&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "&amp;nbsp; &amp;lt;LicenseCount&amp;gt;1&amp;lt;/LicenseCount&amp;gt;\n" +&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "&amp;nbsp; &amp;lt;IsTrialLicense&amp;gt;true&amp;lt;/IsTrialLicense&amp;gt;\n" +&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "&amp;nbsp; &amp;lt;SupportExpires&amp;gt;10/01/2019 00:00:00&amp;lt;/SupportExpires&amp;gt;\n" +&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "&amp;nbsp; &amp;lt;ProductCode&amp;gt;SC-ANDV3-PRO&amp;lt;/ProductCode&amp;gt;\n" +&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "&amp;nbsp; &amp;lt;KeyCode&amp;gt;xxxxx&amp;lt;/KeyCode&amp;gt;\n" +&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; "&amp;lt;/LicenseContract&amp;gt;";&lt;/P&gt;
-&lt;P&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; try {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; SciChartSurface.setRuntimeLicenseKey(license);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; catch (Exception e) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Log.e("scichart", e.printStackTrace();)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;UL&gt;
-&lt;LI&gt;First we inflate a &lt;STRONG&gt;LinearLayout R.layout.activity_main&lt;/STRONG&gt; which contains the &lt;STRONG&gt;Fragment com.scichart.examples.fragments.charts3d.CreateScatter3DChartFragment&lt;/STRONG&gt;: &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;public class MainActivity extends Activity {&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; private CreateScatter3DChartFragment exampleFragment;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; private CustomDrawerLayout drawerLayout;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; private ImageButton settingsButton;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Override&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; protected void onCreate(Bundle bundle) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; SciChartBuilder.init(this);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; SciChart3DBuilder.init(this);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; ...&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; setContentView(R.layout.activity_main);&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;UL&gt;
-&lt;LI&gt;We use &lt;A href="https://github.com/JakeWharton/butterknife" target=_blank&gt;ButterKnife&lt;/A&gt;, which is an SDK that lets you use annotation to inflate layouts, to inflate a &lt;STRONG&gt;com.scichart.charting3d.visuals.SciChartSurface3D&lt;/STRONG&gt;. &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;public class CreateScatter3DChartFragment extends Fragment {&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; protected final SciChart3DBuilder sciChart3DBuilder = SciChart3DBuilder.instance();&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; @BindView(R.id.chart3d)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; SciChartSurface3D surface3d;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;UL&gt;
-&lt;LI&gt;This inflates &lt;STRONG&gt;example_single_chart3d_fragment.xml&lt;/STRONG&gt;: &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;&amp;nbsp;&amp;lt;com.scichart.charting3d.visuals.SciChartSurface3D&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; android:id="@+id/chart3d"&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
-&lt;UL&gt;
-&lt;LI&gt;Now the heavy lifting begins in &lt;STRONG&gt;CreateScatter3DChartFragment.init()&lt;/STRONG&gt;. We first create some data: &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;protected void initExample() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final Camera3D camera = sciChart3DBuilder.newCamera3D().build();&lt;/P&gt;
-&lt;P&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final NumericAxis3D xAxis = sciChart3DBuilder.newNumericAxis3D().withGrowBy(.1, .1).build();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final NumericAxis3D yAxis = sciChart3DBuilder.newNumericAxis3D().withGrowBy(.1, .1).build();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final NumericAxis3D zAxis = sciChart3DBuilder.newNumericAxis3D().withGrowBy(.1, .1).build();&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final XyzDataSeries3D&amp;lt;Double, Double, Double&amp;gt; dataSeries = new XyzDataSeries3D&amp;lt;&amp;gt;(Double.class, Double.class, Double.class);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; for (int i = 0; i &amp;lt; 5; i++) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double x = i;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double y = i;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double z = i;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataSeries.append(x, y, z);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;UL&gt;
-&lt;LI&gt;Then we make an &lt;STRONG&gt;EllipsePointMarker3D pointMarker3D&lt;/STRONG&gt; and &lt;STRONG&gt;ScatterRenderableSeries3D rs&lt;/STRONG&gt; and bind that to the &lt;STRONG&gt;XyzDataSeries3D dataseries&lt;/STRONG&gt;. A pointMarker means the type, color, and size of the points in the graph. &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; final EllipsePointMarker3D pointMarker3D = sciChart3DBuilder.newEllipsePointMarker3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withFill(ColorUtil.LimeGreen)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withSize(2f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final ScatterRenderableSeries3D rs = sciChart3DBuilder.newScatterSeries3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDataSeries(dataSeries)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withPointMarker(pointMarker3D)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setCamera(camera);&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;UL&gt;
-&lt;LI&gt;Now we set the Camera, XYZ axes, and render the chart: &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setCamera(camera);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setXAxis(xAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setYAxis(yAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setZAxis(zAxis);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.getRenderableSeries().add(rs);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.getChartModifiers().add(sciChart3DBuilder.newModifierGroupWithDefaultModifiers().build());&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;The resulting chart looks like this:&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/tutorial1Scatter1.jpg"&gt;&lt;/P&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks />
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
-              <Topic Id="d5f6befd-6b5b-4650-a207-d63f648a4f8e" Status="In Progress" CreatedOn="2019-09-02T14:12:14.8733503Z" ModifiedOn="2024-10-16T16:17:34.8339987Z" ModifiedBy="" PageTypeName="" AutoIndex="false" HelpContextIds="" Name="OLD 3D Tutorial 04 - Changing the Axes Length and Chart Pitch and Yaw" BuildFlags="">
-                <Title m="2020-09-11T17:12:14.3954551Z">OLD 3D Tutorial 04 - Changing the Axes Length and Chart Pitch and Yaw</Title>
-                <ContentsTitle />
-                <Notes></Notes>
-                <CanonicalLink></CanonicalLink>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2019-09-24T09:51:37.4149205Z">&lt;P&gt;In the &lt;A href=""&gt;previous tutorial&lt;/A&gt;, it was hard to see the coordinates, because the axis range was much larger than the data range. So the points were small. And it was hard to understand where the coordinates are located, because they are in 3D.&lt;/P&gt;
-&lt;P&gt;So to address the first issue, we set the axis range close to the data range to make the points easier to see.&lt;/P&gt;
-&lt;P&gt;Specifically our data ranges from 1 to 6 we&amp;nbsp;want the axis length to be, say, 0 and 6. So we set:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;com.scichart.data.model.DoubleRange = (Min = 1.0, Max = 5.0) 
-&lt;LI&gt;com.scichart.data.model.DoubleRange = (Min = 0.0, Max = 6.0) &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;With:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;&lt;BR&gt;final NumericAxis3D xAxis = sciChart3DBuilder.newNumericAxis3D().withVisibleRange(0,6).withGrowBy(1, 1).build();&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;And to address the second issue, it's understand the position of the coordinates x,y,z in 3D space if we set one axis to zero. Below we have modified the code to create the points thus setting z to zero.&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;(1,1,0) 
-&lt;LI&gt;(2,2,0) 
-&lt;LI&gt;(3,3,0) 
-&lt;LI&gt;(4,4,0) 
-&lt;LI&gt;(5,5,0) &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;Now you can more easily see that this is the graph of y = x, since we are looking at the xy plane from the side.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/flattenChart.jpg"&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;If we set all three axes to (1,1,1) ... (5,5,5) we get the chart in the previous tutorial where the line appeared to be pointing straight out from the screen at a 45 degree angle.&lt;/P&gt;
-&lt;P&gt;At the bottom left as you rotate and title the screen with your fingers, meaning change the pitch and yaw. A graphic shows the orientation of the chart. It's small on the screen, so here it is enlarged:&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/littleXPY.jpg"&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;Below is the modified code. The default Yaw and Pitch are 45 so we use camera.setOrbitalYaw(54).&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;camera.setOrbitalYaw(54)&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;protected void initExample() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final Camera3D camera = sciChart3DBuilder.newCamera3D().build();&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final XyzDataSeries3D&amp;lt;Double, Double, Double&amp;gt; dataSeries = new XyzDataSeries3D&amp;lt;&amp;gt;(Double.class, Double.class, Double.class);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; for (int i = 1; i &amp;lt;= 5; i++) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double x = i;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double y = i;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double z = 0;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataSeries.append(x, y, z);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final EllipsePointMarker3D pointMarker3D = sciChart3DBuilder.newEllipsePointMarker3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withFill(ColorUtil.LimeGreen)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withSize(2f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final ScatterRenderableSeries3D rs = sciChart3DBuilder.newScatterSeries3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDataSeries(dataSeries)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withPointMarker(pointMarker3D)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withSeriesInfoProvider(new CustomSeriesInfo3DProvider())&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setCamera(camera);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final NumericAxis3D xAxis = sciChart3DBuilder.newNumericAxis3D().withVisibleRange(0,6).withGrowBy(1, 1).build();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final NumericAxis3D yAxis = sciChart3DBuilder.newNumericAxis3D().withVisibleRange(0,6).withGrowBy(1, 1).build();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final NumericAxis3D zAxis = sciChart3DBuilder.newNumericAxis3D().withVisibleRange(0,6).withGrowBy(1, 1).build();&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setXAxis(xAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setYAxis(yAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setZAxis(zAxis);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.getRenderableSeries().add(rs);&lt;BR&gt;surface3d.getChartModifiers().add(sciChart3DBuilder.newModifierGroup()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withPinchZoomModifier3D().build()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withOrbitModifier3D().withReceiveHandledEvents(true).build()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withZoomExtentsModifier3D().build());&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; camera.setOrbitalYaw(54);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; camera.setOrbitalPitch(45);&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;Pitch and Yaw&lt;/H2&gt;Since the chart is &lt;STRONG&gt;left-handed&lt;/STRONG&gt; and the y axis it vertical rotation about the y axis (&lt;STRONG&gt;yaw&lt;/STRONG&gt;) is in the counterclockwise direction. You could call this &lt;STRONG&gt;left&lt;/STRONG&gt;. In terms of aviation, that makes sense as turning left and turning counterclockwise if the same thing. Since the x axis is horizontal rotation about the x axis (&lt;STRONG&gt;pitch&lt;/STRONG&gt;) is counterclockwise. You could call this&amp;nbsp;&lt;STRONG&gt;down&lt;/STRONG&gt;. Again this makes sense when you think of an aircraft. 
-&lt;H3&gt;Pitch Down&lt;/H3&gt;
-&lt;P&gt;We started with this chart. This is oriented at the default yaw=45 and pitch=45.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/tutorial1Scatter.jpg"&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;yaw=45 and pitch=45&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;camera.setOrbitalYaw(45); &lt;/P&gt;
-&lt;P&gt;camera.setOrbitalPitch(90);&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;To make the chart tilt straight down, we change the pitch to 90 degrees. We change the yaw the same 45 degrees.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/pitchDown.jpg"&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;This clearly looks like the chart has tiled straight down.&lt;/P&gt;
-&lt;H3&gt;Rotate Left&lt;/H3&gt;
-&lt;P&gt;To turn left degrees we change yaw to -45 degrees, since rotation in the positive direction in a left-hand coordinate system is clockwise. So we want to go 90 degrees in the other direction. &lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;camera.setOrbitalYaw(-45); &lt;/P&gt;
-&lt;P&gt;camera.setOrbitalPitch(45);&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/rotateLeft.jpg"&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;Look at the small graphic in the corner of the Android screen and you can see the new orientation of the xyz axes. The x axis has swung around 90 degrees:&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/rotateLeft90xyz.jpg"&gt;&amp;nbsp;&lt;/P&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks>
-                  <TopicLink Id="15f98772-959e-40e9-8d86-32f07faea52c" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="02e0ff0e-aa3f-4ed3-8227-4ca9e6217352" BuildFlags="">
-                    <Title />
-                    <Category />
-                  </TopicLink>
-                  <TopicLink Id="88e23fb1-2693-454f-bc8f-512d816ca961" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="8cc4d206-bdd4-4d42-8ff4-4c09fddcb317" BuildFlags="">
-                    <Title />
-                    <Category />
-                  </TopicLink>
-                  <TopicLink Id="5b2aee27-ddd0-4f07-ada5-304ba13d5c66" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="0f6660f9-8d3a-4fa9-b228-36376c2d79d4" BuildFlags="">
-                    <Title />
-                    <Category />
-                  </TopicLink>
-                  <TopicLink Id="140182b7-2495-419a-b4e0-541fa229f714" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="0f31338f-c416-4129-8e9b-cc357faf1082" BuildFlags="">
-                    <Title />
-                    <Category />
-                  </TopicLink>
-                </TopicLinks>
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
-              <Topic Id="b302958a-29d2-4089-9b36-8ff8acd30627" Status="In Progress" CreatedOn="2019-09-02T15:14:36.8281591Z" ModifiedOn="2024-10-16T16:17:34.8350118Z" ModifiedBy="" PageTypeName="" AutoIndex="false" HelpContextIds="" Name="OLD 3D Tutorial 05 - Zooming and Rotating" BuildFlags="">
-                <Title m="2020-09-11T17:12:18.6755628Z">OLD 3D Tutorial 05 - Zooming and Rotating</Title>
-                <ContentsTitle />
-                <Notes></Notes>
-                <CanonicalLink></CanonicalLink>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2019-10-28T09:43:37.8265699Z">&lt;P&gt;So far we created a 3D chart, added XAxis, YAxis and ZAxis and 3D scatter series. In this tutorial we're going to add some interactivity for 3D chart and in the end we should get ability to zoom and rotate camera around the chart.&lt;/P&gt;
-&lt;P&gt;&lt;/P&gt;
-&lt;H2&gt;Zooming and Rotation Definitions:&lt;/H2&gt;
-&lt;P&gt;&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;STRONG&gt;zoom&lt;/STRONG&gt; — means to enlarge the chart by zooming in on a section. You use two fingers to do this. But it's more than just zooming into a 2D drawing, the perspective changes as you move throughout the 3D space, creating the illusion that you are moving inside the cube which is the chart. 
-&lt;LI&gt;&lt;STRONG&gt;rotate&lt;/STRONG&gt; — means to move rotate the camera and move it up and down. Remember that the &lt;STRONG&gt;camera&lt;/STRONG&gt; is your perspective, or the projection from your eye of the chart onto the 2D surface of the screen. &lt;/LI&gt;&lt;/UL&gt;
-&lt;H1&gt;3D ChartModifiers&lt;/H1&gt;
-&lt;P&gt;In SciChart 3D, chart interactions are defined by 3D ChartModifiers. In addition to the default SciChart modifiers you can write custom modifiers or extends existing ones.&lt;/P&gt;
-&lt;P&gt;The default modifiers includes:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;PinchZoomModifier3D 
-&lt;LI&gt;ObitModifier3D 
-&lt;LI&gt;FreeLookModifier3d 
-&lt;LI&gt;ZoomExtentsModifier3D 
-&lt;LI&gt;TooltipModifier3D 
-&lt;LI&gt;VertexSelectionModifier3D 
-&lt;LI&gt;LegendModifier3D &lt;/LI&gt;&lt;/UL&gt;
-&lt;H1&gt;Adding 3D ChartModifiers&lt;/H1&gt;
-&lt;P&gt;Now we are going to create and configure a couple of modifiers using SciChartBuilder3D and add them to the modifier collection of the SciChartSurfac3D:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;final ModifierGroup3D modifierGroup3D = sciChart3DBuilder.newModifierGroup()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withPinchZoomModifier3D().build()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withOrbitModifier3D().withReceiveHandledEvents(true).build()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withZoomExtentsModifier3D().build()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Then to add them into collection:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;surface3d.getChartModifiers().add(modifierGroup3D);&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks>
-                  <TopicLink Id="6c10afbe-fd7a-4fa9-b26b-25d47ea9a2c1" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="0f6660f9-8d3a-4fa9-b228-36376c2d79d4" BuildFlags="">
-                    <Title m="2019-10-28T09:46:31.4385931Z">PinchZoomModifier3D</Title>
-                    <Category />
-                  </TopicLink>
-                  <TopicLink Id="fd9d4d72-f8e5-4720-a130-6d76ea508949" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="02e0ff0e-aa3f-4ed3-8227-4ca9e6217352" BuildFlags="">
-                    <Title m="2019-10-28T09:48:40.4281627Z">ObitModifier3D</Title>
-                    <Category />
-                  </TopicLink>
-                  <TopicLink Id="91a7ead9-2c8b-47a4-a060-e304f8e7dca5" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="8cc4d206-bdd4-4d42-8ff4-4c09fddcb317" BuildFlags="">
-                    <Title m="2019-10-28T09:49:31.6138953Z">FreeLookModifier3D</Title>
-                    <Category />
-                  </TopicLink>
-                  <TopicLink Id="a32f5061-c887-45b1-aec6-16d2eee44313" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="0f31338f-c416-4129-8e9b-cc357faf1082" BuildFlags="">
-                    <Title m="2019-10-28T09:49:44.5854368Z">ZoomExtentsModifier3D</Title>
-                    <Category />
-                  </TopicLink>
-                </TopicLinks>
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
-              <Topic Id="57a08ab7-2fd2-4ee1-8268-30acf5c474c3" Status="In Progress" CreatedOn="2019-09-02T16:02:59.1689118Z" ModifiedOn="2024-10-16T16:17:34.8350118Z" ModifiedBy="" PageTypeName="" AutoIndex="false" HelpContextIds="" Name="OLD 3D Tutorial 06 - Cursors and Tooltips" BuildFlags="">
-                <Title m="2020-09-11T17:12:23.5475964Z">OLD 3D Tutorial 06 - Cursors and Tooltips</Title>
-                <ContentsTitle />
-                <Notes></Notes>
-                <CanonicalLink></CanonicalLink>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2019-09-24T11:47:33.2557949Z">&lt;P&gt;In the&amp;nbsp;&lt;A href="b302958a-29d2-4089-9b36-8ff8acd30627"&gt;previous tutorial&lt;/A&gt;, we showed how to create a chart and add data. In this tutorial we show how to add a cursor and tooltip to that chart.&lt;/P&gt;
-&lt;H3&gt;Definitions&lt;/H3&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;STRONG&gt;cursor&lt;/STRONG&gt; ⁠— a tablet or cell phone obviously does not have a mouse. Instead the mouse is your finer and the cursor is where you place your finger. It appears as a small &lt;STRONG&gt;x&lt;/STRONG&gt; (cross). 
-&lt;LI&gt;&lt;STRONG&gt;tooltip⁠&lt;/STRONG&gt; — is text that displays when you push the cursor onto an object, like a point plotted on a chart. You have to push the cursor onto the coordinate for the text to appear. In the case of the example below you probably need to use two fingers to zoom into the chart to make the points appear large enough to that you can see them. &lt;/LI&gt;&lt;/UL&gt;
-&lt;H2&gt;Tooltip&lt;/H2&gt;
-&lt;P&gt;At the bottom of &lt;A href="699aad4b-9271-4f53-bcff-48cd49a70752"&gt;CreateScatter3DChartFragment&lt;/A&gt;&amp;nbsp;we added a&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.ModifierGroup3D.html"&gt;ModifierGroup3D&lt;/A&gt; in the previous tutorial. This gives the chart the panning and zooming ability.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;surface3d.getChartModifiers().add(sciChart3DBuilder.newModifierGroupWithDefaultModifiers().build());&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;We can add more additional charts on the surface by simple adding them to &lt;STRONG&gt;surface3d.getRenderableSeries().add(CHART)&lt;/STRONG&gt;. Similarly we an add additional modifiers, such as a &lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.TooltipModifier3D.html"&gt;TooltipModifier&lt;/A&gt;, to the surface3D object using &lt;STRONG&gt;surface3d.getChartModifiers().add&lt;/STRONG&gt;. &lt;/P&gt;
-&lt;P&gt;So in &lt;A href="7915ac64-f37b-4acd-a5c7-521a0259d63c"&gt;CreateScatter3DChartFragment&lt;/A&gt; we create a &lt;STRONG&gt;TooltipModifier3D&lt;/STRONG&gt;.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;final TooltipModifier3D tooltipModifier3D = new TooltipModifier3D();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; tooltipModifier3D.setIsEnabled(true);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; //tooltipModifier3D.setExecuteOnPointerCount(1);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; tooltipModifier3D.setCrosshairMode(CrosshairMode.Lines);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.getChartModifiers().add(new ModifierGroup3D(tooltipModifier3D));&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Then we assign the &lt;STRONG&gt;CustomXyzSeriesTooltip3D&lt;/STRONG&gt;, defined further below in the class &lt;STRONG&gt;CustomSeriesInfo3DProvider&lt;/STRONG&gt;, with &lt;STRONG&gt;return new CustomXyzSeriesTooltip3D(context, seriesInfo)&lt;/STRONG&gt; to the &lt;STRONG&gt;CustomSeriesInfo3DProvider&lt;/STRONG&gt;.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;class CustomSeriesInfo3DProvider extends DefaultXyzSeriesInfo3DProvider {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Override&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; protected ISeriesTooltip3D getSeriesTooltipInternal(Context context, XyzSeriesInfo3D&amp;lt;? extends XyzRenderableSeries3DBase&amp;gt; seriesInfo, Class&amp;lt;?&amp;gt; modifierType) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; if(modifierType == TooltipModifier3D.class) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; return new CustomXyzSeriesTooltip3D(context, seriesInfo);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; } else {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; return super.getSeriesTooltipInternal(context, seriesInfo, modifierType);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;We define the behavior of the tooltip by extending &lt;STRONG&gt;XyzSeriesTooltip3D&lt;/STRONG&gt;. Here we add the text that we want to appear in the tooltip. In this case we pass it a description and the x,y,z coordinates or the point you touch. Use a line feed &lt;STRONG&gt;\n&lt;/STRONG&gt; at the end of each line.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;class CustomSeriesInfo3DProvider extends DefaultXyzSeriesInfo3DProvider {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Override&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; protected ISeriesTooltip3D getSeriesTooltipInternal(Context context, XyzSeriesInfo3D&amp;lt;? extends XyzRenderableSeries3DBase&amp;gt; seriesInfo, Class&amp;lt;?&amp;gt; modifierType) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; if(modifierType == TooltipModifier3D.class) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; return new CustomXyzSeriesTooltip3D(context, seriesInfo);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; } else {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; return super.getSeriesTooltipInternal(context, seriesInfo, modifierType);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; private static class CustomXyzSeriesTooltip3D extends XyzSeriesTooltip3D {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; public CustomXyzSeriesTooltip3D(Context context, XyzSeriesInfo3D&amp;lt;?&amp;gt; seriesInfo) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; super(context, seriesInfo);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Override&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; protected void internalUpdate(XyzSeriesInfo3D&amp;lt;?&amp;gt; seriesInfo) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final SpannableStringBuilder sb = new SpannableStringBuilder();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sb.append("This is Custom Tooltip").append("\n");&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sb.append("VertexId: ").append(Integer.toString(seriesInfo.vertexId)).append("\n");&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sb.append("X: ").append(seriesInfo.getFormattedXValue()).append("\n");&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sb.append("Y: ").append(seriesInfo.getFormattedYValue()).append("\n");&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sb.append("Z: ").append(seriesInfo.getFormattedZValue());&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; setText(sb);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; setSeriesColor(seriesInfo.seriesColor);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;}&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Here is the result:&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/customtooltip.jpg"&gt;&amp;nbsp;&lt;/P&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks>
-                  <TopicLink Id="da0d621a-f710-4761-a3bf-4b0454648587" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="7915ac64-f37b-4acd-a5c7-521a0259d63c" BuildFlags="">
-                    <Title />
-                    <Category />
-                  </TopicLink>
-                </TopicLinks>
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
-              <Topic Id="5eb89f7b-2486-4a91-bb5d-2a567a4cdd16" Status="In Progress" CreatedOn="2019-09-02T12:26:48.1021752Z" ModifiedOn="2024-10-16T16:17:34.83601Z" ModifiedBy="" PageTypeName="" AutoIndex="false" HelpContextIds="" Name="OLD 3D Tutorial 07 - Plotting Realtime Data" BuildFlags="">
-                <Title m="2020-09-11T17:12:28.4994068Z">OLD 3D Tutorial 07 - Plotting Realtime Data</Title>
-                <ContentsTitle />
-                <Notes></Notes>
-                <CanonicalLink></CanonicalLink>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2019-09-24T11:48:45.1702818Z">&lt;P&gt;Go back to the code &lt;A href=""&gt;Creating a Chart and Add a Data Series&lt;/A&gt;.&lt;/P&gt;
-&lt;P&gt;Before we add realtime updates to the chart it is necessary to use the &lt;A href=""&gt;UpdateSuspender&lt;/A&gt; object to create the chart instead of the approach we used before, which was just to run a series of steps in &lt;STRONG&gt;initExample()&lt;/STRONG&gt;. UpdateSuspender is disposable class which allows nested suspend/resume operations on an &lt;A href=""&gt;ISuspendable&lt;/A&gt; target.&lt;/P&gt;
-&lt;P&gt;Then change this:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setXAxis(xAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setYAxis(yAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setZAxis(zAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.getRenderableSeries().add(rs);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.getChartModifiers().add(sciChart3DBuilder.newModifierGroupWithDefaultModifiers().build());&amp;nbsp;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;... to this code shown below. Build and run the project to make sure that it still works.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;&lt;BR&gt;UpdateSuspender.using(surface3d, new Runnable() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Override&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; public void run() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setCamera(camera);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setXAxis(xAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setYAxis(yAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setZAxis(zAxis);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.getRenderableSeries().add(rs);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.getChartModifiers().add(sciChart3DBuilder.newModifierGroupWithDefaultModifiers().build());&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; });&lt;BR&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Now we add the code below to update the chart in real time. As you can see updating the chart is as simple as changing the data and running that in a thread.&lt;/P&gt;
-&lt;P&gt;First add ScheduledExecutorService and ScheduledFuture to the top:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;public class CreateScatter3DChartFragment extends ExampleBaseFragment {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; @BindView(R.id.chart3d)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; SciChartSurface3D surface3d;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; private final ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; private ScheduledFuture&amp;lt;?&amp;gt; schedule;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Now put this at the bottom:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Override&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; protected void initExample() {&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // ...&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; schedule = scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; private final DoubleValues buffer = new DoubleValues();&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Override&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; public void run() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; UpdateSuspender.using(surface3d, new Runnable() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Override&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; public void run() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataSeries.clear();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; double randomDouble = Math.random();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; randomDouble = randomDouble * 5 + 1;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; int randomInt = (int) randomDouble;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; for (int i = 0; i &amp;lt; 5; i++) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double x = i*randomInt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double y = i*randomInt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double z = i*randomInt;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataSeries.append(x, y, z);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; });&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }, 0, 33, TimeUnit.MILLISECONDS);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Override&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; public void onDestroyView() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; super.onDestroyView();&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; if (schedule != null)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; schedule.cancel(true);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;The complete code for the modified &lt;STRONG&gt;CreateScatter3DChartFragment&lt;/STRONG&gt; is &lt;A href="b6028fd1-9906-48ac-9d08-dd81e45997dd"&gt;here&lt;/A&gt;.&lt;/P&gt;
-&lt;P&gt;The resulting chart is the same except values plotted on the screen change in real time.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/RealtimeAndroid.gif"&gt;&amp;nbsp;&lt;/P&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks>
-                  <TopicLink Id="13d7487c-cf17-4ec6-aef1-a78860c2ecb1" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="498f88e2-6f84-4804-9da5-426e8d72ef00" BuildFlags="">
-                    <Title m="2019-09-24T11:38:43.3581343Z">Suspending Updates of Chart</Title>
-                    <Category />
-                  </TopicLink>
-                </TopicLinks>
                 <TopicKeywords />
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
