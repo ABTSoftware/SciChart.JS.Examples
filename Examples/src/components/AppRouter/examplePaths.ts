@@ -50,6 +50,7 @@ export default [
     "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations",
     "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold",
     "../Examples/Charts2D/ChartAnnotations/EditableAnnotations",
+    "../Examples/Charts2D/ChartAnnotations/HtmlAnnotations",
     "../Examples/Charts2D/ChartAnnotations/ResponsiveHtmlAnnotations",
     "../Examples/Charts2D/ChartAnnotations/TradeMarkers",
     "../Examples/Charts2D/CreateStockCharts/DepthChart",

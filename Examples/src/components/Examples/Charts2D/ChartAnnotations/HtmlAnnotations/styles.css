@@ -1,0 +1,21 @@
+.styledTextAnnotation {
+    max-width: 300px;
+    padding: 4px;
+    font-size: 1em;
+    font-weight: bold;
+    color: wheat;
+    background: repeating-radial-gradient(circle at center, #14233c, #264b93 10px, #14233c 20px);
+    border: 2px dashed teal;
+    border-radius: 15px;
+}
+
+.inputWrapper input::-webkit-outer-spin-button,
+.inputWrapper input::-webkit-inner-spin-button {
+    -webkit-appearance: auto !important;
+}
+
+@media (max-width: 600px) {
+    .htmlAnnotationExampleChart {
+        font-size: 0.8em;
+    }
+}

@@ -140,6 +140,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_chartAnnotations_BackgroundAnnotations,
             EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationLayers,
             EXAMPLES_PAGES.chart2D_chartAnnotations_ResponsiveHtmlAnnotations,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_HtmlAnnotations,
         ],
     },
     {
