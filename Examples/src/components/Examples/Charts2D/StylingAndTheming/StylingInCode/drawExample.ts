@@ -28,7 +28,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create and style xAxis
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
-            useNativeText: false,
             axisTitle: "X Axis",
             drawMajorBands: true,
             axisBandsFill,
@@ -59,6 +58,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 color: minorGridLineColor,
                 tickSize: 4,
             },
+            useNativeText: false, // this must be false to use labelStyle fontWeight and fontStyle
             labelStyle: {
                 fontSize: 16,
                 fontWeight: "bold",
@@ -77,7 +77,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create and style left YAxis
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
-            useNativeText: false,
             axisAlignment: EAxisAlignment.Left,
             axisBandsFill,
             axisTitle: "Left Y Axis",
@@ -108,6 +107,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 color: minorGridLineColor,
                 tickSize: 4,
             },
+            useNativeText: false, // this must be false to use labelStyle fontWeight and fontStyle
             labelStyle: {
                 fontSize: 16,
                 fontWeight: "bold",
