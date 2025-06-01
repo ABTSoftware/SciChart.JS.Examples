@@ -15,7 +15,7 @@ import {
     Point, 
     EPolarLabelMode,
     WaveAnimation,
-    ScaleAnimation,
+    XyxDataSeries,
     EColumnMode,
     MetadataPaletteProvider,
     IColorMetadata,
@@ -24,11 +24,14 @@ import {
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-const DATA ={
-    labels: ["React.js", "Angular", "Vue.js", "Svelte", "Next.js", "Ember.js"],
-    color: [appTheme.MutedBlue, appTheme.VividRed, appTheme.VividTeal, appTheme.VividOrange, appTheme.DarkIndigo, appTheme.MutedRed],
-    values: [45, 31, 14, 5, 3, 2]
-}
+const DATA = [
+    { label: "React.js", color: appTheme.MutedBlue, value: 45 },
+    { label: "Angular", color: appTheme.VividRed, value: 31 },
+    { label: "Vue.js", color: appTheme.VividTeal, value: 14 },
+    { label: "Svelte", color: appTheme.VividOrange, value: 5 },
+    { label: "Next.js", color: appTheme.DarkIndigo, value: 3 },
+    { label: "Ember.js", color: appTheme.MutedRed, value: 2 }
+];
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
@@ -39,39 +42,49 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }
     });
 
-    const RadialAxis = new PolarNumericAxis(wasmContext, {
-        visibleRangeLimit: new NumberRange(0, 1),
+    const radialYAxis = new PolarNumericAxis(wasmContext, {
         polarAxisMode: EPolarAxisMode.Radial,
-        isVisible: false,
-        startAngle: Math.PI / 2
+        visibleRangeLimit: new NumberRange(0, 1),
+        startAngleDegrees: 90,
+        isVisible: false
     });
-    sciChartSurface.yAxes.add(RadialAxis);
+    sciChartSurface.yAxes.add(radialYAxis);
 
-    const polarAxis = new PolarNumericAxis(wasmContext, {
+    const angularXAxis = new PolarNumericAxis(wasmContext, {
         polarAxisMode: EPolarAxisMode.Angular,
-        flippedCoordinates: true, // go clockwise
-        isVisible: false,
-        startAngle: Math.PI / 2
+        startAngleDegrees: 90,
+        flippedCoordinates: true,
+        isVisible: false
     });
-    sciChartSurface.xAxes.add(polarAxis);
+    sciChartSurface.xAxes.add(angularXAxis);
 
     const metadata: IColorMetadata[] = [];
-    for (let i = 0; i < DATA.values.length; i++) {
+    const xValues: number[] = [];
+
+    for (let i = 0; i < DATA.length; i++) {
+        xValues.push(DATA[i].value);
         metadata.push({ 
             isSelected: false,
-            fill: DATA.color[i],
+            fill: DATA[i].color,
         });
     }
+
     const polarColumn = new PolarColumnRenderableSeries(wasmContext, {
-        dataSeries: new XDataSeries(wasmContext, {
-            xValues: DATA.values,
-            metadata,
+        dataSeries: new XyxDataSeries(wasmContext, {
+            xValues: xValues,
+            x1Values: xValues.map((_, i) => xValues[i + 1] || 0),
+            yValues: Array(xValues.length).fill(1),
+            metadata
         }),
-        stroke: "white",
-        strokeThickness: 1,
-        // columnXMode: EColumnMode.Width,
-        paletteProvider: new MetadataPaletteProvider()
+        stroke: "black",
+        strokeThickness: 2,
+        columnXMode: EColumnMode.StartWidth,
+        paletteProvider: new MetadataPaletteProvider(), // use colors from the metadata for each column value
     });
+
+    polarColumn.getXRange = () => {
+        return new NumberRange(0, xValues.reduce((a, b) => a + b, 0) / 2);
+    };
 
     sciChartSurface.renderableSeries.add(polarColumn);
 
@@ -83,129 +96,3 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     return { sciChartSurface, wasmContext };
 };
-
-
-
-// todo 
-// export const drawExample2 = async () => {
-//     const startAngleInput = 1 / 2;
-//     const totalAngleInput = 2;
-//     const xMin = 0;
-//     const xMax = 10 + 20 + 30 + 40;
-//     const yMin = 0;
-//     const yMax = 1;
-//     const isCategoryAxis = false;
-//     const zeroLineY = 0;
-//     const dataPointWidth = 0.5;
-//     const padding = 30;
-//     const axisPadding = 0;
-//     const flippedCoordinates = false;
-//     const isAxesVisible = false;
-//     const coef2 = 1.02;
-
-//     const theme = { ...new SciChartJSLightTheme() };
-//     theme.sciChartBackground = "Transparent";
-//     theme.columnFillBrush = EColor.White;
-
-//     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(divElementId, {
-//         theme,
-//         padding: Thickness.fromNumber(padding)
-//     });
-
-//     const startAngle = Math.PI * startAngleInput;
-//     const totalAngle = Math.PI * totalAngleInput;
-//     const polarLabelMode = EPolarLabelMode.Perpendicular;
-
-//     if (isCategoryAxis) {
-//         const xAxis = new PolarCategoryAxis(wasmContext, {
-//             visibleRange: new NumberRange(xMin, xMax), // ? 12
-//             flippedCoordinates,
-//             polarAxisMode: EPolarAxisMode.Angular,
-//             majorGridLineStyle: { strokeThickness: 1, color: "000000" },
-//             drawMinorGridLines: false,
-//             useNativeText: true,
-//             labelStyle: { padding: Thickness.fromNumber(axisPadding) },
-//             startAngle,
-//             totalAngle,
-//             isVisible: isAxesVisible
-//         });
-//         xAxis.polarLabelMode = polarLabelMode;
-//         sciChartSurface.xAxes.add(xAxis);
-//     } else {
-//         const xAxis = new PolarNumericAxis(wasmContext, {
-//             visibleRange: new NumberRange(xMin, xMax), // ? 12
-//             flippedCoordinates,
-//             polarAxisMode: EPolarAxisMode.Angular,
-//             majorGridLineStyle: { strokeThickness: 1, color: "000000" },
-//             drawMinorGridLines: false,
-//             useNativeText: true,
-//             labelStyle: { padding: Thickness.fromNumber(axisPadding) },
-//             startAngle,
-//             totalAngle,
-//             isVisible: isAxesVisible
-//         });
-//         xAxis.polarLabelMode = polarLabelMode;
-//         sciChartSurface.xAxes.add(xAxis);
-//     }
-
-//     const yAxis = new PolarNumericAxis(wasmContext, {
-//         visibleRange: new NumberRange(yMin, yMax * coef2),
-//         visibleRangeLimit: new NumberRange(0, 100),
-//         flippedCoordinates: false,
-//         polarAxisMode: EPolarAxisMode.Radial,
-//         majorGridLineStyle: { strokeThickness: 1, color: "AAAAAAAA" },
-//         useNativeText: true,
-//         drawMinorGridLines: false,
-//         startAngle,
-//         totalAngle,
-//         labelPrecision: 1,
-//         drawLabels: true,
-//         gridlineMode: EPolarGridlineMode.Circles,
-//         labelStyle: { padding: Thickness.fromNumber(axisPadding) },
-//         isVisible: isAxesVisible
-//     });
-//     sciChartSurface.yAxes.add(yAxis);
-
-//     const getPieSegments = (): IPieSegment[] => {
-//         const pieSegment1 = new PieSegment({
-//             color: EColor.Green,
-//             value: 10,
-//             text: "Green",
-//             delta: 20,
-//             showLabel: false
-//         });
-//         // pieSegment1.radiusAdjustment = 1.2;
-//         const pieSegment2 = new PieSegment({
-//             color: EColor.Orange,
-//             value: 20,
-//             text: "Orange",
-//             delta: 20,
-//             showLabel: false
-//         });
-//         // pieSegment2.radiusAdjustment = 0.7;
-//         //pieSegment2.labelProvider.formatLabel = (value: number) => `<span>${value.toFixed(1)}</span><br/>パーセンテージ`;
-//         const pieSegment3 = new PieSegment({
-//             color: EColor.Blue,
-//             value: 30,
-//             text: "Blue",
-//             delta: 30,
-//             showLabel: false
-//         });
-//         //pieSegment3.labelProvider.formatLabel = (value: number) => ``;
-//         const pieSegment4 = new PieSegment({
-//             color: EColor.Yellow,
-//             value: 40,
-//             text: "Yellow",
-//             delta: 40,
-//             showLabel: false
-//         });
-//         return [pieSegment1, pieSegment2, pieSegment3, pieSegment4];
-//     };
-//     sciChartSurface.chartModifiers.add(
-//         new NativePieChartModifier({
-//             segments: getPieSegments(),
-//             coef2,
-//             executeCondition: { button: EExecuteOn.MouseLeftButton }
-//         })
-//     );
-// };

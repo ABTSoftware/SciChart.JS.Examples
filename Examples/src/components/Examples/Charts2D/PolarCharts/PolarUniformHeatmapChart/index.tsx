@@ -13,7 +13,7 @@ export default function ChartComponent() {
         <SciChartReact 
             initChart={drawExample} 
             className={commonClasses.ChartWrapper} 
-        />;
+        />
         <SciChartReact
             initChart={drawHeatmapLegend}
             style={{
