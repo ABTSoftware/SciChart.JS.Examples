@@ -56,6 +56,7 @@ const sendData = (
 // tslint:disable: no-console
 export const createSocketServer = (server: http.Server): void => {
     const io = new socketIo.Server(server, {
+        path: "/demo/socket.io",
         serveClient: false,
         cors: {
             origin: ["http://localhost:8080", "http://localhost:8081", "/.csb.app$/", "/.cdpn.io$/"],
