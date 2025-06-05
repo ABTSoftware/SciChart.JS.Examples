@@ -18,9 +18,16 @@ import {
 // If fetching from the server requires additional code, eg authorization headers, then you can supply your own callback like this
 // SciChartSurface.setLicenseCallback((queryString) => fetch("/custom?"+queryString, { headers: { authorization: <whatever is needed here > }));
 // Make sure you include the querystring parameter in the server request.  You can add additional parameters to the qerystring if need be.
-SciChartSurface.setRuntimeLicenseKey("client key here");
+
+const CLIENT_KEY = "enter-your-client-key-here";
+SciChartSurface.setRuntimeLicenseKey(CLIENT_KEY);
 
 const initSciChart = async () => {
+  // In order to avoid licensing blink
+  const dummyChart = await SciChartSurface.create("chart");
+  dummyChart.sciChartSurface.delete();
+  document.getElementById("chart").style.visibility = "visible";
+
   const { wasmContext, sciChartSurface } = await SciChartSurface.create(
     "chart"
   );

@@ -20,7 +20,19 @@ You can run the server with hot-reload using npm run dev.
 
 SciChart.JS will call the licensing endpoint on first chart load, and once per day thereafter, to get a validation token that will allow the client side charts to display.
 
-## How to add ScichartLicenseServer to your project
+## How to set up licensing and run the example
+
+1. **Choose APP_NAME and generate licensing key pair**. In the [My Account Page](https://scichart.com/my-account) Licenses section using "Manage Hostnames" button add your **APP_NAME** as an "OEM or Embedded License App Name". For this demo that would be "scichart-nodejs-server-licensing". Then click "Show Runtime License Key" button to find **CLIENT_KEY** and **SERVER_KEY** in "OEM or Embedded Licensing key pair" section.
+2. **Set up the the server**. In `src\server\licenseServer.ts` file set your **APP_NAME** and **SERVER_KEY**.
+3. **Set up the the client**. In `src\index.ts` file set your **CLIENT_KEY**.
+4. **Build the app** `npm run build` builds both client and server
+5. **Run the app** `npm start`
+
+As a result you will see your license validation request
+
+![Local Image](./img/image.png)
+
+## How to add SciChart License Server to your project
 
 1.  Contact support@scichart.com with details about your intended deployment so we can ensure you are getting the correct licensing solution.
 2.  In the [My Account Page](https://scichart.com/my-account) Licenses section, add your app name as an OEM or Embedded License App Name. For this demo that would be scichart-nodejs-server-licensing.
@@ -120,11 +132,15 @@ process.on("SIGTERM", () => {
 
 see /src/index.ts
 
+**Setting CLIENT_KEY**
+
 At minimum, you can just set the SciChart client key as normal
 
 ```js
 SciChartSurface.setRuntimeLicenseKey("client key here");
 ```
+
+**Fetching CLIENT_KEY form a server**
 
 To instead fetch the client license from the server (useful if you have the same deployment to different domains requiring different licenses)
 use fetch, then pass the test response to setRuntimeLicenseKey. Don't worry if this happenes before or after the SciChartSurface is created - charts will automatically update when the license is set.
@@ -135,12 +151,24 @@ fetch("/api/getclientlicense")
   .then((key) => SciChartSurface.setRuntimeLicenseKey(key));
 ```
 
+**Changing license validation endpoint**
+
 When using a server key, scichart needs to call back to the server to validate the client license.  
  The default endpoint is /api/license. If you just need to use a different endpoint you can change this using
 
 ```js
 SciChartSurface.setServerLicenseEndpoint("/custom/endpoint");
 ```
+
+**Changing license validation hostname, domain or port**
+
+```js
+SciChartSurface.setLicenseCallback((queryString) =>
+  fetch(`http://localhost:3000/api/license?${queryString}`)
+);
+```
+
+**Adding additional authorization headers**
 
 If fetching from the server requires additional code, eg authorization headers, then you can supply your own callback like this
 

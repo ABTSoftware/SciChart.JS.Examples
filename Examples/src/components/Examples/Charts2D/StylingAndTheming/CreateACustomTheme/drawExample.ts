@@ -60,7 +60,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         scrollbarGripsBackgroundBrush: "white",
         scrollbarViewportBackgroundBrush: "white",
         scrollbarViewportBorderBrush: "white",
-        shadowEffectColor: "white",
+        shadowEffectColor: "#000000FF",
         textAnnotationBackground: "#6495EDAA",
         textAnnotationForeground: "#333333",
         tickTextBrush: "#6495ED",
@@ -80,16 +80,18 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const yAxis = new NumericAxis(wasmContext);
     yAxis.visibleRange = new NumberRange(1, 1.2);
     yAxis.labelProvider.formatLabel = (dataValue: number) => dataValue.toFixed(3);
+    yAxis.labelProvider.formatCursorLabel = (dataValue: number) => dataValue.toFixed(3);
     sciChartSurface.yAxes.add(yAxis);
 
     // Create some series with data
     const series1 = new FastLineRenderableSeries(wasmContext);
     series1.strokeThickness = 3;
+    series1.stroke = "#16a085";
     sciChartSurface.renderableSeries.add(series1);
 
     series1.dataSeries = new XyDataSeries(wasmContext, {
-        xValues: [1, 15, 30],
-        yValues: [1.12, 1.11, 1.1],
+        xValues: [1, 5, 10, 15, 20, 25, 30],
+        yValues: [1.12, 1.121, 1.119, 1.11, 1.115, 1.112, 1.1],
     });
 
     const series2 = new FastCandlestickRenderableSeries(wasmContext, {
@@ -103,6 +105,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         dataPointWidth: 0.5,
     });
+    series2.rolloverModifierProps.tooltipColor = "#d0d3d4";
+    series2.rolloverModifierProps.markerColor = "#d0d3d4";
     sciChartSurface.renderableSeries.add(series2);
 
     const series3 = new FastColumnRenderableSeries(wasmContext, {
