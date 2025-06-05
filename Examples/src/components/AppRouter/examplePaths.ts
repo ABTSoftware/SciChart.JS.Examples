@@ -29,6 +29,7 @@ export default [
     "../Examples/Charts2D/BasicChartTypes/HistogramChart",
     "../Examples/Charts2D/BasicChartTypes/ImpulseChart",
     "../Examples/Charts2D/BasicChartTypes/LineChart",
+    "../Examples/Charts2D/BasicChartTypes/MapExample",
     "../Examples/Charts2D/BasicChartTypes/MountainChart",
     "../Examples/Charts2D/BasicChartTypes/NonUniformHeatmapChart",
     "../Examples/Charts2D/BasicChartTypes/OhlcChart",
@@ -101,6 +102,7 @@ export default [
     "../Examples/Charts2D/StylingAndTheming/DataLabels",
     "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds",
     "../Examples/Charts2D/StylingAndTheming/MultiStyleSeries",
+    "../Examples/Charts2D/StylingAndTheming/OrderedRendering",
     "../Examples/Charts2D/StylingAndTheming/PerPointColoring",
     "../Examples/Charts2D/StylingAndTheming/StylingInCode",
     "../Examples/Charts2D/StylingAndTheming/TransparentBackground",
@@ -144,5 +146,5 @@ export default [
     "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard",
     "../Examples/FeaturedApps/ShowCases/PopulationPyramid",
     "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard",
-    "../Examples/FeaturedApps/ShowCases/WebsocketBigData",
+    "../Examples/FeaturedApps/ShowCases/WebsocketBigData"
 ];

@@ -74,6 +74,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_showcases_populationPyramid,
             EXAMPLES_PAGES.chart2D_basicCharts_HistogramChart,
             // EXAMPLES_PAGES.chart2D_basicCharts_GanttChart, // uncomment when ready
+            EXAMPLES_PAGES.chart2D_basicCharts_MapExample,
             EXAMPLES_PAGES.chart2D_basicCharts_ErrorBarsChart,
             EXAMPLES_PAGES.chart2D_basicCharts_BoxPlotChart,
             EXAMPLES_PAGES.chart2D_basicCharts_TriangleSeriesChart,
@@ -188,6 +189,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_MultiplePointMarkers,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_LineSplittingThresholds,
             EXAMPLES_PAGES.featuredApps_featureDemos_chartTitle,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_OrderedRendering,
         ],
     },
     {

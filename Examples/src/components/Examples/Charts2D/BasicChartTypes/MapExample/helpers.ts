@@ -1,0 +1,102 @@
+export type Keytype = "population" | "population_density" | "area_km2";
+
+export function getMinMax(property: Keytype, data: any[]) {
+    let min = Math.min(...data.map((d) => d[property] as number));
+    let max = Math.max(...data.map((d) => d[property] as number));
+
+    return [min, max];
+}
+
+export function interpolateColor(min: number, max: number, value: number) {
+    // Clamp value between min and max
+    value = Math.max(min, Math.min(max, value));
+    // Normalize to [0,1]
+    let t = (value - min) / (max - min);
+
+    // Parse hex colors to RGB
+    function hexToRgb(hex: string) {
+        hex = hex.replace(/^#/, "");
+        if (hex.length === 3)
+            hex = hex
+                .split("")
+                .map((x) => x + x)
+                .join("");
+        const num = parseInt(hex, 16);
+        return [num >> 16, (num >> 8) & 255, num & 255];
+    }
+
+    // Interpolate between two RGB colors
+    function lerp(a: number, b: number, t: number) {
+        return Math.round(a + (b - a) * t);
+    }
+
+    const colorA = hexToRgb("#5dc0c0");
+    const colorB = hexToRgb("#1e3489");
+    const r = lerp(colorA[0], colorB[0], t);
+    const g = lerp(colorA[1], colorB[1], t);
+    const b = lerp(colorA[2], colorB[2], t);
+
+    // Convert back to hex
+    return "#" + [r, g, b].map((x) => x.toString(16).padStart(2, "0")).join("");
+}
+
+export const australiaData = [
+    {
+        state: "New South Wales",
+        population: 8511151,
+        area_km2: 800150,
+        population_density: 10.49,
+    },
+    {
+        state: "Victoria",
+        population: 7012962,
+        area_km2: 227416,
+        population_density: 30.18,
+    },
+    {
+        state: "Queensland",
+        population: 5608666,
+        area_km2: 1729742,
+        population_density: 3.18,
+    },
+    {
+        state: "Western Australia",
+        population: 2981752,
+        area_km2: 2527013,
+        population_density: 1.15,
+    },
+    {
+        state: "South Australia",
+        population: 1882722,
+        area_km2: 984321,
+        population_density: 1.89,
+    },
+    {
+        state: "Tasmania",
+        population: 575959,
+        area_km2: 68401,
+        population_density: 8.89,
+    },
+    {
+        state: "Australian Capital Territory",
+        population: 475644,
+        area_km2: 2358,
+        population_density: 198.97,
+    },
+    {
+        state: "Northern Territory",
+        population: 255559,
+        area_km2: 1347791,
+        population_density: 0.19,
+    },
+];
+
+export const keyData: { [state: string]: { population: number; area_km2: number; population_density: number } } = {};
+
+australiaData.forEach((d) => {
+    keyData[d.state] = {
+        population: d.population,
+        area_km2: d.area_km2,
+        population_density: d.population_density,
+    };
+});
