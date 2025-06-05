@@ -1,19 +1,30 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getMinMax, australiaData, Keytype, interpolateColor, keyData } from "./helpers";
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     const [key, setKey] = useState<Keytype>("population");
+    const [mapData, setMapData] = useState();
     const setMapFunc = useRef(null);
 
     const setMap = (key: Keytype) => {
         setMapFunc.current(key);
         setKey(key);
     };
+
+    useEffect(() => {
+        fetch("/australia.json")
+            .then((response) => response.json())
+            .then((data) => {
+                // console.log(data);
+                setMapData(data);
+            })
+            .catch((error) => console.error(error));
+    }, []);
 
     return (
         <div className="" style={{ width: "100%", height: "100%", position: "relative" }}>
@@ -83,20 +94,25 @@ export default function ChartComponent() {
                     })}
                 </span>
             </div>
-            <SciChartReact
-                initChart={drawExample}
-                className={commonClasses.ChartWrapper}
-                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                    // get the "setMap" function that is returned by "drawExample"
-                    let { setMap } = initResult;
+            {mapData ? (
+                <SciChartReact
+                    initChart={drawExample}
+                    className={commonClasses.ChartWrapper}
+                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                        // get the "setMap" function that is returned by "drawExample"
+                        let { setMap, setMapJson } = initResult;
 
-                    // set the initial map
-                    setMap(key);
+                        // set geojson
+                        setMapJson(mapData)
 
-                    // assign function to ref so we can call it later
-                    setMapFunc.current = setMap;
-                }}
-            />
+                        // set the initial map
+                        setMap(key);
+
+                        // assign function to ref so we can call it later
+                        setMapFunc.current = setMap;
+                    }}
+                />
+            ) : null}
         </div>
     );
 }

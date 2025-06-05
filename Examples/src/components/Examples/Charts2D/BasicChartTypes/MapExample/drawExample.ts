@@ -10,7 +10,7 @@ import {
     MouseWheelZoomModifier,
 } from "scichart";
 
-import mapJson from "./australian-states.json";
+// import mapJson from "./australian-states.json";
 
 // import mapJson from "./world.json";
 
@@ -28,32 +28,34 @@ type Keytype = "population" | "population_density" | "area_km2";
 
 const dataArray: { name: string; areaData: number[][] }[] = [];
 
-mapJson.features.forEach((state, i) => {
-    // console.log(state.properties.STATE_NAME);
+function setMapJson(mapJson: { features: any[]; }) {
+    mapJson?.features.forEach((state, i) => {
+        // console.log(state.properties.STATE_NAME);
 
-    if (state.geometry.type === "Polygon") {
-        // console.log("Polygon");
+        if (state.geometry.type === "Polygon") {
+            // console.log("Polygon");
 
-        let area = state.geometry.coordinates[0];
-        area.pop();
-        let areaData = constrainedDelaunayTriangulation(area).flat();
-
-        dataArray.push({ name: state.properties.STATE_NAME, areaData });
-    } else {
-        let polyArea = state.geometry.coordinates;
-
-        polyArea.forEach((a) => {
-            // console.log("MultiPolygon");
-            // console.log(a);
-
-            let area = a[0];
-
+            let area = state.geometry.coordinates[0];
             area.pop();
             let areaData = constrainedDelaunayTriangulation(area).flat();
+
             dataArray.push({ name: state.properties.STATE_NAME, areaData });
-        });
-    }
-});
+        } else {
+            let polyArea = state.geometry.coordinates;
+
+            polyArea.forEach((a: any[]) => {
+                // console.log("MultiPolygon");
+                // console.log(a);
+
+                let area = a[0];
+
+                area.pop();
+                let areaData = constrainedDelaunayTriangulation(area).flat();
+                dataArray.push({ name: state.properties.STATE_NAME, areaData });
+            });
+        }
+    });
+}
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
@@ -67,7 +69,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy }));
 
     const setMap = (key: Keytype) => {
-
         sciChartSurface.renderableSeries.clear(true);
 
         const [min, max] = getMinMax(key, australiaData);
@@ -98,5 +99,5 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new MouseWheelZoomModifier()
     );
 
-    return { wasmContext, sciChartSurface, setMap };
+    return { wasmContext, sciChartSurface, setMap, setMapJson };
 };
