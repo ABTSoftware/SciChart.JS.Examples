@@ -8,12 +8,12 @@ const metaData: IExampleMetadata =
         id: "chart2D_chartAnnotations_ResponsiveHtmlAnnotations",
         imagePath: "javascript-responsive-html-annotations.jpg",
         description:
-            "Demonstrates how to use the **CustomHtmlAnnotation** using SciChart.js, High Performance JavaScript Charts",
+            "Demonstrates how to use the **HtmlCustomAnnotation** using SciChart.js, High Performance JavaScript Charts",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Demonstrates how to use the **CustomHtmlAnnotation** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how to use the **HtmlCustomAnnotation** using SciChart.js, High Performance JavaScript Charts",
                 title: "Responsive HTML Annotations",
                 pageTitle: "Responsive HTML Annotations",
                 metaDescription: "",
@@ -21,7 +21,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Demonstrates how to use the **CustomHtmlAnnotation** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how to use the **HtmlCustomAnnotation** using SciChart.js, High Performance JavaScript Charts",
                 title: "Responsive HTML Annotations",
                 pageTitle: "Responsive HTML Annotations",
                 metaDescription: "",
@@ -29,7 +29,7 @@ const metaData: IExampleMetadata =
             },
             angular: {
                 subtitle:
-                    "Demonstrates how to use the **CustomHtmlAnnotation** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how to use the **HtmlCustomAnnotation** using SciChart.js, High Performance JavaScript Charts",
                 title: "Responsive HTML Annotations",
                 pageTitle: "Responsive HTML Annotations",
                 metaDescription: "",

@@ -1,5 +1,5 @@
 import {
-    CustomHtmlAnnotation,
+    HtmlCustomAnnotation,
     CategoryAxis,
     EAnnotationLayer,
     ECoordinateMode,
@@ -215,7 +215,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const crateTimeSlotAnnotation =
         (offset: number) =>
         ({ start, end, title, color }: any) => {
-            const textAnnotation = new CustomHtmlAnnotation({
+            const textAnnotation = new HtmlCustomAnnotation({
                 // move to the background to allow drawing grid lines and labels above the annotations
                 annotationLayer: EAnnotationLayer.Background,
                 yCoordinateMode: ECoordinateMode.Relative,

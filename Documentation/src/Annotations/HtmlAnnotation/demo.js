@@ -2,7 +2,7 @@ import * as SciChart from "scichart";
 
 const {
     HtmlTextAnnotation,
-    CustomHtmlAnnotation,
+    HtmlCustomAnnotation,
     NumericAxis,
     SciChartSurface,
     SciChartJsNavyTheme,
@@ -20,9 +20,9 @@ async function drawHtmlAnnotationsExample(divElementId) {
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
     // #region ExampleA
-    // A CustomHtmlAnnotation which contains an HTML input element
+    // A HtmlCustomAnnotation which contains an HTML input element
 
-    const customHtmlAnnotation = new CustomHtmlAnnotation({
+    const customHtmlAnnotation = new HtmlCustomAnnotation({
         xCoordinateMode: ECoordinateMode.DataValue,
         yCoordinateMode: ECoordinateMode.DataValue,
         x1: 2,

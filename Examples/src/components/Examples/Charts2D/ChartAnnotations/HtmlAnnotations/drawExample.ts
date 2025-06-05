@@ -1,5 +1,5 @@
 import {
-    CustomHtmlAnnotation,
+    HtmlCustomAnnotation,
     ECoordinateMode,
     EHorizontalAnchorPoint,
     MouseWheelZoomModifier,
@@ -151,7 +151,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.annotations.add(textAnnotation5);
 
     // the annotation that serves as a root node for the element generated with a framework (e.g. via `React.createPortal`)
-    const containerAnnotation = new CustomHtmlAnnotation({
+    const containerAnnotation = new HtmlCustomAnnotation({
         xCoordinateMode: ECoordinateMode.DataValue,
         yCoordinateMode: ECoordinateMode.DataValue,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
@@ -161,7 +161,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     sciChartSurface.annotations.add(containerAnnotation);
 
-    const formAnnotation = new CustomHtmlAnnotation({
+    const formAnnotation = new HtmlCustomAnnotation({
         xCoordinateMode: ECoordinateMode.Relative,
         yCoordinateMode: ECoordinateMode.Relative,
         x1: 0,
@@ -171,7 +171,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.annotations.add(formAnnotation);
 
     // the annotation that serves as a root element for the nested chart
-    const nestedChartRootAnnotation = new CustomHtmlAnnotation({
+    const nestedChartRootAnnotation = new HtmlCustomAnnotation({
         xCoordinateMode: ECoordinateMode.DataValue,
         yCoordinateMode: ECoordinateMode.DataValue,
         x1: 70,
