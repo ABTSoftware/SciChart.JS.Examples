@@ -6,7 +6,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "MapExample",
         id: "chart2D_basicCharts_MapExample",
-        imagePath: "javascript-band-chart.jpg",
+        imagePath: "javascript-map-demo.jpg",
         description:
             "Demonstrates how to create a **Ordered Renderingt**",
         tips: [],

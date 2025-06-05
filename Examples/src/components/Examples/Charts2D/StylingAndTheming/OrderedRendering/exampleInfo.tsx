@@ -6,7 +6,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "OrderedRendering",
         id: "chart2D_stylingAndTheming_OrderedRendering",
-        imagePath: "javascript-band-chart.jpg",
+        imagePath: "javascript-ordered-rendering.jpg",
         description:
             "Demonstrates how to create a **Ordered Renderingt**",
         tips: [],
