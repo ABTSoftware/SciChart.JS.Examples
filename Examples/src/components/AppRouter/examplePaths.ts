@@ -31,6 +31,7 @@ export default [
     "../Examples/Charts2D/BasicChartTypes/LineChart",
     "../Examples/Charts2D/BasicChartTypes/MapExample",
     "../Examples/Charts2D/BasicChartTypes/MountainChart",
+    "../Examples/Charts2D/BasicChartTypes/MultiMapExample",
     "../Examples/Charts2D/BasicChartTypes/NonUniformHeatmapChart",
     "../Examples/Charts2D/BasicChartTypes/OhlcChart",
     "../Examples/Charts2D/BasicChartTypes/PieChart",

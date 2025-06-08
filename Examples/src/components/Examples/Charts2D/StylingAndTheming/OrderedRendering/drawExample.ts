@@ -96,7 +96,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         textColor: appTheme.MutedBlue,
         wrapTo: EWrapTo.Annotation,
         renderLayer: EDefaultRenderLayer.SeriesLayer,
-        drawImmediate: true,
+        // drawImmediate: true,
         renderOrder: 0,
     });
 
@@ -110,7 +110,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         textColor: appTheme.MutedBlue,
         wrapTo: EWrapTo.Annotation,
         renderLayer: EDefaultRenderLayer.SeriesLayer,
-        drawImmediate: true,
+        // drawImmediate: true,
         renderOrder: 0,
     });
 
@@ -124,7 +124,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         textColor: appTheme.MutedBlue,
         wrapTo: EWrapTo.Annotation,
         renderLayer: EDefaultRenderLayer.SeriesLayer,
-        drawImmediate: true,
+        // drawImmediate: true,
         renderOrder: 0,
     });
 
@@ -137,7 +137,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         textColor: appTheme.ForegroundColor,
         wrapTo: EWrapTo.Annotation,
         renderLayer: EDefaultRenderLayer.SeriesLayer,
-        drawImmediate: true,
+        // drawImmediate: true,
         renderOrder: 0,
     });
 
