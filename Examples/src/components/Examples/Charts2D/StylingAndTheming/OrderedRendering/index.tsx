@@ -26,10 +26,7 @@ export default function ChartComponent() {
                     color: order ? "rgb(0, 188, 212)" : "white",
                     display: "inline-block",
                     padding: "10px 24px",
-                    // margin: "5px 5px",
                     background: order ? "#163149" : "#14233c",
-                    // borderRadius: "12px",
-                    // fontWeight: "bold"
                 }}
             >
                 REVERSE ORDER OF BAND SERIES

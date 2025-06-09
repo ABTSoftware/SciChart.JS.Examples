@@ -10,14 +10,6 @@ import {
     MouseWheelZoomModifier,
 } from "scichart";
 
-// import mapJson from "./australian-states.json";
-
-// import mapJson from "./world.json";
-
-// import mapJson from "./us-states.json";
-
-// import mapJson from "./africa.json";
-
 import { appTheme } from "../../../theme";
 
 import constrainedDelaunayTriangulation from "./constrainedDelaunayTriangulation";
@@ -30,10 +22,8 @@ const dataArray: { name: string; areaData: number[][] }[] = [];
 
 function setMapJson(mapJson: { features: any[]; }) {
     mapJson?.features.forEach((state, i) => {
-        // console.log(state.properties.STATE_NAME);
 
         if (state.geometry.type === "Polygon") {
-            // console.log("Polygon");
 
             let area = state.geometry.coordinates[0];
             area.pop();
@@ -44,8 +34,6 @@ function setMapJson(mapJson: { features: any[]; }) {
             let polyArea = state.geometry.coordinates;
 
             polyArea.forEach((a: any[]) => {
-                // console.log("MultiPolygon");
-                // console.log(a);
 
                 let area = a[0];
 

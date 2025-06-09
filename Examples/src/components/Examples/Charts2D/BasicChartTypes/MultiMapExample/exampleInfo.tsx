@@ -6,7 +6,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "MultiMapExample",
         id: "chart2D_basicCharts_MultiMapExample",
-        imagePath: "javascript-map-demo.jpg",
+        imagePath: "javascript-multi-map-demo.jpg",
         description:
             "Demonstrates how to create a **Multi Map Example**",
         tips: [],
@@ -53,7 +53,7 @@ const metaData: IExampleMetadata =
         metaKeywords: "band, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/MultiMapExample",
-        thumbnailImage: "javascript-multi-map-demo.jpg.jpg",
+        thumbnailImage: "javascript-multi-map-demo.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",

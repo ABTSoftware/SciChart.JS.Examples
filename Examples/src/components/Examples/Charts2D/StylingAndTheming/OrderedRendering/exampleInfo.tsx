@@ -52,7 +52,7 @@ const metaData: IExampleMetadata =
         path: "ordered-rendering",
         metaKeywords: "band, chart, javascript, webgl, canvas",
         onWebsite: true,
-        filepath: "Charts2D/BasicChartTypes/OrderedRendering",
+        filepath: "Charts2D/StylingAndTheming/OrderedRendering",
         thumbnailImage: "javascript-band-chart.jpg",
         sandboxConfig: {},
         markdownContent: null,

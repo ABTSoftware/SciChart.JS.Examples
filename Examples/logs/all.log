@@ -1,0 +1,910 @@
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/react /:example? 304 - - 4.736 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/style.css N/A 200 - - 13.941 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-realtime-performance-demo.jpg N/A 200 137935 - 12.772 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-load-500-series-by-500-points.jpg N/A 200 65117 - 6.298 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-performance-load-one-million-points.jpg N/A 200 36932 - 10.973 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-audio-analyzer-fft-example.jpg N/A 200 52322 - 3.881 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-realtime-ghosted-traces-oscilloscope-chart.jpg N/A 200 149660 - 5.782 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-oil-gas-explorer-dashboard-charts.jpg N/A 200 58820 - 2.681 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-streaming-data.jpg N/A 200 48436 - 2.067 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-server-traffic-dashboard.jpg N/A 200 51592 - 2.250 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-heatmap-interactions.jpg N/A 200 60325 - 4.091 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-dynamic-layout.jpg N/A 200 52704 - 5.639 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-draggable-event-markers.jpg N/A 200 32480 - 3.589 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-population-pyramid.jpg N/A 200 59796 - 4.552 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-vital-signs-ecg-medical-chart-example.jpg N/A 200 24653 - 1.287 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-logarithmic-axis.jpg N/A 200 68574 - 1.795 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-3d-lidar-visualization.jpg N/A 200 43088 - 2.692 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-vertically-stacked-axes.jpg N/A 200 56074 - 2.407 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-candlestick-chart.jpg N/A 200 42484 - 2.151 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-interactive-waterfall-chart.jpg N/A 200 101554 - 3.153 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-ohlc-chart.jpg N/A 200 20892 - 5.858 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-realtime-ticking-stock-charts.jpg N/A 200 44543 - 6.274 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-subcharts-multi-pane-stock-charts.jpg N/A 200 47784 - 5.487 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-2d-3d-chart-tenor-curves-example.jpg N/A 200 50449 - 1.480 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-multi-pane-stock-charts.jpg N/A 200 39629 - 2.543 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-depth-chart.jpg N/A 200 19228 - 3.285 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-stock-chart-buy-sell-markers.jpg N/A 200 38763 - 1.702 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-user-annotated-stock-chart.jpg N/A 200 34610 - 3.135 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-line-chart.jpg N/A 200 45037 - 11.428 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-digital-line-chart.jpg N/A 200 18579 - 6.852 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-spline-smoothed-line-chart.jpg N/A 200 30049 - 9.734 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-band-chart.jpg N/A 200 23037 - 4.598 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-spline-band-chart.jpg N/A 200 39404 - 5.535 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-digital-band-chart.jpg N/A 200 24889 - 5.932 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-bubble-chart.jpg N/A 200 21161 - 1.841 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-histogram-chart.jpg * 304 - - 6.311 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-column-chart.jpg N/A 200 55007 - 8.745 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-box-plot-chart.jpg * 304 - - 1.437 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-map-demo.jpg N/A 200 42208 - 2.532 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-error-bars-chart.jpg N/A 200 22686 - 2.439 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-treemap-chart.jpg N/A 200 43678 - 1.276 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-impulse-chart.jpg N/A 200 28355 - 1.892 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-triangle-series-chart.jpg N/A 200 68263 - 1.393 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-text-chart.jpg N/A 200 39479 - 1.440 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-fan-chart.jpg N/A 200 18651 - 2.393 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-heatmap-chart.jpg N/A 200 38550 - 3.438 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-non-uniform-heatmap-chart.jpg N/A 200 26736 - 1.404 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-heatmap-chart-with-contours.jpg N/A 200 46777 - 1.425 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-mountain-chart.jpg N/A 200 25595 - 1.195 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-spline-mountain-chart.jpg N/A 200 22810 - 1.685 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-digital-mountain-chart.jpg N/A 200 28593 - 1.954 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-realtime-mountain-chart.jpg N/A 200 20642 - 2.862 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-scatter-chart.jpg N/A 200 31452 - 1.371 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-stacked-column-chart.jpg N/A 200 42795 - 1.762 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-stacked-grouped-column-chart.jpg N/A 200 41187 - 1.221 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/scichart3d.wasm N/A 200 - - 8.542 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-smooth-stacked-mountain-chart.jpg N/A 200 41398 - 0.597 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-stacked-mountain-chart.jpg N/A 200 39761 - 1.350 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/scichart2d.wasm N/A 200 - - 7.260 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-donut-chart.jpg N/A 200 19657 - 1.180 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-pie-chart.jpg N/A 200 25182 - 2.211 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-background-annotations.jpg N/A 200 61310 - 2.021 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-spline-line-chart.jpg N/A 200 41068 - 0.975 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-line-chart.jpg N/A 200 86901 - 1.020 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-column-chart.jpg N/A 200 42957 - 2.130 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-column-category-chart.jpg N/A 200 55049 - 2.453 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-line-temperature.jpg N/A 200 71937 - 1.985 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-windrose-column-chart.jpg N/A 200 53108 - 1.460 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-range-column-chart.jpg N/A 200 45345 - 2.454 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-sunburst-chart.jpg N/A 200 32243 - 2.068 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-radial-column-chart.jpg N/A 200 59134 - 3.213 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-mountain-chart.jpg N/A 200 38525 - 1.303 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-stacked-mountain-chart.jpg N/A 200 45864 - 2.354 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-stacked-radial-column-chart.jpg N/A 200 69577 - 2.013 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-band-chart.jpg N/A 200 38141 - 3.978 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-scatter-chart.jpg N/A 200 33412 - 4.203 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-radar-chart.jpg N/A 200 45300 - 1.604 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-gauge-fifo-chart.jpg N/A 200 29052 - 1.300 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-gauge-chart.jpg N/A 200 67389 - 1.655 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-uniform-heatmap-chart.jpg N/A 200 54390 - 1.613 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-uniform-heatmap-ultrasound-chart.jpg N/A 200 56663 - 2.939 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-partial-chart.jpg N/A 200 45059 - 2.190 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-annotations.jpg N/A 200 34861 - 2.869 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-polar-label-modes.jpg N/A 200 33140 - 3.224 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-color-points-individually-with-paletteprovider.jpg N/A 200 32878 - 3.207 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-drag-horizontal-threshold.jpg N/A 200 33193 - 4.136 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-editable-annotations.jpg N/A 200 53315 - 2.460 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-annotation-layers.jpg N/A 200 30308 - 2.224 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-responsive-html-annotations.jpg N/A 200 86162 - 2.430 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-html-annotations.jpg N/A 200 86162 - 2.526 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-legends.jpg N/A 200 33707 - 1.351 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-with-multiple-x-axis.jpg N/A 200 48517 - 1.218 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-vertical-charts.jpg N/A 200 35885 - 1.571 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-with-secondary-y-axis.jpg N/A 200 45547 - 2.312 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-central-axes.jpg N/A 200 47965 - 2.342 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-static-axis.jpg N/A 200 39854 - 0.858 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-draw-behind-axes.jpg N/A 200 30508 - 1.000 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-axis-layout.jpg N/A 200 49036 - 1.636 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-axis-types.jpg N/A 200 42159 - 2.830 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-multiline-labels.jpg N/A 200 35955 - 0.913 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-image-labels.jpg N/A 200 33832 - 1.226 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-rotated-labels-chart.jpg N/A 200 29290 - 1.740 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-styling-theming-in-code.jpg N/A 200 56446 - 2.380 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-transparent-background.jpg N/A 200 71007 - 2.417 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-themes.jpg N/A 200 53766 - 1.222 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-custom-themed.jpg N/A 200 43849 - 1.395 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-custom-pointmarkers.jpg N/A 200 48517 - 1.552 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-dashed-line-chart.jpg N/A 200 24166 - 1.837 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-datalabels-chart.jpg N/A 200 50804 - 2.742 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-multi-style-series.jpg N/A 200 74786 - 1.116 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-title.jpg N/A 200 33891 - 1.254 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-line-splitting-thresholds.jpg N/A 200 70196 - 1.311 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-ordered-rendering.jpg N/A 200 45569 - 2.890 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-hit-test-on-click.jpg N/A 200 27406 - 3.791 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-rollovermodifier-tooltips.jpg N/A 200 33076 - 3.234 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-cursormodifier-crosshairs.jpg N/A 200 33932 - 1.156 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-vertical-slice-modifier.jpg N/A 200 54725 - 1.240 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-metadata.jpg N/A 200 30725 - 1.823 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-series-selection.jpg N/A 200 44015 - 1.347 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-datapoint-selection.jpg N/A 200 53663 - 1.071 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/drag-axis-on-javascript-charts-to-scale-or-pan.jpg N/A 200 36165 - 1.912 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/zoom-and-pan-a-realtime-javascript-chart.jpg N/A 200 59172 - 3.082 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/zoom-pan-multiple-modifiers.jpg N/A 200 39325 - 3.112 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-overview-chart.jpg N/A 200 31589 - 2.954 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/polar-modifiers.jpg * 304 - - 2.840 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/virtualized-data-javascript-chart.jpg N/A 200 30319 - 5.017 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-trend-ma-ratio.jpg N/A 200 43330 - 5.712 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-custom-filters.jpg N/A 200 60340 - 1.540 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-percentage-change.jpg N/A 200 39173 - 2.218 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-data-animation.jpg N/A 200 42681 - 2.273 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-style-animation.jpg N/A 200 25956 - 3.705 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-startup-animations.jpg N/A 200 26935 - 3.564 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-generic-animation.jpg N/A 200 30098 - 4.609 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-builder-simple.jpg N/A 200 25577 - 6.158 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-builder-full.jpg N/A 200 26628 - 5.019 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-chart-from-json.jpg N/A 200 48639 - 1.725 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-shared-data.jpg N/A 200 32747 - 2.149 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-custom-types.jpg N/A 200 36743 - 2.326 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-sync-multi-chart.jpg N/A 200 48119 - 3.144 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-subcharts-grid.jpg N/A 200 78014 - 3.028 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-3d-surface-mesh-chart.jpg N/A 200 28329 - 0.756 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-3d-bubble-chart.jpg N/A 200 37586 - 1.385 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-3d-point-line-chart.jpg N/A 200 32168 - 1.859 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-realtime-3d-surface-mesh-chart.jpg N/A 200 37949 - 1.855 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/images/javascript-3d-column-chart.jpg N/A 200 101265 - 2.433 ms[39m
+[35m[39m
+2025-06-09 13:03:25:325 [35mhttp[39m: [35mGET /demo/bundle.js N/A 200 - - 4.957 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/react /:example? 200 - - 1.080 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-chart-load-500-series-by-500-points.jpg N/A 200 65117 - 3.717 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-chart-realtime-performance-demo.jpg N/A 200 137935 - 3.537 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/style.css N/A 200 - - 2.540 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-chart-performance-load-one-million-points.jpg N/A 200 36932 - 0.534 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-audio-analyzer-fft-example.jpg N/A 200 52322 - 1.718 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-realtime-ghosted-traces-oscilloscope-chart.jpg N/A 200 149660 - 1.259 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-oil-gas-explorer-dashboard-charts.jpg N/A 200 58820 - 1.150 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-streaming-data.jpg N/A 200 48436 - 1.167 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-server-traffic-dashboard.jpg N/A 200 51592 - 1.517 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-heatmap-interactions.jpg N/A 200 60325 - 0.890 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-dynamic-layout.jpg N/A 200 52704 - 1.488 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-draggable-event-markers.jpg N/A 200 32480 - 2.559 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-population-pyramid.jpg N/A 200 59796 - 0.723 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-vital-signs-ecg-medical-chart-example.jpg N/A 200 24653 - 0.830 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-chart-logarithmic-axis.jpg N/A 200 68574 - 1.125 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-3d-lidar-visualization.jpg N/A 200 43088 - 1.055 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-vertically-stacked-axes.jpg N/A 200 56074 - 0.986 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-interactive-waterfall-chart.jpg N/A 200 101554 - 0.889 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-candlestick-chart.jpg N/A 200 42484 - 1.478 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-ohlc-chart.jpg N/A 200 20892 - 0.418 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-realtime-ticking-stock-charts.jpg N/A 200 44543 - 0.708 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-subcharts-multi-pane-stock-charts.jpg N/A 200 47784 - 0.714 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-2d-3d-chart-tenor-curves-example.jpg N/A 200 50449 - 0.823 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-multi-pane-stock-charts.jpg N/A 200 39629 - 0.847 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-depth-chart.jpg N/A 200 19228 - 0.986 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-stock-chart-buy-sell-markers.jpg N/A 200 38763 - 0.932 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-user-annotated-stock-chart.jpg N/A 200 34610 - 0.456 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-line-chart.jpg N/A 200 45037 - 0.666 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-spline-smoothed-line-chart.jpg N/A 200 30049 - 1.097 ms[39m
+[35m[39m
+2025-06-09 13:03:27:327 [35mhttp[39m: [35mGET /demo/images/javascript-band-chart.jpg N/A 200 23037 - 0.608 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-digital-line-chart.jpg N/A 200 18579 - 0.839 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-spline-band-chart.jpg N/A 200 39404 - 1.125 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-digital-band-chart.jpg N/A 200 24889 - 0.385 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-bubble-chart.jpg N/A 200 21161 - 1.577 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-column-chart.jpg N/A 200 55007 - 4.803 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-histogram-chart.jpg * 200 - - 4.054 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-map-demo.jpg N/A 200 42208 - 1.728 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-error-bars-chart.jpg N/A 200 22686 - 1.337 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-box-plot-chart.jpg * 200 - - 2.137 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-triangle-series-chart.jpg N/A 200 68263 - 3.973 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-treemap-chart.jpg N/A 200 43678 - 1.674 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-impulse-chart.jpg N/A 200 28355 - 1.185 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-text-chart.jpg N/A 200 39479 - 1.361 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-fan-chart.jpg N/A 200 18651 - 1.618 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/scichart3d.wasm N/A 200 - - 2.406 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-heatmap-chart.jpg N/A 200 38550 - 1.403 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-non-uniform-heatmap-chart.jpg N/A 200 26736 - 0.902 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-heatmap-chart-with-contours.jpg N/A 200 46777 - 0.965 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/scichart2d.wasm N/A 200 - - 1.960 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-mountain-chart.jpg N/A 200 25595 - 0.548 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-spline-mountain-chart.jpg N/A 200 22810 - 0.261 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-digital-mountain-chart.jpg N/A 200 28593 - 0.308 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-realtime-mountain-chart.jpg N/A 200 20642 - 1.144 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-scatter-chart.jpg N/A 200 31452 - 0.986 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-stacked-column-chart.jpg N/A 200 42795 - 1.147 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-stacked-grouped-column-chart.jpg N/A 200 41187 - 1.022 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-stacked-mountain-chart.jpg N/A 200 39761 - 1.654 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-smooth-stacked-mountain-chart.jpg N/A 200 41398 - 2.194 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-pie-chart.jpg N/A 200 25182 - 2.882 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-donut-chart.jpg N/A 200 19657 - 3.079 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-background-annotations.jpg N/A 200 61310 - 2.594 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-line-chart.jpg N/A 200 86901 - 3.090 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-spline-line-chart.jpg N/A 200 41068 - 3.445 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-column-chart.jpg N/A 200 42957 - 4.174 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-line-temperature.jpg N/A 200 71937 - 4.220 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-column-category-chart.jpg N/A 200 55049 - 1.569 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-range-column-chart.jpg N/A 200 45345 - 1.701 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-windrose-column-chart.jpg N/A 200 53108 - 1.734 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-sunburst-chart.jpg N/A 200 32243 - 1.286 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-radial-column-chart.jpg N/A 200 59134 - 2.300 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-stacked-radial-column-chart.jpg N/A 200 69577 - 1.194 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-mountain-chart.jpg N/A 200 38525 - 1.503 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-stacked-mountain-chart.jpg N/A 200 45864 - 1.694 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-band-chart.jpg N/A 200 38141 - 2.203 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-scatter-chart.jpg N/A 200 33412 - 1.521 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-radar-chart.jpg N/A 200 45300 - 1.462 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-gauge-chart.jpg N/A 200 67389 - 1.433 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-gauge-fifo-chart.jpg N/A 200 29052 - 3.684 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-uniform-heatmap-chart.jpg N/A 200 54390 - 4.081 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-uniform-heatmap-ultrasound-chart.jpg N/A 200 56663 - 3.909 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-partial-chart.jpg N/A 200 45059 - 1.239 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-polar-label-modes.jpg N/A 200 33140 - 1.493 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-annotations.jpg N/A 200 34861 - 1.700 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-color-points-individually-with-paletteprovider.jpg N/A 200 32878 - 2.352 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-drag-horizontal-threshold.jpg N/A 200 33193 - 1.977 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-editable-annotations.jpg N/A 200 53315 - 2.127 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-annotation-layers.jpg N/A 200 30308 - 2.449 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-responsive-html-annotations.jpg N/A 200 86162 - 2.064 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-legends.jpg N/A 200 33707 - 1.096 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-with-multiple-x-axis.jpg N/A 200 48517 - 1.338 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-html-annotations.jpg N/A 200 86162 - 1.564 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-with-secondary-y-axis.jpg N/A 200 45547 - 2.384 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-vertical-charts.jpg N/A 200 35885 - 2.536 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-central-axes.jpg N/A 200 47965 - 3.158 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-draw-behind-axes.jpg N/A 200 30508 - 2.125 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-static-axis.jpg N/A 200 39854 - 2.736 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-axis-types.jpg N/A 200 42159 - 2.012 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-axis-layout.jpg N/A 200 49036 - 2.411 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-multiline-labels.jpg N/A 200 35955 - 2.583 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-image-labels.jpg N/A 200 33832 - 2.009 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-rotated-labels-chart.jpg N/A 200 29290 - 2.570 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-transparent-background.jpg N/A 200 71007 - 2.446 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-styling-theming-in-code.jpg N/A 200 56446 - 2.912 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-themes.jpg N/A 200 53766 - 3.142 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-custom-themed.jpg N/A 200 43849 - 3.445 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-custom-pointmarkers.jpg N/A 200 48517 - 3.716 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-datalabels-chart.jpg N/A 200 50804 - 1.198 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-dashed-line-chart.jpg N/A 200 24166 - 1.983 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-multi-style-series.jpg N/A 200 74786 - 2.358 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-line-splitting-thresholds.jpg N/A 200 70196 - 2.562 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-title.jpg N/A 200 33891 - 2.745 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-ordered-rendering.jpg N/A 200 45569 - 1.581 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-hit-test-on-click.jpg N/A 200 27406 - 1.917 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-rollovermodifier-tooltips.jpg N/A 200 33076 - 2.788 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-cursormodifier-crosshairs.jpg N/A 200 33932 - 3.118 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-vertical-slice-modifier.jpg N/A 200 54725 - 1.940 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-metadata.jpg N/A 200 30725 - 1.069 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-series-selection.jpg N/A 200 44015 - 1.591 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-datapoint-selection.jpg N/A 200 53663 - 2.907 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/drag-axis-on-javascript-charts-to-scale-or-pan.jpg N/A 200 36165 - 4.228 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/zoom-and-pan-a-realtime-javascript-chart.jpg N/A 200 59172 - 3.793 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/zoom-pan-multiple-modifiers.jpg N/A 200 39325 - 5.671 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-overview-chart.jpg N/A 200 31589 - 5.983 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/virtualized-data-javascript-chart.jpg N/A 200 30319 - 6.550 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/polar-modifiers.jpg * 200 - - 3.116 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-trend-ma-ratio.jpg N/A 200 43330 - 3.468 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-custom-filters.jpg N/A 200 60340 - 3.303 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-percentage-change.jpg N/A 200 39173 - 2.000 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-data-animation.jpg N/A 200 42681 - 2.418 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-style-animation.jpg N/A 200 25956 - 2.870 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-startup-animations.jpg N/A 200 26935 - 1.264 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-generic-animation.jpg N/A 200 30098 - 1.953 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-builder-simple.jpg N/A 200 25577 - 2.028 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-builder-full.jpg N/A 200 26628 - 1.882 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-chart-from-json.jpg N/A 200 48639 - 1.926 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-shared-data.jpg N/A 200 32747 - 0.942 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-custom-types.jpg N/A 200 36743 - 3.013 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-subcharts-grid.jpg N/A 200 78014 - 3.137 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-3d-surface-mesh-chart.jpg N/A 200 28329 - 3.319 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-sync-multi-chart.jpg N/A 200 48119 - 4.534 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-3d-bubble-chart.jpg N/A 200 37586 - 3.204 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-3d-point-line-chart.jpg N/A 200 32168 - 1.228 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-realtime-3d-surface-mesh-chart.jpg N/A 200 37949 - 1.365 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/images/javascript-3d-column-chart.jpg N/A 200 101265 - 1.971 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /demo/bundle.js N/A 200 - - 2.549 ms[39m
+[35m[39m
+2025-06-09 13:03:28:328 [35mhttp[39m: [35mGET /favicon.ico N/A 404 150 - 1.542 ms[39m
+[35m[39m
+2025-06-09 13:03:38:338 [35mhttp[39m: [35mGET /demo/australia.json N/A 200 - - 0.562 ms[39m
+[35m[39m
+2025-06-09 13:03:38:338 [35mhttp[39m: [35mGET /demo/source/multi-map-example?framework=react /source/:example 200 - - 3.462 ms[39m
+[35m[39m
+2025-06-09 13:03:38:338 [35mhttp[39m: [35mGET /demo/images/javascript-box-plot-chart.jpg * 200 - - 7.109 ms[39m
+[35m[39m
+2025-06-09 13:03:38:338 [35mhttp[39m: [35mGET /demo/images/javascript-histogram-chart.jpg * 200 - - 3.365 ms[39m
+[35m[39m
+2025-06-09 13:03:40:340 [35mhttp[39m: [35mGET /demo/images/javascript-histogram-chart.jpg * 304 - - 5.050 ms[39m
+[35m[39m
+2025-06-09 13:03:40:340 [35mhttp[39m: [35mGET /demo/images/javascript-box-plot-chart.jpg * 304 - - 10.129 ms[39m
+[35m[39m
+2025-06-09 13:03:40:340 [35mhttp[39m: [35mGET /demo/images/polar-modifiers.jpg * 200 - - 3.299 ms[39m
+[35m[39m
+2025-06-09 13:03:41:341 [35mhttp[39m: [35mGET /demo/australia.json N/A 304 - - 0.482 ms[39m
+[35m[39m
+2025-06-09 13:03:41:341 [35mhttp[39m: [35mGET /demo/source/map-example?framework=react /source/:example 304 - - 0.661 ms[39m
+[35m[39m
+2025-06-09 13:03:41:341 [35mhttp[39m: [35mGET /demo/images/javascript-histogram-chart.jpg * 304 - - 3.736 ms[39m
+[35m[39m
+2025-06-09 13:03:41:341 [35mhttp[39m: [35mGET /demo/images/javascript-box-plot-chart.jpg * 304 - - 7.905 ms[39m
+[35m[39m
+2025-06-09 13:03:45:345 [35mhttp[39m: [35mGET /demo/images/javascript-histogram-chart.jpg * 304 - - 8.428 ms[39m
+[35m[39m
+2025-06-09 13:03:45:345 [35mhttp[39m: [35mGET /demo/images/javascript-box-plot-chart.jpg * 304 - - 13.926 ms[39m
+[35m[39m
+2025-06-09 13:03:45:345 [35mhttp[39m: [35mGET /demo/images/polar-modifiers.jpg * 304 - - 16.228 ms[39m
+[35m[39m
+2025-06-09 13:03:53:353 [35mhttp[39m: [35mGET /demo/source/ordered-rendering?framework=react /source/:example 200 - - 0.553 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/react /:example? 200 - - 6.683 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/style.css N/A 200 - - 3.322 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-load-500-series-by-500-points.jpg N/A 200 65117 - 10.911 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-realtime-performance-demo.jpg N/A 200 137935 - 8.206 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-performance-load-one-million-points.jpg N/A 200 36932 - 4.547 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-audio-analyzer-fft-example.jpg N/A 200 52322 - 5.646 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-realtime-ghosted-traces-oscilloscope-chart.jpg N/A 200 149660 - 5.301 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-oil-gas-explorer-dashboard-charts.jpg N/A 200 58820 - 7.011 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-streaming-data.jpg N/A 200 48436 - 6.223 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-server-traffic-dashboard.jpg N/A 200 51592 - 8.222 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-heatmap-interactions.jpg N/A 200 60325 - 6.052 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-dynamic-layout.jpg N/A 200 52704 - 3.122 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-3d-lidar-visualization.jpg N/A 200 43088 - 1.692 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-draggable-event-markers.jpg N/A 200 32480 - 1.832 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-population-pyramid.jpg N/A 200 59796 - 5.055 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-logarithmic-axis.jpg N/A 200 68574 - 4.146 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-interactive-waterfall-chart.jpg N/A 200 101554 - 5.574 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-vital-signs-ecg-medical-chart-example.jpg N/A 200 24653 - 4.319 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-vertically-stacked-axes.jpg N/A 200 56074 - 16.086 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-candlestick-chart.jpg N/A 200 42484 - 13.192 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-ohlc-chart.jpg N/A 200 20892 - 19.863 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-realtime-ticking-stock-charts.jpg N/A 200 44543 - 13.722 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-subcharts-multi-pane-stock-charts.jpg N/A 200 47784 - 3.579 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-2d-3d-chart-tenor-curves-example.jpg N/A 200 50449 - 4.556 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-multi-pane-stock-charts.jpg N/A 200 39629 - 1.098 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-depth-chart.jpg N/A 200 19228 - 1.801 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-stock-chart-buy-sell-markers.jpg N/A 200 38763 - 2.675 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-user-annotated-stock-chart.jpg N/A 200 34610 - 1.530 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-line-chart.jpg N/A 200 45037 - 1.802 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-spline-smoothed-line-chart.jpg N/A 200 30049 - 2.609 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-digital-line-chart.jpg N/A 200 18579 - 3.363 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-band-chart.jpg N/A 200 23037 - 4.887 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-spline-band-chart.jpg N/A 200 39404 - 5.297 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-digital-band-chart.jpg N/A 200 24889 - 3.088 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-bubble-chart.jpg N/A 200 21161 - 6.222 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-column-chart.jpg N/A 200 55007 - 6.854 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-histogram-chart.jpg * 304 - - 4.490 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-map-demo.jpg N/A 200 42208 - 1.598 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-multi-map-demo.jpg N/A 200 29253 - 8.298 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-error-bars-chart.jpg N/A 200 22686 - 10.058 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-box-plot-chart.jpg * 304 - - 5.109 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-treemap-chart.jpg N/A 200 43678 - 1.410 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-triangle-series-chart.jpg N/A 200 68263 - 1.891 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-impulse-chart.jpg N/A 200 28355 - 2.086 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-text-chart.jpg N/A 200 39479 - 2.866 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-fan-chart.jpg N/A 200 18651 - 2.617 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-heatmap-chart.jpg N/A 200 38550 - 2.529 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-non-uniform-heatmap-chart.jpg N/A 200 26736 - 1.720 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-heatmap-chart-with-contours.jpg N/A 200 46777 - 2.229 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-mountain-chart.jpg N/A 200 25595 - 2.159 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-spline-mountain-chart.jpg N/A 200 22810 - 1.142 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-digital-mountain-chart.jpg N/A 200 28593 - 1.866 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-realtime-mountain-chart.jpg N/A 200 20642 - 2.121 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-scatter-chart.jpg N/A 200 31452 - 1.672 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-stacked-column-chart.jpg N/A 200 42795 - 1.141 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-stacked-grouped-column-chart.jpg N/A 200 41187 - 1.734 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-stacked-mountain-chart.jpg N/A 200 39761 - 1.175 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-smooth-stacked-mountain-chart.jpg N/A 200 41398 - 1.361 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-pie-chart.jpg N/A 200 25182 - 0.915 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/scichart2d.wasm N/A 200 - - 6.595 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-donut-chart.jpg N/A 200 19657 - 0.768 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-background-annotations.jpg N/A 200 61310 - 1.491 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-line-chart.jpg N/A 200 86901 - 0.566 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-spline-line-chart.jpg N/A 200 41068 - 0.648 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-line-temperature.jpg N/A 200 71937 - 0.491 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/scichart3d.wasm N/A 200 - - 9.979 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-column-chart.jpg N/A 200 42957 - 0.691 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-column-category-chart.jpg N/A 200 55049 - 1.454 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-range-column-chart.jpg N/A 200 45345 - 2.135 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-windrose-column-chart.jpg N/A 200 53108 - 2.450 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-sunburst-chart.jpg N/A 200 32243 - 3.803 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-radial-column-chart.jpg N/A 200 59134 - 1.383 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-stacked-radial-column-chart.jpg N/A 200 69577 - 1.905 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-mountain-chart.jpg N/A 200 38525 - 1.958 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-stacked-mountain-chart.jpg N/A 200 45864 - 1.297 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-band-chart.jpg N/A 200 38141 - 1.171 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-scatter-chart.jpg N/A 200 33412 - 1.283 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-radar-chart.jpg N/A 200 45300 - 1.467 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-gauge-fifo-chart.jpg N/A 200 29052 - 2.361 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-gauge-chart.jpg N/A 200 67389 - 1.658 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-uniform-heatmap-chart.jpg N/A 200 54390 - 2.720 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-uniform-heatmap-ultrasound-chart.jpg N/A 200 56663 - 3.099 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-partial-chart.jpg N/A 200 45059 - 1.681 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-polar-label-modes.jpg N/A 200 33140 - 2.173 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-annotations.jpg N/A 200 34861 - 3.227 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-color-points-individually-with-paletteprovider.jpg N/A 200 32878 - 1.550 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-drag-horizontal-threshold.jpg N/A 200 33193 - 1.591 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-editable-annotations.jpg N/A 200 53315 - 1.794 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-annotation-layers.jpg N/A 200 30308 - 2.017 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-responsive-html-annotations.jpg N/A 200 86162 - 2.912 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-with-multiple-x-axis.jpg N/A 200 48517 - 1.249 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-legends.jpg N/A 200 33707 - 2.004 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-with-secondary-y-axis.jpg N/A 200 45547 - 2.466 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-html-annotations.jpg N/A 200 86162 - 1.772 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-vertical-charts.jpg N/A 200 35885 - 3.957 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-central-axes.jpg N/A 200 47965 - 0.865 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-static-axis.jpg N/A 200 39854 - 1.096 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-draw-behind-axes.jpg N/A 200 30508 - 1.583 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-axis-types.jpg N/A 200 42159 - 1.765 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-axis-layout.jpg N/A 200 49036 - 2.251 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-image-labels.jpg N/A 200 33832 - 0.724 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-multiline-labels.jpg N/A 200 35955 - 1.669 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-rotated-labels-chart.jpg N/A 200 29290 - 1.603 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-styling-theming-in-code.jpg N/A 200 56446 - 1.888 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-transparent-background.jpg N/A 200 71007 - 1.716 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-themes.jpg N/A 200 53766 - 0.688 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-custom-themed.jpg N/A 200 43849 - 0.885 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-custom-pointmarkers.jpg N/A 200 48517 - 1.578 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-dashed-line-chart.jpg N/A 200 24166 - 2.342 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-datalabels-chart.jpg N/A 200 50804 - 3.084 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-title.jpg N/A 200 33891 - 0.629 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-ordered-rendering.jpg N/A 200 45569 - 1.625 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-hit-test-on-click.jpg N/A 200 27406 - 1.845 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-line-splitting-thresholds.jpg N/A 200 70196 - 1.706 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-multi-style-series.jpg N/A 200 74786 - 1.642 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-cursormodifier-crosshairs.jpg N/A 200 33932 - 0.805 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-vertical-slice-modifier.jpg N/A 200 54725 - 0.999 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-metadata.jpg N/A 200 30725 - 1.304 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-rollovermodifier-tooltips.jpg N/A 200 33076 - 2.447 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-series-selection.jpg N/A 200 44015 - 2.845 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/drag-axis-on-javascript-charts-to-scale-or-pan.jpg N/A 200 36165 - 3.958 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/zoom-and-pan-a-realtime-javascript-chart.jpg N/A 200 59172 - 4.446 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-datapoint-selection.jpg N/A 200 53663 - 5.591 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/zoom-pan-multiple-modifiers.jpg N/A 200 39325 - 3.087 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-overview-chart.jpg N/A 200 31589 - 3.334 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/polar-modifiers.jpg * 304 - - 1.671 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/virtualized-data-javascript-chart.jpg N/A 200 30319 - 4.771 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-trend-ma-ratio.jpg N/A 200 43330 - 3.458 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-custom-filters.jpg N/A 200 60340 - 4.113 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-percentage-change.jpg N/A 200 39173 - 2.594 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-data-animation.jpg N/A 200 42681 - 2.140 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-style-animation.jpg N/A 200 25956 - 2.628 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-startup-animations.jpg N/A 200 26935 - 4.060 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-generic-animation.jpg N/A 200 30098 - 4.739 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-builder-simple.jpg N/A 200 25577 - 4.886 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-builder-full.jpg N/A 200 26628 - 2.117 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-chart-from-json.jpg N/A 200 48639 - 2.369 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-shared-data.jpg N/A 200 32747 - 1.889 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-custom-types.jpg N/A 200 36743 - 2.756 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-sync-multi-chart.jpg N/A 200 48119 - 3.638 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-subcharts-grid.jpg N/A 200 78014 - 3.224 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-3d-surface-mesh-chart.jpg N/A 200 28329 - 1.950 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-3d-bubble-chart.jpg N/A 200 37586 - 2.984 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-3d-point-line-chart.jpg N/A 200 32168 - 2.291 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-realtime-3d-surface-mesh-chart.jpg N/A 200 37949 - 2.386 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/images/javascript-3d-column-chart.jpg N/A 200 101265 - 3.558 ms[39m
+[35m[39m
+2025-06-09 13:07:00:70 [35mhttp[39m: [35mGET /demo/bundle.js N/A 200 - - 2.050 ms[39m
+[35m[39m

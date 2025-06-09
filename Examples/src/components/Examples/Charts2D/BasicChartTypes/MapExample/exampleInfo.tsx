@@ -53,7 +53,7 @@ const metaData: IExampleMetadata =
         metaKeywords: "band, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/MapExample",
-        thumbnailImage: "javascript-band-chart.jpg",
+        thumbnailImage: "javascript-map-demo.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",

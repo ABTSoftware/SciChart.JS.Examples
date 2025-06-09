@@ -17,7 +17,7 @@ export default function ChartComponent() {
     };
 
     useEffect(() => {
-        fetch("/australia.json")
+        fetch("australia.json")
             .then((response) => response.json())
             .then((data) => {
                 // console.log(data);

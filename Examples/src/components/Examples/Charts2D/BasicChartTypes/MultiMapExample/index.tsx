@@ -2,12 +2,11 @@ import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { useEffect, useRef, useState } from "react";
-import { getMinMax, australiaData, Keytype, interpolateColor, keyData } from "./helpers";
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
-    // const [key, setKey] = useState<Keytype>("population");
+
     const [mapName, setMapName] = useState("australia");
     const [mapData, setMapData] = useState();
     const setMapFunc = useRef(null);
@@ -15,22 +14,17 @@ export default function ChartComponent() {
     const clearMapFunc = useRef(null);
 
     useEffect(() => {
-        fetch("/" + mapName + ".json")
+        fetch(mapName + ".json")
             .then((response) => response.json())
             .then((data) => {
-                // console.log(data);
+   
                 if (mapData === undefined) {
                     setMapData(data);
                 } else {
-                    // clearMapFunc.current();
+
 
                     setMapJsonFunc.current(data);
                     setMapFunc.current();
-
-                    // setTimeout(() => {
-                    //     setMapJsonFunc.current(data);
-                    //     setMapFunc.current();
-                    // }, 200);
                 }
             })
             .catch((error) => console.error(error));
