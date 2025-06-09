@@ -73,6 +73,57 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy }));
 
 
+    // (Polar)TriangleRenderableSeries ?
+
+
+    // const radialYAxis = new PolarNumericAxis(wasmContext, {
+    //     polarAxisMode: EPolarAxisMode.Radial,
+    //     axisAlignment: EAxisAlignment.Right,
+    //     // visibleRange: new NumberRange(0, 6),
+    //     zoomExtentsToInitialRange: true,
+        
+    //     drawMinorTickLines: false,
+    //     drawMajorTickLines: false,
+    //     drawMinorGridLines: false,
+    //     // majorGridLineStyle: {
+    //     //     color: appTheme.DarkIndigo,
+    //     //     strokeThickness: 1,
+    //     // },
+    //     startAngle: 0,
+    //     drawLabels: false, // no radial labels
+
+    //     // innerRadius: 0.1, // donut hole
+    // });
+    // sciChartSurface.yAxes.add(radialYAxis);
+
+    // const polarXAxis = new PolarNumericAxis(wasmContext, {
+    //     polarAxisMode: EPolarAxisMode.Angular,
+    //     axisAlignment: EAxisAlignment.Top,
+    //     polarLabelMode: EPolarLabelMode.Parallel,
+    //     // visibleRange: new NumberRange(0, 9),
+    //     startAngle: Math.PI / 2, // start at 12 o'clock
+    //     flippedCoordinates: true, // go clockwise
+    //     zoomExtentsToInitialRange: true,
+
+    //     drawMinorTickLines: false,
+    //     drawMajorTickLines: false,
+    //     drawMinorGridLines: false,
+
+    //     useNativeText: true,
+    //     // labelPrecision: 0,
+    //     // labelStyle: {
+    //     //     color: "white",
+    //     // },
+    //     // majorGridLineStyle: {
+    //     //     color: appTheme.DarkIndigo,
+    //     //     strokeThickness: 1,
+    //     // },
+    // });
+    // sciChartSurface.xAxes.add(polarXAxis);
+
+
+
+
     const clearMap = () => {
         sciChartSurface.renderableSeries.clear(true);
     }
