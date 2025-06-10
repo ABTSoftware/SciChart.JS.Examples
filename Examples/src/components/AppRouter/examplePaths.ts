@@ -12,6 +12,7 @@ export default [
     "../Examples/Charts2D/AxisLabelCustomization/ImageLabels",
     "../Examples/Charts2D/AxisLabelCustomization/MultiLineLabels",
     "../Examples/Charts2D/AxisLabelCustomization/RotatedLabels",
+    "../Examples/Charts2D/BasicChartTypes/AtpTopTen",
     "../Examples/Charts2D/BasicChartTypes/BandSeriesChart",
     "../Examples/Charts2D/BasicChartTypes/BoxPlotChart",
     "../Examples/Charts2D/BasicChartTypes/BubbleChart",
