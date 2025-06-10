@@ -4,18 +4,18 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        reactComponent: "MapExample",
-        id: "chart2D_basicCharts_MapExample",
-        imagePath: "javascript-map-demo.jpg",
+        reactComponent: "MapExampleUsa",
+        id: "chart2D_basicCharts_MapExampleUsa",
+        imagePath: "map-albers-usa.jpg",
         description:
-            "Demonstrates how to create a **Map Examplet**",
+            "Demonstrates how to create a **Map Example Usa**",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Demonstrates how to create a **MapExample**",
-                title: "Map Example",
-                pageTitle: "Map Example | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **Map Example Usa**",
+                title: "Map Example Usa",
+                pageTitle: "Map Example Usa | JavaScript Charts | View Examples",
                 metaDescription:
                     "Easily create a JavaScript Band Chart or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
                 markdownContent:
@@ -23,8 +23,8 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Demonstrates how to create a **Map Example**",
-                title: "Map-ish Example",
+                    "Demonstrates how to create a **Albers-USA projection**",
+                title: "Map Example Usa",
                 pageTitle: "Map Example | JavaScript Charts | View Examples",
                 metaDescription:
                     "Easily create a Map Example or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
@@ -33,9 +33,9 @@ const metaData: IExampleMetadata =
             },
             angular: {
                 subtitle:
-                    "Demonstrates how to create a **Angular Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Framework",
-                title: "Angular Band Chart",
-                pageTitle: "Angular Band Chart | JavaScript Charts | View Examples",
+                    "Demonstrates how to create a **Angular Map Example Usa** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Framework",
+                title: "Angular Map Example Usa",
+                pageTitle: "Angular Map Example Usa | JavaScript Charts | View Examples",
                 metaDescription:
                     "Easily create a Angular Band Chart or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
                 markdownContent:
@@ -49,11 +49,11 @@ const metaData: IExampleMetadata =
                 linkTitle: "JavaScript Band Chart Documentation",
             },
         ],
-        path: "map-example",
-        metaKeywords: "band, chart, javascript, webgl, canvas",
+        path: "map-example-usa",
+        metaKeywords: "map, triangle, chart, javascript, webgl, canvas",
         onWebsite: true,
-        filepath: "Charts2D/BasicChartTypes/MapExample",
-        thumbnailImage: "javascript-map-demo.jpg",
+        filepath: "Charts2D/BasicChartTypes/MapExampleUsa",
+        thumbnailImage: "map-albers-usa.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",

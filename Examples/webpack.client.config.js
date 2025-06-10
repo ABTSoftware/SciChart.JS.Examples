@@ -103,6 +103,7 @@ module.exports = {
                 { from: "src/server/Data/geojson/australia.json", to: "" },
                 { from: "src/server/Data/geojson/africa.json", to: "" },
                 { from: "src/server/Data/geojson/world.json", to: "" },
+                { from: "src/server/Data/geojson/usaStates.json", to: "" },
             ],
         }),
         // new BundleAnalyzerPlugin(),
