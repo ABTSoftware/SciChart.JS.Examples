@@ -5,7 +5,7 @@ async function initSciChart() {
   // For community or trial usage, SciChart.js works out of the box
 
   // For commercial use of SciChart, you need a license.
-  // Purchased license keys can be viewed at https://www.scichart.com/profile
+  // Purchased license keys can be viewed at https://www.scichart.com/my-account/
   //
   // e.g.
   // Set your license code here
