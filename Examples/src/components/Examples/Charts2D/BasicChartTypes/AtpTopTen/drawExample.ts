@@ -233,7 +233,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }
     });
 
-
     const initialData = {
         xValues: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         yValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], //.reverse(),
@@ -277,11 +276,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
-            labelProvider: new CustomLabelProvider(),
-            // labelProvider: new TextLabelProvider({
-            //   labels: ["10.", "9.", "8.", "7.", "6.", "5.", "4.", "3.", "2.", "1."],
-            //   maxLength: 10,
-            // }),
+            // labelProvider: new CustomLabelProvider(),
+            labelProvider: new TextLabelProvider({
+                labels: ["10.", "9.", "8.", "7.", "6.", "5.", "4.", "3.", "2.", "1."],
+                maxLength: 10,
+            }),
             visibleRange: new NumberRange(0, 10),
             // labelFormat: ENumericFormat.Engineering,
             axisTitle: "Rank",
@@ -293,6 +292,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             drawMinorTickLines: false,
             drawMajorTickLines: false,
             keepLabelsWithinAxis: false,
+            autoTicks: false,
+            majorDelta: 1,
             labelStyle: {
                 fontSize: 22,
                 fontWeight: "bold",
@@ -300,11 +301,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 color: "#6c3",
                 fontFamily: "Arial",
                 alignment: ELabelAlignment.Right,
-                padding: { top: 0, right: 5, bottom: 30, left: 0  }
+                padding: { top: 0, right: 5, bottom: 35, left: 0 },
                 // padding: new Thickness(0, 5, 30, 0)
             },
         })
     );
+
+    sciChartSurface.yAxes.get(0).axisRenderer.hideOverlappingLabels = false;
 
     sciChartSurface.title = [`ATP Year-end Top 10 in ${data[element].year.toString()}`];
 
