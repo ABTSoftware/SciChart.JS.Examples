@@ -21,3 +21,4 @@ Documentation/server/*.js
 **/*.tsbuildinfo
 Examples/exampleInfo.*
 .aider*
+Examples/logs
