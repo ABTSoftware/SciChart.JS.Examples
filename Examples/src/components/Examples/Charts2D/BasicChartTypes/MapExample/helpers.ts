@@ -100,3 +100,36 @@ australiaData.forEach((d) => {
         population_density: d.population_density,
     };
 });
+
+
+export function calculatePolygonCenter(polygon: number[][]) {
+    // Remove the closing point if it's the same as the first point
+    const points =
+        polygon[0][0] === polygon[polygon.length - 1][0] && polygon[0][1] === polygon[polygon.length - 1][1]
+            ? polygon.slice(0, -1)
+            : polygon;
+
+    let area = 0;
+    let centerX = 0;
+    let centerY = 0;
+
+    // Calculate area and centroid using the shoelace formula
+    for (let i = 0; i < points.length; i++) {
+        const j = (i + 1) % points.length;
+        const xi = points[i][0];
+        const yi = points[i][1];
+        const xj = points[j][0];
+        const yj = points[j][1];
+
+        const crossProduct = xi * yj - xj * yi;
+        area += crossProduct;
+        centerX += (xi + xj) * crossProduct;
+        centerY += (yi + yj) * crossProduct;
+    }
+
+    area = area / 2;
+    centerX = centerX / (6 * area);
+    centerY = centerY / (6 * area);
+
+    return [centerX, centerY];
+}

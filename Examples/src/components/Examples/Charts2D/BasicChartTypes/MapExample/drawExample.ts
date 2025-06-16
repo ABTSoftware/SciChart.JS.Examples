@@ -8,37 +8,57 @@ import {
     ETriangleSeriesDrawMode,
     TriangleRenderableSeries,
     MouseWheelZoomModifier,
+    FastBubbleRenderableSeries,
+    EllipsePointMarker,
+    XyzDataSeries,
+    IPointMetadata,
+    EHorizontalTextPosition,
+    Thickness,
+    EVerticalTextPosition,
+    SweepAnimation,
+    SplineLineRenderableSeries,
+    FastLineRenderableSeries,
+    FastMountainRenderableSeries,
 } from "scichart";
 
 import { appTheme } from "../../../theme";
 
 import constrainedDelaunayTriangulation from "./constrainedDelaunayTriangulation";
 
-import { getMinMax, interpolateColor, keyData, australiaData } from "./helpers";
+import { getMinMax, interpolateColor, keyData, australiaData, calculatePolygonCenter } from "./helpers";
+
+import { australianCities } from "./australiaData";
 
 type Keytype = "population" | "population_density" | "area_km2";
 
 const dataArray: { name: string; areaData: number[][] }[] = [];
+const outlines: number[][][] = [];
+const centers: number[][] = [];
 
-function setMapJson(mapJson: { features: any[]; }) {
+function setMapJson(mapJson: { features: any[] }) {
     mapJson?.features.forEach((state, i) => {
-
         if (state.geometry.type === "Polygon") {
-
             let area = state.geometry.coordinates[0];
-            area.pop();
-            let areaData = constrainedDelaunayTriangulation(area).flat();
+            outlines.push(area);
+
+            centers.push(calculatePolygonCenter(area));
+
+            // area.pop();
+            let areaData = constrainedDelaunayTriangulation(area.slice(0, -1)).flat();
 
             dataArray.push({ name: state.properties.STATE_NAME, areaData });
         } else {
             let polyArea = state.geometry.coordinates;
 
-            polyArea.forEach((a: any[]) => {
+            centers.push(calculatePolygonCenter([...polyArea[0].flat()]));
 
+            polyArea.forEach((a: any[]) => {
                 let area = a[0];
 
-                area.pop();
-                let areaData = constrainedDelaunayTriangulation(area).flat();
+                outlines.push(area);
+
+                // area.pop();
+                let areaData = constrainedDelaunayTriangulation(area.slice(0, -1)).flat();
                 dataArray.push({ name: state.properties.STATE_NAME, areaData });
             });
         }
@@ -78,6 +98,85 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         });
 
         sciChartSurface.renderableSeries.add(...series);
+
+        // outline
+
+        const outlinesSC = outlines.map((outline) => {
+            const xVals = outline.map((d) => d[0]);
+            const yVals = outline.map((d) => d[1]);
+
+            //FastMountainRenderableSeries
+            const lineSeries = new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, {
+                    xValues: xVals,
+                    yValues: yVals,
+                }),
+                stroke: "black", //appTheme.VividSkyBlue,
+                strokeThickness: 2,
+                opacity: 1,
+                // fill: "rgba(100, 149, 237, 1)",
+                // zeroLineY: calculatePolygonCenter(outline)[1],
+            });
+
+            return lineSeries;
+        });
+
+        sciChartSurface.renderableSeries.add(...outlinesSC);
+
+        // cities
+
+        const cLongitude = australianCities.map((d) => d.longitude);
+        const clatitude = australianCities.map((d) => d.latitude);
+        const cSize = australianCities.map((d) => 5);
+        const cMetadata = australianCities.map((d) => d) as unknown as IPointMetadata[];
+
+        const citiesSeries = new FastBubbleRenderableSeries(wasmContext, {
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 64,
+                height: 64,
+                fill: appTheme.ForegroundColor,
+                strokeThickness: 0,
+            }),
+            dataSeries: new XyzDataSeries(wasmContext, {
+                xValues: cLongitude,
+                yValues: clatitude,
+                zValues: cSize,
+                metadata: cMetadata,
+            }),
+            dataLabels: {
+                verticalTextPosition: EVerticalTextPosition.Above,
+                horizontalTextPosition: EHorizontalTextPosition.Right,
+                style: {
+                    fontFamily: "Arial",
+                    fontSize: 14,
+                    padding: new Thickness(0, 0, 3, 3),
+                },
+                color: "#EEE",
+                metaDataSelector: (md) => {
+                    const metadata = md as unknown as { name: string };
+                    return metadata.name.toString();
+                },
+            },
+        });
+        sciChartSurface.renderableSeries.add(citiesSeries);
+
+        // centers
+
+        const centerSeries = new FastBubbleRenderableSeries(wasmContext, {
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 64,
+                height: 64,
+                fill: appTheme.ForegroundColor,
+                strokeThickness: 0,
+                opacity: 0.2,
+            }),
+            dataSeries: new XyzDataSeries(wasmContext, {
+                xValues: centers.map((d) => d[0]),
+                yValues: centers.map((d) => d[1]),
+                zValues: centers.map((d) => 10),
+            }),
+        });
+        sciChartSurface.renderableSeries.add(centerSeries);
     };
 
     // Add zoom/pan controls

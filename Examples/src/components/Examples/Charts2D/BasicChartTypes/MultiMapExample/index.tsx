@@ -2,12 +2,12 @@ import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { useEffect, useRef, useState } from "react";
+import transformToAlbersUSA from "./geoAlbersUSAProjection";
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
-
-    const [mapName, setMapName] = useState("australia");
+    const [mapName, setMapName] = useState("world");
     const [mapData, setMapData] = useState();
     const setMapFunc = useRef(null);
     const setMapJsonFunc = useRef(null);
@@ -17,14 +17,16 @@ export default function ChartComponent() {
         fetch(mapName + ".json")
             .then((response) => response.json())
             .then((data) => {
-   
                 if (mapData === undefined) {
                     setMapData(data);
                 } else {
-
-
-                    setMapJsonFunc.current(data);
-                    setMapFunc.current();
+                    if (mapName === "usaStates") {
+                        setMapJsonFunc.current(transformToAlbersUSA(data));
+                        setMapFunc.current();
+                    } else {
+                        setMapJsonFunc.current(data);
+                        setMapFunc.current();
+                    }
                 }
             })
             .catch((error) => console.error(error));
@@ -39,6 +41,18 @@ export default function ChartComponent() {
             <div className="" style={{ position: "absolute", zIndex: "100" }}>
                 <div className="">
                     <button
+                        onClick={() => setMapName("world")}
+                        style={{
+                            color: mapName === "world" ? "white" : "rgb(0, 188, 212)",
+                            display: "inline-block",
+                            padding: "10px 24px",
+                            background: mapName === "world" ? "#14233c" : "#163149",
+                            cursor: "pointer",
+                        }}
+                    >
+                        WORLD
+                    </button>
+                    <button
                         onClick={() => setMapName("australia")}
                         style={{
                             color: mapName === "australia" ? "white" : "rgb(0, 188, 212)",
@@ -51,16 +65,16 @@ export default function ChartComponent() {
                         AUSTRALIA
                     </button>
                     <button
-                        onClick={() => setMapName("world")}
+                        onClick={() => setMapName("usaStates")}
                         style={{
-                            color: mapName === "world" ? "white" : "rgb(0, 188, 212)",
+                            color: mapName === "usaStates" ? "white" : "rgb(0, 188, 212)",
                             display: "inline-block",
                             padding: "10px 24px",
-                            background: mapName === "world" ? "#14233c" : "#163149",
+                            background: mapName === "usaStates" ? "#14233c" : "#163149",
                             cursor: "pointer",
                         }}
                     >
-                        WORLD
+                        USA
                     </button>
                     <button
                         onClick={() => setMapName("africa")}

@@ -8,12 +8,12 @@ const metaData: IExampleMetadata =
         id: "featuredApps_showcases_eventMarkers",
         imagePath: "javascript-draggable-event-markers.jpg",
         description:
-            "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
+            "Demonstrates how FastRectangleRenderableSeries and BoxAnnotation to make dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
+                    "Demonstrates how FastRectangleRenderableSeries and BoxAnnotation to make dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
                 title: "Dragabble Event Markers",
                 pageTitle: "Dragabble Event Markers",
                 metaDescription:
@@ -23,7 +23,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
+                    "Demonstrates how FastRectangleRenderableSeries and BoxAnnotation to make dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
                 title: "Dragabble Event Markers",
                 pageTitle: "Dragabble Event Markers",
                 metaDescription:
@@ -33,7 +33,7 @@ const metaData: IExampleMetadata =
             },
             angular: {
                 subtitle:
-                    "Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
+                    "Demonstrates how FastRectangleRenderableSeries and BoxAnnotation to make dragabble, labled, event markers, using SciChart.js High Performance JavaScript Charts",
                 title: "Dragabble Event Markers",
                 pageTitle: "Dragabble Event Markers",
                 metaDescription:

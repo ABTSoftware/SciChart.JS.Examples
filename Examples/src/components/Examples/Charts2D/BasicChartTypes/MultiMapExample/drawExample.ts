@@ -5,46 +5,31 @@ import {
     SciChartSurface,
     NumberRange,
     XyDataSeries,
-    ETriangleSeriesDrawMode,
-    TriangleRenderableSeries,
     MouseWheelZoomModifier,
+    FastLineRenderableSeries,
 } from "scichart";
-
-
 
 import { appTheme } from "../../../theme";
 
-import constrainedDelaunayTriangulation from "./constrainedDelaunayTriangulation";
-
-
 let dataArray: { name: string; areaData: number[][] }[] = [];
+let outlines: number[][][] = [];
 
-function setMapJson(mapJson: { features: any[]; }) {
-
-    dataArray = []
+function setMapJson(mapJson: { features: any[] }) {
+    dataArray = [];
+    outlines = [];
 
     mapJson?.features.forEach((state, i) => {
-
-
         if (state.geometry.type === "Polygon") {
-
-
             let area = state.geometry.coordinates[0];
-            area.pop();
-            let areaData = constrainedDelaunayTriangulation(area).flat();
 
-            dataArray.push({ name: state.properties.STATE_NAME, areaData });
+            outlines.push(area);
         } else {
             let polyArea = state.geometry.coordinates;
 
             polyArea.forEach((a: any[]) => {
-
-
                 let area = a[0];
 
-                area.pop();
-                let areaData = constrainedDelaunayTriangulation(area).flat();
-                dataArray.push({ name: state.properties.STATE_NAME, areaData });
+                outlines.push(area);
             });
         }
     });
@@ -61,33 +46,32 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy }));
 
-
-
     const clearMap = () => {
         sciChartSurface.renderableSeries.clear(true);
-    }
-
+    };
 
     const setMap = () => {
-        sciChartSurface.renderableSeries.clear(true);
+        // outline
 
-        const series = dataArray.map((d, i) => {
-            const dataSeries = new XyDataSeries(wasmContext, {
-                xValues: d.areaData.map((p) => p[0]),
-                yValues: d.areaData.map((p) => p[1]),
+        const outlinesSC = outlines.map((outline) => {
+            const xVals = outline.map((d) => d[0]);
+            const yVals = outline.map((d) => d[1]);
+
+            const lineSeries = new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, {
+                    xValues: xVals,
+                    yValues: yVals,
+                }),
+                stroke: appTheme.VividSkyBlue,
+                strokeThickness: 2,
+                opacity: 0.6,
             });
 
-            const triangleSeries = new TriangleRenderableSeries(wasmContext, {
-                dataSeries: dataSeries,
-                drawMode: ETriangleSeriesDrawMode.List,
-                fill: "cornflowerblue", 
-                opacity: 0.9,
-            });
-
-            return triangleSeries;
+            return lineSeries;
         });
 
-        sciChartSurface.renderableSeries.add(...series);
+        sciChartSurface.renderableSeries.add(...outlinesSC);
+
         sciChartSurface.zoomExtents();
     };
 

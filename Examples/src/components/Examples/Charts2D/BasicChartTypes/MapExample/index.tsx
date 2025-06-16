@@ -20,7 +20,6 @@ export default function ChartComponent() {
         fetch("australia.json")
             .then((response) => response.json())
             .then((data) => {
-                // console.log(data);
                 setMapData(data);
             })
             .catch((error) => console.error(error));
@@ -28,8 +27,8 @@ export default function ChartComponent() {
 
     return (
         <div className="" style={{ width: "100%", height: "100%", position: "relative" }}>
-            <div className="" style={{ position: "absolute", zIndex: "100" }}>
-                <div className="">
+            <div className="" style={{ position: "absolute", zIndex: "1", pointerEvents: "none" }}>
+                <div className="" style={{ pointerEvents: "all" }}>
                     <button
                         onClick={() => setMap("population")}
                         style={{
@@ -86,7 +85,13 @@ export default function ChartComponent() {
                         return (
                             <span key={d.state} style={{ pointerEvents: "none" }}>
                                 <span
-                                    style={{ width: 10, height: 10, backgroundColor: color, display: "inline-block" }}
+                                    style={{
+                                        width: 10,
+                                        height: 10,
+                                        backgroundColor: color,
+                                        display: "inline-block",
+                                        pointerEvents: "none",
+                                    }}
                                 ></span>{" "}
                                 {d.state} - {new Intl.NumberFormat().format(keyData[d.state][key])}
                             </span>
@@ -103,7 +108,7 @@ export default function ChartComponent() {
                         let { setMap, setMapJson } = initResult;
 
                         // set geojson
-                        setMapJson(mapData)
+                        setMapJson(mapData);
 
                         // set the initial map
                         setMap(key);

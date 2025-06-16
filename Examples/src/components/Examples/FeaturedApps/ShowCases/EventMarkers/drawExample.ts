@@ -59,13 +59,13 @@ class RectangleDragModifier extends CustomChartModifier2D {
             opacity: 0,
             isEditable: true,
             resizeDirections: EXyDirection.XDirection,
-            dragPoints: [
-                EDraggingGripPoint.Body,
-                EDraggingGripPoint.x1y1,
-                EDraggingGripPoint.x2y1,
-                // EDraggingGripPoint.x1y2,
-                // EDraggingGripPoint.x2y2,
-            ],
+            // dragPoints: [
+            //     EDraggingGripPoint.Body,
+            //     EDraggingGripPoint.x1y1,
+            //     EDraggingGripPoint.x2y1,
+            //     EDraggingGripPoint.x1y2,
+            //     EDraggingGripPoint.x2y2,
+            // ],
         });
 
         // Update the selected data point when the annotation is dragged
