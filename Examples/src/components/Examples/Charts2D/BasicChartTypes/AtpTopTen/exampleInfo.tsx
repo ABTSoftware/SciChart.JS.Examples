@@ -8,34 +8,34 @@ const metaData: IExampleMetadata =
         id: "chart2D_basicCharts_AtpTopTen",
         imagePath: "atp-top-ten-animation.jpg",
         description:
-            "Creates a **JavaScript Atp Top Ten animation** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript ATP Top Ten animation** using SciChart.js that displays animated ATP Year-end Top Ten rankings from year 1973 to year 2024.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Atp Top Ten animation** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
-                title: "JavaScript Atp Top Ten Animation",
-                pageTitle: "JavaScript Atp Top Ten animation | JavaScript Charts | SciChart.js",
+                    "Creates a **JavaScript ATP Top Ten animation** using SciChart.js that displays animated ATP Year-end Top Ten rankings from year 1973 to year 2024.",
+                title: "JavaScript ATP Top Ten Animation",
+                pageTitle: "JavaScript ATP Top Ten animation | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "JavaScript Atp Top Ten animation demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                    "JavaScript ATP Top Ten animation demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Atp Top Ten animation** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
-                title: "React Atp Top Ten",
-                pageTitle: "React Atp Top Ten animation | JavaScript Charts | SciChart.js",
+                    "Creates a **React ATP Top Ten animation** using SciChart.js that displays animated ATP Year-end Top Ten rankings from year 1973 to year 2024.",
+                title: "React ATP Top Ten",
+                pageTitle: "React ATP Top Ten animation | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "React Atp Top Ten animation demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                    "React ATP Top Ten animation demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Atp Top Ten animation** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
-                title: "Angular Atp Top Ten Animation",
-                pageTitle: "Angular Atp Top Ten animation | JavaScript Charts | SciChart.js",
+                    "Creates a **Angular ATP Top Ten animation** using SciChart.js that displays animated ATP Year-end Top Ten rankings from year 1973 to year 2024..",
+                title: "Angular ATP Top Ten Animation",
+                pageTitle: "Angular ATP Top Ten animation | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "Angular Atp Top Ten animation demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                    "Angular ATP Top Ten animation demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
                 markdownContent: null,
             },
         },

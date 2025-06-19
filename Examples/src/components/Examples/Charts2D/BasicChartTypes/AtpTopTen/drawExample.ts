@@ -9,22 +9,19 @@ import {
     EAxisAlignment,
     ETextAlignment,
     ETitlePosition,
-    ENumericFormat,
     IPointMetadata,
     GenericAnimation,
     easing,
     EDataLabelSkipMode,
     EVerticalTextPosition,
     EHorizontalTextPosition,
-    SciChartJSLightTheme,
     NumberRange,
-    LabelProviderBase2D,
     SciChartDefaults,
     ELabelAlignment,
     TextLabelProvider,
 } from "scichart";
-import { appTheme } from "../../../theme";
 
+import { appTheme } from "../../../theme";
 import { data } from "./atp-rankings";
 
 SciChartDefaults.useNativeText = false;
@@ -235,9 +232,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const initialData = {
         xValues: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        yValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], //.reverse(),
+        yValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         x1Values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        y1Values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], //.reverse(),
+        y1Values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         metadata: data[0].top10.map((d) => {
             return { ...d, isSelected: false };
         }),
@@ -249,22 +246,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         return from + (to - from) * progress;
     };
 
-    // async function drawDataPointAnimationsChart(divId: string) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
-        theme: new SciChartJSLightTheme(),
+        theme: appTheme.SciChartJsTheme,
     });
-
-    class CustomLabelProvider extends LabelProviderBase2D {
-        type!: string;
-        onBeginAxisDraw(): void {}
-
-        get formatLabel() {
-            return (dataValue: number) => {
-                if (dataValue === 10) return "";
-                return `${Math.abs(dataValue - 10).toString()}.`;
-            };
-        }
-    }
 
     // Setup axes
     sciChartSurface.xAxes.add(
@@ -276,14 +260,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
-            // labelProvider: new CustomLabelProvider(),
             labelProvider: new TextLabelProvider({
                 labels: ["10.", "9.", "8.", "7.", "6.", "5.", "4.", "3.", "2.", "1."],
                 maxLength: 10,
             }),
             visibleRange: new NumberRange(0, 10),
-            // labelFormat: ENumericFormat.Engineering,
             axisTitle: "Rank",
+            axisTitleStyle: {
+                fontSize: 18,
+            },
             axisAlignment: EAxisAlignment.Left,
             drawMajorBands: false,
             drawLabels: true,
@@ -297,12 +282,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             labelStyle: {
                 fontSize: 22,
                 fontWeight: "bold",
-                // fontStyle: "Italic",
-                color: "#6c3",
+                color: appTheme.MutedOrange,
                 fontFamily: "Arial",
                 alignment: ELabelAlignment.Right,
                 padding: { top: 0, right: 5, bottom: 35, left: 0 },
-                // padding: new Thickness(0, 5, 30, 0)
             },
         })
     );
@@ -325,27 +308,22 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         dataSeries,
         columnXMode: EColumnMode.StartEnd,
         columnYMode: EColumnYMode.TopBottom,
-        // dataPointWidth: 1,
-        // dataPointWidthMode: EDataPointWidthMode.Range,
-        stroke: "#F9F9F9", // #F9F9F9
+        stroke: appTheme.DarkIndigo,
         strokeThickness: 4,
-        fill: "white",
-        // customTextureOptions: new StickFigureTextureOptions({ stroke: "black" }),
-        opacity: 1,
-        // topCornerRadius: 10,
-        // bottomCornerRadius: 10,
+        fill: appTheme.VividOrange,
+        opacity: 0.3,
         dataLabels: {
             skipMode: EDataLabelSkipMode.SkipIfSame,
             verticalTextPosition: EVerticalTextPosition.Center,
             horizontalTextPosition: EHorizontalTextPosition.Center,
             style: {
                 fontFamily: "Arial",
-                fontSize: 14,
+                fontSize: 16,
+            
             },
-            color: "#34495e",
+            color: appTheme.ForegroundColor,
             metaDataSelector: (md) => {
                 const metadata = md as NewMetadata;
-                // ${metadata.rank.toString()}.
                 return `${metadata.name.toString()} (${metadata.country.toString()})`;
             },
         },
@@ -385,7 +363,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             dataAnimation.from = dataAnimation.to;
             dataAnimation.to = dataC[element];
 
-            if (dataC[element].info === "full data again" || dataC[element].info === "data next") {
+            if (element === 1) {
+                dataAnimation.delay = 0;
+            } else if (dataC[element].info === "full data again" || dataC[element].info === "data next") {
                 dataAnimation.delay = 0;
             } else if (
                 dataC[element].info === "update remaining players positions" ||
@@ -396,21 +376,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 dataAnimation.delay = 4000;
             }
 
-            // console.log(dataC[element].year);
-            // console.log(dataC.length, element);
-            // console.log(dataC[element].info);
             if (element !== dataC.length - 1) {
                 dataAnimation.reset();
             }
             element += 1;
-
-            // console.log("Data Point Animation Completed");
         },
     });
     sciChartSurface.addAnimation(dataAnimation);
 
     sciChartSurface.titleStyle = {
-        color: "#6c3",
+        color: appTheme.MutedOrange,
         fontSize: 30,
         fontWeight: "bold",
         alignment: ETextAlignment.Center,
