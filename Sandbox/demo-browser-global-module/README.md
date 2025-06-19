@@ -21,7 +21,7 @@ To run the project, use:
 
 ```html
 <script
-  src="https://cdn.jsdelivr.net/npm/scichart@3.5.762/_wasm/scichart.browser.js"
+  src="https://cdn.jsdelivr.net/npm/scichart@3.5.770/_wasm/scichart.browser.js"
   crossorigin="anonymous"
 ></script>
 ```
@@ -36,8 +36,8 @@ If you want to use a different cdn, or serve the wasm files locally you can conf
 
 ```typescript
 SciChart.SciChartSurface.configure({
-  dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.5.762${SciChart.libraryVersion}/_wasm/scichart2d.data`,
-  wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.5.762${SciChart.libraryVersion}/_wasm/scichart2d.wasm`,
+  dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.5.770${SciChart.libraryVersion}/_wasm/scichart2d.data`,
+  wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.5.770${SciChart.libraryVersion}/_wasm/scichart2d.wasm`,
 });
 ```
 
