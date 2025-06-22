@@ -1,7 +1,7 @@
 {
-  "name": "tutorial1",
+  "name": "tutorial6",
   "version": "1.0.0",
-  "description": "First Tutorial with SciChart.js",
+  "description": "Sixth Tutorial with SciChart.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,12 +11,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "scichart": "^3.4.662"
+    "scichart": "^4.0.0-beta.734"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^9.0.1",
-    "webpack": "^5.58.2",
-    "webpack-cli": "^4.9.0",
-    "webpack-dev-server": "^4.3.1"
+    "copy-webpack-plugin": "^13.0.0",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
   }
 }
