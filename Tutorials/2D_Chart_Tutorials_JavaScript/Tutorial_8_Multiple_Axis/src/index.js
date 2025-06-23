@@ -7,6 +7,8 @@ import {
   YAxisDragModifier,
   XAxisDragModifier,
   TextAnnotation,
+  EHorizontalAnchorPoint,
+  EVerticalAnchorPoint,
 } from "scichart";
 
 async function initSciChart() {
@@ -21,23 +23,19 @@ async function initSciChart() {
 
   // Create an X,Y Axis and add to the chart
   const xAxis = new NumericAxis(wasmContext, {
-    // If not set, axis.id will default to AxisCore.DEFAULT_AXIS_ID
     axisTitle: "Primary XAxis",
     axisAlignment: EAxisAlignment.Bottom,
   });
   const xAxis2 = new NumericAxis(wasmContext, {
     axisTitle: "Secondary XAxis",
-    id: "XAxis_2",
     axisAlignment: EAxisAlignment.Top,
   });
   const yAxis = new NumericAxis(wasmContext, {
-    // If not set, axis.id will default to AxisCore.DEFAULT_AXIS_ID
     axisTitle: "Primary YAxis",
     axisAlignment: EAxisAlignment.Left,
   });
   const yAxis2 = new NumericAxis(wasmContext, {
     axisTitle: "Secondary YAxis",
-    id: "YAxis_2",
     axisAlignment: EAxisAlignment.Right,
   });
   sciChartSurface.xAxes.add(xAxis);
@@ -49,13 +47,12 @@ async function initSciChart() {
 
   // #region ExampleB
 
-  // Create first series and bind to the first Y axis
+  // Create first series and bind to the first X and Y axis
   const lineSeries1 = new FastLineRenderableSeries(wasmContext, {
+    // If not set, xAxisId, yAxisId will default to the first X and Y axes added to sciChartSurface
+    // therefore this series will bind to the Primary XAxis and YAxis
     stroke: "#33F9FF",
-    // Specify xAxisId, yAxisId.
-    // Therefore this series will bind to the Secondary XAxis and YAxis
-    xAxisId: "XAxis_2",
-    yAxisId: "YAxis_2",
+    strokeThickness: 6,
     dataSeries: new XyDataSeries(wasmContext, {
       xValues: [0, 1, 2, 3],
       yValues: [0, 60, 160, 300],
@@ -65,9 +62,12 @@ async function initSciChart() {
 
   // Create second series and bind to the second Y axis
   const lineSeries2 = new FastLineRenderableSeries(wasmContext, {
-    // If not set, yAxisId, xAxisId will default to AxisCore.DEFAULT_AXIS_ID
-    // therefore this series will bind to the Primary XAxis and YAxis
+    // Specify xAxisId, yAxisId.
+    // Therefore this series will bind to the Secondary XAxis and YAxis
+    xAxisId: xAxis2.id,
+    yAxisId: yAxis2.id,
     stroke: "#33ff33",
+    strokeThickness: 2,
     dataSeries: new XyDataSeries(wasmContext, {
       xValues: [0, 1, 2, 3, 4],
       yValues: [0, 101, 240, 500, 600],
@@ -78,28 +78,24 @@ async function initSciChart() {
   // #endregion
 
   // #region ExampleC
-
   sciChartSurface.annotations.add(
     new TextAnnotation({
       text: "Annotations on Axis!",
-      x1: 1,
-      y1: 200,
-      // If not set, yAxisId, xAxisId will default to AxisCore.DEFAULT_AXIS_ID
+      x1: 2,
+      y1: 400,
+      // If not set, yAxisId, xAxisId will default to the first X and Y axes
       // This annotation will be bound to the Secondary XAxis and YAxis
-      xAxisId: "XAxis_2",
-      yAxisId: "YAxis_2",
+      xAxisId: xAxis2.id,
+      yAxisId: yAxis2.id,
+      horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+      verticalAnchorPoint: EVerticalAnchorPoint.Center,
     })
   );
-
   // #endregion
 
   // #region ExampleD
-
-  // import { YAxisDragModifier ... } from "scichart";
-
-  sciChartSurface.chartModifiers.add(new YAxisDragModifier());
   sciChartSurface.chartModifiers.add(new XAxisDragModifier());
-
+  sciChartSurface.chartModifiers.add(new YAxisDragModifier());
   // #endregion
 }
 

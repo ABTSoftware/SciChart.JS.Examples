@@ -1,4 +1,3 @@
-// #region ExampleA
 import {
   SciChartSurface,
   NumericAxis,
@@ -16,6 +15,8 @@ import {
 } from "scichart";
 
 async function initSciChart() {
+  // #region ExampleA
+
   // CREATE FIRST CHART
   const createFirstChart = async () => {
     // Create the SciChartSurface in the div 'scichart-root'
@@ -65,8 +66,7 @@ async function initSciChart() {
     );
     return { sciChartSurface };
   };
-
-  // ...
+  // createFirstChart();
   // #endregion
 
   // #region ExampleB
@@ -116,7 +116,7 @@ async function initSciChart() {
 
     return { sciChartSurface };
   };
-
+  // createSecondChart();
   // #endregion
 
   // #region ExampleC
@@ -134,7 +134,7 @@ async function initSciChart() {
 
   // To Synchronize two charts
 
-  // Step 1: Synchronize visible ranges. When one chart xAxis.visibleRange changes, update the other
+  // Synchronize visible ranges. When one chart xAxis.visibleRange changes, update the other
   xAxis0.visibleRangeChanged.subscribe((data1) => {
     xAxis1.visibleRange = data1.visibleRange;
   });
@@ -146,7 +146,7 @@ async function initSciChart() {
 
   // #region ExampleD
 
-  // Step 2: Synchronize the chart axis sizes uses SciChartVerticalGroup
+  // Synchronize the chart axis sizes uses SciChartVerticalGroup
   // This is useful in case the Y-axis have different sizes due to differing visibleRange
   // text formatting or size
   const verticalGroup = new SciChartVerticalGroup();
@@ -157,12 +157,10 @@ async function initSciChart() {
 
   // #region ExampleE
 
-  // Step 3: For each chart modifier on both charts, set the modifierGroup. This
+  // For each chart modifier on both charts, set the modifierGroup. This
   // ensures that mouse events which occur on one chart are sent to the other
   scs0.chartModifiers.asArray().forEach((m) => (m.modifierGroup = "MyGroup"));
   scs1.chartModifiers.asArray().forEach((m) => (m.modifierGroup = "MyGroup"));
-
-  // Congrats! Your charts are now linked!
 
   // #endregion
 }
