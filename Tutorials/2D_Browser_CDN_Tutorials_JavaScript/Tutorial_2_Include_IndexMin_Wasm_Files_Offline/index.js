@@ -1,4 +1,3 @@
-// #region ExampleA
 // Equivalent of imports when using index.min.js is to declare global variables like this
 const { SciChartSurface, NumericAxis, FastLineRenderableSeries, XyDataSeries } =
   SciChart;
@@ -27,19 +26,8 @@ async function initSciChart() {
   );
 }
 
-// #endregion
-
-// #region Configure_SciChartjs_to_Load_Wasm
-
-// To load files locally, we can specify the path to the wasm and data files on the local file system
-// This can also be a URL or path if your files are served by a web server
-
-// Note that SciChartSurface.configure must be called once before any SciChartSurface is instantiated
-
 SciChartSurface.configure({
-  wasmUrl: `scichart/v3.4.662/scichart2d.wasm`,
+  wasmUrl: `scichart/4.0.0-beta.734/scichart2d.wasm`,
 });
-
-// #endregion
 
 initSciChart();

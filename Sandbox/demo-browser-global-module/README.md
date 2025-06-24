@@ -2,7 +2,7 @@
 
 ## Trial licensing
 
-Ensure you have followed steps from our [getting-started](https://www.scichart.com/getting-started-scichart-js) guide to get a trial!
+Starting from v4 nothing needs to be done to run the app with watermark.
 
 ## How to run project
 
