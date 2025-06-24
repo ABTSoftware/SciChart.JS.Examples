@@ -1,4 +1,3 @@
-// #region ExampleA
 import {
   SweepAnimation,
   SciChartJsNavyTheme,
@@ -8,6 +7,8 @@ import {
   ESeriesType,
   EPointMarkerType,
 } from "scichart";
+import React from "react";
+import { SciChartReact } from "scichart-react";
 
 const chartConfig = {
   surface: {
@@ -75,31 +76,21 @@ const chartConfig = {
 };
 
 const onInit = (initTemplate) => {
-  // After creation with the builder API, onInit allows you to access
-  // and modify the chart state
+  // After creation with the builder API, onInit allows you to access and modify the chart state
   const sciChartSurface = initTemplate.sciChartSurface;
   const wasmContext = sciChartSurface.webAssemblyContext2D;
 
   // for example. adding extra series
   // sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, { ... options }));
 };
-// #endregion
-
-// #region ExampleB
-import React from "react";
-import { SciChartReact } from "scichart-react";
 
 function App() {
   // LICENSING
   // Commercial licenses set your license code here
-  // Purchased license keys can be viewed at https://www.scichart.com/profile
-  // How-to steps at https://www.scichart.com/licensing-scichart-js/
   // SciChartSurface.setRuntimeLicenseKey("YOUR_RUNTIME_KEY");
 
   // to use WebAssembly and Data files from CDN instead of the same origin
   // SciChartSurface.loadWasmFromCDN();
-
-  // Note: for both licensing and WASM load configurations - make sure that they are set on the client side.
 
   return (
     <div className="App">
@@ -120,4 +111,3 @@ function App() {
 }
 
 export default App;
-// #endregion

@@ -1,7 +1,7 @@
 {
   "name": "react-scichart-demo",
   "version": "1.0.0",
-  "description": "First Tutorial with SciChart.js",
+  "description": "First Tutorial with scichart-react",
   "main": "index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,16 +14,16 @@
     "@babel/core": "^7.21.4",
     "@babel/preset-react": "^7.18.6",
     "babel-loader": "^9.1.2",
-    "copy-webpack-plugin": "^12.0.2",
+    "copy-webpack-plugin": "^13.0.0",
     "prettier": "^2.1.2",
-    "webpack": "^5.97.1",
+    "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.0"
+    "webpack-dev-server": "^5.2.2"
   },
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "scichart": "^3.5.711",
-    "scichart-react": "^0.1.9"
+    "scichart": "^4.0.0-beta.734",
+    "scichart-react": "^0.2.0-beta.2"
   }
 }

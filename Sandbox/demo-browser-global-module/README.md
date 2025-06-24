@@ -2,7 +2,7 @@
 
 ## Trial licensing
 
-Starting from v4 nothing needs to be done to run the app with watermark.
+From SciChart.js v3.2 and onwards, trial licenses are not required. Instead the chart initialises with a [Community License](https://scichart.com/community-licensing)
 
 ## How to run project
 

@@ -27,16 +27,14 @@ e.g. with webpack.config.js:
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
         { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart3d.data", to: "" },
         { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
       ],
     })
   ],
 ```
 
-> Note: other methods to [load wasm from CDN](https://www.scichart.com/documentation/js/current/webframe.html#Deploying%20Wasm%20or%20WebAssembly%20and%20Data%20Files%20with%20your%20app.html) are available to simplify getting started
+> Note: you can load wasm from CDN to simplify getting started `SciChartSurface.useWasmFromCDN();`
 
 ## Step 3: Creating the chart
 
@@ -153,8 +151,7 @@ function App() {
 }
 ```
 
-For alternative initialization and usage refer to the [scichart-react](https://www.npmjs.com/package/scichart-react).  
-Or check out [our tutorial on how to build and test your own chart wrapper component](https://www.scichart.com/documentation/js/current/webframe.html#TutorialReusableReactComponent.html).
+For alternative initialization and usage refer to the [scichart-react](https://www.npmjs.com/package/scichart-react).
 
 # Running the example
 
@@ -170,6 +167,5 @@ We have a wealth of information on our site showing how to get started with SciC
 Take a look at:
 
 - [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes community licensing details, first steps and more
-- [Javascript / npm tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2002%20-%20Adding%20Series%20and%20Data.html): using npm, webpack, and scichart.js, create static and dynamic charts with zooming, panning tooltips and more
-- [Vanilla Javascript tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2001%20-%20Including%20SciChart.js%20in%20an%20HTML%20Page.html): using only vanilla javascript and HTML,
+- [Documentation website](https://www.scichart.com/documentation/js/current/webframe.html): You will find tutorials, documentation and API documentation there
 - [Official scichart.js demos](https://demo.scichart.com): view our demos online! Full github source code also available at [github.com/abtsoftware/scichart.js.examples](https://github.com/abtsoftware/scichart.js.examples)
