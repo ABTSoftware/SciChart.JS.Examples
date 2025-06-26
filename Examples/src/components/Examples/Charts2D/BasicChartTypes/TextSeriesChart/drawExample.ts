@@ -36,8 +36,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
 
     // data is { xValues: number[], yValues: number[], textValues: string[] }
-    const url = "https://scichart.com/demo/api/tweetData";
-    const data: { xValues: number[]; yValues: number[]; textValues: string[] } = await fetch(url).then((r) => r.json());
+    const data: { xValues: number[]; yValues: number[]; textValues: string[] } = await fetch(
+        "https://scichart.com/demo/api/tweetData"
+    ).then((r) => r.json());
     const series = new FastTextRenderableSeries(wasmContext, {
         dataLabels: { style: { fontFamily: "arial", fontSize: 10 }, calculateTextBounds: false },
         dataSeries: new XyTextDataSeries(wasmContext, data),

@@ -48,7 +48,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
     const githubUrl = examplePage ? "/components/Examples/" + examplePage.filepath : "";
     const seoDescription = examplePage ? getFrameworkContent(examplePage.metaDescription, framework) : "";
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
-    const basePath = "https://demo.scichart.com";
+    const basePath = "https://scichart.com/demo";
     const exampleImage = examplePage ? examplePage.thumbnailImage : undefined;
     const exampleUrl = examplePage ? examplePage.path : "";
 
