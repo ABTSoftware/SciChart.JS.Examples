@@ -50,7 +50,7 @@ export const includeExternalModules = async (
                         // handle images
                         const csPath = "src/" + externalImport[2];
                         const filename = externalImport[2].substring(externalImport[2].lastIndexOf("/") + 1);
-                        files[csPath] = { content: "https://demo.scichart.com/images/" + filename, isBinary: true };
+                        files[csPath] = { content: "https://scichart.com/demo/images/" + filename, isBinary: true };
                     }
                 } else {
                     const filepath = path.join(folderPath, externalImport[1] + externalImport[2] + ".ts");
