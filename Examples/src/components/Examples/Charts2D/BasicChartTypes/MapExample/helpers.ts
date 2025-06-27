@@ -133,3 +133,54 @@ export function calculatePolygonCenter(polygon: number[][]) {
 
     return [centerX, centerY];
 }
+
+// function that preserves aspect ratio of drawn object by adapting visible min and max of xAxis and yAxis to aspect ratio change
+export function preserveAspectRatio(
+        width: number,
+        height: number,
+        minVisibleX: number,
+        maxVisibleX: number,
+        minVisibleY: number,
+        maxVisibleY: number
+    ) {
+        // Calculate current visible dimensions
+        const visibleWidth = maxVisibleX - minVisibleX;
+        const visibleHeight = maxVisibleY - minVisibleY;
+
+        // Calculate aspect ratios
+        const containerAspectRatio = width / height;
+        const visibleAspectRatio = visibleWidth / visibleHeight;
+
+        // Calculate center points for maintaining position
+        // const centerX = (minVisibleX + maxVisibleX) / 2;
+        // const centerY = (minVisibleY + maxVisibleY) / 2;
+
+        let newMinX, newMaxX, newMinY, newMaxY;
+
+        if (containerAspectRatio > visibleAspectRatio) {
+            // Container is wider - expand visible X range
+            const newVisibleWidth = visibleHeight * containerAspectRatio;
+            const widthDiff = newVisibleWidth - visibleWidth;
+
+            newMinX = minVisibleX - widthDiff / 2;
+            newMaxX = maxVisibleX + widthDiff / 2;
+            newMinY = minVisibleY;
+            newMaxY = maxVisibleY;
+        } else {
+            // Container is taller - expand visible Y range
+            const newVisibleHeight = visibleWidth / containerAspectRatio;
+            const heightDiff = newVisibleHeight - visibleHeight;
+
+            newMinX = minVisibleX;
+            newMaxX = maxVisibleX;
+            newMinY = minVisibleY - heightDiff / 2;
+            newMaxY = maxVisibleY + heightDiff / 2;
+        }
+
+        return {
+            minVisibleX: newMinX,
+            maxVisibleX: newMaxX,
+            minVisibleY: newMinY,
+            maxVisibleY: newMaxY,
+        };
+    }

@@ -15,17 +15,21 @@ import {
     EHorizontalTextPosition,
     Thickness,
     EVerticalTextPosition,
-    SweepAnimation,
-    SplineLineRenderableSeries,
     FastLineRenderableSeries,
-    FastMountainRenderableSeries,
 } from "scichart";
 
 import { appTheme } from "../../../theme";
 
-import constrainedDelaunayTriangulation from "./constrainedDelaunayTriangulation";
+// import constrainedDelaunayTriangulation from "./constrainedDelaunayTriangulation";
 
-import { getMinMax, interpolateColor, keyData, australiaData, calculatePolygonCenter } from "./helpers";
+import {
+    getMinMax,
+    interpolateColor,
+    keyData,
+    australiaData,
+    calculatePolygonCenter,
+    preserveAspectRatio,
+} from "./helpers";
 
 import { australianCities } from "./australiaData";
 
@@ -35,33 +39,41 @@ const dataArray: { name: string; areaData: number[][] }[] = [];
 const outlines: number[][][] = [];
 const centers: number[][] = [];
 
-function setMapJson(mapJson: { features: any[] }) {
-    mapJson?.features.forEach((state, i) => {
-        if (state.geometry.type === "Polygon") {
-            let area = state.geometry.coordinates[0];
-            outlines.push(area);
+// function setMapJson(mapJson: { features: any[] }) {
+//     mapJson?.features.forEach((state, i) => {
+//         if (state.geometry.type === "Polygon") {
+//             let area = state.geometry.coordinates[0];
+//             outlines.push(area);
 
-            centers.push(calculatePolygonCenter(area));
+//             centers.push(calculatePolygonCenter(area));
 
-            // area.pop();
-            let areaData = constrainedDelaunayTriangulation(area.slice(0, -1)).flat();
+//             // area.pop();
+//             let areaData = constrainedDelaunayTriangulation(area.slice(0, -1)).flat();
 
-            dataArray.push({ name: state.properties.STATE_NAME, areaData });
-        } else {
-            let polyArea = state.geometry.coordinates;
+//             dataArray.push({ name: state.properties.STATE_NAME, areaData });
+//         } else {
+//             let polyArea = state.geometry.coordinates;
 
-            centers.push(calculatePolygonCenter([...polyArea[0].flat()]));
+//             centers.push(calculatePolygonCenter([...polyArea[0].flat()]));
 
-            polyArea.forEach((a: any[]) => {
-                let area = a[0];
+//             polyArea.forEach((a: any[]) => {
+//                 let area = a[0];
 
-                outlines.push(area);
+//                 outlines.push(area);
 
-                // area.pop();
-                let areaData = constrainedDelaunayTriangulation(area.slice(0, -1)).flat();
-                dataArray.push({ name: state.properties.STATE_NAME, areaData });
-            });
-        }
+//                 // area.pop();
+//                 let areaData = constrainedDelaunayTriangulation(area.slice(0, -1)).flat();
+//                 dataArray.push({ name: state.properties.STATE_NAME, areaData });
+//             });
+//         }
+//     });
+// }
+
+function setMapJson(mapJson: any) {
+    mapJson.forEach((d: any) => {
+        outlines.push(d.outline);
+        centers.push(calculatePolygonCenter(d.outline));
+        dataArray.push({ name: d.name, areaData: d.areaData });
     });
 }
 
@@ -73,13 +85,20 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const growBy = new NumberRange(0.1, 0.1);
 
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy }));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy, isVisible: true }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy, isVisible: true }));
+
+    const xAxis = sciChartSurface.xAxes.get(0);
+    const yAxis = sciChartSurface.yAxes.get(0);
+
+    let firsStime = true;
 
     const setMap = (key: Keytype) => {
         sciChartSurface.renderableSeries.clear(true);
 
         const [min, max] = getMinMax(key, australiaData);
+
+        let triangeCount = 0;
 
         const series = dataArray.map((d, i) => {
             const dataSeries = new XyDataSeries(wasmContext, {
@@ -94,8 +113,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 opacity: 0.9,
             });
 
+            triangeCount += dataSeries.count() / 3;
+
             return triangleSeries;
         });
+
+        console.log({ triangeCount });
 
         sciChartSurface.renderableSeries.add(...series);
 
@@ -162,21 +185,42 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         // centers
 
-        const centerSeries = new FastBubbleRenderableSeries(wasmContext, {
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                width: 64,
-                height: 64,
-                fill: appTheme.ForegroundColor,
-                strokeThickness: 0,
-                opacity: 0.2,
-            }),
-            dataSeries: new XyzDataSeries(wasmContext, {
-                xValues: centers.map((d) => d[0]),
-                yValues: centers.map((d) => d[1]),
-                zValues: centers.map((d) => 10),
-            }),
+        // const centerSeries = new FastBubbleRenderableSeries(wasmContext, {
+        //     pointMarker: new EllipsePointMarker(wasmContext, {
+        //         width: 64,
+        //         height: 64,
+        //         fill: appTheme.ForegroundColor,
+        //         strokeThickness: 0,
+        //         opacity: 0.2,
+        //     }),
+        //     dataSeries: new XyzDataSeries(wasmContext, {
+        //         xValues: centers.map((d) => d[0]),
+        //         yValues: centers.map((d) => d[1]),
+        //         zValues: centers.map((d) => 10),
+        //     }),
+        // });
+        // sciChartSurface.renderableSeries.add(centerSeries);
+
+        if (firsStime) {
+            sciChartSurface.zoomExtents();
+            firsStime = false;
+        }
+
+        // console.log(xAxis.visibleRange, yAxis.visibleRange);
+
+        sciChartSurface.preRender.subscribe(() => {
+            const result = preserveAspectRatio(
+                sciChartSurface.viewRect.width,
+                sciChartSurface.viewRect.height,
+                xAxis.visibleRange.min,
+                xAxis.visibleRange.max,
+                yAxis.visibleRange.min,
+                yAxis.visibleRange.max
+            );
+
+            xAxis.visibleRange = new NumberRange(result.minVisibleX, result.maxVisibleX);
+            yAxis.visibleRange = new NumberRange(result.minVisibleY, result.maxVisibleY);
         });
-        sciChartSurface.renderableSeries.add(centerSeries);
     };
 
     // Add zoom/pan controls

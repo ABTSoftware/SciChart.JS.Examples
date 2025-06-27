@@ -2,12 +2,11 @@ import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { useEffect, useRef, useState } from "react";
-import transformToAlbersUSA from "./geoAlbersUSAProjection";
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
-    const [mapName, setMapName] = useState("world");
+    const [mapName, setMapName] = useState("worldConverted");
     const [mapData, setMapData] = useState();
     const setMapFunc = useRef(null);
     const setMapJsonFunc = useRef(null);
@@ -20,13 +19,8 @@ export default function ChartComponent() {
                 if (mapData === undefined) {
                     setMapData(data);
                 } else {
-                    if (mapName === "usaStates") {
-                        setMapJsonFunc.current(transformToAlbersUSA(data));
-                        setMapFunc.current();
-                    } else {
-                        setMapJsonFunc.current(data);
-                        setMapFunc.current();
-                    }
+                    setMapJsonFunc.current(data);
+                    setMapFunc.current();
                 }
             })
             .catch((error) => console.error(error));
@@ -41,48 +35,48 @@ export default function ChartComponent() {
             <div className="" style={{ position: "absolute", zIndex: "100" }}>
                 <div className="">
                     <button
-                        onClick={() => setMapName("world")}
+                        onClick={() => setMapName("worldConverted")}
                         style={{
-                            color: mapName === "world" ? "white" : "rgb(0, 188, 212)",
+                            color: mapName === "worldConverted" ? "white" : "rgb(0, 188, 212)",
                             display: "inline-block",
                             padding: "10px 24px",
-                            background: mapName === "world" ? "#14233c" : "#163149",
+                            background: mapName === "worldConverted" ? "#14233c" : "#163149",
                             cursor: "pointer",
                         }}
                     >
                         WORLD
                     </button>
                     <button
-                        onClick={() => setMapName("australia")}
+                        onClick={() => setMapName("europeConverted")}
                         style={{
-                            color: mapName === "australia" ? "white" : "rgb(0, 188, 212)",
+                            color: mapName === "europeConverted" ? "white" : "rgb(0, 188, 212)",
                             display: "inline-block",
                             padding: "10px 24px",
-                            background: mapName === "australia" ? "#14233c" : "#163149",
+                            background: mapName === "europeConverted" ? "#14233c" : "#163149",
+                            cursor: "pointer",
+                        }}
+                    >
+                        EUROPE
+                    </button>
+                    <button
+                        onClick={() => setMapName("australiaConverted")}
+                        style={{
+                            color: mapName === "australiaConverted" ? "white" : "rgb(0, 188, 212)",
+                            display: "inline-block",
+                            padding: "10px 24px",
+                            background: mapName === "australiaConverted" ? "#14233c" : "#163149",
                             cursor: "pointer",
                         }}
                     >
                         AUSTRALIA
                     </button>
                     <button
-                        onClick={() => setMapName("usaStates")}
+                        onClick={() => setMapName("africaConverted")}
                         style={{
-                            color: mapName === "usaStates" ? "white" : "rgb(0, 188, 212)",
+                            color: mapName === "africaConverted" ? "white" : "rgb(0, 188, 212)",
                             display: "inline-block",
                             padding: "10px 24px",
-                            background: mapName === "usaStates" ? "#14233c" : "#163149",
-                            cursor: "pointer",
-                        }}
-                    >
-                        USA
-                    </button>
-                    <button
-                        onClick={() => setMapName("africa")}
-                        style={{
-                            color: mapName === "africa" ? "white" : "rgb(0, 188, 212)",
-                            display: "inline-block",
-                            padding: "10px 24px",
-                            background: mapName === "africa" ? "#14233c" : "#163149",
+                            background: mapName === "africaConverted" ? "#14233c" : "#163149",
                             cursor: "pointer",
                         }}
                     >
@@ -96,17 +90,18 @@ export default function ChartComponent() {
                     className={commonClasses.ChartWrapper}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         // get the "setMap" function that is returned by "drawExample"
-                        let { setMap, setMapJson, clearMap } = initResult;
+                        let { setMap, setConvertedData, clearMap } = initResult;
 
                         // set geojson
-                        setMapJson(mapData);
+                        // setMapJson(mapData);
+                        setConvertedData(mapData);
 
                         // set the initial map
                         setMap();
 
                         // assign function to ref so we can call it later
                         setMapFunc.current = setMap;
-                        setMapJsonFunc.current = setMapJson;
+                        setMapJsonFunc.current = setConvertedData;
                         clearMapFunc.current = clearMap;
                     }}
                 />

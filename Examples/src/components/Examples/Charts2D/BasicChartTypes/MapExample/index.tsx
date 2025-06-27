@@ -16,14 +16,24 @@ export default function ChartComponent() {
         setKey(key);
     };
 
+    // useEffect(() => {
+    //     fetch("australia.json")
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             setMapData(data);
+    //         })
+    //         .catch((error) => console.error(error));
+    // }, []);
+
     useEffect(() => {
-        fetch("australia.json")
+        fetch("australiaConverted.json")
             .then((response) => response.json())
             .then((data) => {
                 setMapData(data);
             })
             .catch((error) => console.error(error));
     }, []);
+
 
     return (
         <div className="" style={{ width: "100%", height: "100%", position: "relative" }}>
