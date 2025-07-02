@@ -8,7 +8,7 @@ import {
     MouseWheelZoomModifier,
     FastLineRenderableSeries,
     ETriangleSeriesDrawMode,
-    TriangleRenderableSeries,
+    FastTriangleRenderableSeries,
 } from "scichart";
 
 import { appTheme } from "../../../theme";
@@ -132,7 +132,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             "#003c30",
         ];
 
-
         // const colors = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928']
 
         const series = dataArray.map((d, i) => {
@@ -141,11 +140,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 yValues: d.areaData.map((p: any[]) => p[1]),
             });
 
-            const triangleSeries = new TriangleRenderableSeries(wasmContext, {
+            const triangleSeries = new FastTriangleRenderableSeries(wasmContext, {
                 dataSeries: dataSeries,
                 drawMode: ETriangleSeriesDrawMode.List,
                 // fill: "steelblue", //interpolateColor(min, max, keyData[d.name][key]),
-                fill: colors[i % colors.length + 1],
+                fill: colors[(i % colors.length) + 1],
                 opacity: 0.5,
             });
 

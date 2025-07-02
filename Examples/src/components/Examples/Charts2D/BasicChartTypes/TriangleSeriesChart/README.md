@@ -1,4 +1,4 @@
-# Triangle Series Chart Example
+# Fast Triangle Series Chart Example
 
 ## Overview
 
@@ -10,7 +10,7 @@ This example demonstrates how to create a triangle series chart using the SciCha
 -   **Angular** (standalone Angular component using scichart-angular)
 -   **React** (using SciChartReact component)
 -   **Vanilla JavaScript/TypeScript** for a framework-independent implementation
--   Various SciChart modules such as: NumericAxis, TriangleRenderableSeries, XyDataSeries, WaveAnimation, PaletteFactory, and several chart modifiers (ZoomPanModifier, ZoomExtentsModifier, MouseWheelZoomModifier)
+-   Various SciChart modules such as: NumericAxis, FastTriangleRenderableSeries, XyDataSeries, WaveAnimation, PaletteFactory, and several chart modifiers (ZoomPanModifier, ZoomExtentsModifier, MouseWheelZoomModifier)
 
 ## Code Explanation
 

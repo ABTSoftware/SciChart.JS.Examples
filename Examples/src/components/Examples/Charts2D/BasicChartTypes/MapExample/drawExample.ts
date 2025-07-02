@@ -6,7 +6,7 @@ import {
     NumberRange,
     XyDataSeries,
     ETriangleSeriesDrawMode,
-    TriangleRenderableSeries,
+    FastTriangleRenderableSeries,
     MouseWheelZoomModifier,
     FastBubbleRenderableSeries,
     EllipsePointMarker,
@@ -106,7 +106,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 yValues: d.areaData.map((p) => p[1]),
             });
 
-            const triangleSeries = new TriangleRenderableSeries(wasmContext, {
+            const triangleSeries = new FastTriangleRenderableSeries(wasmContext, {
                 dataSeries: dataSeries,
                 drawMode: ETriangleSeriesDrawMode.List,
                 fill: interpolateColor(min, max, keyData[d.name][key]),

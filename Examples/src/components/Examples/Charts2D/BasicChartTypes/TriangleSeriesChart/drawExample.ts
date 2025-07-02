@@ -4,7 +4,7 @@ import {
     NumericAxis,
     SciChartSurface,
     XyDataSeries,
-    TriangleRenderableSeries,
+    FastTriangleRenderableSeries,
     ETriangleSeriesDrawMode,
     CursorModifier,
     IFillPaletteProvider,
@@ -28,7 +28,8 @@ class SPaletteProvider implements IFillPaletteProvider {
     public onDetached(): void {}
 
     public overrideFillArgb(xValue: number, yValue: number, index: number): number {
-        if (index % 3 === 0) { // or index % 2 === 0 to make a nice graident
+        if (index % 3 === 0) {
+            // or index % 2 === 0 to make a nice graident
             return this.palettedRed;
         } else {
             return this.palettedGreen;
@@ -94,18 +95,18 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.yAxes.add(yAxis);
 
     // Series 1 - The "S"
-    const sSeries = new TriangleRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { 
+    const sSeries = new FastTriangleRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, {
             xValues: [
-                329, 300, 264, 234, 195, 174, 134, 136, 87, 106, 61, 103, 74, 115, 92, 129, 116, 164, 156, 193, 208, 247, 242,
-                286, 273, 321, 286, 327, 283, 321, 282, 308, 262, 280, 239, 213, 175, 144, 111, 82, 64,
-            ], 
+                329, 300, 264, 234, 195, 174, 134, 136, 87, 106, 61, 103, 74, 115, 92, 129, 116, 164, 156, 193, 208,
+                247, 242, 286, 273, 321, 286, 327, 283, 321, 282, 308, 262, 280, 239, 213, 175, 144, 111, 82, 64,
+            ],
             yValues: [
-                426, 411, 446, 415, 446, 417, 446, 414, 426, 396, 385, 370, 338, 341, 309, 313, 275, 295, 255, 284, 232, 264,
-                225, 248, 209, 212, 190, 174, 159, 136, 134, 102, 104, 75, 99, 68, 103, 76, 111, 83, 127,
-            ] 
+                426, 411, 446, 415, 446, 417, 446, 414, 426, 396, 385, 370, 338, 341, 309, 313, 275, 295, 255, 284, 232,
+                264, 225, 248, 209, 212, 190, 174, 159, 136, 134, 102, 104, 75, 99, 68, 103, 76, 111, 83, 127,
+            ],
         }),
-        fill:appTheme.MutedBlue,
+        fill: appTheme.MutedBlue,
         drawMode: ETriangleSeriesDrawMode.Strip,
         paletteProvider: new SPaletteProvider(),
     });
@@ -128,12 +129,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     ];
     const { xCoordinates, yCoordinates } = generateScaledAndRotatedEquilateralTriangles(triangleCenters);
 
-    const cSeries = new TriangleRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { 
+    const cSeries = new FastTriangleRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, {
             xValues: xCoordinates.reduce((a, b) => a.concat(b), []),
             yValues: yCoordinates.reduce((a, b) => a.concat(b), []),
         }),
-        fill:appTheme.MutedBlue,
+        fill: appTheme.MutedBlue,
         drawMode: ETriangleSeriesDrawMode.List,
     });
     sciChartSurface.renderableSeries.add(cSeries);
@@ -158,10 +159,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         [106.01, 94.26, 75.24, 75.24, 94.26],
     ];
 
-    const iSeries = new TriangleRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { 
-            xValues: pentagonsX.reduce((a, b) => a.concat(b), []), 
-            yValues: pentagonsY.reduce((a, b) => a.concat(b), []) 
+    const iSeries = new FastTriangleRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, {
+            xValues: pentagonsX.reduce((a, b) => a.concat(b), []),
+            yValues: pentagonsY.reduce((a, b) => a.concat(b), []),
         }),
         fill: appTheme.VividRed,
         drawMode: ETriangleSeriesDrawMode.Polygon,
@@ -170,14 +171,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(iSeries);
 
     sciChartSurface.chartModifiers.add(
-        new CursorModifier({ 
+        new CursorModifier({
             showTooltip: true,
             crosshairStroke: "white",
             tooltipContainerBackground: appTheme.DarkIndigo,
             tooltipTextStroke: "white",
             tooltipShadow: "transparent",
             crosshairStrokeThickness: 1,
-            showAxisLabels: false
+            showAxisLabels: false,
         }),
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier(),
