@@ -19,20 +19,23 @@ import {
 // SciChartSurface.setLicenseCallback((queryString) => fetch("/custom?"+queryString, { headers: { authorization: <whatever is needed here > }));
 // Make sure you include the querystring parameter in the server request.  You can add additional parameters to the qerystring if need be.
 
-const CLIENT_KEY = "enter-your-client-key-here";
+const CLIENT_KEY = "YOUR_CLIENT_KEY";
 SciChartSurface.setRuntimeLicenseKey(CLIENT_KEY);
 
-const initSciChart = async () => {
-  // In order to avoid licensing blink
-  const dummyChart = await SciChartSurface.create("chart");
-  dummyChart.sciChartSurface.delete();
-  document.getElementById("chart").style.visibility = "visible";
+const createChartHelper = async (chartId: string) => {
+  document.getElementById(chartId).style.visibility = "visible";
 
-  const { wasmContext, sciChartSurface } = await SciChartSurface.create(
-    "chart"
+  const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(
+    chartId
   );
+  return { wasmContext, sciChartSurface };
+};
 
-  sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+const initSciChart = async () => {
+  const { wasmContext, sciChartSurface } = await createChartHelper("chart");
+  sciChartSurface.xAxes.add(
+    new NumericAxis(wasmContext, { axisTitle: "Chart 1" })
+  );
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
   sciChartSurface.annotations.add(
@@ -45,4 +48,21 @@ const initSciChart = async () => {
   );
 };
 
-initSciChart();
+const initSciChart2 = async () => {
+  const { wasmContext, sciChartSurface } = await createChartHelper("chart2");
+  sciChartSurface.xAxes.add(
+    new NumericAxis(wasmContext, { axisTitle: "Chart 2" })
+  );
+  sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
+
+  sciChartSurface.annotations.add(
+    new TextAnnotation({
+      text: "Welcome to SciChart",
+      x1: 5,
+      y1: 5,
+      horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+    })
+  );
+};
+
+initSciChart().then(() => initSciChart2());

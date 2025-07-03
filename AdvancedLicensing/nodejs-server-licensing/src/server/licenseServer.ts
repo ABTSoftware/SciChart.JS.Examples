@@ -51,12 +51,12 @@ let nativeLicenseServer = define({
 debug("nativeLicenseServer created");
 
 // The app name you set here must match one you have added on the MyAccount page before generating a key pair.
-const APP_NAME = "scichart-nodejs-server-licensing";
+const APP_NAME = "YOUR_APP_NAME";
 debug("app name", APP_NAME);
 nativeLicenseServer.SciChartLicenseServer_SetAssemblyName([APP_NAME]);
 
 // Set the Server key
-const SERVER_KEY = "enter-your-server-key-here";
+const SERVER_KEY = "YOUR_SERVER_KEY";
 const isValid = nativeLicenseServer.SciChartLicenseServer_SetRuntimeLicenseKey([
   SERVER_KEY,
 ]);

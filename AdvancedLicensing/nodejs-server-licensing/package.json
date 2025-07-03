@@ -19,7 +19,7 @@
     "cors": "^2.8.5",
     "express": "^4.19.1",
     "ffi-rs": "^1.0.64",
-    "scichart": "latest",
+    "scichart": "^3.5.770",
     "utf-8-validate": "^6.0.3"
   },
   "devDependencies": {
