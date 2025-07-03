@@ -16,6 +16,7 @@ import {
     Thickness,
     EVerticalTextPosition,
     FastLineRenderableSeries,
+    EXyDirection,
 } from "scichart";
 
 import { appTheme } from "../../../theme";
