@@ -1,0 +1,3 @@
+User-Agent: *
+Disallow: /webgl-intel.html$
+Sitemap: https://scichart.com/demo/sitemap.xml
