@@ -48,6 +48,7 @@ export default [
     "../Examples/Charts2D/BasicChartTypes/TextSeriesChart",
     "../Examples/Charts2D/BasicChartTypes/TreemapChart",
     "../Examples/Charts2D/BasicChartTypes/TriangleSeriesChart",
+    "../Examples/Charts2D/BasicChartTypes/VectorField",
     "../Examples/Charts2D/ChartAnnotations/AnnotationLayers",
     "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy",
     "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations",
