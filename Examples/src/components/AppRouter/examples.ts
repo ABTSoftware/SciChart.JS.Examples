@@ -76,6 +76,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             // EXAMPLES_PAGES.chart2D_basicCharts_GanttChart, // uncomment when ready
             EXAMPLES_PAGES.chart2D_basicCharts_MapExample,
             EXAMPLES_PAGES.chart2D_basicCharts_MultiMapExample,
+            EXAMPLES_PAGES.chart2D_basicCharts_PolarMapExample,
             EXAMPLES_PAGES.chart2D_basicCharts_AtpTopTen,
             EXAMPLES_PAGES.chart2D_basicCharts_VectorField,
             EXAMPLES_PAGES.chart2D_basicCharts_WaterfallChart,
