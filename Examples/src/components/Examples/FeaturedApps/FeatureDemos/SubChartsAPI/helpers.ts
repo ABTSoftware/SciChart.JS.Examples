@@ -87,62 +87,137 @@ const generateCandleData = (xValues: number[]) => {
     return { openValues, highValues, lowValues, closeValues };
 };
 
-export const appendData = (
+type GeneratedDataMap = {
+    [EDataSeriesType.Xy]: {
+        xValues: number[];
+        yValues: number[];
+    };
+    [EDataSeriesType.Xyy]: {
+        xValues: number[];
+        yValues: number[];
+        y1Values: number[];
+    };
+    [EDataSeriesType.Xyz]: {
+        xValues: number[];
+        yValues: number[];
+        zValues: number[];
+    };
+    [EDataSeriesType.Ohlc]: {
+        xValues: number[];
+        openValues: number[];
+        highValues: number[];
+        lowValues: number[];
+        closeValues: number[];
+    };
+} & {
+    [K in Exclude<
+        EDataSeriesType,
+        EDataSeriesType.Xy | EDataSeriesType.Xyy | EDataSeriesType.Xyz | EDataSeriesType.Ohlc
+    >]: never;
+};
+
+export const generateData = <T extends EDataSeriesType>(
     seriesType: ESeriesType,
     dataSeries: BaseDataSeries,
-    dataSeriesType: EDataSeriesType,
+    dataSeriesType: T,
     index: number,
     pointsOnChart: number,
     pointsPerUpdate: number
-) => {
+): GeneratedDataMap[T] => {
     const lastIndex = dataSeries.count() - 1;
     const lastX = dataSeries.getNativeXValues().get(lastIndex);
-    const xValues = Array.from(Array(pointsPerUpdate)).map((_, i) => lastX + 1 + i);
+    const xValues = Array.from({ length: pointsPerUpdate }, (_, i) => lastX + 1 + i);
     const positive = [ESeriesType.StackedColumnSeries, ESeriesType.StackedMountainSeries].includes(seriesType);
+
     switch (dataSeriesType) {
-        case EDataSeriesType.Xy:
+        case EDataSeriesType.Xy: {
             const xySeries = dataSeries as XyDataSeries;
-            xySeries.appendRange(xValues, GetRandomData(xValues, positive, xySeries.getNativeYValues().get(lastIndex)));
-            if (!dataSeries.fifoCapacity && xySeries.count() > pointsOnChart) {
-                xySeries.removeRange(0, pointsPerUpdate);
-            }
-            break;
-        case EDataSeriesType.Xyy:
+            const yValues = GetRandomData(xValues, positive, xySeries.getNativeYValues().get(lastIndex));
+            return { xValues, yValues } as GeneratedDataMap[T];
+        }
+        case EDataSeriesType.Xyy: {
             const xyySeries = dataSeries as XyyDataSeries;
-            xyySeries.appendRange(
-                xValues,
-                GetRandomData(xValues, positive, xyySeries.getNativeYValues().get(lastIndex)),
-                GetRandomData(xValues, positive, xyySeries.getNativeY1Values().get(lastIndex))
-            );
-            if (!dataSeries.fifoCapacity && xyySeries.count() > pointsOnChart) {
-                xyySeries.removeRange(0, pointsPerUpdate);
-            }
-            break;
-        case EDataSeriesType.Xyz:
+            const yValues = GetRandomData(xValues, positive, xyySeries.getNativeYValues().get(lastIndex));
+            const y1Values = GetRandomData(xValues, positive, xyySeries.getNativeY1Values().get(lastIndex));
+            return { xValues, yValues, y1Values } as GeneratedDataMap[T];
+        }
+        case EDataSeriesType.Xyz: {
             const xyzSeries = dataSeries as XyzDataSeries;
-            xyzSeries.appendRange(
-                xValues,
-                GetRandomData(xValues, positive, xyySeries.getNativeYValues().get(lastIndex)),
-                GetRandomData(xValues, positive, xyySeries.getNativeY1Values().get(lastIndex)).map((z) =>
-                    Math.abs(z / 5)
-                )
+            const yValues = GetRandomData(xValues, positive, xyzSeries.getNativeYValues().get(lastIndex));
+            const zValues = GetRandomData(xValues, positive, xyzSeries.getNativeZValues().get(lastIndex)).map((z) =>
+                Math.abs(z / 5)
             );
-            if (!dataSeries.fifoCapacity && xyzSeries.count() > pointsOnChart) {
-                xyzSeries.removeRange(0, pointsPerUpdate);
-            }
-            break;
-        case EDataSeriesType.Ohlc:
+            return { xValues, yValues, zValues } as GeneratedDataMap[T];
+        }
+        case EDataSeriesType.Ohlc: {
             const ohlcSeries = dataSeries as OhlcDataSeries;
             const lastClose = ohlcSeries.getNativeCloseValues().get(ohlcSeries.count() - 1);
             const { openValues, highValues, lowValues, closeValues } = generateCandleDataForAppendRange(
                 lastClose,
                 GetRandomData(xValues, positive, lastClose)
             );
-            ohlcSeries.appendRange(xValues, openValues, highValues, lowValues, closeValues);
-            if (!dataSeries.fifoCapacity && ohlcSeries.count() > pointsOnChart) {
-                ohlcSeries.removeRange(0, pointsPerUpdate);
+            return { xValues, openValues, highValues, lowValues, closeValues } as any;
+        }
+        default:
+            throw new Error("Not implemented!");
+    }
+};
+export const appendData = <T extends keyof GeneratedDataMap>(
+    seriesType: ESeriesType,
+    dataSeries: BaseDataSeries,
+    dataSeriesType: T,
+    index: number,
+    pointsOnChart: number,
+    pointsPerUpdate: number,
+    data: GeneratedDataMap[T]
+) => {
+    if (!data) return;
+    const currentCount = dataSeries.count();
+    const newCount = currentCount + pointsPerUpdate;
+
+    switch (dataSeriesType) {
+        case EDataSeriesType.Xy: {
+            const xySeries = dataSeries as XyDataSeries;
+            const { xValues, yValues } = data as { xValues: number[]; yValues: number[] };
+            if (!xySeries.fifoCapacity && newCount > pointsOnChart) {
+                xySeries.removeRange(0, newCount - pointsOnChart);
             }
+            xySeries.appendRange(xValues, yValues);
             break;
+        }
+        case EDataSeriesType.Xyy: {
+            const xyySeries = dataSeries as XyyDataSeries;
+            const { xValues, yValues, y1Values } = data as { xValues: number[]; yValues: number[]; y1Values: number[] };
+            if (!xyySeries.fifoCapacity && newCount > pointsOnChart) {
+                xyySeries.removeRange(0, newCount - pointsOnChart);
+            }
+            xyySeries.appendRange(xValues, yValues, y1Values);
+            break;
+        }
+        case EDataSeriesType.Xyz: {
+            const xyzSeries = dataSeries as XyzDataSeries;
+            const { xValues, yValues, zValues } = data as { xValues: number[]; yValues: number[]; zValues: number[] };
+            if (!xyzSeries.fifoCapacity && newCount > pointsOnChart) {
+                xyzSeries.removeRange(0, newCount - pointsOnChart);
+            }
+            xyzSeries.appendRange(xValues, yValues, zValues);
+            break;
+        }
+        case EDataSeriesType.Ohlc: {
+            const ohlcSeries = dataSeries as OhlcDataSeries;
+            const { xValues, openValues, highValues, lowValues, closeValues } = data as {
+                xValues: number[];
+                openValues: number[];
+                highValues: number[];
+                lowValues: number[];
+                closeValues: number[];
+            };
+            if (!ohlcSeries.fifoCapacity && newCount > pointsOnChart) {
+                ohlcSeries.removeRange(0, newCount - pointsOnChart);
+            }
+            ohlcSeries.appendRange(xValues, openValues, highValues, lowValues, closeValues);
+            break;
+        }
         default:
             break;
     }
@@ -203,6 +278,8 @@ const dsOptions: IBaseDataSeriesOptions = {
     isSorted: true,
     containsNaN: false,
     fifoCapacity: 5000,
+    // dataIsSortedInX: true,
+    // capacity: 5000,
 };
 
 export const createRenderableSeries = (

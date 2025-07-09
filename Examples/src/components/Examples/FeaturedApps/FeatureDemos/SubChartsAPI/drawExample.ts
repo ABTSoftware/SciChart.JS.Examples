@@ -1,6 +1,7 @@
 import {
     appendData,
     createRenderableSeries,
+    generateData,
     getDataSeriesTypeForRenderableSeries,
     getSubChartPositionIndexes,
     prePopulateData,
@@ -107,15 +108,6 @@ export const drawGridExample = async (
     });
     mainSurface.yAxes.add(mainYAxis);
 
-    const seriesNamesMap: { [key in ESeriesType]?: string } = {
-        [ESeriesType.LineSeries]: "Line",
-        [ESeriesType.StackedColumnSeries]: "Stacked Column",
-        [ESeriesType.ColumnSeries]: "Column",
-        [ESeriesType.StackedMountainSeries]: "Mountain",
-        [ESeriesType.BandSeries]: "Band",
-        [ESeriesType.CandlestickSeries]: "Candle",
-    };
-
     const seriesTypes = [
         ESeriesType.LineSeries,
         // ESeriesType.BubbleSeries,
@@ -158,13 +150,6 @@ export const drawGridExample = async (
                 color: "rgba(150, 74, 148, 0.51)",
                 border: 2,
             },
-            // title: seriesNamesMap[seriesType],
-            titleStyle: {
-                placeWithinChart: true,
-                fontSize: 12,
-                padding: Thickness.fromString("10 4 0 4"),
-                color: appTheme.ForegroundColor,
-            },
         };
 
         // create sub-surface
@@ -185,6 +170,7 @@ export const drawGridExample = async (
             id: `${subChartSurface.id}-YAxis`,
             growBy: new NumberRange(0.01, 0.1),
             useNativeText: true,
+            autoRange: EAutoRange.Always,
         });
         subChartSurface.yAxes.add(subChartYAxis);
 
@@ -202,6 +188,8 @@ export const drawGridExample = async (
                 subChartXAxis.id,
                 subChartYAxis.id
             );
+
+            subChartXAxis.visibleRange = new NumberRange(0, dataSeries.count());
 
             dataSeriesArray[i] = dataSeries;
 
@@ -270,15 +258,35 @@ export const drawGridExample = async (
     let loadCount: number = 0;
     let avgRenderTime: number = 0;
 
+    let dataGenerationStart: DOMHighResTimeStamp;
+    let dataGenerationEnd: DOMHighResTimeStamp;
+    let dataAppendStart: DOMHighResTimeStamp;
+    let dataAppendEnd: DOMHighResTimeStamp;
+    let renderStart: DOMHighResTimeStamp;
+    let renderEnd: DOMHighResTimeStamp;
+    let lastRenderEnd: DOMHighResTimeStamp;
+
+    let lastPaintEnd: DOMHighResTimeStamp;
+    let paintEnd: DOMHighResTimeStamp;
+
+    const dataStore = new Map(
+        mainSurface.subCharts.map((subChart) => [
+            subChart,
+            Array.from(Array(dataSettings.seriesCount)).map((_) => null),
+        ])
+    );
+
     const updateCharts = () => {
         if (!isRunning) {
             return;
         }
+
         loadStart = new Date().getTime();
-        subChartsMap.forEach(({ seriesType, dataSeriesArray, dataSeriesType }) => {
+        dataGenerationStart = performance.now();
+        subChartsMap.forEach(({ seriesType, dataSeriesArray, dataSeriesType }, subSurface) => {
+            const pointsToUpdate = Math.round(Math.max(1, dataSeriesArray[0].count() / 50));
             for (let i = 0; i < dataSettings.seriesCount; i++) {
-                const pointsToUpdate = Math.round(Math.max(1, dataSeriesArray[i].count() / 50));
-                appendData(
+                dataStore.get(subSurface)[i] = generateData(
                     seriesType,
                     dataSeriesArray[i],
                     dataSeriesType,
@@ -289,29 +297,64 @@ export const drawGridExample = async (
             }
         });
 
+        dataAppendStart = performance.now();
+        subChartsMap.forEach(({ seriesType, dataSeriesArray, dataSeriesType }, subSurface) => {
+            const pointsToUpdate = Math.round(Math.max(1, dataSeriesArray[0].count() / 50));
+            for (let i = 0; i < dataSettings.seriesCount; i++) {
+                const data = dataStore.get(subSurface)[i];
+                appendData(
+                    seriesType,
+                    dataSeriesArray[i],
+                    dataSeriesType,
+                    i,
+                    dataSettings.pointsOnChart,
+                    pointsToUpdate,
+                    data
+                );
+            }
+        });
+        dataAppendEnd = performance.now();
+
         setTimeout(updateCharts, dataSettings.sendEvery);
     };
+    mainSurface.preRenderAll.subscribe(() => {
+        renderStart = performance.now();
+    });
+    // mainSurface.painted.subscribe(() => {
+    //     lastPaintEnd = paintEnd;
+    //     paintEnd = performance.now();
+    // });
 
     // render time info calculation
-    const lastSubChart = Array.from(subChartsMap.keys())[subChartsNumber - 1];
-    lastSubChart.rendered.subscribe(() => {
+    mainSurface.renderedToDestination.subscribe(() => {
         if (!isRunning || loadStart === 0) return;
+        lastRenderEnd = renderEnd;
+        renderEnd = performance.now();
         const reDrawTime = new Date().getTime() - loadStart;
-        avgRenderTime = (avgRenderTime * loadCount + reDrawTime) / (loadCount + 1);
+        avgRenderTime = renderEnd - renderStart;
         const charts = Array.from(subChartsMap.values());
-        const totalPoints = charts[0].dataSeriesArray[0].count() * 3 * charts.length;
+        const totalPoints = charts[0].dataSeriesArray[0].count() * dataSettings.seriesCount * charts.length;
         newMessages.push({
-            title: `Total Points `,
+            title: `Points`,
             detail: `${totalPoints}`,
         });
         newMessages.push({
-            title: `Average Render Time `,
-            detail: `${avgRenderTime.toFixed(2)} ms`,
+            title: `Generate`,
+            detail: `${(dataAppendStart - dataGenerationStart).toFixed(1)}ms`,
         });
         newMessages.push({
-            title: `Max FPS `,
-            detail: `${Math.min(60, 1000 / avgRenderTime).toFixed(1)}`,
+            title: `Append`,
+            detail: `${(dataAppendEnd - dataAppendStart).toFixed(1)}ms`,
         });
+        newMessages.push({
+            title: `Render`,
+            detail: `${avgRenderTime.toFixed(2)}ms`,
+        });
+        newMessages.push({
+            title: `FPS`,
+            detail: `${(1000 / (renderEnd - lastRenderEnd)).toFixed(1)}`,
+        });
+
         updateMessages(newMessages);
         newMessages.length = 0;
     });
@@ -329,13 +372,6 @@ export const drawGridExample = async (
     const stopUpdate = () => {
         console.log("stop streaming");
         isRunning = false;
-        if (mainSurface.chartModifiers.size() === 0) {
-            mainSurface.chartModifiers.add(
-                new MouseWheelZoomModifier(),
-                new ZoomPanModifier({ enableZoom: true }),
-                new ZoomExtentsModifier()
-            );
-        }
     };
 
     const setLabels = (show: boolean) => {
