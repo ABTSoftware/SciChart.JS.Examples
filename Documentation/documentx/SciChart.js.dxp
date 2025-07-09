@@ -17633,10 +17633,19 @@ Show external placement div</Notes>
 		}
 	   	
 		appendScript('https://static.codepen.io/assets/embed/ei.js', undefined);
+	    appendScript('https://scichartwebapi-stage-uk.azurewebsites.net/chatbot.js', undefined);
 		// appendScript('https://scichart.activehosted.com/f/embed.php?id=25', 'utf-8');	
 	}
 &lt;/script&gt;
-&lt;style&gt;.cp_embed_iframe { aspect-ratio:1.333 }&lt;/style&gt;</OtherHeadContent>
+&lt;style&gt;.cp_embed_iframe { aspect-ratio:1.333 }&lt;/style&gt;
+&lt;script&gt;
+	window.chatbotConfig = {
+        buttonText: 'Ask SciChart AI',
+        theme: 'light',
+        serviceBaseUrl: 'https://scichartwebapi-stage-uk.azurewebsites.net/'
+    };
+&lt;/script&gt;
+	</OtherHeadContent>
         <CanonicalLinkBaseUrl></CanonicalLinkBaseUrl>
         <GenerateCanonicalLinkAuto>false</GenerateCanonicalLinkAuto>
       </OtherFiles>
