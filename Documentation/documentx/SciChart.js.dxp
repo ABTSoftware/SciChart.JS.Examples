@@ -17633,7 +17633,7 @@ Show external placement div</Notes>
 		}
 	   	
 		appendScript('https://static.codepen.io/assets/embed/ei.js', undefined);
-	    appendScript('https://scichartwebapi-stage-uk.azurewebsites.net/chatbot.js', undefined);
+	    appendScript('https://chat.scichart.com/chatbot.js', undefined);
 		// appendScript('https://scichart.activehosted.com/f/embed.php?id=25', 'utf-8');	
 	}
 &lt;/script&gt;
@@ -17642,7 +17642,7 @@ Show external placement div</Notes>
 	window.chatbotConfig = {
         buttonText: 'Ask SciChart AI',
         theme: 'light',
-        serviceBaseUrl: 'https://scichartwebapi-stage-uk.azurewebsites.net/'
+        serviceBaseUrl: 'https://chat.scichart.com/'
     };
 &lt;/script&gt;
 	</OtherHeadContent>
