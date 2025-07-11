@@ -24,7 +24,7 @@ iframe#i-content
     width: 100%;
     border: none;
 	float: right;
-	height: 100vh;
+	height: 100vh !IMPORTANT;
 }
 
 #i-busy
