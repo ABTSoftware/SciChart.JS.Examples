@@ -9,7 +9,7 @@ import {
     easing,
     EAutoRange,
     EChart2DModifierType,
-    ECoordinateMode,
+    ESubSurfacePositionCoordinateMode,
     GenericAnimation,
     I2DSubSurfaceOptions,
     IGenericAnimation,
@@ -112,7 +112,7 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             theme: appTheme.SciChartJsTheme,
             // Start full size
             position: this.translateRectToRelativeCoordinates(subChartsAreaRect),
-            coordinateMode: ECoordinateMode.Relative,
+            coordinateMode: ESubSurfacePositionCoordinateMode.Relative,
             padding: Thickness.fromString("0 0 0 0"),
             viewportBorder: {
                 color: borderInitialColor,

@@ -5,7 +5,7 @@ import {
     convertColor,
     DoubleAnimator,
     easing,
-    ECoordinateMode,
+    ESubSurfacePositionCoordinateMode,
     GenericAnimation,
     I2DSubSurfaceOptions,
     ISciChart2DDefinition,
@@ -53,7 +53,7 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             theme: appTheme.SciChartJsTheme,
             // Start full size
             position: new Rect(0, 0, 1, 1),
-            coordinateMode: ECoordinateMode.Relative,
+            coordinateMode: ESubSurfacePositionCoordinateMode.Relative,
             padding: Thickness.fromNumber(3),
             // viewportBorder: {
             //     color: "rgba(150, 74, 148, 0.51)",

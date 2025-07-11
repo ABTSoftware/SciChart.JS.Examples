@@ -10,7 +10,7 @@ import {
 import {
     BaseDataSeries,
     EAnnotationLayer,
-    ECoordinateMode,
+    ESubSurfacePositionCoordinateMode,
     EDataSeriesType,
     EAutoRange,
     ENumericFormat,
@@ -120,7 +120,7 @@ export const drawGridExample = async (
         // ESeriesType.TextSeries
     ];
 
-    const subChartPositioningCoordinateMode = ECoordinateMode.Relative;
+    const subChartPositioningCoordinateMode = ESubSurfacePositionCoordinateMode.Relative;
 
     const subChartsMap: Map<
         SciChartSubSurface,
