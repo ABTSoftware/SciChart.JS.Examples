@@ -36,7 +36,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
             EXAMPLES_PAGES.featuredApps_scientificCharts_WaterfallChartDemo,
-            // EXAMPLES_PAGES.featuredApps_scientificCharts_PhasorDiagramChart,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_PhasorDiagramChart,
         ],
     },
     {
