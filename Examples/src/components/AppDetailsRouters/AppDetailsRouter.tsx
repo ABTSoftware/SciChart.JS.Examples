@@ -202,7 +202,10 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                     />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 15, width: "100%" }}>
-                    <div className={classes.contentwrapper}>
+                    <div 
+                        id="EXAMPLE_CONTENT_WRAPPER"
+                        className={classes.contentwrapper}
+                    >
                         <div style={{ display: "flex" }}>
                             <ExampleBreadcrumbs />
 
