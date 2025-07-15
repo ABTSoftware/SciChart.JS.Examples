@@ -211,6 +211,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
 
                         <div style={{ display: "flex", justifyContent: "center" }}>
                             <h1
+                                id="EXAMPLE_TITLE"
                                 className={classes.headingtxt}
                                 style={{
                                     margin: isMaxWidth ? "-10px 0" : 0,
@@ -264,7 +265,10 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                                 />
                             </div>
                         )}
-                        <MarkdownContent selectedFramework={selectedFramework} currentExample={currentExample} />
+                        <MarkdownContent 
+                            selectedFramework={selectedFramework} 
+                            currentExample={currentExample} 
+                        />
                     </div>
                     <GalleryItems examples={seeAlso} />
                 </div>

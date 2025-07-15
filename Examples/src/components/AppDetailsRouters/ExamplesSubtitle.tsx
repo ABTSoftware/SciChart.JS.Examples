@@ -12,7 +12,10 @@ export const ExamplesSubtitle: FC<TSubtitleProps> = ({ content, isMaxWidth }) =>
 
     if (typeof content === "string") {
         return (
-            <span className={className}>
+            <span 
+                id="EXAMPLE_SUBTITLE"
+                className={className}
+            >
                 <ReactMarkdown>{content}</ReactMarkdown>
             </span>
         );
