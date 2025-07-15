@@ -50,6 +50,22 @@ const NotFound = () => (
     </div>
 );
 
+const ChatbotScript = (): React.ReactElement | null => {
+    React.useEffect(() => {
+        const script = document.createElement('script');
+        script.src = "https://chat.scichart.com/chatbot.js";
+        script.type = "text/javascript";
+        script.defer = true;
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
+
+    return null;
+}
+
 SciChartSurface.configure({
     wasmUrl: `${baseAppPath}/scichart2d.wasm`,
     dataUrl: `${baseAppPath}/scichart2d.data`,
@@ -154,6 +170,25 @@ export default function App() {
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     return (
         <FrameworkContext.Provider value={selectedFramework}>
+            <style>
+                {`
+                .chatbot-maximised {
+                    width: calc(100vw - 40px) !important;
+                    height: calc(100vh - 90px - 40px) !important;
+                    right: 20px !important;
+                    bottom: 20px !important;
+                    left: auto !important;
+                    top: auto !important;
+                }
+                @media screen and (min-width: 960px) {
+                    .chatbot-maximised {
+                        width: calc(100vw - min(350px, 25vw) - 40px - 20px) !important;
+                    }
+                }
+                `}
+            </style>
+            <ChatbotScript />
+
             <div className={classes.App}>
                 {isMedium && (
                     <Drawer
@@ -173,7 +208,7 @@ export default function App() {
                         />
                     </Drawer>
                 )}
-                <div className={classes.MainAppContent}>
+                <div className={classes.MainAppContent} style={{position: "relative"}}>
                     <SciChartNavbar toggleDrawer={toggleDrawer} theme={theme} setTheme={setTheme} />
 
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
