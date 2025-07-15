@@ -15,7 +15,10 @@ const plugins = [rehypeRaw as any];
 const MarkdownContent: FC<TProps> = (props) => {
     const { currentExample, selectedFramework } = props;
     return (
-        <div className={classes.scichartcontainer}>
+        <div 
+            id="EXAMPLE_MARKDOWN_CONTENT"
+            className={classes.scichartcontainer}
+        >
             <ReactMarkdown rehypePlugins={plugins}>
                 {getFrameworkContent(currentExample.markdownContent, selectedFramework)}
             </ReactMarkdown>
