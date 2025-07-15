@@ -1,9 +1,14 @@
-import { useRef, useState } from "react";
+import { CSSProperties, useRef, useState } from "react";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
+import SettingsIcon from "@mui/icons-material/Settings";
+import CloseIcon from "@mui/icons-material/Close";
+import Switch from "@mui/material/Switch";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
 import Button from "@mui/material/Button";
+import { Dialog, DialogTitle, IconButton } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { appTheme } from "../../../theme";
@@ -24,13 +29,26 @@ const useStyles = makeStyles()((theme) => ({
     infoBlock: {
         display: "flex",
         flex: "auto",
-        marginLeft: 10,
-        marginTop: 6,
+        flexBasis: "20%",
+        justifyContent: "space-between",
+        justifyItems: "space-between",
+        marginRight: "8px",
     },
     infoItem: {
-        flex: "auto",
+        padding: "0.4em",
+        textAlign: "end",
+        flex: "none",
+        width: "20%",
+        fontSize: "0.8em",
     },
 }));
+
+const configButtonWrapperStyle: CSSProperties = {
+    gridArea: "1 / 1 / 2 / 2",
+    pointerEvents: "none",
+    touchAction: "none",
+    zIndex: 2,
+};
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
@@ -42,6 +60,16 @@ export default function SubchartsGrid() {
 
     const { classes } = useStyles();
 
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setIsDialogOpen(true);
+    };
+
+    const handleClose = () => {
+        setIsDialogOpen(false);
+    };
+
     const handleLabelsChange = (ev: any, checked: boolean) => {
         controlsRef.current.setLabels(checked);
     };
@@ -50,6 +78,51 @@ export default function SubchartsGrid() {
         drawGridExample(rootElement, (newMessages: TMessage[]) => {
             setMessages([...newMessages]);
         });
+    const switchStyleOverrides = {
+        width: "100%",
+        margin: 0,
+        padding: "1em",
+        color: appTheme.ForegroundColor,
+        accentColor: "#0bdef4",
+
+        "& .MuiSwitch-track": {
+            opacity: 1,
+            backgroundColor: appTheme.PalePink,
+        },
+    };
+    const configurationDialog = (
+        <Dialog
+            onClose={handleClose}
+            open={isDialogOpen}
+            sx={{ color: appTheme.ForegroundColor, "& .MuiDialog-paper": { background: appTheme.DarkIndigo } }}
+        >
+            <DialogTitle sx={{ display: "flex", padding: "16px" }}>
+                <div style={{ color: appTheme.ForegroundColor }}>Chart Configurations</div>
+                <IconButton
+                    aria-label="close"
+                    onClick={handleClose}
+                    sx={(theme) => ({
+                        alignSelf: "flex-start",
+                        justifySelf: "flex-end",
+                        marginLeft: "24px",
+                        padding: 0,
+                        color: theme.palette.grey[500],
+                    })}
+                >
+                    <CloseIcon />
+                </IconButton>
+            </DialogTitle>
+            <List>
+                <ListItem disablePadding>
+                    <FormControlLabel
+                        control={<Switch onChange={handleLabelsChange} />}
+                        label="Axis Labels"
+                        sx={switchStyleOverrides}
+                    />
+                </ListItem>
+            </List>
+        </Dialog>
+    );
 
     return (
         <div className={commonClasses.ChartWrapper}>
@@ -67,16 +140,22 @@ export default function SubchartsGrid() {
                     >
                         {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
                     </Button>
-                    <FormControlLabel
-                        className={commonClasses.FormControlLabel}
-                        control={<Checkbox onChange={handleLabelsChange} />}
-                        label="Axis Labels"
-                        labelPlacement="start"
-                    />
+
+                    <div style={configButtonWrapperStyle} title="Chart Configurations">
+                        <IconButton
+                            sx={{ color: appTheme.ForegroundColor, pointerEvents: "all", touchAction: "all" }}
+                            onClick={handleClickOpen}
+                        >
+                            <SettingsIcon fontSize="medium" />
+                        </IconButton>
+                        {configurationDialog}
+                    </div>
+
                     <div className={classes.infoBlock}>
                         {messages.map((msg, index) => (
                             <div key={index} className={classes.infoItem}>
-                                {msg.title}: {msg.detail}
+                                <div>{msg.title}</div>
+                                <div>{msg.detail}</div>
                             </div>
                         ))}
                     </div>

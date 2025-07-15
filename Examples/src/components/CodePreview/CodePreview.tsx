@@ -502,6 +502,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
 
             {/* Code */}
             <section 
+                id="EXAMPLE_CODE"
                 className={classes.code}
                 style={{ 
                     maxHeight: (!isFullscreen && isMaxWidth) ? 0 : "100%", 

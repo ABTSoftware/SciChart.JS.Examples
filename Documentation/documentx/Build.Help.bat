@@ -4,7 +4,7 @@ echo d | xcopy ".\templates" "C:\ProgramData\Innovasys\DocumentX\templates" /S /
 
 REM Build the Help File and copy to output directory
 Echo about to start the help build build ... 
-call "C:\Program Files (x86)\Innovasys\DocumentX2022\bin\DocumentXCommandLinex64.exe" ".\SciChart.js.dxp"
+call "C:\Program Files (x86)\Innovasys\DocumentX2024\bin\DocumentXCommandLinex64.exe" ".\SciChart.js.dxp"
 Echo Documentation Build Complete, Error Code = %ERRORLEVEL% 
 
 if %ERRORLEVEL% EQU -1 goto :projectMissing
