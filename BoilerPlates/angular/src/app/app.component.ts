@@ -25,12 +25,10 @@ SciChartSurface.UseCommunityLicense();
 // or from a custom/self-hosted location
 SciChartSurface.configure({
     wasmUrl: '/scichart2d.wasm',
-    dataUrl: '/scichart2d.data',
 });
 
 SciChart3DSurface.configure({
     wasmUrl: '/scichart3d.wasm',
-    dataUrl: '/scichart3d.data',
 });
 ///
 

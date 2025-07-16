@@ -27,7 +27,7 @@
         "@angular/router": "^17.3.0",
         "copy-files-from-to": "^3.8.0",
         "rxjs": "~7.8.0",
-        "scichart": "^3.4.617",
+        "scichart": "^4.0.0-beta.788",
         "scichart-angular": "^0.0.2",
         "tslib": "^2.6.2",
         "zone.js": "~0.14.4"

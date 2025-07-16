@@ -23,9 +23,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/scichart2d.data",
               "src/scichart2d.wasm",
-              "src/scichart3d.data",
               "src/scichart3d.wasm"
             ],
             "styles": [

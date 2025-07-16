@@ -51,7 +51,7 @@ SciChart3DSurface.loadWasmFromCDN();
 
 The way to do this is to copy the wasm files from the node_modules/scichart/\_wasm folder to your output folder.
 
-Angular requires _.data file and wasm file to be in output folder /src/_. This is done using the `copy-files-to-from` npm package:
+Angular requires wasm file to be in output folder /src/_. This is done using the `copy-files-to-from` npm package:
 
 To do this, we use npm package `copy-files-from-to` and `copy-files-from-to.json` with this config:
 
@@ -62,16 +62,8 @@ To do this, we use npm package `copy-files-from-to` and `copy-files-from-to.json
     },
     "copyFiles": [
         {
-            "from": "./node_modules/scichart/_wasm/scichart2d.data",
-            "to": "./src/scichart2d.data"
-        },
-        {
             "from": "./node_modules/scichart/_wasm/scichart2d.wasm",
             "to": "./src/scichart2d.wasm"
-        },
-        {
-            "from": "./node_modules/scichart/_wasm/scichart3d.data",
-            "to": "./src/scichart3d.data"
         },
         {
             "from": "./node_modules/scichart/_wasm/scichart3d.wasm",
@@ -101,12 +93,10 @@ import { SciChartSurface, SciChart3DSurface } from "scichart";
 
 SciChartSurface.configure({
     wasmUrl: "/scichart2d.wasm",
-    dataUrl: "/scichart2d.data",
 });
 
 SciChart3DSurface.configure({
     wasmUrl: "/scichart3d.wasm",
-    dataUrl: "/scichart3d.data",
 });
 ```
 
@@ -114,9 +104,7 @@ will fetching these dependencies from as following:
 
 ```
 http://localhost:4200/scichart2d.wasm
-http://localhost:4200/scichart2d.data
 http://localhost:4200/scichart3d.wasm
-http://localhost:4200/scichart3d.data
 ```
 
 > Note: other methods to [load wasm from CDN](https://www.scichart.com/documentation/js/current/webframe.html#Deploying%20Wasm%20or%20WebAssembly%20and%20Data%20Files%20with%20your%20app.html) are available to simplify getting started
