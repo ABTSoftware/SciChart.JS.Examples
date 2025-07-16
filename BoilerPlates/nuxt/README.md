@@ -11,9 +11,9 @@ SciChart.js is commercial software with a [free community license](https://scich
 
 ## Wasm file deployment
 
-SciChart.js has a Wasm (webAssembly) and Data file which must be deployed to output folders for correct operation of our Js chart library.
+SciChart.js has a Wasm (webAssembly) file which must be deployed to output folders for correct operation of our Js chart library.
 
-Nuxt requires _.data file and .wasm file to be in output folder /public/_
+Nuxt requires .wasm file to be in output folder /public/_
 
 To do this, we use npm package copy-files-from-to and copy-files-from-to.json with this config
 
@@ -24,12 +24,12 @@ To do this, we use npm package copy-files-from-to and copy-files-from-to.json wi
   },
   "copyFiles": [
     {
-      "from": "./node_modules/scichart/_wasm/scichart2d.data",
-      "to": "./public/scichart2d.data"
-    },
-    {
       "from": "./node_modules/scichart/_wasm/scichart2d.wasm",
       "to": "./public/scichart2d.wasm"
+    },
+    {
+      "from": "./node_modules/scichart/_wasm/scichart3d.wasm",
+      "to": "./public/scichart3d.wasm"
     }
   ]
 }

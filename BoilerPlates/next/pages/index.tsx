@@ -14,12 +14,10 @@ import {
 // An example of WASM dependencies URLs configuration to fetch from origin server:
 SciChartSurface.configure({
   wasmUrl: "scichart2d.wasm",
-  dataUrl: "scichart2d.data",
 });
 
 SciChart3DSurface.configure({
   wasmUrl: "scichart3d.wasm",
-  dataUrl: "scichart3d.data",
 });
 ////
 

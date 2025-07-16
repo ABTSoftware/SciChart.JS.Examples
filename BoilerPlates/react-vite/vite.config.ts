@@ -9,14 +9,14 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: "node_modules/scichart/_wasm/scichart2d.data",
-          dest: "/",
-        },
-        {
           src: "node_modules/scichart/_wasm/scichart2d.wasm",
           dest: "/",
         },
-        // same for 3d if needed
+        // same for 3d if needed:
+        { 
+          src: "node_modules/scichart/_wasm/scichart3d.wasm",
+          dest: "/",
+        },
       ],
     }),
   ],

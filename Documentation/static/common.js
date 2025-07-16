@@ -1,11 +1,9 @@
 import * as SciChart from "scichart";
 
 SciChart.SciChartSurface.configure({
-    dataUrl: "/scichart2d.data",
     wasmUrl: "/scichart2d.wasm"
 });
 SciChart.SciChart3DSurface.configure({
-    dataUrl: "/scichart3d.data",
     wasmUrl: "/scichart3d.wasm"
 });
 SciChart.SciChartDefaults.performanceWarnings = false;
