@@ -27,7 +27,9 @@ import {
     PolarMountainRenderableSeries,
     PolarXyScatterRenderableSeries,
     TrianglePointMarker,
-    EPointMarkerType
+    EPointMarkerType,
+    EActionType,
+    EPolarPanModifierPanMode,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -39,7 +41,7 @@ const POLAR_MODIFIER_INFO: Partial<Record<EChart2DModifierType, string>> = {
     [EChart2DModifierType.PolarPan]: "Click and drag\nto pan the chart (resize it)",
     [EChart2DModifierType.PolarZoomExtents]: "Double-click\nto reset the zoom at the original visible ranges",
     [EChart2DModifierType.PolarLegend]: "Appends a legend showing the data series names & colors",
-}
+};
 const STROKE = "#FFFFFF";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -52,7 +54,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         axisAlignment: EAxisAlignment.Right,
         visibleRange: new NumberRange(0, 6),
         zoomExtentsToInitialRange: true,
-        
+
         drawMinorTickLines: false,
         drawMajorTickLines: false,
         drawMinorGridLines: false,
@@ -93,7 +95,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const polarColumn = new PolarXyScatterRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-            yValues: [2.6, 5.3, 3.5, 2.7, 4.8, 3.8, 5, 4.5, 3.5]
+            yValues: [2.6, 5.3, 3.5, 2.7, 4.8, 3.8, 5, 4.5, 3.5],
         }),
         pointMarker: {
             type: EPointMarkerType.Triangle,
@@ -103,8 +105,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 stroke: appTheme.VividOrange,
                 width: 14,
                 height: 12,
-            }
-        }
+            },
+        },
     });
     sciChartSurface.renderableSeries.add(polarColumn);
 
@@ -118,11 +120,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         verticalAnchorPoint: EVerticalAnchorPoint.Center,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         multiLineAlignment: EMultiLineAlignment.Center,
-        lineSpacing: 5
-    })
+        lineSpacing: 5,
+    });
     sciChartSurface.annotations.add(detailTextAnnotation);
 
-    // define all modifiers 
+    // define all modifiers
     const PolarArcZoom = new PolarArcZoomModifier({
         stroke: STROKE,
         fill: STROKE + "20", // 15% opacity
@@ -139,48 +141,50 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         backgroundColor: appTheme.DarkIndigo,
         textColor: STROKE,
     });
-    const PolarMouseWheelZoom = new PolarMouseWheelZoomModifier();
-    const PolarPan = new PolarPanModifier();
+    const PolarMouseWheelZoom = new PolarMouseWheelZoomModifier({ defaultActionType: EActionType.Zoom });
+    const PolarPan = new PolarPanModifier({
+        primaryPanMode: EPolarPanModifierPanMode.Cartesian,
+        secondaryPanMode: EPolarPanModifierPanMode.PolarStartAngle,
+    });
     const PolarZoomExtents = new PolarZoomExtentsModifier();
 
     // add by default these 3 modifiers
-    sciChartSurface.chartModifiers.add(
-        PolarZoomExtents,
-        PolarMouseWheelZoom,
-        PolarCursor,
-    );
+    sciChartSurface.chartModifiers.add(PolarZoomExtents, PolarMouseWheelZoom, PolarCursor);
 
-    return { sciChartSurface, controls: {
-        toggleModifier: (modifier: EChart2DModifierType) => {
-            const modifierToAddOrRemove = () => {
-                switch (modifier) {
-                    case EChart2DModifierType.PolarArcZoom:
-                        return PolarArcZoom;
-                    case EChart2DModifierType.PolarCursor:
-                        return PolarCursor;
-                    case EChart2DModifierType.PolarDataPointSelection:
-                        return PolarDataPointSelection;
-                    case EChart2DModifierType.PolarLegend:
-                        return PolarLegend;
-                    case EChart2DModifierType.PolarMouseWheelZoom:
-                        return PolarMouseWheelZoom;
-                    case EChart2DModifierType.PolarPan:
-                        return PolarPan;
-                    case EChart2DModifierType.PolarZoomExtents:
-                        return PolarZoomExtents;
-                    default:
-                        return undefined;
+    return {
+        sciChartSurface,
+        controls: {
+            toggleModifier: (modifier: EChart2DModifierType) => {
+                const modifierToAddOrRemove = () => {
+                    switch (modifier) {
+                        case EChart2DModifierType.PolarArcZoom:
+                            return PolarArcZoom;
+                        case EChart2DModifierType.PolarCursor:
+                            return PolarCursor;
+                        case EChart2DModifierType.PolarDataPointSelection:
+                            return PolarDataPointSelection;
+                        case EChart2DModifierType.PolarLegend:
+                            return PolarLegend;
+                        case EChart2DModifierType.PolarMouseWheelZoom:
+                            return PolarMouseWheelZoom;
+                        case EChart2DModifierType.PolarPan:
+                            return PolarPan;
+                        case EChart2DModifierType.PolarZoomExtents:
+                            return PolarZoomExtents;
+                        default:
+                            return undefined;
+                    }
+                };
+
+                const newModifier = modifierToAddOrRemove();
+
+                if (sciChartSurface.chartModifiers.contains(newModifier)) {
+                    sciChartSurface.chartModifiers.remove(newModifier, true);
+                } else {
+                    sciChartSurface.chartModifiers.add(newModifier);
+                    detailTextAnnotation.text = POLAR_MODIFIER_INFO[modifier]; // update the text
                 }
-            };
-
-            const newModifier = modifierToAddOrRemove();
-            
-            if(sciChartSurface.chartModifiers.contains(newModifier)) {
-                sciChartSurface.chartModifiers.remove(newModifier, true);
-            } else {
-                sciChartSurface.chartModifiers.add(newModifier);
-                detailTextAnnotation.text = POLAR_MODIFIER_INFO[modifier]; // update the text 
-            }
-        }
-    } };
+            },
+        },
+    };
 };
