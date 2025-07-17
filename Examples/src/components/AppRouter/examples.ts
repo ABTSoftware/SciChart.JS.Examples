@@ -54,6 +54,26 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_createStockCharts_SharedChart,
         ],
     },
+    {
+        id: "chart2D_v4Charts",
+        title: "New in SciChart v4",
+        submenu: [
+            EXAMPLES_PAGES.chart2D_v4Charts_HistogramChart,
+            // EXAMPLES_PAGES.chart2D_v4Charts_GanttChart, // uncomment when ready
+            EXAMPLES_PAGES.chart2D_v4Charts_MapExample,
+            EXAMPLES_PAGES.chart2D_v4Charts_MultiMapExample,
+            EXAMPLES_PAGES.chart2D_v4Charts_AnimatedColumns,
+            EXAMPLES_PAGES.chart2D_v4Charts_VectorField,
+            EXAMPLES_PAGES.chart2D_v4Charts_WaterfallChart,
+            EXAMPLES_PAGES.chart2D_v4Charts_BoxPlotChart,
+            EXAMPLES_PAGES.chart2D_v4Charts_TriangleSeriesChart,
+            EXAMPLES_PAGES.chart2D_v4Charts_TreemapChart,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_CustomTexture,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_OrderedRendering,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_ResponsiveHtmlAnnotations,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_HtmlAnnotations,
+        ],
+    },
 ];
 
 export const MENU_ITEMS_2D_ID = "MENU_ITEMS_2D_ID";
@@ -72,19 +92,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart,
             EXAMPLES_PAGES.featuredApps_showcases_populationPyramid,
-            EXAMPLES_PAGES.chart2D_basicCharts_HistogramChart,
-            // EXAMPLES_PAGES.chart2D_basicCharts_GanttChart, // uncomment when ready
-            EXAMPLES_PAGES.chart2D_basicCharts_MapExample,
-            EXAMPLES_PAGES.chart2D_basicCharts_MultiMapExample,
-            EXAMPLES_PAGES.chart2D_basicCharts_PolarMapExample,
-            EXAMPLES_PAGES.chart2D_basicCharts_AtpTopTen,
-            EXAMPLES_PAGES.chart2D_basicCharts_VectorField,
-            EXAMPLES_PAGES.chart2D_basicCharts_WaterfallChart,
-            EXAMPLES_PAGES.chart2D_basicCharts_CustomTexture,
             EXAMPLES_PAGES.chart2D_basicCharts_ErrorBarsChart,
-            EXAMPLES_PAGES.chart2D_basicCharts_BoxPlotChart,
-            EXAMPLES_PAGES.chart2D_basicCharts_TriangleSeriesChart,
-            EXAMPLES_PAGES.chart2D_basicCharts_TreemapChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart,
             EXAMPLES_PAGES.chart2D_basicCharts_TextChart,
             EXAMPLES_PAGES.chart2D_basicCharts_FanChart,
@@ -103,6 +111,16 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_PieChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DonutChart,
             EXAMPLES_PAGES.chart2D_chartAnnotations_BackgroundAnnotations,
+            EXAMPLES_PAGES.chart2D_v4Charts_HistogramChart,
+            // EXAMPLES_PAGES.chart2D_v4Charts_GanttChart, // uncomment when ready
+            EXAMPLES_PAGES.chart2D_v4Charts_MapExample,
+            EXAMPLES_PAGES.chart2D_v4Charts_MultiMapExample,
+            EXAMPLES_PAGES.chart2D_v4Charts_AnimatedColumns,
+            EXAMPLES_PAGES.chart2D_v4Charts_VectorField,
+            EXAMPLES_PAGES.chart2D_v4Charts_WaterfallChart,
+            EXAMPLES_PAGES.chart2D_v4Charts_BoxPlotChart,
+            EXAMPLES_PAGES.chart2D_v4Charts_TriangleSeriesChart,
+            EXAMPLES_PAGES.chart2D_v4Charts_TreemapChart,
         ],
     },
     {
@@ -130,9 +148,9 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_polarCharts_PolarUniformHeatmapChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarUniformHeatmapUltrasound,
             // EXAMPLES_PAGES.chart2D_polarCharts_PolarSignalsIntelligenceDashboard,
-
             EXAMPLES_PAGES.chart2D_polarCharts_PolarPartialArc,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarLabelMode,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarMapExample,
         ],
     },
     {
@@ -196,6 +214,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_LineSplittingThresholds,
             EXAMPLES_PAGES.featuredApps_featureDemos_chartTitle,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_OrderedRendering,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_CustomTexture,
         ],
     },
     {

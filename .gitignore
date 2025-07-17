@@ -22,3 +22,4 @@ Documentation/server/*.js
 Examples/exampleInfo.*
 .aider*
 Examples/logs
+Examples/logs/all.log
