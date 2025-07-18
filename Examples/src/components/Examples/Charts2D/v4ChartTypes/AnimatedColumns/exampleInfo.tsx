@@ -23,7 +23,7 @@ const metaData: IExampleMetadata =
             react: {
                 subtitle:
                     "Creates a **React Animated Bar Chart** using SciChart.js that displays animated ATP Year-end Top Ten rankings from year 1973 to year 2024.",
-                title: "React ATP Top Ten",
+                title: "React Animated Bar Chart",
                 pageTitle: "React Animated Bar Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
                     "React Animated Bar Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",

@@ -115,7 +115,6 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             // EXAMPLES_PAGES.chart2D_v4Charts_GanttChart, // uncomment when ready
             EXAMPLES_PAGES.chart2D_v4Charts_MapExample,
             EXAMPLES_PAGES.chart2D_v4Charts_MultiMapExample,
-            EXAMPLES_PAGES.chart2D_v4Charts_AnimatedColumns,
             EXAMPLES_PAGES.chart2D_v4Charts_VectorField,
             EXAMPLES_PAGES.chart2D_v4Charts_WaterfallChart,
             EXAMPLES_PAGES.chart2D_v4Charts_BoxPlotChart,
@@ -263,6 +262,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_Animations_StyleAnimation,
             EXAMPLES_PAGES.chart2D_Animations_StartupAnimation,
             EXAMPLES_PAGES.chart2D_Animations_GenericAnimation,
+            EXAMPLES_PAGES.chart2D_v4Charts_AnimatedColumns,
         ],
     },
     {

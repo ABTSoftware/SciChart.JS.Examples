@@ -23,20 +23,94 @@ import {
     SeriesAnimation,
     ColumnAnimation,
     XyDataSeries,
+    DefaultPaletteProvider,
+    TSciChart,
+    parseColorToUIntArgb,
 } from "scichart";
 
 import { appTheme } from "../../../theme";
 import { data } from "./atp-rankings";
 
-SciChartDefaults.useNativeText = false;
+type ATPMetadata = IPointMetadata & {
+    rank: number;
+    name: string;
+    country: string;
+};
+class CountryPaletteProvider extends DefaultPaletteProvider {
+    private colorMap: Map<string, { stroke: number; fill: number }> = new Map<
+        string,
+        { stroke: number; fill: number }
+    >();
+
+    constructor(wasmContext: TSciChart) {
+        super();
+        const countries = [
+            "SE",
+            "CS",
+            "US",
+            "EC",
+            "AT",
+            "HR",
+            "NL",
+            "UA",
+            "RU",
+            "ZA",
+            "AU",
+            "GB",
+            "CL",
+            "SK",
+            "BR",
+            "CH",
+            "CZ",
+            "AR",
+            "RS",
+            "JP",
+            "ES",
+            "YU",
+            "FR",
+            "CA",
+            "BG",
+            "BE",
+            "GR",
+            "IT",
+            "NO",
+            "DE",
+            "PL",
+            "DK",
+        ];
+        const max = countries.length - 1;
+        for (let i = 0; i < countries.length; i++) {
+            const country = countries[i];
+            const stroke = parseColorToUIntArgb(appTheme.SciChartJsTheme.getStrokeColor(i, max, wasmContext));
+            const fill = parseColorToUIntArgb(appTheme.SciChartJsTheme.getFillColor(i, max, wasmContext));
+            this.colorMap.set(country, { stroke, fill });
+        }
+    }
+
+    public overrideStrokeArgb(
+        xValue: number,
+        yValue: number,
+        index: number,
+        opacity?: number,
+        metadata?: IPointMetadata
+    ): number | undefined {
+        const country = (metadata as ATPMetadata).country;
+        return this.colorMap.get(country).stroke;
+    }
+
+    public overrideFillArgb(
+        xValue: number,
+        yValue: number,
+        index: number,
+        opacity?: number,
+        metadata?: IPointMetadata
+    ): number | undefined {
+        const country = (metadata as ATPMetadata).country;
+        return this.colorMap.get(country).fill;
+    }
+}
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
-    type ATPMetadata = IPointMetadata & {
-        rank: number;
-        name: string;
-        country: string;
-    };
-
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
@@ -51,10 +125,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
-            // labelProvider: new TextLabelProvider({
-            //     labels: ["10.", "9.", "8.", "7.", "6.", "5.", "4.", "3.", "2.", "1."],
-            //     maxLength: 10,
-            // }),
             visibleRange: new NumberRange(0.5, 10.5),
             axisTitle: "Rank",
             axisTitleStyle: {
@@ -71,10 +141,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             autoTicks: false,
             flippedCoordinates: true,
             majorDelta: 1,
+            labelPrecision: 0,
             labelStyle: {
                 fontSize: 22,
-                fontWeight: "bold",
-                color: appTheme.MutedOrange,
                 fontFamily: "Arial",
             },
         })
@@ -112,10 +181,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         columnXMode: EColumnMode.StartEnd,
         columnYMode: EColumnYMode.CenterHeight,
         defaultY1: 1,
-        stroke: appTheme.DarkIndigo,
         strokeThickness: 4,
-        fill: appTheme.VividOrange,
         opacity: 0.3,
+        paletteProvider: new CountryPaletteProvider(wasmContext),
         dataLabels: {
             skipMode: EDataLabelSkipMode.ShowAll,
             verticalTextPosition: EVerticalTextPosition.Center,
@@ -138,33 +206,39 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const updateData = (i: number, curDataSeries: XyxDataSeries, nextDataSeries: XyxDataSeries) => {
         sciChartSurface.title = [`ATP Year-end Top 10 in ${data[i].year.toString()}`];
         nextDataSeries.clear();
-        const cur = data[i - 1].top10;
+        const cur: ATPMetadata[] = [];
         const next = data[i].top10;
+        // Series animations work by animating values at the same index, so it is important to preserve the order of entries, which may be totally unrelated to the display order
         for (let p = 0; p < curDataSeries.count(); p++) {
+            // Look at all existing entries
             const e = curDataSeries.getMetadataAt(p) as ATPMetadata;
+            // see if they should still be on the chart in the next period
             const eNext = next.find((n) => n.name === e.name);
             if (eNext) {
-                // updating
+                // Add to next data with new value
                 nextDataSeries.append(0, eNext.rank, 16 - eNext.rank, { isSelected: false, ...eNext });
             } else {
-                //console.log(`${e.name} going in ${data[i].year.toString()}`);
                 if (curDataSeries.getNativeYValues().get(p) > 0) {
-                    // remove
+                    // If they are currently in view, set them to be out of view in next period
                     nextDataSeries.append(0, 12, 0, e);
                 }
             }
+            // track all the current entries
+            cur.push(e);
         }
         for (const element of next) {
+            // Find entries that are completely new
             const isNew = cur.find((e) => e.name === element.name) === undefined;
             if (isNew) {
-                // add at 0
+                // add out of view in current data, and with new value in next data
                 curDataSeries.append(0, 12, 0, { isSelected: false, ...element });
                 nextDataSeries.append(0, element.rank, 16 - element.rank, { isSelected: false, ...element });
             }
         }
+        //Create an animation which will call the update for the following period when it completes
         const animation = new ColumnAnimation({
             duration: 1000,
-            ease: easing.inOutSine,
+            ease: easing.inOutQuart,
             dataSeries: nextDataSeries as any as XyDataSeries,
             onCompleted: () => {
                 if (i < data.length - 2) {
@@ -176,9 +250,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     };
 
     sciChartSurface.titleStyle = {
-        color: appTheme.MutedOrange,
+        color: appTheme.ForegroundColor,
         fontSize: 30,
-        fontWeight: "bold",
         alignment: ETextAlignment.Center,
         position: ETitlePosition.Top,
         placeWithinChart: false,
