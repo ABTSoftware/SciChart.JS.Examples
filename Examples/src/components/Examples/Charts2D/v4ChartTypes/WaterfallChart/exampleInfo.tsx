@@ -1,6 +1,9 @@
 import { createExampleInfo } from "../../../exampleInfoUtils";
 import { IExampleMetadata } from "../../../IExampleMetadata";
 
+// FastRectangleRenderableSeries
+// TreemapDataLabelProvider
+// CustomFillProvider
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
@@ -8,34 +11,31 @@ const metaData: IExampleMetadata =
         id: "chart2D_v4Charts_WaterfallChart",
         imagePath: "javascript-waterfall-chart.jpg",
         description:
-            "Creates a **JavaScript Waterfall Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Waterfall Chart** using SciChart.js's new **FastRectangleRenderableSeries** with the following features: a custom Treemap-like DataLabelProvider for rectangle labels and custom Fill PaletteProvider",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Waterfall Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Waterfall Chart** using SciChart.js's new **FastRectangleRenderableSeries** with the following features: a custom Treemap-like DataLabelProvider for rectangle labels and custom Fill PaletteProvider",
                 title: "JavaScript Waterfall Chart",
                 pageTitle: "JavaScript Waterfall Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Waterfall Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Waterfall Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Waterfall Chart** using SciChart.js's new **FastRectangleRenderableSeries** with the following features: a custom Treemap-like DataLabelProvider for rectangle labels and custom Fill PaletteProvider",
                 title: "React Waterfall Chart",
                 pageTitle: "React Waterfall Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Waterfall Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Waterfall Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Waterfall Chart** using SciChart.js's new **FastRectangleRenderableSeries** with the following features: a custom Treemap-like DataLabelProvider for rectangle labels and custom Fill PaletteProvider",
                 title: "Angular Waterfall Chart",
                 pageTitle: "Angular Waterfall Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Waterfall Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

@@ -13,7 +13,6 @@ import {
     MouseWheelZoomModifier,
     ZoomExtentsModifier,
     ZoomPanModifier,
-    SeriesSelectionModifier,
     EDataLabelSkipMode,
     EMultiLineAlignment,
     FastRectangleRenderableSeries,

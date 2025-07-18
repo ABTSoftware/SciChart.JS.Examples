@@ -16,6 +16,7 @@ import {
     SplineMountainRenderableSeries,
     EAutoRange,
     PolarArcAnnotation,
+    Thickness,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -33,7 +34,10 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
 
     // Add master axes
     const xAxis = new NumericAxis(wasmContext, {
-        labelStyle: { color: "white" },
+        labelStyle: { 
+            color: "white", 
+            padding: new Thickness(0, 0, 8, 0) // add a bit of bottom padding to labels
+        },
         growBy: new NumberRange(0, 0.34),   // start the mountain drawing at around 0.25 of the chart (from polar center)
         isInnerAxis: true,                  // to not push chart upwards and overcomplicate centering calculations
         autoRange: EAutoRange.Always,       // allow change of xAxis range on fifo changes
@@ -69,8 +73,8 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
             yValues: [],
             fifoCapacity: 300 // allow 300 points at once until sweeping happens
         }),
-        fill: "#BB000022",
-        stroke: "#BB0000",
+        fill: appTheme.VividRed + "22",
+        stroke: appTheme.VividRed,
         strokeThickness: 3
     });
 
@@ -80,8 +84,8 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
             yValues: [],
             fifoCapacity: 300
         }),
-        fill: "#00FF0022",
-        stroke: "#00FF00",
+        fill: appTheme.VividGreen + "22",
+        stroke: appTheme.VividGreen,
         strokeThickness: 3
     });
 
@@ -111,8 +115,14 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         isInnerAxis: true,
         visibleRange: new NumberRange(0, Math.PI * 2), // full circle
         labelStyle: { color: "#FFFFFF" },
+
+        majorGridLineStyle: {
+            color: "#FFFFFF44",
+            strokeThickness: 1,
+        },
         drawMajorTickLines: false,
         drawMinorTickLines: false,
+        drawMinorGridLines: false,
 
         autoTicks: false,
         majorDelta: Math.PI / 2,
@@ -126,6 +136,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         labelPrecision: 0,
         visibleRange: new NumberRange(0, 2), // max value of `vectorSum`, since our 2 vectors are normalized to [0, 1]
         
+        drawMinorGridLines: false,
         autoTicks: false,
         majorDelta: 1,
         startAngle: Math.PI / 2, // Start at the top (12 o'clock)
@@ -141,7 +152,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         x2: 2.8,
         y2: 1,
         strokeThickness: 3,
-        stroke: "#FF0000",
+        stroke: appTheme.VividRed,
         arrowStyle: {
             headLength: 10,
             headWidth: 10,
@@ -149,10 +160,10 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         },
         isEditable: true,
         dragPoints: [EDraggingGripPoint.x2y2],
-        selectionBoxStroke: "#FFAAAA88"
+        selectionBoxStroke: appTheme.VividRed + "44"
     });
     const vector1ToDiameter = new LineAnnotation({ // (optional) - projection of vector1 to the diameter line
-        stroke: "#AA0000",
+        stroke: appTheme.VividRed,
         strokeThickness: 3
     });
 
@@ -163,7 +174,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         x2: 1,
         y2: 0.8,
         strokeThickness: 3,
-        stroke: "#00FF00",
+        stroke: appTheme.VividGreen,
         arrowStyle: {
             headLength: 10,
             headWidth: 10,
@@ -171,10 +182,10 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         },
         isEditable: true,
         dragPoints: [EDraggingGripPoint.x2y2],
-        selectionBoxStroke: "#AAFFAA88"
+        selectionBoxStroke: appTheme.VividGreen + "44"
     });
     const vector2ToDiameter = new LineAnnotation({ // (optional)
-        stroke: "#00AA00",
+        stroke: appTheme.VividGreen,
         strokeThickness: 3
     });
 
@@ -315,6 +326,9 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         const vector2Projection = calculateDiameterProjection(vector2.x2, vector2.y2);
         const vectorSumProjection = calculateDiameterProjection(vectorSum.x2, vectorSum.y2);
         
+        if(!vector1Mountain.dataSeries || !vector2Mountain.dataSeries || !vectorSumMountain.dataSeries) {
+            return; // Ensure dataSeries are initialized
+        }
         const lastXIndex = vector1Mountain.dataSeries.count() - 1;
         const pastX = vector1Mountain.dataSeries.getNativeXValues().get(lastXIndex) ?? 0; 
         const newX = pastX + Math.PI / 180; // Increment by 1 degree in radians

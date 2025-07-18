@@ -8,34 +8,31 @@ const metaData: IExampleMetadata =
         id: "chart2D_stylingAndTheming_CustomTexture",
         imagePath: "javascript-custom-texture.jpg",
         description:
-            "Creates a **JavaScript Custom Texture** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **Custom Texture** example with multiple renderableSeries, all allowing for **customTextureOptions** images.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Custom Texture** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Custom Texture** example with multiple renderableSeries, all allowing for **customTextureOptions** images.",
                 title: "JavaScript Custom Texture",
                 pageTitle: "JavaScript Custom Texture | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Custom Texture demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Custom Texture** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Custom Texture** example with multiple renderableSeries, all allowing for **customTextureOptions** images.",
                 title: "React Custom Texture",
                 pageTitle: "React Custom Texture | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Custom Texture demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Custom Texture** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Custom Texture** example with multiple renderableSeries, all allowing for **customTextureOptions** images.",
                 title: "Angular Custom Texture",
                 pageTitle: "Angular Custom Texture | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Custom Texture demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

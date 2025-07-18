@@ -118,14 +118,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             const profit = (metadata as unknown as { profit: number })?.profit;
 
             if (profit > 0) {
-                return parseColorToUIntArgb("green", 128);
+                return parseColorToUIntArgb(appTheme.VividTeal, 255);
             }
 
             if (profit < 0) {
-                return parseColorToUIntArgb("red", 128);
+                return parseColorToUIntArgb(appTheme.VividPink, 255);
             }
 
-            return parseColorToUIntArgb("blue", 128);
+            return parseColorToUIntArgb(appTheme.VividBlue, 128);
         }
     }
 
@@ -143,10 +143,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 (metadata.profit === 0
                     ? ""
                     : `\n${metadata.profit > 0 ? "+" : ""}${formatNumber(
-                          metadata.profit,
-                          ENumericFormat.Engineering,
-                          this.precision
-                      )}$`)
+                        metadata.profit,
+                        ENumericFormat.Engineering,
+                        this.precision
+                    )}$`)
             );
         }
     }

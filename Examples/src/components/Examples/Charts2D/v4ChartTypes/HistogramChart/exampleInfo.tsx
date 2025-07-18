@@ -8,34 +8,34 @@ const metaData: IExampleMetadata =
         id: "chart2D_v4Charts_HistogramChart",
         imagePath: "javascript-histogram-chart.jpg",
         description:
-            "Creates a **JavaScript Histogram Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Histogram Chart** using SciChart.js, by leveraging the **FastRectangleRenderableSeries**, and its `customTextureOptions` property to have a custom tiling texture fill.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Histogram Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Histogram Chart** using SciChart.js, by leveraging the **FastRectangleRenderableSeries**, and its `customTextureOptions` property to have a custom tiling texture fill.",
                 title: "JavaScript Histogram Chart",
                 pageTitle: "JavaScript Histogram Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "JavaScript Histogram Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                    "JavaScript **Histogram Chart** using SciChart.js, by leveraging the **FastRectangleRenderableSeries**, and its `customTextureOptions` property to have a custom tiling texture fill.",
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Histogram Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Histogram Chart** using SciChart.js, by leveraging the **FastRectangleRenderableSeries**, and its `customTextureOptions` property to have a custom tiling texture fill.",
                 title: "React Histogram Chart",
                 pageTitle: "React Histogram Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "React Histogram Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                    "React **Histogram Chart** using SciChart.js, by leveraging the **FastRectangleRenderableSeries**, and its `customTextureOptions` property to have a custom tiling texture fill.",
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Histogram Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates an **Angular Histogram Chart** using SciChart.js, by leveraging the **FastRectangleRenderableSeries**, and its `customTextureOptions` property to have a custom tiling texture fill.",
                 title: "Angular Histogram Chart",
                 pageTitle: "Angular Histogram Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
-                    "Angular Histogram Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                    "Angular **Histogram Chart** using SciChart.js, by leveraging the **FastRectangleRenderableSeries**, and its `customTextureOptions` property to have a custom tiling texture fill.",
                 markdownContent: null,
             },
         },

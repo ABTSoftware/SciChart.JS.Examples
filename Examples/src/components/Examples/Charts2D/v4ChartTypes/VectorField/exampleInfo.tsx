@@ -8,34 +8,31 @@ const metaData: IExampleMetadata =
         id: "chart2D_v4Charts_VectorField",
         imagePath: "javascript-vector-field.jpg",
         description:
-            "Creates a **JavaScript Vector Field** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Vector Field** using our **FastLineSegmentRenderableSeries** paired with a custom **PaletteProvider** and optional arrow heads made with **FastTriangleRenderableSeries**",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Vector Field** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Vector Field** using our **FastLineSegmentRenderableSeries** paired with a custom **PaletteProvider** and optional arrow heads made with **FastTriangleRenderableSeries**",
                 title: "JavaScript Vector Field",
                 pageTitle: "JavaScript Vector Field | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Vector Field demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Vector Field** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Vector Field** using our **FastLineSegmentRenderableSeries** paired with a custom **PaletteProvider** and optional arrow heads made with **FastTriangleRenderableSeries**",
                 title: "React Vector Field",
                 pageTitle: "React Vector Field | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Vector Field demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Vector Field** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Vector Field** using our **FastLineSegmentRenderableSeries** paired with a custom **PaletteProvider** and optional arrow heads made with **FastTriangleRenderableSeries**",
                 title: "Angular Vector Field",
                 pageTitle: "Angular Vector Field | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Vector Field demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

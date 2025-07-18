@@ -13,7 +13,7 @@ const metaData: IExampleMetadata =
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode, drawing triangles in list mode, drawing polygons",
+                    "Creates a **JavaScript Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode (for letter \"**S**\"), drawing triangles in list mode (for letter \"**c**\") and drawing polygons (for letter \"**i**\").",
                 title: "JavaScript Triangle Series Chart",
                 pageTitle: "JavaScript Triangle Series Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -23,7 +23,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Creates a **React Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode, drawing triangles in list mode, drawing polygons",
+                    "Creates a **React Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode (for letter \"**S**\"), drawing triangles in list mode (for letter \"**c**\") and drawing polygons (for letter \"**i**\").",
                 title: "React Triangle Series Chart",
                 pageTitle: "React Triangle Series Chart | React Charts | SciChart.js",
                 metaDescription:
@@ -33,7 +33,7 @@ const metaData: IExampleMetadata =
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode, drawing triangles in list mode, drawing polygons",
+                    "Creates a **Angular Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode (for letter \"**S**\"), drawing triangles in list mode (for letter \"**c**\") and drawing polygons (for letter \"**i**\").",
                 title: "Angular Triangle Series Chart",
                 pageTitle: "Angular Triangle Series Chart | Angular Charts | SciChart.js",
                 metaDescription:
