@@ -34,14 +34,12 @@ import {
     FastBoxPlotRenderableSeries,
     BoxPlotDataSeries,
     HlcDataSeries,
+    ELabelAlignment,
+    CursorModifier,
+    TCursorTooltipDataTemplate,
+    XySeriesInfo,
 } from "scichart";
 import { appTheme } from "../../../theme";
-
-export enum EGanttChartTypeBaseSeries {
-    rectangle = "rectangle",
-    boxPlot = "boxPlot",
-    errorBars = "errorBars",
-}
 
 const PROJECT_STAGES = [
     "Project Planning",
@@ -58,7 +56,7 @@ const PROJECT_STAGES = [
 
 const PROJECT_TASKS = [
     {
-        namename: PROJECT_STAGES[0],
+        name: PROJECT_STAGES[0],
         startDate: new Date(2025, 0, 1),
         endDate: new Date(2025, 0, 15),
         percentComplete: 100,
@@ -127,21 +125,25 @@ function prepareGanttData() {
     const y1Values: number[] = []; // Task heights
 
     // Task metadata for coloring and labels
-    const metaData: { name: string; percentComplete: number }[] = [];
+    const metaData: { name: string; percentComplete: number; isSelected: boolean; startDate: Date; endDate: Date }[] =
+        [];
 
     // Convert Date objects to timestamps for rendering
     PROJECT_TASKS.forEach((task, index) => {
         const rowPosition = PROJECT_TASKS.length - index - 1; // Reverse order for display
-        const rowHeight = 0.9; // Height of each task bar
+        const rowHeight = 0.8; // Height of each task bar
 
-        yValues.push(task.startDate.getTime() / 1000);
-        xValues.push(rowPosition);
-        y1Values.push(task.endDate.getTime() / 1000);
-        x1Values.push(rowPosition + rowHeight);
+        xValues.push(task.startDate.getTime() / 1000);
+        yValues.push(rowPosition);
+        x1Values.push(task.endDate.getTime() / 1000);
+        y1Values.push(rowPosition + rowHeight);
 
         metaData.push({
             name: task.name,
             percentComplete: task.percentComplete,
+            isSelected: false,
+            startDate: task.startDate,
+            endDate: task.endDate,
         });
     });
 
@@ -154,23 +156,33 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         theme: appTheme.SciChartJsTheme,
     });
 
-    // Make a vertical chart
-    const xAxis = new CategoryAxis(wasmContext, {
+    const yAxis = new CategoryAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Left,
+        drawMajorBands: false,
+        drawLabels: true,
         drawMinorGridLines: false,
-        growBy: new NumberRange(0.02, 0.02),
+        drawMajorGridLines: false,
+        drawMinorTickLines: false,
+        drawMajorTickLines: false,
+        keepLabelsWithinAxis: false,
         autoTicks: false,
         majorDelta: 1,
-        labels: PROJECT_STAGES,
+        growBy: new NumberRange(0.02, 0.02),
+        labels: PROJECT_STAGES.reverse(),
+        labelStyle: {
+            fontSize: 14,
+            fontWeight: "bold",
+            color: appTheme.MutedOrange,
+            // fontFamily: "Arial",
+            alignment: ELabelAlignment.Right,
+            padding: { top: 0, right: 0, bottom: 40, left: 0 },
+        },
     });
-    sciChartSurface.xAxes.add(xAxis);
 
-    // Create Y-axis (Tasks)
-    const yAxis = new DateTimeNumericAxis(wasmContext, {
+    const xAxis = new DateTimeNumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Bottom,
         drawMinorGridLines: false,
-        growBy: new NumberRange(0.05, 0.05),
-        flippedCoordinates: true,
+        growBy: new NumberRange(0.02, 0.02),
         axisTitleStyle: {
             fontSize: 14,
             fontFamily: "Arial",
@@ -179,11 +191,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         },
         labelFormat: ENumericFormat.Date_DDMM,
     });
+
+    sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxis);
+
+    sciChartSurface.yAxes.get(0).axisRenderer.hideOverlappingLabels = false;
 
     const { xValues, yValues, x1Values, y1Values, metaData, taskCount } = prepareGanttData();
 
-    // Method #1 of doing a Gantt chart - FastRectangleRenderableSeries
     const rectangleGanttSeries = new FastRectangleRenderableSeries(wasmContext, {
         dataSeries: new XyxyDataSeries(wasmContext, {
             xValues,
@@ -191,117 +206,70 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             y1Values,
             x1Values,
             dataSeriesName: "Project Tasks",
+            metadata: metaData,
         }),
-        columnXMode: EColumnMode.Mid,
+        columnXMode: EColumnMode.StartEnd,
         columnYMode: EColumnYMode.TopBottom,
         dataPointWidthMode: EDataPointWidthMode.Range,
-        stroke: "red",
+        stroke: appTheme.MutedRed,
         strokeThickness: 2,
         fill: appTheme.DarkIndigo,
-        dataPointWidth: 0.9,
-        topCornerRadius: 8,
-        bottomCornerRadius: 8,
+        // dataPointWidth: 0.9,
+        topCornerRadius: 4,
+        opacity: 0.5,
+        bottomCornerRadius: 4,
         dataLabels: {
             color: "#FFFFFF",
             style: {
-                fontSize: 10,
+                fontSize: 14,
             },
             numericFormat: ENumericFormat.Engineering,
             verticalTextPosition: EVerticalTextPosition.Center,
             horizontalTextPosition: EHorizontalTextPosition.Center,
+            metaDataSelector: (md) => {
+                const metadata = md as { name: string; percentComplete: number; isSelected: boolean };
+                return `${metadata.percentComplete.toString()} %`;
+            },
         },
     });
 
-    // Method #2 of doing a Gantt chart - FastBoxPlotRenderableSeries
-    const boxPlotGanttSeries = new FastBoxPlotRenderableSeries(wasmContext, {
-        dataSeries: new BoxPlotDataSeries(wasmContext, {
-            xValues,
+    sciChartSurface.renderableSeries.add(rectangleGanttSeries);
 
-            minimumValues: yValues.map((val) => val - 60 * 60 * 24 * 5),
-            lowerQuartileValues: yValues,
-            medianValues: yValues.map((val, i) => val + (y1Values[i] - val) / 2),
-            upperQuartileValues: y1Values,
-            maximumValues: y1Values.map((val) => val + 60 * 60 * 24 * 5),
-        }),
-        stroke: appTheme.VividTeal,
-        strokeThickness: 2,
-        dataPointWidthMode: EDataPointWidthMode.Relative,
-        dataPointWidth: 0.5,
-        fill: appTheme.MutedOrange,
-        strokeDashArray: [5, 7], // support for the box does not work ???
-        whiskers: {
-            stroke: appTheme.VividTeal,
-            strokeThickness: 2,
-            strokeDashArray: [3, 2],
-        },
-        cap: {
-            stroke: appTheme.VividTeal,
-            strokeThickness: 2,
-            dataPointWidth: 0.5,
-        },
-        medianLine: {
-            strokeThickness: 0,
-            stroke: appTheme.VividTeal,
-        },
-    });
-    // boxPlotGanttSeries.rolloverModifierProps.tooltipDataTemplate = (seriesInfo: SeriesInfo, tooltipTitle: string, tooltipLabelX: string, tooltipLabelY: string) => {
-    //     console.log(seriesInfo.renderableSeries.dataSeries);
-    //     return [
-    //         "Start - " + new Date(seriesInfo.formattedYValue).toLocaleDateString(),
-    //         "End - " + new Date(seriesInfo.point2yValue).toLocaleDateString(),
-    //     ]
-    // };
+    const tooltipDataTemplate: TCursorTooltipDataTemplate = (seriesInfos: SeriesInfo[]) => {
+        const valuesWithLabels: string[] = [];
 
-    const errorBarGanttSeries = new FastErrorBarsRenderableSeries(wasmContext, {
-        dataSeries: new HlcDataSeries(wasmContext, {
-            xValues,
-            yValues,
-            highValues: yValues,
-            lowValues: y1Values,
-
-            dataSeriesName: "Project Tasks",
-        }),
-        dataPointWidthMode: EDataPointWidthMode.Range,
-        stroke: "red",
-        strokeThickness: 1,
-    });
-
-    sciChartSurface.renderableSeries.add(boxPlotGanttSeries);
+        seriesInfos.forEach((si) => {
+            const xySI = si;
+            if (xySI.isWithinDataBounds) {
+                if (!isNaN(xySI.yValue) && xySI.isHit) {
+                    valuesWithLabels.push(
+                        `start (${new Date(
+                            (xySI.pointMetadata as { startDate: number }).startDate
+                        ).toLocaleDateString()}), end (${new Date(
+                            (xySI.pointMetadata as { endDate: number }).endDate
+                        ).toLocaleDateString()})`
+                    );
+                }
+            }
+        });
+        return valuesWithLabels;
+    };
 
     // Add interactivity modifiers
     sciChartSurface.chartModifiers.add(
         new ZoomPanModifier({
             enableZoom: true,
-            xyDirection: EXyDirection.YDirection, // Only zoom horizontally
+            xyDirection: EXyDirection.XDirection, // Only zoom horizontally
         }),
         new ZoomExtentsModifier(),
-        new RolloverModifier({
-            rolloverLineStroke: "white",
-        })
+        // new RolloverModifier({
+        //     rolloverLineStroke: "white",
+        // }),
+        new CursorModifier({ showTooltip: true, tooltipDataTemplate, showXLine: false,  showYLine: false, tooltipContainerBackground: appTheme.MutedRed + 55})
     );
 
     return {
         sciChartSurface,
         wasmContext,
-        controls: {
-            changeSeriesType: (type: EGanttChartTypeBaseSeries) => {
-                sciChartSurface.renderableSeries.asArray().forEach((series) => {
-                    sciChartSurface.renderableSeries.remove(series);
-                });
-
-                switch (type) {
-                    case EGanttChartTypeBaseSeries.rectangle:
-                        sciChartSurface.renderableSeries.add(rectangleGanttSeries);
-                        break;
-                    case EGanttChartTypeBaseSeries.boxPlot:
-                        sciChartSurface.renderableSeries.add(boxPlotGanttSeries);
-                        break;
-                    case EGanttChartTypeBaseSeries.errorBars:
-                        sciChartSurface.renderableSeries.add(errorBarGanttSeries);
-                        break;
-                    default:
-                }
-            },
-        },
     };
 };

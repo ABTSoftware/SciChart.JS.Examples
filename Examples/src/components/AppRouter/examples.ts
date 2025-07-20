@@ -59,7 +59,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
         title: "New in SciChart v4",
         submenu: [
             EXAMPLES_PAGES.chart2D_v4Charts_HistogramChart,
-            // EXAMPLES_PAGES.chart2D_v4Charts_GanttChart, // uncomment when ready
+            EXAMPLES_PAGES.chart2D_v4Charts_GanttChart, // uncomment when ready
             EXAMPLES_PAGES.chart2D_v4Charts_MapExample,
             EXAMPLES_PAGES.chart2D_v4Charts_MultiMapExample,
             EXAMPLES_PAGES.chart2D_v4Charts_AnimatedColumns,
