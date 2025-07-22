@@ -7,7 +7,7 @@ import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
-import { ChartGroupLoader } from "../../../ChartGroupLoader";
+import { ChartGroupLoader } from "scichart-react";
 
 // Styles for layout of the toolbar / chart area
 const useStyles = makeStyles()((theme) => ({

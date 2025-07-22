@@ -24,7 +24,7 @@ import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, ISettings, TMessage } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { useViewType } from "../../../containerSizeHooks";
-import { ChartGroupLoader } from "../../../ChartGroupLoader";
+import { ChartGroupLoader } from "scichart-react";
 
 export default function RealtimeBigDataShowcase() {
     const viewRef = useRef<HTMLDivElement>(undefined);

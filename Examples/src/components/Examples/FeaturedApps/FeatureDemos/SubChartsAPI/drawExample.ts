@@ -272,7 +272,7 @@ export const drawGridExample = async (
     const dataStore = new Map(
         mainSurface.subCharts.map((subChart) => [
             subChart,
-            Array.from(Array(dataSettings.seriesCount)).map((_) => null as any),
+            Array.from(Array(dataSettings.seriesCount)).map((_ : any) => null as any),
         ])
     );
 

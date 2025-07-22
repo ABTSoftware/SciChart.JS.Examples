@@ -5,7 +5,7 @@ import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { SciChartReact } from "scichart-react";
 import { getChartsInitializationAPI } from "./drawExample";
-import { ChartGroupLoader } from "../../../ChartGroupLoader";
+import { ChartGroupLoader } from "scichart-react";
 
 // Styles for the 3x3 grid
 const useStyles = makeStyles()((theme) => ({

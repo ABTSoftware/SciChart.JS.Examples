@@ -21,7 +21,7 @@ import { drawShaleChart } from "./charts/VerticalCharts/ShaleChart";
 import { drawSonicChart } from "./charts/VerticalCharts/SonicChart";
 import { drawTextureChart } from "./charts/VerticalCharts/TextureChart";
 import { IInitResult, SciChartReact } from "scichart-react";
-import { ChartGroupLoader } from "../../../ChartGroupLoader";
+import { ChartGroupLoader } from "scichart-react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 

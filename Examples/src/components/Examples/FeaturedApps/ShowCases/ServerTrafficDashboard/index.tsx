@@ -19,7 +19,7 @@ import Switch from "@mui/material/Switch";
 import CloseIcon from "@mui/icons-material/Close";
 import { getPageStatisticsChartConfig } from "./page-statistics-chart-config";
 import { getServerLoadChartConfig } from "./server-load-chart-config";
-import { ChartGroupLoader } from "../../../ChartGroupLoader";
+import { ChartGroupLoader } from "scichart-react";
 import type {
     TPageStatsConfigFuncResult,
     TServerStatsChartConfigFuncResult,

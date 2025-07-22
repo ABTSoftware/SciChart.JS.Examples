@@ -4,7 +4,7 @@ import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChart3DSurface } from "scichart";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import { ChartGroupLoader } from "../../../ChartGroupLoader";
+import { ChartGroupLoader } from "scichart-react";
 
 // REACT COMPONENT
 export default function SurfaceMesh3DChart() {

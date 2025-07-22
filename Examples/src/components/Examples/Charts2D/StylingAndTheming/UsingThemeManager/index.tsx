@@ -4,7 +4,7 @@ import { SciChartReact } from "scichart-react";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { getChartsInitializationAPI } from "./drawExample";
-import { ChartGroupLoader } from "../../../ChartGroupLoader";
+import { ChartGroupLoader } from "scichart-react";
 
 // Styles for the 2x2 grid
 const useStyles = makeStyles()((theme) => ({

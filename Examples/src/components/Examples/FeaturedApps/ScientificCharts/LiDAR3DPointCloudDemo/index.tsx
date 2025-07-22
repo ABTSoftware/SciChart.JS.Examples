@@ -4,7 +4,7 @@ import { drawExample, drawHeatmapLegend } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 import { SciChart3DSurface } from "scichart";
-import { ChartGroupLoader } from "../../../ChartGroupLoader";
+import { ChartGroupLoader } from "scichart-react";
 
 export default function LiDAR3DPointCloudDemo() {
     return (

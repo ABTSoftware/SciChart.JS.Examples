@@ -3,7 +3,9 @@ import { SciChartGroup, IInitResult, DefaultFallback } from "scichart-react";
 
 type TDivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
-export const ChartGroupLoader = (props: TDivProps & { onInit?: (chartInitResults: IInitResult[]) => void }) => {
+// this is the initial version of a primitive helper component for displaying a loader above the DOM subtree that contains charts.
+// now it could be imported from scichart-react
+const ChartGroupLoader = (props: TDivProps & { onInit?: (chartInitResults: IInitResult[]) => void }) => {
     const [isInitialized, setIsInitialized] = useState(false);
 
     return (
