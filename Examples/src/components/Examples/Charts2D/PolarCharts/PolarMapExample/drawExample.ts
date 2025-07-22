@@ -1,14 +1,7 @@
 import {
-    ZoomExtentsModifier,
-    ZoomPanModifier,
-    NumericAxis,
-    SciChartSurface,
     NumberRange,
     XyDataSeries,
-    MouseWheelZoomModifier,
-    FastLineRenderableSeries,
     ETriangleSeriesDrawMode,
-    FastTriangleRenderableSeries,
     PolarPanModifier,
     PolarZoomExtentsModifier,
     PolarMouseWheelZoomModifier,
@@ -44,6 +37,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             // labelPrecision: 2,
             useNativeText: true,
             drawMajorBands: false,
+            drawMajorGridLines: false,
+            drawMajorTickLines: false,
+            drawMinorGridLines: false,
+            drawMinorTickLines: false,
         });
         sciChartSurface.xAxes.add(xAxis);
 
@@ -55,13 +52,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             flippedCoordinates: showFromSouthPole ? false : true,
             useNativeText: true,
             drawMajorBands: false,
+            drawMajorGridLines: false,
+            drawMajorTickLines: false,
+            drawMinorGridLines: false,
+            drawMinorTickLines: false,
         });
         sciChartSurface.yAxes.add(yAxis);
     };
 
     setView(true);
 
-    // const [min, max] = [16, 21140000] // gdp min max
     const [min, max] = [140, 1379302771]; // population min max
 
     function interpolateColor(min: number, max: number, value: number) {
@@ -99,8 +99,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     let dataArray: { name: string; gdp: number; population: number; areaData: number[][] }[] = [];
 
-    // let popArr: number[] = [];
-
     const setMapJson = (mapData: { features: any[] }) => {
         dataArray = [];
 
@@ -130,14 +128,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     area.pop();
                     let areaData = [].concat(...constrainedDelaunayTriangulation(area));
 
-                    // if (state.properties.SOVEREIGNT !== "Antarctica" && showFromSouthPole === true) {
                     dataArray.push({
                         name: state.properties.NAME,
                         gdp: +state.properties.GDP_MD_EST,
                         population: +state.properties.POP_EST,
                         areaData,
                     });
-                    // }
                 });
             }
         });
@@ -163,13 +159,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         });
 
         sciChartSurface.renderableSeries.add(...series);
-        // sciChartSurface.zoomExtents();
     };
 
     sciChartSurface.chartModifiers.add(new PolarPanModifier());
     sciChartSurface.chartModifiers.add(new PolarZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new PolarMouseWheelZoomModifier());
     return { sciChartSurface, wasmContext, setMapJson, setMap, setView };
-
-    // return { wasmContext, sciChartSurface, setMap, clearMap, setConvertedData };
 };

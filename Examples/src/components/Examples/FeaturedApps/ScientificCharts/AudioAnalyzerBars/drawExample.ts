@@ -114,28 +114,6 @@ export const getChartsInitializationApi = () => {
 
         const averages = calculateAverages(fftData);
 
-        // 31 0 * 1 / 2
-
-        // 62 1 + 2 + 3 / 3
-
-        // 125 4 + 5 + 6 / 3
-
-        // 250 10 + 11 + 12 / 3
-
-        // 500 21 + 22 + 23 + 24 / 4
-
-        // 1khz 44 + 45 + 46 + 47 + 48 / 5
-
-        // 2 90 + 91 + 92 + 93 + 94 / 5
-
-        // 4 183 + 184 + 185 + 186 + 187 / 5
-
-        // 8 369 + 370 + 371 + 372 + 373 / 5
-
-        // 16 740 + 741 + 742 + 743 + 744 / 5
-
-        // 22 1019 + 1020 + 1021 + 1022 + 1023 / 5
-
         let calculateValues = [
             (fftData[1] + fftData[2] + fftData[3]) / 3,
             (fftData[4] + fftData[5] + fftData[6]) / 3,
@@ -151,39 +129,6 @@ export const getChartsInitializationApi = () => {
 
         let frequencies = ["62Hz", "125Hz", "250Hz", "500Hz", "1Khz", "2Khz", "4Khz", "8Khz", "16Khz", "22Khz"];
 
-        // 31 0 * 1 / 2
-
-        // 62 1 + 2 + 3 / 3
-
-        // 125 4 + 5 + 6 / 3
-
-        // 250 10 + 11 + 12 / 3
-
-        // 500 21 + 22 + 23 + 24 / 4
-
-        // 1khz 44 + 45 + 46 + 47 + 48 / 5
-
-        // 2 90 + 91 + 92 + 93 + 94 / 5
-
-        // 4 183 + 184 + 185 + 186 + 187 / 5
-
-        // 8 369 + 370 + 371 + 372 + 373 / 5
-
-        // 16 740 + 741 + 742 + 743 + 744 / 5
-
-        // 22 1019 + 1020 + 1021 + 1022 + 1023 / 5
-
-        // fequencies for averages
-        //     1388.8916015625,
-        //     4145.1416015625,
-        //     6901.3916015625,
-        //     9657.6416015625,
-        //     12413.8916015625,
-        //     15170.1416015625,
-        //     17926.3916015625,
-        //     20682.6416015625
-
-        // const minMax = findMinMax(averages);
 
         // calculateValues
 
@@ -202,12 +147,6 @@ export const getChartsInitializationApi = () => {
         //         createGauge(d, i);
         //     });
 
-        // console.log(JSON.stringify(calculateValues, null, 4));
-
-        // Update Spectrogram Chart
-        // spectrogramValues.shift();
-        // spectrogramValues.push(fftData);
-        // spectrogramDS.setZValues(spectrogramValues);
     }
 
     // AUDIO CHART

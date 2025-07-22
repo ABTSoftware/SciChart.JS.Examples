@@ -1,12 +1,7 @@
 import {
-    NumericAxis,
     ZoomPanModifier,
     ZoomExtentsModifier,
-    MouseWheelZoomModifier,
     SciChartSurface,
-    Thickness,
-    ETextAlignment,
-    ETitlePosition,
     ENumericFormat,
     EAxisAlignment,
     FastRectangleRenderableSeries,
@@ -14,30 +9,16 @@ import {
     EColumnYMode,
     EColumnMode,
     EDataPointWidthMode,
-    EResamplingMode,
     NumberRange,
     EHorizontalTextPosition,
     EVerticalTextPosition,
-    LegendModifier,
-    ELegendPlacement,
-    ELegendOrientation,
     SeriesInfo,
-    TextLabelProvider,
-    parseColorToTArgb,
-    RolloverModifier,
     EXyDirection,
-    RectangleSeriesDataLabelProvider,
-    BasePaletteProvider,
     DateTimeNumericAxis,
     CategoryAxis,
-    FastErrorBarsRenderableSeries,
-    FastBoxPlotRenderableSeries,
-    BoxPlotDataSeries,
-    HlcDataSeries,
     ELabelAlignment,
     CursorModifier,
     TCursorTooltipDataTemplate,
-    XySeriesInfo,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -213,7 +194,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         dataPointWidthMode: EDataPointWidthMode.Range,
         stroke: appTheme.MutedRed,
         strokeThickness: 2,
-        fill: appTheme.DarkIndigo,
+        fill: appTheme.MutedBlue,
         // dataPointWidth: 0.9,
         topCornerRadius: 4,
         opacity: 0.5,
@@ -243,11 +224,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             if (xySI.isWithinDataBounds) {
                 if (!isNaN(xySI.yValue) && xySI.isHit) {
                     valuesWithLabels.push(
-                        `start (${new Date(
+                        `Start: ${new Date(
                             (xySI.pointMetadata as { startDate: number }).startDate
-                        ).toLocaleDateString()}), end (${new Date(
+                        ).toLocaleDateString()}, End: ${new Date(
                             (xySI.pointMetadata as { endDate: number }).endDate
-                        ).toLocaleDateString()})`
+                        ).toLocaleDateString()}`
                     );
                 }
             }
@@ -262,10 +243,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             xyDirection: EXyDirection.XDirection, // Only zoom horizontally
         }),
         new ZoomExtentsModifier(),
-        // new RolloverModifier({
-        //     rolloverLineStroke: "white",
-        // }),
-        new CursorModifier({ showTooltip: true, tooltipDataTemplate, showXLine: false,  showYLine: false, tooltipContainerBackground: appTheme.MutedRed + 55})
+        new CursorModifier({
+            showTooltip: true,
+            tooltipDataTemplate,
+            showXLine: false,
+            showYLine: false,
+            tooltipContainerBackground: appTheme.MutedRed + 55,
+        })
     );
 
     return {
