@@ -11,18 +11,10 @@ import {
     EPolarLabelMode,
     PolarXyScatterRenderableSeries,
     SweepAnimation,
-    EHorizontalTextPosition,
-    EVerticalTextPosition,
-    Thickness,
-    EllipsePointMarker,
     PolarLegendModifier,
-    EDataLabelSkipMode,
-    TrianglePointMarker,
     EPointMarkerType,
-    ELegendPlacement,
     ELegendOrientation,
     TLegendItem,
-    getLegendItemHtml,
     EActionType,
 } from "scichart";
 import { appTheme } from "../../../theme";

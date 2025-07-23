@@ -3,24 +3,14 @@ import {
     PolarMouseWheelZoomModifier,
     PolarZoomExtentsModifier,
     PolarPanModifier,
-    XyDataSeries,
     PolarNumericAxis,
     SciChartPolarSurface,
-    EColor, 
     EPolarAxisMode, 
     NumberRange, 
-    EAxisAlignment, 
-    Thickness, 
-    GradientParams, 
-    Point, 
-    EPolarLabelMode,
-    WaveAnimation,
     XyxDataSeries,
     EColumnMode,
     MetadataPaletteProvider,
     IColorMetadata,
-    XDataSeries,
-    PolarLegendModifier
 } from "scichart";
 import { appTheme } from "../../../theme";
 

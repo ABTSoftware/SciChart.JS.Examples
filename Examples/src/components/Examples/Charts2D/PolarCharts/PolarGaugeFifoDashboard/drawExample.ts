@@ -18,8 +18,6 @@ import {
     PolarArcAnnotation,
     Thickness,
     EAutoRange,
-    GenericAnimation,
-    easing,
 } from "scichart";
 import { appTheme } from "../../../theme";
 

@@ -1,7 +1,6 @@
 import {
     PolarMouseWheelZoomModifier,
     PolarZoomExtentsModifier,
-    PolarPanModifier,
     XyDataSeries,
     PolarNumericAxis,
     SciChartPolarSurface,

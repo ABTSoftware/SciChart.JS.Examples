@@ -4,11 +4,8 @@ import {
     EPolarAxisMode,
     NumberRange,
     PolarNumericAxis,
-    PolarStackedColumnCollection,
-    PolarStackedColumnRenderableSeries,
     SciChartPolarSurface,
     Thickness,
-    XyDataSeries,
     PolarPointerAnnotation,
     EPolarLabelMode,
     TextAnnotation,
@@ -21,12 +18,8 @@ import {
     GradientParams,
     Point,
     PolarColumnRenderableSeries,
-    XyxyDataSeries,
-    XyyDataSeries,
     EColumnMode,
     XyxDataSeries,
-    EColumnYMode,
-    EAutoRange,
 } from "scichart";
 import { appTheme } from "../../../theme";
 

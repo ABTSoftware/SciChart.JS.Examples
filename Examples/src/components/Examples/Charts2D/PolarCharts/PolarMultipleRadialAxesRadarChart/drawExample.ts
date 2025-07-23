@@ -14,7 +14,6 @@ import {
     PolarMountainRenderableSeries,
     FadeAnimation,
     PolarLegendModifier,
-    BezierRenderDataTransform,
     EllipsePointMarker,
     PolarLineRenderableSeries,
 } from "scichart";
@@ -43,7 +42,6 @@ const DATA_SET = [
 ]
 
 // this chart expresses the complexity, memory usage, stability, adaptability, scalability, and cache efficiency of two sorting algorithms
-
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme

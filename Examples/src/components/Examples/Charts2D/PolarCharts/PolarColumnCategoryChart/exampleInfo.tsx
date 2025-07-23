@@ -8,12 +8,12 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarColumnCategoryChart",
         imagePath: "javascript-polar-column-category-chart.jpg",
         description:
-            "Creates a **JavaScript Polar Column Category Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Polar Column Category Chart** using SciChart.js, with a custom positive/negative threshold fill & stroke for each column.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Column Category Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Polar Column Category Chart** using SciChart.js, with a custom positive/negative threshold fill & stroke for each column.",
                 title: "JavaScript Polar Column Category Chart",
                 pageTitle: "JavaScript Polar Column Category Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -22,7 +22,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Column Category Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Polar Column Category Chart** using SciChart.js, with a custom positive/negative threshold fill & stroke for each column.",
                 title: "React Polar Column Category Chart",
                 pageTitle: "React Polar Column Category Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -31,7 +31,7 @@ const metaData: IExampleMetadata =
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Column Category Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Polar Column Category Chart** using SciChart.js, with a custom positive/negative threshold fill & stroke for each column.",
                 title: "Angular Polar Column Category Chart",
                 pageTitle: "Angular Polar Column Category Chart | JavaScript Charts | SciChart.js",
                 metaDescription:

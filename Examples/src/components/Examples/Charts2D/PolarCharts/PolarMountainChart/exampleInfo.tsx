@@ -8,34 +8,31 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarMountainChart",
         imagePath: "javascript-polar-mountain-chart.jpg",
         description:
-            "Creates a **JavaScript Polar Mountain Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Polar Mountain Chart** using SciChart.js, with both regular & interpolated mountain modes, via **PolarMountainRenderableSeries**",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Mountain Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Polar Mountain Chart** using SciChart.js, with both regular & interpolated mountain modes, via **PolarMountainRenderableSeries**",
                 title: "JavaScript Polar Mountain Chart",
-                pageTitle: "JavaScript Polar Mountain Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Polar Mountain Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                pageTitle: "JavaScript Polar Mountain Chart | JavaScript Charts | SciChart.js, with both regular & interpolated mountain modes, via **PolarMountainRenderableSeries**",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Mountain Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Polar Mountain Chart** using SciChart.js, with both regular & interpolated mountain modes, via **PolarMountainRenderableSeries**",
                 title: "React Polar Mountain Chart",
-                pageTitle: "React Polar Mountain Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Polar Mountain Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                pageTitle: "React Polar Mountain Chart | JavaScript Charts | SciChart.js, with both regular & interpolated mountain modes, via **PolarMountainRenderableSeries**",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Mountain Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Polar Mountain Chart** using SciChart.js, with both regular & interpolated mountain modes, via **PolarMountainRenderableSeries**",
                 title: "Angular Polar Mountain Chart",
-                pageTitle: "Angular Polar Mountain Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Polar Mountain Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                pageTitle: "Angular Polar Mountain Chart | JavaScript Charts | SciChart.js, with both regular & interpolated mountain modes, via **PolarMountainRenderableSeries**",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

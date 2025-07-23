@@ -8,34 +8,31 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarScatterChart",
         imagePath: "javascript-polar-scatter-chart.jpg",
         description:
-            "Creates a **JavaScript Polar Scatter Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Polar Scatter Chart** using SciChart.js, with the **PolarXyScatterRenderableSeries** and custom legend-markers.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Scatter Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Polar Scatter Chart** using SciChart.js, with the **PolarXyScatterRenderableSeries** and custom legend-markers.",
                 title: "JavaScript Polar Scatter Chart",
                 pageTitle: "JavaScript Polar Scatter Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Polar Scatter Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Scatter Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Polar Scatter Chart** using SciChart.js, with the **PolarXyScatterRenderableSeries** and custom legend-markers.",
                 title: "React Polar Scatter Chart",
                 pageTitle: "React Polar Scatter Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Polar Scatter Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Scatter Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Polar Scatter Chart** using SciChart.js, with the **PolarXyScatterRenderableSeries** and custom legend-markers.",
                 title: "Angular Polar Scatter Chart",
                 pageTitle: "Angular Polar Scatter Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Polar Scatter Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

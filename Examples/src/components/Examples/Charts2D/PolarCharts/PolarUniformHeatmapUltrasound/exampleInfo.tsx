@@ -8,12 +8,12 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarUniformHeatmapUltrasound",
         imagePath: "javascript-polar-uniform-heatmap-ultrasound-chart.jpg",
         description:
-            "Creates a **JavaScript Polar Ultrasound Heatmap** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Polar Ultrasound Heatmap** in SciChart.js, by taking a 2D array of data points as hex values between **00** and **FF**, and displaying them in a polar heatmap.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Ultrasound Heatmap** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Polar Ultrasound Heatmap** in SciChart.js, by taking a 2D array of data points as hex values between **00** and **FF**, and displaying them in a polar heatmap.",
                 title: "JavaScript Polar Ultrasound Heatmap",
                 pageTitle: "JavaScript Polar Ultrasound Heatmap | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -22,7 +22,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Ultrasound Heatmap** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Polar Ultrasound Heatmap** in SciChart.js, by taking a 2D array of data points as hex values between **00** and **FF**, and displaying them in a polar heatmap.",
                 title: "React Polar Ultrasound Heatmap",
                 pageTitle: "React Polar Ultrasound Heatmap | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -31,7 +31,7 @@ const metaData: IExampleMetadata =
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Ultrasound Heatmap** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Polar Ultrasound Heatmap** in SciChart.js, by taking a 2D array of data points as hex values between **00** and **FF**, and displaying them in a polar heatmap.",
                 title: "Angular Polar Ultrasound Heatmap",
                 pageTitle: "Angular Polar Ultrasound Heatmap | JavaScript Charts | SciChart.js",
                 metaDescription:

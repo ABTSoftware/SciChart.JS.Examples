@@ -8,34 +8,31 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarStackedRadialColumnChart",
         imagePath: "javascript-polar-stacked-radial-column-chart.jpg",
         description:
-            "Creates a **JavaScript Stacked Radial Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Stacked Radial Column Chart** representing Olympic medals per country, using SciChart.js",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Stacked Radial Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Stacked Radial Column Chart** representing Olympic medals per country, using SciChart.js",
                 title: "JavaScript Stacked Radial Column Chart",
                 pageTitle: "JavaScript Stacked Radial Column Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Stacked Radial Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Stacked Radial Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Stacked Radial Column Chart** representing Olympic medals per country, using SciChart.js",
                 title: "React Stacked Radial Column Chart",
                 pageTitle: "React Stacked Radial Column Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Stacked Radial Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Stacked Radial Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Stacked Radial Column Chart** representing Olympic medals per country, using SciChart.js",
                 title: "Angular Stacked Radial Column Chart",
                 pageTitle: "Angular Stacked Radial Column Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Stacked Radial Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

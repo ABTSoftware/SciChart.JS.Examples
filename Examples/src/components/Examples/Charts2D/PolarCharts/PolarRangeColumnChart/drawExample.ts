@@ -39,8 +39,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         autoTicks: false,
         majorDelta: 1,
         drawMinorGridLines: false,
-        drawMajorTickLines: false,
-        drawMinorTickLines: false,
         majorGridLineStyle: {
             color: appTheme.DarkIndigo,
             strokeThickness: 1

@@ -8,12 +8,12 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarWindroseColumnChart",
         imagePath: "javascript-polar-windrose-column-chart.jpg",
         description:
-            "Creates a **JavaScript Windrose Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Windrose Column Chart** using SciChart.js, via **PolarStackedColumnRenderableSeries** and a custom axis LabelProvider for cardinal directions.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Windrose Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Windrose Column Chart** using SciChart.js, via **PolarStackedColumnRenderableSeries** and a custom axis LabelProvider for cardinal directions.",   
                 title: "JavaScript Windrose Column Chart",
                 pageTitle: "JavaScript Windrose Column Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -22,7 +22,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Creates a **React Windrose Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Windrose Column Chart** using SciChart.js, via **PolarStackedColumnRenderableSeries** and a custom axis LabelProvider for cardinal directions.",
                 title: "React Windrose Column Chart",
                 pageTitle: "React Windrose Column Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -31,7 +31,7 @@ const metaData: IExampleMetadata =
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Windrose Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Windrose Column Chart** using SciChart.js, via **PolarStackedColumnRenderableSeries** and a custom axis LabelProvider for cardinal directions.",
                 title: "Angular Windrose Column Chart",
                 pageTitle: "Angular Windrose Column Chart | JavaScript Charts | SciChart.js",
                 metaDescription:

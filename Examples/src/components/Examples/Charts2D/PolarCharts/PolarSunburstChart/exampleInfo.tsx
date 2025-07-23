@@ -8,34 +8,31 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarSunburstChart",
         imagePath: "javascript-polar-sunburst-chart.jpg",
         description:
-            "Creates a **JavaScript Polar Sunburst Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Polar Sunburst Chart** using SciChart.js, with multiple levels and interaction driven animations.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Sunburst Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Polar Sunburst Chart** using SciChart.js, with multiple levels and interaction driven animations.",
                 title: "JavaScript Polar Sunburst Chart",
                 pageTitle: "JavaScript Polar Sunburst Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Polar Sunburst Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Sunburst Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Polar Sunburst Chart** using SciChart.js, with multiple levels and interaction driven animations.",
                 title: "React Polar Sunburst Chart",
                 pageTitle: "React Polar Sunburst Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Polar Sunburst Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Sunburst Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Polar Sunburst Chart** using SciChart.js, with multiple levels and interaction driven animations.",
                 title: "Angular Polar Sunburst Chart",
                 pageTitle: "Angular Polar Sunburst Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Polar Sunburst Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

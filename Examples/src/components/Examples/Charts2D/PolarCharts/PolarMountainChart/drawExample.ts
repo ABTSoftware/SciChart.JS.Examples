@@ -1,21 +1,17 @@
 import {
-    PolarColumnRenderableSeries,
     PolarMouseWheelZoomModifier,
     PolarZoomExtentsModifier,
     PolarPanModifier,
     XyDataSeries,
     PolarNumericAxis,
     SciChartPolarSurface,
-    EColor, 
     EPolarAxisMode, 
     NumberRange, 
     EAxisAlignment, 
-    Thickness, 
     GradientParams, 
     Point, 
     EPolarLabelMode,
     WaveAnimation,
-    ScaleAnimation,
     PolarMountainRenderableSeries,
     PolarLegendModifier
 } from "scichart";

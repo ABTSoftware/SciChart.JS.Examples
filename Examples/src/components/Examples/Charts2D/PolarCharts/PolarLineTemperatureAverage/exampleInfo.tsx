@@ -8,12 +8,12 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarLineTemperatureAverage",
         imagePath: "javascript-polar-line-temperature.jpg",
         description:
-            "Creates a **JavaScript Polar Line Temperature Average** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Polar Line Temperature Average** using the **PolarLineRenderableSeries** and a custom palette provider for its coloring, on a **PolarCategoryAxis** xAxis.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Line Temperature Average** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Polar Line Temperature Average** using the **PolarLineRenderableSeries** and a custom palette provider for its coloring, on a **PolarCategoryAxis** xAxis.",
                 title: "JavaScript Polar Line Temperature Average",
                 pageTitle: "JavaScript Polar Line Temperature Average | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -22,7 +22,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Line Temperature Average** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Polar Line Temperature Average** using the **PolarLineRenderableSeries** and a custom palette provider for its coloring, on a **PolarCategoryAxis** xAxis.",
                 title: "React Polar Line Temperature Average",
                 pageTitle: "React Polar Line Temperature Average | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -31,7 +31,7 @@ const metaData: IExampleMetadata =
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Line Temperature Average** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Polar Line Temperature Average** using the **PolarLineRenderableSeries** and a custom palette provider for its coloring, on a **PolarCategoryAxis** xAxis.",
                 title: "Angular Polar Line Temperature Average",
                 pageTitle: "Angular Polar Line Temperature Average | JavaScript Charts | SciChart.js",
                 metaDescription:

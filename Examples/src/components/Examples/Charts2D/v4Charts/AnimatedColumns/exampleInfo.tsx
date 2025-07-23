@@ -8,34 +8,31 @@ const metaData: IExampleMetadata =
         id: "chart2D_v4Charts_AnimatedColumns",
         imagePath: "atp-top-ten-animation.jpg",
         description:
-            "Creates a **JavaScript ATP Top Ten animation** using SciChart.js that displays animated ATP Year-end Top Ten rankings from year 1973 to year 2024.",
+            "Creates a **JavaScript ATP Top Ten animation** using SciChart.js that displays animated ATP Year-end Top Ten rankings from 1990 to 2024.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Animated Bar Chart** using SciChart.js that displays animated ATP Year-end Top Ten rankings from year 1973 to year 2024.",
+                    "Creates a **JavaScript Animated Bar Chart** using SciChart.js that displays animated ATP Year-end Top Ten rankings from 1990 to 2024.",
                 title: "JavaScript Animated Bar Chart",
                 pageTitle: "JavaScript Animated Bar Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Animated Bar Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Animated Bar Chart** using SciChart.js that displays animated ATP Year-end Top Ten rankings from year 1973 to year 2024.",
+                    "Creates a **React Animated Bar Chart** using SciChart.js that displays animated ATP Year-end Top Ten rankings from 1990 to 2024.",
                 title: "React Animated Bar Chart",
                 pageTitle: "React Animated Bar Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Animated Bar Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Animated Bar Chart** using SciChart.js that displays animated ATP Year-end Top Ten rankings from year 1973 to year 2024..",
+                    "Creates a **Angular Animated Bar Chart** using SciChart.js that displays animated ATP Year-end Top Ten rankings from 1990 to 2024..",
                 title: "Angular Animated Bar Chart",
                 pageTitle: "Angular Animated Bar Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Animated Bar Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

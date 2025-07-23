@@ -8,12 +8,12 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarColumnChart",
         imagePath: "javascript-polar-column-chart.jpg",
         description:
-            "Creates a **JavaScript Polar Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Polar Column Chart** using the **PolarColumnRenderableSeries**, with the following features: DataLabels, Gradient fill, startup animations.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Polar Column Chart** using the **PolarColumnRenderableSeries**, with the following features: DataLabels, Gradient fill, startup animations.",
                 title: "JavaScript Polar Column Chart",
                 pageTitle: "JavaScript Polar Column Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -22,7 +22,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Polar Column Chart** using the **PolarColumnRenderableSeries**, with the following features: DataLabels, Gradient fill, startup animations.",
                 title: "React Polar Column Chart",
                 pageTitle: "React Polar Column Chart | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -31,7 +31,7 @@ const metaData: IExampleMetadata =
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Polar Column Chart** using the **PolarColumnRenderableSeries**, with the following features: DataLabels, Gradient fill, startup animations.",
                 title: "Angular Polar Column Chart",
                 pageTitle: "Angular Polar Column Chart | JavaScript Charts | SciChart.js",
                 metaDescription:

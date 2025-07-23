@@ -8,34 +8,31 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarGaugesChart",
         imagePath: "javascript-polar-gauge-chart.jpg",
         description:
-            "Creates multiple **JavaScript Polar Gauge Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates multiple **JavaScript Polar Gauge Chart** using SciChart.js, with 2 different ways to draw the gauge: either with **PolarColumnRenderableSeries** or **PolarArcAnnotation**.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates multiple **JavaScript Polar Gauge Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates multiple **JavaScript Polar Gauge Chart** using SciChart.js, with 2 different ways to draw the gauge: either with **PolarColumnRenderableSeries** or **PolarArcAnnotation**.",
                 title: "JavaScript Polar Gauge Chart",
                 pageTitle: "JavaScript Polar Gauge Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Polar Gauge Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates multiple **React Polar Gauge Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates multiple **React Polar Gauge Chart** using SciChart.js, with 2 different ways to draw the gauge: either with **PolarColumnRenderableSeries** or **PolarArcAnnotation**.",
                 title: "React Polar Gauge Chart",
                 pageTitle: "React Polar Gauge Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Polar Gauge Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates multiple **Angular Polar Gauge Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates multiple **Angular Polar Gauge Chart** using SciChart.js, with 2 different ways to draw the gauge: either with **PolarColumnRenderableSeries** or **PolarArcAnnotation**.",
                 title: "Angular Polar Gauge Chart",
                 pageTitle: "Angular Polar Gauge Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Polar Gauge Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

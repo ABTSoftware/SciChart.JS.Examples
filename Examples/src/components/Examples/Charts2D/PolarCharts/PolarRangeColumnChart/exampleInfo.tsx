@@ -8,34 +8,31 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarRangeColumnChart",
         imagePath: "javascript-polar-range-column-chart.jpg",
         description:
-            "Creates a **JavaScript Polar Range Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Polar Range Column Chart** using SciChart.js, with y/y1 values for each column, using the **XyyDataSeries**",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Range Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Polar Range Column Chart** using SciChart.js, with y/y1 values for each column, using the **XyyDataSeries**",
                 title: "JavaScript Polar Range Column Chart",
                 pageTitle: "JavaScript Polar Range Column Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Polar Range Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Range Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Polar Range Column Chart** using SciChart.js, with y/y1 values for each column, using the **XyyDataSeries**",
                 title: "React Polar Range Column Chart",
                 pageTitle: "React Polar Range Column Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Polar Range Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Range Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Polar Range Column Chart** using SciChart.js, with y/y1 values for each column, using the **XyyDataSeries**",
                 title: "Angular Polar Range Column Chart",
                 pageTitle: "Angular Polar Range Column Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Polar Range Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

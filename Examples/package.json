@@ -10,6 +10,7 @@
   "scripts": {
     "generateExamplePaths": "node scripts/generateExamplePaths.js",
     "updateExampleInfos": "ts-node -P tsconfig.node.json scripts/updateExampleInfos.ts",
+    "updateExampleInfosJS": "node scripts/updateExampleInfos.js",
     "dev": "webpack-dev-server --config webpack.client.no_server.config.ts",
     "build": "rimraf ./build && npm run buildVanillaDemo && npm run buildImages && npm run buildServer && npm run buildClient",
     "start": "node ./build/server.js",

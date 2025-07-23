@@ -18,8 +18,6 @@ import {
     ELegendPlacement,
     GradientParams,
     Point,
-    FadeAnimation,
-    SweepAnimation,
     WaveAnimation
 } from "scichart";
 import { appTheme } from "../../../theme";

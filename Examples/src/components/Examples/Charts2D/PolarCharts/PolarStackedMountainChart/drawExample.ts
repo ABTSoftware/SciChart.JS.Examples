@@ -10,7 +10,6 @@ import {
     EAxisAlignment,  
     EPolarLabelMode,
     WaveAnimation,
-    PolarMountainRenderableSeries,
     PolarStackedMountainCollection,
     PolarStackedMountainRenderableSeries,
     PolarLegendModifier,

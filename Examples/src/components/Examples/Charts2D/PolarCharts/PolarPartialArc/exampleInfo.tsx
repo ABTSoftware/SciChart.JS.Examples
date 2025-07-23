@@ -8,12 +8,12 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarPartialArc",
         imagePath: "javascript-polar-partial-chart.jpg",
         description:
-            "Creates a **JavaScript Polar Partial Arc** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Polar Partial Arc** using SciChart.js, which can bend from a full Polar Circle, all the way to a cartesian-like arc.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Partial Arc** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Polar Partial Arc** using SciChart.js, which can bend from a full Polar Circle, all the way to a cartesian-like arc.",
                 title: "JavaScript Polar Partial Arc",
                 pageTitle: "JavaScript Polar Partial Arc | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -22,7 +22,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Partial Arc** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Polar Partial Arc** using SciChart.js, which can bend from a full Polar Circle, all the way to a cartesian-like arc.",
                 title: "React Polar Partial Arc",
                 pageTitle: "React Polar Partial Arc | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -31,7 +31,7 @@ const metaData: IExampleMetadata =
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Partial Arc** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Polar Partial Arc** using SciChart.js, which can bend from a full Polar Circle, all the way to a cartesian-like arc.",
                 title: "Angular Polar Partial Arc",
                 pageTitle: "Angular Polar Partial Arc | JavaScript Charts | SciChart.js",
                 metaDescription:

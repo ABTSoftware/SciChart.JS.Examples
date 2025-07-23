@@ -8,12 +8,12 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarLabelMode",
         imagePath: "javascript-polar-label-modes.jpg",
         description:
-            "Creates a **JavaScript Polar Label Modes** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Polar Label Modes Chart** using SciChart.js, which demonstrates the different label modes we support for Polar Axes.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Label Modes** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Polar Label Modes Chart** using SciChart.js, which demonstrates the different label modes we support for Polar Axes.",
                 title: "JavaScript Polar Label Modes",
                 pageTitle: "JavaScript Polar Label Modes | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -22,7 +22,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Label Modes** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Polar Label Modes Chart** using SciChart.js, which demonstrates the different label modes we support for Polar Axes.",
                 title: "React Polar Label Modes",
                 pageTitle: "React Polar Label Modes | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -31,7 +31,7 @@ const metaData: IExampleMetadata =
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Label Modes** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Polar Label Modes Chart** using SciChart.js, which demonstrates the different label modes we support for Polar Axes.",
                 title: "Angular Polar Label Modes",
                 pageTitle: "Angular Polar Label Modes | JavaScript Charts | SciChart.js",
                 metaDescription:

@@ -9,10 +9,7 @@ import {
     PolarCursorModifier,
     TCursorTooltipDataTemplate,
     SeriesInfo,
-    Thickness,
-    EPolarGridlineMode,
     PolarDataPointSelectionModifier,
-    SciChartJSLightTheme,
     TSciChart,
     EColumnMode,
     XyxDataSeries,
@@ -22,12 +19,6 @@ import {
     GenericAnimation,
     easing,
     DoubleAnimator,
-    translateToNotScaled,
-    adjustTooltipPosition,
-    calcTooltipSize,
-    CursorTooltipSvgAnnotation,
-    TCursorTooltipSvgTemplate,
-    parseColorToTArgb
 } from "scichart";
 import { appTheme } from "../../../theme";
 import { SunburstMetadata } from "./SunburstMetadata";

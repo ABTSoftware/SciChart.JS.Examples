@@ -65,6 +65,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawMinorGridLines: false,
         drawMajorTickLines: false,
         drawMinorTickLines: false,
+        majorGridLineStyle: {
+            color: appTheme.DarkIndigo,
+            strokeThickness: 1
+        },
         labelStyle: {
             color: "white"
         },
@@ -86,6 +90,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelProvider: new CustomNESWLabelProvider(),
         autoTicks: false,
         majorDelta: 15,
+        drawMinorGridLines: false,
         zoomExtentsToInitialRange: true
     });
     sciChartSurface.xAxes.add(polarXAxis);

@@ -16,8 +16,7 @@ const metaData: IExampleMetadata =
                     "Creates a **JavaScript Polar Radar Chart**, also known as a **Spider Chart** using SciChart.js, which expresses the complexity, memory usage, stability, adaptability, scalability, and cache efficiency of two popular sorting algorithms",
                 title: "JavaScript Polar Radar Chart",
                 pageTitle: "JavaScript Polar Radar Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Polar Radar Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
@@ -25,8 +24,7 @@ const metaData: IExampleMetadata =
                     "Creates a **React Polar Radar Chart**, also known as a **Spider Chart** using SciChart.js, which expresses the complexity, memory usage, stability, adaptability, scalability, and cache efficiency of two popular sorting algorithms",
                 title: "React Polar Radar Chart",
                 pageTitle: "React Polar Radar Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Polar Radar Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
@@ -34,8 +32,7 @@ const metaData: IExampleMetadata =
                     "Creates a **Angular Polar Radar Chart**, also known as a **Spider Chart** using SciChart.js, which expresses the complexity, memory usage, stability, adaptability, scalability, and cache efficiency of two popular sorting algorithms",
                 title: "Angular Polar Radar Chart",
                 pageTitle: "Angular Polar Radar Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Polar Radar Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

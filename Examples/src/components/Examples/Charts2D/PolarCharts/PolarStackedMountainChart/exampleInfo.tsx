@@ -8,34 +8,31 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarStackedMountainChart",
         imagePath: "javascript-polar-stacked-mountain-chart.jpg",
         description:
-            "Creates a **JavaScript Polar Stacked Mountain Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Polar Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and its range of features.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Stacked Mountain Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Polar Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and its range of features.",
                 title: "JavaScript Polar Stacked Mountain Chart",
                 pageTitle: "JavaScript Polar Stacked Mountain Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Polar Stacked Mountain Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Stacked Mountain Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Polar Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and its range of features.",
                 title: "React Polar Stacked Mountain Chart",
                 pageTitle: "React Polar Stacked Mountain Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Polar Stacked Mountain Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Stacked Mountain Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Polar Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and its range of features.",
                 title: "Angular Polar Stacked Mountain Chart",
                 pageTitle: "Angular Polar Stacked Mountain Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Polar Stacked Mountain Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

@@ -8,12 +8,12 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarGaugeFifoDashboard",
         imagePath: "javascript-polar-gauge-fifo-chart.jpg",
         description:
-            "Creates a **JavaScript Polar Gauge Fifo Dashboard** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Polar Gauge Fifo Dashboard** using SciChart.js, which displays Polar Gauge Charts for the current values, and a cartesian historical FIFO view.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Gauge Fifo Dashboard** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Polar Gauge Fifo Dashboard** using SciChart.js, which displays Polar Gauge Charts for the current values, and a cartesian historical FIFO view.",
                 title: "JavaScript Polar Gauge Fifo Dashboard",
                 pageTitle: "JavaScript Polar Gauge Fifo Dashboard | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -22,7 +22,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Gauge Fifo Dashboard** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Polar Gauge Fifo Dashboard** using SciChart.js, which displays Polar Gauge Charts for the current values, and a cartesian historical FIFO view.",
                 title: "React Polar Gauge Fifo Dashboard",
                 pageTitle: "React Polar Gauge Fifo Dashboard | JavaScript Charts | SciChart.js",
                 metaDescription:
@@ -31,7 +31,7 @@ const metaData: IExampleMetadata =
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Gauge Fifo Dashboard** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Polar Gauge Fifo Dashboard** using SciChart.js, which displays Polar Gauge Charts for the current values, and a cartesian historical FIFO view.",
                 title: "Angular Polar Gauge Fifo Dashboard",
                 pageTitle: "Angular Polar Gauge Fifo Dashboard | JavaScript Charts | SciChart.js",
                 metaDescription:

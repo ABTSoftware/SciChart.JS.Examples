@@ -6,14 +6,11 @@ import {
     SciChartPolarSurface,
     EPolarAxisMode, 
     EAxisAlignment, 
-    Thickness,
     HeatmapColorMap,
     UniformHeatmapDataSeries,
     PolarUniformHeatmapRenderableSeries,
     LineArrowAnnotation,
     EArrowHeadPosition,
-    ELegendPlacement,
-    ELabelPlacement
 } from "scichart";
 import { appTheme } from "../../../theme";
 

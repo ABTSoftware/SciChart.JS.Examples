@@ -15,7 +15,8 @@ import {
     parseColorToUIntArgb,
     EStrokePaletteMode,
     WaveAnimation,
-    Thickness
+    Thickness,
+    PolarColumnSeriesDataLabelProvider
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -75,19 +76,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         polarAxisMode: EPolarAxisMode.Radial,
         axisAlignment: EAxisAlignment.Right,
         visibleRange: new NumberRange(
-            DATA_UK.data.reduce((a, b) => Math.min(a, b), 0), 
-            DATA_UK.data.reduce((a, b) => Math.max(a, b), 0) + 4 // +4 to have space for the topmost datalabel
+            Math.min(...DATA_UK.data),
+            Math.max(...DATA_UK.data) + 4 // Add some padding to fit data-label for topmost column
         ),
         drawMinorTickLines: false,
         drawMajorTickLines: false,
         useNativeText: true,
         drawMinorGridLines: false,
         zoomExtentsToInitialRange: true,
-        majorGridLineStyle: {
-            strokeDashArray: [6, 6],
-            strokeThickness: 1,
-            color: "gray"
-        },
         labelPostfix: "%",
         labelPrecision: 0,
         labelStyle: {
@@ -125,13 +121,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             xValues: Array.from({ length: DATA_UK.data.length }, (_, i) => i),
             yValues: DATA_UK.data
         }),
-        // dataLabels: {
-        //     style: {
-        //         fontSize: 14,
-        //     },
-        //     color: "white",
-        //     precision: 0,
-        // },
+        dataLabels: {
+            style: {
+                fontSize: 14,
+                padding: Thickness.fromNumber(0),
+            },
+            polarLabelMode: EPolarLabelMode.Parallel,
+            color: "white",
+            precision: 0,
+        },
         dataPointWidth: 0.6,
         strokeThickness: 2,
         paletteProvider: new ColumnPaletteProvider(0), 

@@ -8,34 +8,31 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarLineChart",
         imagePath: "javascript-polar-line-chart.jpg",
         description:
-            "Creates a **JavaScript Polar Line Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates many **JavaScript Polar Line Charts** using SciChart.js, with the following features: data labels, line interpolation, pointMarkers, gradient palette stroke, startup animations.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Line Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates many **JavaScript Polar Line Charts** using SciChart.js, with the following features: data labels, line interpolation, pointMarkers, gradient palette stroke, startup animations.",
                 title: "JavaScript Polar Line Chart",
                 pageTitle: "JavaScript Polar Line Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Polar Line Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Line Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates many **React Polar Line Charts** using SciChart.js, with the following features: data labels, line interpolation, pointMarkers, gradient palette stroke, startup animations.",
                 title: "React Polar Line Chart",
                 pageTitle: "React Polar Line Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Polar Line Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Line Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates many **Angular Polar Line Charts** using SciChart.js, with the following features: data labels, line interpolation, pointMarkers, gradient palette stroke, startup animations.",
                 title: "Angular Polar Line Chart",
                 pageTitle: "Angular Polar Line Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Polar Line Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

@@ -8,34 +8,31 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarPieChart",
         imagePath: "javascript-polar-pie-chart.jpg",
         description:
-            "Creates a **JavaScript Polar Pie Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Polar Pie Chart** in SciChart.js, using the **PolarColumnRenderableSeries** with a **XyxDataSeries**.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Pie Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Polar Pie Chart** in SciChart.js, using the **PolarColumnRenderableSeries** with a **XyxDataSeries**.",
                 title: "JavaScript Polar Pie Chart",
                 pageTitle: "JavaScript Polar Pie Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Polar Pie Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Pie Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Polar Pie Chart** usinginhart.js, using the **PolarColumnRenderableSeries** with a **XyxDataSeries**.",
                 title: "React Polar Pie Chart",
                 pageTitle: "React Polar Pie Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Polar Pie Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Pie Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Polar Pie Chart** usiiniChart.js, using the **PolarColumnRenderableSeries** with a **XyxDataSeries**.",
                 title: "Angular Polar Pie Chart",
                 pageTitle: "Angular Polar Pie Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Polar Pie Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

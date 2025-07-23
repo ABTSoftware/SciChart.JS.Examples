@@ -8,34 +8,31 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarSplineLineChart",
         imagePath: "javascript-polar-spline-line-chart.jpg",
         description:
-            "Creates a **JavaScript Polar Spline Line Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Polar Spline Line Chart** using SciChart.js, using either a Cubic or Bezier interpolation alorithm",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Spline Line Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Polar Spline Line Chart** using SciChart.js, using either a Cubic or Bezier interpolation alorithm",
                 title: "JavaScript Polar Spline Line Chart",
                 pageTitle: "JavaScript Polar Spline Line Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Polar Spline Line Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Spline Line Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Polar Spline Line Chart** using SciChart.js, using either a Cubic or Bezier interpolation alorithm",
                 title: "React Polar Spline Line Chart",
                 pageTitle: "React Polar Spline Line Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Polar Spline Line Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Spline Line Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Polar Spline Line Chart** using SciChart.js, using either a Cubic or Bezier interpolation alorithm",
                 title: "Angular Polar Spline Line Chart",
                 pageTitle: "Angular Polar Spline Line Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Polar Spline Line Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

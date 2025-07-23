@@ -8,34 +8,31 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarUniformHeatmapChart",
         imagePath: "javascript-polar-uniform-heatmap-chart.jpg",
         description:
-            "Creates a **JavaScript Polar Uniform Heatmap Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Creates a **JavaScript Polar Uniform Heatmap Chart** using SciChart's powerful JavaScript Charts and its range of features.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Polar Uniform Heatmap Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **JavaScript Polar Uniform Heatmap Chart** using SciChart's powerful JavaScript Charts and its range of features.",
                 title: "JavaScript Polar Uniform Heatmap Chart",
                 pageTitle: "JavaScript Polar Uniform Heatmap Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Polar Uniform Heatmap Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Creates a **React Polar Uniform Heatmap Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **React Polar Uniform Heatmap Chart** using SciChart's powerful JavaScript Charts and its range of features.",
                 title: "React Polar Uniform Heatmap Chart",
                 pageTitle: "React Polar Uniform Heatmap Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Polar Uniform Heatmap Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Polar Uniform Heatmap Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Creates a **Angular Polar Uniform Heatmap Chart** using SciChart's powerful JavaScript Charts and its range of features.",
                 title: "Angular Polar Uniform Heatmap Chart",
                 pageTitle: "Angular Polar Uniform Heatmap Chart | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Polar Uniform Heatmap Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

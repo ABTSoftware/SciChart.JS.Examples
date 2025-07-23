@@ -14,7 +14,6 @@ import {
     PolarMountainRenderableSeries,
     FadeAnimation,
     PolarLegendModifier,
-    BezierRenderDataTransform,
     EllipsePointMarker,
     PolarLineRenderableSeries,
 } from "scichart";
