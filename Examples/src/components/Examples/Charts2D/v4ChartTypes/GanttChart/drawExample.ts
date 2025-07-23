@@ -154,7 +154,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             fontSize: 14,
             fontWeight: "bold",
             color: appTheme.MutedOrange,
-            // fontFamily: "Arial",
             alignment: ELabelAlignment.Right,
             padding: { top: 0, right: 0, bottom: 40, left: 0 },
         },
@@ -164,12 +163,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         axisAlignment: EAxisAlignment.Bottom,
         drawMinorGridLines: false,
         growBy: new NumberRange(0.02, 0.02),
-        axisTitleStyle: {
-            fontSize: 14,
-            fontFamily: "Arial",
-            color: "#FFFFFF",
-            fontStyle: "italic",
-        },
+        // axisTitleStyle: {
+        //     fontSize: 14,
+        //     fontFamily: "Arial",
+        //     color: appTheme.MutedOrange,
+        //     // fontStyle: "italic",
+        // },
         labelFormat: ENumericFormat.Date_DDMM,
     });
 
@@ -195,12 +194,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         stroke: appTheme.MutedRed,
         strokeThickness: 2,
         fill: appTheme.MutedBlue,
-        // dataPointWidth: 0.9,
+        dataPointWidth: 0.9,
         topCornerRadius: 4,
         opacity: 0.5,
         bottomCornerRadius: 4,
         dataLabels: {
-            color: "#FFFFFF",
+            color: appTheme.ForegroundColor,
             style: {
                 fontSize: 14,
             },

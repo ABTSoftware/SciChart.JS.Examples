@@ -21,8 +21,6 @@ import {
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-const DARK_BLUE = "#111111";
-const POINTER_VALUE = 62;
 
 export const getChartsInitializationAPI = () => {
     const gauge1 = async (rootElement: string | HTMLDivElement) => {
@@ -112,7 +110,7 @@ export const getChartsInitializationAPI = () => {
             }),
             columnXMode: EColumnMode.StartEnd,
             columnYMode: EColumnYMode.TopBottom,
-            stroke: "white",
+            stroke: appTheme.ForegroundColor,
             strokeThickness: 0.5,
             paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLROS),
         });
@@ -127,7 +125,7 @@ export const getChartsInitializationAPI = () => {
                 y2: yVal,
                 text: yVal.toString(),
                 fontSize: 12,
-                textColor: "#FFFFFF",
+                textColor: appTheme.ForegroundColor,
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
                 verticalAnchorPoint: EVerticalAnchorPoint.Center,
             });
@@ -144,14 +142,11 @@ export const getChartsInitializationAPI = () => {
                 headLength: 10,
                 headWidth: 7,
                 headDepth: 1,
-                fill: "#fff",
-                // stroke: "#3399FF",
+                fill: appTheme.ForegroundColor,
                 strokeThickness: 1,
             },
-            stroke: "#fff",
+            stroke: appTheme.ForegroundColor,
             strokeThickness: 2,
-            // isEditable: true,
-            // isSelected: true,
             arrowHeadPosition: EArrowHeadPosition.Start, // only show arrow head at the end
         });
 
@@ -164,7 +159,7 @@ export const getChartsInitializationAPI = () => {
             y2: 0,
             text: "60",
             fontSize: 12,
-            textColor: "#FFFFFF",
+            textColor: appTheme.ForegroundColor,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
         });
@@ -229,7 +224,7 @@ export const getChartsInitializationAPI = () => {
             }),
             columnXMode: EColumnMode.StartEnd,
             columnYMode: EColumnYMode.TopBottom,
-            stroke: "white",
+            stroke: appTheme.ForegroundColor,
             strokeThickness: 0.5,
 
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
@@ -250,9 +245,9 @@ export const getChartsInitializationAPI = () => {
             }),
             columnXMode: EColumnMode.StartEnd,
             columnYMode: EColumnYMode.TopBottom,
-            stroke: "white",
+            stroke: appTheme.ForegroundColor,
             strokeThickness: 0.5,
-            fill: "#ffffff00",
+            fill: appTheme.ForegroundColor + "00",
         });
 
         sciChartSurface.renderableSeries.add(rectangleSeries, rectangleSeriesOutline);
@@ -266,7 +261,7 @@ export const getChartsInitializationAPI = () => {
                 y2: yVal,
                 text: yVal.toString(),
                 fontSize: 12,
-                textColor: "#FFFFFF",
+                textColor: appTheme.ForegroundColor,
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
                 verticalAnchorPoint: EVerticalAnchorPoint.Center,
             });
@@ -283,11 +278,10 @@ export const getChartsInitializationAPI = () => {
                 headLength: 10,
                 headWidth: 7,
                 headDepth: 1,
-                fill: "#fff",
-                // stroke: "#3399FF",
+                fill: appTheme.ForegroundColor,
                 strokeThickness: 1,
             },
-            stroke: "#fff",
+            stroke: appTheme.ForegroundColor,
             strokeThickness: 2,
             arrowHeadPosition: EArrowHeadPosition.Start, // only show arrow head at the end
         });
@@ -301,7 +295,7 @@ export const getChartsInitializationAPI = () => {
             y2: 0,
             text: "60",
             fontSize: 12,
-            textColor: "#FFFFFF",
+            textColor: appTheme.ForegroundColor,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
         });
@@ -392,12 +386,12 @@ export const getChartsInitializationAPI = () => {
             }),
             columnXMode: EColumnMode.StartEnd,
             columnYMode: EColumnYMode.TopBottom,
-            stroke: "white",
+            stroke: appTheme.ForegroundColor,
             strokeThickness: 0.1,
             paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLROS),
             dataLabels: {
                 style: { fontFamily: "Arial", fontSize: 12 },
-                color: "#ffffff",
+                color: appTheme.ForegroundColor,
             },
         });
 
@@ -418,7 +412,7 @@ export const getChartsInitializationAPI = () => {
                 y2: -1,
                 text: yVal.toString(),
                 fontSize: 12,
-                textColor: "#FFFFFF",
+                textColor: appTheme.ForegroundColor,
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                 verticalAnchorPoint: EVerticalAnchorPoint.Top,
             });
@@ -435,14 +429,11 @@ export const getChartsInitializationAPI = () => {
                 headLength: 10,
                 headWidth: 7,
                 headDepth: 1,
-                fill: "#fff",
-                // stroke: "#3399FF",
+                fill: appTheme.ForegroundColor,
                 strokeThickness: 1,
             },
-            stroke: "#fff",
+            stroke: appTheme.ForegroundColor,
             strokeThickness: 2,
-            // isEditable: true,
-            // isSelected: true,
             arrowHeadPosition: EArrowHeadPosition.Start, // only show arrow head at the end
         });
 
@@ -455,7 +446,7 @@ export const getChartsInitializationAPI = () => {
             x2: 0,
             text: "60",
             fontSize: 12,
-            textColor: "#FFFFFF",
+            textColor: appTheme.ForegroundColor,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
         });
@@ -553,7 +544,7 @@ export const getChartsInitializationAPI = () => {
             }),
             columnXMode: EColumnMode.StartEnd,
             columnYMode: EColumnYMode.TopBottom,
-            stroke: "white",
+            stroke: appTheme.ForegroundColor,
             // opacity: 0,
             strokeThickness: 0.5,
             paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLROS),
@@ -569,9 +560,9 @@ export const getChartsInitializationAPI = () => {
             }),
             columnXMode: EColumnMode.StartEnd,
             columnYMode: EColumnYMode.TopBottom,
-            stroke: "white",
+            stroke: appTheme.ForegroundColor,
             strokeThickness: 0.5,
-            fill: "#ffffff00",
+            fill: appTheme.ForegroundColor + "00",
         });
 
         const rectangleValue = new FastRectangleRenderableSeries(wasmContext, {
@@ -583,12 +574,10 @@ export const getChartsInitializationAPI = () => {
             }),
             columnXMode: EColumnMode.StartEnd,
             columnYMode: EColumnYMode.TopBottom,
-            stroke: "white",
+            stroke: appTheme.ForegroundColor,
             opacity: 1,
             fill: appTheme.VividOrange,
-            // bottomCornerRadius: 10,
             strokeThickness: 0,
-            // paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLROS),
         });
         sciChartSurface.renderableSeries.add(rectangleValue, rectangleSeriesOutline);
 
@@ -600,7 +589,7 @@ export const getChartsInitializationAPI = () => {
                 y2: yVal,
                 text: yVal.toString(),
                 fontSize: 12,
-                textColor: "#FFFFFF",
+                textColor: appTheme.ForegroundColor,
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
                 verticalAnchorPoint: EVerticalAnchorPoint.Center,
             });
@@ -614,7 +603,7 @@ export const getChartsInitializationAPI = () => {
             y2: 0,
             text: value.toString(),
             fontSize: 12,
-            textColor: "#FFFFFF",
+            textColor: appTheme.ForegroundColor,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
         });
@@ -631,15 +620,12 @@ export const getChartsInitializationAPI = () => {
         const growByY = new NumberRange(3, 3);
         const growByX = new NumberRange(0.05, 0.05);
 
-        // Create XAxis / YAxis
         const xAxis = new NumericAxis(wasmContext, {
-            // axisTitle: "X Axis",
             isVisible: false,
             growBy: growByX,
         });
 
         const yAxis = new NumericAxis(wasmContext, {
-            // axisTitle: "Y Axis",
             isVisible: false,
             growBy: growByY,
         });
@@ -709,10 +695,6 @@ export const getChartsInitializationAPI = () => {
             stroke: appTheme.DarkIndigo,
             strokeThickness: 0.1,
             paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLROS),
-            // dataLabels: {
-            //     style: { fontFamily: "Arial", fontSize: 12 },
-            //     color: "#ffffff",
-            // },
         });
 
         const valueLine = new FastRectangleRenderableSeries(wasmContext, {
@@ -738,7 +720,7 @@ export const getChartsInitializationAPI = () => {
                 y2: -1,
                 text: yVal.toString(),
                 fontSize: 12,
-                textColor: "#FFFFFF",
+                textColor: appTheme.ForegroundColor,
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                 verticalAnchorPoint: EVerticalAnchorPoint.Top,
             });
@@ -752,7 +734,7 @@ export const getChartsInitializationAPI = () => {
             x2: 0,
             text: "60",
             fontSize: 12,
-            textColor: "#FFFFFF",
+            textColor: appTheme.ForegroundColor,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
         });
@@ -761,171 +743,7 @@ export const getChartsInitializationAPI = () => {
         return { sciChartSurface, wasmContext };
     };
 
-    // const gauge6 = async (rootElement: string | HTMLDivElement) => {
-    //     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
-    //         theme: appTheme.SciChartJsTheme,
-    //     });
 
-    //     const growByY = new NumberRange(3, 3);
-    //     const growByX = new NumberRange(0.05, 0.05);
-
-    //     // Create XAxis / YAxis
-    //     const xAxis = new NumericAxis(wasmContext, {
-    //         // axisTitle: "X Axis",
-    //         isVisible: false,
-    //         growBy: growByX,
-    //     });
-
-    //     const yAxis = new NumericAxis(wasmContext, {
-    //         // axisTitle: "Y Axis",
-    //         isVisible: false,
-    //         growBy: growByY,
-    //     });
-    //     sciChartSurface.xAxes.add(xAxis);
-    //     sciChartSurface.yAxes.add(yAxis);
-
-    //     const columnXValues = [5, 10, 15, 20, 25, 30];
-
-    //     // colors
-    //     // #1C5727 #277B09 #2C8A26 #3CAC45 #58FF80 #59FD03 #7FFC09 #98FA96 #AEFE2E #FEFCD2
-    //     // #FBFF09 #FBD802 #F9A700 #F88B01 #F54602 #F54702 #F50E02 #DA153D #B22122 #B22122
-
-    //     const colors = [
-    //         "#1C5727",
-    //         "#277B09",
-    //         "#2C8A26",
-    //         "#3CAC45",
-    //         "#58FF80",
-    //         "#59FD03",
-    //         "#7FFC09",
-    //         "#98FA96",
-    //         "#AEFE2E",
-    //         "#FEFCD2",
-    //         "#FBFF09",
-    //         "#FBD802",
-    //         "#F9A700",
-    //         "#F88B01",
-    //         "#F54602",
-    //         "#F54702",
-    //         "#F50E02",
-    //         "#DA153D",
-    //         "#B22122",
-    //         "#B22122",
-    //     ];
-
-    //     const GRADIENT_COLROS = [appTheme.VividGreen, appTheme.VividOrange, appTheme.VividRed];
-
-    //     const rectangleData = columnXValues.map((d, i) => {
-    //         const height = 10;
-    //         if (i === 0) {
-    //             return [0, 0, d, height];
-    //         }
-    //         return [columnXValues[i - 1], 0, d, height];
-    //     });
-
-    //     const xValues = rectangleData.map((d) => d[0]);
-    //     const yValues = rectangleData.map((d) => d[1]);
-    //     const x1Values = rectangleData.map((d) => d[2]);
-    //     const y1Values = rectangleData.map((d) => d[3]);
-
-    //     class RectangleFillPaletteProvider implements IFillPaletteProvider {
-    //         public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.SOLID;
-
-    //         private readonly colors: number[];
-
-    //         constructor(colorStrings: string[]) {
-    //             // Convert hex color strings to ARGB numbers
-    //             this.colors = colorStrings.map((color) => parseColorToUIntArgb(color));
-    //         }
-
-    //         public onAttached(parentSeries: IRenderableSeries): void {
-    //             // Called when the palette provider is attached to a series
-    //             // You can store reference to the parent series if needed
-    //         }
-
-    //         public onDetached(): void {
-    //             // Called when the palette provider is detached
-    //             // Clean up any resources if needed
-    //         }
-
-    //         public overrideFillArgb(
-    //             xValue: number,
-    //             yValue: number,
-    //             index: number,
-    //             opacity?: number,
-    //             metadata?: any
-    //         ): number | undefined {
-    //             // Return different color based on index
-    //             return columnXValues[index] <= 20
-    //                 ? parseColorToUIntArgb(appTheme.VividGreen)
-    //                 : parseColorToUIntArgb(appTheme.VividRed);
-    //         }
-    //     }
-
-    //     const rectangleSeries = new FastRectangleRenderableSeries(wasmContext, {
-    //         dataSeries: new XyxyDataSeries(wasmContext, {
-    //             xValues,
-    //             yValues,
-    //             x1Values,
-    //             y1Values,
-    //         }),
-    //         columnXMode: EColumnMode.StartEnd,
-    //         columnYMode: EColumnYMode.TopBottom,
-    //         stroke: appTheme.ForegroundColor,
-    //         strokeThickness: 0.1,
-    //         fill: "#ffffff00",
-    //         // paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLROS),
-    //         // dataLabels: {
-    //         //     style: { fontFamily: "Arial", fontSize: 12 },
-    //         //     color: "#ffffff",
-    //         // },
-    //     });
-
-    //     const valueLine = new FastRectangleRenderableSeries(wasmContext, {
-    //         dataSeries: new XyxyDataSeries(wasmContext, {
-    //             xValues: [0],
-    //             yValues: [0],
-    //             x1Values: [23],
-    //             y1Values: [10],
-    //         }),
-    //         columnXMode: EColumnMode.StartEnd,
-    //         columnYMode: EColumnYMode.TopBottom,
-    //         // stroke: appTheme.DarkIndigo,
-    //         strokeThickness: 0,
-    //         fill: appTheme.VividTeal,
-    //     });
-    //     sciChartSurface.renderableSeries.add(valueLine, rectangleSeries);
-
-    //     [0, ...columnXValues].forEach((yVal, i) => {
-    //         const label = new TextAnnotation({
-    //             x1: yVal,
-    //             x2: yVal,
-    //             y1: -1,
-    //             y2: -1,
-    //             text: yVal.toString(),
-    //             fontSize: 12,
-    //             textColor: "#FFFFFF",
-    //             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-    //             verticalAnchorPoint: EVerticalAnchorPoint.Top,
-    //         });
-    //         sciChartSurface.annotations.add(label);
-    //     });
-
-    //     const arrowLabel = new TextAnnotation({
-    //         y1: 13,
-    //         x1: 60,
-    //         y2: 8,
-    //         x2: 0,
-    //         text: "60",
-    //         fontSize: 12,
-    //         textColor: "#FFFFFF",
-    //         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-    //         verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
-    //     });
-    //     sciChartSurface.annotations.add(arrowLabel);
-
-    //     return { sciChartSurface, wasmContext };
-    // };
 
     const gauge6 = async (rootElement: string | HTMLDivElement) => {
         const columnYValues = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -1067,7 +885,7 @@ export const getChartsInitializationAPI = () => {
                 stroke: appTheme.DarkIndigo,
                 strokeThickness: 4,
                 paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLOROS),
-                fill: "#ffffff00",
+                fill: appTheme.ForegroundColor + "00",
             });
 
             const rectangleOutlineSeries = new FastRectangleRenderableSeries(wasmContext, {
@@ -1081,7 +899,7 @@ export const getChartsInitializationAPI = () => {
                 columnYMode: EColumnYMode.TopBottom,
                 stroke: appTheme.DarkIndigo,
                 strokeThickness: 0,
-                fill: "#ffffff00",
+                fill: appTheme.ForegroundColor + "00",
             });
 
             sciChartSurface.renderableSeries.add(backgroundRectangle, rectangleSeries, rectangleOutlineSeries);

@@ -104,15 +104,15 @@ export const getChartsInitializationApi = () => {
             return result;
         }
 
-        function findMinMax(array: number[]) {
-            if (array.length === 0) {
-                throw new Error("Array cannot be empty");
-            }
+        // function findMinMax(array: number[]) {
+        //     if (array.length === 0) {
+        //         throw new Error("Array cannot be empty");
+        //     }
 
-            return JSON.stringify([Math.min(...array), Math.max(...array)]);
-        }
+        //     return JSON.stringify([Math.min(...array), Math.max(...array)]);
+        // }
 
-        const averages = calculateAverages(fftData);
+        // const averages = calculateAverages(fftData);
 
         let calculateValues = [
             (fftData[1] + fftData[2] + fftData[3]) / 3,
@@ -139,14 +139,6 @@ export const getChartsInitializationApi = () => {
             .forEach((d, i) => {
                 createGauge(d, i, frequencies[i]);
             });
-
-        // averages
-        // averages
-        //     .map((d) => d - 10)
-        //     .forEach((d, i) => {
-        //         createGauge(d, i);
-        //     });
-
     }
 
     // AUDIO CHART
