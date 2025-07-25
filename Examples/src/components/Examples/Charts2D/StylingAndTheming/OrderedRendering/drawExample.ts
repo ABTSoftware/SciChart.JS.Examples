@@ -15,6 +15,9 @@ import {
     EAnnotationLayer,
     GradientParams,
     Point,
+    DoubleAnimator,
+    BoxAnnotation,
+    ECoordinateMode,
 } from "scichart";
 
 import { appTheme } from "../../../theme";
@@ -37,7 +40,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const STEP = (3 * Math.PI) / POINTS;
     for (let i = 0; i <= 1000; i++) {
         const k = 1 - i / 2000;
-        xValues.push(i);
+        xValues.push(i / 100);
         yValues.push(Math.sin(i * STEP) * k * 0.7);
         y1Values.push(Math.cos(i * STEP) * k);
     }
@@ -48,8 +51,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const band1 = new FastBandRenderableSeries(wasmContext, {
         dataSeries: new XyyDataSeries(wasmContext, { xValues, yValues, y1Values }),
         strokeThickness: 3,
-        fill: appTheme.MutedOrange + "E6",
-        fillY1: appTheme.MutedBlue + "E6",
+        fill: appTheme.MutedOrange,
+        fillY1: appTheme.MutedBlue,
+        opacity: 0.7,
         stroke: appTheme.MutedOrange,
         strokeY1: appTheme.MutedBlue,
         animation: new SweepAnimation({ duration: 800 }),
@@ -63,8 +67,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             y1Values: y1Values.map((y) => y - 0.5),
         }),
         strokeThickness: 3,
-        fill: appTheme.MutedSkyBlue + "E6",
-        fillY1: appTheme.MutedPink + "E6",
+        fill: appTheme.MutedSkyBlue,
+        fillY1: appTheme.MutedPink,
+        opacity: 0.7,
         stroke: appTheme.MutedSkyBlue,
         strokeY1: appTheme.MutedPink,
         animation: new SweepAnimation({ duration: 800 }),
@@ -78,8 +83,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             y1Values: y1Values.map((y) => y - 1),
         }),
         strokeThickness: 3,
-        fill: appTheme.MutedTeal + "E6",
-        fillY1: appTheme.MutedPurple + "E6",
+        fill: appTheme.MutedTeal,
+        fillY1: appTheme.MutedPurple,
+        opacity: 0.7,
         stroke: appTheme.MutedTeal,
         strokeY1: appTheme.MutedPurple,
         animation: new SweepAnimation({ duration: 800 }),
@@ -90,10 +96,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         renderNextTo: { renderable: band1, offset: 0 },
         text: "1.",
         fontSize: 20,
-        x1: 50,
-        x2: 70,
+        x1: 0.05,
+        xCoordinateMode: ECoordinateMode.Relative,
         y1: 0.65,
-        textColor: appTheme.MutedBlue,
+        textColor: appTheme.VividBlue,
         wrapTo: EWrapTo.Annotation,
         renderLayer: EDefaultRenderLayer.SeriesLayer,
         // drawImmediate: true,
@@ -104,10 +110,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         renderNextTo: { renderable: band2, offset: 0 },
         text: "2.",
         fontSize: 20,
-        x1: 50,
-        x2: 70,
+        x1: 0.05,
+        xCoordinateMode: ECoordinateMode.Relative,
         y1: 0.14,
-        textColor: appTheme.MutedBlue,
+        textColor: appTheme.VividBlue,
         wrapTo: EWrapTo.Annotation,
         renderLayer: EDefaultRenderLayer.SeriesLayer,
         // drawImmediate: true,
@@ -118,10 +124,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         renderNextTo: { renderable: band3, offset: 0 },
         text: "3.",
         fontSize: 20,
-        x1: 50,
-        x2: 70,
+        x1: 0.05,
+        xCoordinateMode: ECoordinateMode.Relative,
         y1: -0.37,
-        textColor: appTheme.MutedBlue,
+        textColor: appTheme.VividBlue,
         wrapTo: EWrapTo.Annotation,
         renderLayer: EDefaultRenderLayer.SeriesLayer,
         // drawImmediate: true,
@@ -129,11 +135,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     const nativeText = new NativeTextAnnotation({
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        text: "These Annotations are rendered on the series layer so they can render between series",
         fontSize: 18,
-        x1: 100,
-        x2: 300,
-        y1: 0.3,
+        x1: 4,
+        x2: 7,
+        y1: 0.2,
         textColor: appTheme.ForegroundColor,
         wrapTo: EWrapTo.Annotation,
         renderLayer: EDefaultRenderLayer.SeriesLayer,
@@ -141,32 +147,34 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         renderOrder: 0,
     });
 
-    const interpolateNumber = (from: number, to: number, progress: number) => {
-        if (progress < 0) return from;
-        if (progress > 1) return to;
-        return from + (to - from) * progress;
-    };
-
-    let annotationRO = 0.5;
+    const box = new BoxAnnotation({
+        x1: 3.9,
+        x2: 7.3,
+        y1: 0.23,
+        y2: -0.5,
+        stroke: appTheme.ForegroundColor,
+        fill: appTheme.MutedBlue,
+        opacity: 0.8,
+        renderNextTo: { renderable: nativeText, offset: -0.1 },
+    });
 
     const annotationAnimation = new GenericAnimation<number>({
-        from: 1,
-        to: 800,
+        from: 0.5,
+        to: 4,
         onAnimate: (from: number, to: number, progress: number) => {
-            nativeText.x1 = interpolateNumber(from, to, progress);
-            nativeText.x2 = interpolateNumber(from, to, progress) + 200;
+            const annotationRO = DoubleAnimator.interpolate(from, to, progress);
+            nativeText.text = `Render Order ${annotationRO.toFixed(
+                1
+            )}\n\nThese Annotations are rendered on the series layer so they can render between series`;
+            //nativeText.x1 += annotationRO;
+            //nativeText.x2 += annotationRO;
+            //box.x1 = nativeText.x1;
+            //box.x2 = nativeText.x2;
+            nativeText.setRenderOrder(annotationRO);
         },
         duration: 4000,
         delay: 0,
         onCompleted: () => {
-            if (annotationRO === 3.5) {
-                annotationRO = 0.5;
-                nativeText.setRenderOrder(annotationRO);
-            } else {
-                annotationRO += 1;
-                nativeText.setRenderOrder(annotationRO);
-            }
-
             let temp = annotationAnimation.from;
             annotationAnimation.from = annotationAnimation.to;
             annotationAnimation.to = temp;
@@ -176,7 +184,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     sciChartSurface.addAnimation(annotationAnimation);
 
-    sciChartSurface.annotations.add(nativeText, label1, label2, label3);
+    sciChartSurface.annotations.add(nativeText, box, label1, label2, label3);
 
     sciChartSurface.renderableSeries.add(band1, band2, band3);
 

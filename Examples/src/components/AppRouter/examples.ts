@@ -17,7 +17,6 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints,
             EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces,
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
-            EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerBarsDemo,
             EXAMPLES_PAGES.featuredApps_showcases_oilandgasdashboard,
             EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata,
             EXAMPLES_PAGES.featuredApps_showcases_servertrafficdashboard,
@@ -36,6 +35,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerBarsDemo,
             EXAMPLES_PAGES.featuredApps_scientificCharts_WaterfallChartDemo,
             EXAMPLES_PAGES.featuredApps_scientificCharts_PhasorDiagramChart,
         ],
@@ -60,7 +60,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
         title: "New in SciChart v4",
         submenu: [
             EXAMPLES_PAGES.chart2D_v4Charts_HistogramChart,
-            EXAMPLES_PAGES.chart2D_v4Charts_GanttChart, // uncomment when ready
+            EXAMPLES_PAGES.chart2D_v4Charts_GanttChart,
             EXAMPLES_PAGES.chart2D_v4Charts_MapExample,
             EXAMPLES_PAGES.chart2D_v4Charts_MultiMapExample,
             EXAMPLES_PAGES.chart2D_v4Charts_AnimatedColumns,
@@ -69,7 +69,8 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_v4Charts_BoxPlotChart,
             EXAMPLES_PAGES.chart2D_v4Charts_TriangleSeriesChart,
             EXAMPLES_PAGES.chart2D_v4Charts_TreemapChart,
-            EXAMPLES_PAGES.chart2D_stylingAndTheming_CustomTexture,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerBarsDemo,
+            //EXAMPLES_PAGES.chart2D_stylingAndTheming_CustomTexture,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_OrderedRendering,
             EXAMPLES_PAGES.chart2D_chartAnnotations_ResponsiveHtmlAnnotations,
             EXAMPLES_PAGES.chart2D_chartAnnotations_HtmlAnnotations,
@@ -215,7 +216,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_LineSplittingThresholds,
             EXAMPLES_PAGES.featuredApps_featureDemos_chartTitle,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_OrderedRendering,
-            EXAMPLES_PAGES.chart2D_stylingAndTheming_CustomTexture,
+            //EXAMPLES_PAGES.chart2D_stylingAndTheming_CustomTexture,
         ],
     },
     {
