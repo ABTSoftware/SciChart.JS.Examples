@@ -10,7 +10,6 @@ import {
     EPolarAxisMode,
     EPolarLabelMode,
     EAxisAlignment,
-    Thickness,
     EXyDirection,
     GenericAnimation,
     easing,

@@ -34,7 +34,7 @@ export default defineConfig({
     react(),
     viteStaticCopy({
       // for serving wasm files
-      targets: []
+      targets: [
         {
           src: "node_modules/scichart/_wasm/scichart2d.wasm",
           dest: "/",

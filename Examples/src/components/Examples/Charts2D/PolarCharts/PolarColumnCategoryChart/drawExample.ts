@@ -16,7 +16,6 @@ import {
     EStrokePaletteMode,
     WaveAnimation,
     Thickness,
-    PolarColumnSeriesDataLabelProvider
 } from "scichart";
 import { appTheme } from "../../../theme";
 

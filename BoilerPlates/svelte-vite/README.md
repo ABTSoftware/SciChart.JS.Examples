@@ -17,7 +17,7 @@ npm install scichart
 
 ## Step 2: Wasm file deployment
 
-SciChart.js uses WebAssembly files which must be served. In vite.config.js, add the following to serve the wasm files:
+SciChart.js uses WebAssembly files which must be served. In `vite.config.js`, add the following to serve the wasm files:
 
 ```javascript
 // vite.config.js
