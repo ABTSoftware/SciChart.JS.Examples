@@ -21,8 +21,6 @@ import {
 
 import { appTheme } from "../../../theme";
 
-// import constrainedDelaunayTriangulation from "./constrainedDelaunayTriangulation";
-
 import {
     getMinMax,
     interpolateColor,

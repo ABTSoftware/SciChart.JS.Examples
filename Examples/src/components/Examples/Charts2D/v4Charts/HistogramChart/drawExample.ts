@@ -15,6 +15,7 @@ import {
     EHorizontalTextPosition,
     EVerticalTextPosition,
     ICustomTextureOptions,
+    Logger,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -71,12 +72,14 @@ function prepareRectangleData() {
 
 class StickFigureTextureOptions implements ICustomTextureOptions {
     options: { stroke: string };
-    textureHeight: number = 84;
-    textureWidth: number = 84;
+    textureHeight: number = 48;
+    textureWidth: number = 48;
     repeat?: boolean = true;
 
-    public constructor(options: { stroke: string; repeat: boolean }) {
+    public constructor(options: { stroke: string; repeat: boolean; textureHeight: number; textureWidth: number }) {
         this.options = options;
+        this.textureHeight = options.textureHeight;
+        this.textureWidth = options.textureWidth;
     }
 
     public createTexture(
@@ -212,17 +215,19 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         columnXMode: EColumnMode.StartEnd,
         columnYMode: EColumnYMode.TopBottom,
         dataPointWidthMode: EDataPointWidthMode.Range,
-        stroke: "white",
+        stroke: appTheme.DarkIndigo,
         opacity: 0.8,
-        fill: appTheme.DarkIndigo,
+        fill: appTheme.MutedSkyBlue,
         topCornerRadius: 8,
         bottomCornerRadius: 0,
         customTextureOptions: new StickFigureTextureOptions({
             stroke: appTheme.MutedBlue,
             repeat: true,
+            textureWidth: 40,
+            textureHeight: 40,
         }),
         dataLabels: {
-            color: "#EEE",
+            color: appTheme.VividOrange,
             style: {
                 fontSize: 12,
             },
@@ -234,12 +239,25 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     sciChartSurface.renderableSeries.add(rectangleSeries);
 
+    // Adjust the size of the custom texture so it scales as you zoom
+    sciChartSurface.layoutMeasured.subscribe((data) => {
+        const width = xAxis.getCurrentCoordinateCalculator().getCoordWidth(5);
+        const height = yAxis.getCurrentCoordinateCalculator().getCoordWidth(10000000);
+        if (
+            width !== rectangleSeries.customTextureOptions.textureWidth ||
+            height !== rectangleSeries.customTextureOptions.textureHeight
+        ) {
+            rectangleSeries.customTextureOptions = new StickFigureTextureOptions({
+                stroke: appTheme.MutedBlue,
+                repeat: true,
+                textureWidth: width,
+                textureHeight: height,
+            });
+        }
+    });
+
     // Add interactivity modifiers
-    sciChartSurface.chartModifiers.add(
-        new ZoomPanModifier({ enableZoom: true }),
-        new ZoomExtentsModifier(),
-        new MouseWheelZoomModifier()
-    );
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier(), new MouseWheelZoomModifier());
 
     return { sciChartSurface, wasmContext };
 };

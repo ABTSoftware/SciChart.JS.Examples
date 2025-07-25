@@ -1,4 +1,4 @@
-import { 
+import {
     PolarNumericAxis,
     SciChartSurface,
     NumberRange,
@@ -23,26 +23,26 @@ import { appTheme } from "../../../theme";
 function calculateDiameterProjection(x: number, y: number) {
     return {
         x2: x % Math.PI < Math.PI ? Math.PI / 2 : (Math.PI * 3) / 2,
-        y2: y * Math.sin(x)
+        y2: y * Math.sin(x),
     };
 }
 
 export async function drawExample(rootElement: string | HTMLDivElement) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
-        theme: appTheme.SciChartJsTheme
-    })
-
+        theme: appTheme.SciChartJsTheme,
+    });
+    console.log("ex1");
     // Add master axes
     const xAxis = new NumericAxis(wasmContext, {
-        labelStyle: { 
-            color: "white", 
-            padding: new Thickness(0, 0, 8, 0) // add a bit of bottom padding to labels
+        labelStyle: {
+            color: "white",
+            padding: new Thickness(0, 0, 8, 0), // add a bit of bottom padding to labels
         },
-        growBy: new NumberRange(0, 0.34),   // start the mountain drawing at around 0.25 of the chart (from polar center)
-        isInnerAxis: true,                  // to not push chart upwards and overcomplicate centering calculations
-        autoRange: EAutoRange.Always,       // allow change of xAxis range on fifo changes
-        flippedCoordinates: true,           // increment from right to left
-        
+        growBy: new NumberRange(0, 0.34), // start the mountain drawing at around 0.25 of the chart (from polar center)
+        isInnerAxis: true, // to not push chart upwards and overcomplicate centering calculations
+        autoRange: EAutoRange.Always, // allow change of xAxis range on fifo changes
+        flippedCoordinates: true, // increment from right to left
+
         autoTicks: false,
         majorDelta: Math.PI / 4,
         labelProvider: new RadianLabelProvider(),
@@ -53,17 +53,17 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         axisAlignment: EAxisAlignment.Right,
         autoTicks: false,
         majorDelta: 0.5,
-        labelStyle: { color: "#FFFFFF" }
+        labelStyle: { color: "#FFFFFF" },
     });
     sciChartSurface.yAxes.add(yAxis);
 
     // calculate yAxis range based on the aspect ratio of the chart (to sync the yRange with the polar chart diameter)
     const aspectRatio = sciChartSurface.viewRect.height / sciChartSurface.viewRect.width; // likely a value like 0.66
-    const padding = aspectRatio * 2
+    const padding = aspectRatio * 2;
 
     yAxis.visibleRange = new NumberRange(
-        -2 * padding,  // -2 is the min value that `sumVector` can reach
-        2 * padding    // same here, but positive
+        -2 * padding, // -2 is the min value that `sumVector` can reach
+        2 * padding // same here, but positive
     );
 
     // add the 3 cartesian mountain projections of the polar vectors
@@ -71,33 +71,33 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [],
             yValues: [],
-            fifoCapacity: 300 // allow 300 points at once until sweeping happens
+            fifoCapacity: 300, // allow 300 points at once until sweeping happens
         }),
         fill: appTheme.VividRed + "22",
         stroke: appTheme.VividRed,
-        strokeThickness: 3
+        strokeThickness: 3,
     });
 
     const vector2Mountain = new SplineMountainRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [],
             yValues: [],
-            fifoCapacity: 300
+            fifoCapacity: 300,
         }),
         fill: appTheme.VividGreen + "22",
         stroke: appTheme.VividGreen,
-        strokeThickness: 3
+        strokeThickness: 3,
     });
 
     const vectorSumMountain = new SplineMountainRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [],
             yValues: [],
-            fifoCapacity: 300
+            fifoCapacity: 300,
         }),
         fill: "#DDDDDD22",
         stroke: "#AAAAAA",
-        strokeThickness: 3
+        strokeThickness: 3,
     });
 
     sciChartSurface.renderableSeries.add(vectorSumMountain, vector1Mountain, vector2Mountain);
@@ -105,7 +105,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     // Add polar subchart on the left half of the screen
     const polarSub = SciChartPolarSubSurface.createSubSurface(sciChartSurface, {
         surfaceType: ESciChartSurfaceType.Polar2D,
-        position: new Rect(0, 0, 0.5, 1) // left half of the screen
+        position: new Rect(0, 0, 0.5, 1), // left half of the screen
     });
 
     // add angular x / y axes
@@ -135,7 +135,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         axisAlignment: EAxisAlignment.Left,
         labelPrecision: 0,
         visibleRange: new NumberRange(0, 2), // max value of `vectorSum`, since our 2 vectors are normalized to [0, 1]
-        
+
         drawMinorGridLines: false,
         autoTicks: false,
         majorDelta: 1,
@@ -156,15 +156,16 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         arrowStyle: {
             headLength: 10,
             headWidth: 10,
-            headDepth: 0.6
+            headDepth: 0.6,
         },
         isEditable: true,
         dragPoints: [EDraggingGripPoint.x2y2],
-        selectionBoxStroke: appTheme.VividRed + "44"
+        selectionBoxStroke: appTheme.VividRed + "44",
     });
-    const vector1ToDiameter = new LineAnnotation({ // (optional) - projection of vector1 to the diameter line
+    const vector1ToDiameter = new LineAnnotation({
+        // (optional) - projection of vector1 to the diameter line
         stroke: appTheme.VividRed,
-        strokeThickness: 3
+        strokeThickness: 3,
     });
 
     // 2. Vector2 (green one)
@@ -178,15 +179,16 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         arrowStyle: {
             headLength: 10,
             headWidth: 10,
-            headDepth: 0.6
+            headDepth: 0.6,
         },
         isEditable: true,
         dragPoints: [EDraggingGripPoint.x2y2],
-        selectionBoxStroke: appTheme.VividGreen + "44"
+        selectionBoxStroke: appTheme.VividGreen + "44",
     });
-    const vector2ToDiameter = new LineAnnotation({ // (optional)
+    const vector2ToDiameter = new LineAnnotation({
+        // (optional)
         stroke: appTheme.VividGreen,
-        strokeThickness: 3
+        strokeThickness: 3,
     });
 
     // 3. VectorSum (white one)
@@ -198,13 +200,14 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         arrowStyle: {
             headLength: 10,
             headWidth: 10,
-            headDepth: 0.6
+            headDepth: 0.6,
         },
-        isEditable: false
+        isEditable: false,
     });
-    const vectorSumToDiameter = new LineAnnotation({ // (optional)
+    const vectorSumToDiameter = new LineAnnotation({
+        // (optional)
         stroke: "#AAAAAA",
-        strokeThickness: 3
+        strokeThickness: 3,
     });
 
     // (optional) draw lines from x2y2 of `vector1` and `vector2` to the x2y2 of `vectorSum`
@@ -214,23 +217,28 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     });
     const vector2ToSumLine = new LineAnnotation({
         stroke: "gray",
-        strokeThickness: 2
-    }); 
+        strokeThickness: 2,
+    });
 
     // 4. Arc annotation acting as a degree indicator between `vector1` and `vector2`
     const vectorArc = new PolarArcAnnotation({
         y2: 0, // startRadius is always 0, the rest (y1, x2, x1) will be calculated in `updatePolarAnnotations()`
         stroke: "#FFFFFF",
         fill: "#FFFFFF22",
-    })
+    });
 
-    // the appending order of the annotation is important, as the `vectorArc` will be rendered first, 
+    // the appending order of the annotation is important, as the `vectorArc` will be rendered first,
     // and so below all the other annotations, and so on
     polarSub.annotations.add(
         vectorArc,
-        vector1ToSumLine, vector2ToSumLine,
-        vector1ToDiameter, vector2ToDiameter, vectorSumToDiameter,
-        vector1, vector2, vectorSum,
+        vector1ToSumLine,
+        vector2ToSumLine,
+        vector1ToDiameter,
+        vector2ToDiameter,
+        vectorSumToDiameter,
+        vector1,
+        vector2,
+        vectorSum
     );
 
     function updatePolarAnnotations() {
@@ -305,10 +313,10 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
             vectorArc.x1 = angle1;
             vectorArc.x2 = angle2;
         }
-        
+
         // optionally keep height of the angle arc smaller than smallest vector
-        vectorArc.y1 = Math.min(vector1.y2, vector2.y2) / 2; 
-        
+        vectorArc.y1 = Math.min(vector1.y2, vector2.y2) / 2;
+
         // optionally add value to the mountains if the animation is not running
         if (!isAnimating) {
             updateCartesianProjection();
@@ -317,20 +325,20 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     updatePolarAnnotations(); // call once to init sum, projections and arc
 
     // On change of any of the 2 vectors, update the annotations
-    vector1.dragDelta.subscribe(relativeCoords => updatePolarAnnotations());
-    vector2.dragDelta.subscribe(relativeCoords => updatePolarAnnotations());
-    
-    function updateCartesianProjection(){
+    vector1.dragDelta.subscribe((relativeCoords) => updatePolarAnnotations());
+    vector2.dragDelta.subscribe((relativeCoords) => updatePolarAnnotations());
+
+    function updateCartesianProjection() {
         // calculate with the height and angle, the projection of the vectors from 0-2
         const vector1Projection = calculateDiameterProjection(vector1.x2, vector1.y2);
         const vector2Projection = calculateDiameterProjection(vector2.x2, vector2.y2);
         const vectorSumProjection = calculateDiameterProjection(vectorSum.x2, vectorSum.y2);
-        
-        if(!vector1Mountain.dataSeries || !vector2Mountain.dataSeries || !vectorSumMountain.dataSeries) {
+
+        if (!vector1Mountain.dataSeries || !vector2Mountain.dataSeries || !vectorSumMountain.dataSeries) {
             return; // Ensure dataSeries are initialized
         }
         const lastXIndex = vector1Mountain.dataSeries.count() - 1;
-        const pastX = vector1Mountain.dataSeries.getNativeXValues().get(lastXIndex) ?? 0; 
+        const pastX = vector1Mountain.dataSeries.getNativeXValues().get(lastXIndex) ?? 0;
         const newX = pastX + Math.PI / 180; // Increment by 1 degree in radians
 
         // Update the data series of the mountains
@@ -361,9 +369,9 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
 
     animate(); // call once to start the animation
 
-    return { 
-        sciChartSurface, 
-        wasmContext, 
+    return {
+        sciChartSurface,
+        wasmContext,
         controls: {
             startAnimation: () => {
                 if (isAnimating) return; // Prevent multiple animations (speeding things up uncontrollably)
@@ -372,7 +380,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
             },
             stopAnimation: () => {
                 isAnimating = false;
-            }
-        }
+            },
+        },
     };
 }
