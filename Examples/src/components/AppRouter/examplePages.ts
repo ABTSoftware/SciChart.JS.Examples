@@ -58,6 +58,10 @@ export type TExampleInfo = {
     pageLayout?: EPageLayout;
     reactComponent?: string;
     exampleDirectory?: string;
+    /**
+     * Flag to indicate if the example is new (if new it will have a banner across the thumbnail)
+     */
+    isNew?: boolean;
 };
 
 export type TExamplePage = TPage & TExampleInfo;

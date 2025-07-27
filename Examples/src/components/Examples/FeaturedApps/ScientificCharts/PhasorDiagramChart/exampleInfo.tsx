@@ -57,6 +57,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         extraDependencies: {},
+        isNew: true
     };
 //// End of computer generated metadata
 

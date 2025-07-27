@@ -56,6 +56,7 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "max-width",
         extraDependencies: {},
+        isNew: false
     };
 //// End of computer generated metadata
 

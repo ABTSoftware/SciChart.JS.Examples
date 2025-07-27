@@ -11,6 +11,7 @@ export type GalleryItem = {
         examplePath: string;
         subtitle?: string;
         metaDescription?: string;
+        isNew?: boolean;
     }[];
 };
 

@@ -16,6 +16,7 @@ const getGalleryItems = (category: string, menuItem: TMenuItem, framework: EPage
                 examplePath: subMenu.path,
                 subTitle: subMenu.subtitle(framework),
                 metaDescription: getFrameworkContent(subMenu.metaDescription, framework),
+                isNew: subMenu.isNew
             };
         }),
     };

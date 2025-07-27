@@ -60,6 +60,7 @@ const metaData: IExampleMetadata =
         extraDependencies: {
             rxjs: "^7.5.6",
         },
+        isNew: false,
     };
 //// End of computer generated metadata
 

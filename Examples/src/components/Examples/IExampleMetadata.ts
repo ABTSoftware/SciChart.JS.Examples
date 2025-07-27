@@ -16,6 +16,7 @@ export interface IExampleMetadata {
     sandboxConfig?: Record<string, any>;
     markdownContent?: string | null;
     reactComponent?: string | null;
+    isNew?: boolean; // Flag to indicate if the example is new (if new it will have a banner across the thumbnail)
 }
 
 export interface IDocumentationLink {

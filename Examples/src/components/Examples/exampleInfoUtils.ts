@@ -55,6 +55,7 @@ export const createExampleInfo = (metadata: IExampleMetadata): TExampleInfo => (
     pageLayout: convertPageLayout(metadata.pageLayout),
     extraDependencies: normalizeValue(metadata.extraDependencies) as Record<string, string> | undefined,
     reactComponent: metadata.reactComponent,
+    isNew: metadata?.isNew,
 });
 
 function normalizeValue(value: unknown): unknown {

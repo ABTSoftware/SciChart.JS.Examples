@@ -61,6 +61,7 @@ const metaData: IExampleMetadata =
         extraDependencies: {
             country_flag_icons: "^1.5.7",
         },
+        isNew: false,
     };
 //// End of computer generated metadata
 

@@ -61,6 +61,7 @@ const metaData: IExampleMetadata =
             websocket_ts: "^1.1.1",
             rxjs: "^7.5.6",
         },
+        isNew: false,
     };
 //// End of computer generated metadata
 

@@ -99,6 +99,38 @@
     }
 }
 
+.imgWrapper {
+    position: relative;
+
+    .newBanner {
+        position: absolute;
+        top: -28px;
+        left: -28px;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+
+        span {
+            width: 100%;
+            transform: rotate(-45deg);
+            transform-origin: center center;
+            background-color: var(--light-blue);
+            color: white;
+            padding: 2px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            z-index: 1;
+            border: 0.8px solid white; // with or without border ?? tbd with team
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+        }
+    }
+}
+
 // cardview - has 1 column
 .cardView {
     grid-template-columns: 1fr;
