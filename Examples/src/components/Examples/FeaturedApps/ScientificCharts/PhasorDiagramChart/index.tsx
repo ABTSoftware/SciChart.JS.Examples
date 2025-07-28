@@ -1,18 +1,18 @@
-import { SciChartReact, TResolvedReturnType } from "scichart-react";
+import { ChartGroupLoader, SciChartReact, TResolvedReturnType } from "scichart-react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { useState } from "react";
-[]
+[];
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     const [controls, setControls] = useState<{
-        startAnimation: () => void,
-        stopAnimation: () => void,
+        startAnimation: () => void;
+        stopAnimation: () => void;
     }>();
 
-    const [ isChartAnimating, setIsChartAnimating ] = useState(true);
+    const [isChartAnimating, setIsChartAnimating] = useState(true);
 
     function handleToggleAnimation() {
         if (controls) {
@@ -26,13 +26,15 @@ export default function ChartComponent() {
     }
 
     return (
-        <div>
-            <header style={{
-                width: "100%",
-                position: "absolute",
-                margin: 12,
-                zIndex: 1,
-            }}>
+        <div className={commonClasses.ChartWrapper}>
+            <header
+                style={{
+                    width: "100%",
+                    position: "absolute",
+                    margin: 12,
+                    zIndex: 1,
+                }}
+            >
                 <ToggleButton
                     value="start"
                     onClick={handleToggleAnimation}
@@ -46,9 +48,8 @@ export default function ChartComponent() {
             </header>
 
             <SciChartReact
-                initChart={(rootElementId: string | HTMLDivElement) =>
-                    drawExample(rootElementId)
-                }
+                style={{ width: "100%", height: "100%" }}
+                initChart={(rootElementId: string | HTMLDivElement) => drawExample(rootElementId)}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     setControls(initResult.controls);
                 }}
