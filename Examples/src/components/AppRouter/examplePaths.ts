@@ -118,6 +118,7 @@ export default [
     "../Examples/Charts2D/ZoomingAndPanning/PolarModifiers",
     "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan",
     "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview",
+    "../Examples/Charts2D/v4ChartTypes/HeatmapRectangle",
     "../Examples/Charts2D/v4Charts/AnimatedColumns",
     "../Examples/Charts2D/v4Charts/BoxPlotChart",
     "../Examples/Charts2D/v4Charts/GanttChart",
