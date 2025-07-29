@@ -13,7 +13,6 @@ import {
     convertMultiLineAlignment,
     DpiHelper,
     Logger,
-    getVector4,
     TTickLineStyle,
     getVectorColorVertex,
     getVertex,
@@ -69,7 +68,7 @@ export default class CustomAxisRenderer extends AxisRenderer {
         if (adjRotation > 90) adjRotation -= 180;
         else if (adjRotation < -90) adjRotation += 180;
         const rotationRad = -(adjRotation * Math.PI) / 180;
-        // Why do we remove the offset for labels?
+
         tickCoords = tickCoords.map((t) => t - axisOffset);
         const mlaNative = convertMultiLineAlignment(multilineAlignment, this.webAssemblyContext);
         const nativeLineSpacing = labelProvider.lineSpacing;

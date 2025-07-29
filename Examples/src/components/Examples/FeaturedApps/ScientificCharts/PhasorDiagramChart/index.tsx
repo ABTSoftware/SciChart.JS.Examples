@@ -1,9 +1,9 @@
-import { ChartGroupLoader, SciChartReact, TResolvedReturnType } from "scichart-react";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { ToggleButton } from "@mui/material";
 import { useState } from "react";
-[];
+
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {

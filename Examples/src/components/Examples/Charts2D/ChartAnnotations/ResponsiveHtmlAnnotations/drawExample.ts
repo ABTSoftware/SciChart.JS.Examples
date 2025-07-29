@@ -20,9 +20,7 @@ import {
     GenericAnimation,
     translateFromCanvasToSeriesViewRect,
     translateToNotScaled,
-    IHoverable,
     IAnnotation,
-    Thickness,
 } from "scichart";
 
 import "./styles.css";

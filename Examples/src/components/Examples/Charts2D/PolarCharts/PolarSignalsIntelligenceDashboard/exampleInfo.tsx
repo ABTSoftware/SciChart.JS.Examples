@@ -16,8 +16,7 @@ const metaData: IExampleMetadata =
                     "Creates a **JavaScript Polar Signals Intelligence Dashboard** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "JavaScript Polar Signals Intelligence Dashboard",
                 pageTitle: "JavaScript Polar Signals Intelligence Dashboard | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "JavaScript Polar Signals Intelligence Dashboard demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             react: {
@@ -25,8 +24,7 @@ const metaData: IExampleMetadata =
                     "Creates a **React Polar Signals Intelligence Dashboard** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "React Polar Signals Intelligence Dashboard",
                 pageTitle: "React Polar Signals Intelligence Dashboard | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "React Polar Signals Intelligence Dashboard demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
             angular: {
@@ -34,8 +32,7 @@ const metaData: IExampleMetadata =
                     "Creates a **Angular Polar Signals Intelligence Dashboard** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "Angular Polar Signals Intelligence Dashboard",
                 pageTitle: "Angular Polar Signals Intelligence Dashboard | JavaScript Charts | SciChart.js",
-                metaDescription:
-                    "Angular Polar Signals Intelligence Dashboard demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                metaDescription: null,
                 markdownContent: null,
             },
         },

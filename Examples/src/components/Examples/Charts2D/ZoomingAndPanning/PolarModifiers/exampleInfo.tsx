@@ -8,12 +8,12 @@ const metaData: IExampleMetadata =
         id: "chart2D_zoomAndPanAChart_PolarModifiers",
         imagePath: "polar-modifiers.jpg",
         description:
-            "This demo displays all of SciChart's Polar Chart **Modifier** types",
+            "This demo displays all of SciChart's Polar Chart **Modifier** types.\n TIP: If the `PolarZoomExtents` modifier is on, just double-click to reset your zoom / rotation.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "This demo displays all of SciChart's Polar Chart **Modifier** types",
+                    "This demo displays all of SciChart's Polar Chart **Modifier** types.\n TIP: If the `PolarZoomExtents` modifier is on, just double-click to reset your zoom / rotation.",
                 title: "Polar Modifiers JavaScript Chart",
                 pageTitle: "Polar Modifiers JavaScript Chart",
                 metaDescription: null,
@@ -21,7 +21,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "This demo displays all of SciChart's Polar Chart **Modifier** types",
+                    "This demo displays all of SciChart's Polar Chart **Modifier** types.\n TIP: If the `PolarZoomExtents` modifier is on, just double-click to reset your zoom / rotation.",
                 title: "Polar Modifiers React Chart",
                 pageTitle: "Polar Modifiers React Chart",
                 metaDescription: null,
@@ -29,7 +29,7 @@ const metaData: IExampleMetadata =
             },
             angular: {
                 subtitle:
-                    "This demo displays all of SciChart's Polar Chart **Modifier** types",
+                    "This demo displays all of SciChart's Polar Chart **Modifier** types.\n TIP: If the `PolarZoomExtents` modifier is on, just double-click to reset your zoom / rotation.",
                 title: "Polar Modifiers Angular Chart",
                 pageTitle: "Polar Modifiers Angular Chart",
                 metaDescription: null,
