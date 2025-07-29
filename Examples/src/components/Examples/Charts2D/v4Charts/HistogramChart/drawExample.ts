@@ -227,9 +227,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             textureHeight: 40,
         }),
         dataLabels: {
-            color: appTheme.VividOrange,
+            color: appTheme.DarkIndigo,
             style: {
-                fontSize: 12,
+                fontSize: 16,
             },
             precision: 0,
             numericFormat: ENumericFormat.Engineering,
