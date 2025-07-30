@@ -18,9 +18,13 @@ import {
     LineArrowAnnotation,
     EArrowHeadPosition,
     DataLabelProvider,
+    EAxisAlignment,
+    Thickness,
+    XyyDataSeries,
+    EDataPointWidthMode,
+    DefaultPaletteProvider,
 } from "scichart";
 import { appTheme } from "../../../theme";
-
 
 export const getChartsInitializationAPI = () => {
     const gauge1 = async (rootElement: string | HTMLDivElement) => {
@@ -171,49 +175,28 @@ export const getChartsInitializationAPI = () => {
     const gauge2 = async (rootElement: string | HTMLDivElement) => {
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
             theme: appTheme.SciChartJsTheme,
+            padding: new Thickness(5, 50, 5, 70),
         });
-
-        const growByX = new NumberRange(2, 2);
-        const growByY = new NumberRange(0.05, 0.05);
 
         // Create XAxis / YAxis
         const xAxis = new NumericAxis(wasmContext, {
-            // axisTitle: "X Axis",
             isVisible: false,
-            growBy: growByX,
+            growBy: new NumberRange(0, 1),
         });
 
         const yAxis = new NumericAxis(wasmContext, {
-            // axisTitle: "Y Axis",
-            isVisible: false,
-            growBy: growByY,
+            axisAlignment: EAxisAlignment.Left,
+            growBy: new NumberRange(0.05, 0.05),
+            drawMajorBands: false,
+            drawMajorGridLines: false,
+            drawMinorGridLines: false,
+            drawMinorTickLines: false,
+            majorGridLineStyle: { color: appTheme.ForegroundColor },
+            majorTickLineStyle: { color: appTheme.ForegroundColor },
+            overrideOffset: 0,
         });
         sciChartSurface.xAxes.add(xAxis);
         sciChartSurface.yAxes.add(yAxis);
-
-        const columnYValues = [50, 70, 80, 90, 100];
-
-        const GRADIENT_COLROS = [
-            appTheme.VividPink,
-            appTheme.VividOrange,
-            appTheme.VividTeal,
-            appTheme.Indigo,
-            appTheme.DarkIndigo,
-        ];
-
-        const rectangleData = columnYValues.map((d, i) => {
-            const width = 10;
-            if (i === 0) {
-                return [0, 0, width, d];
-            }
-            return [0, columnYValues[i - 1], width, d];
-        });
-
-        const xValues = rectangleData.map((d) => d[0]);
-        const yValues = rectangleData.map((d) => d[1]);
-        const x1Values = rectangleData.map((d) => d[2]);
-        const y1Values = rectangleData.map((d) => d[3]);
-
 
         const rectangleSeries = new FastRectangleRenderableSeries(wasmContext, {
             dataSeries: new XyxyDataSeries(wasmContext, {
@@ -225,7 +208,7 @@ export const getChartsInitializationAPI = () => {
             columnXMode: EColumnMode.StartEnd,
             columnYMode: EColumnYMode.TopBottom,
             stroke: appTheme.ForegroundColor,
-            strokeThickness: 0.5,
+            strokeThickness: 1,
 
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { offset: 0, color: appTheme.VividPink },
@@ -236,37 +219,7 @@ export const getChartsInitializationAPI = () => {
             ]),
         });
 
-        const rectangleSeriesOutline = new FastRectangleRenderableSeries(wasmContext, {
-            dataSeries: new XyxyDataSeries(wasmContext, {
-                xValues,
-                yValues,
-                x1Values,
-                y1Values,
-            }),
-            columnXMode: EColumnMode.StartEnd,
-            columnYMode: EColumnYMode.TopBottom,
-            stroke: appTheme.ForegroundColor,
-            strokeThickness: 0.5,
-            fill: appTheme.ForegroundColor + "00",
-        });
-
-        sciChartSurface.renderableSeries.add(rectangleSeries, rectangleSeriesOutline);
-
-        [0, ...columnYValues].forEach((yVal, i) => {
-            const label = new TextAnnotation({
-                x2: 8,
-                x1: -1,
-
-                y1: yVal,
-                y2: yVal,
-                text: yVal.toString(),
-                fontSize: 12,
-                textColor: appTheme.ForegroundColor,
-                horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
-                verticalAnchorPoint: EVerticalAnchorPoint.Center,
-            });
-            sciChartSurface.annotations.add(label);
-        });
+        sciChartSurface.renderableSeries.add(rectangleSeries);
 
         const arrowLine = new LineArrowAnnotation({
             x1: 10,
@@ -395,7 +348,7 @@ export const getChartsInitializationAPI = () => {
             },
         });
 
-        const labels: string[] = ["Low", "Moderate", "Hight"];
+        const labels: string[] = ["Low", "Moderate", "High"];
 
         (rectangleSeries.dataLabelProvider as DataLabelProvider).getText = (state) => {
             // Return custom text for each rectangle
@@ -743,11 +696,7 @@ export const getChartsInitializationAPI = () => {
         return { sciChartSurface, wasmContext };
     };
 
-
-
     const gauge6 = async (rootElement: string | HTMLDivElement) => {
-        const columnYValues = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
         const GRADIENT_COLOROS = [
             "#1C5727",
             "#277B09",
@@ -773,44 +722,36 @@ export const getChartsInitializationAPI = () => {
 
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
             theme: appTheme.SciChartJsTheme,
+            padding: new Thickness(5, 5, 5, 20),
         });
 
-        const growByX = new NumberRange(0.01, 0.01);
         const growByY = new NumberRange(0.05, 0.05);
 
         // Create XAxis / YAxis
         const xAxis = new NumericAxis(wasmContext, {
-            // axisTitle: "X Axis",
             isVisible: false,
-            growBy: growByX,
+            visibleRange: new NumberRange(-7, 17),
         });
 
         const yAxis = new NumericAxis(wasmContext, {
-            // axisTitle: "Y Axis",
-            isVisible: false,
+            isVisible: true,
             growBy: growByY,
+            drawMajorGridLines: false,
+            drawMinorGridLines: false,
+            drawMajorBands: false,
         });
         sciChartSurface.xAxes.add(xAxis);
         sciChartSurface.yAxes.add(yAxis);
 
-        class RectangleFillPaletteProvider implements IFillPaletteProvider {
+        class RectangleFillPaletteProvider extends DefaultPaletteProvider {
             public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.SOLID;
 
             private readonly colors: number[];
 
             constructor(colorStrings: string[]) {
+                super();
                 // Convert hex color strings to ARGB numbers
                 this.colors = colorStrings.map((color) => parseColorToUIntArgb(color));
-            }
-
-            public onAttached(parentSeries: IRenderableSeries): void {
-                // Called when the palette provider is attached to a series
-                // You can store reference to the parent series if needed
-            }
-
-            public onDetached(): void {
-                // Called when the palette provider is detached
-                // Clean up any resources if needed
             }
 
             public overrideFillArgb(
@@ -827,127 +768,62 @@ export const getChartsInitializationAPI = () => {
             }
         }
 
-        const createGauge = (value: number, position: number) => {
-            // value goes from -10 to 10
-            // let value = 5;
+        const updateGaugeData = (dataSeries: XyyDataSeries, value: number, position: number) => {
+            dataSeries.clear();
+            const columnYValues = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].filter(
+                (y) => y <= value
+            );
+            const xValues = columnYValues.map((d) => position);
+            const yValues = columnYValues.map((d, i) => (i === 0 ? columnYValues[0] : columnYValues[i - 1]));
+            dataSeries.appendRange(xValues, yValues, columnYValues);
+        };
 
-            const rectangleData = columnYValues
-                .filter((d) => d <= value)
-                .map((d, i) => {
-                    const width = 10;
-                    if (i === 0) {
-                        return [position * 20, 0, width + position * 20, d];
-                    }
-                    return [position * 20, columnYValues[i - 1], width + position * 20, d];
-                });
-
-            const rectangleOutlineData = columnYValues.map((d, i) => {
-                const width = 10;
-                if (i === 0) {
-                    return [position * 20, 0, width + position * 20, d];
-                }
-                return [position * 20, columnYValues[i - 1], width + position * 20, d];
-            });
-
-            const xValues = rectangleData.map((d) => d[0]);
-            const yValues = rectangleData.map((d) => d[1]);
-            const x1Values = rectangleData.map((d) => d[2]);
-            const y1Values = rectangleData.map((d) => d[3]);
-
-            const xValuesOutline = rectangleOutlineData.map((d) => d[0]);
-            const yValuesOutline = rectangleOutlineData.map((d) => d[1]);
-            const x1ValuesOutline = rectangleOutlineData.map((d) => d[2]);
-            const y1ValuesOutline = rectangleOutlineData.map((d) => d[3]);
+        const createGauge = (value: number, width: number, position: number) => {
+            const dataSeries = new XyyDataSeries(wasmContext);
+            updateGaugeData(dataSeries, value, position);
 
             const backgroundRectangle = new FastRectangleRenderableSeries(wasmContext, {
-                dataSeries: new XyxyDataSeries(wasmContext, {
-                    xValues: [-2 + position * 20],
+                dataSeries: new XyyDataSeries(wasmContext, {
+                    xValues: [-2 + position * width * 2],
                     yValues: [-10.5],
-                    x1Values: [12 + position * 20],
                     y1Values: [10.5],
                 }),
-                columnXMode: EColumnMode.StartEnd,
+                columnXMode: EColumnMode.Start,
                 columnYMode: EColumnYMode.TopBottom,
-                fill: appTheme.DarkIndigo, //appTheme.DarkIndigo,
+                dataPointWidth: width + 4,
+                dataPointWidthMode: EDataPointWidthMode.Range,
+                fill: appTheme.DarkIndigo,
                 strokeThickness: 2,
-                stroke: "gray", //appTheme.DarkIndigo
+                stroke: "gray",
             });
 
             const rectangleSeries = new FastRectangleRenderableSeries(wasmContext, {
-                dataSeries: new XyxyDataSeries(wasmContext, {
-                    xValues,
-                    yValues,
-                    x1Values,
-                    y1Values,
-                }),
-                columnXMode: EColumnMode.StartEnd,
+                dataSeries,
+                columnXMode: EColumnMode.Start,
                 columnYMode: EColumnYMode.TopBottom,
-                stroke: appTheme.DarkIndigo,
+                dataPointWidth: width,
+                dataPointWidthMode: EDataPointWidthMode.Range,
+                stroke: appTheme.DarkIndigo, // Thick stroke same color as background gives gaps between rectangles
                 strokeThickness: 4,
                 paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLOROS),
                 fill: appTheme.ForegroundColor + "00",
             });
 
-            const rectangleOutlineSeries = new FastRectangleRenderableSeries(wasmContext, {
-                dataSeries: new XyxyDataSeries(wasmContext, {
-                    xValues: xValuesOutline,
-                    yValues: yValuesOutline,
-                    x1Values: x1ValuesOutline,
-                    y1Values: y1ValuesOutline,
-                }),
-                columnXMode: EColumnMode.StartEnd,
-                columnYMode: EColumnYMode.TopBottom,
-                stroke: appTheme.DarkIndigo,
-                strokeThickness: 0,
-                fill: appTheme.ForegroundColor + "00",
-            });
-
-            sciChartSurface.renderableSeries.add(backgroundRectangle, rectangleSeries, rectangleOutlineSeries);
+            sciChartSurface.renderableSeries.add(backgroundRectangle, rectangleSeries);
+            return dataSeries;
         };
 
-        const gaugeValues = [0, 3, 4, 7, 8, -9, 4];
-        const gaugeValues1 = [-1, 4, 3, 8, 6, -3, 1];
-        const gaugeValues2 = [4, -4, -3, 6, 3, 9, 1];
-        const gaugeValues3 = [2, -2, -6, 3, 6, 5, 10];
-
-        let arrayValue = 0;
-
-        gaugeValues3.forEach((d, i) => {
-            createGauge(d, i);
-        });
+        const gaugeValues = [0, 3, 4, 7, -2, -8, 4];
+        let i = 0;
+        const dataSeries = createGauge(gaugeValues[i], 10, 0);
 
         setInterval(() => {
-            sciChartSurface.renderableSeries.clear();
-
-            if (arrayValue === 0) {
-                gaugeValues.forEach((d, i) => {
-                    createGauge(d, i);
-                });
+            i += 1;
+            if (i === gaugeValues.length) {
+                i = 0;
             }
-
-            if (arrayValue === 1) {
-                gaugeValues1.forEach((d, i) => {
-                    createGauge(d, i);
-                });
-            }
-
-            if (arrayValue === 2) {
-                gaugeValues2.forEach((d, i) => {
-                    createGauge(d, i);
-                });
-            }
-
-            if (arrayValue === 3) {
-                gaugeValues3.forEach((d, i) => {
-                    createGauge(d, i);
-                });
-            }
-
-            arrayValue += 1;
-
-            if (arrayValue === 4) {
-                arrayValue = 0;
-            }
+            const value = gaugeValues[i];
+            updateGaugeData(dataSeries, value, 0);
         }, 1000);
 
         return { sciChartSurface, wasmContext };

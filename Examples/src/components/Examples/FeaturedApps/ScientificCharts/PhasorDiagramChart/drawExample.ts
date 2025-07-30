@@ -17,6 +17,7 @@ import {
     EAutoRange,
     PolarArcAnnotation,
     Thickness,
+    Logger,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -31,7 +32,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
-    console.log("ex1");
+    Logger.enableDebug = true;
     // Add master axes
     const xAxis = new NumericAxis(wasmContext, {
         labelStyle: {

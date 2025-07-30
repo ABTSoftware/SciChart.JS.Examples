@@ -21,13 +21,15 @@ import {
     parseColorToUIntArgb,
     EFillPaletteMode,
     IFillPaletteProvider,
+    EDataPointWidthMode,
+    XyyDataSeries,
+    DefaultPaletteProvider,
 } from "scichart";
 
 const AUDIO_STREAM_BUFFER_SIZE = 2048;
 
 export const getChartsInitializationApi = () => {
     let createGauge: (value: number, position: number, label: string) => void = function () {};
-    let clearGauges: () => void;
 
     const dataProvider = new AudioDataProvider();
 
@@ -40,13 +42,9 @@ export const getChartsInitializationApi = () => {
     const fftSize = fft.fftSize;
     const fftCount = 200;
 
-    let fftXValues: number[];
-    let spectrogramValues: number[][];
-
     let audioDS: XyDataSeries;
     let historyDS: XyDataSeries;
-    let fftDS: XyDataSeries;
-    let spectrogramDS: UniformHeatmapDataSeries;
+    const updateFunctions: Array<(value: number, label: string) => void> = [];
 
     let hasAudio: boolean;
 
@@ -129,15 +127,10 @@ export const getChartsInitializationApi = () => {
 
         let frequencies = ["62Hz", "125Hz", "250Hz", "500Hz", "1Khz", "2Khz", "4Khz", "8Khz", "16Khz", "22Khz"];
 
-
-        // calculateValues
-
-        clearGauges();
-
         calculateValues
             .map((d) => d / 2 - 10)
             .forEach((d, i) => {
-                createGauge(d, i, frequencies[i]);
+                updateFunctions[i](d, frequencies[i]);
             });
     }
 
@@ -230,8 +223,6 @@ export const getChartsInitializationApi = () => {
 
     // FFT CHART
     const initFftChart = async (rootElement: string | HTMLDivElement) => {
-        const columnYValues = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
         const GRADIENT_COLOROS = [
             "#1C5727",
             "#277B09",
@@ -262,39 +253,26 @@ export const getChartsInitializationApi = () => {
         const growByX = new NumberRange(0.01, 0.01);
         const growByY = new NumberRange(0.1, 0.05);
 
-        // Create XAxis / YAxis
         const xAxis = new NumericAxis(wasmContext, {
-            // axisTitle: "X Axis",
             isVisible: false,
             growBy: growByX,
         });
 
         const yAxis = new NumericAxis(wasmContext, {
-            // axisTitle: "Y Axis",
-            // isVisible: false,
             growBy: growByY,
         });
         sciChartSurface.xAxes.add(xAxis);
         sciChartSurface.yAxes.add(yAxis);
 
-        class RectangleFillPaletteProvider implements IFillPaletteProvider {
+        class RectangleFillPaletteProvider extends DefaultPaletteProvider {
             public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.SOLID;
 
             private readonly colors: number[];
 
             constructor(colorStrings: string[]) {
+                super();
                 // Convert hex color strings to ARGB numbers
                 this.colors = colorStrings.map((color) => parseColorToUIntArgb(color));
-            }
-
-            public onAttached(parentSeries: IRenderableSeries): void {
-                // Called when the palette provider is attached to a series
-                // You can store reference to the parent series if needed
-            }
-
-            public onDetached(): void {
-                // Called when the palette provider is detached
-                // Clean up any resources if needed
             }
 
             public overrideFillArgb(
@@ -311,98 +289,67 @@ export const getChartsInitializationApi = () => {
             }
         }
 
-        clearGauges = () => {
-            sciChartSurface.renderableSeries.clear();
-            sciChartSurface.annotations.clear();
-        };
-
-        createGauge = (value: number, position: number, label: string) => {
-            const rectangleData = columnYValues
-                .filter((d) => d <= value)
-                .map((d, i) => {
-                    const width = 10;
-                    if (i === 0) {
-                        return [position * 20, 0, width + position * 20, d];
-                    }
-                    return [position * 20, columnYValues[i - 1], width + position * 20, d];
-                });
-
-            const rectangleOutlineData = columnYValues.map((d, i) => {
-                const width = 10;
-                if (i === 0) {
-                    return [position * 20, 0, width + position * 20, d];
-                }
-                return [position * 20, columnYValues[i - 1], width + position * 20, d];
-            });
-
-            const xValues = rectangleData.map((d) => d[0]);
-            const yValues = rectangleData.map((d) => d[1]);
-            const x1Values = rectangleData.map((d) => d[2]);
-            const y1Values = rectangleData.map((d) => d[3]);
-
-            const xValuesOutline = rectangleOutlineData.map((d) => d[0]);
-            const yValuesOutline = rectangleOutlineData.map((d) => d[1]);
-            const x1ValuesOutline = rectangleOutlineData.map((d) => d[2]);
-            const y1ValuesOutline = rectangleOutlineData.map((d) => d[3]);
+        const createGauge = (value: number, width: number, position: number, label: string) => {
+            const dataSeries = new XyyDataSeries(wasmContext);
 
             const backgroundRectangle = new FastRectangleRenderableSeries(wasmContext, {
-                dataSeries: new XyxyDataSeries(wasmContext, {
-                    xValues: [-2 + position * 20],
+                dataSeries: new XyyDataSeries(wasmContext, {
+                    xValues: [-2 + position * width * 2],
                     yValues: [-10.5],
-                    x1Values: [12 + position * 20],
                     y1Values: [10.5],
                 }),
-                columnXMode: EColumnMode.StartEnd,
+                columnXMode: EColumnMode.Start,
                 columnYMode: EColumnYMode.TopBottom,
-                fill: appTheme.DarkIndigo, //appTheme.DarkIndigo,
+                dataPointWidth: width + 4,
+                dataPointWidthMode: EDataPointWidthMode.Range,
+                fill: appTheme.DarkIndigo,
                 strokeThickness: 2,
-                stroke: "gray", //appTheme.DarkIndigo
+                stroke: "gray",
             });
 
             const rectangleSeries = new FastRectangleRenderableSeries(wasmContext, {
-                dataSeries: new XyxyDataSeries(wasmContext, {
-                    xValues,
-                    yValues,
-                    x1Values,
-                    y1Values,
-                }),
-                columnXMode: EColumnMode.StartEnd,
+                dataSeries,
+                columnXMode: EColumnMode.Start,
                 columnYMode: EColumnYMode.TopBottom,
-                stroke: appTheme.DarkIndigo,
+                dataPointWidth: width,
+                dataPointWidthMode: EDataPointWidthMode.Range,
+                stroke: appTheme.DarkIndigo, // Thick stroke same color as background gives gaps between rectangles
                 strokeThickness: 4,
                 paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLOROS),
-                fill: "#ffffff00",
+                fill: appTheme.ForegroundColor + "00",
             });
 
-            const rectangleOutlineSeries = new FastRectangleRenderableSeries(wasmContext, {
-                dataSeries: new XyxyDataSeries(wasmContext, {
-                    xValues: xValuesOutline,
-                    yValues: yValuesOutline,
-                    x1Values: x1ValuesOutline,
-                    y1Values: y1ValuesOutline,
-                }),
-                columnXMode: EColumnMode.StartEnd,
-                columnYMode: EColumnYMode.TopBottom,
-                stroke: appTheme.DarkIndigo,
-                strokeThickness: 0,
-                fill: "#ffffff00",
-            });
+            sciChartSurface.renderableSeries.add(backgroundRectangle, rectangleSeries);
 
             const annotation = new TextAnnotation({
-                x1: 5.5 + position * 20,
+                x1: 5.5 + position * width * 2,
                 y1: -11,
-                text: label, //yVal.toString(),
                 fontSize: 12,
                 textColor: "#FFFFFF",
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                 verticalAnchorPoint: EVerticalAnchorPoint.Top,
             });
-
-            sciChartSurface.renderableSeries.add(backgroundRectangle, rectangleSeries, rectangleOutlineSeries);
             sciChartSurface.annotations.add(annotation);
+
+            const updateGaugeData = (value: number, label: string) => {
+                dataSeries.clear();
+                const columnYValues = [
+                    -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+                ].filter((y) => y <= value);
+                const xValues = columnYValues.map((d) => position * width * 2);
+                const yValues = columnYValues.map((d, i) => (i === 0 ? columnYValues[0] : columnYValues[i - 1]));
+                dataSeries.appendRange(xValues, yValues, columnYValues);
+                annotation.text = label;
+            };
+            updateGaugeData(value, label);
+
+            return updateGaugeData;
         };
 
-        return { sciChartSurface, createGauge };
+        for (let i = 0; i < 10; i++) {
+            updateFunctions.push(createGauge(0, 10, i, "0"));
+        }
+        return { sciChartSurface };
     };
 
     const onAllChartsInit = () => {
