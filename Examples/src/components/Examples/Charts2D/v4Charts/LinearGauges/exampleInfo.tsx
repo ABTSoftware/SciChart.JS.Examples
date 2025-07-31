@@ -8,12 +8,12 @@ const metaData: IExampleMetadata =
         id: "chart2D_v4Charts_LinearGauges",
         imagePath: "javascript-linear-gauges.jpg",
         description:
-            "Creates a **JavaScript Linear Gauges** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+            "Demonstrates various **JavaScript Linear Gauges** using SciChart.js, combining rectangles and annotations to show simple values in compelling ways.",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Linear Gauges** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Demonstrates various **JavaScript Linear Gauges** using SciChart.js, combining rectangles and annotations to show simple values in compelling ways.",
                 title: "JavaScript Linear Gauges",
                 pageTitle: "JavaScript Linear Gauges | JavaScript Charts | SciChart.js",
                 metaDescription: null,
@@ -22,7 +22,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Creates a **React Linear Gauges** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Demonstrates various **React Linear Gauges** using SciChart.js, combining rectangles and annotations to show simple values in compelling ways.",
                 title: "React Linear Gauges",
                 pageTitle: "React Linear Gauges | JavaScript Charts | SciChart.js",
                 metaDescription: null,
@@ -31,7 +31,7 @@ const metaData: IExampleMetadata =
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Linear Gauges** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
+                    "Demonstrates various **Angular Linear Gauges** using SciChart.js, combining rectangles and annotations to show simple values in compelling ways.",
                 title: "Angular Linear Gauges",
                 pageTitle: "Angular Linear Gauges | JavaScript Charts | SciChart.js",
                 metaDescription: null,

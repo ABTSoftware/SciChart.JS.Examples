@@ -4,9 +4,9 @@ import {
     PolarPanModifier,
     PolarNumericAxis,
     SciChartPolarSurface,
-    EPolarAxisMode, 
-    NumberRange, 
-    EAxisAlignment, 
+    EPolarAxisMode,
+    NumberRange,
+    EAxisAlignment,
     EPolarLabelMode,
     PolarLegendModifier,
     PolarLineRenderableSeries,
@@ -54,7 +54,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const ANIMATION_DURATION = 500;
     const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    const yValues = [3, 4, 2, 4, 5, 3, 5, 3, 4];
+    const yValues = [3, 4, 2, 4, 5, 5, 3, 2, 4];
 
     // 1. regular polar line
     const regularPolarLine = new PolarLineRenderableSeries(wasmContext, {
@@ -79,36 +79,26 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         animation: new WaveAnimation({ duration: ANIMATION_DURATION, delay: ANIMATION_DURATION }),
     });
     // Add cubic bezier transform
-    const cubicTransform = new SplineRenderDataTransform(
-        cubicPolarLine, 
-        wasmContext, 
-        [cubicPolarLine.drawingProviders[0]]
-    );
+    const cubicTransform = new SplineRenderDataTransform(cubicPolarLine, wasmContext, [
+        cubicPolarLine.drawingProviders[0],
+    ]);
     cubicTransform.interpolationPoints = 30;
     cubicPolarLine.renderDataTransform = cubicTransform;
 
-    // 3. bezier polar line
-    const bezierPolarLine = new PolarLineRenderableSeries(wasmContext, {
+    // 3. interpolated polar line
+    const interpolatedPolarLine = new PolarLineRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues,
             yValues,
-            dataSeriesName: "Bezier",
+            dataSeriesName: "Interpolated",
         }),
+        interpolateLine: true, //
         stroke: appTheme.VividPurple,
         strokeThickness: 5,
-        animation: new WaveAnimation({ duration: ANIMATION_DURATION, delay: 2 * ANIMATION_DURATION })
+        animation: new WaveAnimation({ duration: ANIMATION_DURATION, delay: 2 * ANIMATION_DURATION }),
     });
-    // Add cubic bezier transform
-    const bezierTransform = new BezierRenderDataTransform(
-        bezierPolarLine, 
-        wasmContext, 
-        [bezierPolarLine.drawingProviders[0]]
-    );
-    bezierTransform.curvature = 0.5;
-    bezierTransform.interpolationPoints = 30;
-    bezierPolarLine.renderDataTransform = bezierTransform;
-    
-    sciChartSurface.renderableSeries.add(regularPolarLine, cubicPolarLine, bezierPolarLine);
+
+    sciChartSurface.renderableSeries.add(regularPolarLine, cubicPolarLine, interpolatedPolarLine);
 
     sciChartSurface.chartModifiers.add(
         new PolarPanModifier(),

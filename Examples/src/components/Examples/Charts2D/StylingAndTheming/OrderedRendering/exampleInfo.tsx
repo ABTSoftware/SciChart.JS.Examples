@@ -8,32 +8,32 @@ const metaData: IExampleMetadata =
         id: "chart2D_stylingAndTheming_OrderedRendering",
         imagePath: "javascript-ordered-rendering.jpg",
         description:
-            "Demonstrates how to create a **Ordered Rendering** example with **FastBandRenderableSeries** and a **NativeTextAnnotation**",
+            "Demonstrates the new **Ordered Rendering** feature in SciChart.js Javascript charts which allows for full control of the draw order of series and annotations",
         tips: [],
         frameworks: {
             javascript: {
                 subtitle:
-                    "Demonstrates how to create a **OrderedRendering** example with **FastBandRenderableSeries** and a **NativeTextAnnotation**",
+                    "Demonstrates the new **Ordered Rendering** feature in SciChart.js Javascript charts which allows for full control of the draw order of series and annotations",
                 title: "Ordered Rendering",
                 pageTitle: "Ordered Rendering | JavaScript Charts | View Examples",
                 metaDescription: null,
-                markdownContent: null
+                markdownContent: null,
             },
             react: {
                 subtitle:
-                    "Demonstrates how to create a **Ordered Rendering** example with **FastBandRenderableSeries** and a **NativeTextAnnotation**",
+                    "Demonstrates the new **Ordered Rendering** feature in SciChart.js React charts which allows for full control of the draw order of series and annotations",
                 title: "Ordered Rendering",
                 pageTitle: "Ordered Rendering | JavaScript Charts | View Examples",
                 metaDescription: null,
-                markdownContent: null
+                markdownContent: null,
             },
             angular: {
                 subtitle:
-                    "Demonstrates how to create a **Angular Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Framework example with **FastBandRenderableSeries** and a **NativeTextAnnotation**",
+                    "Demonstrates the new **Ordered Rendering** feature in SciChart.js React charts which allows for full control of the draw order of series and annotations",
                 title: "Angular Band Chart",
                 pageTitle: "Angular Band Chart | JavaScript Charts | View Examples",
                 metaDescription: null,
-                markdownContent: null
+                markdownContent: null,
             },
         },
         documentationLinks: [
@@ -44,7 +44,7 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "ordered-rendering",
-        metaKeywords: "band, chart, javascript, webgl, canvas",
+        metaKeywords: "series, annotation, z-index, order, rendering, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/StylingAndTheming/OrderedRendering",
         thumbnailImage: "javascript-band-chart.jpg",
@@ -52,7 +52,7 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: true
+        isNew: true,
     };
 //// End of computer generated metadata
 
