@@ -312,7 +312,7 @@ export const getChartsInitializationApi = () => {
         );
 
         sciChartSurface.chartModifiers.add(
-            new PointDragModifier(),
+            new PointDragModifier({ executeCondition: { button: EExecuteOn.MouseLeftButton } }),
             new ZoomPanModifier({ executeCondition: { button: EExecuteOn.MouseRightButton } }),
             new MouseWheelZoomModifier()
         );
@@ -482,7 +482,7 @@ export const getChartsInitializationApi = () => {
 
         const outputColors = ["#0bf4cd", "#f4840b", "#0bdef4", "#f6086c", "#112cce", "#9002a1"];
 
-        const addIO = new AddIOModifier();
+        const addIO = new AddIOModifier({ executeCondition: { button: EExecuteOn.MouseLeftButton } });
 
         const inputColors = ["#68bcae", "#e97064", "#47bde6", "#ae418d", "#274b92", "#634e96"];
 

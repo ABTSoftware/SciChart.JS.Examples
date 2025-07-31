@@ -134,17 +134,21 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const POINTS = 1000;
 
-    // Create an XAxis and YAxis
+    // Shared X axis
     const xAxis = new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, POINTS) });
-
     sciChartSurface.xAxes.add(xAxis);
 
+    // Separate Y axes for the data and events
     const yAxis = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Left,
         growBy: new NumberRange(0.05, 0.1),
     });
+    const yEventAxis = new NumericAxis(wasmContext, {
+        isVisible: false,
+        visibleRange: new NumberRange(0, 12),
+    });
 
-    sciChartSurface.yAxes.add(yAxis);
+    sciChartSurface.yAxes.add(yAxis, yEventAxis);
 
     // Create arrays of x, y values (just arrays of numbers)
     const { xValues, yValues } = new RandomWalkGenerator().getRandomWalkSeries(POINTS);
@@ -159,6 +163,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
+    // Our event bars will have variable width, but fixed height, so we use Xyx data
     const eventDataSeries = new XyxDataSeries(wasmContext);
 
     // Create event data.  Prevent overlap of events
@@ -168,7 +173,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     for (let i = 0; i < EVENTCOUNT; i++) {
         start = start + Math.random() * ((2 * POINTS) / EVENTCOUNT);
         const end = start + 1 + Math.random() * ((2 * POINTS) / EVENTCOUNT);
-        let row = 16;
+        let row = 10;
         if (i === 0) {
             rows.set(row, end);
         } else {
@@ -183,7 +188,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         eventDataSeries.append(start, row, end, { isSelected: false });
     }
 
-    class MyRectangleSeriesDataLabelProvider extends RectangleSeriesDataLabelProvider {
+    // Create a custom DataLabelProvider which uses the width of the bar as the value to display
+    class BarWidthDataLabelProvider extends RectangleSeriesDataLabelProvider {
         public getText(state: RectangleDataLabelState): string {
             const usefinal = !this.updateTextInAnimation && state.parentSeries.isRunningAnimation;
             const yval = usefinal ? state.yValAfterAnimation() : state.yVal();
@@ -202,6 +208,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const eventSeries = new FastRectangleRenderableSeries(wasmContext, {
         dataSeries: eventDataSeries,
+        yAxisId: yEventAxis.id,
         columnXMode: EColumnMode.StartEnd,
         columnYMode: EColumnYMode.CenterHeight,
         defaultY1: defaultHeight,
@@ -209,7 +216,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         strokeThickness: 1,
         fill: "ff00004D",
         // opacity: 0.8,
-        dataLabelProvider: new MyRectangleSeriesDataLabelProvider({
+        dataLabelProvider: new BarWidthDataLabelProvider({
             style: {
                 fontSize: 12,
             },
@@ -219,19 +226,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     sciChartSurface.renderableSeries.add(eventSeries);
 
-    // Add modifiers
+    // Configure modifiers to only affect the data Y axis
     sciChartSurface.chartModifiers.add(
-        // Use manual zoomExtents behaviour to prevent it zooming the event axes
-        new ZoomExtentsModifier({
-            onZoomExtents: (sciChartSurface: SciChartSurface) => {
-                xAxis.visibleRange = xAxis.getMaximumRange();
-                yAxis.visibleRange = yAxis.getMaximumRange();
-                // false here prevents default behaviour
-                return false;
-            },
-        }),
-        new MouseWheelZoomModifier({ excludedYAxisIds: ["EventY"], excludedXAxisIds: ["EventX"] }),
-        new ZoomPanModifier({ excludedXAxisIds: ["EventX"] }),
+        new ZoomExtentsModifier({ includedYAxisIds: [yAxis.id] }),
+        new MouseWheelZoomModifier({ includedYAxisIds: [yAxis.id] }),
+        new ZoomPanModifier({ includedYAxisIds: [yAxis.id] }),
         new RectangleDragModifier(eventSeries)
     );
 
