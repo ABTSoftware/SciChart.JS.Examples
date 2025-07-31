@@ -88,7 +88,6 @@ export default function ChartComponent() {
                         setMapFunc.current = setMap;
                         setViewFunc.current = setView;
                         setMapJsonFunc.current = setMapJson;
-                        // clearMapFunc.current = clearMap;
                     }}
                 />
             ) : null}

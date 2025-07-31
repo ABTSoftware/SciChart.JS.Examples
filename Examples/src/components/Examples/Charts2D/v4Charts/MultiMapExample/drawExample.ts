@@ -66,27 +66,6 @@ function preserveAspectRatio(
 let dataArray: any[] = [];
 let outlines: number[][][] = [];
 
-// function setMapJson(mapJson: { features: any[] }) {
-//     dataArray = [];
-//     outlines = [];
-
-//     mapJson?.features.forEach((state, i) => {
-//         if (state.geometry.type === "Polygon") {
-//             let area = state.geometry.coordinates[0];
-
-//             outlines.push(area);
-//         } else {
-//             let polyArea = state.geometry.coordinates;
-
-//             polyArea.forEach((a: any[]) => {
-//                 let area = a[0];
-
-//                 outlines.push(area);
-//             });
-//         }
-//     });
-// }
-
 function setConvertedData(convertedData: any[]) {
     outlines = [];
     dataArray = convertedData;
@@ -113,8 +92,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChartSurface.renderableSeries.clear(true);
     };
 
-    let triangeCount = 0;
-
     const setMap = () => {
         // outline
 
@@ -132,8 +109,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             "#003c30",
         ];
 
-        // const colors = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928']
-
         const series = dataArray.map((d, i) => {
             const dataSeries = new XyDataSeries(wasmContext, {
                 xValues: d.areaData.map((p: any[]) => p[0]),
@@ -143,23 +118,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             const triangleSeries = new FastTriangleRenderableSeries(wasmContext, {
                 dataSeries: dataSeries,
                 drawMode: ETriangleSeriesDrawMode.List,
-                // fill: "steelblue", //interpolateColor(min, max, keyData[d.name][key]),
                 fill: colors[(i % colors.length) + 1],
                 opacity: 0.5,
             });
 
-            triangeCount += dataSeries.count() / 3;
-
             return triangleSeries;
         });
-
-        console.log({ triangeCount });
-        triangeCount = 0;
 
         sciChartSurface.renderableSeries.add(...series);
 
         // outline
-
         const outlinesSC = outlines.map((outline) => {
             const xVals = outline.map((d) => d[0]);
             const yVals = outline.map((d) => d[1]);
@@ -181,25 +149,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         });
 
         sciChartSurface.renderableSeries.add(...outlinesSC);
-
-        // const outlinesSC = outlines.map((outline) => {
-        //     const xVals = outline.map((d) => d[0]);
-        //     const yVals = outline.map((d) => d[1]);
-
-        //     const lineSeries = new FastLineRenderableSeries(wasmContext, {
-        //         dataSeries: new XyDataSeries(wasmContext, {
-        //             xValues: xVals,
-        //             yValues: yVals,
-        //         }),
-        //         stroke: appTheme.VividSkyBlue,
-        //         strokeThickness: 2,
-        //         opacity: 0.6,
-        //     });
-
-        //     return lineSeries;
-        // });
-
-        // sciChartSurface.renderableSeries.add(...outlinesSC);
 
         sciChartSurface.zoomExtents();
 

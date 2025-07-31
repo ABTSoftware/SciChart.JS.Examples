@@ -34,7 +34,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             visibleRange: new NumberRange(-180, 180), // longitude
             flippedCoordinates: showFromSouthPole ? true : false,
             axisAlignment: EAxisAlignment.Bottom,
-            // labelPrecision: 2,
             useNativeText: true,
             drawMajorBands: false,
             drawMajorGridLines: false,
@@ -48,7 +47,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             polarAxisMode: EPolarAxisMode.Radial,
             visibleRange: new NumberRange(-90, 90), // latitude
             axisAlignment: EAxisAlignment.Left,
-            // labelPrecision: 2,
             flippedCoordinates: showFromSouthPole ? false : true,
             useNativeText: true,
             drawMajorBands: false,
@@ -103,7 +101,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         dataArray = [];
 
         mapData?.features.forEach((state, i) => {
-            // popArr.push(state.properties.POP_EST);
             if (state.geometry.type === "Polygon") {
                 let area = state.geometry.coordinates[0];
                 area.pop();
