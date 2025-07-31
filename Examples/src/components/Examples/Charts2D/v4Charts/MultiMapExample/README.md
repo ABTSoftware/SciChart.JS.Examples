@@ -1,62 +1,69 @@
-# Band Series Chart
+# Multi-Map Example
 
 ## Overview
 
-This example demonstrates how to create a band series chart using SciChart.js. It renders two distinct band series with different styling and animations, and provides implementations for React (TSX), Angular (TS), and Vanilla JavaScript.
+This example demonstrates how to create a **multi-map visualization** using SciChart.js by combining `FastTriangleRenderableSeries` for filled regions with `FastLineRenderableSeries` for outlines. The implementation features geographic data rendering through triangle meshes, dynamic aspect ratio preservation, and interactive zoom/pan functionality.
 
 ## Technologies Used
 
--   SciChart.js – High performance charting library
--   Angular – For Angular integration
--   React – For React integration
--   Vanilla JavaScript – For plain JavaScript implementation
--   TypeScript – Used in Angular and Vanilla examples
+- SciChart.js - High performance WebGL charting library
+- GeoJSON data processing
+- Constrained Delaunay triangulation algorithm
+- TypeScript - For type-safe implementation
 
 ## Code Explanation
 
-The example is structured around a central function, `drawExample`, defined in both JavaScript and TypeScript versions. This function creates a SciChartSurface, adds numeric X and Y axes, generates data for X, Y, and Y1 values, and renders two band series using `XyyDataSeries`. One series uses solid fill colors with transparent overlays and a SweepAnimation, while the second series is styled with linear gradient fills. Interactivity is added via zoom extents, pan, and mouse wheel zoom modifiers. The framework-specific files include:
+The core functionality revolves around the `drawExample` function which:
 
--   **angular.ts**: An Angular component that initializes the chart using the SciChart Angular component.
--   **index.tsx**: A React component that utilizes the SciChartReact wrapper to create the chart.
--   **vanilla.js / vanilla.ts**: Vanilla JavaScript and TypeScript implementations that call `drawExample` and provide a cleanup mechanism.
--   **javascript-band-chart.jpg**: An image asset that likely serves as a preview or thumbnail for the example.
+1. **Creates the SciChartSurface** with X and Y numeric axes
+2. **Implements aspect ratio preservation** through the `preserveAspectRatio` helper function that maintains correct proportions during resizing
+3. **Handles map data** via:
+   - `setConvertedData` - Processes converted geographic data into renderable formats
+   - `setMap` - Creates the visualization using:
+     - `FastTriangleRenderableSeries` with `ETriangleSeriesDrawMode.List` for filled regions
+     - `FastLineRenderableSeries` for border outlines
+4. **Provides cleanup** through `clearMap` function
+5. **Adds interactivity** with ZoomExtentsModifier, ZoomPanModifier and MouseWheelZoomModifier
+
+The example also includes a comprehensive `transformToAlbersUSA` function that handles geographic projection transformations for proper US map display, including special handling for Alaska and Hawaii.
 
 ## Customization
 
-Key configuration options in this example include:
+Key customization aspects include:
 
--   **Animation Duration**: The SweepAnimation is set to 800 milliseconds for both band series.
--   **Chart Styling**: The example uses theme-based colors (such as VividOrange and VividSkyBlue) for strokes and fills, with variations including solid fills with transparency and linear gradient fills.
--   **Interactivity**: Interactive modifiers such as ZoomExtentsModifier, ZoomPanModifier, and MouseWheelZoomModifier are added to provide a dynamic user experience.
+1. **Aspect Ratio Preservation**: The `preserveAspectRatio` function dynamically adjusts visible ranges to maintain correct proportions when the chart is resized. This is implemented through a `preRender` subscription that recalculates ranges before each frame.
+
+2. **Color Palette**: The example uses a predefined color palette (11 Brewer colors) for differentiating regions, with automatic cycling when there are more regions than colors.
+
+3. **Projection System**: The custom Albers USA projection system handles:
+   - Different projection parameters for continental US, Alaska and Hawaii
+   - Special scaling and positioning for Alaska and Hawaii
+   - Coordinate transformation for all geographic features
+
+4. **Performance Optimization**: The implementation counts rendered triangles (logged to console) to monitor rendering performance.
 
 ## Running the Example
 
-To run any example from the SciChart.JS.Examples repository, follow these steps:
+To run this example from the SciChart.JS.Examples repository:
 
-1. **Clone the Repository**: Download the entire repository to your local machine using Git:
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
+   ```
 
-    ```bash
-    git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
-    ```
+2. **Navigate to the Examples Directory**:
+   ```bash
+   cd SciChart.JS.Examples/Examples
+   ```
 
-2. **Navigate to the Examples Directory**: Change into the `Examples` folder:
+3. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-    ```bash
-    cd SciChart.JS.Examples/Examples
-    ```
+4. **Run the Development Server**:
+   ```bash
+   npm run dev
+   ```
 
-3. **Install Dependencies**: Install the necessary packages using npm:
-
-    ```bash
-    npm install
-    ```
-
-4. **Run the Development Server**: Start the development server to view and interact with the examples:
-
-    ```bash
-    npm run dev
-    ```
-
-    This will launch the demo application, allowing you to explore various examples, including the one in question.
-
-    For more detailed instructions, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md).
+For more detailed instructions, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md).

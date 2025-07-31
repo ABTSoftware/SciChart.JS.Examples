@@ -1,62 +1,76 @@
-# Band Series Chart
+# Ordered Rendering Example
 
 ## Overview
 
-This example demonstrates how to create a band series chart using SciChart.js. It renders two distinct band series with different styling and animations, and provides implementations for React (TSX), Angular (TS), and Vanilla JavaScript.
+This example demonstrates how to create an **Ordered Rendering** visualization using SciChart.js. It features multiple **FastBandRenderableSeries** with annotations that can be reordered dynamically, showing how elements can be rendered between series layers for advanced visual effects.
 
 ## Technologies Used
 
--   SciChart.js – High performance charting library
--   Angular – For Angular integration
--   React – For React integration
--   Vanilla JavaScript – For plain JavaScript implementation
--   TypeScript – Used in Angular and Vanilla examples
+- SciChart.js – High performance WebGL charting library
+- TypeScript – Used for type-safe implementation
 
 ## Code Explanation
 
-The example is structured around a central function, `drawExample`, defined in both JavaScript and TypeScript versions. This function creates a SciChartSurface, adds numeric X and Y axes, generates data for X, Y, and Y1 values, and renders two band series using `XyyDataSeries`. One series uses solid fill colors with transparent overlays and a SweepAnimation, while the second series is styled with linear gradient fills. Interactivity is added via zoom extents, pan, and mouse wheel zoom modifiers. The framework-specific files include:
+The example creates a SciChartSurface with X and Y axes, then generates three band series with sinusoidal data. Key components include:
 
--   **angular.ts**: An Angular component that initializes the chart using the SciChart Angular component.
--   **index.tsx**: A React component that utilizes the SciChartReact wrapper to create the chart.
--   **vanilla.js / vanilla.ts**: Vanilla JavaScript and TypeScript implementations that call `drawExample` and provide a cleanup mechanism.
--   **javascript-band-chart.jpg**: An image asset that likely serves as a preview or thumbnail for the example.
+1. **Band Series Creation**:
+   - Three `FastBandRenderableSeries` are created with different vertical offsets
+   - Each uses `XyyDataSeries` for upper/lower band boundaries
+   - Series are styled with different colors and opacity
+
+2. **Annotations**:
+   - `NativeTextAnnotation` labels (1., 2., 3.) are positioned relative to each band
+   - A main text annotation explains the rendering order concept
+   - A `BoxAnnotation` provides background for the main text
+
+3. **Dynamic Rendering Order**:
+   - An animation cycles through render orders (0.5 to 4.0)
+   - The `changeOrder` function allows toggling series rendering order
+   - Annotations use `renderLayer: EDefaultRenderLayer.SeriesLayer` to appear between series
+
+4. **Interactivity**:
+   - Standard modifiers (ZoomExtents, ZoomPan, MouseWheelZoom) are included
+   - The example demonstrates how to control rendering order programmatically
 
 ## Customization
 
-Key configuration options in this example include:
+Key customization aspects in this example:
 
--   **Animation Duration**: The SweepAnimation is set to 800 milliseconds for both band series.
--   **Chart Styling**: The example uses theme-based colors (such as VividOrange and VividSkyBlue) for strokes and fills, with variations including solid fills with transparency and linear gradient fills.
--   **Interactivity**: Interactive modifiers such as ZoomExtentsModifier, ZoomPanModifier, and MouseWheelZoomModifier are added to provide a dynamic user experience.
+1. **Render Layer Control**:
+   - The example explicitly sets `renderLayer` on annotations to `EDefaultRenderLayer.SeriesLayer`
+   - This allows annotations to render between series rather than above/below all series
+
+2. **Render Order Animation**:
+   - A `GenericAnimation` dynamically updates the `renderOrder` property
+   - The animation smoothly transitions between different render orders
+   - The text annotation updates to display the current render order value
+
+3. **Relative Positioning**:
+   - Annotations use `xCoordinateMode: ECoordinateMode.Relative` for responsive positioning
+   - The `renderNextTo` property ensures labels stay aligned with their respective series
 
 ## Running the Example
 
-To run any example from the SciChart.JS.Examples repository, follow these steps:
+To run this example from the SciChart.JS.Examples repository:
 
-1. **Clone the Repository**: Download the entire repository to your local machine using Git:
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
+   ```
 
-    ```bash
-    git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
-    ```
+2. **Navigate to the Examples Directory**:
+   ```bash
+   cd SciChart.JS.Examples/Examples
+   ```
 
-2. **Navigate to the Examples Directory**: Change into the `Examples` folder:
+3. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-    ```bash
-    cd SciChart.JS.Examples/Examples
-    ```
+4. **Run the Development Server**:
+   ```bash
+   npm run dev
+   ```
 
-3. **Install Dependencies**: Install the necessary packages using npm:
-
-    ```bash
-    npm install
-    ```
-
-4. **Run the Development Server**: Start the development server to view and interact with the examples:
-
-    ```bash
-    npm run dev
-    ```
-
-    This will launch the demo application, allowing you to explore various examples, including the one in question.
-
-    For more detailed instructions, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md).
+For more details, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md).

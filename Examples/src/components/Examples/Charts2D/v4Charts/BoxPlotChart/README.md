@@ -1,63 +1,83 @@
-# Column Chart Example
+# Box Plot Chart
 
 ## Overview
 
-This example demonstrates how to create a column chart using the SciChart.JS library. The example showcases implementations for multiple frameworks including Angular, React, and Vanilla JavaScript/TypeScript. A column chart is rendered with animated columns, gradient fills, styled data labels, and interactive zooming and panning modifiers.
+This example demonstrates how to create a **Box Plot Chart** using SciChart.js, showcasing four distinct box plot visualizations in sub-surfaces. Each plot displays statistical data distribution through minimum, maximum, median, and quartile values using the **FastBoxPlotRenderableSeries** chart type.
 
 ## Technologies Used
 
--   **SciChart.JS Library** for high performance chart rendering
--   **Angular** (standalone Angular component using scichart-angular)
--   **React** (using SciChartReact component)
--   **Vanilla JavaScript/TypeScript** for a framework-independent implementation
--   Various SciChart modules such as: NumericAxis, FastColumnRenderableSeries, XyDataSeries, WaveAnimation, PaletteFactory, and several chart modifiers (ZoomPanModifier, ZoomExtentsModifier, MouseWheelZoomModifier)
+- SciChart.js – High performance WebGL/Canvas charting library
+- TypeScript – Used for type-safe implementations
+- React/Angular/Vanilla JS – Framework-specific integrations available
 
 ## Code Explanation
 
--   **drawExample.js / drawExample.ts**: These files contain the core logic to create the SciChartSurface, add X and Y axes, and render the column series. The column series is configured with a semi-transparent fill color, a stroke with adjustable thickness, a specified data point width, and rounded corners. Data labels are positioned above each column with custom styling. A wave animation (with a 1000ms duration) is applied when the series is displayed. A palette provider creates a horizontal gradient that transitions through vivid colors.
--   **angular.ts**: This Angular component uses the SciChart Angular integration to initialize the chart by referencing the drawExample function. It demonstrates how to embed SciChart into an Angular standalone component.
--   **index.tsx**: The React implementation wraps the drawExample function into a React component using the SciChartReact helper component. This allows the chart to be displayed within a React application.
--   **vanilla.js / vanilla.ts**: These files provide a framework-agnostic setup. They execute the drawExample function on a DOM element (with id "chart") and return a cleanup function to dispose of the chart when necessary.
--   **javascript-column-chart.jpg**: An image asset that likely depicts the rendered column chart for reference.
+The example centers around the `drawExample` function which creates a `SciChartSurface` with four sub-surfaces using `SciChartSubSurface`. Each sub-surface contains:
+
+1. **Axes Configuration**:
+   - First sub-surface uses `CategoryAxis` for X-values and `NumericAxis` for Y-values with `flippedCoordinates: true`
+   - Second sub-surface uses dual `NumericAxis` for both X and Y values
+   - Axes are configured with `growBy` padding and automatic ranging
+
+2. **Box Plot Series**:
+   - Created using `FastBoxPlotRenderableSeries` with `BoxPlotDataSeries` for data storage
+   - Each series displays:
+     - Minimum/maximum values (whiskers)
+     - Lower/upper quartiles (box)
+     - Median line
+   - Two different `dataPointWidthMode` configurations demonstrated:
+     - `EDataPointWidthMode.Relative` (proportional spacing)
+     - `EDataPointWidthMode.Range` (fixed width)
+
+3. **Styling Customization**:
+   - Independent styling for whiskers, caps, and median lines
+   - Semi-transparent fill colors using hex+alpha notation (e.g., `"#color+66"`)
+   - Custom stroke dash arrays for whiskers
 
 ## Customization
 
-The example is highly configurable with several key options:
+Key non-obvious configurations in this example include:
 
--   **Data Series Configuration**: The x-values and y-values arrays define the dataset for the column chart.
--   **Column Series Styling**: The fill color (with transparency), stroke, stroke thickness, data point width, and corner radius can be modified to change the appearance of the columns.
--   **Data Labels**: Options such as horizontal and vertical text positions, font family, font size, and padding are configurable.
--   **Animation**: The WaveAnimation is set to a duration of 1000ms, which can be adjusted for different visual effects.
--   **Interactivity**: Zooming and panning are enabled by adding modifiers like the ZoomPanModifier, ZoomExtentsModifier, and MouseWheelZoomModifier.
+1. **Coordinate Flipping**:
+   - The first sub-surface demonstrates `flippedCoordinates: true` which inverts the X/Y axis positions while maintaining data orientation
+
+2. **Whisker Styling**:
+   - Custom `strokeDashArray: [5, 5]` creates dashed whisker lines
+   - Separate `stroke` colors for whiskers vs. box outline
+
+3. **Data Point Width Modes**:
+   - `EDataPointWidthMode.Relative` (0.5 = 50% of available space)
+   - `EDataPointWidthMode.Range` (0.6 = fixed width in axis units)
+
+4. **Sub-Surface Layout**:
+   - Precise positioning using `Rect(0, 0, 0.5, 1)` for 50% width splits
+   - Independent theme application per sub-surface
 
 ## Running the Example
 
-To run any example from the SciChart.JS.Examples repository, follow these steps:
+To run this example from the SciChart.JS.Examples repository:
 
-1. **Clone the Repository**: Download the entire repository to your local machine using Git:
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
+   ```
 
-    ```bash
-    git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
-    ```
+2. **Navigate to Examples**:
+   ```bash
+   cd SciChart.JS.Examples/Examples
+   ```
 
-2. **Navigate to the Examples Directory**: Change into the `Examples` folder:
+3. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-    ```bash
-    cd SciChart.JS.Examples/Examples
-    ```
+4. **Run Development Server**:
+   ```bash
+   npm run dev
+   ```
 
-3. **Install Dependencies**: Install the necessary packages using npm:
-
-    ```bash
-    npm install
-    ```
-
-4. **Run the Development Server**: Start the development server to view and interact with the examples:
-
-    ```bash
-    npm run dev
-    ```
-
-    This will launch the demo application, allowing you to explore various examples, including the one in question.
-
-For more detailed instructions, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md).
+For framework-specific implementations, refer to:
+- [React Documentation](https://www.scichart.com/documentation/js/current/TutorialReusableReactComponent.html)
+- [Angular Documentation](https://www.npmjs.com/package/scichart-angular)
+- [Box Plot Series Documentation](https://www.scichart.com/documentation/js/current/The%20Box%20Plot%20Series%20Type.html)

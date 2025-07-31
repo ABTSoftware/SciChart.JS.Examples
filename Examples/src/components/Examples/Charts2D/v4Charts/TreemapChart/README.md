@@ -1,63 +1,77 @@
-# Column Chart Example
+# Treemap Chart
 
 ## Overview
 
-This example demonstrates how to create a column chart using the SciChart.JS library. The example showcases implementations for multiple frameworks including Angular, React, and Vanilla JavaScript/TypeScript. A column chart is rendered with animated columns, gradient fills, styled data labels, and interactive zooming and panning modifiers.
+This example demonstrates how to create a **Treemap Chart** using SciChart.js, visualizing hierarchical data with rectangles sized by value. The implementation leverages [FastRectangleRenderableSeries](https://www.scichart.com/documentation/js/current/typedoc/classes/fastrectanglerenderableseries.html) and integrates with D3.js for layout calculations.
 
 ## Technologies Used
 
--   **SciChart.JS Library** for high performance chart rendering
--   **Angular** (standalone Angular component using scichart-angular)
--   **React** (using SciChartReact component)
--   **Vanilla JavaScript/TypeScript** for a framework-independent implementation
--   Various SciChart modules such as: NumericAxis, FastColumnRenderableSeries, XyDataSeries, WaveAnimation, PaletteFactory, and several chart modifiers (ZoomPanModifier, ZoomExtentsModifier, MouseWheelZoomModifier)
+-   SciChart.js – High performance WebGL charting library
+-   D3-hierarchy – For treemap layout computations
+-   TypeScript – Used in the example
+-   React/Angular/Vanilla JS – Framework-specific implementations available
 
 ## Code Explanation
 
--   **drawExample.js / drawExample.ts**: These files contain the core logic to create the SciChartSurface, add X and Y axes, and render the column series. The column series is configured with a semi-transparent fill color, a stroke with adjustable thickness, a specified data point width, and rounded corners. Data labels are positioned above each column with custom styling. A wave animation (with a 1000ms duration) is applied when the series is displayed. A palette provider creates a horizontal gradient that transitions through vivid colors.
--   **angular.ts**: This Angular component uses the SciChart Angular integration to initialize the chart by referencing the drawExample function. It demonstrates how to embed SciChart into an Angular standalone component.
--   **index.tsx**: The React implementation wraps the drawExample function into a React component using the SciChartReact helper component. This allows the chart to be displayed within a React application.
--   **vanilla.js / vanilla.ts**: These files provide a framework-agnostic setup. They execute the drawExample function on a DOM element (with id "chart") and return a cleanup function to dispose of the chart when necessary.
--   **javascript-column-chart.jpg**: An image asset that likely depicts the rendered column chart for reference.
+The example centers around the `drawExample` function which:
+
+1. **Initializes the SciChartSurface** with hidden axes (since coordinates are managed by D3's layout)
+2. **Processes hierarchical data** using D3's `stratify()` and `treemap()` functions to compute rectangle positions
+3. **Creates a FastRectangleRenderableSeries** with:
+   - `XyxyDataSeries` defining rectangle bounds (x0,y0,x1,y1)
+   - Custom `StockTreemapPaletteProvider` for color-coding based on percentage change
+   - Dynamic `TreemapDataLabelProvider` that adjusts labels based on rectangle size
+4. **Adds interactivity** with ZoomPanModifier and MouseWheelZoomModifier
+
+Key components include:
+
+- **StockTreemapPaletteProvider**: Implements color interpolation between gray (neutral), green (positive change) and red (negative change) based on percentage values
+- **TreemapDataLabelProvider**: Dynamically shows more/less text based on available rectangle space
+- **D3 Integration**: Uses `d3-hierarchy` for the treemap layout algorithm
 
 ## Customization
 
-The example is highly configurable with several key options:
+Notable customization points:
 
--   **Data Series Configuration**: The x-values and y-values arrays define the dataset for the column chart.
--   **Column Series Styling**: The fill color (with transparency), stroke, stroke thickness, data point width, and corner radius can be modified to change the appearance of the columns.
--   **Data Labels**: Options such as horizontal and vertical text positions, font family, font size, and padding are configurable.
--   **Animation**: The WaveAnimation is set to a duration of 1000ms, which can be adjusted for different visual effects.
--   **Interactivity**: Zooming and panning are enabled by adding modifiers like the ZoomPanModifier, ZoomExtentsModifier, and MouseWheelZoomModifier.
+1. **Color Interpolation**: The palette provider implements a custom interpolation algorithm that:
+   - Handles neutral (0%) cases explicitly
+   - Brightens stroke colors by 60% for better visibility
+   - Uses ARGB component-wise interpolation for smooth gradients
+
+2. **Dynamic Labeling**: The data label provider shows:
+   - Full name + percentage for large rectangles (>30k area)
+   - Short name + percentage for medium rectangles (>15k)
+   - Initials only for small rectangles (>1.5k)
+   - Nothing for very small items
+
+3. **D3 Layout Configuration**: 
+   ```typescript
+   treemap().size([WIDTH, HEIGHT]).padding(0.1)(root);
+   ```
+   Controls the overall dimensions and spacing between rectangles
 
 ## Running the Example
 
-To run any example from the SciChart.JS.Examples repository, follow these steps:
+To run this example from the SciChart.JS.Examples repository:
 
-1. **Clone the Repository**: Download the entire repository to your local machine using Git:
-
+1. **Clone the Repository**:
     ```bash
     git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
     ```
 
-2. **Navigate to the Examples Directory**: Change into the `Examples` folder:
-
+2. **Navigate to the Examples Directory**:
     ```bash
     cd SciChart.JS.Examples/Examples
     ```
 
-3. **Install Dependencies**: Install the necessary packages using npm:
-
+3. **Install Dependencies**:
     ```bash
     npm install
     ```
 
-4. **Run the Development Server**: Start the development server to view and interact with the examples:
-
+4. **Run the Development Server**:
     ```bash
     npm run dev
     ```
 
-    This will launch the demo application, allowing you to explore various examples, including the one in question.
-
-For more detailed instructions, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md).
+For framework-specific implementations, refer to the corresponding React, Angular or Vanilla JS files in the example directory.

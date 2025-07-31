@@ -1,62 +1,80 @@
-# Band Series Chart
+# Map Example - Choropleth Map of Australia
 
 ## Overview
 
-This example demonstrates how to create a band series chart using SciChart.js. It renders two distinct band series with different styling and animations, and provides implementations for React (TSX), Angular (TS), and Vanilla JavaScript.
+This example demonstrates how to create an interactive **Choropleth map** of Australia using SciChart.js. It visualizes geographic data with color-coded regions based on population metrics using `FastTriangleRenderableSeries` for terrain coloring and `FastLineRenderableSeries` for state outlines.
 
 ## Technologies Used
 
--   SciChart.js – High performance charting library
--   Angular – For Angular integration
--   React – For React integration
--   Vanilla JavaScript – For plain JavaScript implementation
--   TypeScript – Used in Angular and Vanilla examples
+- SciChart.js - High performance WebGL charting library
+- Geographic data processing - For map coordinates and triangulation
+- Color interpolation - For dynamic choropleth coloring
+- Aspect ratio preservation - For correct map proportions during resizing
 
 ## Code Explanation
 
-The example is structured around a central function, `drawExample`, defined in both JavaScript and TypeScript versions. This function creates a SciChartSurface, adds numeric X and Y axes, generates data for X, Y, and Y1 values, and renders two band series using `XyyDataSeries`. One series uses solid fill colors with transparent overlays and a SweepAnimation, while the second series is styled with linear gradient fills. Interactivity is added via zoom extents, pan, and mouse wheel zoom modifiers. The framework-specific files include:
+The implementation centers around the `drawExample` function which:
 
--   **angular.ts**: An Angular component that initializes the chart using the SciChart Angular component.
--   **index.tsx**: A React component that utilizes the SciChartReact wrapper to create the chart.
--   **vanilla.js / vanilla.ts**: Vanilla JavaScript and TypeScript implementations that call `drawExample` and provide a cleanup mechanism.
--   **javascript-band-chart.jpg**: An image asset that likely serves as a preview or thumbnail for the example.
+1. **Creates the SciChartSurface** with X and Y axes configured for geographic coordinates
+2. **Processes map data** through `setMapJson` which:
+   - Stores polygon outlines for borders
+   - Calculates polygon centers for labeling
+   - Prepares triangulated area data for coloring
+3. **Renders three main series types**:
+   - `FastTriangleRenderableSeries` in `ETriangleSeriesDrawMode.List` mode for filled regions
+   - `FastLineRenderableSeries` for state/territory borders
+   - `FastBubbleRenderableSeries` with `EllipsePointMarker` for city markers
+4. **Implements dynamic recoloring** through the `setMap` function which:
+   - Recalculates color scales based on selected metric (population, area, or density)
+   - Uses `interpolateColor` for smooth color gradients between values
+5. **Preserves aspect ratio** with custom logic in `preserveAspectRatio` that maintains correct map proportions during resizing
 
 ## Customization
 
-Key configuration options in this example include:
+Key customization aspects in this example include:
 
--   **Animation Duration**: The SweepAnimation is set to 800 milliseconds for both band series.
--   **Chart Styling**: The example uses theme-based colors (such as VividOrange and VividSkyBlue) for strokes and fills, with variations including solid fills with transparency and linear gradient fills.
--   **Interactivity**: Interactive modifiers such as ZoomExtentsModifier, ZoomPanModifier, and MouseWheelZoomModifier are added to provide a dynamic user experience.
+1. **Color Interpolation**:
+   - The `interpolateColor` function creates a smooth gradient between two hex colors (#5dc0c0 to #1e3489)
+   - Values are normalized between min/max ranges of the selected metric
+   - Uses RGB color space interpolation for accurate color transitions
+
+2. **Aspect Ratio Handling**:
+   - The `preserveAspectRatio` function dynamically adjusts axis ranges
+   - Uses container dimensions vs. visible range calculations
+   - Maintains geographic accuracy during resize operations
+
+3. **Data Label Placement**:
+   - City markers use custom metadata for labels
+   - Text positioning is controlled via `EVerticalTextPosition` and `EHorizontalTextPosition`
+   - Includes padding and font styling for readability
+
+4. **Performance Considerations**:
+   - Triangulation is pre-processed for optimal rendering
+   - Console logs triangle count for performance monitoring
+   - Uses WebGL-optimized series types throughout
 
 ## Running the Example
 
-To run any example from the SciChart.JS.Examples repository, follow these steps:
+To run this example from the SciChart.JS.Examples repository:
 
-1. **Clone the Repository**: Download the entire repository to your local machine using Git:
+1. Clone the repository:
+```bash
+git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
+```
 
-    ```bash
-    git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
-    ```
+2. Navigate to the Examples folder:
+```bash
+cd SciChart.JS.Examples/Examples
+```
 
-2. **Navigate to the Examples Directory**: Change into the `Examples` folder:
+3. Install dependencies:
+```bash
+npm install
+```
 
-    ```bash
-    cd SciChart.JS.Examples/Examples
-    ```
+4. Start the development server:
+```bash
+npm run dev
+```
 
-3. **Install Dependencies**: Install the necessary packages using npm:
-
-    ```bash
-    npm install
-    ```
-
-4. **Run the Development Server**: Start the development server to view and interact with the examples:
-
-    ```bash
-    npm run dev
-    ```
-
-    This will launch the demo application, allowing you to explore various examples, including the one in question.
-
-    For more detailed instructions, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md).
+For more details, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md).

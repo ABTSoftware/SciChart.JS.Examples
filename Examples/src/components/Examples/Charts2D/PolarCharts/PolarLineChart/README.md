@@ -48,7 +48,7 @@ The [`drawExample.ts`](src/components/Examples/Charts2D/PolarCharts/PolarLineCha
 ### Core SciChart.js Concepts Demonstrated
 
 -   **Polar Chart Creation**: Using [`SciChartPolarSurface.create()`](src/components/Examples/Charts2D/PolarCharts/PolarLineChart/drawExample.ts:66) to initialize a polar chart.
--   **Axis Configuration**: Customizing angular and radial axes with properties like `startAngle`, `flippedCoordinates`, `totalAngle`, and using specialized `labelProviders`.
+-   **Axis Configuration**: Customizing angular and radial axes with properties like `startAngle`, `flippedCoordinates`, `totalAngle`, and using specialized `labelProviders`. 
 -   **Renderable Series**: Using [`PolarLineRenderableSeries`](src/components/Examples/Charts2D/PolarCharts/PolarLineChart/drawExample.ts:101) to display line data.
 -   **Data Series**: Populating charts with data using [`XyDataSeries`](src/components/Examples/Charts2D/PolarCharts/PolarLineChart/drawExample.ts:102).
 -   **Animations**: Applying [`SweepAnimation`](src/components/Examples/Charts2D/PolarCharts/PolarLineChart/drawExample.ts:108) for an engaging initial rendering of the series.
