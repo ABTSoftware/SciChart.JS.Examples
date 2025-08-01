@@ -1,5 +1,7 @@
 # Angular SciChart Boilerplate with scichart-angular
 
+This boilerplate uses Angular 17 and SciChart.js 4.0.
+
 This folder provides a boilerplate for creating a chart in Angular with npm package scichart-angular,
 as well as a setup guide.
 
