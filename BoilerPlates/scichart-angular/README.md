@@ -1,6 +1,6 @@
-# SciChartAngular Boilerplate Demo
+# Angular SciChart Boilerplate with scichart-angular
 
-This folder provides a boilerplate for creating a chart in Angular with SciChartAngular,
+This folder provides a boilerplate for creating a chart in Angular with npm package scichart-angular,
 as well as a setup guide.
 
 ## Running the example
@@ -49,9 +49,9 @@ SciChart3DSurface.loadWasmFromCDN();
 
 #### Fetching WASM from own server
 
-The way to do this is to copy the wasm files from the node_modules/scichart/\_wasm folder to your output folder.
+The way to do this is to copy the wasm files from the `node_modules/scichart/_wasm` folder to your output folder.
 
-Angular requires wasm file to be in output folder /src/_. This is done using the `copy-files-to-from` npm package:
+Angular requires wasm file to be in output folder `/src/_`. This is done using the `copy-files-to-from` npm package:
 
 To do this, we use npm package `copy-files-from-to` and `copy-files-from-to.json` with this config:
 
@@ -107,7 +107,7 @@ http://localhost:4200/scichart2d.wasm
 http://localhost:4200/scichart3d.wasm
 ```
 
-> Note: other methods to [load wasm from CDN](https://www.scichart.com/documentation/js/current/webframe.html#Deploying%20Wasm%20or%20WebAssembly%20and%20Data%20Files%20with%20your%20app.html) are available to simplify getting started
+> Note: other methods to [load wasm from CDN](https://www.scichart.com/documentation/js/v4/2d-charts/surface/deploying-wasm/) are available to simplify getting started
 
 ---
 
@@ -118,7 +118,7 @@ The component requires one of `[config]` or `[initChart]` properties to create a
 
 #### With Config
 
-Pass a config object that will be used to generate a chart via the [Builder API](https://www.scichart.com/documentation/js/current/Intro%20to%20the%20Builder%20API.html).
+Pass a config object that will be used to generate a chart via the [Builder API](https://www.scichart.com/documentation/js/v4/2d-charts/builder-api/builder-api-overview/).
 
 `app.component.html`:
 
@@ -243,6 +243,6 @@ We have a wealth of information on our site showing how to get started with SciC
 Take a look at:
 
 -   [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes community licensing details, first steps and more
--   [Javascript / npm tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2002%20-%20Adding%20Series%20and%20Data.html): using npm, webpack, and scichart.js, create static and dynamic charts with zooming, panning tooltips and more
--   [Vanilla Javascript tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2001%20-%20Including%20SciChart.js%20in%20an%20HTML%20Page.html): using only vanilla javascript and HTML,
--   [Official scichart.js demos](https://demo.scichart.com): view our demos online! Full github source code also available at [github.com/abtsoftware/scichart.js.examples](https://github.com/abtsoftware/scichart.js.examples)
+-   [Javascript / npm tutorials](https://www.scichart.com/documentation/js/v4/get-started/tutorials-js-npm-webpack/tutorial-02-adding-series-and-data/): using npm, webpack, and scichart.js, create static and dynamic charts with zooming, panning tooltips and more
+-   [Vanilla Javascript tutorials](https://www.scichart.com/documentation/js/v4/get-started/tutorials-cdn/tutorial-01-using-cdn/): using only vanilla javascript and HTML,
+-   [Official scichart.js demos](https://scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)
