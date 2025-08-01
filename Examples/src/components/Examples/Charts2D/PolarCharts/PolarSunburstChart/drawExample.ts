@@ -2,9 +2,9 @@ import {
     PolarColumnRenderableSeries,
     PolarNumericAxis,
     SciChartPolarSurface,
-    EPolarAxisMode, 
-    NumberRange, 
-    EAxisAlignment, 
+    EPolarAxisMode,
+    NumberRange,
+    EAxisAlignment,
     EPolarLabelMode,
     PolarCursorModifier,
     TCursorTooltipDataTemplate,
@@ -22,7 +22,7 @@ import {
 } from "scichart";
 import { appTheme } from "../../../theme";
 import { SunburstMetadata } from "./SunburstMetadata";
-import { SunburstPaletteProvider } from "./SunburstPaletteProvider"
+import { SunburstPaletteProvider } from "./SunburstPaletteProvider";
 import { getDataById, getElementById, TLevelDataForChart } from "./sunburstData";
 
 const drawSeriesFn = (
@@ -36,11 +36,11 @@ const drawSeriesFn = (
     selectedElStartX: number,
     prevNodeId: number[]
 ) => {
-    const startAngleDefault = - Math.PI / 2;
+    const startAngleDefault = -Math.PI / 2;
 
     const clearSeriesFn = () => {
         dataPointSelectionModifier.selectionChanged.unsubscribeAll();
-        sciChartSurface.renderableSeries.asArray().forEach(rs => rs.delete());
+        sciChartSurface.renderableSeries.asArray().forEach((rs) => rs.delete());
         sciChartSurface.renderableSeries.clear();
     };
 
@@ -58,7 +58,7 @@ const drawSeriesFn = (
             xValues: xValues$,
             yValues: yValues$,
             x1Values: x1Values$,
-            metadata: input$.metadata
+            metadata: input$.metadata,
         });
     };
 
@@ -75,7 +75,7 @@ const drawSeriesFn = (
                     style: {
                         fontSize: 16,
                         multiLineAlignment: EMultiLineAlignment.Center,
-                        lineSpacing: 8
+                        lineSpacing: 8,
                     },
                     color: "black",
                     precision: 2,
@@ -84,17 +84,17 @@ const drawSeriesFn = (
                     polarLabelMode,
                     labelYPositionMode: EColumnDataLabelPosition.Position,
                     labelYPositionMultiplier: 0.5,
-                    metaDataSelector: metadata => {
+                    metaDataSelector: (metadata) => {
                         const md = metadata as SunburstMetadata;
                         return `${md.title} \n ${md.value}`;
-                    }
+                    },
                 },
                 dataSeries: createDataFn(levelData[i]),
                 strokeThickness: 2,
                 dataPointWidth,
                 dataPointWidthMode: EDataPointWidthMode.Range,
                 defaultY1: i,
-                paletteProvider: paletteProvider
+                paletteProvider: paletteProvider,
             });
             dataPointSelectionModifier.includeSeries(rs$, true);
             sciChartSurface.renderableSeries.add(rs$);
@@ -112,7 +112,7 @@ const drawSeriesFn = (
         let startAngle1$: number;
         if (isReverse$) {
             const levelDiff$ = prevLevel - level;
-            const element$ = levelData[levelDiff$].metadata.find(a => a.id.toString() === prevNodeId.toString());
+            const element$ = levelData[levelDiff$].metadata.find((a) => a.id.toString() === prevNodeId.toString());
             startAngle1$ = startAngleDefault + (2 * Math.PI * element$.start) / rootNode.value;
         } else {
             startAngle1$ = startAngleDefault;
@@ -127,7 +127,7 @@ const drawSeriesFn = (
         const sweepAnimation = new GenericAnimation({
             from: from$,
             to: to$,
-            duration: 2000,
+            duration: 1000,
             ease: easing.inOutSine,
             onAnimate: (from, to, progress) => {
                 const xMaxCur = DoubleAnimator.interpolate(from.x1, to.x1, progress);
@@ -140,13 +140,13 @@ const drawSeriesFn = (
             },
             onCompleted: () => {
                 onCompleteFn$();
-            }
+            },
         });
         sciChartSurface.addAnimation(sweepAnimation);
     };
 
     const subscribeFn = () => {
-        dataPointSelectionModifier.selectionChanged.subscribe(args => {
+        dataPointSelectionModifier.selectionChanged.subscribe((args) => {
             const selectedDataPoint = args.selectedDataPoints[0];
             if (selectedDataPoint) {
                 const { yValue } = selectedDataPoint;
@@ -193,7 +193,7 @@ const drawSeriesFn = (
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     const startAngle = -Math.PI / 2;
@@ -205,7 +205,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         axisAlignment: EAxisAlignment.Top,
         visibleRange: new NumberRange(0, 65),
         startAngle,
-        totalAngle
+        totalAngle,
     });
     xAxis.polarLabelMode = EPolarLabelMode.Parallel;
     sciChartSurface.xAxes.add(xAxis);
@@ -221,29 +221,28 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     sciChartSurface.yAxes.add(yAxis);
 
-
     const dataPointSelectionModifier = new PolarDataPointSelectionModifier({
         allowClickSelect: true,
-        allowDragSelect: true,
+        allowDragSelect: false,
         selectionStroke: "red",
-        selectionFill: "#ff879f33"
+        selectionFill: "#ff879f33",
     });
 
     drawSeriesFn(
-        wasmContext, 
-        xAxis, 
-        yAxis, 
-        sciChartSurface, 
-        EPolarLabelMode.Parallel, 
-        dataPointSelectionModifier, 
-        [0], 
-        0, 
+        wasmContext,
+        xAxis,
+        yAxis,
+        sciChartSurface,
+        EPolarLabelMode.Parallel,
+        dataPointSelectionModifier,
+        [0],
+        0,
         [0]
     );
 
     const tooltipDataTemplate: TCursorTooltipDataTemplate = (seriesInfos: SeriesInfo[], tooltipTitle: string) => {
         const res: string[] = [];
-        seriesInfos.forEach(si => {
+        seriesInfos.forEach((si) => {
             if (si.isHit) {
                 const md = si.pointMetadata as SunburstMetadata;
                 res.push(`Name: ${md.title}`);

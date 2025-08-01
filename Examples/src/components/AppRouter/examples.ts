@@ -133,7 +133,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_polarCharts_PolarLineChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarSplineLineChart,
-            EXAMPLES_PAGES.chart2D_polarCharts_PolarLineTemperatureAverage,
+            EXAMPLES_PAGES.chart2D_polarCharts_PolarLineMultiCycle,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarColumnChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarColumnCategoryChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarRangeColumnChart,

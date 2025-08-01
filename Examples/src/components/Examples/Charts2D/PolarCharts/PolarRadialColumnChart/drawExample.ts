@@ -4,9 +4,9 @@ import {
     XyDataSeries,
     PolarNumericAxis,
     SciChartPolarSurface,
-    EPolarAxisMode, 
-    NumberRange, 
-    EAxisAlignment, 
+    EPolarAxisMode,
+    NumberRange,
+    EAxisAlignment,
     EPolarLabelMode,
     PolarColumnRenderableSeries,
     EStrokePaletteMode,
@@ -15,7 +15,7 @@ import {
     Thickness,
     EColumnDataLabelPosition,
     WaveAnimation,
-    PolarArcZoomModifier
+    PolarArcZoomModifier,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -63,7 +63,7 @@ class ColumnPaletteProvider extends DefaultPaletteProvider {
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     const xAxis = new PolarNumericAxis(wasmContext, {
@@ -78,7 +78,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         majorDelta: 1,
         useNativeText: true,
         labelStyle: {
-            padding: new Thickness(4, 4, 4, 4)
+            padding: new Thickness(4, 4, 4, 4),
         },
 
         drawMinorTickLines: false,
@@ -87,7 +87,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawMajorTickLines: false,
         labelPrecision: 0,
         innerRadius: 0.2, // donut hole
-        startAngle: 0 // start at 9 o'clock (since we are have flipped coorinates and default "0" is at 3 o'clock)
+        startAngle: 0, // start at 9 o'clock (since we are have flipped coorinates and default "0" is at 3 o'clock)
     });
     sciChartSurface.xAxes.add(xAxis);
 
@@ -107,16 +107,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         useNativeText: true,
         autoTicks: false,
         majorDelta: 10,
-        
-        totalAngle: Math.PI,        
-        startAngle: 0,        
+
+        totalAngle: Math.PI,
+        startAngle: 0,
     });
     sciChartSurface.yAxes.add(yAxis);
 
     const polarColumn = new PolarColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: Array.from({ length: 15 }, (_, i) => i + 1),
-            yValues: [90, 18, 71, 32, 82, 92, 51, 25, 6, 38, 61, 84, 45, 21, 88]
+            yValues: [90, 18, 71, 32, 82, 92, 51, 25, 6, 38, 61, 84, 45, 21, 88],
         }),
         dataPointWidth: 0.8,
         paletteProvider: new ColumnPaletteProvider(),
@@ -129,16 +129,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             precision: 0,
             labelYPositionMode: EColumnDataLabelPosition.Inside,
             polarLabelMode: EPolarLabelMode.Parallel,
-        }, 
-        animation: new WaveAnimation({ duration: 500 })
+        },
+        animation: new WaveAnimation({ duration: 1000 }),
     });
 
     sciChartSurface.renderableSeries.add(polarColumn);
 
     // CHART MODIFIERS
-    sciChartSurface.chartModifiers.add(
-        new PolarArcZoomModifier()
-    );
+    sciChartSurface.chartModifiers.add(new PolarArcZoomModifier());
     sciChartSurface.chartModifiers.add(new PolarZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new PolarMouseWheelZoomModifier());
 

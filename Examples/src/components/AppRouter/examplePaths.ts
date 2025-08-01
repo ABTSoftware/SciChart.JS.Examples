@@ -73,7 +73,7 @@ export default [
     "../Examples/Charts2D/PolarCharts/PolarGaugeFifoDashboard",
     "../Examples/Charts2D/PolarCharts/PolarLabelMode",
     "../Examples/Charts2D/PolarCharts/PolarLineChart",
-    "../Examples/Charts2D/PolarCharts/PolarLineTemperatureAverage",
+    "../Examples/Charts2D/PolarCharts/PolarLineMultiCycle",
     "../Examples/Charts2D/PolarCharts/PolarMapExample",
     "../Examples/Charts2D/PolarCharts/PolarMountainChart",
     "../Examples/Charts2D/PolarCharts/PolarMultipleRadialAxesRadarChart",
