@@ -2,6 +2,8 @@
 
 This boilerplate uses Angular 20 and SciChart.js 4.0.
 
+![](img/image.png)
+
 **Run in dev mode**
 
 ```
