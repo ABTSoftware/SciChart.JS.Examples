@@ -52,7 +52,7 @@ export const getChartsInitializationAPI = () => {
 
         const columnYValues = [50, 70, 80, 90, 100];
 
-        const GRADIENT_COLROS = [
+        const GRADIENT_COLORS = [
             appTheme.VividPink,
             appTheme.VividOrange,
             appTheme.VividTeal,
@@ -116,7 +116,7 @@ export const getChartsInitializationAPI = () => {
             columnYMode: EColumnYMode.TopBottom,
             stroke: appTheme.ForegroundColor,
             strokeThickness: 0.5,
-            paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLROS),
+            paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLORS),
         });
         sciChartSurface.renderableSeries.add(rectangleSeries);
 
@@ -136,38 +136,41 @@ export const getChartsInitializationAPI = () => {
             sciChartSurface.annotations.add(label);
         });
 
-        const arrowLine = new LineArrowAnnotation({
-            x1: 10,
-            y1: 60,
-            x2: 11,
-            y2: 60,
-            isArrowHeadScalable: true, // the arrow head will scale with the visibleRange
-            arrowStyle: {
-                headLength: 10,
-                headWidth: 7,
-                headDepth: 1,
-                fill: appTheme.ForegroundColor,
-                strokeThickness: 1,
-            },
-            stroke: appTheme.ForegroundColor,
-            strokeThickness: 2,
-            arrowHeadPosition: EArrowHeadPosition.Start, // only show arrow head at the end
-        });
+        const markerPosition = (value: number) => {
+            const arrowLine = new LineArrowAnnotation({
+                x1: 10,
+                y1: value,
+                x2: 11,
+                y2: value,
+                isArrowHeadScalable: true, // the arrow head will scale with the visibleRange
+                arrowStyle: {
+                    headLength: 10,
+                    headWidth: 7,
+                    headDepth: 1,
+                    fill: appTheme.ForegroundColor,
+                    strokeThickness: 1,
+                },
+                stroke: appTheme.ForegroundColor,
+                strokeThickness: 2,
+                arrowHeadPosition: EArrowHeadPosition.Start, // only show arrow head at the end
+            });
 
-        sciChartSurface.annotations.add(arrowLine);
+            const arrowLabel = new TextAnnotation({
+                x1: 13,
+                y1: value,
+                x2: 8,
+                y2: 0,
+                text: `${value}`,
+                fontSize: 12,
+                textColor: appTheme.ForegroundColor,
+                horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+                verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            });
+            sciChartSurface.annotations.add(arrowLine, arrowLabel);
+        };
 
-        const arrowLabel = new TextAnnotation({
-            x1: 13,
-            y1: 60,
-            x2: 8,
-            y2: 0,
-            text: "60",
-            fontSize: 12,
-            textColor: appTheme.ForegroundColor,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-            verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        });
-        sciChartSurface.annotations.add(arrowLabel);
+        // set position of marker
+        markerPosition(60);
 
         return { sciChartSurface, wasmContext };
     };
@@ -221,38 +224,40 @@ export const getChartsInitializationAPI = () => {
 
         sciChartSurface.renderableSeries.add(rectangleSeries);
 
-        const arrowLine = new LineArrowAnnotation({
-            x1: 10,
-            y1: 60,
-            x2: 11,
-            y2: 60,
-            isArrowHeadScalable: true, // the arrow head will scale with the visibleRange
-            arrowStyle: {
-                headLength: 10,
-                headWidth: 7,
-                headDepth: 1,
-                fill: appTheme.ForegroundColor,
-                strokeThickness: 1,
-            },
-            stroke: appTheme.ForegroundColor,
-            strokeThickness: 2,
-            arrowHeadPosition: EArrowHeadPosition.Start, // only show arrow head at the end
-        });
+        const markerPosition = (value: number) => {
+            const arrowLine = new LineArrowAnnotation({
+                x1: 10,
+                y1: value,
+                x2: 11,
+                y2: value,
+                isArrowHeadScalable: true, // the arrow head will scale with the visibleRange
+                arrowStyle: {
+                    headLength: 10,
+                    headWidth: 7,
+                    headDepth: 1,
+                    fill: appTheme.ForegroundColor,
+                    strokeThickness: 1,
+                },
+                stroke: appTheme.ForegroundColor,
+                strokeThickness: 2,
+                arrowHeadPosition: EArrowHeadPosition.Start, // only show arrow head at the end
+            });
 
-        sciChartSurface.annotations.add(arrowLine);
+            const arrowLabel = new TextAnnotation({
+                x1: 13,
+                y1: value,
+                x2: 8,
+                y2: 0,
+                text: `${value}`,
+                fontSize: 12,
+                textColor: appTheme.ForegroundColor,
+                horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+                verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            });
+            sciChartSurface.annotations.add(arrowLine, arrowLabel);
+        };
 
-        const arrowLabel = new TextAnnotation({
-            x1: 13,
-            y1: 60,
-            x2: 8,
-            y2: 0,
-            text: "60",
-            fontSize: 12,
-            textColor: appTheme.ForegroundColor,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-            verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        });
-        sciChartSurface.annotations.add(arrowLabel);
+        markerPosition(60);
 
         return { sciChartSurface, wasmContext };
     };
@@ -283,7 +288,7 @@ export const getChartsInitializationAPI = () => {
         // const columnYValues = [50, 70, 80, 90, 100];
         const columnYValues = [33, 66, 100];
 
-        const GRADIENT_COLROS = [appTheme.VividGreen, appTheme.VividOrange, appTheme.VividRed];
+        const GRADIENT_COLORS = [appTheme.VividGreen, appTheme.VividOrange, appTheme.VividRed];
 
         const rectangleData = columnYValues.map((d, i) => {
             const height = 10;
@@ -341,7 +346,7 @@ export const getChartsInitializationAPI = () => {
             columnYMode: EColumnYMode.TopBottom,
             stroke: appTheme.ForegroundColor,
             strokeThickness: 0.1,
-            paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLROS),
+            paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLORS),
             dataLabels: {
                 style: { fontFamily: "Arial", fontSize: 12 },
                 color: appTheme.ForegroundColor,
@@ -372,38 +377,40 @@ export const getChartsInitializationAPI = () => {
             sciChartSurface.annotations.add(label);
         });
 
-        const arrowLine = new LineArrowAnnotation({
-            y1: 10,
-            x1: 60,
-            y2: 11,
-            x2: 60,
-            isArrowHeadScalable: true, // the arrow head will scale with the visibleRange
-            arrowStyle: {
-                headLength: 10,
-                headWidth: 7,
-                headDepth: 1,
-                fill: appTheme.ForegroundColor,
-                strokeThickness: 1,
-            },
-            stroke: appTheme.ForegroundColor,
-            strokeThickness: 2,
-            arrowHeadPosition: EArrowHeadPosition.Start, // only show arrow head at the end
-        });
+        const markerPosition = (value: number) => {
+            const arrowLine = new LineArrowAnnotation({
+                y1: 10,
+                x1: value,
+                y2: 11,
+                x2: value,
+                isArrowHeadScalable: true, // the arrow head will scale with the visibleRange
+                arrowStyle: {
+                    headLength: 10,
+                    headWidth: 7,
+                    headDepth: 1,
+                    fill: appTheme.ForegroundColor,
+                    strokeThickness: 1,
+                },
+                stroke: appTheme.ForegroundColor,
+                strokeThickness: 2,
+                arrowHeadPosition: EArrowHeadPosition.Start, // only show arrow head at the end
+            });
 
-        sciChartSurface.annotations.add(arrowLine);
+            const arrowLabel = new TextAnnotation({
+                y1: 13,
+                x1: value,
+                y2: 8,
+                x2: 0,
+                text: `${value}`,
+                fontSize: 12,
+                textColor: appTheme.ForegroundColor,
+                horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+                verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
+            });
+            sciChartSurface.annotations.add(arrowLine, arrowLabel);
+        };
 
-        const arrowLabel = new TextAnnotation({
-            y1: 13,
-            x1: 60,
-            y2: 8,
-            x2: 0,
-            text: "60",
-            fontSize: 12,
-            textColor: appTheme.ForegroundColor,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-            verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
-        });
-        sciChartSurface.annotations.add(arrowLabel);
+        markerPosition(90);
 
         return { sciChartSurface, wasmContext };
     };
@@ -435,7 +442,7 @@ export const getChartsInitializationAPI = () => {
 
         const columnYValues = [350, 600, 700, 800, 850];
 
-        const GRADIENT_COLROS = [
+        const GRADIENT_COLORS = [
             appTheme.VividPink,
             appTheme.VividOrange,
             appTheme.VividGreen,
@@ -500,39 +507,9 @@ export const getChartsInitializationAPI = () => {
             stroke: appTheme.ForegroundColor,
             // opacity: 0,
             strokeThickness: 0.5,
-            paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLROS),
+            paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLORS),
         });
         sciChartSurface.renderableSeries.add(rectangleSeries);
-
-        const rectangleSeriesOutline = new FastRectangleRenderableSeries(wasmContext, {
-            dataSeries: new XyxyDataSeries(wasmContext, {
-                xValues: [3],
-                yValues: [0],
-                x1Values: [13],
-                y1Values: [850],
-            }),
-            columnXMode: EColumnMode.StartEnd,
-            columnYMode: EColumnYMode.TopBottom,
-            stroke: appTheme.ForegroundColor,
-            strokeThickness: 0.5,
-            fill: appTheme.ForegroundColor + "00",
-        });
-
-        const rectangleValue = new FastRectangleRenderableSeries(wasmContext, {
-            dataSeries: new XyxyDataSeries(wasmContext, {
-                xValues: [3],
-                yValues: [0],
-                x1Values: [13],
-                y1Values: [value],
-            }),
-            columnXMode: EColumnMode.StartEnd,
-            columnYMode: EColumnYMode.TopBottom,
-            stroke: appTheme.ForegroundColor,
-            opacity: 1,
-            fill: appTheme.VividOrange,
-            strokeThickness: 0,
-        });
-        sciChartSurface.renderableSeries.add(rectangleValue, rectangleSeriesOutline);
 
         [0, ...columnYValues].forEach((yVal, i) => {
             const label = new TextAnnotation({
@@ -549,7 +526,49 @@ export const getChartsInitializationAPI = () => {
             sciChartSurface.annotations.add(label);
         });
 
-        const arrowLabel = new TextAnnotation({
+        const rectangleSeriesOutline = new FastRectangleRenderableSeries(wasmContext, {
+            dataSeries: new XyxyDataSeries(wasmContext, {
+                xValues: [3],
+                yValues: [0],
+                x1Values: [13],
+                y1Values: [850],
+            }),
+            columnXMode: EColumnMode.StartEnd,
+            columnYMode: EColumnYMode.TopBottom,
+            stroke: appTheme.ForegroundColor,
+            strokeThickness: 0.5,
+            fill: appTheme.ForegroundColor + "00",
+        });
+
+        const setColor = (valu: number) => {
+            return value < 350
+                ? GRADIENT_COLORS[0]
+                : value < 600
+                ? GRADIENT_COLORS[1]
+                : value < 700
+                ? GRADIENT_COLORS[2]
+                : value < 800
+                ? GRADIENT_COLORS[3]
+                : GRADIENT_COLORS[4];
+        };
+
+        const rectangleValue = new FastRectangleRenderableSeries(wasmContext, {
+            dataSeries: new XyxyDataSeries(wasmContext, {
+                xValues: [3],
+                yValues: [0],
+                x1Values: [13],
+                y1Values: [value],
+            }),
+            columnXMode: EColumnMode.StartEnd,
+            columnYMode: EColumnYMode.TopBottom,
+            stroke: appTheme.ForegroundColor,
+            opacity: 1,
+            fill: setColor(value),
+            strokeThickness: 0,
+        });
+        sciChartSurface.renderableSeries.add(rectangleValue, rectangleSeriesOutline);
+
+        const label = new TextAnnotation({
             x1: 13.5,
             y1: value,
             x2: value,
@@ -560,7 +579,7 @@ export const getChartsInitializationAPI = () => {
             horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
         });
-        sciChartSurface.annotations.add(arrowLabel);
+        sciChartSurface.annotations.add(label);
 
         return { sciChartSurface, wasmContext };
     };
@@ -585,9 +604,11 @@ export const getChartsInitializationAPI = () => {
         sciChartSurface.xAxes.add(xAxis);
         sciChartSurface.yAxes.add(yAxis);
 
+        const value = 23;
+
         const columnXValues = [5, 10, 15, 20, 25, 30];
 
-        const GRADIENT_COLROS = [appTheme.VividGreen, appTheme.VividOrange, appTheme.VividRed];
+        const GRADIENT_COLORS = [appTheme.VividGreen, appTheme.VividOrange, appTheme.VividRed];
 
         const rectangleData = columnXValues.map((d, i) => {
             const height = 10;
@@ -647,14 +668,14 @@ export const getChartsInitializationAPI = () => {
             columnYMode: EColumnYMode.TopBottom,
             stroke: appTheme.DarkIndigo,
             strokeThickness: 0.1,
-            paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLROS),
+            paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLORS),
         });
 
         const valueLine = new FastRectangleRenderableSeries(wasmContext, {
             dataSeries: new XyxyDataSeries(wasmContext, {
                 xValues: [0],
                 yValues: [11],
-                x1Values: [23],
+                x1Values: [value],
                 y1Values: [12],
             }),
             columnXMode: EColumnMode.StartEnd,
@@ -730,7 +751,7 @@ export const getChartsInitializationAPI = () => {
         // Create XAxis / YAxis
         const xAxis = new NumericAxis(wasmContext, {
             isVisible: false,
-            visibleRange: new NumberRange(-7, 17),
+            visibleRange: new NumberRange(-20, 30),
         });
 
         const yAxis = new NumericAxis(wasmContext, {
