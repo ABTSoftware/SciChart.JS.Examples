@@ -38,8 +38,9 @@ const useStyles = makeStyles()((theme) => ({
         padding: "0.4em",
         textAlign: "end",
         flex: "none",
-        width: "20%",
+        width: "16%",
         fontSize: "0.8em",
+        textWrap: "nowrap"
     },
 }));
 
