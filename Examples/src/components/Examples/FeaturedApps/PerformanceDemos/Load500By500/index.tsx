@@ -56,8 +56,9 @@ export default function Load500By500() {
                             )
                         }
                         onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
-                            controls.reloadOnce();
+                            controls.startUpdate();
                             controlsRef.current = controls;
+                            setIsStarted(true);
                         }}
                         onDelete={({ controls }: TResolvedReturnType<typeof drawExample>) => {
                             controls.stopUpdate();

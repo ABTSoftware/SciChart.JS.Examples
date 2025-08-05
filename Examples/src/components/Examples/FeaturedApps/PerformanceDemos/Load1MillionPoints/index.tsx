@@ -45,7 +45,8 @@ export default function Load1MillionPointsChart() {
                     onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
                         controlsRef.current = controls;
                         controls.subscribeToInfo(updateTimeSpans);
-                        controls.reloadOnce();
+                        controls.startUpdate();
+                        setIsStarted(true);
 
                         return controls.stopUpdate;
                     }}
