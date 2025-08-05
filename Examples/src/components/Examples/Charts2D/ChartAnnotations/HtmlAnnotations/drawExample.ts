@@ -12,6 +12,9 @@ import {
     XyDataSeries,
     Thickness,
     SciChartJSDarkTheme,
+    ZoomExtentsModifier,
+    EAutoRange,
+    easing,
 } from "scichart";
 
 import "./styles.css";
@@ -21,15 +24,23 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement);
 
     const xAxis = new NumericAxis(wasmContext, {
-        visibleRange: new NumberRange(0, 100),
+        zoomExtentsRange: new NumberRange(0, 100),
+        visibleRange: new NumberRange(40, 60),
         visibleRangeLimit: new NumberRange(-1000, 1000),
+        autoRange: EAutoRange.Never,
     });
-    const yAxis = new NumericAxis(wasmContext, { drawLabels: false });
+    const yAxis = new NumericAxis(wasmContext, {
+        drawLabels: false,
+        zoomExtentsRange: new NumberRange(0, 10),
+        visibleRange: new NumberRange(4, 6),
+        visibleRangeLimit: new NumberRange(-1000, 1000),
+        autoRange: EAutoRange.Never,
+    });
 
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxis);
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier(), new ZoomExtentsModifier());
 
     const textContent1 =
         "HTML-based annotations let you leverage the native HTML API to create and style elements, while SciChart handles their positioning within the chart.";
@@ -182,7 +193,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     sciChartSurface.annotations.add(nestedChartRootAnnotation);
 
-    const selector = new NumberRangeSelector(formAnnotation.htmlElement, (min, max) => {
+    const selector = new NumberRangeSelector(formAnnotation.htmlElement, xAxis.visibleRange, (min, max) => {
         xAxis.visibleRange = new NumberRange(min, max);
     });
 
@@ -196,6 +207,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // bind cleanup call
     sciChartSurface.addDeletable(nestedChart.sciChartSurface);
+
+    sciChartSurface.zoomExtents(600, easing.inOutCirc);
 
     return { sciChartSurface, containerAnnotation };
 };
@@ -234,7 +247,7 @@ class NumberRangeSelector {
     private container: HTMLElement;
     private onChange: (min: number, max: number) => void;
 
-    constructor(rootElement: HTMLElement, onChange: (min: number, max: number) => void) {
+    constructor(rootElement: HTMLElement, initialRange: NumberRange, onChange: (min: number, max: number) => void) {
         this.container = rootElement;
         this.onChange = onChange;
 
@@ -258,8 +271,8 @@ class NumberRangeSelector {
         this.maxInput = document.createElement("input");
         this.minInput.type = "number";
         this.maxInput.type = "number";
-        this.minInput.value = "0";
-        this.maxInput.value = "100";
+        this.minInput.value = `${initialRange.min}`;
+        this.maxInput.value = `${initialRange.max}`;
         this.minInput.style.width = "50px";
         this.maxInput.style.width = "50px";
 
