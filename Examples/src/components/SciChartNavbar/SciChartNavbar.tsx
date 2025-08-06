@@ -319,7 +319,7 @@ export default function SciChartNavbar({
                                                 className="line menu-item menu-item-type-post_type menu-item-object-page menu-item-579"
                                             >
                                                 <a
-                                                    href="https://www.scichart.com/examples/"
+                                                    href="https://scichart.com/demo"
                                                     title="Chart Library Examples and Demos"
                                                 >
                                                     Examples
@@ -337,197 +337,48 @@ export default function SciChartNavbar({
                                                 </a>
                                             </li>
                                             <li
-                                                id="menu-item-578"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-578"
+                                                id="menu-item-8028"
+                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-8028"
                                             >
                                                 <a
-                                                    href="https://www.scichart.com/read-documentation/"
-                                                    title="Chart Library Documentation"
+                                                    href="https://www.scichart.com/documentation/js/v4/intro/"
+                                                    title="JS Chart Documentation"
                                                 >
-                                                    Documentation
+                                                    JS Documentation
                                                 </a>
-                                                <ul className="sub-menu">
-                                                    <li
-                                                        id="menu-item-8029"
-                                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-8029"
-                                                    >
-                                                        <a
-                                                            href="https://www.scichart.com/documentation/win/current/webframe.html#SciChart_WPF_SDK_User_Manual.html"
-                                                            title="WPF Chart Documentation"
-                                                        >
-                                                            WPF Docs
-                                                        </a>
-                                                    </li>
-                                                    <li
-                                                        id="menu-item-8028"
-                                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-8028"
-                                                    >
-                                                        <a
-                                                            href="https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html"
-                                                            title="JS Chart Documentation"
-                                                        >
-                                                            JS Docs
-                                                        </a>
-                                                    </li>
-                                                    <li
-                                                        id="menu-item-8030"
-                                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-8030"
-                                                    >
-                                                        <a
-                                                            href="https://scichart.com/documentation/android/current/"
-                                                            title="Android Charts Documentation"
-                                                        >
-                                                            Android Docs
-                                                        </a>
-                                                    </li>
-                                                    <li
-                                                        id="menu-item-8031"
-                                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-8031"
-                                                    >
-                                                        <a
-                                                            href="https://www.scichart.com/documentation/ios/current/"
-                                                            title="iOS Charts Documentation"
-                                                        >
-                                                            iOS Docs
-                                                        </a>
-                                                    </li>
-                                                </ul>
                                             </li>
                                             <li
-                                                id="menu-item-8108"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-8108"
-                                            >
-                                                <a href="#" title="Chart Library Changelog">
-                                                    Changelog
-                                                </a>
-                                                <ul className="sub-menu">
-                                                    <li
-                                                        id="menu-item-8113"
-                                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-8113"
-                                                    >
-                                                        <a
-                                                            href="https://www.scichart.com/changelog/scichart-wpf/"
-                                                            title="WPF Chart Library Changelog"
-                                                        >
-                                                            SciChart WPF Changelog
-                                                        </a>
-                                                    </li>
-                                                    <li
-                                                        id="menu-item-8109"
-                                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-8109"
-                                                    >
-                                                        <a
-                                                            href="https://scichart.com/changelog/scichart-js/"
-                                                            title="JS Chart Library Changelog"
-                                                        >
-                                                            SciChart.js Changelog
-                                                        </a>
-                                                    </li>
-                                                    <li
-                                                        id="menu-item-8610"
-                                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-8610"
-                                                    >
-                                                        <a
-                                                            href="https://www.scichart.com/changelog/scichart-ios-android/"
-                                                            title="iOS Android Charts Changelog"
-                                                        >
-                                                            iOS Android Changelog
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li
-                                                id="menu-item-6893"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-6893"
+                                                id="menu-item-8109"
+                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-8109"
                                             >
                                                 <a
-                                                    href="https://www.scichart.com/questions/"
-                                                    title="BigData Visualization Forums"
+                                                    href="https://scichart.com/changelog/scichart-js/"
+                                                    title="JS Chart Library Changelog"
                                                 >
-                                                    Forums
+                                                    SciChart.js Changelog
                                                 </a>
-                                                <ul className="sub-menu">
-                                                    <li
-                                                        id="menu-item-6973"
-                                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-6973"
-                                                    >
-                                                        <a
-                                                            href="https://scichart.com/questions/categories/wpf"
-                                                            title="WPF Chart Library Forums"
-                                                        >
-                                                            WPF Forums
-                                                        </a>
-                                                    </li>
-                                                    <li
-                                                        id="menu-item-6972"
-                                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-6972"
-                                                    >
-                                                        <a
-                                                            href="https://www.scichart.com/questions/categories/js"
-                                                            title="JavaScript Chart Library Forums"
-                                                        >
-                                                            JS Forums
-                                                        </a>
-                                                    </li>
-                                                    <li
-                                                        id="menu-item-6975"
-                                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-6975"
-                                                    >
-                                                        <a
-                                                            href="https://scichart.com/questions/categories/android"
-                                                            title="Android Charts Forums"
-                                                        >
-                                                            Android Forums
-                                                        </a>
-                                                    </li>
-                                                    <li
-                                                        id="menu-item-6974"
-                                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-6974"
-                                                    >
-                                                        <a
-                                                            href="https://scichart.com/questions/categories/ios"
-                                                            title="iOS Charts Forums"
-                                                        >
-                                                            iOS Forums
-                                                        </a>
-                                                    </li>
-                                                </ul>
                                             </li>
                                             <li
-                                                id="menu-item-582"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-582"
+                                                id="menu-item-6972"
+                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-6972"
                                             >
                                                 <a
-                                                    target="_blank"
-                                                    href="https://stackoverflow.com/questions/tagged/scichart"
+                                                    href="https://www.scichart.com/questions/categories/js"
+                                                    title="JavaScript Chart Library Forums"
                                                 >
-                                                    StackOverflow
+                                                    JS Forums
                                                 </a>
-
-                                                <ul className="sub-menu">
-                                                    <li
-                                                        id="menu-item-7053"
-                                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-7053"
-                                                    >
-                                                        <a
-                                                            href="https://stackoverflow.com/questions/tagged/scichart"
-                                                            title="SciChart Tag on StackOverflow"
-                                                        >
-                                                            SciChart tag
-                                                        </a>
-                                                    </li>
-                                                    <li
-                                                        id="menu-item-7054"
-                                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-7054"
-                                                    >
-                                                        <a
-                                                            href="https://stackoverflow.com/questions/tagged/scichart.js"
-                                                            title="SciChart.js Tag on StackOverflow"
-                                                        >
-                                                            SciChart.js tag
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                            </li>
+                                            <li
+                                                id="menu-item-7054"
+                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-7054"
+                                            >
+                                                <a
+                                                    href="https://stackoverflow.com/questions/tagged/scichart.js"
+                                                    title="SciChart.js Tag on StackOverflow"
+                                                >
+                                                    StackOverflow - SciChart.js
+                                                </a>
                                             </li>
                                             <hr />
 
@@ -577,7 +428,7 @@ export default function SciChartNavbar({
                                                 id="menu-item-4193"
                                                 className="menu-item menu-item-type-custom menu-item-object-custom menu-item-4193"
                                             >
-                                                <a href="https://www.scichart.com/examples/javascript-chart/">
+                                                <a href="https://www.scichart.com/demo">
                                                     JavaScript Examples
                                                 </a>
                                             </li>
