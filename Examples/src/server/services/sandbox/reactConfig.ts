@@ -98,7 +98,7 @@ root.render(<><App />${SCICHART_ANCHOR}</>);
           </head>
           <body>
             <noscript>You need to enable JavaScript to run this app.</noscript>
-            <div id="root"></div>
+            <div id="root" style="aspect-ratio: 3 / 2;"></div>
           </body>
         </html>`,
             isBinary: false,
