@@ -13,6 +13,7 @@ import {
     NumberRange,
     NumericAxis,
     RubberBandXyZoomModifier,
+    SciChartOverview,
     SciChartSurface,
     TextAnnotation,
     XyDataSeries,
@@ -23,7 +24,7 @@ import {
 import { appTheme } from "../../../theme";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 
-export const overViewOption = {
+export const overviewOptions = {
     theme: appTheme.SciChartJsTheme,
 };
 
@@ -83,9 +84,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
-    // Add Overview chart. This will automatically bind to the parent surface
+    // This is the primary approach o. This will automatically bind to the parent surface
     // displaying its series. Zooming the chart will zoom the overview and vice versa
-    // calling this outside of the function
     // const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, {
     //     theme: appTheme.SciChartJsTheme,
     // });
@@ -99,4 +99,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
     return { sciChartSurface };
+};
+
+export const drawOverview = async (sciChartSurface: SciChartSurface, divOverviewId: string | HTMLDivElement) => {
+    const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, overviewOptions);
+
+    return {sciChartSurface: overview.overviewSciChartSurface};
 };
