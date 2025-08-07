@@ -206,7 +206,7 @@ export default function App() {
                         />
                     </Drawer>
                 )}
-                <div className={classes.MainAppContent}>
+                <div className={classes.MainAppContent} style={{position: "relative"}}>
                     <SciChartNavbar toggleDrawer={toggleDrawer} theme={theme} setTheme={setTheme} />
 
                     {is404 ? (

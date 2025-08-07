@@ -12,7 +12,7 @@ class OEmbedResponse {
     author_name: string = "SciChart.js";
     author_url: string;
     provider_name: string = "SciChart.js Demo";
-    provider_url: string = "https://demo.scichart.com";
+    provider_url: string = "https://scichart.com/demo";
     thumbnail_url: string;
     thumbnail_width: string = "900";
     thumbnail_height: string = "900";

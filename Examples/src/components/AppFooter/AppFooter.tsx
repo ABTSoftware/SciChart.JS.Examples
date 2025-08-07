@@ -59,13 +59,13 @@ export default function AppFooter() {
                             <div className={classes.dividerBox}></div>
                         </div>
                         <div className={classes.RelatedLinks}>
-                            <a href="https://demo.scichart.com/javascript" title="SciChart Javascript Demos">
+                            <a href="https://scichart.com/demo/javascript" title="SciChart Javascript Demos">
                                 SciChart Javascript Demos
                             </a>
-                            <a href="https://demo.scichart.com/react" title="SciChart React Demos">
+                            <a href="https://scichart.com/demo/react" title="SciChart React Demos">
                                 SciChart React Demos
                             </a>
-                            <a href="https://demo.scichart.com/angular" title="SciChart Angular Demos">
+                            <a href="https://scichart.com/demo/angular" title="SciChart Angular Demos">
                                 SciChart Angular Demos
                             </a>
                         </div>
@@ -144,7 +144,7 @@ export default function AppFooter() {
                             <a href="https://www.scichart.com/examples/android-chart/" title="Android Chart Examples">
                                 Android Chart Examples
                             </a>
-                            <a href="https://demo.scichart.com" title="JavaScript Chart Examples">
+                            <a href="https://scichart.com/demo" title="JavaScript Chart Examples">
                                 JavaScript Chart Examples
                             </a>
                         </div>
