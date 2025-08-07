@@ -57,7 +57,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     },
     {
         id: "chart2D_v4Charts",
-        title: "New in SciChart v4",
+        title: "[NEW] Charts added in v4",
         submenu: [
             EXAMPLES_PAGES.chart2D_v4Charts_HistogramChart,
             EXAMPLES_PAGES.chart2D_v4Charts_GanttChart,
@@ -129,7 +129,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
     },
     {
         id: "chart2D_polarCharts",
-        title: "Polar Charts",
+        title: "[NEW] Polar Charts",
         submenu: [
             EXAMPLES_PAGES.chart2D_polarCharts_PolarLineChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarSplineLineChart,
