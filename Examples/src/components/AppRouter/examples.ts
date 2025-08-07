@@ -76,6 +76,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_OrderedRendering,
             EXAMPLES_PAGES.chart2D_chartAnnotations_ResponsiveHtmlAnnotations,
             EXAMPLES_PAGES.chart2D_chartAnnotations_HtmlAnnotations,
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_PolarModifiers
         ],
     },
 ];

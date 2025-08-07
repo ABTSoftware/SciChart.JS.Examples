@@ -1,27 +1,28 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import commonClasses from "../../../styles/Examples.module.scss";
-import { drawExample } from "./drawExample";
+import { drawExample, POLAR_MODIFIER_INFO } from "./drawExample";
 import { useState } from "react";
 import { EChart2DModifierType } from "scichart";
 import { Checkbox } from "@mui/material";
 import { appTheme } from "../../../theme";
 
+const ALL_POLAR_MODIFIER_TYPES = Array.from(Object.keys(POLAR_MODIFIER_INFO));
+
 const CONFLICTING_MODIFIER_TYPES = [
     [
         EChart2DModifierType.PolarPan,
         EChart2DModifierType.PolarArcZoom,
+    ],
+    [
+        EChart2DModifierType.PolarMouseWheelZoom,
+        EChart2DModifierType.PolarMouseWheelZoom + " [Pan]"
+    ],
+    [
+        EChart2DModifierType.PolarPan + " [Cartesian]",
+        EChart2DModifierType.PolarPan + " [Polar]",
     ]
-]
+];
 
-const ALL_POLAR_MODIFIER_TYPES = [
-    EChart2DModifierType.PolarZoomExtents,
-    EChart2DModifierType.PolarMouseWheelZoom,
-    EChart2DModifierType.PolarCursor,
-    EChart2DModifierType.PolarArcZoom,
-    EChart2DModifierType.PolarDataPointSelection,
-    EChart2DModifierType.PolarLegend,
-    EChart2DModifierType.PolarPan,
-]
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
@@ -29,11 +30,8 @@ export default function ChartComponent() {
     const [ modifiersActive, setModifiersActive ] = useState<{ [key: string]: boolean }>({
         [EChart2DModifierType.PolarZoomExtents]: true,
         [EChart2DModifierType.PolarMouseWheelZoom]: true,
-        [EChart2DModifierType.PolarCursor]: true,
-        [EChart2DModifierType.PolarArcZoom]: false,
-        [EChart2DModifierType.PolarDataPointSelection]: false,
-        [EChart2DModifierType.PolarLegend]: false,
-        [EChart2DModifierType.PolarPan]: false,
+        [EChart2DModifierType.PolarPan + " [Cartesian]"]: true,
+        [EChart2DModifierType.PolarDataPointSelection]: true,
     });
     const [ conflictWarning, setConflictWarning ] = useState<string | null>(null);
 
@@ -75,8 +73,10 @@ export default function ChartComponent() {
                     display: 'flex', 
                     flexDirection: 'column', 
                     alignItems: 'center', 
-                    gap: 10, padding: 10,
+                    gap: 10, 
+                    padding: 10,
                     position: "relative",
+                    overflowY: "auto",
                 }}>
                     <h3>Polar Modifiers:</h3>
 
@@ -97,8 +97,9 @@ export default function ChartComponent() {
                             />
 
                             <p style={{
-                                color: modifiersActive[type] ? "#fff" : "#ccc",
+                                color: modifiersActive[type] ? "#fff" : "#bbb",
                                 fontSize: 16,
+                                fontWeight: modifiersActive[type] ? "semibold" : "normal",
                             }}>{type}</p>
                         </div>
                     ))}

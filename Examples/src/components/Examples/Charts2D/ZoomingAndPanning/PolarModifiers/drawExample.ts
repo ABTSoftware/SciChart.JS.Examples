@@ -23,17 +23,22 @@ import {
     EPointMarkerType,
     EActionType,
     EPolarPanModifierPanMode,
+    DataPointSelectionPaletteProvider,
+    EllipsePointMarker,
+    TrianglePointMarker,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-const POLAR_MODIFIER_INFO: Partial<Record<EChart2DModifierType, string>> = {
-    [EChart2DModifierType.PolarMouseWheelZoom]: "Spin The Polar Chart\nusing the mouse wheel or touchpad",
+export const POLAR_MODIFIER_INFO: Partial<Record<EChart2DModifierType, string>> = {
+    [EChart2DModifierType.PolarZoomExtents]: "Double-click\nto reset the zoom at the original visible ranges.\n(pairs amazing with other modifiers)",
+    [EChart2DModifierType.PolarMouseWheelZoom]: "Zoom The Polar Chart\nusing the mouse wheel or touchpad",
+    [EChart2DModifierType.PolarMouseWheelZoom + " [Pan]"]: "Rotate The Polar Chart\nusing the mouse wheel or touchpad",
+    [EChart2DModifierType.PolarPan + " [Cartesian]"]: "Click and drag\nto pan the chart in Cartesian mode",
+    [EChart2DModifierType.PolarPan + " [Polar]"]: "Click and drag\nto pan the chart in Polar mode",
     [EChart2DModifierType.PolarArcZoom]: "Click and drag\nto Cut into The Polar Chart using an Arc",
     [EChart2DModifierType.PolarCursor]: "Hover the chart\nto see the X and Y values of the data point",
-    [EChart2DModifierType.PolarDataPointSelection]: "Click on a sries\nto select a data point",
-    [EChart2DModifierType.PolarPan]: "Click and drag\nto pan the chart (resize it)",
-    [EChart2DModifierType.PolarZoomExtents]: "Double-click\nto reset the zoom at the original visible ranges",
     [EChart2DModifierType.PolarLegend]: "Appends a legend showing the data series names & colors",
+    [EChart2DModifierType.PolarDataPointSelection]: "Select data-points\nto change their state",
 };
 const STROKE = "#FFFFFF";
 
@@ -90,16 +95,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8],
             yValues: [2.6, 5.3, 3.5, 2.7, 4.8, 3.8, 5, 4.5, 3.5],
         }),
-        pointMarker: {
-            type: EPointMarkerType.Triangle,
-            options: {
-                fill: "transparent",
-                strokeThickness: 2,
-                stroke: appTheme.VividOrange,
-                width: 14,
-                height: 12,
-            },
-        },
+        pointMarker: new TrianglePointMarker(wasmContext, {
+            width: 14,
+            height: 12,
+            fill: "#000000",
+            stroke: "#FFAA00",
+            strokeThickness: 2,
+        }),
+        paletteProvider: new DataPointSelectionPaletteProvider({
+            fill: "#FFFFFF",
+            stroke: "#00AA00", // keep the same
+        })
     });
     sciChartSurface.renderableSeries.add(polarColumn);
 
@@ -129,20 +135,35 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         tooltipTextStroke: STROKE,
         lineColor: STROKE,
     });
-    const PolarDataPointSelection = new PolarDataPointSelectionModifier();
+    const PolarDataPointSelection = new PolarDataPointSelectionModifier({
+        allowDragSelect: true,
+        allowClickSelect: true,
+        selectionStroke: "#3388FF",
+        selectionFill: "#3388FF44",
+        onSelectionChanged: (args) => {
+            console.log("seriesSelectionModifier onSelectionChanged", args);
+        },
+    });
     const PolarLegend = new PolarLegendModifier({
         backgroundColor: appTheme.DarkIndigo,
         textColor: STROKE,
     });
-    const PolarMouseWheelZoom = new PolarMouseWheelZoomModifier({ defaultActionType: EActionType.Zoom });
-    const PolarPan = new PolarPanModifier({
+    const PolarMouseWheelZoom = new PolarMouseWheelZoomModifier({ 
+        defaultActionType: EActionType.Zoom 
+    });
+    const PolarMouseWheelZoomPAN = new PolarMouseWheelZoomModifier({ 
+        defaultActionType: EActionType.Pan 
+    });
+    const PolarPanCartesian = new PolarPanModifier({
         primaryPanMode: EPolarPanModifierPanMode.Cartesian,
-        secondaryPanMode: EPolarPanModifierPanMode.PolarStartAngle,
+    });
+    const PolarPanPolar = new PolarPanModifier({
+        primaryPanMode: EPolarPanModifierPanMode.PolarStartAngle,
     });
     const PolarZoomExtents = new PolarZoomExtentsModifier();
 
     // add by default these 3 modifiers
-    sciChartSurface.chartModifiers.add(PolarZoomExtents, PolarMouseWheelZoom, PolarCursor);
+    sciChartSurface.chartModifiers.add(PolarDataPointSelection, PolarZoomExtents, PolarPanCartesian, PolarMouseWheelZoom);
 
     return {
         sciChartSurface,
@@ -158,10 +179,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                             return PolarDataPointSelection;
                         case EChart2DModifierType.PolarLegend:
                             return PolarLegend;
+
                         case EChart2DModifierType.PolarMouseWheelZoom:
                             return PolarMouseWheelZoom;
-                        case EChart2DModifierType.PolarPan:
-                            return PolarPan;
+                        case EChart2DModifierType.PolarMouseWheelZoom + " [Pan]":
+                            return PolarMouseWheelZoomPAN;
+
+                        case EChart2DModifierType.PolarPan + " [Cartesian]":
+                            return PolarPanCartesian;
+                        case EChart2DModifierType.PolarPan + " [Polar]":
+                            return PolarPanPolar;
+                        
                         case EChart2DModifierType.PolarZoomExtents:
                             return PolarZoomExtents;
                         default:
@@ -173,6 +201,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
                 if (sciChartSurface.chartModifiers.contains(newModifier)) {
                     sciChartSurface.chartModifiers.remove(newModifier, true);
+                    detailTextAnnotation.text = "Select a modifier to see its info";
                 } else {
                     sciChartSurface.chartModifiers.add(newModifier);
                     detailTextAnnotation.text = POLAR_MODIFIER_INFO[modifier]; // update the text
