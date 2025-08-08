@@ -32,7 +32,6 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
-    Logger.enableDebug = true;
     // Add master axes
     const xAxis = new NumericAxis(wasmContext, {
         labelStyle: {

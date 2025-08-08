@@ -15,7 +15,6 @@ import {
     EHorizontalTextPosition,
     EVerticalTextPosition,
     ICustomTextureOptions,
-    Logger,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
