@@ -48,7 +48,7 @@
     "@mui/material": "^6.3.1",
     "@stackblitz/sdk": "^1.11.0",
     "@types/morgan": "^1.9.9",
-    "@types/react": "19.0.4",
+    "@types/react": "^19.1.9",
     "chalk": "^4.1.0",
     "codesandbox": "^2.2.3",
     "compression": "^1.7.4",
@@ -59,8 +59,8 @@
     "follow-redirects": "^1.15.9",
     "morgan": "^1.10.0",
     "node-html-parser": "^6.1.13",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "react-helmet": "^6.1.0",
     "react-markdown": "^9.0.3",
     "react-router": "^7.1.1",
@@ -71,7 +71,7 @@
     "request": "^2.88.2",
     "rxjs": "^7.5.6",
     "scichart": "^4.0.828",
-    "scichart-react": "^0.2.0-beta.3",
+    "scichart-react": "^0.2.0-beta.4",
     "socket.io": "^4.5.2",
     "socket.io-client": "^4.7.5",
     "tss-react": "^4.9.14",
@@ -87,7 +87,7 @@
     "@types/follow-redirects": "^1.14.4",
     "@types/node": "^22.7.6",
     "@types/prismjs": "^1.16.1",
-    "@types/react-dom": "19.0.2",
+    "@types/react-dom": "^19.1.7",
     "@types/react-helmet": "^6.1.6",
     "@types/react-lazy-load-image-component": "^1.5.2",
     "@types/react-syntax-highlighter": "^15.5.13",
@@ -122,6 +122,10 @@
     "webpack-dev-server": "^4.11.1",
     "webpack-merge": "^5.8.0",
     "webpack-node-externals": "^3.0.0"
+  },
+  "overrides": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
   "browserslist": [
     "defaults",
