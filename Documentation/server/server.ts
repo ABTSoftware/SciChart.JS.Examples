@@ -418,7 +418,7 @@ const renderCodePenEmbed = (
     "description": "A documentation snippet for SciChart.JS from scichart.com/javascript-chart-documentation.  Find out more about SciChart at scichart.com/javascript-chart-features",
     "tags": ["scichart", "documentation"],
     "head": "&lt;meta name=&#x27;viewport&#x27; content=&#x27;width=device-width, initial-scale=1&#x27;&gt;",
-    "scripts": ["https://cdn.jsdelivr.net/npm/scichart/index.min.js"]
+    "scripts": ["https://cdn.jsdelivr.net/npm/scichart@3.5.782/index.min.js"]
   }'
   style="height: 100%; overflow: auto;"
   data-height=100%
