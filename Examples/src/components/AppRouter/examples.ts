@@ -76,7 +76,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_OrderedRendering,
             EXAMPLES_PAGES.chart2D_chartAnnotations_ResponsiveHtmlAnnotations,
             EXAMPLES_PAGES.chart2D_chartAnnotations_HtmlAnnotations,
-            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_PolarModifiers
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_PolarModifiers,
         ],
     },
 ];
@@ -233,6 +233,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_CustomTooltips,
         ],
     },
     {
