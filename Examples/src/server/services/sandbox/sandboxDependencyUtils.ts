@@ -8,8 +8,10 @@ export interface IFiles {
     };
 }
 
+const folderPath = path.join(__dirname, "Examples");
+
 export let csStyles: IFiles;
-export const loadStyles = async (folderPath: string) => {
+export const loadStyles = async () => {
     if (!csStyles) {
         const basePath = path.join(folderPath, "styles", "_base.scss");
         const base = await fs.promises.readFile(basePath, "utf8");

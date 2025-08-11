@@ -514,7 +514,7 @@ export const postToStackblitzAndCaptureRedirect = async (
 // Endpoint handler that returns the CodeSandbox URL instead of redirecting
 export const getSandboxUrlEndpoint = async (req: Request, res: Response) => {
     try {
-        await loadStyles(basePath);
+        await loadStyles();
         let currentExample: TExamplePage;
         try {
             currentExample = getRequestedExample(req, res)?.currentExample;
@@ -585,7 +585,7 @@ export const getSandboxUrlEndpoint = async (req: Request, res: Response) => {
 // Endpoint handler that returns the CodeSandbox URL instead of redirecting
 export const getCodeSandboxUrlEndpoint = async (req: Request, res: Response) => {
     try {
-        await loadStyles(basePath);
+        await loadStyles();
         let currentExample: TExamplePage;
         try {
             currentExample = getRequestedExample(req, res)?.currentExample;
@@ -639,7 +639,7 @@ export const getCodeSandboxUrlEndpoint = async (req: Request, res: Response) => 
 /*
 export const getStackblitzUrlEndpoint = async (req: Request, res: Response) => {
     try {
-        await loadStyles(basePath);
+        await loadStyles();
         let currentExample: TExamplePage;
         try {
             currentExample = getRequestedExample(req, res)?.currentExample;
@@ -683,7 +683,7 @@ export const renderSandBoxRedirect = async (
     sandboxEnv: "codesandbox" | "stackblitz"
 ): Promise<boolean> => {
     try {
-        await loadStyles(basePath);
+        await loadStyles();
         let currentExample: TExamplePage;
         try {
             currentExample = getRequestedExample(req, res)?.currentExample;
