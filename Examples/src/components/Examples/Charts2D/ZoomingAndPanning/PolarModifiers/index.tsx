@@ -30,8 +30,7 @@ export default function ChartComponent() {
     const [ modifiersActive, setModifiersActive ] = useState<{ [key: string]: boolean }>({
         [EChart2DModifierType.PolarZoomExtents]: true,
         [EChart2DModifierType.PolarMouseWheelZoom]: true,
-        [EChart2DModifierType.PolarPan + " [Cartesian]"]: true,
-        [EChart2DModifierType.PolarDataPointSelection]: true,
+        [EChart2DModifierType.PolarPan + " [Cartesian]"]: true
     });
     const [ conflictWarning, setConflictWarning ] = useState<string | null>(null);
 
@@ -44,19 +43,31 @@ export default function ChartComponent() {
 
         controls.toggleModifier(value);
 
-        setModifiersActive((prevState) => ({
-            ...prevState,
-            [value]: !prevState[value],
-        }));
+        setModifiersActive((prevState) => {
+            const newState = {
+                ...prevState,
+                [value]: !prevState[value],
+            };
 
-        if (CONFLICTING_MODIFIER_TYPES.some((pair) => pair.includes(value))) {
-            const conflictingModifier = CONFLICTING_MODIFIER_TYPES.find((pair) => pair.includes(value))?.find((modifier) => modifier !== value);
-            if (conflictingModifier && modifiersActive[conflictingModifier]) {
-                setConflictWarning(`Warning: "${value}" conflicts with "${conflictingModifier}". It may lead to unexpected behavior.`);
+            let hasConflict = false;
+            let conflictMessage = "";
+            
+            for (const pair of CONFLICTING_MODIFIER_TYPES) {
+                if (newState[pair[0]] && newState[pair[1]]) {
+                    hasConflict = true;
+                    conflictMessage = `Warning: "${pair[0]}" conflicts with "${pair[1]}". It may lead to unexpected behavior.`;
+                    break;
+                }
+            }
+            
+            if (hasConflict) {
+                setConflictWarning(conflictMessage);
             } else {
                 setConflictWarning(null);
             }
-        }
+
+            return newState;
+        });
     };
 
     return (

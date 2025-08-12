@@ -104,7 +104,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         paletteProvider: new DataPointSelectionPaletteProvider({
             fill: "#FFFFFF",
-            stroke: "#00AA00", // keep the same
+            stroke: "#00AA00",
         })
     });
     sciChartSurface.renderableSeries.add(polarColumn);
@@ -163,7 +163,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const PolarZoomExtents = new PolarZoomExtentsModifier();
 
     // add by default these 3 modifiers
-    sciChartSurface.chartModifiers.add(PolarDataPointSelection, PolarZoomExtents, PolarPanCartesian, PolarMouseWheelZoom);
+    sciChartSurface.chartModifiers.add(PolarZoomExtents, PolarPanCartesian, PolarMouseWheelZoom);
 
     return {
         sciChartSurface,
