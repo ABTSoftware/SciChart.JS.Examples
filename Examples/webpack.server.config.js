@@ -88,6 +88,10 @@ module.exports = {
             new CssMinimizerPlugin(),
         ],
     },
+    // performance: {
+    //     maxAssetSize: 2000000, // Sets the maximum individual asset size to 2MB (in bytes)
+    //     maxEntrypointSize: 2000000, // Sets the maximum entry point size to 2MB (in bytes)
+    // },
     plugins: [
         new CopyPlugin({
             patterns: [

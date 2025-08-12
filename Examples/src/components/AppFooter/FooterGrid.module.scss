@@ -1,5 +1,6 @@
-@import "../../assets/main.scss";
-@import "./CommonFooterStyles.module.scss";
+@use "../../assets/main.scss";
+@use "CommonFooterStyles.module.scss";
+@use "../../assets/mixins";
 
 .FooterGrid {
     &:not(:last-child) {
@@ -14,7 +15,7 @@
 
             grid-template-rows: repeat(3, 1fr);
     
-            @include xs{
+            @include mixins.xs{
                 grid-template-rows: unset;
             }
         }
@@ -24,7 +25,7 @@
 .TitleBox {
     padding: 40px 40px 0 40px;
 
-    @include sm {
+    @include mixins.sm {
         padding: 40px 16px 0 16px;
     }
 }
@@ -42,7 +43,7 @@
         grid-column-end: span 4;
     }
 
-    @include sm{
+    @include mixins.sm{
         padding: 0 16px;
 
         &:first-child {

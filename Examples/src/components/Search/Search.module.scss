@@ -1,4 +1,5 @@
-@import "../../assets/main.scss";
+@use "../../assets/main.scss";
+@use "../../assets/mixins";
 
 .Search {
     display: block;
@@ -11,13 +12,14 @@
     background: var(--bg);
 
     .SearchField {
-        @include sm {
-            background-color: unset;
-        }
         height: 44px;
         border-radius: 4px;
         border: none;
         border: 1px solid var(--border-color);
+
+        @include mixins.sm {
+            background-color: unset;
+        }
     }
 
     svg,
@@ -25,7 +27,7 @@
         color: var(--text);
     }
 
-    @include md {
+    @include mixins.md {
         max-width: 100%;
     }
 }

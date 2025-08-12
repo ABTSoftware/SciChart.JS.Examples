@@ -1,4 +1,6 @@
-@import "../assets/main.scss";
+@use "../assets/base.scss";
+@use "../assets/mixins.scss";
+@use "../assets/main.scss";
 
 $drawerWidthDesktop: min(350px, 25vw);
 $drawerWidthTablet: 375px;
@@ -7,7 +9,7 @@ $drawerWidthMobile: 100%;
 .App {
     display: flex;
 
-    @include md {
+    @include mixins.md {
         display: block;
     }
 }
@@ -20,12 +22,12 @@ $drawerWidthMobile: 100%;
     // fix for a bug of Drawer with anchor="right"
     inset: unset !important;
 
-    @include md {
+    @include mixins.md {
         display: block;
         width: $drawerWidthTablet;
     }
 
-    @include xxs {
+    @include mixins.xxs {
         width: $drawerWidthMobile;
     }
 }
@@ -35,7 +37,7 @@ $drawerWidthMobile: 100%;
     order: -1;
     background-color: var(--bg);
     width: $drawerWidthDesktop;
-    max-height: calc(100vh - $app-bar-height - 40px); // subtract navHeight and 2 * padding
+    max-height: calc(100vh - base.$app-bar-height - 40px); // subtract navHeight and 2 * padding
     margin-right: 15px;
     flex-shrink: 0;
     overflow-x: hidden;
@@ -43,7 +45,8 @@ $drawerWidthMobile: 100%;
     border-radius: 15px;
     overflow-x: hidden;
     overflow-y: scroll;
-    @include sm {
+
+    @include mixins.sm {
         display: none;
     }
 }

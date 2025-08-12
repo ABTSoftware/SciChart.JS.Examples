@@ -72,6 +72,10 @@ module.exports = {
         filename: "bundle.js",
         path: path.resolve(__dirname, config.buildConfig.targetDir),
     },
+    // performance: {
+    //     maxAssetSize: 2000000, // Sets the maximum individual asset size to 2MB (in bytes)
+    //     maxEntrypointSize: 2000000, // Sets the maximum entry point size to 2MB (in bytes)
+    // },
     plugins: [
         new CopyPlugin({
             patterns: [
@@ -89,14 +93,17 @@ module.exports = {
                 },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Sonic.csv", to: "" },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Texture.csv", to: "" },
-                { from: "src/components/Examples/Charts2D/PolarCharts/PolarUniformHeatmapUltrasound/heatmap_data.csv", to: "" },
+                {
+                    from: "src/components/Examples/Charts2D/PolarCharts/PolarUniformHeatmapUltrasound/heatmap_data.csv",
+                    to: "",
+                },
                 { from: "src/server/vanillaDemo/common.js", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart.browser.mjs", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
                 { from: "sitemap.xml", to: "" },
                 { from: process.env.NOINDEX ? "robotsNoIndex.txt" : "robots.txt", to: "robots.txt" },
-                                { from: "src/server/Data/geojson/australia.json", to: "" },
+                { from: "src/server/Data/geojson/australia.json", to: "" },
                 { from: "src/server/Data/geojson/africa.json", to: "" },
                 { from: "src/server/Data/geojson/australia.json", to: "" },
                 { from: "src/server/Data/geojson/africa.json", to: "" },
