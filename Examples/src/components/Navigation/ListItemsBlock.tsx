@@ -22,9 +22,9 @@ const ListItemsBlock: FC<TProps> = (props) => {
     const selectedFramework = useContext(FrameworkContext);
     const match = useExampleRouteParams();
     const { onExpandClick, checkIsOpened, historyPushPath, title, menuItems, menuItemsId, mostVisibleCategory } = props;
-    
+
     const [manuallyCollapsed, setManuallyCollapsed] = useState<Set<string>>(new Set());
-    
+
     const containerRef = useRef<HTMLDivElement>(null);
     const categoryElements = useRef(new Map<string, HTMLElement>());
 
@@ -41,7 +41,7 @@ const ListItemsBlock: FC<TProps> = (props) => {
             setTimeout(() => {
                 const element = categoryElements.current.get(mostVisibleCategory);
                 if (element) {
-                    if(mostVisibleCategory === "featuredApps_performanceDemos") {
+                    if (mostVisibleCategory === "featuredApps_performanceDemos") {
                         containerRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
                     } else {
                         element.scrollIntoView({ block: "nearest", behavior: "smooth" });
@@ -69,25 +69,25 @@ const ListItemsBlock: FC<TProps> = (props) => {
     };
 
     const hasActiveItem = (category: TMenuItem): boolean => {
-        return category.submenu.some(subItem => isItemActive(subItem.id));
+        return category.submenu.some((subItem) => isItemActive(subItem.id));
     };
 
     const handleCategoryClick = (categoryId: string) => {
-        const category = menuItems.find(item => item.id === categoryId);
-        
+        const category = menuItems.find((item) => item.id === categoryId);
+
         if (category && hasActiveItem(category)) {
-            setManuallyCollapsed(prev => {
+            setManuallyCollapsed((prev) => {
                 const updated = new Set(prev);
                 if (updated.has(categoryId)) {
                     updated.delete(categoryId);
                 } else {
                     updated.add(categoryId);
                 }
-                
+
                 return updated;
             });
         }
-        
+
         onExpandClick(categoryId);
     };
 
@@ -101,8 +101,9 @@ const ListItemsBlock: FC<TProps> = (props) => {
                     {menuItems.map((el) => {
                         const isActiveCategory = hasActiveItem(el);
                         const isManuallyCollapsed = manuallyCollapsed.has(el.id);
-                        const shouldExpand = (isActiveCategory && !isManuallyCollapsed) || (!isActiveCategory && !checkIsOpened(el.id));
-                        
+                        const shouldExpand =
+                            (isActiveCategory && !isManuallyCollapsed) || (!isActiveCategory && !checkIsOpened(el.id));
+
                         return (
                             <Fragment key={el.id}>
                                 {/* Parent category element */}
@@ -120,11 +121,7 @@ const ListItemsBlock: FC<TProps> = (props) => {
                                         isCollapseOpened={shouldExpand}
                                     />
                                 </div>
-                                <Collapse
-                                    in={shouldExpand}
-                                    timeout="auto"
-                                    unmountOnExit
-                                >
+                                <Collapse in={shouldExpand} timeout="auto" unmountOnExit>
                                     <List component="div" disablePadding>
                                         {el.submenu.map((subEl) => (
                                             <div

@@ -1,7 +1,6 @@
-import { EPageLayout } from "../../helpers/types/types";
-
 export interface IExampleMetadata {
-    exampleId: string; // Unique identifier for the example
+    exampleTitle?: string;
+    id: string; // another different unique id!!
     imagePath: string; // Path to the example's thumbnail image
     description: string; // General description of the example
     tips: string[]; // Array of tips related to the example
@@ -16,6 +15,8 @@ export interface IExampleMetadata {
     extraDependencies?: Record<string, string>;
     sandboxConfig?: Record<string, any>;
     markdownContent?: string | null;
+    reactComponent?: string | null;
+    isNew?: boolean; // Flag to indicate if the example is new (if new it will have a banner across the thumbnail)
 }
 
 export interface IDocumentationLink {

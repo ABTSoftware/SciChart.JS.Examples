@@ -1,33 +1,38 @@
 {
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS",
+            "target": "es2021"
+        },
+        "include": ["server/*.ts"]
+    },
     "compilerOptions": {
         "sourceMap": false,
-        "strict": true,
-        "noImplicitAny": true,
+        "strict": false,
+        "noImplicitAny": false,
         "strictNullChecks": false,
         "strictFunctionTypes": true,
         "strictBindCallApply": true,
         "strictPropertyInitialization": false,
         "noImplicitThis": true,
-        "alwaysStrict": true,
+        "alwaysStrict": false,
         "noUnusedLocals": false,
         "noUnusedParameters": false,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
-        "module": "CommonJS",
-        "target": "es2021",
+        "module": "ESNext",
+        "target": "ESNext",
+        "moduleResolution": "bundler",
         "jsx": "react",
         "allowJs": true,
         "typeRoots": ["./node_modules/@types"],
         "esModuleInterop": false,
-        "skipLibCheck": false,
+        "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "lib": ["es2021", "dom"],   
+        "lib": ["es2021", "dom"]
+        // "baseUrl": "./Documentation",
+        // "paths": {"scichart": ["node_modules/scichart"]}
     },
-    "include": [
-        "server/*.ts",
-        "src/**/*.ts",
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules"]
 }

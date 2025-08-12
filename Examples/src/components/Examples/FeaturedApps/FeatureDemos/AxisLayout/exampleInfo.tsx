@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsFeatureDemosAxisLayout",
+        reactComponent: "FeatureAxisLayout",
+        id: "featuredApps_featureDemos_axisLayout",
         imagePath: "javascript-axis-layout.jpg",
         description:
             "The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const axisLayoutExampleInfo = createExampleInfo(metaData);
+export default axisLayoutExampleInfo;

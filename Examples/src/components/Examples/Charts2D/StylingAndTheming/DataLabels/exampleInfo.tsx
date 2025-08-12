@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DStylingAndThemingDataLabels",
+        reactComponent: "DataLabels",
+        id: "chart2D_stylingAndTheming_DataLabels",
         imagePath: "javascript-datalabels-chart.jpg",
         description: "Shows how you can add **Data Labels** to a chart using SciChart.js",
         tips: [],
@@ -50,7 +51,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const datalabelsExampleInfo = createExampleInfo(metaData);
+export default datalabelsExampleInfo;

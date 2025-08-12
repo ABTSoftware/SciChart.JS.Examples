@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DStylingAndThemingMultiStyleSeries",
+        reactComponent: "MultiplePointMarkers",
+        id: "chart2D_stylingAndTheming_MultiplePointMarkers",
         imagePath: "javascript-chart-multi-style-series.jpg",
         description:
             "Demonstrates how to use multiple styles on a single series on **JavaScript Charts** using SciChart.js, High Performance JavaScript Charts. This uses a RenderDataTransform to split the data so that we can draw the selected points using additional customised drawingProviders. This means that modifiers still see a single series with the original data.",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const multiplePointMarkersExampleInfo = createExampleInfo(metaData);
+export default multiplePointMarkersExampleInfo;

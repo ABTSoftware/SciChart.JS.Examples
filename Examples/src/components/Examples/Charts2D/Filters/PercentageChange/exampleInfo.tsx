@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DFiltersPercentageChange",
+        reactComponent: "PercentageChange",
+        id: "chart2D_filters_PercentageChange",
         imagePath: "javascript-percentage-change.jpg",
         description:
             "Demonstrates how to use a ScaleOffsetFilter to convert data to a **Percentage Change** with realtime updates, using SciChart.js, High Performance JavaScript Charts",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const percentageChangeExampleInfo = createExampleInfo(metaData);
+export default percentageChangeExampleInfo;

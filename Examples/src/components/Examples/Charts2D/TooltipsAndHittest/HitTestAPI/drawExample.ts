@@ -81,7 +81,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         // Log the result to console. HitTestInfo contains information about the hit-test operation
         console.log(
-            `${hitTestInfo.dataSeriesName} hit test result (${whichHitTestMethod}):\r\n` +
+            `${hitTestInfo.seriesName} hit test result (${whichHitTestMethod}):\r\n` +
                 ` MouseCoord=(${mousePointX}, ${mousePointY})\r\n` +
                 ` Hit-Test Coord=(${hitTestInfo.xCoord}, ${hitTestInfo.yCoord})\r\n` +
                 ` IsHit? ${hitTestInfo.isHit}\r\n` +

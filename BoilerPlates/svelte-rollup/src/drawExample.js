@@ -56,9 +56,11 @@ export const drawExample = async (divId) => {
   sciChartSurface.renderableSeries.add(stackedColumnCollection);
 
   // Add zooming and panning behaviour
-  sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-  sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-  sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+  sciChartSurface.chartModifiers.add(
+    new ZoomPanModifier(),
+    new ZoomExtentsModifier(),
+    new MouseWheelZoomModifier()
+  );
 
   return { sciChartSurface, wasmContext };
 };

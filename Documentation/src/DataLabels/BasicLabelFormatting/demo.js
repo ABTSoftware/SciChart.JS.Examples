@@ -1,6 +1,9 @@
+import * as SciChart from "scichart";
+
 async function dataLabelsBasicFormatting(divElementId) {
     // Demonstrates how to add DataLabels with simple formatting to a chart with SciChart.js
-    const { SciChartSurface,
+    const {
+        SciChartSurface,
         NumericAxis,
         FastLineRenderableSeries,
         EllipsePointMarker,
@@ -32,43 +35,37 @@ async function dataLabelsBasicFormatting(divElementId) {
     });
 
     // #region ExampleA
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        stroke: "SteelBlue",
-        strokeThickness: 3,
-        pointMarker,
-        dataSeries,
-        // Configure datalabel formatting using similar
-        // numericFormat and precision options to the axis label formatting
-        dataLabels: {
-            numericFormat: ENumericFormat.Decimal,
-            precision: 4,
-            style: {
-                fontFamily: "Arial",
-                fontSize: 16
-            },
-            color: "#EEE"
-        }
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            stroke: "SteelBlue",
+            strokeThickness: 3,
+            pointMarker,
+            dataSeries,
+            // Configure datalabel formatting using similar
+            // numericFormat and precision options to the axis label formatting
+            dataLabels: {
+                numericFormat: ENumericFormat.Decimal,
+                precision: 4,
+                style: {
+                    fontFamily: "Default",
+                    fontSize: 16
+                },
+                color: "#EEE"
+            }
+        })
+    );
     // #endregion
 }
 
-dataLabelsBasicFormatting('scichart-root')
-
-
-
+dataLabelsBasicFormatting("scichart-root");
 
 async function builderExample(divElementId) {
     // Demonstrates how to add DataLabels to a chart with SciChart.js using the Builder API
-    const {
-        chartBuilder,
-        ESeriesType,
-        EThemeProviderType,
-        EPointMarkerType,
-        ENumericFormat
-    } = SciChart;
+    const { chartBuilder, ESeriesType, EThemeProviderType, EPointMarkerType, ENumericFormat } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
+    /** @type {import("scichart").TPointMarkerDefinition} */
     const pointMarker = {
         type: EPointMarkerType.Ellipse,
         options: {
@@ -102,7 +99,7 @@ async function builderExample(divElementId) {
                         numericFormat: ENumericFormat.Decimal,
                         precision: 4,
                         style: {
-                            fontFamily: "Arial",
+                            fontFamily: "Default",
                             fontSize: 16
                         },
                         color: "#EEE"
@@ -112,9 +109,6 @@ async function builderExample(divElementId) {
         ]
     });
     // #endregion
-};
+}
 
-
-
-if (location.search.includes("builder=1"))
-    builderExample("scichart-root");
+if (location.search.includes("builder=1")) builderExample("scichart-root");

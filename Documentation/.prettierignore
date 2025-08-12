@@ -1,0 +1,8 @@
+# Ignore folders:
+documentx
+server
+generated
+static
+
+# Ignore all HTML files:
+**/*.html

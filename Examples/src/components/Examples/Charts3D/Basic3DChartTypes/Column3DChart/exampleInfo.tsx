@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts3DBasic3DChartTypesColumn3DChart",
+        reactComponent: "Column3DChart",
+        id: "chart3D_basic3DChartTypes_Column3DChart",
         imagePath: "javascript-3d-column-chart.jpg",
         description:
             "The SciChart.js **JavaScript 3D Column Chart** uses uses XYZ data and can show sparse or grid based columns, with indivdual column coloring and a variety of column shapes.",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const column3DChartExampleInfo = createExampleInfo(metaData);
+export default column3DChartExampleInfo;

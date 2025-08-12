@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsPerformanceDemosRealtimePerformanceDemo",
+        reactComponent: "RealtimePerformanceDemo",
+        id: "featuredApps_performanceDemos_RealtimePerformanceDemo",
         imagePath: "javascript-chart-realtime-performance-demo.jpg",
         description:
             "Demonstrates appending **millions of points** to a line chart with SciChart.js, High Performance JavaScript Charts",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const realtimePerformanceDemoExampleInfo = createExampleInfo(metaData);
+export default realtimePerformanceDemoExampleInfo;

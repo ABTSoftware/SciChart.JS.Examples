@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DLegendsChartLegendsAPI",
+        reactComponent: "ChartLegendsAPI",
+        id: "chart2D_legends_ChartLegendsAPI",
         imagePath: "javascript-chart-legends.jpg",
         description:
             "Demonstrates how to add a legend to a **JavaScript Chart** using SciChart.js, High Performance JavaScript Charts",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const chartLegendsAPIExampleInfo = createExampleInfo(metaData);
+const chartLegendsAPIExampleInfo = createExampleInfo(metaData);
+export default chartLegendsAPIExampleInfo;

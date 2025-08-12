@@ -1,10 +1,12 @@
+import exp from "constants";
 import { createExampleInfo } from "../../../exampleInfoUtils";
 import { IExampleMetadata } from "../../../IExampleMetadata";
 
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsShowCasesOilAndGasDashboard",
+        reactComponent: "OilAndGasDashboard",
+        id: "featuredApps_showcases_oilandgasdashboard",
         imagePath: "javascript-oil-gas-explorer-dashboard-charts.jpg",
         description:
             "This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.",
@@ -54,7 +56,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "max-width",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const oilAndGasExplorerDashboard = createExampleInfo(metaData);
+export default oilAndGasExplorerDashboard;

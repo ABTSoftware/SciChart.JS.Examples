@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "BuilderApiChartFromJSON",
+        reactComponent: "ChartFromJSON",
+        id: "builderApi_chartFromJSON",
         imagePath: "javascript-chart-from-json.jpg",
         description:
             "Demonstrates how to use the Builder Api to create a **Chart from JSON** using SciChart.js. Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.",
@@ -54,7 +55,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const chartFromJSONExampleInfo = createExampleInfo(metaData);
+const chartFromJSONExampleInfo = createExampleInfo(metaData);
+export default chartFromJSONExampleInfo;

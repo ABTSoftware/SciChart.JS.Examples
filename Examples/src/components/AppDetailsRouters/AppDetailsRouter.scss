@@ -1,4 +1,5 @@
-@import "../../assets/main.scss";
+@use "../../assets/main.scss";
+@use "../../assets/mixins";
 
 $drawerWidthDesktop: min(350px, 25vw);
 
@@ -47,7 +48,7 @@ $drawerWidthDesktop: min(350px, 25vw);
     overflow-x: hidden;
     overflow-y: scroll;
 
-    @include sm {
+    @include mixins.sm {
         display: none;
     }
 }
@@ -131,12 +132,12 @@ $drawerWidthDesktop: min(350px, 25vw);
         display: none;
         margin-left: auto;
 
+        height: 30px;
+        gap: 6px;
+
         @media screen and (min-width: 1900px) {
             display: flex;
         }
-
-        height: 30px;
-        gap: 6px;
 
         svg {
             width: 30px;

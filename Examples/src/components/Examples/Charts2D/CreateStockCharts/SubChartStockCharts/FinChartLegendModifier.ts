@@ -17,6 +17,7 @@ import {
     translateToNotScaled,
     registerType,
     testIsInBounds,
+    ISciChartSubSurface,
 } from "scichart";
 import { TFinanceLegendTemplate, FinChartLegendAnnotation } from "./FinChartLegendAnnotation";
 
@@ -73,7 +74,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
     >();
     private mousePosition: EMousePosition = EMousePosition.OutOfCanvas;
     private mousePositionPaneId: string;
-    private mousePositionSciChartSurface: SciChartSurfaceBase;
+    private mousePositionSciChartSurface: ISciChartSubSurface;
     private translatedMousePoint: Point;
     private readonly legendAnnotations: Map<string, FinChartLegendAnnotation> = new Map<
         string,
@@ -189,7 +190,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
             const x = translateToNotScaled(scaledX);
             const y = translateToNotScaled(scaledY);
 
-            this.parentSurface.subCharts.forEach((scs) => {
+            this.parentSurface.subCharts.forEach((scs: ISciChartSubSurface) => {
                 const xLineAnnotation = this.xLineAnnotations.get(scs.id);
                 const yLineAnnotation = this.yLineAnnotations.get(scs.id);
 
@@ -202,7 +203,8 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
                 } else {
                     yLineAnnotation.isHidden = true;
                 }
-                xLineAnnotation.showLabel = scs.getXAxisById(xLineAnnotation.xAxisId).drawLabels;
+
+                xLineAnnotation.showLabel = true;
                 xLineAnnotation.isHidden = false;
                 xLineAnnotation.y1 = 0;
                 xLineAnnotation.y2 = scs.seriesViewRect.bottom / DpiHelper.PIXEL_RATIO;
@@ -213,7 +215,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
                 const legendAnnotation = this.legendAnnotations.get(scs.id);
                 legendAnnotation.x1 = x;
                 legendAnnotation.y1 = y;
-                legendAnnotation.activeSciChartSurface = this.mousePositionSciChartSurface as SciChartSurface;
+                legendAnnotation.activeSciChartSurface = this.mousePositionSciChartSurface;
             });
         } else {
             this.parentSurface.subCharts.forEach((scs) => {
@@ -231,10 +233,12 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
     private addLineAnnotations(paneId: string) {
         const subChart = this.getSciChartSurface(paneId);
         const xLineAnnotation = this.newLineAnnotation();
+        console.log("addLineAnnotations", xLineAnnotation.xAxisId);
         this.xLineAnnotations.set(paneId, xLineAnnotation);
         const yLineAnnotation = this.newLineAnnotation();
         this.yLineAnnotations.set(paneId, yLineAnnotation);
         subChart.annotations.add(xLineAnnotation, yLineAnnotation);
+        console.log("addLineAnnotations", xLineAnnotation.xAxis);
     }
 
     private removeLineAnnotations(paneId: string) {

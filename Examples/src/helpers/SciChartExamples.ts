@@ -16,6 +16,7 @@ const getGalleryItems = (category: string, menuItem: TMenuItem, framework: EPage
                 examplePath: subMenu.path,
                 subTitle: subMenu.subtitle(framework),
                 metaDescription: getFrameworkContent(subMenu.metaDescription, framework),
+                isNew: subMenu.isNew,
             };
         }),
     };
@@ -46,19 +47,23 @@ export const getSeeAlsoGalleryItems = (
         // Find the top-level menu item that hosts this example
         const topLevelMenu = allMenuItems.find((tm) => tm.submenu.find((sm) => sm.id === currentExample.id));
         // Get all the examples in that menu that is not this example
-        const seeAlsoExamples = topLevelMenu.submenu.filter((sm) => sm.id !== currentExample.id);
-        // Convert to a galleryItem for the See-Also section on each individual example
-        galleryItems.push(
-            getGalleryItems(
-                "See Also",
-                {
-                    id: topLevelMenu.id,
-                    title: topLevelMenu.title,
-                    submenu: seeAlsoExamples,
-                },
-                framework
-            )
-        );
+        if (topLevelMenu) {
+            const seeAlsoExamples = topLevelMenu.submenu.filter((sm) => sm.id !== currentExample.id);
+            // Convert to a galleryItem for the See-Also section on each individual example
+            galleryItems.push(
+                getGalleryItems(
+                    "See Also",
+                    {
+                        id: topLevelMenu.id,
+                        title: topLevelMenu.title,
+                        submenu: seeAlsoExamples,
+                    },
+                    framework
+                )
+            );
+        } else {
+            //  console.log("Top level menu is null>>");
+        }
     }
     return galleryItems;
 };

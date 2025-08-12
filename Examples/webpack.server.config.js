@@ -15,9 +15,12 @@ module.exports = {
         express: "commonjs2 express",
         ws: "commonjs2 ws",
     },
-    entry: "./src/server/server.tsx",
+    entry: {
+        server: "./src/server/server.tsx",
+        generateSitemapScript: "./generate-sitemap.ts",
+    },
     output: {
-        filename: "server.js",
+        filename: "[name].js",
         path: path.resolve(__dirname, config.buildConfig.targetDir),
     },
     module: {
@@ -85,6 +88,10 @@ module.exports = {
             new CssMinimizerPlugin(),
         ],
     },
+    // performance: {
+    //     maxAssetSize: 2000000, // Sets the maximum individual asset size to 2MB (in bytes)
+    //     maxEntrypointSize: 2000000, // Sets the maximum entry point size to 2MB (in bytes)
+    // },
     plugins: [
         new CopyPlugin({
             patterns: [

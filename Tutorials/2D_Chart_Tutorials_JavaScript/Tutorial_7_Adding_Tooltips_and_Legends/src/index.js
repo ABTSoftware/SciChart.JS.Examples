@@ -47,25 +47,16 @@ async function initSciChart() {
   // #endregion
 
   // #region ExampleB
-
-  // ...
-  // import { LegendModifier } from "scichart";
-  //
   // Add a Legend
   sciChartSurface.chartModifiers.add(
     new LegendModifier({ showCheckboxes: true })
   );
-
   // #endregion
 
   // #region ExampleC
-
-  // ...
-  // import { CursorModifier } from "scichart";
-  //
   // Add axis label tooltips using CursorModifier
   const cursorModifier = new CursorModifier({
-    axisLabelFill: "#FFFFFF",
+    axisLabelFill: "black",
     axisLabelStroke: "#00FF00",
     showAxisLabels: true,
     showTooltip: false,
@@ -73,32 +64,20 @@ async function initSciChart() {
     showYLine: true,
   });
   sciChartSurface.chartModifiers.add(cursorModifier);
-
   // #endregion
 
-  // #region ExampleD
-
-  // ...
-  // import { RolloverModifier } from "scichart";
-  //
-  // Add a tooltip behavior using the RolloverModifier
-  const tooltipModifier = new RolloverModifier({
-    showTooltip: true,
-    showAxisLabel: true,
-    showRolloverLine: true,
-    rolloverLineStroke: "#FF6600",
-    rolloverLineStrokeThickness: 2,
-  });
-  sciChartSurface.chartModifiers.add(tooltipModifier);
-
-  // #endregion
-
-  // Add an event listener to enable/disable the Tooltips
-  const inputEnableTooltip = document.getElementById("enable-tooltip");
-  inputEnableTooltip.addEventListener("input", (event) => {
-    tooltipModifier.isEnabled = inputEnableTooltip.checked;
-    console.log("Enabling Tooltip");
-  });
+  // // #region ExampleD
+  // // Add a tooltip behavior using the RolloverModifier
+  // const tooltipModifier = new RolloverModifier({
+  //   showTooltip: true,
+  //   showAxisLabel: true,
+  //   showRolloverLine: true,
+  //   isEnabled: false,
+  //   rolloverLineStroke: "#FF6600",
+  //   rolloverLineStrokeThickness: 2,
+  // });
+  // sciChartSurface.chartModifiers.add(tooltipModifier);
+  // // #endregion
 }
 
 initSciChart();

@@ -5,7 +5,7 @@ import { getSandboxConfig } from "../sandbox";
 import { getRequestedExample } from "../../renderCodeSandboxRedirect";
 import { BadRequestError, IHttpError } from "../../Errors";
 import { TExamplePage } from "../../../components/AppRouter/examplePages";
-import { SandboxConfig } from "../sandbox/sandboxDependencyUtils";
+import { loadStyles, SandboxConfig } from "../sandbox/sandboxDependencyUtils";
 import { StackBlitzResponse } from "../../../helpers/types/types";
 import { ProjectFiles } from "@stackblitz/sdk";
 
@@ -17,6 +17,7 @@ import { ProjectFiles } from "@stackblitz/sdk";
  */
 export async function getStackblitzFiles(req: Request, res: Response): Promise<void> {
     try {
+        await loadStyles();
         // Get the example information
         const exampleInfo = getRequestedExample(req, res);
         if (!exampleInfo?.currentExample) {
@@ -34,7 +35,7 @@ export async function getStackblitzFiles(req: Request, res: Response): Promise<v
         const basePath = path.join(__dirname, "Examples");
         const folderPath = path.join(basePath, currentExample.filepath);
         const sandboxConfig = await getSandboxConfig(folderPath, exampleInfo.currentExample, framework, baseUrl);
-
+        // console.log("sandboxConfig", Object.keys(sandboxConfig.files));
         // Format response for StackBlitz
         const response = formatStackBlitzResponse(sandboxConfig, exampleInfo.currentExample);
 

@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsPerformanceDemosRealtimeGhostedTraces",
+        reactComponent: "RealtimeGhostedTraces",
+        id: "featuredApps_performanceDemos_RealtimeGhostedTraces",
         imagePath: "javascript-realtime-ghosted-traces-oscilloscope-chart.jpg",
         description:
             "Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance JavaScript Charts",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const realtimeGhostedTracesExampleInfo = createExampleInfo(metaData);
+const realtimeGhostedTracesExampleInfo = createExampleInfo(metaData);
+export default realtimeGhostedTracesExampleInfo;

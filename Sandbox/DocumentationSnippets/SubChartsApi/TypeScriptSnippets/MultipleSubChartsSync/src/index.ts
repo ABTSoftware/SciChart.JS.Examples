@@ -62,16 +62,16 @@ export const createChart = async (rootDivElementId: string) => {
         const position = new Rect(columnIndex * width, rowIndex * height, width, height);
 
         const subChartOptions: I2DSubSurfaceOptions = {
-            subChartPadding: Thickness.fromNumber(10),
+            padding: Thickness.fromNumber(10),
             id: `subChart-${subChartIndex}`,
             position,
         };
 
         const subSurface = sciChartSurface.addSubChart(subChartOptions);
-        
+
         subSurface.xAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
         subSurface.yAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
-        
+
         subSurface.renderableSeries.add(
             new FastLineRenderableSeries(wasmContext, {
                 dataSeries: new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true, ...getData(0, 1000) }),
@@ -79,7 +79,7 @@ export const createChart = async (rootDivElementId: string) => {
                 strokeThickness: 3,
             })
         );
-        subSurface.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier())
+        subSurface.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier());
     }
 
     sciChartSurface.subCharts.forEach((subSurface) => {
@@ -113,7 +113,7 @@ export const createChartWithBuilderApi = async (rootDivElementId: string) => {
         subCharts.push({
             surface: {
                 id: `subChart-${subChartIndex}`,
-                subChartPadding: Thickness.fromNumber(10),
+                padding: Thickness.fromNumber(10),
                 position,
             },
             xAxes: {

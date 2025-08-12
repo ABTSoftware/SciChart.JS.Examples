@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DCreateStockChartsRealtimeTickingStockCharts",
+        reactComponent: "RealtimeTickingStockCharts",
+        id: "chart2D_createStockCharts_RealtimeTickingStockCharts",
         imagePath: "javascript-realtime-ticking-stock-charts.jpg",
         description:
             "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
@@ -60,7 +61,9 @@ const metaData: IExampleMetadata =
             websocket_ts: "^1.1.1",
             rxjs: "^7.5.6",
         },
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const realtimeTickingStockChartsExampleInfo = createExampleInfo(metaData);
+const realtimeTickingStockChartsExampleInfo = createExampleInfo(metaData);
+export default realtimeTickingStockChartsExampleInfo;

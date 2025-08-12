@@ -1,0 +1,92 @@
+import {
+    SciChartSurface,
+    NumericAxis,
+    SciChartJsNavyTheme,
+    TriangleRenderableSeries,
+    XyDataSeries,
+    ETriangleSeriesDrawMode,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    IFillPaletteProvider,
+    EFillPaletteMode,
+    parseColorToUIntArgb,
+    NumberRange
+} from "scichart";
+
+async function triangleSeriesStripChart(divElementId) {
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        theme: new SciChartJsNavyTheme()
+    });
+
+    const growBy = new NumberRange(0.1, 0.1);
+
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy }));
+
+    // const coordinates = [
+    //     [0, 0],
+    //     [0, 200],
+    //     [200, 0],
+    //     [200, 200]
+    // ];
+
+    const coordinates = [
+        [0, 150],
+        [0, 50],
+        [50, 0],
+        [150, 0],
+        [200, 50],
+        [200, 150],
+        [150, 200],
+        [50, 200],
+        [0, 150],
+        [0, 50]
+    ];
+
+    const dataSeries = new XyDataSeries(wasmContext, {
+        xValues: coordinates.map(p => p[0]),
+        yValues: coordinates.map(p => p[1])
+    });
+
+    const colors = {
+        0: "#f39c12",
+        1: "#27ae60",
+        2: "#2980b9",
+        3: "#8e44ad"
+    };
+
+    class TrianglePaletteProvider implements IFillPaletteProvider {
+        public readonly fillPaletteMode = EFillPaletteMode.SOLID;
+
+        public onAttached(): void {}
+
+        public onDetached(): void {}
+
+        public overrideFillArgb(_xValue: number, _yValue: number, index: number, opacity: number): number {
+            // return parseColorToUIntArgb(Math.floor(index / 3) % 2 === 0 ? "cornflowerblue" : "lightgray");
+
+            // console.log(Math.floor(index / 3));
+
+            const opacityFix = Math.round(opacity * 255);
+
+            return parseColorToUIntArgb(colors[Math.floor(index / 3)], opacityFix);
+        }
+    }
+
+    const triangleSeries = new TriangleRenderableSeries(wasmContext, {
+        dataSeries,
+        drawMode: ETriangleSeriesDrawMode.Strip,
+        fill: "cornflowerblue",
+        opacity: 0.5,
+        paletteProvider: new TrianglePaletteProvider()
+    });
+
+    sciChartSurface.renderableSeries.add(triangleSeries);
+
+    // Add zoom/pan controls
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier());
+
+    return sciChartSurface;
+}
+
+triangleSeriesStripChart("scichart-root");

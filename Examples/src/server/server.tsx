@@ -13,6 +13,7 @@ import { populatePrerenderedPageCache } from "./services/pageRender";
 import { mainRouter } from "./routes/MainRouter";
 import { morganMiddleware } from "./middlewares/loggingMiddleware";
 import { baseAppPath } from "../constants";
+import { loadStyles } from "./services/sandbox/sandboxDependencyUtils";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
@@ -39,6 +40,7 @@ function shouldCompress(req: Request, res: Response) {
 // Prerendered pages cache structure of URL/HTML pairs
 populateSourceFilesCache()
     .then(populatePrerenderedPageCache)
+    .then(() => loadStyles())
     .then(() => {
         server.listen(port, () => {
             console.log(

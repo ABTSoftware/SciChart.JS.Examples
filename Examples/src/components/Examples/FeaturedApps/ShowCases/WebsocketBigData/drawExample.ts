@@ -375,7 +375,7 @@ export const drawExample =
                         // tslint:disable-next-line: max-line-length
                         sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy =
                             new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
-                        yAxis.id = "0";
+                        yAxis = new NumericAxis(wasmContext, { id: "0", ...axisOptions });
                     } else {
                         sciChartSurface.yAxes.add(
                             new NumericAxis(wasmContext, {

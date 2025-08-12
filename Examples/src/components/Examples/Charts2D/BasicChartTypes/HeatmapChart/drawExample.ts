@@ -77,7 +77,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         if (updateIndex >= MAX_SERIES) {
             updateIndex = 0;
         }
-        timerId = setTimeout(updateChart, 20);
+        timerId = setTimeout(updateChart, 16);
     };
 
     const startUpdate = () => {

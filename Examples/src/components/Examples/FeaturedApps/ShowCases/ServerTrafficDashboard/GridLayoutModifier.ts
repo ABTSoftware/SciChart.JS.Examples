@@ -9,16 +9,18 @@ import {
     easing,
     EAutoRange,
     EChart2DModifierType,
-    ECoordinateMode,
+    ESubSurfacePositionCoordinateMode,
     GenericAnimation,
     I2DSubSurfaceOptions,
     IGenericAnimation,
     ISciChart2DDefinition,
+    ISciChartSubSurface,
     LegendModifier,
     NumberRange,
     parseColorToTArgb,
     parseTArgbToHtmlColor,
     Rect,
+    SciChartSubSurface,
     SciChartSurface,
     TAxisDefinition,
     TBorder,
@@ -27,8 +29,10 @@ import {
     Thickness,
     TModifierDefinition,
     TSeriesDefinition,
+    TSubSurfacePosition,
     TTextStyle,
     TTickLineStyle,
+    TXywhCoordinates,
     VisibleRangeChangedArgs,
 } from "scichart";
 import { ChartModifierBase2D } from "scichart/Charting/ChartModifiers/ChartModifierBase2D";
@@ -108,8 +112,8 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             theme: appTheme.SciChartJsTheme,
             // Start full size
             position: this.translateRectToRelativeCoordinates(subChartsAreaRect),
-            coordinateMode: ECoordinateMode.Relative,
-            subChartPadding: Thickness.fromString("0 0 0 0"),
+            coordinateMode: ESubSurfacePositionCoordinateMode.Relative,
+            padding: Thickness.fromString("0 0 0 0"),
             viewportBorder: {
                 color: borderInitialColor,
                 borderRight: 2,
@@ -126,7 +130,7 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             },
         };
 
-        const subChart = this.parentSurface.addSubChart(subChartOptions);
+        const subChart = SciChartSubSurface.createSubSurface(this.parentSurface, subChartOptions);
         const xAxisDef = (surfaceDef.xAxes as TAxisDefinition[]).find((a) => a.options.id == rs.xAxisId);
         const yAxisDef = (surfaceDef.yAxes as TAxisDefinition[]).find((a) => a.options.id == rs.yAxisId);
         const modifiers = (surfaceDef.modifiers as TModifierDefinition[]).filter(
@@ -187,10 +191,10 @@ export class GridLayoutModifier extends ChartModifierBase2D {
 
         const axisInitialStyles = collectAxisStyles(xAxis);
         const surfaceInitialStyles = collectSurfaceStyles(subChart);
-        const positionAnimation = new GenericAnimation<Rect>({
-            from: subChart.subPosition,
+        const positionAnimation = new GenericAnimation<TXywhCoordinates>({
+            from: subChart.subPosition as TXywhCoordinates,
             to: position,
-            onAnimate: (from: Rect, to: Rect, progress: number) => {
+            onAnimate: (from: TXywhCoordinates, to: TXywhCoordinates, progress: number) => {
                 const x = DoubleAnimator.interpolate(from.x, to.x, progress);
                 const y = DoubleAnimator.interpolate(from.y, to.y, progress);
                 const w = DoubleAnimator.interpolate(from.width, to.width, progress);
@@ -319,10 +323,10 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             const axisInitialStyles = collectAxisStyles(xAxis);
             const surfaceInitialStyles = collectSurfaceStyles(subChart);
 
-            const subChartRepositioningAnimation = new GenericAnimation<Rect>({
-                from: subChart.subPosition,
+            const subChartRepositioningAnimation = new GenericAnimation<TXywhCoordinates>({
+                from: subChart.subPosition as TXywhCoordinates,
                 to: this.translateRectToRelativeCoordinates(subChartsAreaRect),
-                onAnimate: (from: Rect, to: Rect, progress: number) => {
+                onAnimate: (from: TXywhCoordinates, to: TXywhCoordinates, progress: number) => {
                     const x = DoubleAnimator.interpolate(from.x, to.x, progress);
                     const y = DoubleAnimator.interpolate(from.y, to.y, progress);
                     const w = DoubleAnimator.interpolate(from.width, to.width, progress);
@@ -387,7 +391,7 @@ type TAxisStyles = {
 };
 
 type TSurfaceStyles = {
-    viewportBorder: TBorder;
+    // viewportBorder: TBorder;
     titleStyle: TChartTitleStyle;
 };
 
@@ -401,8 +405,8 @@ const collectAxisStyles = (axis: AxisBase2D): TAxisStyles => ({
     axisBorderColor: axis.axisBorder.color,
 });
 
-const collectSurfaceStyles = (surface: SciChartSurface): TSurfaceStyles => ({
-    viewportBorder: surface.viewportBorder,
+const collectSurfaceStyles = (surface: ISciChartSubSurface): TSurfaceStyles => ({
+    // viewportBorder: surface.viewportBorder,
     titleStyle: surface.titleStyle,
 });
 
@@ -422,7 +426,7 @@ const multiplyAxisStylesOpacity = (axis: AxisBase2D, initialStyles: TAxisStyles,
     axis.axisBandsFill = multiplyOpacity(initialStyles.axisBandFill, opacity);
 };
 
-const multiplySurfaceStylesOpacity = (surface: SciChartSurface, initialStyles: TSurfaceStyles, opacity: number) => {
-    surface.viewportBorder = { color: multiplyOpacity(initialStyles.viewportBorder.color, opacity) };
+const multiplySurfaceStylesOpacity = (surface: ISciChartSubSurface, initialStyles: TSurfaceStyles, opacity: number) => {
+    // surface.viewportBorder = { color: multiplyOpacity(initialStyles.viewportBorder.color, opacity) };
     surface.titleStyle = { color: multiplyOpacity(initialStyles.titleStyle.color, opacity) };
 };

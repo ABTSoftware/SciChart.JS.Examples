@@ -1,5 +1,5 @@
-@import "../../assets/main.scss";
-@import "./CommonListItemStyles.module.scss";
+@use "../../assets/main.scss";
+@use "CommonListItemStyles.module.scss";
 
 .ListItemBlock {
     color: var(--text);

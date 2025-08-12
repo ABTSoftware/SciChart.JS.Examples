@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsPerformanceDemosLoad500By500",
+        reactComponent: "Load500By500",
+        id: "featuredApps_performanceDemos_Load500By500",
         imagePath: "javascript-chart-load-500-series-by-500-points.jpg",
         description:
             "Demonstrates loading **500 series, each with 500 points (250k points total) instantly**. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const load500By500ExampleInfo = createExampleInfo(metaData);
+export default load500By500ExampleInfo;

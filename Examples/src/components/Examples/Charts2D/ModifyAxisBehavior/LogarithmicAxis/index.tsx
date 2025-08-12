@@ -2,24 +2,9 @@ import * as React from "react";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { AxisBase2D, LogarithmicAxis, NumericAxis, SciChartSurface } from "scichart";
 import { drawExample } from "./drawExample";
-
-const useStyles = makeStyles()((theme) => ({
-    flexOuterContainer: {
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        background: appTheme.DarkIndigo,
-    },
-
-    chartArea: {
-        flex: 1,
-    },
-}));
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
@@ -78,45 +63,40 @@ export default function LogarithmicAxisExample() {
         sciChartSurface.zoomExtents();
     };
 
-    const { classes } = useStyles();
-
     return (
-        <div className={commonClasses.ChartWrapper}>
-            <div className={classes.flexOuterContainer}>
-                <div className={commonClasses.ToolbarRow}>
-                    <ToggleButtonGroup
-                        className={commonClasses.ToggleButtonGroup}
-                        exclusive
-                        value={preset}
-                        onChange={handleToggleButtonChanged}
-                        size="medium"
-                        color="primary"
-                        aria-label="small outlined button group"
-                    >
-                        <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
-                            Logarithmic X &amp; Y Axis
-                        </ToggleButton>
-                        <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
-                            Log X Axis, Linear Y Axis
-                        </ToggleButton>
-                        <ToggleButton value={2} style={{ color: appTheme.ForegroundColor }}>
-                            Linear X &amp; Y Axis
-                        </ToggleButton>
-                    </ToggleButtonGroup>
-                </div>
-                <SciChartReact
-                    initChart={drawExample}
-                    className={classes.chartArea}
-                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                        const { sciChartSurface } = initResult;
-                        sciChartSurfaceRef.current = sciChartSurface;
-                        setLogXAxis(initResult.xAxisLogarithmic);
-                        setLogYAxis(initResult.yAxisLogarithmic);
-                        setLinearXAxis(initResult.xAxisLinear);
-                        setLinearYAxis(initResult.yAxisLinear);
-                    }}
-                />
+        <div className={commonClasses.ChartWithToolbar}>
+            <div className={commonClasses.ToolbarRow}>
+                <ToggleButtonGroup
+                    className={commonClasses.ToggleButtonGroup}
+                    exclusive
+                    value={preset}
+                    onChange={handleToggleButtonChanged}
+                    size="medium"
+                    color="primary"
+                    aria-label="small outlined button group"
+                >
+                    <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
+                        Logarithmic X &amp; Y Axis
+                    </ToggleButton>
+                    <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
+                        Log X Axis, Linear Y Axis
+                    </ToggleButton>
+                    <ToggleButton value={2} style={{ color: appTheme.ForegroundColor }}>
+                        Linear X &amp; Y Axis
+                    </ToggleButton>
+                </ToggleButtonGroup>
             </div>
+            <SciChartReact
+                initChart={drawExample}
+                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                    const { sciChartSurface } = initResult;
+                    sciChartSurfaceRef.current = sciChartSurface;
+                    setLogXAxis(initResult.xAxisLogarithmic);
+                    setLogYAxis(initResult.yAxisLogarithmic);
+                    setLinearXAxis(initResult.xAxisLinear);
+                    setLinearYAxis(initResult.yAxisLinear);
+                }}
+            />
         </div>
     );
 }

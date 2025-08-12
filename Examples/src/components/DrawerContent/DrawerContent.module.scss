@@ -1,9 +1,11 @@
-@import "../../assets/main.scss";
+@use "../../assets/main.scss";
+@use "../../assets/base";
+@use "../../assets/mixins";
 
 .DrawerContent {
     background-color: var(--bg);
 
-    @include md {
+    @include mixins.md {
         width: 100%;
         max-width: 100%;
     }
@@ -13,8 +15,8 @@
     display: flex;
     background-color: var(--bg);
     justify-content: space-between;
-    padding: $default-spacing * 2;
-    gap: $default-spacing;
+    padding: base.$default-spacing * 2;
+    gap: base.$default-spacing;
 
     .CloseButton {
         align-self: center;
@@ -23,8 +25,8 @@
         margin-left: -7px;
         display: none;
         color: var(--border-color);
-        
-        @include sm {
+
+        @include mixins.sm {
             display: block;
         }
     }
@@ -58,6 +60,6 @@
     height: 100%;
 }
 
-.FrameworkSelect .SelectedFramework{
+.FrameworkSelect .SelectedFramework {
     background-color: var(--bg-darker);
 }

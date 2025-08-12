@@ -1,25 +1,25 @@
 {
-  "name": "export-chart-to-image",
-  "version": "1.0.0",
-  "description": "Export Chart to Image Demo",
-  "main": "index.js",
-  "scripts": {
-    "build": "webpack",
-    "start": "webpack-dev-server"
-  },
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "dom-to-image": "^2.6.0",
-    "file-saver": "^2.0.5",
-    "scichart": "^3.0.284"
-  },
-  "devDependencies": {
-    "@types/file-saver": "^2.0.3",
-    "copy-webpack-plugin": "^11.0.0",
-    "ts-loader": "^9.4.2",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.11.1"
-  }
+    "name": "export-chart-to-image",
+    "version": "1.0.0",
+    "description": "Export Chart to Image Demo",
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack",
+        "start": "webpack-dev-server"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "dom-to-image": "^2.6.0",
+        "file-saver": "^2.0.5",
+        "scichart": "^4.0.0-beta.734"
+    },
+    "devDependencies": {
+        "@types/file-saver": "^2.0.3",
+        "copy-webpack-plugin": "^13.0.0",
+        "ts-loader": "^9.4.2",
+        "webpack": "^5.99.9",
+        "webpack-cli": "^6.0.1",
+        "webpack-dev-server": "^5.2.2"
+    }
 }

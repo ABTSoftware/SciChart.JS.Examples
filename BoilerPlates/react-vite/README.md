@@ -36,11 +36,12 @@ export default defineConfig({
       // for serving wasm files
       targets: [
         {
-          src: "node_modules/scichart/_wasm/scichart2d.data",
+          src: "node_modules/scichart/_wasm/scichart2d.wasm",
           dest: "/",
         },
+        // same for 3d if needed
         {
-          src: "node_modules/scichart/_wasm/scichart2d.wasm",
+          src: "node_modules/scichart/_wasm/scichart3d.wasm",
           dest: "/",
         },
       ],
@@ -96,7 +97,7 @@ function App() {
   // How-to steps at https://www.scichart.com/licensing-scichart-js/
   // SciChartSurface.setRuntimeLicenseKey("YOUR_RUNTIME_KEY");
 
-  // to use WebAssembly and Data files from CDN instead of the same origin
+  // to use WebAssembly files from CDN instead of the same origin
   // SciChartSurface.loadWasmFromCDN();
 
   // Note: for both licensing and WASM configurations - make sure they are set on the client side.

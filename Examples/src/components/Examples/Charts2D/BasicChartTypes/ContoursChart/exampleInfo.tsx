@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesContoursChart",
+        reactComponent: "ContoursChart",
+        id: "chart2D_basicCharts_ContourChart",
         imagePath: "javascript-heatmap-chart-with-contours.jpg",
         description:
             "Our Contours Chart example demonstrates how to create a **JavaScript Contour-map Chart** using our powerful JavaScript Chart Library.",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const contourChartExampleInfo = createExampleInfo(metaData);
+const contourChartExampleInfo = createExampleInfo(metaData);
+export default contourChartExampleInfo;

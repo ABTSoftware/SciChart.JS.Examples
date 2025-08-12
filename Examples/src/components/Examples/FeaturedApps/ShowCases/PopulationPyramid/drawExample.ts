@@ -19,6 +19,7 @@ import {
     BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy,
     ELegendPlacement,
     WaveAnimation,
+    SciChartDefaults,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -68,6 +69,7 @@ class CustomDataLabelManager implements IDataLabelLayoutManager {
                         const marginBetweenLabels = 12;
 
                         if (Math.abs(outerLabelPosition.x - innerLabelPosition.x) < limitWidth) {
+                            console.log(`Aligning labels: ${outerLabel.text} with ${innerLabel.text}`);
                             let newX;
                             if (i == 0) {
                                 // if we are in Male (left) chart, draw left

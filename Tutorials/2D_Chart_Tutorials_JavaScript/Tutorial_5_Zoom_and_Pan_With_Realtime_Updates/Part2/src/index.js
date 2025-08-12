@@ -11,6 +11,7 @@ import {
   EExecuteOn,
   NumberRange,
   EZoomState,
+  EModifierMouseArgKey,
 } from "scichart";
 
 async function initSciChart() {
@@ -59,10 +60,10 @@ async function initSciChart() {
   scatterSeries.dataSeries = scatterData;
   lineSeries.dataSeries = lineData;
 
-  // #region ExampleA
+  // #region_A_start
   // import {
   //   ZoomExtentsModifier, RubberBandZoomModifier,
-  //   ZoomPanModifier, EExecuteOn
+  //   ZoomPanModifier, EExecuteOn, EModifierMouseArgKey
   // } from "scichart";
 
   // Add ZoomExtentsModifier and RubberBandZoomModifier
@@ -73,7 +74,12 @@ async function initSciChart() {
 
   // Add ZoomPanModifier enabled on right-mouse button
   sciChartSurface.chartModifiers.add(
-    new ZoomPanModifier({ executeOn: EExecuteOn.MouseRightButton })
+    new ZoomPanModifier({
+      executeCondition: {
+        button: EExecuteOn.MouseRightButton,
+        key: EModifierMouseArgKey.None,
+      },
+    })
   );
 
   // Part 2: Appending data in realtime
@@ -90,7 +96,7 @@ async function initSciChart() {
       xAxis.visibleRange = new NumberRange(i - 1000, i);
     }
   };
-  // #endregion
+  // #region_A_end
 
   // Repeat at 60Hz
   setInterval(updateDataFunc, 1000 / 60);

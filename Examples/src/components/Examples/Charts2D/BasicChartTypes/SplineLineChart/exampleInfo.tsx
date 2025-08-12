@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesSplineLineChart",
+        reactComponent: "SplineLineChart",
+        id: "chart2D_basicCharts_SplineLineChart",
         imagePath: "javascript-spline-smoothed-line-chart.jpg",
         description:
             "Demonstrates how to create a **JavaScript Spline Line Chart** using SciChart.js, our feature-rich JavaScript Chart Library",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const splineLineChartExampleInfo = createExampleInfo(metaData);
+const splineLineChartExampleInfo = createExampleInfo(metaData);
+export default splineLineChartExampleInfo;

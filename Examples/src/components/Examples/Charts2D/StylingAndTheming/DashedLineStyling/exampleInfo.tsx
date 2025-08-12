@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DStylingAndThemingDashedLineStyling",
+        reactComponent: "DashedLineStyling",
+        id: "chart2D_stylingAndTheming_DashedLineStyling",
         imagePath: "javascript-dashed-line-chart.jpg",
         description:
             "Demonstrates how create **JavaScript Charts with dashed lines** using SciChart.js, High Performance JavaScript Charts",
@@ -54,7 +55,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const dashedLineStylingExampleInfo = createExampleInfo(metaData);
+export default dashedLineStylingExampleInfo;

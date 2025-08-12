@@ -2,7 +2,7 @@
 
 ## Trial licensing
 
-Ensure you have followed steps from our [getting-started](https://www.scichart.com/getting-started-scichart-js) guide to get a trial!
+From SciChart.js v3.2 and onwards, trial licenses are not required. Instead the chart initialises with a [Community License](https://scichart.com/community-licensing)
 
 ## How to run project
 
@@ -17,11 +17,11 @@ To run the project, use:
 
 ## How to add scichart.browser.js to your project
 
-1. Add script pointing to a specific version into the **head** section of your html file. For instance to add version `2.1.2261` add this script:
+1. Add script pointing to a specific version into the **head** section of your html file. For instance to add version `4.0.0` add this script:
 
 ```html
 <script
-  src="https://cdn.jsdelivr.net/npm/scichart@3.5.782/_wasm/scichart.browser.js"
+  src="https://cdn.jsdelivr.net/npm/scichart@4.0.0/_wasm/scichart.browser.js"
   crossorigin="anonymous"
 ></script>
 ```
@@ -36,8 +36,7 @@ If you want to use a different cdn, or serve the wasm files locally you can conf
 
 ```typescript
 SciChart.SciChartSurface.configure({
-  dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.5.782${SciChart.libraryVersion}/_wasm/scichart2d.data`,
-  wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.5.782${SciChart.libraryVersion}/_wasm/scichart2d.wasm`,
+  wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.wasm`,
 });
 ```
 

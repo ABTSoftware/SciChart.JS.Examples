@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DFiltersTrendMARatio",
+        reactComponent: "TrendMARatio",
+        id: "chart2D_filters_TrendMARatio",
         imagePath: "javascript-trend-ma-ratio.jpg",
         description:
             "Demonstrates how use **Linear Trend, Moving Average and Ratio Filters** with filter chaining, using SciChart.js, High Performance JavaScript Charts",
@@ -54,7 +55,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const trendMARatioExampleInfo = createExampleInfo(metaData);
+export default trendMARatioExampleInfo;

@@ -1,8 +1,7 @@
 import * as React from "react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
-import { SciChartReact } from "scichart-react";
-import { ChartGroupLoader } from "../../../ChartGroupLoader";
+import { SciChartReact, ChartGroupLoader } from "scichart-react";
 
 // REACT COMPONENT
 export default function PointLine3DChart() {

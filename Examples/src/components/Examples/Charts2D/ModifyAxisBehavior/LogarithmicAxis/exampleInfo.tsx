@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DModifyAxisBehaviorLogarithmicAxis",
+        reactComponent: "LogarithmicAxis",
+        id: "chart2D_modifyAxisBehavior_LogarithmicAxis",
         imagePath: "javascript-chart-logarithmic-axis.jpg",
         description:
             "Demonstrates how to create a **JavaScript Chart with Logarithmic axis** using SciChart.js, High Performance JavaScript Charts",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const logarithmicAxisExampleInfo = createExampleInfo(metaData);
+export default logarithmicAxisExampleInfo;

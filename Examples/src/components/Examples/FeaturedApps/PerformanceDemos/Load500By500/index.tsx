@@ -2,28 +2,15 @@ import * as React from "react";
 import { useRef } from "react";
 import AlertTitle from "@mui/material/AlertTitle";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
 import Alert from "@mui/material/Alert";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
-import { makeStyles } from "tss-react/mui";
-
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample, TTimeSpan } from "./drawExample";
 import { useViewType } from "../../../containerSizeHooks";
-
-const useStyles = makeStyles()((theme) => ({
-    flexOuterContainer: {
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        background: appTheme.DarkIndigo,
-    },
-}));
 
 export default function Load500By500() {
     const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(null);
@@ -34,16 +21,14 @@ export default function Load500By500() {
     ]);
     const [isStarted, setIsStarted] = React.useState(false);
 
-    const { classes } = useStyles();
-
     const viewRef = useRef<HTMLDivElement>(null);
     const viewInfo = useViewType(viewRef);
     const { isLargeView, isMobileView } = viewInfo ?? {};
 
     return (
-        <div ref={viewRef} className={commonClasses.ChartWrapper}>
+        <div ref={viewRef} className={commonClasses.ChartWithToolbar}>
             {viewInfo ? (
-                <div className={classes.flexOuterContainer}>
+                <>
                     <SciChartReact
                         style={{ flex: 1 }}
                         initChart={(rootElement: string | HTMLDivElement) =>
@@ -56,8 +41,9 @@ export default function Load500By500() {
                             )
                         }
                         onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
-                            controls.reloadOnce();
+                            controls.startUpdate();
                             controlsRef.current = controls;
+                            setIsStarted(true);
                         }}
                         onDelete={({ controls }: TResolvedReturnType<typeof drawExample>) => {
                             controls.stopUpdate();
@@ -119,7 +105,7 @@ export default function Load500By500() {
                             </Alert>
                         </div>
                     </div>
-                </div>
+                </>
             ) : null}
         </div>
     );

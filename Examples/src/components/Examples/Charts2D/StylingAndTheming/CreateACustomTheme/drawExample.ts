@@ -18,7 +18,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Create and apply your custom theme
     sciChartSurface.applyTheme({
-        annotationsGripsBackroundBrush: "white",
+        annotationsGripsBackgroundBrush: "white",
         annotationsGripsBorderBrush: "white",
         axis3DBandsFill: "#1F3D6833",
         axisBandsFill: "#1F3D6833",

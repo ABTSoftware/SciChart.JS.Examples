@@ -202,10 +202,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                     />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 15, width: "100%" }}>
-                    <div 
-                        id="EXAMPLE_CONTENT_WRAPPER"
-                        className={classes.contentwrapper}
-                    >
+                    <div id="EXAMPLE_CONTENT_WRAPPER" className={classes.contentwrapper}>
                         <div style={{ display: "flex" }}>
                             <ExampleBreadcrumbs />
 
@@ -219,7 +216,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                                 style={{
                                     margin: isMaxWidth ? "-10px 0" : 0,
                                     marginInline: isMaxWidth ? "auto" : 0,
-                                    width: isMaxWidth ? "min(100vh , 100%)" : "auto",
+                                    width: isMaxWidth && !embedCode ? "min(100vh , 100%)" : "auto",
                                 }}
                             >
                                 {pageTitle}

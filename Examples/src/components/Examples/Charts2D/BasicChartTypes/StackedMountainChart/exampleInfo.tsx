@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesStackedMountainChart",
+        reactComponent: "StackedMountainChart",
+        id: "chart2D_basicCharts_StackedMountainChart",
         imagePath: "javascript-stacked-mountain-chart.jpg",
         description:
             "Learn how to make a **JavaScript Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const stackedMountainChartExampleInfo = createExampleInfo(metaData);
+export default stackedMountainChartExampleInfo;

@@ -1,3 +1,5 @@
+import * as SciChart from "scichart";
+
 async function dataLabelsMetadata(divElementId) {
     // #region ExampleA
     const {
@@ -22,60 +24,56 @@ async function dataLabelsMetadata(divElementId) {
 
     // Create a chart with line series with a point-marker
     // optional metadata is also passed with javascript objecst into the dataSeries
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        stroke: "SteelBlue",
-        strokeThickness: 3,
-        pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 10,
-            height: 10,
-            strokeThickness: 2,
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
             stroke: "SteelBlue",
-            fill: "LightSteelBlue"}),
-        dataSeries: new XyDataSeries(wasmContext, {
-            xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8],
-            metadata: [
-                { text: "Bananas", isSelected: false },
-                { text: "Apples", isSelected: false },
-                { text: "Pears", isSelected: false },
-                { text: "Pineapples", isSelected: false },
-                { text: "Plums", isSelected: false },
-                { text: "Cherries", isSelected: false },
-                { text: "Strawberries", isSelected: false },
-                { text: "Blueberries", isSelected: false },
-                { text: "Lemons", isSelected: false },
-                { text: "Limes", isSelected: false },
-                { text: "Papaya", isSelected: false },
-                { text: "Guava", isSelected: false },
-            ]
-        }),
-        // Next, add the dataLabels. Simply setting dataLabel style makes labels visible
-        // We also pass a metaDataSelector which is a function that can be used to format labels from metadata objects
-        dataLabels: {
-            metaDataSelector: (metaData) => metaData.text,
-            style: {
-                fontFamily: "Arial",
-                fontSize: 16
-            },
-            color: "#EEE"
-        }
-    }));
+            strokeThickness: 3,
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 10,
+                height: 10,
+                strokeThickness: 2,
+                stroke: "SteelBlue",
+                fill: "LightSteelBlue"
+            }),
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8],
+                metadata: [
+                    { text: "Bananas", isSelected: false },
+                    { text: "Apples", isSelected: false },
+                    { text: "Pears", isSelected: false },
+                    { text: "Pineapples", isSelected: false },
+                    { text: "Plums", isSelected: false },
+                    { text: "Cherries", isSelected: false },
+                    { text: "Strawberries", isSelected: false },
+                    { text: "Blueberries", isSelected: false },
+                    { text: "Lemons", isSelected: false },
+                    { text: "Limes", isSelected: false },
+                    { text: "Papaya", isSelected: false },
+                    { text: "Guava", isSelected: false }
+                ]
+            }),
+            // Next, add the dataLabels. Simply setting dataLabel style makes labels visible
+            // We also pass a metaDataSelector which is a function that can be used to format labels from metadata objects
+            dataLabels: {
+                metaDataSelector: metaData => metaData.text,
+                style: {
+                    fontFamily: "Default",
+                    fontSize: 16
+                },
+                color: "#EEE"
+            }
+        })
+    );
     // #endregion
 }
 
-dataLabelsMetadata('scichart-root')
-
-
+dataLabelsMetadata("scichart-root");
 
 async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to add DataLabels to a chart with SciChart.js using the Builder API
-    const {
-        chartBuilder,
-        ESeriesType,
-        EThemeProviderType,
-        EPointMarkerType
-    } = SciChart;
+    const { chartBuilder, ESeriesType, EThemeProviderType, EPointMarkerType } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
@@ -99,7 +97,7 @@ async function builderExample(divElementId) {
                         { text: "Lemons", isSelected: false },
                         { text: "Limes", isSelected: false },
                         { text: "Papaya", isSelected: false },
-                        { text: "Guava", isSelected: false },
+                        { text: "Guava", isSelected: false }
                     ]
                 },
                 options: {
@@ -118,9 +116,9 @@ async function builderExample(divElementId) {
                     // Next, add the dataLabels. Simply setting dataLabel style makes labels visible
                     // We also pass a metaDataSelector which is a function that can be used to format labels from metadata objects
                     dataLabels: {
-                        metaDataSelector: (metaData) => metaData.text,
+                        metaDataSelector: metaData => metaData.text,
                         style: {
-                            fontFamily: "Arial",
+                            fontFamily: "Default",
                             fontSize: 16
                         },
                         color: "#EEE"
@@ -130,9 +128,6 @@ async function builderExample(divElementId) {
         ]
     });
     // #endregion
-};
+}
 
-
-
-if (location.search.includes("builder=1"))
-    builderExample("scichart-root");
+if (location.search.includes("builder=1")) builderExample("scichart-root");

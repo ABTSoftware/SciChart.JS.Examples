@@ -19,7 +19,7 @@ npm install scichart
 
 SciChart.js uses WebAssembly files which must be served. The easiest way to do this is to copy the wasm files from the node_modules/scichart/\_wasm folder to your output folder.
 
-Vue.js requires _.data file to be in the /public output folder, and _.wasm files to be in the /public/js folder. This is done using the `copy-files-to-from` npm package:
+Vue.js requires and \_.wasm files to be in the /public/js folder. This is done using the `copy-files-to-from` npm package:
 
 ```
  // copy-files-to-from.json
@@ -29,16 +29,8 @@ Vue.js requires _.data file to be in the /public output folder, and _.wasm files
   },
   "copyFiles": [
     {
-      "from": "./node_modules/scichart/_wasm/scichart2d.data",
-      "to": "./public/scichart2d.data"
-    },
-    {
       "from": "./node_modules/scichart/_wasm/scichart2d.wasm",
       "to": "./public/js/scichart2d.wasm"
-    },
-    {
-      "from": "./node_modules/scichart/_wasm/scichart3d.data",
-      "to": "./public/scichart3d.data"
     },
     {
       "from": "./node_modules/scichart/_wasm/scichart3d.wasm",

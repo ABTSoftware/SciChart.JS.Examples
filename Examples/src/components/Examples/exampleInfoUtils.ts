@@ -35,6 +35,8 @@ const createFrameworkPropertyGetter = <T extends string = TFrameworkName, R = st
 };
 
 export const createExampleInfo = (metadata: IExampleMetadata): TExampleInfo => ({
+    exampleTitle: metadata.exampleTitle,
+    id: metadata.id,
     onWebsite: metadata.onWebsite,
     title: createFrameworkPropertyGetter(EExampleProperty.Title)(metadata),
     pageTitle: createFrameworkPropertyGetter(EExampleProperty.PageTitle)(metadata),
@@ -52,6 +54,8 @@ export const createExampleInfo = (metadata: IExampleMetadata): TExampleInfo => (
     sandboxConfig: normalizeValue(metadata.sandboxConfig),
     pageLayout: convertPageLayout(metadata.pageLayout),
     extraDependencies: normalizeValue(metadata.extraDependencies) as Record<string, string> | undefined,
+    reactComponent: metadata.reactComponent,
+    isNew: metadata?.isNew,
 });
 
 function normalizeValue(value: unknown): unknown {

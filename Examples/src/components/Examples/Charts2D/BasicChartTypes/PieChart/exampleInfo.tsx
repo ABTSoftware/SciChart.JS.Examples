@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesPieChart",
+        reactComponent: "PieChart",
+        id: "chart2D_basicCharts_PieChart",
         imagePath: "javascript-pie-chart.jpg",
         description:
             "For an example that demonstrates how create a **JavaScript Pie Chart**, our demo code teaches you how to do this with SciChart's JavaScript Charting Library.",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const pieChartExampleInfo = createExampleInfo(metaData);
+const pieChartExampleInfo = createExampleInfo(metaData);
+export default pieChartExampleInfo;

@@ -99,7 +99,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new RolloverModifier({
             // Defines if rollover vertical line is shown
             showRolloverLine: true,
-            rolloverLineStrokeThickness: 1,
+            rolloverLineStrokeThickness: 2,
             rolloverLineStroke: appTheme.VividOrange,
             // Shows the default tooltip
             showTooltip: true,

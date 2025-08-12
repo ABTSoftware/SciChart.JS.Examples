@@ -52,7 +52,7 @@ export default function ChartFromJSON() {
 
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div style={{ display: "flex", flexDirection: "column", height: "100%", width: '100%' }}>
+            <div style={{ display: "flex", flexDirection: "column", height: "100%", width: "100%" }}>
                 <Chart chartConfig={currentChartConfig} />
                 <div style={{ position: "absolute", left: 20, top: 20 }}>
                     {errors && (
@@ -88,11 +88,17 @@ export default function ChartFromJSON() {
                         variant="outlined"
                         value={json}
                         onChange={handleChangeJSON}
+                        sx={{
+                            "& .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "var(--text)",
+                            },
+                            "& .MuiInputBase-input": {
+                                color: "var(--text)",
+                            },
+                        }}
                     />
                 </div>
-                <div
-                    className={[commonClasses.FormControl, commonClasses.AlignRight].join(" ")}
-                >
+                <div className={[commonClasses.FormControl, commonClasses.AlignRight].join(" ")}>
                     <ButtonGroup size="small" color="primary" aria-label="small outlined button group">
                         <Button className={commonClasses.ButtonFilled} id="buildChart" onClick={handleBuild}>
                             Apply

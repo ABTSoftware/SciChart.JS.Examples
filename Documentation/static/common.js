@@ -1,14 +1,14 @@
+import * as SciChart from "scichart";
+
 SciChart.SciChartSurface.configure({
-  dataUrl: "/scichart2d.data",
-  wasmUrl: "/scichart2d.wasm",
+    wasmUrl: "/scichart2d.wasm"
 });
 SciChart.SciChart3DSurface.configure({
-  dataUrl: "/scichart3d.data",
-  wasmUrl: "/scichart3d.wasm",
+    wasmUrl: "/scichart3d.wasm"
 });
 SciChart.SciChartDefaults.performanceWarnings = false;
 if (window.location.hostname.includes("scichart")) {
-  SciChart.SciChartSurface.setRuntimeLicenseKey(
-    "J44gYXzq0TUKahynkWEVf4irTgPc4aP7OsLttSzJ1H6evYTUWwq+N7JLRAjXOhNKycb2maYK1TSuD6iXMK1z8Yr/E/WcJyGhFigwPRuo13DmB7Yyn8zQKa0DmLKLljQFD78uTLFq+XxmZlxMgTl+NsPGCT5ZD62GKAuvTtet8e6r4Psdw37X4GtbpYekhxc8s1aA4bMFanKOzUqnwqRy/CQ2BVbUyj0Q4Ndlvy/tggetQMLcXwbWphBl9dle4QdXxOXLbEdeiO7CO/XOouxEpl+664x6AULNv/Ug1Hdy9bkHLQ8GkN4gNs0q50maboHPLDp6984FtOjsmYB35UUqX5CoaFLoCep9YZ7tL0tZ1RGRci7YPN7mIrfNThWTnBHrRrlGYF9IE/o4kMrgXsoRKdpxmaLSbBxpngRXHJ81roFtxCpND7x4D+dYsaHd/93O1gOc7IFE/zLhqJGKA1sn2C9965E+NV2Mn4nB2dJjTmTci87mN284/8Mvs83dMRiQbI5R69AmDRTVRJb6T6vZWd2k6Z6URTAvymp0UXcYip9gYBwXtlYI3o8WQtapl3Q0AGbTKq7RYS7riylodcVTr3g9oHoLNApto2r4BOIVscXXZSGDWtJpaYZGojc0h3tcAwDby/R3UG5o94sMGC1vZT2WwHeGMkWPxx62Xpg8g+gpB4er91c0NhcGdeIbq0z8sLKIxsSeJ6OH02X/Dc2BXI580xfHsCatMVISJnNVbGvwHmrOXsWO3ZQwv49IU8xE5t7UnxdB3yuKH7VuHtV2khE="
-  );
+    SciChart.SciChartSurface.setRuntimeLicenseKey(
+        "f73WgvARpprIvfm0FJJ2AxbYnQepAOTy2hGhxIUtaMEy4zrxL0IiSkhEUE5P56kdKDwi3YQ62ZrfBmu84+9ZJlcPKi3DF/toHtxTC4LCviZedGeDTm/sXNDEiXSNk+Ocy/uswC9zuC9D0o9juTohnFJo3M0R4DgOurbcOVEndQEL6GrpzO64BF5gK4dKT+f4QCfqraMYLGQZ5MbtS3BCjuYzyrmkHlBFJvbzxUzXjbF4AOmk4a9iFVLgeDYEkUYc/v5QWABzbQwsOBO1zaYJ39v2WWoaBgwtehSS1GUWlqKGk5REi28tiY0zMsN9kmM/XkLcLxgvYM1ICiusDYyvOpivcDmhmXBHIaIWh+WdbARNfQD3nd96CmxPUoQ0V0sB/aFXWxj0afAqysSx0/mp/FPo3HqH2hcCSHFbF8uGdAnvU0XMJSHrAhuwm8dWgGHYmj6Yr3hVu0uOQbWGfKeV/L1GyG8A+N9bDaP1wmsSTp3B6F3VeV3f+Cq5QIw6Vv4KHseX9UuislUrdS9inyMEz51kqIn5H2pRQcHSFR65vTk2jwDhucVFo99f8mByQYwxvUkDz9UWTVHMxUFjDjFQilHXg4zklkRcu0soqIxBMtjG/u/7iFRw2049V4q1erSdszD/WVNerjaTVKB8lxkebqW/o0uzrOf9ha7QQWXT2QdkViNU9i7sdMexvsJN6XTNK/qxx+amTS9WMXEgZMkebfeSoxc3caU48vZ/xPh+eR1qzrpKbuupO3OQ0h/1aETrChWI64MphKwlmSkGNfks2Px0hL5bGzgdVXTBRRGKebZf9vxs3OcmiXwHsc+CWhyLeU++wmxi8YKNmmnxyiE9NCw2hNL6Lcc0gHzovGWG/87ONH62rO0fz9ma3cr43ZQ3"
+    );
 }

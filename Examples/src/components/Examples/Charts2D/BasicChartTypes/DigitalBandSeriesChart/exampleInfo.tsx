@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesDigitalBandSeriesChart",
+        reactComponent: "DigitalBandSeriesChart",
+        id: "chart2D_basicCharts_DigitalBandSeriesChart",
         imagePath: "javascript-digital-band-chart.jpg",
         description:
             "Demonstrates how to create a **JavaScript Digital Band Chart** or High-Low Fill using SciChart.js. This is our High Performance JavaScript Chart Library",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const digitalBandSeriesChartExampleInfo = createExampleInfo(metaData);
+const digitalBandSeriesChartExampleInfo = createExampleInfo(metaData);
+export default digitalBandSeriesChartExampleInfo;

@@ -10,8 +10,8 @@ import {
     SciChartSurface,
     SweepAnimation,
     XyDataSeries,
-    ZoomExtentsModifier,
     Thickness,
+    ZoomExtentsModifier,
 } from "scichart";
 import { appTheme } from "../../../theme";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
@@ -30,7 +30,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         title: "Logarithmic X & Y Axis",
         titleStyle: {
             fontSize: 20,
-            fontWeight: "Bold",
+            fontWeight: "bold",
             placeWithinChart: true,
             color: appTheme.ForegroundColor + "C4",
             padding: Thickness.fromString("10 0 4 0"),
@@ -43,6 +43,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelFormat: ENumericFormat.Scientific,
         labelPrecision: 2,
         minorsPerMajor: 10,
+        useNativeText: false,
     });
     sciChartSurface.xAxes.add(xAxisLogarithmic);
 
@@ -54,6 +55,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelFormat: ENumericFormat.Scientific,
         labelPrecision: 2,
         minorsPerMajor: 10,
+        useNativeText: false,
     });
     sciChartSurface.yAxes.add(yAxisLogarithmic);
 

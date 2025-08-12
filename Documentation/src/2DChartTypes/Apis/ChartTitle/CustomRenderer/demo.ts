@@ -7,20 +7,16 @@ import {
     Rect,
     TChartTitleStyle,
     TSciChart,
-    WebGlRenderContext2D,
+    WebGlRenderContext2D
 } from "scichart";
 
 async function customChartTitleRenderer(divElementId: string) {
     // Demonstrates how to add a basic chart title in SciChart.js
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(
-        divElementId,
-        {
-            theme: new SciChartJsNavyTheme(),
-        }
-    );
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        theme: new SciChartJsNavyTheme()
+    });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
-
 
     class SubTitleRenderer extends ChartTitleRenderer {
         public subTitle: string;
@@ -28,11 +24,7 @@ async function customChartTitleRenderer(divElementId: string) {
 
         private readonly subRenderer: ChartTitleRenderer;
 
-        constructor(
-            webAssemblyContext: TSciChart,
-            subtitle: string,
-            subTitleStyle: Required<TChartTitleStyle>
-        ) {
+        constructor(webAssemblyContext: TSciChart, subtitle: string, subTitleStyle: Required<TChartTitleStyle>) {
             super(webAssemblyContext);
             this.subRenderer = new ChartTitleRenderer(webAssemblyContext);
             this.subTitle = subtitle;
@@ -45,18 +37,13 @@ async function customChartTitleRenderer(divElementId: string) {
             renderContext: WebGlRenderContext2D
         ): void {
             super.measure(title, originalTextStyle, renderContext);
-            this.subRenderer.measure(
-                this.subTitle,
-                this.subTitleStyleProperty,
-                renderContext
-            );
+            this.subRenderer.measure(this.subTitle, this.subTitleStyleProperty, renderContext);
         }
 
         layout(chartViewRect: Rect): void {
             super.layout(chartViewRect);
             this.subRenderer.layout(chartViewRect);
-            const ydiff =
-                this.viewRect.height - this.subRenderer.viewRect.height;
+            const ydiff = this.viewRect.height - this.subRenderer.viewRect.height;
             // @ts-ignore since accessing a protected property
             this.subRenderer.viewRectProperty = Rect.create(
                 this.subRenderer.viewRect.x,
@@ -66,9 +53,9 @@ async function customChartTitleRenderer(divElementId: string) {
             );
         }
 
-        draw(renderContext: WebGlRenderContext2D): void {
-            super.draw(renderContext);
-            this.subRenderer.draw(renderContext);
+        draw(renderContext: WebGlRenderContext2D, clipRect: Rect): void {
+            super.draw(renderContext, clipRect);
+            this.subRenderer.draw(renderContext, clipRect);
         }
 
         delete(): void {
@@ -81,15 +68,11 @@ async function customChartTitleRenderer(divElementId: string) {
     sciChartSurface.title = "Chart Title";
 
     // Add a subtitle
-    sciChartSurface.chartTitleRenderer = new SubTitleRenderer(
-        wasmContext,
-        "A Subtitle",
-        {
-            ...sciChartSurface.titleStyle,
-            fontSize: 30,
-            alignment: ETextAlignment.Right,
-        } as Required<TChartTitleStyle>
-    );
+    sciChartSurface.chartTitleRenderer = new SubTitleRenderer(wasmContext, "A Subtitle", {
+        ...sciChartSurface.titleStyle,
+        fontSize: 30,
+        alignment: ETextAlignment.Right
+    } as Required<TChartTitleStyle>);
 }
 
 customChartTitleRenderer("scichart-root");

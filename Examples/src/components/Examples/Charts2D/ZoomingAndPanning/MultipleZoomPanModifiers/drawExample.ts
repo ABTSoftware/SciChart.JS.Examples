@@ -105,7 +105,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.chartModifiers.add(
         // use RubberBandXyZoomModifier with Right Mouse Button
         // use easingFunction to animate zoom
-        new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton, easingFunction: easing.elastic }),
+        new RubberBandXyZoomModifier({
+            executeCondition: { button: EExecuteOn.MouseRightButton },
+            easingFunction: easing.elastic,
+        }),
         // enable pan withZoomPanModifier, and additionally e PinchZoom to allow zooming with pinch gesture on touch devices by setting enableZoom
         new ZoomPanModifier({ enableZoom: true }),
         new MouseWheelZoomModifier(),

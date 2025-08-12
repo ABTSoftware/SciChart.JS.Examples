@@ -1,7 +1,10 @@
+import * as SciChart from "scichart";
+
 async function dataLabelsBasicExample(divElementId) {
     // #region ExampleA
     // Demonstrates how to add DataLabels to a chart with SciChart.js
-    const { SciChartSurface,
+    const {
+        SciChartSurface,
         NumericAxis,
         FastLineRenderableSeries,
         EllipsePointMarker,
@@ -21,46 +24,40 @@ async function dataLabelsBasicExample(divElementId) {
 
     // Create a Line series with a pointmarker & some data
     // We add dataLabels by setting the dataLabels constructor option
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        stroke: "SteelBlue",
-        strokeThickness: 3,
-        pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 10,
-            height: 10,
-            strokeThickness: 2,
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
             stroke: "SteelBlue",
-            fill: "LightSteelBlue"
-        }),
-        dataSeries: new XyDataSeries(wasmContext, {
-            xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8]
-        }),
-        // Data labels are enabled here. Simply set style, color
-        dataLabels: {
-            style: {
-                fontFamily: "Arial",
-                fontSize: 16
-            },
-            color: "#EEE"
-        }
-    }));
+            strokeThickness: 3,
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 10,
+                height: 10,
+                strokeThickness: 2,
+                stroke: "SteelBlue",
+                fill: "LightSteelBlue"
+            }),
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8]
+            }),
+            // Data labels are enabled here. Simply set style, color
+            dataLabels: {
+                style: {
+                    fontFamily: "Default",
+                    fontSize: 16
+                },
+                color: "#EEE"
+            }
+        })
+    );
     // #endregion
 }
 
-dataLabelsBasicExample('scichart-root')
-
-
-
+dataLabelsBasicExample("scichart-root");
 
 async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to add DataLabels to a chart with SciChart.js using the Builder API
-    const {
-        chartBuilder,
-        ESeriesType,
-        EThemeProviderType,
-        EPointMarkerType
-    } = SciChart;
+    const { chartBuilder, ESeriesType, EThemeProviderType, EPointMarkerType } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
@@ -89,7 +86,7 @@ async function builderExample(divElementId) {
                     // Data labels are enabled here. Simply set style, color
                     dataLabels: {
                         style: {
-                            fontFamily: "Arial",
+                            fontFamily: "Default",
                             fontSize: 16
                         },
                         color: "#EEE"
@@ -99,9 +96,6 @@ async function builderExample(divElementId) {
         ]
     });
     // #endregion
-};
+}
 
-
-
-if (location.search.includes("builder=1"))
-    builderExample("scichart-root");
+if (location.search.includes("builder=1")) builderExample("scichart-root");

@@ -25,6 +25,26 @@ async function initSciChart() {
     yValues.push(Math.sin(x));
   }
 
+  // Make the chart vertical by setting X Axis Alignment to Left or Right
+  sciChartSurface.xAxes.add(
+    new NumericAxis(wasmContext, {
+      axisTitle: "X Axis",
+      growBy: new NumberRange(0.1, 0.1),
+      axisAlignment: EAxisAlignment.Left,
+    })
+  );
+
+  // Make the chart vertical by setting Y Axis Alignment to Top or Bottom
+  sciChartSurface.yAxes.add(
+    new NumericAxis(wasmContext, {
+      axisTitle: "Y Axis",
+      growBy: new NumberRange(0.1, 0.1),
+      axisAlignment: EAxisAlignment.Top,
+      // Flip the axis orientation with this property
+      flippedCoordinates: true,
+    })
+  );
+
   sciChartSurface.renderableSeries.add(
     new FastLineRenderableSeries(wasmContext, {
       dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
@@ -32,37 +52,12 @@ async function initSciChart() {
     })
   );
 
-  // #region ExampleA
-
-  // Make the chart vertical by setting X Axis Alignment to Left or Right
-  sciChartSurface.xAxes.add(
-    new NumericAxis(wasmContext, {
-      axisAlignment: EAxisAlignment.Left,
-      axisTitle: "X Axis",
-      growBy: new NumberRange(0.1, 0.1),
-    })
-  );
-
-  // Make the chart vertical by setting Y Axis Alignment to Top or Bottom
-  sciChartSurface.yAxes.add(
-    new NumericAxis(wasmContext, {
-      axisAlignment: EAxisAlignment.Top,
-      axisTitle: "Y Axis",
-      growBy: new NumberRange(0.1, 0.1),
-      // Flip the axis orientation with this property
-      flippedCoordinates: true,
-    })
-  );
-
   // Add some interactivity modifiers. Everything is transposed in a vertical chart
   // so zoom/pan and rollover works vertically
-
   sciChartSurface.chartModifiers.add(new ZoomPanModifier());
   sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
   sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
   sciChartSurface.chartModifiers.add(new RolloverModifier());
-
-  // #endregion
 }
 
 initSciChart();

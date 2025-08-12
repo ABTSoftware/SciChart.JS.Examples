@@ -10,7 +10,7 @@ import {
 import {
     BaseDataSeries,
     EAnnotationLayer,
-    ECoordinateMode,
+    ESubSurfacePositionCoordinateMode,
     EDataSeriesType,
     EAutoRange,
     ENumericFormat,
@@ -72,7 +72,7 @@ export const drawGridExample = async (
     const dataSettings = {
         seriesCount: 3,
         pointsOnChart: 5000,
-        sendEvery: 30,
+        sendEvery: 16,
         initialPoints: 20,
     };
 
@@ -120,7 +120,7 @@ export const drawGridExample = async (
         // ESeriesType.TextSeries
     ];
 
-    const subChartPositioningCoordinateMode = ECoordinateMode.Relative;
+    const subChartPositioningCoordinateMode = ESubSurfacePositionCoordinateMode.Relative;
 
     const subChartsMap: Map<
         SciChartSubSurface,
@@ -145,7 +145,7 @@ export const drawGridExample = async (
             parentXAxisId: mainXAxis.id,
             parentYAxisId: mainYAxis.id,
             coordinateMode: subChartPositioningCoordinateMode,
-            subChartPadding: Thickness.fromNumber(1),
+            padding: Thickness.fromNumber(1),
             viewportBorder: {
                 color: "rgba(150, 74, 148, 0.51)",
                 border: 2,
@@ -153,7 +153,7 @@ export const drawGridExample = async (
         };
 
         // create sub-surface
-        const subChartSurface = mainSurface.addSubChart(subChartOptions);
+        const subChartSurface = SciChartSubSurface.createSubSurface(mainSurface, subChartOptions);
 
         // add axes to the sub-surface
         const subChartXAxis = new NumericAxis(wasmContext, {
@@ -255,7 +255,6 @@ export const drawGridExample = async (
     let isRunning: boolean = false;
     const newMessages: TMessage[] = [];
     let loadStart = 0;
-    let loadCount: number = 0;
     let avgRenderTime: number = 0;
 
     let dataGenerationStart: DOMHighResTimeStamp;
@@ -272,7 +271,7 @@ export const drawGridExample = async (
     const dataStore = new Map(
         mainSurface.subCharts.map((subChart) => [
             subChart,
-            Array.from(Array(dataSettings.seriesCount)).map((_) => null),
+            Array.from(Array(dataSettings.seriesCount)).map((_: any) => null as any),
         ])
     );
 
@@ -314,8 +313,6 @@ export const drawGridExample = async (
             }
         });
         dataAppendEnd = performance.now();
-
-        setTimeout(updateCharts, dataSettings.sendEvery);
     };
     mainSurface.preRenderAll.subscribe(() => {
         renderStart = performance.now();
@@ -330,48 +327,66 @@ export const drawGridExample = async (
         if (!isRunning || loadStart === 0) return;
         lastRenderEnd = renderEnd;
         renderEnd = performance.now();
-        const reDrawTime = new Date().getTime() - loadStart;
         avgRenderTime = renderEnd - renderStart;
         const charts = Array.from(subChartsMap.values());
         const totalPoints = charts[0].dataSeriesArray[0].count() * dataSettings.seriesCount * charts.length;
+
+        // Number of data points on the chart including all of the series on sub-charts
         newMessages.push({
             title: `Points`,
             detail: `${totalPoints}`,
         });
+
+        // Data points generation time. In a real app data will likely be fetched from a server instead
         newMessages.push({
             title: `Generate`,
             detail: `${(dataAppendStart - dataGenerationStart).toFixed(1)}ms`,
         });
+
+        // DataSeries collection update time
         newMessages.push({
             title: `Append`,
             detail: `${(dataAppendEnd - dataAppendStart).toFixed(1)}ms`,
         });
+
+        // SciChart's engine render time of the last frame
         newMessages.push({
             title: `Render`,
             detail: `${avgRenderTime.toFixed(2)}ms`,
         });
+
+        // // Current FPS value
+        // newMessages.push({
+        //     title: `FPS`,
+        //     detail: `${(1000 / (renderEnd - lastRenderEnd)).toFixed(1)}`,
+        // });
+
+        // Potentially achievable FPS value considering that data generation step could be omitted on client,
+        // data is sent at a corresponding delay,
+        // and display has an appropriate refresh rate
         newMessages.push({
-            title: `FPS`,
-            detail: `${(1000 / (renderEnd - lastRenderEnd)).toFixed(1)}`,
+            title: `Max FPS`,
+            detail: `${(1000 / (dataAppendEnd - dataAppendStart + avgRenderTime)).toFixed(1)}`,
         });
 
         updateMessages(newMessages);
         newMessages.length = 0;
     });
 
+    let timer: NodeJS.Timeout;
     // Buttons for chart
     const startUpdate = () => {
         console.log("start streaming");
-        loadCount = 0;
         avgRenderTime = 0;
         loadStart = 0;
         isRunning = true;
-        updateCharts();
+        timer = setInterval(updateCharts, dataSettings.sendEvery);
     };
 
     const stopUpdate = () => {
         console.log("stop streaming");
         isRunning = false;
+        clearInterval(timer);
     };
 
     const setLabels = (show: boolean) => {

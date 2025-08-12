@@ -1,11 +1,11 @@
 import * as React from "react";
-import Checkbox from "@mui/material/Checkbox";
 import commonClasses from "../../../styles/Examples.module.scss";
-import { makeStyles } from "tss-react/mui";
 import { ELegendOrientation, ELegendPlacement, LegendModifier, SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";
 import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Switch from "@mui/material/Switch";
 
 const placementSelect = [
     { value: ELegendPlacement.TopLeft, text: "Top-Left" },
@@ -31,7 +31,7 @@ export default function ChartLegendsAPI() {
 
     const handleChangePlacement = (event: React.ChangeEvent<{ value: unknown }>) => {
         if (legendModifierRef.current) {
-            const newValue = +event.target.value as ELegendPlacement;
+            const newValue = event.target.value as ELegendPlacement;
             setPlacementValue(newValue);
             legendModifierRef.current.sciChartLegend.placement = newValue;
         }
@@ -39,7 +39,7 @@ export default function ChartLegendsAPI() {
 
     const handleChangeOrientation = (event: React.ChangeEvent<{ value: unknown }>) => {
         if (legendModifierRef.current) {
-            const newValue = +event.target.value as ELegendOrientation;
+            const newValue = event.target.value as ELegendOrientation;
             setOrientationValue(newValue);
             legendModifierRef.current.sciChartLegend.orientation = newValue;
         }
@@ -69,90 +69,75 @@ export default function ChartLegendsAPI() {
         }
     };
 
-    const useStyles = makeStyles()((theme) => ({
-        flexContainer: {
-            display: "flex",
-            flexDirection: "column",
-            height: "100%",
-            width: "100%",
-        },
+    const styles: Record<string, React.CSSProperties> = {
         toolbar: {
-            minHeight: "70px",
             padding: "10px",
-            color: appTheme.ForegroundColor,
             fontSize: "13px",
             flex: "none",
-            // flexBasis: "70px"
+            flexWrap: "wrap",
         },
         combobox: {
             color: appTheme.Background,
             backgroundColor: appTheme.ForegroundColor,
             margin: "10px",
         },
-        chartElement: {
-            width: "100%",
-            flex: "auto",
-        },
-    }));
-    const { classes } = useStyles();
+    };
 
     return (
-        <React.Fragment>
-            <div className={commonClasses.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
-                <div className={classes.flexContainer}>
-                    {/*The toolbar is here*/}
-                    <div className={classes.toolbar}>
-                        Show Legend?
-                        <Checkbox checked={showLegendValue} onChange={handleChangeShowLegend} />
-                        Show Visibility Checkboxes?
-                        <Checkbox checked={showCheckboxesValue} onChange={handleChangeShowCheckboxes} />
-                        Show Series Markers?
-                        <Checkbox checked={showSeriesMarkersValue} onChange={handleChangeShowSeriesMarkers} />
-                        <label id="sciChartPlacement-label">
-                            Legend Placement
-                            <select
-                                className={classes.combobox}
-                                id="sciChartPlacement"
-                                value={placementValue}
-                                onChange={handleChangePlacement}
-                            >
-                                {placementSelect.map((el) => (
-                                    <option key={el.value} value={el.value}>
-                                        {el.text}
-                                    </option>
-                                ))}
-                            </select>
-                        </label>
-                        <label id="sciChartPlacement-label">
-                            Legend Orientation
-                            <select
-                                className={classes.combobox}
-                                id="sciChartOrientation"
-                                value={orientationValue}
-                                onChange={handleChangeOrientation}
-                            >
-                                {orientationSelect.map((el) => (
-                                    <option key={el.value} value={el.value}>
-                                        {el.text}
-                                    </option>
-                                ))}
-                            </select>
-                        </label>
-                    </div>
-                    <div style={{ flex: "auto" }}>
-                        <SciChartReact
-                            initChart={drawExample}
-                            style={{ width: "100%", height: "100%" }}
-                            className={commonClasses.ChartWrapper}
-                            onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                                const { sciChartSurface, legendModifier } = initResult;
-                                legendModifierRef.current = legendModifier;
-                                sciChartSurfaceRef.current = sciChartSurface;
-                            }}
-                        />
-                    </div>
-                </div>
+        <div className={commonClasses.ChartWithToolbar}>
+            <div className={commonClasses.ToolbarRow} style={styles.toolbar}>
+                <FormControlLabel
+                    control={<Switch checked={showLegendValue} onChange={handleChangeShowLegend} />}
+                    label=" Show Legend?"
+                />
+                <FormControlLabel
+                    control={<Switch checked={showCheckboxesValue} onChange={handleChangeShowCheckboxes} />}
+                    label=" Show Visibility Checkboxes?"
+                />
+                <FormControlLabel
+                    control={<Switch checked={showSeriesMarkersValue} onChange={handleChangeShowSeriesMarkers} />}
+                    label="Show Series Markers?"
+                />
+                <label id="sciChartPlacement-label">
+                    Legend Placement
+                    <select
+                        style={styles.combobox}
+                        id="sciChartPlacement"
+                        value={placementValue}
+                        onChange={handleChangePlacement}
+                    >
+                        {placementSelect.map((el) => (
+                            <option key={el.value} value={el.value}>
+                                {el.text}
+                            </option>
+                        ))}
+                    </select>
+                </label>
+                <label id="sciChartPlacement-label">
+                    Legend Orientation
+                    <select
+                        style={styles.combobox}
+                        id="sciChartOrientation"
+                        value={orientationValue}
+                        onChange={handleChangeOrientation}
+                    >
+                        {orientationSelect.map((el) => (
+                            <option key={el.value} value={el.value}>
+                                {el.text}
+                            </option>
+                        ))}
+                    </select>
+                </label>
             </div>
-        </React.Fragment>
+            <SciChartReact
+                initChart={drawExample}
+                className={commonClasses.ChartWrapper}
+                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                    const { sciChartSurface, legendModifier } = initResult;
+                    legendModifierRef.current = legendModifier;
+                    sciChartSurfaceRef.current = sciChartSurface;
+                }}
+            />
+        </div>
     );
 }

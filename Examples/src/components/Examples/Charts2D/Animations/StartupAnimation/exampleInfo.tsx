@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DAnimationsStartupAnimation",
+        reactComponent: "StartupAnimation",
+        id: "chart2D_Animations_StartupAnimation",
         imagePath: "javascript-startup-animations.jpg",
         description:
             "Demonstrates how to run **Startup Animations** using SciChart.js, High Performance JavaScript Charts",
@@ -46,7 +47,7 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "startup-animation",
-        metaKeywords: "startup, on-start, animation, javascript",
+        metaKeywords: "startup, animation, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/Animations/StartupAnimation",
         thumbnailImage: "javascript-startup-animations.jpg",
@@ -54,7 +55,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const startupAnimationExampleInfo = createExampleInfo(metaData);
+const startupAnimationExampleInfo = createExampleInfo(metaData);
+export default startupAnimationExampleInfo;

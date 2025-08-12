@@ -360,6 +360,21 @@ const mapAnnotationTypeToName = (type: EAnnotationType): string => {
             return "CustomAnnotation";
         case EAnnotationType.SVG:
             return "SvgAnnotation";
+        case EAnnotationType.HtmlCustomAnnotation:
+            return "HtmlCustomAnnotation";
+        case EAnnotationType.HtmlTextAnnotation:
+            return "HtmlAnnotation";
+        case EAnnotationType.RenderContextArcAnnotation:
+            return "ArcAnnotation";
+        case EAnnotationType.SVGPolarPointerAnnotation:
+            return "PolarPointerAnnotation";
+        case EAnnotationType.RenderContextLineArrowAnnotation:
+            return "LineArrowAnnotation";
+        case EAnnotationType.RenderContextPolarArcAnnotation:
+            return "PolarArcAnnotation";
+        // @ts-ignore
+        case EAnnotationType.RenderContextCustomAnnotation:
+            return "RenderContextCustomAnnotation";
         default: {
             const handleInvalidType = (value: never): never => {
                 throw new Error(`Invalid annotation type: ${value}`);

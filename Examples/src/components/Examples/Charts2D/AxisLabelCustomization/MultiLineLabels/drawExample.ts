@@ -104,7 +104,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             dataLabels: {
                 horizontalTextPosition: EHorizontalTextPosition.Center,
                 verticalTextPosition: EVerticalTextPosition.Above,
-                style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(0, 0, 5, 0) },
+                style: { fontFamily: "Default", fontSize: 16, padding: new Thickness(0, 0, 5, 0) },
                 color: appTheme.ForegroundColor,
             },
             // each column occupies 50% of available space

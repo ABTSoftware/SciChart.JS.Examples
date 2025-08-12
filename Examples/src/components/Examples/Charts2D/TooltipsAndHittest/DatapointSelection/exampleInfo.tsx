@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DTooltipsAndHittestDatapointSelection",
+        reactComponent: "DatapointSelection",
+        id: "chart2D_tooltipsAndHittest_DataPointSelection",
         imagePath: "javascript-datapoint-selection.jpg",
         description:
             "Demonstrates how to **Select Data Points** on a chart using SciChart.js, High Performance JavaScript Charts",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const dataPointSelectionExampleInfo = createExampleInfo(metaData);
+export default dataPointSelectionExampleInfo;

@@ -19,7 +19,7 @@
     "vite": "^5.2.0"
   },
   "dependencies": {
-    "scichart": "latest",
+    "scichart": "^4.0.0-beta.788",
     "svelte-routing": "^2.13.0",
     "vite-plugin-static-copy": "^1.0.4"
   }

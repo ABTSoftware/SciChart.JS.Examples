@@ -1,17 +1,19 @@
-@import "../../assets/main.scss";
+@use "../../assets/main.scss";
+@use "../../assets/base";
+@use "../../assets/mixins";
 
 .AppBar {
-    height: $app-bar-height;
+    height: base.$app-bar-height;
     max-width: 100%;
-    background-color: $color-dark;
+    background-color: base.$color-dark;
 
     .Logo {
         display: block;
-        height: $app-bar-height;
+        height: base.$app-bar-height;
 
         .LogoSmall {
-            height: $app-bar-height;
-            width: $app-bar-height;
+            height: base.$app-bar-height;
+            width: base.$app-bar-height;
         }
 
         .LogoDefault {
@@ -34,7 +36,7 @@
         align-items: center;
         gap: 10px;
         flex: auto;
-        height: $app-bar-height;
+        height: base.$app-bar-height;
         padding: 12px;
         padding-left: 0px;
         z-index: 1200;
@@ -48,7 +50,7 @@
             min-width: unset;
             min-height: unset;
             border-radius: 8px;
-            color: $color-primary-white;
+            color: base.$color-primary-white;
         }
 
         .MenuButton {
@@ -56,10 +58,10 @@
 
             display: none;
             line-height: 1em;
-            background: $color-primary-white-alpha;
+            background: base.$color-primary-white-alpha;
             // border: 1px solid $color-medium-blue;
 
-            @include sm {
+            @include mixins.sm {
                 display: block;
             }
         }
@@ -76,14 +78,14 @@
             justify-content: center;
             height: 100%;
             border-radius: 8px;
-            background-color: $color-medium-blue;
+            background-color: base.$color-medium-blue;
             text-decoration: none;
         }
 
         .versionChip {
             height: 44px;
             border-radius: 8px;
-            @include md {
+            @include mixins.md {
                 display: none;
             }
         }
@@ -94,8 +96,8 @@
             display: flex;
             padding: 6px;
             border-radius: 8px;
-            background-color: $color-red;
-            color: $color-primary-white;
+            background-color: base.$color-red;
+            color: base.$color-primary-white;
             text-decoration: none;
         }
 
@@ -103,16 +105,16 @@
             display: flex;
             flex: none;
             height: 100%;
-            padding: $default-spacing;
-            background: $gradient-btn-dark;
+            padding: base.$default-spacing;
+            background: base.$gradient-btn-dark;
             border-radius: 8px;
 
-            @include md {
+            @include mixins.md {
                 display: none;
             }
 
             span {
-                color: $color-lightest-green;
+                color: base.$color-lightest-green;
                 font-size: 12px;
                 font-weight: 600;
                 letter-spacing: 0.05em;
@@ -129,13 +131,13 @@
         }
 
         .DisabledButton {
-            background: $color-grey;
+            background: base.$color-grey;
             margin: 0;
         }
 
         // overrides MuiButton-label
         .DisabledButton > span {
-            color: $color-light-grey;
+            color: base.$color-light-grey;
         }
 
         .DisabledButtonTooltipWrapper {
@@ -143,7 +145,7 @@
         }
 
         .BlueButton {
-            background: $gradient-blue;
+            background: base.$gradient-blue;
             height: 100%;
             text-align: center;
             line-height: 1;
@@ -164,8 +166,6 @@
 
         .ThemeButton {
             @extend %ToolBarButton;
-            
-            
         }
     }
 }

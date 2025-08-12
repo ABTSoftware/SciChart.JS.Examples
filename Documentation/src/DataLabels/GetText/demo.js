@@ -1,6 +1,16 @@
+import * as SciChart from "scichart";
 
 async function dataLabelProviderGetText(divElementId) {
-    const { SciChartSurface, NumericAxis,FastLineRenderableSeries, EllipsePointMarker, XyDataSeries, NumberRange,EMultiLineAlignment, SciChartJsNavyTheme } = SciChart;
+    const {
+        SciChartSurface,
+        NumericAxis,
+        FastLineRenderableSeries,
+        EllipsePointMarker,
+        XyDataSeries,
+        NumberRange,
+        EMultiLineAlignment,
+        SciChartJsNavyTheme
+    } = SciChart;
 
     // or, for npm, import { SciChartSurface, ... } from "scichart"
 
@@ -22,15 +32,16 @@ async function dataLabelProviderGetText(divElementId) {
             height: 10,
             strokeThickness: 2,
             stroke: "SteelBlue",
-            fill: "LightSteelBlue"}),
+            fill: "LightSteelBlue"
+        }),
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8],
+            yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8]
         }),
         // dataLabels style must be specified to show labels
         dataLabels: {
             style: {
-                fontFamily: "Arial",
+                fontFamily: "Default",
                 fontSize: 16,
                 lineSpacing: 4,
                 multiLineAlignment: EMultiLineAlignment.Left
@@ -41,25 +52,19 @@ async function dataLabelProviderGetText(divElementId) {
 
     // Override default dataLabelProvider.getText() function
     // See type DataLabelState for available data
-    lineSeries.dataLabelProvider.getText = (dataLabelState) => {
+    lineSeries.dataLabelProvider.getText = dataLabelState => {
         return `Point index ${dataLabelState.index}\n[x: ${dataLabelState.xVal()}, y: ${dataLabelState.yVal()}]`;
     };
     // #endregion ExampleA
     sciChartSurface.renderableSeries.add(lineSeries);
 }
 
-dataLabelProviderGetText('scichart-root');
-
+dataLabelProviderGetText("scichart-root");
 
 async function builderExample(divElementId) {
     // #region ExampleB
     // Demonstrates how to add DataLabels to a chart with SciChart.js using the Builder API
-    const {
-        chartBuilder,
-        ESeriesType,
-        EThemeProviderType,
-        EPointMarkerType
-    } = SciChart;
+    const { chartBuilder, ESeriesType, EThemeProviderType, EPointMarkerType } = SciChart;
 
     // or, for npm, import { chartBuilder, ... } from "scichart"
 
@@ -88,7 +93,7 @@ async function builderExample(divElementId) {
                     // Data labels are enabled here. Simply set style, color
                     dataLabels: {
                         style: {
-                            fontFamily: "Arial",
+                            fontFamily: "Default",
                             fontSize: 16
                         },
                         color: "#EEE"
@@ -99,13 +104,10 @@ async function builderExample(divElementId) {
     });
 
     // Note you can access dataLabelProvider from a constructed chart as follows
-    sciChartSurface.renderableSeries.get(0).dataLabelProvider.getText = (dataLabelState) => {
+    sciChartSurface.renderableSeries.get(0).dataLabelProvider.getText = dataLabelState => {
         return `Point index ${dataLabelState.index}\n[x: ${dataLabelState.xVal()}, y: ${dataLabelState.yVal()}]`;
     };
     // #endregion
-};
+}
 
-
-
-if (location.search.includes("builder=1"))
-    builderExample("scichart-root");
+if (location.search.includes("builder=1")) builderExample("scichart-root");

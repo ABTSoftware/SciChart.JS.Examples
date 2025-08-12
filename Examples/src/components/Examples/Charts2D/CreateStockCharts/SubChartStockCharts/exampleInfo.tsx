@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DCreateStockChartsSubChartStockCharts",
+        reactComponent: "SubChartStockCharts",
+        id: "chart2D_createStockCharts_SubchartStockCharts",
         imagePath: "javascript-subcharts-multi-pane-stock-charts.jpg",
         description:
             "Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts. ",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const subChartStockChartsExampleInfo = createExampleInfo(metaData);
+const subChartStockChartsExampleInfo = createExampleInfo(metaData);
+export default subChartStockChartsExampleInfo;

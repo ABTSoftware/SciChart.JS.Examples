@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesStackedColumnChart",
+        reactComponent: "StackedColumnChart",
+        id: "chart2D_basicCharts_StackedColumnChart",
         imagePath: "javascript-stacked-column-chart.jpg",
         description:
             "The example on this page demonstrates how to create a **JavaScript Stacked Column Chart** using our feature-rich JavaScript Chart Library, SciChart.js.",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const stackedColumnChartExampleInfo = createExampleInfo(metaData);
+export default stackedColumnChartExampleInfo;

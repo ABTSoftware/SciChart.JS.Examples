@@ -52,7 +52,7 @@ const NotFound = () => (
 
 const ChatbotScript = (): React.ReactElement | null => {
     React.useEffect(() => {
-        const script = document.createElement('script');
+        const script = document.createElement("script");
         script.src = "https://chat.scichart.com/chatbot.js";
         script.type = "text/javascript";
         script.defer = true;
@@ -64,16 +64,14 @@ const ChatbotScript = (): React.ReactElement | null => {
     }, []);
 
     return null;
-}
+};
 
 SciChartSurface.configure({
     wasmUrl: `${baseAppPath}/scichart2d.wasm`,
-    dataUrl: `${baseAppPath}/scichart2d.data`,
 });
 
 SciChart3DSurface.configure({
     wasmUrl: `${baseAppPath}/scichart3d.wasm`,
-    dataUrl: `${baseAppPath}/scichart3d.data`,
 });
 
 export default function App() {
@@ -208,10 +206,8 @@ export default function App() {
                         />
                     </Drawer>
                 )}
-                <div className={classes.MainAppContent} style={{position: "relative"}}>
+                <div className={classes.MainAppContent} style={{ position: "relative" }}>
                     <SciChartNavbar toggleDrawer={toggleDrawer} theme={theme} setTheme={setTheme} />
-
-                    {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
                     {is404 ? (
                         <NotFound />

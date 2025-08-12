@@ -131,6 +131,11 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(({ example, i
                     {example.items.map((item, index) => (
                         <div key={index} className={classes.card} onClick={() => handleSubmenuClick(item.examplePath)}>
                             <div className={classes.imgWrapper}>
+                                {item?.isNew && (
+                                    <div className={classes.newBanner}>
+                                        <span>NEW!</span>
+                                    </div>
+                                )}
                                 <img src={item.imgPath} alt={item.seoTitle} title={item.title} />
                             </div>
                             <div className={classes.content}>
@@ -234,13 +239,13 @@ const GalleryItems: React.FC<TProps> = ({ examples, setMostVisibleCategory }) =>
 
     return (
         <div className={classes.showcaseWrap}>
-            {examples.map((group, index) => (
+            {examples.map((ex, index) => (
                 <Example
-                    key={group.id}
+                    key={ex.id}
                     ref={(el) => {
                         headingRefs.current[index] = el;
                     }}
-                    example={group}
+                    example={ex}
                     index={index}
                     gridType={gridType}
                     setGridType={setGridType}

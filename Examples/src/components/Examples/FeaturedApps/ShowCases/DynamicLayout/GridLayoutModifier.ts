@@ -5,17 +5,19 @@ import {
     convertColor,
     DoubleAnimator,
     easing,
-    ECoordinateMode,
+    ESubSurfacePositionCoordinateMode,
     GenericAnimation,
     I2DSubSurfaceOptions,
     ISciChart2DDefinition,
     parseColorToTArgb,
     parseTArgbToHtmlColor,
     Rect,
+    SciChartSubSurface,
     TAxisDefinition,
     Thickness,
     TModifierDefinition,
     TSeriesDefinition,
+    TXywhCoordinates,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -41,6 +43,8 @@ export class GridLayoutModifier extends ChartModifierBase2D {
     private makeSubChart(surfaceDef: ISciChart2DDefinition, i: number, width: number, height: number) {
         const rs = this.parentSurface.renderableSeries.get(i);
         const rsDef = (surfaceDef.series as TSeriesDefinition[])[i];
+        // @ts-ignore
+        rsDef.xyData = {};
         const row = Math.floor(i / this.columns);
         const col = i % this.columns;
         const position = new Rect(col * width, row * height, width, height);
@@ -49,8 +53,8 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             theme: appTheme.SciChartJsTheme,
             // Start full size
             position: new Rect(0, 0, 1, 1),
-            coordinateMode: ECoordinateMode.Relative,
-            subChartPadding: Thickness.fromNumber(3),
+            coordinateMode: ESubSurfacePositionCoordinateMode.Relative,
+            padding: Thickness.fromNumber(3),
             // viewportBorder: {
             //     color: "rgba(150, 74, 148, 0.51)",
             //     border: 2
@@ -63,7 +67,7 @@ export class GridLayoutModifier extends ChartModifierBase2D {
                 color: appTheme.ForegroundColor,
             },
         };
-        const subChart = this.parentSurface.addSubChart(subChartOptions);
+        const subChart = SciChartSubSurface.createSubSurface(this.parentSurface, subChartOptions);
         const xAxisDef = (surfaceDef.xAxes as TAxisDefinition[]).find((a) => a.options.id == rs.xAxisId);
         const yAxisDef = (surfaceDef.yAxes as TAxisDefinition[]).find((a) => a.options.id == rs.yAxisId);
         const modifiers = (surfaceDef.modifiers as TModifierDefinition[]).filter(
@@ -129,18 +133,18 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             const xAxis = subChart.xAxes.get(0);
             const yAxis = subChart.yAxes.get(0);
             const labelColor = xAxis.labelStyle.color;
-            const animation = new GenericAnimation<Rect>({
-                from: subChart.subPosition,
+            const animation = new GenericAnimation<TXywhCoordinates>({
+                from: subChart.subPosition as TXywhCoordinates,
                 to: new Rect(0, 0, 1, 1),
-                onAnimate: (from: Rect, to: Rect, progress: number) => {
+                onAnimate: (from: TXywhCoordinates, to: TXywhCoordinates, progress: number) => {
                     const x = DoubleAnimator.interpolate(from.x, to.x, progress);
                     const y = DoubleAnimator.interpolate(from.y, to.y, progress);
                     const w = DoubleAnimator.interpolate(from.width, to.width, progress);
                     const h = DoubleAnimator.interpolate(from.height, to.height, progress);
-                    subChart.viewportBorder = {
-                        color: `rgba(150, 74, 148, ${(1 - progress) * 0.5 + 0.01})`,
-                        border: 2,
-                    };
+                    // subChart.viewportBorder = {
+                    //     color: `rgba(150, 74, 148, ${(1 - progress) * 0.5 + 0.01})`,
+                    //     border: 2,
+                    // };
                     xAxis.labelStyle = { color: applyOpacityToHtmlColor(labelColor, 1 - progress * 0.99) };
                     yAxis.labelStyle = { color: applyOpacityToHtmlColor(labelColor, 1 - progress * 0.99) };
                     subChart.titleStyle = {

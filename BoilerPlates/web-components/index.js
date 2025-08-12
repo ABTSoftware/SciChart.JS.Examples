@@ -1,26 +1,4 @@
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { CameraController } from "scichart/Charting3D/CameraController";
-import { MouseWheelZoomModifier3D } from "scichart/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
-import { OrbitModifier3D } from "scichart/Charting3D/ChartModifiers/OrbitModifier3D";
-import { XyzDataSeries3D } from "scichart/Charting3D/Model/DataSeries/XyzDataSeries3D";
-import { Vector3 } from "scichart/Charting3D/Vector3";
-import { NumericAxis3D } from "scichart/Charting3D/Visuals/Axis/NumericAxis3D";
-import { SpherePointMarker3D } from "scichart/Charting3D/Visuals/PointMarkers/DefaultPointMarkers";
-import { ScatterRenderableSeries3D } from "scichart/Charting3D/Visuals/RenderableSeries/ScatterRenderableSeries3D";
-import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface";
-import { TSciChart3D } from "scichart/types/TSciChart3D";
-import {
-  EPieType,
-  SciChartPieSurface,
-} from "scichart/Charting/Visuals/SciChartPieSurface/SciChartPieSurface";
-import { PieSegment } from "scichart/Charting/Visuals/SciChartPieSurface/PieSegment/PieSegment";
-import { GradientParams } from "scichart/Core/GradientParams";
-import { Point } from "scichart/Core/Point";
-import {
-  ELegendOrientation,
-  ELegendPlacement,
-} from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
+import { SciChartSurface, NumericAxis } from "scichart";
 
 async function initSciChart(divElement, external) {
   // const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(divElement.id);

@@ -27,6 +27,7 @@ import {
     Rect,
     SciChartVerticalGroup,
     Thickness,
+    TXywhCoordinates,
 } from "scichart";
 import { fetchMultiPaneData } from "../../../ExampleData/ExampleDataProvider";
 import { appTheme } from "../../../theme";
@@ -101,7 +102,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const axisAlignment = EAxisAlignment.Right;
 
     const commonSubChartSurfaceOptions: I2DSubSurfaceOptions = {
-        subChartPadding: Thickness.fromNumber(10),
+        padding: Thickness.fromNumber(10),
         isTransparent: false,
         theme: appTheme.SciChartJsTheme,
     };
@@ -329,7 +330,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 surface: {
                     ...commonSubChartSurfaceOptions,
                     position: new Rect(0, 0.8, 1, 0.2),
-                    subChartPadding: Thickness.fromNumber(10),
+                    padding: Thickness.fromNumber(10),
                     id: "subChart3",
                     isTransparent: false,
                     subChartContainerId: subChartWrapper3,
@@ -423,12 +424,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             newPosition = minPaneSize;
         }
 
-        if (newPosition > subSurface3.subPosition.y - minPaneSize) {
-            newPosition = subSurface3.subPosition.y - minPaneSize;
+        if (newPosition > (subSurface3.subPosition as TXywhCoordinates).y - minPaneSize) {
+            newPosition = (subSurface3.subPosition as TXywhCoordinates).y - minPaneSize;
         }
         firstDividerElement.style.top = `${newPosition * 100}%`;
         subSurface1.subPosition = new Rect(0, 0, 1, newPosition);
-        subSurface2.subPosition = new Rect(0, newPosition, 1, subSurface3.subPosition.y - newPosition);
+        subSurface2.subPosition = new Rect(
+            0,
+            newPosition,
+            1,
+            (subSurface3.subPosition as TXywhCoordinates).y - newPosition
+        );
     };
 
     const resizePanesSecond = (mouseYOffset: number) => {
@@ -438,15 +444,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             newPosition = 1 - minPaneSize;
         }
 
-        if (newPosition < subSurface1.subPosition.height + minPaneSize) {
-            newPosition = subSurface1.subPosition.height + minPaneSize;
+        if (newPosition < (subSurface1.subPosition as TXywhCoordinates).height + minPaneSize) {
+            newPosition = (subSurface1.subPosition as TXywhCoordinates).height + minPaneSize;
         }
         secondDividerElement.style.top = `${newPosition * 100}%`;
         subSurface2.subPosition = new Rect(
             0,
-            subSurface1.subPosition.height,
+            (subSurface1.subPosition as TXywhCoordinates).height,
             1,
-            newPosition - subSurface1.subPosition.height
+            newPosition - (subSurface1.subPosition as TXywhCoordinates).height
         );
         subSurface3.subPosition = new Rect(0, newPosition, 1, 1 - newPosition);
     };
@@ -496,8 +502,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     container.addEventListener("pointermove", mouseMoveHandler);
     container.addEventListener("pointerleave", mouseUpHandler);
 
-    firstDividerElement.style.top = `${subSurface1.subPosition.height * 100}%`;
-    secondDividerElement.style.top = `${subSurface3.subPosition.y * 100}%`;
+    firstDividerElement.style.top = `${(subSurface1.subPosition as TXywhCoordinates).height * 100}%`;
+    secondDividerElement.style.top = `${(subSurface3.subPosition as TXywhCoordinates).y * 100}%`;
 
     return { sciChartSurface: mainSurface, wasmContext };
 };

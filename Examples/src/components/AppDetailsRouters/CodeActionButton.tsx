@@ -43,8 +43,8 @@ export const CodeActionButton: React.FC<CodeActionButtonProps> = ({
             title={title}
             rel={rel}
             data-ga-ignore="true" // prevent Echo adding _gl=1... to a link
-            data-ignore-ga="true" 
-            >
+            data-ignore-ga="true"
+        >
             <Icon name={iconName} />
             {label ? <p>{label}</p> : null}
         </a>

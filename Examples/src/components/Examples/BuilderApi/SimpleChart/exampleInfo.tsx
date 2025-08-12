@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "BuilderApiSimpleChart",
+        reactComponent: "SimpleChart",
+        id: "builderApi_simplechart",
         imagePath: "javascript-builder-simple.jpg",
         description:
             "Demonstrates how to use the Builder Api to create a **Simple Chart** using SciChart.js, High Performance JavaScript Charts",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const simpleChartExampleInfo = createExampleInfo(metaData);
+export default simpleChartExampleInfo;

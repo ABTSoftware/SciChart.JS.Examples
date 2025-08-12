@@ -29,6 +29,4 @@ coverage
 
 *.tsbuildinfo
 scichart2d.wasm
-scichart2d.data
 scichart3d.wasm
-scichart3d.data

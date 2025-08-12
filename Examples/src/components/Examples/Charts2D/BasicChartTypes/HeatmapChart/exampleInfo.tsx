@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesHeatmapChart",
+        reactComponent: "HeatmapChart",
+        id: "chart2D_basicCharts_HeatmapChart",
         imagePath: "javascript-heatmap-chart.jpg",
         description:
             "If you want to learn about heatmaps. this demo shows you how to create a **JavaScript Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const heatmapChartExampleInfo = createExampleInfo(metaData);
+const heatmapChartExampleInfo = createExampleInfo(metaData);
+export default heatmapChartExampleInfo;

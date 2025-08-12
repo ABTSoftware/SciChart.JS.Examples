@@ -1,6 +1,5 @@
 import commonClasses from "../../../styles/Examples.module.scss";
-import { SciChartReact } from "scichart-react";
-import { ChartGroupLoader } from "../../../ChartGroupLoader";
+import { SciChartReact, ChartGroupLoader } from "scichart-react";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
 
 export default function ContourChart() {

@@ -1,8 +1,7 @@
 import * as React from "react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { draw3DChart, drawLineChart1, drawLineChart2, drawHeatmapLegend } from "./drawExample";
-import { SciChartReact } from "scichart-react";
-import { ChartGroupLoader } from "../../../ChartGroupLoader";
+import { SciChartReact, ChartGroupLoader } from "scichart-react";
 
 export default function TenorCurves3DChart() {
     return (

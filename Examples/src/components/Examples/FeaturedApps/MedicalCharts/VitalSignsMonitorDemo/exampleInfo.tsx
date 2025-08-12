@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsMedicalChartsVitalSignsMonitorDemo",
+        reactComponent: "VitalSignsMonitorDemo",
+        id: "featuredApps_medicalCharts_VitalSignsMonitorDemo",
         imagePath: "javascript-vital-signs-ecg-medical-chart-example.jpg",
         description:
             "Showcases how SciChart.js can be used in a **Medical context**, drawing ECGs with our High Performance JavaScript Charts",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const vitalSignsMonitorDemoExampleInfo = createExampleInfo(metaData);
+export default vitalSignsMonitorDemoExampleInfo;

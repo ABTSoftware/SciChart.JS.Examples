@@ -206,7 +206,7 @@ export const getChartsInitializationApi = () => {
         sciChartSurface.chartModifiers.add(
             new ZoomExtentsModifier(),
             new MouseWheelZoomModifier(),
-            new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton }),
+            new RubberBandXyZoomModifier({ executeCondition: { button: EExecuteOn.MouseRightButton } }),
             new YAxisDragModifier({})
         );
 
@@ -263,7 +263,7 @@ export const getChartsInitializationApi = () => {
                 isSorted: true,
                 xValues,
                 yValues: makeYValues(freq),
-                metadata: { isSelected: false },
+                // metadata: { isSelected: false },
             });
             const lineSeries = new SplineLineRenderableSeries(wasmContext, {
                 id: color,
@@ -312,8 +312,8 @@ export const getChartsInitializationApi = () => {
         );
 
         sciChartSurface.chartModifiers.add(
-            new PointDragModifier(),
-            new ZoomPanModifier({ executeOn: EExecuteOn.MouseRightButton }),
+            new PointDragModifier({ executeCondition: { button: EExecuteOn.MouseLeftButton } }),
+            new ZoomPanModifier({ executeCondition: { button: EExecuteOn.MouseRightButton } }),
             new MouseWheelZoomModifier()
         );
 
@@ -409,7 +409,7 @@ export const getChartsInitializationApi = () => {
             new ZoomPanModifier({ enableZoom: true }),
             new ZoomExtentsModifier(),
             new MouseWheelZoomModifier(),
-            new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton })
+            new RubberBandXyZoomModifier({ executeCondition: { button: EExecuteOn.MouseRightButton } })
         );
 
         outputSurface = sciChartSurface;
@@ -482,7 +482,7 @@ export const getChartsInitializationApi = () => {
 
         const outputColors = ["#0bf4cd", "#f4840b", "#0bdef4", "#f6086c", "#112cce", "#9002a1"];
 
-        const addIO = new AddIOModifier();
+        const addIO = new AddIOModifier({ executeCondition: { button: EExecuteOn.MouseLeftButton } });
 
         const inputColors = ["#68bcae", "#e97064", "#47bde6", "#ae418d", "#274b92", "#634e96"];
 

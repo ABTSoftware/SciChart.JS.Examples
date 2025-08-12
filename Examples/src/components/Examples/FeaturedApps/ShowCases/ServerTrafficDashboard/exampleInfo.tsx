@@ -5,7 +5,8 @@ import { EPageLayout } from "../../../../../helpers/types/types";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsShowCasesServerTrafficDashboard",
+        reactComponent: "ServerTrafficDashboard",
+        id: "featuredApps_showcases_servertrafficdashboard",
         imagePath: "javascript-server-traffic-dashboard.jpg",
         description:
             "Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance JavaScript Charts",
@@ -60,7 +61,9 @@ const metaData: IExampleMetadata =
         extraDependencies: {
             country_flag_icons: "^1.5.7",
         },
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const serverTrafficDashboardDemoExampleInfo = createExampleInfo(metaData);
+export default serverTrafficDashboardDemoExampleInfo;

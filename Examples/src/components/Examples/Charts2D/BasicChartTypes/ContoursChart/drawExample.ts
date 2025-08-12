@@ -46,6 +46,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             zMin: 20,
             zMax: colorPaletteMax,
             zStep: 20,
+            zOffset: 1,
             strokeThickness: 1,
             stroke: appTheme.PaleSkyBlue,
         })

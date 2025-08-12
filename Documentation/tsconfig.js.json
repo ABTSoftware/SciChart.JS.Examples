@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        "sourceMap": false,
+        "strict": false,
+        "noImplicitAny": false,
+        "strictNullChecks": false,
+        "strictFunctionTypes": false,
+        "strictBindCallApply": false,
+        "strictPropertyInitialization": false,
+        "noImplicitThis": true,
+        "alwaysStrict": false,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "module": "ESNext",
+        "target": "ESNext",
+        "moduleResolution": "node",
+        "jsx": "react",
+        "allowJs": true,
+        "typeRoots": ["./node_modules/@types"],
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": ["es2021", "dom"],
+        "noEmit": true,
+        "checkJs": true
+    },
+    "noEmitOnError": true,
+    "emitDeclarationOnly": false,
+    "include": [
+        // this config is only for snippets made with JS
+        "src/**/*.js"
+    ],
+    "exclude": ["node_modules"]
+}

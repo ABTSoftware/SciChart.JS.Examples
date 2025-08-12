@@ -123,7 +123,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     };
 
     let lastRendered = Date.now();
-    sciChartSurface.rendered.subscribe(() => {
+    sciChartSurface.renderedToDestination.subscribe(() => {
         const currentTime = Date.now();
         const timeDiffSeconds = new Date(currentTime - lastRendered).getTime() / 1000;
         lastRendered = currentTime;

@@ -57,7 +57,7 @@ async function initSciChart() {
   scatterSeries.dataSeries = scatterData;
   lineSeries.dataSeries = lineData;
 
-  // #region ExampleA
+  // #region_A_start
   // import {
   //   ZoomExtentsModifier, RubberBandZoomModifier,
   // } from "scichart";
@@ -90,7 +90,7 @@ async function initSciChart() {
 
   // Repeat at 60Hz
   setInterval(updateDataFunc, 1000 / 60);
-  // #endregion
+  // #region_A_end
 }
 
 initSciChart();

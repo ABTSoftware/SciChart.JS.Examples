@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DModifyAxisBehaviorDrawBehindAxes",
+        reactComponent: "DrawBehindAxes",
+        id: "chart2D_modifyAxisBehavior_DrawBehindAxes",
         imagePath: "javascript-draw-behind-axes.jpg",
         description:
             "Demonstrates how to create a **JavaScript Chart with transparent axes** using SciChart.js, High Performance JavaScript Charts",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const drawBehindAxesExampleInfo = createExampleInfo(metaData);
+export default drawBehindAxesExampleInfo;

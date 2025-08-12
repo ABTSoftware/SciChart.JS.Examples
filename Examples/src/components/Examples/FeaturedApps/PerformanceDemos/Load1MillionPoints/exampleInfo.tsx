@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsPerformanceDemosLoad1MillionPoints",
+        reactComponent: "Load1MillionPoints",
+        id: "featuredApps_performanceDemos_LoadOneMillionPoints",
         imagePath: "javascript-chart-performance-load-one-million-points.jpg",
         description:
             "Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds. Click the **Reload** button at the bottom of the demo to see the chart draw again.",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const loadOneMillionPointsExampleInfo = createExampleInfo(metaData);
+const loadOneMillionPointsExampleInfo = createExampleInfo(metaData);
+export default loadOneMillionPointsExampleInfo;

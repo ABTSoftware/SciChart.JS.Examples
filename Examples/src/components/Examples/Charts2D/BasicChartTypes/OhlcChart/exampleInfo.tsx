@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesOhlcChart",
+        reactComponent: "OhlcChart",
+        id: "chart2D_basicCharts_OhlcChart",
         imagePath: "javascript-ohlc-chart.jpg",
         description:
             "For this example, we demonstrate how to create a **JavaScript OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const ohlcChartExampleInfo = createExampleInfo(metaData);
+const ohlcChartExampleInfo = createExampleInfo(metaData);
+export default ohlcChartExampleInfo;

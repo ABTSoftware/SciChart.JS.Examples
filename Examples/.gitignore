@@ -1,6 +1,7 @@
 /.idea
 /node_modules
 /build
+/logs
 copy-to-server.sh
 drawExample.js
 vanilla.js

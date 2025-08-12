@@ -1,5 +1,16 @@
-import { EAxisType, ECoordinateMode, ESeriesType, FastLineRenderableSeries, NumberRange, NumericAxis, Rect, SciChartSurface, Thickness, XyDataSeries, chartBuilder  } from "scichart";
-
+import {
+    EAxisType,
+    ECoordinateMode,
+    ESeriesType,
+    FastLineRenderableSeries,
+    NumberRange,
+    NumericAxis,
+    Rect,
+    SciChartSurface,
+    Thickness,
+    XyDataSeries,
+    chartBuilder,
+} from 'scichart';
 
 export async function simpleSubChart(divElementId: string) {
     // create a main (regular) surface which will contain a sub-chart
@@ -313,7 +324,7 @@ export async function updateSubChartPositionWithBuilderApi(divElementId: string)
     subChartSurface.subPosition = new Rect(100, 100, 200, 200);
 }
 
-export async function subChartPadding(divElementId: string) {
+export async function padding(divElementId: string) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -322,7 +333,7 @@ export async function subChartPadding(divElementId: string) {
     // Add a sub-chart to the main surface
     const subChartSurface = sciChartSurface.addSubChart({
         position: new Rect(0, 0, 0.5, 0.5),
-        subChartPadding: new Thickness(10, 20, 15, 30),
+        padding: new Thickness(10, 20, 15, 30),
     });
 
     subChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -386,7 +397,7 @@ subChartParentAxes('scichart-div-3');
 subChartParentAxesWithBuilderApi('scichart-div-3b');
 updateSubChartPosition('scichart-div-4');
 updateSubChartPositionWithBuilderApi('scichart-div-4b');
-subChartPadding('scichart-div-5');
+padding('scichart-div-5');
 nonTransparentSubChart('scichart-div-6');
 nonTransparentSubChartWithBuilderApi('scichart-div-6b');
-subChartPixelCoordinateMode("scichart-div-7");
+subChartPixelCoordinateMode('scichart-div-7');

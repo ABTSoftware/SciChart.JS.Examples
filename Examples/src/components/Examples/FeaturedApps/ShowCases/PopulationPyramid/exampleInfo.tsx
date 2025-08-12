@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsShowCasesPopulationPyramid",
+        reactComponent: "PopulationPyramid",
+        id: "featuredApps_showcases_populationPyramid",
         imagePath: "javascript-population-pyramid.jpg",
         description:
             "Population Pyramid of Europe and Africa using SciChart.js High Performance JavaScript Charts. This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different series to prevent overlap",
@@ -55,7 +56,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const populationPyramidExampleInfo = createExampleInfo(metaData);
+export default populationPyramidExampleInfo;

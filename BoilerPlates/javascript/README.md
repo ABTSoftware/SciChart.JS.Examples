@@ -20,7 +20,7 @@ SciChart.js is commercial software with a [free community license](https://scich
 
 ### webpack.config.js
 
-Use CopyPlugin to copy wasm and data files and serve them by webpack-dev-server. SciChart.js uses WebAssembly and those files **scichart2d.data**, **scichart2d.wasm** must be loaded.
+Use CopyPlugin to copy wasm and data files and serve them by webpack-dev-server. SciChart.js uses WebAssembly and those files **scichart2d.wasm** or **scichart3d.wasm** must be loaded.
 
 ```javascript
 const path = require("path");
@@ -40,8 +40,8 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
         { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
+        { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
       ],
     }),
   ],
@@ -50,14 +50,13 @@ module.exports = {
 
 ### SciChartSurface.configure
 
-You may need this to configure from where wasm and data files are served, update `src/index.js` file if needed
+You may need this to configure from where wasm files are served, update `src/index.js` file if needed
 
 ```javascript
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 
 // call this before SciChartSurface.create()
 SciChart.SciChartSurface.configure({
-  dataUrl: "/custom/scichart2d.data",
   wasmUrl: "/other/scichart2d.wasm",
 });
 ```

@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DTooltipsAndHittestUsingVerticalSliceModifier",
+        reactComponent: "UsingVerticalSliceModifier",
+        id: "chart2D_tooltipsAndHittest_VerticalSliceModifier",
         imagePath: "javascript-chart-vertical-slice-modifier.jpg",
         description:
             "Demonstrates how to use **tooltips at fixed positions** using SciChart.js, High Performance JavaScript Charts",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const usingVerticalSliceModifierExampleInfo = createExampleInfo(metaData);
+export default usingVerticalSliceModifierExampleInfo;

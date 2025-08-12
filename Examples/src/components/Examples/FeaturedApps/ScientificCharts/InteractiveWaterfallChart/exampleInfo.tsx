@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsScientificChartsInteractiveWaterfallChart",
+        reactComponent: "WaterfallChart",
+        id: "featuredApps_scientificCharts_WaterfallChartDemo",
         imagePath: "javascript-interactive-waterfall-chart.jpg",
         description:
             "Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive selection of points.",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "max-width",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const waterfallChartExampleInfo = createExampleInfo(metaData);
+export default waterfallChartExampleInfo;

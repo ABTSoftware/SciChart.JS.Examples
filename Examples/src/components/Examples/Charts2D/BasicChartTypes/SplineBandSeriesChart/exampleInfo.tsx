@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesSplineBandSeriesChart",
+        reactComponent: "SplineBandSeriesChart",
+        id: "chart2D_basicCharts_SplineBandChart",
         imagePath: "javascript-spline-band-chart.jpg",
         description:
             "Demonstrates how to create a **JavaScript Spline Band Chart** or High-Low Fill using SciChart.js, our High Performance JavaScript Chart Software",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const splineBandSeriesChartExampleInfo = createExampleInfo(metaData);
+const splineBandSeriesChartExampleInfo = createExampleInfo(metaData);
+export default splineBandSeriesChartExampleInfo;

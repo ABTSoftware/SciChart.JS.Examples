@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DAxisLabelCustomizationRotatedLabels",
+        reactComponent: "RotatedLabels",
+        id: "chart2D_axisLabelCustomization_RotatedLabels",
         imagePath: "javascript-rotated-labels-chart.jpg",
         description:
             "Demonstrates how to use **Rotation and Alignment of Axis Labels** with SciChart.js, High Performance JavaScript Charts",
@@ -54,7 +55,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const rotatedLabelsExampleInfo = createExampleInfo(metaData);
+export default rotatedLabelsExampleInfo;

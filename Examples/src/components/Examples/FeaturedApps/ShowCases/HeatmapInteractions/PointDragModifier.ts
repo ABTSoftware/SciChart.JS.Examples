@@ -14,7 +14,8 @@ export class PointDragModifier extends ChartModifierBase2D {
 
     public override modifierMouseDown(args: ModifierMouseArgs): void {
         super.modifierMouseDown(args);
-        if (args.button !== this.executeOn) return;
+        console.log("PointDragModifier");
+        if (!this.checkExecuteCondition(args, this.executeCondition)) return;
         const rsList = this.parentSurface.renderableSeries.asArray();
 
         this.selectedRS = undefined;

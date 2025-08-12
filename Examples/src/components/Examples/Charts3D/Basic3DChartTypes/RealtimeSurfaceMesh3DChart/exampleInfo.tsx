@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts3DBasic3DChartTypesRealtimeSurfaceMesh3DChart",
+        reactComponent: "RealtimeSurfaceMesh3DChart",
+        id: "chart3D_basic3DChartTypes_RealtimeSurfaceMesh3DChart",
         imagePath: "javascript-realtime-3d-surface-mesh-chart.jpg",
         description:
             "Learn how to create a realtime updating **JavaScript 3D Surface Mesh Chart** using SciChart.js, and our High Performance JavaScript 3D Chart Library",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const realtimeSurfaceMesh3DChartExampleInfo = createExampleInfo(metaData);
+export default realtimeSurfaceMesh3DChartExampleInfo;

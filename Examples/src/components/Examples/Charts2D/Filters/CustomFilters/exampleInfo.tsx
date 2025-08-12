@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DFiltersCustomFilters",
+        reactComponent: "CustomFilters",
+        id: "chart2D_filters_CustomFilters",
         imagePath: "javascript-custom-filters.jpg",
         description:
             "Demonstrates simple and advanced **Custom Filters**, with realtime updates using SciChart.js, High Performance JavaScript Charts",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const customFiltersExampleInfo = createExampleInfo(metaData);
+export default customFiltersExampleInfo;

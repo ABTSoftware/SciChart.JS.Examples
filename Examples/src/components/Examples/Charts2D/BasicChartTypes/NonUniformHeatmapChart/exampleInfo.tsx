@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DBasicChartTypesNonUniformHeatmapChart",
+        reactComponent: "NonUniformHeatmapChart",
+        id: "chart2D_basicCharts_NonUniformHeatmapChart",
         imagePath: "javascript-non-uniform-heatmap-chart.jpg",
         description:
             "This SciChart demo demonstrates how to create a **JavaScript Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const nonUniformHeatmapExampleInfo = createExampleInfo(metaData);
+const nonUniformHeatmapExampleInfo = createExampleInfo(metaData);
+export default nonUniformHeatmapExampleInfo;

@@ -1,6 +1,7 @@
-@import "../../assets/main.scss";
+@use "../../assets/main.scss";
+@use "../../assets/base";
 
 .ComponentWrapper {
-    border-radius: $default-border-radius;
+    border-radius: base.$default-border-radius;
     overflow: hidden;
 }

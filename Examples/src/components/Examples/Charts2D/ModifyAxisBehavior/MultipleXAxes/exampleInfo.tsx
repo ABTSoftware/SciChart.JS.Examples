@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DModifyAxisBehaviorMultipleXAxes",
+        reactComponent: "MultipleXAxes",
+        id: "chart2D_modifyAxisBehavior_MultipleXAxes",
         imagePath: "javascript-chart-with-multiple-x-axis.jpg",
         description:
             "Demonstrates how to create a **JavaScript Chart with multiple X,Y axis** using SciChart.js, High Performance JavaScript Charts",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const multipleXAxesExampleInfo = createExampleInfo(metaData);
+const multipleXAxesExampleInfo = createExampleInfo(metaData);
+export default multipleXAxesExampleInfo;

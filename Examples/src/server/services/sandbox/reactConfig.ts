@@ -45,24 +45,22 @@ export const getReactSandBoxConfig = async (
                 },
                 dependencies: {
                     "@emotion/react": "^11.13.3",
-                    "@emotion/styled": "^11.13.0", // peer dependency of @mui/material
-                    "@mui/material": "^5.15.20", // Change to MUI v5
-                    "@mui/lab": "^5.0.0-alpha.170",
-                    "@mui/icons-material": "^5.15.20",
-                    "tss-react": "^4.9.13",
+                    "@emotion/styled": "^11.13.0",
+                    "@mui/material": pj.dependencies["@mui/material"],
+                    "@mui/lab": pj.dependencies["@mui/lab"],
+                    "@mui/icons-material": pj.dependencies["@mui/icons-material"],
                     sass: "^1.49.9",
                     "loader-utils": "3.2.1",
-                    react: "^18.3.1",
-                    "react-dom": "^18.3.1",
+                    react: pj.dependencies["react"],
+                    "react-dom": pj.dependencies["react-dom"],
                     "react-scripts": "5.0.1",
-                    // scichart: pj.dependencies.scichart,
-                    scichart: SCICHART_VERSION,
+                    scichart: pj.dependencies.scichart,
                     "scichart-react": pj.dependencies["scichart-react"],
                     typescript: pj.devDependencies.typescript,
                     ...currentExample.extraDependencies,
-                    "@types/react": "^18.3.11",
-                    "@types/react-dom": "^18.3.1",
-                    "@babel/runtime": "7.13.8",
+                    "@types/react": pj.dependencies["@types/react"],
+                    "@types/react-dom": pj.dependencies["@types/react-dom"],
+                    "@babel/runtime": pj.dependencies["@babel/runtime"],
                 },
                 browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
             },
@@ -99,7 +97,7 @@ root.render(<><App />${SCICHART_ANCHOR}</>);
           </head>
           <body>
             <noscript>You need to enable JavaScript to run this app.</noscript>
-            <div id="root"></div>
+            <div id="root" style="aspect-ratio: 3 / 2;"></div>
           </body>
         </html>`,
             isBinary: false,

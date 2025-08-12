@@ -1,10 +1,12 @@
+import exp from "constants";
 import { createExampleInfo } from "../../exampleInfoUtils";
 import { IExampleMetadata } from "../../IExampleMetadata";
 
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "BuilderApiCustomTypes",
+        reactComponent: "CustomTypes",
+        id: "builderApi_CustomTypes",
         imagePath: "javascript-custom-types.jpg",
         description:
             "Demonstrates how to use the Builder Api with **Custom Types** using SciChart.js, High Performance JavaScript Charts",
@@ -57,7 +59,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const customTypesExampleInfo = createExampleInfo(metaData);
+export default customTypesExampleInfo;

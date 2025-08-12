@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "BuilderApiFullChart",
+        reactComponent: "FullChart",
+        id: "builderApi_fullchart",
         imagePath: "javascript-builder-full.jpg",
         description:
             "Demonstrates how to use the Builder Api to create a **Fully Configured Chart** using SciChart.js, High Performance JavaScript Charts",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
-export const fullChartExampleInfo = createExampleInfo(metaData);
+const fullChartExampleInfo = createExampleInfo(metaData);
+export default fullChartExampleInfo;

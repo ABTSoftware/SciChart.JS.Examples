@@ -24,8 +24,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     // Add an X, Y Axis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0, 0.1) }));
+    sciChartSurface.xAxes.add(
+        new NumericAxis(wasmContext, {
+            labelPrecision: 0,
+        })
+    );
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            growBy: new NumberRange(0, 0.1),
+            labelPrecision: 0,
+        })
+    );
 
     const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
     const yValues = [1, 2, 4, 8, 11, 15, 24, 46, 81, 117, 144, 160, 137, 101, 64, 35, 25, 14, 4, 1];
@@ -37,15 +46,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             // Fill & stroke support Hex strings and rgba()
             fill: appTheme.PaleSkyBlue + "77",
             stroke: appTheme.PaleSkyBlue,
-            strokeThickness: 3,
+            strokeThickness: 2,
             dataPointWidth: 0.7,
-            cornerRadius: 10,
+            cornerRadius: 8,
             // Optional datalabels on series. To enable set a style and position
             dataLabels: {
                 horizontalTextPosition: EHorizontalTextPosition.Center,
                 verticalTextPosition: EVerticalTextPosition.Above,
-                style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(0, 0, 20, 0) },
+                style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(0, 0, 8, 0) },
                 color: appTheme.ForegroundColor,
+                precision: 0,
             },
             // Optional series animation executed when series shows
             animation: new WaveAnimation({ duration: 1000 }),

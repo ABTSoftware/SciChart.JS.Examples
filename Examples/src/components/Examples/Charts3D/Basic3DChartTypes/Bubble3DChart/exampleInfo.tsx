@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts3DBasic3DChartTypesBubble3DChart",
+        reactComponent: "Bubble3DChart",
+        id: "chart3D_basic3DChartTypes_Bubble3DChart",
         imagePath: "javascript-3d-bubble-chart.jpg",
         description:
             "Our team demonstrates how to create a **JavaScript 3D Bubble Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const bubble3DChartExampleInfo = createExampleInfo(metaData);
+export default bubble3DChartExampleInfo;

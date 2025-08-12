@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "FeaturedAppsFeatureDemosAxisTypes",
+        reactComponent: "FeatureAxisTypes",
+        id: "featuredApps_featureDemos_axisTypes",
         imagePath: "javascript-axis-types.jpg",
         description:
             "Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High Performance JavaScript Charts",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const axisTypesExampleInfo = createExampleInfo(metaData);
+export default axisTypesExampleInfo;

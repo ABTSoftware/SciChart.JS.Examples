@@ -1,215 +1,207 @@
+import * as SciChart from "scichart";
+
 const xValues = [];
 const yValues = [];
 const yValues1 = [];
 const yValues2 = [];
 for (let i = 0; i < 100; i++) {
-  xValues.push(i);
-  yValues.push(0.2 * Math.sin(i * 0.1) - Math.cos(i * 0.01));
-  yValues1.push(0.1 * Math.sin(i * 0.3) - Math.cos(i * 0.02));
-  yValues2.push(0.1 * Math.sin(i * 0.7) - Math.cos(i * 0.03));
+    xValues.push(i);
+    yValues.push(0.2 * Math.sin(i * 0.1) - Math.cos(i * 0.01));
+    yValues1.push(0.1 * Math.sin(i * 0.3) - Math.cos(i * 0.02));
+    yValues2.push(0.1 * Math.sin(i * 0.7) - Math.cos(i * 0.03));
 }
 
 async function simpleSubChart(divElementId) {
-  // #region ExampleA
-  // Demonstrates how to use the Sub-Charts API to create child charts in a parent chart
-  const {
-    SciChartSurface,
-    NumericAxis,
-    FastLineRenderableSeries,
-    XyDataSeries,
-    SciChartJsNavyTheme,
-    Rect,
-    ECoordinateMode,
-    ZoomPanModifier,
-    ZoomExtentsModifier,
-    MouseWheelZoomModifier,
-    EXyDirection,
-    NumberRange,
-    EAxisAlignment,
-    GenericAnimation,
-  } = SciChart;
+    // #region ExampleA
+    // Demonstrates how to use the Sub-Charts API to create child charts in a parent chart
+    const {
+        SciChartSurface,
+        SciChartSubSurface,
+        NumericAxis,
+        FastLineRenderableSeries,
+        XyDataSeries,
+        SciChartJsNavyTheme,
+        Rect,
+        ECoordinateMode,
+        ZoomPanModifier,
+        ZoomExtentsModifier,
+        MouseWheelZoomModifier,
+        EXyDirection,
+        NumberRange,
+        EAxisAlignment,
+        GenericAnimation
+    } = SciChart;
 
-  // or, for npm, import { SciChartSurface, ... } from "scichart"
+    // or, for npm, import { SciChartSurface, ... } from "scichart"
 
-  // Function to add series to chart. This will be re-used for the parent and sub-charts
-  const addSeries = (sciChartSurface, stroke, x, y) => {
-    sciChartSurface.renderableSeries.add(
-      new FastLineRenderableSeries(wasmContext, {
-        stroke,
-        strokeThickness: 5,
-        dataSeries: new XyDataSeries(wasmContext, {
-          xValues: x,
-          yValues: y,
-        }),
-        opacity: sciChartSurface.isSubSurface ? 0.5 : 1,
-      })
+    // Function to add series to chart. This will be re-used for the parent and sub-charts
+    const addSeries = (sciChartSurface, stroke, x, y) => {
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                stroke,
+                strokeThickness: 5,
+                dataSeries: new XyDataSeries(wasmContext, {
+                    xValues: x,
+                    yValues: y
+                }),
+                opacity: sciChartSurface.isSubSurface ? 0.5 : 1
+            })
+        );
+    };
+
+    // Create a parent (regular) SciChartSurface which will contain the sub-chart
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        theme: new SciChartJsNavyTheme()
+    });
+
+    // Create multiple X,Y axis on the parent chart and programmatically zoom into part of the data
+    sciChartSurface.xAxes.add(
+        new NumericAxis(wasmContext, {
+            growBy: new NumberRange(0.1, 0.1)
+        })
     );
-  };
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            growBy: new NumberRange(0.1, 0.1)
+        })
+    );
 
-  // Create a parent (regular) SciChartSurface which will contain the sub-chart
-  const { wasmContext, sciChartSurface } = await SciChartSurface.create(
-    divElementId,
-    {
-      theme: new SciChartJsNavyTheme(),
-    }
-  );
+    // Create a series on the parent chart
+    addSeries(sciChartSurface, "#FF6600", xValues, yValues);
+    addSeries(sciChartSurface, "#ae418d", xValues, yValues1);
+    addSeries(sciChartSurface, "#47bde6", xValues, yValues2);
 
-  // Create multiple X,Y axis on the parent chart and programmatically zoom into part of the data
-  sciChartSurface.xAxes.add(
-    new NumericAxis(wasmContext, {
-      growBy: new NumberRange(0.1, 0.1),
-    })
-  );
-  sciChartSurface.yAxes.add(
-    new NumericAxis(wasmContext, {
-      growBy: new NumberRange(0.1, 0.1),
-    })
-  );
+    // Add some interactivity to the parent chart
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
 
-  // Create a series on the parent chart
-  addSeries(sciChartSurface, "#FF6600", xValues, yValues);
-  addSeries(sciChartSurface, "#ae418d", xValues, yValues1);
-  addSeries(sciChartSurface, "#47bde6", xValues, yValues2);
+    // Add a Sub-Charts to the main surface. This will display a rectangle showing the current zoomed in area on the parent chart
+    const subChart1 = SciChartSubSurface.createSubSurface(sciChartSurface, {
+        // Properties from I2DSubSurfaceOptions affect positioning and rendering of the subchart
+        position: new Rect(0.1, 0.1, 0.1, 0.2),
+        isTransparent: false,
+        isVisible: true,
+        coordinateMode: ECoordinateMode.Relative,
+        // However all properties from I2DSurfaceOptions are available
+        viewportBorder: { border: 3, color: "#77777777" },
+        background: "#333",
+        title: "Sub-chart Position with subPosition",
+        titleStyle: { fontSize: 16, color: "#eeeeee77" }
+    });
 
-  // Add some interactivity to the parent chart
-  sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-  sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-  sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
+    // Add x,y axis to the subchart
+    subChart1.xAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
+    subChart1.yAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
 
-  // Add a Sub-Charts to the main surface. This will display a rectangle showing the current zoomed in area on the parent chart
-  const subChart1 = sciChartSurface.addSubChart({
-    // Properties from I2DSubSurfaceOptions affect positioning and rendering of the subchart
-    position: new Rect(0.1, 0.1, 0.1, 0.2),
-    isTransparent: false,
-    isVisible: true,
-    coordinateMode: ECoordinateMode.Relative,
-    // However all properties from I2DSurfaceOptions are available
-    viewportBorder: { border: 3, color: "#77777777" },
-    backgroundColor: "#333",
-    title: "Sub-chart Position with subPosition",
-    titleStyle: { fontSize: 16, color: "#eeeeee77" },
-  });
+    addSeries(subChart1, "#FF6600", xValues, yValues);
+    addSeries(subChart1, "#ae418d", xValues, yValues1);
+    addSeries(subChart1, "#47bde6", xValues, yValues2);
 
-  // Add x,y axis to the subchart
-  subChart1.xAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
-  subChart1.yAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
+    // On the parent chart, programmatically move the sub-chart to a new position
+    setTimeout(() => {
+        subChart1.subPosition = new Rect(0.75, 0.75, 0.1, 0.2);
+    }, 1000);
+    // #endregion
 
-  addSeries(subChart1, "#FF6600", xValues, yValues);
-  addSeries(subChart1, "#ae418d", xValues, yValues1);
-  addSeries(subChart1, "#47bde6", xValues, yValues2);
-
-  // On the parent chart, programmatically move the sub-chart to a new position
-  setTimeout(() => {
-    subChart1.subPosition = new Rect(0.75, 0.75, 0.1, 0.2);
-  }, 1000);
-  // #endregion
-
-  const { TextAnnotation, EHorizontalAnchorPoint } = SciChart; // Add a watermark to explain what's going on
-  sciChartSurface.annotations.add(
-    new TextAnnotation({
-      x1: 0.5,
-      y1: 0.5,
-      text: "Updated SubChart Position using subPosition",
-      horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-      xCoordinateMode: ECoordinateMode.Relative,
-      yCoordinateMode: ECoordinateMode.Relative,
-      opacity: 0.5,
-      fontSize: 20,
-    })
-  );
+    const { TextAnnotation, EHorizontalAnchorPoint } = SciChart; // Add a watermark to explain what's going on
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            x1: 0.5,
+            y1: 0.5,
+            text: "Updated SubChart Position using subPosition",
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            opacity: 0.5,
+            fontSize: 20
+        })
+    );
 }
 
 simpleSubChart("scichart-root");
 
 async function builderExample(divElementId) {
-  // #region ExampleB
-  // Demonstrates how to create a line chart with SciChart.js using the Builder API
-  const {
-    chartBuilder,
-    ESeriesType,
-    EAxisType,
-    EThemeProviderType,
-    Rect,
-    ECoordinateMode,
-    EAxisAlignment,
-    NumberRange,
-    EChart2DModifierType,
-  } = SciChart;
+    // #region ExampleB
+    // Demonstrates how to create a line chart with SciChart.js using the Builder API
+    const {
+        chartBuilder,
+        ESeriesType,
+        EAxisType,
+        EThemeProviderType,
+        Rect,
+        ECoordinateMode,
+        EAxisAlignment,
+        NumberRange,
+        EChart2DModifierType
+    } = SciChart;
 
-  // or, for npm, import { chartBuilder, ... } from "scichart"
+    // or, for npm, import { chartBuilder, ... } from "scichart"
 
-  const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(
-    divElementId,
-    {
-      surface: { theme: { type: EThemeProviderType.Dark } },
-      // Main chart definition is here
-      xAxes: [{ type: EAxisType.NumericAxis }],
-      yAxes: [{ type: EAxisType.NumericAxis }],
-      series: [
-        {
-          type: ESeriesType.LineSeries,
-          xyData: {
-            xValues,
-            yValues: yValues1,
-          },
-          options: {
-            stroke: "#0066FF",
-            strokeThickness: 5,
-          },
-        },
-      ],
-      modifiers: [
-        { type: EChart2DModifierType.ZoomPan },
-        { type: EChart2DModifierType.ZoomExtents },
-        { type: EChart2DModifierType.MouseWheelZoom },
-      ],
-      // Subchart definition is here
-      subCharts: [
-        {
-          surface: {
-            // Properties from I2DSubSurfaceOptions affect positioning and rendering of the subchart
-            position: new Rect(0.1, 0.11, 0.1, 0.2),
-            isTransparent: false,
-            isVisible: true,
-            coordinateMode: ECoordinateMode.Relative,
-            // However all properties from I2DSurfaceOptions are available
-            viewportBorder: { border: 3, color: "#77777777" },
-            backgroundColor: "#333",
-            title: "Sub-chart Position with subPosition",
-            titleStyle: { fontSize: 16, color: "#eeeeee77" },
-          },
-          // Define the x,y axis on Subchart
-          xAxes: { type: EAxisType.NumericAxis, options: { isVisible: false } },
-          yAxes: { type: EAxisType.NumericAxis, options: { isVisible: false } },
-          // Define the series on Subchart
-          series: [
+    const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
+        surface: { theme: { type: EThemeProviderType.Dark } },
+        // Main chart definition is here
+        xAxes: [{ type: EAxisType.NumericAxis }],
+        yAxes: [{ type: EAxisType.NumericAxis }],
+        series: [
             {
-              type: ESeriesType.LineSeries,
-              xyData: {
-                xValues,
-                yValues: yValues1,
-              },
-              options: {
-                stroke: "#0066FF",
-                strokeThickness: 5,
-              },
-            },
-          ],
-        },
-      ],
-    }
-  );
+                type: ESeriesType.LineSeries,
+                xyData: {
+                    xValues,
+                    yValues: yValues1
+                },
+                options: {
+                    stroke: "#0066FF",
+                    strokeThickness: 5
+                }
+            }
+        ],
+        modifiers: [
+            { type: EChart2DModifierType.ZoomPan },
+            { type: EChart2DModifierType.ZoomExtents },
+            { type: EChart2DModifierType.MouseWheelZoom }
+        ],
+        // Subchart definition is here
+        subCharts: [
+            {
+                surface: {
+                    // Properties from I2DSubSurfaceOptions affect positioning and rendering of the subchart
+                    position: new Rect(0.1, 0.11, 0.1, 0.2),
+                    isTransparent: false,
+                    isVisible: true,
+                    coordinateMode: ECoordinateMode.Relative,
+                    // However all properties from I2DSurfaceOptions are available
+                    viewportBorder: { border: 3, color: "#77777777" },
+                    background: "#333",
+                    title: "Sub-chart Position with subPosition",
+                    titleStyle: { fontSize: 16, color: "#eeeeee77" }
+                },
+                // Define the x,y axis on Subchart
+                xAxes: { type: EAxisType.NumericAxis, options: { isVisible: false } },
+                yAxes: { type: EAxisType.NumericAxis, options: { isVisible: false } },
+                // Define the series on Subchart
+                series: [
+                    {
+                        type: ESeriesType.LineSeries,
+                        xyData: {
+                            xValues,
+                            yValues: yValues1
+                        },
+                        options: {
+                            stroke: "#0066FF",
+                            strokeThickness: 5
+                        }
+                    }
+                ]
+            }
+        ]
+    });
 
-  // On the parent chart, programmatically move the subchart with subPosition
-  setTimeout(() => {
-    sciChartSurface.subCharts.at(0).subPosition = new Rect(
-      0.75,
-      0.75,
-      0.1,
-      0.2
-    );
-  }, 1000);
-  // #endregion
+    // On the parent chart, programmatically move the subchart with subPosition
+    setTimeout(() => {
+        sciChartSurface.subCharts.at(0).subPosition = new Rect(0.75, 0.75, 0.1, 0.2);
+    }, 1000);
+    // #endregion
 }
 
 if (location.search.includes("builder=1")) builderExample("scichart-root");

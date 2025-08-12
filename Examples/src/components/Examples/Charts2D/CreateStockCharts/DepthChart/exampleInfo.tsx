@@ -4,7 +4,8 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
-        exampleId: "Charts2DCreateStockChartsDepthChart",
+        reactComponent: "DepthChart",
+        id: "chart2D_createStockCharts_DepthChart",
         imagePath: "javascript-depth-chart.jpg",
         description:
             "How to create a Market Depth (Order Book) JavaScript Chart using Mountain Series and a Custom Modifier",
@@ -57,7 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: false,
     };
 //// End of computer generated metadata
 
 export const depthChartExampleInfo = createExampleInfo(metaData);
+export default depthChartExampleInfo;

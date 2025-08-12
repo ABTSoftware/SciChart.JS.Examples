@@ -52,20 +52,7 @@ export default {
         });
       },
     },
-    // scichart2d.data
-    {
-      name: "wasm",
-      generateBundle() {
-        this.emitFile({
-          type: "asset",
-          fileName: "scichart2d.data",
-          source: fs.readFileSync(
-            "node_modules/scichart/_wasm/scichart2d.data"
-          ),
-        });
-      },
-    },
-    // if needed, do the same for 3d .wasm/.data files
+    // if needed, do the same for 3d .wasm file
   ],
 };
 ```

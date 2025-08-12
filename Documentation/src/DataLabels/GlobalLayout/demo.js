@@ -1,3 +1,4 @@
+import * as SciChart from "scichart";
 
 async function dataLabelGlobalLayout(divElementId) {
     // #region ExampleA
@@ -33,16 +34,17 @@ async function dataLabelGlobalLayout(divElementId) {
             height: 10,
             strokeThickness: 2,
             stroke: "SteelBlue",
-            fill: "LightSteelBlue"}),
+            fill: "LightSteelBlue"
+        }),
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            yValues: [4.3, 5, 5, 6, 8, 6.8, 7, 7, 7.2, 6.5, 6.5, 7],
+            yValues: [4.3, 5, 5, 6, 8, 6.8, 7, 7, 7.2, 6.5, 6.5, 7]
         }),
         // dataLabels style must be specified to show labels
         dataLabels: {
             style: {
-                fontFamily: "Arial",
-                fontSize: 18,
+                fontFamily: "Default",
+                fontSize: 18
             },
             color: "SteelBlue"
         }
@@ -58,16 +60,17 @@ async function dataLabelGlobalLayout(divElementId) {
             height: 10,
             strokeThickness: 2,
             stroke: "Darkorange",
-            fill: "Tan"}),
+            fill: "Tan"
+        }),
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            yValues: [4.5, 4.9, 5.1, 6.2, 7, 6.5, 7, 7.5, 7.1, 6.2, 5.5, 6],
+            yValues: [4.5, 4.9, 5.1, 6.2, 7, 6.5, 7, 7.5, 7.1, 6.2, 5.5, 6]
         }),
         // dataLabels style must be specified to show labels
         dataLabels: {
             style: {
-                fontFamily: "Arial",
-                fontSize: 18,
+                fontFamily: "Default",
+                fontSize: 18
             },
             color: "Darkorange"
         }
@@ -79,7 +82,7 @@ async function dataLabelGlobalLayout(divElementId) {
     sciChartSurface.dataLabelLayoutManager = {
         performTextLayout(sciChartSurface, renderPassInfo) {
             const firstLabels = renderPassInfo.renderableSeriesArray[0].dataLabelProvider.dataLabels;
-            const secondLabels = renderPassInfo.renderableSeriesArray[1].dataLabelProvider.dataLabels
+            const secondLabels = renderPassInfo.renderableSeriesArray[1].dataLabelProvider.dataLabels;
             for (const label of secondLabels) {
                 let overlap = false;
                 for (const existing of firstLabels) {
@@ -88,23 +91,25 @@ async function dataLabelGlobalLayout(divElementId) {
                     const bottom = existing.rect.bottom + padding;
                     const left = existing.rect.left - padding;
                     const right = existing.rect.right + padding;
-                    if (testIsInBounds(label.rect.left, label.rect.top, left, bottom, right, top ) ||
+                    if (
+                        testIsInBounds(label.rect.left, label.rect.top, left, bottom, right, top) ||
                         testIsInBounds(label.rect.right, label.rect.top, left, bottom, right, top) ||
                         testIsInBounds(label.rect.left, label.rect.bottom, left, bottom, right, top) ||
-                        testIsInBounds(label.rect.right, label.rect.bottom, left, bottom, right, top)) {
+                        testIsInBounds(label.rect.right, label.rect.bottom, left, bottom, right, top)
+                    ) {
                         // console.log(`Label ${label.text} overlaps ${existing.text}, skipping...`);
                         overlap = true;
                         break;
                     }
-                } 
+                }
                 if (overlap) {
                     // Labels overlaps another so blank it
                     label.text = "";
                 }
             }
         }
-    }
+    };
     // #endregion ExampleA
 }
 
-dataLabelGlobalLayout('scichart-root')
+dataLabelGlobalLayout("scichart-root");
