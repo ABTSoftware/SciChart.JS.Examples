@@ -17,12 +17,13 @@
     }
 }
 
-.toolbar {
-    flex: 0 0 auto;
-    margin-bottom: 1px;
-    position: relative;
-    z-index: 2;
-}
+// TODO check if this is needed. For now disabling it because it blocks navigation button click
+// .toolbar {
+//     flex: 0 0 auto;
+//     margin-bottom: 1px;
+//     position: relative;
+//     z-index: 2;
+// }
 
 .frameContainer {
     position: relative;

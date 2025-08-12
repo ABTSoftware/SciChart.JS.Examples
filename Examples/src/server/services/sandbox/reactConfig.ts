@@ -95,9 +95,9 @@ root.render(<><App />${SCICHART_ANCHOR}</>);
           <head>
           <title>React App</title>
           </head>
-          <body>
+          <body style="margin: 0px;background: #050a30;">
             <noscript>You need to enable JavaScript to run this app.</noscript>
-            <div id="root" style="aspect-ratio: 3 / 2;"></div>
+            <div id="root" style="height: 100vh;"></div>
           </body>
         </html>`,
             isBinary: false,
