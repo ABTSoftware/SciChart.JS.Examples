@@ -1,34 +1,36 @@
+@use "base";
+
 @mixin xl {
-    @media (min-width: $bp-xl) {
+    @media (min-width: base.$bp-xl) {
         @content;
     }
 }
 
 @mixin lg {
-    @media (max-width: $bp-xl) {
+    @media (max-width: base.$bp-xl) {
         @content;
     }
 }
 
 @mixin md {
-    @media (max-width: $bp-lg) {
+    @media (max-width: base.$bp-lg) {
         @content;
     }
 }
 
 @mixin sm {
-    @media (max-width: $bp-md) {
+    @media (max-width: base.$bp-md) {
         @content;
     }
 }
 
 @mixin xs {
-    @media (max-width: $bp-sm) {
+    @media (max-width: base.$bp-sm) {
         @content;
     }
 }
 @mixin xxs {
-    @media (max-width: $bp-xs) {
+    @media (max-width: base.$bp-xs) {
         @content;
     }
 }

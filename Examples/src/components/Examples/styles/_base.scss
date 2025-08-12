@@ -1,4 +1,4 @@
-@import "./mixins.scss";
+// @use "mixins.scss";
 $color-primary-grey: #bac0c6;
 $color-primary-light-grey: #f9fafa;
 $color-primary-dark-grey: #98a4af;
@@ -43,45 +43,3 @@ $bp-xxs: 0;
 $app-bar-height: 90px;
 $default-spacing: 8px;
 $default-border-radius: 10px;
-//
-%Container {
-    max-width: 2900px;
-    padding: 0 20px;
-    @include lg {
-        max-width: 2600px;
-    }
-    @include md {
-        max-width: 2200px;
-
-        padding: 0 10px;
-    }
-}
-html {
-    box-sizing: border-box;
-
-    height: 100%;
-    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-        sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    h1 {
-        line-height: 1.167;
-    }
-    h4 {
-        font-size: 2.125rem;
-        font-weight: 400;
-        line-height: 1.235;
-    }
-
-    h6 {
-        font-size: 1.25rem;
-        font-weight: 500;
-        line-height: 1.6;
-    }
-}
-.container {
-    width: 100%;
-    @extend %Container;
-}
-
-%gutter-bottom {
-    margin-bottom: 0.35em;
-}

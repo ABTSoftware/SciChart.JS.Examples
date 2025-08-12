@@ -1,6 +1,9 @@
+@use "../../assets/base";
+@use "../../assets/mixins";
+
 .divider {
   position: relative;
-  border-bottom: 1px solid $color-dark-blue;
+  border-bottom: 1px solid base.$color-dark-blue;
   margin-bottom: 16px;
 }
 
@@ -9,13 +12,13 @@
   left: 0;
   width: 30px;
   height: 3px;
-  background-color: $color-medium-blue;
+  background-color: base.$color-medium-blue;
 }
 
 %CommonLinkStyles {
   a {
     display: block;
-    color: $color-primary-grey;
+    color: base.$color-primary-grey;
     text-decoration: none;
     margin-bottom: 18px;
     font-weight: 500;
@@ -23,7 +26,7 @@
     line-height: 24px;
     cursor: pointer;
 
-    @include sm {
+    @include mixins.sm {
       font-size: 14px;
       line-height: 22px;
     }
@@ -34,11 +37,11 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 
-  @include sm{
+  @include mixins.sm{
       grid-template-columns: repeat(2, 1fr);
   }
 
-  @include xs{
+  @include mixins.xs{
       grid-template-columns: 1fr;
   }
 }
