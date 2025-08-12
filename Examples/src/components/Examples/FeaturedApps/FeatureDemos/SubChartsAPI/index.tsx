@@ -9,23 +9,12 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Button from "@mui/material/Button";
 import { Dialog, DialogTitle, IconButton } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawGridExample, TMessage } from "./drawExample";
 
-const useStyles = makeStyles()((theme) => ({
-    flexOuterContainer: {
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        background: appTheme.DarkIndigo,
-    },
-    chartArea: {
-        flex: 1,
-    },
+const styles: Record<string, CSSProperties> = {
     infoBlock: {
         display: "flex",
         flex: "auto",
@@ -40,15 +29,14 @@ const useStyles = makeStyles()((theme) => ({
         flex: "none",
         width: "16%",
         fontSize: "0.8em",
-        textWrap: "nowrap"
+        textWrap: "nowrap",
     },
-}));
-
-const configButtonWrapperStyle: CSSProperties = {
-    gridArea: "1 / 1 / 2 / 2",
-    pointerEvents: "none",
-    touchAction: "none",
-    zIndex: 2,
+    configButtonWrapperStyle: {
+        gridArea: "1 / 1 / 2 / 2",
+        pointerEvents: "none",
+        touchAction: "none",
+        zIndex: 2,
+    },
 };
 
 // React component needed as our examples app is react.
@@ -58,8 +46,6 @@ export default function SubchartsGrid() {
     const [isStarted, setIsStarted] = useState(false);
 
     const [messages, setMessages] = useState<TMessage[]>([]);
-
-    const { classes } = useStyles();
 
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -126,52 +112,49 @@ export default function SubchartsGrid() {
     );
 
     return (
-        <div className={commonClasses.ChartWrapper}>
-            <div className={classes.flexOuterContainer}>
-                <div className={commonClasses.ToolbarRow} style={{ justifyContent: "space-between" }}>
-                    <Button
-                        onClick={() => {
-                            if (isStarted) {
-                                controlsRef.current.stopUpdate();
-                            } else {
-                                controlsRef.current.startUpdate();
-                            }
-                            setIsStarted(!isStarted);
-                        }}
+        <div className={commonClasses.ChartWithToolbar}>
+            <div className={commonClasses.ToolbarRow} style={{ justifyContent: "space-between" }}>
+                <Button
+                    onClick={() => {
+                        if (isStarted) {
+                            controlsRef.current.stopUpdate();
+                        } else {
+                            controlsRef.current.startUpdate();
+                        }
+                        setIsStarted(!isStarted);
+                    }}
+                >
+                    {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
+                </Button>
+
+                <div style={styles.configButtonWrapperStyle} title="Chart Configurations">
+                    <IconButton
+                        sx={{ color: appTheme.ForegroundColor, pointerEvents: "all", touchAction: "all" }}
+                        onClick={handleClickOpen}
                     >
-                        {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
-                    </Button>
-
-                    <div style={configButtonWrapperStyle} title="Chart Configurations">
-                        <IconButton
-                            sx={{ color: appTheme.ForegroundColor, pointerEvents: "all", touchAction: "all" }}
-                            onClick={handleClickOpen}
-                        >
-                            <SettingsIcon fontSize="medium" />
-                        </IconButton>
-                        {configurationDialog}
-                    </div>
-
-                    <div className={classes.infoBlock}>
-                        {messages.map((msg, index) => (
-                            <div key={index} className={classes.infoItem}>
-                                <div>{msg.title}</div>
-                                <div>{msg.detail}</div>
-                            </div>
-                        ))}
-                    </div>
+                        <SettingsIcon fontSize="medium" />
+                    </IconButton>
+                    {configurationDialog}
                 </div>
-                <SciChartReact
-                    className={classes.chartArea}
-                    initChart={drawExample}
-                    onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
-                        controlsRef.current = controls;
-                    }}
-                    onDelete={({ controls }: TResolvedReturnType<typeof drawExample>) => {
-                        controls.stopUpdate();
-                    }}
-                />
+
+                <div style={styles.infoBlock}>
+                    {messages.map((msg, index) => (
+                        <div key={index} style={styles.infoItem}>
+                            <div>{msg.title}</div>
+                            <div>{msg.detail}</div>
+                        </div>
+                    ))}
+                </div>
             </div>
+            <SciChartReact
+                initChart={drawExample}
+                onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
+                    controlsRef.current = controls;
+                }}
+                onDelete={({ controls }: TResolvedReturnType<typeof drawExample>) => {
+                    controls.stopUpdate();
+                }}
+            />
         </div>
     );
 }
