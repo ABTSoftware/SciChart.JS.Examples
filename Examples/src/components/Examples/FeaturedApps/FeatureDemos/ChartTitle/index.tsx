@@ -1,6 +1,5 @@
 import * as React from "react";
-import { FormControlLabel, Checkbox } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
+import { FormControlLabel, Switch } from "@mui/material";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
@@ -136,7 +135,7 @@ export default function FeatureChartTitle() {
         }
     };
 
-    const useStyles = makeStyles()((theme) => ({
+    const styles: Record<string, React.CSSProperties> = {
         flexContainer: {
             display: "flex",
             flexDirection: "column",
@@ -149,6 +148,7 @@ export default function FeatureChartTitle() {
             color: appTheme.ForegroundColor,
             fontSize: "13px",
             flex: "none",
+            flexWrap: "wrap",
         },
         combobox: {
             color: "black",
@@ -165,107 +165,81 @@ export default function FeatureChartTitle() {
             width: "100%",
             flex: "auto",
         },
-    }));
-    const { classes } = useStyles();
+    };
 
     return (
-        <div className={commonClasses.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
-            <div className={classes.flexContainer}>
-                <div className={classes.toolbar}>
-                    <FormControlLabel
-                        className={commonClasses.FormControlLabel}
-                        control={
-                            <textarea
-                                className={classes.textarea}
-                                value={titleText}
-                                onChange={handleChangeTitleText}
-                            ></textarea>
-                        }
-                        labelPlacement="start"
-                        label="Title text"
-                    />
+        <div className={commonClasses.ChartWithToolbar} style={{ background: appTheme.DarkIndigo }}>
+            <div className={commonClasses.ToolbarRow} style={styles.toolbar}>
+                <FormControlLabel
+                    className={commonClasses.FormControlLabel}
+                    control={
+                        <textarea style={styles.textarea} value={titleText} onChange={handleChangeTitleText}></textarea>
+                    }
+                    labelPlacement="start"
+                    label="Title text"
+                />
 
-                    <FormControlLabel
-                        className={commonClasses.FormControlLabel}
-                        control={
-                            <select
-                                className={classes.combobox}
-                                value={titleAlignment}
-                                onChange={selectTitleTextAlignment}
-                            >
-                                {Object.values(ETextAlignment).map((value) => (
-                                    <option key={value} value={value}>
-                                        {value}
-                                    </option>
-                                ))}
-                            </select>
-                        }
-                        labelPlacement="start"
-                        label="Title Alignment"
-                    />
+                <FormControlLabel
+                    className={commonClasses.FormControlLabel}
+                    control={
+                        <select style={styles.combobox} value={titleAlignment} onChange={selectTitleTextAlignment}>
+                            {Object.values(ETextAlignment).map((value) => (
+                                <option key={value} value={value}>
+                                    {value}
+                                </option>
+                            ))}
+                        </select>
+                    }
+                    labelPlacement="start"
+                    label="Title Alignment"
+                />
 
-                    <FormControlLabel
-                        className={commonClasses.FormControlLabel}
-                        control={
-                            <select
-                                className={classes.combobox}
-                                value={titlePosition}
-                                onChange={selectTitleTextPosition}
-                            >
-                                {Object.values(ETitlePosition).map((value) => (
-                                    <option key={value} value={value}>
-                                        {value}
-                                    </option>
-                                ))}
-                            </select>
-                        }
-                        labelPlacement="start"
-                        label="Title Position"
-                    />
+                <FormControlLabel
+                    className={commonClasses.FormControlLabel}
+                    control={
+                        <select style={styles.combobox} value={titlePosition} onChange={selectTitleTextPosition}>
+                            {Object.values(ETitlePosition).map((value) => (
+                                <option key={value} value={value}>
+                                    {value}
+                                </option>
+                            ))}
+                        </select>
+                    }
+                    labelPlacement="start"
+                    label="Title Position"
+                />
 
-                    <FormControlLabel
-                        className={commonClasses.FormControlLabel}
-                        control={
-                            <select
-                                className={classes.combobox}
-                                value={multilineAlignment}
-                                onChange={selectTitleTextMultilineAlignment}
-                            >
-                                {Object.values(EMultiLineAlignment).map((value) => (
-                                    <option key={value} value={value}>
-                                        {value}
-                                    </option>
-                                ))}
-                            </select>
-                        }
-                        labelPlacement="start"
-                        label="Multiline Text Alignment"
-                    />
-
-                    <FormControlLabel
-                        className={commonClasses.FormControlLabel}
-                        control={
-                            <Checkbox
-                                checked={placeWithinChart}
-                                onChange={handleChangePlaceWithinChart}
-                                name="checkedB"
-                            />
-                        }
-                        labelPlacement="start"
-                        label="Place Title within chart?"
-                    />
-                </div>
-
-                <div style={{ flex: "auto" }}>
-                    <SciChartReact
-                        style={{ width: "100%", height: "100%" }}
-                        initChart={drawExample}
-                        onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
-                            controlsRef.current = controls;
-                        }}
-                    />
-                </div>
+                <FormControlLabel
+                    className={commonClasses.FormControlLabel}
+                    control={
+                        <select
+                            style={styles.combobox}
+                            value={multilineAlignment}
+                            onChange={selectTitleTextMultilineAlignment}
+                        >
+                            {Object.values(EMultiLineAlignment).map((value) => (
+                                <option key={value} value={value}>
+                                    {value}
+                                </option>
+                            ))}
+                        </select>
+                    }
+                    labelPlacement="start"
+                    label="Multiline Text Alignment"
+                />
+                <FormControlLabel
+                    control={<Switch checked={placeWithinChart} onChange={handleChangePlaceWithinChart} />}
+                    label="Place Title within chart?"
+                    labelPlacement="start"
+                />
             </div>
+
+            <SciChartReact
+                initChart={drawExample}
+                onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
+                    controlsRef.current = controls;
+                }}
+            />
         </div>
     );
 }

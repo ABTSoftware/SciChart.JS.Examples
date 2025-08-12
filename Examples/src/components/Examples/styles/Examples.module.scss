@@ -37,8 +37,26 @@
     background: #14233c; // DarkIndigo
 }
 
+.ChartWithToolbar > div {
+    flex: auto;
+}
+
+.ChartWithToolbar > .ToolbarRow {
+    flex: none;
+}
+
+.ChartWithNestedToolbar {
+    @extend .ChartWithToolbar;
+}
+
 // TODO add class name in SciChartReact
-.ChartWithToolbar > div:first-child {
+// Consider the following setup
+// <SciChartReact className={commonClasses.ChartWithNestedToolbar} initChart={drawExample}>
+//     <ChartToolbar />
+// </SciChartReact>
+
+// this selects the internal chart wrapper
+.ChartWithNestedToolbar > div:first-child {
     order: 2;
     flex: 1;
 }

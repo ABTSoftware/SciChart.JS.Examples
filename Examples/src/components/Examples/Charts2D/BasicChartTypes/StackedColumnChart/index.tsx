@@ -5,23 +5,8 @@ import ToggleButton from "@mui/material/ToggleButton";
 import Switch from "@mui/material/Switch";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
-import { makeStyles } from "tss-react/mui";
 import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-
-const useStyles = makeStyles()((theme) => ({
-    flexOuterContainer: {
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        background: appTheme.DarkIndigo,
-    },
-
-    chartArea: {
-        flex: 1,
-    },
-}));
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
@@ -44,12 +29,10 @@ export default function StackedColumnChart() {
         controls.toggleDataLabels(areDataLabelsVisible);
     };
 
-    const { classes } = useStyles();
     return (
-        <div className={commonClasses.ChartWrapper}>
-            <div className={classes.flexOuterContainer}>
-                <div className={commonClasses.ToolbarRow}>
-                    {/* <ToggleButtonGroup
+        <div className={commonClasses.ChartWithToolbar}>
+            <div className={commonClasses.ToolbarRow}>
+                {/* <ToggleButtonGroup
                         className={commonClasses.ToggleButtonGroup}
                         exclusive
                         size="small"
@@ -75,23 +58,21 @@ export default function StackedColumnChart() {
                             {areDataLabelsVisible ? "Hide" : "Show"}&nbsp;Data&nbsp;Labels
                         </ToggleButton>
                     </ToggleButtonGroup> */}
-                    <FormControlLabel
-                        control={<Switch checked={use100PercentStackedMode} onChange={handleUsePercentage} />}
-                        label="100%&nbsp;Mode"
-                        style={{ margin: 0, padding: "1em" }}
-                    />
-                    <ToggleButton value={areDataLabelsVisible} onClick={handleToggleDataLabels}>
-                        {areDataLabelsVisible ? "Hide" : "Show"}&nbsp;Data&nbsp;Labels
-                    </ToggleButton>
-                </div>
-                <SciChartReact
-                    initChart={drawExample}
-                    className={classes.chartArea}
-                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                        setControls(initResult.controls);
-                    }}
+                <FormControlLabel
+                    control={<Switch checked={use100PercentStackedMode} onChange={handleUsePercentage} />}
+                    label="100%&nbsp;Mode"
+                    style={{ margin: 0, padding: "1em" }}
                 />
+                <ToggleButton value={areDataLabelsVisible} onClick={handleToggleDataLabels}>
+                    {areDataLabelsVisible ? "Hide" : "Show"}&nbsp;Data&nbsp;Labels
+                </ToggleButton>
             </div>
+            <SciChartReact
+                initChart={drawExample}
+                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                    setControls(initResult.controls);
+                }}
+            />
         </div>
     );
 }

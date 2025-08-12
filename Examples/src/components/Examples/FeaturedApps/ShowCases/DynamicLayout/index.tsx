@@ -10,7 +10,7 @@ import { drawExample } from "./drawExample";
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function DynamicLayout() {
     return (
-        <SciChartReact className={commonClasses.ChartWithToolbar} initChart={drawExample}>
+        <SciChartReact className={commonClasses.ChartWithNestedToolbar} initChart={drawExample}>
             <ChartToolbar />
         </SciChartReact>
     );

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { makeStyles } from "tss-react/mui";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 
@@ -23,7 +22,7 @@ type ChartPane = {
 };
 
 // Styles for the 3x3 grid
-const useStyles = makeStyles()((theme) => ({
+const styles: Record<string, React.CSSProperties> = {
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -58,7 +57,7 @@ const useStyles = makeStyles()((theme) => ({
         padding: "0",
         height: "100%",
     },
-}));
+};
 
 export default function SyncMultiChart() {
     // We are using a fixed set of divs here as it simplifies the html handling, but this could with dynamic html and an arbitrary number of charts
@@ -85,8 +84,6 @@ export default function SyncMultiChart() {
         });
         chartPanes.length = 0;
     };
-
-    const { classes } = useStyles();
 
     React.useEffect(() => {
         const chartInitializationPromise = Promise.all([addChart(0), addChart(1), addChart(2), addChart(3)]);
@@ -148,9 +145,9 @@ export default function SyncMultiChart() {
     const firstFreePane = chartPanes.find((pane) => !pane.sciChartSurface);
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div className={classes.flexOuterContainer}>
+            <div style={styles.flexOuterContainer}>
                 <div style={{ width: "100%", height: "100px", flex: "none" }}>
-                    <div className={classes.chartArea} id={chartPanes[0].divId}></div>
+                    <div style={styles.chartArea} id={chartPanes[0].divId}></div>
                 </div>
                 {firstFreePane ? (
                     <div
@@ -186,13 +183,13 @@ export default function SyncMultiChart() {
                 {chartPanes
                     .filter((pane) => pane.id > 0)
                     .map((pane) => (
-                        <div className={pane.sciChartSurface ? classes.chartRow : classes.emptyRow} key={pane.id}>
+                        <div style={pane.sciChartSurface ? styles.chartRow : styles.emptyRow} key={pane.id}>
                             <div
-                                className={pane.sciChartSurface ? classes.chartArea : classes.emptyRow}
+                                style={pane.sciChartSurface ? styles.chartArea : styles.emptyRow}
                                 id={pane.divId}
                             ></div>
                             {pane.sciChartSurface ? (
-                                <div className={classes.toolCol}>
+                                <div style={styles.toolCol}>
                                     <div>
                                         <Button
                                             color="primary"
