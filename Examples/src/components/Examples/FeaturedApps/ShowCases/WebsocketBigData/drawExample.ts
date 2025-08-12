@@ -476,12 +476,17 @@ export const drawExample =
                 socket.disconnect();
                 socket.connect();
             } else {
-                if (window.location.hostname === "localhost" && parseInt(window.location.port) > 8000) {
-                    socket = io("http://localhost:3000", { path: "/demo/" });
-                    console.log("3000");
+                const hostedFromLocalhost = window.location.hostname.includes("localhost");
+                const hostedFromSandbox = !hostedFromLocalhost && !window.location.hostname.includes("scichart.com");
+
+                // TODO this check probably could be improved
+                // consider the app is running locally in dev mode
+                const isDevMode = hostedFromLocalhost && Number.parseInt(window.location.port) > 8000;
+
+                if (isDevMode || hostedFromSandbox) {
+                    socket = io("https://scichart.com", { path: "/demo/socket.io" });
                 } else {
                     socket = io({ path: "/demo/socket.io" });
-                    console.log("local");
                 }
                 socket.on("data", (message: any) => {
                     dataBuffer.push(message);

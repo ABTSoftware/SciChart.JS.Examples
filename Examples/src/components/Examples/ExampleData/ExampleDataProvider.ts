@@ -23,6 +23,14 @@ export type TPriceBar = {
     volume: number;
 };
 
+// if the code is used from sandboxes - redirect api requests to the scichart server
+export const baseUrl =
+    typeof window !== "undefined" &&
+    !window.location.hostname.includes("scichart.com") &&
+    !window.location.hostname.includes("localhost")
+        ? "https://scichart.com/demo/"
+        : "";
+
 /**
  * Helper class for the SciChart.Js JavaScript Chart examples to return datasets used throughout the examples
  */
@@ -267,7 +275,7 @@ const fetchData = (endpoint: string) => {
 };
 
 export const fetchMultiPaneData = (): Promise<Required<IOhlcvValues>> =>
-    fetchData("api/multiPaneData").then((data) => {
+    fetchData(baseUrl + "api/multiPaneData").then((data) => {
         if (!data) {
             return {
                 dateValues: [],
@@ -299,7 +307,7 @@ export type TMappedPopulationData = {
 
 // TODO link to data source file
 export const fetchPopulationDataData = async (): Promise<TMappedPopulationData> =>
-    fetchData("api/populationData").then((data) => {
+    fetchData(baseUrl + "api/populationData").then((data) => {
         if (!data) {
             return {
                 population: [],
@@ -313,4 +321,4 @@ export const fetchPopulationDataData = async (): Promise<TMappedPopulationData> 
         return data;
     });
 
-export const fetchLidarData = () => fetch("api/lidardata");
+export const fetchLidarData = () => fetch(baseUrl + "api/lidardata");
