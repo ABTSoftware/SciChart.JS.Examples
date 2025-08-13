@@ -24,7 +24,7 @@ type TLink = {
     img?: { url: string }[];
 };
 
-const basePath = "https://scichart.com";
+const basePath = "https://www.scichart.com";
 
 console.log("Generating sitemap...");
 
