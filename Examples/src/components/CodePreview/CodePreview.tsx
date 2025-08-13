@@ -1,5 +1,9 @@
 import { FC, useEffect, useState, type JSX } from "react";
-import SyntaxHighlighter from "react-syntax-highlighter";
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import ts from 'react-syntax-highlighter/dist/esm/languages/hljs/typescript';
+import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
+import css from 'react-syntax-highlighter/dist/esm/languages/hljs/css';
+import json from 'react-syntax-highlighter/dist/esm/languages/hljs/json';
 import { EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { Dialog } from "../Dialog/Dialog";
 import classes from "./index.module.scss";
@@ -18,6 +22,11 @@ const EditorLanguageMap: Record<string, string> = {
     csv: "csv",
     json: "json",
 };
+
+SyntaxHighlighter.registerLanguage('typescript', ts);
+SyntaxHighlighter.registerLanguage('javascript', js);
+SyntaxHighlighter.registerLanguage('css', css);
+SyntaxHighlighter.registerLanguage('json', json);
 
 const DarkStyles = {
     hljs: {
