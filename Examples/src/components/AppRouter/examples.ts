@@ -147,7 +147,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_polarCharts_PolarBandChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarScatterChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarRadarChart,
-            EXAMPLES_PAGES.chart2D_polarCharts_PolarPieChart,
+            // EXAMPLES_PAGES.chart2D_polarCharts_PolarPieChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarGaugesChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarGaugeFifoDashboard,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarUniformHeatmapChart,
