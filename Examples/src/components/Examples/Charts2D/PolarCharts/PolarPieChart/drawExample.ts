@@ -10,18 +10,23 @@ import {
     XyxDataSeries,
     EColumnMode,
     MetadataPaletteProvider,
-    IColorMetadata,
+    IPointMetadata,
+    EColumnDataLabelPosition,
+    EPolarLabelMode,
+    EMultiLineAlignment,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
 const DATA = [
-    { label: "React.js", color: appTheme.MutedBlue, value: 45 },
-    { label: "Angular", color: appTheme.VividRed, value: 31 },
-    { label: "Vue.js", color: appTheme.VividTeal, value: 14 },
-    { label: "Svelte", color: appTheme.VividOrange, value: 5 },
-    { label: "Next.js", color: appTheme.DarkIndigo, value: 3 },
-    { label: "Ember.js", color: appTheme.MutedRed, value: 2 }
+    { label: "React.js", color: appTheme.MutedBlue, value: 45.3 },
+    { label: "Angular", color: appTheme.VividRed, value: 31.9 },
+    { label: "Vue.js", color: appTheme.VividTeal, value: 14.2 },
+    { label: "Svelte", color: appTheme.VividOrange, value: 4.8 },
+    { label: "Next.js", color: appTheme.Indigo, value: 3.8 },
+    { label: "Ember.js", color: appTheme.MutedRed, value: 2.1 }
 ];
+
+type ICustomMetadataPoint = { label: string; fill: string; value: number } & IPointMetadata;
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
@@ -43,40 +48,60 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const angularXAxis = new PolarNumericAxis(wasmContext, {
         polarAxisMode: EPolarAxisMode.Angular,
         startAngleDegrees: 90,
-        flippedCoordinates: true,
         isVisible: false
     });
     sciChartSurface.xAxes.add(angularXAxis);
 
-    const metadata: IColorMetadata[] = [];
+    const metadata: ICustomMetadataPoint[] = [];
     const xValues: number[] = [];
+    const x1Values: number[] = [];
 
+    let cumulative = 0;
     for (let i = 0; i < DATA.length; i++) {
-        xValues.push(DATA[i].value);
+        xValues.push(cumulative);
+        cumulative += DATA[i].value;
+        x1Values.push(cumulative);
         metadata.push({ 
             isSelected: false,
             fill: DATA[i].color,
+            label: DATA[i].label,
+            value: DATA[i].value
         });
     }
 
-    const polarColumn = new PolarColumnRenderableSeries(wasmContext, {
+    const pieSegmentsFromColumns = new PolarColumnRenderableSeries(wasmContext, {
         dataSeries: new XyxDataSeries(wasmContext, {
             xValues: xValues,
-            x1Values: xValues.map((_, i) => xValues[i + 1] || 0),
+            x1Values: x1Values,
             yValues: Array(xValues.length).fill(1),
             metadata
         }),
-        stroke: "black",
+        stroke: "#000000",
         strokeThickness: 2,
-        columnXMode: EColumnMode.StartWidth,
+        columnXMode: EColumnMode.StartEnd, // each segment starts at value `x` and ends at value `x1`
         paletteProvider: new MetadataPaletteProvider(), // use colors from the metadata for each column value
+        dataLabels: {
+            metaDataSelector: (metadata: IPointMetadata) => {
+                const label = (metadata as ICustomMetadataPoint).label;
+                const value = (metadata as ICustomMetadataPoint).value;
+
+                if (value < 5) {
+                    return label + ' - ' + value + '%'; // keep smaller segments' label single-line
+                } else {
+                    return label + '\n' + value + '%';
+                }
+            },
+            style: {
+                fontSize: 18,
+                multiLineAlignment: EMultiLineAlignment.Center,
+                lineSpacing: 12 
+            },
+            color: "#FFFFFF",
+            labelYPositionMode: EColumnDataLabelPosition.Inside,
+            polarLabelMode: EPolarLabelMode.Perpendicular
+        }
     });
-
-    polarColumn.getXRange = () => {
-        return new NumberRange(0, xValues.reduce((a, b) => a + b, 0) / 2);
-    };
-
-    sciChartSurface.renderableSeries.add(polarColumn);
+    sciChartSurface.renderableSeries.add(pieSegmentsFromColumns);
 
     sciChartSurface.chartModifiers.add(
         new PolarPanModifier(),
