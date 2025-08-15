@@ -57,7 +57,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
-        extraDependencies: {},
+        extraDependencies: { "socket.io-client": "^4.7.5" },
         isNew: false,
     };
 //// End of computer generated metadata

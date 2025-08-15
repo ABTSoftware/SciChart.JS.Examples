@@ -1,5 +1,9 @@
 import { FC, useEffect, useState, type JSX } from "react";
-import SyntaxHighlighter from "react-syntax-highlighter";
+import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
+import ts from "react-syntax-highlighter/dist/esm/languages/hljs/typescript";
+import js from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
+import css from "react-syntax-highlighter/dist/esm/languages/hljs/css";
+import json from "react-syntax-highlighter/dist/esm/languages/hljs/json";
 import { EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { Dialog } from "../Dialog/Dialog";
 import classes from "./index.module.scss";
@@ -18,6 +22,11 @@ const EditorLanguageMap: Record<string, string> = {
     csv: "csv",
     json: "json",
 };
+
+SyntaxHighlighter.registerLanguage("typescript", ts);
+SyntaxHighlighter.registerLanguage("javascript", js);
+SyntaxHighlighter.registerLanguage("css", css);
+SyntaxHighlighter.registerLanguage("json", json);
 
 const DarkStyles = {
     hljs: {
@@ -372,7 +381,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
     actualFramework,
     examplePath,
     theme,
-    isMaxWidth
+    isMaxWidth,
 }) => {
     const [hasShownDialog, setHasShownDialog] = useState(false);
     const [showDialog, setShowDialog] = useState(false);
@@ -380,7 +389,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
 
     enum ECodeSizingMode {
         Minimised,
-        Fullscreen
+        Fullscreen,
     }
 
     const [codeSizing, setCodeSizing] = useState(isMaxWidth ? ECodeSizingMode.Minimised : ECodeSizingMode.Fullscreen);
@@ -410,24 +419,20 @@ export const CodePreview: FC<CodeEditorProps> = ({
     useEffect(() => {
         if (isMaxWidth) {
             setCodeSizing(ECodeSizingMode.Fullscreen);
-        }
-        else {
+        } else {
             setCodeSizing(ECodeSizingMode.Minimised);
         }
     }, [isMaxWidth]);
 
     return (
-        <div 
-            className={`${classes.editorWrapper} ${(isFullscreen && !isMaxWidth) ? classes.fullscreenEditor : ''}`} 
+        <div
+            className={`${classes.editorWrapper} ${isFullscreen && !isMaxWidth ? classes.fullscreenEditor : ""}`}
             onMouseEnter={handleMouseEnter}
             style={{
-                maxHeight: (!isFullscreen && isMaxWidth) ? 60 : "100%",
+                maxHeight: !isFullscreen && isMaxWidth ? 60 : "100%",
             }}
         >
-            <div 
-                className={classes.horizontalScroller} 
-                suppressHydrationWarning={true}
-            >
+            <div className={classes.horizontalScroller} suppressHydrationWarning={true}>
                 {/* VSCode-like horizontal scrollable tabs */}
                 {files
                     .sort((a, b) => {
@@ -462,14 +467,32 @@ export const CodePreview: FC<CodeEditorProps> = ({
             <div className={classes.rightButtonGroup}>
                 {/* Copy to clipboard */}
                 <IconButton
-                    icon={!hasCopied ?
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
-                        </svg>
-                        :
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                        </svg>
+                    icon={
+                        !hasCopied ? (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z"
+                                />
+                            </svg>
+                        ) : (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={2.5}
+                                stroke="currentColor"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>
+                        )
                     }
                     selected={hasCopied}
                     onClick={() => copyCurrentFile()}
@@ -479,9 +502,11 @@ export const CodePreview: FC<CodeEditorProps> = ({
 
                 {/* Minimize */}
                 <IconButton
-                    icon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="2 2 20 20" fill="none" stroke="currentColor">
-                        <path strokeWidth="2" d="M 5 9 h4v-4M 19 15 h-4v4M 15 5 v4h4M 5 15 h4v4"/>
-                    </svg>}
+                    icon={
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="2 2 20 20" fill="none" stroke="currentColor">
+                            <path strokeWidth="2" d="M 5 9 h4v-4M 19 15 h-4v4M 15 5 v4h4M 5 15 h4v4" />
+                        </svg>
+                    }
                     selected={!isFullscreen}
                     onClick={() => setCodeSizing(ECodeSizingMode.Minimised)}
                     title="Minimise"
@@ -490,9 +515,14 @@ export const CodePreview: FC<CodeEditorProps> = ({
 
                 {/* Fullscreen */}
                 <IconButton
-                    icon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="2 2 20 20" fill="currentColor">
-                        <path xmlns="http://www.w3.org/2000/svg" d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path>
-                    </svg>}
+                    icon={
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="2 2 20 20" fill="currentColor">
+                            <path
+                                xmlns="http://www.w3.org/2000/svg"
+                                d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
+                            ></path>
+                        </svg>
+                    }
                     selected={isFullscreen}
                     onClick={() => setCodeSizing(ECodeSizingMode.Fullscreen)}
                     title="Fullscreen"
@@ -501,12 +531,12 @@ export const CodePreview: FC<CodeEditorProps> = ({
             </div>
 
             {/* Code */}
-            <section 
+            <section
                 id="EXAMPLE_CODE"
                 className={classes.code}
-                style={{ 
-                    maxHeight: (!isFullscreen && isMaxWidth) ? 0 : "100%", 
-                    maxWidth: '100%',
+                style={{
+                    maxHeight: !isFullscreen && isMaxWidth ? 0 : "100%",
+                    maxWidth: "100%",
                 }}
             >
                 <SyntaxHighlighter
@@ -514,7 +544,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
                     // @ts-ignore
                     style={theme === ETheme.dark ? DarkStyles : LightStyles}
                     showLineNumbers={true}
-                    lineNumberStyle={{ color: '#888' }}
+                    lineNumberStyle={{ color: "#888" }}
                     wrapLines
                 >
                     {selectedFile.content}
