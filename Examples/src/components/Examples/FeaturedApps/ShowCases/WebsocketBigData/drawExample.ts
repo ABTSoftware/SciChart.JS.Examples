@@ -484,7 +484,7 @@ export const drawExample =
                 const isDevMode = hostedFromLocalhost && Number.parseInt(window.location.port) > 8000;
 
                 if (isDevMode || hostedFromSandbox) {
-                    socket = io("https://scichart.com", { path: "/demo/socket.io" });
+                    socket = io("https://www.scichart.com", { path: "/demo/socket.io" });
                 } else {
                     socket = io({ path: "/demo/socket.io" });
                 }

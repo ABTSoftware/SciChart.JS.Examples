@@ -11,7 +11,7 @@ type TProps = {
     url: string;
 };
 
-const baseUrl = "https://scichart.com/demo";
+const baseUrl = "https://www.scichart.com/demo";
 
 const SeoTags: FC<TProps> = (props) => {
     const framework = useContext(FrameworkContext);

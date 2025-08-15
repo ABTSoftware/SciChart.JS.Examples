@@ -24,7 +24,7 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
         getFrameworkContent(examplePage.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix;
     const seoDescription = examplePage ? getFrameworkContent(examplePage.metaDescription, framework) : "";
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
-    const basePath = "https://scichart.com/demo";
+    const basePath = "https://www.scichart.com/demo";
     const exampleImage = examplePage ? examplePage.thumbnailImage : undefined;
     const exampleUrl = examplePage ? examplePage.path : "";
 

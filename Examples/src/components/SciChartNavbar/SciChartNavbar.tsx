@@ -319,7 +319,7 @@ export default function SciChartNavbar({
                                                 className="line menu-item menu-item-type-post_type menu-item-object-page menu-item-579"
                                             >
                                                 <a
-                                                    href="https://scichart.com/demo"
+                                                    href="https://www.scichart.com/demo"
                                                     title="Chart Library Examples and Demos"
                                                 >
                                                     Examples
@@ -352,7 +352,7 @@ export default function SciChartNavbar({
                                                 className="menu-item menu-item-type-custom menu-item-object-custom menu-item-8109"
                                             >
                                                 <a
-                                                    href="https://scichart.com/changelog/scichart-js/"
+                                                    href="https://www.scichart.com/changelog/scichart-js/"
                                                     title="JS Chart Library Changelog"
                                                 >
                                                     SciChart.js Changelog
@@ -428,9 +428,7 @@ export default function SciChartNavbar({
                                                 id="menu-item-4193"
                                                 className="menu-item menu-item-type-custom menu-item-object-custom menu-item-4193"
                                             >
-                                                <a href="https://www.scichart.com/demo">
-                                                    JavaScript Examples
-                                                </a>
+                                                <a href="https://www.scichart.com/demo">JavaScript Examples</a>
                                             </li>
                                             <li
                                                 id="menu-item-3836"
