@@ -64,16 +64,6 @@ export default function SubchartsGrid() {
         setIsDialogOpen(false);
     };
 
-    const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-    const handleClickOpen = () => {
-        setIsDialogOpen(true);
-    };
-
-    const handleClose = () => {
-        setIsDialogOpen(false);
-    };
-
     const handleLabelsChange = (ev: any, checked: boolean) => {
         controlsRef.current.setLabels(checked);
     };
