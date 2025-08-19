@@ -82,6 +82,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
                 description={seoDescription}
                 image={exampleImage}
                 url={exampleUrl}
+                framework={framework}
             />
             <div className={commonClasses.Body}>
                 <div className={commonClasses.ColMain}>

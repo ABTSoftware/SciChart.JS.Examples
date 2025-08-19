@@ -41,6 +41,7 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
                 description={seoDescription}
                 image={exampleImage}
                 url={exampleUrl}
+                framework={framework}
             />
             <div className={`${commonClasses.Example} AnExampleContainer`} style={{ height: "100%" }}>
                 <ExampleComponent />

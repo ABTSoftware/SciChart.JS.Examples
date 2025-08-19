@@ -1,7 +1,6 @@
 import { FC, useContext } from "react";
 import { Helmet } from "react-helmet";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import { EPageFramework } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TProps = {
     title: string;
@@ -9,6 +8,7 @@ type TProps = {
     description: string;
     image: string;
     url: string;
+    framework: string;
 };
 
 const baseUrl = "https://www.scichart.com/demo";
@@ -16,11 +16,13 @@ const baseUrl = "https://www.scichart.com/demo";
 const SeoTags: FC<TProps> = (props) => {
     const framework = useContext(FrameworkContext);
     const { title, keywords, description, image, url } = props;
-    const exampleUrl = `${baseUrl}/${url}`;
+
+    const exampleUrl = `${baseUrl}/${framework}/${url}`.replace(/\/$/, '');
 
     return (
         <Helmet>
             <title>{`${title}`}</title>
+            <link rel="canonical" href={exampleUrl} />
             <meta name="keywords" content={keywords + `, ${framework}`} />
             <meta name="description" content={description} />
             <meta property="og:url" content={exampleUrl} />
