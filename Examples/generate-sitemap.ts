@@ -38,7 +38,7 @@ console.log("Generating sitemap...");
     // Add pages links
     Object.values(PAGES).forEach((el) => {
         links.push({
-            url: el.path,
+            url: `${baseAppPath}${el.path}`,
             changefreq: EChangeFreq.Weekly,
             priority: 1,
             lastmod,
