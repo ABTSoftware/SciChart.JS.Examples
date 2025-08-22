@@ -17,6 +17,7 @@ export default [
     "../Examples/Charts2D/BasicChartTypes/CandlestickChart",
     "../Examples/Charts2D/BasicChartTypes/ColumnChart",
     "../Examples/Charts2D/BasicChartTypes/ContoursChart",
+    "../Examples/Charts2D/BasicChartTypes/CorrelationPlot",
     "../Examples/Charts2D/BasicChartTypes/DigitalBandSeriesChart",
     "../Examples/Charts2D/BasicChartTypes/DigitalLineChart",
     "../Examples/Charts2D/BasicChartTypes/DigitalMountainChart",

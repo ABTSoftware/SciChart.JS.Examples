@@ -126,6 +126,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_v4Charts_BoxPlotChart,
             EXAMPLES_PAGES.chart2D_v4Charts_TriangleSeriesChart,
             EXAMPLES_PAGES.chart2D_v4Charts_TreemapChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_CorrelationPlot,
         ],
     },
     {
