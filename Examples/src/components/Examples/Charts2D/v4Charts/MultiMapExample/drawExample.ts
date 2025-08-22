@@ -9,9 +9,25 @@ import {
     FastLineRenderableSeries,
     ETriangleSeriesDrawMode,
     FastTriangleRenderableSeries,
+    SeriesSelectionModifier,
+    ESeriesType,
 } from "scichart";
 
 import { appTheme } from "../../../theme";
+
+const colors = [
+    "#543005",
+    "#8c510a",
+    "#bf812d",
+    "#dfc27d",
+    "#f6e8c3",
+    "#f5f5f5",
+    "#c7eae5",
+    "#80cdc1",
+    "#35978f",
+    "#01665e",
+    "#003c30",
+];
 
 function preserveAspectRatio(
     width: number,
@@ -63,17 +79,6 @@ function preserveAspectRatio(
     };
 }
 
-let dataArray: any[] = [];
-let outlines: number[][][] = [];
-
-function setConvertedData(convertedData: any[]) {
-    outlines = [];
-    dataArray = convertedData;
-    convertedData.forEach((d) => {
-        outlines.push(d.outline);
-    });
-}
-
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
@@ -82,32 +87,57 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const growBy = new NumberRange(0.1, 0.1);
 
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy }));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy, isInnerAxis: true }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy, isInnerAxis: true }));
 
     const xAxis = sciChartSurface.xAxes.get(0);
     const yAxis = sciChartSurface.yAxes.get(0);
 
-    const clearMap = () => {
-        sciChartSurface.renderableSeries.clear(true);
-    };
+    // Add zoom/pan controls
+    sciChartSurface.chartModifiers.add(
+        new ZoomExtentsModifier(),
+        new ZoomPanModifier({ enableZoom: true }),
+        new MouseWheelZoomModifier(),
+        // new SeriesSelectionModifier({
+        //     enableHover: true,
+        //     onHoverChanged: (args) => {
+        //         console.log("onHoverChanged");
+        //         args.allSeries
+        //             .filter((series) => series.type === ESeriesType.TriangleSeries)
+        //             .forEach((series, index) => {
+        //                 // outlines[index].strokeThickness = series.isHovered ? 15 : 1
+        //             });
+        //     },
+        // })
+    );
+
+    sciChartSurface.genericAnimationsRun.subscribe(() => {
+        const result = preserveAspectRatio(
+            sciChartSurface.viewRect.width,
+            sciChartSurface.viewRect.height,
+            xAxis.visibleRange.min,
+            xAxis.visibleRange.max,
+            yAxis.visibleRange.min,
+            yAxis.visibleRange.max
+        );
+
+        xAxis.visibleRange = new NumberRange(result.minVisibleX, result.maxVisibleX);
+        yAxis.visibleRange = new NumberRange(result.minVisibleY, result.maxVisibleY);
+    });
+
+    let dataArray: any[] = [];
+    let outlines: number[][][] = [];
+
+    function setConvertedData(convertedData: any[]) {
+        outlines = [];
+        dataArray = convertedData;
+        convertedData.forEach((d) => {
+            outlines.push(d.outline);
+        });
+    }
 
     const setMap = () => {
         // outline
-
-        const colors = [
-            "#543005",
-            "#8c510a",
-            "#bf812d",
-            "#dfc27d",
-            "#f6e8c3",
-            "#f5f5f5",
-            "#c7eae5",
-            "#80cdc1",
-            "#35978f",
-            "#01665e",
-            "#003c30",
-        ];
 
         const series = dataArray.map((d, i) => {
             const dataSeries = new XyDataSeries(wasmContext, {
@@ -151,28 +181,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChartSurface.renderableSeries.add(...outlinesSC);
 
         sciChartSurface.zoomExtents();
-
-        sciChartSurface.preRender.subscribe(() => {
-            const result = preserveAspectRatio(
-                sciChartSurface.viewRect.width,
-                sciChartSurface.viewRect.height,
-                xAxis.visibleRange.min,
-                xAxis.visibleRange.max,
-                yAxis.visibleRange.min,
-                yAxis.visibleRange.max
-            );
-
-            xAxis.visibleRange = new NumberRange(result.minVisibleX, result.maxVisibleX);
-            yAxis.visibleRange = new NumberRange(result.minVisibleY, result.maxVisibleY);
-        });
     };
 
-    // Add zoom/pan controls
-    sciChartSurface.chartModifiers.add(
-        new ZoomExtentsModifier(),
-        new ZoomPanModifier({ enableZoom: true }),
-        new MouseWheelZoomModifier()
-    );
+    const clearMap = () => {
+        sciChartSurface.renderableSeries.clear(true);
+    };
 
-    return { wasmContext, sciChartSurface, setMap, clearMap, setConvertedData };
+    return { wasmContext, sciChartSurface, controls: { setMap, clearMap, setConvertedData } };
 };

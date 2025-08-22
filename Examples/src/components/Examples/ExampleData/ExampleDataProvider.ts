@@ -322,3 +322,5 @@ export const fetchPopulationDataData = async (): Promise<TMappedPopulationData> 
     });
 
 export const fetchLidarData = () => fetch(baseUrl + "api/lidardata");
+
+export const fetchGeoJson = (mapName: string) => fetch(baseUrl + mapName + ".json").then((response) => response.json());

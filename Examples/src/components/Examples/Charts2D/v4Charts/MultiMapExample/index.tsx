@@ -2,31 +2,29 @@ import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { useEffect, useRef, useState } from "react";
+import { fetchGeoJson } from "../../../ExampleData/ExampleDataProvider";
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     const [mapName, setMapName] = useState("worldConverted");
     const [mapData, setMapData] = useState();
-    const setMapFunc = useRef(null);
-    const setMapJsonFunc = useRef(null);
-    const clearMapFunc = useRef(null);
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
     useEffect(() => {
-        fetch(mapName + ".json")
-            .then((response) => response.json())
+        fetchGeoJson(mapName)
             .then((data) => {
                 if (mapData === undefined) {
                     setMapData(data);
                 } else {
-                    setMapJsonFunc.current(data);
-                    setMapFunc.current();
+                    controlsRef.current.setConvertedData(data);
+                    controlsRef.current.setMap();
                 }
             })
             .catch((error) => console.error(error));
 
         return () => {
-            clearMapFunc.current();
+            controlsRef.current.clearMap();
         };
     }, [mapName]);
 
@@ -90,19 +88,16 @@ export default function ChartComponent() {
                     className={commonClasses.ChartWrapper}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         // get the "setMap" function that is returned by "drawExample"
-                        let { setMap, setConvertedData, clearMap } = initResult;
+                        let { controls } = initResult;
 
                         // set geojson
                         // setMapJson(mapData);
-                        setConvertedData(mapData);
+                        controls.setConvertedData(mapData);
 
                         // set the initial map
-                        setMap();
+                        controls.setMap();
 
-                        // assign function to ref so we can call it later
-                        setMapFunc.current = setMap;
-                        setMapJsonFunc.current = setConvertedData;
-                        clearMapFunc.current = clearMap;
+                        controlsRef.current = controls;
                     }}
                 />
             ) : null}
