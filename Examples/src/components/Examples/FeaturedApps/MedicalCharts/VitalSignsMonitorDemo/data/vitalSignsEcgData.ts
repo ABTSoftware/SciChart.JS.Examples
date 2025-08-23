@@ -925,6 +925,31 @@ export const vitalSignsEcgData = {
         0.85186235, 0.8522812, 0.85272385, 0.85309705, 0.853469, 0.8538413, 0.85421365, 0.8545589, 0.8549777,
         0.855211526,
     ],
+    // Placeholder RR intervals (ms) for HRV calculations
+    rrIntervals: [
+        800, 810, 790, 805, 815, 820, 800, 795, 810, 805, 800, 815, 820, 810, 800, 805, 810, 800, 795, 805, 810, 800,
+        805, 810, 800, 795, 805, 810, 800, 805,
+    ],
+    // Placeholder GSR values (same length as xValues)
+    gsrValues: Array(5707)
+        .fill(0.5)
+        .map((v, i) => 0.5 + 0.05 * Math.sin(i / 100)),
+    // Placeholder Respiratory values (same length as xValues)
+    respiratoryValues: Array(5707)
+        .fill(0.5)
+        .map((v, i) => 0.5 + 0.1 * Math.cos(i / 150)),
+    // Placeholder HRV stats (time-domain)
+    hrvStats: {
+        sdnn: 18.5,
+        rmssd: 22.1,
+        mean: 805.2,
+    },
+    // Placeholder frequency-domain HRV stats
+    hrvFreq: {
+        lf: 450.2,
+        hf: 320.7,
+        lfhf: 1.4,
+    },
     bloodPressureValues: [
         0.625403, 0.625572, 0.626935, 0.627069, 0.627094, 0.628617, 0.630139, 0.631595, 0.631599, 0.631662, 0.632016,
         0.632664, 0.632745, 0.632804, 0.63423, 0.634326, 0.635651, 0.635849, 0.63725, 0.637372, 0.637812, 0.638754,
