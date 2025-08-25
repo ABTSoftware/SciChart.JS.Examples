@@ -10,7 +10,6 @@ import {
     INumericAxisOptions,
     ENumericFormat,
     EAutoRange,
-    TSciChart,
     ESubSurfacePositionCoordinateMode,
     SciChartSubSurface,
     Rect,
@@ -45,7 +44,7 @@ const axisOptions: INumericAxisOptions = {
     labelStyle: { fontSize: 8 },
     labelFormat: ENumericFormat.Decimal,
     labelPrecision: 0,
-    autoRange: EAutoRange.Always,
+    autoRange: EAutoRange.Once,
 };
 
 // theme overrides
@@ -64,7 +63,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const subchartBorderColor = appTheme.VividSkyBlue;
     const scatterColor = appTheme.VividSkyBlue;
-    const lineColor = appTheme.VividOrange;
     const lineUp = appTheme.VividGreen;
     const lineDown = appTheme.VividRed;
     const lineHorizontal = appTheme.ForegroundColor;
@@ -75,23 +73,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const xAxisVisibleRange = new NumberRange(0, columnsNumber);
     const yAxisVisibleRange = new NumberRange(0, rowsNumber);
 
-    // const originalGetStrokeColor = sciChartTheme.getStrokeColor;
-    // let counter = 0;
-    // sciChartTheme.getStrokeColor = (index: number, max: number, context: TSciChart) => {
-    //     const currentIndex = counter % subChartsNumber;
-    //     counter += 3;
-    //     return originalGetStrokeColor.call(sciChartTheme, currentIndex, subChartsNumber, context);
-    // };
-
-    // const originalGetFillColor = sciChartTheme.getFillColor;
-    // sciChartTheme.getFillColor = (index: number, max: number, context: TSciChart) => {
-    //     const currentIndex = counter % subChartsNumber;
-    //     counter += 3;
-    //     return originalGetFillColor.call(sciChartTheme, currentIndex, subChartsNumber, context);
-    // };
-
     const mainXAxis = new NumericAxis(wasmContext, {
-        // autoRange: EAutoRange.Always,
         zoomExtentsRange: new NumberRange(xAxisVisibleRange.min, xAxisVisibleRange.max),
         drawMajorBands: false,
         drawMajorGridLines: false,
@@ -102,8 +84,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         visibleRangeLimit: new NumberRange(xAxisVisibleRange.min, xAxisVisibleRange.max),
         axisAlignment: EAxisAlignment.Top,
         useNativeText: false,
-        // autoTicks: false,
-        // majorDelta: 1,
         labelProvider: new TextLabelProvider({
             labels: { 0.5: "A", 1.5: "B", 2.5: "C", 3.5: "D", 4.5: "E", 5.5: "F" },
             useNativeText: false,
@@ -115,18 +95,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             fontWeight: "bold",
             color: "White",
         },
-        // growBy: new NumberRange(0.5, 0.5),
     });
 
     mainXAxis.tickProvider.getMajorTicks = (minorDelta: number, majorDelta: number, visibleRange: NumberRange) =>
         [...new Array(columnsNumber)].map((d, i) => i + 0.5);
 
-    // console.log([...new Array(columnsNumber)].map((d, i) => i + 0.5))
-
     mainSurface.xAxes.add(mainXAxis);
 
     const mainYAxis = new NumericAxis(wasmContext, {
-        // autoRange: EAutoRange.Always,
         zoomExtentsRange: new NumberRange(yAxisVisibleRange.min, yAxisVisibleRange.max),
         drawMajorBands: false,
         drawMajorGridLines: false,
@@ -136,9 +112,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         visibleRange: new NumberRange(yAxisVisibleRange.min, yAxisVisibleRange.max),
         visibleRangeLimit: new NumberRange(yAxisVisibleRange.min, yAxisVisibleRange.max),
         axisAlignment: EAxisAlignment.Left,
-
         flippedCoordinates: true,
-
         useNativeText: false,
         labelProvider: new TextLabelProvider({
             labels: { 0.5: "1", 1.5: "2", 2.5: "3", 3.5: "4" },
@@ -151,7 +125,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             fontWeight: "bold",
             color: "White",
         },
-        // growBy: new NumberRange(2, 2),
     });
     mainSurface.yAxes.add(mainYAxis);
 
@@ -163,20 +136,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new MouseWheelZoomModifier({ executeCondition: { key: EModifierMouseArgKey.Ctrl } })
     );
 
-    // let myCanvas = document.getElementsByClassName("canvas-root");
-
-    // myCanvas[0].addEventListener("dblclick", function (e) {
-    //     console.log(e);
-    // });
-
-    const subChartPositioningCoordinateMode = ESubSurfacePositionCoordinateMode.DataValue; //.Relative;
+    const subChartPositioningCoordinateMode = ESubSurfacePositionCoordinateMode.DataValue;
 
     const initSubChart = (subChartIndex: number) => {
-        // calculate sub-chart position and sizes
         const { rowIndex, columnIndex } = getSubChartPositionIndexes(subChartIndex, columnsNumber);
 
-        const width = 1; //columnsNumber / columnsNumber;
-        const height = 1; // rowsNumber / rowsNumber;
+        const width = 1;
+        const height = 1;
 
         const position = new Rect(columnIndex * width, rowIndex * height, width, height);
 
@@ -213,11 +179,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             id: `${subChartSurface.id}-YAxis`,
             growBy: new NumberRange(0.05, 0.15),
             useNativeText: true,
-            // autoRange: EAutoRange.Always,
         });
         subChartSurface.yAxes.add(subChartYAxis);
 
-        function generateScatterplotData(numElements: number, index: number) {
+        // generating random data for scatterplots
+        function generateScatterplotData(numElements: number) {
             let x: number[] = [];
             let y: number[] = [];
 
@@ -235,11 +201,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     y.push(Math.random());
                 }
             }
-
             return { x, y };
         }
 
-        const { x: xValues, y: yValues } = generateScatterplotData(pointsOnChart, subChartIndex);
+        const { x: xValues, y: yValues } = generateScatterplotData(pointsOnChart);
 
         const { correlationCoefficient, linePoints } = correlationLinePoints(xValues, yValues);
 
