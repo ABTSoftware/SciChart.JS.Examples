@@ -588,12 +588,12 @@ export default function SciChartNavbar({
                                         className="button dark menu-item menu-item-type-custom menu-item-object-custom menu-item-cta"
                                     >
                                         <a
-                                            href="https://www.scichart.com/getting-started/"
+                                            href="https://www.scichart.com/getting-started/scichart-javascript/"
                                             target=""
                                             rel="nofollow"
                                             role="button"
                                         >
-                                            FREE Trial
+                                            Start for Free
                                         </a>
                                     </li>
 
