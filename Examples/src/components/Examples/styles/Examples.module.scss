@@ -1,4 +1,166 @@
-@import "_base";
+// Value cell for InfoBox first row
+// @use "assets/_index" as *;
+@use "sass:color";
+
+// Add missing variables
+$color-link-text: #39b5db;
+$color-link-text-hover: #44c8f1;
+$font-color: #3b5164;
+$gradient-btn-dark: linear-gradient(90deg, rgb(42, 99, 151), rgb(113, 55, 149), rgb(160, 36, 142));
+
+// Add missing mixins
+@mixin sm {
+    @media only screen and (max-width: 600px) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media only screen and (max-width: 960px) {
+        @content;
+    }
+}
+
+@mixin xs {
+    @media only screen and (max-width: 450px) {
+        @content;
+    }
+}
+
+.IbRow1Value {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: min(4vw, 32px);
+    margin-left: 1rem;
+}
+// --- Added variable definitions for demo/fix ---
+$Background: #181c2a;
+$VividOrange: #ff9900;
+$VividSkyBlue: #00bfff;
+$VividTeal: #20cfcf;
+
+// Flex container for full height
+.FlexFullHeight {
+    display: flex;
+    height: 100%;
+}
+
+// Connection status box
+.ConnectionStatus {
+    font-weight: 600;
+    text-align: center;
+    //  margin-bottom: 0.5rem;
+    height: 0.5rem; // Reduced height for a single line
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-word;
+}
+.Connected {
+    color: #2ecc40; // vivid green
+    background: $Background;
+}
+.Disconnected {
+    color: #ff4136; // vivid red
+    background: $Background;
+}
+
+// HRV stats styling
+.HrvStatsTitle {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: $VividOrange;
+}
+.HrvStatsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.25rem 1.5rem;
+    font-size: 0.95em;
+    margin-top: 0.25rem;
+}
+
+// Color overrides for InfoBoxes
+.EcgBox {
+    color: $VividOrange;
+    background: $Background;
+    height: 200px; // Increased height for ECG section
+    margin-bottom: 1rem;
+}
+.GsrBox {
+    color: $VividSkyBlue;
+    background: $Background;
+    height: 150px;
+    margin-bottom: 1rem;
+}
+.RespBox {
+    color: $VividTeal;
+    background: $Background;
+    height: 150px;
+    margin-bottom: 1rem;
+}
+
+// Toolbar header
+.ToolbarHeader {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 0.5rem;
+    background: $Background;
+    border-bottom: 1px solid rgba($VividOrange, 0.2);
+
+    button {
+        color: $VividOrange;
+        &:hover {
+            color: color.adjust($VividOrange, $lightness: 10%);
+        }
+    }
+}
+
+// Analysis section
+.AnalysisButton {
+    background: $Background;
+    border: 1px solid $VividOrange;
+    color: $VividOrange;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover {
+        background: $VividOrange;
+        color: $Background;
+    }
+}
+
+.AnalysisPanel {
+    background: rgba($Background, 0.9);
+    padding: 1rem;
+    margin-top: 1rem;
+    border: 1px solid $VividOrange;
+}
+
+// Unit displays
+.RespRate {
+    font-size: 1.2em;
+    margin-right: 0.5rem;
+    &::after {
+        content: "/min";
+        font-size: 0.8em;
+        margin-left: 0.25rem;
+        opacity: 0.8;
+    }
+}
+
+.IERatio {
+    font-size: 1.2em;
+    &::after {
+        content: "%";
+        font-size: 0.8em;
+        margin-left: 0.25rem;
+        opacity: 0.8;
+    }
+}
+
 .ExampleWrapperIFrame {
     height: 100vh;
     .ChartWrapper {
@@ -80,7 +242,7 @@
     // flex-wrap: wrap;
     flex: none;
     padding: 0px;
-    color: $color-primary-white;
+    color: #ffffff; // $color-primary-white
     background: #14233c; // DarkIndigo
     font-size: 1em;
     text-align: center;
@@ -104,7 +266,7 @@
 }
 
 .FormControl {
-    margin: $default-spacing;
+    margin: 8px; // $default-spacing
     margin-left: 0;
     min-width: 120;
 }
@@ -139,7 +301,7 @@
 
     .SciChartLogo {
         text-align: right;
-        margin-bottom: $default-spacing * 2;
+        margin-bottom: 8px * 2; // $default-spacing * 2
         @include sm {
             display: none;
         }
@@ -163,11 +325,11 @@
         flex-basis: 360px;
         flex-grow: 0;
         flex-shrink: 0;
-        padding-left: $default-spacing * 3;
+        padding-left: 8px * 3; // $default-spacing * 3
         @include sm {
             padding-left: 0;
         }
-        margin-bottom: $default-spacing * 3;
+        margin-bottom: 8px * 3; // $default-spacing * 3
     }
     .ExampleRootDescription {
         display: flex;
@@ -281,26 +443,26 @@
     flex: none;
     margin-top: 10px;
     button {
-        color: $color-main-green;
-        border: 1px $color-main-green solid;
+        color: #5cb85c; // $color-main-green
+        border: 1px #5cb85c solid; // $color-main-green
         text-align: center;
         &:not(:last-child) {
             margin-right: 10px;
         }
     }
     .GitHubLink {
-        border: 1px $color-medium-blue solid;
+        border: 1px rgb(42, 99, 151) solid; // $color-medium-blue
         border-radius: 4px;
-        background-color: $color-lightest-green;
-        color: $color-medium-blue;
+        background-color: #f7f8f8; // $color-lightest-green
+        color: rgb(42, 99, 151); // $color-medium-blue
         text-decoration: none;
         a {
-            color: $color-medium-blue;
+            color: rgb(42, 99, 151); // $color-medium-blue
         }
     }
     .ButtonsText {
         margin-left: 10px;
-        color: $color-main-green;
+        color: #5cb85c; // $color-main-green
         text-decoration: none;
     }
 

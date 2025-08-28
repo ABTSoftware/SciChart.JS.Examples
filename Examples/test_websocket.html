@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ESP32 WebSocket Test Client</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #1a1a1a;
+                color: #ffffff;
+            }
+            .container {
+                background-color: #2a2a2a;
+                padding: 20px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+            }
+            .status {
+                padding: 10px;
+                border-radius: 4px;
+                margin: 10px 0;
+            }
+            .connected {
+                background-color: #4caf50;
+            }
+            .disconnected {
+                background-color: #f44336;
+            }
+            .data-card {
+                background-color: #333;
+                padding: 15px;
+                margin: 10px 0;
+                border-radius: 6px;
+                border-left: 4px solid #4caf50;
+            }
+            .data-value {
+                font-size: 24px;
+                font-weight: bold;
+                color: #4caf50;
+            }
+            .data-label {
+                color: #ccc;
+                font-size: 14px;
+            }
+            .data-timestamp {
+                color: #888;
+                font-size: 12px;
+                font-style: italic;
+            }
+            input[type="text"] {
+                padding: 8px;
+                border: none;
+                border-radius: 4px;
+                background-color: #444;
+                color: white;
+                margin-right: 10px;
+            }
+            button {
+                padding: 8px 16px;
+                border: none;
+                border-radius: 4px;
+                background-color: #4caf50;
+                color: white;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #45a049;
+            }
+            .log {
+                background-color: #000;
+                padding: 10px;
+                border-radius: 4px;
+                height: 200px;
+                overflow-y: auto;
+                font-family: monospace;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>🔌 ESP32 WebSocket Test Client</h1>
+
+        <div class="container">
+            <h3>Connection Settings</h3>
+            <input type="text" id="ipInput" placeholder="ESP32 IP Address" value="192.168.1.100" />
+            <button onclick="connect()">Connect</button>
+            <button onclick="disconnect()">Disconnect</button>
+            <div id="connectionStatus" class="status disconnected">Disconnected</div>
+        </div>
+
+        <div class="container">
+            <h3>📊 Real-time Data</h3>
+            <div class="data-card">
+                <div class="data-label">ECG Value</div>
+                <div class="data-value" id="ecgValue">--</div>
+                <div class="data-timestamp" id="ecgTimestamp">--</div>
+            </div>
+            <div class="data-card">
+                <div class="data-label">GSR Value</div>
+                <div class="data-value" id="gsrValue">--</div>
+                <div class="data-timestamp" id="gsrTimestamp">--</div>
+            </div>
+            <div class="data-card">
+                <div class="data-label">Respiratory Value</div>
+                <div class="data-value" id="respValue">--</div>
+                <div class="data-timestamp" id="respTimestamp">--</div>
+            </div>
+            <div class="data-card">
+                <div class="data-label">Heart Rate</div>
+                <div class="data-value" id="hrValue">--</div>
+                <div class="data-timestamp" id="hrTimestamp">--</div>
+            </div>
+            <div class="data-card">
+                <div class="data-label">IBI (Inter-Beat Interval)</div>
+                <div class="data-value" id="ibiValue">--</div>
+                <div class="data-timestamp" id="ibiTimestamp">--</div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h3>📝 Communication Log</h3>
+            <div class="log" id="log"></div>
+        </div>
+
+        <script>
+            let ws = null;
+            let isConnected = false;
+
+            function log(message) {
+                const logDiv = document.getElementById("log");
+                const timestamp = new Date().toLocaleTimeString();
+                logDiv.innerHTML += `[${timestamp}] ${message}\n`;
+                logDiv.scrollTop = logDiv.scrollHeight;
+            }
+
+            function updateConnectionStatus(connected) {
+                const statusDiv = document.getElementById("connectionStatus");
+                isConnected = connected;
+
+                if (connected) {
+                    statusDiv.textContent = "Connected to ESP32";
+                    statusDiv.className = "status connected";
+                } else {
+                    statusDiv.textContent = "Disconnected";
+                    statusDiv.className = "status disconnected";
+                }
+            }
+
+            function updateDataValue(type, value, timestamp) {
+                const valueElement = document.getElementById(type + "Value");
+                const timestampElement = document.getElementById(type + "Timestamp");
+
+                if (valueElement && timestampElement) {
+                    valueElement.textContent = value;
+                    timestampElement.textContent = new Date(timestamp).toLocaleTimeString();
+                }
+            }
+
+            function connect() {
+                const ip = document.getElementById("ipInput").value;
+                if (!ip) {
+                    alert("Please enter ESP32 IP address");
+                    return;
+                }
+
+                const wsUrl = `ws://${ip}:81`;
+                log(`Connecting to ${wsUrl}...`);
+
+                try {
+                    ws = new WebSocket(wsUrl);
+
+                    ws.onopen = function (event) {
+                        log("✅ WebSocket connection established");
+                        updateConnectionStatus(true);
+                    };
+
+                    ws.onmessage = function (event) {
+                        try {
+                            const data = JSON.parse(event.data);
+                            log(`📨 Received: ${event.data}`);
+
+                            // Update UI based on data type
+                            switch (data.type) {
+                                case "ecg":
+                                    updateDataValue("ecg", data.value, Date.now());
+                                    break;
+                                case "gsr":
+                                    updateDataValue("gsr", data.value, Date.now());
+                                    break;
+                                case "respiratory":
+                                    updateDataValue("resp", data.value, Date.now());
+                                    break;
+                                case "heartrate":
+                                    updateDataValue("hr", data.bpm, Date.now());
+                                    break;
+                                case "ibi":
+                                    updateDataValue("ibi", data.value + " ms", Date.now());
+                                    break;
+                                case "connection":
+                                    log(`🔗 ${data.message}`);
+                                    break;
+                                default:
+                                    log(`❓ Unknown data type: ${data.type}`);
+                            }
+                        } catch (error) {
+                            log(`❌ Error parsing JSON: ${error.message}`);
+                            log(`Raw data: ${event.data}`);
+                        }
+                    };
+
+                    ws.onclose = function (event) {
+                        log("🔌 WebSocket connection closed");
+                        updateConnectionStatus(false);
+                    };
+
+                    ws.onerror = function (error) {
+                        log(`❌ WebSocket error: ${error.message}`);
+                        updateConnectionStatus(false);
+                    };
+                } catch (error) {
+                    log(`❌ Connection error: ${error.message}`);
+                    updateConnectionStatus(false);
+                }
+            }
+
+            function disconnect() {
+                if (ws) {
+                    ws.close();
+                    ws = null;
+                }
+                updateConnectionStatus(false);
+                log("🔌 Disconnected from ESP32");
+            }
+
+            // Auto-connect on page load (optional)
+            // window.onload = function() {
+            //     // Uncomment the line below to auto-connect
+            //     // connect();
+            // };
+        </script>
+    </body>
+</html>

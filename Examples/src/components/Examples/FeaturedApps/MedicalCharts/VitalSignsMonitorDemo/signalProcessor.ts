@@ -574,13 +574,13 @@ export class ESP32WebSocketHandler {
     // Hardcoded ESP32 IP address
     private detectESP32IP(): string {
         // Hardcoded to your specific ESP32 IP
-        return "ws://192.168.1.17:81";
+        return "ws://192.168.1.12:81";
     }
 
     // Try different IP addresses if connection fails
     private tryNextIP(): void {
         // Only try the hardcoded IP
-        const hardcodedIP = "192.168.1.17:81";
+        const hardcodedIP = "192.168.1.12:81";
 
         if (this.ipDiscoveryAttempts < this.maxIpDiscoveryAttempts) {
             this.ipDiscoveryAttempts++;
@@ -682,18 +682,31 @@ export class ESP32WebSocketHandler {
 
             debug("WEBSOCKET", "Message received", { type: data.type, esp32Timestamp, jsTimestamp });
 
+            // Debug: Log raw ESP32 data before processing
+            console.log("🔍 ESP32 Raw Data Debug:", {
+                type: data.type,
+                rawValue: data.value,
+                dataType: typeof data.value,
+                timestamp: jsTimestamp,
+                source: "ESP32WebSocketHandler",
+            });
+
             // Handle individual sensor data messages from ESP32
             switch (data.type) {
                 case "respiratory":
-                    // Convert raw ADC value (0-4095) to normalized value (0-1)
-                    const normalizedResp = data.value / 4095.0;
-                    this.respProcessor.addDataPoint(normalizedResp, jsTimestamp);
+                    // ESP32 is sending breathing pattern values (800-2500)
+                    // Use raw values for processing and display
+                    this.respProcessor.addDataPoint(data.value, jsTimestamp);
                     const metrics = this.respProcessor.getMetrics();
                     const state = this.respProcessor.getCurrentState();
 
+                    // Simple breath rate calculation - use the simple estimation method
+                    const breathRate = this.estimateBreathRate(data.value, jsTimestamp);
+
                     this.onDataUpdate({
                         type: "respiratory",
-                        value: normalizedResp,
+                        respiratory: breathRate, // Send estimated breath rate in breaths/min
+                        value: breathRate, // Keep for backward compatibility
                         raw: data.value,
                         metrics: metrics,
                         state: state,
@@ -703,18 +716,20 @@ export class ESP32WebSocketHandler {
                     break;
 
                 case "ecg":
-                    // Plot raw ADC values and process for heartbeat detection
-                    const normalizedEcg = data.value / 4095.0; // Normalize to 0-1 for processing
+                    // ESP32 is sending raw ADC values (800-3500)
+                    // Keep raw values for plotting, convert only for processing
+                    const ecgInMillivolts = ((data.value - 2048) / 2048) * 2.5; // Convert to ±2.5mV range
 
-                    // Add to ECG processor for heartbeat detection
-                    this.ecgProcessor.addECGPoint(normalizedEcg, jsTimestamp);
+                    // Add to ECG processor for heartbeat detection (use converted value)
+                    this.ecgProcessor.addECGPoint(ecgInMillivolts, jsTimestamp);
 
                     // Get ECG metrics including heart rate
                     const ecgMetrics = this.ecgProcessor.getMetrics();
 
                     this.onDataUpdate({
                         type: "ecg",
-                        value: data.value, // Raw ADC value (0-4095) for plotting
+                        ecg: data.value, // Send raw ADC value for plotting (800-3500)
+                        value: data.value, // Keep raw value for display consistency
                         raw: data.value,
                         sensorConnected: data.sensorConnected || false,
                         timestamp: jsTimestamp,
@@ -723,13 +738,12 @@ export class ESP32WebSocketHandler {
                     break;
 
                 case "gsr":
-                    // Convert raw ADC value (0-4095) to microsiemens (μS)
-                    // GSR sensors typically output 0-100 μS range
-                    // Map 0-4095 to 0-100 μS for realistic GSR values
-                    const gsrInMicroSiemens = (data.value / 4095.0) * 100;
+                    // ESP32 is sending already-calibrated GSR values in microsiemens (μS)
+                    // No need for ADC normalization - use values as-is
                     this.onDataUpdate({
                         type: "gsr",
-                        value: gsrInMicroSiemens,
+                        gsr: data.value, // Use raw value from ESP32 (already calibrated)
+                        value: data.value, // Keep for backward compatibility
                         raw: data.value,
                         sensorConnected: data.sensorConnected || false,
                         timestamp: jsTimestamp,
@@ -740,6 +754,7 @@ export class ESP32WebSocketHandler {
                     this.onDataUpdate({
                         type: "ibi",
                         value: data.value, // IBI in milliseconds
+                        hrv: data.value, // FIXED: add 'hrv' field that main component expects
                         hr: data.hr, // Heart rate in BPM
                         sensorConnected: data.sensorConnected || false,
                         timestamp: jsTimestamp,
@@ -818,6 +833,13 @@ export class ESP32WebSocketHandler {
             this.disconnect();
             this.connect();
         }
+    }
+
+    // Simple breath rate estimation for testing
+    private estimateBreathRate(rawValue: number, timestamp: number): number {
+        // For now, return a simple varying breath rate
+        // This will be replaced with proper calculation later
+        return 16 + Math.sin(timestamp / 10000) * 2; // 14-18 breaths/min
     }
 
     // Force connection attempt (useful for manual reconnection)

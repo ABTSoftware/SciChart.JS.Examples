@@ -9,17 +9,59 @@ export interface VitalSignsData {
     gsrValue: number;
     ecgQuality: number;
     hrvMetrics: {
+        // Basic HRV metrics
         sdnn: number;
         rmssd: number;
         pnn50: number;
         lfPower: number;
         hfPower: number;
         lfHfRatio: number;
-        // Additional HRV metrics for medical analysis
         nn50: number;
         triangularIndex: number;
         stressIndex: number;
         vagalTone: number;
+
+        // Advanced HRV metrics
+        meanHR: number;
+        meanIBI: number;
+        cvIBI: number;
+
+        // Non-linear HRV measures
+        apEn: number;
+        sampEn: number;
+        dfa: number;
+        lyapunov: number;
+        correlationDimension: number;
+        hurstExponent: number;
+        fractalDimension: number;
+
+        // Poincaré plot measures
+        sd1: number;
+        sd2: number;
+        sd1sd2Ratio: number;
+
+        // Power spectral analysis
+        vlfPower: number;
+        totalPower: number;
+        normalizedLF: number;
+        normalizedHF: number;
+        peakLF: number;
+        peakHF: number;
+
+        // Wavelet analysis
+        waveletLF: number;
+        waveletHF: number;
+        waveletTotal: number;
+
+        // Overall health assessment
+        overallHRVScore: number;
+        autonomicBalance: "parasympathetic" | "sympathetic" | "balanced" | "unknown";
+        stressLevel: "low" | "moderate" | "high" | "critical" | "unknown";
+        recoveryStatus: "excellent" | "good" | "fair" | "poor" | "needs_attention" | "unknown";
+
+        // Signal quality
+        signalQuality: number;
+        noiseLevel: number;
     };
     respiratoryMetrics: {
         breathCount: number;

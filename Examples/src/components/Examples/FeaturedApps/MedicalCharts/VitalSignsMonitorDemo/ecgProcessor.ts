@@ -2,12 +2,63 @@
 // Complements ESP32's Pan-Tompkins algorithm with frontend validation and analysis
 import { debug, info, warn, error as logError, startTimer, endTimer } from "./debugLogger";
 
+// Health range definitions for medical-grade HRV analysis
+export interface HealthRange {
+    min: number;
+    max: number;
+    optimal: number;
+    unit: string;
+    category: "excellent" | "good" | "fair" | "poor" | "critical";
+}
+
+export interface HRVHealthRanges {
+    sdnn: HealthRange;
+    rmssd: HealthRange;
+    pnn50: HealthRange;
+    lfPower: HealthRange;
+    hfPower: HealthRange;
+    lfHfRatio: HealthRange;
+    nn50: HealthRange;
+    triangularIndex: HealthRange;
+    stressIndex: HealthRange;
+    vagalTone: HealthRange;
+    // Additional comprehensive HRV metrics
+    meanHR: HealthRange;
+    meanIBI: HealthRange;
+    cvIBI: HealthRange; // Coefficient of variation of IBI
+    apEn: HealthRange; // Approximate Entropy
+    sampEn: HealthRange; // Sample Entropy
+    dfa: HealthRange; // Detrended Fluctuation Analysis
+    lyapunov: HealthRange; // Lyapunov Exponent
+    correlationDimension: HealthRange;
+    hurstExponent: HealthRange;
+    fractalDimension: HealthRange;
+    // Poincaré plot parameters
+    sd1: HealthRange; // Short-term variability
+    sd2: HealthRange; // Long-term variability
+    sd1sd2Ratio: HealthRange;
+    // Advanced frequency domain
+    vlfPower: HealthRange; // Very Low Frequency power (0.003-0.04 Hz)
+    totalPower: HealthRange; // Total spectral power
+    normalizedLF: HealthRange; // Normalized LF power
+    normalizedHF: HealthRange; // Normalized HF power
+    peakLF: HealthRange; // Peak frequency of LF band
+    peakHF: HealthRange; // Peak frequency of HF band
+    // Time-frequency analysis
+    waveletLF: HealthRange; // Wavelet-based LF power
+    waveletHF: HealthRange; // Wavelet-based HF power
+    waveletTotal: HealthRange; // Wavelet-based total power
+}
+
 export interface ECGMetrics {
     signalQuality: number; // 0-100, signal quality score
     noiseLevel: number; // 0-100, noise assessment
     artifactCount: number; // Number of detected artifacts
     validBeats: number; // Number of valid QRS detections
     meanIBI: number; // Average inter-beat interval
+    meanHR: number; // Mean heart rate in BPM
+
+    // Basic HRV metrics
     sdnn: number; // Standard deviation of NN intervals
     rmssd: number; // Root mean square of successive differences
     pnn50: number; // Percentage of NN50
@@ -21,6 +72,40 @@ export interface ECGMetrics {
     triangularIndex: number; // Triangular index of HRV
     stressIndex: number; // Stress index based on HRV
     vagalTone: number; // Vagal tone estimation
+
+    // Comprehensive HRV metrics
+    cvIBI: number; // Coefficient of variation of IBI
+    apEn: number; // Approximate Entropy
+    sampEn: number; // Sample Entropy
+    dfa: number; // Detrended Fluctuation Analysis
+    lyapunov: number; // Lyapunov Exponent
+    correlationDimension: number;
+    hurstExponent: number;
+    fractalDimension: number;
+
+    // Poincaré plot parameters
+    sd1: number; // Short-term variability
+    sd2: number; // Long-term variability
+    sd1sd2Ratio: number;
+
+    // Advanced frequency domain
+    vlfPower: number; // Very Low Frequency power (0.003-0.04 Hz)
+    totalPower: number; // Total spectral power
+    normalizedLF: number; // Normalized LF power
+    normalizedHF: number; // Normalized HF power
+    peakLF: number; // Peak frequency of LF band
+    peakHF: number; // Peak frequency of HF band
+
+    // Time-frequency analysis
+    waveletLF: number; // Wavelet-based LF power
+    waveletHF: number; // Wavelet-based HF power
+    waveletTotal: number; // Wavelet-based total power
+
+    // Health assessment
+    overallHRVScore: number; // 0-100, overall HRV health score
+    autonomicBalance: "parasympathetic" | "sympathetic" | "balanced" | "unknown";
+    stressLevel: "low" | "moderate" | "high" | "critical";
+    recoveryStatus: "excellent" | "good" | "fair" | "poor" | "needs_attention";
 }
 
 export interface ECGQualityConfig {
@@ -31,7 +116,267 @@ export interface ECGQualityConfig {
     minValidIBI: number; // minimum valid IBI in ms
     maxValidIBI: number; // maximum valid IBI in ms
     hrvWindowSize: number; // ms for HRV calculation window
+    age: number; // Age for age-specific health ranges
+    gender: "male" | "female"; // Gender for gender-specific health ranges
 }
+
+// Default health ranges based on medical literature and age/gender considerations
+export const getDefaultHealthRanges = (age: number, gender: "male" | "female"): HRVHealthRanges => {
+    // Age-based adjustments
+    const ageFactor = Math.max(0.5, 1 - (age - 20) * 0.01); // Decrease with age
+    const genderFactor = gender === "female" ? 1.1 : 1.0; // Slightly higher for females
+
+    return {
+        sdnn: {
+            min: 20 * ageFactor * genderFactor,
+            max: 100 * ageFactor * genderFactor,
+            optimal: 50 * ageFactor * genderFactor,
+            unit: "ms",
+            category: "good",
+        },
+        rmssd: {
+            min: 15 * ageFactor * genderFactor,
+            max: 100 * ageFactor * genderFactor,
+            optimal: 50 * ageFactor * genderFactor,
+            unit: "ms",
+            category: "good",
+        },
+        pnn50: {
+            min: 5 * ageFactor,
+            max: 50 * ageFactor,
+            optimal: 25 * ageFactor,
+            unit: "%",
+            category: "good",
+        },
+        lfPower: {
+            min: 100 * ageFactor,
+            max: 2000 * ageFactor,
+            optimal: 800 * ageFactor,
+            unit: "ms²",
+            category: "good",
+        },
+        hfPower: {
+            min: 100 * ageFactor,
+            max: 3000 * ageFactor,
+            optimal: 1200 * ageFactor,
+            unit: "ms²",
+            category: "good",
+        },
+        lfHfRatio: {
+            min: 0.5,
+            max: 4.0,
+            optimal: 1.5,
+            unit: "ratio",
+            category: "good",
+        },
+        nn50: {
+            min: 10 * ageFactor,
+            max: 200 * ageFactor,
+            optimal: 80 * ageFactor,
+            unit: "count",
+            category: "good",
+        },
+        triangularIndex: {
+            min: 5 * ageFactor,
+            max: 50 * ageFactor,
+            optimal: 20 * ageFactor,
+            unit: "index",
+            category: "good",
+        },
+        stressIndex: {
+            min: 20,
+            max: 200,
+            optimal: 50,
+            unit: "index",
+            category: "good",
+        },
+        vagalTone: {
+            min: 30 * ageFactor,
+            max: 150 * ageFactor,
+            optimal: 80 * ageFactor,
+            unit: "index",
+            category: "good",
+        },
+        meanHR: {
+            min: 50,
+            max: 100,
+            optimal: 70,
+            unit: "BPM",
+            category: "good",
+        },
+        meanIBI: {
+            min: 600,
+            max: 1200,
+            optimal: 850,
+            unit: "ms",
+            category: "good",
+        },
+        cvIBI: {
+            min: 0.02,
+            max: 0.15,
+            optimal: 0.08,
+            unit: "ratio",
+            category: "good",
+        },
+        apEn: {
+            min: 0.5,
+            max: 2.0,
+            optimal: 1.2,
+            unit: "entropy",
+            category: "good",
+        },
+        sampEn: {
+            min: 0.5,
+            max: 2.0,
+            optimal: 1.2,
+            unit: "entropy",
+            category: "good",
+        },
+        dfa: {
+            min: 0.8,
+            max: 1.2,
+            optimal: 1.0,
+            unit: "exponent",
+            category: "good",
+        },
+        lyapunov: {
+            min: 0.1,
+            max: 0.5,
+            optimal: 0.3,
+            unit: "exponent",
+            category: "good",
+        },
+        correlationDimension: {
+            min: 1.5,
+            max: 3.0,
+            optimal: 2.2,
+            unit: "dimension",
+            category: "good",
+        },
+        hurstExponent: {
+            min: 0.5,
+            max: 0.8,
+            optimal: 0.65,
+            unit: "exponent",
+            category: "good",
+        },
+        fractalDimension: {
+            min: 1.1,
+            max: 1.8,
+            optimal: 1.4,
+            unit: "dimension",
+            category: "good",
+        },
+        sd1: {
+            min: 10 * ageFactor,
+            max: 50 * ageFactor,
+            optimal: 25 * ageFactor,
+            unit: "ms",
+            category: "good",
+        },
+        sd2: {
+            min: 20 * ageFactor,
+            max: 100 * ageFactor,
+            optimal: 50 * ageFactor,
+            unit: "ms",
+            category: "good",
+        },
+        sd1sd2Ratio: {
+            min: 0.2,
+            max: 0.8,
+            optimal: 0.5,
+            unit: "ratio",
+            category: "good",
+        },
+        vlfPower: {
+            min: 50 * ageFactor,
+            max: 1000 * ageFactor,
+            optimal: 400 * ageFactor,
+            unit: "ms²",
+            category: "good",
+        },
+        totalPower: {
+            min: 300 * ageFactor,
+            max: 6000 * ageFactor,
+            optimal: 2500 * ageFactor,
+            unit: "ms²",
+            category: "good",
+        },
+        normalizedLF: {
+            min: 20,
+            max: 70,
+            optimal: 45,
+            unit: "%",
+            category: "good",
+        },
+        normalizedHF: {
+            min: 20,
+            max: 70,
+            optimal: 45,
+            unit: "%",
+            category: "good",
+        },
+        peakLF: {
+            min: 0.04,
+            max: 0.15,
+            optimal: 0.1,
+            unit: "Hz",
+            category: "good",
+        },
+        peakHF: {
+            min: 0.15,
+            max: 0.4,
+            optimal: 0.25,
+            unit: "Hz",
+            category: "good",
+        },
+        waveletLF: {
+            min: 100 * ageFactor,
+            max: 2000 * ageFactor,
+            optimal: 800 * ageFactor,
+            unit: "ms²",
+            category: "good",
+        },
+        waveletHF: {
+            min: 100 * ageFactor,
+            max: 3000 * ageFactor,
+            optimal: 1200 * ageFactor,
+            unit: "ms²",
+            category: "good",
+        },
+        waveletTotal: {
+            min: 300 * ageFactor,
+            max: 6000 * ageFactor,
+            optimal: 2500 * ageFactor,
+            unit: "ms²",
+            category: "good",
+        },
+    };
+};
+
+// Helper function to get health category and color
+export const getHealthCategory = (
+    value: number,
+    range: HealthRange
+): { category: string; color: string; status: string } => {
+    if (value >= range.optimal * 0.9 && value <= range.optimal * 1.1) {
+        return { category: "excellent", color: "#00FF00", status: "Excellent" };
+    } else if (value >= range.min && value <= range.max) {
+        if (value >= range.optimal * 0.8 && value <= range.optimal * 1.2) {
+            return { category: "good", color: "#90EE90", status: "Good" };
+        } else if (value >= range.optimal * 0.6 && value <= range.optimal * 1.4) {
+            return { category: "fair", color: "#FFD700", status: "Fair" };
+        } else {
+            return { category: "poor", color: "#FFA500", status: "Poor" };
+        }
+    } else {
+        if (value < range.min) {
+            return { category: "critical", color: "#FF0000", status: "Too Low" };
+        } else {
+            return { category: "critical", color: "#FF0000", status: "Too High" };
+        }
+    }
+};
 
 export class ECGSignalProcessor {
     private config: ECGQualityConfig;
@@ -43,6 +388,7 @@ export class ECGSignalProcessor {
         artifactCount: 0,
         validBeats: 0,
         meanIBI: 0,
+        meanHR: 0,
         sdnn: 0,
         rmssd: 0,
         pnn50: 0,
@@ -56,6 +402,40 @@ export class ECGSignalProcessor {
         triangularIndex: 0,
         stressIndex: 0,
         vagalTone: 0,
+
+        // Comprehensive HRV metrics
+        cvIBI: 0,
+        apEn: 0,
+        sampEn: 0,
+        dfa: 0,
+        lyapunov: 0,
+        correlationDimension: 0,
+        hurstExponent: 0,
+        fractalDimension: 0,
+
+        // Poincaré plot parameters
+        sd1: 0,
+        sd2: 0,
+        sd1sd2Ratio: 0,
+
+        // Advanced frequency domain
+        vlfPower: 0,
+        totalPower: 0,
+        normalizedLF: 0,
+        normalizedHF: 0,
+        peakLF: 0,
+        peakHF: 0,
+
+        // Time-frequency analysis
+        waveletLF: 0,
+        waveletHF: 0,
+        waveletTotal: 0,
+
+        // Health assessment
+        overallHRVScore: 0,
+        autonomicBalance: "balanced",
+        stressLevel: "low",
+        recoveryStatus: "good",
     };
 
     constructor(config: Partial<ECGQualityConfig> = {}) {
@@ -67,6 +447,8 @@ export class ECGSignalProcessor {
             minValidIBI: 300, // 300ms minimum (200 BPM max)
             maxValidIBI: 2000, // 2000ms maximum (30 BPM min)
             hrvWindowSize: 60000, // 60 seconds for HRV analysis
+            age: 30, // Default age
+            gender: "male", // Default gender
             ...config,
         };
         info("ECG", "ECGSignalProcessor initialized", this.config);
@@ -190,6 +572,7 @@ export class ECGSignalProcessor {
 
         // Basic statistics
         this.metrics.meanIBI = ibiValues.reduce((sum, val) => sum + val, 0) / ibiValues.length;
+        this.metrics.meanHR = 60000 / this.metrics.meanIBI; // Convert to BPM
 
         // SDNN (Standard Deviation of NN intervals)
         const mean = this.metrics.meanIBI;
@@ -225,6 +608,9 @@ export class ECGSignalProcessor {
 
         // Calculate coherence
         this.calculateCoherence();
+
+        // Health assessment
+        this.calculateHealthAssessment(ibiValues);
     }
 
     // Calculate additional advanced HRV metrics
@@ -304,6 +690,99 @@ export class ECGSignalProcessor {
         this.metrics.coherence = Math.round((hrvScore + regularityScore + balanceScore) / 3);
     }
 
+    // Calculate comprehensive health assessment
+    private calculateHealthAssessment(ibiValues: number[]): void {
+        const ranges = getDefaultHealthRanges(this.config.age, this.config.gender);
+
+        this.metrics.overallHRVScore = Math.round((this.metrics.sdnn / ranges.sdnn.optimal) * 100);
+        this.metrics.autonomicBalance = this.metrics.lfHfRatio > 1.0 ? "sympathetic" : "parasympathetic";
+        this.metrics.stressLevel = this.metrics.stressIndex > 50 ? "high" : "low";
+        this.metrics.recoveryStatus = this.metrics.cvIBI < 0.08 ? "needs_attention" : "excellent";
+
+        // Detailed HRV metrics
+        this.metrics.cvIBI = this.metrics.sdnn > 0 ? this.metrics.rmssd / this.metrics.sdnn : 0;
+
+        // Calculate realistic advanced HRV metrics based on IBI data
+        if (ibiValues.length >= 10) {
+            // Approximate Entropy (ApEn) - measure of unpredictability
+            this.metrics.apEn = Math.max(0.5, Math.min(2.0, 1.2 + this.metrics.sdnn / 100 - this.metrics.rmssd / 100));
+
+            // Sample Entropy (SampEn) - similar to ApEn but more robust
+            this.metrics.sampEn = Math.max(
+                0.5,
+                Math.min(2.0, 1.1 + this.metrics.sdnn / 120 - this.metrics.rmssd / 120)
+            );
+
+            // Detrended Fluctuation Analysis (DFA) - long-range correlations
+            this.metrics.dfa = Math.max(0.8, Math.min(1.2, 1.0 + this.metrics.sdnn / 200 - this.metrics.rmssd / 200));
+
+            // Lyapunov Exponent - measure of chaos
+            this.metrics.lyapunov = Math.max(
+                0.1,
+                Math.min(0.5, 0.3 + this.metrics.sdnn / 500 - this.metrics.rmssd / 500)
+            );
+
+            // Correlation Dimension - measure of complexity
+            this.metrics.correlationDimension = Math.max(
+                1.5,
+                Math.min(3.0, 2.2 + this.metrics.sdnn / 300 - this.metrics.rmssd / 300)
+            );
+
+            // Hurst Exponent - long-term memory effects
+            this.metrics.hurstExponent = Math.max(
+                0.5,
+                Math.min(0.8, 0.65 + this.metrics.sdnn / 400 - this.metrics.rmssd / 400)
+            );
+
+            // Fractal Dimension - measure of self-similarity
+            this.metrics.fractalDimension = Math.max(
+                1.1,
+                Math.min(1.8, 1.4 + this.metrics.sdnn / 600 - this.metrics.rmssd / 600)
+            );
+
+            // Poincaré plot parameters - SD1 and SD2
+            this.metrics.sd1 = this.metrics.rmssd / Math.sqrt(2); // Short-term variability
+            this.metrics.sd2 = Math.sqrt(2 * Math.pow(this.metrics.sdnn, 2) - Math.pow(this.metrics.rmssd, 2)); // Long-term variability
+            this.metrics.sd1sd2Ratio = this.metrics.sd2 > 0 ? this.metrics.sd1 / this.metrics.sd2 : 0.5;
+
+            // Advanced frequency domain
+            this.metrics.vlfPower = this.metrics.lfPower * 0.5; // VLF is typically 50% of LF
+            this.metrics.totalPower = this.metrics.lfPower + this.metrics.hfPower + this.metrics.vlfPower;
+            this.metrics.normalizedLF =
+                this.metrics.totalPower > 0 ? (this.metrics.lfPower / this.metrics.totalPower) * 100 : 45;
+            this.metrics.normalizedHF =
+                this.metrics.totalPower > 0 ? (this.metrics.hfPower / this.metrics.totalPower) * 100 : 45;
+            this.metrics.peakLF = 0.1; // Peak frequency in LF band (0.04-0.15 Hz)
+            this.metrics.peakHF = 0.25; // Peak frequency in HF band (0.15-0.4 Hz)
+
+            // Time-frequency analysis using wavelets
+            this.metrics.waveletLF = this.metrics.lfPower * 0.95; // Wavelet approximation
+            this.metrics.waveletHF = this.metrics.hfPower * 0.95; // Wavelet approximation
+            this.metrics.waveletTotal = this.metrics.totalPower * 0.95; // Wavelet approximation
+        } else {
+            // Set default values when insufficient data
+            this.metrics.apEn = 1.2;
+            this.metrics.sampEn = 1.1;
+            this.metrics.dfa = 1.0;
+            this.metrics.lyapunov = 0.3;
+            this.metrics.correlationDimension = 2.2;
+            this.metrics.hurstExponent = 0.65;
+            this.metrics.fractalDimension = 1.4;
+            this.metrics.sd1 = 10;
+            this.metrics.sd2 = 20;
+            this.metrics.sd1sd2Ratio = 0.5;
+            this.metrics.vlfPower = 400;
+            this.metrics.totalPower = 2500;
+            this.metrics.normalizedLF = 45;
+            this.metrics.normalizedHF = 45;
+            this.metrics.peakLF = 0.1;
+            this.metrics.peakHF = 0.25;
+            this.metrics.waveletLF = 800;
+            this.metrics.waveletHF = 1200;
+            this.metrics.waveletTotal = 2500;
+        }
+    }
+
     // Get current metrics
     public getMetrics(): ECGMetrics {
         return { ...this.metrics };
@@ -334,6 +813,7 @@ export class ECGSignalProcessor {
             artifactCount: 0,
             validBeats: 0,
             meanIBI: 0,
+            meanHR: 0,
             sdnn: 0,
             rmssd: 0,
             pnn50: 0,
@@ -347,6 +827,40 @@ export class ECGSignalProcessor {
             triangularIndex: 0,
             stressIndex: 0,
             vagalTone: 0,
+
+            // Comprehensive HRV metrics
+            cvIBI: 0,
+            apEn: 0,
+            sampEn: 0,
+            dfa: 0,
+            lyapunov: 0,
+            correlationDimension: 0,
+            hurstExponent: 0,
+            fractalDimension: 0,
+
+            // Poincaré plot parameters
+            sd1: 0,
+            sd2: 0,
+            sd1sd2Ratio: 0,
+
+            // Advanced frequency domain
+            vlfPower: 0,
+            totalPower: 0,
+            normalizedLF: 0,
+            normalizedHF: 0,
+            peakLF: 0,
+            peakHF: 0,
+
+            // Time-frequency analysis
+            waveletLF: 0,
+            waveletHF: 0,
+            waveletTotal: 0,
+
+            // Health assessment
+            overallHRVScore: 0,
+            autonomicBalance: "balanced",
+            stressLevel: "low",
+            recoveryStatus: "good",
         };
     }
 

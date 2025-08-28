@@ -34,7 +34,14 @@ module.exports = {
                     {
                         loader: "postcss-loader",
                     },
-                    { loader: "sass-loader" },
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            sassOptions: {
+                                includePaths: [path.resolve(__dirname, "src")],
+                            },
+                        },
+                    },
                 ],
                 exclude: /node_modules/,
             },

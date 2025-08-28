@@ -51,13 +51,13 @@ function generateMedicalECG(length: number): number[] {
         if (qrsPhase > 0) {
             // QRS complex - sharp spike
             if (qrsPhase === 1) {
-                value = 2.5; // Peak of QRS
+                value = 3500; // Peak of QRS (high amplitude)
             } else if (qrsPhase === 2) {
-                value = 2.0; // Sharp descent
+                value = 2800; // Sharp descent
             } else if (qrsPhase === 3) {
-                value = 0.5; // Bottom of QRS
+                value = 800; // Bottom of QRS (low amplitude)
             } else {
-                value = 1.0; // Recovery
+                value = 1500; // Recovery
             }
             qrsPhase++;
             if (qrsPhase >= 8) qrsPhase = 0;
@@ -65,16 +65,16 @@ function generateMedicalECG(length: number): number[] {
             // Normal ECG baseline with P and T waves
             if (phase < 30) {
                 // P wave - small positive deflection
-                value = 0.8 + Math.sin(phase * 0.2) * 0.3;
+                value = 1200 + Math.sin(phase * 0.2) * 400;
             } else if (phase < 60) {
                 // Baseline before QRS
-                value = 0.6 + Math.sin(phase * 0.05) * 0.1;
+                value = 1000 + Math.sin(phase * 0.05) * 150;
             } else if (phase < 90) {
                 // T wave - broader positive deflection
-                value = 1.2 + Math.sin((phase - 60) * 0.15) * 0.4;
+                value = 1800 + Math.sin((phase - 60) * 0.15) * 600;
             } else {
                 // Baseline
-                value = 0.5 + Math.sin(phase * 0.03) * 0.1;
+                value = 800 + Math.sin(phase * 0.03) * 200;
             }
 
             // Randomly trigger QRS complex
@@ -85,11 +85,10 @@ function generateMedicalECG(length: number): number[] {
         }
 
         // Add some noise for realism
-        value += (Math.random() - 0.5) * 0.05;
+        value += (Math.random() - 0.5) * 50;
 
-        // Generate raw ADC values for fallback - let auto-scaling handle the range
-        const rawValue = value * 4095; // Simple 0-4095 range
-        data.push(rawValue);
+        // Generate raw ADC values for fallback - already in realistic AD8232 range
+        data.push(value);
 
         phase++;
         if (phase >= 150) phase = 0; // Reset cycle
@@ -112,41 +111,41 @@ let respiratoryValues =
         ? vitalSignsEcgData.respiratoryValues
         : generateDemoArray(DATA_LENGTH, 0.4, 0.8);
 
-// If any array is empty or not an array, forcibly generate demo data
+// Use static data arrays for consistent, realistic waveforms
 if (!Array.isArray(ecgHeartRateValues) || ecgHeartRateValues.length === 0) {
-    // Generate realistic medical ECG waveform
     ecgHeartRateValues = generateMedicalECG(DATA_LENGTH);
-    console.warn("Fallback: generated realistic medical ECG data");
-
-    // Debug: Check the generated data range
-    const minEcg = Math.min(...ecgHeartRateValues);
-    const maxEcg = Math.max(...ecgHeartRateValues);
-    console.log("🔍 Generated ECG data range:", { min: minEcg, max: maxEcg, length: ecgHeartRateValues.length });
+    console.log("🔍 Generated ECG data range:", {
+        min: Math.min(...ecgHeartRateValues),
+        max: Math.min(...ecgHeartRateValues),
+        length: ecgHeartRateValues.length,
+    });
 }
 if (!Array.isArray(gsrValues) || gsrValues.length === 0) {
     gsrValues = generateDemoArray(DATA_LENGTH, 20, 80); // Realistic GSR range in μS
-    console.warn("Fallback: generated random GSR data");
 }
 if (!Array.isArray(respiratoryValues) || respiratoryValues.length === 0) {
     respiratoryValues = generateDemoArray(DATA_LENGTH, 0.4, 0.8);
-    console.warn("Fallback: generated random respiratory data");
 }
 
-// HELPER FUNCTIONS
+// HELPER FUNCTIONS - Simple approach with limited X-axis range
 const getValuesFromData = (xIndex: number) => {
     const xArr: number[] = [];
     const ecgArr: number[] = [];
     const gsrArr: number[] = [];
     const respArr: number[] = [];
+
     for (let i = 0; i < STEP; i++) {
-        const dataIndex = (xIndex + i) % DATA_LENGTH;
-        const x = xIndex + i;
+        // Simple X-axis: limit to 1000 points to prevent extreme zoom-out
+        const x = (xIndex + i) % 1000;
         xArr.push(x);
-        // ECG data is in raw ADC values (0-4095 range)
+
+        // Use static data arrays
+        const dataIndex = (xIndex + i) % DATA_LENGTH;
         ecgArr.push(ecgHeartRateValues[dataIndex]);
         gsrArr.push(gsrValues ? gsrValues[dataIndex] : 0);
         respArr.push(respiratoryValues ? respiratoryValues[dataIndex] : 0);
     }
+
     return {
         xArr,
         ecgArr,
@@ -156,6 +155,7 @@ const getValuesFromData = (xIndex: number) => {
 };
 
 export type TDataUpdateInfo = {
+    type?: string; // Add type field for data routing
     ecg?: number;
     hrv?: number;
     bpm?: number; // Heart rate (BPM)
@@ -236,10 +236,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         smoothingWindow: 3,
     });
 
-    // Professional medical ECG X axis (Time axis) - Stretched for better waveform visibility
+    // Professional medical ECG X axis - Limited range to prevent extreme zoom-out
     const xAxis = new CategoryAxis(wasmContext, {
         autoRange: EAutoRange.Never, // Disable auto-scaling to prevent constant movement
-        visibleRange: new NumberRange(0, 1000), // Wider fixed range to show more data
+        visibleRange: new NumberRange(0, 1000), // Limited to 1000 points to maintain reasonable zoom
         isVisible: true,
     });
     sciChartSurface.xAxes.add(xAxis);
@@ -255,17 +255,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Data series - Optimized for medical ECG display
     const dataSeriesEcg = new XyDataSeries(wasmContext, {
-        fifoCapacity: 5000, // Increased capacity to show more fallback data
+        fifoCapacity: 2000, // Sufficient capacity for smooth display
         fifoSweeping: true,
         fifoSweepingGap: 50,
     });
     const dataSeriesGsr = new XyDataSeries(wasmContext, {
-        fifoCapacity: 2500,
+        fifoCapacity: 2000,
         fifoSweeping: true,
         fifoSweepingGap: 50,
     });
     const dataSeriesResp = new XyDataSeries(wasmContext, {
-        fifoCapacity: 2500,
+        fifoCapacity: 2000,
         fifoSweeping: true,
         fifoSweepingGap: 50,
     });
@@ -309,21 +309,34 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     let timerId: NodeJS.Timeout | undefined;
     let currentPoint = 0;
     let lastXValue = 0;
-    const MAX_POINTS = 2500; // 10 seconds at 250Hz
+    const MAX_POINTS = 2000; // Sufficient points for smooth display
     const pointsPerSecond = 250; // Matches ESP32 ECG sampling rate
 
-    // Buffer for smooth plotting
+    // Buffer for smooth plotting - separate timestamps for each data type
     const dataBuffer = {
         ecg: [] as number[],
         gsr: [] as number[],
         resp: [] as number[],
-        timestamps: [] as number[],
+        ecgTimestamps: [] as number[],
+        gsrTimestamps: [] as number[],
+        respTimestamps: [] as number[],
     };
 
-    // Helper function to append data to chart with proper timestamps
+    // Helper function to append data to chart with limited range
     const appendDataToChart = (series: XyDataSeries, values: number[], timestamps: number[]) => {
         try {
             if (values.length === 0) return;
+
+            // Safety check: ensure arrays have the same length
+            if (values.length !== timestamps.length) {
+                console.error("Array length mismatch:", {
+                    valuesLength: values.length,
+                    timestampsLength: timestamps.length,
+                    seriesId: series.id,
+                });
+                return;
+            }
+
             series.appendRange(timestamps, values);
             if (series.count() > MAX_POINTS) {
                 series.removeRange(0, series.count() - MAX_POINTS);
@@ -350,10 +363,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 sampleResp: respArr[0],
                 ecgRange: `${Math.min(...ecgArr)} to ${Math.max(...ecgArr)}`,
                 gsrRange: `${Math.min(...gsrArr)} to ${Math.max(...gsrArr)}`,
+                xRange: `${Math.min(...xArr)} to ${Math.max(...xArr)} (limited range)`,
             });
         }
 
         try {
+            // Simple data append - let FIFO handle the rest
             dataSeriesEcg.appendRange(xArr, ecgArr);
             dataSeriesGsr.appendRange(xArr, gsrArr);
             dataSeriesResp.appendRange(xArr, respArr);
@@ -369,7 +384,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 });
             }
 
-            // Force chart redraw to ensure data is visible
+            // Ensure data is visible
             if (sciChartSurface) {
                 sciChartSurface.zoomExtents();
             }
@@ -377,12 +392,22 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             console.error("Error appending fallback data:", e);
         }
         currentPoint += STEP;
-        if (currentPoint % 1000 === 0) {
-            dataUpdateEventHandler.raiseEvent({
+        // Send fallback data to UI cards more frequently (every 50 points instead of 1000)
+        if (currentPoint % 50 === 0) {
+            const fallbackData = {
+                type: "fallback",
                 ecg: ecgArr[STEP - 1],
                 gsr: gsrArr[STEP - 1],
                 respiratory: respArr[STEP - 1],
-            });
+            };
+
+            // Debug: Log fallback data being sent to UI
+            if (currentPoint % 200 === 0) {
+                // Log every 1000 points to avoid spam
+                console.log("📊 Sending fallback data to UI:", fallbackData);
+            }
+
+            dataUpdateEventHandler.raiseEvent(fallbackData);
         }
         timerId = setTimeout(runUpdateDataOnTimeout, TIMER_TIMEOUT_MS);
     };
@@ -398,18 +423,29 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         setTimeout(() => {
             console.log("⏰ Chart ready, starting fallback data...");
 
-            // Add some initial data to the chart so it's not empty
+            // Add initial data to start the rolling window
             const initialData = getValuesFromData(0);
             try {
                 dataSeriesEcg.appendRange(initialData.xArr, initialData.ecgArr);
                 dataSeriesGsr.appendRange(initialData.xArr, initialData.gsrArr);
                 dataSeriesResp.appendRange(initialData.xArr, initialData.respArr);
-                console.log("📊 Initial fallback data added to chart:", {
+                console.log("📊 Initial fallback data added:", {
                     ecgPoints: initialData.ecgArr.length,
                     gsrPoints: initialData.gsrArr.length,
                     respPoints: initialData.respArr.length,
                     ecgRange: `${Math.min(...initialData.ecgArr)} to ${Math.max(...initialData.ecgArr)}`,
+                    xRange: `${Math.min(...initialData.xArr)} to ${Math.max(...initialData.xArr)} (limited range)`,
                 });
+
+                // Send initial fallback data to UI immediately
+                const initialFallbackData = {
+                    type: "fallback",
+                    ecg: initialData.ecgArr[initialData.ecgArr.length - 1],
+                    gsr: initialData.gsrArr[initialData.gsrArr.length - 1],
+                    respiratory: initialData.respArr[initialData.respArr.length - 1],
+                };
+                console.log("🚀 Sending initial fallback data to UI:", initialFallbackData);
+                dataUpdateEventHandler.raiseEvent(initialFallbackData);
             } catch (error) {
                 console.error("Error adding initial fallback data:", error);
             }
@@ -445,15 +481,24 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 case "respiratory":
                     // Process respiratory data through signal processor
                     lastXValue++;
+
+                    // Debug: Log raw respiratory data before processing
+                    console.log("🔍 Respiratory Raw Data Debug:", {
+                        rawValue: data.value,
+                        dataType: typeof data.value,
+                        timestamp: Date.now(),
+                        source: "drawExample.ts",
+                    });
+
                     dataBuffer.resp.push(data.value);
-                    dataBuffer.timestamps.push(lastXValue);
+                    dataBuffer.respTimestamps.push(lastXValue);
 
                     // Update chart with processed data
                     if (dataBuffer.resp.length > 0) {
                         try {
-                            appendDataToChart(dataSeriesResp, dataBuffer.resp, dataBuffer.timestamps);
+                            appendDataToChart(dataSeriesResp, dataBuffer.resp, dataBuffer.respTimestamps);
                             dataBuffer.resp = [];
-                            dataBuffer.timestamps = [];
+                            dataBuffer.respTimestamps = [];
                         } catch (error) {
                             console.error("Error processing respiratory data:", error);
                         }
@@ -461,6 +506,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
                     // Emit processed respiration metrics
                     dataUpdateEventHandler.raiseEvent({
+                        type: "respiratory",
                         respiratory: data.value,
                         respirationMetrics: data.metrics,
                         breathingState: data.state,
@@ -471,13 +517,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     startTimer("ecg_processing");
                     lastXValue++;
                     dataBuffer.ecg.push(data.value);
-                    dataBuffer.timestamps.push(lastXValue);
+                    dataBuffer.ecgTimestamps.push(lastXValue);
 
                     if (dataBuffer.ecg.length > 0) {
                         try {
-                            appendDataToChart(dataSeriesEcg, dataBuffer.ecg, dataBuffer.timestamps);
+                            appendDataToChart(dataSeriesEcg, dataBuffer.ecg, dataBuffer.ecgTimestamps);
                             dataBuffer.ecg = [];
-                            dataBuffer.timestamps = [];
+                            dataBuffer.ecgTimestamps = [];
                         } catch (error) {
                             console.error("Error processing ECG data:", error);
                         }
@@ -495,18 +541,36 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     });
 
                     dataUpdateEventHandler.raiseEvent({
+                        type: "ecg",
                         ecg: data.value,
                         ecgMetrics: ecgMetrics,
                         bpm: ecgMetrics.validBeats > 0 ? Math.round(60000 / ecgMetrics.meanIBI) : 0,
                         hrv: ecgMetrics.sdnn,
+                    });
+
+                    // Debug: Log ECG metrics for HRV debugging
+                    console.log("🫀 ECG Metrics Debug:", {
+                        sdnn: ecgMetrics.sdnn,
+                        validBeats: ecgMetrics.validBeats,
+                        meanIBI: ecgMetrics.meanIBI,
+                        calculatedBPM: ecgMetrics.validBeats > 0 ? Math.round(60000 / ecgMetrics.meanIBI) : 0,
                     });
                     break;
 
                 case "gsr":
                     startTimer("gsr_processing");
                     lastXValue++;
+
+                    // Debug: Log raw GSR data before processing
+                    console.log("🔍 GSR Raw Data Debug:", {
+                        rawValue: data.value,
+                        dataType: typeof data.value,
+                        timestamp: Date.now(),
+                        source: "drawExample.ts",
+                    });
+
                     dataBuffer.gsr.push(data.value);
-                    dataBuffer.timestamps.push(lastXValue);
+                    dataBuffer.gsrTimestamps.push(lastXValue);
 
                     // Process GSR through trend analyzer
                     let gsrTrend = null;
@@ -527,6 +591,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     });
 
                     dataUpdateEventHandler.raiseEvent({
+                        type: "gsr",
                         gsr: data.value,
                         gsrTrend: gsrTrend,
                     });
@@ -548,9 +613,18 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     });
 
                     dataUpdateEventHandler.raiseEvent({
+                        type: "ibi",
                         hrv: data.value,
                         bpm: data.hr,
                         ecgMetrics: updatedEcgMetrics,
+                    });
+
+                    // Debug: Log IBI data for HRV debugging
+                    console.log("💚 IBI Data Debug:", {
+                        ibiValue: data.value,
+                        heartRate: data.hr,
+                        updatedSDNN: updatedEcgMetrics.sdnn,
+                        updatedValidBeats: updatedEcgMetrics.validBeats,
                     });
                     break;
 
@@ -570,6 +644,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     });
 
                     dataUpdateEventHandler.raiseEvent({
+                        type: "heartrate",
                         bpm: data.bpm,
                         ibi: data.ibi,
                     });

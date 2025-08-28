@@ -4,14 +4,16 @@
   "description": "",
   "private": true,
   "engines": {
-    "npm": ">=10.9.2",
-    "node": ">=22.13.0"
+    "npm": ">=10.9.1",
+    "node": ">=18.18.0"
   },
   "scripts": {
     "compareExamples": "ts-node -P tsconfig.node.json scripts/compareExampleInfos.ts",
     "generateMetadata": "ts-node -P tsconfig.node.json scripts/generateMetadataFromOld.ts",
     "updateExampleInfos": "ts-node -P tsconfig.node.json scripts/updateExampleInfos.ts",
     "dev": "webpack-dev-server --config webpack.client.no_server.config.ts",
+    "dev:clean": "powershell -ExecutionPolicy Bypass -File start-dev.ps1",
+    "install:firebase": "powershell -ExecutionPolicy Bypass -File install-firebase.ps1",
     "build": "rimraf ./build && npm run buildVanillaDemo && npm run buildImages && npm run buildServer && npm run buildClient",
     "start": "node ./build/server.js",
     "buildServer": "webpack --config webpack.server.config.js",
@@ -37,10 +39,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@angular/animations": "^18.2.8",
-    "@angular/common": "^18.2.8",
-    "@angular/core": "^18.2.8",
-    "@angular/forms": "^18.2.8",
+    "@angular/animations": "^16.2.12",
+    "@angular/common": "^16.2.12",
+    "@angular/core": "^16.2.12",
+    "@angular/forms": "^16.2.12",
     "@angular/material": "^18.2.8",
     "@emotion/react": "^11.13.3",
     "@emotion/server": "^11.11.0",
@@ -57,6 +59,7 @@
     "cors": "^2.8.5",
     "country-flag-icons": "^1.5.7",
     "express": "^4.17.1",
+    "firebase": "^10.7.1",
     "follow-redirects": "^1.15.9",
     "morgan": "^1.10.0",
     "node-html-parser": "^6.1.13",
@@ -64,8 +67,8 @@
     "react-dom": "19.0.0",
     "react-helmet": "^6.1.0",
     "react-markdown": "^9.0.3",
-    "react-router": "^7.1.1",
-    "react-router-dom": "^7.1.1",
+    "react-router": "^6.22.3",
+    "react-router-dom": "^6.22.3",
     "react-syntax-highlighter": "^15.6.1",
     "react-transition-group": "^4.4.5",
     "rehype-raw": "^7.0.0",
@@ -87,6 +90,7 @@
     "@types/express": "^4.17.7",
     "@types/follow-redirects": "^1.14.4",
     "@types/node": "^22.7.6",
+    "@types/nodemon": "^1.19.6",
     "@types/prismjs": "^1.16.1",
     "@types/react-dom": "19.0.2",
     "@types/react-helmet": "^6.1.6",
@@ -109,7 +113,7 @@
     "pretty-quick": "^3.1.1",
     "rimraf": "^3.0.2",
     "sass": "^1.49.9",
-    "sass-loader": "^10.4.1",
+    "sass-loader": "^16.0.5",
     "sitemap": "^6.3.2",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.4.2",
@@ -126,10 +130,11 @@
   },
   "browserslist": [
     "defaults",
-    "not ie < 11",
+    "not IE 11",
+    "not IE_Mob 11",
     "last 2 versions",
     "> 1%",
-    "iOS 7",
+    "iOS >= 13",
     "last 3 iOS versions"
   ]
 }

@@ -1,7 +1,7 @@
-export type TBinanceCandleData = {
+export interface TBinanceCandleData {
     xValues: number[];
     openValues: number[];
     highValues: number[];
     lowValues: number[];
     closeValues: number[];
-};
+}

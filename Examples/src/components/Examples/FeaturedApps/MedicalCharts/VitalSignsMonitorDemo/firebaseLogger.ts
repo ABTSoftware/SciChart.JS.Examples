@@ -1,6 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, push, get } from "firebase/database";
-import { firebaseConfig } from "../../../../../config/environment";
+
+// Hardcoded Firebase configuration for immediate use
+const firebaseConfig = {
+    apiKey: "AIzaSyAIABSENYVcnKwyggBAxZCTWxXZRYZY4AE",
+    authDomain: "respiratory-biofeedback.firebaseapp.com",
+    databaseURL: "https://respiratory-biofeedback-default-rtdb.firebaseio.com",
+    projectId: "respiratory-biofeedback",
+    storageBucket: "respiratory-biofeedback.firebasestorage.app",
+    messagingSenderId: "37990753006",
+    appId: "1:37990753006:web:3cb23bd151ab1c2bb089ff",
+};
 
 // Debug: Log the config being used
 console.log("Firebase Config being used:", {
@@ -8,18 +18,6 @@ console.log("Firebase Config being used:", {
     authDomain: firebaseConfig.authDomain,
     databaseURL: firebaseConfig.databaseURL,
     projectId: firebaseConfig.projectId,
-});
-
-// Debug: Check environment variables directly
-console.log("Environment variables check:", {
-    REACT_APP_FIREBASE_API_KEY:
-        typeof process !== "undefined"
-            ? process.env?.REACT_APP_FIREBASE_API_KEY?.substring(0, 10) + "..."
-            : "process not available",
-    REACT_APP_FIREBASE_DATABASE_URL:
-        typeof process !== "undefined" ? process.env?.REACT_APP_FIREBASE_DATABASE_URL : "process not available",
-    REACT_APP_FIREBASE_PROJECT_ID:
-        typeof process !== "undefined" ? process.env?.REACT_APP_FIREBASE_PROJECT_ID : "process not available",
 });
 
 // Initialize Firebase with error handling
@@ -56,17 +54,59 @@ export interface ProcessedSensorData {
     gsrTrend: "increasing" | "decreasing" | "stable";
     ecgQuality: "good" | "fair" | "poor";
     hrvMetrics: {
+        // Basic HRV metrics
         sdnn: number;
         rmssd: number;
         pnn50: number;
         lfPower: number;
         hfPower: number;
         lfHfRatio: number;
-        // Additional HRV metrics for medical analysis
         nn50: number; // Number of successive RR intervals that differ by more than 50ms
         triangularIndex: number; // Triangular index of HRV
         stressIndex: number; // Stress index based on HRV
         vagalTone: number; // Vagal tone estimation
+
+        // Advanced HRV metrics
+        meanHR: number; // Mean heart rate
+        meanIBI: number; // Mean inter-beat interval
+        cvIBI: number; // Coefficient of variation of IBI
+
+        // Non-linear HRV measures
+        apEn: number; // Approximate entropy
+        sampEn: number; // Sample entropy
+        dfa: number; // Detrended fluctuation analysis
+        lyapunov: number; // Lyapunov exponent
+        correlationDimension: number; // Correlation dimension
+        hurstExponent: number; // Hurst exponent
+        fractalDimension: number; // Fractal dimension
+
+        // Poincaré plot measures
+        sd1: number; // Standard deviation of short-term variability
+        sd2: number; // Standard deviation of long-term variability
+        sd1sd2Ratio: number; // SD1/SD2 ratio
+
+        // Power spectral analysis
+        vlfPower: number; // Very low frequency power
+        totalPower: number; // Total power
+        normalizedLF: number; // Normalized low frequency power
+        normalizedHF: number; // Normalized high frequency power
+        peakLF: number; // Peak low frequency
+        peakHF: number; // Peak high frequency
+
+        // Wavelet analysis
+        waveletLF: number; // Wavelet low frequency power
+        waveletHF: number; // Wavelet high frequency power
+        waveletTotal: number; // Wavelet total power
+
+        // Overall health assessment
+        overallHRVScore: number; // Overall HRV health score (0-100)
+        autonomicBalance: "parasympathetic" | "sympathetic" | "balanced" | "unknown"; // Autonomic balance
+        stressLevel: "low" | "moderate" | "high" | "critical" | "unknown"; // Stress level assessment
+        recoveryStatus: "excellent" | "good" | "fair" | "poor" | "needs_attention" | "unknown"; // Recovery status
+
+        // Signal quality
+        signalQuality: number; // ECG signal quality (0-100)
+        noiseLevel: number; // Noise level in ECG signal
     };
     respiratoryMetrics: {
         breathCount: number;
@@ -184,7 +224,7 @@ class FirebaseLogger {
 
     /**
      * Log processed sensor data to Firebase
-     * Note: This should only be called when ESP32 is connected (real sensor data)
+     * Note: This logs both real sensor data and fallback data
      */
     async logProcessedData(data: ProcessedSensorData): Promise<void> {
         if (!database) {
@@ -192,11 +232,11 @@ class FirebaseLogger {
             return;
         }
 
-        // Double-check that we're only logging real sensor data
-        if (!data.connectionStatus.esp32Connected) {
-            console.log("⚠️ Firebase Logger: Skipping log - ESP32 not connected (fallback data)");
-            return;
-        }
+        // Log both real sensor data and fallback data
+        const dataSource = data.connectionStatus.esp32Connected
+            ? "Real Sensors (ESP32 Connected)"
+            : "Fallback Data (ESP32 Disconnected)";
+        console.log(`📊 Firebase Logger: Logging ${dataSource}`);
 
         const currentTime = Date.now();
         if (currentTime - this.lastLogTime < this.LOG_INTERVAL) {
@@ -217,16 +257,16 @@ class FirebaseLogger {
                 logId: logRef.key,
                 logSequence: this.logCount,
                 source: "frontend",
-                dataSource: "Real Sensors (ESP32 Connected)",
+                dataSource: dataSource,
             };
 
             await set(logRef, logData);
 
             this.lastLogTime = currentTime;
-            console.log(`✅ Firebase Logger: Successfully logged REAL sensor data #${this.logCount} to Firebase`);
+            console.log(`✅ Firebase Logger: Successfully logged ${dataSource} #${this.logCount} to Firebase`);
             console.log("📊 Logged data:", {
                 timestamp: new Date(currentTime).toISOString(),
-                dataSource: "Real Sensors (ESP32 Connected)",
+                dataSource: dataSource,
                 heartRate: data.heartRate,
                 respiratoryRate: data.respiratoryRate,
                 gsrValue: data.gsrValue,
@@ -273,8 +313,10 @@ class FirebaseLogger {
                 totalLogs: this.logCount,
                 lastLogData: logData,
                 lastUpdate: new Date().toISOString(),
-                dataSource: "Real Sensors (ESP32 Connected)",
-                status: "Active logging - ESP32 connected",
+                dataSource: dataSource,
+                status: data.connectionStatus.esp32Connected
+                    ? "Active logging - ESP32 connected"
+                    : "Active logging - ESP32 disconnected (fallback data)",
             });
         } catch (error) {
             console.error("❌ Firebase Logger: Failed to log data:", error);
