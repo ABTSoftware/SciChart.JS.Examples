@@ -84,19 +84,6 @@ module.exports = {
             patterns: [
                 { from: "src/static/favicon.ico", to: "" },
                 { from: "src/static/webgl-intel.html", to: "" },
-                { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Shale.csv", to: "" },
-                { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Density.csv", to: "" },
-                {
-                    from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Resistivity.csv",
-                    to: "",
-                },
-                {
-                    from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/PoreSpace.csv",
-                    to: "",
-                },
-                { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Sonic.csv", to: "" },
-                { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Texture.csv", to: "" },
-                { from: "src/server/vanillaDemo/common.js", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart.browser.mjs", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
