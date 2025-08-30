@@ -149,13 +149,13 @@ const VitalSignsMonitorDemo: React.FC = () => {
     const [citationsExpanded, setCitationsExpanded] = useState(false);
     const debugLogger = DebugLogger.getInstance();
     const controlsRef = useRef<any>(null);
-    const gsrAnalyzerRef = useRef<GSRTrendAnalyzer>(new GSRTrendAnalyzer());
-    const ecgProcessorRef = useRef<ECGSignalProcessor>(new ECGSignalProcessor({ age: 30, gender: "male" }));
+    const gsrAnalyzerRef = useRef<GSRTrendAnalyzer | null>(null);
+    const ecgProcessorRef = useRef<ECGSignalProcessor | null>(null);
 
     // Rolling window calculators for rate-based metrics
-    const bpmCalculator = useRef<RollingWindowCalculator>(new RollingWindowCalculator(60000)); // 60 seconds for BPM
-    const respCalculator = useRef<RollingWindowCalculator>(new RollingWindowCalculator(60000)); // 60 seconds for respiratory rate
-    const gsrCalculator = useRef<RollingWindowCalculator>(new RollingWindowCalculator(60000)); // 60 seconds for GSR trends
+    const bpmCalculator = useRef<RollingWindowCalculator | null>(null);
+    const respCalculator = useRef<RollingWindowCalculator | null>(null);
+    const gsrCalculator = useRef<RollingWindowCalculator | null>(null);
 
     // Session timing reference for real-time calculations
     const sessionStartTime = useRef<number>(Date.now());
@@ -230,10 +230,20 @@ const VitalSignsMonitorDemo: React.FC = () => {
         }
     };
 
-    // Update values periodically to simulate real-time monitoring (only when not connected)
+    // Update values periodically to simulate real-time monitoring (ONLY when not connected)
     useEffect(() => {
         const interval = setInterval(() => {
+            // CRITICAL: Only run fallback updates when WebSocket is NOT connected
+            // This prevents fallback values from overwriting real ESP32 data
+            if (wsConnected) {
+                console.log("✅ WebSocket connected - skipping fallback updates to preserve ESP32 data");
+                return; // Exit early if WebSocket is connected
+            }
+
             if (!wsConnected) {
+                console.log("🔄 Running fallback updates (WebSocket disconnected)");
+                // Ensure all refs are initialized
+                ensureRefsInitialized();
                 // Generate fallback values when ESP32 is disconnected
                 const newEcg = generateFallbackValue("ecg");
                 const newBpm = generateFallbackValue("bpm");
@@ -388,22 +398,21 @@ const VitalSignsMonitorDemo: React.FC = () => {
                 setInfoHrv(newHrv);
                 setInfoGsr(gsrCalculator.current.getAverageValue());
 
-                // Set respiratory rate directly from generated value, then update from rolling window
-                setInfoResp(newResp);
-                const calculatedResp = Math.round(respCalculator.current.calculateRate());
-                if (calculatedResp > 0) {
-                    setInfoResp(calculatedResp); // Use rolling window if available
-                }
-
-                // Add respiratory rate to debug log after calculation
-                console.log("🔄 Fallback Respiratory Update:", {
-                    respiratory: newResp,
-                    calculatedResp: calculatedResp,
-                    finalResp: calculatedResp > 0 ? calculatedResp : newResp,
-                });
-
                 // Only update fallback data when ESP32 is disconnected
                 if (!wsConnected) {
+                    // Set respiratory rate directly from generated value, then update from rolling window
+                    setInfoResp(newResp);
+                    const calculatedResp = Math.round(respCalculator.current.calculateRate());
+                    if (calculatedResp > 0) {
+                        setInfoResp(calculatedResp); // Use rolling window if available
+                    }
+
+                    // Add respiratory rate to debug log after calculation
+                    console.log("🔄 Fallback Respiratory Update:", {
+                        respiratory: newResp,
+                        calculatedResp: calculatedResp,
+                        finalResp: calculatedResp > 0 ? calculatedResp : newResp,
+                    });
                     // Update breathing pattern animation
                     const animatedInhalePercent = 35 + Math.sin(Date.now() * 0.001) * 10;
                     setInhalePercent(animatedInhalePercent);
@@ -415,17 +424,19 @@ const VitalSignsMonitorDemo: React.FC = () => {
                     setGsrTrend(fallbackGsrTrend);
 
                     // Generate fallback ECG metrics using the ECG processor
-                    ecgProcessorRef.current.addECGPoint(newEcg, timestamp);
+                    if (ecgProcessorRef.current) {
+                        ecgProcessorRef.current.addECGPoint(newEcg, timestamp);
 
-                    // Add IBI data (convert BPM to IBI)
-                    if (newBpm > 0) {
-                        const ibi = 60000 / newBpm; // Convert BPM to milliseconds
-                        ecgProcessorRef.current.addIBI(ibi, timestamp);
+                        // Add IBI data (convert BPM to IBI)
+                        if (newBpm > 0) {
+                            const ibi = 60000 / newBpm; // Convert BPM to milliseconds
+                            ecgProcessorRef.current.addIBI(ibi, timestamp);
+                        }
+
+                        // Get enhanced fallback metrics
+                        const fallbackEcgMetrics = ecgProcessorRef.current.getMetrics();
+                        setEcgMetrics(fallbackEcgMetrics);
                     }
-
-                    // Get enhanced fallback metrics
-                    const fallbackEcgMetrics = ecgProcessorRef.current.getMetrics();
-                    setEcgMetrics(fallbackEcgMetrics);
 
                     // Set fallback respiration metrics using calculated values (not fake sine waves)
                     const fallbackRate = Math.round(respCalculator.current.calculateRate());
@@ -470,6 +481,44 @@ const VitalSignsMonitorDemo: React.FC = () => {
 
         return () => clearInterval(interval);
     }, [wsConnected]);
+
+    // Initialize all processors and calculators only once
+    useEffect(() => {
+        if (!ecgProcessorRef.current) {
+            ecgProcessorRef.current = new ECGSignalProcessor({ age: 30, gender: "male" });
+        }
+        if (!gsrAnalyzerRef.current) {
+            gsrAnalyzerRef.current = new GSRTrendAnalyzer();
+        }
+        if (!bpmCalculator.current) {
+            bpmCalculator.current = new RollingWindowCalculator(60000);
+        }
+        if (!respCalculator.current) {
+            respCalculator.current = new RollingWindowCalculator(60000);
+        }
+        if (!gsrCalculator.current) {
+            gsrCalculator.current = new RollingWindowCalculator(60000);
+        }
+    }, []);
+
+    // Helper function to ensure refs are initialized
+    const ensureRefsInitialized = () => {
+        if (!ecgProcessorRef.current) {
+            ecgProcessorRef.current = new ECGSignalProcessor({ age: 30, gender: "male" });
+        }
+        if (!gsrAnalyzerRef.current) {
+            gsrAnalyzerRef.current = new GSRTrendAnalyzer();
+        }
+        if (!bpmCalculator.current) {
+            bpmCalculator.current = new RollingWindowCalculator(60000);
+        }
+        if (!respCalculator.current) {
+            respCalculator.current = new RollingWindowCalculator(60000);
+        }
+        if (!gsrCalculator.current) {
+            gsrCalculator.current = new RollingWindowCalculator(60000);
+        }
+    };
 
     // Firebase logging effect
     useEffect(() => {
@@ -1632,6 +1681,9 @@ const VitalSignsMonitorDemo: React.FC = () => {
                             const unsub = initResult.subscribeToDataUpdates((info: any) => {
                                 if (!info) return undefined;
 
+                                // Ensure all refs are initialized
+                                ensureRefsInitialized();
+
                                 // Debug: Log all incoming data
                                 console.log("📡 Data Update Event Received:", {
                                     type: info.type,
@@ -1769,6 +1821,8 @@ const VitalSignsMonitorDemo: React.FC = () => {
                                                     console.log("🫁 Processing Respiratory Data:", info.respiratory);
                                                     console.log("🔍 Respiratory WebSocket Raw Data:", {
                                                         rawValue: info.respiratory,
+                                                        rawInhaleRatio: info.inhaleRatio,
+                                                        rawExhaleRatio: info.exhaleRatio,
                                                         dataType: typeof info.respiratory,
                                                         timestamp: timestamp,
                                                         source: "WebSocket",
@@ -1778,16 +1832,40 @@ const VitalSignsMonitorDemo: React.FC = () => {
                                                     // ESP32 now sends calculated breath rate in breaths/min
                                                     const finalRespRate = Math.round(info.respiratory);
                                                     console.log("🫁 Setting Respiratory Rate:", finalRespRate);
+                                                    console.log("🫁 Previous Respiratory Rate:", infoResp);
                                                     setInfoResp(finalRespRate);
 
-                                                    // Update breathing pattern based on respiratory rate
-                                                    const baseInhale = 40; // Base inhale percentage
-                                                    const rateVariation = (finalRespRate - 16) / 4; // Adjust based on rate
-                                                    const dynamicInhale = Math.max(
-                                                        35,
-                                                        Math.min(45, baseInhale + rateVariation)
-                                                    );
-                                                    setInhalePercent(dynamicInhale);
+                                                    // Use actual inhale/exhale ratios from MPU6050 instead of calculating
+                                                    let finalInhaleRatio = 40; // Default fallback
+                                                    let finalExhaleRatio = 60; // Default fallback
+
+                                                    if (
+                                                        typeof info.inhaleRatio === "number" &&
+                                                        typeof info.exhaleRatio === "number"
+                                                    ) {
+                                                        finalInhaleRatio = Math.round(info.inhaleRatio * 10) / 10; // Round to 1 decimal
+                                                        finalExhaleRatio = Math.round(info.exhaleRatio * 10) / 10; // Round to 1 decimal
+                                                        console.log(
+                                                            "🫁 Using MPU6050 I/E Ratios:",
+                                                            finalInhaleRatio + "%/" + finalExhaleRatio + "%"
+                                                        );
+                                                    } else {
+                                                        // Fallback calculation if ratios not provided
+                                                        const baseInhale = 40; // Base inhale percentage
+                                                        const rateVariation = (finalRespRate - 16) / 4; // Adjust based on rate
+                                                        finalInhaleRatio = Math.max(
+                                                            35,
+                                                            Math.min(45, baseInhale + rateVariation)
+                                                        );
+                                                        finalExhaleRatio = 100 - finalInhaleRatio;
+                                                        console.log(
+                                                            "🫁 Using Fallback I/E Ratios:",
+                                                            finalInhaleRatio + "%/" + finalExhaleRatio + "%"
+                                                        );
+                                                    }
+
+                                                    console.log("🫁 Setting Inhale Percent:", finalInhaleRatio);
+                                                    setInhalePercent(finalInhaleRatio);
 
                                                     // Update respiration metrics with REAL ESP32 data using validated medical formulas
                                                     // Based on: "Continuous Determination of Respiratory Rate in Hospitalized Patients using Machine Learning Applied to Electrocardiogram Telemetry" - Thomas Kite et al.
@@ -1807,8 +1885,8 @@ const VitalSignsMonitorDemo: React.FC = () => {
 
                                                     setRespirationMetrics({
                                                         rate: respRate,
-                                                        inhalePercent: dynamicInhale,
-                                                        exhalePercent: 100 - dynamicInhale,
+                                                        inhalePercent: finalInhaleRatio,
+                                                        exhalePercent: finalExhaleRatio,
                                                         lastBreathTime: lastBreathTime,
                                                         breathCount: breathCount,
                                                         averageCycleDuration: baseCycleTime,
@@ -1848,6 +1926,19 @@ const VitalSignsMonitorDemo: React.FC = () => {
                                                         respiratoryDistressScore: 0.05 + Math.abs(respRate - 16) * 0.02,
                                                         breathingPatternQuality: 0.95 - Math.abs(respRate - 16) * 0.02,
                                                         respiratoryFatigueIndex: 0.05 + Math.abs(respRate - 16) * 0.015,
+                                                    });
+
+                                                    // Debug: Log when breathing pattern card should update
+                                                    console.log("🫁 Breathing Pattern Card Update:", {
+                                                        inhalePercent: finalInhaleRatio,
+                                                        exhalePercent: finalExhaleRatio,
+                                                        respiratoryRate: finalRespRate,
+                                                        timestamp: new Date().toISOString(),
+                                                        source: "MPU6050 WebSocket Data",
+                                                        previousInhalePercent:
+                                                            respirationMetrics?.inhalePercent || "N/A",
+                                                        previousExhalePercent:
+                                                            respirationMetrics?.exhalePercent || "N/A",
                                                     });
 
                                                     // Also add to calculator for averaging
@@ -2453,13 +2544,13 @@ const VitalSignsMonitorDemo: React.FC = () => {
                             </div>
                             <div style={breathingLabelStyle}>
                                 Inhale:{" "}
-                                {wsConnected && respirationMetrics
-                                    ? respirationMetrics.inhalePercent.toFixed(2)
-                                    : inhalePercent.toFixed(2)}
+                                {wsConnected && respirationMetrics && respirationMetrics.inhalePercent > 0
+                                    ? respirationMetrics.inhalePercent.toFixed(1)
+                                    : inhalePercent.toFixed(1)}
                                 % | Exhale:{" "}
-                                {wsConnected && respirationMetrics
-                                    ? respirationMetrics.exhalePercent.toFixed(2)
-                                    : (100 - inhalePercent).toFixed(2)}
+                                {wsConnected && respirationMetrics && respirationMetrics.exhalePercent > 0
+                                    ? respirationMetrics.exhalePercent.toFixed(1)
+                                    : (100 - inhalePercent).toFixed(1)}
                                 %
                             </div>
                             <div style={breathingStateStyle}>

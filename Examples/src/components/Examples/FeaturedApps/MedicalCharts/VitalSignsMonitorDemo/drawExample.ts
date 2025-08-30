@@ -350,39 +350,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const runUpdateDataOnTimeout = () => {
         const { xArr, ecgArr, gsrArr, respArr } = getValuesFromData(currentPoint);
 
-        // Debug: Log fallback data generation (only every 1000 points to avoid spam)
-        if (currentPoint % 1000 === 0) {
-            console.log("📊 Fallback data generated:", {
-                currentPoint,
-                xArr: xArr.length,
-                ecgArr: ecgArr.length,
-                gsrArr: gsrArr.length,
-                respArr: respArr.length,
-                sampleEcg: ecgArr[0],
-                sampleGsr: gsrArr[0],
-                sampleResp: respArr[0],
-                ecgRange: `${Math.min(...ecgArr)} to ${Math.max(...ecgArr)}`,
-                gsrRange: `${Math.min(...gsrArr)} to ${Math.max(...gsrArr)}`,
-                xRange: `${Math.min(...xArr)} to ${Math.max(...xArr)} (limited range)`,
-            });
-        }
-
         try {
             // Simple data append - let FIFO handle the rest
             dataSeriesEcg.appendRange(xArr, ecgArr);
             dataSeriesGsr.appendRange(xArr, gsrArr);
             dataSeriesResp.appendRange(xArr, respArr);
-
-            // Debug: Check if data is actually being added to the series
-            if (currentPoint % 1000 === 0) {
-                console.log("📈 Chart data status:", {
-                    ecgSeriesCount: dataSeriesEcg.count(),
-                    gsrSeriesCount: dataSeriesGsr.count(),
-                    respSeriesCount: dataSeriesResp.count(),
-                    lastEcgValue: ecgArr[ecgArr.length - 1],
-                    lastGsrValue: gsrArr[gsrArr.length - 1],
-                });
-            }
 
             // Ensure data is visible
             if (sciChartSurface) {
@@ -401,12 +373,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 respiratory: respArr[STEP - 1],
             };
 
-            // Debug: Log fallback data being sent to UI
-            if (currentPoint % 200 === 0) {
-                // Log every 1000 points to avoid spam
-                console.log("📊 Sending fallback data to UI:", fallbackData);
-            }
-
             dataUpdateEventHandler.raiseEvent(fallbackData);
         }
         timerId = setTimeout(runUpdateDataOnTimeout, TIMER_TIMEOUT_MS);
@@ -417,25 +383,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Start fallback data after a small delay to ensure chart is ready
     if (!timerId) {
-        console.log("🚀 Starting fallback data generation after chart initialization...");
-
         // Small delay to ensure chart is fully ready
         setTimeout(() => {
-            console.log("⏰ Chart ready, starting fallback data...");
-
             // Add initial data to start the rolling window
             const initialData = getValuesFromData(0);
             try {
                 dataSeriesEcg.appendRange(initialData.xArr, initialData.ecgArr);
                 dataSeriesGsr.appendRange(initialData.xArr, initialData.gsrArr);
                 dataSeriesResp.appendRange(initialData.xArr, initialData.respArr);
-                console.log("📊 Initial fallback data added:", {
-                    ecgPoints: initialData.ecgArr.length,
-                    gsrPoints: initialData.gsrArr.length,
-                    respPoints: initialData.respArr.length,
-                    ecgRange: `${Math.min(...initialData.ecgArr)} to ${Math.max(...initialData.ecgArr)}`,
-                    xRange: `${Math.min(...initialData.xArr)} to ${Math.max(...initialData.xArr)} (limited range)`,
-                });
 
                 // Send initial fallback data to UI immediately
                 const initialFallbackData = {
@@ -444,7 +399,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     gsr: initialData.gsrArr[initialData.gsrArr.length - 1],
                     respiratory: initialData.respArr[initialData.respArr.length - 1],
                 };
-                console.log("🚀 Sending initial fallback data to UI:", initialFallbackData);
+
                 dataUpdateEventHandler.raiseEvent(initialFallbackData);
             } catch (error) {
                 console.error("Error adding initial fallback data:", error);

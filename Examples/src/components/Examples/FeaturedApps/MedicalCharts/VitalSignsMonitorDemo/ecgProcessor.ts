@@ -451,7 +451,7 @@ export class ECGSignalProcessor {
             gender: "male", // Default gender
             ...config,
         };
-        info("ECG", "ECGSignalProcessor initialized", this.config);
+        // ECG Signal Processor initialized silently
     }
 
     // Add new ECG data point
