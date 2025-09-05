@@ -118,13 +118,13 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(({ example, i
                                 gridType === EGridType.Cardview
                                     ? classes.cardView
                                     : gridType === EGridType.Grid2or3
-                                    ? classes.gridView2or3
-                                    : classes.gridView5or6
+                                        ? classes.gridView2or3
+                                        : classes.gridView5or6
                             }
                         `}
                 >
                     {example.items.map((item, index) => (
-                        <a key={index} href={`/${framework}/${item.examplePath}`} className={classes.card}>
+                        <Link key={index} to={`/${framework}/${item.examplePath}`} className={classes.card}>
                             <div className={classes.imgWrapper}>
                                 {item?.isNew && 
                                     <div className={classes.newBanner}><span>NEW!</span></div>
@@ -162,7 +162,7 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(({ example, i
                                     </div>
                                 )}
                             </div>
-                        </a>
+                        </Link>
                     ))}
                 </section>
             ) : (
