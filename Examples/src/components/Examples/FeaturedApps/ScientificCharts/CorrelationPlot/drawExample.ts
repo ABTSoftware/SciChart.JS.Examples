@@ -28,10 +28,12 @@ import {
     EAxisAlignment,
     TextLabelProvider,
     ELabelAlignment,
+    ETitlePosition,
+    SciChartVerticalGroup,
 } from "scichart";
 
 import correlationLinePoints from "./correlationLinePoints";
-import { getSubChartPositionIndexes } from "../../../FeaturedApps/FeatureDemos/SubChartsAPI/helpers";
+import { getSubChartPositionIndexes } from "../../FeatureDemos/SubChartsAPI/helpers";
 
 const axisOptions: INumericAxisOptions = {
     useNativeText: true,
@@ -43,23 +45,25 @@ const axisOptions: INumericAxisOptions = {
     drawMajorGridLines: false,
     labelStyle: { fontSize: 8 },
     labelFormat: ENumericFormat.Decimal,
-    labelPrecision: 0,
-    autoRange: EAutoRange.Once,
+    labelPrecision: 1,
 };
 
 // theme overrides
 const sciChartTheme = appTheme.SciChartJsTheme;
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
+    // Use createSingle here to get the performance benefit of subcharts
     const { wasmContext, sciChartSurface: mainSurface } = await SciChartSurface.createSingle(rootElement, {
         theme: sciChartTheme,
+        title: "Hold Ctrl to Zoom / Pan the whole grid rather than an individual chart",
+        titleStyle: { fontSize: 14, position: ETitlePosition.Bottom },
     });
 
     const subChartsNumber = 24;
     const columnsNumber = 6;
     const rowsNumber = 4;
 
-    const pointsOnChart = 200;
+    const pointsOnChart = 5000;
 
     const subchartBorderColor = appTheme.VividSkyBlue;
     const scatterColor = appTheme.VividSkyBlue;
@@ -81,7 +85,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         isVisible: true,
         id: "mainXAxis",
         visibleRange: new NumberRange(xAxisVisibleRange.min, xAxisVisibleRange.max),
-        visibleRangeLimit: new NumberRange(xAxisVisibleRange.min, xAxisVisibleRange.max),
+        // Uncomment this to limit panning when fully zoomed out
+        //visibleRangeLimit: new NumberRange(xAxisVisibleRange.min, xAxisVisibleRange.max),
         axisAlignment: EAxisAlignment.Top,
         useNativeText: false,
         labelProvider: new TextLabelProvider({
@@ -97,6 +102,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         },
     });
 
+    // provide hardcoded tick values for the x axis as these will be used to position column names
     mainXAxis.tickProvider.getMajorTicks = (minorDelta: number, majorDelta: number, visibleRange: NumberRange) =>
         [...new Array(columnsNumber)].map((d, i) => i + 0.5);
 
@@ -110,7 +116,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         isVisible: true,
         id: "mainYAxis",
         visibleRange: new NumberRange(yAxisVisibleRange.min, yAxisVisibleRange.max),
-        visibleRangeLimit: new NumberRange(yAxisVisibleRange.min, yAxisVisibleRange.max),
+        // Uncomment this to limit panning when fully zoomed out
+        //visibleRangeLimit: new NumberRange(yAxisVisibleRange.min, yAxisVisibleRange.max),
         axisAlignment: EAxisAlignment.Left,
         flippedCoordinates: true,
         useNativeText: false,
@@ -128,6 +135,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     mainSurface.yAxes.add(mainYAxis);
 
+    // The executeCondition set here allows these modifiers to activate independently of the ones on the individual subSurfaces
     mainSurface.chartModifiers.add(
         new ZoomExtentsModifier({ executeCondition: { key: EModifierMouseArgKey.Ctrl } }),
         new ZoomPanModifier({
@@ -137,6 +145,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
 
     const subChartPositioningCoordinateMode = ESubSurfacePositionCoordinateMode.DataValue;
+    const vGroup = new SciChartVerticalGroup();
+    let maxYRange = new NumberRange(-1, 1);
 
     const initSubChart = (subChartIndex: number) => {
         const { rowIndex, columnIndex } = getSubChartPositionIndexes(subChartIndex, columnsNumber);
@@ -145,7 +155,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         const height = 1;
 
         const position = new Rect(columnIndex * width, rowIndex * height, width, height);
-
         // sub-surface configuration
         const subChartOptions: I2DSubSurfaceOptions = {
             id: `subChart-${subChartIndex}`,
@@ -169,7 +178,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             ...axisOptions,
             id: `${subChartSurface.id}-XAxis`,
             growBy: new NumberRange(0.04, 0.04),
-            useNativeText: true,
+            isVisible: rowIndex === rowsNumber - 1,
         });
 
         subChartSurface.xAxes.add(subChartXAxis);
@@ -177,29 +186,46 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         const subChartYAxis = new NumericAxis(wasmContext, {
             ...axisOptions,
             id: `${subChartSurface.id}-YAxis`,
-            growBy: new NumberRange(0.05, 0.15),
-            useNativeText: true,
+            axisAlignment: EAxisAlignment.Left,
+            isVisible: columnIndex === 0,
         });
+
         subChartSurface.yAxes.add(subChartYAxis);
+
+        if (columnIndex === 0) {
+            // Synchonise axis sizes
+            vGroup.addSurfaceToGroup(subChartSurface);
+            // Set y ranges for previous Row
+            if (rowIndex > 0) {
+                const start = (rowIndex - 1) * columnsNumber;
+                for (let index = start; index < start + columnsNumber; index++) {
+                    mainSurface.subCharts[index].yAxes.get(0).visibleRange = maxYRange;
+                }
+            }
+            // reset range tracking
+            maxYRange = new NumberRange(-1, 1);
+        }
+
+        const gaussianRand = (mean: number = 0.5, dist: number = 1) => {
+            let rand = 0;
+            for (let i = 0; i < 6; i += 1) {
+                rand += Math.random() * dist + mean;
+            }
+            return rand / 6;
+        };
 
         // generating random data for scatterplots
         function generateScatterplotData(numElements: number) {
             let x: number[] = [];
             let y: number[] = [];
 
-            let randomNum = Math.random();
+            let randomNum = (Math.random() - 0.5) * 3;
+            let randomNum1 = Math.random();
 
-            if (randomNum <= 0.33) {
-                x = Array.from({ length: numElements }, (x, i) => i);
-                y = x.map((x) => 0.01 * x + x * Math.random());
-            } else if (randomNum <= 0.66) {
-                x = Array.from({ length: numElements }, (x, i) => i);
-                y = x.map((x) => numElements / (x * Math.random() + 5));
-            } else {
-                for (let i = 0; i < numElements; i++) {
-                    x.push(Math.random());
-                    y.push(Math.random());
-                }
+            for (let i = 0; i < numElements; i++) {
+                const xVal = gaussianRand(0.5, 1);
+                x.push(xVal);
+                y.push(gaussianRand(xVal * randomNum, 1 + randomNum1 * 3));
             }
             return { x, y };
         }
@@ -215,7 +241,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             }),
             stroke: correlationCoefficient > 0.1 ? lineUp : correlationCoefficient < -0.1 ? lineDown : lineHorizontal,
             strokeThickness: 3,
-            opacity: 0.6,
+            opacity: 0.8,
             animation: new FadeAnimation({ duration: 600, fadeEffect: true }),
         });
 
@@ -246,6 +272,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         subChartSurface.renderableSeries.add(scatterSeries, lineSeries);
         subChartSurface.annotations.add(annotation);
 
+        const xRange = scatterSeries.getXRange();
+        const yRange = scatterSeries.getYRange(xRange);
+        if (yRange.min < maxYRange.min || yRange.max > maxYRange.max) {
+            maxYRange = maxYRange.union(yRange);
+        }
+
         subChartSurface.chartModifiers.add(
             new ZoomExtentsModifier(),
             new ZoomPanModifier(),
@@ -256,6 +288,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // generate the subcharts grid
     for (let subChartIndex = 0; subChartIndex < subChartsNumber; subChartIndex += 1) {
         initSubChart(subChartIndex);
+    }
+    // set last row y range
+    const start = (rowsNumber - 1) * columnsNumber;
+    for (let index = start; index < start + columnsNumber; index++) {
+        mainSurface.subCharts[index].yAxes.get(0).visibleRange = maxYRange;
     }
 
     return {

@@ -1,8 +1,8 @@
-# Scatter Chart Example
+# Correlation Plot Example
 
 ## Overview
 
-This example demonstrates how to create a scatter chart using SciChart.JS. The example displays two scatter series with different point markers, one using an ellipse and the other using a triangle. Implementations are provided for multiple frameworks including Angular, React, and Vanilla JavaScript.
+This example demonstrates a high performance Scatter chart grid with 5000 points per chart using the subcharts api in SciChart.js which can be used to create a Correlation Plot. Implementations are provided for multiple frameworks including Angular, React, and Vanilla JavaScript.
 
 ## Technologies Used
 
@@ -14,20 +14,18 @@ This example demonstrates how to create a scatter chart using SciChart.JS. The e
 
 ## Code Explanation
 
--   **drawExample (drawExample.js / drawExample.ts)**: This file contains the core logic for creating the chart. It initializes a SciChartSurface, adds numeric X and Y axes, and generates two scatter series with 250 data points each. The first series uses an ellipse point marker while the second one uses a triangle point marker. Both series include a sweep animation effect with configurable duration and optional delay. Additionally, interactivity is added through zooming and panning modifiers.
+-   **drawExample (drawExample.js / drawExample.ts)**: This file contains the core logic for creating the chart. It initializes a SciChartSurface, adds numeric X and Y axes, and generates a grid of subcharts, each with 5000 points of randomly generated data with a random correlation.
+-   **correlationLinePoints.ts**: This file contains a function to calculate the line of best fit.
 -   **angular.ts**: This file defines an Angular component that uses the `scichart-angular` component to initialize and render the chart using the `drawExample` function.
 -   **index.tsx**: The React entry file renders the chart within a React component using the `SciChartReact` component, again initializing the chart via `drawExample`.
 -   **vanilla.js / vanilla.ts**: These files show how to integrate the chart in plain JavaScript or TypeScript by calling `drawExample` on a target HTML element (with id "chart"). They also provide a cleanup mechanism by returning a destructor function to delete the chart when needed.
--   **javascript-scatter-chart.jpg**: An image asset likely representing a screenshot of the resulting scatter chart.
 
 ## Customization
 
 Key configuration options include:
 
--   **Data Generation**: Generates 250 data points with randomness in the y-values.
--   **Point Markers**: Uses different point markers (Ellipse for one series and Triangle for the second) with configurable color, width, and height.
--   **Animation**: Both series are animated with a sweep animation (duration set to 600ms, fade effect, and an optional delay of 200ms for the second series).
--   **Modifiers**: Includes interactivity modifiers such as ZoomPanModifier, ZoomExtentsModifier, and MouseWheelZoomModifier for improved user interaction.
+-   **Data Generation**: You can configure the number of points per chart and the number of rows and columns
+-   **Modifiers**: Includes interactivity modifiers such as ZoomPanModifier, ZoomExtentsModifier, and MouseWheelZoomModifier both on the individual charts, and on the main surface, allowing zooming and panning of the grid as a whole.
 
 ## Running the Example
 
