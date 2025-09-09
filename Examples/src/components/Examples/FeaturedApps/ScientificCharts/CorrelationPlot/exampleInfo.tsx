@@ -52,7 +52,7 @@ const metaData: IExampleMetadata =
         path: "correlation-plot",
         metaKeywords: "scatter, chart, subcharts, statistics, javascript, webgl, canvas",
         onWebsite: true,
-        filepath: "Charts2D/FeaturedApps/ScientificCharts/CorrelationPlot",
+        filepath: "FeaturedApps/ScientificCharts/CorrelationPlot",
         thumbnailImage: "javascript-correlation-plot.jpg",
         sandboxConfig: {},
         markdownContent: null,
