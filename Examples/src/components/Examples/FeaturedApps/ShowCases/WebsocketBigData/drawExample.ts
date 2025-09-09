@@ -59,12 +59,13 @@ let avgRenderTime: number = 0;
 
 function GetRandomData(xValues: number[], positive: boolean) {
     let prevYValue = Math.random();
-    const yValues: number[] = [];
+    const length = xValues.length;
+    const yValues: number[] = new Array(length); // Pre-allocate array
     // tslint:disable-next-line: prefer-for-of
-    for (let j = 0; j < xValues.length; j++) {
+    for (let j = 0; j < length; j++) {
         const change = Math.random() * 10 - 5;
         prevYValue = positive ? Math.abs(prevYValue + change) : prevYValue + change;
-        yValues.push(prevYValue);
+        yValues[j] = prevYValue;
     }
     return yValues;
 }
@@ -73,34 +74,37 @@ const extendRandom = (val: number, max: number) => val + Math.random() * max;
 
 const generateCandleData = (xValues: number[]) => {
     let open = 10;
-    const openValues = [];
-    const highValues = [];
-    const lowValues = [];
-    const closeValues = [];
+    const length = xValues.length;
+    const openValues = new Array(length);
+    const highValues = new Array(length);
+    const lowValues = new Array(length);
+    const closeValues = new Array(length);
 
-    for (let i = 0; i < xValues.length; i++) {
+    for (let i = 0; i < length; i++) {
         const close = open + Math.random() * 10 - 5;
         const high = Math.max(open, close);
-        highValues.push(extendRandom(high, 5));
+        highValues[i] = extendRandom(high, 5);
         const low = Math.min(open, close);
-        lowValues.push(extendRandom(low, -5));
-        closeValues.push(close);
-        openValues.push(open);
+        lowValues[i] = extendRandom(low, -5);
+        closeValues[i] = close;
+        openValues[i] = open;
         open = close;
     }
     return { openValues, highValues, lowValues, closeValues };
 };
 
 const generateCandleDataForAppendRange = (open: number, closeValues: number[]) => {
-    const openValues = [];
-    const highValues = [];
-    const lowValues = [];
-    for (const close of closeValues) {
-        openValues.push(open);
+    const length = closeValues.length;
+    const openValues = new Array(length);
+    const highValues = new Array(length);
+    const lowValues = new Array(length);
+    for (let i = 0; i < length; i++) {
+        const close = closeValues[i];
+        openValues[i] = open;
         const high = Math.max(open, close);
-        highValues.push(extendRandom(high, 5));
+        highValues[i] = extendRandom(high, 5);
         const low = Math.min(open, close);
-        lowValues.push(extendRandom(low, -5));
+        lowValues[i] = extendRandom(low, -5);
         open = close;
     }
     return { openValues, highValues, lowValues, closeValues };
@@ -401,12 +405,14 @@ export const drawExample =
         };
 
         const dataBuffer: { x: number[]; ys: number[][]; sendTime: number }[] = [];
+        const maxBufferSize = 20; // Limit buffer size to prevent memory issues
         let isRunning: boolean = false;
         const newMessages: TMessage[] = [];
         let loadStart = 0;
         let loadTime = 0;
         let renderStart = 0;
         let renderTime = 0;
+        let droppedPackets = 0;
 
         const loadData = (data: { x: number[]; ys: number[][]; sendTime: number }) => {
             for (let i = 0; i < seriesCount; i++) {
@@ -427,45 +433,91 @@ export const drawExample =
             renderStart = new Date().getTime();
         });
 
+        let messageUpdateCounter = 0;
         sciChartSurface.rendered.subscribe(() => {
             if (!isRunning || loadStart === 0) return;
             avgLoadTime = (avgLoadTime * loadCount + loadTime) / (loadCount + 1);
             renderTime = new Date().getTime() - renderStart;
             avgRenderTime = (avgRenderTime * loadCount + renderTime) / (loadCount + 1);
-            newMessages.push({
-                title: `Avg Load Time `,
-                detail: `${avgLoadTime.toFixed(2)} ms`,
-            });
-            newMessages.push({
-                title: `Avg Render Time `,
-                detail: `${avgRenderTime.toFixed(2)} ms`,
-            });
-            newMessages.push({
-                title: `Max FPS `,
-                detail: `${Math.min(60, 1000 / (avgLoadTime + avgRenderTime)).toFixed(1)}`,
-            });
-            updateMessages(newMessages);
-            newMessages.length = 0;
+            loadCount++;
+
+            // Only update messages every 10 renders to reduce DOM overhead
+            messageUpdateCounter++;
+            if (messageUpdateCounter >= 10) {
+                newMessages.push({
+                    title: `Avg Load Time `,
+                    detail: `${avgLoadTime.toFixed(2)} ms`,
+                });
+                newMessages.push({
+                    title: `Avg Render Time `,
+                    detail: `${avgRenderTime.toFixed(2)} ms`,
+                });
+                newMessages.push({
+                    title: `Max FPS `,
+                    detail: `${Math.min(60, 1000 / (avgLoadTime + avgRenderTime)).toFixed(1)}`,
+                });
+                if (droppedPackets > 0) {
+                    newMessages.push({
+                        title: `Dropped Packets `,
+                        detail: `${droppedPackets}`,
+                    });
+                }
+                updateMessages(newMessages);
+                newMessages.length = 0;
+                messageUpdateCounter = 0;
+            }
         });
 
         const loadFromBuffer = () => {
             if (dataBuffer.length > 0) {
                 loadStart = new Date().getTime();
-                const x: number[] = dataBuffer[0].x;
-                const ys: number[][] = dataBuffer[0].ys;
-                const sendTime = dataBuffer[0].sendTime;
-                for (let i = 1; i < dataBuffer.length; i++) {
-                    const el = dataBuffer[i];
-                    x.push(...el.x);
-                    for (let y = 0; y < el.ys.length; y++) {
-                        ys[y].push(...el.ys[y]);
-                    }
+
+                // Process multiple buffered items more efficiently
+                const batchSize = Math.min(dataBuffer.length, 5); // Limit batch processing
+                let totalXLength = 0;
+                let totalYsLength = 0;
+
+                // Calculate total lengths to pre-allocate arrays
+                for (let i = 0; i < batchSize; i++) {
+                    totalXLength += dataBuffer[i].x.length;
+                    if (i === 0) totalYsLength = dataBuffer[i].ys.length;
                 }
-                loadData({ x, ys, sendTime });
-                dataBuffer.length = 0;
+
+                // Pre-allocate arrays for better performance
+                const x = new Array(totalXLength);
+                const ys: number[][] = new Array(totalYsLength);
+                for (let j = 0; j < totalYsLength; j++) {
+                    ys[j] = new Array(totalXLength);
+                }
+
+                let xIndex = 0;
+                let yIndex = 0;
+
+                // Copy data efficiently without spread operator
+                for (let i = 0; i < batchSize; i++) {
+                    const el = dataBuffer[i];
+                    const elXLength = el.x.length;
+
+                    // Copy x values
+                    for (let k = 0; k < elXLength; k++) {
+                        x[xIndex++] = el.x[k];
+                    }
+
+                    // Copy y values
+                    for (let y = 0; y < el.ys.length; y++) {
+                        for (let k = 0; k < elXLength; k++) {
+                            ys[y][yIndex + k] = el.ys[y][k];
+                        }
+                    }
+                    yIndex += elXLength;
+                }
+
+                loadData({ x, ys, sendTime: dataBuffer[0].sendTime });
+                dataBuffer.splice(0, batchSize);
             }
+
             if (isRunning) {
-                setTimeout(loadFromBuffer, Math.min(1, 10 - renderTime));
+                requestAnimationFrame(loadFromBuffer);
             }
         };
 
@@ -484,12 +536,20 @@ export const drawExample =
                 const isDevMode = hostedFromLocalhost && Number.parseInt(window.location.port) > 8000;
 
                 if (isDevMode || hostedFromSandbox) {
-                    socket = io("https://scichart.com", { path: "/demo/socket.io" });
+                    socket = io("https://www.scichart.com", { path: "/demo/socket.io" });
                 } else {
                     socket = io({ path: "/demo/socket.io" });
                 }
                 socket.on("data", (message: any) => {
-                    dataBuffer.push(message);
+                    // Throttle data to prevent buffer overflow with extreme update rates
+                    if (dataBuffer.length < maxBufferSize) {
+                        dataBuffer.push(message);
+                    } else {
+                        // Drop oldest packets when buffer is full (FIFO)
+                        dataBuffer.shift();
+                        dataBuffer.push(message);
+                        droppedPackets++;
+                    }
                 });
                 socket.on("finished", () => {
                     socket.disconnect();
@@ -557,6 +617,8 @@ export const drawExample =
             avgRenderTime = 0;
             loadTimes = [];
             loadStart = 0;
+            droppedPackets = 0;
+            messageUpdateCounter = 0;
             seriesCount = settings.seriesCount;
             initialPoints = settings.initialPoints;
             pointsOnChart = settings.pointsOnChart;

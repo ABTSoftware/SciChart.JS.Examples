@@ -2,6 +2,7 @@ import * as React from "react";
 import { Theme } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { Helmet } from "react-helmet";
 import AppRouter from "./AppRouter/AppRouter";
 import {
     ALL_MENU_ITEMS,
@@ -168,6 +169,11 @@ export default function App() {
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     return (
         <FrameworkContext.Provider value={selectedFramework}>
+            {isHomePage && (
+                <Helmet>
+                    <link rel="canonical" href={`https://www.scichart.com/demo/${framework}`} />
+                </Helmet>
+            )}
             <style>
                 {`
                 .chatbot-maximised {

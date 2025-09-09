@@ -17,6 +17,7 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
             <meta charset="utf-8">
             <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="google-site-verification" content="6QCR2GgCKCEzEmufI3O0kR05KimcWZeASwBAPgmk3UY" />
             <meta property="og:type" content="website">
             <meta name="twitter:card" content="summary_large_image">
             <meta name="twitter:site" content="@scichart">

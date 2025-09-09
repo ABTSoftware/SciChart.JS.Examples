@@ -319,7 +319,7 @@ export default function SciChartNavbar({
                                                 className="line menu-item menu-item-type-post_type menu-item-object-page menu-item-579"
                                             >
                                                 <a
-                                                    href="https://scichart.com/demo"
+                                                    href="https://www.scichart.com/demo"
                                                     title="Chart Library Examples and Demos"
                                                 >
                                                     Examples
@@ -352,7 +352,7 @@ export default function SciChartNavbar({
                                                 className="menu-item menu-item-type-custom menu-item-object-custom menu-item-8109"
                                             >
                                                 <a
-                                                    href="https://scichart.com/changelog/scichart-js/"
+                                                    href="https://www.scichart.com/changelog/scichart-js/"
                                                     title="JS Chart Library Changelog"
                                                 >
                                                     SciChart.js Changelog
@@ -588,12 +588,12 @@ export default function SciChartNavbar({
                                         className="button dark menu-item menu-item-type-custom menu-item-object-custom menu-item-cta"
                                     >
                                         <a
-                                            href="https://www.scichart.com/getting-started/"
+                                            href="https://www.scichart.com/getting-started/scichart-javascript/"
                                             target=""
                                             rel="nofollow"
                                             role="button"
                                         >
-                                            FREE Trial
+                                            Start for Free
                                         </a>
                                     </li>
 

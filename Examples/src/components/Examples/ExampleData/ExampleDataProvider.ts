@@ -28,7 +28,7 @@ export const baseUrl =
     typeof window !== "undefined" &&
     !window.location.hostname.includes("scichart.com") &&
     !window.location.hostname.includes("localhost")
-        ? "https://scichart.com/demo/"
+        ? "https://www.scichart.com/demo/"
         : "";
 
 /**
@@ -322,3 +322,5 @@ export const fetchPopulationDataData = async (): Promise<TMappedPopulationData> 
     });
 
 export const fetchLidarData = () => fetch(baseUrl + "api/lidardata");
+
+export const fetchGeoJson = (mapName: string) => fetch(baseUrl + mapName + ".json").then((response) => response.json());

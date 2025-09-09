@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import classes from "./index.scss";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { GalleryItem } from "../../helpers/types/types";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 
@@ -90,12 +90,7 @@ interface ExampleProps {
 }
 
 const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(({ example, index, gridType, setGridType }, ref) => {
-    const navigate = useNavigate();
     const framework = useContext(FrameworkContext);
-
-    const handleSubmenuClick = (path: string) => {
-        navigate(`/${framework}/${path}`);
-    };
 
     return (
         <div>
@@ -129,7 +124,7 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(({ example, i
                         `}
                 >
                     {example.items.map((item, index) => (
-                        <div key={index} className={classes.card} onClick={() => handleSubmenuClick(item.examplePath)}>
+                        <Link key={index} to={`/${framework}/${item.examplePath}`} className={classes.card}>
                             <div className={classes.imgWrapper}>
                                 {item?.isNew && (
                                     <div className={classes.newBanner}>
@@ -169,7 +164,7 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(({ example, i
                                     </div>
                                 )}
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </section>
             ) : (

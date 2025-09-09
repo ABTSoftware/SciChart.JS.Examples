@@ -38,6 +38,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerBarsDemo,
             EXAMPLES_PAGES.featuredApps_scientificCharts_WaterfallChartDemo,
             EXAMPLES_PAGES.featuredApps_scientificCharts_PhasorDiagramChart,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_CorrelationPlot,
         ],
     },
     {

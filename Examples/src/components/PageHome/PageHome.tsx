@@ -24,6 +24,7 @@ export default function PageHome() {
                     description={ExampleStrings.siteHomeDescription}
                     image={ExampleStrings.siteHomeMetaImage}
                     url=""
+                    framework={framework}
                 />
                 <div className={classes.PageHomeHeaderText}>
                     <h1 className={classes.PageHomeTitle}>SciChart.js Demo</h1>

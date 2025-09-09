@@ -48,7 +48,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
     const githubUrl = examplePage ? "/components/Examples/" + examplePage.filepath : "";
     const seoDescription = examplePage ? getFrameworkContent(examplePage.metaDescription, framework) : "";
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
-    const basePath = "https://scichart.com/demo";
+    const basePath = "https://www.scichart.com/demo";
     const exampleImage = examplePage ? examplePage.thumbnailImage : undefined;
     const exampleUrl = examplePage ? examplePage.path : "";
 
@@ -82,6 +82,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
                 description={seoDescription}
                 image={exampleImage}
                 url={exampleUrl}
+                framework={framework}
             />
             <div className={commonClasses.Body}>
                 <div className={commonClasses.ColMain}>
@@ -94,7 +95,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                 <a
                                     className={commonClasses.ExampleRootDescriptionLink}
                                     target="_blank"
-                                    href={`https://scichart.com/example/javascript-chart/javascript-${exampleUrl}/`}
+                                    href={`https://www.scichart.com/example/javascript-chart/javascript-${exampleUrl}/`}
                                     title={titleText}
                                 >
                                     {titleText}
