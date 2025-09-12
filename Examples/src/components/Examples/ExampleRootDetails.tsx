@@ -23,6 +23,7 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
     const seoTitleText =
         getFrameworkContent(examplePage.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix;
     const seoDescription = examplePage ? getFrameworkContent(examplePage.metaDescription, framework) : "";
+    const subtitleText = (examplePage ? examplePage.subtitle(framework) : "") as string;
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
     const basePath = "https://www.scichart.com/demo";
     const exampleImage = examplePage ? examplePage.thumbnailImage : undefined;
@@ -38,7 +39,7 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
             <SeoTags
                 title={seoTitleText}
                 keywords={seoKeywords}
-                description={seoDescription}
+                description={seoDescription ?? subtitleText} // if seoDescription is null, fallback to subtitle
                 image={exampleImage}
                 url={exampleUrl}
                 framework={framework}

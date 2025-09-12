@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **JavaScript Polar Heatmap Kinetic Tomography Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "JavaScript Polar Heatmap Kinetic Tomography Chart",
-                pageTitle: "JavaScript Polar Heatmap Kinetic Tomography Chart | JavaScript Charts | SciChart.js",
+                pageTitle: "JavaScript Polar Heatmap Kinetic Tomography Chart | JavaScript Charts",
                 metaDescription:
                     "JavaScript Polar Heatmap Kinetic Tomography Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
                 markdownContent: null,
@@ -24,7 +24,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Heatmap Kinetic Tomography Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "React Polar Heatmap Kinetic Tomography Chart",
-                pageTitle: "React Polar Heatmap Kinetic Tomography Chart | JavaScript Charts | SciChart.js",
+                pageTitle: "React Polar Heatmap Kinetic Tomography Chart | JavaScript Charts",
                 metaDescription:
                     "React Polar Heatmap Kinetic Tomography Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
                 markdownContent: null,
@@ -33,7 +33,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **Angular Polar Heatmap Kinetic Tomography Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "Angular Polar Heatmap Kinetic Tomography Chart",
-                pageTitle: "Angular Polar Heatmap Kinetic Tomography Chart | JavaScript Charts | SciChart.js",
+                pageTitle: "Angular Polar Heatmap Kinetic Tomography Chart | JavaScript Charts",
                 metaDescription:
                     "Angular Polar Heatmap Kinetic Tomography Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
                 markdownContent: null,

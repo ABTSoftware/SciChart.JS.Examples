@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **JavaScript Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode (for letter \"**S**\"), drawing triangles in list mode (for letter \"**c**\") and drawing polygons (for letter \"**i**\").",
                 title: "JavaScript Triangle Series Chart",
-                pageTitle: "JavaScript Triangle Series Chart | JavaScript Charts | SciChart.js",
+                pageTitle: "JavaScript Triangle Series Chart | JavaScript Charts",
                 metaDescription:
                     "JavaScript Triangle Series Chart demo by SciChart supports gradient fill and palette providers for more custom coloring options. Get your free demo now.",
                 markdownContent:

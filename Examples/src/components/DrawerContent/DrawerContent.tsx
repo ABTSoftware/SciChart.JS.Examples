@@ -25,7 +25,7 @@ type TProps = {
 
 const FrameworkSVG = {
     [EPageFramework.React]: (
-        <svg height={30} width={30} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+        <svg height={30} width={30} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" name="React">
             <path
                 fill="#00bcd4"
                 d="M16 12c7.444 0 12 2.59 12 4s-4.556 4-12 4-12-2.59-12-4 4.556-4 12-4m0-2c-7.732 0-14 2.686-14 6s6.268 6 14 6 14-2.686 14-6-6.268-6-14-6Z"
@@ -42,7 +42,7 @@ const FrameworkSVG = {
         </svg>
     ),
     [EPageFramework.Angular]: (
-        <svg height={30} width={30} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <svg height={30} width={30} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" name="Angular">
             <path
                 fill="#e53935"
                 d="M9.87 2.5 3.022 5.666l.645 10.178zm4.26 0 6.202 13.344.645-10.178zM12 7.563l-2.451 5.964h4.906zm-3.73 8.959-.954 2.308L12 21.5l4.683-2.67-.953-2.308z"
@@ -50,7 +50,7 @@ const FrameworkSVG = {
         </svg>
     ),
     [EPageFramework.Vanilla]: (
-        <svg height={30} width={30} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+        <svg height={30} width={30} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" name="JavaScript">
             <path fill="#ffd600" d="M6,42V6h36v36H6z"></path>
             <path
                 fill="#000001"
@@ -73,13 +73,16 @@ const DrawerContent: FC<TProps> = (props) => {
                     <CloseIcon />
                 </IconButton>
                 <div className={classes.FrameworkSelect}>
-                    {Object.values(EPageFramework).map((fw) => (
+                    {Object.values(EPageFramework).map((fw, i) => (
                         <Link
+                            title={fw}
                             key={fw}
+                            tabIndex={-i}
                             className={framework === fw ? classes.SelectedFramework : classes.Framework}
                             to={currentExample ? `${fw}/${currentExample.path}` : `/${fw}`}
                         >
                             {FrameworkSVG[fw]}
+                            <label style={{display: "none"}}>Framework: {fw}</label>
                         </Link>
                     ))}
                 </div>

@@ -42,6 +42,7 @@ export const ExampleBreadcrumbs = () => {
                                 // align in center
                                 verticalAlign: "middle",
                             }}
+                            titleAccess="Hope Page Icon"
                         />
                     );
                     menuItems = [];

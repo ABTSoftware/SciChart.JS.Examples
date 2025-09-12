@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **JavaScript Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "JavaScript Column Chart",
-                pageTitle: "JavaScript Column Chart | JavaScript Charts | SciChart.js",
+                pageTitle: "JavaScript Column Chart | JavaScript Charts",
                 metaDescription:
                     "JavaScript Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "React Column Chart",
-                pageTitle: "React Column Chart | JavaScript Charts | SciChart.js",
+                pageTitle: "React Column Chart | JavaScript Charts",
                 metaDescription:
                     "React Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **Angular Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "Angular Column Chart",
-                pageTitle: "Angular Column Chart | JavaScript Charts | SciChart.js",
+                pageTitle: "Angular Column Chart | JavaScript Charts",
                 metaDescription:
                     "Angular Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
                 markdownContent:

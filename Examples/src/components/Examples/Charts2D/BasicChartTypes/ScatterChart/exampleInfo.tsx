@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "We have created an example that demonstrates how to create a **JavaScript Scatter Chart** using SciChart.js",
                 title: "JavaScript Scatter Chart",
-                pageTitle: "JavaScript Scatter Chart | JavaScript Charts | SciChart.js",
+                pageTitle: "JavaScript Scatter Chart | JavaScript Charts",
                 metaDescription:
                     "Create JavaScript Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "We have created an example that demonstrates how to create a **React Scatter Chart** using SciChart.js",
                 title: "React Scatter Chart",
-                pageTitle: "React Scatter Chart | JavaScript Charts | SciChart.js",
+                pageTitle: "React Scatter Chart | JavaScript Charts",
                 metaDescription:
                     "Create React Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "We have created an example that demonstrates how to create a **Angular Scatter Chart** using SciChart.js",
                 title: "Angular Scatter Chart",
-                pageTitle: "Angular Scatter Chart | JavaScript Charts | SciChart.js",
+                pageTitle: "Angular Scatter Chart | JavaScript Charts",
                 metaDescription:
                     "Create Angular Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
                 markdownContent:

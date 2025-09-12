@@ -54,7 +54,7 @@ export default function AppFooter() {
                 /> */}
                 <div className={classes.FooterBottomSection}>
                     <div className={classes.LinksBox}>
-                        <h5>Frameworks</h5>
+                        <h3>Frameworks</h3>
                         <div className={classes.divider}>
                             <div className={classes.dividerBox}></div>
                         </div>
@@ -71,7 +71,7 @@ export default function AppFooter() {
                         </div>
                     </div>
                     <div className={classes.LinksBox}>
-                        <h5>Quick Links</h5>
+                        <h3>Quick Links</h3>
                         <div className={classes.divider}>
                             <div className={classes.dividerBox}></div>
                         </div>
@@ -115,7 +115,7 @@ export default function AppFooter() {
                         </div>
                     </div>
                     <div className={classes.LinksBox}>
-                        <h5>Useful Links</h5>
+                        <h3>Useful Links</h3>
                         <div className={classes.divider}>
                             <div className={classes.dividerBox}></div>
                         </div>
@@ -150,7 +150,7 @@ export default function AppFooter() {
                         </div>
                     </div>
                     <div className={classes.LinksBox}>
-                        <h5>Contact us</h5>
+                        <h3>Contact us</h3>
                         <div className={classes.divider}>
                             <div className={classes.dividerBox}></div>
                         </div>
@@ -160,7 +160,7 @@ export default function AppFooter() {
                             href="https://www.scichart.com/contact-us/"
                             target="_blank"
                         >
-                            Contact Us
+                            Contact us!
                         </Button>
                         <div className={classes.SocialMediaLinks}>
                             <a href="https://www.facebook.com/scichart" title="SciChart on Facebook">

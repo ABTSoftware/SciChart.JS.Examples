@@ -172,6 +172,8 @@ export default function App() {
             {isHomePage && (
                 <Helmet>
                     <link rel="canonical" href={`https://www.scichart.com/demo/${framework}`} />
+                    <meta name="description" content={`The Homepage of SciChart.js's High Performance ${framework.slice(0,1).toUpperCase() + framework.slice(1)} Examples & Demos`} />
+                    <title>{`SciChart.js Demo | ${framework.slice(0,1).toUpperCase() + framework.slice(1)}`}</title>
                 </Helmet>
             )}
             <style>
@@ -235,6 +237,7 @@ export default function App() {
                                 <GalleryItems
                                     examples={allGalleryItems}
                                     setMostVisibleCategory={setMostVisibleCategory}
+                                    needsH1={true}
                                 />
                             </div>
                         </div>

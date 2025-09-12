@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **JavaScript Polar Signals Intelligence Dashboard** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "JavaScript Polar Signals Intelligence Dashboard",
-                pageTitle: "JavaScript Polar Signals Intelligence Dashboard | JavaScript Charts | SciChart.js",
+                pageTitle: "JavaScript Polar Signals Intelligence Dashboard | JavaScript Charts",
                 metaDescription: null,
                 markdownContent: null,
             },
@@ -23,7 +23,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Signals Intelligence Dashboard** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "React Polar Signals Intelligence Dashboard",
-                pageTitle: "React Polar Signals Intelligence Dashboard | JavaScript Charts | SciChart.js",
+                pageTitle: "React Polar Signals Intelligence Dashboard | JavaScript Charts",
                 metaDescription: null,
                 markdownContent: null,
             },
@@ -31,7 +31,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **Angular Polar Signals Intelligence Dashboard** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "Angular Polar Signals Intelligence Dashboard",
-                pageTitle: "Angular Polar Signals Intelligence Dashboard | JavaScript Charts | SciChart.js",
+                pageTitle: "Angular Polar Signals Intelligence Dashboard | JavaScript Charts",
                 metaDescription: null,
                 markdownContent: null,
             },

@@ -7,6 +7,13 @@ import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext"
 type TProps = {
     examples: GalleryItem[];
     setMostVisibleCategory?: React.Dispatch<React.SetStateAction<string | null>>;
+    /**
+     * Whether the title can be an H1 or not.  
+     * (we try and avoid multiple h1's per page, **seeAlso** title cannot be an H1 since the page already has one)
+     * 
+     * Default `true`
+     */
+    needsH1?: boolean;
 };
 
 enum EGridType {
@@ -87,13 +94,27 @@ interface ExampleProps {
     index: number;
     gridType: EGridType;
     setGridType: React.Dispatch<React.SetStateAction<EGridType>>;
+    needsH1?: boolean
 }
 
-const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(({ example, index, gridType, setGridType }, ref) => {
+const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(({ example, index, gridType, setGridType, needsH1}, ref) => {
     const framework = useContext(FrameworkContext);
 
     return (
-        <div>
+        <div> 
+            {index === 0 && <div className={classes.showcaseheadingwrap}>
+                {needsH1 ? 
+                    <h1 style={{textTransform: 'capitalize'}}>
+                        {framework} Chart Examples & Demos
+                    </h1>
+                    :
+                    <h2 style={{textTransform: 'capitalize'}}>
+                        {framework} Chart Examples & Demos
+                    </h2>
+                }
+                <GridSelection gridType={gridType} setGridType={setGridType} />
+            </div>}
+
             <div className={classes.showcaseheadingwrap}>
                 <h3
                     ref={ref}
@@ -107,7 +128,6 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(({ example, i
                         "items" in example && example.items.length !== 1 ? "s" : ""
                     })`}
                 </h3>
-                {index === 0 && <GridSelection gridType={gridType} setGridType={setGridType} />}
             </div>
 
             {"items" in example && example.items.length > 0 ? (
@@ -124,7 +144,12 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(({ example, i
                         `}
                 >
                     {example.items.map((item, index) => (
-                        <Link key={index} to={`/${framework}/${item.examplePath}`} className={classes.card}>
+                        <Link 
+                            to={`/${framework}/${item.examplePath}`}
+                            title={item.seoTitle}
+                            className={classes.card}
+                            key={index} 
+                        >
                             <div className={classes.imgWrapper}>
                                 {item?.isNew && 
                                     <div className={classes.newBanner}><span>NEW!</span></div>
@@ -172,7 +197,7 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(({ example, i
     );
 });
 
-const GalleryItems: React.FC<TProps> = ({ examples, setMostVisibleCategory }) => {
+const GalleryItems: React.FC<TProps> = ({ examples, setMostVisibleCategory, needsH1 = false}) => {
     const [gridType, setGridType] = useState<EGridType>(EGridType.Grid5or6);
     const headingRefs = useRef<(HTMLHeadingElement | null)[]>([]);
     const currentActive = useRef<string | null>(null);
@@ -242,6 +267,7 @@ const GalleryItems: React.FC<TProps> = ({ examples, setMostVisibleCategory }) =>
                     index={index}
                     gridType={gridType}
                     setGridType={setGridType}
+                    needsH1={needsH1}
                 />
             ))}
         </div>
