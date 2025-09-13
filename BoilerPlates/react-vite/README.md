@@ -105,7 +105,10 @@ function App() {
   return (
     <div>
       <h1>SciChart with React + Vite</h1>
-      <SciChartReact config={chartConfig} style={{ width: 900 }} />
+      <SciChartReact
+        config={chartConfig}
+        style={{ width: "900px", height: "600px" }}
+      />
     </div>
   );
 }

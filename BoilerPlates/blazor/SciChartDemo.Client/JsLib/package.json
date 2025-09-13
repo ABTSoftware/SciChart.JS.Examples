@@ -6,7 +6,7 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "scichart": "latest"
+    "scichart": "^4.0.848"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^6.0.3",

@@ -12,7 +12,7 @@
     "next": "^14.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "scichart": "^4.0.0-beta.788"
+    "scichart": "^4.0.848"
   },
   "devDependencies": {
     "@types/node": "^18.15.10",
