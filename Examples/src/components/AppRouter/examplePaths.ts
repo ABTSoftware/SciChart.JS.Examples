@@ -127,6 +127,7 @@ export default [
     "../Examples/Charts2D/v4Charts/LinearGauges",
     "../Examples/Charts2D/v4Charts/MapExample",
     "../Examples/Charts2D/v4Charts/MultiMapExample",
+    "../Examples/Charts2D/v4Charts/SemiconductorsDashboard",
     "../Examples/Charts2D/v4Charts/TreemapChart",
     "../Examples/Charts2D/v4Charts/TriangleSeriesChart",
     "../Examples/Charts2D/v4Charts/VectorField",

@@ -115,6 +115,7 @@ module.exports = {
                 { from: "src/server/Data/geoJsonConverted/africaConverted.json", to: "" },
                 { from: "src/server/Data/geoJsonConverted/worldConverted.json", to: "" },
                 { from: "src/server/Data/geoJsonConverted/europeConverted.json", to: "" },
+                { from: "src/server/Data/wfdata.csv", to: "" },
             ],
         }),
     ],
