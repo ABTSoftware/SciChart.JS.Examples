@@ -78,11 +78,12 @@ const Charts = () => {
         };
 
         drawBoxPlot(values);
-        drawScatterPlot(dies.all());
+        
     }, []);
 
     useEffect(() => {
         drawWafer(dies.allFiltered());
+        drawScatterPlot(dies.allFiltered());
     }, [dies.allFiltered()]);
 
     useEffect(() => {

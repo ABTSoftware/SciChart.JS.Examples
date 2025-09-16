@@ -77,5 +77,56 @@ export const drawScatterPlot = async (values: readonly WaferData[]) => {
         })
     );
 
+    sciChartSurface.renderableSeries.add(
+        new XyScatterRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: values.map((d) => d.MAP_COL),
+                yValues: values.map((d) => d.MR),
+            }),
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 2,
+                height: 2,
+                strokeThickness: 0,
+                fill: appTheme.MutedTeal,
+            }),
+            opacity: 0.67,
+            animation: new SweepAnimation({ duration: 600, fadeEffect: true }),
+        })
+    );
+
+    sciChartSurface.renderableSeries.add(
+        new XyScatterRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: values.map((d) => d.MAP_COL),
+                yValues: values.map((d) => d.HR),
+            }),
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 2,
+                height: 2,
+                strokeThickness: 0,
+                fill: appTheme.PaleOrange,
+            }),
+            opacity: 0.67,
+            animation: new SweepAnimation({ duration: 600, fadeEffect: true }),
+        })
+    );
+
+    sciChartSurface.renderableSeries.add(
+        new XyScatterRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: values.map((d) => d.MAP_COL),
+                yValues: values.map((d) => d.HDI),
+            }),
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 2,
+                height: 2,
+                strokeThickness: 0,
+                fill: appTheme.VividRed,
+            }),
+            opacity: 0.67,
+            animation: new SweepAnimation({ duration: 600, fadeEffect: true }),
+        })
+    );
+
     return { sciChartSurface, wasmContext };
 };

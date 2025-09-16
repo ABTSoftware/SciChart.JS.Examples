@@ -73,10 +73,10 @@ type IntermediateWaferPoint = {
 };
 
 export function generateWaferData(
-  waferRadius = 10,
+  waferRadius = 80,
   defectRate = 0.15,
-  numClusters = 20,
-  clusterSpread = 1
+  numClusters = 100,
+  clusterSpread = 5
 ): WaferData[] {
 
   // This array now correctly infers the type DefectCode[]
