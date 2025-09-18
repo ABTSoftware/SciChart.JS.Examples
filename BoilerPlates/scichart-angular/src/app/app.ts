@@ -7,9 +7,15 @@ import { ScichartAngularComponent } from 'scichart-angular';
 import { drawExample2D } from './drawExample2D';
 import { drawExample3D } from './drawExample3D';
 
-// fetch WASM dependencies from CDN
-SciChartSurface.loadWasmFromCDN()
-SciChart3DSurface.loadWasmFromCDN()
+// // fetch WASM dependencies from CDN
+// SciChartSurface.loadWasmFromCDN()
+// SciChart3DSurface.loadWasmFromCDN()
+
+// or
+
+// Use local WASM files instead of CDN
+SciChartSurface.loadWasmLocal()
+SciChart3DSurface.loadWasmLocal()
 
 @Component({
   selector: 'app-root',
