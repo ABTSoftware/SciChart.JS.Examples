@@ -1,0 +1,24 @@
+<div class="second-chart-container">
+  <h3>Charts with Config Approach</h3>
+  <div>
+    <label> <input type="checkbox" [(ngModel)]="showChart" /> Show Charts </label>
+  </div>
+  <div class="charts-grid" *ngIf="showChart">
+    <div class="chart-wrapper">
+      <h4>2D Chart</h4>
+      <scichart-angular
+        [config]="config"
+        (onInit)="onInit2DHandler($event)"
+        (onDelete)="onDelete2DHandler($event)"
+      ></scichart-angular>
+    </div>
+    <div class="chart-wrapper">
+      <h4>3D Chart</h4>
+      <scichart-angular
+        [config]="config3D"
+        (onInit)="onInit3DHandler($event)"
+        (onDelete)="onDelete3DHandler($event)"
+      ></scichart-angular>
+    </div>
+  </div>
+</div>
