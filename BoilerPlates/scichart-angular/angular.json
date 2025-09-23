@@ -24,7 +24,12 @@
                 "input": "public"
               },
               {
-                "glob": "*.wasm",
+                "glob": "scichart2d.wasm",
+                "input": "node_modules/scichart/_wasm",
+                "output": "/"
+              },
+              {
+                "glob": "scichart3d.wasm",
                 "input": "node_modules/scichart/_wasm",
                 "output": "/"
               }
@@ -91,7 +96,12 @@
                 "input": "public"
               },
               {
-                "glob": "*.wasm",
+                "glob": "scichart2d.wasm",
+                "input": "node_modules/scichart/_wasm",
+                "output": "/"
+              },
+              {
+                "glob": "scichart3d.wasm",
                 "input": "node_modules/scichart/_wasm",
                 "output": "/"
               }

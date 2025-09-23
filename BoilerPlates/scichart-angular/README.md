@@ -56,19 +56,21 @@ In this project, we've configured Angular to copy the WASM files from the `node_
 
 ```json
 "assets": [
+// ...
   {
-    "glob": "**/*",
-    "input": "public"
+    "glob": "scichart2d.wasm",
+    "input": "node_modules/scichart/_wasm",
+    "output": "/"
   },
   {
-    "glob": "*.wasm",
+    "glob": "scichart3d.wasm",
     "input": "node_modules/scichart/_wasm",
     "output": "/"
   }
-]
+],
 ```
 
-Then, in your application code, use the `loadWasmLocal()` method to load the WASM files:
+Then, in your application code, use the `loadWasmLocal()` method to load the WASM files (currently this is the default behaviour):
 
 ```ts
 import { SciChartSurface, SciChart3DSurface } from "scichart";

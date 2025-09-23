@@ -17,7 +17,6 @@ import {
   SciChartSurface,
   Vector3,
 } from 'scichart';
-import { title } from 'process';
 
 @Component({
   selector: 'app-second-chart-group',
