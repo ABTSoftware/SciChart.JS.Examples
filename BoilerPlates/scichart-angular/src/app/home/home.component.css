@@ -1,0 +1,23 @@
+.home-container {
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.charts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.chart-section {
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-bottom: 10px;
+  color: #444;
+}
