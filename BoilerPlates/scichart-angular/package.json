@@ -34,7 +34,7 @@
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "scichart": "^4.0.848",
-    "scichart-angular": "^0.0.3",
+    "scichart-angular": "^1.0.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },

@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MemoryUsageHelper, SciChart3DSurface, SciChartSurface } from 'scichart';
+import { MemoryUsageHelper, SciChart3DSurface, SciChartSurface, SciChartSurfaceBase } from 'scichart';
 import { FirstChartGroupComponent } from './first-chart-group/first-chart-group.component';
 import { SecondChartGroupComponent } from './second-chart-group/second-chart-group.component';
 
@@ -16,8 +16,8 @@ SciChartSurface.loadWasmLocal()
 SciChart3DSurface.loadWasmLocal()
 
 // For debug purposes only in dev mode
-SciChartSurface.autoDisposeWasmContext = true;
-SciChart3DSurface.autoDisposeWasmContext = true;
+SciChartSurfaceBase.autoDisposeWasmContext = true;
+SciChartSurfaceBase.wasmContextDisposeTimeout = 0;
 MemoryUsageHelper.isMemoryUsageDebugEnabled = true;
 
 @Component({
