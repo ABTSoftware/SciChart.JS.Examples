@@ -1,3 +1,45 @@
+.app-header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 1rem;
+  margin-bottom: 20px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: white;
+}
+
+.app-nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+
+.app-nav li {
+  margin-right: 20px;
+}
+
+.app-nav a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.app-nav a:hover {
+  background-color: #34495e;
+}
+
+.app-nav a.active {
+  background-color: #3498db;
+  color: white;
+}
+
 .content {
   display: flex;
   flex-direction: column;

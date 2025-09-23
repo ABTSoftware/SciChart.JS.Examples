@@ -1,9 +1,7 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MemoryUsageHelper, SciChart3DSurface, SciChartSurface, SciChartSurfaceBase } from 'scichart';
-import { FirstChartGroupComponent } from './first-chart-group/first-chart-group.component';
-import { SecondChartGroupComponent } from './second-chart-group/second-chart-group.component';
 
 // // fetch WASM dependencies from CDN
 // SciChartSurface.loadWasmFromCDN()
@@ -22,7 +20,7 @@ MemoryUsageHelper.isMemoryUsageDebugEnabled = true;
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, FirstChartGroupComponent, SecondChartGroupComponent],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

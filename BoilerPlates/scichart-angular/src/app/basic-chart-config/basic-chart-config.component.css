@@ -1,0 +1,23 @@
+.basic-chart-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.chart-wrapper {
+  width: 800px;
+  height: 600px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+label {
+  margin-bottom: 10px;
+  display: inline-block;
+}

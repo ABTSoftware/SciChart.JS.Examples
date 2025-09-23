@@ -180,22 +180,19 @@
   }
 </style>
 
+<header class="app-header">
+  <h1>SciChart Angular Examples</h1>
+  <nav class="app-nav">
+    <ul>
+      <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+      <li><a routerLink="/basic-chart-init" routerLinkActive="active">Basic Chart Init</a></li>
+      <li><a routerLink="/basic-chart-config" routerLinkActive="active">Basic Chart Config</a></li>
+    </ul>
+  </nav>
+</header>
+
 <main class="main">
-  <div class="content">
-    <div class="header">
-      <h1>Hello here are scichart-angular components in Angular 20</h1>
-    </div>
-    <div class="charts-container">
-      <div class="chart-section">
-        <h2>First Chart Group (Init Function Approach)</h2>
-        <app-first-chart-group></app-first-chart-group>
-      </div>
-      <div class="chart-section">
-        <h2>Second Chart Group (Config Approach)</h2>
-        <app-second-chart-group></app-second-chart-group>
-      </div>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
 </main>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
