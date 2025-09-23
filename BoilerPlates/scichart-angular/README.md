@@ -79,6 +79,21 @@ SciChartSurface.loadWasmLocal();
 SciChart3DSurface.loadWasmLocal();
 ```
 
+Or to manually specify their location:
+
+```ts
+SciChartSurface.configure({
+    wasmUrl: "/scichart2d.wasm",
+});
+
+SciChart3DSurface.configure({
+    wasmUrl: "/scichart3d.wasm",
+});
+```
+
+In the is example it will fetch the dependencies from `http://localhost:4200/scichart2d.wasm` and `http://localhost:4200/scichart3d.wasm` respectively.
+
+
 > Note: other methods to [load WASM from CDN](https://www.scichart.com/documentation/js/v4/2d-charts/surface/deploying-wasm/) are available to simplify getting started
 
 ### Step 3: Creating the Chart
