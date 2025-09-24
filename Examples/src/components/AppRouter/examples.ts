@@ -70,6 +70,8 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_v4Charts_TriangleSeriesChart,
             EXAMPLES_PAGES.chart2D_v4Charts_TreemapChart,
             EXAMPLES_PAGES.chart2D_v4Charts_SemiconductorsDashboard,
+            EXAMPLES_PAGES.chart2D_v4Charts_SemiconductorsDashboard2,
+            EXAMPLES_PAGES.chart2D_v4Charts_DragAndDropDashboard,
             //EXAMPLES_PAGES.chart2D_v4Charts_HeatmapRectangle,
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerBarsDemo,
             EXAMPLES_PAGES.chart2D_v4Charts_LinearGauges,

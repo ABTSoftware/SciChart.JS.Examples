@@ -15,7 +15,7 @@ export default function Overview() {
 
             // // console.log(csvJSON(csvContent))
 
-            // const dataJSON = csvJSON(csvContent) as WaferData[];
+            // const data = csvJSON(csvContent) as WaferData[];
 
             //   waferRadius = 80,
             //   defectRate = 0.15,
@@ -23,6 +23,7 @@ export default function Overview() {
             //   clusterSpread = 5
 
             let data = generateWaferData(20, 0.15, 100, 5);
+            console.log(data.length)
 
             setData(data);
         };

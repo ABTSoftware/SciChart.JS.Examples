@@ -1,0 +1,50 @@
+/* Main container styles */
+.dashboard-container {
+    width: 100%;
+    height: 100%;
+}
+
+.dashboard-layout {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Line chart container */
+.line-chart-container {
+    width: 100%;
+    height: 33%;
+}
+
+/* Row for column and scatter charts */
+.charts-row {
+    width: 100%;
+    height: 67%;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Column chart container */
+.column-chart-container {
+    width: 50%;
+    height: 100%;
+}
+
+/* Scatter/Wafer chart container */
+.scatter-wafer-container {
+    width: 50%;
+    height: 100%;
+}
+
+/* Chart wrapper with height calculation */
+.chart-wrapper {
+    width: 100%;
+    height: 100%; 
+}
+
+/* SciChart component */
+.sci-chart {
+    width: 100%;
+    height: 100%;
+}

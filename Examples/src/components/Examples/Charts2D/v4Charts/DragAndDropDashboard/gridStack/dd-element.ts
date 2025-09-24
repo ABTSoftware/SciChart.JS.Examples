@@ -1,0 +1,102 @@
+// @ts-nocheck
+
+/**
+ * dd-elements.ts 12.3.3
+ * Copyright (c) 2021-2025 Alain Dumesny - see GridStack root license
+ */
+
+import { DDResizable, DDResizableOpt } from './dd-resizable';
+import { DDDragOpt, GridItemHTMLElement } from './types';
+import { DDDraggable } from './dd-draggable';
+import { DDDroppable, DDDroppableOpt } from './dd-droppable';
+
+export interface DDElementHost extends GridItemHTMLElement {
+  ddElement?: DDElement;
+}
+
+export class DDElement {
+
+  static init(el: DDElementHost): DDElement {
+    if (!el.ddElement) { el.ddElement = new DDElement(el); }
+    return el.ddElement;
+  }
+
+  public ddDraggable?: DDDraggable;
+  public ddDroppable?: DDDroppable;
+  public ddResizable?: DDResizable;
+
+  constructor(public el: DDElementHost) {}
+
+  public on(eventName: string, callback: (event: MouseEvent) => void): DDElement {
+    if (this.ddDraggable && ['drag', 'dragstart', 'dragstop'].indexOf(eventName) > -1) {
+      this.ddDraggable.on(eventName as 'drag' | 'dragstart' | 'dragstop', callback);
+    } else if (this.ddDroppable && ['drop', 'dropover', 'dropout'].indexOf(eventName) > -1) {
+      this.ddDroppable.on(eventName as 'drop' | 'dropover' | 'dropout', callback);
+    } else if (this.ddResizable && ['resizestart', 'resize', 'resizestop'].indexOf(eventName) > -1) {
+      this.ddResizable.on(eventName as 'resizestart' | 'resize' | 'resizestop', callback);
+    }
+    return this;
+  }
+
+  public off(eventName: string): DDElement {
+    if (this.ddDraggable && ['drag', 'dragstart', 'dragstop'].indexOf(eventName) > -1) {
+      this.ddDraggable.off(eventName as 'drag' | 'dragstart' | 'dragstop');
+    } else if (this.ddDroppable && ['drop', 'dropover', 'dropout'].indexOf(eventName) > -1) {
+      this.ddDroppable.off(eventName as 'drop' | 'dropover' | 'dropout');
+    } else if (this.ddResizable && ['resizestart', 'resize', 'resizestop'].indexOf(eventName) > -1) {
+      this.ddResizable.off(eventName as 'resizestart' | 'resize' | 'resizestop');
+    }
+    return this;
+  }
+
+  public setupDraggable(opts: DDDragOpt): DDElement {
+    if (!this.ddDraggable) {
+      this.ddDraggable = new DDDraggable(this.el, opts);
+    } else {
+      this.ddDraggable.updateOption(opts);
+    }
+    return this;
+  }
+
+  public cleanDraggable(): DDElement {
+    if (this.ddDraggable) {
+      this.ddDraggable.destroy();
+      delete this.ddDraggable;
+    }
+    return this;
+  }
+
+  public setupResizable(opts: DDResizableOpt): DDElement {
+    if (!this.ddResizable) {
+      this.ddResizable = new DDResizable(this.el, opts);
+    } else {
+      this.ddResizable.updateOption(opts);
+    }
+    return this;
+  }
+
+  public cleanResizable(): DDElement {
+    if (this.ddResizable) {
+      this.ddResizable.destroy();
+      delete this.ddResizable;
+    }
+    return this;
+  }
+
+  public setupDroppable(opts: DDDroppableOpt): DDElement {
+    if (!this.ddDroppable) {
+      this.ddDroppable = new DDDroppable(this.el, opts);
+    } else {
+      this.ddDroppable.updateOption(opts);
+    }
+    return this;
+  }
+
+  public cleanDroppable(): DDElement {
+    if (this.ddDroppable) {
+      this.ddDroppable.destroy();
+      delete this.ddDroppable;
+    }
+    return this;
+  }
+}

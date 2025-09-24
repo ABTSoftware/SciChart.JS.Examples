@@ -63,6 +63,7 @@
     "node-html-parser": "^6.1.13",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-fast-compare": "^3.2.2",
     "react-helmet": "^6.1.0",
     "react-markdown": "^9.0.3",
     "react-router": "^7.1.1",
