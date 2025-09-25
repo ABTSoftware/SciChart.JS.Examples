@@ -234,7 +234,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection,
-            //EXAMPLES_PAGES.chart2D_tooltipsAndHittest_CustomTooltips,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_CustomTooltips,
         ],
     },
     {

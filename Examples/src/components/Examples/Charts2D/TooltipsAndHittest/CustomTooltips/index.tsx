@@ -2,7 +2,6 @@ import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { useState, useRef, useEffect } from "react";
-import ToggleButton from "@mui/material/ToggleButton";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 
@@ -12,14 +11,42 @@ type TooltipType = "cursor" | "rollover" | "verticalSlice";
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     const [type, setType] = useState<TooltipType>("cursor");
-    const [cutRight, setCutRight] = useState(false);
-    const setMapFunc = useRef(null);
+    const setTypeFunc = useRef(null);
     const setDataFunc = useRef(null);
-    const setSlice = useRef(null);
+    const cb = useRef(null);
+    const cbClick = useRef(null);
+    const [showData, setShowData] = useState(false);
+    const [showClickData, setShowClickData] = useState(false);
+    const [seriesInfos, setSeriesInfos] = useState(null);
+    const [clickInfo, setClickInfo] = useState(null);
 
     useEffect(() => {
-        if (setMapFunc.current) {
-            setMapFunc.current(type);
+        if (!showData) {
+            setSeriesInfos(null);
+        }
+
+        if (cb.current && showData) {
+            cb.current(setSeriesInfos);
+            setShowClickData(false);
+        }
+    }, [showData]);
+
+    useEffect(() => {
+        if (!showClickData) {
+            setClickInfo(null);
+        }
+
+        if (cbClick.current && showClickData) {
+            cbClick.current(setClickInfo);
+            setShowData(false);
+        }
+    }, [showClickData]);
+
+    useEffect(() => {
+        if (setTypeFunc.current) {
+            setTypeFunc.current(type);
+            setShowClickData(false);
+            setShowData(false);
         }
     }, [type]);
 
@@ -65,37 +92,58 @@ export default function ChartComponent() {
                         VERTICAL SLICE
                     </button>
 
+                    {type === "cursor" ? (
+                        <FormControlLabel
+                            control={
+                                <Switch
+                                    checked={showData}
+                                    onChange={() => {
+                                        setShowData((value) => !value);
+                                    }}
+                                />
+                            }
+                            label={`${showData ? "hide data" : "show data"}`}
+                            style={{ margin: 0, background: "#163149", color: "white", paddingRight: "10px" }}
+                        />
+                    ) : null}
+
+                    {type === "cursor" && showData && seriesInfos?.length ? (
+                        <div
+                            style={{
+                                color: "rgb(0, 188, 212)",
+                                display: "inline-block",
+                            }}
+                        >
+                            index: {seriesInfos[0].dataSeriesIndex}, xValue: {seriesInfos[0].xValue.toFixed(2)},
+                            yValue[0]:
+                            {seriesInfos[0].yValue.toFixed(2)}
+                        </div>
+                    ) : null}
+
                     {type === "verticalSlice" ? (
-                        <span className="">
-                            <FormControlLabel
-                                control={
-                                    <Switch
-                                        checked={cutRight}
-                                        onChange={() => {
-                                            setCutRight((value) => !value);
-                                            setSlice.current(!cutRight);
-                                            console.log({ cutRight: !cutRight });
-                                        }}
-                                    />
-                                }
-                                label={`Slice ${cutRight ? "right" : "left"}`}
-                                style={{ margin: 0, background: "#163149", color: "white", paddingRight: "10px" }}
-                            />
-                            <button
-                                onClick={() => {
-                                    setDataFunc.current();
-                                }}
-                                style={{
-                                    color: "rgb(0, 188, 212)",
-                                    display: "inline-block",
-                                    padding: "10px 24px",
-                                    background: "#163149",
-                                    cursor: "pointer",
-                                }}
-                            >
-                                RESET DATA
-                            </button>
-                        </span>
+                        <FormControlLabel
+                            control={
+                                <Switch
+                                    checked={showClickData}
+                                    onChange={() => {
+                                        setShowClickData((value) => !value);
+                                    }}
+                                />
+                            }
+                            label={`${showClickData ? "hide click data" : "show click data"}`}
+                            style={{ margin: 0, background: "#163149", color: "white", paddingRight: "10px" }}
+                        />
+                    ) : null}
+
+                    {type === "verticalSlice" && showClickData && clickInfo ? (
+                        <div
+                            style={{
+                                color: "rgb(0, 188, 212)",
+                                display: "inline-block",
+                            }}
+                        >
+                            {clickInfo}
+                        </div>
                     ) : null}
                 </div>
             </div>
@@ -104,16 +152,17 @@ export default function ChartComponent() {
                 className={commonClasses.ChartWrapper}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     // get the "setMap" function that is returned by "drawExample"
-                    let { setType, setData, sliceRightFunction } = initResult;
+                    let { setType, setData, callBack, clickCallBack } = initResult;
 
                     // assign function to ref so we can call it later
-                    setMapFunc.current = setType;
+                    setTypeFunc.current = setType;
 
                     // reset data
                     setDataFunc.current = setData;
 
-                    // set slice direction
-                    setSlice.current = sliceRightFunction;
+                    cb.current = callBack;
+
+                    cbClick.current = clickCallBack;
                 }}
             />
         </div>
