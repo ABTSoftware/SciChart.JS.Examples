@@ -110,6 +110,13 @@ export default function Overview() {
 
     return data.length ? (
         <div className="dashboard-container">
+            <button
+                onClick={() => {
+                    setSelectedPoint(null);
+                }}
+            >
+                reset
+            </button>
             <div className="dashboard-layout">
                 {/* Line Chart - Input1 over time */}
                 <div className="line-chart-container">

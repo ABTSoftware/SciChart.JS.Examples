@@ -22,6 +22,12 @@ import {
     DataLabelProvider,
     DataPointSelectionModifier,
     DataPointSelectionPaletteProvider,
+    ILabel2DOptions,
+    TextLabelProvider,
+    ELabelAlignment,
+    RolloverModifier,
+    SeriesInfo,
+    RolloverTooltipSvgAnnotation,
 } from "scichart";
 
 // Define a custom metadata interface that includes the Input1 value
@@ -47,31 +53,66 @@ export const drawExample = async (
     waferData: WaferLotData[] = [],
     onPointSelected?: (point: WaferLotData, index: number) => void
 ) => {
+    console.log({ waferData });
 
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
+        title: "Yield Trend",
+        titleStyle: {
+            fontSize: 14,
+            // fontWeight: "bold",
+            useNativeText: false,
+            color: appTheme.PaleSkyBlue,
+        },
     });
 
-    const growByY = new NumberRange(0.5, 0.5);
-    const growByX = new NumberRange(0.1, 0.1);
+    const growByY = new NumberRange(0.4, 0.4);
+    const growByX = new NumberRange(0.05, 0.05);
 
     // Create the X,Y Axis
     // Using NumericAxis for dates since DateTimeAxis is not available
-    sciChartSurface.xAxes.add(
-        new DateTimeNumericAxis(wasmContext, {
-            axisTitle: "Date",
-            // labelFormat: ENumericFormat.Date_DDMMYYYY,
-            labelProvider: new DateLabelProvider({ labelFormat: ENumericFormat.Date_DDMMYYYY }),
-            growBy: growByX,
-            labelStyle: {
-                fontSize: 10,
-            },
-            axisTitleStyle: {
-                fontSize: 12,
-            },
-        })
-    );
+    // sciChartSurface.xAxes.add(
+    //     new DateTimeNumericAxis(wasmContext, {
+    //         axisTitle: "Date",
+    //         // labelFormat: ENumericFormat.Date_DDMMYYYY,
+    //         labelProvider: new DateLabelProvider({ labelFormat: ENumericFormat.Date_DDMMYYYY }),
+    //         growBy: growByX,
+    //         labelStyle: {
+    //             fontSize: 10,
+    //         },
+    //         axisTitleStyle: {
+    //             fontSize: 12,
+    //         },
+    //     })
+    // );
+
+    // Create the labelProvider
+    const labelProvider = new TextLabelProvider({
+        // When passed as an array, labels will be used in order
+        labels: waferData.map((d, i) => `Lot ${i + 1}`),
+        // labels: waferData.map((d, i) => ["Lot", (i + 1).toString()]),
+    });
+
+    // Create an XAxis with a TextLabelProvider
+    const xAxis = new NumericAxis(wasmContext, {
+        labelProvider,
+        growBy: growByX,
+        axisTitle: "Lot version",
+        drawMajorTickLines: false,
+        drawMinorTickLines: false,
+        drawMajorGridLines: false,
+        drawMinorGridLines: false,
+        labelStyle: {
+            fontSize: 10,
+            alignment: ELabelAlignment.Center,
+        },
+        axisTitleStyle: {
+            fontSize: 12,
+        },
+    });
+
+    sciChartSurface.xAxes.add(xAxis);
 
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
@@ -80,7 +121,12 @@ export const drawExample = async (
             // labelProvider: qualityLabelProvider,
             minorDelta: 1,
             majorDelta: 1,
-            visibleRange: new NumberRange(0.5, 3.5),
+            // visibleRange: new NumberRange(0.5, 3.5),
+            drawMajorTickLines: false,
+            drawMinorTickLines: false,
+            drawMajorGridLines: false,
+            drawMinorGridLines: false,
+
             labelStyle: {
                 fontSize: 10,
             },
@@ -92,7 +138,7 @@ export const drawExample = async (
 
     // Convert dates to timestamps and quality to numeric values
     // const xValues = waferData.map(item => new Date(item.Date).getTime());
-    const xValues = waferData.map((item) => new Date(item.Date).getTime() / 1000);
+    const xValues = waferData.map((item, i) => i); //new Date(item.Date).getTime() / 1000);
 
     const yValues = waferData.map((item) => item.Input2);
 
@@ -129,18 +175,18 @@ export const drawExample = async (
             width: 20,
             height: 20,
             fill: appTheme.PaleSkyBlue,
-            stroke: appTheme.MutedPurple,
+            stroke: appTheme.DarkIndigo,
             strokeThickness: 2,
         }),
         paletteProvider: new DataPointSelectionPaletteProvider({
-            fill: appTheme.VividRed, // Selected fill color
+            fill: appTheme.PaleTeal, // Selected fill color
             stroke: appTheme.PaleSkyBlue, // Selected stroke color
         }),
         // Add data labels to show Input1 values
         dataLabels: {
             style: {
                 fontFamily: "Arial",
-                fontSize: 12,
+                fontSize: 10,
                 padding: new Thickness(5, 5, 5, 5),
             },
             color: "white",
@@ -186,8 +232,81 @@ export const drawExample = async (
         }
     });
 
+    const customTooltipTemplate = (
+        id: string, //
+        seriesInfo: SeriesInfo, // ,
+        rolloverTooltip: RolloverTooltipSvgAnnotation //
+    ) => {
+        let width, height, size;
+
+        if (sciChartSurface.domCanvas2D.width < 1024) {
+            width = 70;
+            height = 21;
+            rolloverTooltip.updateSize(width, height);
+            size = "small";
+        } else {
+            width = 95;
+            height = 65;
+            rolloverTooltip.updateSize(width, height);
+            size = "big";
+        }
+
+        // <circle cx="50%" cy="50%" r="50%" fill="${seriesInfo.stroke}"/>
+        // <text y="40" font-size="13" font-family="Verdana" dy="0" fill="${"black"}">
+        //     <tspan x="15" dy="1.2em">${seriesInfo.seriesName}</tspan>
+        //     <tspan x="15" dy="1.2em">x: ${seriesInfo.formattedXValue} y: ${seriesInfo.formattedYValue}</tspan>
+        // </text>
+        //
+
+        // Measure1 = Film thickness (nm).
+        // Measure2 = Line width (nm).
+        // Measure3 = Sheet resistance (Ω/□).
+
+        const pointMetadata = seriesInfo.pointMetadata as IWaferPointMetadata;
+
+        if (pointMetadata && pointMetadata.date) {
+            console.log({ pointMetadata });
+
+            return size === "small"
+                ? `
+        <svg width="${width}" height="${height}">
+            <rect rx="3" width="${width}" height="${height}" fill="${
+                      seriesInfo.stroke
+                  }" stroke="black" stroke-width="0.5"/>
+            <text x="2" y="15" "fill="${"black"}" font-size="12">${pointMetadata.date}</text>
+        </svg>`
+                : `
+        <svg width="${width}" height="${height}">
+            <rect rx="3" width="${width}" height="${height}" fill="${
+                      seriesInfo.stroke
+                  }" stroke="black" stroke-width="0.5"/>
+            <text  y="15" "fill="${"black"}" font-size="12">
+                  <tspan x="2">${pointMetadata.date}</tspan>
+                  <tspan x="2" dy="1.2em">THK: ${pointMetadata.measure1}nm</tspan>
+                  <tspan x="2" dy="1.2em">LW: ${pointMetadata.measure2}nm</tspan>
+                  <tspan x="2" dy="1.2em">Rsh: ${pointMetadata.measure3}Ω/sq</tspan>
+            </text>
+        </svg>`;
+        } else {
+            return null;
+        }
+    };
+
+    lineSeries.rolloverModifierProps.tooltipTemplate = (
+        id: string,
+        seriesInfo: SeriesInfo,
+        rolloverTooltip: RolloverTooltipSvgAnnotation
+    ) => {
+        return customTooltipTemplate(id, seriesInfo, rolloverTooltip);
+    };
+
     // Add interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new MouseWheelZoomModifier(), new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(
+        new ZoomExtentsModifier(),
+        new MouseWheelZoomModifier(),
+        new ZoomPanModifier(),
+        new RolloverModifier({ showRolloverLine: false })
+    );
 
     sciChartSurface.chartModifiers.add(selectionModifier);
 

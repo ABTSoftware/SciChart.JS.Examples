@@ -207,6 +207,8 @@ export const drawWaferChart = async (rootElement: string | HTMLDivElement, selec
 
         sciChartSurface.renderableSeries.clear(true);
 
+        console.log({ dataJSON });
+
         // Extract data for the chart
         const data = dataJSON.reduce(
             (acc, curr) => {
@@ -296,5 +298,5 @@ export const drawWaferChart = async (rootElement: string | HTMLDivElement, selec
     // Zoom to fit
     sciChartSurface.zoomExtents();
 
-    return { sciChartSurface, wasmContext, setData };
+    return { sciChartSurface, wasmContext };
 };
