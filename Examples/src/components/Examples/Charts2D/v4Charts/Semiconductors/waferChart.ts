@@ -18,7 +18,6 @@ import {
     NumberRange,
 } from "scichart";
 import { appTheme } from "../../../theme";
-import { WaferData } from "./store";
 import { WaferLotData } from "./waferData";
 
 // We'll use a dynamic ID that will be passed from the component
