@@ -1,0 +1,107 @@
+/* Main container styles */
+.dashboard-container {
+    width: 100%;
+    height: 100%;
+}
+
+.dashboard-layout {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Line chart container */
+.line-chart-container {
+    width: 100%;
+    height: 33%;
+}
+
+/* Row for column and scatter charts */
+.charts-row {
+    width: 100%;
+    height: 67%;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Column chart container */
+.column-chart-container {
+    width: 50%;
+    height: 100%;
+}
+
+/* Scatter/Wafer chart container */
+.scatter-wafer-container {
+    width: 50%;
+    height: 100%;
+}
+
+/* Chart wrapper with height calculation */
+.chart-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+/* SciChart component */
+.sci-chart {
+    width: 100%;
+    height: 100%;
+}
+
+.reset-button {
+    position: absolute;
+    /* top: 8px;
+    left: 8px; */
+    z-index: 100;
+
+    /* Use theme colors */
+    color: #ffffff;
+    background-color: rgba(20, 35, 60, 0.9); /* Semi-transparent DarkIndigo */
+    border: 2px solid #ffffff;
+    border-radius: 6px;
+
+    /* Typography */
+    font-size: 12px;
+    font-weight: 500;
+    font-family: inherit;
+
+    /* Spacing */
+    padding: 3px 6px;
+    margin: 4px 4px;
+
+    /* Interaction */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    /* Accessibility */
+    outline: none;
+    -webkit-user-select: none; /* Safari support */
+    user-select: none;
+}
+
+.reset-button:hover {
+    background-color: rgba(20, 35, 60, 1);
+    border-color: #50c7e0; /* VividSkyBlue from theme */
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.reset-button:focus-visible {
+    outline: 2px solid #50c7e0;
+    outline-offset: 2px;
+}
+
+.reset-button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.scichart__legend-item {
+    font-size: 12px;
+}
+
+.scichart__legend-item label:nth-child(1) {
+    width: 10px !important;
+    height: 10px !important;
+}
