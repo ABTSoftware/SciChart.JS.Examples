@@ -204,7 +204,7 @@ export interface WaferLotData {
   Input2: number;    // Another process input (e.g., gas flow rate)
   Measure1: number;  // Output measurement (e.g., film thickness in nm)
   Measure2: number;  // Output measurement (e.g., line width in nm)
-  Measure3: number;  // Output measurement (e.g., sheet resistance in Ω/□)
+  Measure3: number;  // Output measurement (e.g., sheet resistance in Ω/sq)
 }
 
 /**

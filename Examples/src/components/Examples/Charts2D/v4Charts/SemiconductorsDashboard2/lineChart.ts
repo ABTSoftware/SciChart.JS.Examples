@@ -245,7 +245,7 @@ export const drawExample = async (
             rolloverTooltip.updateSize(width, height);
             size = "small";
         } else {
-            width = 95;
+            width = 97;
             height = 65;
             rolloverTooltip.updateSize(width, height);
             size = "big";
@@ -282,9 +282,9 @@ export const drawExample = async (
                   }" stroke="black" stroke-width="0.5"/>
             <text  y="15" "fill="${"black"}" font-size="12">
                   <tspan x="2">${pointMetadata.date}</tspan>
-                  <tspan x="2" dy="1.2em">THK: ${pointMetadata.measure1}nm</tspan>
-                  <tspan x="2" dy="1.2em">LW: ${pointMetadata.measure2}nm</tspan>
-                  <tspan x="2" dy="1.2em">Rsh: ${pointMetadata.measure3}Ω/sq</tspan>
+                  <tspan x="2" dy="1.2em"><tspan font-weight="bold">THK:</tspan> ${pointMetadata.measure1} nm</tspan>
+                  <tspan x="2" dy="1.2em"><tspan font-weight="bold">LW:</tspan> ${pointMetadata.measure2} nm</tspan>
+                  <tspan x="2" dy="1.2em"><tspan font-weight="bold">RSH:</tspan> ${pointMetadata.measure3} Ω/sq</tspan>
             </text>
         </svg>`;
         } else {

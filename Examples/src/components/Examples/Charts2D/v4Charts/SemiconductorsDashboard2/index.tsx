@@ -19,6 +19,16 @@ export default function Overview() {
     const plotChartRef = useRef<{ sciChartSurface: any; wasmContext: any; generateSubcharts: any } | null>(null);
     const waferChartRef = useRef<{ sciChartSurface: any; wasmContext: any; setData: any } | null>(null);
 
+    const resetToInitialState = () => {
+        // Simply reset the state - this will trigger re-rendering
+        // and the charts will naturally return to their initial state
+        setSelectedPoint(null);
+
+        // Optionally regenerate data to ensure fresh state
+        const freshData = generateWaferLotData(15, new Date(2023, 0, 1));
+        setData(freshData);
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             // Generate 30 days of data for a better visualization
@@ -95,28 +105,33 @@ export default function Overview() {
 
     // Re-render charts when data changes
     useEffect(() => {
-        if (data.length > 0) {
-            if (waferChartRef.current && plotChartRef.current && selectedPoint) {
-                // if (waferChartRef.current.setData) {
-                //     waferChartRef.current.setData(selectedPoint);
-                // }
-
-                if (plotChartRef.current.generateSubcharts) {
-                    plotChartRef.current.generateSubcharts(selectedPoint);
+        if (data.length > 0 && selectedPoint) {
+            // Use setTimeout to ensure charts are fully initialized
+            setTimeout(() => {
+                try {
+                    if (plotChartRef.current?.generateSubcharts && !plotChartRef.current.sciChartSurface?.isDisposed) {
+                        plotChartRef.current.generateSubcharts(selectedPoint);
+                    }
+                } catch (error) {
+                    console.warn("Could not update plot chart:", error);
                 }
-            }
+            }, 100);
         }
     }, [data, selectedPoint]);
 
     return data.length ? (
         <div className="dashboard-container">
-            <button
-                onClick={() => {
-                    setSelectedPoint(null);
-                }}
-            >
-                reset
-            </button>
+            {selectedPoint ? (
+                <button
+                    className="reset-button"
+                    onClick={resetToInitialState}
+                    aria-label="Reset dashboard to initial state"
+                    type="button"
+                >
+                    Return to initial state
+                </button>
+            ) : null}
+
             <div className="dashboard-layout">
                 {/* Line Chart - Input1 over time */}
                 <div className="line-chart-container">
