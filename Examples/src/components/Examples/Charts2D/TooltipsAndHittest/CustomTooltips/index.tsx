@@ -2,8 +2,6 @@ import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { useState, useRef, useEffect } from "react";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
 
 type TooltipType = "cursor" | "rollover" | "verticalSlice";
 
@@ -14,11 +12,20 @@ export default function ChartComponent() {
     const setTypeFunc = useRef(null);
     const setDataFunc = useRef(null);
     const cb = useRef(null);
-    const cbClick = useRef(null);
-    const [showData, setShowData] = useState(false);
+    const [showData, setShowData] = useState(true);
+    const [showRolloverData, setShowRolloverData] = useState(false);
     const [showClickData, setShowClickData] = useState(false);
     const [seriesInfos, setSeriesInfos] = useState(null);
+    const [rolloverInfo, setRolloverInfo] = useState(null);
     const [clickInfo, setClickInfo] = useState(null);
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (cb.current && showData) {
+                cb.current(setSeriesInfos);
+            }
+        }, 500);
+    }, []);
 
     useEffect(() => {
         if (!showData) {
@@ -28,30 +35,60 @@ export default function ChartComponent() {
         if (cb.current && showData) {
             cb.current(setSeriesInfos);
             setShowClickData(false);
+            setShowRolloverData(false);
         }
     }, [showData]);
+
+    useEffect(() => {
+        if (!showRolloverData) {
+            setRolloverInfo(null);
+        }
+
+        if (cb.current && showRolloverData) {
+            cb.current(setRolloverInfo);
+            setShowClickData(false);
+            setShowData(false);
+        }
+    }, [showRolloverData]);
 
     useEffect(() => {
         if (!showClickData) {
             setClickInfo(null);
         }
 
-        if (cbClick.current && showClickData) {
-            cbClick.current(setClickInfo);
+        if (cb.current && showClickData) {
+            cb.current(setClickInfo);
             setShowData(false);
+            setShowRolloverData(false);
         }
     }, [showClickData]);
 
     useEffect(() => {
         if (setTypeFunc.current) {
             setTypeFunc.current(type);
-            setShowClickData(false);
-            setShowData(false);
+
+            if (type === "cursor") {
+                setShowClickData(false);
+                setShowRolloverData(false);
+                setShowData(true);
+            }
+
+            if (type === "verticalSlice") {
+                setShowClickData(true);
+                setShowRolloverData(false);
+                setShowData(false);
+            }
+
+            if (type === "rollover") {
+                setShowClickData(false);
+                setShowRolloverData(true);
+                setShowData(false);
+            }
         }
     }, [type]);
 
     return (
-        <div className="" style={{ width: "100%", height: "100%", position: "relative" }}>
+        <div className="wrapperDiv" style={{ width: "100%", height: "100%", position: "relative" }}>
             <div className="" style={{ position: "absolute", zIndex: "900", pointerEvents: "none" }}>
                 <div style={{ pointerEvents: "all" }}>
                     <button
@@ -91,68 +128,70 @@ export default function ChartComponent() {
                     >
                         VERTICAL SLICE
                     </button>
-
-                    {type === "cursor" ? (
-                        <FormControlLabel
-                            control={
-                                <Switch
-                                    checked={showData}
-                                    onChange={() => {
-                                        setShowData((value) => !value);
-                                    }}
-                                />
-                            }
-                            label={`${showData ? "hide data" : "show data"}`}
-                            style={{ margin: 0, background: "#163149", color: "white", paddingRight: "10px" }}
-                        />
-                    ) : null}
-
-                    {type === "cursor" && showData && seriesInfos?.length ? (
-                        <div
-                            style={{
-                                color: "rgb(0, 188, 212)",
-                                display: "inline-block",
-                            }}
-                        >
-                            index: {seriesInfos[0].dataSeriesIndex}, xValue: {seriesInfos[0].xValue.toFixed(2)},
-                            yValue[0]:
-                            {seriesInfos[0].yValue.toFixed(2)}
-                        </div>
-                    ) : null}
-
-                    {type === "verticalSlice" ? (
-                        <FormControlLabel
-                            control={
-                                <Switch
-                                    checked={showClickData}
-                                    onChange={() => {
-                                        setShowClickData((value) => !value);
-                                    }}
-                                />
-                            }
-                            label={`${showClickData ? "hide click data" : "show click data"}`}
-                            style={{ margin: 0, background: "#163149", color: "white", paddingRight: "10px" }}
-                        />
-                    ) : null}
-
-                    {type === "verticalSlice" && showClickData && clickInfo ? (
-                        <div
-                            style={{
-                                color: "rgb(0, 188, 212)",
-                                display: "inline-block",
-                            }}
-                        >
-                            {clickInfo}
-                        </div>
-                    ) : null}
                 </div>
             </div>
+            {type === "verticalSlice" && showClickData && clickInfo ? (
+                <div
+                    className="verticalSliceInfo"
+                    style={{
+                        zIndex: 900,
+                        position: "absolute",
+                        color: "white",
+                        left: "10px",
+                        bottom: "20px",
+                        fontSize: "12px",
+                    }}
+                >
+                    <div className="">Currently in React state:</div>
+                    <div className="">{clickInfo}</div>
+                </div>
+            ) : null}
+            {type === "cursor" && showData && seriesInfos?.length ? (
+                <div
+                    style={{
+                        zIndex: 900,
+                        position: "absolute",
+                        color: "white",
+                        left: "10px",
+                        bottom: "20px",
+                        fontSize: "12px",
+                    }}
+                >
+                    <div className="">Currently in React state:</div>
+                    <div className="">
+                        {" "}
+                        index: {seriesInfos[0].dataSeriesIndex}, xValue: {seriesInfos[0].xValue.toFixed(2)}, yValue[0]:
+                        {seriesInfos[0].yValue.toFixed(2)}
+                    </div>
+                </div>
+            ) : null}
+
+            {type === "rollover" && showRolloverData && rolloverInfo ? (
+                <div
+                    style={{
+                        zIndex: 900,
+                        position: "absolute",
+                        color: "white",
+                        left: "10px",
+                        bottom: "20px",
+                        fontSize: "12px",
+                    }}
+                >
+                    <div className="">Currently in React state:</div>
+                    <div className="">
+                        {" "}
+                        index: {rolloverInfo.dataSeriesIndex}, xValue: {rolloverInfo.xValue.toFixed(2)}, yValue:
+                        {rolloverInfo.yValue.toFixed(2)}
+                    </div>
+                </div>
+            ) : null}
+
             <SciChartReact
                 initChart={drawExample}
                 className={commonClasses.ChartWrapper}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     // get the "setMap" function that is returned by "drawExample"
-                    let { setType, setData, callBack, clickCallBack } = initResult;
+                    let { setType, setData, callBack } = initResult;
 
                     // assign function to ref so we can call it later
                     setTypeFunc.current = setType;
@@ -160,9 +199,8 @@ export default function ChartComponent() {
                     // reset data
                     setDataFunc.current = setData;
 
+                    // set callback
                     cb.current = callBack;
-
-                    cbClick.current = clickCallBack;
                 }}
             />
         </div>

@@ -337,6 +337,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         const height = 75;
         rolloverTooltip.updateSize(width, height);
 
+        if (setStuff) {
+            setStuff(seriesInfo);
+        }
+
         return `
         <svg width="${width}" height="${height}">
                 <rect x="0" y="0" rx="${5}" ry="${5}" width="${width}" height="${height}" fill="${"#EDEFF1"}" stroke="white" stroke-width="2"/>
@@ -487,17 +491,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
                 modifierMouseDown(args: ModifierMouseArgs) {
                     super.modifierMouseDown(args);
-                    if (setClickStuff) {
-                        setClickStuff(
-                            `MouseDown at point ${args.mousePoint.x.toFixed(2)}, ${args.mousePoint.y.toFixed(2)}`
-                        );
+                    if (setStuff) {
+                        setStuff(`MouseDown at point ${args.mousePoint.x.toFixed(2)}, ${args.mousePoint.y.toFixed(2)}`);
                     }
                 }
 
                 modifierDoubleClick(args: ModifierMouseArgs) {
                     super.modifierDoubleClick(args);
-                    if (setClickStuff) {
-                        setClickStuff(
+                    if (setStuff) {
+                        setStuff(
                             `DoubleClick at point  ${args.mousePoint.x.toFixed(2)}, ${args.mousePoint.y.toFixed(2)}`
                         );
                     }
@@ -519,9 +521,5 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         setStuff = fn;
     };
 
-    const clickCallBack = (fn: (arg0: string) => any) => {
-        setClickStuff = fn;
-    };
-
-    return { sciChartSurface, wasmContext, setType, setData, callBack, clickCallBack };
+    return { sciChartSurface, wasmContext, setType, setData, callBack };
 };
