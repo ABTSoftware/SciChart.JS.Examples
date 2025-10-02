@@ -14,7 +14,14 @@ import {
     Typography,
 } from "@mui/material";
 
+import { Dialog, DialogTitle, IconButton } from "@mui/material";
+
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+
 import Button from "@mui/material/Button";
+
+import CloseIcon from "@mui/icons-material/Close";
 
 import { appTheme } from "../../../theme";
 import { useRef, useState } from "react";
@@ -37,7 +44,16 @@ export default function StylingDemoChart() {
     const [enableGridLines, setEnableGridLines] = useState(false);
     const [labelFontSize, setLabelFontSize] = useState(20);
     const [font, setFont] = useState("arial");
+    const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
+    const handleClickOpen = () => {
+        setIsDialogOpen(true);
+    };
+
+    const handleClose = () => {
+        setIsDialogOpen(false);
+    };
+    
     const fonts = ["arial", "braahone", "allura"];
 
     const handleLabelFontSize = (_: any, newValue: any) => {
@@ -73,6 +89,77 @@ export default function StylingDemoChart() {
             return !oldValue;
         });
     };
+
+
+    // const configurationDialog = (
+    //     <Dialog
+    //         onClose={handleClose}
+    //         open={isDialogOpen}
+    //         sx={{ color: appTheme.ForegroundColor, "& .MuiDialog-paper": { background: appTheme.DarkIndigo } }}
+    //     >
+    //         <DialogTitle>
+    //             <span style={{ color: appTheme.ForegroundColor }}>Chart Configurations</span>
+    //             <IconButton
+    //                 aria-label="close"
+    //                 onClick={handleClose}
+    //                 sx={(theme) => ({
+    //                     position: "absolute",
+    //                     right: 8,
+    //                     top: 8,
+    //                     color: theme.palette.grey[500],
+    //                 })}
+    //             >
+    //                 <CloseIcon />
+    //             </IconButton>
+    //         </DialogTitle>
+    //         <List>
+    //             <Typography
+    //                 variant="subtitle2"
+    //                 fontWeight={"bold"}
+    //                 sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
+    //             >
+    //                 Main Chart
+    //             </Typography>
+
+    //             <ListItem disablePadding>
+    //                 <FormControlLabel
+    //                     control={<Switch checked={isVisibleRangeSynced} onChange={handleSyncVisibleRangeChange} />}
+    //                     label="Sync&nbsp;X-Axis&nbsp;visible&nbsp;range"
+    //                     sx={switchStyleOverrides}
+    //                 />
+    //             </ListItem>
+    //             <Typography
+    //                 variant="subtitle2"
+    //                 fontWeight={"bold"}
+    //                 sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
+    //             >
+    //                 URL Statistics Chart
+    //             </Typography>
+    //             <ListItem disablePadding>
+    //                 <FormControlLabel
+    //                     control={<Switch checked={isHundredPercentCollection} onChange={handleUsePercentage} />}
+    //                     label="is&nbsp;100%&nbsp;collection"
+    //                     sx={switchStyleOverrides}
+    //                 />
+    //             </ListItem>
+    //             <Typography
+    //                 variant="subtitle2"
+    //                 fontWeight={"bold"}
+    //                 sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
+    //             >
+    //                 Server Load Statistics Chart
+    //             </Typography>
+    //             <ListItem disablePadding>
+    //                 <FormControlLabel
+    //                     control={<Switch checked={isGridLayout} onChange={handleUseGridLayout} />}
+    //                     label="is&nbsp;Grid&nbsp;Layout"
+    //                     sx={switchStyleOverrides}
+    //                 />
+    //             </ListItem>
+    //         </List>
+    //     </Dialog>
+    // );
+
 
     return (
         <div className={commonClasses.ChartWithToolbar}>
