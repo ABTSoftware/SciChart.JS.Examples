@@ -316,6 +316,7 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_RealtimeSurfaceMesh3DChart,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_Column3DChart,
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_StylingDemoChart,
         ],
     },
 ];
