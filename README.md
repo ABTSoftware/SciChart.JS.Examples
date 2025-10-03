@@ -2,11 +2,13 @@
 
 ## What's in this repo?
 
-1. The source code for [demo.scichart.com](https://demo.scichart.com) found under the **[/Examples](Examples)** folder
+1. The source code for [scichart.com/demo](https://www.scichart.com/demo) found under the **[/Examples](Examples)** folder
 2. Source code for **tutorials** for SciChart.js, found under the **[/Tutorials](Tutorials)** folder;
    also examples for testing and profiling memory usage at **[/Tutorials/MemoryTests](Tutorials/MemoryTests)**
-3. **Sandbox examples**, including boilerplates for React, Angular, Vue, Electron, Next.js and Nuxt.js plus several useful examples found under the **[/Sandbox](Sandbox)** folder
-4. Supporting code for the **documentation**, which is published online at [scichart.com/javascript-chart-documentation](https://scichart.com/javascript-chart-documentation) is found in the **[/Documentation](Documentation)** folder
+3. Ready to run starter projects for React, Angular, Vue, Electron, Next.js, Nuxt.js any many more in the **[/Boilerplates](Boilerplates)** folder
+4. Standalone examples of customisations and solutions created in response to customer requests in the **[/Sandbox/CustomerExamples](Sandbox/CustomerExamples)** folder
+5. Supporting code for the **v3 documentation**, which is published online at [www.scichart.com/documentation/js/current](https://www.scichart.com/documentation/js/current/webframe.html) is found in the **[/Documentation](Documentation)** folder. Source for **[v4 Documentation](https://www.scichart.com/documentation/js/v4/intro/)** is now in its own repo [scichart.js.docs](https://github.com/abtsoftware/scichart.js.docs)
+6. **Advanced Licensing** technical details for customers needing to deploy to unknown or localhost domains in the **[/AdvancedLicensing](AdvancedLicensing)** folder. Further documentation on this is at [Deploying SciChart.js with Advanced Licensing (OEM)](https://www.scichart.com/documentation/js/v4/user-manual/licensing-scichart-js/deploying-with-advanced-licensing/).
 
 > **Scroll down for how to compile the demo app, find tutorials and boilerplate examples**
 
@@ -34,8 +36,8 @@
 > Other useful links below:
 >
 > - [Changelog for SciChart.js Library](https://www.scichart.com/changelog/scichart-js/)
-> - [Video Tutorials](https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2001%20-%20Setting%20up%20a%20Project%20with%20SciChart.js.html)
-> - [SciChart.js Documentation](https://www.scichart.com/documentation/js/current/webframe.html)
+> - [Video Tutorials](https://www.scichart.com/documentation/js/v4/get-started/tutorials-js-npm-webpack/tutorial-01-setting-up-npm-project-with-scichart-js/)
+> - [SciChart.js Documentation](https://www.scichart.com/documentation/js/v4/intro/)
 > - [SciChart Community forums](https://scichart.com/questions)
 > - [SciChart Stackoverflow tag](https://stackoverflow.com/tags/scichart)
 > - [Contact Us (Technical support or sales)](https://scichart.com/contact-us)
@@ -67,20 +69,16 @@ Contains Tutorials for 2D & 3D Charts using npm & webpack, or vanilla js (no bun
 
 Further instructions can be found in **[/Tutorials/Readme.md](Tutorials)**
 
-# [/Sandbox Folder](Sandbox)
+# [/Boilerplates Folder](Boilerplates)
 
 Contains a number of boilerplate examples to help you get started fast using SciChart.js.
 
-Here you can find boilerplates for React, Vue.js, Angular, Next.js, Nuxt.js, Electron and more.
-
-Further details can be found in [/Sandbox/Readme.md](Sandbox)
+Here you can find boilerplates for React, Vue.js, Angular, Next.js, Nuxt.js, Electron and more. Each one has a readme explaining how to get started
 
 # [/Documentation Folder](Documentation)
 
-All documentation is hosted online at [scichart.com/javascript-chart-documentation](https://scichart.com/javascript-chart-documentation).
-
-The docs have recently been updated to include embedded codepen.io snippets and both JavaScript and Builder-API code samples.
-
-The [/Documentation Folder](Documentation) folder contains supporting code and project files for us to deploy accurate, working documentation code samples. We recommend viewing the documentation online at [scichart.com/javascript-chart-documentation](https://scichart.com/javascript-chart-documentation).
+The [/Documentation](Documentation) folder contains supporting code and project files for us to deploy accurate, working documentation code samples for SciChart.js v3. We recommend viewing the documentation online at [scichart.com/javascript-chart-documentation](https://scichart.com/javascript-chart-documentation).
 
 However, you can browse into [/Documentation](Documentation) and start the project if you want to browse 100s of mini code samples that are hosted throughout the docs.
+
+Source for **[v4 Documentation](https://www.scichart.com/documentation/js/v4/intro/)** is now in its own repo [scichart.js.docs](https://github.com/abtsoftware/scichart.js.docs)
