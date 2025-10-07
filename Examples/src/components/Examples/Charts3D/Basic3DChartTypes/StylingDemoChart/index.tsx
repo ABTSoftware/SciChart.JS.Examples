@@ -1,6 +1,6 @@
 import * as React from "react";
 import commonClasses from "../../../styles/Examples.module.scss";
-import { drawExample, drawHeatmapLegend } from "./drawExample";
+import { drawExample, fonts } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import {
     ButtonGroup,
@@ -16,6 +16,7 @@ import {
 
 import { Dialog, DialogTitle, IconButton } from "@mui/material";
 
+import SettingsIcon from "@mui/icons-material/Settings";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 
@@ -25,6 +26,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import { appTheme } from "../../../theme";
 import { useRef, useState } from "react";
+import { useViewType } from "./containerSizeHooks";
 
 const styles = {
     combobox: {
@@ -34,11 +36,20 @@ const styles = {
     },
 };
 
+const configButtonWrapperStyle: React.CSSProperties = {
+    gridArea: "1 / 1 / 2 / 2",
+    pointerEvents: "none",
+    touchAction: "none",
+    zIndex: 2,
+};
+
 // REACT COMPONENT
 export default function StylingDemoChart() {
     const controlsRef = useRef(null);
+    const sizeRef = useRef<HTMLDivElement>(null);
+    const viewInfo = useViewType(sizeRef);
+    const { isLargeView, isMobileView } = viewInfo ?? {};
 
-    const [cameraPositionX, setCameraPositionX] = useState(-141.6);
     const [xAxisTitleOffset, setXAxisTitleOffset] = useState(0);
     const [enableGridBands, setEnableGridBands] = useState(true);
     const [enableGridLines, setEnableGridLines] = useState(false);
@@ -53,8 +64,8 @@ export default function StylingDemoChart() {
     const handleClose = () => {
         setIsDialogOpen(false);
     };
-    
-    const fonts = ["arial", "braahone", "allura"];
+
+    // const fonts = ["arial", "braahone", "allura", "antic", "coda", "forum", "kenia", "metal"];
 
     const handleLabelFontSize = (_: any, newValue: any) => {
         setLabelFontSize(newValue);
@@ -90,133 +101,76 @@ export default function StylingDemoChart() {
         });
     };
 
+    const configurationDialog = (
+        <Dialog
+            onClose={handleClose}
+            open={isDialogOpen}
+            sx={{ color: appTheme.ForegroundColor, "& .MuiDialog-paper": { background: appTheme.DarkIndigo } }}
+        >
+            <DialogTitle>
+                <span style={{ color: appTheme.ForegroundColor }}>Configuration</span>
+            </DialogTitle>
 
-    // const configurationDialog = (
-    //     <Dialog
-    //         onClose={handleClose}
-    //         open={isDialogOpen}
-    //         sx={{ color: appTheme.ForegroundColor, "& .MuiDialog-paper": { background: appTheme.DarkIndigo } }}
-    //     >
-    //         <DialogTitle>
-    //             <span style={{ color: appTheme.ForegroundColor }}>Chart Configurations</span>
-    //             <IconButton
-    //                 aria-label="close"
-    //                 onClick={handleClose}
-    //                 sx={(theme) => ({
-    //                     position: "absolute",
-    //                     right: 8,
-    //                     top: 8,
-    //                     color: theme.palette.grey[500],
-    //                 })}
-    //             >
-    //                 <CloseIcon />
-    //             </IconButton>
-    //         </DialogTitle>
-    //         <List>
-    //             <Typography
-    //                 variant="subtitle2"
-    //                 fontWeight={"bold"}
-    //                 sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
-    //             >
-    //                 Main Chart
-    //             </Typography>
-
-    //             <ListItem disablePadding>
-    //                 <FormControlLabel
-    //                     control={<Switch checked={isVisibleRangeSynced} onChange={handleSyncVisibleRangeChange} />}
-    //                     label="Sync&nbsp;X-Axis&nbsp;visible&nbsp;range"
-    //                     sx={switchStyleOverrides}
-    //                 />
-    //             </ListItem>
-    //             <Typography
-    //                 variant="subtitle2"
-    //                 fontWeight={"bold"}
-    //                 sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
-    //             >
-    //                 URL Statistics Chart
-    //             </Typography>
-    //             <ListItem disablePadding>
-    //                 <FormControlLabel
-    //                     control={<Switch checked={isHundredPercentCollection} onChange={handleUsePercentage} />}
-    //                     label="is&nbsp;100%&nbsp;collection"
-    //                     sx={switchStyleOverrides}
-    //                 />
-    //             </ListItem>
-    //             <Typography
-    //                 variant="subtitle2"
-    //                 fontWeight={"bold"}
-    //                 sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
-    //             >
-    //                 Server Load Statistics Chart
-    //             </Typography>
-    //             <ListItem disablePadding>
-    //                 <FormControlLabel
-    //                     control={<Switch checked={isGridLayout} onChange={handleUseGridLayout} />}
-    //                     label="is&nbsp;Grid&nbsp;Layout"
-    //                     sx={switchStyleOverrides}
-    //                 />
-    //             </ListItem>
-    //         </List>
-    //     </Dialog>
-    // );
-
-
-    return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow} style={{ padding: "0 8px" }}>
-                {/* <FormControlLabel
-                    control={
-                        <select style={styles.combobox} value={font} onChange={handleFontChange}>
+            <IconButton
+                aria-label="close"
+                onClick={handleClose}
+                sx={(theme) => ({
+                    position: "absolute",
+                    right: 0,
+                    top: 0,
+                    color: theme.palette.grey[500],
+                })}
+                size="small"
+            >
+                <CloseIcon />
+            </IconButton>
+            <List>
+                <ListItem>
+                    <FormControl variant="filled" sx={{ width: "250px", color: "gray" }}>
+                        <InputLabel id="font-label" color="primary" sx={{ color: "#FFFFFF" }}>
+                            Change Font
+                        </InputLabel>
+                        <Select
+                            labelId="font-label"
+                            id="font"
+                            value={font}
+                            onChange={handleFontChange}
+                            sx={{ color: "#FFFFFF" }}
+                            size="small"
+                        >
                             {fonts.map((el) => (
-                                <option key={el} value={el}>
-                                    {el}
-                                </option>
+                                <MenuItem key={el.name} value={el.name}>
+                                    {el.name.toUpperCase()}
+                                </MenuItem>
                             ))}
-                        </select>
-                    }
-                    labelPlacement="top"
-                    label="Change Font"
-                /> */}
+                        </Select>
+                    </FormControl>
+                </ListItem>
 
-                <FormControl variant="filled" sx={{ minWidth: 120, color: "gray" }}>
-                    <InputLabel id="font-label" color="primary" sx={{ color: "#FFFFFF" }}>
-                        Change Font
-                    </InputLabel>
-                    <Select
-                        labelId="font-label"
-                        id="font"
-                        value={font}
-                        onChange={handleFontChange}
-                        sx={{ color: "#FFFFFF" }}
-                        size="small"
-                    >
-                        {fonts.map((el) => (
-                            <MenuItem key={el} value={el}>
-                                {el.toUpperCase()}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
+                <ListItem>
+                    <FormControlLabel
+                        sx={{ color: "white" }}
+                        control={<Checkbox checked={enableGridBands} onChange={handleEnableGridBands} size="small" />}
+                        label="Show grid bands"
+                        labelPlacement="start"
+                    />
+                </ListItem>
 
-                {/* <Button size="small" variant="text" onClick={handleEnableGridBands}>
-                    {enableGridBands ? "Hide grid bands" : "Show grid bands"}
-                </Button> */}
+                <ListItem>
+                    <FormControlLabel
+                        sx={{ color: "white" }}
+                        control={<Checkbox checked={enableGridLines} onChange={handleEnableGridLines} size="small" />}
+                        label="Show grid lines"
+                        labelPlacement="start"
+                    />
+                </ListItem>
 
-                <FormControlLabel
-                    control={<Checkbox checked={enableGridBands} onChange={handleEnableGridBands} size="small" />}
-                    label="Show grid bands"
-                    labelPlacement="start"
-                />
-
-                <FormControlLabel
-                    control={<Checkbox checked={enableGridLines} onChange={handleEnableGridLines} size="small" />}
-                    label="Show grid lines"
-                    labelPlacement="start"
-                />
-
-                <div style={{ width: 150 }}>
-                    <Typography variant="body1">Axis Font Size</Typography>
+                <ListItem sx={{ display: "flex", flexDirection: "column" }}>
+                    <Typography variant="body1" sx={{ color: "white" }}>
+                        Axis Font Size: {labelFontSize}
+                    </Typography>
                     <Slider
+                        sx={{ width: "200px" }}
                         id="labelFontSize"
                         onChange={handleLabelFontSize}
                         step={1}
@@ -225,10 +179,13 @@ export default function StylingDemoChart() {
                         value={labelFontSize}
                         valueLabelDisplay="off"
                     />
-                </div>
-                <div style={{ width: 150, padding: "10px 0" }}>
-                    <Typography variant="body1">Axis Title Offset</Typography>
+                </ListItem>
+                <ListItem sx={{ display: "flex", flexDirection: "column" }}>
+                    <Typography variant="body1" sx={{ color: "white" }}>
+                        Axis Title Offset: {xAxisTitleOffset}
+                    </Typography>
                     <Slider
+                        sx={{ width: "200px" }}
                         id="xAxisTitleOffset"
                         onChange={handleXAxisTitleOffset}
                         step={1}
@@ -237,15 +194,94 @@ export default function StylingDemoChart() {
                         value={xAxisTitleOffset}
                         valueLabelDisplay="off"
                     />
-                </div>
+                </ListItem>
+                <ListItem disablePadding></ListItem>
+            </List>
+        </Dialog>
+    );
+
+    return (
+        <div className={commonClasses.ChartWithToolbar} ref={sizeRef}>
+            <div className={commonClasses.ToolbarRow} style={{ padding: "0 8px" }}>
+                {isMobileView ? (
+                    <div style={configButtonWrapperStyle} title="Chart Configurations">
+                        <IconButton
+                            sx={{ color: appTheme.ForegroundColor, pointerEvents: "all", touchAction: "all" }}
+                            onClick={handleClickOpen}
+                        >
+                            <SettingsIcon fontSize="medium" />
+                        </IconButton>
+                        {configurationDialog}
+                    </div>
+                ) : (
+                    <>
+                        <FormControl variant="filled" sx={{ minWidth: 120, color: "gray" }}>
+                            <InputLabel id="font-label" color="primary" sx={{ color: "#FFFFFF" }}>
+                                Change Font
+                            </InputLabel>
+                            <Select
+                                labelId="font-label"
+                                id="font"
+                                value={font}
+                                onChange={handleFontChange}
+                                sx={{ color: "#FFFFFF" }}
+                                size="small"
+                            >
+                                {fonts.map((el) => (
+                                    <MenuItem key={el.name} value={el.name}>
+                                        {el.name.toUpperCase()}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+
+                        <FormControlLabel
+                            control={
+                                <Checkbox checked={enableGridBands} onChange={handleEnableGridBands} size="small" />
+                            }
+                            label="Show grid bands"
+                            labelPlacement="start"
+                        />
+
+                        <FormControlLabel
+                            control={
+                                <Checkbox checked={enableGridLines} onChange={handleEnableGridLines} size="small" />
+                            }
+                            label="Show grid lines"
+                            labelPlacement="start"
+                        />
+
+                        <div style={{ minWidth: 150 }}>
+                            <Typography variant="body1">Axis Font Size: {labelFontSize}</Typography>
+                            <Slider
+                                id="labelFontSize"
+                                onChange={handleLabelFontSize}
+                                step={1}
+                                min={10}
+                                max={30}
+                                value={labelFontSize}
+                                valueLabelDisplay="off"
+                            />
+                        </div>
+                        <div style={{ minWidth: 150, padding: "10px 0" }}>
+                            <Typography variant="body1">Axis Title Offset: {xAxisTitleOffset}</Typography>
+                            <Slider
+                                id="xAxisTitleOffset"
+                                onChange={handleXAxisTitleOffset}
+                                step={1}
+                                min={0}
+                                max={100}
+                                value={xAxisTitleOffset}
+                                valueLabelDisplay="off"
+                            />
+                        </div>
+                    </>
+                )}
             </div>
             <SciChartReact
                 initChart={drawExample}
                 onInit={({ sciChartSurface, controls }: TResolvedReturnType<typeof drawExample>) => {
-                    controlsRef.current = controls; // Call controls function if needed
-                    // sciChartSurfaceRef.current = sciChartSurface;
-                    // controlsRef.current = controls;
-                    // setRenderableSeries(sciChartSurface.renderableSeries.get(0) as ColumnRenderableSeries3D);
+                    controlsRef.current = controls; // Set controlls object to ref
                 }}
             />
         </div>

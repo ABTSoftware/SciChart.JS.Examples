@@ -6,7 +6,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "StylingDemoChart",
         id: "chart3D_basic3DChartTypes_StylingDemoChart",
-        imagePath: "javascript-3d-point-line-chart.jpg",
+        imagePath: "javascript-3d-styling-demo.jpg",
         description:
             "Our team demonstrates how to create a **JavaScript 3D Point Line Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
         tips: [],
@@ -23,9 +23,9 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Our team demonstrates how to create a **React 3D Point Line Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
-                title: "StylingDemoChart",
-                pageTitle: "React 3D Point Line Chart | View 3D JavaScript Charts",
+                    "Our team demonstrates how to create a **React 3D Styling Demo** using SciChart.js.",
+                title: "3D Styling Demo",
+                pageTitle: "React 3D Styling Demo | View 3D Styling Demo",
                 metaDescription:
                     "Create detailed React 3D Line Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.",
                 markdownContent:
@@ -53,7 +53,7 @@ const metaData: IExampleMetadata =
         metaKeywords: "3d, bubble, chart, javascript, webgl, canvas",
         onWebsite: false,
         filepath: "Charts3D/Basic3DChartTypes/StylingDemoChart",
-        thumbnailImage: "javascript-3d-point-line-chart.jpg",
+        thumbnailImage: "javascript-3d-styling-demo.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",

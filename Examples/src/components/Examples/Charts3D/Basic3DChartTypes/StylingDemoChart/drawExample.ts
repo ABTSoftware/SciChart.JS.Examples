@@ -10,10 +10,8 @@ import {
     ResetCamera3DModifier,
     SciChart3DSurface,
     TGradientStop,
-    Thickness,
     Vector3,
     XyzDataSeries3D,
-    SciChartDefaults,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -54,28 +52,37 @@ const createSpectralData = (n: number) => {
     return { xValues, yValues };
 };
 
+export const fonts = [
+    { name: "arial", url: "" },
+    {
+        name: "braahone",
+        url: "https://raw.githubusercontent.com/google/fonts/main/ofl/braahone/BraahOne-Regular.ttf",
+    },
+    {
+        name: "iceland",
+        url: "https://raw.githubusercontent.com/google/fonts/main/ofl/iceland/Iceland-Regular.ttf",
+    },
+    { name: "antic", url: "https://raw.githubusercontent.com/google/fonts/main/ofl/antic/Antic-Regular.ttf" },
+    { name: "coda", url: "https://raw.githubusercontent.com/google/fonts/main/ofl/coda/Coda-Regular.ttf" },
+    { name: "forum", url: "https://raw.githubusercontent.com/google/fonts/main/ofl/forum/Forum-Regular.ttf" },
+    { name: "freeman", url: "https://raw.githubusercontent.com/google/fonts/main/ofl/freeman/Freeman-Regular.ttf" },
+    { name: "geo", url: "https://raw.githubusercontent.com/google/fonts/main/ofl/geo/Geo-Regular.ttf" },
+];
+
 // SCICHART CODE
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
 
-    SciChartDefaults.useNativeText = false;
-
-    await sciChart3DSurface.registerFont(
-        "braahone",
-        "https://raw.githubusercontent.com/google/fonts/main/ofl/braahone/BraahOne-Regular.ttf"
-    );
-
-    await sciChart3DSurface.registerFont(
-        "allura",
-        "https://raw.githubusercontent.com/google/fonts/main/ofl/allura/Allura-Regular.ttf"
-    );
-
+    // Register one font
     // await sciChart3DSurface.registerFont(
     //     "braahone",
-    //     "BraahOne-Regular.ttf"
+    //     "https://raw.githubusercontent.com/google/fonts/main/ofl/braahone/BraahOne-Regular.ttf"
     // );
+
+    // Register all fonts from "fonts" array in parallel
+    await Promise.all(fonts.map((font) => sciChart3DSurface.registerFont(font.name, font.url)));
 
     sciChart3DSurface.worldDimensions = new Vector3(300, 100, 300);
 
@@ -100,12 +107,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawMinorGridLines: false,
         drawMajorGridLines: false,
         tickLabelsOffset: 20,
-        // useNativeText: false,
         axisTitleStyle: {
-            // fontSize: 16,
-            // useNativeText: false // not implemented?
+            // fontFamily: "allura", // works
         },
     });
+
+    sciChart3DSurface.xAxis.backgroundColor = "red";
+    // sciChart3DSurface.xAxis.planeBorderColor = "red";
+    // sciChart3DSurface.xAxis.planeBorderThickness = 20;
+
 
     // title offset
 
@@ -141,6 +151,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChart3DSurface.yAxis.labelStyle.fontFamily = font;
         sciChart3DSurface.zAxis.labelStyle.fontFamily = font;
         // sciChart3DSurface.xAxis.axisTitleStyle.fontFamily = font;
+        sciChart3DSurface.xAxis.titleStyle.fontFamily = font;
+        sciChart3DSurface.yAxis.titleStyle.fontFamily = font;
+        sciChart3DSurface.zAxis.titleStyle.fontFamily = font;
+
+        // sciChart3DSurface.yAxis.axisTitleStyle // future update
     };
 
     sciChart3DSurface.xAxis.drawMajorBands = true;
@@ -158,15 +173,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChart3DSurface.xAxis.majorGridLineStyle.color = "red";
     sciChart3DSurface.yAxis.majorGridLineStyle.color = "red";
     sciChart3DSurface.zAxis.majorGridLineStyle.color = "red";
+
     const enableMajorGridLines = (enable: boolean) => {
         sciChart3DSurface.xAxis.drawMajorGridLines = enable;
         sciChart3DSurface.yAxis.drawMajorGridLines = enable;
         sciChart3DSurface.zAxis.drawMajorGridLines = enable;
     };
 
-    // sciChart3DSurface.xAxis.axisTitleStyle.fontFamily = "braahone";
-
-    // sciChart3DSurface.yAxis.axisTitleStyle
+    
 
     for (let i = 0; i < 50; i++) {
         // Create some data for the example
@@ -237,53 +251,3 @@ function formatMetadata(valuesArray: number[], gradientStops: TGradientStop[]): 
         return { pointScale: 0.1 + valueScale, vertexColor: color1 };
     });
 }
-
-export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) => {
-    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(rootElement, {
-        theme: {
-            ...appTheme.SciChartJsTheme,
-            sciChartBackground: appTheme.DarkIndigo + "BB",
-            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
-        },
-        yAxisOptions: {
-            isInnerAxis: true,
-            labelStyle: {
-                fontSize: 12,
-                color: appTheme.ForegroundColor,
-            },
-            axisBorder: {
-                borderRight: 1,
-                color: appTheme.ForegroundColor + "77",
-            },
-            majorTickLineStyle: {
-                color: appTheme.ForegroundColor,
-                tickSize: 6,
-                strokeThickness: 1,
-            },
-            minorTickLineStyle: {
-                color: appTheme.ForegroundColor,
-                tickSize: 3,
-                strokeThickness: 1,
-            },
-        },
-        colorMap: {
-            minimum: -30,
-            maximum: 0,
-            gradientStops: [
-                { offset: 1, color: appTheme.VividPink },
-                { offset: 0.9, color: appTheme.VividOrange },
-                { offset: 0.7, color: appTheme.MutedRed },
-                { offset: 0.5, color: appTheme.VividGreen },
-                { offset: 0.3, color: appTheme.VividSkyBlue },
-                { offset: 0.15, color: appTheme.Indigo },
-                { offset: 0, color: appTheme.DarkIndigo },
-            ],
-        },
-    });
-
-    heatmapLegend.innerSciChartSurface.sciChartSurface.title = "Power (dB)";
-    heatmapLegend.innerSciChartSurface.sciChartSurface.padding.top = 0;
-    heatmapLegend.innerSciChartSurface.sciChartSurface.titleStyle = { fontSize: 12, color: appTheme.ForegroundColor };
-
-    return { sciChartSurface: heatmapLegend.innerSciChartSurface.sciChartSurface };
-};
