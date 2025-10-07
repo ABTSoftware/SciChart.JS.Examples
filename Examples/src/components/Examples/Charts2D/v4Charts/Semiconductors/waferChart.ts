@@ -206,8 +206,6 @@ export const drawWaferChart = async (rootElement: string | HTMLDivElement, selec
 
         sciChartSurface.renderableSeries.clear(true);
 
-        console.log({ dataJSON });
-
         // Extract data for the chart
         const data = dataJSON.reduce(
             (acc, curr) => {

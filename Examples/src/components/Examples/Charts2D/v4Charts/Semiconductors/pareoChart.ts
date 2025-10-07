@@ -28,7 +28,7 @@ interface IColumnPointMetadata extends IPointMetadata {
     measure3: number;
 }
 
-export const drawColumnChart = async (rootElement: string | HTMLDivElement, waferData: WaferLotData[] = []) => {
+export const drawPareoChart = async (rootElement: string | HTMLDivElement, waferData: WaferLotData[] = []) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,

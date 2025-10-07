@@ -9,20 +9,12 @@ import {
     XyDataSeries,
     ZoomExtentsModifier,
     ZoomPanModifier,
-    CursorModifier,
-    LegendModifier,
-    CategoryAxis,
-    DateTimeNumericAxis,
-    NumericLabelProvider,
-    ENumericFormat,
-    DateLabelProvider,
     EVerticalTextPosition,
     Thickness,
     IPointMetadata,
     DataLabelProvider,
     DataPointSelectionModifier,
     DataPointSelectionPaletteProvider,
-    ILabel2DOptions,
     TextLabelProvider,
     ELabelAlignment,
     RolloverModifier,
@@ -48,12 +40,11 @@ import { WaferLotData } from "./waferData";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import { appTheme } from "../../../theme";
 
-export const drawExample = async (
+export const drawLineChart = async (
     rootElement: string | HTMLDivElement,
     waferData: WaferLotData[] = [],
     onPointSelected?: (point: WaferLotData, index: number) => void
 ) => {
-    console.log({ waferData });
 
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {

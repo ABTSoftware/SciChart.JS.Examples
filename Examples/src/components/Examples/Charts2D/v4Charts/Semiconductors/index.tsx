@@ -2,11 +2,13 @@ import { useEffect, useState, useRef } from "react";
 import { generateWaferLotData, WaferLotData } from "./waferData";
 import { SciChartReact } from "scichart-react";
 import { SciChartSurface } from "scichart";
-import { drawExample } from "./lineChart";
+import { drawLineChart } from "./lineChart";
 import { drawColumnChart } from "./columnChart";
 import { drawScatterChart } from "./scatterChart";
 import { drawWaferChart } from "./waferChart";
 import { drawPlot } from "./plot";
+import { drawPareoChart } from "./pareoChart";
+
 import { appTheme } from "../../../theme";
 import "./styles.css";
 
@@ -15,6 +17,7 @@ export default function Overview() {
     const [selectedPoint, setSelectedPoint] = useState<WaferLotData | null>(null);
     const lineChartRef = useRef<{ sciChartSurface: any; wasmContext: any } | null>(null);
     const columnChartRef = useRef<{ sciChartSurface: any; wasmContext: any } | null>(null);
+    const pareoChartRef = useRef<{ sciChartSurface: any; wasmContext: any } | null>(null);
     const scatterChartRef = useRef<{ sciChartSurface: any; wasmContext: any } | null>(null);
     const plotChartRef = useRef<{ sciChartSurface: any; wasmContext: any; generateSubcharts: any } | null>(null);
     const waferChartRef = useRef<{ sciChartSurface: any; wasmContext: any; setData: any } | null>(null);
@@ -25,13 +28,13 @@ export default function Overview() {
         setSelectedPoint(null);
 
         // Optionally regenerate data to ensure fresh state
-        const freshData = generateWaferLotData(15, new Date(2023, 0, 1));
-        setData(freshData);
+        // const freshData = generateWaferLotData(15, new Date(2023, 0, 1));
+        // setData(freshData);
     };
 
     useEffect(() => {
         const fetchData = async () => {
-            // Generate 30 days of data for a better visualization
+            // Generate data
             let data = generateWaferLotData(15, new Date(2023, 0, 1));
             setData(data);
         };
@@ -45,6 +48,10 @@ export default function Overview() {
 
     const handleColumnChartInit = (chartInstance: any) => {
         columnChartRef.current = chartInstance;
+    };
+
+    const handlePareoChartInit = (chartInstance: any) => {
+        pareoChartRef.current = chartInstance;
     };
 
     const handleScatterChartInit = (chartInstance: any) => {
@@ -66,11 +73,15 @@ export default function Overview() {
 
     // Custom init functions that pass data to chart drawing functions
     const initLineChart = async (rootElement: string | HTMLDivElement) => {
-        return drawExample(rootElement, data, handlePointSelected);
+        return drawLineChart(rootElement, data, handlePointSelected);
     };
 
     const initColumnChart = async (rootElement: string | HTMLDivElement) => {
         return drawColumnChart(rootElement, data);
+    };
+
+    const initPareoChart = async (rootElement: string | HTMLDivElement) => {
+        return drawPareoChart(rootElement, data);
     };
 
     const initScatterChart = async (rootElement: string | HTMLDivElement) => {
@@ -153,24 +164,19 @@ export default function Overview() {
                                     onInit={handlePlotChartInit}
                                 />
                             ) : (
+                                // <SciChartReact
+                                //     key="columnChart"
+                                //     initChart={initColumnChart}
+                                //     className="sci-chart"
+                                //     onInit={handleColumnChartInit}
+                                // />
                                 <SciChartReact
                                     key="columnChart"
-                                    initChart={initColumnChart}
+                                    initChart={initPareoChart}
                                     className="sci-chart"
-                                    onInit={handleColumnChartInit}
+                                    onInit={handlePareoChartInit}
                                 />
                             )}
-
-                            {/* <SciChartReact
-                                initChart={initColumnChart}
-                                className="sci-chart"
-                                onInit={handleColumnChartInit}
-                            /> */}
-                            {/* <SciChartReact
-                                initChart={initPlotChart}
-                                className="sci-chart"
-                                onInit={handlePlotChartInit}
-                            /> */}
                         </div>
                     </div>
 
