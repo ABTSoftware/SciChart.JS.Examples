@@ -5,7 +5,7 @@ const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
         reactComponent: "Semiconductors",
-        id: "chart2D_v4Charts_Semiconductors",
+        id: "featuredApps_scientificCharts_Semiconductors",
         imagePath: "semiconductors-dashboard.jpg",
         description:
             "Creates a **Semiconductors Dashboard** using SciChart.js, by leveraging the **FastRectangleRenderableSeries**, and its `customTextureOptions` property to have a custom tiling texture fill.",
@@ -46,10 +46,10 @@ const metaData: IExampleMetadata =
                 linkTitle: "Semiconductors Dashboard Documentation",
             },
         ],
-        path: "semiconductors-dashboard2",
-        metaKeywords: "heatmap, chart, javascript, webgl, canvas",
+        path: "semiconductors-dashboard",
+        metaKeywords: "semiconductor, wafer, yield, heatmap, chart, javascript, webgl, canvas",
         onWebsite: true,
-        filepath: "Charts2D/v4Charts/Semiconductors",
+        filepath: "FeaturedApps/ScientificCharts/Semiconductors",
         thumbnailImage: "semiconductors-dashboard.jpg",
         sandboxConfig: {},
         markdownContent: null,
