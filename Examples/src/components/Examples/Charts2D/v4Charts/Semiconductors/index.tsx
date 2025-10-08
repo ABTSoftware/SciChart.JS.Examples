@@ -192,11 +192,17 @@ export default function Overview() {
                                     onInit={handlePareoChartInit}
                                 />
                             ) : (
+                                // <SciChartReact
+                                //     key="scatterChart"
+                                //     initChart={initScatterChart}
+                                //     className="sci-chart"
+                                //     onInit={handleScatterChartInit}
+                                // />
                                 <SciChartReact
-                                    key="scatterChart"
-                                    initChart={initScatterChart}
+                                    key="waferChart"
+                                    initChart={initWaferChart}
                                     className="sci-chart"
-                                    onInit={handleScatterChartInit}
+                                    onInit={handleWaferChartInit}
                                 />
                             )}
                         </div>
