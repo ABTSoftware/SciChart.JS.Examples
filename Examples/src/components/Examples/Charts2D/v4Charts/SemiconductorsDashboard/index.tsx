@@ -10,19 +10,19 @@ export default function Overview() {
 
     useEffect(() => {
         const fetchDies = async () => {
-            // const response = await fetch("./wfdata.csv");
-            // const csvContent = await response.text();
+            const response = await fetch("./wfdata.csv");
+            const csvContent = await response.text();
 
             // // console.log(csvJSON(csvContent))
 
-            // const data = csvJSON(csvContent) as WaferData[];
+            const data = csvJSON(csvContent) as WaferData[];
 
             //   waferRadius = 80,
             //   defectRate = 0.15,
             //   numClusters = 100,
             //   clusterSpread = 5
 
-            let data = generateWaferData(20, 0.15, 100, 5);
+            // let data = generateWaferData(20, 0.15, 100, 5);
             console.log(data.length)
 
             setData(data);
