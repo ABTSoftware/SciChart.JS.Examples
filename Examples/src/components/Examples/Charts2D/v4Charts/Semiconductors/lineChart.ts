@@ -20,6 +20,7 @@ import {
     RolloverModifier,
     SeriesInfo,
     RolloverTooltipSvgAnnotation,
+    ENumericFormat,
 } from "scichart";
 
 // Define a custom metadata interface that includes the Input1 value
@@ -45,14 +46,12 @@ export const drawLineChart = async (
     waferData: WaferLotData[] = [],
     onPointSelected?: (point: WaferLotData, index: number) => void
 ) => {
-
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
         title: "Yield Trend",
         titleStyle: {
             fontSize: 14,
-            // fontWeight: "bold",
             useNativeText: false,
             color: appTheme.PaleSkyBlue,
         },
@@ -61,39 +60,26 @@ export const drawLineChart = async (
     const growByY = new NumberRange(0.4, 0.4);
     const growByX = new NumberRange(0.05, 0.05);
 
-    // Create the X,Y Axis
-    // Using NumericAxis for dates since DateTimeAxis is not available
-    // sciChartSurface.xAxes.add(
-    //     new DateTimeNumericAxis(wasmContext, {
-    //         axisTitle: "Date",
-    //         // labelFormat: ENumericFormat.Date_DDMMYYYY,
-    //         labelProvider: new DateLabelProvider({ labelFormat: ENumericFormat.Date_DDMMYYYY }),
-    //         growBy: growByX,
-    //         labelStyle: {
-    //             fontSize: 10,
-    //         },
-    //         axisTitleStyle: {
-    //             fontSize: 12,
-    //         },
-    //     })
-    // );
-
     // Create the labelProvider
     const labelProvider = new TextLabelProvider({
-        // When passed as an array, labels will be used in order
-        labels: waferData.map((d, i) => `Lot ${i + 1}`),
-        // labels: waferData.map((d, i) => ["Lot", (i + 1).toString()]),
+        labels: waferData.map((d, i) =>
+            sciChartSurface.domCanvas2D.width < 1024 ? ["Batch", `${d.Batch}`] : `Batch ${d.Batch}`
+        ),
     });
 
     // Create an XAxis with a TextLabelProvider
     const xAxis = new NumericAxis(wasmContext, {
         labelProvider,
         growBy: growByX,
-        axisTitle: "Lot version",
+        axisTitle: "Batch version",
         drawMajorTickLines: false,
         drawMinorTickLines: false,
         drawMajorGridLines: false,
         drawMinorGridLines: false,
+        labelFormat: ENumericFormat.Decimal,
+        minorDelta: 1,
+        majorDelta: 1,
+        maxAutoTicks: 15,
         labelStyle: {
             fontSize: 10,
             alignment: ELabelAlignment.Center,

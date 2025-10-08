@@ -139,7 +139,7 @@ export default function Overview() {
                     aria-label="Reset dashboard to initial state"
                     type="button"
                 >
-                    Return to initial state
+                    Back to main screen
                 </button>
             ) : null}
 
@@ -164,17 +164,11 @@ export default function Overview() {
                                     onInit={handlePlotChartInit}
                                 />
                             ) : (
-                                // <SciChartReact
-                                //     key="columnChart"
-                                //     initChart={initColumnChart}
-                                //     className="sci-chart"
-                                //     onInit={handleColumnChartInit}
-                                // />
                                 <SciChartReact
                                     key="columnChart"
-                                    initChart={initPareoChart}
+                                    initChart={initColumnChart}
                                     className="sci-chart"
-                                    onInit={handlePareoChartInit}
+                                    onInit={handleColumnChartInit}
                                 />
                             )}
                         </div>
@@ -184,11 +178,18 @@ export default function Overview() {
                     <div className="scatter-wafer-container">
                         <div className="chart-wrapper">
                             {!selectedPoint ? (
+                                // <SciChartReact
+                                //     key="waferChart"
+                                //     initChart={initWaferChart}
+                                //     className="sci-chart"
+                                //     onInit={handleWaferChartInit}
+                                // />
+
                                 <SciChartReact
-                                    key="waferChart"
-                                    initChart={initWaferChart}
+                                    key="columnChart"
+                                    initChart={initPareoChart}
                                     className="sci-chart"
-                                    onInit={handleWaferChartInit}
+                                    onInit={handlePareoChartInit}
                                 />
                             ) : (
                                 <SciChartReact

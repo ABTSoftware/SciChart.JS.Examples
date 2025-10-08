@@ -16,6 +16,7 @@ import {
     EColumnDataLabelPosition,
     EVerticalTextPosition,
     LegendModifier,
+    EAxisAlignment,
 } from "scichart";
 
 import { WaferLotData } from "./waferData";
@@ -34,8 +35,8 @@ export const drawColumnChart = async (rootElement: string | HTMLDivElement, wafe
         theme: appTheme.SciChartJsTheme,
     });
 
-    const growByX = new NumberRange(0.1, 0.1);
-    const growByY = new NumberRange(0.1, 0.3);
+    const growByX = new NumberRange(0.05, 0.05);
+    const growByY = new NumberRange(0.01, 0.3);
 
     // Create the X,Y Axis
     sciChartSurface.xAxes.add(
@@ -56,6 +57,7 @@ export const drawColumnChart = async (rootElement: string | HTMLDivElement, wafe
         new NumericAxis(wasmContext, {
             growBy: growByY,
             axisTitle: "Thickness (nm)",
+            axisAlignment: EAxisAlignment.Left,
             minorDelta: 5,
             majorDelta: 10,
             labelStyle: {
