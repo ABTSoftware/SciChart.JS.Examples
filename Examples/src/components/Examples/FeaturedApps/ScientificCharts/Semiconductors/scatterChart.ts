@@ -86,7 +86,7 @@ export const drawScatterChart = async (rootElement: string | HTMLDivElement, waf
             height: 15,
             fill: appTheme.PaleSkyBlue,
             stroke: appTheme.MutedPurple,
-            strokeThickness:2,
+            strokeThickness: 2,
         }),
         animation: new ScaleAnimation({ zeroLine: 0, duration: 500, fadeEffect: true }),
     });

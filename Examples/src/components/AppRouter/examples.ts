@@ -39,6 +39,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_WaterfallChartDemo,
             EXAMPLES_PAGES.featuredApps_scientificCharts_PhasorDiagramChart,
             EXAMPLES_PAGES.featuredApps_scientificCharts_CorrelationPlot,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_Semiconductors,
         ],
     },
     {
@@ -127,7 +128,6 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_v4Charts_BoxPlotChart,
             EXAMPLES_PAGES.chart2D_v4Charts_TriangleSeriesChart,
             EXAMPLES_PAGES.chart2D_v4Charts_TreemapChart,
-            EXAMPLES_PAGES.chart2D_v4Charts_Semiconductors
         ],
     },
     {

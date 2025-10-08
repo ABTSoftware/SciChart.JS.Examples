@@ -126,7 +126,6 @@ export default [
     "../Examples/Charts2D/v4Charts/LinearGauges",
     "../Examples/Charts2D/v4Charts/MapExample",
     "../Examples/Charts2D/v4Charts/MultiMapExample",
-    "../Examples/Charts2D/v4Charts/Semiconductors",
     "../Examples/Charts2D/v4Charts/TreemapChart",
     "../Examples/Charts2D/v4Charts/TriangleSeriesChart",
     "../Examples/Charts2D/v4Charts/VectorField",
@@ -152,11 +151,12 @@ export default [
     "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo",
     "../Examples/FeaturedApps/ScientificCharts/PhasorDiagramChart",
     "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D",
+    "../Examples/FeaturedApps/ScientificCharts/Semiconductors",
     "../Examples/FeaturedApps/ShowCases/DynamicLayout",
     "../Examples/FeaturedApps/ShowCases/EventMarkers",
     "../Examples/FeaturedApps/ShowCases/HeatmapInteractions",
     "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard",
     "../Examples/FeaturedApps/ShowCases/PopulationPyramid",
     "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard",
-    "../Examples/FeaturedApps/ShowCases/WebsocketBigData"
+    "../Examples/FeaturedApps/ShowCases/WebsocketBigData",
 ];
