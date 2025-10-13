@@ -1,12 +1,10 @@
 import {
     FastColumnRenderableSeries,
     FastLineRenderableSeries,
-    MouseWheelZoomModifier,
     NumberRange,
     NumericAxis,
     SciChartSurface,
     XyDataSeries,
-    ZoomExtentsModifier,
     ZoomPanModifier,
     ENumericFormat,
     LegendModifier,
@@ -14,7 +12,6 @@ import {
     ELineDrawMode,
     EllipsePointMarker,
     CategoryAxis,
-    TextLabelProvider,
     Thickness,
     EVerticalTextPosition,
     EHorizontalTextPosition,
@@ -37,15 +34,11 @@ export const drawPareoChart = async (rootElement: string | HTMLDivElement, wafer
         // padding: { left: 20, top: 20, right: 20, bottom: 20 },
     });
 
-    console.log({ waferData });
-
     const growByX = new NumberRange(0.01, 0.01);
     const growByY = new NumberRange(0.01, 0.3);
 
     // Process data for Pareto chart
     const batchData = processDataForPareto(waferData);
-
-    console.log({ batchData });
 
     // X Axis for Batch
     sciChartSurface.xAxes.add(

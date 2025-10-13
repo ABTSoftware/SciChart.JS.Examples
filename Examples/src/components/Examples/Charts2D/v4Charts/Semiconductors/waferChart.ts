@@ -16,9 +16,10 @@ import {
     IFillPaletteProvider,
     EFillPaletteMode,
     NumberRange,
+    Thickness,
 } from "scichart";
 import { appTheme } from "../../../theme";
-import { WaferLotData } from "./waferData";
+import { generateGridOfPoints, WaferLotData } from "./waferData";
 
 // We'll use a dynamic ID that will be passed from the component
 
@@ -123,7 +124,32 @@ export const drawWaferChart = async (rootElement: string | HTMLDivElement, selec
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
+        title: "Wafer",
+        titleStyle: {
+            fontSize: 22,
+            useNativeText: false,
+            color: appTheme.PaleSkyBlue,
+            padding: new Thickness(25, 30, 5, 5),
+        },
     });
+
+    const sizeIsSmall = sciChartSurface.domCanvas2D.width < 512 ? true : false;
+
+    if (sizeIsSmall) {
+        sciChartSurface.titleStyle = {
+            fontSize: 16,
+            useNativeText: false,
+            color: appTheme.PaleSkyBlue,
+            padding: new Thickness(15, 30, 0, 5),
+        };
+    } else {
+        sciChartSurface.titleStyle = {
+            fontSize: 26,
+            useNativeText: false,
+            color: appTheme.PaleSkyBlue,
+            padding: new Thickness(25, 30, 0, 5),
+        };
+    }
 
     const growBy = new NumberRange(0.1, 0.1);
 
@@ -138,73 +164,33 @@ export const drawWaferChart = async (rootElement: string | HTMLDivElement, selec
     const yAxis = new NumericAxis(wasmContext, {
         // isVisible: false,
         growBy,
-        flippedCoordinates: true,
+        // flippedCoordinates: true,
     });
     sciChartSurface.yAxes.add(yAxis);
 
-    // Generate mock wafer data based on the selected point
-    // In a real application, you would use actual wafer data
-
-    let dataJSON: RectangleMeta[] = [];
-
-    // Generate a grid of points
-
-    const generateGridOfPoints = (selectedPoint: WaferLotData) => {
-        const containerWidth = sciChartSurface.domChartRoot.clientWidth;
-
-        const waferSize = 21; //containerWidth <= 500 ? 50 : 100; // Size of the wafer grid
-
-        dataJSON = [];
-
-        for (let row = 0; row < waferSize; row++) {
-            for (let col = 0; col < waferSize; col++) {
-                // Calculate distance from center to create a circular pattern
-                const centerX = waferSize / 2;
-                const centerY = waferSize / 2;
-                const distance = Math.sqrt(Math.pow(col - centerX, 2) + Math.pow(row - centerY, 2));
-
-                // Only include points within the circular wafer area
-                if (distance <= waferSize / 2) {
-                    // Determine defect type based on distance from center and selected point values
-                    let defectType: DefectKey = "OK";
-
-                    // Use the selected point's values to influence the defect distribution
-                    const randomValue = Math.random() * Math.pow(Math.cbrt(selectedPoint.Input2), 1.5); //* (Math.sqrt(selectedPoint.Measure3 * 10));
-
-                    if (distance > waferSize / 2.5) {
-                        // Edge defects are more common
-                        if (randomValue < 0.6) defectType = "S48";
-                        else if (randomValue < 0.8) defectType = "S36";
-                    } else if (distance < waferSize / 5) {
-                        // Center defects
-                        if (randomValue < 0.3) defectType = "S28";
-                    }
-
-                    // Create a data point with values influenced by the selected point
-                    dataJSON.push({
-                        MAP_ROW: row,
-                        MAP_COL: col,
-                        FF_ROW: Math.floor(Math.random() * 10),
-                        FF_COL: Math.floor(Math.random() * 10),
-                        WIF_COL: Math.floor(Math.random() * 50),
-                        WIF_ROW: Math.floor(Math.random() * 50),
-                        DEFECT: defectType,
-                        MR: selectedPoint.Measure1 + (Math.random() - 0.5) * 20,
-                        HR: selectedPoint.Measure2 + (Math.random() - 0.5) * 10,
-                        HDI: selectedPoint.Measure3 + (Math.random() - 0.5) * 5,
-                        MR2: selectedPoint.Input1 + (Math.random() - 0.5) * 30,
-                    });
-                }
-            }
-        }
-    };
-
     let dataSeries = new XyzDataSeries(wasmContext, {});
 
-    const setData = (selectedPoint: WaferLotData) => {
-        generateGridOfPoints(selectedPoint);
+    function numberToCoordinates(num: number): string {
+        if (num < 0 || num > 19) {
+            throw new Error("Number must be between 0 and 19");
+        }
+
+        // Calculate row and column
+        const row = Math.floor(num / 5) + 1;
+        const col = num % 5;
+        const colLetter = String.fromCharCode("A".charCodeAt(0) + col);
+
+        return `${colLetter}${row}`;
+    }
+
+    const setData = (selectedPoint: WaferLotData, index: number) => {
+        let dataJSON = generateGridOfPoints(selectedPoint, index);
 
         sciChartSurface.renderableSeries.clear(true);
+
+        sciChartSurface.title = `Plot: ${numberToCoordinates(index)}, Batch: ${selectedPoint.Batch}, Date: ${
+            selectedPoint.Date
+        } `;
 
         // Extract data for the chart
         const data = dataJSON.reduce(
@@ -242,21 +228,26 @@ export const drawWaferChart = async (rootElement: string | HTMLDivElement, selec
         sciChartSurface.renderableSeries.add(rectangleSeries);
     };
 
-    setData(selectedPoint);
+    setData(selectedPoint, 0);
+
+    const setDataIndex = (selectedPoint: WaferLotData, index: number) => {
+        setData(selectedPoint, index);
+    };
 
     // Add tooltip template
     const tooltipDataTemplate: TCursorTooltipDataTemplate = (seriesInfos: SeriesInfo[]) => {
         const valuesWithLabels: string[] = [];
 
-        seriesInfos.forEach((si, i) => {
+        seriesInfos.forEach((si) => {
             const xyzSI = si;
             if (xyzSI.isWithinDataBounds) {
                 if (!isNaN(xyzSI.yValue) && xyzSI.isHit) {
                     const value = dataSeries.getNativeZValues().get(xyzSI.dataSeriesIndex);
+
+                    let metaValue = (xyzSI.pointMetadata as RectangleMeta | undefined)?.DEFECT;
+
                     valuesWithLabels.push(
-                        `X: ${xyzSI.xValue}, Y: ${xyzSI.yValue}, DEFECT: ${
-                            (xyzSI.pointMetadata as RectangleMeta | undefined)?.DEFECT ?? "null"
-                        }`
+                        `X: ${xyzSI.xValue}, Y: ${xyzSI.yValue}, DEFECT: ${metaValue === "OK" ? "NONE" : metaValue}`
                     );
                 }
             }
@@ -278,22 +269,8 @@ export const drawWaferChart = async (rootElement: string | HTMLDivElement, selec
         })
     );
 
-    // Add title to show which point was selected
-    // const titleElement = document.createElement('div');
-    // titleElement.style.textAlign = 'center';
-    // titleElement.style.color = appTheme.MutedSkyBlue;
-    // titleElement.style.fontSize = '14px';
-    // titleElement.style.padding = '5px';
-    // titleElement.textContent = `Wafer Plot for Date: ${selectedPoint.Date}, Quality: ${selectedPoint.Quality}`;
-
-    // Insert title before the chart
-    // const chartElement = rootElement instanceof HTMLDivElement ? rootElement : document.getElementById(rootElement as string);
-    // if (chartElement && chartElement.parentNode) {
-    //     chartElement.parentNode.insertBefore(titleElement, chartElement);
-    // }
-
     // Zoom to fit
     sciChartSurface.zoomExtents();
 
-    return { sciChartSurface, wasmContext };
+    return { sciChartSurface, wasmContext, setDataIndex };
 };

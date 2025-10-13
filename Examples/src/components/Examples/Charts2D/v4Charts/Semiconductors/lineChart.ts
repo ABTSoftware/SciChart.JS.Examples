@@ -51,20 +51,37 @@ export const drawLineChart = async (
         theme: appTheme.SciChartJsTheme,
         title: "Yield Trend",
         titleStyle: {
-            fontSize: 14,
+            fontSize: 22,
             useNativeText: false,
             color: appTheme.PaleSkyBlue,
+            padding: new Thickness(25, 5, 5, 5),
         },
     });
+
+    const sizeIsSmall = sciChartSurface.domCanvas2D.width < 1024 ? true : false;
+
+    if (sizeIsSmall) {
+        sciChartSurface.titleStyle = {
+            fontSize: 16,
+            useNativeText: false,
+            color: appTheme.PaleSkyBlue,
+            padding: new Thickness(15, 5, 5, 5),
+        };
+    } else {
+        sciChartSurface.titleStyle = {
+            fontSize: 26,
+            useNativeText: false,
+            color: appTheme.PaleSkyBlue,
+            padding: new Thickness(25, 5, 5, 5),
+        };
+    }
 
     const growByY = new NumberRange(0.4, 0.4);
     const growByX = new NumberRange(0.05, 0.05);
 
     // Create the labelProvider
     const labelProvider = new TextLabelProvider({
-        labels: waferData.map((d, i) =>
-            sciChartSurface.domCanvas2D.width < 1024 ? ["Batch", `${d.Batch}`] : `Batch ${d.Batch}`
-        ),
+        labels: waferData.map((d, i) => (sizeIsSmall ? ["Batch", `${d.Batch}`] : `Batch ${d.Batch}`)),
     });
 
     // Create an XAxis with a TextLabelProvider
@@ -205,7 +222,7 @@ export const drawLineChart = async (
                 }
             });
         } else {
-            console.log("No points selected");
+            // console.log("No points selected");
         }
     });
 
@@ -214,37 +231,22 @@ export const drawLineChart = async (
         seriesInfo: SeriesInfo, // ,
         rolloverTooltip: RolloverTooltipSvgAnnotation //
     ) => {
-        let width, height, size;
+        let width, height;
 
-        if (sciChartSurface.domCanvas2D.width < 1024) {
+        if (sizeIsSmall) {
             width = 70;
             height = 21;
             rolloverTooltip.updateSize(width, height);
-            size = "small";
         } else {
-            width = 97;
+            width = 110;
             height = 65;
             rolloverTooltip.updateSize(width, height);
-            size = "big";
         }
-
-        // <circle cx="50%" cy="50%" r="50%" fill="${seriesInfo.stroke}"/>
-        // <text y="40" font-size="13" font-family="Verdana" dy="0" fill="${"black"}">
-        //     <tspan x="15" dy="1.2em">${seriesInfo.seriesName}</tspan>
-        //     <tspan x="15" dy="1.2em">x: ${seriesInfo.formattedXValue} y: ${seriesInfo.formattedYValue}</tspan>
-        // </text>
-        //
-
-        // Measure1 = Film thickness (nm).
-        // Measure2 = Line width (nm).
-        // Measure3 = Sheet resistance (Ω/□).
 
         const pointMetadata = seriesInfo.pointMetadata as IWaferPointMetadata;
 
         if (pointMetadata && pointMetadata.date) {
-            console.log({ pointMetadata });
-
-            return size === "small"
+            return sizeIsSmall
                 ? `
         <svg width="${width}" height="${height}">
             <rect rx="3" width="${width}" height="${height}" fill="${

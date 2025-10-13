@@ -315,3 +315,82 @@ export function generateWaferLotData(numEntries: number, startDate: Date = new D
 
     return data;
 }
+
+// Simple seeded random generator (LCG)
+function seededRandom(seed: number) {
+    let value = seed % 2147483647;
+    return () => {
+        value = (value * 48271) % 2147483647;
+        return (value - 1) / 2147483646;
+    };
+}
+
+// Simple hashCode for string/number seed generation
+function hashCode(obj: any, subChartIndex: number) {
+    const str = typeof obj === "string" ? obj : JSON.stringify(obj);
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = (Math.imul(31, hash) + str.charCodeAt(i)) | 0;
+    }
+
+    let result = Math.abs(hash) + subChartIndex;
+
+    return result;
+}
+
+export const generateGridOfPoints = (selectedPoint: WaferLotData, subChartIndex = 0) => {
+    const waferSize = 21;
+    const seed = hashCode(selectedPoint, subChartIndex); // Make seed depend on selectedPoint
+    const random = seededRandom(seed);
+
+    const dataJSON = [];
+
+    for (let row = 0; row < waferSize; row++) {
+        for (let col = 0; col < waferSize; col++) {
+            const centerX = waferSize / 2;
+            const centerY = waferSize / 2;
+            const distance = Math.sqrt(Math.pow(col - centerX, 2) + Math.pow(row - centerY, 2));
+
+            if (distance <= waferSize / 2) {
+                let defectType = "OK";
+
+                // Calculate defect probability inversely related to Input2
+                // Lower Input2 values result in higher defect probability
+                // Normalize Input2 to a 0-1 range based on expected range (200-800)
+                const normalizedInput2 = Math.max(0, Math.min(1, (selectedPoint.Input2 - 200) / 600));
+
+                // Invert the relationship: lower Input2 -> higher defect probability
+                const defectProbabilityMultiplier = 1 - normalizedInput2;
+
+                // Use seeded random with inverse relationship to Input2
+                const randomValue = random();
+
+                // Adjust thresholds based on Input2 - lower Input2 increases defect likelihood
+                const baseThreshold = defectProbabilityMultiplier * 1.5; // Scale factor for defect probability
+
+                if (distance > waferSize / 5) {
+                    if (randomValue < 0.04 * baseThreshold) defectType = "S48"; // red
+                    else if (randomValue < 0.05 * baseThreshold) defectType = "S36"; // orange
+                } else if (distance < waferSize / 5) {
+                    if (randomValue < 0.03 * baseThreshold) defectType = "S28"; // blue
+                }
+
+                dataJSON.push({
+                    MAP_ROW: row,
+                    MAP_COL: col,
+                    FF_ROW: Math.floor(random() * 10),
+                    FF_COL: Math.floor(random() * 10),
+                    WIF_COL: Math.floor(random() * 50),
+                    WIF_ROW: Math.floor(random() * 50),
+                    DEFECT: defectType,
+                    MR: (random() - 0.5) * 20,
+                    HR: (random() - 0.5) * 10,
+                    HDI: (random() - 0.5) * 5,
+                    MR2: (random() - 0.5) * 30,
+                });
+            }
+        }
+    }
+
+    return dataJSON;
+};

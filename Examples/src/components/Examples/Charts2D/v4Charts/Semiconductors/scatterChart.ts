@@ -103,3 +103,5 @@ export const drawScatterChart = async (rootElement: string | HTMLDivElement, waf
 
     return { sciChartSurface, wasmContext };
 };
+
+
