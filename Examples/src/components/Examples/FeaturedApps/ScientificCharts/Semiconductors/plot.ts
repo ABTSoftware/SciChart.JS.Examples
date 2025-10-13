@@ -39,7 +39,7 @@ import {
     parseColorToUIntArgb,
     EFillPaletteMode,
 } from "scichart";
-import { WaferLotData } from "./waferData";
+import { IBatchMetadata, WaferLotData } from "./waferData";
 
 // import correlationLinePoints from "./correlationLinePoints";
 // import { getSubChartPositionIndexes } from "../../FeatureDemos/SubChartsAPI/helpers";
@@ -198,7 +198,7 @@ const axisOptions: INumericAxisOptions = {
 // theme overrides
 const sciChartTheme = appTheme.SciChartJsTheme;
 
-export const drawPlot = async (rootElement: string | HTMLDivElement, selectedPoint: WaferLotData) => {
+export const drawPlot = async (rootElement: string | HTMLDivElement, selectedPoint: IBatchMetadata) => {
     // Use createSingle here to get the performance benefit of subcharts
     const { wasmContext, sciChartSurface: mainSurface } = await SciChartSurface.createSingle(rootElement, {
         theme: sciChartTheme,
@@ -210,16 +210,7 @@ export const drawPlot = async (rootElement: string | HTMLDivElement, selectedPoi
     const columnsNumber = 5;
     const rowsNumber = 4;
 
-    const pointsOnChart = 5000;
-
     const subchartBorderColor = appTheme.VividSkyBlue;
-    const scatterColor = appTheme.VividSkyBlue;
-    const lineUp = appTheme.VividGreen;
-    const lineDown = appTheme.VividRed;
-    const lineHorizontal = appTheme.ForegroundColor;
-    const annotationColor = appTheme.ForegroundColor;
-
-    const annotationFontSize = 14;
 
     const xAxisVisibleRange = new NumberRange(0, columnsNumber);
     const yAxisVisibleRange = new NumberRange(0, rowsNumber);
@@ -295,7 +286,7 @@ export const drawPlot = async (rootElement: string | HTMLDivElement, selectedPoi
     const vGroup = new SciChartVerticalGroup();
     let maxYRange = new NumberRange(-1, 1);
 
-    const initSubChart = (subChartIndex: number, selectedPoint: WaferLotData) => {
+    const initSubChart = (subChartIndex: number, selectedPoint: IBatchMetadata) => {
         const { rowIndex, columnIndex } = getSubChartPositionIndexes(subChartIndex, columnsNumber);
 
         const width = 1;
@@ -353,7 +344,7 @@ export const drawPlot = async (rootElement: string | HTMLDivElement, selectedPoi
             };
         }
 
-        const generateGridOfPoints = (selectedPoint: WaferLotData) => {
+        const generateGridOfPoints = (selectedPoint: IBatchMetadata) => {
             // const containerWidth = subChartSurface.domChartRoot.clientWidth;
             // console.log(`Container width: ${containerWidth}px`);
 
@@ -378,7 +369,7 @@ export const drawPlot = async (rootElement: string | HTMLDivElement, selectedPoi
                         // Use the selected point's values to influence the defect distribution
                         // const randomValue = Math.pow(Math.cbrt(selectedPoint.Input2), 2.2); //* (Math.sqrt(selectedPoint.Measure3 * 10));
 
-                        const randomValue = Math.random() * Math.pow(Math.cbrt(selectedPoint.Input2), 2.2);
+                        const randomValue = Math.random() * Math.pow(Math.cbrt(selectedPoint.Input), 2.2);
 
                         if (distance > waferSize / 2.5) {
                             // Edge defects are more common
@@ -410,7 +401,7 @@ export const drawPlot = async (rootElement: string | HTMLDivElement, selectedPoi
 
         let dataSeries = new XyzDataSeries(wasmContext, {});
 
-        const setData = (selectedPoint: WaferLotData) => {
+        const setData = (selectedPoint: IBatchMetadata) => {
             generateGridOfPoints(selectedPoint);
 
             subChartSurface.renderableSeries.clear(true);
@@ -467,7 +458,7 @@ export const drawPlot = async (rootElement: string | HTMLDivElement, selectedPoi
         initSubChart(subChartIndex, selectedPoint);
     }
 
-    const generateSubcharts = (selectedPoint: WaferLotData) => {
+    const generateSubcharts = (selectedPoint: IBatchMetadata) => {
         const subCharts = [...mainSurface.subCharts];
 
         subCharts.forEach((subChart) => {
@@ -484,7 +475,6 @@ export const drawPlot = async (rootElement: string | HTMLDivElement, selectedPoi
     };
 
     return {
-        wasmContext,
         sciChartSurface: mainSurface,
         generateSubcharts,
     };

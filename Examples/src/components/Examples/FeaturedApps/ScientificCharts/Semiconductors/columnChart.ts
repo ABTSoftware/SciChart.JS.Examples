@@ -17,35 +17,52 @@ import {
     EVerticalTextPosition,
     LegendModifier,
     EAxisAlignment,
+    TextLabelProvider,
+    EMultiLineAlignment,
+    XyNDataSeries,
+    CategoryAxis,
+    DataPointSelectionModifier,
 } from "scichart";
 
-import { WaferLotData } from "./waferData";
+import { IBatchMetadata, WaferLotData } from "./waferData";
 import { appTheme } from "../../../theme";
 
-// Define a custom metadata interface for column data
-interface IColumnPointMetadata extends IPointMetadata {
-    measure1: number;
-    measure2: number;
-    measure3: number;
-}
-
-export const drawColumnChart = async (rootElement: string | HTMLDivElement, waferData: WaferLotData[] = []) => {
+export const drawColumnChart = async (
+    rootElement: string | HTMLDivElement,
+    waferData: WaferLotData[] = [],
+    onBatchSelected?: (point: IBatchMetadata) => void
+) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
+        titleStyle: {
+            fontSize: 16,
+        },
     });
 
     const growByX = new NumberRange(0.05, 0.05);
     const growByY = new NumberRange(0.01, 0.3);
 
+    // Create a labelProvider which uses multiline text when the chart is narrower
+    const labelProvider = new TextLabelProvider({
+        labels: waferData.map((d, i) =>
+            sciChartSurface.domCanvas2D.width < 1024 ? ["Batch", `${d.Batch}`] : `Batch ${d.Batch}`
+        ),
+    });
+
     // Create the X,Y Axis
     sciChartSurface.xAxes.add(
-        new DateTimeNumericAxis(wasmContext, {
-            axisTitle: "Date",
-            labelProvider: new DateLabelProvider({ labelFormat: ENumericFormat.Date_DDMMYYYY }),
+        new CategoryAxis(wasmContext, {
+            labelProvider,
             growBy: growByX,
+            maxAutoTicks: 20,
+            drawMinorTickLines: false,
+            drawMinorGridLines: false,
+            drawMajorTickLines: false,
+            drawMajorGridLines: false,
             labelStyle: {
                 fontSize: 10,
+                multilineAlignment: EMultiLineAlignment.Center,
             },
             axisTitleStyle: {
                 fontSize: 12,
@@ -56,10 +73,10 @@ export const drawColumnChart = async (rootElement: string | HTMLDivElement, wafe
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             growBy: growByY,
-            axisTitle: "Thickness (nm)",
             axisAlignment: EAxisAlignment.Left,
-            minorDelta: 5,
-            majorDelta: 10,
+            labelPrecision: 0,
+            drawMinorTickLines: false,
+            drawMinorGridLines: false,
             labelStyle: {
                 fontSize: 10,
             },
@@ -69,41 +86,27 @@ export const drawColumnChart = async (rootElement: string | HTMLDivElement, wafe
         })
     );
 
-    // Convert dates to timestamps
-    const xValues = waferData.map((item) => new Date(item.Date).getTime() / 1000);
+    const dataSeries = new XyNDataSeries(wasmContext, { arrayCount: 3 });
 
-    // Create metadata for each point to store all measure values
-    const metadata = waferData.map(
-        (item) =>
-            ({
-                isSelected: false,
-                measure1: item.Measure1,
-                measure2: item.Measure2,
-                measure3: item.Measure3,
-            } as IColumnPointMetadata)
-    );
+    const updateData = (batchData: WaferLotData[]) => {
+        const xValues: number[] = [];
+        const y1Values: number[] = [];
+        const y2Values: number[] = [];
+        const y3Values: number[] = [];
+        const metadata: IBatchMetadata[] = [];
+        for (const batch of batchData) {
+            xValues.push(batch.Batch);
+            y1Values.push(batch.Measure1);
+            y2Values.push(batch.Measure2);
+            y3Values.push(batch.Measure3);
+            metadata.push({ isSelected: false, Batch: batch.Batch, Date: batch.Date, Input: batch.Input2 });
+        }
+        dataSeries.clear();
+        dataSeries.appendRangeN(xValues, [y1Values, y2Values, y3Values], metadata);
+        sciChartSurface.title = batchData[0].Date;
+    };
 
-    // Create data series for each measure
-    const measure1Series = new XyDataSeries(wasmContext, {
-        dataSeriesName: "Film thickness in nm",
-        xValues,
-        yValues: waferData.map((item) => item.Measure1),
-        metadata,
-    });
-
-    const measure2Series = new XyDataSeries(wasmContext, {
-        dataSeriesName: "Line width in nm",
-        xValues,
-        yValues: waferData.map((item) => item.Measure2),
-        metadata,
-    });
-
-    const measure3Series = new XyDataSeries(wasmContext, {
-        dataSeriesName: "Sheet resistance in Ω/sq",
-        xValues,
-        yValues: waferData.map((item) => item.Measure3),
-        metadata,
-    });
+    updateData(waferData);
 
     const dataLabels: IStackedColumnSeriesDataLabelProviderOptions = {
         color: "#FFfFFF",
@@ -118,44 +121,63 @@ export const drawColumnChart = async (rootElement: string | HTMLDivElement, wafe
     };
 
     const measure1Series_stacked = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: measure1Series,
+        dataSeries,
         fill: appTheme.PaleSkyBlue,
         stroke: appTheme.MutedSkyBlue,
         strokeThickness: 1,
-        opacity: 0.6,
         stackedGroupId: "measures",
         dataLabels,
     });
+    measure1Series_stacked.seriesName = "Measure 1";
+    measure1Series_stacked.yArrayFilter = "y1";
 
     const measure2Series_stacked = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: measure2Series,
+        dataSeries,
         fill: appTheme.PaleTeal,
         stroke: appTheme.MutedTeal,
         strokeThickness: 1,
-        opacity: 0.6,
         stackedGroupId: "measures",
         dataLabels,
     });
+    measure2Series_stacked.seriesName = "Measure 2";
+    measure2Series_stacked.yArrayFilter = "y2";
 
     const measure3Series_stacked = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: measure3Series,
+        dataSeries,
         fill: appTheme.PalePink,
         stroke: appTheme.MutedPink,
         strokeThickness: 1,
-        opacity: 0.6,
         stackedGroupId: "measures",
         dataLabels,
     });
+    measure3Series_stacked.seriesName = "Measure 3";
+    measure3Series_stacked.yArrayFilter = "y3";
 
     // Add all series to the chart
     sciChartSurface.renderableSeries.add(measure1Series_stacked);
     sciChartSurface.renderableSeries.add(measure2Series_stacked);
     sciChartSurface.renderableSeries.add(measure3Series_stacked);
 
+    const selectionModifier = new DataPointSelectionModifier({
+        allowClickSelect: true, // Enables single-click selection
+        allowDragSelect: false, // Optional: Disable drag for simple clicks
+    });
+
+    selectionModifier.selectionChanged.subscribe((args) => {
+        const selectedPoints = args.selectedDataPoints;
+        if (selectedPoints.length > 0) {
+            // Call the callback function if provided
+            if (onBatchSelected && selectedPoints[0].index !== undefined) {
+                onBatchSelected(selectedPoints[0].metadata as IBatchMetadata);
+            }
+        }
+    });
+
     // Add interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+    // sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
+    // sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
+    // sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(selectionModifier);
 
     sciChartSurface.chartModifiers.add(
         new LegendModifier({
@@ -168,5 +190,5 @@ export const drawColumnChart = async (rootElement: string | HTMLDivElement, wafe
     // Zoom to fit
     sciChartSurface.zoomExtents();
 
-    return { sciChartSurface, wasmContext };
+    return { sciChartSurface, updateData };
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import { generateWaferLotData, WaferLotData } from "./waferData";
-import { SciChartReact } from "scichart-react";
+import { generateWaferLotData, WaferLotData, WaferDayData, IBatchMetadata } from "./waferData";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { SciChartSurface } from "scichart";
 import { drawLineChart } from "./lineChart";
 import { drawColumnChart } from "./columnChart";
@@ -13,19 +13,25 @@ import { appTheme } from "../../../theme";
 import "./styles.css";
 
 export default function Overview() {
-    const [data, setData] = useState<WaferLotData[]>([]);
-    const [selectedPoint, setSelectedPoint] = useState<WaferLotData | null>(null);
+    const [data, setData] = useState<WaferDayData[]>([]);
+    const [selectedDay, setSelectedDay] = useState<WaferDayData | null>(null);
+    const [selectedBatch, setSelectedBatch] = useState<IBatchMetadata | null>(null);
     const lineChartRef = useRef<{ sciChartSurface: any; wasmContext: any } | null>(null);
-    const columnChartRef = useRef<{ sciChartSurface: any; wasmContext: any } | null>(null);
+    const columnChartRef = useRef<{ sciChartSurface: any; updateData: (batchData: WaferLotData[]) => void } | null>(
+        null
+    );
     const pareoChartRef = useRef<{ sciChartSurface: any; wasmContext: any } | null>(null);
     const scatterChartRef = useRef<{ sciChartSurface: any; wasmContext: any } | null>(null);
-    const plotChartRef = useRef<{ sciChartSurface: any; wasmContext: any; generateSubcharts: any } | null>(null);
+    const plotChartRef = useRef<{
+        sciChartSurface: any;
+        generateSubcharts: (selectedPoint: IBatchMetadata) => void;
+    } | null>(null);
     const waferChartRef = useRef<{ sciChartSurface: any; wasmContext: any; setData: any } | null>(null);
 
     const resetToInitialState = () => {
         // Simply reset the state - this will trigger re-rendering
         // and the charts will naturally return to their initial state
-        setSelectedPoint(null);
+        setSelectedDay(null);
 
         // Optionally regenerate data to ensure fresh state
         // const freshData = generateWaferLotData(15, new Date(2023, 0, 1));
@@ -35,8 +41,9 @@ export default function Overview() {
     useEffect(() => {
         const fetchData = async () => {
             // Generate data
-            let data = generateWaferLotData(15, new Date(2023, 0, 1));
+            let data = generateWaferLotData(15, 15, new Date(2023, 0, 1));
             setData(data);
+            setSelectedDay(data[0]);
         };
 
         fetchData();
@@ -46,7 +53,7 @@ export default function Overview() {
         lineChartRef.current = chartInstance;
     };
 
-    const handleColumnChartInit = (chartInstance: any) => {
+    const handleColumnChartInit = (chartInstance: TResolvedReturnType<typeof drawColumnChart>) => {
         columnChartRef.current = chartInstance;
     };
 
@@ -62,13 +69,21 @@ export default function Overview() {
         waferChartRef.current = chartInstance;
     };
 
-    const handlePlotChartInit = (chartInstance: any) => {
+    const handlePlotChartInit = (chartInstance: TResolvedReturnType<typeof drawPlot>) => {
         plotChartRef.current = chartInstance;
+        //plotChartRef.current.generateSubcharts()
     };
 
     // Handler for when a point is selected in the line chart
-    const handlePointSelected = (point: WaferLotData, index: number) => {
-        setSelectedPoint(point);
+    const handlePointSelected = (point: WaferDayData, index: number) => {
+        //setSelectedDay(point);
+        columnChartRef.current?.updateData(point.Batches);
+    };
+
+    // Handler for when a point is selected in the line chart
+    const handleBatchSelected = (point: IBatchMetadata) => {
+        setSelectedBatch(point);
+        plotChartRef.current.generateSubcharts(point);
     };
 
     // Custom init functions that pass data to chart drawing functions
@@ -77,19 +92,20 @@ export default function Overview() {
     };
 
     const initColumnChart = async (rootElement: string | HTMLDivElement) => {
-        return drawColumnChart(rootElement, data);
+        return drawColumnChart(rootElement, data[0].Batches, handleBatchSelected);
     };
 
     const initPareoChart = async (rootElement: string | HTMLDivElement) => {
-        return drawPareoChart(rootElement, data);
+        return drawPareoChart(rootElement, data[0].Batches);
     };
 
     const initScatterChart = async (rootElement: string | HTMLDivElement) => {
-        return drawScatterChart(rootElement, data);
+        return drawScatterChart(rootElement, data[0].Batches);
     };
 
     const initWaferChart = async (rootElement: string | HTMLDivElement) => {
         const pointData = {
+            Id: 0,
             Date: "2023-01-09",
             Batch: 10,
             Quality: "Marginal",
@@ -100,7 +116,7 @@ export default function Overview() {
             Measure3: 9.84,
         } as WaferLotData;
 
-        console.log(JSON.stringify(selectedPoint));
+        console.log(JSON.stringify(selectedDay));
 
         return drawWaferChart(rootElement, pointData);
 
@@ -108,31 +124,32 @@ export default function Overview() {
     };
 
     const initPlotChart = async (rootElement: string | HTMLDivElement) => {
-        if (selectedPoint) {
-            return drawPlot(rootElement, selectedPoint); // Pass selectedPoint instead of data
+        if (selectedDay) {
+            const { Date, Batch, Input2: Input } = selectedDay.Batches[0];
+            return drawPlot(rootElement, { Date, Batch, Input, isSelected: true }); // Pass selectedPoint instead of data
         }
         return null;
     };
 
-    // Re-render charts when data changes
-    useEffect(() => {
-        if (data.length > 0 && selectedPoint) {
-            // Use setTimeout to ensure charts are fully initialized
-            setTimeout(() => {
-                try {
-                    if (plotChartRef.current?.generateSubcharts && !plotChartRef.current.sciChartSurface?.isDisposed) {
-                        plotChartRef.current.generateSubcharts(selectedPoint);
-                    }
-                } catch (error) {
-                    console.warn("Could not update plot chart:", error);
-                }
-            }, 100);
-        }
-    }, [data, selectedPoint]);
+    // // Re-render charts when data changes
+    // useEffect(() => {
+    //     if (data.length > 0 && selectedBatch) {
+    //         // Use setTimeout to ensure charts are fully initialized
+    //         setTimeout(() => {
+    //             try {
+    //                 if (plotChartRef.current?.generateSubcharts && !plotChartRef.current.sciChartSurface?.isDisposed) {
+    //                     plotChartRef.current.generateSubcharts(selectedBatch);
+    //                 }
+    //             } catch (error) {
+    //                 console.warn("Could not update plot chart:", error);
+    //             }
+    //         }, 100);
+    //     }
+    // }, [data, selectedBatch]);
 
     return data.length ? (
         <div className="dashboard-container">
-            {selectedPoint ? (
+            {selectedDay ? (
                 <button
                     className="reset-button"
                     onClick={resetToInitialState}
@@ -152,59 +169,26 @@ export default function Overview() {
 
                 {/* Row for Column and Scatter Charts side by side */}
                 <div className="charts-row">
-                    {/* Column Chart - Measure1 (thickness) over time */}
                     <div className="column-chart-container">
-                        {/* <h3>Film Thickness Over Time</h3> */}
                         <div className="chart-wrapper">
-                            {selectedPoint ? (
-                                <SciChartReact
-                                    key="plotChart"
-                                    initChart={initPlotChart}
-                                    className="sci-chart"
-                                    onInit={handlePlotChartInit}
-                                />
-                            ) : (
-                                <SciChartReact
-                                    key="columnChart"
-                                    initChart={initColumnChart}
-                                    className="sci-chart"
-                                    onInit={handleColumnChartInit}
-                                />
-                            )}
+                            <SciChartReact
+                                key="columnChart"
+                                initChart={initColumnChart}
+                                className="sci-chart"
+                                onInit={handleColumnChartInit}
+                            />
                         </div>
                     </div>
 
                     {/* Scatter Chart or Wafer Chart based on selection */}
                     <div className="scatter-wafer-container">
                         <div className="chart-wrapper">
-                            {!selectedPoint ? (
-                                // <SciChartReact
-                                //     key="waferChart"
-                                //     initChart={initWaferChart}
-                                //     className="sci-chart"
-                                //     onInit={handleWaferChartInit}
-                                // />
-
-                                <SciChartReact
-                                    key="columnChart"
-                                    initChart={initPareoChart}
-                                    className="sci-chart"
-                                    onInit={handlePareoChartInit}
-                                />
-                            ) : (
-                                // <SciChartReact
-                                //     key="scatterChart"
-                                //     initChart={initScatterChart}
-                                //     className="sci-chart"
-                                //     onInit={handleScatterChartInit}
-                                // />
-                                <SciChartReact
-                                    key="waferChart"
-                                    initChart={initWaferChart}
-                                    className="sci-chart"
-                                    onInit={handleWaferChartInit}
-                                />
-                            )}
+                            <SciChartReact
+                                key="plotChart"
+                                initChart={initPlotChart}
+                                className="sci-chart"
+                                onInit={handlePlotChartInit}
+                            />
                         </div>
                     </div>
                 </div>

@@ -1,3 +1,5 @@
+import { IPointMetadata } from "scichart";
+
 // --- 1. Define the structure for a single sensor's profile ---
 type SensorProfile = { mean: number; dev: number };
 
@@ -210,6 +212,19 @@ export interface WaferLotData {
     Measure3: number; // Output measurement (e.g., sheet resistance in Ω/sq)
 }
 
+export interface WaferDayData {
+    Date: string; // Timestamp of the run/lot/batch (ISO format)
+    Mean1: number;
+    Mean2: number;
+    Batches: WaferLotData[];
+}
+
+export interface IBatchMetadata extends IPointMetadata {
+    Date: string;
+    Batch: number;
+    Input: number;
+}
+
 /**
  * Generates an array of mock wafer data entries based on the specified structure.
  * @param numEntries Number of data entries to generate.
@@ -271,14 +286,18 @@ function formatNumber(value: number, precision: number = 2): number {
  * Generates an array of mock wafer data entries based on the specified structure.
  * Includes improved error handling, performance optimizations, and better type safety.
  *
- * @param numEntries Number of data entries to generate
+ * @param numDays Number of data entries to generate
  * @param startDate Optional starting date (defaults to current date)
  * @returns Array of WaferLotData objects
  * @throws Error if numEntries is invalid
  */
-export function generateWaferLotData(numEntries: number, startDate: Date = new Date()): WaferLotData[] {
+export function generateWaferLotData(
+    numDays: number,
+    numBatches: number = 15,
+    startDate: Date = new Date()
+): WaferDayData[] {
     // Validate inputs
-    if (!Number.isInteger(numEntries) || numEntries <= 0) {
+    if (!Number.isInteger(numDays) || numDays <= 0) {
         throw new Error("numEntries must be a positive integer");
     }
 
@@ -286,31 +305,39 @@ export function generateWaferLotData(numEntries: number, startDate: Date = new D
         throw new Error("startDate must be a valid Date object");
     }
 
-    // Pre-allocate array for better performance
-    const data: WaferLotData[] = new Array(numEntries);
+    const data: WaferDayData[] = [];
     const startTime = startDate.getTime();
 
-    for (let i = 0; i < numEntries; i++) {
+    for (let i = 0; i < numDays; i++) {
         // Generate date: increment by days for temporal trends
         const date = new Date(startTime + i * MS_PER_DAY);
         const isoDate = date.toISOString().split("T")[0]; // YYYY-MM-DD format
-
-        // Batch: cycle through 1-10
-        const batch = i + 1;
-
-        const input2 = Math.round(randomNormal(MEASUREMENT_PARAMS.INPUT2.mean, MEASUREMENT_PARAMS.INPUT2.stdDev));
-
-        // Generate measurements using our helper functions
-        data[i] = {
+        const Batches: WaferLotData[] = [];
+        let total1 = 0;
+        let total2 = 0;
+        for (let b = 1; b <= numBatches; b++) {
+            const input2 = Math.round(randomNormal(MEASUREMENT_PARAMS.INPUT2.mean, MEASUREMENT_PARAMS.INPUT2.stdDev));
+            // Generate measurements using our helper functions
+            const batch = {
+                Date: isoDate,
+                Batch: b,
+                Quality: getQuality(input2),
+                Input1: Math.round(randomNormal(MEASUREMENT_PARAMS.INPUT1.mean, MEASUREMENT_PARAMS.INPUT1.stdDev)),
+                Input2: input2,
+                Measure1: formatNumber(randomNormal(input2, MEASUREMENT_PARAMS.MEASURE1.stdDev)),
+                Measure2: formatNumber(randomNormal(input2, MEASUREMENT_PARAMS.MEASURE2.stdDev)),
+                Measure3: formatNumber(randomNormal(input2, MEASUREMENT_PARAMS.MEASURE3.stdDev)),
+            };
+            Batches.push(batch);
+            total1 += batch.Input1;
+            total2 += batch.Input2;
+        }
+        data.push({
             Date: isoDate,
-            Batch: batch,
-            Quality: getQuality(input2),
-            Input1: Math.round(randomNormal(MEASUREMENT_PARAMS.INPUT1.mean, MEASUREMENT_PARAMS.INPUT1.stdDev)),
-            Input2: input2,
-            Measure1: formatNumber(randomNormal(input2, MEASUREMENT_PARAMS.MEASURE1.stdDev)),
-            Measure2: formatNumber(randomNormal(input2, MEASUREMENT_PARAMS.MEASURE2.stdDev)),
-            Measure3: formatNumber(randomNormal(input2, MEASUREMENT_PARAMS.MEASURE3.stdDev)),
-        };
+            Mean1: total1 / numBatches,
+            Mean2: total2 / numBatches,
+            Batches,
+        } as WaferDayData);
     }
 
     return data;

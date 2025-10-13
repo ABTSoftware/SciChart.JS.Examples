@@ -21,68 +21,51 @@ import {
     SeriesInfo,
     RolloverTooltipSvgAnnotation,
     ENumericFormat,
+    DateTimeNumericAxis,
 } from "scichart";
 
 // Define a custom metadata interface that includes the Input1 value
 interface IWaferPointMetadata extends IPointMetadata {
     isSelected: boolean;
     input1: number;
-    input2: number;
-    batch: number;
-    measure1: number;
-    measure2: number;
-    measure3: number;
-    quality: string;
     date: string;
 }
 
-import { WaferLotData } from "./waferData";
+import { WaferDayData } from "./waferData";
 
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import { appTheme } from "../../../theme";
 
 export const drawLineChart = async (
     rootElement: string | HTMLDivElement,
-    waferData: WaferLotData[] = [],
-    onPointSelected?: (point: WaferLotData, index: number) => void
+    waferData: WaferDayData[] = [],
+    onPointSelected?: (point: WaferDayData, index: number) => void
 ) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
         title: "Yield Trend",
         titleStyle: {
-            fontSize: 14,
+            fontSize: 16,
             useNativeText: false,
             color: appTheme.PaleSkyBlue,
+            placeWithinChart: true,
         },
     });
 
     const growByY = new NumberRange(0.4, 0.4);
     const growByX = new NumberRange(0.05, 0.05);
 
-    // Create the labelProvider
-    const labelProvider = new TextLabelProvider({
-        labels: waferData.map((d, i) =>
-            sciChartSurface.domCanvas2D.width < 1024 ? ["Batch", `${d.Batch}`] : `Batch ${d.Batch}`
-        ),
-    });
-
     // Create an XAxis with a TextLabelProvider
-    const xAxis = new NumericAxis(wasmContext, {
-        labelProvider,
+    const xAxis = new DateTimeNumericAxis(wasmContext, {
         growBy: growByX,
-        axisTitle: "Batch version",
-        drawMajorTickLines: false,
+        axisTitle: "Date",
         drawMinorTickLines: false,
-        drawMajorGridLines: false,
         drawMinorGridLines: false,
-        labelFormat: ENumericFormat.Decimal,
-        minorDelta: 1,
         majorDelta: 1,
         maxAutoTicks: 15,
         labelStyle: {
             fontSize: 10,
-            alignment: ELabelAlignment.Center,
         },
         axisTitleStyle: {
             fontSize: 12,
@@ -96,14 +79,9 @@ export const drawLineChart = async (
             growBy: growByY,
             axisTitle: "Quality",
             // labelProvider: qualityLabelProvider,
-            minorDelta: 1,
-            majorDelta: 1,
             // visibleRange: new NumberRange(0.5, 3.5),
-            drawMajorTickLines: false,
             drawMinorTickLines: false,
-            drawMajorGridLines: false,
             drawMinorGridLines: false,
-
             labelStyle: {
                 fontSize: 10,
             },
@@ -114,26 +92,20 @@ export const drawLineChart = async (
     );
 
     // Convert dates to timestamps and quality to numeric values
-    // const xValues = waferData.map(item => new Date(item.Date).getTime());
-    const xValues = waferData.map((item, i) => i); //new Date(item.Date).getTime() / 1000);
+    const xValues = waferData.map((item) => new Date(item.Date).getTime() / 1000);
 
-    const yValues = waferData.map((item) => item.Input2);
+    const yValues = waferData.map((item) => item.Mean2);
 
     // Create metadata for each point to store Input1 values
     const metadata = waferData.map(
         (item) =>
             ({
                 isSelected: false,
-                input1: item.Input1,
-                input2: item.Input2,
-                batch: item.Batch,
-                measure1: item.Measure1,
-                measure2: item.Measure2,
-                measure3: item.Measure3,
-                quality: item.Quality,
+                input1: item.Mean1,
                 date: item.Date,
             } as IWaferPointMetadata)
     );
+    metadata[0].isSelected = true;
 
     // Create a data series with all values and metadata
     const dataSeries = new XyDataSeries(wasmContext, {
@@ -152,12 +124,10 @@ export const drawLineChart = async (
             width: 20,
             height: 20,
             fill: appTheme.PaleSkyBlue,
-            stroke: appTheme.DarkIndigo,
-            strokeThickness: 2,
+            strokeThickness: 0,
         }),
         paletteProvider: new DataPointSelectionPaletteProvider({
-            fill: appTheme.PaleTeal, // Selected fill color
-            stroke: appTheme.PaleSkyBlue, // Selected stroke color
+            fill: appTheme.PaleOrange, // Selected fill color
         }),
         // Add data labels to show Input1 values
         dataLabels: {
@@ -178,7 +148,7 @@ export const drawLineChart = async (
         const pointMetadata = metadata[index] as IWaferPointMetadata;
 
         if (pointMetadata) {
-            return `${pointMetadata.input2}`;
+            return `${pointMetadata.input1.toFixed(0)}`;
         }
         return undefined;
     };
@@ -197,15 +167,12 @@ export const drawLineChart = async (
             selectedPoints.forEach((point) => {
                 // Call the callback function if provided
                 if (onPointSelected && point.index !== undefined) {
-                    const metadata = point.metadata as IWaferPointMetadata;
                     const selectedWaferData = waferData[point.index];
                     if (selectedWaferData) {
                         onPointSelected(selectedWaferData, point.index);
                     }
                 }
             });
-        } else {
-            console.log("No points selected");
         }
     });
 
@@ -217,53 +184,54 @@ export const drawLineChart = async (
         let width, height, size;
 
         if (sciChartSurface.domCanvas2D.width < 1024) {
-            width = 70;
-            height = 21;
+            width = 80;
+            height = 50;
             rolloverTooltip.updateSize(width, height);
             size = "small";
         } else {
             width = 97;
-            height = 65;
+            height = 222;
             rolloverTooltip.updateSize(width, height);
             size = "big";
         }
 
-        // <circle cx="50%" cy="50%" r="50%" fill="${seriesInfo.stroke}"/>
-        // <text y="40" font-size="13" font-family="Verdana" dy="0" fill="${"black"}">
-        //     <tspan x="15" dy="1.2em">${seriesInfo.seriesName}</tspan>
-        //     <tspan x="15" dy="1.2em">x: ${seriesInfo.formattedXValue} y: ${seriesInfo.formattedYValue}</tspan>
-        // </text>
-        //
+        const pointdata = waferData[seriesInfo.dataSeriesIndex];
 
-        // Measure1 = Film thickness (nm).
-        // Measure2 = Line width (nm).
-        // Measure3 = Sheet resistance (Ω/□).
-
-        const pointMetadata = seriesInfo.pointMetadata as IWaferPointMetadata;
-
-        if (pointMetadata && pointMetadata.date) {
-            console.log({ pointMetadata });
-
-            return size === "small"
-                ? `
+        if (pointdata) {
+            if (size === "small") {
+                let batchSummary: number[] = [0, 0, 0];
+                for (const batch of pointdata.Batches) {
+                    const i = batch.Quality === "Good" ? 0 : batch.Quality === "Marginal" ? 1 : 2;
+                    batchSummary[i]++;
+                }
+                return `
         <svg width="${width}" height="${height}">
             <rect rx="3" width="${width}" height="${height}" fill="${
-                      seriesInfo.stroke
-                  }" stroke="black" stroke-width="0.5"/>
-            <text x="2" y="15" "fill="${"black"}" font-size="12">${pointMetadata.date}</text>
-        </svg>`
-                : `
-        <svg width="${width}" height="${height}">
-            <rect rx="3" width="${width}" height="${height}" fill="${
-                      seriesInfo.stroke
-                  }" stroke="black" stroke-width="0.5"/>
-            <text  y="15" "fill="${"black"}" font-size="12">
-                  <tspan x="2">${pointMetadata.date}</tspan>
-                  <tspan x="2" dy="1.2em"><tspan font-weight="bold">THK:</tspan> ${pointMetadata.measure1} nm</tspan>
-                  <tspan x="2" dy="1.2em"><tspan font-weight="bold">LW:</tspan> ${pointMetadata.measure2} nm</tspan>
-                  <tspan x="2" dy="1.2em"><tspan font-weight="bold">RSH:</tspan> ${pointMetadata.measure3} Ω/sq</tspan>
+                    seriesInfo.stroke
+                }" stroke="black" stroke-width="0.5"/>
+            <text x="2" y="2" "fill="${"black"}" font-size="12">
+            <tspan x="2" dy="1.2em" stroke="green">Good: ${batchSummary[0]}</tspan>
+            <tspan x="2" dy="1.2em" stroke="orange">Marginal: ${batchSummary[1]}</tspan>
+            <tspan x="2" dy="1.2em" stroke="red">Fail: ${batchSummary[2]}</tspan>
             </text>
         </svg>`;
+            } else {
+                let batchString = "";
+                for (const batch of pointdata.Batches) {
+                    const stroke = batch.Quality === "Good" ? "green" : batch.Quality === "Marginal" ? "orange" : "red";
+                    batchString += `<tspan x="2" dy="1.2em">${batch.Batch}: <tspan stroke="${stroke}">${batch.Quality}</tspan></tspan>
+                    `;
+                }
+                return `
+            <svg width="${width}" height="${height}">
+                <rect rx="3" width="${width}" height="${height}" fill="${
+                    seriesInfo.stroke
+                }" stroke="black" stroke-width="0.5"/>
+                <text x="2" y="2" "fill="${"black"}" font-size="12">
+                    ${batchString}
+                </text>
+            </svg>`;
+            }
         } else {
             return null;
         }
