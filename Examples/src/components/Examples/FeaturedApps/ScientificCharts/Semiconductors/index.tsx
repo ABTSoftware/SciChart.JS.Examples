@@ -1,15 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import { generateWaferLotData, WaferLotData, WaferDayData, IBatchMetadata } from "./waferData";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import { SciChartSurface } from "scichart";
 import { drawLineChart } from "./lineChart";
 import { drawColumnChart } from "./columnChart";
 import { drawScatterChart } from "./scatterChart";
-import { drawWaferChart } from "./waferChart";
 import { drawPlot } from "./plot";
 import { drawPareoChart } from "./pareoChart";
 
-import { appTheme } from "../../../theme";
 import "./styles.css";
 
 export default function Overview() {
@@ -26,7 +23,6 @@ export default function Overview() {
         sciChartSurface: any;
         generateSubcharts: (selectedPoint: IBatchMetadata) => void;
     } | null>(null);
-    const waferChartRef = useRef<{ sciChartSurface: any; wasmContext: any; setData: any } | null>(null);
 
     const resetToInitialState = () => {
         // Simply reset the state - this will trigger re-rendering
@@ -65,10 +61,6 @@ export default function Overview() {
         scatterChartRef.current = chartInstance;
     };
 
-    const handleWaferChartInit = (chartInstance: any) => {
-        waferChartRef.current = chartInstance;
-    };
-
     const handlePlotChartInit = (chartInstance: TResolvedReturnType<typeof drawPlot>) => {
         plotChartRef.current = chartInstance;
         //plotChartRef.current.generateSubcharts()
@@ -103,26 +95,6 @@ export default function Overview() {
         return drawScatterChart(rootElement, data[0].Batches);
     };
 
-    const initWaferChart = async (rootElement: string | HTMLDivElement) => {
-        const pointData = {
-            Id: 0,
-            Date: "2023-01-09",
-            Batch: 10,
-            Quality: "Marginal",
-            Input1: 1087,
-            Input2: 294,
-            Measure1: 98.78,
-            Measure2: 53.03,
-            Measure3: 9.84,
-        } as WaferLotData;
-
-        console.log(JSON.stringify(selectedDay));
-
-        return drawWaferChart(rootElement, pointData);
-
-        // return null;
-    };
-
     const initPlotChart = async (rootElement: string | HTMLDivElement) => {
         if (selectedDay) {
             const { Date, Batch, Input2: Input } = selectedDay.Batches[0];
@@ -146,6 +118,15 @@ export default function Overview() {
     //         }, 100);
     //     }
     // }, [data, selectedBatch]);
+
+    // useEffect(() => {
+    //     //setDataIndex
+    //     setTimeout(() => {
+    //         if (data.length && selectedPoint) {
+    //             waferChartRef.current.setDataIndex(selectedPoint, selectedWafer);
+    //         }
+    //     }, 100);
+    // }, [selectedWafer, selectedPoint]);
 
     return data.length ? (
         <div className="dashboard-container">

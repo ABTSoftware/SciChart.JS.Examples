@@ -53,6 +53,24 @@ export const drawLineChart = async (
         },
     });
 
+    const sizeIsSmall = sciChartSurface.domCanvas2D.width < 1024 ? true : false;
+
+    if (sizeIsSmall) {
+        sciChartSurface.titleStyle = {
+            fontSize: 16,
+            useNativeText: false,
+            color: appTheme.PaleSkyBlue,
+            padding: new Thickness(15, 5, 5, 5),
+        };
+    } else {
+        sciChartSurface.titleStyle = {
+            fontSize: 26,
+            useNativeText: false,
+            color: appTheme.PaleSkyBlue,
+            padding: new Thickness(25, 5, 5, 5),
+        };
+    }
+
     const growByY = new NumberRange(0.4, 0.4);
     const growByX = new NumberRange(0.05, 0.05);
 
@@ -181,18 +199,16 @@ export const drawLineChart = async (
         seriesInfo: SeriesInfo, // ,
         rolloverTooltip: RolloverTooltipSvgAnnotation //
     ) => {
-        let width, height, size;
+        let width, height;
 
         if (sciChartSurface.domCanvas2D.width < 1024) {
             width = 80;
             height = 50;
             rolloverTooltip.updateSize(width, height);
-            size = "small";
         } else {
             width = 97;
             height = 222;
             rolloverTooltip.updateSize(width, height);
-            size = "big";
         }
 
         const pointdata = waferData[seriesInfo.dataSeriesIndex];
