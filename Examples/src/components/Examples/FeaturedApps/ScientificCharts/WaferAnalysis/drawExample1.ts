@@ -30,7 +30,6 @@ export const divOverviewId2 = "overview2";
 export const divElementId3 = "chart3";
 export const divOverviewId3 = "overview3";
 
-
 export const drawExample = async (xValues: number[], yValues: number[], setFilter: Dispatch<[number, number]>) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         widthAspect: 3,
@@ -74,7 +73,6 @@ export const drawExample = async (xValues: number[], yValues: number[], setFilte
             setFilter([min, max]);
         }
     });
-
 
     const columnSeries = new FastColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
@@ -160,9 +158,6 @@ export const drawExample1 = async (xValues: number[], yValues: number[], setFilt
         // dataPointWidthMode: EDataPointWidthMode.Relative,
     });
 
-
-
-
     // rendSeries2.xAxisId = xAxis.id;
     // rendSeries2.yAxisId = yAxis.id;
     sciChartSurface.renderableSeries.add(columnSeries);
@@ -218,8 +213,6 @@ export const drawExample2 = async (xValues: number[], yValues: number[], setFilt
         }
     });
 
-
-
     const columnSeries = new FastColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues,
@@ -235,7 +228,6 @@ export const drawExample2 = async (xValues: number[], yValues: number[], setFilt
         // dataPointWidth: 1,
         // dataPointWidthMode: EDataPointWidthMode.Relative,
     });
-
 
     // rendSeries2.xAxisId = xAxis.id;
     // rendSeries2.yAxisId = yAxis.id;
@@ -291,7 +283,6 @@ export const drawExample3 = async (xValues: number[], yValues: number[], setFilt
             setFilter([min, max]);
         }
     });
-
 
     const columnSeries = new FastColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {

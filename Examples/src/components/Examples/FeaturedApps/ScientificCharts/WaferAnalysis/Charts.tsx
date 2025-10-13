@@ -19,11 +19,7 @@ import { appTheme } from "../../../theme";
 
 import { drawWafer, waferId } from "./drawExample";
 
-import { drawBoxPlot, boxPlotId } from "./boxPlot";
-
 import { drawScatterPlot, scatterPlotId } from "./scatterPlot";
-
-import { calculateBoxplotValues } from "./helpers";
 
 import useDataStore from "./store";
 
@@ -67,18 +63,6 @@ const Charts = () => {
         const MR2s = dies.all().map((d) => {
             return d.MR2;
         });
-
-        console.log(calculateBoxplotValues(MRs));
-
-        const values = {
-            MR: calculateBoxplotValues(MRs),
-            HR: calculateBoxplotValues(HRs),
-            HDI: calculateBoxplotValues(HDIs),
-            MR2: calculateBoxplotValues(MR2s),
-        };
-
-        drawBoxPlot(values);
-        
     }, []);
 
     useEffect(() => {
@@ -115,7 +99,6 @@ const Charts = () => {
         <div className="" style={{ display: "flex", flexDirection: "row", backgroundColor: appTheme.DarkIndigo }}>
             <div className="">
                 <div id={waferId} style={{ height: 400, width: 420 }} />
-                <div id={boxPlotId} style={{ height: 200, width: 420 }} />
             </div>
 
             <div className="" style={{ width: 510 }}>
@@ -134,7 +117,7 @@ const Charts = () => {
                     <div id={divElementId1} style={{ flexBasis: 80, flexGrow: 1, flexShrink: 1 }} />
                     <div id={divOverviewId1} style={{ flexBasis: 50, flexGrow: 1, flexShrink: 1 }} />
                 </div>
-                {/* <div style={{ display: "flex", flexDirection: "column" }}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
                     <h5 style={{ color: appTheme.MutedSkyBlue, paddingLeft: 10 }}>
                         HDI values - between {HDIsFilter[0]} and {HDIsFilter[1]}
                     </h5>
@@ -147,7 +130,7 @@ const Charts = () => {
                     </h5>
                     <div id={divElementId3} style={{ flexBasis: 80, flexGrow: 1, flexShrink: 1 }} />
                     <div id={divOverviewId3} style={{ flexBasis: 50, flexGrow: 1, flexShrink: 1 }} />
-                </div> */}
+                </div>
             </div>
         </div>
     );

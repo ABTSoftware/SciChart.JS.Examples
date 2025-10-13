@@ -37,6 +37,7 @@ const NUMERIC_AXIS_OPTIONS = {
 };
 
 export const drawScatterPlot = async (values: readonly WaferData[]) => {
+    //console.log({ values });
 
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(scatterPlotId);
 
