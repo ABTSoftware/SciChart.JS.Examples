@@ -152,6 +152,7 @@ export default [
     "../Examples/FeaturedApps/ScientificCharts/PhasorDiagramChart",
     "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D",
     "../Examples/FeaturedApps/ScientificCharts/Semiconductors",
+    "../Examples/FeaturedApps/ScientificCharts/WaferAnalysis",
     "../Examples/FeaturedApps/ShowCases/DynamicLayout",
     "../Examples/FeaturedApps/ShowCases/EventMarkers",
     "../Examples/FeaturedApps/ShowCases/HeatmapInteractions",

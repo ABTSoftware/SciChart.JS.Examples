@@ -214,7 +214,7 @@ export const drawLineChart = async (
         const pointdata = waferData[seriesInfo.dataSeriesIndex];
 
         if (pointdata) {
-            if (size === "small") {
+            if (sizeIsSmall) {
                 let batchSummary: number[] = [0, 0, 0];
                 for (const batch of pointdata.Batches) {
                     const i = batch.Quality === "Good" ? 0 : batch.Quality === "Marginal" ? 1 : 2;
