@@ -14,10 +14,16 @@ import {
     XyzDataSeries,
     IFillPaletteProvider,
     EFillPaletteMode,
+    DataPointSelectionModifier,
+    Rect,
+    ESelectionMode,
+    BaseDataSeries,
+    EExecuteOn,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
 import { WaferData } from "./store";
+import { Dispatch } from "react";
 
 export const waferId = "waferId";
 
@@ -65,7 +71,44 @@ class RectanglePaletteProvider implements IFillPaletteProvider {
     }
 }
 
-export const initializeWafer = async () => {
+class WaferRangeSelectionModifier extends DataPointSelectionModifier {
+    public setRowFilter: Dispatch<[number, number]>;
+    public setColFilter: Dispatch<[number, number]>;
+
+    protected selectManyPoints(rect: Rect, selectionMode: ESelectionMode) {
+        if (this.parentSurface && this.setRowFilter && this.setColFilter) {
+            const rs = this.getIncludedRenderableSeries()[0];
+
+            const xCalc = rs.xAxis.getCurrentCoordinateCalculator();
+            const yCalc = rs.yAxis.getCurrentCoordinateCalculator();
+
+            // Find the bounds of the data inside the rectangle
+            let leftXData, rightXData;
+            if (xCalc.getDataValue(rect.left) <= xCalc.getDataValue(rect.right)) {
+                leftXData = xCalc.getDataValue(rect.left);
+                rightXData = xCalc.getDataValue(rect.right);
+            } else {
+                leftXData = xCalc.getDataValue(rect.right);
+                rightXData = xCalc.getDataValue(rect.left);
+            }
+            let bottomYData, topYData;
+            if (yCalc.getDataValue(rect.top) <= yCalc.getDataValue(rect.bottom)) {
+                bottomYData = yCalc.getDataValue(rect.top);
+                topYData = yCalc.getDataValue(rect.bottom);
+            } else {
+                bottomYData = yCalc.getDataValue(rect.bottom);
+                topYData = yCalc.getDataValue(rect.top);
+            }
+            this.setRowFilter([topYData, bottomYData]);
+            this.setColFilter([leftXData, rightXData]);
+        }
+    }
+}
+
+export const initializeWafer = async (
+    setRowFilter: Dispatch<[number, number]>,
+    setColFilter: Dispatch<[number, number]>
+) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(waferId, {
         theme: appTheme.SciChartJsTheme,
@@ -73,26 +116,18 @@ export const initializeWafer = async () => {
 
     // Add X-axis
     const xAxis = new NumericAxis(wasmContext, {
-        // isVisible: false,
-        //visibleRange: new NumberRange(0, 40)
+        labelPrecision: 0,
     });
     sciChartSurface.xAxes.add(xAxis);
 
     // Add Y-axis
     const yAxis = new NumericAxis(wasmContext, {
-        // isVisible: false,
-        flippedCoordinates: true,
-        //visibleRange: new NumberRange(0, 40)
+        labelPrecision: 0,
     });
     sciChartSurface.yAxes.add(yAxis);
 
     // Create empty data series
-    const dataSeries = new XyzDataSeries(wasmContext, {
-        xValues: [],
-        yValues: [],
-        zValues: [],
-        metadata: [],
-    });
+    const dataSeries = new XyzDataSeries(wasmContext);
 
     // Create rectangle series with palette provider
     const rectangleSeries = new FastRectangleRenderableSeries(wasmContext, {
@@ -106,38 +141,25 @@ export const initializeWafer = async () => {
     });
     sciChartSurface.renderableSeries.add(rectangleSeries);
 
-    // Tooltip template
-    const tooltipDataTemplate: TCursorTooltipDataTemplate = (seriesInfos: SeriesInfo[]) => {
-        const valuesWithLabels: string[] = [];
-
-        seriesInfos.forEach((si, i) => {
-            const xyzSI = si;
-            if (xyzSI.isWithinDataBounds) {
-                if (!isNaN(xyzSI.yValue) && xyzSI.isHit) {
-                    const value = dataSeries.getNativeZValues().get(xyzSI.dataSeriesIndex);
-                    valuesWithLabels.push(
-                        `X: ${xyzSI.xValue}, Y: ${xyzSI.yValue}, DEFECT: ${
-                            (xyzSI.pointMetadata as RectangleMeta | undefined)?.DEFECT ?? "null"
-                        }`
-                    );
-                }
-            }
-        });
-        return valuesWithLabels;
-    };
+    const dataPointSelection = new WaferRangeSelectionModifier({
+        allowDragSelect: true,
+        allowClickSelect: false,
+    });
+    dataPointSelection.setRowFilter = setRowFilter;
+    dataPointSelection.setColFilter = setColFilter;
 
     // Add interactivity modifiers
     sciChartSurface.chartModifiers.add(
-        new ZoomPanModifier({ enableZoom: true }),
-        new ZoomExtentsModifier(),
-        new MouseWheelZoomModifier()
-        // new CursorModifier({
-        //     showTooltip: true,
-        //     tooltipDataTemplate,
-        //     showXLine: false,
-        //     showYLine: false,
-        //     tooltipContainerBackground: appTheme.MutedSkyBlue + 55,
-        // })
+        new ZoomPanModifier({ executeCondition: { button: EExecuteOn.MouseRightButton } }),
+        new ZoomExtentsModifier({
+            onZoomExtents: (surface) => {
+                setRowFilter(undefined);
+                setColFilter(undefined);
+                return true;
+            },
+        }),
+        new MouseWheelZoomModifier(),
+        dataPointSelection
     );
 
     // Update function that clears and repopulates data

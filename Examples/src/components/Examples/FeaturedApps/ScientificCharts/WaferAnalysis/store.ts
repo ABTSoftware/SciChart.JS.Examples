@@ -4,13 +4,11 @@ import crossfilter from "crossfilter2";
 export type WaferData = {
     MAP_ROW: number;
     MAP_COL: number;
-    FF_ROW: number;
-    FF_COL: number;
-    WIF_COL: number;
-    WIF_ROW: number;
     DEFECT: string;
     MR: number;
     HR: number;
+    HDI: number;
+    MR2: number;
 };
 
 export type Filters = {
@@ -21,10 +19,18 @@ export interface DataStoreState {
     data: WaferData[];
     filters: Filters;
     dies: crossfilter.Crossfilter<WaferData> | null;
+    Row: crossfilter.Dimension<WaferData, number> | null;
+    Rows: crossfilter.Group<WaferData, number, unknown> | null;
+    Col: crossfilter.Dimension<WaferData, number> | null;
+    Cols: crossfilter.Group<WaferData, number, unknown> | null;
     MR: crossfilter.Dimension<WaferData, number> | null;
     MRs: crossfilter.Group<WaferData, number, unknown> | null;
     HR: crossfilter.Dimension<WaferData, number> | null;
     HRs: crossfilter.Group<WaferData, number, unknown> | null;
+    HDI: crossfilter.Dimension<WaferData, number> | null;
+    //HDIs: crossfilter.Group<WaferData, number, unknown> | null;
+    MR2: crossfilter.Dimension<WaferData, number> | null;
+    //MR2s: crossfilter.Group<WaferData, number, unknown> | null;
     setData: (data: WaferData[]) => void;
     setFilter: (dim: string, value: string | number) => void;
     clearFilters: () => void;
@@ -34,12 +40,30 @@ const useDataStore = create<DataStoreState>((set) => ({
     data: [],
     filters: {},
     dies: null,
+    Row: null,
+    Rows: null,
+    Col: null,
+    Cols: null,
     MR: null,
     MRs: null,
     HR: null,
     HRs: null,
+    HDI: null,
+    MR2: null,
     setData: (data) => {
         const dies = crossfilter(data);
+
+        const Row = dies.dimension(function (d) {
+            return d.MAP_ROW;
+        });
+
+        const Rows = Row.group(Math.floor);
+
+        const Col = dies.dimension(function (d) {
+            return d.MAP_COL;
+        });
+
+        const Cols = Col.group(Math.floor);
 
         const MR = dies.dimension(function (d) {
             return d.MR;
@@ -55,13 +79,27 @@ const useDataStore = create<DataStoreState>((set) => ({
             return Math.floor(d);
         });
 
+        const HDI = dies.dimension(function (d) {
+            return d.HDI;
+        });
+
+        const MR2 = dies.dimension(function (d) {
+            return d.MR2;
+        });
+
         set({
             data,
             dies,
+            Row,
+            Rows,
+            Col,
+            Cols,
             MR,
             MRs,
             HR,
             HRs,
+            HDI,
+            MR2,
         });
     },
     setFilter: (dim, value) =>

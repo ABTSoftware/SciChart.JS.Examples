@@ -47,7 +47,6 @@ const defectProfiles = {
 };
 
 // This creates a type that is a union of all the keys from defectProfiles
-// e.g., "OK" | "S28" | "S36" | ...
 type DefectCode = keyof typeof defectProfiles;
 
 // --- 3. Update the data structures to use the new, specific type ---
@@ -59,15 +58,11 @@ type WaferData = {
     HR: number;
     HDI: number;
     MR2: number;
-    NORM_X: number;
-    NORM_Y: number;
 };
 
 type IntermediateWaferPoint = {
     MAP_ROW: number;
     MAP_COL: number;
-    NORM_X: number;
-    NORM_Y: number;
     DEFECT: DefectCode; // Use the specific DefectCode type
     defectProbability: number;
     potentialDefect: DefectCode; // Use the specific DefectCode type
@@ -125,8 +120,6 @@ export function generateWaferData(
             intermediateData.push({
                 MAP_ROW: y + waferRadius,
                 MAP_COL: x + waferRadius,
-                NORM_X: (x + waferRadius) / (2 * waferRadius),
-                NORM_Y: (y + waferRadius) / (2 * waferRadius),
                 DEFECT: "OK",
                 defectProbability: maxProbability,
                 potentialDefect: potentialDefect,
@@ -146,7 +139,6 @@ export function generateWaferData(
     }
 
     const finalData: WaferData[] = intermediateData.map((point) => {
-        // NO ERROR HERE: TypeScript now knows point.DEFECT is a valid key for defectProfiles
         const profile = defectProfiles[point.DEFECT];
 
         const generateValue = (paramProfile: SensorProfile) => {
@@ -157,8 +149,6 @@ export function generateWaferData(
         return {
             MAP_ROW: point.MAP_ROW,
             MAP_COL: point.MAP_COL,
-            NORM_X: point.NORM_X,
-            NORM_Y: point.NORM_Y,
             DEFECT: point.DEFECT,
             MR: generateValue(profile.MR),
             HR: generateValue(profile.HR),

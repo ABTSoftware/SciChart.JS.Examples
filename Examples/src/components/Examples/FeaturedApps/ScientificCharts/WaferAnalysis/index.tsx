@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
-import { divElementId, divOverviewId, divElementId1, divOverviewId1, drawExample, drawExample1 } from "./measureCharts";
+import { divElementId, divOverviewId, divElementId1, divOverviewId1, initializeMeasureChart } from "./measureCharts";
 
 import { appTheme } from "../../../theme";
 
@@ -11,16 +11,23 @@ import { initializeScatterPlot, scatterPlotId } from "./scatterPlot";
 import useDataStore from "./store";
 
 import { generateWaferData } from "./waferData";
+import { CO } from "country-flag-icons/string/3x2";
 
 export default function WaferAnalysis() {
     const [MRsFilter, setMRsFilter] = useState<[number, number]>([null, null]);
     const [HRsFilter, setHRsFilter] = useState<[number, number]>([null, null]);
+    const [RowsFilter, setRowsFilter] = useState<[number, number]>([null, null]);
+    const [ColsFilter, setColsFilter] = useState<[number, number]>([null, null]);
     const updateWaferDataRef = useRef<((data: any[]) => void) | null>(null);
     const waferCleanupRef = useRef<(() => void) | null>(null);
     const updateScatterPlotDataRef = useRef<((data: any[]) => void) | null>(null);
     const scatterPlotCleanupRef = useRef<(() => void) | null>(null);
+    const updateMeasureChartDataRef = useRef<((xValues: number[], yValues: number[]) => void) | null>(null);
+    const measureChartCleanupRef = useRef<(() => void) | null>(null);
+    const updateMeasureChart1DataRef = useRef<((xValues: number[], yValues: number[]) => void) | null>(null);
+    const measureChart1CleanupRef = useRef<(() => void) | null>(null);
 
-    const { setData, data, dies, MR, MRs, HR, HRs } = useDataStore();
+    const { setData, data, dies, Row, Col, MR, MRs, HR, HRs } = useDataStore();
 
     if (MRsFilter[0] !== null && MRsFilter[1] !== null) {
         MR!.filter(MRsFilter);
@@ -30,17 +37,34 @@ export default function WaferAnalysis() {
         HR!.filter(HRsFilter);
     }
 
+    if (RowsFilter && RowsFilter[0] !== null && RowsFilter[1] !== null) {
+        Row!.filter(RowsFilter);
+    } else {
+        Row?.filterAll();
+    }
+
+    if (ColsFilter && ColsFilter[0] !== null && ColsFilter[1] !== null) {
+        Col!.filter(ColsFilter);
+    } else {
+        Col?.filterAll();
+    }
+
     useEffect(() => {
         let data = generateWaferData(100, 0.2, 50, 5);
         setData(data);
     }, []);
+
+    const clearRowColFilter = () => {
+        console.log("clearing filters");
+        setColsFilter(undefined);
+    };
 
     // Initialize charts once when component mounts
     useEffect(() => {
         const initializeCharts = async () => {
             if (data.length > 0 && dies) {
                 // Initialize wafer chart
-                const { updateWaferData, cleanup: waferCleanup } = await initializeWafer();
+                const { updateWaferData, cleanup: waferCleanup } = await initializeWafer(setRowsFilter, setColsFilter);
                 updateWaferDataRef.current = updateWaferData;
                 waferCleanupRef.current = waferCleanup;
 
@@ -54,6 +78,35 @@ export default function WaferAnalysis() {
                 updateWaferData(filteredData);
                 updateScatterPlotData(filteredData);
             }
+            if (MRs && HRs) {
+                // Initial data load
+                const MRsX = MRs.all().map((d) => d.key);
+                const MRsY = MRs.all().map((d) => d.value!) as number[];
+                const HRsX = HRs.all().map((d) => d.key);
+                const HRsY = HRs.all().map((d) => d.value!) as number[];
+
+                // Initialize measure chart
+                const { updateMeasureChartData, cleanup: measureCleanup } = await initializeMeasureChart(
+                    divElementId,
+                    divOverviewId,
+                    MRsX,
+                    MRsY,
+                    setMRsFilter
+                );
+                updateMeasureChartDataRef.current = updateMeasureChartData;
+                measureChartCleanupRef.current = measureCleanup;
+
+                // Initialize measure chart 1
+                const { updateMeasureChartData: update1, cleanup: measureCleanup1 } = await initializeMeasureChart(
+                    divElementId1,
+                    divOverviewId1,
+                    HRsX,
+                    HRsY,
+                    setHRsFilter
+                );
+                updateMeasureChart1DataRef.current = update1;
+                measureChart1CleanupRef.current = measureCleanup1;
+            }
         };
 
         initializeCharts();
@@ -65,57 +118,69 @@ export default function WaferAnalysis() {
             if (scatterPlotCleanupRef.current) {
                 scatterPlotCleanupRef.current();
             }
+            if (measureChartCleanupRef.current) {
+                measureChartCleanupRef.current();
+            }
+            if (measureChart1CleanupRef.current) {
+                measureChart1CleanupRef.current();
+            }
         };
     }, [data.length > 0, dies]); // Only initialize once when data is available
-
-    useEffect(() => {
-        if (dies) {
-            const MRs = dies.all().map((d) => {
-                return d.MR;
-            });
-
-            const HRs = dies.all().map((d) => {
-                return d.HR;
-            });
-        }
-    }, [dies]);
 
     // Update chart data when filtered data changes
     useEffect(() => {
         if (data.length > 0 && dies) {
-            const filteredData = dies.allFiltered();
-
-            if (updateWaferDataRef.current) {
-                updateWaferDataRef.current(filteredData);
-            }
-
             if (updateScatterPlotDataRef.current) {
-                updateScatterPlotDataRef.current(filteredData);
+                updateScatterPlotDataRef.current(dies.allFiltered());
+            }
+            Col.filterAll();
+            Row.filterAll();
+            if (updateWaferDataRef.current) {
+                updateWaferDataRef.current(dies.allFiltered());
             }
         }
     }, [data.length, dies, MRsFilter, HRsFilter]);
 
     useEffect(() => {
-        if (MRs && HRs) {
-            const MRsX = MRs.all().map((d) => d.key);
-            const MRsY = MRs.all().map((d) => d.value!) as number[];
+        if (data.length > 0 && dies) {
+            const filteredData = dies.allFiltered();
 
-            const HRsX = HRs.all().map((d) => d.key);
-            const HRsY = HRs.all().map((d) => d.value!) as number[];
-
-            const chartsPromise = Promise.all([
-                drawExample(MRsX, MRsY, setMRsFilter),
-                drawExample1(HRsX, HRsY, setHRsFilter),
-            ]);
-
-            return () => {
-                chartsPromise.then((charts) => charts.forEach((chart) => chart?.sciChartSurface?.delete()));
-            };
+            if (updateScatterPlotDataRef.current) {
+                updateScatterPlotDataRef.current(filteredData);
+            }
         }
+    }, [data.length, dies, RowsFilter, ColsFilter]);
 
-        // Return empty cleanup function if condition is not met
-        return () => {};
-    }, [MRs, HRs]);
+    // // Update measure charts when data changes
+    // useEffect(() => {
+    //     if (data.length > 0 && dies) {
+    //         console.log("useEffect");
+    //         if (Col.hasCurrentFilter()) {
+    //             console.log("filtered");
+    //             const MRsX = MRs.all().map((d) => d.key);
+    //             const MRsY = MRs.all().map((d) => d.value!) as number[];
+    //             const HRsX = HRs.all().map((d) => d.key);
+    //             const HRsY = HRs.all().map((d) => d.value!) as number[];
+
+    //             if (updateMeasureChartDataRef.current) {
+    //                 updateMeasureChartDataRef.current(MRsX, MRsY);
+    //             }
+
+    //             if (updateMeasureChart1DataRef.current) {
+    //                 updateMeasureChart1DataRef.current(HRsX, HRsY);
+    //             }
+    //         } else {
+    //             console.log("not filtered");
+    //             if (updateMeasureChartDataRef.current) {
+    //                 updateMeasureChartDataRef.current([], []);
+    //             }
+
+    //             if (updateMeasureChart1DataRef.current) {
+    //                 updateMeasureChart1DataRef.current([], []);
+    //             }
+    //         }
+    //     }
+    // }, [data.length, dies, RowsFilter, ColsFilter]);
 
     return data.length ? (
         <div className="" style={{ display: "flex", flexDirection: "row", backgroundColor: appTheme.DarkIndigo }}>

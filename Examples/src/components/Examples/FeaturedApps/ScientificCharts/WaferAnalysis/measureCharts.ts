@@ -23,10 +23,10 @@ import {
 
 import { appTheme } from "../../../theme";
 
-export const divElementId = "chart";
+export const divElementId = "mrchart";
 export const divOverviewId = "overview";
 
-export const divElementId1 = "chart1";
+export const divElementId1 = "hrchart";
 export const divOverviewId1 = "overview1";
 
 class IntegerDeltaCalculator extends NumericDeltaCalculator {
@@ -36,8 +36,14 @@ class IntegerDeltaCalculator extends NumericDeltaCalculator {
     }
 }
 
-export const drawExample = async (xValues: number[], yValues: number[], setFilter: Dispatch<[number, number]>) => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+export const initializeMeasureChart = async (
+    div: string,
+    overviewDiv: string,
+    xValues: number[],
+    yValues: number[],
+    setFilter: Dispatch<[number, number]>
+) => {
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(div, {
         padding: new Thickness(5, 5, 0, 5),
     });
 
@@ -45,6 +51,8 @@ export const drawExample = async (xValues: number[], yValues: number[], setFilte
         flippedCoordinates: false,
         axisAlignment: EAxisAlignment.Top,
         labelPrecision: 0,
+        drawMinorGridLines: false,
+        drawMinorTickLines: false,
     });
     xAxis.deltaCalculator = new IntegerDeltaCalculator(wasmContext);
 
@@ -53,6 +61,7 @@ export const drawExample = async (xValues: number[], yValues: number[], setFilte
     const yAxis = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Left,
         autoRange: EAutoRange.Always,
+        growBy: new NumberRange(0.1, 0),
         autoRangeAnimation: {
             animateInitialRanging: false,
             animateSubsequentRanging: true,
@@ -60,57 +69,13 @@ export const drawExample = async (xValues: number[], yValues: number[], setFilte
             easing: easing.outExpo,
         },
         labelPrecision: 0,
+        drawMinorGridLines: false,
+        drawMinorTickLines: false,
     });
-
-    sciChartSurface.yAxes.add(yAxis);
-
-    xAxis.visibleRangeChanged.subscribe((args) => {
-        // Set filter on zoom/pan
-        setFilter([Math.floor(args.visibleRange.min), Math.floor(args.visibleRange.max)]);
-    });
-
-    const columnSeries = new FastColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, {
-            xValues,
-            yValues,
-        }),
-        // When solid fill required, use fill
-        fill: appTheme.MutedOrange,
-        strokeThickness: 2,
-        cornerRadius: 4, // optional cornerradius
-        dataPointWidth: 0.9,
-        dataPointWidthMode: EDataPointWidthMode.Range,
-    });
-
-    sciChartSurface.renderableSeries.add(columnSeries);
-
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
-
-    // Add Overview
-    await SciChartOverview.create(sciChartSurface, divOverviewId, {
-        padding: new Thickness(2, 5, 5, 5),
-        mainAxisId: xAxis.id,
-        secondaryAxisId: yAxis.id,
-    });
-
-    return { wasmContext, sciChartSurface };
-};
-
-export const drawExample1 = async (xValues: number[], yValues: number[], setFilter: Dispatch<[number, number]>) => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId1, {
-        padding: new Thickness(5, 5, 0, 5),
-    });
-
-    const xAxis = new NumericAxis(wasmContext, {
-        axisAlignment: EAxisAlignment.Top,
-        labelPrecision: 0,
-    });
-
-    sciChartSurface.xAxes.add(xAxis);
-
-    const yAxis = new NumericAxis(wasmContext, {
-        axisAlignment: EAxisAlignment.Left,
+    const yAxis2 = new NumericAxis(wasmContext, {
+        axisAlignment: EAxisAlignment.Right,
         autoRange: EAutoRange.Always,
+        growBy: new NumberRange(0.1, 0),
         autoRangeAnimation: {
             animateInitialRanging: false,
             animateSubsequentRanging: true,
@@ -118,39 +83,65 @@ export const drawExample1 = async (xValues: number[], yValues: number[], setFilt
             easing: easing.outExpo,
         },
         labelPrecision: 0,
+        drawMinorGridLines: false,
+        drawMinorTickLines: false,
     });
 
-    sciChartSurface.yAxes.add(yAxis);
-
-    xAxis.deltaCalculator = new IntegerDeltaCalculator(wasmContext);
+    sciChartSurface.yAxes.add(yAxis, yAxis2);
 
     xAxis.visibleRangeChanged.subscribe((args) => {
         // Set filter on zoom/pan
+        console.log("Filtering", div);
         setFilter([Math.floor(args.visibleRange.min), Math.floor(args.visibleRange.max)]);
     });
 
+    const dataSeries = new XyDataSeries(wasmContext, { xValues, yValues });
+
     const columnSeries = new FastColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, {
-            xValues,
-            yValues,
-        }),
+        dataSeries,
         // When solid fill required, use fill
         fill: appTheme.MutedOrange,
-        // stroke: "#FFFFFF77",
-        strokeThickness: 2,
-        cornerRadius: 4, // optional cornerradius
+        strokeThickness: 0,
+        //cornerRadius: 4, // optional cornerradius
         dataPointWidth: 0.9,
         dataPointWidthMode: EDataPointWidthMode.Range,
     });
 
-    sciChartSurface.renderableSeries.add(columnSeries);
+    const filterDataSeries = new XyDataSeries(wasmContext);
+
+    const filteredColumnSeries = new FastColumnRenderableSeries(wasmContext, {
+        dataSeries: filterDataSeries,
+        //yAxisId: yAxis2.id,
+        // When solid fill required, use fill
+        fill: appTheme.VividGreen,
+        strokeThickness: 0,
+        //cornerRadius: 4, // optional cornerradius
+        dataPointWidth: 0.9,
+        dataPointWidthMode: EDataPointWidthMode.Range,
+    });
+
+    sciChartSurface.renderableSeries.add(columnSeries, filteredColumnSeries);
+
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
+
     // Add Overview
-    await SciChartOverview.create(sciChartSurface, divOverviewId1, {
+    await SciChartOverview.create(sciChartSurface, overviewDiv, {
         padding: new Thickness(2, 5, 5, 5),
         mainAxisId: xAxis.id,
         secondaryAxisId: yAxis.id,
     });
 
-    return { wasmContext, sciChartSurface };
+    // Update function that clears and repopulates data series
+    const updateMeasureChartData = (xValues: number[], yValues: number[]) => {
+        console.log(xValues.length);
+        filterDataSeries.clear();
+        filterDataSeries.appendRange(xValues, yValues);
+    };
+
+    // Cleanup function
+    const cleanup = () => {
+        sciChartSurface?.delete();
+    };
+
+    return { wasmContext, sciChartSurface, updateMeasureChartData, cleanup };
 };
