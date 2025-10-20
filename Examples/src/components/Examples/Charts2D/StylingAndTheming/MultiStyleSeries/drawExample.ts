@@ -37,6 +37,7 @@ import {
     parseColorToUIntArgb,
     EStrokePaletteMode,
     IRenderableSeries,
+    vectorToArrayViewF64,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -53,32 +54,46 @@ class SplitRenderDataTransform extends BaseRenderDataTransform<OhlcPointSeriesRe
         const { xValues: oldX, yValues: oldY, indexes: oldI, resampled } = renderPassData.pointSeries;
         // this.pointSeries is the target.  Clear the existing values
         const { xValues, yValues, highValues, lowValues, indexes } = this.pointSeries;
-        xValues.clear();
-        yValues.clear();
-        highValues.clear();
-        lowValues.clear();
-        indexes.clear();
         // This shows how to properly handled resampled data, though this is not necessary here.
         const iStart = resampled ? 0 : renderPassData.indexRange.min;
         const iEnd = resampled ? oldX.size() - 1 : renderPassData.indexRange?.max;
+        const length = iEnd - iStart + 1;
+        // Since this produces a known number of points we can just fast resize the target pointSeries to the desired length.  All this will be overritten
+        xValues.resizeFast(length);
+        yValues.resizeFast(length);
+        highValues.resizeFast(length);
+        lowValues.resizeFast(length);
+        indexes.resizeFast(length);
+        // Create views over the source and target vectors for fast access.  These views are only valid as long as there is no memory allocation
+        const oldXView = vectorToArrayViewF64(oldX, this.wasmContext);
+        const oldYView = vectorToArrayViewF64(oldY, this.wasmContext);
+        const oldIndexView = vectorToArrayViewF64(oldI, this.wasmContext);
+        const xView = vectorToArrayViewF64(xValues, this.wasmContext);
+        const yView = vectorToArrayViewF64(yValues, this.wasmContext);
+        const highView = vectorToArrayViewF64(highValues, this.wasmContext);
+        const lowView = vectorToArrayViewF64(lowValues, this.wasmContext);
+        const indexView = vectorToArrayViewF64(indexes, this.wasmContext);
+
         const ds = this.parentSeries.dataSeries as XyDataSeries;
         let prevSelected = false;
+        let iOut = 0;
         for (let i = iStart; i <= iEnd; i++) {
-            const index = resampled ? oldI.get(i) : i;
+            const index = resampled ? oldIndexView[i] : i;
             const md = ds.getMetadataAt(index);
-            xValues.push_back(oldX.get(i));
-            indexes.push_back(oldI.get(i));
+            xView[iOut] = oldXView[i];
+            indexView[iOut] = oldIndexView[i];
             let nextSelected = false;
             if (i < iEnd) {
                 const nextmd = ds.getMetadataAt(index + 1);
                 nextSelected = nextmd.isSelected;
             }
-            yValues.push_back(md.isSelected ? NaN : oldY.get(i));
+            yView[iOut] = md.isSelected ? NaN : oldYView[i];
             // For pointmarkers we just need the point itself
-            lowValues.push_back(md.isSelected ? oldY.get(i) : NaN);
+            lowView[iOut] = md.isSelected ? oldYView[i] : NaN;
             // need points either side of the selected value for the line to draw.
-            highValues.push_back(prevSelected || md.isSelected || nextSelected ? oldY.get(i) : NaN);
+            highView[iOut] = prevSelected || md.isSelected || nextSelected ? oldYView[i] : NaN;
             prevSelected = md.isSelected;
+            iOut++;
         }
         return this.pointSeries;
     }

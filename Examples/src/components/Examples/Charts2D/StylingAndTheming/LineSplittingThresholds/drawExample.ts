@@ -23,11 +23,14 @@ import {
     SciChartJsNavyTheme,
     SciChartSurface,
     TSciChart,
+    vectorToArrayViewF64,
     XyDataSeries,
     XyPointSeriesResampled,
     ZoomExtentsModifier,
     ZoomPanModifier,
+    DoubleVectorProvider,
 } from "scichart";
+
 import { appTheme } from "../../../theme";
 
 class ThresholdRenderDataTransform extends BaseRenderDataTransform<XyPointSeriesResampled> {
@@ -61,29 +64,35 @@ class ThresholdRenderDataTransform extends BaseRenderDataTransform<XyPointSeries
             return renderPassData.pointSeries;
         }
         const { xValues: oldX, yValues: oldY, indexes: oldI, resampled } = renderPassData.pointSeries;
-        const { xValues, yValues, indexes } = this.pointSeries;
         const iStart = resampled ? 0 : renderPassData.indexRange.min;
         const iEnd = resampled ? oldX.size() - 1 : renderPassData.indexRange?.max;
-        xValues.clear();
-        yValues.clear();
-        indexes.clear();
+        // Create views over the source and target vectors for fast access.  These views are only valid as long as there is no memory allocation
+        const oldXView = vectorToArrayViewF64(oldX, this.wasmContext);
+        const oldYView = vectorToArrayViewF64(oldY, this.wasmContext);
+        const oldIndexView = vectorToArrayViewF64(oldI, this.wasmContext);
+
+        // We do not know the number of output points, so we cannot fast write to views on the output.  Instead we write to temporary arrays and then fast append them to the output
+        const xout: number[] = [];
+        const yout: number[] = [];
+        const iout: number[] = [];
+
         // This is the index of the threshold we are currently under.
         let level = 0;
-        let lastY = oldY.get(iStart);
+        let lastY = oldXView[iStart];
         // Find the starting level
         for (let t = 0; t < numThresholds; t++) {
             if (lastY > this.thresholds.get(t)) {
                 level++;
             }
         }
-        let lastX = oldX.get(iStart);
-        xValues.push_back(lastX);
-        yValues.push_back(lastY);
-        indexes.push_back(0);
+        let lastX = oldXView[iStart];
+        xout.push(lastX);
+        yout.push(lastY);
+        iout.push(0);
         let newI = 0;
         for (let i = iStart + 1; i <= iEnd; i++) {
-            const y = oldY.get(i);
-            const x = oldX.get(i);
+            const y = oldYView[i];
+            const x = oldXView[i];
             if (level > 0 && lastY > this.thresholds.get(level - 1)) {
                 if (y === this.thresholds.get(level - 1)) {
                     // decrease level but don't add a point
@@ -96,10 +105,10 @@ class ThresholdRenderDataTransform extends BaseRenderDataTransform<XyPointSeries
                     const f = (lastY - t) / (lastY - y);
                     const xNew = lastX + (x - lastX) * f;
                     newI++;
-                    xValues.push_back(xNew);
-                    yValues.push_back(t);
+                    xout.push(xNew);
+                    yout.push(t);
                     // use original data index so metadata works
-                    indexes.push_back(i);
+                    iout.push(i);
                     // potentially push additional data to extra vectors to identify threshold level
                     console.log(lastX, lastX, x, y, t, f, xNew);
                     level--;
@@ -117,9 +126,9 @@ class ThresholdRenderDataTransform extends BaseRenderDataTransform<XyPointSeries
                     const f = (t - lastY) / (y - lastY);
                     const xNew = lastX + (x - lastX) * f;
                     newI++;
-                    xValues.push_back(xNew);
-                    yValues.push_back(t);
-                    indexes.push_back(i);
+                    xout.push(xNew);
+                    yout.push(t);
+                    iout.push(i);
                     console.log(lastX, lastX, x, y, t, f, xNew);
                     level++;
                     if (level === numThresholds) break;
@@ -128,11 +137,20 @@ class ThresholdRenderDataTransform extends BaseRenderDataTransform<XyPointSeries
             lastY = y;
             lastX = x;
             newI++;
-            xValues.push_back(lastX);
-            yValues.push_back(lastY);
-            indexes.push_back(newI);
+            xout.push(lastX);
+            yout.push(lastY);
+            iout.push(newI);
         }
 
+        const { xValues, yValues, indexes } = this.pointSeries;
+        // Clear the destination vectors and fast append the result
+        xValues.clear();
+        yValues.clear();
+        indexes.clear();
+        const dvp = new DoubleVectorProvider();
+        dvp.appendArray(this.wasmContext, xValues, xout);
+        dvp.appendArray(this.wasmContext, yValues, yout);
+        dvp.appendArray(this.wasmContext, indexes, iout);
         return this.pointSeries;
     }
 }
