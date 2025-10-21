@@ -137,9 +137,9 @@ export const drawPlot = async (rootElement: string | HTMLDivElement, selectedPoi
         theme: sciChartTheme,
     });
 
-    const subChartsNumber = 20;
-    const columnsNumber = 5;
-    const rowsNumber = 4;
+    const subChartsNumber = 12;
+    const columnsNumber = 4;
+    const rowsNumber = 3;
 
     const subchartBorderColor = appTheme.VividSkyBlue;
 

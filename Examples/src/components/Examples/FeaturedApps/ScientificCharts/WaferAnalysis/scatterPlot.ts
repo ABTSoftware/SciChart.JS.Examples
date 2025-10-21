@@ -8,6 +8,7 @@ import {
     ENumericFormat,
     FastBoxPlotRenderableSeries,
     ICategoryAxisOptions,
+    MouseWheelZoomModifier,
     NumberRange,
     NumericAxis,
     Rect,
@@ -23,10 +24,9 @@ import {
 import { appTheme } from "../../../theme";
 import { WaferData } from "./store";
 
-export const scatterPlotId = "scatterPlotId";
-
-export const initializeScatterPlot = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(scatterPlotId);
+// Create init function that works with SciChartReact
+export const createInitScatterPlot = () => async (rootElement: string | HTMLDivElement) => {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement);
 
     const xAxis = new NumericAxis(wasmContext, {
         growBy: new NumberRange(0.01, 0.01),
@@ -82,7 +82,7 @@ export const initializeScatterPlot = async () => {
     sciChartSurface.renderableSeries.add(hrScatterSeries);
 
     // Add zoom and pan modifiers
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier(), new MouseWheelZoomModifier());
 
     // Update function that clears and repopulates both data series
     const updateScatterPlotData = (values: readonly WaferData[]) => {
@@ -101,10 +101,5 @@ export const initializeScatterPlot = async () => {
         dataSeries2.appendRange(hrValues, hdiValues);
     };
 
-    // Cleanup function
-    const cleanup = () => {
-        sciChartSurface?.delete();
-    };
-
-    return { sciChartSurface, wasmContext, updateScatterPlotData, cleanup };
+    return { sciChartSurface, wasmContext, dataSeries1, dataSeries2, updateScatterPlotData };
 };
