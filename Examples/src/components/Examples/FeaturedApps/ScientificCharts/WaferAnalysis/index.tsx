@@ -100,8 +100,6 @@ export default function WaferAnalysis() {
                 updateMeasureChart1DataRef.current = update1;
                 measureChart1CleanupRef.current = measureCleanup1;
             }
-
-            console.log("init complete", data.length, dies);
         };
 
         initializeCharts();
@@ -124,7 +122,6 @@ export default function WaferAnalysis() {
     // Update chart data when filtered data changes
     useEffect(() => {
         if (data.length > 0 && dies) {
-            console.log("mr hr filters changed");
             if (updateScatterPlotDataRef.current) {
                 updateScatterPlotDataRef.current(dies.allFiltered());
             }
@@ -138,24 +135,25 @@ export default function WaferAnalysis() {
 
     useEffect(() => {
         if (data.length > 0 && dies) {
-            console.log("row col filters changed");
             const filteredData = dies.allFiltered();
 
             if (updateScatterPlotDataRef.current) {
                 updateScatterPlotDataRef.current(filteredData);
             }
 
-            const MRsX = MRs.all().map((d) => d.key);
-            const MRsY = MRs.all().map((d) => d.value!) as number[];
-            const HRsX = HRs.all().map((d) => d.key);
-            const HRsY = HRs.all().map((d) => d.value!) as number[];
+            if (MRs && HRs) {
+                const MRsX = MRs.all().map((d) => d.key);
+                const MRsY = MRs.all().map((d) => Math.abs(d.value as number));
+                const HRsX = HRs.all().map((d) => d.key);
+                const HRsY = HRs.all().map((d) => Math.abs(d.value as number));
 
-            if (updateMeasureChartDataRef.current) {
-                updateMeasureChartDataRef.current(MRsX, MRsY);
-            }
+                if (updateMeasureChartDataRef.current) {
+                    updateMeasureChartDataRef.current(MRsX, MRsY);
+                }
 
-            if (updateMeasureChart1DataRef.current) {
-                updateMeasureChart1DataRef.current(HRsX, HRsY);
+                if (updateMeasureChart1DataRef.current) {
+                    updateMeasureChart1DataRef.current(HRsX, HRsY);
+                }
             }
         }
     }, [data.length, dies, RowsFilter, ColsFilter]);

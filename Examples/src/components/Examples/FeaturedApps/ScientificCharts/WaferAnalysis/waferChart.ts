@@ -173,7 +173,6 @@ export const initializeWafer = async (
 
     // Update function that clears and repopulates data
     const updateWaferData = (dataJSON: WaferData[]) => {
-        console.log("wafer update", dataJSON.length);
         const data = dataJSON.reduce(
             (acc, curr) => {
                 acc.xValues.push(+curr["MAP_COL"]);

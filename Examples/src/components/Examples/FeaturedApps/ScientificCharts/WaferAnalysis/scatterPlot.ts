@@ -86,7 +86,6 @@ export const initializeScatterPlot = async () => {
 
     // Update function that clears and repopulates both data series
     const updateScatterPlotData = (values: readonly WaferData[]) => {
-        console.log("scatter update", values.length);
         // Prepare data arrays
         const mrValues = values.map((d) => d.MR);
         const hrValues = values.map((d) => d.HR);

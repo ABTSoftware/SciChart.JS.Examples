@@ -53,6 +53,7 @@ export const initializeMeasureChart = async (
         flippedCoordinates: false,
         axisAlignment: EAxisAlignment.Top,
         labelPrecision: 0,
+        growBy: new NumberRange(0.05, 0.05),
         drawMinorGridLines: false,
         drawMinorTickLines: false,
     });
@@ -74,28 +75,8 @@ export const initializeMeasureChart = async (
         drawMinorGridLines: false,
         drawMinorTickLines: false,
     });
-    const yAxis2 = new NumericAxis(wasmContext, {
-        axisAlignment: EAxisAlignment.Right,
-        autoRange: EAutoRange.Always,
-        growBy: new NumberRange(0.1, 0),
-        autoRangeAnimation: {
-            animateInitialRanging: false,
-            animateSubsequentRanging: true,
-            duration: 300,
-            easing: easing.outExpo,
-        },
-        labelPrecision: 0,
-        drawMinorGridLines: false,
-        drawMinorTickLines: false,
-    });
 
-    sciChartSurface.yAxes.add(yAxis, yAxis2);
-
-    xAxis.visibleRangeChanged.subscribe((args) => {
-        // Set filter on zoom/pan
-        console.log("Filtering", div);
-        setFilter([Math.floor(args.visibleRange.min), Math.floor(args.visibleRange.max)]);
-    });
+    sciChartSurface.yAxes.add(yAxis);
 
     const dataSeries = new XyDataSeries(wasmContext, { xValues, yValues });
 
@@ -112,22 +93,30 @@ export const initializeMeasureChart = async (
     sciChartSurface.renderableSeries.add(columnSeries);
 
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
+    xAxis.visibleRangeChanged.subscribe((args) => {
+        // Set filter on zoom/pan
+        setFilter([Math.floor(args.visibleRange.min), Math.floor(args.visibleRange.max)]);
+    });
+
+    // Force the reange to be calculated before the overview is created.
+    sciChartSurface.zoomExtents();
 
     // Add Overview
     const overview = await SciChartOverview.create(sciChartSurface, overviewDiv, {
         padding: new Thickness(2, 5, 5, 5),
         mainAxisId: xAxis.id,
         secondaryAxisId: yAxis.id,
-        // transformRenderableSeries: (renderableSeries) => {
-        //     // clone the series using builder api.  Normally we pass true here to not copy the data, but here we want a copy as we will be filtering the main data
-        //     const [overviewSeries] = buildSeries(wasmContext, renderableSeries.toJSON(false));
-        //     overviewSeries.xAxisId = xAxis.id;
-        //     overviewSeries.yAxisId = yAxis.id;
-        //     return overviewSeries;
-        // },
+        overviewXAxisOptions: { id: "OverviewX" },
+        overviewYAxisOptions: { id: "OverviewY" },
+        transformRenderableSeries: (renderableSeries) => {
+            // clone the series using builder api.  Normally we pass true here to not copy the data, but here we want a copy as we will be filtering the main data
+            const [overviewSeries] = buildSeries(wasmContext, renderableSeries.toJSON(false));
+            overviewSeries.xAxisId = "OverviewX";
+            overviewSeries.yAxisId = "OverviewY";
+            return overviewSeries;
+        },
     });
 
-    console.log(div, "created");
     // Cleanup function
     const cleanup = () => {
         sciChartSurface?.delete();
