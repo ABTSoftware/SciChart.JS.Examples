@@ -62,7 +62,7 @@ export const initializeScatterPlot = async () => {
             fill: appTheme.MutedTeal,
         }),
         opacity: 0.67,
-        animation: new SweepAnimation({ duration: 600, fadeEffect: true }),
+        //animation: new SweepAnimation({ duration: 600, fadeEffect: true }),
     });
 
     // Create HR scatter series
@@ -75,7 +75,7 @@ export const initializeScatterPlot = async () => {
             fill: appTheme.PaleOrange,
         }),
         opacity: 0.67,
-        animation: new SweepAnimation({ duration: 600, fadeEffect: true }),
+        //animation: new SweepAnimation({ duration: 600, fadeEffect: true }),
     });
 
     sciChartSurface.renderableSeries.add(mrScatterSeries);
@@ -86,6 +86,7 @@ export const initializeScatterPlot = async () => {
 
     // Update function that clears and repopulates both data series
     const updateScatterPlotData = (values: readonly WaferData[]) => {
+        console.log("scatter update", values.length);
         // Prepare data arrays
         const mrValues = values.map((d) => d.MR);
         const hrValues = values.map((d) => d.HR);

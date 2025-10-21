@@ -20,9 +20,7 @@ export interface DataStoreState {
     filters: Filters;
     dies: crossfilter.Crossfilter<WaferData> | null;
     Row: crossfilter.Dimension<WaferData, number> | null;
-    Rows: crossfilter.Group<WaferData, number, unknown> | null;
     Col: crossfilter.Dimension<WaferData, number> | null;
-    Cols: crossfilter.Group<WaferData, number, unknown> | null;
     MR: crossfilter.Dimension<WaferData, number> | null;
     MRs: crossfilter.Group<WaferData, number, unknown> | null;
     HR: crossfilter.Dimension<WaferData, number> | null;
@@ -41,9 +39,7 @@ const useDataStore = create<DataStoreState>((set) => ({
     filters: {},
     dies: null,
     Row: null,
-    Rows: null,
     Col: null,
-    Cols: null,
     MR: null,
     MRs: null,
     HR: null,
@@ -57,13 +53,9 @@ const useDataStore = create<DataStoreState>((set) => ({
             return d.MAP_ROW;
         });
 
-        const Rows = Row.group(Math.floor);
-
         const Col = dies.dimension(function (d) {
             return d.MAP_COL;
         });
-
-        const Cols = Col.group(Math.floor);
 
         const MR = dies.dimension(function (d) {
             return d.MR;
@@ -91,9 +83,7 @@ const useDataStore = create<DataStoreState>((set) => ({
             data,
             dies,
             Row,
-            Rows,
             Col,
-            Cols,
             MR,
             MRs,
             HR,

@@ -1,5 +1,6 @@
 import { Dispatch } from "react";
 import {
+    buildSeries,
     DeltaCalculator,
     easing,
     EAutoRange,
@@ -15,6 +16,7 @@ import {
     SciChartOverview,
     SciChartSurface,
     Thickness,
+    vectorToArray,
     XyDataSeries,
     XyScatterRenderableSeries,
     ZoomExtentsModifier,
@@ -107,40 +109,35 @@ export const initializeMeasureChart = async (
         dataPointWidthMode: EDataPointWidthMode.Range,
     });
 
-    const filterDataSeries = new XyDataSeries(wasmContext);
-
-    const filteredColumnSeries = new FastColumnRenderableSeries(wasmContext, {
-        dataSeries: filterDataSeries,
-        //yAxisId: yAxis2.id,
-        // When solid fill required, use fill
-        fill: appTheme.VividGreen,
-        strokeThickness: 0,
-        //cornerRadius: 4, // optional cornerradius
-        dataPointWidth: 0.9,
-        dataPointWidthMode: EDataPointWidthMode.Range,
-    });
-
-    sciChartSurface.renderableSeries.add(columnSeries, filteredColumnSeries);
+    sciChartSurface.renderableSeries.add(columnSeries);
 
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
     // Add Overview
-    await SciChartOverview.create(sciChartSurface, overviewDiv, {
+    const overview = await SciChartOverview.create(sciChartSurface, overviewDiv, {
         padding: new Thickness(2, 5, 5, 5),
         mainAxisId: xAxis.id,
         secondaryAxisId: yAxis.id,
+        // transformRenderableSeries: (renderableSeries) => {
+        //     // clone the series using builder api.  Normally we pass true here to not copy the data, but here we want a copy as we will be filtering the main data
+        //     const [overviewSeries] = buildSeries(wasmContext, renderableSeries.toJSON(false));
+        //     overviewSeries.xAxisId = xAxis.id;
+        //     overviewSeries.yAxisId = yAxis.id;
+        //     return overviewSeries;
+        // },
     });
+
+    console.log(div, "created");
+    // Cleanup function
+    const cleanup = () => {
+        sciChartSurface?.delete();
+    };
 
     // Update function that clears and repopulates data series
     const updateMeasureChartData = (xValues: number[], yValues: number[]) => {
         console.log(xValues.length);
-        filterDataSeries.clear();
-        filterDataSeries.appendRange(xValues, yValues);
-    };
-
-    // Cleanup function
-    const cleanup = () => {
-        sciChartSurface?.delete();
+        dataSeries.clear();
+        dataSeries.appendRange(xValues, yValues);
     };
 
     return { wasmContext, sciChartSurface, updateMeasureChartData, cleanup };

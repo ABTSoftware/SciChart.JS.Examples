@@ -19,6 +19,8 @@ import {
     ESelectionMode,
     BaseDataSeries,
     EExecuteOn,
+    ModifierMouseArgs,
+    Point,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -74,6 +76,7 @@ class RectanglePaletteProvider implements IFillPaletteProvider {
 class WaferRangeSelectionModifier extends DataPointSelectionModifier {
     public setRowFilter: Dispatch<[number, number]>;
     public setColFilter: Dispatch<[number, number]>;
+    private isFiltered: boolean = false;
 
     protected selectManyPoints(rect: Rect, selectionMode: ESelectionMode) {
         if (this.parentSurface && this.setRowFilter && this.setColFilter) {
@@ -101,7 +104,19 @@ class WaferRangeSelectionModifier extends DataPointSelectionModifier {
             }
             this.setRowFilter([topYData, bottomYData]);
             this.setColFilter([leftXData, rightXData]);
+            this.isFiltered = true;
         }
+    }
+
+    protected selectSinglePoint(point: Point, selectionMode: ESelectionMode): void {
+        this.setRowFilter(undefined);
+        this.setColFilter(undefined);
+        this.isFiltered = false;
+    }
+
+    public modifierMouseUp(args: ModifierMouseArgs): void {
+        super.modifierMouseUp(args);
+        this.selectionRect.isHidden = !this.isFiltered;
     }
 }
 
@@ -143,7 +158,7 @@ export const initializeWafer = async (
 
     const dataPointSelection = new WaferRangeSelectionModifier({
         allowDragSelect: true,
-        allowClickSelect: false,
+        allowClickSelect: true,
     });
     dataPointSelection.setRowFilter = setRowFilter;
     dataPointSelection.setColFilter = setColFilter;
@@ -151,19 +166,14 @@ export const initializeWafer = async (
     // Add interactivity modifiers
     sciChartSurface.chartModifiers.add(
         new ZoomPanModifier({ executeCondition: { button: EExecuteOn.MouseRightButton } }),
-        new ZoomExtentsModifier({
-            onZoomExtents: (surface) => {
-                setRowFilter(undefined);
-                setColFilter(undefined);
-                return true;
-            },
-        }),
+        new ZoomExtentsModifier(),
         new MouseWheelZoomModifier(),
         dataPointSelection
     );
 
     // Update function that clears and repopulates data
     const updateWaferData = (dataJSON: WaferData[]) => {
+        console.log("wafer update", dataJSON.length);
         const data = dataJSON.reduce(
             (acc, curr) => {
                 acc.xValues.push(+curr["MAP_COL"]);
