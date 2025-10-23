@@ -4,7 +4,7 @@ import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawLineChart } from "./lineChart";
 import { drawColumnChart } from "./columnChart";
 import { drawScatterChart } from "./scatterChart";
-import { drawPlot } from "./plot";
+import { drawWaferGrid } from "./waferGrid";
 import { drawPareoChart } from "./pareoChart";
 
 import "./styles.css";
@@ -23,16 +23,6 @@ export default function Overview() {
         sciChartSurface: any;
         generateSubcharts: (selectedPoint: IBatchMetadata) => void;
     } | null>(null);
-
-    const resetToInitialState = () => {
-        // Simply reset the state - this will trigger re-rendering
-        // and the charts will naturally return to their initial state
-        setSelectedDay(null);
-
-        // Optionally regenerate data to ensure fresh state
-        // const freshData = generateWaferLotData(15, new Date(2023, 0, 1));
-        // setData(freshData);
-    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -61,7 +51,7 @@ export default function Overview() {
         scatterChartRef.current = chartInstance;
     };
 
-    const handlePlotChartInit = (chartInstance: TResolvedReturnType<typeof drawPlot>) => {
+    const handlePlotChartInit = (chartInstance: TResolvedReturnType<typeof drawWaferGrid>) => {
         plotChartRef.current = chartInstance;
         //plotChartRef.current.generateSubcharts()
     };
@@ -98,53 +88,15 @@ export default function Overview() {
     const initPlotChart = async (rootElement: string | HTMLDivElement) => {
         if (selectedDay) {
             const { Date, Batch, Input2: Input } = selectedDay.Batches[0];
-            return drawPlot(rootElement, { Date, Batch, Input, isSelected: true }); // Pass selectedPoint instead of data
+            return drawWaferGrid(rootElement, { Date, Batch, Input, isSelected: true }); // Pass selectedPoint instead of data
         }
         return null;
     };
 
-    // // Re-render charts when data changes
-    // useEffect(() => {
-    //     if (data.length > 0 && selectedBatch) {
-    //         // Use setTimeout to ensure charts are fully initialized
-    //         setTimeout(() => {
-    //             try {
-    //                 if (plotChartRef.current?.generateSubcharts && !plotChartRef.current.sciChartSurface?.isDisposed) {
-    //                     plotChartRef.current.generateSubcharts(selectedBatch);
-    //                 }
-    //             } catch (error) {
-    //                 console.warn("Could not update plot chart:", error);
-    //             }
-    //         }, 100);
-    //     }
-    // }, [data, selectedBatch]);
-
-    // useEffect(() => {
-    //     //setDataIndex
-    //     setTimeout(() => {
-    //         if (data.length && selectedPoint) {
-    //             waferChartRef.current.setDataIndex(selectedPoint, selectedWafer);
-    //         }
-    //     }, 100);
-    // }, [selectedWafer, selectedPoint]);
-
     return data.length ? (
         <div className="dashboard-container">
-            {selectedDay ? (
-                <button
-                    className="reset-button"
-                    onClick={resetToInitialState}
-                    aria-label="Reset dashboard to initial state"
-                    type="button"
-                >
-                    Back to main screen
-                </button>
-            ) : null}
-
             <div className="dashboard-layout">
-                {/* Line Chart - Input1 over time */}
                 <div className="line-chart-container">
-                    {/* <h3>Input Temperature Over Time</h3> */}
                     <SciChartReact initChart={initLineChart} className="sci-chart" onInit={handleLineChartInit} />
                 </div>
 

@@ -48,7 +48,7 @@ export const overviewOptions = {
 
 // Create init function that works with SciChartReact
 export const createInitMeasureChart =
-    (xValues: number[], yValues: number[], setFilter: Dispatch<[number, number]>) =>
+    (xValues: number[], yValues: number[], setFilter: Dispatch<[number, number]>, fill: string) =>
     async (rootElement: string | HTMLDivElement) => {
         const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
             padding: new Thickness(5, 5, 0, 5),
@@ -61,6 +61,7 @@ export const createInitMeasureChart =
             growBy: new NumberRange(0.05, 0.05),
             drawMinorGridLines: false,
             drawMinorTickLines: false,
+            labelStyle: { fontSize: 12 },
         });
         xAxis.deltaCalculator = new IntegerDeltaCalculator(wasmContext);
 
@@ -79,6 +80,7 @@ export const createInitMeasureChart =
             labelPrecision: 0,
             drawMinorGridLines: false,
             drawMinorTickLines: false,
+            labelStyle: { fontSize: 12 },
         });
 
         sciChartSurface.yAxes.add(yAxis);
@@ -93,10 +95,10 @@ export const createInitMeasureChart =
         const columnSeries = new FastColumnRenderableSeries(wasmContext, {
             dataSeries,
             // When solid fill required, use fill
-            fill: appTheme.MutedOrange,
+            fill,
             strokeThickness: 0,
             //cornerRadius: 4, // optional cornerradius
-            dataPointWidth: 0.9,
+            dataPointWidth: 1,
             dataPointWidthMode: EDataPointWidthMode.Range,
         });
 

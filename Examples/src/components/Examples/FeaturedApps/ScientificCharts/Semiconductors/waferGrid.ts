@@ -53,10 +53,6 @@ const defectsObjectColors: Record<DefectKey, string> = {
 interface RectangleMeta {
     MAP_ROW: number;
     MAP_COL: number;
-    FF_ROW: number;
-    FF_COL: number;
-    WIF_COL: number;
-    WIF_ROW: number;
     DEFECT: string;
     MR: number;
     HR: number;
@@ -131,9 +127,8 @@ const axisOptions: INumericAxisOptions = {
 // theme overrides
 const sciChartTheme = appTheme.SciChartJsTheme;
 
-export const drawPlot = async (rootElement: string | HTMLDivElement, selectedPoint: IBatchMetadata) => {
-    // Use createSingle here to get the performance benefit of subcharts
-    const { wasmContext, sciChartSurface: mainSurface } = await SciChartSurface.createSingle(rootElement, {
+export const drawWaferGrid = async (rootElement: string | HTMLDivElement, selectedPoint: IBatchMetadata) => {
+    const { wasmContext, sciChartSurface: mainSurface } = await SciChartSurface.create(rootElement, {
         theme: sciChartTheme,
     });
 

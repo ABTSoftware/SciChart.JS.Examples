@@ -22,32 +22,34 @@ import {
     ModifierMouseArgs,
     Point,
     uintArgbColorLerp,
+    ManualLegend,
+    ELegendOrientation,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
 import { WaferData } from "./store";
 import { Dispatch } from "react";
+import { DefectCode } from "./waferData";
 
-type DefectKey = "OK" | "D1" | "D2" | "D3" | "D4" | "D5";
-
-const color_OK = parseColorToUIntArgb(appTheme.PaleTeal);
-const color_Blue = parseColorToUIntArgb(appTheme.VividBlue);
-const color_Purple = parseColorToUIntArgb(appTheme.VividPurple);
-const color_Orange = parseColorToUIntArgb(appTheme.VividOrange);
-const color_Red = parseColorToUIntArgb(appTheme.VividRed);
-const defectsObjectColors: Record<DefectKey, number> = {
-    OK: color_OK,
-    D1: color_Blue,
-    D2: color_Blue,
-    D3: color_Purple,
-    D4: color_Orange,
-    D5: color_Red,
+const defectColorMap: Record<DefectCode, { name: string; htmlColor: string; paletteColor: number }> = {
+    OK: { name: "OK", htmlColor: appTheme.PaleTeal, paletteColor: parseColorToUIntArgb(appTheme.PaleTeal) },
+    D1: {
+        name: "High MR & MR2",
+        htmlColor: appTheme.VividSkyBlue,
+        paletteColor: parseColorToUIntArgb(appTheme.VividSkyBlue),
+    },
+    D2: { name: "Low HR", htmlColor: appTheme.VividBlue, paletteColor: parseColorToUIntArgb(appTheme.VividBlue) },
+    D3: { name: "Low HDI", htmlColor: appTheme.VividPurple, paletteColor: parseColorToUIntArgb(appTheme.VividPurple) },
+    D4: { name: "High HR", htmlColor: appTheme.VividOrange, paletteColor: parseColorToUIntArgb(appTheme.VividOrange) },
+    D5: { name: "Low MR & MR2", htmlColor: appTheme.VividRed, paletteColor: parseColorToUIntArgb(appTheme.VividRed) },
 };
 
 class RectanglePaletteProvider implements IFillPaletteProvider {
     public readonly fillPaletteMode = EFillPaletteMode.SOLID;
     public selectedVariable: string;
     public variableRange: [number, number] | undefined;
+    private red = parseColorToUIntArgb(appTheme.VividRed);
+    private blue = parseColorToUIntArgb(appTheme.VividBlue);
 
     constructor(selectedVariable: string = "DEFECT", variableRange?: [number, number]) {
         this.selectedVariable = selectedVariable;
@@ -78,7 +80,7 @@ class RectanglePaletteProvider implements IFillPaletteProvider {
         // Handle DEFECT variable (original behavior)
         if (this.selectedVariable === "DEFECT") {
             if (metadataAny.DEFECT) {
-                return defectsObjectColors[metadataAny.DEFECT as DefectKey];
+                return defectColorMap[metadataAny.DEFECT as DefectCode].paletteColor;
             }
             return undefined;
         }
@@ -90,7 +92,7 @@ class RectanglePaletteProvider implements IFillPaletteProvider {
 
             // Avoid division by zero
             if (maxVal === minVal) {
-                return color_Blue;
+                return this.blue;
             }
 
             // Calculate ratio (0 to 1) for color interpolation
@@ -98,7 +100,7 @@ class RectanglePaletteProvider implements IFillPaletteProvider {
             const clampedRatio = Math.max(0, Math.min(1, ratio));
 
             // Interpolate between blue (low values) and red (high values)
-            return uintArgbColorLerp(color_Blue, color_Red, clampedRatio);
+            return uintArgbColorLerp(this.blue, this.red, clampedRatio);
         }
 
         return undefined;
@@ -169,12 +171,14 @@ export const createInitWaferChart =
         // Add X-axis
         const xAxis = new NumericAxis(wasmContext, {
             labelPrecision: 0,
+            labelStyle: { fontSize: 12 },
         });
         sciChartSurface.xAxes.add(xAxis);
 
         // Add Y-axis
         const yAxis = new NumericAxis(wasmContext, {
             labelPrecision: 0,
+            labelStyle: { fontSize: 12 },
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -208,6 +212,26 @@ export const createInitWaferChart =
             dataPointSelection
         );
 
+        // Create a manual legend to show Defect types
+        const defectEntries = Object.values(defectColorMap);
+        const legendItems = defectEntries.map((defect, i) => ({
+            name: defect.name,
+            color: defect.htmlColor,
+            id: defect.name,
+            checked: false,
+        }));
+        const legend = new ManualLegend(
+            {
+                textColor: appTheme.ForegroundColor,
+                backgroundColor: appTheme.SciChartJsTheme.loadingAnimationBackground + "CC",
+                items: legendItems,
+                orientation: ELegendOrientation.Horizontal,
+                placementDivId: "wafer-legend",
+                margin: 0,
+            },
+            sciChartSurface
+        );
+
         // Update function that clears and repopulates data
         const updateWaferData = (dataJSON: WaferData[]) => {
             const data = dataJSON.reduce(
@@ -215,6 +239,7 @@ export const createInitWaferChart =
                     acc.xValues.push(+curr["MAP_COL"]);
                     acc.yValues.push(+curr["MAP_ROW"]);
                     acc.zValues.push(+curr["MR"]);
+                    // Add all values to metaData so we can use them in paletteProvider
                     acc.metadata.push({ ...curr, isSelected: false });
                     return acc;
                 },

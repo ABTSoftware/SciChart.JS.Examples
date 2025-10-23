@@ -6,11 +6,15 @@ import { createInitWaferChart } from "./waferChart";
 import { createInitScatterPlot } from "./scatterPlot";
 import { appTheme } from "../../../theme";
 import useDataStore from "./store";
-import { generateWaferData, generateWaferDataByValues } from "./waferData";
+import { generateWaferDataByValues } from "./waferData";
+
+import "./styles.css";
 
 export default function WaferAnalysis() {
     const [MRsFilter, setMRsFilter] = useState<[number, number]>([null, null]);
     const [HRsFilter, setHRsFilter] = useState<[number, number]>([null, null]);
+    const [MR2sFilter, setMR2sFilter] = useState<[number, number]>([null, null]);
+    const [HDIsFilter, setHDIsFilter] = useState<[number, number]>([null, null]);
     const [RowsFilter, setRowsFilter] = useState<[number, number]>([null, null]);
     const [ColsFilter, setColsFilter] = useState<[number, number]>([null, null]);
     const [selectedVariable, setSelectedVariable] = useState<string>("DEFECT");
@@ -20,8 +24,10 @@ export default function WaferAnalysis() {
     const scatterPlotRef = useRef<TResolvedReturnType<ReturnType<typeof createInitScatterPlot>> | null>(null);
     const mrChartRef = useRef<TResolvedReturnType<ReturnType<typeof createInitMeasureChart>> | null>(null);
     const hrChartRef = useRef<TResolvedReturnType<ReturnType<typeof createInitMeasureChart>> | null>(null);
+    const mr2ChartRef = useRef<TResolvedReturnType<ReturnType<typeof createInitMeasureChart>> | null>(null);
+    const hdiChartRef = useRef<TResolvedReturnType<ReturnType<typeof createInitMeasureChart>> | null>(null);
 
-    const { setData, data, dies, Row, Col, MR, MRs, HR, HRs, MR2, HDI } = useDataStore();
+    const { setData, data, dies, Row, Col, MR, MRs, HR, HRs, MR2, MR2s, HDI, HDIs } = useDataStore();
 
     // Apply filters to crossfilter dimensions
     if (MRsFilter[0] !== null && MRsFilter[1] !== null) {
@@ -30,6 +36,14 @@ export default function WaferAnalysis() {
 
     if (HRsFilter[0] !== null && HRsFilter[1] !== null) {
         HR!.filter(HRsFilter);
+    }
+
+    if (MR2sFilter[0] !== null && MR2sFilter[1] !== null) {
+        MR2!.filter(MR2sFilter);
+    }
+
+    if (HDIsFilter[0] !== null && HDIsFilter[1] !== null) {
+        HDI!.filter(HDIsFilter);
     }
 
     if (RowsFilter && RowsFilter[0] !== null && RowsFilter[1] !== null) {
@@ -46,20 +60,28 @@ export default function WaferAnalysis() {
 
     // Initialize data
     useEffect(() => {
-        //let data = generateWaferData(100, 0.2, 50, 5);
-        let data = generateWaferDataByValues(100);
+        // Extract numeric seed from query string
+        const urlParams = new URLSearchParams(window.location.search);
+        const seedParam = urlParams.get("seed");
+        const seed = seedParam ? parseInt(seedParam, 10) : 12;
+
+        let data = generateWaferDataByValues(150, seed);
         setData(data);
     }, []);
 
     // Get current data arrays for charts - memoized to avoid unnecessary recalculations
-    const { MRsX, MRsY, HRsX, HRsY } = useMemo(
+    const { MRsX, MRsY, HRsX, HRsY, MR2sX, MR2sY, HDIsX, HDIsY } = useMemo(
         () => ({
             MRsX: MRs?.all().map((d) => d.key) || [],
             MRsY: MRs?.all().map((d) => Math.abs(d.value as number)) || [],
             HRsX: HRs?.all().map((d) => d.key) || [],
             HRsY: HRs?.all().map((d) => Math.abs(d.value as number)) || [],
+            MR2sX: MR2s?.all().map((d) => d.key) || [],
+            MR2sY: MR2s?.all().map((d) => Math.abs(d.value as number)) || [],
+            HDIsX: HDIs?.all().map((d) => d.key) || [],
+            HDIsY: HDIs?.all().map((d) => Math.abs(d.value as number)) || [],
         }),
-        [MRs, HRs]
+        [MRs, HRs, MR2s, HDIs]
     );
 
     // Calculate ranges for each variable - memoized to avoid unnecessary recalculations
@@ -101,9 +123,25 @@ export default function WaferAnalysis() {
 
     const initScatterPlot = useMemo(() => createInitScatterPlot(), []);
 
-    const initMRChart = useMemo(() => createInitMeasureChart(MRsX, MRsY, setMRsFilter), [MRsX, MRsY, setMRsFilter]);
+    const initMRChart = useMemo(
+        () => createInitMeasureChart(MRsX, MRsY, setMRsFilter, appTheme.MutedTeal),
+        [MRsX, MRsY, setMRsFilter]
+    );
 
-    const initHRChart = useMemo(() => createInitMeasureChart(HRsX, HRsY, setHRsFilter), [HRsX, HRsY, setHRsFilter]);
+    const initHRChart = useMemo(
+        () => createInitMeasureChart(HRsX, HRsY, setHRsFilter, appTheme.PaleOrange),
+        [HRsX, HRsY, setHRsFilter]
+    );
+
+    const initMR2Chart = useMemo(
+        () => createInitMeasureChart(MR2sX, MR2sY, setMR2sFilter, appTheme.MutedPurple),
+        [MR2sX, MR2sY, setMR2sFilter]
+    );
+
+    const initHDIChart = useMemo(
+        () => createInitMeasureChart(HDIsX, HDIsY, setHDIsFilter, appTheme.MutedSkyBlue),
+        [HDIsX, HDIsY, setHDIsFilter]
+    );
 
     // Chart init handlers - useCallback to prevent unnecessary re-renders
     const handleWaferChartInit = useCallback(
@@ -134,13 +172,27 @@ export default function WaferAnalysis() {
         []
     );
 
+    const handleMR2ChartInit = useCallback(
+        (chartInstance: TResolvedReturnType<ReturnType<typeof createInitMeasureChart>>) => {
+            mr2ChartRef.current = chartInstance;
+        },
+        []
+    );
+
+    const handleHDIChartInit = useCallback(
+        (chartInstance: TResolvedReturnType<ReturnType<typeof createInitMeasureChart>>) => {
+            hdiChartRef.current = chartInstance;
+        },
+        []
+    );
+
     // Memoize filtered data to avoid unnecessary recalculations
     const filteredData = useMemo(() => {
         if (data.length > 0 && dies) {
             return dies.allFiltered();
         }
         return [];
-    }, [data.length, dies, MRsFilter, HRsFilter, RowsFilter, ColsFilter]);
+    }, [data.length, dies, MRsFilter, HRsFilter, MR2sFilter, HDIsFilter, RowsFilter, ColsFilter]);
 
     const waferFilteredData = useMemo(() => {
         if (data.length > 0 && dies && Row && Col) {
@@ -149,7 +201,7 @@ export default function WaferAnalysis() {
             return dies.allFiltered([Row, Col]);
         }
         return [];
-    }, [data.length, dies, MRsFilter, HRsFilter, Row, Col]);
+    }, [data.length, dies, MRsFilter, HRsFilter, MR2sFilter, HDIsFilter, Row, Col]);
 
     // Update chart data when filtered data changes
     useEffect(() => {
@@ -172,11 +224,21 @@ export default function WaferAnalysis() {
 
     // Update measure chart data when data changes
     useEffect(() => {
-        if (MRs && HRs && (mrChartRef.current || hrChartRef.current)) {
+        if (
+            MRs &&
+            HRs &&
+            MR2s &&
+            HDIs &&
+            (mrChartRef.current || hrChartRef.current || mr2ChartRef.current || hdiChartRef.current)
+        ) {
             const currentMRsX = MRs.all().map((d) => d.key);
             const currentMRsY = MRs.all().map((d) => Math.abs(d.value as number));
             const currentHRsX = HRs.all().map((d) => d.key);
             const currentHRsY = HRs.all().map((d) => Math.abs(d.value as number));
+            const currentMR2sX = MR2s.all().map((d) => d.key);
+            const currentMR2sY = MR2s.all().map((d) => Math.abs(d.value as number));
+            const currentHDIsX = HDIs.all().map((d) => d.key);
+            const currentHDIsY = HDIs.all().map((d) => Math.abs(d.value as number));
 
             if (mrChartRef.current) {
                 mrChartRef.current.updateMeasureChartData(currentMRsX, currentMRsY);
@@ -185,102 +247,105 @@ export default function WaferAnalysis() {
             if (hrChartRef.current) {
                 hrChartRef.current.updateMeasureChartData(currentHRsX, currentHRsY);
             }
+
+            if (mr2ChartRef.current) {
+                mr2ChartRef.current.updateMeasureChartData(currentMR2sX, currentMR2sY);
+            }
+
+            if (hdiChartRef.current) {
+                hdiChartRef.current.updateMeasureChartData(currentHDIsX, currentHDIsY);
+            }
         }
-    }, [MRs, HRs, RowsFilter, ColsFilter]);
+    }, [MRs, HRs, MR2s, HDIs, RowsFilter, ColsFilter]);
 
     return data.length ? (
-        <div className="" style={{ display: "flex", flexDirection: "row", backgroundColor: appTheme.DarkIndigo }}>
-            <div className="">
-                <SciChartReact
-                    initChart={initWaferChart}
-                    onInit={handleWaferChartInit}
-                    style={{ height: 400, width: 420 }}
-                />
+        <div className="wafer-analysis-container">
+            <div className="left-panel">
+                <div className="wafer-chart-container">
+                    <SciChartReact initChart={initWaferChart} onInit={handleWaferChartInit} className="wafer-chart" />
+                </div>
 
-                {/* Variable selection checkboxes */}
-                <div
-                    style={{
-                        padding: 10,
-                        backgroundColor: appTheme.DarkIndigo,
-                        color: appTheme.MutedSkyBlue,
-                        fontSize: "12px",
-                    }}
-                >
-                    <h6 style={{ margin: "5px 0 8px 0", color: appTheme.MutedSkyBlue }}>Color by:</h6>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexWrap: "wrap",
-                            gap: "8px",
-                            alignItems: "flex-start",
-                        }}
-                    >
-                        {["DEFECT", "MR", "HR", "MR2", "HDI"].map((variable) => (
-                            <label
-                                key={variable}
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    alignItems: "flex-start",
-                                    cursor: "pointer",
-                                    minWidth: "60px",
-                                    flex: "1 1 auto",
-                                }}
-                            >
-                                <div style={{ display: "flex", alignItems: "center", marginBottom: "2px" }}>
-                                    <input
-                                        type="radio"
-                                        name="colorVariable"
-                                        value={variable}
-                                        checked={selectedVariable === variable}
-                                        onChange={(e) => setSelectedVariable(e.target.value)}
-                                        style={{ marginRight: "4px" }}
-                                    />
-                                    <span>{variable}</span>
-                                </div>
-                            </label>
-                        ))}
+                {/* Variable selection dropdown */}
+                <div className="variable-selection">
+                    <div className="variable-selection-content">
+                        <div>Color by:</div>
+                        <select
+                            value={selectedVariable}
+                            onChange={(e) => setSelectedVariable(e.target.value)}
+                            className="variable-select"
+                        >
+                            {["DEFECT", "MR", "HR", "MR2", "HDI"].map((variable) => (
+                                <option key={variable} value={variable}>
+                                    {variable}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                 </div>
+                <div id="wafer-legend"></div>
             </div>
 
-            <div className="" style={{ width: 510 }}>
-                <SciChartReact
-                    initChart={initScatterPlot}
-                    onInit={handleScatterPlotInit}
-                    style={{ height: 200, width: "100%" }}
-                />
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    <h5 style={{ color: appTheme.MutedSkyBlue, paddingLeft: 10 }}>
-                        MR values - between {MRsFilter[0]} and {MRsFilter[1]}
-                    </h5>
-                    <SciChartReact
-                        initChart={initMRChart}
-                        onInit={handleMRChartInit}
-                        style={{ display: "flex", flexDirection: "column", height: 110 }}
-                        innerContainerProps={{ style: { flexBasis: "80%", flexGrow: 1, flexShrink: 1 } }}
-                    >
-                        <SciChartNestedOverview
-                            style={{ flexBasis: "20%", flexGrow: 1, flexShrink: 1 }}
-                            options={overviewOptions}
-                        />
-                    </SciChartReact>
+            <div className="right-panel">
+                <div className="scatter-plot-container">
+                    <SciChartReact initChart={initScatterPlot} onInit={handleScatterPlotInit} className="sci-chart" />
                 </div>
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    <h5 style={{ color: appTheme.MutedSkyBlue, paddingLeft: 10 }}>
-                        HR values - between {HRsFilter[0]} and {HRsFilter[1]}
-                    </h5>
-                    <SciChartReact
-                        initChart={initHRChart}
-                        onInit={handleHRChartInit}
-                        style={{ display: "flex", flexDirection: "column", height: 110 }}
-                        innerContainerProps={{ style: { flexBasis: "80%", flexGrow: 1, flexShrink: 1 } }}
-                    >
-                        <SciChartNestedOverview
-                            style={{ flexBasis: "20%", flexGrow: 1, flexShrink: 1 }}
-                            options={overviewOptions}
-                        />
-                    </SciChartReact>
+                <div className="charts-grid">
+                    <div className="charts-row">
+                        <div className="chart-column">
+                            <h5 className="chart-title">
+                                MR values - {MRsFilter[0]} to {MRsFilter[1]}
+                            </h5>
+                            <SciChartReact
+                                initChart={initMRChart}
+                                onInit={handleMRChartInit}
+                                className="chart-with-overview"
+                                innerContainerProps={{ className: "chart-inner-container" }}
+                            >
+                                <SciChartNestedOverview className="chart-overview" options={overviewOptions} />
+                            </SciChartReact>
+                        </div>
+                        <div className="chart-column">
+                            <h5 className="chart-title">
+                                MR2 values - {MR2sFilter[0]} to {MR2sFilter[1]}
+                            </h5>
+                            <SciChartReact
+                                initChart={initMR2Chart}
+                                onInit={handleMR2ChartInit}
+                                className="chart-with-overview"
+                                innerContainerProps={{ className: "chart-inner-container" }}
+                            >
+                                <SciChartNestedOverview className="chart-overview" options={overviewOptions} />
+                            </SciChartReact>
+                        </div>
+                    </div>
+                    <div className="charts-row">
+                        <div className="chart-column">
+                            <h5 className="chart-title">
+                                HR values - {HRsFilter[0]} to {HRsFilter[1]}
+                            </h5>
+                            <SciChartReact
+                                initChart={initHRChart}
+                                onInit={handleHRChartInit}
+                                className="chart-with-overview"
+                                innerContainerProps={{ className: "chart-inner-container" }}
+                            >
+                                <SciChartNestedOverview className="chart-overview" options={overviewOptions} />
+                            </SciChartReact>
+                        </div>
+                        <div className="chart-column">
+                            <h5 className="chart-title">
+                                HDI values - {HDIsFilter[0]} to {HDIsFilter[1]}
+                            </h5>
+                            <SciChartReact
+                                initChart={initHDIChart}
+                                onInit={handleHDIChartInit}
+                                className="chart-with-overview"
+                                innerContainerProps={{ className: "chart-inner-container" }}
+                            >
+                                <SciChartNestedOverview className="chart-overview" options={overviewOptions} />
+                            </SciChartReact>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

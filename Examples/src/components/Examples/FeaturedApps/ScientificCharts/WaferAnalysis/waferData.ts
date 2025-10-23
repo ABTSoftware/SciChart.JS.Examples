@@ -1,166 +1,17 @@
-// --- 1. Define the structure for a single sensor's profile ---
 type SensorProfile = { mean: number; dev: number };
 
-// --- 2. Define the main profiles object and derive the DefectCode type from its keys ---
-const defectProfiles = {
-    OK: {
-        MR: { mean: 114, dev: 10 },
-        HR: { mean: 79, dev: 2.5 },
-        HDI: { mean: 21, dev: 1 },
-        MR2: { mean: 120, dev: 15 },
-    },
-    D1: {
-        // High MR & MR2
-        MR: { mean: 160, dev: 20 },
-        HR: { mean: 81, dev: 3 },
-        HDI: { mean: 22, dev: 1.5 },
-        MR2: { mean: 170, dev: 25 },
-    },
-    D2: {
-        // Low HR
-        MR: { mean: 115, dev: 12 },
-        HR: { mean: 65, dev: 5 },
-        HDI: { mean: 20, dev: 1.2 },
-        MR2: { mean: 125, dev: 18 },
-    },
-    D3: {
-        // Low HDI
-        MR: { mean: 110, dev: 15 },
-        HR: { mean: 78, dev: 3 },
-        HDI: { mean: 15, dev: 2 },
-        MR2: { mean: 115, dev: 20 },
-    },
-    D4: {
-        // High HR
-        MR: { mean: 120, dev: 10 },
-        HR: { mean: 95, dev: 4 },
-        HDI: { mean: 23, dev: 1 },
-        MR2: { mean: 130, dev: 15 },
-    },
-    D5: {
-        // Low MR & MR2
-        MR: { mean: 80, dev: 15 },
-        HR: { mean: 75, dev: 2.5 },
-        HDI: { mean: 19, dev: 1.5 },
-        MR2: { mean: 90, dev: 20 },
-    },
-};
+export type DefectCode = "OK" | "D1" | "D2" | "D3" | "D4" | "D5";
 
-// This creates a type that is a union of all the keys from defectProfiles
-type DefectCode = keyof typeof defectProfiles;
-
-// --- 3. Update the data structures to use the new, specific type ---
 type WaferData = {
     MAP_ROW: number;
     MAP_COL: number;
-    DEFECT: DefectCode; // Use the specific DefectCode type
+    DEFECT: DefectCode;
     MR: number;
     HR: number;
     HDI: number;
     MR2: number;
 };
 
-type IntermediateWaferPoint = {
-    MAP_ROW: number;
-    MAP_COL: number;
-    DEFECT: DefectCode; // Use the specific DefectCode type
-    defectProbability: number;
-    potentialDefect: DefectCode; // Use the specific DefectCode type
-};
-
-export function generateWaferData(
-    waferRadius = 80,
-    defectRate = 0.15,
-    numClusters = 100,
-    clusterSpread = 5
-): WaferData[] {
-    // This array now correctly infers the type DefectCode[]
-    const defectCodeKeys = (Object.keys(defectProfiles) as DefectCode[]).filter((k) => k !== "OK");
-
-    function pickRandomDefect(): DefectCode {
-        return defectCodeKeys[Math.floor(Math.random() * defectCodeKeys.length)];
-    }
-
-    const clusters = [];
-    for (let i = 0; i < numClusters; i++) {
-        let centerX, centerY;
-        do {
-            centerX = (Math.random() - 0.5) * 2 * waferRadius;
-            centerY = (Math.random() - 0.5) * 2 * waferRadius;
-        } while (centerX * centerX + centerY * centerY > waferRadius * waferRadius);
-
-        clusters.push({
-            centerX,
-            centerY,
-            spreadX: clusterSpread * (0.75 + Math.random() * 0.5),
-            spreadY: clusterSpread * (0.75 + Math.random() * 0.5),
-            defectCode: pickRandomDefect(),
-        });
-    }
-
-    const intermediateData: IntermediateWaferPoint[] = [];
-    for (let x = -waferRadius; x <= waferRadius; x++) {
-        for (let y = -waferRadius; y <= waferRadius; y++) {
-            if (x * x + y * y > waferRadius * waferRadius) continue;
-
-            let maxProbability = 0;
-            let potentialDefect: DefectCode = "OK"; // Initialize with a valid DefectCode
-
-            for (const cluster of clusters) {
-                const dx = (x - cluster.centerX) / cluster.spreadX;
-                const dy = (y - cluster.centerY) / cluster.spreadY;
-                const probability = Math.exp(-(dx * dx + dy * dy) / 2);
-
-                if (probability > maxProbability) {
-                    maxProbability = probability;
-                    potentialDefect = cluster.defectCode;
-                }
-            }
-
-            intermediateData.push({
-                MAP_ROW: y + waferRadius,
-                MAP_COL: x + waferRadius,
-                DEFECT: "OK",
-                defectProbability: maxProbability,
-                potentialDefect: potentialDefect,
-            });
-        }
-    }
-
-    const totalPoints = intermediateData.length;
-    const targetDefectCount = Math.floor(totalPoints * defectRate);
-
-    intermediateData.sort((a, b) => b.defectProbability - a.defectProbability);
-
-    for (let i = 0; i < targetDefectCount; i++) {
-        if (intermediateData[i]) {
-            intermediateData[i].DEFECT = intermediateData[i].potentialDefect;
-        }
-    }
-
-    const finalData: WaferData[] = intermediateData.map((point) => {
-        const profile = defectProfiles[point.DEFECT];
-
-        const generateValue = (paramProfile: SensorProfile) => {
-            const { mean, dev } = paramProfile;
-            return parseFloat((mean + (Math.random() - 0.5) * dev * 2).toFixed(2));
-        };
-
-        return {
-            MAP_ROW: point.MAP_ROW,
-            MAP_COL: point.MAP_COL,
-            DEFECT: point.DEFECT,
-            MR: generateValue(profile.MR),
-            HR: generateValue(profile.HR),
-            HDI: generateValue(profile.HDI),
-            MR2: generateValue(profile.MR2),
-        };
-    });
-
-    return finalData;
-}
-
-// --- 4. Define classification thresholds for the new approach ---
 type VariableThresholds = {
     MR: { min: number; max: number };
     HR: { min: number; max: number };
@@ -177,10 +28,10 @@ const defectThresholds: Record<DefectCode, VariableThresholds> = {
     },
     D1: {
         // High MR & MR2
-        MR: { min: 140, max: Infinity },
+        MR: { min: 135, max: Infinity },
         HR: { min: -Infinity, max: Infinity },
         HDI: { min: -Infinity, max: Infinity },
-        MR2: { min: 150, max: Infinity },
+        MR2: { min: 140, max: Infinity },
     },
     D2: {
         // Low HR
@@ -193,7 +44,7 @@ const defectThresholds: Record<DefectCode, VariableThresholds> = {
         // Low HDI
         MR: { min: -Infinity, max: Infinity },
         HR: { min: -Infinity, max: Infinity },
-        HDI: { min: -Infinity, max: 17 },
+        HDI: { min: -Infinity, max: 48 },
         MR2: { min: -Infinity, max: Infinity },
     },
     D4: {
@@ -212,19 +63,32 @@ const defectThresholds: Record<DefectCode, VariableThresholds> = {
     },
 };
 
-// --- 5. Spatial distribution functions ---
+// Simple seeded random generator (LCG)
+function seededRandom(seed: number) {
+    let value = seed % 2147483647;
+    return () => {
+        value = (value * 48271) % 2147483647;
+        return (value - 1) / 2147483646;
+    };
+}
 
 // Normal distribution random number generator (Box-Muller transform)
-function normalRandom(mean: number, stdDev: number): number {
-    const u1 = Math.random();
-    const u2 = Math.random();
+function normalRandom(mean: number, stdDev: number, random: () => number): number {
+    const u1 = random();
+    const u2 = random();
     const z0 = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
     return mean + z0 * stdDev;
 }
 
 // Uniform random distribution with normal values
-function uniformRandomDistribution(x: number, y: number, radius: number, baseProfile: SensorProfile): number {
-    return normalRandom(baseProfile.mean, baseProfile.dev);
+function uniformRandomDistribution(
+    x: number,
+    y: number,
+    radius: number,
+    baseProfile: SensorProfile,
+    random: () => number
+): number {
+    return normalRandom(baseProfile.mean, baseProfile.dev, random);
 }
 
 // Sparse random points with smooth radial reversion to mean
@@ -233,7 +97,8 @@ function sparseRandomPointsDistribution(
     y: number,
     radius: number,
     baseProfile: SensorProfile,
-    hotspots: Array<{ x: number; y: number; intensity: number; type: "max" | "min" }>
+    hotspots: Array<{ x: number; y: number; intensity: number; type: "max" | "min" }>,
+    random: () => number
 ): number {
     let influence = 0;
     let totalWeight = 0;
@@ -247,7 +112,7 @@ function sparseRandomPointsDistribution(
 
     // Blend between hotspot influence and base distribution
     const influenceFactor = Math.min(totalWeight, 1);
-    const baseValue = normalRandom(baseProfile.mean, baseProfile.dev);
+    const baseValue = normalRandom(baseProfile.mean, baseProfile.dev, random);
     const hotspotValue = baseProfile.mean + influence;
 
     return baseValue * (1 - influenceFactor) + hotspotValue * influenceFactor;
@@ -259,7 +124,8 @@ function distanceFromEdgeDistribution(
     y: number,
     radius: number,
     baseProfile: SensorProfile,
-    edgeEffect: number
+    edgeEffect: number,
+    random: () => number
 ): number {
     const distanceFromCenter = Math.sqrt(x * x + y * y);
     const distanceFromEdge = radius - distanceFromCenter;
@@ -269,7 +135,7 @@ function distanceFromEdgeDistribution(
     const edgeInfluence = edgeEffect * (1 - normalizedDistance);
     const adjustedMean = baseProfile.mean + edgeInfluence;
 
-    return normalRandom(adjustedMean, baseProfile.dev);
+    return normalRandom(adjustedMean, baseProfile.dev, random);
 }
 
 // --- 6. Defect classification function ---
@@ -295,14 +161,15 @@ function classifyDefect(MR: number, HR: number, HDI: number, MR2: number): Defec
 // --- 7. New data generation function ---
 export function generateWaferDataByValues(
     waferRadius = 80,
+    seed = 1,
     numSparsePoints = 10,
     sparseIntensity = 40,
     edgeEffect = 10,
     baseProfile = {
-        MR: { mean: 114, dev: 10 },
+        MR: { mean: 114, dev: 15 },
         HR: { mean: 79, dev: 2.5 },
         HDI: { mean: 50, dev: 1 },
-        MR2: { mean: 120, dev: 15 },
+        MR2: { mean: 120, dev: 20 },
     },
     variableDistributions: {
         MR: "uniform" | "sparse" | "edge";
@@ -312,25 +179,26 @@ export function generateWaferDataByValues(
     } = {
         MR: "sparse",
         HR: "edge",
-        HDI: "sparse",
+        HDI: "edge",
         MR2: "sparse",
     }
 ): WaferData[] {
+    const random = seededRandom(seed);
     // Generate sparse random hotspots for variables that use sparse distribution
     const generateHotspots = (variable: "MR" | "HR" | "HDI" | "MR2") => {
         const hotspots = [];
         for (let i = 0; i < numSparsePoints; i++) {
             let x, y;
             do {
-                x = (Math.random() - 0.5) * 2 * waferRadius * 0.8; // Keep hotspots away from edge
-                y = (Math.random() - 0.5) * 2 * waferRadius * 0.8;
+                x = (random() - 0.5) * 2 * waferRadius * 0.8; // Keep hotspots away from edge
+                y = (random() - 0.5) * 2 * waferRadius * 0.8;
             } while (x * x + y * y > (waferRadius * 0.8) ** 2);
 
             hotspots.push({
                 x,
                 y,
-                intensity: sparseIntensity * (0.5 + Math.random() * 0.5),
-                type: Math.random() > 0.5 ? "max" : ("min" as "max" | "min"),
+                intensity: sparseIntensity * (0.5 + random() * 0.5),
+                type: random() > 0.5 ? "max" : ("min" as "max" | "min"),
             });
         }
         return hotspots;
@@ -354,52 +222,52 @@ export function generateWaferDataByValues(
             // MR generation
             switch (variableDistributions.MR) {
                 case "uniform":
-                    MR = uniformRandomDistribution(x, y, waferRadius, baseProfile.MR);
+                    MR = uniformRandomDistribution(x, y, waferRadius, baseProfile.MR, random);
                     break;
                 case "sparse":
-                    MR = sparseRandomPointsDistribution(x, y, waferRadius, baseProfile.MR, mrHotspots);
+                    MR = sparseRandomPointsDistribution(x, y, waferRadius, baseProfile.MR, mrHotspots, random);
                     break;
                 case "edge":
-                    MR = distanceFromEdgeDistribution(x, y, waferRadius, baseProfile.MR, edgeEffect);
+                    MR = distanceFromEdgeDistribution(x, y, waferRadius, baseProfile.MR, edgeEffect, random);
                     break;
             }
 
             // HR generation
             switch (variableDistributions.HR) {
                 case "uniform":
-                    HR = uniformRandomDistribution(x, y, waferRadius, baseProfile.HR);
+                    HR = uniformRandomDistribution(x, y, waferRadius, baseProfile.HR, random);
                     break;
                 case "sparse":
-                    HR = sparseRandomPointsDistribution(x, y, waferRadius, baseProfile.HR, hrHotspots);
+                    HR = sparseRandomPointsDistribution(x, y, waferRadius, baseProfile.HR, hrHotspots, random);
                     break;
                 case "edge":
-                    HR = distanceFromEdgeDistribution(x, y, waferRadius, baseProfile.HR, edgeEffect);
+                    HR = distanceFromEdgeDistribution(x, y, waferRadius, baseProfile.HR, edgeEffect, random);
                     break;
             }
 
             // HDI generation
             switch (variableDistributions.HDI) {
                 case "uniform":
-                    HDI = uniformRandomDistribution(x, y, waferRadius, baseProfile.HDI);
+                    HDI = uniformRandomDistribution(x, y, waferRadius, baseProfile.HDI, random);
                     break;
                 case "sparse":
-                    HDI = sparseRandomPointsDistribution(x, y, waferRadius, baseProfile.HDI, hdiHotspots);
+                    HDI = sparseRandomPointsDistribution(x, y, waferRadius, baseProfile.HDI, hdiHotspots, random);
                     break;
                 case "edge":
-                    HDI = distanceFromEdgeDistribution(x, y, waferRadius, baseProfile.HDI, edgeEffect);
+                    HDI = distanceFromEdgeDistribution(x, y, waferRadius, baseProfile.HDI, edgeEffect, random);
                     break;
             }
 
             // MR2 generation
             switch (variableDistributions.MR2) {
                 case "uniform":
-                    MR2 = uniformRandomDistribution(x, y, waferRadius, baseProfile.MR2);
+                    MR2 = uniformRandomDistribution(x, y, waferRadius, baseProfile.MR2, random);
                     break;
                 case "sparse":
-                    MR2 = sparseRandomPointsDistribution(x, y, waferRadius, baseProfile.MR2, mr2Hotspots);
+                    MR2 = sparseRandomPointsDistribution(x, y, waferRadius, baseProfile.MR2, mr2Hotspots, random);
                     break;
                 case "edge":
-                    MR2 = distanceFromEdgeDistribution(x, y, waferRadius, baseProfile.MR2, edgeEffect);
+                    MR2 = distanceFromEdgeDistribution(x, y, waferRadius, baseProfile.MR2, edgeEffect, random);
                     break;
             }
 

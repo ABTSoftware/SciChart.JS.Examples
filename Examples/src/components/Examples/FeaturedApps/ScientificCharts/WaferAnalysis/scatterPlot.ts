@@ -4,10 +4,12 @@ import {
     EAutoRange,
     EAxisAlignment,
     EDataPointWidthMode,
+    ELegendPlacement,
     EllipsePointMarker,
     ENumericFormat,
     FastBoxPlotRenderableSeries,
     ICategoryAxisOptions,
+    LegendModifier,
     MouseWheelZoomModifier,
     NumberRange,
     NumericAxis,
@@ -33,6 +35,7 @@ export const createInitScatterPlot = () => async (rootElement: string | HTMLDivE
         drawMinorGridLines: false,
         drawMinorTickLines: false,
         labelPrecision: 0,
+        labelStyle: { fontSize: 12 },
     });
 
     sciChartSurface.xAxes.add(xAxis);
@@ -42,6 +45,7 @@ export const createInitScatterPlot = () => async (rootElement: string | HTMLDivE
         drawMinorGridLines: false,
         drawMinorTickLines: false,
         labelPrecision: 0,
+        labelStyle: { fontSize: 12 },
     });
 
     sciChartSurface.yAxes.add(yAxis);
@@ -55,6 +59,8 @@ export const createInitScatterPlot = () => async (rootElement: string | HTMLDivE
     // Create MR scatter series
     const mrScatterSeries = new XyScatterRenderableSeries(wasmContext, {
         dataSeries: dataSeries1,
+        seriesName: "MR vs MR2",
+        stroke: appTheme.MutedTeal,
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 2,
             height: 2,
@@ -68,6 +74,8 @@ export const createInitScatterPlot = () => async (rootElement: string | HTMLDivE
     // Create HR scatter series
     const hrScatterSeries = new XyScatterRenderableSeries(wasmContext, {
         dataSeries: dataSeries2,
+        seriesName: "HR vs HDI",
+        stroke: appTheme.PaleOrange,
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 2,
             height: 2,
@@ -82,7 +90,12 @@ export const createInitScatterPlot = () => async (rootElement: string | HTMLDivE
     sciChartSurface.renderableSeries.add(hrScatterSeries);
 
     // Add zoom and pan modifiers
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier(), new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(
+        new ZoomPanModifier(),
+        new ZoomExtentsModifier(),
+        new MouseWheelZoomModifier(),
+        new LegendModifier({ placement: ELegendPlacement.TopRight })
+    );
 
     // Update function that clears and repopulates both data series
     const updateScatterPlotData = (values: readonly WaferData[]) => {
