@@ -63,8 +63,8 @@ export const drawExample = async (
         dataLabelProvider.color = appTheme.ForegroundColor;
         dataLabelProvider.getText = (state: DataLabelState) => {
             return state.getMetaData()?.isSelected
-                ? `x,y [${state.xValues.get(state.index).toFixed(1)}, ` +
-                      `${state.yValues.get(state.index).toFixed(1)}] selected`
+                ? `x,y [${state.xValues[state.index].toFixed(1)}, ` +
+                      `${state.yValues[state.index].toFixed(1)}] selected`
                 : "";
         };
         return dataLabelProvider;
