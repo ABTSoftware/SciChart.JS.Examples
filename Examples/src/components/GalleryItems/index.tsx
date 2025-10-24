@@ -158,7 +158,7 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(({ example, i
                             </div>
                             <div className={classes.content}>
                                 <h3>{item.title}</h3>
-                                <p>{item.metaDescription || "No description available for this example yet"}</p>
+                                <p>{item.metaDescription ?? item.subtitle ?? "No description available for this example yet"}</p>
                                 {gridType === EGridType.Cardview && (
                                     <div className={classes.contentButtons}>
                                         <Link to={`/${framework}/${item.examplePath}`} className={classes.button}>
