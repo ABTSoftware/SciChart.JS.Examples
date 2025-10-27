@@ -28,7 +28,7 @@ import {
     EFillPaletteMode,
     ModifierMouseArgs,
 } from "scichart";
-import { generateGridOfPoints, IBatchMetadata, WaferLotData } from "./waferData";
+import { generateGridOfPoints, WaferLotData } from "./waferData";
 
 // import correlationLinePoints from "./correlationLinePoints";
 // import { getSubChartPositionIndexes } from "../../FeatureDemos/SubChartsAPI/helpers";
@@ -127,7 +127,7 @@ const axisOptions: INumericAxisOptions = {
 // theme overrides
 const sciChartTheme = appTheme.SciChartJsTheme;
 
-export const drawWaferGrid = async (rootElement: string | HTMLDivElement, selectedPoint: IBatchMetadata) => {
+export const drawWaferGrid = async (rootElement: string | HTMLDivElement, selectedPoint: WaferLotData) => {
     const { wasmContext, sciChartSurface: mainSurface } = await SciChartSurface.create(rootElement, {
         theme: sciChartTheme,
     });
@@ -208,7 +208,7 @@ export const drawWaferGrid = async (rootElement: string | HTMLDivElement, select
 
     const subChartPositioningCoordinateMode = ESubSurfacePositionCoordinateMode.DataValue;
 
-    const initSubChart = (subChartIndex: number, selectedPoint: IBatchMetadata) => {
+    const initSubChart = (subChartIndex: number, selectedPoint: WaferLotData) => {
         const { rowIndex, columnIndex } = getSubChartPositionIndexes(subChartIndex, columnsNumber);
 
         const width = 1;
@@ -255,7 +255,7 @@ export const drawWaferGrid = async (rootElement: string | HTMLDivElement, select
 
         let dataSeries = new XyzDataSeries(wasmContext, {});
 
-        const setData = (selectedPoint: IBatchMetadata) => {
+        const setData = (selectedPoint: WaferLotData) => {
             let dataJSON = generateGridOfPoints(selectedPoint, subChartIndex);
 
             subChartSurface.renderableSeries.clear(true);
@@ -278,7 +278,6 @@ export const drawWaferGrid = async (rootElement: string | HTMLDivElement, select
                 xValues,
                 yValues,
                 zValues,
-                metadata: dataJSON.map((d) => ({ ...d, isSelected: false })),
             });
 
             // Create and add rectangle series
@@ -305,7 +304,7 @@ export const drawWaferGrid = async (rootElement: string | HTMLDivElement, select
         initSubChart(subChartIndex, selectedPoint);
     }
 
-    const generateSubcharts = (selectedPoint: IBatchMetadata) => {
+    const generateSubcharts = (selectedPoint: WaferLotData) => {
         const subCharts = [...mainSurface.subCharts];
 
         subCharts.forEach((subChart) => {

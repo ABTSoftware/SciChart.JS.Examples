@@ -1,78 +1,61 @@
 import {
     StackedColumnRenderableSeries,
-    MouseWheelZoomModifier,
     NumberRange,
     NumericAxis,
     SciChartSurface,
-    XyDataSeries,
-    ZoomExtentsModifier,
-    ZoomPanModifier,
-    DateTimeNumericAxis,
-    ENumericFormat,
-    DateLabelProvider,
-    IPointMetadata,
-    IStackedColumnSeriesDataLabelProviderOptions,
-    Thickness,
-    EColumnDataLabelPosition,
-    EVerticalTextPosition,
     LegendModifier,
     EAxisAlignment,
-    TextLabelProvider,
-    EMultiLineAlignment,
     XyNDataSeries,
     CategoryAxis,
     DataPointSelectionModifier,
+    BoxAnnotation,
+    StackedColumnCollection,
+    ECoordinateMode,
+    ENumericFormat,
+    DataPointInfo,
+    Thickness,
+    ESelectionMode,
 } from "scichart";
 
-import { IBatchMetadata, WaferLotData } from "./waferData";
+import { WaferLotData } from "./waferData";
 import { appTheme } from "../../../theme";
 
 export const drawColumnChart = async (
     rootElement: string | HTMLDivElement,
     waferData: WaferLotData[] = [],
-    onBatchSelected?: (point: IBatchMetadata) => void
+    onBatchSelected?: (point: WaferLotData, isColumnChart: boolean) => void
 ) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
         titleStyle: {
             fontSize: 16,
+            padding: new Thickness(5, 5, 5, 5),
+            placeWithinChart: true,
         },
-    });
-
-    const growByX = new NumberRange(0.05, 0.05);
-    const growByY = new NumberRange(0.01, 0.3);
-
-    // Create a labelProvider which uses multiline text when the chart is narrower
-    const labelProvider = new TextLabelProvider({
-        labels: waferData.map((d, i) =>
-            sciChartSurface.domCanvas2D.width < 1024 ? ["Batch", `${d.Batch}`] : `Batch ${d.Batch}`
-        ),
+        freezeWhenOutOfView: true,
     });
 
     // Create the X,Y Axis
-    sciChartSurface.xAxes.add(
-        new CategoryAxis(wasmContext, {
-            labelProvider,
-            growBy: growByX,
-            maxAutoTicks: 20,
-            drawMinorTickLines: false,
-            drawMinorGridLines: false,
-            drawMajorTickLines: false,
-            drawMajorGridLines: false,
-            labelStyle: {
-                fontSize: 10,
-                multilineAlignment: EMultiLineAlignment.Center,
-            },
-            axisTitleStyle: {
-                fontSize: 12,
-            },
-        })
-    );
+    const xAxis = new CategoryAxis(wasmContext, {
+        labelFormat: ENumericFormat.NoFormat,
+        maxAutoTicks: 20,
+        drawMinorTickLines: false,
+        drawMinorGridLines: false,
+        drawMajorTickLines: false,
+        drawMajorGridLines: false,
+        labelStyle: {
+            fontSize: 10,
+        },
+        axisTitleStyle: {
+            fontSize: 12,
+        },
+    });
+    sciChartSurface.xAxes.add(xAxis);
 
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
-            growBy: growByY,
+            growBy: new NumberRange(0.01, 0.3),
             axisAlignment: EAxisAlignment.Left,
             labelPrecision: 0,
             drawMinorTickLines: false,
@@ -88,37 +71,7 @@ export const drawColumnChart = async (
 
     const dataSeries = new XyNDataSeries(wasmContext, { arrayCount: 3 });
 
-    const updateData = (batchData: WaferLotData[]) => {
-        const xValues: number[] = [];
-        const y1Values: number[] = [];
-        const y2Values: number[] = [];
-        const y3Values: number[] = [];
-        const metadata: IBatchMetadata[] = [];
-        for (const batch of batchData) {
-            xValues.push(batch.Batch);
-            y1Values.push(batch.Measure1);
-            y2Values.push(batch.Measure2);
-            y3Values.push(batch.Measure3);
-            metadata.push({ isSelected: false, Batch: batch.Batch, Date: batch.Date, Input: batch.Input2 });
-        }
-        dataSeries.clear();
-        dataSeries.appendRangeN(xValues, [y1Values, y2Values, y3Values], metadata);
-        sciChartSurface.title = batchData[0].Date;
-    };
-
-    updateData(waferData);
-
-    const dataLabels: IStackedColumnSeriesDataLabelProviderOptions = {
-        color: "#FFfFFF",
-        style: {
-            fontSize: sciChartSurface.domCanvas2D.width < 500 ? 0 : 12,
-            fontFamily: "Arial",
-            padding: new Thickness(0, 0, 2, 0),
-        },
-        precision: 0,
-        positionMode: EColumnDataLabelPosition.Outside,
-        verticalTextPosition: EVerticalTextPosition.Center,
-    };
+    const columnCollection = new StackedColumnCollection(wasmContext, { dataPointWidth: 0.7 });
 
     const measure1Series_stacked = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries,
@@ -126,10 +79,9 @@ export const drawColumnChart = async (
         stroke: appTheme.MutedSkyBlue,
         strokeThickness: 1,
         stackedGroupId: "measures",
-        dataLabels,
+        seriesName: "Measure 1",
+        yArrayFilter: "y1",
     });
-    measure1Series_stacked.seriesName = "Measure 1";
-    measure1Series_stacked.yArrayFilter = "y1";
 
     const measure2Series_stacked = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries,
@@ -137,10 +89,9 @@ export const drawColumnChart = async (
         stroke: appTheme.MutedTeal,
         strokeThickness: 1,
         stackedGroupId: "measures",
-        dataLabels,
+        seriesName: "Measure 2",
+        yArrayFilter: "y2",
     });
-    measure2Series_stacked.seriesName = "Measure 2";
-    measure2Series_stacked.yArrayFilter = "y2";
 
     const measure3Series_stacked = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries,
@@ -148,15 +99,21 @@ export const drawColumnChart = async (
         stroke: appTheme.MutedPink,
         strokeThickness: 1,
         stackedGroupId: "measures",
-        dataLabels,
+        seriesName: "Measure 3",
+        yArrayFilter: "y3",
     });
-    measure3Series_stacked.seriesName = "Measure 3";
-    measure3Series_stacked.yArrayFilter = "y3";
 
     // Add all series to the chart
-    sciChartSurface.renderableSeries.add(measure1Series_stacked);
-    sciChartSurface.renderableSeries.add(measure2Series_stacked);
-    sciChartSurface.renderableSeries.add(measure3Series_stacked);
+    columnCollection.add(measure1Series_stacked, measure2Series_stacked, measure3Series_stacked);
+    sciChartSurface.renderableSeries.add(columnCollection);
+
+    const selectionAnnotation = new BoxAnnotation({
+        stroke: "white",
+        fill: "#ffff00AA",
+        isHidden: true,
+        xCoordinateMode: ECoordinateMode.Pixel,
+    });
+    sciChartSurface.annotations.add(selectionAnnotation);
 
     const selectionModifier = new DataPointSelectionModifier({
         allowClickSelect: true, // Enables single-click selection
@@ -168,10 +125,60 @@ export const drawColumnChart = async (
         if (selectedPoints.length > 0) {
             // Call the callback function if provided
             if (onBatchSelected && selectedPoints[0].index !== undefined) {
-                onBatchSelected(selectedPoints[0].metadata as IBatchMetadata);
+                onBatchSelected(selectedPoints[0].metadata as WaferLotData, true);
             }
+        } else {
+            selectionAnnotation.isHidden = true;
         }
     });
+
+    sciChartSurface.layoutMeasured.subscribe(() => {
+        if (selectionModifier.selectedDataPoints.length > 0) {
+            const index = selectionModifier.selectedDataPoints[0].index;
+            const xCC = xAxis.getCurrentCoordinateCalculator();
+            const dpw = columnCollection.getColumnWidth(xCC) / 2;
+            const xCoord = xCC.getCoordinate(index); // Use index here because of category x axis
+            selectionAnnotation.x1 = xCoord - dpw;
+            selectionAnnotation.x2 = xCoord + dpw;
+            selectionAnnotation.y1 = 0;
+            selectionAnnotation.y2 = measure3Series_stacked.accumulatedValues.get(index);
+            selectionAnnotation.isHidden = false;
+        } else {
+            selectionAnnotation.isHidden = true;
+        }
+    });
+
+    const updateData = (batchData: WaferLotData[], fireSelectionChanged: boolean) => {
+        const xValues: number[] = [];
+        const y1Values: number[] = [];
+        const y2Values: number[] = [];
+        const y3Values: number[] = [];
+        for (const batch of batchData) {
+            xValues.push(batch.Batch);
+            y1Values.push(batch.Measure1);
+            y2Values.push(batch.Measure2);
+            y3Values.push(batch.Measure3);
+        }
+        dataSeries.clear();
+        dataSeries.appendRangeN(xValues, [y1Values, y2Values, y3Values], batchData);
+        sciChartSurface.title = batchData[0].Date;
+        // We need to manually clear and reset the selectionModifier
+        // These methods are currently private but will be exposed in next version
+        //@ts-ignore
+        selectionModifier.clearSelectedDataPoints();
+        //@ts-ignore
+        selectionModifier.addSelectedDataPoint(
+            measure1Series_stacked,
+            0,
+            new DataPointInfo(measure1Series_stacked, batchData[0], 0)
+        );
+        if (fireSelectionChanged) {
+            //@ts-ignore
+            selectionModifier.raiseSelectionChanged(false);
+        }
+    };
+
+    updateData(waferData, false);
 
     // Add interactivity modifiers
     // sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
@@ -190,5 +197,5 @@ export const drawColumnChart = async (
     // Zoom to fit
     sciChartSurface.zoomExtents();
 
-    return { sciChartSurface, updateData };
+    return { sciChartSurface, updateData, selectionModifier };
 };

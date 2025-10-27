@@ -15,7 +15,8 @@ const MEASUREMENT_PARAMS = {
 // Time constants in milliseconds
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
-export interface WaferLotData {
+export interface WaferLotData extends IPointMetadata {
+    isSelected: boolean;
     Date: string; // Timestamp of the run/lot/batch (ISO format)
     Batch: number; // Processing group (1-10)
     Quality: WaferQuality; // Categorical: 'Good', 'Marginal', or 'Fail'
@@ -31,12 +32,6 @@ export interface WaferDayData {
     Mean1: number;
     Mean2: number;
     Batches: WaferLotData[];
-}
-
-export interface IBatchMetadata extends IPointMetadata {
-    Date: string;
-    Batch: number;
-    Input: number;
 }
 
 /**
@@ -117,6 +112,7 @@ export function generateWaferLotData(
             const input2 = Math.round(randomNormal(MEASUREMENT_PARAMS.INPUT2.mean, MEASUREMENT_PARAMS.INPUT2.stdDev));
             // Generate measurements using our helper functions
             const batch = {
+                isSelected: false,
                 Date: isoDate,
                 Batch: b,
                 Quality: getQuality(input2),
@@ -163,7 +159,7 @@ function hashCode(obj: any, subChartIndex: number) {
     return result;
 }
 
-export const generateGridOfPoints = (selectedPoint: IBatchMetadata, subChartIndex = 0) => {
+export const generateGridOfPoints = (selectedPoint: WaferLotData, subChartIndex = 0) => {
     const waferSize = 41;
     const seed = hashCode(selectedPoint, subChartIndex); // Make seed depend on selectedPoint
     const random = seededRandom(seed);
@@ -182,7 +178,7 @@ export const generateGridOfPoints = (selectedPoint: IBatchMetadata, subChartInde
                 // Calculate defect probability inversely related to Input2
                 // Lower Input2 values result in higher defect probability
                 // Normalize Input2 to a 0-1 range based on expected range (200-800)
-                const normalizedInput2 = Math.max(0, Math.min(1, (selectedPoint.Input - 200) / 600));
+                const normalizedInput2 = Math.max(0, Math.min(1, (selectedPoint.Input2 - 200) / 600));
 
                 // Invert the relationship: lower Input2 -> higher defect probability
                 const defectProbabilityMultiplier = 1 - normalizedInput2;

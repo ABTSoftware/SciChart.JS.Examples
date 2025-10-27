@@ -60,14 +60,14 @@ export const drawLineChart = async (
             fontSize: 16,
             useNativeText: false,
             color: appTheme.PaleSkyBlue,
-            padding: new Thickness(15, 5, 5, 5),
+            padding: new Thickness(5, 5, 5, 5),
         };
     } else {
         sciChartSurface.titleStyle = {
             fontSize: 26,
             useNativeText: false,
             color: appTheme.PaleSkyBlue,
-            padding: new Thickness(25, 5, 5, 5),
+            padding: new Thickness(15, 5, 5, 5),
         };
     }
 
@@ -145,7 +145,7 @@ export const drawLineChart = async (
             strokeThickness: 0,
         }),
         paletteProvider: new DataPointSelectionPaletteProvider({
-            fill: appTheme.PaleOrange, // Selected fill color
+            fill: "#ffff00aa", // Selected fill color
         }),
         // Add data labels to show Input1 values
         dataLabels: {
