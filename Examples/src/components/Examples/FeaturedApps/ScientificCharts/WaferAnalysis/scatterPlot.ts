@@ -94,7 +94,7 @@ export const createInitScatterPlot = () => async (rootElement: string | HTMLDivE
         new ZoomPanModifier(),
         new ZoomExtentsModifier(),
         new MouseWheelZoomModifier(),
-        new LegendModifier({ placement: ELegendPlacement.TopRight })
+        new LegendModifier({ placement: ELegendPlacement.TopRight, showCheckboxes: true })
     );
 
     // Update function that clears and repopulates both data series
