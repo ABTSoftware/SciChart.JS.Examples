@@ -13,7 +13,7 @@ const metaData: IExampleMetadata =
         description:
             "Creates a **JavaScript Waterfall Chart** using SciChart.js's new **FastRectangleRenderableSeries** with the following features: a custom Treemap-like DataLabelProvider for rectangle labels and custom Fill PaletteProvider",
         tips: [],
-        alsoKnownAs: "Also Known As: Bridge Chart and Cascade Chart.",
+        alsoKnownAs: "Also Known As: **Bridge Chart** and **Cascade Chart**.",
         frameworks: {
             javascript: {
                 subtitle:

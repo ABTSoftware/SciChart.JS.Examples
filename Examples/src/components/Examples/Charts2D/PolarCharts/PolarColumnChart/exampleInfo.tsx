@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
         description:
             "Creates a **JavaScript Polar Column Chart** using the **PolarColumnRenderableSeries**, with the following features: DataLabels, Gradient fill, startup animations.",
         tips: [],
-        alsoKnownAs: "This plot type is Known As: Nightingale Rose Chart and Coxcomb Chart.",
+        alsoKnownAs: "This plot type is Known As: **Nightingale Rose Chart** and **Coxcomb Chart**.",
         frameworks: {
             javascript: {
                 subtitle:

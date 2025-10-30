@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
         description:
             "Creates a **Box Plot Chart** using SciChart.js, using our new **FastBoxPlotRenderableSeries** chart type.",
         tips: [],
-        alsoKnownAs: "Also Known As: Box-and-Whisker Plot.",
+        alsoKnownAs: "Also Known As: **Box-and-Whisker Plot**.",
         frameworks: {
             javascript: {
                 subtitle:

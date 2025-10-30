@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
         description:
             "Creates a **JavaScript Polar Sunburst Chart** using SciChart.js, with multiple levels and interaction driven animations.",
         tips: [],
-        alsoKnownAs: "Also Known As: Sunburst Radial Chart",
+        alsoKnownAs: "Also Known As: **Radial Treemap**, **Circular Treemap**.",
         frameworks: {
             javascript: {
                 subtitle:

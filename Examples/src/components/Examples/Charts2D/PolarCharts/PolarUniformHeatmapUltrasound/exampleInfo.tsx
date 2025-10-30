@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
         description:
             "Creates a **JavaScript Polar Ultrasound Heatmap** in SciChart.js, by taking a 2D array of data points as hex values between **00** and **FF**, and displaying them in a polar heatmap.",
         tips: [],
-        alsoKnownAs: "Also Known As: B-Mode Image Ultrasound, Medical Heatmap",
+        alsoKnownAs: "Also Known As: **B-Mode Image Ultrasound**, **Medical Heatmap**",
         frameworks: {
             javascript: {
                 subtitle:
