@@ -10,7 +10,7 @@ const metaData: IExampleMetadata =
         description:
             "Demonstrates the new **Ordered Rendering** feature in SciChart.js Javascript charts which allows for full control of the draw order of series and annotations",
         tips: [],
-        alsoKnownAs: "Also Known As: Z-Index, Z-Ordering, Draw Order, Layering",
+        alsoKnownAs: "Also Known As: **Z-Index**, **Z-Ordering**, **Draw Order**, **Layering**",
         frameworks: {
             javascript: {
                 subtitle:

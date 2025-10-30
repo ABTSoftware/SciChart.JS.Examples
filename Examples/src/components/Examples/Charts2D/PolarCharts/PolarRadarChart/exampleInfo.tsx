@@ -8,9 +8,9 @@ const metaData: IExampleMetadata =
         id: "chart2D_polarCharts_PolarRadarChart",
         imagePath: "javascript-polar-radar-chart.jpg",
         description:
-            "Creates a **JavaScript Polar Radar Chart**, also known as a **Spider Chart** using SciChart.js, which expresses the complexity, memory usage, stability, adaptability, scalability, and cache efficiency of two popular sorting algorithms",
+            "Creates a **JavaScript Polar Radar Chart**, which expresses the complexity, memory usage, stability, adaptability, scalability, and cache efficiency of two popular sorting algorithms",
         tips: [],
-        alsoKnownAs: "This type of plot is also Known As: Spider Chart, Web Chart, Cobweb Chart, and Kiviat Chart",
+        alsoKnownAs: "This type of plot is also Known As: **Spider Chart**, **Web Chart**, **Cobweb Chart**, and **Kiviat Chart**",
         frameworks: {
             javascript: {
                 subtitle:
@@ -24,7 +24,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Radar Chart**, also known as a **Spider Chart** using SciChart.js, which expresses the complexity, memory usage, stability, adaptability, scalability, and cache efficiency of two popular sorting algorithms",
                 title: "React Polar Radar Chart",
-                pageTitle: "React Polar Radar Chart | Spider Radar Chart | JavaScript Chzzzzsaarts",
+                pageTitle: "React Polar Radar Chart | Spider Radar Chart",
                 metaDescription: "View the React Polar Radar Chart example. Also known as the Spider Radar Chart, view the scalability and stability that SciChart has to offer. Try demo.",
                 markdownContent: "## React Polar Radar Chart\n\n### Overview\nThis example demonstrates how to create a high-performance **Polar Radar Chart** in React using SciChart.js, visualizing the complexity, memory usage, stability, adaptability, scalability, and cache efficiency of Quick Sort and Bubble Sort algorithms through polar series.\n\n### Technical Implementation\nThe chart is initialized asynchronously via the SciChartReact component, creating a SciChartPolarSurface with a custom theme. It configures a PolarNumericAxis for radial values and a PolarCategoryAxis for angular labels, adding PolarMountainRenderableSeries and PolarLineRenderableSeries with XyDataSeries for data visualization. Performance is optimized through WebGL rendering and native text usage, as detailed in the [Polar Radar Chart documentation](https://www.scichart.com/documentation/js/v4/2d-charts/chart-types/polar-radar-chart/).\n\n### Features and Capabilities\nThe chart supports real-time updates via data series modifications and includes advanced customizations like fade animations, point markers, and interactive modifiers such as PolarPanModifier, PolarZoomExtentsModifier, and PolarLegendModifier for enhanced user interaction.\n\n### Integration and Best Practices\nIntegration in React uses the SciChartReact wrapper for seamless chart lifecycle management, ensuring proper initialization and cleanup. Follow best practices for async setup and theming to maintain performance in dynamic applications."
             },

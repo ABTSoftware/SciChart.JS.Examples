@@ -40,6 +40,8 @@ export interface IExampleMetadata {
      * @example "This type of plot is also known as a Spider Chart, Web Chart, Cobweb Chart, or Kiviat Chart"
      *
      * @example "This chart type is also known as a Scatter Plot, Dot Plot, or XY-Plot"
+     * 
+     * !! Markdown formatting supported
      */
     alsoKnownAs?: string;
 }

@@ -8,7 +8,25 @@ export const ExampleStrings = {
     siteKeywords: `performance, demo, chart, javascript, webgl, canvas`,
     siteHomeDescription: `Examples for SciChart.js: High Performance JavaScript Charts. Featuring 2D & 3D JavaScript Chart types, performance demos, JavaScript stock charts, Heatmaps, Bubble charts`,
     siteHomeMetaImage: `https://www.scichart.com/wp-content/uploads/2022/12/javascript-chart-collage-2022.jpg`,
-    exampleGenericTitleSuffix: (frameworkName: TFrameworkName | EPageFramework) => ` | ${frameworkName.slice(0,1).toUpperCase() + frameworkName.slice(1)} Charts | SciChart.js Demo`,
+    exampleGenericTitleSuffix: (frameworkName: TFrameworkName | EPageFramework, prefixLength?: number) => {
+        // make sure there are no long titles (it ideally should be between 45-60 characters)
+        if (prefixLength > 58) {
+            return ``;
+        }
+        if (prefixLength > 53) {
+            return ` | SciChart`;
+        }
+        if (prefixLength > 50) {
+            return ` | SciChart.js`;
+        }
+        if (prefixLength > 45) {
+            return ` | SciChart.js Demo`;
+        }
+        if (prefixLength > 29) {
+            return ` | ${frameworkName.slice(0,1).toUpperCase() + frameworkName.slice(1)} Charts | SciChart.js`
+        }
+        return ` | ${frameworkName.slice(0,1).toUpperCase() + frameworkName.slice(1)} Charts | SciChart.js Demo`
+    },
 
     // Documentation links and link tooltips
     //
