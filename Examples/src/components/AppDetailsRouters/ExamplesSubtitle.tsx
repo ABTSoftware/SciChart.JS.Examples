@@ -18,7 +18,9 @@ export const ExamplesSubtitle: FC<TSubtitleProps> = ({ content, isMaxWidth, also
                 className={className}
             >
                 <ReactMarkdown>{content}</ReactMarkdown>
-                <p className={classes.alsoKnownAs}>{alsoKnownAs}</p>
+                {alsoKnownAs ?
+                    <p className={classes.alsoKnownAs}>{alsoKnownAs}</p>
+                : null}
             </span>
         );
     }
