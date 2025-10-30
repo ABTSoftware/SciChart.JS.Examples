@@ -14,8 +14,8 @@ const metaData: IExampleMetadata =
             javascript: {
                 subtitle:
                     "Creates a **JavaScript Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode (for letter \"**S**\"), drawing triangles in list mode (for letter \"**c**\") and drawing polygons (for letter \"**i**\").",
-                title: "JavaScript Triangle Series Chart | Triangle Mesh Chart",
-                pageTitle: "JavaScript Triangle Series Chart",
+                title: "JavaScript Triangle Series | Triangle Mesh Chart",
+                pageTitle: "JavaScript Triangle Series | Triangle Mesh Chart",
                 metaDescription:
                     "Create JavaScript Triangle Meshes with the Triangle Series from SciChart. This demo supports strip mode, list mode and the drawing of polygons. View the example.",
                 markdownContent:
@@ -24,8 +24,8 @@ const metaData: IExampleMetadata =
             react: {
                 subtitle:
                     "Creates a **React Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode (for letter \"**S**\"), drawing triangles in list mode (for letter \"**c**\") and drawing polygons (for letter \"**i**\").",
-                title: "React Triangle Series Chart | Triangle Mesh Chart",
-                pageTitle: "React Triangle Series Chart",
+                title: "React Triangle Series | Triangle Mesh Chart",
+                pageTitle: "React Triangle Series | Triangle Mesh Chart",
                 metaDescription:
                     "Create React Triangle Meshes with the Triangle Series from SciChart. This demo supports strip mode, list mode and the drawing of polygons. View the example.",
                 markdownContent:
@@ -34,8 +34,8 @@ const metaData: IExampleMetadata =
             angular: {
                 subtitle:
                     "Creates a **Angular Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode (for letter \"**S**\"), drawing triangles in list mode (for letter \"**c**\") and drawing polygons (for letter \"**i**\").",
-                title: "Angular Triangle Series Chart | Triangle Mesh Chart",
-                pageTitle: "Angular Triangle Series Chart",
+                title: "Angular Triangle Series | Triangle Mesh Chart",
+                pageTitle: "Angular Triangle Series | Triangle Mesh Chart",
                 metaDescription:
                     "Create Angular Triangle Meshes with the Triangle Series from SciChart. This demo supports strip mode, list mode and the drawing of polygons. View the example.",
                 markdownContent:
