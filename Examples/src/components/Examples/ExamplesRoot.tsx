@@ -40,7 +40,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
         ? getFrameworkContent(examplePage.title, framework)
         : ExampleStrings.siteHomeTitle(frameworkName);
     const seoTitleText =
-        getFrameworkContent(examplePage.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix;
+        getFrameworkContent(examplePage.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix(frameworkName);
     const subtitleText = examplePage ? examplePage.subtitle(frameworkName) : undefined;
 
     const documentationLinks = examplePage ? examplePage.documentationLinks : undefined;

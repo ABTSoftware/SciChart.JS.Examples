@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Learn how to make a **JavaScript Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
                 title: "JavaScript Stacked Mountain Chart",
-                pageTitle: "JavaScript Stacked Mountain Chart | JavaScript Chart Library",
+                pageTitle: "JavaScript Stacked Mountain Chart",
                 metaDescription:
                     "Design a high performance JavaScript Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Learn how to make a **React Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
                 title: "React Stacked Mountain Chart",
-                pageTitle: "React Stacked Mountain Chart | JavaScript Chart Library",
+                pageTitle: "React Stacked Mountain Chart",
                 metaDescription:
                     "Design a high performance React Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Learn how to make a **Angular Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
                 title: "Angular Stacked Mountain Chart",
-                pageTitle: "Angular Stacked Mountain Chart | JavaScript Chart Library",
+                pageTitle: "Angular Stacked Mountain Chart",
                 metaDescription:
                     "Design a high performance Angular Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
                 markdownContent:

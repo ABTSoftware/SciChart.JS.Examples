@@ -62,6 +62,13 @@ export type TExampleInfo = {
      * Flag to indicate if the example is new (if new it will have a banner across the thumbnail)
      */
     isNew?: boolean;
+    /**
+     * Optional alternative names for the chart type that will be displayed on the example page, under the description
+     * 
+     * @example "This type of plot is also known as a Spider Chart, Web Chart, Cobweb Chart, or Kiviat Chart"
+     * @example "This chart type is also known as a Scatter Plot, Dot Plot, or XY-Plot"
+     */
+    alsoKnownAs?: string;
 };
 
 export type TExamplePage = TPage & TExampleInfo;
@@ -82,12 +89,16 @@ const loadModule = (modulePath: string) => {
 function makeExamplesPagesNew(examples: string[]): Record<string, TExamplePage> {
     const res = examples.reduce((acc: any, path: string) => {
         const mod = loadModule(path + "/exampleInfo.tsx");
+        console.log(mod);
+        
         const moduleExport = mod.default;
         moduleExport.exampleDirectory = path;
         const id = moduleExport.id;
         acc[id] = moduleExport;
         return acc;
     }, {});
+    console.log("res", res);
+    
     return res;
 }
 

@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Use our Mountain Chart example to learn how to create a **JavaScript Mountain Chart** using SciChart.js, our in-house built JavaScript Chart framework.",
                 title: "JavaScript Mountain Chart",
-                pageTitle: "JavaScript Mountain Chart | View Examples Now | SciChart.js",
+                pageTitle: "JavaScript Mountain Chart",
                 metaDescription:
                     "Create JavaScript Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Use our Mountain Chart example to learn how to create a **React Mountain Chart** using SciChart.js, our in-house built JavaScript Chart framework.",
                 title: "React Mountain Chart",
-                pageTitle: "React Mountain Chart | View Examples Now | SciChart.js",
+                pageTitle: "React Mountain Chart",
                 metaDescription:
                     "Create React Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Use our Mountain Chart example to learn how to create a **Angular Mountain Chart** using SciChart.js, our in-house built JavaScript Chart framework.",
                 title: "Angular Mountain Chart",
-                pageTitle: "Angular Mountain Chart | View Examples Now | SciChart.js",
+                pageTitle: "Angular Mountain Chart",
                 metaDescription:
                     "Create Angular Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.",
                 markdownContent:
