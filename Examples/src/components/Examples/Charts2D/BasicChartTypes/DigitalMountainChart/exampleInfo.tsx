@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "For Digital Mountain Charts, you can use this demonstration to see how to create a **JavaScript Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
                 title: "JavaScript Digital Mountain Chart",
-                pageTitle: "JavaScript Digital Mountain Chart | JavaScript Chart Example",
+                pageTitle: "JavaScript Digital Mountain Chart",
                 metaDescription:
                     "Create JavaScript Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "For Digital Mountain Charts, you can use this demonstration to see how to create a **React Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
                 title: "React Digital Mountain Chart",
-                pageTitle: "React Digital Mountain Chart | JavaScript Chart Example",
+                pageTitle: "React Digital Mountain Chart",
                 metaDescription:
                     "Create React Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "For Digital Mountain Charts, you can use this demonstration to see how to create a **Angular Digital Mountain Chart** using SciChart.js, and its powerful JavaScript Chart Library.",
                 title: "Angular Digital Mountain Chart",
-                pageTitle: "Angular Digital Mountain Chart | JavaScript Chart Example",
+                pageTitle: "Angular Digital Mountain Chart",
                 metaDescription:
                     "Create Angular Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
                 markdownContent:

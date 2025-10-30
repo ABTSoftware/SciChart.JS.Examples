@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Use this demonstration to learn how to create a **JavaScript Impulse Chart** using SciChart.js, our own High Performance JavaScript Chart Library.",
                 title: "JavaScript Impulse Chart",
-                pageTitle: "JavaScript Impulse Chart | JavaScript Charts | View Online",
+                pageTitle: "JavaScript Impulse Chart",
                 metaDescription:
                     "Easily create JavaScript Impulse Chart or Stem Chart using SciChart.js - our own high performance JavaScript Chart Library. Get your free trial now. ",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Use this demonstration to learn how to create a **React Impulse Chart** using SciChart.js, our own High Performance JavaScript Chart Library.",
                 title: "React Impulse Chart",
-                pageTitle: "React Impulse Chart | JavaScript Charts | View Online",
+                pageTitle: "React Impulse Chart",
                 metaDescription:
                     "Easily create React Impulse Chart or Stem Chart using SciChart.js - our own high performance JavaScript Chart Library. Get your free trial now. ",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Use this demonstration to learn how to create a **Angular Impulse Chart** using SciChart.js, our own High Performance JavaScript Chart Library.",
                 title: "Angular Impulse Chart",
-                pageTitle: "Angular Impulse Chart | JavaScript Charts | View Online",
+                pageTitle: "Angular Impulse Chart",
                 metaDescription:
                     "Easily create Angular Impulse Chart or Stem Chart using SciChart.js - our own high performance JavaScript Chart Library. Get your free trial now. ",
                 markdownContent:

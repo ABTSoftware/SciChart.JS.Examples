@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This SciChart demo demonstrates how to create a **JavaScript Error Bars Chart** using SciChart.js our High Performance JavaScript Chart component.",
                 title: "JavaScript Error Bars Chart",
-                pageTitle: "JavaScript Error Bars Chart |  Online Examples | SciChart.js",
+                pageTitle: "JavaScript Error Bars Char",
                 metaDescription:
                     "Create JavaScript Error Bars Chart using high performance SciChart.js. Display uncertainty or statistical confidence of a data-point. Get free demo now.",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This SciChart demo demonstrates how to create a **React Error Bars Chart** using SciChart.js our High Performance JavaScript Chart component.",
                 title: "React Error Bars Chart",
-                pageTitle: "React Error Bars Chart |  Online Examples | SciChart.js",
+                pageTitle: "React Error Bars Char",
                 metaDescription:
                     "Create React Error Bars Chart using high performance SciChart.js. Display uncertainty or statistical confidence of a data-point. Get free demo now.",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This SciChart demo demonstrates how to create a **Angular Error Bars Chart** using SciChart.js our High Performance JavaScript Chart component.",
                 title: "Angular Error Bars Chart",
-                pageTitle: "Angular Error Bars Chart |  Online Examples | SciChart.js",
+                pageTitle: "Angular Error Bars Char",
                 metaDescription:
                     "Create Angular Error Bars Chart using high performance SciChart.js. Display uncertainty or statistical confidence of a data-point. Get free demo now.",
                 markdownContent:

@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Demonstrates all the permutations of JavaScript Line Chart using SciChart.js, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.",
                 title: "JavaScript Line Chart",
-                pageTitle: "JavaScript Line Chart | JavaScript Chart Examples | SciChart",
+                pageTitle: "JavaScript Line Chart",
                 metaDescription:
                     "Discover how to create a high performance JavaScript Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Demonstrates all the permutations of JavaScript Line Chart using SciChart.js, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.",
                 title: "React Line Chart",
-                pageTitle: "React Line Chart | JavaScript Chart Examples | SciChart",
+                pageTitle: "React Line Chart",
                 metaDescription:
                     "Discover how to create a high performance React Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Demonstrates all the permutations of JavaScript Line Chart using SciChart.js, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.",
                 title: "Angular Line Chart",
-                pageTitle: "Angular Line Chart | JavaScript Chart Examples | SciChart",
+                pageTitle: "Angular Line Chart",
                 metaDescription:
                     "Discover how to create a high performance Angular Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
                 markdownContent:
