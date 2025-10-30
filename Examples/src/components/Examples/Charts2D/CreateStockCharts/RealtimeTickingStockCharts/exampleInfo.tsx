@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
                 title: "JavaScript Realtime Ticking Stock Charts",
-                pageTitle: "JavaScript Realtime Ticking Stock Chart | SciChart.js",
+                pageTitle: "JavaScript Realtime Ticking Stock Chart",
                 metaDescription:
                     "Create a JavaScript Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
                 title: "React Realtime Ticking Stock Charts",
-                pageTitle: "React Realtime Ticking Stock Chart | SciChart.js",
+                pageTitle: "React Realtime Ticking Stock Chart",
                 metaDescription:
                     "Create a React Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
                 title: "Angular Realtime Ticking Stock Charts",
-                pageTitle: "Angular Realtime Ticking Stock Chart | SciChart.js",
+                pageTitle: "Angular Realtime Ticking Stock Chart",
                 metaDescription:
                     "Create a Angular Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
                 markdownContent:
