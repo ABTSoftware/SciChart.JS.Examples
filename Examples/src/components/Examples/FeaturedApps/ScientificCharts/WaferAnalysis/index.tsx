@@ -63,7 +63,8 @@ export default function WaferAnalysis() {
         // Extract numeric seed from query string
         const urlParams = new URLSearchParams(window.location.search);
         const seedParam = urlParams.get("seed");
-        const seed = seedParam ? parseInt(seedParam, 10) : 12;
+        const seed = seedParam ? parseInt(seedParam, 10) : 1337;
+        // other cool visual seeds: 50, 52, 54, 69, 1337
 
         let data = generateWaferDataByValues(150, seed);
         setData(data);

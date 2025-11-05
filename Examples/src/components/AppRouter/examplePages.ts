@@ -89,7 +89,6 @@ const loadModule = (modulePath: string) => {
 function makeExamplesPagesNew(examples: string[]): Record<string, TExamplePage> {
     const res = examples.reduce((acc: any, path: string) => {
         const mod = loadModule(path + "/exampleInfo.tsx");
-        console.log(mod);
         
         const moduleExport = mod.default;
         moduleExport.exampleDirectory = path;
@@ -97,7 +96,6 @@ function makeExamplesPagesNew(examples: string[]): Record<string, TExamplePage> 
         acc[id] = moduleExport;
         return acc;
     }, {});
-    console.log("res", res);
     
     return res;
 }
