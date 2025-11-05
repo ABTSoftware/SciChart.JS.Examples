@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 import { EXAMPLES_PAGES, TExamplePage } from "../components/AppRouter/examplePages";
 import { BadRequestError, IHttpError, NotFoundError } from "./Errors";
 import { EPageFramework, EPlatform } from "../helpers/shared/Helpers/frameworkParametrization";
-import { getParameters } from "codesandbox/lib/api/define";
+import { getParameters } from "./codeSandboxLib";
 import { getSandboxConfig } from "./services/sandbox";
 import { SandboxConfig, IFiles, getSourceFilesForPath, loadStyles } from "./services/sandbox/sandboxDependencyUtils";
 import { indexHtmlTemplate } from "./services/sandbox/vanillaTsConfig";
