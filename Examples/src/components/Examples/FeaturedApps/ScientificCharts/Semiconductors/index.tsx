@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router";
 import { generateWaferLotData, WaferLotData, WaferDayData } from "./waferData";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawLineChart } from "./lineChart";
@@ -110,8 +109,6 @@ export default function Overview() {
         return null;
     };
 
-    const navigate = useNavigate();
-
     return data.length ? (
         <div className="dashboard-container">
             <div className="dashboard-layout">
@@ -159,10 +156,7 @@ export default function Overview() {
                     {/* Scatter Chart or Wafer Chart based on selection */}
                     <div className="scatter-wafer-container">
                         <SciChartReact
-                            onClick={() => {
-                                navigate("./wafer-analysis") // Navigate to detailed wafer analysis demo
-                            }}
-                            style={{ cursor: 'pointer' }}
+                            style={{ cursor: "pointer" }}
                             key="plotChart"
                             initChart={initWaferChart}
                             className="sci-chart"
