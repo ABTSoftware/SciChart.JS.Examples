@@ -30,9 +30,6 @@ import {
 } from "scichart";
 import { generateGridOfPoints, WaferLotData } from "./waferData";
 
-// import correlationLinePoints from "./correlationLinePoints";
-// import { getSubChartPositionIndexes } from "../../FeatureDemos/SubChartsAPI/helpers";
-
 const defectsObjectColors: Record<DefectKey, string> = {
     OK: appTheme.PaleTeal,
     S02: appTheme.VividBlue,

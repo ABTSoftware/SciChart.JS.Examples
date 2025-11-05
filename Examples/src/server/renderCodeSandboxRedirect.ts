@@ -9,7 +9,6 @@ import { getSandboxConfig } from "./services/sandbox";
 import { SandboxConfig, IFiles, getSourceFilesForPath, loadStyles } from "./services/sandbox/sandboxDependencyUtils";
 import { indexHtmlTemplate } from "./services/sandbox/vanillaTsConfig";
 import https from "https";
-import { parse } from "node-html-parser"; // Install: npm install node-html-parser
 import { ExampleSourceFile, SourceFilesVariant } from "../helpers/types/types";
 
 //  const parameters = getParameters({ files, template:  getCodeSandboxTemplate(framework) });
