@@ -11,7 +11,7 @@ export interface IExampleMetadata {
     /** Framework-specific data keyed by framework name (e.g., "react", "angular", "javascript") */
     frameworks: Record<string, IFrameworkData>; 
     /** Links to related documentation */
-    documentationLinks: IDocumentationLink[]; 
+    documentationLinks?: IDocumentationLink[]; 
     /** URL path for the example */
     path: string; 
     /** Meta keywords for SEO */
@@ -34,6 +34,16 @@ export interface IExampleMetadata {
     reactComponent?: string | null;
     /** Flag to indicate if the example is new (if new it will have a banner across the thumbnail) */
     isNew?: boolean; 
+    /**
+     * Optional alternative names for the chart type that will be displayed on the example page, under the description
+     * 
+     * @example "This type of plot is also known as a Spider Chart, Web Chart, Cobweb Chart, or Kiviat Chart"
+     *
+     * @example "This chart type is also known as a Scatter Plot, Dot Plot, or XY-Plot"
+     * 
+     * !! Markdown formatting supported
+     */
+    alsoKnownAs?: string;
 }
 
 export interface IDocumentationLink {

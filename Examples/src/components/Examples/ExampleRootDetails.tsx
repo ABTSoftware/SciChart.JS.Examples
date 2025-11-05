@@ -1,11 +1,10 @@
-import { useContext, FC, useState, useEffect } from "react";
+import { useContext, FC, useEffect } from "react";
 import SeoTags from "../SeoTags/SeoTags";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import { getExampleComponent } from "../AppRouter/getExampleComponent";
 import { ExampleStrings } from "./ExampleStrings";
 import commonClasses from "./styles/Examples.module.scss";
-import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";
 import { GalleryItem } from "../../helpers/types/types";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
@@ -20,11 +19,13 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
     const { examplePage, seeAlso } = props;
     const framework = useContext(FrameworkContext);
     const ExampleComponent = getExampleComponent(examplePage.id);
-    const seoTitleText =
-        getFrameworkContent(examplePage.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix;
+
+    const seoPrefixTitle = getFrameworkContent(examplePage.pageTitle, framework);
+    const seoTitleText = seoPrefixTitle + ExampleStrings.exampleGenericTitleSuffix(framework, seoPrefixTitle.length);
+    
     const seoDescription = examplePage ? getFrameworkContent(examplePage.metaDescription, framework) : "";
     const subtitleText = (examplePage ? examplePage.subtitle(framework) : "") as string;
-    const seoKeywords = examplePage ? examplePage.metaKeywords : "";
+    const seoKeywords = examplePage ? examplePage.metaKeywords : "chart, data, javascript, webassembly, scichart, react";
     const basePath = "https://www.scichart.com/demo";
     const exampleImage = examplePage ? examplePage.thumbnailImage : undefined;
     const exampleUrl = examplePage ? examplePage.path : "";
