@@ -50,6 +50,7 @@ export default [
     "../Examples/Charts2D/ChartAnnotations/TradeMarkers",
     "../Examples/Charts2D/CreateStockCharts/DepthChart",
     "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts",
+    "../Examples/Charts2D/CreateStockCharts/PaneManagement",
     "../Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts",
     "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts",
     "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart",

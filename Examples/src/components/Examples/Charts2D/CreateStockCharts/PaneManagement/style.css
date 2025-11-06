@@ -1,0 +1,206 @@
+.chartContainer {
+    width: 100%;
+    height: 100%;
+    position: "relative";
+}
+
+.header {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #333;
+    box-sizing: border-box;
+    gap: 15px;
+    position: absolute;
+    z-index: 1;
+}
+
+.header button {
+    color: #cccccc;
+}
+
+/* Container styling for grid layout */
+.chart-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100%;
+    width: 100%;
+}
+
+.grid-splitter {
+    /* background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd; */
+    cursor: row-resize;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial;
+    margin: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    height: 0px;
+    background: linear-gradient(to bottom, #666, #444, #666);
+    border-top: 1px dashed #777;
+    /* border-bottom: 1px dotted #222; */
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); */
+}
+
+.grid-splitter:hover {
+    background: linear-gradient(to bottom, #888, #666, #888);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-top: 1px solid #777;
+    border-bottom: 1px solid #222;
+    height: 10px;
+    transform: translate(0px, -5px);
+}
+
+.grid-splitter::before {
+    content: "⋯";
+    color: #bbb;
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+    line-height: 10px;
+    letter-spacing: 2px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.grid-splitter:active {
+    background: linear-gradient(to bottom, #999, #777, #999);
+    cursor: row-resize;
+}
+
+.grid-splitter:active::before {
+    color: #ddd;
+}
+
+/* #38435B  #293247 #2F3A4E*/
+
+.chart-close-button {
+    position: absolute;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    background: #38435b;
+    color: #ccc;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    z-index: 1000;
+    transition: all 0.2s ease;
+}
+
+.chart-close-button:hover {
+    background: #38435b;
+    color: white;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.chart-move-button {
+    position: absolute;
+    right: 32px;
+    width: 18px;
+    height: 18px;
+    background: #38435b;
+    color: #ccc;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    z-index: 1000;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.chart-move-button:hover {
+    background: #38435b;
+    color: white;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.chart-move-button:disabled {
+    /* background: #233044; */
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.chart-move-button:disabled:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ccc;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.chart-move-up {
+    right: 54px;
+}
+
+.chart-move-down {
+    right: 32px;
+}
+
+.chart-fullscreen-button {
+    position: absolute;
+    right: 76px;
+    width: 18px;
+    height: 18px;
+    background: #38435b;
+    color: #ccc;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    z-index: 1000;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.chart-fullscreen-button:hover {
+    background: #38435b;
+    color: white;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.chart-fullscreen-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.chart-fullscreen-button:disabled:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ccc;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Full-screen mode styles */
+.chart-container.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background: #1e1e1e;
+}
+
+/* Hide other charts when in full-screen mode */
+.chart-container.fullscreen .chart-pane:not(.fullscreen-active) {
+    display: none;
+}
+
+.chart-container.fullscreen .grid-splitter {
+    display: none !important;
+}
