@@ -243,15 +243,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         placement: ELegendPlacement.TopRight,
     });
 
-    // Map through all series and split them into the two legends
-    sciChartSurface.renderableSeries.asArray().forEach((rs, i) => {
-        if (i < TEMPERATURE_DATA.length / 2) {
-            leftLegend.includeSeries(rs, true);
-        } else {
-            rightLegend.includeSeries(rs, true);
-        }
-    });
-
     // Add modifiers
     sciChartSurface.chartModifiers.add(
         new PolarPanModifier(),
@@ -260,6 +251,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         leftLegend,
         rightLegend
     );
+
+    // Map through all series and split them into the two legends
+    sciChartSurface.renderableSeries.asArray().forEach((rs, i) => {
+        if (i < TEMPERATURE_DATA.length / 2) {
+            leftLegend.includeSeries(rs, true);
+        } else {
+            rightLegend.includeSeries(rs, true);
+        }
+    });
 
     return { sciChartSurface, wasmContext };
 };

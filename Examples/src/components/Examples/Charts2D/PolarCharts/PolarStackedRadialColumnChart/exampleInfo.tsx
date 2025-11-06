@@ -46,7 +46,7 @@ const metaData: IExampleMetadata =
         path: "polar-stacked-radial-column-chart",
         metaKeywords: "polar, stacked, radial, bar, column, chart, javascript, webgl, canvas",
         onWebsite: true,
-        filepath: "Charts2D/PolarCharts/PolarRadialColumnChart",
+        filepath: "Charts2D/PolarCharts/PolarStackedRadialColumnChart",
         thumbnailImage: "javascript-polar-stacked-radial-column-chart.jpg",
         sandboxConfig: {},
         markdownContent: null,

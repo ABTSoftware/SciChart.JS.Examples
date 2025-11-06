@@ -18,7 +18,7 @@ export interface IExampleMetadata {
     metaKeywords: string; 
     /** Whether the example is shown on the website */
     onWebsite: boolean; 
-    /** File path for the example */
+    /** File path for the example - helpful for showing the right folder source code in the demo */
     filepath: string; 
     /** The image that will appear in the example grid */
     thumbnailImage: string;
