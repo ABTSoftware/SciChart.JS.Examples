@@ -43,14 +43,14 @@
     overflow: hidden;
     box-sizing: border-box;
     height: 0px;
-    background: linear-gradient(to bottom, #666, #444, #666);
+    /* background: linear-gradient(to bottom, #666, #444, #666); */
     border-top: 1px dashed #777;
     /* border-bottom: 1px dotted #222; */
     /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); */
 }
 
 .grid-splitter:hover {
-    background: linear-gradient(to bottom, #888, #666, #888);
+    background: linear-gradient(to bottom, #5f6c87, #38435b, #5f6c87);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     border-top: 1px solid #777;
     border-bottom: 1px solid #222;
@@ -66,11 +66,11 @@
     display: block;
     line-height: 10px;
     letter-spacing: 2px;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    /* text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); */
 }
 
 .grid-splitter:active {
-    background: linear-gradient(to bottom, #999, #777, #999);
+    background: linear-gradient(to bottom, #38435b, #38435b, #38435b);
     cursor: row-resize;
 }
 
