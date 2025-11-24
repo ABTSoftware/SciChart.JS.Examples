@@ -217,6 +217,7 @@ The **Semiconductors Dashboard** showcases advanced SciChart.js capabilities —
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
+        isNew: true
     };
 //// End of computer generated metadata
 

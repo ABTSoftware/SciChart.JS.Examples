@@ -30,7 +30,8 @@
     "generateSitemap": "node build/generateSitemapScript.js",
     "prepare": "cd .. && husky install",
     "pretty-quick": "pretty-quick --staged",
-    "updateMarkdown": "node updateMarkdown.js"
+    "updateMarkdown": "node updateMarkdown.js",
+    "removeTrailingSlashes": "node remove-trailing-slashes.js"
   },
   "author": "",
   "license": "ISC",
