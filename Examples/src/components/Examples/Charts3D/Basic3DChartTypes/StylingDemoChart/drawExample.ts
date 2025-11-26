@@ -1,14 +1,17 @@
-import { Radix2FFT } from "../../../FeaturedApps/ScientificCharts/AudioAnalyzer/Radix2FFT";
 import {
     CameraController,
-    HeatmapLegend,
+    CubePointMarker3D,
+    CylinderPointMarker3D,
     MouseWheelZoomModifier3D,
+    NumberRange,
     NumericAxis3D,
     OrbitModifier3D,
     parseColorToUIntArgb,
-    PointLineRenderableSeries3D,
+    PyramidPointMarker3D,
     ResetCamera3DModifier,
+    ScatterRenderableSeries3D,
     SciChart3DSurface,
+    SpherePointMarker3D,
     TGradientStop,
     Vector3,
     XyzDataSeries3D,
@@ -20,37 +23,11 @@ type TMetadata = {
     pointScale: number;
 };
 
-// This function generates some spectral data for the waterfall chart
-const createSpectralData = (n: number) => {
-    const spectraSize = 1024;
-    const timeData = new Array(spectraSize);
-
-    // Generate some random data with spectral components
-    for (let i = 0; i < spectraSize; i++) {
-        timeData[i] =
-            4.0 * Math.sin((2 * Math.PI * i) / (20 + n * 0.2)) +
-            10 * Math.sin((2 * Math.PI * i) / (10 + n * 0.01)) +
-            20 * Math.sin((2 * Math.PI * i) / (5 + n * -0.002)) +
-            3.0 * Math.random();
-    }
-
-    // Do a fourier-transform on the data to get the frequency domain
-    const transform = new Radix2FFT(spectraSize);
-    const yValues = transform.run(timeData);
-    // .slice(0, 300); // We only want the first N points just to make the example cleaner
-
-    // This is just setting a floor to make the data cleaner for the example
-    for (let i = 0; i < yValues.length; i++) {
-        yValues[i] =
-            yValues[i] < -30 || yValues[i] > -5 ? (yValues[i] < -30 ? -30 : Math.random() * 9 - 6) : yValues[i];
-    }
-    yValues[0] = -30;
-
-    // we need x-values (sequential numbers) for the frequency data
-    const xValues = yValues.map((value, index) => index);
-
-    return { xValues, yValues };
-};
+import {
+    fetchPopulationDataData,
+    TMappedPopulationData,
+    TPopulationMetadata,
+} from "../../../ExampleData/ExampleDataProvider";
 
 export const fonts = [
     { name: "arial", url: "" },
@@ -103,19 +80,33 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
 
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Frequency (Hz) !!!!",
+        axisTitle: "Life Expectancy",
+        visibleRange: new NumberRange(30, 85),
+        labelPrecision: 0,
         drawMinorGridLines: false,
         drawMajorGridLines: false,
         tickLabelsOffset: 20,
-        axisTitleStyle: {
-            // fontFamily: "allura", // works
-        },
+    });
+    sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
+        axisTitle: "Gdp Per Capita",
+        visibleRange: new NumberRange(0, 50000),
+        labelPrecision: 0,
+        drawMinorGridLines: false,
+        drawMajorGridLines: false,
+        tickLabelsOffset: 20,
+    });
+    sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
+        axisTitle: "Year",
+        visibleRange: new NumberRange(1950, 2010),
+        labelPrecision: 0,
+        drawMinorGridLines: false,
+        drawMajorGridLines: false,
+        tickLabelsOffset: 20,
     });
 
     sciChart3DSurface.xAxis.backgroundColor = "red";
     // sciChart3DSurface.xAxis.planeBorderColor = "red";
     // sciChart3DSurface.xAxis.planeBorderThickness = 20;
-
 
     // title offset
 
@@ -131,20 +122,31 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChart3DSurface.zAxis.labelStyle.fontSize = value;
     };
 
-    sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Power (dB)",
-        drawMinorGridLines: false,
-        drawMajorGridLines: false,
-        tickLabelsOffset: 20,
-    });
-    sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Time (s)",
-        drawMinorGridLines: false,
-        drawMajorGridLines: false,
-        tickLabelsOffset: 20,
+    const renderableSeries = new ScatterRenderableSeries3D(wasmContext, {
+        // pointMarker: new CylinderPointMarker3D(wasmContext, { size: 10 }),
+        opacity: 0.9,
+        dataSeries: new XyzDataSeries3D(wasmContext),
     });
 
-    // ??
+    const setPointMarker = (pointMarker: string) => {
+        if (pointMarker === "CylinderPointMarker3D") {
+            renderableSeries.pointMarker = new CylinderPointMarker3D(wasmContext, { size: 10 });
+        } else if (pointMarker === "CubePointMarker3D") {
+            renderableSeries.pointMarker = new CubePointMarker3D(wasmContext, { size: 10 });
+        } else if (pointMarker === "PyramidPointMarker3D") {
+            renderableSeries.pointMarker = new PyramidPointMarker3D(wasmContext, { size: 10 });
+        } else if (pointMarker === "SpherePointMarker3D") {
+            renderableSeries.pointMarker = new SpherePointMarker3D(wasmContext, { size: 10 });
+        }
+    };
+
+    setPointMarker("SpherePointMarker3D");
+
+    sciChart3DSurface.renderableSeries.add(renderableSeries);
+
+    const { lifeExpectancy, gdpPerCapita, year, metadata } = await fetchPopulationDataData();
+
+    (renderableSeries.dataSeries as XyzDataSeries3D).appendRange(lifeExpectancy, gdpPerCapita, year, metadata);
 
     const updateFont = (font: string) => {
         sciChart3DSurface.xAxis.labelStyle.fontFamily = font;
@@ -180,43 +182,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChart3DSurface.zAxis.drawMajorGridLines = enable;
     };
 
-    
-
-    for (let i = 0; i < 50; i++) {
-        // Create some data for the example
-        // xValues are frequency values (Hz)
-        // yValues are heights or magnitude
-        const { xValues, yValues } = createSpectralData(i);
-        // zValues are the 3rd dimension where we will spread out our series in time
-        const zValues = Array.from({ length: xValues.length }).map((_) => i * 2);
-
-        // Metadata in scichart.js 3D controls color 3D line series. It can also hold additional optional properties
-        // Below we format the data for yValues into metadata colour coded and scaled depending on the value
-        const metadata = formatMetadata(yValues, [
-            { offset: 1, color: appTheme.VividPink },
-            { offset: 0.9, color: appTheme.VividOrange },
-            { offset: 0.7, color: appTheme.MutedRed },
-            { offset: 0.5, color: appTheme.VividGreen },
-            { offset: 0.3, color: appTheme.VividSkyBlue },
-            { offset: 0.2, color: appTheme.Indigo },
-            { offset: 0, color: appTheme.DarkIndigo },
-        ]);
-
-        // Add a 3D Point-Line chart
-        sciChart3DSurface.renderableSeries.add(
-            new PointLineRenderableSeries3D(wasmContext, {
-                dataSeries: new XyzDataSeries3D(wasmContext, {
-                    xValues,
-                    yValues,
-                    zValues,
-                    metadata,
-                }),
-                strokeThickness: 3,
-                opacity: 0.5,
-            })
-        );
-    }
-
     const controls = {
         setTitleOffset,
         setCamera,
@@ -224,6 +189,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         enableGridBands,
         setAxisLabelFontSize,
         enableMajorGridLines,
+        setPointMarker,
     };
 
     return { sciChartSurface: sciChart3DSurface, wasmContext, controls };
