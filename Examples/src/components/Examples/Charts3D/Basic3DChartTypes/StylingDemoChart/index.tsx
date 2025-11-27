@@ -58,7 +58,6 @@ export default function StylingDemoChart() {
     const [labelFontSize, setLabelFontSize] = useState(20);
     const [font, setFont] = useState("arial");
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
-    const [pointMarker, setPointMarker] = useState("SpherePointMarker3D");
 
     const handleClickOpen = () => {
         setIsDialogOpen(true);
@@ -85,14 +84,6 @@ export default function StylingDemoChart() {
         if (newValue !== font) {
             setFont(newValue);
             controlsRef.current.updateFont(newValue);
-        }
-    };
-
-    const handlePointMarkerChange = (e: { target: { value: string } }) => {
-        const newValue = e.target.value as string;
-        if (newValue !== pointMarker) {
-            setPointMarker(newValue);
-            controlsRef.current.setPointMarker(newValue);
         }
     };
 
@@ -157,28 +148,6 @@ export default function StylingDemoChart() {
                         </Select>
                     </FormControl>
                 </ListItem>
-                <ListItem>
-                    <FormControl variant="filled" sx={{ width: "250px", color: "gray" }}>
-                        <InputLabel id="pointMarker-label" color="primary" sx={{ color: "#FFFFFF" }}>
-                            Change Point Marker
-                        </InputLabel>
-                        <Select
-                            labelId="pointMarker-label"
-                            id="pointMarker"
-                            value={pointMarker}
-                            onChange={handlePointMarkerChange}
-                            sx={{ color: "#FFFFFF" }}
-                            size="small"
-                        >
-                            {pointMarkers.map((el) => (
-                                <MenuItem key={el} value={el}>
-                                    {el}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                </ListItem>
-
                 <ListItem>
                     <FormControlLabel
                         sx={{ color: "white" }}
@@ -260,26 +229,6 @@ export default function StylingDemoChart() {
                                 {fonts.map((el) => (
                                     <MenuItem key={el.name} value={el.name}>
                                         {el.name.toUpperCase()}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-
-                        <FormControl variant="filled" sx={{ width: "100px", color: "gray" }}>
-                            <InputLabel id="pointMarker-label" color="primary" sx={{ color: "#FFFFFF" }}>
-                                Change Point Marker
-                            </InputLabel>
-                            <Select
-                                labelId="pointMarker-label"
-                                id="pointMarker"
-                                value={pointMarker}
-                                onChange={handlePointMarkerChange}
-                                sx={{ color: "#FFFFFF" }}
-                                size="small"
-                            >
-                                {pointMarkers.map((el) => (
-                                    <MenuItem key={el} value={el}>
-                                        {el}
                                     </MenuItem>
                                 ))}
                             </Select>
