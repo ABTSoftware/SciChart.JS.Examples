@@ -1,21 +1,32 @@
 import {
+    BasePointMarker3D,
     CameraController,
     CubePointMarker3D,
     CylinderPointMarker3D,
+    EllipsePointMarker3D,
+    IBasePointMarker3DOptions,
     MouseWheelZoomModifier3D,
     NumberRange,
     NumericAxis3D,
     OrbitModifier3D,
     parseColorToUIntArgb,
+    PixelPointMarker3D,
     PyramidPointMarker3D,
+    QuadPointMarker,
     ResetCamera3DModifier,
     ScatterRenderableSeries3D,
     SciChart3DSurface,
+    SeriesInfo3D,
     SpherePointMarker3D,
     TGradientStop,
+    TooltipModifier3D,
+    TooltipSvgAnnotation3D,
+    TrianglePointMarker3D,
     Vector3,
     XyzDataSeries3D,
+    XyzSeriesInfo3D,
 } from "scichart";
+
 import { appTheme } from "../../../theme";
 
 type TMetadata = {
@@ -28,6 +39,97 @@ import {
     TMappedPopulationData,
     TPopulationMetadata,
 } from "../../../ExampleData/ExampleDataProvider";
+import {
+    TSRTexture,
+    SCRTFloatVector,
+    TSRVector4,
+    eTSRTextureFormat,
+    IntVector,
+    SCRTSceneWorld,
+    eSCRTMesh,
+    TSRIndexedMesh,
+    eSCRTTexture,
+    SCRTSelectionInfo,
+    SCRTWaterMarkProperties,
+    SCRTSampleChartInterface,
+    SCRTCopyToDestinationInterface,
+    SCRTFileLoadCallbackInterface,
+    UIntVector,
+    FloatVector,
+    SCRTDoubleVector,
+    DoubleVector,
+    StringVector,
+    LinearCoordinateCalculatorDouble,
+    FlippedLinearCoordinateCalculatorDouble,
+    LinearCoordinateCalculatorSingle,
+    FlippedLinearCoordinateCalculatorSingle,
+    CategoryCoordinateCalculatorDouble,
+    FlippedCategoryCoordinateCalculatorDouble,
+    LogarithmicCoordinateCalculator,
+    FlippedLogarithmicCoordinateCalculator,
+    SCRTDoubleRange,
+    SCRTLicenseType,
+    WStringVector,
+    TSRVector3,
+    PitchYaw,
+    SCRTTickStyle,
+    eSCRTTextAlignement,
+    SCRTTextStyle,
+    SCRTAxisDescriptor,
+    SCRTSceneEntityWrapper,
+    SCRTSceneEntity,
+    TSRCamera,
+    TSRVector2,
+    SCRTXyzGizmoEntityWrapper,
+    SCRTXyzGizmoEntity,
+    eSCRT_POINT_MARKER_TYPE,
+    SCRTPoint3DSceneEntityParams,
+    SCRTPoint3DSceneEntity,
+    SCRTPoint3DSceneEntityWrapper,
+    SCRTColumnsSceneEntityParams,
+    SCRTColumnsSceneEntity,
+    SCRTColumnsSceneEntityWrapper,
+    SCRTPointLines3DSceneEntityParams,
+    SCRTPointLine3DSceneEntity,
+    SCRTPointLine3DSceneEntityWrapper,
+    SCRTAxisRange,
+    eSCRTGridDrawingFeatures,
+    eSCRTGridMeshResolution,
+    SCRTGridDrawingProperties,
+    SCRTGridMeshEntity,
+    SCRTGridMeshEntityWrapper,
+    eAxisPlaneDrawLabelsMode,
+    eAxisPlaneVisibilityMode,
+    SCRTAxisCubeDescriptor,
+    SCRTAxisCubeEntity,
+    SCRTAxisCubeEntityWrapper,
+    SCRTMesh,
+    SCRTLinesMesh,
+    SCRTFrameRenderer3D,
+    eTSRPlatform,
+    eTSRMetaDataType,
+    eVariableUsage,
+    eTSRRendererType,
+    eTSRCameraProjectionMode,
+    TSRShadowPartitionMode,
+    TSRShadowCascadeSelectionModes,
+    TSRShadowMode,
+    TSRShadowMapSize,
+    TSRShadowDepthBufferFormat,
+    TSRShadowFixedFilterSize,
+    TSRShadowMSAA,
+    TSRShadowSMFormat,
+    TSRShadowAnisotropy,
+    eTSRTextAlignMode,
+    TSRTextLineBounds,
+    TSRTextBounds,
+    SCRTFontKey,
+    SCRTSampleChartInterfaceWrapper,
+    SCRTCopyToDestinationInterfaceWrapper,
+    SCRTFileLoadCallbackInterfaceWrapper,
+    SCRTSurfaceDestinationWrapper,
+    SCRTSurfaceDestination,
+} from "scichart/types/TSciChart3D";
 
 export const fonts = [
     { name: "arial", url: "" },
@@ -81,7 +183,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Life Expectancy",
-        visibleRange: new NumberRange(30, 85),
+        visibleRange: new NumberRange(25, 110),
         labelPrecision: 0,
         drawMinorGridLines: false,
         drawMajorGridLines: false,
@@ -97,7 +199,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Year",
-        visibleRange: new NumberRange(1950, 2010),
+        visibleRange: new NumberRange(1965, 2010),
         labelPrecision: 0,
         drawMinorGridLines: false,
         drawMajorGridLines: false,
@@ -122,10 +224,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChart3DSurface.zAxis.labelStyle.fontSize = value;
     };
 
+
     const renderableSeries = new ScatterRenderableSeries3D(wasmContext, {
         // pointMarker: new CylinderPointMarker3D(wasmContext, { size: 10 }),
         opacity: 0.9,
         dataSeries: new XyzDataSeries3D(wasmContext),
+        pointMarker: new SpherePointMarker3D(wasmContext, { size: 10 })
     });
 
     const setPointMarker = (pointMarker: string) => {
@@ -140,11 +244,47 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }
     };
 
-    setPointMarker("SpherePointMarker3D");
+    // // Set the custom dodecahedron point marker as default
+    // setPointMarker("SpherePointMarker3D");
 
     sciChart3DSurface.renderableSeries.add(renderableSeries);
 
-    const { lifeExpectancy, gdpPerCapita, year, metadata } = await fetchPopulationDataData();
+    const data = await fetchPopulationDataData();
+
+    // const { lifeExpectancy, gdpPerCapita, year, metadata } = data;
+
+    const lifeExpectancy = [30, 40, 50, 60, 70, 80, 90, 100];
+
+    const gdpPerCapita = [5000, 10_000, 15_000, 20_000, 25_000, 30_000, 35_000, 40_000];
+
+    const year = [1972, 1977, 1982, 1987, 1992, 1997, 2002, 2007];
+
+    const markers = [
+        new SpherePointMarker3D(wasmContext, { size: 10 }),
+        new CubePointMarker3D(wasmContext, { size: 10 }),
+        new CylinderPointMarker3D(wasmContext, { size: 10 }),
+        new PyramidPointMarker3D(wasmContext, { size: 10 }),
+    ];
+
+    const metadata = [
+        { country: "Zimbabwe", pointScale: 1, vertexColor: 4284988847, color: "#67BDAF" },
+        { country: "Zimbabwe", pointScale: 1, vertexColor: 4292639081, color: "#DC7969" },
+        { country: "Zimbabwe", pointScale: 1, vertexColor: 4292639081, color: "#DC7969" },
+        { country: "Zimbabwe", pointScale: 1, vertexColor: 4292639081, color: "#DC7969" },
+        { country: "Zimbabwe", pointScale: 1, vertexColor: 4292639081, color: "#DC7969" },
+        { country: "Zimbabwe", pointScale: 1, vertexColor: 4292639081, color: "#DC7969" },
+        { country: "Zimbabwe", pointScale: 1, vertexColor: 4292639081, color: "#DC7969" },
+        { country: "Zimbabwe", pointScale: 1, vertexColor: 4284988847, color: "#67BDAF" },
+    ]
+    // .map((item, index) => ({
+    //     ...item,
+    //     markerType: markers[index % 4], // Cycle through 4 different marker types
+    //     pointScale: 1,
+    //     vertexColor: item.vertexColor,
+    // }));
+
+
+    console.log(JSON.stringify(metadata.slice(-10)));
 
     (renderableSeries.dataSeries as XyzDataSeries3D).appendRange(lifeExpectancy, gdpPerCapita, year, metadata);
 
@@ -182,6 +322,29 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChart3DSurface.zAxis.drawMajorGridLines = enable;
     };
 
+    const tooltipModifier = new TooltipModifier3D({ tooltipLegendOffsetX: 10, tooltipLegendOffsetY: 10 });
+    tooltipModifier.tooltipDataTemplate = (seriesInfo: SeriesInfo3D, svgAnnotation: TooltipSvgAnnotation3D) => {
+        const valuesWithLabels: string[] = [];
+        if (seriesInfo && seriesInfo.isHit) {
+            const md = (seriesInfo as XyzSeriesInfo3D).pointMetadata as TPopulationMetadata;
+            valuesWithLabels.push(md.country);
+            valuesWithLabels.push(`Life Expectancy: ${seriesInfo.xValue}`);
+            valuesWithLabels.push(`GDP Per Capita: ${seriesInfo.yValue}`);
+            valuesWithLabels.push(`Year: ${seriesInfo.zValue}`);
+        }
+        return valuesWithLabels;
+    };
+    const defaultTemplate = tooltipModifier.tooltipSvgTemplate;
+    tooltipModifier.tooltipSvgTemplate = (seriesInfo: SeriesInfo3D, svgAnnotation: TooltipSvgAnnotation3D) => {
+        if (seriesInfo) {
+            const md = (seriesInfo as XyzSeriesInfo3D).pointMetadata as TPopulationMetadata;
+            svgAnnotation.containerBackground = md.color;
+            svgAnnotation.textStroke = "white";
+        }
+        return defaultTemplate(seriesInfo, svgAnnotation);
+    };
+    sciChart3DSurface.chartModifiers.add(tooltipModifier);
+
     const controls = {
         setTitleOffset,
         setCamera,
@@ -194,26 +357,3 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     return { sciChartSurface: sciChart3DSurface, wasmContext, controls };
 };
-
-function formatMetadata(valuesArray: number[], gradientStops: TGradientStop[]): TMetadata[] {
-    const low = Math.min(...valuesArray);
-    const high = Math.max(...valuesArray);
-
-    const sGradientStops = gradientStops.sort((a, b) => (a.offset > b.offset ? 1 : -1));
-    // Compute a scaling factor from 0...1 where values in valuesArray at the lower end correspond to 0 and
-    // values at the higher end correspond to 1
-    return valuesArray.map((x) => {
-        // scale from 0..1 for the values
-        const valueScale = (x - low) / (high - low);
-        // Find the nearest gradient stop index
-        const index = sGradientStops.findIndex((gs) => gs.offset >= valueScale);
-        // const nextIndex = Math.min(index + 1, sGradientStops.length - 1);
-        // work out the colour of this point
-        const color1 = parseColorToUIntArgb(sGradientStops[index].color);
-        // const color2 = parseColorToUIntArgb(sGradientStops[nextIndex].color);
-        // const ratio = (valueScale - sGradientStops[index].offset) / (sGradientStops[nextIndex].offset - sGradientStops[index].offset)
-        // const colorScale = uintArgbColorLerp(color1, color2, ratio)
-        // console.log(`valueScale ${valueScale} low ${sGradientStops[index].offset} high ${sGradientStops[nextIndex].offset} ratio ${ratio}`);
-        return { pointScale: 0.1 + valueScale, vertexColor: color1 };
-    });
-}

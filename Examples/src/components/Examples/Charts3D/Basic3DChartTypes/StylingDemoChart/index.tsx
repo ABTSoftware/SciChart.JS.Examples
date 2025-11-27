@@ -200,7 +200,7 @@ export default function StylingDemoChart() {
                         Axis Font Size: {labelFontSize}
                     </Typography>
                     <Slider
-                        sx={{ width: "200px" }}
+                        // sx={{ width: "150px" }}
                         id="labelFontSize"
                         onChange={handleLabelFontSize}
                         step={1}
@@ -215,7 +215,7 @@ export default function StylingDemoChart() {
                         Axis Title Offset: {xAxisTitleOffset}
                     </Typography>
                     <Slider
-                        sx={{ width: "200px" }}
+                        // sx={{ width: "150px" }}
                         id="xAxisTitleOffset"
                         onChange={handleXAxisTitleOffset}
                         step={1}
@@ -301,7 +301,7 @@ export default function StylingDemoChart() {
                             labelPlacement="start"
                         />
 
-                        <div style={{ minWidth: 150 }}>
+                        <div style={{ minWidth: 100 }}>
                             <Typography variant="body1">Axis Font Size: {labelFontSize}</Typography>
                             <Slider
                                 id="labelFontSize"
@@ -313,7 +313,7 @@ export default function StylingDemoChart() {
                                 valueLabelDisplay="off"
                             />
                         </div>
-                        <div style={{ minWidth: 150, padding: "10px 0" }}>
+                        <div style={{ minWidth: 100, padding: "10px 0" }}>
                             <Typography variant="body1">Axis Title Offset: {xAxisTitleOffset}</Typography>
                             <Slider
                                 id="xAxisTitleOffset"
