@@ -18,6 +18,9 @@ import {
     EPerformanceMarkType,
     buildSeries,
     ECoordinateMode,
+    SciChartSubSurface,
+    I2DSubSurfaceOptions,
+    EAutoRange,
 } from "scichart";
 
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
@@ -62,177 +65,142 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement);
 
+    // Add main axes to the surface for the overview to reference
+    const mainXAxis = new NumericAxis(wasmContext, {
+        id: "mainXAxis",
+        isVisible: false, // Hidden since subcharts have their own axes
+        autoRange: EAutoRange.Always
+    });
+    const mainYAxis = new NumericAxis(wasmContext, {
+        id: "mainYAxis",
+        isVisible: false, // Hidden since subcharts have their own axes
+        autoRange: EAutoRange.Always
+    });
+    
+    sciChartSurface.xAxes.add(mainXAxis);
+    sciChartSurface.yAxes.add(mainYAxis);
 
-  // Optional: modifiers that act on the parent and subcharts
-  sciChartSurface.chartModifiers.add(
-    new ZoomPanModifier(),
-    new MouseWheelZoomModifier(),
-    new ZoomExtentsModifier()
-  );
+    // Helper to create some sample data
+    const createLineData = (phase: number) => {
+        const xValues: number[] = [];
+        const yValues: number[] = [];
+        for (let i = 0; i < 100; i++) {
+            const x = i;
+            const y = Math.sin(i * 0.1 + phase);
+            xValues.push(x);
+            yValues.push(y);
+        }
+        return { xValues, yValues };
+    };
 
-  // Helper to create some sample data
-  const createLineData = (phase: number) => {
-    const xValues: number[] = [];
-    const yValues: number[] = [];
-    for (let i = 0; i < 100; i++) {
-      const x = i;
-      const y = Math.sin((i * 0.1) + phase);
-      xValues.push(x);
-      yValues.push(y);
+    // Config for N vertically stacked subcharts (panes)
+    const subChartCount = 3;
+
+    // Store all data series for the overview
+    const allDataSeries: XyDataSeries[] = [];
+
+    for (let i = 0; i < subChartCount; i++) {
+        // Define where this subchart sits in parent surface coords
+        // Here: split parent viewport into equal-height rows, leaving space for overview
+        const rect = new Rect(0, (i / subChartCount) * 0.9, 1, (1 / subChartCount) * 0.9);
+
+        const subChartOptions: I2DSubSurfaceOptions = {
+            id: `subChart-${i}`,
+            position: rect,
+            coordinateMode: ESubSurfacePositionCoordinateMode.Relative,
+        };
+
+        const subChart = SciChartSubSurface.createSubSurface(sciChartSurface, subChartOptions);
+
+        // Each subchart gets its own axes
+        const subXAxis = new NumericAxis(wasmContext);
+        const subYAxis = new NumericAxis(wasmContext, { axisTitle: `Pane ${i + 1}` });
+
+        subChart.xAxes.add(subXAxis);
+        subChart.yAxes.add(subYAxis);
+
+        const data = createLineData(i * 0.7);
+
+        const dataSeries = new XyDataSeries(wasmContext, {
+            xValues: data.xValues,
+            yValues: data.yValues,
+        });
+
+        const lineSeries = new FastLineRenderableSeries(wasmContext, {
+            dataSeries,
+            strokeThickness: 2,
+        });
+
+        subChart.renderableSeries.add(lineSeries);
+
+        subChart.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier(), new ZoomExtentsModifier());
+
+        // Fit each subchart to its data
+        subChart.zoomExtents();
+
+        // Store data series for overview
+        allDataSeries.push(dataSeries);
+
+        // Also add a series to the main surface for the overview to pick up
+        const mainSeries = new FastLineRenderableSeries(wasmContext, {
+            dataSeries,
+            strokeThickness: 1,
+            opacity: 0, // Make it invisible on main surface
+            xAxisId: "mainXAxis",
+            yAxisId: "mainYAxis"
+        });
+        sciChartSurface.renderableSeries.add(mainSeries);
     }
-    return { xValues, yValues };
-  };
 
-  // Common X range for all panes
-  const xAxis = new NumericAxis(wasmContext);
-  sciChartSurface.xAxes.add(xAxis);
-
-  // Config for N vertically stacked subcharts (panes)
-  const subChartCount = 3;
-
-  for (let i = 0; i < subChartCount; i++) {
-    // Define where this subchart sits in parent surface coords
-    // Here: split parent viewport into equal-height rows
-    const rect = new Rect(
-      0,
-      (i / subChartCount),
-      1,
-      (1 / subChartCount)
+    // Add overview modifier with proper axis configuration
+    sciChartSurface.chartModifiers.add(
+        new OverviewSubSurfaceModifier({
+            id: "overviewSubSurface",
+            mainAxisId: "mainXAxis", // Reference the main X axis
+            secondaryAxisId: "mainYAxis", // Reference the main Y axis
+            coordinateMode: ESubSurfacePositionCoordinateMode.Relative,
+            position: new Rect(0, 0.9, 1, 0.1),
+            isTransparent: false,
+            overviewXAxisOptions: {
+                id: "overviewXAxis",
+                isVisible: true,
+                isInnerAxis: false,
+                drawMajorBands: false,
+                drawMajorGridLines: false,
+                drawMinorGridLines: false,
+                majorTickLineStyle: {
+                    color: "white",
+                    tickSize: 8,
+                    strokeThickness: 1,
+                },
+                labelStyle: {
+                    color: "white",
+                    fontSize: 8,
+                },
+            },
+            overviewYAxisOptions: {
+                id: "overviewYAxis",
+                isVisible: false,
+                growBy: new NumberRange(0.1, 0.1),
+            },
+            transformRenderableSeries: (rendSeries: IRenderableSeries) => {
+                // Only transform series that are on the main axes (our invisible overview series)
+                if (rendSeries.xAxisId !== "mainXAxis" || rendSeries.yAxisId !== "mainYAxis") {
+                    return undefined;
+                }
+                
+                // Clone the series for the overview
+                const [overviewSeries] = buildSeries(wasmContext, rendSeries.toJSON(true));
+                overviewSeries.dataSeries.delete();
+                overviewSeries.dataSeries = rendSeries.dataSeries;
+                overviewSeries.xAxisId = "overviewXAxis";
+                overviewSeries.yAxisId = "overviewYAxis";
+                overviewSeries.strokeThickness = 2;
+                overviewSeries.opacity = 0.8;
+                return overviewSeries;
+            },
+        })
     );
-
-    const subChart = sciChartSurface.subCharts({
-      viewport: {
-        xCoord: rect.x,
-        yCoord: rect.y,
-        width: rect.width,
-        height: rect.height,
-        coordinateMode: ECoordinateMode.Relative  // 0..1 relative to parent
-      }
-    });
-
-    // Each subchart gets its own Y axis, but can reuse parent X axis if desired
-    const subXAxis = new NumericAxis(wasmContext);
-    const subYAxis = new NumericAxis(wasmContext, { axisTitle: `Pane ${i + 1}` });
-
-    subChart.xAxes.add(subXAxis);
-    subChart.yAxes.add(subYAxis);
-
-    const data = createLineData(i * 0.7);
-
-    const dataSeries = new XyDataSeries(wasmContext, {
-      xValues: data.xValues,
-      yValues: data.yValues
-    });
-
-    const lineSeries = new FastLineRenderableSeries(wasmContext, {
-      dataSeries,
-      strokeThickness: 2,
-    });
-
-    subChart.renderableSeries.add(lineSeries);
-  }
-
-  // Fit everything to view
-  sciChartSurface.zoomExtents();
-
-
-    // // Create an XAxis and YAxis
-    // sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    // sciChartSurface.yAxes.add(
-    //     new NumericAxis(wasmContext, {
-    //         axisAlignment: EAxisAlignment.Left,
-    //         growBy: new NumberRange(0.05, 0.05),
-    //     })
-    // );
-
-    // const POINTS = 1000;
-    // for (let i = 0; i < 10; i++) {
-    //     // Create arrays of x, y values (just arrays of numbers)
-    //     const { xValues, yValues } = new RandomWalkGenerator().getRandomWalkSeries(POINTS);
-
-    //     // Create a Series and add to the chart
-    //     sciChartSurface.renderableSeries.add(
-    //         new FastLineRenderableSeries(wasmContext, {
-    //             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: `Series ${i + 1}` }),
-    //             stroke: AUTO_COLOR,
-    //             strokeThickness: 3,
-    //             animation: new SweepAnimation({ duration: 500, fadeEffect: true }),
-    //         })
-    //     );
-    // }
-
-    // // Optional: Add some interactivity to the chart
-    // sciChartSurface.chartModifiers.add(
-    //     new ZoomExtentsModifier({ modifierGroup: "chart" }),
-    //     new MouseWheelZoomModifier({ modifierGroup: "chart" }),
-    //     new ZoomPanModifier({ modifierGroup: "chart" }),
-    //     new RolloverModifier({ modifierGroup: "chart" }),
-    //     // new OverviewSubSurfaceModifier({
-    //     //     id: "overviewSubSurface",
-    //     //     coordinateMode: [ESubSurfacePositionCoordinateMode.Relative, ESubSurfacePositionCoordinateMode.Relative],
-    //     //     position: new Rect(0, 0.9, 1, 0.1),
-    //     //     isTransparent: false,
-    //     //     overviewXAxisOptions: {
-    //     //         id: "overviewXAxis",
-    //     //         // axisTitle: "Recording Timelapse (HHMMSSms)",
-    //     //         isVisible: true,
-    //     //         isInnerAxis: false,
-    //     //         drawMajorBands: false,
-    //     //         drawMajorGridLines: false,
-    //     //         drawMinorGridLines: false,
-    //     //         majorTickLineStyle: {
-    //     //             color: "white",
-    //     //             tickSize: 8,
-    //     //             strokeThickness: 1,
-    //     //         },
-    //     //         labelStyle: {
-    //     //             color: "white",
-    //     //             fontSize: 8,
-    //     //         },
-    //     //         labelProvider: new CustomLabelProvider(),
-    //     //     },
-    //     //     overviewYAxisOptions: {
-    //     //         id: "overviewYAxis",
-    //     //         flippedCoordinates: true,
-    //     //         growBy: new NumberRange(0.1, 0.1),
-    //     //     },
-    //     //     transformRenderableSeries: (rendSeries: IRenderableSeries) => {
-    //     //         const seriesType = rendSeries.id.split("-").shift() as EPerformanceMarkType;
-    //     //         console.log("seriesType", seriesType);
-    //     //         // if (
-    //     //         //     !summaryMarkTypes.includes(seriesType) &&
-    //     //         //     !eventMarkTypes.includes(seriesType) &&
-    //     //         //     !customOperationMarkTypes.includes(seriesType) &&
-    //     //         //     !customEventMarkTypes.includes(seriesType)
-    //     //         // ) {
-    //     //         //     // we need only top level and custom marks in overview
-    //     //         //     return undefined;
-    //     //         // }
-
-    //     //         // clone the series using builder api
-    //     //         const [overviewSeries] = buildSeries(wasmContext, rendSeries.toJSON(true));
-    //     //         overviewSeries.dataSeries.delete();
-    //     //         overviewSeries.dataSeries = rendSeries.dataSeries;
-    //     //         overviewSeries.xAxisId = "overviewXAxis";
-    //     //         overviewSeries.yAxisId = "overviewYAxis";
-    //     //         overviewSeries.strokeThickness = 5;
-    //     //         overviewSeries.opacity = 1;
-    //     //         overviewSeries.pointMarker.height = 5;
-    //     //         overviewSeries.pointMarker = getIsEventMarkType(seriesType) ? overviewSeries.pointMarker : undefined;
-    //     //         return overviewSeries;
-    //     //     },
-    //     // })
-    // );
-
-    // const glm = new GridLayoutModifier();
-    // sciChartSurface.chartModifiers.add(glm);
-    // glm.isGrid = true;
-
-    // sciChartSurface.zoomExtents();
-
-    // const setIsGridLayoutMode = (value: boolean) => {
-    //     glm.isGrid = value;
-    // };
 
     return { wasmContext, sciChartSurface };
 };
