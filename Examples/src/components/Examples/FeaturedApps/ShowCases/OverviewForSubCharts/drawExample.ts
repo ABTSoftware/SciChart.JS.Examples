@@ -24,13 +24,9 @@ import {
     OverviewRangeSelectionModifier,
 } from "scichart";
 
-import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
-import { GridLayoutModifier } from "./GridLayoutModifier";
 import { OverviewSubSurfaceModifier } from "./OverviewSubSurfaceModifier";
-import { summaryMarkTypes } from "./markTypeCategories";
 
 export type TMarkType = EPerformanceMarkType | string;
-const getIsEventMarkType = (markType: TMarkType) => !markType.endsWith("End") && !markType.endsWith("Start");
 
 const formatUnixDateToHumanStringHHMMSSms = (timestamp: DOMHighResTimeStamp): string => {
     const date = new Date(timestamp); // notice there's no multiplication by 1000 here. The data is expected to be in ms
@@ -48,20 +44,6 @@ const formatUnixDateToHumanStringHHMMSSms = (timestamp: DOMHighResTimeStamp): st
     return `${hoursString}:${minutesString}:${secondsString}:${millisecondsString}`;
 };
 
-class CustomLabelProvider extends NumericLabelProvider {
-    // protected customFormatLabelProperty: TFormatLabelFn = (dataValueInSeconds: number) =>
-    //     this.formatCursorLabelProperty(dataValueInSeconds / 1000);
-    // protected customFormatCursorLabelProperty: TFormatLabelFn = (dataValueInSeconds: number) =>
-    //     this.formatCursorLabelProperty(dataValueInSeconds / 1000);
-
-    public override get formatLabel() {
-        return formatUnixDateToHumanStringHHMMSSms;
-    }
-    public override get formatCursorLabel() {
-        return formatUnixDateToHumanStringHHMMSSms;
-    }
-}
-
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement);
@@ -70,14 +52,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const mainXAxis = new NumericAxis(wasmContext, {
         id: "mainXAxis",
         isVisible: false, // Hidden since subcharts have their own axes
-        autoRange: EAutoRange.Always
+        autoRange: EAutoRange.Always,
     });
     const mainYAxis = new NumericAxis(wasmContext, {
         id: "mainYAxis",
         isVisible: false, // Hidden since subcharts have their own axes
-        autoRange: EAutoRange.Always
+        autoRange: EAutoRange.Always,
     });
-    
+
     sciChartSurface.xAxes.add(mainXAxis);
     sciChartSurface.yAxes.add(mainYAxis);
 
@@ -155,7 +137,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 strokeThickness: 1,
                 opacity: 0, // Make it invisible on main surface
                 xAxisId: "mainXAxis",
-                yAxisId: "mainYAxis"
+                yAxisId: "mainYAxis",
             });
             sciChartSurface.renderableSeries.add(mainSeries);
         }
@@ -179,11 +161,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         autoRange: EAutoRange.Always,
         axisTitle: "Overview - Controls Pane 3",
         labelStyle: {
-            color: "#50C7E3",
+            color: "#ffffff", // "#50C7E3"
             fontSize: 10,
         },
         majorTickLineStyle: {
-            color: "#50C7E3",
+            color: "#ffffff",
             tickSize: 6,
             strokeThickness: 1,
         },
@@ -195,7 +177,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         autoRange: EAutoRange.Always,
         growBy: new NumberRange(0.1, 0.1),
         labelStyle: {
-            color: "#50C7E3",
+            color: "#ffffff",
             fontSize: 8,
         },
     });
