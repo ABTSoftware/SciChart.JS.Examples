@@ -21,6 +21,7 @@ import {
     SciChartSubSurface,
     I2DSubSurfaceOptions,
     EAutoRange,
+    OverviewRangeSelectionModifier,
 } from "scichart";
 
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
@@ -98,11 +99,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Store all data series for the overview
     const allDataSeries: XyDataSeries[] = [];
+    let lastSubChart: any = null; // Store reference to the last subchart
 
     for (let i = 0; i < subChartCount; i++) {
         // Define where this subchart sits in parent surface coords
         // Here: split parent viewport into equal-height rows, leaving space for overview
-        const rect = new Rect(0, (i / subChartCount) * 0.9, 1, (1 / subChartCount) * 0.9);
+        const rect = new Rect(0, (i / subChartCount) * 0.8, 1, (1 / subChartCount) * 0.8);
 
         const subChartOptions: I2DSubSurfaceOptions = {
             id: `subChart-${i}`,
@@ -141,66 +143,104 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         // Store data series for overview
         allDataSeries.push(dataSeries);
 
-        // Also add a series to the main surface for the overview to pick up
-        const mainSeries = new FastLineRenderableSeries(wasmContext, {
-            dataSeries,
-            strokeThickness: 1,
-            opacity: 0, // Make it invisible on main surface
-            xAxisId: "mainXAxis",
-            yAxisId: "mainYAxis"
-        });
-        sciChartSurface.renderableSeries.add(mainSeries);
+        // Store reference to the last subchart
+        if (i === subChartCount - 1) {
+            lastSubChart = subChart;
+        }
+
+        // Only add series to main surface for the last chart (for overview)
+        if (i === subChartCount - 1) {
+            const mainSeries = new FastLineRenderableSeries(wasmContext, {
+                dataSeries,
+                strokeThickness: 1,
+                opacity: 0, // Make it invisible on main surface
+                xAxisId: "mainXAxis",
+                yAxisId: "mainYAxis"
+            });
+            sciChartSurface.renderableSeries.add(mainSeries);
+        }
     }
 
-    // Add overview modifier with proper axis configuration
-    sciChartSurface.chartModifiers.add(
-        new OverviewSubSurfaceModifier({
-            id: "overviewSubSurface",
-            mainAxisId: "mainXAxis", // Reference the main X axis
-            secondaryAxisId: "mainYAxis", // Reference the main Y axis
-            coordinateMode: ESubSurfacePositionCoordinateMode.Relative,
-            position: new Rect(0, 0.9, 1, 0.1),
-            isTransparent: false,
-            overviewXAxisOptions: {
-                id: "overviewXAxis",
-                isVisible: true,
-                isInnerAxis: false,
-                drawMajorBands: false,
-                drawMajorGridLines: false,
-                drawMinorGridLines: false,
-                majorTickLineStyle: {
-                    color: "white",
-                    tickSize: 8,
-                    strokeThickness: 1,
-                },
-                labelStyle: {
-                    color: "white",
-                    fontSize: 8,
-                },
-            },
-            overviewYAxisOptions: {
-                id: "overviewYAxis",
-                isVisible: false,
-                growBy: new NumberRange(0.1, 0.1),
-            },
-            transformRenderableSeries: (rendSeries: IRenderableSeries) => {
-                // Only transform series that are on the main axes (our invisible overview series)
-                if (rendSeries.xAxisId !== "mainXAxis" || rendSeries.yAxisId !== "mainYAxis") {
-                    return undefined;
-                }
-                
-                // Clone the series for the overview
-                const [overviewSeries] = buildSeries(wasmContext, rendSeries.toJSON(true));
-                overviewSeries.dataSeries.delete();
-                overviewSeries.dataSeries = rendSeries.dataSeries;
-                overviewSeries.xAxisId = "overviewXAxis";
-                overviewSeries.yAxisId = "overviewYAxis";
-                overviewSeries.strokeThickness = 2;
-                overviewSeries.opacity = 0.8;
-                return overviewSeries;
-            },
-        })
-    );
+    // Create a simple overview subsurface that controls only the last chart
+    const overviewRect = new Rect(0, 0.8, 1, 0.2);
+    const overviewOptions: I2DSubSurfaceOptions = {
+        id: "overviewSubSurface",
+        position: overviewRect,
+        coordinateMode: ESubSurfacePositionCoordinateMode.Relative,
+        isTransparent: true,
+    };
+
+    const overviewSubSurface = SciChartSubSurface.createSubSurface(sciChartSurface, overviewOptions);
+
+    // Create axes for the overview
+    const overviewXAxis = new NumericAxis(wasmContext, {
+        id: "overviewXAxis",
+        isVisible: true,
+        autoRange: EAutoRange.Always,
+        axisTitle: "Overview - Controls Pane 3",
+        labelStyle: {
+            color: "#50C7E3",
+            fontSize: 10,
+        },
+        majorTickLineStyle: {
+            color: "#50C7E3",
+            tickSize: 6,
+            strokeThickness: 1,
+        },
+    });
+
+    const overviewYAxis = new NumericAxis(wasmContext, {
+        id: "overviewYAxis",
+        isVisible: true,
+        autoRange: EAutoRange.Always,
+        growBy: new NumberRange(0.1, 0.1),
+        labelStyle: {
+            color: "#50C7E3",
+            fontSize: 8,
+        },
+    });
+
+    overviewSubSurface.xAxes.add(overviewXAxis);
+    overviewSubSurface.yAxes.add(overviewYAxis);
+
+    // Add the last chart's data to the overview
+    const lastChartData = allDataSeries[subChartCount - 1];
+    const overviewSeries = new FastLineRenderableSeries(wasmContext, {
+        dataSeries: lastChartData,
+        strokeThickness: 2,
+        opacity: 0.8,
+    });
+    overviewSubSurface.renderableSeries.add(overviewSeries);
+
+    // Add range selection modifier to control the last subchart
+    const rangeSelectionModifier = new OverviewRangeSelectionModifier();
+    rangeSelectionModifier.xAxisId = overviewXAxis.id;
+    rangeSelectionModifier.yAxisId = overviewYAxis.id;
+
+    // Get the last subchart's X axis
+    const lastSubChartXAxis = lastSubChart.xAxes.get(0);
+
+    // When overview selection changes, update the last subchart
+    rangeSelectionModifier.onSelectedAreaChanged = (selectedRange: NumberRange) => {
+        if (!selectedRange.equals(lastSubChartXAxis.visibleRange)) {
+            lastSubChartXAxis.setVisibleRangeWithLimits(selectedRange);
+        }
+    };
+
+    // When last subchart zoom changes, update the overview selection
+    lastSubChartXAxis.visibleRangeChanged.subscribe(({ visibleRange }: { visibleRange: NumberRange }) => {
+        const updatedSelectedRange = visibleRange.clip(overviewXAxis.visibleRange);
+        const shouldUpdateSelectedRange = !updatedSelectedRange.equals(rangeSelectionModifier.selectedArea);
+        if (shouldUpdateSelectedRange) {
+            rangeSelectionModifier.selectedArea = updatedSelectedRange;
+        }
+    });
+
+    // Set initial selection
+    rangeSelectionModifier.selectedArea = lastSubChartXAxis.visibleRange;
+
+    overviewSubSurface.chartModifiers.add(rangeSelectionModifier);
+    overviewSubSurface.zoomExtents();
 
     return { wasmContext, sciChartSurface };
 };

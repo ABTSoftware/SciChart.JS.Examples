@@ -81,7 +81,7 @@ export class OverviewSubSurfaceModifier extends CustomChartModifier2D {
                 `Could not find a main axis with id ${mainAxisId}.` +
                     (!options?.mainAxisId ? "Please specify mainAxisId in the options" : "")
             );
-        if (!originalMainAxis)
+        if (!originalSecondaryAxis)
             throw new Error(
                 `Could not find a secondary axis with id ${secondaryAxisId}.` +
                     (!options?.secondaryAxisId ? "Please specify secondaryAxisId in the options" : "")
@@ -134,9 +134,12 @@ export class OverviewSubSurfaceModifier extends CustomChartModifier2D {
             return overviewSeries;
         };
 
-        const existingSeries = originalSciChartSurface.subCharts.flatMap((subChart) =>
+        // Get series from main surface and all subcharts
+        const mainSurfaceSeries = originalSciChartSurface.renderableSeries.asArray();
+        const subChartSeries = originalSciChartSurface.subCharts.flatMap((subChart) =>
             subChart.renderableSeries.asArray()
         );
+        const existingSeries = [...mainSurfaceSeries, ...subChartSeries];
 
         const renderableSeries = existingSeries
             // @ts-ignore
