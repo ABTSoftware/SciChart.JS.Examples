@@ -73,6 +73,7 @@ class OverviewModifier extends ChartModifierBase2D {
     public override onAttach(): void {
         super.onAttach();
         this.overviewSurface = this.createOverview();
+        // TODO add logic to calculate the remaining space for the mainSurface.seriesViewRect
     }
 
     onDetach(): void {
