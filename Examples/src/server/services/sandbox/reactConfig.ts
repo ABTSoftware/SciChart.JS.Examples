@@ -44,8 +44,8 @@ export const getReactSandBoxConfig = async (
                     eject: "react-scripts eject",
                 },
                 dependencies: {
-                    "@emotion/react": "^11.13.3",
-                    "@emotion/styled": "^11.13.0",
+                    "@emotion/react": pj.dependencies["@emotion/react"],
+                    "@emotion/styled": pj.dependencies["@emotion/styled"],
                     "@mui/material": pj.dependencies["@mui/material"],
                     "@mui/lab": pj.dependencies["@mui/lab"],
                     "@mui/icons-material": pj.dependencies["@mui/icons-material"],

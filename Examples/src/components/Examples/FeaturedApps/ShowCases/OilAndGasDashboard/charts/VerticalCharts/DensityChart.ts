@@ -29,8 +29,6 @@ export const drawDensityChart = async (rootELement: string | HTMLDivElement) => 
         modifiers: getCommonChartModifiersConfig(yAxisId),
     });
 
-    console.log("LSKNFGLOASENGLASKM", sciChartSurface);
-
     sciChartSurface.yAxes.get(0).visibleRange = new NumberRange(-0.2, 0.2);
 
     const dataSeries = new XyyDataSeries(wasmContext, { dataIsSortedInX: true, containsNaN: false });
