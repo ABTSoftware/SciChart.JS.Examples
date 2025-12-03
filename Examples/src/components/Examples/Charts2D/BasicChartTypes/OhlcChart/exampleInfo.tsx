@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "For this example, we demonstrate how to create a **JavaScript OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
                 title: "JavaScript OHLC Chart",
-                pageTitle: "JavaScript OHLC Chart | JavaScript Chart Examples | SciChart",
+                pageTitle: "JavaScript OHLC Chart",
                 metaDescription:
                     "Easily create JavaScript OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "For this example, we demonstrate how to create a **React OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
                 title: "React OHLC Chart",
-                pageTitle: "React OHLC Chart | JavaScript Chart Examples | SciChart",
+                pageTitle: "React OHLC Chart",
                 metaDescription:
                     "Easily create React OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "For this example, we demonstrate how to create a **Angular OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
                 title: "Angular OHLC Chart",
-                pageTitle: "Angular OHLC Chart | JavaScript Chart Examples | SciChart",
+                pageTitle: "Angular OHLC Chart",
                 metaDescription:
                     "Easily create Angular OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
                 markdownContent:
@@ -58,7 +58,7 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: false
+        isNew: false,
     };
 //// End of computer generated metadata
 

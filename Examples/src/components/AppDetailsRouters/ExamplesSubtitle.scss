@@ -8,3 +8,23 @@
         text-align: start;
     }
 }
+
+.alsoKnownAs {
+    border-left: 4px solid var(--light-blue);
+    background-color: rgb(62, 136, 205, 0.1);
+    padding: 0.7rem 0.75rem;
+    border-radius: 6px;
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    &::before {
+        content: "💡";
+        font-size: 1.2rem;
+        line-height: 1;
+        margin-top: 1px;
+    }
+}

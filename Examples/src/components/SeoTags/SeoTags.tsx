@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { FC, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 
@@ -17,19 +17,29 @@ const SeoTags: FC<TProps> = (props) => {
     const framework = useContext(FrameworkContext);
     const { title, keywords, description, image, url } = props;
 
-    const exampleUrl = `${baseUrl}/${framework}/${url}`.replace(/\/$/, '');
+    const rawUrl = `${baseUrl}/${framework}/${url}`;
+    const exampleUrl = rawUrl.replace(/\/+$/, "");
+
+    useEffect(() => {
+        if (window.location.pathname.endsWith("/") && window.location.pathname !== "/") {
+            const noSlash = window.location.pathname.replace(/\/+$/, "");
+            window.history.replaceState({}, "", noSlash + window.location.search);
+        }
+    }, []);
+
     return (
         <Helmet>
             <title>{title}</title>
             <link rel="canonical" href={exampleUrl} />
-            <meta name="keywords" content={keywords + `, ${framework}`} />
+
+            <meta name="keywords" content={`${keywords}, ${framework}`} />
             <meta name="description" content={description} />
             <meta property="og:url" content={exampleUrl} />
-            <meta property="og:image" content={'/demo/' + image} />
+            <meta property="og:image" content={`/demo/${image}`} />
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
             <meta name="twitter:title" content={title} />
-            <meta name="twitter:image" content={'/demo/' + image} />
+            <meta name="twitter:image" content={`/demo/${image}`} />
             <meta name="twitter:image:alt" content={title} />
             <meta name="twitter:domain" content={baseUrl} />
             <meta property="twitter:url" content={exampleUrl} />

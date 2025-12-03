@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "If you want to learn about heatmaps. this demo shows you how to create a **JavaScript Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
                 title: "JavaScript Heatmap Chart",
-                pageTitle: "JavaScript Heatmap Chart | JavaScript Chart Library Examples",
+                pageTitle: "JavaScript Heatmap Chart",
                 metaDescription:
                     "Easily create a high performance JavaScript Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "If you want to learn about heatmaps. this demo shows you how to create a **React Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
                 title: "React Heatmap Chart",
-                pageTitle: "React Heatmap Chart | JavaScript Chart Library Examples",
+                pageTitle: "React Heatmap Chart",
                 metaDescription:
                     "Easily create a high performance React Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "If you want to learn about heatmaps. this demo shows you how to create a **Angular Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
                 title: "Angular Heatmap Chart",
-                pageTitle: "Angular Heatmap Chart | JavaScript Chart Library Examples",
+                pageTitle: "Angular Heatmap Chart",
                 metaDescription:
                     "Easily create a high performance Angular Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
                 markdownContent:
@@ -58,7 +58,7 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: false
+        isNew: false,
     };
 //// End of computer generated metadata
 

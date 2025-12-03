@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This SciChart demo demonstrates how to create a **JavaScript Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
                 title: "JavaScript Non Uniform Heatmap Chart",
-                pageTitle: "JavaScript Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
+                pageTitle: "JavaScript Non Uniform Heatmap Chart",
                 metaDescription:
                     "Create JavaScript Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This SciChart demo demonstrates how to create a **React Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
                 title: "React Non Uniform Heatmap Chart",
-                pageTitle: "React Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
+                pageTitle: "React Non Uniform Heatmap Chart",
                 metaDescription:
                     "Create React Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This SciChart demo demonstrates how to create a **Angular Non Uniform Heatmap Chart** using SciChart.js our High Performance JavaScript Chart component.",
                 title: "Angular Non Uniform Heatmap Chart",
-                pageTitle: "Angular Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
+                pageTitle: "Angular Non Uniform Heatmap Chart",
                 metaDescription:
                     "Create Angular Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
                 markdownContent:
@@ -58,7 +58,7 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: false
+        isNew: false,
     };
 //// End of computer generated metadata
 

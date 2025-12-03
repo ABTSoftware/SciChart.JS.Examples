@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Learn how to make a **JavaScript Smooth Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
                 title: "JavaScript Smooth Stacked Mountain Chart",
-                pageTitle: "JavaScript Smooth Stacked Mountain Chart | JavaScript Chart Library",
+                pageTitle: "JavaScript Smooth Stacked Mountain Chart",
                 metaDescription:
                     "Design a high performance JavaScript Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Learn how to make a **React Smooth Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
                 title: "React Smooth Stacked Mountain Chart",
-                pageTitle: "React Smooth Stacked Mountain Chart | JavaScript Chart Library",
+                pageTitle: "React Smooth Stacked Mountain Chart",
                 metaDescription:
                     "Design a high performance React Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Learn how to make a **Angular Smooth Stacked Mountain Chart** using with SciChart's powerful JavaScript Charts and it's range of features.",
                 title: "Angular Smooth Stacked Mountain Chart",
-                pageTitle: "Angular Smooth Stacked Mountain Chart | JavaScript Chart Library",
+                pageTitle: "Angular Smooth Stacked Mountain Chart",
                 metaDescription:
                     "Design a high performance Angular Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
                 markdownContent:
@@ -58,7 +58,7 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: false
+        isNew: false,
     };
 //// End of computer generated metadata
 

@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Here we demonstrate how to create a **JavaScript Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",
                 title: "JavaScript Fan Chart",
-                pageTitle: "JavaScript Fan Chart | JavaScript Chart Library | View Now",
+                pageTitle: "JavaScript Fan Chart",
                 metaDescription:
                     "Discover how to create JavaScript Fan Chart with SciChart. Zoom in to see the detail you can go to using our JavaScript Charts. Get your free demo today. ",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Here we demonstrate how to create a **React Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",
                 title: "React Fan Chart",
-                pageTitle: "React Fan Chart | JavaScript Chart Library | View Now",
+                pageTitle: "React Fan Chart",
                 metaDescription:
                     "Discover how to create React Fan Chart with SciChart. Zoom in to see the detail you can go to using our JavaScript Charts. Get your free demo today. ",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Here we demonstrate how to create a **Angular Fan Chart** using SciChart.js. Zoom in and out to see the detail you can go to using our JavaScript Charts",
                 title: "Angular Fan Chart",
-                pageTitle: "Angular Fan Chart | JavaScript Chart Library | View Now",
+                pageTitle: "Angular Fan Chart",
                 metaDescription:
                     "Discover how to create Angular Fan Chart with SciChart. Zoom in to see the detail you can go to using our JavaScript Charts. Get your free demo today. ",
                 markdownContent:
@@ -58,7 +58,7 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: false
+        isNew: false,
     };
 //// End of computer generated metadata
 

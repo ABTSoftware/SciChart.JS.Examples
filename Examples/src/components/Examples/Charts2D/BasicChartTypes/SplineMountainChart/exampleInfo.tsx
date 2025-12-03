@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This example showcases how to create a **JavaScript Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",
                 title: "JavaScript Spline Mountain Chart",
-                pageTitle: "JavaScript Spline Mountain Chart | JavaScript Chart Library",
+                pageTitle: "JavaScript Spline Mountain Chart",
                 metaDescription:
                     "JavaScript Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This example showcases how to create a **React Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",
                 title: "React Spline Mountain Chart",
-                pageTitle: "React Spline Mountain Chart | JavaScript Chart Library",
+                pageTitle: "React Spline Mountain Chart",
                 metaDescription:
                     "React Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This example showcases how to create a **Angular Spline Mountain Chart** using SciChart.js' feature-rich and High Performance JavaScript Charts.",
                 title: "Angular Spline Mountain Chart",
-                pageTitle: "Angular Spline Mountain Chart | JavaScript Chart Library",
+                pageTitle: "Angular Spline Mountain Chart",
                 metaDescription:
                     "Angular Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.",
                 markdownContent:
@@ -58,7 +58,7 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: false
+        isNew: false,
     };
 //// End of computer generated metadata
 

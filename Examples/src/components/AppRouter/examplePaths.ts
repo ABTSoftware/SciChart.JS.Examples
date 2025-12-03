@@ -151,7 +151,9 @@ export default [
     "../Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart",
     "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo",
     "../Examples/FeaturedApps/ScientificCharts/PhasorDiagramChart",
+    "../Examples/FeaturedApps/ScientificCharts/Semiconductors",
     "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D",
+    "../Examples/FeaturedApps/ScientificCharts/WaferAnalysis",
     "../Examples/FeaturedApps/ShowCases/DynamicLayout",
     "../Examples/FeaturedApps/ShowCases/EventMarkers",
     "../Examples/FeaturedApps/ShowCases/HeatmapInteractions",
@@ -159,5 +161,5 @@ export default [
     "../Examples/FeaturedApps/ShowCases/OverviewForSubCharts",
     "../Examples/FeaturedApps/ShowCases/PopulationPyramid",
     "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard",
-    "../Examples/FeaturedApps/ShowCases/WebsocketBigData"
+    "../Examples/FeaturedApps/ShowCases/WebsocketBigData",
 ];

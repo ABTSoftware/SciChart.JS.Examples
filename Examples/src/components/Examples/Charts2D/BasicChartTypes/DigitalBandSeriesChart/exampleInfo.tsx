@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Demonstrates how to create a **JavaScript Digital Band Chart** or High-Low Fill using SciChart.js. This is our High Performance JavaScript Chart Library",
                 title: "JavaScript Digital Band Chart",
-                pageTitle: "JavaScript Digital Band Chart | JavaScript Chart Library",
+                pageTitle: "JavaScript Digital Band Chart",
                 metaDescription:
                     "Learn how to create a JavaScript Digital Band Chart or High-Low Fill Chart with SciChart's easy-to-follow demos. Get your free trial today.",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Demonstrates how to create a **React Digital Band Chart** or High-Low Fill using SciChart.js. This is our High Performance JavaScript Chart Library",
                 title: "React Digital Band Chart",
-                pageTitle: "React Digital Band Chart | JavaScript Chart Library",
+                pageTitle: "React Digital Band Chart",
                 metaDescription:
                     "Learn how to create a React Digital Band Chart or High-Low Fill Chart with SciChart's easy-to-follow demos. Get your free trial today.",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Demonstrates how to create a **Angular Digital Band Chart** or High-Low Fill using SciChart.js. This is our High Performance JavaScript Chart Library",
                 title: "Angular Digital Band Chart",
-                pageTitle: "Angular Digital Band Chart | JavaScript Chart Library",
+                pageTitle: "Angular Digital Band Chart",
                 metaDescription:
                     "Learn how to create a Angular Digital Band Chart or High-Low Fill Chart with SciChart's easy-to-follow demos. Get your free trial today.",
                 markdownContent:
@@ -58,7 +58,7 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: false
+        isNew: false,
     };
 //// End of computer generated metadata
 

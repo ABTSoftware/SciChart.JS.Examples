@@ -1,4 +1,4 @@
-import { TFrameworkName } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { EPageFramework, TFrameworkName } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 export const ExampleStrings = {
     // Site title, description for meta
@@ -8,7 +8,31 @@ export const ExampleStrings = {
     siteKeywords: `performance, demo, chart, javascript, webgl, canvas`,
     siteHomeDescription: `Examples for SciChart.js: High Performance JavaScript Charts. Featuring 2D & 3D JavaScript Chart types, performance demos, JavaScript stock charts, Heatmaps, Bubble charts`,
     siteHomeMetaImage: `https://www.scichart.com/wp-content/uploads/2022/12/javascript-chart-collage-2022.jpg`,
-    exampleGenericTitleSuffix: ` | SciChart.js Demo`,
+    exampleGenericTitleSuffix: (frameworkName: TFrameworkName | EPageFramework, prefixLength?: number) => {
+        // to make sure there are no long titles (it ideally should be between 45-60 characters)
+        if (prefixLength > 64) {
+            console.warn(
+                `The meta title is too long (${prefixLength} characters long) and may be truncated in search results. Consider using titles under 60 characters.`
+            );
+        }
+        if (prefixLength > 50) {
+            // [51, +]
+            return ``;
+        } else if (prefixLength > 43) {
+            // [44, 50]
+            return ` | SciChart`;
+        } else if (prefixLength > 38) {
+            // [39, 43]
+            return ` | SciChart.js`;
+        } else if (prefixLength > 32) {
+            // [33, 38]
+            return ` | SciChart.js Demo`;
+        } else if (prefixLength > 25) {
+            // [26, 32]
+            return ` | ${frameworkName.slice(0, 1).toUpperCase() + frameworkName.slice(1)} Charts | SciChart.js`;
+        } // [0, 25]
+        return ` | ${frameworkName.slice(0, 1).toUpperCase() + frameworkName.slice(1)} Charts | SciChart.js Demo`;
+    },
 
     // Documentation links and link tooltips
     //

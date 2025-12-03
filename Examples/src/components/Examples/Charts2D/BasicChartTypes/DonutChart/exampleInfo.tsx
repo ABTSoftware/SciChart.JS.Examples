@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This demo demonstrates how create a **JavaScript Donut Chart** with our powerful JavaScript library, SciChart.js.",
                 title: "JavaScript Donut Chart",
-                pageTitle: "JavaScript Donut Chart | JavaScript Charts",
+                pageTitle: "JavaScript Donut Chart",
                 metaDescription:
                     "Create JavaScript Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This demo demonstrates how create a **React Donut Chart** with our powerful JavaScript library, SciChart.js.",
                 title: "React Donut Chart",
-                pageTitle: "React Donut Chart | JavaScript Charts",
+                pageTitle: "React Donut Chart",
                 metaDescription:
                     "Create React Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This demo demonstrates how create a **Angular Donut Chart** with our powerful JavaScript library, SciChart.js.",
                 title: "Angular Donut Chart",
-                pageTitle: "Angular Donut Chart | JavaScript Charts",
+                pageTitle: "Angular Donut Chart",
                 metaDescription:
                     "Create Angular Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
                 markdownContent:
@@ -58,7 +58,7 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: false
+        isNew: false,
     };
 //// End of computer generated metadata
 

@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "For an example that demonstrates how create a **JavaScript Pie Chart**, our demo code teaches you how to do this with SciChart's JavaScript Charting Library.",
                 title: "JavaScript Pie Chart",
-                pageTitle: "JavaScript Pie Chart | JavaScript Chart Examples | SciChart",
+                pageTitle: "JavaScript Pie Chart",
                 metaDescription:
                     "Easily create and customise a high performance JavaScript Pie Chart with 5-star rated SciChart.js. Get your free trial now to access the whole library. ",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "For an example that demonstrates how create a **React Pie Chart**, our demo code teaches you how to do this with SciChart's JavaScript Charting Library.",
                 title: "React Pie Chart",
-                pageTitle: "React Pie Chart | JavaScript Chart Examples | SciChart",
+                pageTitle: "React Pie Chart",
                 metaDescription:
                     "Easily create and customise a high performance React Pie Chart with 5-star rated SciChart.js. Get your free trial now to access the whole library. ",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "For an example that demonstrates how create a **Angular Pie Chart**, our demo code teaches you how to do this with SciChart's JavaScript Charting Library.",
                 title: "Angular Pie Chart",
-                pageTitle: "Angular Pie Chart | JavaScript Chart Examples | SciChart",
+                pageTitle: "Angular Pie Chart",
                 metaDescription:
                     "Easily create and customise a high performance Angular Pie Chart with 5-star rated SciChart.js. Get your free trial now to access the whole library. ",
                 markdownContent:
