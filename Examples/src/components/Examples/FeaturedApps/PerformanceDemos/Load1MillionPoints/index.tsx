@@ -1,9 +1,9 @@
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
-import RefreshIcon from "@mui/icons-material/Refresh";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import PauseIcon from "@mui/icons-material/Pause";
+import { Refresh as RefreshIcon } from "@mui/icons-material";
+import { PlayArrow as PlayArrowIcon } from "@mui/icons-material";
+import { Pause as PauseIcon } from "@mui/icons-material";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
