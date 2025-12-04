@@ -12,6 +12,7 @@ import {
     Select,
     Slider,
     Typography,
+    Stack,
 } from "@mui/material";
 
 import { Dialog, DialogTitle, IconButton } from "@mui/material";
@@ -27,6 +28,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { appTheme } from "../../../theme";
 import { useRef, useState } from "react";
 import { useViewType } from "./containerSizeHooks";
+import { E3DLabelOrientationMode } from "scichart/types/TextStyle3D";
 
 const styles = {
     combobox: {
@@ -52,11 +54,14 @@ export default function StylingDemoChart() {
     const viewInfo = useViewType(sizeRef);
     const { isLargeView, isMobileView } = viewInfo ?? {};
 
-    const [xAxisTitleOffset, setXAxisTitleOffset] = useState(0);
-    const [enableGridBands, setEnableGridBands] = useState(true);
-    const [enableGridLines, setEnableGridLines] = useState(false);
+    const [selectedAxis, setSelectedAxis] = useState<"x" | "y" | "z">("x");
+    const [xAxisTitleOffset, setXAxisTitleOffset] = useState(10);
+    const [tickLabelsOffset, setTickLabelsOffset] = useState(50);
     const [labelFontSize, setLabelFontSize] = useState(20);
     const [font, setFont] = useState("arial");
+    const [labelOrientationMode, setLabelOrientationMode] = useState<E3DLabelOrientationMode>(
+        E3DLabelOrientationMode.Auto
+    );
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -71,218 +76,218 @@ export default function StylingDemoChart() {
 
     const handleLabelFontSize = (_: any, newValue: any) => {
         setLabelFontSize(newValue);
-        controlsRef.current.setAxisLabelFontSize(newValue);
+        controlsRef.current.setAxisLabelFontSize(newValue, selectedAxis);
     };
 
     const handleXAxisTitleOffset = (_: any, newValue: any) => {
         setXAxisTitleOffset(newValue);
-        controlsRef.current.setTitleOffset(newValue);
+        controlsRef.current.setTitleOffset(newValue, selectedAxis);
+    };
+
+    const handleTickLabelsOffset = (_: any, newValue: any) => {
+        setTickLabelsOffset(newValue);
+        controlsRef.current.setTickLabelsOffset(newValue, selectedAxis);
     };
 
     const handleFontChange = (e: { target: { value: string } }) => {
         const newValue = e.target.value as string;
         if (newValue !== font) {
             setFont(newValue);
-            controlsRef.current.updateFont(newValue);
+            controlsRef.current.updateFont(newValue, selectedAxis);
         }
     };
 
-    const handleEnableGridBands = () => {
-        controlsRef.current.enableGridBands(!enableGridBands);
-
-        setEnableGridBands((oldValue) => {
-            return !oldValue;
-        });
+    const handleAxisChange = (e: { target: { value: string } }) => {
+        setSelectedAxis(e.target.value as "x" | "y" | "z");
     };
 
-    const handleEnableGridLines = () => {
-        controlsRef.current.enableMajorGridLines(!enableGridLines);
-
-        setEnableGridLines((oldValue) => {
-            return !oldValue;
-        });
+    const handleLabelOrientationModeChange = (e: { target: { value: string } }) => {
+        const newMode = e.target.value as E3DLabelOrientationMode;
+        setLabelOrientationMode(newMode);
+        controlsRef.current.setLabelOrientationMode(newMode, selectedAxis);
     };
 
-    const configurationDialog = (
+    const controlPanel = (
+        <>
+            <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                Select Axis
+            </Typography>
+            <FormControl fullWidth className={commonClasses.formControl}>
+                <Select
+                    labelId="axis-label"
+                    id="axis"
+                    variant="standard"
+                    inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
+                    sx={{ margin: "0.5em 0em", color: "inherit", "& .MuiSvgIcon-root": { color: "inherit" } }}
+                    value={selectedAxis}
+                    onChange={handleAxisChange}
+                >
+                    <MenuItem value="x">X Axis</MenuItem>
+                    <MenuItem value="y">Y Axis</MenuItem>
+                    <MenuItem value="z">Z Axis</MenuItem>
+                </Select>
+            </FormControl>
+
+            <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                Change Font
+            </Typography>
+            <FormControl fullWidth className={commonClasses.formControl}>
+                <Select
+                    labelId="font-label"
+                    id="font"
+                    variant="standard"
+                    inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
+                    sx={{ margin: "0.5em 0em", color: "inherit", "& .MuiSvgIcon-root": { color: "inherit" } }}
+                    value={font}
+                    onChange={handleFontChange}
+                >
+                    {fonts.map((el) => (
+                        <MenuItem key={el.name} value={el.name}>
+                            {el.name.toUpperCase()}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+
+            <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                Axis Font Size: {labelFontSize}
+            </Typography>
+            <Slider
+                id="labelFontSize"
+                onChange={handleLabelFontSize}
+                step={1}
+                min={10}
+                max={30}
+                value={labelFontSize}
+                valueLabelDisplay="off"
+            />
+
+            <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                Axis Title Offset: {xAxisTitleOffset}
+            </Typography>
+            <Slider
+                id="xAxisTitleOffset"
+                onChange={handleXAxisTitleOffset}
+                step={1}
+                min={0}
+                max={100}
+                value={xAxisTitleOffset}
+                valueLabelDisplay="off"
+            />
+
+            <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                Tick Labels Offset: {tickLabelsOffset}
+            </Typography>
+            <Slider
+                id="tickLabelsOffset"
+                onChange={handleTickLabelsOffset}
+                step={1}
+                min={0}
+                max={100}
+                value={tickLabelsOffset}
+                valueLabelDisplay="off"
+            />
+
+            <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                Label Orientation Mode
+            </Typography>
+            <FormControl fullWidth className={commonClasses.formControl}>
+                <Select
+                    labelId="label-orientation-label"
+                    id="label-orientation"
+                    variant="standard"
+                    inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
+                    sx={{ margin: "0.5em 0em", color: "inherit", "& .MuiSvgIcon-root": { color: "inherit" } }}
+                    value={labelOrientationMode}
+                    onChange={handleLabelOrientationModeChange}
+                >
+                    <MenuItem value={E3DLabelOrientationMode.Auto}>Auto</MenuItem>
+                    <MenuItem value={E3DLabelOrientationMode.Horizontal}>Horizontal</MenuItem>
+                </Select>
+            </FormControl>
+        </>
+    );
+
+    const configurationDialog = isMobileView ? (
         <Dialog
             onClose={handleClose}
             open={isDialogOpen}
-            sx={{ color: appTheme.ForegroundColor, "& .MuiDialog-paper": { background: appTheme.DarkIndigo } }}
+            sx={{ "& .MuiDialog-paper": { background: appTheme.DarkIndigo } }}
         >
-            <DialogTitle>
+            <DialogTitle flexDirection="row" noWrap>
                 <span style={{ color: appTheme.ForegroundColor }}>Configuration</span>
+                <IconButton
+                    aria-label="close"
+                    onClick={handleClose}
+                    sx={(theme) => ({
+                        flex: "none",
+                        justifySelf: "flex-end",
+                        color: theme.palette.grey[500],
+                    })}
+                >
+                    <CloseIcon />
+                </IconButton>
             </DialogTitle>
-
-            <IconButton
-                aria-label="close"
-                onClick={handleClose}
-                sx={(theme) => ({
-                    position: "absolute",
-                    right: 0,
-                    top: 0,
-                    color: theme.palette.grey[500],
-                })}
-                size="small"
+            <div
+                style={{
+                    width: "100%",
+                    padding: "0px 10px 0px 10px",
+                    color: appTheme.ForegroundColor,
+                    fontSize: "0.8em",
+                }}
             >
-                <CloseIcon />
-            </IconButton>
-            <List>
-                <ListItem>
-                    <FormControl variant="filled" sx={{ width: "250px", color: "gray" }}>
-                        <InputLabel id="font-label" color="primary" sx={{ color: "#FFFFFF" }}>
-                            Change Font
-                        </InputLabel>
-                        <Select
-                            labelId="font-label"
-                            id="font"
-                            value={font}
-                            onChange={handleFontChange}
-                            sx={{ color: "#FFFFFF" }}
-                            size="small"
-                        >
-                            {fonts.map((el) => (
-                                <MenuItem key={el.name} value={el.name}>
-                                    {el.name.toUpperCase()}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                </ListItem>
-                <ListItem>
-                    <FormControlLabel
-                        sx={{ color: "white" }}
-                        control={<Checkbox checked={enableGridBands} onChange={handleEnableGridBands} size="small" />}
-                        label="Show grid bands"
-                        labelPlacement="start"
-                    />
-                </ListItem>
-                <ListItem>
-                    <FormControlLabel
-                        sx={{ color: "white" }}
-                        control={<Checkbox checked={enableGridLines} onChange={handleEnableGridLines} size="small" />}
-                        label="Show grid lines"
-                        labelPlacement="start"
-                    />
-                </ListItem>
-                <ListItem sx={{ display: "flex", flexDirection: "column" }}>
-                    <Typography variant="body1" sx={{ color: "white" }}>
-                        Axis Font Size: {labelFontSize}
-                    </Typography>
-                    <Slider
-                        // sx={{ width: "150px" }}
-                        id="labelFontSize"
-                        onChange={handleLabelFontSize}
-                        step={1}
-                        min={10}
-                        max={30}
-                        value={labelFontSize}
-                        valueLabelDisplay="off"
-                    />
-                </ListItem>
-                <ListItem sx={{ display: "flex", flexDirection: "column" }}>
-                    <Typography variant="body1" sx={{ color: "white" }}>
-                        Axis Title Offset: {xAxisTitleOffset}
-                    </Typography>
-                    <Slider
-                        // sx={{ width: "150px" }}
-                        id="xAxisTitleOffset"
-                        onChange={handleXAxisTitleOffset}
-                        step={1}
-                        min={0}
-                        max={100}
-                        value={xAxisTitleOffset}
-                        valueLabelDisplay="off"
-                    />
-                </ListItem>
-                <ListItem disablePadding></ListItem>
-            </List>
+                {controlPanel}
+            </div>
         </Dialog>
-    );
+    ) : null;
 
     return (
-        <div className={commonClasses.ChartWithToolbar} ref={sizeRef}>
-            <div className={commonClasses.ToolbarRow} style={{ padding: "0 8px" }}>
-                {isMobileView ? (
-                    <div style={configButtonWrapperStyle} title="Chart Configurations">
-                        <IconButton
-                            sx={{ color: appTheme.ForegroundColor, pointerEvents: "all", touchAction: "all" }}
-                            onClick={handleClickOpen}
-                        >
-                            <SettingsIcon fontSize="medium" />
-                        </IconButton>
-                        {configurationDialog}
-                    </div>
-                ) : (
-                    <>
-                        <FormControl variant="filled" sx={{ minWidth: 120, color: "gray" }}>
-                            <InputLabel id="font-label" color="primary" sx={{ color: "#FFFFFF" }}>
-                                Change Font
-                            </InputLabel>
-                            <Select
-                                labelId="font-label"
-                                id="font"
-                                value={font}
-                                onChange={handleFontChange}
-                                sx={{ color: "#FFFFFF" }}
-                                size="small"
-                            >
-                                {fonts.map((el) => (
-                                    <MenuItem key={el.name} value={el.name}>
-                                        {el.name.toUpperCase()}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-
-                        <FormControlLabel
-                            control={
-                                <Checkbox checked={enableGridBands} onChange={handleEnableGridBands} size="small" />
-                            }
-                            label="Show grid bands"
-                            labelPlacement="start"
-                        />
-
-                        <FormControlLabel
-                            control={
-                                <Checkbox checked={enableGridLines} onChange={handleEnableGridLines} size="small" />
-                            }
-                            label="Show grid lines"
-                            labelPlacement="start"
-                        />
-
-                        <div style={{ minWidth: 100 }}>
-                            <Typography variant="body1">Axis Font Size: {labelFontSize}</Typography>
-                            <Slider
-                                id="labelFontSize"
-                                onChange={handleLabelFontSize}
-                                step={1}
-                                min={10}
-                                max={30}
-                                value={labelFontSize}
-                                valueLabelDisplay="off"
-                            />
-                        </div>
-                        <div style={{ minWidth: 100, padding: "10px 0" }}>
-                            <Typography variant="body1">Axis Title Offset: {xAxisTitleOffset}</Typography>
-                            <Slider
-                                id="xAxisTitleOffset"
-                                onChange={handleXAxisTitleOffset}
-                                step={1}
-                                min={0}
-                                max={100}
-                                value={xAxisTitleOffset}
-                                valueLabelDisplay="off"
-                            />
-                        </div>
-                    </>
-                )}
-            </div>
+        <Stack
+            ref={sizeRef}
+            sx={{
+                width: "100%",
+                height: "100%",
+                background: appTheme.DarkIndigo,
+            }}
+            direction={isMobileView ? "column" : "row"}
+        >
             <SciChartReact
+                style={{ flexBasis: 600, flexGrow: 1, flexShrink: 1, display: "flex", flexDirection: "column" }}
+                innerContainerProps={{ style: { flex: "auto" } }}
                 initChart={drawExample}
                 onInit={({ sciChartSurface, controls }: TResolvedReturnType<typeof drawExample>) => {
-                    controlsRef.current = controls; // Set controlls object to ref
+                    controlsRef.current = controls; // Set controls object to ref
                 }}
             />
-        </div>
+
+            {isMobileView ? (
+                <div
+                    style={{ position: "absolute", pointerEvents: "none", touchAction: "none", zIndex: 2 }}
+                    title="Chart Configurations"
+                >
+                    <IconButton
+                        sx={{ color: appTheme.ForegroundColor, pointerEvents: "all", touchAction: "all" }}
+                        onClick={handleClickOpen}
+                    >
+                        <SettingsIcon fontSize="large" />
+                    </IconButton>
+
+                    {configurationDialog}
+                </div>
+            ) : (
+                <div
+                    style={{
+                        flex: "none",
+                        width: "300px",
+                        padding: "0px 10px 0px 10px",
+                        color: appTheme.ForegroundColor,
+                        fontSize: "0.8em",
+                        overflowY: "auto",
+                    }}
+                >
+                    {controlPanel}
+                </div>
+            )}
+        </Stack>
     );
 }

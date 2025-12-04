@@ -24,6 +24,7 @@ import {
 } from "scichart";
 
 import { appTheme } from "../../../theme";
+import { E3DLabelOrientationMode } from "scichart/types/TextStyle3D";
 
 export const fonts = [
     { name: "arial", url: "" },
@@ -42,14 +43,12 @@ export const fonts = [
     { name: "geo", url: "https://raw.githubusercontent.com/google/fonts/main/ofl/geo/Geo-Regular.ttf" },
 ];
 
-
 type TMarkerMetadata = {
     markerType: string;
     color: string;
     vertexColor: number;
     pointScale: number;
 };
-
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(rootElement, {
@@ -65,19 +64,20 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Register all fonts from "fonts" array in parallel
     await Promise.all(fonts.map((font) => sciChart3DSurface.registerFont(font.name, font.url)));
 
-    sciChart3DSurface.worldDimensions = new Vector3(300, 100, 300);
+    sciChart3DSurface.worldDimensions = new Vector3(300, 200, 300);
 
-    sciChart3DSurface.camera = new CameraController(wasmContext, {
-        target: new Vector3(0, 50, 0),
-    });
+    const camera = sciChart3DSurface.camera;
+    camera.position = new Vector3(-390.48, 272.08, -529.63);
+    camera.target = new Vector3(0, 0, 0);
+    // propertyChanged is raised each time any property changes on the camera
+    // camera.propertyChanged.subscribe(args => {
+    //     // Log current properties to console. debugOutput returns array of strings
+    //     const cameraDebug = camera.debugOutput();
 
-    const setCamera = (positionX: number) => {
-        sciChart3DSurface.camera = new CameraController(wasmContext, {
-            position: new Vector3(positionX, 310.29, 393.32),
-        });
-    };
-
-    setCamera(-141.6);
+    //     // Output the same information to a div on the page
+    //     // @ts-ignore
+    //     console.log(cameraDebug.map(line => `<p>${line}</p>`).join(""));
+    // });
 
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
     sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
@@ -89,7 +89,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelPrecision: 0,
         drawMinorGridLines: false,
         drawMajorGridLines: false,
-        tickLabelsOffset: 20,
+        tickLabelsOffset: 50,
+        labelOrientationMode: E3DLabelOrientationMode.Auto,
     });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Value 2",
@@ -97,7 +98,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelPrecision: 0,
         drawMinorGridLines: false,
         drawMajorGridLines: false,
-        tickLabelsOffset: 20,
+        tickLabelsOffset: 10,
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Value 3",
@@ -105,25 +106,31 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelPrecision: 0,
         drawMinorGridLines: false,
         drawMajorGridLines: false,
-        tickLabelsOffset: 20,
+        tickLabelsOffset: 10,
     });
 
-    sciChart3DSurface.xAxis.backgroundColor = "red";
+    //sciChart3DSurface.xAxis.backgroundColor = "red";
     // sciChart3DSurface.xAxis.planeBorderColor = "red";
     // sciChart3DSurface.xAxis.planeBorderThickness = 20;
 
     // title offset
 
-    const setTitleOffset = (offset: number) => {
-        sciChart3DSurface.xAxis.titleOffset = offset;
-        sciChart3DSurface.yAxis.titleOffset = offset;
-        sciChart3DSurface.zAxis.titleOffset = offset;
+    const setTitleOffset = (offset: number, axis?: "x" | "y" | "z") => {
+        if (axis === "x" || !axis) sciChart3DSurface.xAxis.titleOffset = offset;
+        if (axis === "y" || !axis) sciChart3DSurface.yAxis.titleOffset = offset;
+        if (axis === "z" || !axis) sciChart3DSurface.zAxis.titleOffset = offset;
     };
 
-    const setAxisLabelFontSize = (value: number) => {
-        sciChart3DSurface.xAxis.labelStyle.fontSize = value;
-        sciChart3DSurface.yAxis.labelStyle.fontSize = value;
-        sciChart3DSurface.zAxis.labelStyle.fontSize = value;
+    const setTickLabelsOffset = (offset: number, axis?: "x" | "y" | "z") => {
+        if (axis === "x" || !axis) sciChart3DSurface.xAxis.tickLabelsOffset = offset;
+        if (axis === "y" || !axis) sciChart3DSurface.yAxis.tickLabelsOffset = offset;
+        if (axis === "z" || !axis) sciChart3DSurface.zAxis.tickLabelsOffset = offset;
+    };
+
+    const setAxisLabelFontSize = (value: number, axis?: "x" | "y" | "z") => {
+        if (axis === "x" || !axis) sciChart3DSurface.xAxis.labelStyle.fontSize = value;
+        if (axis === "y" || !axis) sciChart3DSurface.yAxis.labelStyle.fontSize = value;
+        if (axis === "z" || !axis) sciChart3DSurface.zAxis.labelStyle.fontSize = value;
     };
 
     // Create different point markers for each data point
@@ -177,74 +184,62 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChart3DSurface.renderableSeries.add(renderableSeries);
     }
 
-    const updateFont = (font: string) => {
-        sciChart3DSurface.xAxis.labelStyle.fontFamily = font;
-        sciChart3DSurface.yAxis.labelStyle.fontFamily = font;
-        sciChart3DSurface.zAxis.labelStyle.fontFamily = font;
-        // sciChart3DSurface.xAxis.axisTitleStyle.fontFamily = font;
-        sciChart3DSurface.xAxis.titleStyle.fontFamily = font;
-        sciChart3DSurface.yAxis.titleStyle.fontFamily = font;
-        sciChart3DSurface.zAxis.titleStyle.fontFamily = font;
+    const updateFont = (font: string, axis?: "x" | "y" | "z") => {
+        if (axis === "x" || !axis) {
+            sciChart3DSurface.xAxis.labelStyle.fontFamily = font;
+            sciChart3DSurface.xAxis.titleStyle.fontFamily = font;
+        }
+        if (axis === "y" || !axis) {
+            sciChart3DSurface.yAxis.labelStyle.fontFamily = font;
+            sciChart3DSurface.yAxis.titleStyle.fontFamily = font;
+        }
+        if (axis === "z" || !axis) {
+            sciChart3DSurface.zAxis.labelStyle.fontFamily = font;
+            sciChart3DSurface.zAxis.titleStyle.fontFamily = font;
+        }
 
         // sciChart3DSurface.yAxis.axisTitleStyle // future update
     };
 
     sciChart3DSurface.xAxis.drawMajorBands = true;
-    sciChart3DSurface.xAxis.axisBandsFill = "blue";
+    sciChart3DSurface.xAxis.axisBandsFill = appTheme.MutedBlue + "cc";
 
     sciChart3DSurface.yAxis.drawMajorBands = true;
-    sciChart3DSurface.yAxis.axisBandsFill = "blue";
+    sciChart3DSurface.yAxis.axisBandsFill = appTheme.MutedBlue + "cc";
 
-    const enableGridBands = (enable: boolean) => {
-        sciChart3DSurface.xAxis.drawMajorBands = enable;
-        sciChart3DSurface.yAxis.drawMajorBands = enable;
-        sciChart3DSurface.zAxis.drawMajorBands = enable;
+    sciChart3DSurface.zAxis.drawMajorBands = true;
+    sciChart3DSurface.zAxis.axisBandsFill = appTheme.MutedBlue + "cc";
+
+    const enableGridBands = (enable: boolean, axis?: "x" | "y" | "z") => {
+        if (axis === "x" || !axis) sciChart3DSurface.xAxis.drawMajorBands = enable;
+        if (axis === "y" || !axis) sciChart3DSurface.yAxis.drawMajorBands = enable;
+        if (axis === "z" || !axis) sciChart3DSurface.zAxis.drawMajorBands = enable;
     };
 
     sciChart3DSurface.xAxis.majorGridLineStyle.color = "red";
     sciChart3DSurface.yAxis.majorGridLineStyle.color = "red";
     sciChart3DSurface.zAxis.majorGridLineStyle.color = "red";
 
-    const enableMajorGridLines = (enable: boolean) => {
-        sciChart3DSurface.xAxis.drawMajorGridLines = enable;
-        sciChart3DSurface.yAxis.drawMajorGridLines = enable;
-        sciChart3DSurface.zAxis.drawMajorGridLines = enable;
+    const enableMajorGridLines = (enable: boolean, axis?: "x" | "y" | "z") => {
+        if (axis === "x" || !axis) sciChart3DSurface.xAxis.drawMajorGridLines = enable;
+        if (axis === "y" || !axis) sciChart3DSurface.yAxis.drawMajorGridLines = enable;
+        if (axis === "z" || !axis) sciChart3DSurface.zAxis.drawMajorGridLines = enable;
     };
 
-    const tooltipModifier = new TooltipModifier3D({ tooltipLegendOffsetX: 10, tooltipLegendOffsetY: 10 });
-
-    tooltipModifier.tooltipDataTemplate = (seriesInfo: SeriesInfo3D, svgAnnotation: TooltipSvgAnnotation3D) => {
-
-        const valuesWithLabels: string[] = [];
-        
-        if (seriesInfo && seriesInfo.isHit) {
-            const md = (seriesInfo as XyzSeriesInfo3D).pointMetadata as TMarkerMetadata;
-            valuesWithLabels.push(md.markerType);
-            valuesWithLabels.push(`Value 1: ${seriesInfo.xValue}`);
-            valuesWithLabels.push(`Value 2: ${seriesInfo.yValue}`);
-            valuesWithLabels.push(`Value 3: ${seriesInfo.zValue}`);
-        }
-        return valuesWithLabels;
+    const setLabelOrientationMode = (mode: E3DLabelOrientationMode, axis?: "x" | "y" | "z") => {
+        if (axis === "x" || !axis) sciChart3DSurface.xAxis.labelOrientationMode = mode;
+        if (axis === "y" || !axis) sciChart3DSurface.yAxis.labelOrientationMode = mode;
+        if (axis === "z" || !axis) sciChart3DSurface.zAxis.labelOrientationMode = mode;
     };
-    const defaultTemplate = tooltipModifier.tooltipSvgTemplate;
-
-    tooltipModifier.tooltipSvgTemplate = (seriesInfo: SeriesInfo3D, svgAnnotation: TooltipSvgAnnotation3D) => {
-        if (seriesInfo) {
-            const md = (seriesInfo as XyzSeriesInfo3D).pointMetadata as TMarkerMetadata;
-            svgAnnotation.containerBackground = md.color;
-            svgAnnotation.textStroke = "black";
-        }
-        return defaultTemplate(seriesInfo, svgAnnotation);
-    };
-    sciChart3DSurface.chartModifiers.add(tooltipModifier);
 
     const controls = {
         setTitleOffset,
-        setCamera,
+        setTickLabelsOffset,
         updateFont,
         enableGridBands,
         setAxisLabelFontSize,
         enableMajorGridLines,
+        setLabelOrientationMode,
     };
 
     return { sciChartSurface: sciChart3DSurface, wasmContext, controls };
