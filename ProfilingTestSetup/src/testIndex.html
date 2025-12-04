@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <title>SciChart Memory And Performance Debugging Setup</title>
+        <script defer type="text/javascript" src="bundle.js"></script>
+        <link rel="preload" href="scichart2d.wasm" as="fetch" crossorigin="anonymous" />
+        <!-- <link rel="preload" href="scichart3d.wasm" as="fetch" crossorigin="anonymous" /> -->
+        <style>
+            body {
+                font-family: "Arial";
+                margin: 0;
+            }
+
+            #containerId {
+                height: 100vh;
+                width: 100vw;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                /* gap: 10px; */
+            }
+
+            #containerId > div {
+                flex: auto;
+                width: 100%;
+                height: 100%;
+            }
+            /* 
+            .div-root.front-div-root {
+                pointer-events: all !important;
+            } */
+        </style>
+    </head>
+    <body>
+        <!-- the Div where the SciChartSurfaces will reside -->
+        <div id="containerId"></div>
+    </body>
+</html>

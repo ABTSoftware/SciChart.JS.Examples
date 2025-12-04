@@ -1,0 +1,18 @@
+## TODO
+
+- Realtime Performance Tests
+
+- Basic VT
+- VT on a complex chart
+- Realtime examples (seeded)
+- Custom update measurements (measure render time and memory usage at each frame)
+- Example of detailed measurement
+- allow enabling FPS modifier and opening Profiler.
+
+- performance.memory alternative for Firefox and Safari
+
+- Simple Visual Snapshot Tests
+- Interaction Performance Tests (Tooltip, hit test)
+- Long Running Tests (measuring memory while running for days)
+
+- CPU and Memory Usage of a PC
