@@ -4,6 +4,9 @@ An internal tool to visualize data collected with PerformanceDebugHelper and Mem
 
 ## Startup
 
+!!! Prerequisite: make sure the dependency [Addons](../Addons/package.json) package has its dependencies installed.
+`cd ../Addons && npm i && cd ../Profiler`
+
 Install dependencies
 `npm i`
 
@@ -53,7 +56,7 @@ The profiler displays performance debug data collected with SciChart's Performan
 -   Drag & Drop the JSON file with collected data Click **Browse File** in the modal header to open the file picker
 -   Select a JSON file containing performance data
 -   The data will be automatically validated and imported
-Or
+    Or
 -   Paste JSON data directly into the text area
 -   Click **Import from Text** to load the data
 
@@ -72,7 +75,6 @@ The left panel contains a collapsible tree for managing mark type visibility:
 -   **Individual Marks**: Leaf nodes represent specific performance mark types
 
 ### Tree Controls
-
 
 **Checkboxes**:
 

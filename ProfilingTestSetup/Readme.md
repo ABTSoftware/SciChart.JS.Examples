@@ -51,6 +51,9 @@ Here we will show how to run the apps in development mode.
 
 Setup:
 
+!!! Prerequisite: make sure the dependency [Addons](../Addons/package.json) package has its dependencies installed.
+`cd ../Addons && npm i && cd ../ProfilingTestSetup`
+
 ```bash
 npm install
 ```
