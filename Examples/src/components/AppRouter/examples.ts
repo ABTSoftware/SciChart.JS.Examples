@@ -252,6 +252,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_VirtualizedDataOverview,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_PolarModifiers,
             //EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision,
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_OverviewForSubCharts
         ],
     },
     {
