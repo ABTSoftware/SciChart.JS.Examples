@@ -31,7 +31,7 @@
     "prepare": "cd .. && husky install",
     "pretty-quick": "pretty-quick --staged",
     "updateMarkdown": "node updateMarkdown.js",
-    "removeTrailingSlashes": "node remove-trailing-slashes.js"
+    "enforceTrailingSlashes": "node enforce-trailing-slashes.js"
   },
   "author": "",
   "license": "ISC",
