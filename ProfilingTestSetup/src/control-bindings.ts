@@ -12,6 +12,7 @@ import { SubChartsInitializer } from "./custom/SubChartsInitializer";
 import { GraphSummaryInitializer } from "./custom/GraphSummaryInitializer";
 import { EInitializerType } from "./InitializerTypes";
 import { EUpdateIntervalBaseline, TSetupOptions } from "./types";
+import { ChartInitializer } from "./ChartInitializer";
 
 const getDataForProfiler = () => {
     const performanceInfoData = [PerformanceDebugHelper.toJSON()];
@@ -44,24 +45,29 @@ export function initializeControlBindings(options?: TSetupOptions) {
     let enableMemoryTracing = options?.enableMemoryTracing ?? true;
     let enableRenderTracing = options?.enableRenderTracing ?? true;
 
-    let chartInitializer = getChartInitializer({
-        initializerType,
-        shouldUseCreateSingle,
-        dataSeriesCapacity,
-        dataChunkSize,
-        seriesNumber,
-        subChartsNumber,
-        drawLabels,
-        seriesType,
-        enableMemoryTracing,
-        enableRenderTracing,
-        updatesNumber: 10,
-        syncDataUpdateWithFrameRate: true,
-        updateInterval: undefined,
-        intervalBaseline: EUpdateIntervalBaseline.PaintEnd,
-        maxRunDuration: undefined
-    });
-    let controls = chartInitializer.getControls();
+    let chartInitializer: ChartInitializer = undefined;
+    let controls: ReturnType<(typeof chartInitializer)["getControls"]>;
+
+    const createChartInitializer = () => {
+        chartInitializer = getChartInitializer({
+            initializerType,
+            shouldUseCreateSingle,
+            dataSeriesCapacity,
+            dataChunkSize,
+            seriesNumber,
+            subChartsNumber,
+            drawLabels,
+            seriesType,
+            enableMemoryTracing,
+            enableRenderTracing,
+            updatesNumber: 10,
+            syncDataUpdateWithFrameRate: true,
+            updateInterval: undefined,
+            intervalBaseline: EUpdateIntervalBaseline.PaintEnd,
+            maxRunDuration: undefined
+        });
+        controls = chartInitializer.getControls();
+    };
 
     // Initialize Series Type Select
     const seriesTypeSelect = document.getElementById("seriesTypeSelect") as HTMLSelectElement;
@@ -83,6 +89,8 @@ export function initializeControlBindings(options?: TSetupOptions) {
     seriesTypeSelect.onchange = function (ev: Event) {
         seriesType = (ev.target as HTMLSelectElement).value as ESeriesType;
         console.log("Series type changed to:", seriesType);
+
+        createChartInitializer();
     };
 
     // Initialize Initializer Type Select
@@ -113,30 +121,13 @@ export function initializeControlBindings(options?: TSetupOptions) {
             subChartsContainer.style.display = "none";
         }
 
-        chartInitializer = getChartInitializer({
-            initializerType,
-            shouldUseCreateSingle,
-            dataSeriesCapacity,
-            dataChunkSize,
-            seriesNumber,
-            subChartsNumber,
-            drawLabels,
-            seriesType,
-            enableMemoryTracing,
-            enableRenderTracing,
-            updatesNumber: 10,
-            syncDataUpdateWithFrameRate: true,
-            updateInterval: undefined,
-            intervalBaseline: EUpdateIntervalBaseline.PaintEnd,
-            maxRunDuration: undefined
-        });
         if (initializerType === EInitializerType.SubChart) {
             subChartsContainer.style.display = "block";
         } else {
             subChartsContainer.style.display = "none";
         }
 
-        controls = chartInitializer.getControls();
+        createChartInitializer();
     };
 
     (document.querySelector("#create1") as HTMLInputElement).onclick = () =>

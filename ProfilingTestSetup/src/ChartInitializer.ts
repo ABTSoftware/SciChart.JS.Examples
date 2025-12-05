@@ -215,6 +215,8 @@ export class ChartInitializer extends DataUpdateApi {
         this.sharedWasmContext = wasmContext;
         this.surfaces.push(sciChartSurface);
 
+        await this.configureSurface(sciChartSurface);
+
         const { xAxis: mainXAxis, yAxis: mainYAxis } = await this.configureAxes(sciChartSurface);
 
         await this.configureSeries(sciChartSurface);

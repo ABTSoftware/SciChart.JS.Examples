@@ -1,4 +1,4 @@
-import { BaseDataSeries, SciChartSurface, XyDataSeries } from "scichart";
+import { BaseDataSeries, SciChartSurface, vectorToArrayViewF64, XyDataSeries } from "scichart";
 import { PerformanceTrackingApi } from "./PerformanceTrackingApi";
 import { GetRandomData } from "./helpers";
 
@@ -31,7 +31,6 @@ export class DataManagementApi extends PerformanceTrackingApi {
                     this.data[index][i][yValuesName] = GetRandomData(
                         xValues,
                         false,
-                        // TODO replace with ArrayView
                         dataSeries.getNativeYValues(yValuesIndex).get(lastIndex)
                     );
                 }
