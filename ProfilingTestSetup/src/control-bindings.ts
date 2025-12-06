@@ -41,12 +41,35 @@ export function initializeControlBindings(options?: TSetupOptions) {
     let subChartsNumber = options?.subChartsNumber ?? 64;
     let drawLabels = options?.drawLabels ?? false;
     let seriesType = options?.seriesType ?? ESeriesType.LineSeries;
-    let initializerType = options?.initializerType ?? EInitializerType.ConsoleOutput;
+    let initializerType = options?.initializerType ?? EInitializerType.Default;
     let enableMemoryTracing = options?.enableMemoryTracing ?? true;
     let enableRenderTracing = options?.enableRenderTracing ?? true;
+    let enableConsoleOutput = options?.enableConsoleOutput ?? true;
+    let syncDataUpdateWithFrameRate = true;
+    let numberOfSurfaces = 1;
 
+    let chartInitializers: ChartInitializer[] = [];
     let chartInitializer: ChartInitializer = undefined;
     let controls: ReturnType<(typeof chartInitializer)["getControls"]>;
+
+    // Theme toggle functionality
+    const themeToggle = document.getElementById("themeToggle") as HTMLButtonElement;
+    const savedTheme = localStorage.getItem("theme");
+
+    // Set initial theme (default to dark)
+    if (savedTheme === "light") {
+        document.body.classList.add("light-theme");
+        themeToggle.textContent = "☀️ Light Mode";
+    } else {
+        themeToggle.textContent = "🌙 Dark Mode";
+    }
+
+    themeToggle.onclick = () => {
+        document.body.classList.toggle("light-theme");
+        const isLight = document.body.classList.contains("light-theme");
+        themeToggle.textContent = isLight ? "☀️ Light Mode" : "🌙 Dark Mode";
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+    };
 
     const createChartInitializer = () => {
         chartInitializer = getChartInitializer({
@@ -56,17 +79,20 @@ export function initializeControlBindings(options?: TSetupOptions) {
             dataChunkSize,
             seriesNumber,
             subChartsNumber,
+            surfacesNumber: numberOfSurfaces,
             drawLabels,
             seriesType,
             enableMemoryTracing,
             enableRenderTracing,
-            updatesNumber: 10,
-            syncDataUpdateWithFrameRate: true,
-            updateInterval: undefined,
+            enableConsoleOutput,
+            syncDataUpdateWithFrameRate,
+            updateInterval,
             intervalBaseline: EUpdateIntervalBaseline.PaintEnd,
+            updatesNumber: undefined,
             maxRunDuration: undefined
         });
         controls = chartInitializer.getControls();
+        return controls;
     };
 
     // Initialize Series Type Select
@@ -89,8 +115,6 @@ export function initializeControlBindings(options?: TSetupOptions) {
     seriesTypeSelect.onchange = function (ev: Event) {
         seriesType = (ev.target as HTMLSelectElement).value as ESeriesType;
         console.log("Series type changed to:", seriesType);
-
-        createChartInitializer();
     };
 
     // Initialize Initializer Type Select
@@ -126,40 +150,37 @@ export function initializeControlBindings(options?: TSetupOptions) {
         } else {
             subChartsContainer.style.display = "none";
         }
-
-        createChartInitializer();
     };
 
-    (document.querySelector("#create1") as HTMLInputElement).onclick = () =>
-        wrapCreation(() => chartInitializer.createChart());
+    (document.querySelector("#create1") as HTMLInputElement).onclick = () => {
+        const controls = createChartInitializer();
+        chartInitializers.push(chartInitializer);
 
-    (document.querySelector("#append") as HTMLInputElement).onclick = () => {
-        controls.appendData();
-    };
-
-    (document.querySelector("#remove") as HTMLInputElement).onclick = () => {
-        controls.removeData();
-    };
-    (document.querySelector("#animate") as HTMLInputElement).onclick = () => {
-        controls.toggleAnimate();
+        wrapCreation(() => controls.createChartGroup());
     };
 
     (document.querySelector("#logMemoryDebug") as HTMLInputElement).onclick = () => {
         logMemory();
-        controls.outputMemoryUsageLogs();
-    };
-    (document.querySelector("#logPerformanceDebug") as HTMLInputElement).onclick = () => {
-        logPerformance();
-        controls.outputPerformanceData();
     };
 
-    (document.querySelector("#deleteSurfaces") as HTMLInputElement).onclick = () =>
-        controls.cleanup();
+    (document.querySelector("#logMemoryTrace") as HTMLInputElement).onclick = () => {
+        chartInitializers.forEach(init => init.getControls().outputMemoryUsageLogs());
+    };
+
+    (document.querySelector("#logPerformanceDebug") as HTMLInputElement).onclick = () => {
+        logPerformance();
+    };
+
+    (document.querySelector("#logPerformanceTrace") as HTMLInputElement).onclick = () => {
+        chartInitializers.forEach(init => init.getControls().outputPerformanceData());
+    };
     (document.querySelector("#deleteWasm") as HTMLInputElement).onclick = () => {
         SciChartSurface.disposeSharedWasmContext();
         SciChart3DSurface.disposeSharedWasmContext();
     };
     (document.querySelector("#initSharedWasm") as HTMLInputElement).onclick = () => {
+        createChartInitializer();
+
         console.log("Init Shared Wasm clicked");
         controls.initWasmContext();
     };
@@ -169,6 +190,13 @@ export function initializeControlBindings(options?: TSetupOptions) {
     memoryDebugCheckbox.onclick = function (ev: MouseEvent) {
         MemoryUsageHelper.isMemoryUsageDebugEnabled = (ev.target as HTMLInputElement).checked;
         console.log("isMemoryUsageDebugEnabled =", MemoryUsageHelper.isMemoryUsageDebugEnabled);
+    };
+
+    const memoryTraceCheckbox = document.querySelector<HTMLInputElement>("#memoryTrace");
+    memoryTraceCheckbox.checked = enableMemoryTracing;
+    memoryTraceCheckbox.onclick = function (ev: MouseEvent) {
+        enableMemoryTracing = (ev.target as HTMLInputElement).checked;
+        console.log("enableMemoryTracing =", enableMemoryTracing);
     };
     (document.querySelector("#autoDispose") as HTMLInputElement).onclick = function (
         ev: MouseEvent
@@ -186,18 +214,12 @@ export function initializeControlBindings(options?: TSetupOptions) {
         PerformanceDebugHelper.enableDebug = (ev.target as HTMLInputElement).checked;
         console.log("PerformanceDebugHelper.enableDebug =", PerformanceDebugHelper.enableDebug);
     };
-    (document.querySelector("#nativeText") as HTMLInputElement).onclick = function (
-        ev: MouseEvent
-    ) {
-        SciChartDefaults.useNativeText = (ev.target as HTMLInputElement).checked;
-        console.log("useNativeText =", SciChartDefaults.useNativeText);
-    };
 
-    const createSingleToggle = document.querySelector("#individualContext") as HTMLInputElement;
-    createSingleToggle.checked = shouldUseCreateSingle;
-    createSingleToggle.onclick = function (ev: MouseEvent) {
-        shouldUseCreateSingle = (ev.target as HTMLInputElement).checked;
-        console.log("createSingle =", shouldUseCreateSingle);
+    const performanceTraceCheckbox = document.querySelector<HTMLInputElement>("#performanceTrace");
+    performanceTraceCheckbox.checked = enableRenderTracing;
+    performanceTraceCheckbox.onclick = function (ev: MouseEvent) {
+        enableRenderTracing = (ev.target as HTMLInputElement).checked;
+        console.log("enableRenderTracing =", enableRenderTracing);
     };
 
     const intervalSelector = document.getElementById("intervalSelector") as HTMLInputElement;
@@ -209,6 +231,20 @@ export function initializeControlBindings(options?: TSetupOptions) {
         updateInterval = Number.parseInt((ev.target as HTMLInputElement).value, 10);
         intervalLabel.innerHTML = `${updateInterval}`;
         console.log("updateInterval =", updateInterval);
+    };
+
+    const syncToFpsCheckbox = document.querySelector("#syncToFps") as HTMLInputElement;
+    syncToFpsCheckbox.checked = syncDataUpdateWithFrameRate;
+
+    const intervalContainer = document.getElementById("intervalContainer") as HTMLElement;
+
+    // Update interval container visibility based on sync checkbox
+    intervalContainer.style.display = syncDataUpdateWithFrameRate ? "none" : "block";
+
+    syncToFpsCheckbox.onclick = function (ev: MouseEvent) {
+        syncDataUpdateWithFrameRate = (ev.target as HTMLInputElement).checked;
+        intervalContainer.style.display = syncDataUpdateWithFrameRate ? "none" : "block";
+        console.log("syncDataUpdateWithFrameRate =", syncDataUpdateWithFrameRate);
     };
 
     const capacitySelector = document.getElementById("capacitySelector") as HTMLInputElement;
@@ -254,6 +290,16 @@ export function initializeControlBindings(options?: TSetupOptions) {
         console.log("subChartsNumber =", subChartsNumber);
     };
 
+    const surfacesSelector = document.getElementById("surfacesSelector") as HTMLInputElement;
+    surfacesSelector.value = `${numberOfSurfaces}`;
+    const surfacesSelectorLabel = document.getElementById("surfacesLabel");
+    surfacesSelectorLabel.innerHTML = `${numberOfSurfaces}`;
+    surfacesSelector.onchange = function (ev: Event) {
+        numberOfSurfaces = Number.parseInt((ev.target as HTMLInputElement).value, 10);
+        surfacesSelectorLabel.innerHTML = `${numberOfSurfaces}`;
+        console.log("numberOfSurfaces =", numberOfSurfaces);
+    };
+
     (document.querySelector("#profilerDataButton") as HTMLInputElement).onclick = function (
         ev: MouseEvent
     ) {
@@ -261,9 +307,59 @@ export function initializeControlBindings(options?: TSetupOptions) {
         getDataForProfiler();
     };
 
-    (document.querySelector("#addMemoryCheckpoint") as HTMLInputElement).onclick = function (
-        ev: MouseEvent
-    ) {
-        controls.addMemoryUsageCheckpoint();
+    // (document.querySelector("#addMemoryCheckpoint") as HTMLInputElement).onclick = function (
+    //     ev: MouseEvent
+    // ) {
+    //     controls.addMemoryUsageCheckpoint();
+    // };
+
+    // All Groups Controls
+    (document.querySelector("#appendAllGroups") as HTMLInputElement).onclick = () => {
+        chartInitializers.forEach(init => init.getControls().appendData());
+    };
+
+    (document.querySelector("#removeAllGroups") as HTMLInputElement).onclick = () => {
+        chartInitializers.forEach(init => init.getControls().removeData());
+    };
+
+    (document.querySelector("#toggleAnimateAllGroups") as HTMLInputElement).onclick = () => {
+        chartInitializers.forEach(init => init.getControls().toggleAnimate());
+    };
+
+    (document.querySelector("#deleteAllGroups") as HTMLInputElement).onclick = () => {
+        const initializersToDelete = [...chartInitializers];
+        initializersToDelete.forEach(init => {
+            init.getControls().cleanup();
+            const index = chartInitializers.indexOf(init);
+            if (index > -1) {
+                chartInitializers.splice(index, 1);
+            }
+        });
+    };
+
+    // Last Group Controls
+    (document.querySelector("#appendLastGroup") as HTMLInputElement).onclick = () => {
+        if (chartInitializers.length === 0) return;
+        const lastInit = chartInitializers[chartInitializers.length - 1];
+        lastInit.getControls().appendData();
+    };
+
+    (document.querySelector("#removeLastGroup") as HTMLInputElement).onclick = () => {
+        if (chartInitializers.length === 0) return;
+        const lastInit = chartInitializers[chartInitializers.length - 1];
+        lastInit.getControls().removeData();
+    };
+
+    (document.querySelector("#toggleAnimateLastGroup") as HTMLInputElement).onclick = () => {
+        if (chartInitializers.length === 0) return;
+        const lastInit = chartInitializers[chartInitializers.length - 1];
+        lastInit.getControls().toggleAnimate();
+    };
+
+    (document.querySelector("#deleteLastGroup") as HTMLInputElement).onclick = () => {
+        if (chartInitializers.length === 0) return;
+        const lastInit = chartInitializers[chartInitializers.length - 1];
+        lastInit.getControls().cleanup();
+        chartInitializers.pop();
     };
 }

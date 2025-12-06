@@ -1,9 +1,107 @@
 # SciChart.js Chart Performance Measurement and Testing
 
-This project demonstrates two features:
+This project is a work in progress and demonstrates two features:
 
--   a setup for debugging chart performance and memory usage
--   automated tests using Playwright
+- a setup for debugging chart performance and memory usage
+- automated tests using Playwright
+
+## TLDR
+
+A performance profiling and testing framework for SciChart.js that provides:
+
+- **Interactive debugging app** with configurable chart parameters and real-time performance monitoring
+- **Automated Playwright tests** for systematic performance measurement across different configurations
+- **Modular `ChartInitializer` architecture** with granular control over chart lifecycle, data updates, and performance tracking
+- **Two-level profiling**: lightweight tracing for minimal overhead and detailed debug mode for deep analysis
+- **Test report generation** with visual comparison of performance metrics across test runs
+- **Memory and performance tracking APIs** with console output control via `enableConsoleOutput` flag
+
+**Quick Start**: `npm install && npm run dev` for the interactive app, or `npm run test:full` for automated testing with reports.
+
+---
+
+## Table of Contents
+
+- [SciChart.js Chart Performance Measurement and Testing](#scichartjs-chart-performance-measurement-and-testing)
+  - [TLDR](#tldr)
+  - [Table of Contents](#table-of-contents)
+  - [Goal](#goal)
+  - [Description](#description)
+    - [Project structure](#project-structure)
+      - [Main app](#main-app)
+      - [Test Client App](#test-client-app)
+      - [Playwright Testing App](#playwright-testing-app)
+      - [Test Report App](#test-report-app)
+  - [Running the project](#running-the-project)
+    - [Main App](#main-app-1)
+    - [Automated Tests](#automated-tests)
+      - [Test Results Report](#test-results-report)
+      - [Other options](#other-options)
+      - [Results Location](#results-location)
+  - [How to use the Main App](#how-to-use-the-main-app)
+    - [Memory Debugging](#memory-debugging)
+      - [Browser Dev-tools](#browser-dev-tools)
+      - [Memory Usage Tracing](#memory-usage-tracing)
+      - [Memory Debug Logs](#memory-debug-logs)
+    - [Performance Debugging](#performance-debugging)
+      - [Performance Debug Logs](#performance-debug-logs)
+      - [Performance Metrics Tracing](#performance-metrics-tracing)
+    - [Setup Customization](#setup-customization)
+
+---
+
+## Goal
+
+This project is a public version of a setup that is supposed to help with the performance profiling.
+
+Currently it is work in progress and the project is in a draft state.  
+So, some of the features may not work.  
+Some of the further ideas are listed in the [TODO](./TODO) file.
+Let us know if you find this demo useful or need some assistance with it.
+
+---
+
+Chart rendering performance depends on multiple factors.  
+With this setup we try to demonstrate some approaches of how a chart setup could be configured and profiled.
+
+For example, we implemented `ChartInitializer` class that consists of methods that are responsible for granular chart configuration areas.  
+Those areas include:
+
+- engine and chart initialization;
+- axes configuration;
+- sub-charts configuration;
+- series configurations;
+- other surface configurations;
+- Data Series configurations;
+- data update configuration (data generation, append/remove, update frequency, pacing);
+- APIs related to performance measurement and output
+
+and more.
+
+By separating the configuration logic into this structure we could easily try different approaches by overriding those methods or extending them with additional logic.  
+And, by dividing those operations into distinct steps we can measure the performance and memory footprint they create.
+
+---
+
+To be more specific, the setup allows to perform profiling at different levels:
+
+- Top level (Lets refer to it as _Tracing_), which measures the mentioned configuration steps and creates only a minimal overhead while collecting the profiled data.
+
+- Detailed (Debug Mode), that uses `PerformanceDebugHelper` and `MemoryDebugHelper` APIs to collect information about internal chart processes and entities. It breaks down the rendering process into even smaller steps and collects more data and context details.
+
+We are also working on a Profiler App and other tools that could be used to analyze and visualize the collected profiling data.
+
+---
+
+To mention some use-cases on how this setup could be used:
+
+- Here we can compare performance differences between multi-chart setup and a setup that uses SubCharts API.
+- We can investigate how to optimally configure data update process considering update interval and data batch size.
+- It allows to check how a chart behaves after running updates over a long period of time.
+- Or how the chart setup deals with creating and deleting different entities (surfaces/series/etc) in different variations
+
+The automated Playwright tests allow to quickly iterate over configuration variations and present the results in a summary.  
+And there are a lot more use-cases for the test setup which we plan to implement.
 
 ## Description
 
@@ -125,14 +223,12 @@ npm run build:reports
 
 which will generate the page in [build-reports](./build-reports/) folder.
 
-### Other options
-
-#### Test Mode
+#### Other options
 
 There are 2 available test modes:
 
--   `url` - targets the Playwright tests to a webpage opened on localhost. The webpage loads JS bundle and WASM files during parsing.
--   `file` - targets the Playwright tests to the HTML file that has embedded JS script and WASM files.
+- `url` - targets the Playwright tests to a webpage opened on localhost. The webpage loads JS bundle and WASM files during parsing.
+- `file` - targets the Playwright tests to the HTML file that has embedded JS script and WASM files.
 
 These test modes allow to compare the time difference required to fetch and process the app sources.  
 Another interesting area to investigate is eager preloading of the resources, e.i. WASM files.
@@ -145,9 +241,9 @@ Test results location is defined by the `outputFile` property passed to [the cus
 
 The `npm test` command automatically runs the `preserve-results` script before building and testing. This script:
 
--   Copies the existing results file to a separate archive location
--   Allows the JSON reporter to compare current results with previous results
--   Supports custom file paths via environment variables:
+- Copies the existing results file to a separate archive location
+- Allows the JSON reporter to compare current results with previous results
+- Supports custom file paths via environment variables:
 
 ```bash
 # Custom results and previous file paths
@@ -156,8 +252,8 @@ RESULTS_PATH=custom-results/test.json PREVIOUS_PATH=custom-archive/test.previous
 
 Environment variables:
 
--   `RESULTS_PATH` - Full path to current test results file (default: `test-results/results.json`)
--   `PREVIOUS_PATH` - Full path to previous results file (default: `test-results-archive/results.previous.json`)
+- `RESULTS_PATH` - Full path to current test results file (default: `test-results/results.json`)
+- `PREVIOUS_PATH` - Full path to previous results file (default: `test-results-archive/results.previous.json`)
 
 You can also run the preserve script independently:
 
@@ -187,7 +283,7 @@ PREVIOUS_RESULTS_FILE=../other-project/test-results-previous/results.previous.js
 
 Environment variables for reports build:
 
--   `PREVIOUS_RESULTS_FILE` - Path to the previous results file to include in the report (default: `test-results-previous/results.previous.json`)
+- `PREVIOUS_RESULTS_FILE` - Path to the previous results file to include in the report (default: `test-results-previous/results.previous.json`)
 
 ## How to use the Main App
 

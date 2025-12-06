@@ -48,7 +48,7 @@ async function initExample(options: TTestOptions) {
 
     const controls = chartInitializer.getControls();
 
-    await chartInitializer.createChart();
+    await controls.createChartGroup();
 
     await controls.toggleAnimate();
 

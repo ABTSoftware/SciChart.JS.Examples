@@ -20,7 +20,7 @@ const config: Configuration = {
         ]
     },
     resolve: {
-        extensions: [".js", ".ts"],
+        extensions: [".js", ".ts"]
     },
     output: {
         filename: "bundle.js",
@@ -30,6 +30,7 @@ const config: Configuration = {
         new CopyPlugin({
             patterns: [
                 { from: "src/index.html", to: "" },
+                { from: "src/scichart-logo.svg", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" }
             ]

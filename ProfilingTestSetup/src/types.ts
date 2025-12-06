@@ -20,10 +20,12 @@ export type TChartInitializerOptions = {
     dataChunkSize: number;
     seriesNumber: number;
     subChartsNumber: number;
+    surfacesNumber: number;
     drawLabels: boolean;
     seriesType: ESeriesType;
     enableMemoryTracing: boolean;
     enableRenderTracing: boolean;
+    enableConsoleOutput: boolean;
 } & TUpdateSetup;
 
 export type TSetupOptions = TChartInitializerOptions & {

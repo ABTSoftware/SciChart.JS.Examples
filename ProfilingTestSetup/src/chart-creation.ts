@@ -3,10 +3,9 @@ import { SubChartsInitializer } from "./custom/SubChartsInitializer";
 import { GraphSummaryInitializer } from "./custom/GraphSummaryInitializer";
 import { EInitializerType } from "./InitializerTypes";
 import { TTestOptions } from "./types";
-import { ResultsConsoleOutputApi } from "./ResultsConsoleOutputApi";
 
 let lastPromise: Promise<any> = Promise.resolve();
-export const wrapCreation = async (createFunc: () => Promise<void>) => {
+export const wrapCreation = async (createFunc: () => Promise<any>) => {
     // await lastPromise;
     lastPromise = createFunc();
 };
@@ -14,18 +13,15 @@ export const wrapCreation = async (createFunc: () => Promise<void>) => {
 export const getChartInitializer = (options: TTestOptions) => {
     let chartInitializer: ChartInitializer = undefined;
     switch (options.initializerType) {
-        case EInitializerType.ConsoleOutput: {
-            chartInitializer = new ResultsConsoleOutputApi(options);
-            break;
-        }
         case EInitializerType.SubChart: {
             chartInitializer = new SubChartsInitializer(options);
             break;
         }
-        case EInitializerType.GraphSummary: {
-            chartInitializer = new GraphSummaryInitializer(options);
-            break;
-        }
+
+        // case EInitializerType.GraphSummary: {
+        //     chartInitializer = new GraphSummaryInitializer(options);
+        //     break;
+        // }
 
         default: {
             chartInitializer = new ChartInitializer(options);

@@ -5,17 +5,12 @@ import {
     PlaywrightWorkerArgs,
     PlaywrightWorkerOptions
 } from "@playwright/test";
-import { TCollectedMetrics, TSetupOptions, TTestOptions } from "../src/types";
+import { EUpdateIntervalBaseline, TCollectedMetrics, TSetupOptions, TTestOptions } from "../src/types";
 import { test } from "./fixtures";
 import { ESeriesType } from "scichart";
 import { EInitializerType } from "../src/InitializerTypes";
 
-// test('has title', async ({ page }) => {
-//   await page.goto('https://playwright.dev/');
-
-//   // Expect a title "to contain" a substring.
-//   await expect(page).toHaveTitle(/Playwright/);
-// });
+// TODO this a draft test example
 
 test("get started link", async ({
     page
@@ -35,10 +30,15 @@ test("get started link", async ({
         subChartsNumber: 0,
         drawLabels: false,
         seriesType: ESeriesType.LineSeries,
-        runDuration: 1000 * 1,
-        initializerType: EInitializerType.Serializable,
+        maxRunDuration: 3000 * 1,
+        initializerType: EInitializerType.Default,
         enableMemoryTracing: true,
-        enableRenderTracing: true
+        enableRenderTracing: true,
+        enableConsoleOutput: false,
+        surfacesNumber: 1,
+        updatesNumber: 10,
+        syncDataUpdateWithFrameRate: true,
+        intervalBaseline: EUpdateIntervalBaseline.PaintEnd,
     };
 
     const evaluationResult = await page.evaluate<TCollectedMetrics, TTestOptions>(

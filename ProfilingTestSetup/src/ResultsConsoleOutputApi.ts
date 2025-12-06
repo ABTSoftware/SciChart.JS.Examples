@@ -1,37 +1,52 @@
-import { ChartInitializer } from "./ChartInitializer";
+import { DataUpdateApi } from "./DataUpdateApi";
 import { bytesToMB } from "./helpers";
 import { TCollectedPerformanceData } from "./types";
 
-export class ResultsConsoleOutputApi extends ChartInitializer {
+export class ResultsConsoleOutputApi extends DataUpdateApi {
     public override outputMemoryUsageLogs(): any {
-        console.group(`Memory Usage Logs`);
-        this.memoryUsageLogs.forEach(log => {
-            const { timestamp, name, usedJSHeapSize, totalJSHeapSize, jsHeapSizeLimit, HEAPF64 } =
-                log;
+        if (this.options.enableConsoleOutput) {
+            console.groupCollapsed(`Memory Usage Logs`);
+            this.memoryUsageLogs.forEach(log => {
+                const {
+                    timestamp,
+                    name,
+                    usedJSHeapSize,
+                    totalJSHeapSize,
+                    jsHeapSizeLimit,
+                    HEAPF64
+                } = log;
 
-            console.group(`Memory State at: ${name}`);
+                console.groupCollapsed(`Memory State at: ${name}`);
 
-            console.log("usedJSHeapSize", bytesToMB(usedJSHeapSize));
-            console.log("totalJSHeapSize", bytesToMB(totalJSHeapSize));
-            console.log("jsHeapSizeLimit", bytesToMB(jsHeapSizeLimit));
+                console.log("usedJSHeapSize", bytesToMB(usedJSHeapSize));
+                console.log("totalJSHeapSize", bytesToMB(totalJSHeapSize));
+                console.log("jsHeapSizeLimit", bytesToMB(jsHeapSizeLimit));
 
-            console.log("HEAPF64", bytesToMB(HEAPF64));
+                console.log("HEAPF64", bytesToMB(HEAPF64));
+                console.groupEnd();
+            });
             console.groupEnd();
-        });
-        console.groupEnd();
+        }
+        return super.outputMemoryUsageLogs();
     }
 
     public override outputPerformanceData(): any {
-        console.groupCollapsed("Collected Performance Data");
+        if (this.options.enableConsoleOutput) {
+            console.groupCollapsed("Collected Performance Data");
 
-        this.collectedPerformanceData.forEach(entry => {
-            this.outputPerformanceDataForSurface(entry);
-        });
+            this.collectedPerformanceData.forEach(entry => {
+                this.outputPerformanceDataForSurface(entry);
+            });
 
-        console.groupEnd();
+            console.groupEnd();
+        }
+        return super.outputPerformanceData();
     }
 
-    protected override outputPerformanceDataForSurface(params: TCollectedPerformanceData) {
+    protected override outputPerformanceDataForSurface(params: TCollectedPerformanceData): void {
+        if (!this.options.enableConsoleOutput) {
+            return;
+        }
         const {
             id,
             dataGenerationStart,
@@ -102,10 +117,11 @@ export class ResultsConsoleOutputApi extends ChartInitializer {
         const avgRenderDuration =
             renderEntries.reduce((acc, value) => acc + value.duration, 0) / renderEntries.length;
         const avgTimeBetweenPaints =
-            timeBetweenPaints.reduce((acc, value) => acc + value, 0) / timeBetweenPaints.length;
+            timeBetweenPaints.filter(t => t === t).reduce((acc, value) => acc + value, 0) /
+            timeBetweenPaints.length;
         const avgFps = 1000 / avgTimeBetweenPaints;
 
-        console.group(`Performance Results for Surface ${id}`);
+        console.groupCollapsed(`Performance Results for Surface ${id}`);
         console.log("dataUpdateCounter", dataUpdateEntries.length);
         console.log("frames", renderEntries.length);
         console.log("avgDataGenerationDuration", avgDataGenerationDuration);
@@ -113,7 +129,7 @@ export class ResultsConsoleOutputApi extends ChartInitializer {
         console.log("avgRenderDuration", avgRenderDuration);
         console.log("averageFps", avgFps);
 
-        console.groupCollapsed();
+        console.groupCollapsed("Data");
         console.table(dataUpdateEntries);
         console.table(renderEntries);
         console.table(timeBetweenPaints);
@@ -123,15 +139,21 @@ export class ResultsConsoleOutputApi extends ChartInitializer {
     }
 
     public outputInitializationPerformanceData(): any {
-        console.groupCollapsed("Initialization Performance Data");
-        this.initializationPerformanceData.forEach(entry => {
-            console.groupCollapsed(`For surface ${entry.id}`);
-            console.log(entry);
+        if (this.options.enableConsoleOutput) {
+            console.groupCollapsed("Initialization Performance Data");
+            this.initializationPerformanceData.forEach(entry => {
+                console.groupCollapsed(`For surface ${entry.id}`);
+                console.log(entry);
+                console.groupEnd();
+            });
             console.groupEnd();
-        });
-        console.groupEnd();
+        }
+        return super.outputInitializationPerformanceData();
     }
     public outputBrowserAnimationFrameData(): any {
-        console.log(this.browserAnimationFrameData);
+        if (this.options.enableConsoleOutput) {
+            console.log(this.browserAnimationFrameData);
+        }
+        return super.outputBrowserAnimationFrameData();
     }
 }

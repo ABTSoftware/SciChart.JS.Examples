@@ -8,6 +8,7 @@ export class DataUpdateApi extends DataManagementApi {
     protected toggleAnimateList: Array<() => void> = [];
 
     protected performDataUpdate(params: {
+        sciChartSurface: SciChartSurface,
         dataGenerationStart: DOMHighResTimeStamp[];
         dataUpdateStart: DOMHighResTimeStamp[];
         dataUpdateEnd: DOMHighResTimeStamp[];
@@ -16,11 +17,11 @@ export class DataUpdateApi extends DataManagementApi {
 
         this.addTimeStamp(params.dataGenerationStart);
 
-        this.generateData();
+        this.generateDataForSurface(params.sciChartSurface);
 
         this.addTimeStamp(params.dataUpdateStart);
 
-        this.appendData();
+        this.appendDataOnSurface(params.sciChartSurface);
 
         this.addTimeStamp(params.dataUpdateEnd);
 
@@ -58,6 +59,7 @@ export class DataUpdateApi extends DataManagementApi {
 
         const update = () => {
             this.performDataUpdate({
+                sciChartSurface,
                 dataGenerationStart,
                 dataUpdateStart,
                 dataUpdateEnd

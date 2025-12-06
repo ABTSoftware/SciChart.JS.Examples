@@ -9,13 +9,15 @@ import { ESeriesType } from "scichart";
 import { EInitializerType } from "../../src/InitializerTypes";
 
 const defaultArgs: Omit<TTestOptions, "seriesNumber" | "seriesType" | "dataSeriesCapacity"> = {
+    surfacesNumber: 1,
     shouldUseCreateSingle: false,
-    dataChunkSize: 1000,
+    dataChunkSize: 100,
     subChartsNumber: 0,
     drawLabels: false,
     initializerType: EInitializerType.Default,
     enableMemoryTracing: false, // TODO SCJS-2292
     enableRenderTracing: true,
+    enableConsoleOutput: false, // tests use Test Reporter to display the collected results
     maxRunDuration: 1000 * 3,
     updatesNumber: 10,
     syncDataUpdateWithFrameRate: true,
@@ -42,9 +44,9 @@ const seriesTypesVariations = Object.values(ESeriesType).filter(
 );
 
 // const seriesTypesVariations = [
-//     // ESeriesType.UniformHeatmapSeries,
-//     // ESeriesType.NonUniformHeatmapSeries,
-//     // ESeriesType.UniformContoursSeries,
+//     ESeriesType.UniformHeatmapSeries,
+//     ESeriesType.NonUniformHeatmapSeries,
+//     ESeriesType.UniformContoursSeries,
 
 //     ESeriesType.LineSegmentSeries,
 //     ESeriesType.RectangleSeries,
@@ -53,7 +55,7 @@ const seriesTypesVariations = Object.values(ESeriesType).filter(
 //     ESeriesType.BubbleSeries,
 //     ESeriesType.ErrorBarsSeries
 
-//     // ESeriesType.BoxPlotSeries,
+//     ESeriesType.BoxPlotSeries,
 // ];
 
 const dataPointsNumberVariations = [
