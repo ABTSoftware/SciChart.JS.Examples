@@ -52,8 +52,11 @@ export default function LogarithmicAxisExample() {
                 break;
         }
 
-        const activeXAxisId = indexXAxsis.isVisible ? indexXAxsis.id :
-                             linearXAxis.isVisible ? linearXAxis.id : categoryXAxis.id;
+        const activeXAxisId = indexXAxsis.isVisible
+            ? indexXAxsis.id
+            : linearXAxis.isVisible
+            ? linearXAxis.id
+            : categoryXAxis.id;
         const activeYAxisId = linearYAxis.id;
 
         // After switching visibility of axis - we need to set the X/Y AxisId on series
@@ -68,11 +71,12 @@ export default function LogarithmicAxisExample() {
             annotation.yAxisId = activeYAxisId;
         });
 
-        // Force a complete redraw
-        sciChartSurface.invalidateElement();
-
-        // Zoom to fit
-        sciChartSurface.zoomExtents();
+        setTimeout(() => {
+            // // Force a complete redraw
+            // sciChartSurface.invalidateElement();
+            // // Zoom to fit
+            sciChartSurface.zoomExtents();
+        }, 100);
     };
 
     return (
