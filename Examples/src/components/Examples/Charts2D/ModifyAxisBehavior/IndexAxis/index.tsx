@@ -3,7 +3,7 @@ import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import { AxisBase2D, IndexAxis, LogarithmicAxis, NumericAxis, SciChartSurface } from "scichart";
+import { AxisBase2D, IndexAxis, LogarithmicAxis, NumericAxis, SciChartSurface, CategoryAxis } from "scichart";
 import { drawExample } from "./drawExample";
 
 // React component needed as our examples app is react.
@@ -13,6 +13,7 @@ export default function LogarithmicAxisExample() {
     const [linearXAxis, setLinearXAxis] = React.useState<NumericAxis>();
     const [linearYAxis, setLinearYAxis] = React.useState<NumericAxis>();
     const [indexXAxsis, setIndexXAxis] = React.useState<IndexAxis>();
+    const [categoryXAxis, setCategoryXAxis] = React.useState<CategoryAxis>();
     const [preset, setPreset] = React.useState<number>(0);
 
     const handleToggleButtonChanged = (event: any, state: number) => {
@@ -29,20 +30,30 @@ export default function LogarithmicAxisExample() {
                 console.log(`Index Axis`);
                 toggleAxis(indexXAxsis, true);
                 toggleAxis(linearXAxis, false);
+                toggleAxis(categoryXAxis, false);
                 toggleAxis(linearYAxis, true);
                 sciChartSurface.title = "Index X Axis";
                 break;
             case 1:
                 console.log(`Linear X Axis`);
-
                 toggleAxis(indexXAxsis, false);
                 toggleAxis(linearXAxis, true);
+                toggleAxis(categoryXAxis, false);
                 toggleAxis(linearYAxis, true);
                 sciChartSurface.title = "Linear X Axis";
                 break;
+            case 2:
+                console.log(`Category X Axis`);
+                toggleAxis(indexXAxsis, false);
+                toggleAxis(linearXAxis, false);
+                toggleAxis(categoryXAxis, true);
+                toggleAxis(linearYAxis, true);
+                sciChartSurface.title = "Category X Axis";
+                break;
         }
 
-        const activeXAxisId = indexXAxsis.isVisible ? indexXAxsis.id : linearXAxis.id;
+        const activeXAxisId = indexXAxsis.isVisible ? indexXAxsis.id :
+                             linearXAxis.isVisible ? linearXAxis.id : categoryXAxis.id;
         const activeYAxisId = linearYAxis.id;
 
         // After switching visibility of axis - we need to set the X/Y AxisId on series
@@ -82,6 +93,9 @@ export default function LogarithmicAxisExample() {
                     <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
                         Linear X Axis
                     </ToggleButton>
+                    <ToggleButton value={2} style={{ color: appTheme.ForegroundColor }}>
+                        Category X Axis
+                    </ToggleButton>
                 </ToggleButtonGroup>
             </div>
             <SciChartReact
@@ -92,6 +106,7 @@ export default function LogarithmicAxisExample() {
                     setIndexXAxis(initResult.xAxisIndex);
                     setLinearXAxis(initResult.xAxisLinear);
                     setLinearYAxis(initResult.yAxisLinear);
+                    setCategoryXAxis(initResult.xAxisCategory);
                 }}
             />
         </div>

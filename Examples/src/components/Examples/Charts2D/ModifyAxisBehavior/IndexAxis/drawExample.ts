@@ -20,6 +20,7 @@ import {
     SmartDateLabelProvider,
     AxisMarkerAnnotation,
     ELabelPlacement,
+    LabelProviderBase2D,
 } from "scichart";
 import { appTheme } from "../../../theme";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
@@ -86,6 +87,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     sciChartSurface.xAxes.add(xAxisLinear);
 
+    const xAxisCategory = new CategoryAxis(wasmContext, {
+        isVisible: false,
+        id: X_AXIS_CATEGORY_ID,
+        growBy: new NumberRange(0.1, 0.1),
+        labels: [1, 2, 3, 4, 5, 8, 9].map(d => d.toString())
+    });
+    sciChartSurface.xAxes.add(xAxisCategory);
+
     const yAxisLinear = new NumericAxis(wasmContext, {
         labelFormat: ENumericFormat.Decimal,
         labelPrecision: 2,
@@ -142,10 +151,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(
-        new RubberBandXyZoomModifier(),
+        // new RubberBandXyZoomModifier(),
         new MouseWheelZoomModifier(),
-        new ZoomExtentsModifier()
-        // new LegendModifier({ showCheckboxes: false })
+        new ZoomExtentsModifier(),
     );
 
     // Add axis marker annotations at values 5 and 8
@@ -178,5 +186,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         yAxisLinear,
         xAxisLinear,
         xAxisIndex,
+        xAxisCategory,
     };
 };
+
