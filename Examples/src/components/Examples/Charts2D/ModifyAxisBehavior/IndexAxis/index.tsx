@@ -51,6 +51,12 @@ export default function LogarithmicAxisExample() {
             rs.yAxisId = activeYAxisId;
         });
 
+        // Also update annotations to use the correct axis IDs
+        sciChartSurface.annotations.asArray().forEach((annotation) => {
+            annotation.xAxisId = activeXAxisId;
+            annotation.yAxisId = activeYAxisId;
+        });
+
         // Force a complete redraw
         sciChartSurface.invalidateElement();
 
