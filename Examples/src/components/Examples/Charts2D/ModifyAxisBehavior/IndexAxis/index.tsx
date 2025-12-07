@@ -51,6 +51,9 @@ export default function LogarithmicAxisExample() {
             rs.yAxisId = activeYAxisId;
         });
 
+        // Force a complete redraw
+        sciChartSurface.invalidateElement();
+
         // Zoom to fit
         sciChartSurface.zoomExtents();
     };
@@ -80,8 +83,6 @@ export default function LogarithmicAxisExample() {
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     const { sciChartSurface } = initResult;
                     sciChartSurfaceRef.current = sciChartSurface;
-                    // setLogXAxis(initResult.xAxisLogarithmic);
-                    // setLogYAxis(initResult.yAxisLogarithmic);
                     setIndexXAxis(initResult.xAxisIndex);
                     setLinearXAxis(initResult.xAxisLinear);
                     setLinearYAxis(initResult.yAxisLinear);
