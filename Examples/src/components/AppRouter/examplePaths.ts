@@ -59,6 +59,7 @@ export default [
     "../Examples/Charts2D/Legends/ChartLegendsAPI",
     "../Examples/Charts2D/ModifyAxisBehavior/CentralAxes",
     "../Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes",
+    "../Examples/Charts2D/ModifyAxisBehavior/IndexAxis",
     "../Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis",
     "../Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes",
     "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes",
@@ -159,5 +160,5 @@ export default [
     "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard",
     "../Examples/FeaturedApps/ShowCases/PopulationPyramid",
     "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard",
-    "../Examples/FeaturedApps/ShowCases/WebsocketBigData",
+    "../Examples/FeaturedApps/ShowCases/WebsocketBigData"
 ];
