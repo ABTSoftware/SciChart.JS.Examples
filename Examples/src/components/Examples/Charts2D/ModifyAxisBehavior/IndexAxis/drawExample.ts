@@ -47,19 +47,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         },
     });
 
-    // const xAxisCategory = new CategoryAxis(wasmContext, {
-    //     // set other properties
-    //     drawMajorGridLines: true,
-    //     drawMinorGridLines: true,
-    //     axisTitle: "Category X Axis",
-    //     axisAlignment: EAxisAlignment.Bottom,
-    //     // set a date format for labels
-    //     labelProvider: new SmartDateLabelProvider(),
-    //     id: X_AXIS_CATEGORY_ID,
-    // });
-
-    // sciChartSurface.xAxes.add(xAxisCategory);
-
     const xAxisIndex = new IndexAxis(wasmContext, {
         flippedCoordinates: false,
         labelPrecision: 3,
