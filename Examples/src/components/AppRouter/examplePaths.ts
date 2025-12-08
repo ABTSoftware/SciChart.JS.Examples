@@ -57,6 +57,7 @@ export default [
     "../Examples/Charts2D/Filters/PercentageChange",
     "../Examples/Charts2D/Filters/TrendMARatio",
     "../Examples/Charts2D/Legends/ChartLegendsAPI",
+    "../Examples/Charts2D/ModifyAxisBehavior/AxisTypeComparison",
     "../Examples/Charts2D/ModifyAxisBehavior/CentralAxes",
     "../Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes",
     "../Examples/Charts2D/ModifyAxisBehavior/IndexAxis",

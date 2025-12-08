@@ -193,6 +193,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_IndexAxis,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_AxisTypeComparison,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes,
             EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes,
             EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout,
