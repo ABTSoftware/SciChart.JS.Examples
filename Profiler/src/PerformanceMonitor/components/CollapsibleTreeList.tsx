@@ -11,10 +11,8 @@ import {
 } from "@headless-tree/core";
 import { useTree } from "@headless-tree/react";
 import cx from "classnames";
-// import { DemoItem, createDemoData } from "../utils/data";
 import "./TreeStyles.css";
-import { standardEventMarkTypeCategories, standardOperationMarkTypeCategories } from "../data/markTypeCategories";
-import { TMarkType } from "../data/typeAliases";
+
 import { getSeriesColor } from "../PerformanceMarkColors";
 import ShowEyeButton from "./EyeIconButton";
 export type DemoItem = {
@@ -117,7 +115,7 @@ export const CollapsibleTreeList = (props: {
         isItemFolder: item => !!item.getItemData().children,
         dataLoader: syncDataLoader,
         canCheckFolders: true,
-        propagateCheckedState: false, // we implement our own propagaton logic in the override feature
+        propagateCheckedState: false, // we implement our own propagation logic in the override feature
         indent: 20,
         features: [syncDataLoaderFeature, selectionFeature, checkboxesFeature, hotkeysCoreFeature, checkboxOverride]
     });
@@ -126,7 +124,7 @@ export const CollapsibleTreeList = (props: {
 
     return (
         <>
-            <div style={{fontStyle: "bold", fontSize: "1.5em"}}>Mark types selector</div>
+            <div style={{ fontStyle: "bold", fontSize: "1.5em" }}>Mark types selector</div>
             <div>
                 Total number of leaves/series/marks: {[leavesCount, seriesCount, dataPointEntriesCount].join("/")}
             </div>
@@ -139,6 +137,7 @@ export const CollapsibleTreeList = (props: {
                         <div className="outeritem" key={item.getId()}>
                             <button {...item.getProps()} style={{ paddingLeft: `${item.getItemMeta().level * 20}px` }}>
                                 <div
+                                    style={{ display: "flex" }}
                                     className={cx("treeitem", {
                                         focused: item.isFocused(),
                                         expanded: item.isExpanded(),
@@ -146,20 +145,22 @@ export const CollapsibleTreeList = (props: {
                                         folder: item.isFolder()
                                     })}
                                 >
+                                    {!item.isFolder() ? (
+                                        <div
+                                            style={{
+                                                aspectRatio: "1 / 1",
+                                                height: "100%",
+                                                marginRight: "4px",
+                                                backgroundColor: getSeriesColor(itemId)
+                                            }}
+                                        ></div>
+                                    ) : null}
                                     {`${item.getItemName()} (${[leavesCount, seriesCount, dataPointEntriesCount].join(
                                         "/"
                                     )})`}
                                 </div>
                             </button>
-                            {!item.isFolder() ? (
-                                <div
-                                    className={cx("treeitem")}
-                                    style={{
-                                        width: "100px",
-                                        backgroundColor: getSeriesColor(itemId)
-                                    }}
-                                ></div>
-                            ) : null}
+
                             <ShowEyeButton
                                 onClick={(highlighted: boolean) => props.onShowButtonClick(itemId, highlighted)}
                             />

@@ -95,7 +95,6 @@ export class ProfilerSeriesConfigurator {
             .concat(renderableSeriesForOtherEventStats)
             .map(({ series }) => series);
 
-        console.log("allStatSeries", allSeries.length);
         this.sciChartSurface.renderableSeries.add(...allSeries);
     }
 
@@ -128,24 +127,27 @@ export class ProfilerSeriesConfigurator {
         const { markType, surfaceIndex, surfaceId } = props;
         const statsByMarkType = this.statsInfo.statsBySurfaceAndMarkType.get(surfaceId);
         const dataValues = (statsByMarkType.get(markType) as StatsRangeDataEntry[]) ?? [];
-        const xValues = dataValues.flatMap((entry, i) => {
-            // const nextEntry = dataValues[i + 1]
-            return entry.end ? [entry.start, entry.end] : [entry.start];
-        });
+        const xValues = dataValues.flatMap(entry => (entry.end ? [entry.start, entry.end] : entry.start));
 
         const seriesIndex = this.getMarkTypePositionIndex(markType);
-        const yValues = dataValues.flatMap((entry, i) => {
+        const yValues = dataValues.flatMap(entry => {
             const yOffset = surfaceIndex * (this.performanceMarksCategoriesNumber + 1) + seriesIndex;
             return entry.end ? [yOffset, yOffset] : yOffset;
+        });
+
+        const metadata = dataValues.flatMap(entry => {
+            const isSelected = false;
+            const metadataEntry = { isSelected, detail: entry.detail };
+            return entry.end ? [metadataEntry, metadataEntry] : metadataEntry;
         });
 
         const dataSeries = new XyDataSeries(wasmContext, {
             dataSeriesName: `${markType}-Chart-${surfaceIndex}`,
             containsNaN: true,
             xValues,
-            yValues
+            yValues,
             // y1Values,
-            // metadata
+            metadata
         });
 
         // const xValues = dataValues.map(entry => entry.start);
@@ -210,6 +212,12 @@ export class ProfilerSeriesConfigurator {
         const yValues = xValues.map(
             () => surfaceIndex * (this.performanceMarksCategoriesNumber + 1) + this.getMarkTypePositionIndex(markType)
         );
+
+        const metadata = dataValues.flatMap(entry => {
+            const isSelected = false;
+            const metadataEntry = { isSelected, detail: entry.detail };
+            return metadataEntry;
+        });
         // const metadata = dataValues.flatMap(entry => {
         //     const res = { isSelected: false, name: key, duration: entry.end - entry.start };
         //     return entry.end ? [{ isSelected: false, name: key }, res] : [res];
@@ -220,8 +228,8 @@ export class ProfilerSeriesConfigurator {
             isSorted: true,
             containsNaN: false,
             xValues,
-            yValues
-            // metadata
+            yValues,
+            metadata
         });
 
         const series = new XyScatterRenderableSeries(wasmContext, {
@@ -260,18 +268,19 @@ export class ProfilerSeriesConfigurator {
         const yValues = dataValues.flatMap(entry => (entry.end ? [yOffset, yOffset] : yOffset));
 
         // const y1Values = yValues.map(y => y + 1);
-        // const metadata = dataValues.flatMap(entry => {
-        //     const res = { isSelected: false, name: key, duration: entry.end - entry.start };
-        //     return entry.end ? [{ isSelected: false, name: key }, res] : [res];
-        // });
+        const metadata = dataValues.flatMap(entry => {
+            const isSelected = false;
+            const metadataEntry = { isSelected, detail: entry.detail };
+            return entry.end ? [metadataEntry, metadataEntry] : metadataEntry;
+        });
 
         const dataSeries = new XyDataSeries(wasmContext, {
             dataSeriesName: `${markType}`,
             containsNaN: true,
             xValues,
-            yValues
+            yValues,
             // y1Values,
-            // metadata
+            metadata
         });
 
         const series = new FastLineSegmentRenderableSeries(wasmContext, {
@@ -307,18 +316,20 @@ export class ProfilerSeriesConfigurator {
         const dataValues = (this.statsInfo.otherStatsByMarkType.get(markType) as StatsEventDataEntry[]) ?? [];
         const xValues = dataValues.flatMap(entry => [entry.start]);
         const yValues = xValues.map(() => this.yValueForOtherEventStats);
-        // const metadata = dataValues.flatMap(entry => {
-        //     const res = { isSelected: false, name: key, duration: entry.end - entry.start };
-        //     return entry.end ? [{ isSelected: false, name: key }, res] : [res];
-        // });
+
+        const metadata = dataValues.flatMap(entry => {
+            const isSelected = false;
+            const metadataEntry = { isSelected, detail: entry.detail };
+            return metadataEntry;
+        });
 
         const dataSeries = new XyDataSeries(wasmContext, {
             dataSeriesName: `${markType}`,
             isSorted: true,
             containsNaN: false,
             xValues,
-            yValues
-            // metadata
+            yValues,
+            metadata
         });
 
         const series = new XyScatterRenderableSeries(wasmContext, {

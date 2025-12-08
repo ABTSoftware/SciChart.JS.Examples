@@ -1,4 +1,10 @@
-import { ECoordinateMode, EHorizontalAnchorPoint, EVerticalAnchorPoint, SelectionChangedArgs } from "scichart";
+import {
+    ECoordinateMode,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint,
+    SelectionChangedArgs,
+    XyDataSeries
+} from "scichart";
 import { NativeTextAnnotation } from "scichart";
 import { FastLineSegmentRenderableSeries } from "scichart";
 import { IAnnotation } from "scichart";
@@ -42,9 +48,6 @@ export class LineSegmentTooltipModifier extends SeriesSelectionModifier {
 
         const [seriesMarkType] = firstSelectedSeries.id.split("-");
         const isOperation = getIsOperationEndMarkType(seriesMarkType);
-        if (!isOperation) {
-            return;
-        }
 
         const xCalc = this.xAxis.getCurrentCoordinateCalculator();
 
@@ -57,9 +60,25 @@ export class LineSegmentTooltipModifier extends SeriesSelectionModifier {
             : args.hitTestInfo.dataSeriesIndex - 1;
         const secondSegmentPointXValue = firstSelectedSeries.dataSeries.getNativeXValues().get(secondSegmentPointIndex);
 
-        (this.tooltipAnnotation as NativeTextAnnotation).text = `${seriesMarkType.replace("End", "")}: ${Math.abs(
-            args.hitTestInfo.xValue - secondSegmentPointXValue
-        )}`;
+        const duration = Math.abs(args.hitTestInfo.xValue - secondSegmentPointXValue);
+        const metadataEntry = (firstSelectedSeries.dataSeries as XyDataSeries).getMetadataAt(
+            args.hitTestInfo.dataSeriesIndex
+        );
+
+        // @ts-ignore
+        const contextId = metadataEntry.detail.contextId;
+
+        if (isOperation) {
+            (this.tooltipAnnotation as NativeTextAnnotation).text = `${seriesMarkType.replace(
+                "End",
+                ""
+            )}: ${duration}ms\ncontextId ${contextId}`;
+        } else {
+            (this.tooltipAnnotation as NativeTextAnnotation).text = `${seriesMarkType.replace(
+                "End",
+                ""
+            )}\ncontextId ${contextId}`;
+        }
 
         this.tooltipAnnotation.isVisible = true;
     }

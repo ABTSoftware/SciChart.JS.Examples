@@ -23,11 +23,8 @@ export function addMainSurfaceAxes(mainSurface: SciChartSurface) {
 
 export function addSubSurfaceAxes(sciChartSurface: SciChartSubSurface, timeOrigin: number) {
     const wasmContext = sciChartSurface.webAssemblyContext2D;
-    const timeAxisThickness = 15 * DpiHelper.PIXEL_RATIO;
 
     const maxVisibleRangeSize = (sciChartSurface.subPosition as Rect).height / 20;
-
-    console.log("maxVisibleRangeSize", maxVisibleRangeSize);
 
     const commonAxisConfig = {
         drawMajorBands: false,
@@ -72,7 +69,6 @@ export function addSubSurfaceAxes(sciChartSurface: SciChartSubSurface, timeOrigi
             borderRight: 1
         },
         backgroundColor: "#FFAB9722"
-        // axisThickness: timeAxisThickness
     });
 
     const yAxis = new NumericAxis(wasmContext, {
@@ -100,7 +96,6 @@ export function addSubSurfaceAxes(sciChartSurface: SciChartSubSurface, timeOrigi
 
 export function addVisibleAxes(subSurface: SciChartSubSurface) {
     const wasmContext = subSurface.webAssemblyContext2D;
-    const timeAxisThickness = 15 * DpiHelper.PIXEL_RATIO;
 
     const maxVisibleRangeSize = (subSurface.subPosition as Rect).height / (20 * DpiHelper.PIXEL_RATIO);
 

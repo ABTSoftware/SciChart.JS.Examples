@@ -60,6 +60,14 @@ The profiler displays performance debug data collected with SciChart's Performan
 -   Paste JSON data directly into the text area
 -   Click **Import from Text** to load the data
 
+## How to use the Performance Monitor Graph
+
+Features supported on the chart:
+- Mousewheel zoom
+- Drag to pan
+- Drag with right button to select time range
+- Click on a data segment to see its details
+
 ## Using the Mark Type Selector Tree
 
 The left panel contains a collapsible tree for managing mark type visibility:

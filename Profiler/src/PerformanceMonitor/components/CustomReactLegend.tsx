@@ -68,7 +68,7 @@ export const CustomReactLegend = (props: {
     return (
         <div
             style={{
-                width: "400px",
+                width: "100%",
                 height: "90vh",
                 maxHeight: "90vh",
                 boxSizing: "border-box",

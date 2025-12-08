@@ -17,6 +17,8 @@ export const getEntryType = (entry: TMark) => {
     return type as TMarkType;
 };
 
+export const getRelatedStartMarkType = (markType: TMarkType) => markType.replace("End", "Start") as TMarkType;
+
 export const getIsOperationStartMarkType = (markType: TMarkType) => markType.endsWith("Start");
 export const getIsOperationEndMarkType = (markType: TMarkType) => markType.endsWith("End");
 export const getIsEventMarkType = (markType: TMarkType) => !markType.endsWith("End") && !markType.endsWith("Start");
@@ -29,16 +31,29 @@ export function getSurfacesFromData(marksByTypeMap: Map<TMarkType, TMark[]>) {
     // const surfacesCreatedWithId = surfaceInitializationStartMarks.filter((mark) => mark.detail.contextId);
 
     // At the initialization end a surface should definitely have an id (custom or generated)
-    const surfaceInitializationEndMarks = marksByTypeMap.get(EPerformanceMarkType.InitializationEnd);
-    console.log("surfaceInitializationEndMarks", surfaceInitializationEndMarks);
+    const surfaceInitializationEndMarks = marksByTypeMap.get(EPerformanceMarkType.InitializationEnd) ?? [];
 
-    if (!surfaceInitializationEndMarks || surfaceInitializationEndMarks.length === 0) {
-        throw new Error("Missing chart init data!");
-    }
+    const renderSurfaceDrawEndMarks = marksByTypeMap.get(EPerformanceMarkType.RenderSurfaceDrawEnd) ?? [];
 
-    const mainSurfaceIds = surfaceInitializationEndMarks.map(mark => mark.detail.contextId) as TSurfaceId[];
-    console.log("mainSurfaceIds", mainSurfaceIds.length);
+    // if (!surfaceInitializationEndMarks || surfaceInitializationEndMarks.length === 0) {
+    //     throw new Error("Missing chart init data!");
+    // }
+
+    const surfaceIdsFromInitData = surfaceInitializationEndMarks.map(mark => mark.detail.contextId) as TSurfaceId[];
+    const surfaceIdsFromRenderData = renderSurfaceDrawEndMarks.map(mark => mark.detail.contextId) as TSurfaceId[];
+
+    const mainSurfaceIds = Array.from(new Set(surfaceIdsFromInitData.concat(surfaceIdsFromRenderData)));
+
     const subSurfaceInitializationEndMarks = marksByTypeMap.get(EPerformanceMarkType.AddSubSurfaceEnd) ?? [];
+    const drawingLoopEndMarks = marksByTypeMap.get(EPerformanceMarkType.DrawingLoopEnd) ?? [];
+    const subSurfaceDrawingLoopEndMarks = drawingLoopEndMarks.filter(
+        mark => !mainSurfaceIds.includes(mark.detail.contextId)
+    );
+
+    const subSurfaceIdsFromInitData = subSurfaceInitializationEndMarks.map(mark => mark.detail.contextId);
+    const subSurfaceIdsFromRenderData = subSurfaceDrawingLoopEndMarks.map(mark => mark.detail.contextId);
+
+    const subSurfaceIds = Array.from(new Set(subSurfaceIdsFromInitData.concat(subSurfaceIdsFromRenderData)));
 
     // // At least types are more descriptive then "string, string[]" IMO
     // const surfaceIdsMap = new Map<TSurfaceId, TSubSurfaceId[]>(mainSurfaceIds.map((id) => [id, [] as TSubSurfaceId[]]));
@@ -51,7 +66,13 @@ export function getSurfacesFromData(marksByTypeMap: Map<TMarkType, TMark[]>) {
         subSurfaceInitializationEndMarks.map(mark => [mark.detail.contextId, mark.detail.parentContextId])
     );
 
-    const subSurfaceIds = subSurfaceInitializationEndMarks.map(mark => mark.detail.contextId);
+    if (subSurfaceIds.length !== subSurfaceIdsFromInitData.length) {
+        subSurfaceDrawingLoopEndMarks.forEach(mark => {
+            if (!subSurfaceToParentMap.has(mark.detail.contextId)) {
+                subSurfaceToParentMap.set(mark.detail.contextId, mark.detail.parentContextId);
+            }
+        });
+    }
 
     const subChartsPerSurface = new Map<TSurfaceId, TSubSurfaceId[]>(
         mainSurfaceIds.map(surfaceId => [
@@ -64,7 +85,13 @@ export function getSurfacesFromData(marksByTypeMap: Map<TMarkType, TMark[]>) {
         surfaceInitializationEndMarks.map(mark => [mark.detail.parentContextId, mark.detail.contextId])
     );
 
-    const engineInitializationEndMarks = marksByTypeMap.get(EPerformanceMarkType.EngineInitEnd);
+    renderSurfaceDrawEndMarks.forEach(mark => {
+        if (!canvasToSurfaceMap.has(mark.detail.parentContextId)) {
+            canvasToSurfaceMap.set(mark.detail.parentContextId, mark.detail.contextId);
+        }
+    });
+
+    const engineInitializationEndMarks = marksByTypeMap.get(EPerformanceMarkType.EngineInitEnd) ?? [];
 
     const allWasmContextIdsSet = new Set(engineInitializationEndMarks.map(mark => mark.detail.contextId));
     const allWasmContextIds = Array.from(allWasmContextIdsSet.values());
@@ -97,7 +124,7 @@ export function getSurfacesFromData(marksByTypeMap: Map<TMarkType, TMark[]>) {
     );
 
     const dataSeriesIdsSet = new Set<TDataSeriesId>();
-    const dataSeriesUpdateStartMarks = marksByTypeMap.get(EPerformanceMarkType.DataUpdateStart);
+    const dataSeriesUpdateStartMarks = marksByTypeMap.get(EPerformanceMarkType.DataUpdateStart) ?? [];
     dataSeriesUpdateStartMarks?.forEach(mark => {
         dataSeriesIdsSet.add(mark.detail.contextId);
     });

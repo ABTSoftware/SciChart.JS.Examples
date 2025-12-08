@@ -69,7 +69,7 @@ export function PerformanceStatsMonitor(props: { debugInfo: TDebugInfo }) {
                         display: "flex",
                         flexDirection: "row",
                         flexWrap: "wrap",
-                        width: "400px", // static width wrapper
+                        width: "500px", // static width wrapper
                         height: "100%"
                     }}
                 >

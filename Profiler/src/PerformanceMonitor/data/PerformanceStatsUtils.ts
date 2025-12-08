@@ -1,10 +1,11 @@
-import { IPointMetadata, EPerformanceMarkType, TSciChartPerformanceData } from "scichart";
+import { IPointMetadata, EPerformanceMarkType, TSciChartPerformanceData, TPerformanceDetail } from "scichart";
 import {
     getEntryType,
     getSurfacesFromData,
     getIsEventMarkType,
     getIsOperationEndMarkType,
-    getIsOperationStartMarkType
+    getIsOperationStartMarkType,
+    getRelatedStartMarkType
 } from "./MarksParsing";
 import { TMark, TMarkType, TSurfaceId } from "./typeAliases";
 import { ProfilerConfigurator } from "../ProfilerConfigurator";
@@ -19,10 +20,12 @@ export type TCustomMetadata = IPointMetadata & {
 export type StatsRangeDataEntry = {
     start: number;
     end: number;
+    detail: TPerformanceDetail;
 };
 
 export type StatsEventDataEntry = {
     start: number;
+    detail: TPerformanceDetail;
 };
 
 export type StatsDataEntry = StatsRangeDataEntry | StatsEventDataEntry;
@@ -100,12 +103,6 @@ const calculatePerformanceData = (rawData: TSciChartPerformanceData) => {
 
     const statsContextInfo = getSurfacesFromData(marksByTypeMap);
 
-    console.log(
-        "statsContextInfo.canvasToSurfaceMap.keys()",
-        statsContextInfo.canvasToSurfaceMap.size,
-        Array.from(statsContextInfo.canvasToSurfaceMap.entries())
-    );
-
     const statsBySurfaceAndMarkType = new Map<TSurfaceId, Map<TMarkType, StatsDataEntry[]>>(
         statsContextInfo.mainSurfaceIds
             .concat(statsContextInfo.subSurfaceIds)
@@ -120,7 +117,7 @@ const calculatePerformanceData = (rawData: TSciChartPerformanceData) => {
     const otherStatsByMarkType = new Map<TMarkType, StatsDataEntry[]>();
 
     operationEndMarkTypes.forEach(markType => {
-        const relatedMarkType = markType.replace("End", "Start") as TMarkType;
+        const relatedMarkType = getRelatedStartMarkType(markType);
 
         const endMarks = marksByTypeMap.get(markType);
         const startMarks = marksByTypeMap.get(relatedMarkType);
@@ -128,7 +125,7 @@ const calculatePerformanceData = (rawData: TSciChartPerformanceData) => {
         const startMarksByIdMap = new Map<string, TMark>(
             startMarks.map(mark => {
                 if (!mark.detail) {
-                    console.log("mark", mark);
+                    console.warn("Mark has no detail:", mark);
                 }
                 return [mark.detail.relatedId, mark];
             })
