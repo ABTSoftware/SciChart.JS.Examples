@@ -4,7 +4,8 @@ import {
     ObservableArray,
     ObservableArrayBase,
     receiveNextEvent,
-    SciChartSurfaceBase
+    SciChartSurfaceBase,
+    TPerformanceMarkOptions
 } from "scichart";
 import {
     EPerformanceMarkType,
@@ -14,7 +15,7 @@ import {
     TSciChartPerformanceMark
 } from "scichart";
 
-type SCPerformanceMark = TSciChartPerformanceMark<TPerformanceDetail>;
+export type SCPerformanceMark = TSciChartPerformanceMark<TPerformanceDetail>;
 
 export type TRecordingOptions = {
     sciChartSurface: SciChartSurfaceBase;
@@ -113,8 +114,8 @@ export class CustomPerformanceDebugHelper extends PerformanceDebugHelper {
 
         const currentMeasuredMarks = PerformanceDebugHelper.measuredMarks;
         PerformanceDebugHelper.measuredMarks = options?.trackedMarkTypes
-            ? currentMeasuredMarks
-            : PerformanceDebugHelper.measuredMarks;
+            ? options?.trackedMarkTypes
+            : currentMeasuredMarks;
 
         if (options.verbose) {
             PerformanceDebugHelper.debugLevel = EPerformanceDebugLevel.Verbose;
@@ -139,7 +140,8 @@ export class CustomPerformanceDebugHelper extends PerformanceDebugHelper {
         // reset to previous
         PerformanceDebugHelper.measuredMarks = previousTrackedMarkTypes;
 
-        const surfaceRelatedMarks = this.getMarks().filter(
+        const allMarks = this.getMarks()
+        const surfaceRelatedMarks = allMarks.filter(
             mark =>
                 mark.detail.contextId === surface.id ||
                 mark.detail.parentContextId === surface.id ||
@@ -153,8 +155,9 @@ export class CustomPerformanceDebugHelper extends PerformanceDebugHelper {
 
         if (options.verbose) {
             console.log(`Performance recording completed for surface ${surface.id}`);
-            console.log(`Total marks collected: ${surfaceRelatedMarks.length}`);
-            console.log(`Total measures created: ${measures.length}`);
+            console.log(`All unfiltered marks ${allMarks.length}`);
+            console.log(`Filtered marks collected: ${surfaceRelatedMarks.length}`);
+            console.log(`Filtered measures created: ${measures.length}`);
         }
 
         if (options?.keepCollectedData) {
@@ -163,7 +166,7 @@ export class CustomPerformanceDebugHelper extends PerformanceDebugHelper {
             this.clearMarks();
         }
 
-        return measures;
+        return { allMarks, measures, surfaceRelatedMarks };
     }
 
     public async startRecordingPerformance(options: TRecordingOptions) {
@@ -193,5 +196,10 @@ export class CustomPerformanceDebugHelper extends PerformanceDebugHelper {
         }
 
         return this.endRecording(options, prevMarkTypes);
+    }
+
+    public clear() {
+        this.clearMeasures();
+        this.clearMarks();
     }
 }

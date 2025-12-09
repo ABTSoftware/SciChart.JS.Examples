@@ -20,7 +20,7 @@ import {
  * A modifier that displays live performance statistics using PerformanceStatsAnnotation
  */
 export class PerformanceStatsModifier extends CustomChartModifier2D {
-    protected performanceStatsAnnotation: PerformanceStatsAnnotation;
+    public performanceStatsAnnotation: PerformanceStatsAnnotation;
     protected performanceGraphAnnotation: HtmlCustomAnnotation;
 
     public override onAttach(): void {
@@ -29,15 +29,16 @@ export class PerformanceStatsModifier extends CustomChartModifier2D {
         // Create and add the performance stats annotation
         this.performanceStatsAnnotation = this.createPerformanceStatsAnnotation({
             x1: 0,
-            y1: 0.2,
+            y1: 0,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative
         });
-        this.performanceGraphAnnotation = this.createPerformanceGraphAnnotation();
+        // this.performanceGraphAnnotation = this.createPerformanceGraphAnnotation();
 
-        this.createPerformanceGraph(this.performanceGraphAnnotation.htmlElement as HTMLDivElement);
+        // this.createPerformanceGraph(this.performanceGraphAnnotation.htmlElement as HTMLDivElement);
 
-        this.parentSurface.annotations.add(this.performanceStatsAnnotation, this.performanceGraphAnnotation);
+        this.parentSurface.annotations.add(this.performanceStatsAnnotation);
+        // this.parentSurface.annotations.add(this.performanceGraphAnnotation);
     }
 
     public override onDetach(): void {

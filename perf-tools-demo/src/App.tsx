@@ -2,7 +2,7 @@ import { SciChartSurface } from "scichart";
 import { SciChartReact, type TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./chart-setup/drawExample";
 
-SciChartSurface.loadWasmFromCDN();
+// SciChartSurface.loadWasmFromCDN();
 
 function App() {
     return (

@@ -10,7 +10,7 @@
     },
     "author": "",
     "license": "ISC",
-    "dependencies": {
+    "peerDependencies": {
         "scichart": "^4.0.923"
     }
 }
