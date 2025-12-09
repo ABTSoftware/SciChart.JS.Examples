@@ -163,10 +163,9 @@ const createIndexChart = async (rootElement: HTMLDivElement) => {
         majorDelta: 1,
         minorDelta: 1,
         labelProvider: new DayOfWeekLabelProvider(),
-
         id: X_AXIS_INDEX_ID,
-        // visibleRange: new NumberRange(-1, 12)
-        growBy: new NumberRange(0.07, 0.07),
+        // visibleRange: new NumberRange(10, 15),
+        growBy: new NumberRange(0.04, 0.04),
     });
 
     const yAxisLinear = new NumericAxis(wasmContext, {
@@ -260,7 +259,7 @@ const createLinearChart = async (rootElement: HTMLDivElement) => {
         labelProvider: new DayOfWeekLabelProvider(),
 
         id: X_AXIS_LINEAR_ID,
-        growBy: new NumberRange(0.094, 0.094),
+        growBy: new NumberRange(0.055, 0.055),
     });
 
     const yAxisLinear = new NumericAxis(wasmContext, {
