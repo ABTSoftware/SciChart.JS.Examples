@@ -57,12 +57,14 @@ const addSeriesToChart = (sciChartSurface: SciChartSurface, wasmContext: any, da
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: dataSeries.lineDataSeries,
             stroke: appTheme.VividOrange,
+            opacity: 0.7,
             strokeThickness: 4,
             pointMarker: new EllipsePointMarker(wasmContext, {
                 width: 8,
                 height: 8,
                 fill: appTheme.VividOrange,
                 strokeThickness: 0,
+                opacity: 0.7,
             }),
             animation: new SweepAnimation({ duration: 800, delay: 0 }),
         })
@@ -72,12 +74,14 @@ const addSeriesToChart = (sciChartSurface: SciChartSurface, wasmContext: any, da
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: dataSeries.lineDataSeries1,
             stroke: appTheme.VividRed,
+            opacity: 0.7,
             strokeThickness: 4,
             pointMarker: new EllipsePointMarker(wasmContext, {
                 width: 8,
                 height: 8,
                 fill: appTheme.VividRed,
                 strokeThickness: 0,
+                opacity: 0.7,
             }),
             animation: new SweepAnimation({ duration: 800, delay: 100 }),
         })
@@ -87,12 +91,14 @@ const addSeriesToChart = (sciChartSurface: SciChartSurface, wasmContext: any, da
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: dataSeries.lineDataSeries2,
             stroke: appTheme.VividSkyBlue,
+            opacity: 0.7,
             strokeThickness: 4,
             pointMarker: new EllipsePointMarker(wasmContext, {
                 width: 8,
                 height: 8,
                 fill: appTheme.VividSkyBlue,
                 strokeThickness: 0,
+                opacity: 0.7,
             }),
             animation: new SweepAnimation({ duration: 800, delay: 200 }),
         })
@@ -126,9 +132,9 @@ const createIndexChart = async (rootElement: HTMLDivElement) => {
         minorDelta: 2,
         labelProvider: new NumericLabelProvider(),
         isVisible: true,
-        growBy: new NumberRange(0.1, 0.1),
         id: X_AXIS_INDEX_ID,
-        // visibleRange: new NumberRange(1, 9),
+        // visibleRange: new NumberRange(-1, 12)
+        growBy: new NumberRange(0.07, 0.07),
     });
 
     const yAxisLinear = new NumericAxis(wasmContext, {
@@ -149,6 +155,7 @@ const createIndexChart = async (rootElement: HTMLDivElement) => {
     const axisMarker5 = new AxisMarkerAnnotation({
         x1: 5,
         backgroundColor: appTheme.VividPink,
+        opacity: 0.6,
         formattedValue: "5",
         color: appTheme.ForegroundColor,
         fontSize: 10,
@@ -158,6 +165,7 @@ const createIndexChart = async (rootElement: HTMLDivElement) => {
     const axisMarker8 = new AxisMarkerAnnotation({
         x1: 8,
         backgroundColor: appTheme.VividGreen,
+        opacity: 0.6,
         formattedValue: "8",
         color: appTheme.ForegroundColor,
         fontSize: 10,
@@ -180,7 +188,7 @@ const createLinearChart = async (rootElement: HTMLDivElement) => {
             majorGridLineBrush: appTheme.MutedSkyBlue + "55",
             minorGridLineBrush: appTheme.MutedSkyBlue + "22",
         },
-        title: "Linear X Axis",
+        title: "Numeric X Axis",
         titleStyle: {
             fontSize: 16,
             fontWeight: "bold",
@@ -195,7 +203,7 @@ const createLinearChart = async (rootElement: HTMLDivElement) => {
         labelPrecision: 2,
         isVisible: true,
         id: X_AXIS_LINEAR_ID,
-        growBy: new NumberRange(0.1, 0.1),
+        growBy: new NumberRange(0.094, 0.094),
     });
 
     const yAxisLinear = new NumericAxis(wasmContext, {
@@ -216,6 +224,7 @@ const createLinearChart = async (rootElement: HTMLDivElement) => {
     const axisMarker5 = new AxisMarkerAnnotation({
         x1: 5,
         backgroundColor: appTheme.VividPink,
+        opacity: 0.6,
         formattedValue: "5",
         color: appTheme.ForegroundColor,
         fontSize: 10,
@@ -225,6 +234,7 @@ const createLinearChart = async (rootElement: HTMLDivElement) => {
     const axisMarker8 = new AxisMarkerAnnotation({
         x1: 8,
         backgroundColor: appTheme.VividGreen,
+        opacity: 0.6,
         formattedValue: "8",
         color: appTheme.ForegroundColor,
         fontSize: 10,
@@ -260,9 +270,8 @@ const createCategoryChart = async (rootElement: HTMLDivElement) => {
     const xAxisCategory = new CategoryAxis(wasmContext, {
         isVisible: true,
         id: X_AXIS_CATEGORY_ID,
-        growBy: new NumberRange(0.1, 0.1),
+        growBy: new NumberRange(0.009, 0.009),
         labels: [1, 2, 3, 4, 5, 8, 9].map((d) => d.toString()),
-        // visibleRange: new NumberRange(0, 10),
     });
 
     const yAxisLinear = new NumericAxis(wasmContext, {
@@ -284,6 +293,7 @@ const createCategoryChart = async (rootElement: HTMLDivElement) => {
     const axisMarker5 = new AxisMarkerAnnotation({
         x1: 4, // Index for label "5"
         backgroundColor: appTheme.VividPink,
+        opacity: 0.6,
         formattedValue: "5",
         color: appTheme.ForegroundColor,
         fontSize: 10,
@@ -293,6 +303,7 @@ const createCategoryChart = async (rootElement: HTMLDivElement) => {
     const axisMarker8 = new AxisMarkerAnnotation({
         x1: 5, // Index for label "8"
         backgroundColor: appTheme.VividGreen,
+        opacity: 0.6,
         formattedValue: "8",
         color: appTheme.ForegroundColor,
         fontSize: 10,

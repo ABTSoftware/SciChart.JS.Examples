@@ -16,17 +16,7 @@ export default function AxisTypeComparisonExample() {
                 }}
             >
                 <SciChartGroup>
-                    {/* Index Chart */}
-                    <SciChartReact
-                        initChart={drawIndexChart}
-                        style={{
-                            width: "100%",
-                            flex: "1 1 0",
-                            minHeight: "0",
-                        }}
-                    />
-
-                    {/* Linear Chart */}
+                    {/* Numeric Chart */}
                     <SciChartReact
                         initChart={drawLinearChart}
                         style={{
@@ -39,6 +29,16 @@ export default function AxisTypeComparisonExample() {
                     {/* Category Chart */}
                     <SciChartReact
                         initChart={drawCategoryChart}
+                        style={{
+                            width: "100%",
+                            flex: "1 1 0",
+                            minHeight: "0",
+                        }}
+                    />
+
+                    {/* Index Chart */}
+                    <SciChartReact
+                        initChart={drawIndexChart}
                         style={{
                             width: "100%",
                             flex: "1 1 0",
