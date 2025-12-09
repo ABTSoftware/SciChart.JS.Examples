@@ -31,6 +31,35 @@ const X_AXIS_INDEX_ID = "X_AXIS_INDEX_ID";
 const Y_AXIS_LINEAR_ID = "Y_AXIS_LINEAR_ID";
 const X_AXIS_CATEGORY_ID = "X_AXIS_CATEGORY_ID";
 
+// Custom label provider for days of the week
+class DayOfWeekLabelProvider extends LabelProviderBase2D {
+    public readonly type = "DayOfWeekLabelProvider";
+    private dayNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    
+    public get formatLabel() {
+        return (dataValue: number): string => {
+            // Map any numeric value to day names using modulo arithmetic
+            // 1=Monday, 2=Tuesday, ..., 7=Sunday, 8=Monday, 9=Tuesday, etc.
+            const roundedValue = Math.round(dataValue);
+            if (roundedValue >= 1) {
+                const dayIndex = ((roundedValue - 1) % 7);
+                return this.dayNames[dayIndex];
+            }
+            return dataValue.toString();
+        };
+    }
+    
+    public get formatCursorLabel() {
+        return (dataValue: number): string => {
+            return this.formatLabel(dataValue);
+        };
+    }
+    
+    public onBeginAxisDraw(): void {
+        // Implementation required by base class
+    }
+}
+
 // Helper function to create data series
 const createDataSeries = (wasmContext: any) => {
     const lineDataSeries = new XyDataSeries(wasmContext, {
@@ -128,9 +157,9 @@ const createIndexChart = async (rootElement: HTMLDivElement) => {
         labelPrecision: 3,
         cursorLabelPrecision: 2,
         autoTicks: true,
-        majorDelta: 10,
-        minorDelta: 2,
-        labelProvider: new NumericLabelProvider(),
+        majorDelta: 1,
+        minorDelta: 1,
+        labelProvider: new DayOfWeekLabelProvider(),
         isVisible: true,
         id: X_AXIS_INDEX_ID,
         // visibleRange: new NumberRange(-1, 12)
@@ -156,7 +185,7 @@ const createIndexChart = async (rootElement: HTMLDivElement) => {
         x1: 5,
         backgroundColor: appTheme.VividPink,
         opacity: 0.6,
-        formattedValue: "5",
+        formattedValue: "Friday",
         color: appTheme.ForegroundColor,
         fontSize: 10,
         fontWeight: "bold",
@@ -166,7 +195,7 @@ const createIndexChart = async (rootElement: HTMLDivElement) => {
         x1: 8,
         backgroundColor: appTheme.VividGreen,
         opacity: 0.6,
-        formattedValue: "8",
+        formattedValue: "Monday",
         color: appTheme.ForegroundColor,
         fontSize: 10,
         fontWeight: "bold",
@@ -201,6 +230,7 @@ const createLinearChart = async (rootElement: HTMLDivElement) => {
     const xAxisLinear = new NumericAxis(wasmContext, {
         labelFormat: ENumericFormat.Decimal,
         labelPrecision: 2,
+        labelProvider: new DayOfWeekLabelProvider(),
         isVisible: true,
         id: X_AXIS_LINEAR_ID,
         growBy: new NumberRange(0.094, 0.094),
@@ -225,7 +255,7 @@ const createLinearChart = async (rootElement: HTMLDivElement) => {
         x1: 5,
         backgroundColor: appTheme.VividPink,
         opacity: 0.6,
-        formattedValue: "5",
+        formattedValue: "Friday",
         color: appTheme.ForegroundColor,
         fontSize: 10,
         fontWeight: "bold",
@@ -235,7 +265,7 @@ const createLinearChart = async (rootElement: HTMLDivElement) => {
         x1: 8,
         backgroundColor: appTheme.VividGreen,
         opacity: 0.6,
-        formattedValue: "8",
+        formattedValue: "Monday",
         color: appTheme.ForegroundColor,
         fontSize: 10,
         fontWeight: "bold",
@@ -271,7 +301,12 @@ const createCategoryChart = async (rootElement: HTMLDivElement) => {
         isVisible: true,
         id: X_AXIS_CATEGORY_ID,
         growBy: new NumberRange(0.009, 0.009),
-        labels: [1, 2, 3, 4, 5, 8, 9].map((d) => d.toString()),
+        labels: [1, 2, 3, 4, 5, 8, 9].map((d) => {
+            // Map each value to day name using modulo arithmetic
+            const dayIndex = ((d - 1) % 7);
+            const dayNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+            return dayNames[dayIndex];
+        }),
     });
 
     const yAxisLinear = new NumericAxis(wasmContext, {
@@ -291,20 +326,20 @@ const createCategoryChart = async (rootElement: HTMLDivElement) => {
 
     // Add axis marker annotations - for category axis, use indices
     const axisMarker5 = new AxisMarkerAnnotation({
-        x1: 4, // Index for label "5"
+        x1: 4, // Index for value "5" which maps to "Friday"
         backgroundColor: appTheme.VividPink,
         opacity: 0.6,
-        formattedValue: "5",
+        formattedValue: "Friday",
         color: appTheme.ForegroundColor,
         fontSize: 10,
         fontWeight: "bold",
     });
 
     const axisMarker8 = new AxisMarkerAnnotation({
-        x1: 5, // Index for label "8"
+        x1: 5, // Index for value "8" which maps to "Monday" (8-1)%7 = 0
         backgroundColor: appTheme.VividGreen,
         opacity: 0.6,
-        formattedValue: "8",
+        formattedValue: "Monday",
         color: appTheme.ForegroundColor,
         fontSize: 10,
         fontWeight: "bold",
