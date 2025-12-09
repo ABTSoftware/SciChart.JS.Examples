@@ -22,6 +22,7 @@ import {
     ELabelPlacement,
     LabelProviderBase2D,
     ZoomPanModifier,
+    EXyDirection,
 } from "scichart";
 import { appTheme } from "../../../theme";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
@@ -46,7 +47,7 @@ class DayOfWeekLabelProvider extends LabelProviderBase2D {
                 console.log(dataValue);
                 return `${this.dayNames[dayIndex]}_${weekNo}`;
             }
-            return dataValue.toString();
+            return ""; //dataValue.toString();
         };
     }
 
@@ -61,24 +62,21 @@ class DayOfWeekLabelProvider extends LabelProviderBase2D {
     }
 }
 
-// xValues: [1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 15, 16],
-// yValues: [1, 4, 3, 5.21, 2, 2, 1.3, 3, 1, 2, 2.5, 4],
-
 // Helper function to create data series
 const createDataSeries = (wasmContext: any) => {
     const lineDataSeries = new XyDataSeries(wasmContext, {
-        xValues: [1, 2, 3, 4, 5, 8, 9],
-        yValues: [1, 4, 3, 5.21, 2, 2, 1.3],
+        xValues: [1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 15, 16],
+        yValues: [1, 4, 3, 5.21, 2, 2, 1.3, 2, 3, 4, 2, 2],
     });
 
     const lineDataSeries1 = new XyDataSeries(wasmContext, {
-        xValues: [1, 2, 2, 4, 5, 8, 9],
-        yValues: [1, 4, 3, 5.21, 2, 2, 1.3].map((d) => d + 1),
+        xValues: [1, 2, 2, 4, 5, 8, 9, 10, 11, 12, 15, 16],
+        yValues: [1, 4, 3, 5.21, 2, 2, 1.3, 2, 3, 4, 2, 2].map((d) => d + 1),
     });
 
     const lineDataSeries2 = new XyDataSeries(wasmContext, {
-        xValues: [1, 3, 3, 4, 5, 8, 9],
-        yValues: [1, 4, 3, 5.21, 2, 2, 1.3].map((d) => d + 2),
+        xValues: [1, 3, 3, 4, 5, 8, 9, 10, 11, 12, 15, 16],
+        yValues: [1, 4, 3, 5.21, 2, 2, 1.3, 2, 3, 4, 2, 2].map((d) => d + 2),
     });
 
     return { lineDataSeries, lineDataSeries1, lineDataSeries2 };
@@ -186,7 +184,7 @@ const createIndexChart = async (rootElement: HTMLDivElement) => {
     addSeriesToChart(sciChartSurface, wasmContext, dataSeries);
 
     // Add axis marker annotations
-    const axisMarker5 = new AxisMarkerAnnotation({
+    const axisMarker1 = new AxisMarkerAnnotation({
         x1: 5,
         backgroundColor: appTheme.VividPink,
         opacity: 0.6,
@@ -196,7 +194,7 @@ const createIndexChart = async (rootElement: HTMLDivElement) => {
         fontWeight: "bold",
     });
 
-    const axisMarker8 = new AxisMarkerAnnotation({
+    const axisMarker2 = new AxisMarkerAnnotation({
         x1: 8,
         backgroundColor: appTheme.VividGreen,
         opacity: 0.6,
@@ -206,10 +204,33 @@ const createIndexChart = async (rootElement: HTMLDivElement) => {
         fontWeight: "bold",
     });
 
-    sciChartSurface.annotations.add(axisMarker5, axisMarker8);
+    const axisMarker3 = new AxisMarkerAnnotation({
+        x1: 12,
+        backgroundColor: appTheme.VividPink,
+        opacity: 0.6,
+        formattedValue: "Friday",
+        color: appTheme.ForegroundColor,
+        fontSize: 10,
+        fontWeight: "bold",
+    });
 
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier(), new ZoomExtentsModifier(), new ZoomPanModifier());
+    const axisMarker4 = new AxisMarkerAnnotation({
+        x1: 15,
+        backgroundColor: appTheme.VividGreen,
+        opacity: 0.6,
+        formattedValue: "Monday",
+        color: appTheme.ForegroundColor,
+        fontSize: 10,
+        fontWeight: "bold",
+    });
 
+    sciChartSurface.annotations.add(axisMarker1, axisMarker2, axisMarker3, axisMarker4);
+
+    sciChartSurface.chartModifiers.add(
+        new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
+        new ZoomExtentsModifier(),
+        new ZoomPanModifier()
+    );
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };
 };
@@ -257,7 +278,7 @@ const createLinearChart = async (rootElement: HTMLDivElement) => {
     addSeriesToChart(sciChartSurface, wasmContext, dataSeries);
 
     // Add axis marker annotations
-    const axisMarker5 = new AxisMarkerAnnotation({
+    const axisMarker1 = new AxisMarkerAnnotation({
         x1: 5,
         backgroundColor: appTheme.VividPink,
         opacity: 0.6,
@@ -267,7 +288,7 @@ const createLinearChart = async (rootElement: HTMLDivElement) => {
         fontWeight: "bold",
     });
 
-    const axisMarker8 = new AxisMarkerAnnotation({
+    const axisMarker2 = new AxisMarkerAnnotation({
         x1: 8,
         backgroundColor: appTheme.VividGreen,
         opacity: 0.6,
@@ -277,9 +298,33 @@ const createLinearChart = async (rootElement: HTMLDivElement) => {
         fontWeight: "bold",
     });
 
-    sciChartSurface.annotations.add(axisMarker5, axisMarker8);
+    const axisMarker3 = new AxisMarkerAnnotation({
+        x1: 12,
+        backgroundColor: appTheme.VividPink,
+        opacity: 0.6,
+        formattedValue: "Friday",
+        color: appTheme.ForegroundColor,
+        fontSize: 10,
+        fontWeight: "bold",
+    });
 
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier(), new ZoomExtentsModifier(), new ZoomPanModifier());
+    const axisMarker4 = new AxisMarkerAnnotation({
+        x1: 15,
+        backgroundColor: appTheme.VividGreen,
+        opacity: 0.6,
+        formattedValue: "Monday",
+        color: appTheme.ForegroundColor,
+        fontSize: 10,
+        fontWeight: "bold",
+    });
+
+    sciChartSurface.annotations.add(axisMarker1, axisMarker2, axisMarker3, axisMarker4);
+
+    sciChartSurface.chartModifiers.add(
+        new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
+        new ZoomExtentsModifier(),
+        new ZoomPanModifier()
+    );
 
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };
@@ -308,12 +353,6 @@ const createCategoryChart = async (rootElement: HTMLDivElement) => {
         id: X_AXIS_CATEGORY_ID,
         growBy: new NumberRange(0.009, 0.009),
         labelProvider: new DayOfWeekLabelProvider(),
-        // labels: [1, 2, 3, 4, 5, 8, 9].map((d) => {
-        //     // Map each value to day name using modulo arithmetic
-        //     const dayIndex = (d - 1) % 7;
-        //     const dayNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-        //     return dayNames[dayIndex];
-        // }),
     });
 
     const yAxisLinear = new NumericAxis(wasmContext, {
@@ -332,8 +371,8 @@ const createCategoryChart = async (rootElement: HTMLDivElement) => {
     addSeriesToChart(sciChartSurface, wasmContext, categoryDataSeries);
 
     // Add axis marker annotations - for category axis, use indices
-    const axisMarker5 = new AxisMarkerAnnotation({
-        x1: 4, // Index for value "5" which maps to "Friday"
+    const axisMarker1 = new AxisMarkerAnnotation({
+        x1: 4,
         backgroundColor: appTheme.VividPink,
         opacity: 0.6,
         formattedValue: "Friday",
@@ -342,8 +381,8 @@ const createCategoryChart = async (rootElement: HTMLDivElement) => {
         fontWeight: "bold",
     });
 
-    const axisMarker8 = new AxisMarkerAnnotation({
-        x1: 5, // Index for value "8" which maps to "Monday" (8-1)%7 = 0
+    const axisMarker2 = new AxisMarkerAnnotation({
+        x1: 5,
         backgroundColor: appTheme.VividGreen,
         opacity: 0.6,
         formattedValue: "Monday",
@@ -352,9 +391,33 @@ const createCategoryChart = async (rootElement: HTMLDivElement) => {
         fontWeight: "bold",
     });
 
-    sciChartSurface.annotations.add(axisMarker5, axisMarker8);
+    const axisMarker3 = new AxisMarkerAnnotation({
+        x1: 9,
+        backgroundColor: appTheme.VividPink,
+        opacity: 0.6,
+        formattedValue: "Friday",
+        color: appTheme.ForegroundColor,
+        fontSize: 10,
+        fontWeight: "bold",
+    });
 
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier(), new ZoomExtentsModifier(), new ZoomPanModifier());
+    const axisMarker4 = new AxisMarkerAnnotation({
+        x1: 10,
+        backgroundColor: appTheme.VividGreen,
+        opacity: 0.6,
+        formattedValue: "Monday",
+        color: appTheme.ForegroundColor,
+        fontSize: 10,
+        fontWeight: "bold",
+    });
+
+    sciChartSurface.annotations.add(axisMarker1, axisMarker2, axisMarker3, axisMarker4);
+
+    sciChartSurface.chartModifiers.add(
+        new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
+        new ZoomExtentsModifier(),
+        new ZoomPanModifier()
+    );
 
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };
