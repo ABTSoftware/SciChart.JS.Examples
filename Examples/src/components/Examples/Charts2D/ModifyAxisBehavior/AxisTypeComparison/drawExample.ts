@@ -34,31 +34,35 @@ const X_AXIS_CATEGORY_ID = "X_AXIS_CATEGORY_ID";
 // Custom label provider for days of the week
 class DayOfWeekLabelProvider extends LabelProviderBase2D {
     public readonly type = "DayOfWeekLabelProvider";
-    private dayNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-    
+    private dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
     public get formatLabel() {
         return (dataValue: number): string => {
-            // Map any numeric value to day names using modulo arithmetic
-            // 1=Monday, 2=Tuesday, ..., 7=Sunday, 8=Monday, 9=Tuesday, etc.
             const roundedValue = Math.round(dataValue);
+            const weekNo = Math.floor((roundedValue - 1) / 7);
+
             if (roundedValue >= 1) {
-                const dayIndex = ((roundedValue - 1) % 7);
-                return this.dayNames[dayIndex];
+                const dayIndex = (roundedValue - 1) % 7;
+                console.log(dataValue);
+                return `${this.dayNames[dayIndex]}_${weekNo}`;
             }
             return dataValue.toString();
         };
     }
-    
+
     public get formatCursorLabel() {
         return (dataValue: number): string => {
             return this.formatLabel(dataValue);
         };
     }
-    
+
     public onBeginAxisDraw(): void {
         // Implementation required by base class
     }
 }
+
+// xValues: [1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 15, 16],
+// yValues: [1, 4, 3, 5.21, 2, 2, 1.3, 3, 1, 2, 2.5, 4],
 
 // Helper function to create data series
 const createDataSeries = (wasmContext: any) => {
@@ -136,6 +140,7 @@ const addSeriesToChart = (sciChartSurface: SciChartSurface, wasmContext: any, da
 
 // Create Index Axis Chart
 const createIndexChart = async (rootElement: HTMLDivElement) => {
+    console.log("index");
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: {
             ...appTheme.SciChartJsTheme,
@@ -160,7 +165,7 @@ const createIndexChart = async (rootElement: HTMLDivElement) => {
         majorDelta: 1,
         minorDelta: 1,
         labelProvider: new DayOfWeekLabelProvider(),
-        isVisible: true,
+
         id: X_AXIS_INDEX_ID,
         // visibleRange: new NumberRange(-1, 12)
         growBy: new NumberRange(0.07, 0.07),
@@ -169,7 +174,7 @@ const createIndexChart = async (rootElement: HTMLDivElement) => {
     const yAxisLinear = new NumericAxis(wasmContext, {
         labelFormat: ENumericFormat.Decimal,
         labelPrecision: 2,
-        isVisible: true,
+
         id: Y_AXIS_LINEAR_ID,
         growBy: new NumberRange(0.1, 0.3),
     });
@@ -211,6 +216,7 @@ const createIndexChart = async (rootElement: HTMLDivElement) => {
 
 // Create Linear Axis Chart
 const createLinearChart = async (rootElement: HTMLDivElement) => {
+    console.log("numeric");
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: {
             ...appTheme.SciChartJsTheme,
@@ -231,7 +237,7 @@ const createLinearChart = async (rootElement: HTMLDivElement) => {
         labelFormat: ENumericFormat.Decimal,
         labelPrecision: 2,
         labelProvider: new DayOfWeekLabelProvider(),
-        isVisible: true,
+
         id: X_AXIS_LINEAR_ID,
         growBy: new NumberRange(0.094, 0.094),
     });
@@ -239,7 +245,7 @@ const createLinearChart = async (rootElement: HTMLDivElement) => {
     const yAxisLinear = new NumericAxis(wasmContext, {
         labelFormat: ENumericFormat.Decimal,
         labelPrecision: 2,
-        isVisible: true,
+
         id: Y_AXIS_LINEAR_ID,
         growBy: new NumberRange(0.1, 0.3),
     });
@@ -281,6 +287,7 @@ const createLinearChart = async (rootElement: HTMLDivElement) => {
 
 // Create Category Axis Chart
 const createCategoryChart = async (rootElement: HTMLDivElement) => {
+    console.log("category");
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: {
             ...appTheme.SciChartJsTheme,
@@ -298,21 +305,21 @@ const createCategoryChart = async (rootElement: HTMLDivElement) => {
     });
 
     const xAxisCategory = new CategoryAxis(wasmContext, {
-        isVisible: true,
         id: X_AXIS_CATEGORY_ID,
         growBy: new NumberRange(0.009, 0.009),
-        labels: [1, 2, 3, 4, 5, 8, 9].map((d) => {
-            // Map each value to day name using modulo arithmetic
-            const dayIndex = ((d - 1) % 7);
-            const dayNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-            return dayNames[dayIndex];
-        }),
+        labelProvider: new DayOfWeekLabelProvider(),
+        // labels: [1, 2, 3, 4, 5, 8, 9].map((d) => {
+        //     // Map each value to day name using modulo arithmetic
+        //     const dayIndex = (d - 1) % 7;
+        //     const dayNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+        //     return dayNames[dayIndex];
+        // }),
     });
 
     const yAxisLinear = new NumericAxis(wasmContext, {
         labelFormat: ENumericFormat.Decimal,
         labelPrecision: 2,
-        isVisible: true,
+
         id: Y_AXIS_LINEAR_ID,
         growBy: new NumberRange(0.1, 0.3),
     });
