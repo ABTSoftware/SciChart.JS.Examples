@@ -24,7 +24,7 @@ const metaData: IExampleMetadata =
             react: {
                 subtitle:
                     "Demonstrates how to create a **React Chart with Index axis** using SciChart.js, High Performance JavaScript Charts",
-                title: "React Chart with Axis Type Comparison",
+                title: "Axis Type Comparison",
                 pageTitle: "React Chart with Axis Type Comparison",
                 metaDescription:
                     "Demonstrates Index Axis on a React Chart using SciChart.js. SciChart supports index axis with scientific or engineering notation and positive and negative values",
