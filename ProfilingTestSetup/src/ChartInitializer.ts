@@ -7,6 +7,7 @@ import {
     generateGuid,
     I2DSurfaceOptions,
     IBaseDataSeriesOptions,
+    IDataSeries,
     INumericAxisOptions,
     NumericAxis,
     receiveNextEvent,
@@ -238,7 +239,7 @@ export class ChartInitializer extends ResultsConsoleOutputApi {
             initialPoints: this.options.dataChunkSize
         };
 
-        const dataSeriesArray: BaseDataSeries[] = new Array(dataSettings.seriesCount);
+        const dataSeriesArray: IDataSeries[] = new Array(dataSettings.seriesCount);
         this.surfaceDataSeriesMap.set(sciChartSurface, { dataSeriesArray });
 
         const xAxis = sciChartSurface.xAxes.get(0);
@@ -256,7 +257,7 @@ export class ChartInitializer extends ResultsConsoleOutputApi {
 
             sciChartSurface.renderableSeries.add(rendSeries);
 
-            const xValues = Array.from(new Array(dataSettings.initialPoints).keys());
+            // const xValues = Array.from(new Array(dataSettings.initialPoints).keys());
 
             // // Generate points
             // prePopulateData(dataSeries, dataSeries.type, xValues, false);

@@ -133,7 +133,7 @@ export function addVisibleAxes(subSurface: SciChartSubSurface) {
             borderRight: 1
         },
         backgroundColor: "#CDB6FE12",
-        axisThickness: 20,
+        // axisThickness: 20,
 
         axisTitle: "Absolute time (HHMMSSms)",
 

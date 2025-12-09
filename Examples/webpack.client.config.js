@@ -67,6 +67,10 @@ module.exports = {
     },
     resolve: {
         extensions: [".tsx", ".ts", ".js", ".css"],
+        alias: {
+            scichart: path.resolve(__dirname, "./node_modules/scichart"),
+            "scichart-addons": path.resolve(__dirname, "../Addons"),
+        },
     },
     output: {
         filename: "bundle.js",

@@ -32,7 +32,9 @@ import {
     UniformHeatmapDataSeries,
     NonUniformHeatmapDataSeries,
     XyxyDataSeries,
-    XyxDataSeries
+    XyxDataSeries,
+    IRenderableSeries,
+    IDataSeries
 } from "scichart";
 
 /**
@@ -454,7 +456,7 @@ export const createRenderableSeries = (
     xAxisId: string,
     yAxisId: string,
     dsOptions: IBaseDataSeriesOptions
-): { dataSeries: BaseDataSeries; rendSeries: BaseRenderableSeries } => {
+): { dataSeries: IDataSeries; rendSeries: IRenderableSeries } => {
     const dataSeriesType = getDataSeriesTypeForRenderableSeries(seriesType);
     const options: IBaseRenderableSeriesOptions = {
         stroke,
@@ -467,11 +469,11 @@ export const createRenderableSeries = (
     };
 
     const definition = { type: seriesType, options } as TSeriesDefinition;
-    const [rendSeries] = buildSeries(wasmContext, definition) as BaseRenderableSeries[];
+    const [rendSeries] = buildSeries(wasmContext, definition);
     const dataSeries = buildDataSeries(wasmContext, {
         type: dataSeriesType,
         options: dsOptions
-    }) as BaseDataSeries;
+    });
     rendSeries.dataSeries = dataSeries;
     return { rendSeries, dataSeries };
 };

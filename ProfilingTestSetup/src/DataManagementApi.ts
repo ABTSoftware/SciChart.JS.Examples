@@ -1,4 +1,14 @@
-import { BaseDataSeries, SciChartSurface, vectorToArrayViewF64, XyDataSeries } from "scichart";
+import {
+    BaseDataSeries,
+    BaseHeatmapDataSeries,
+    EDataSeriesType,
+    ESeriesType,
+    IDataSeries,
+    SciChartSurface,
+    UniformHeatmapDataSeries,
+    vectorToArrayViewF64,
+    XyDataSeries
+} from "scichart";
 import { PerformanceTrackingApi } from "./PerformanceTrackingApi";
 import { GetRandomData } from "./helpers";
 
@@ -6,7 +16,7 @@ import { GetRandomData } from "./helpers";
 const memoryLeakArray: any[] = [];
 
 export class DataManagementApi extends PerformanceTrackingApi {
-    protected surfaceDataSeriesMap: Map<SciChartSurface, { dataSeriesArray: BaseDataSeries[] }> =
+    protected surfaceDataSeriesMap: Map<SciChartSurface, { dataSeriesArray: IDataSeries[] }> =
         new Map();
     protected data: Record<string, Array<Record<string, number[]>>>;
 
@@ -21,19 +31,35 @@ export class DataManagementApi extends PerformanceTrackingApi {
 
         for (let i = 0; i < dataSettings.seriesCount; i++) {
             const dataSeries = dataSeriesArray[i];
-            const lastIndex = dataSeries.count() - 1;
-            const lastX = lastIndex > 0 ? dataSeries.getNativeXValues().get(lastIndex) : 0;
+            if (dataSeries.type === EDataSeriesType.HeatmapUniform) {
+                const heatmapDataSeries = dataSeries as UniformHeatmapDataSeries;
+                
+                this.data[surface.id][i].xValues = [heatmapDataSeries.xStart, heatmapDataSeries.xStep, heatmapDataSeries.yStart, heatmapDataSeries.yStep];
 
-            const xValues = Array.from(Array(this.options.dataChunkSize)).map(
-                (_, i) => lastX + 1 + i
-            );
-            this.data[surface.id][i].xValues = xValues;
-            for (let yValuesIndex = 0; yValuesIndex < dataSeries.arrayCount; ++yValuesIndex) {
-                const yValuesName = `y${yValuesIndex || ""}Values`;
+                const zValues = Array.from([[]])
+                Object.assign(this.data[surface.id][i], zValues);
 
-                const lastY =
-                    lastIndex > 0 ? dataSeries.getNativeYValues(yValuesIndex).get(lastIndex) : 0;
-                this.data[surface.id][i][yValuesName] = GetRandomData(xValues, false, lastY);
+            } else {
+                const lastIndex = dataSeries.count() - 1;
+                const lastX = lastIndex > 0 ? dataSeries.getNativeXValues().get(lastIndex) : 0;
+
+                const xValues = Array.from(Array(this.options.dataChunkSize)).map(
+                    (_, i) => lastX + 1 + i
+                );
+                this.data[surface.id][i].xValues = xValues;
+                for (
+                    let yValuesIndex = 0;
+                    yValuesIndex < (dataSeries as BaseDataSeries).arrayCount;
+                    ++yValuesIndex
+                ) {
+                    const yValuesName = `y${yValuesIndex || ""}Values`;
+
+                    const lastY =
+                        lastIndex > 0
+                            ? dataSeries.getNativeYValues(yValuesIndex).get(lastIndex)
+                            : 0;
+                    this.data[surface.id][i][yValuesName] = GetRandomData(xValues, false, lastY);
+                }
             }
         }
     }
@@ -57,14 +83,20 @@ export class DataManagementApi extends PerformanceTrackingApi {
 
         for (let i = 0; i < dataSettings.seriesCount; i++) {
             const dataSeries = dataSeriesArray[i];
-            const { xValues, ...yValuesGroup } = data[surface.id][i];
-            const yValuesArray = Object.values(yValuesGroup);
+            if (dataSeries.type === EDataSeriesType.HeatmapUniform) {
+                const { xValues, ...yValuesGroup } = data[surface.id][i];
 
-            if (yValuesArray.length === 0) {
-                throw new Error(`No Y Values`);
+                // (dataSeries as BaseHeatmapDataSeries).setZValues();
+            } else {
+                const { xValues, ...yValuesGroup } = data[surface.id][i];
+                const yValuesArray = Object.values(yValuesGroup);
+
+                if (yValuesArray.length === 0) {
+                    throw new Error(`No Y Values`);
+                }
+
+                (dataSeries as BaseDataSeries).appendRangeN(xValues, yValuesArray);
             }
-
-            dataSeries.appendRangeN(xValues, yValuesArray);
         }
     }
 

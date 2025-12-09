@@ -22,6 +22,7 @@ import { AxisSynchroniser } from "./AxisSynchroniser";
 
 export const createChart = async (divId: string, id: number) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divId, {
+        id: divId,
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
     });
@@ -67,6 +68,7 @@ export const createOverview = async (divId: string, axisSynchroniser: AxisSynchr
     // Note this does not use SciChartOverview.
     // Instead we create a normal chart and then manually add the OverviewRangeSelectionModifier and bind it to the axisSynchroniser
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divId, {
+        id: divId,
         theme: appTheme.SciChartJsTheme,
     });
 
