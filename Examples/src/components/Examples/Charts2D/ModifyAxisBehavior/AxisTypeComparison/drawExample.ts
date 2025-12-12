@@ -1,6 +1,7 @@
 import {
     ENumericFormat,
     EllipsePointMarker,
+    FastRectangleRenderableSeries,
     FastLineRenderableSeries,
     LegendModifier,
     LogarithmicAxis,
