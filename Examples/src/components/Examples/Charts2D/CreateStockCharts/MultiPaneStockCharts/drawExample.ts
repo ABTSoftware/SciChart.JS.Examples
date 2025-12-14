@@ -1,6 +1,6 @@
 import {
     SciChartVerticalGroup,
-    CategoryAxis,
+    IndexAxis,
     EAxisAlignment,
     SciChartSurface,
     EAutoRange,
@@ -111,9 +111,12 @@ export const getChartsInitializationAPI = () => {
 
     const dataPromise = getTradingData();
 
-    let chart1XAxis: CategoryAxis;
-    let chart2XAxis: CategoryAxis;
-    let chart3XAxis: CategoryAxis;
+    let chart1XAxis: IndexAxis;
+    let chart2XAxis: IndexAxis;
+    let chart3XAxis: IndexAxis;
+    let priceChartSurface: SciChartSurface;
+    let macdChartSurface: SciChartSurface;
+    let rsiChartSurface: SciChartSurface;
     const axisAlignment = EAxisAlignment.Right;
 
     const upCol = appTheme.VividGreen;
@@ -133,7 +136,7 @@ export const getChartsInitializationAPI = () => {
         const { wasmContext, sciChartSurface } = chart;
         const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = data;
 
-        chart1XAxis = new CategoryAxis(wasmContext, {
+        chart1XAxis = new IndexAxis(wasmContext, {
             drawLabels: false,
             drawMajorTickLines: false,
             drawMinorTickLines: false,
@@ -251,6 +254,7 @@ export const getChartsInitializationAPI = () => {
         );
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
+        priceChartSurface = sciChartSurface;
 
         return { wasmContext, sciChartSurface };
     };
@@ -266,7 +270,7 @@ export const getChartsInitializationAPI = () => {
             dataPromise,
         ]);
 
-        chart2XAxis = new CategoryAxis(wasmContext, {
+        chart2XAxis = new IndexAxis(wasmContext, {
             drawLabels: false,
             drawMajorTickLines: false,
             drawMinorTickLines: false,
@@ -337,6 +341,7 @@ export const getChartsInitializationAPI = () => {
         );
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
+        macdChartSurface = sciChartSurface;
 
         return { wasmContext, sciChartSurface };
     };
@@ -352,7 +357,7 @@ export const getChartsInitializationAPI = () => {
             dataPromise,
         ]);
 
-        chart3XAxis = new CategoryAxis(wasmContext, {
+        chart3XAxis = new IndexAxis(wasmContext, {
             autoRange: EAutoRange.Once,
             labelProvider: new SmartDateLabelProvider(),
         });
@@ -417,6 +422,7 @@ export const getChartsInitializationAPI = () => {
         );
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
+        rsiChartSurface = sciChartSurface;
 
         return { wasmContext, sciChartSurface };
     };
@@ -463,6 +469,17 @@ export const getChartsInitializationAPI = () => {
             chart1XAxis.visibleRange.max - twoHundredDaysSciChartFormat,
             chart1XAxis.visibleRange.max
         );
+
+        // Call zoomExtents on all charts after initialization
+        if (priceChartSurface) {
+            priceChartSurface.zoomExtents();
+        }
+        if (macdChartSurface) {
+            macdChartSurface.zoomExtents();
+        }
+        if (rsiChartSurface) {
+            rsiChartSurface.zoomExtents();
+        }
     };
 
     return { drawPriceChart, drawMacdChart, drawRsiChart, drawOverview, configureAfterInit };
