@@ -15,6 +15,7 @@ import {
     FastOhlcRenderableSeries,
     GradientParams,
     IFillPaletteProvider,
+    IndexAxis,
     IPointMetadata,
     IRenderableSeries,
     MouseWheelZoomModifier,
@@ -44,10 +45,9 @@ export const drawExample = (dataSource: string) => async (rootElement: string | 
         theme: appTheme.SciChartJsTheme,
     });
 
-    // Add an XAxis of type DateTimeAxis
-    // Note for crypto data this is fine, but for stocks/forex you will need to use CategoryAxis which collapses gaps at weekends
-    // In future we have a hybrid IndexDateAxis which 'magically' solves problems of different # of points in stock market datasetd with gaps
-    const xAxis = new DateTimeNumericAxis(wasmContext, {
+
+    // We have a hybrid IndexAxis which 'magically' solves problems of different # of points in stock market datasetd with gaps
+    const xAxis = new IndexAxis(wasmContext, {
         // autoRange.never as we're setting visibleRange explicitly below. If you dont do this, leave this flag default
         autoRange: EAutoRange.Never,
     });
@@ -91,6 +91,14 @@ export const drawExample = (dataSource: string) => async (rootElement: string | 
     } else {
         priceBars = ExampleDataProvider.getRandomCandles(300, 60000, startDate, 60 * 60);
     }
+    
+    // Filter out weekends (Saturday = 6, Sunday = 0)
+    priceBars = priceBars.filter((priceBar: any) => {
+        const date = new Date(priceBar.date * 1000); // Convert timestamp to Date
+        const dayOfWeek = date.getDay();
+        return dayOfWeek !== 0 && dayOfWeek !== 6; // Keep only Monday(1) through Friday(5)
+    });
+    
     // Maps PriceBar { date, open, high, low, close, volume } to structure-of-arrays expected by scichart
     priceBars.forEach((priceBar: any) => {
         xValues.push(priceBar.date);
