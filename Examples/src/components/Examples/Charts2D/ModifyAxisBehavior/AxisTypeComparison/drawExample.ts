@@ -24,6 +24,7 @@ import {
     LabelProviderBase2D,
     ZoomPanModifier,
     EXyDirection,
+    RolloverModifier,
 } from "scichart";
 import { appTheme } from "../../../theme";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
@@ -49,6 +50,40 @@ class DayOfWeekLabelProvider extends LabelProviderBase2D {
                 return `${this.dayNames[dayIndex]}_${weekNo}`;
             }
             return ""; //dataValue.toString();
+        };
+    }
+
+    public get formatCursorLabel() {
+        return (dataValue: number): string => {
+            return this.formatLabel(dataValue);
+        };
+    }
+
+    public onBeginAxisDraw(): void {
+        // Implementation required by base class
+    }
+}
+
+class DayOfWeekLabelProviderIndex extends LabelProviderBase2D {
+    public readonly type = "DayOfWeekLabelProviderIndex";
+    private dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+    public get formatLabel() {
+        return (dataValue: number): string => {
+            const roundedValue = Math.round(dataValue);
+            const weekNo = Math.floor((roundedValue - 1) / 7);
+
+            if (roundedValue >= 1) {
+                const dayIndex = (roundedValue - 1) % 7;
+
+                // Skip Saturday (index 5) and Sunday (index 6)
+                if (dayIndex === 5 || dayIndex === 6) {
+                    return "";
+                }
+
+                return `${this.dayNames[dayIndex]}_${weekNo}`;
+            }
+            return "";
         };
     }
 
@@ -158,12 +193,12 @@ const createIndexChart = async (rootElement: HTMLDivElement) => {
 
     const xAxisIndex = new IndexAxis(wasmContext, {
         flippedCoordinates: false,
-        labelPrecision: 3,
-        cursorLabelPrecision: 2,
+        // labelPrecision: 3,
+        // cursorLabelPrecision: 2,
         autoTicks: true,
         majorDelta: 1,
         minorDelta: 1,
-        labelProvider: new DayOfWeekLabelProvider(),
+        labelProvider: new DayOfWeekLabelProviderIndex(),
         id: X_AXIS_INDEX_ID,
         // visibleRange: new NumberRange(10, 15),
         growBy: new NumberRange(0.04, 0.04),
@@ -229,7 +264,12 @@ const createIndexChart = async (rootElement: HTMLDivElement) => {
     sciChartSurface.chartModifiers.add(
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
         new ZoomExtentsModifier(),
-        new ZoomPanModifier()
+        new ZoomPanModifier(),
+        new RolloverModifier({
+            showRolloverLine: true,
+            rolloverLineStrokeThickness: 2,
+            rolloverLineStroke: appTheme.VividOrange,
+        })
     );
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };
@@ -323,7 +363,8 @@ const createLinearChart = async (rootElement: HTMLDivElement) => {
     sciChartSurface.chartModifiers.add(
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
         new ZoomExtentsModifier(),
-        new ZoomPanModifier()
+        new ZoomPanModifier(),
+        new RolloverModifier({})
     );
 
     sciChartSurface.zoomExtents();
@@ -416,7 +457,8 @@ const createCategoryChart = async (rootElement: HTMLDivElement) => {
     sciChartSurface.chartModifiers.add(
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
         new ZoomExtentsModifier(),
-        new ZoomPanModifier()
+        new ZoomPanModifier(),
+        new RolloverModifier({})
     );
 
     sciChartSurface.zoomExtents();
