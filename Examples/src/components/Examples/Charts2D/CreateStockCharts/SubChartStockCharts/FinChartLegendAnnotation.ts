@@ -8,6 +8,8 @@ import {
     ISvgAnnotationBaseOptions,
     SvgAnnotationBase,
     ISciChartSubSurface,
+    EAxisType,
+    IndexCoordinateCalculator,
 } from "scichart";
 
 export type TFinanceLegendTemplate = (legendAnnotation: FinChartLegendAnnotation) => string;
@@ -128,7 +130,16 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
         yCoordSvgTrans: number
     ) {
         if (this.template) {
-            this.xIndex = this.isMouseOverSeriesArea ? Math.round(xCalc.getDataValue(this.x1)) : undefined;
+            let index: number = -1;
+            if (this.xAxis.type === EAxisType.CategoryAxis) {
+                index = Math.round(xCalc.getDataValue(this.x1));
+            } else if (this.xAxis.type === EAxisType.IndexAxis) {
+                const indexCoordCalc = xCalc as IndexCoordinateCalculator;
+                const val = indexCoordCalc.getDataValue(this.x1);
+                index = Math.round(indexCoordCalc.indexCalculator.GetIndex(val));
+            }
+
+            this.xIndex = this.isMouseOverSeriesArea ? index : undefined;
             if (this.xIndex === undefined) {
                 return;
             }
@@ -149,47 +160,49 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
 /** @ignore */
 const defaultFinanceLegendTemplate: TFinanceLegendTemplate = (la: FinChartLegendAnnotation): string => {
     const outputStrings: string[] = [];
-    const subSurface = la.sciFinanceChart.subCharts.find((study) => study.id === la.paneId);
+    const subSurface = la.sciFinanceChart.subCharts.find(study => study.id === la.paneId);
     let outputStr = "";
-    subSurface.renderableSeries.asArray().forEach(({ dataSeries }) => {
-        switch (dataSeries.type) {
-            case EDataSeriesType.Ohlc: {
-                const openValues = (dataSeries as OhlcDataSeries).getNativeOpenValues();
-                const highValues = (dataSeries as OhlcDataSeries).getNativeHighValues();
-                const lowValues = (dataSeries as OhlcDataSeries).getNativeLowValues();
-                const closeValues = (dataSeries as OhlcDataSeries).getNativeCloseValues();
+    if (la.xIndex >= 0) {
+        subSurface.renderableSeries.asArray().forEach(({ dataSeries }) => {
+            switch (dataSeries.type) {
+                case EDataSeriesType.Ohlc: {
+                    const openValues = (dataSeries as OhlcDataSeries).getNativeOpenValues();
+                    const highValues = (dataSeries as OhlcDataSeries).getNativeHighValues();
+                    const lowValues = (dataSeries as OhlcDataSeries).getNativeLowValues();
+                    const closeValues = (dataSeries as OhlcDataSeries).getNativeCloseValues();
 
-                const openValue = openValues.get(la.xIndex);
-                const highValue = highValues.get(la.xIndex);
-                const lowValue = lowValues.get(la.xIndex);
-                const closeValue = closeValues.get(la.xIndex);
+                    const openValue = openValues.get(la.xIndex);
+                    const highValue = highValues.get(la.xIndex);
+                    const lowValue = lowValues.get(la.xIndex);
+                    const closeValue = closeValues.get(la.xIndex);
 
-                outputStr += `${dataSeries.dataSeriesName} O: ${openValue} H: ${highValue} L: ${lowValue} C: ${closeValue}`;
-                break;
+                    outputStr += `${dataSeries.dataSeriesName} O: ${openValue} H: ${highValue} L: ${lowValue} C: ${closeValue}`;
+                    break;
+                }
+
+                case EDataSeriesType.Xyy: {
+                    const yValues = dataSeries.getNativeYValues();
+                    const y1Values = (dataSeries as XyyDataSeries).getNativeY1Values();
+                    const yValue = yValues.get(la.xIndex).toFixed(4);
+                    const y1Value = y1Values.get(la.xIndex).toFixed(4);
+                    outputStr += `${dataSeries.dataSeriesName} Y: ${yValue} Y1: ${y1Value}`;
+
+                    break;
+                }
+
+                default: {
+                    const yValues = dataSeries.getNativeYValues();
+                    const yValue = yValues.get(la.xIndex).toFixed(4);
+                    outputStr += `${dataSeries.dataSeriesName}: ${yValue}`;
+                }
             }
 
-            case EDataSeriesType.Xyy: {
-                const yValues = dataSeries.getNativeYValues();
-                const y1Values = (dataSeries as XyyDataSeries).getNativeY1Values();
-                const yValue = yValues.get(la.xIndex).toFixed(4);
-                const y1Value = y1Values.get(la.xIndex).toFixed(4);
-                outputStr += `${dataSeries.dataSeriesName} Y: ${yValue} Y1: ${y1Value}`;
-
-                break;
+            if (outputStr) {
+                outputStrings.push(outputStr);
+                outputStr = "";
             }
-
-            default: {
-                const yValues = dataSeries.getNativeYValues();
-                const yValue = yValues.get(la.xIndex).toFixed(4);
-                outputStr += `${dataSeries.dataSeriesName}: ${yValue}`;
-            }
-        }
-
-        if (outputStr) {
-            outputStrings.push(outputStr);
-            outputStr = "";
-        }
-    });
+        });
+    }
 
     let outputSvgString = "";
     outputStrings.forEach((outputStr, index) => {

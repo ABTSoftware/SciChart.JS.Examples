@@ -124,7 +124,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             theme: appTheme.SciChartJsTheme,
         },
         xAxes: {
-            type: EAxisType.NumericAxis,
+            type: EAxisType.IndexAxis,
             options: {
                 isVisible: false,
             },
@@ -151,14 +151,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     subChartContainerId: subChartWrapper1,
                 },
                 xAxes: {
-                    type: EAxisType.CategoryAxis,
+                    type: EAxisType.IndexAxis,
                     options: {
                         drawLabels: false,
                         autoRange: EAutoRange.Once,
-                        // maxAutoTicks: 20,
+                        //maxAutoTicks: 20,
                         useNativeText: false,
                         minorsPerMajor: 3,
-                        visibleRangeLimit: new NumberRange(0, xValues.length - 1),
                     },
                 },
                 yAxes: [
@@ -196,6 +195,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                             closeValues,
                         },
                         options: {
+                            dataPointWidth: 0.7,
                             brushUp: upCol + opacity,
                             brushDown: downCol + opacity,
                             strokeUp: upCol,
@@ -216,7 +216,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                             },
                         },
                         options: {
-                            stroke: appTheme.VividSkyBlue,
+                            stroke: "#4FBEE6",
                             strokeThickness: 2,
                         },
                     },
@@ -234,7 +234,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                             },
                         },
                         options: {
-                            stroke: appTheme.VividPink,
+                            stroke: "AE418D",
                             strokeThickness: 2,
                         },
                     },
@@ -247,7 +247,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                         },
                         options: {
                             yAxisId: "yAxis2",
-                            dataPointWidth: 0.5,
+                            dataPointWidth: 0.9,
                             strokeThickness: 0,
                             paletteProvider: new VolumePaletteProvider(
                                 openValues,
@@ -271,14 +271,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 },
                 xAxes: [
                     {
-                        type: EAxisType.CategoryAxis,
+                        type: EAxisType.IndexAxis,
                         options: {
                             drawLabels: false,
                             drawMajorTickLines: false,
                             drawMinorTickLines: false,
                             useNativeText: false,
                             minorsPerMajor: 3,
-                            visibleRangeLimit: new NumberRange(0, xValues.length - 1),
                         },
                     },
                 ],
@@ -336,14 +335,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     subChartContainerId: subChartWrapper3,
                 },
                 xAxes: {
-                    type: EAxisType.CategoryAxis,
+                    type: EAxisType.IndexAxis,
                     options: {
                         drawLabels: true,
                         drawMajorTickLines: true,
                         drawMinorTickLines: false,
                         useNativeText: false,
                         minorsPerMajor: 3,
-                        visibleRangeLimit: new NumberRange(0, xValues.length - 1),
                     },
                 },
                 yAxes: {
@@ -361,7 +359,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     type: ESeriesType.LineSeries,
                     xyData: { dataSeriesName: "RSI", xValues, yValues: rsiArray },
                     options: {
-                        stroke: appTheme.VividSkyBlue,
+                        stroke: "#4FBEE6",
                         strokeThickness: 2,
                     },
                 },
