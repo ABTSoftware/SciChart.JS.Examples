@@ -158,6 +158,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                         //maxAutoTicks: 20,
                         useNativeText: false,
                         minorsPerMajor: 3,
+                        // visibleRangeLimit: new NumberRange(0, xValues.length - 1),
                     },
                 },
                 yAxes: [
@@ -216,7 +217,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                             },
                         },
                         options: {
-                            stroke: "#4FBEE6",
+                            stroke: appTheme.VividSkyBlue,
                             strokeThickness: 2,
                         },
                     },
@@ -234,7 +235,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                             },
                         },
                         options: {
-                            stroke: "AE418D",
+                            stroke: appTheme.VividPink,
                             strokeThickness: 2,
                         },
                     },
@@ -278,6 +279,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                             drawMinorTickLines: false,
                             useNativeText: false,
                             minorsPerMajor: 3,
+                            // visibleRangeLimit: new NumberRange(0, xValues.length - 1),
                         },
                     },
                 ],
@@ -342,6 +344,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                         drawMinorTickLines: false,
                         useNativeText: false,
                         minorsPerMajor: 3,
+                        // visibleRangeLimit: new NumberRange(0, xValues.length - 1),
                     },
                 },
                 yAxes: {
@@ -359,7 +362,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     type: ESeriesType.LineSeries,
                     xyData: { dataSeriesName: "RSI", xValues, yValues: rsiArray },
                     options: {
-                        stroke: "#4FBEE6",
+                        stroke: appTheme.VividSkyBlue,
                         strokeThickness: 2,
                     },
                 },
