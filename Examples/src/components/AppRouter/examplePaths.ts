@@ -13,6 +13,7 @@ export default [
     "../Examples/Charts2D/AxisLabelCustomization/MultiLineLabels",
     "../Examples/Charts2D/AxisLabelCustomization/RotatedLabels",
     "../Examples/Charts2D/BasicChartTypes/BandSeriesChart",
+    "../Examples/Charts2D/BasicChartTypes/BigHeatmapExample",
     "../Examples/Charts2D/BasicChartTypes/BubbleChart",
     "../Examples/Charts2D/BasicChartTypes/CandlestickChart",
     "../Examples/Charts2D/BasicChartTypes/ColumnChart",
@@ -159,5 +160,5 @@ export default [
     "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard",
     "../Examples/FeaturedApps/ShowCases/PopulationPyramid",
     "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard",
-    "../Examples/FeaturedApps/ShowCases/WebsocketBigData",
+    "../Examples/FeaturedApps/ShowCases/WebsocketBigData"
 ];

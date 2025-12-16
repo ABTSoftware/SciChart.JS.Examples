@@ -107,6 +107,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart,
             EXAMPLES_PAGES.chart2D_basicCharts_NonUniformHeatmapChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ContourChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_BigHeatmapExample,
             EXAMPLES_PAGES.chart2D_basicCharts_MountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_SplineMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart,
