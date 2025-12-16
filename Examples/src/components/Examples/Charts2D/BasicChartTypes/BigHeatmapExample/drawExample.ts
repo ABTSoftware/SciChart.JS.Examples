@@ -3,6 +3,7 @@ import {
     HeatmapColorMap,
     HeatmapLegend,
     MouseWheelZoomModifier,
+    NumberRange,
     NumericAxis,
     SciChartSurface,
     UniformContoursRenderableSeries,
@@ -29,9 +30,23 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         theme: appTheme.SciChartJsTheme,
     });
 
-    // Create an X & Y Axis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
+    // Define world coordinate bounds for proper alignment
+    const worldBounds = {
+        minLat: -90,
+        maxLat: 90,
+        minLon: -180,
+        maxLon: 180
+    };
+
+    // Create X & Y Axis with proper world coordinate bounds
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        isVisible: false,
+        visibleRange: new NumberRange(worldBounds.minLon, worldBounds.maxLon)
+    }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        isVisible: false,
+        visibleRange: new NumberRange(worldBounds.minLat, worldBounds.maxLat)
+    }));
 
     const heatmapWidth = 3000;
     const heatmapHeight = 2000;
@@ -52,31 +67,46 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const convertedData = await fetch(baseUrl + "worldConverted.json").then((response) => response.json());
 
-
-    // console.log({convertedData})
-
-    let outlines: number[][][] = [];
-
+    console.log("Analyzing convertedData coordinate system...");
+    
+    // Analyze the coordinate bounds of convertedData to understand its coordinate system
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
     convertedData.forEach((d: any) => {
-        outlines.push(d.outline);
+        d.outline.forEach((point: number[]) => {
+            minX = -180;//Math.min(minX, point[0]); // Lon
+            maxX = Math.max(maxX, point[0]);
+            minY = Math.min(minY, point[1]); // Lat Y(-55.52 to 83.61)
+            maxY = Math.max(maxY, point[1]);
+        });
+    });
+    
+    console.log(`ConvertedData bounds: X(${minX.toFixed(2)} to ${maxX.toFixed(2)}), Y(${minY.toFixed(2)} to ${maxY.toFixed(2)})`);
+
+    // Transform convertedData coordinates to match world lat/lon bounds
+    const transformedOutlines = convertedData.map((d: any) => {
+        return d.outline.map((point: number[]) => {
+            // Scale from convertedData coordinate system to world lat/lon coordinates
+            const scaledX = worldBounds.minLon + ((point[0] - minX) / (maxX - minX)) * (worldBounds.maxLon - worldBounds.minLon);
+            const scaledY = worldBounds.minLat + ((point[1] - minY) / (maxY - minY)) * (worldBounds.maxLat - worldBounds.minLat);
+            return [scaledX, scaledY];
+        });
     });
 
-    // outline
-    const outlinesSC = outlines.map((outline) => {
-        const xVals = outline.map((d) => d[0]);
-        const yVals = outline.map((d) => d[1]);
+    console.log("Transformed world outlines to lat/lon coordinate system");
 
-        //FastMountainRenderableSeries
+    // Create outline series with transformed coordinates
+    const outlinesSC = transformedOutlines.map((outline: number[][]) => {
+        const xVals = outline.map((d: number[]) => d[0]);
+        const yVals = outline.map((d: number[]) => d[1]);
+
         const lineSeries = new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: xVals,
                 yValues: yVals,
             }),
-            stroke: "black", //appTheme.VividSkyBlue,
+            stroke: "black",
             strokeThickness: 2,
             opacity: 1,
-            // fill: "rgba(100, 149, 237, 1)",
-            // zeroLineY: calculatePolygonCenter(outline)[1],
         });
 
         return lineSeries;
@@ -91,12 +121,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     console.log("Generated earthquake heatmap data");
 
+    // Create heatmap data series with proper world coordinate mapping
     const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
         zValues: initialZValues,
-        xStart: 0,
-        xStep: 1,
-        yStart: 0,
-        yStep: 1,
+        xStart: worldBounds.minLon,
+        xStep: (worldBounds.maxLon - worldBounds.minLon) / heatmapWidth,
+        yStart: worldBounds.minLat,
+        yStep: (worldBounds.maxLat - worldBounds.minLat) / heatmapHeight,
     });
 
     // Add the contours series and add to the chart
@@ -186,34 +217,6 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
     return { sciChartSurface: heatmapLegend.innerSciChartSurface.sciChartSurface };
 };
 
-// This function generates data for the heatmap with contours series example
-function generateExampleData(index: number, heatmapWidth: number, heatmapHeight: number, colorPaletteMax: number) {
-    const zValues = zeroArray2D([heatmapHeight, heatmapWidth]);
-
-    const fifty = heatmapWidth / 6;
-
-    const angle = (Math.PI * 2 * index) / 30;
-    let smallValue = 0;
-    for (let x = 0; x < heatmapWidth; x++) {
-        for (let y = 0; y < heatmapHeight; y++) {
-            const v =
-                (1 + Math.sin(x * 0.04 + angle)) * 50 +
-                (1 + Math.sin(y * 0.1 + angle)) * 50 * (1 + Math.sin(angle * 2));
-            const cx = heatmapWidth / 2;
-            const cy = heatmapHeight / 2;
-            const r = Math.sqrt((x - cx) * (x - cx) + (y - cy) * (y - cy));
-
-            const exp = Math.max(0, 1 - r * 0.008);
-            const zValue = v * exp;
-            zValues[y][x] = zValue > colorPaletteMax ? colorPaletteMax : zValue;
-            zValues[y][x] += smallValue;
-        }
-
-        smallValue += 0.001;
-    }
-
-    return zValues;
-}
 
 // Function to fetch earthquake data from CSV
 async function fetchEarthquakeData(): Promise<EarthquakeData[]> {
