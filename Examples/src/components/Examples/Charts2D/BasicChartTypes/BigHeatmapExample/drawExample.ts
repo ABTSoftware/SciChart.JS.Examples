@@ -48,8 +48,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         visibleRange: new NumberRange(worldBounds.minLat, worldBounds.maxLat)
     }));
 
-    const heatmapWidth = 3000;
-    const heatmapHeight = 2000;
+    const heatmapWidth = 600;
+    const heatmapHeight = 400;
 
     const colorPaletteMin = 0;
     const colorPaletteMax = 10; // Max magnitude for earthquakes
@@ -74,9 +74,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     convertedData.forEach((d: any) => {
         d.outline.forEach((point: number[]) => {
             minX = -180;//Math.min(minX, point[0]); // Lon
-            maxX = Math.max(maxX, point[0]);
-            minY = Math.min(minY, point[1]); // Lat Y(-55.52 to 83.61)
-            maxY = Math.max(maxY, point[1]);
+            maxX = 180//Math.max(maxX, point[0]);
+            minY = -90 //Math.min(minY, point[1]); // Lat Y(-55.52 to 83.61)
+            maxY = 90 //Math.max(maxY, point[1]);
         });
     });
     
@@ -104,7 +104,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 xValues: xVals,
                 yValues: yVals,
             }),
-            stroke: "black",
+            stroke: "#ffffff",
             strokeThickness: 2,
             opacity: 1,
         });
@@ -121,27 +121,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     console.log("Generated earthquake heatmap data");
 
+    // Reverse the heatmap data by Y-axis to match proper geographic orientation
+    const reversedZValues = initialZValues.slice().reverse();
+    
     // Create heatmap data series with proper world coordinate mapping
     const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
-        zValues: initialZValues,
+        zValues: reversedZValues,
         xStart: worldBounds.minLon,
         xStep: (worldBounds.maxLon - worldBounds.minLon) / heatmapWidth,
         yStart: worldBounds.minLat,
         yStep: (worldBounds.maxLat - worldBounds.minLat) / heatmapHeight,
     });
-
-    // Add the contours series and add to the chart
-    // sciChartSurface.renderableSeries.add(
-    //     new UniformContoursRenderableSeries(wasmContext, {
-    //         dataSeries: heatmapDataSeries,
-    //         zMin: 20,
-    //         zMax: colorPaletteMax,
-    //         zStep: 20,
-    //         zOffset: 1,
-    //         strokeThickness: 1,
-    //         stroke: appTheme.PaleSkyBlue,
-    //     })
-    // );
 
     // Create a background heatmap series with the same data and add to the chart
     sciChartSurface.renderableSeries.add(
