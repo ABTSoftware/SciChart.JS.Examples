@@ -50,6 +50,7 @@ export default [
     "../Examples/Charts2D/ChartAnnotations/TradeMarkers",
     "../Examples/Charts2D/CreateStockCharts/DepthChart",
     "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts",
+    "../Examples/Charts2D/CreateStockCharts/OrderBookHeatmap",
     "../Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts",
     "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts",
     "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart",
@@ -159,5 +160,5 @@ export default [
     "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard",
     "../Examples/FeaturedApps/ShowCases/PopulationPyramid",
     "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard",
-    "../Examples/FeaturedApps/ShowCases/WebsocketBigData",
+    "../Examples/FeaturedApps/ShowCases/WebsocketBigData"
 ];

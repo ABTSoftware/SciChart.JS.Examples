@@ -50,6 +50,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
             EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart,
             EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts,
+            EXAMPLES_PAGES.chart2D_createStockCharts_OrderBookHeatmap,
             EXAMPLES_PAGES.chart2D_createStockCharts_SubchartStockCharts,
             EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
             EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
