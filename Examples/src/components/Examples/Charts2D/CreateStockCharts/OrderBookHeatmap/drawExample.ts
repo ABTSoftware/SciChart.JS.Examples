@@ -36,10 +36,10 @@ import {
     UniformHeatmapRenderableSeries,
     UniformHeatmapDataSeries,
     DefaultPaletteProvider,
+    EXyDirection,
 } from "scichart";
 
 import { appTheme } from "../../../theme";
-
 
 type TCandleData = {
     xValues: number[];
@@ -60,20 +60,20 @@ async function loadCandleData(): Promise<TCandleData> {
 
     try {
         // File copied in webpack.config.js
-        const filepath = "https://raw.githubusercontent.com/ABTSoftware/SciChart.JS.Examples/refs/heads/master/Sandbox/CustomerExamples/OrderBookHeatmap/src/Data/COINBASE_BTCUSD.csv";
+        const filepath =
+            "https://raw.githubusercontent.com/ABTSoftware/SciChart.JS.Examples/refs/heads/master/Sandbox/CustomerExamples/OrderBookHeatmap/src/Data/COINBASE_BTCUSD.csv";
         const response = await fetch(filepath);
         const csvText = await response.text();
-        
+
         // Split into lines and skip header row
-        const lines = csvText.split('\n');
-        
+        const lines = csvText.split("\n");
+
         for (let i = 1; i < lines.length; i++) {
             const line = lines[i].trim();
             if (!line) continue; // Skip empty lines
-            
-            const rowData = line.split(',');
-            
-            
+
+            const rowData = line.split(",");
+
             if (rowData.length >= 8) {
                 const priceBar = {
                     date: Number.parseInt(rowData[0]),
@@ -83,16 +83,16 @@ async function loadCandleData(): Promise<TCandleData> {
                     close: Number.parseFloat(rowData[4]),
                     volume: Number.parseFloat(rowData[6]),
                 };
-                
-                    xValues.push(priceBar.date);
-                    openValues.push(priceBar.open);
-                    highValues.push(priceBar.high);
-                    lowValues.push(priceBar.low);
-                    closeValues.push(priceBar.close);
-                    volumeValues.push(priceBar.volume);
+
+                xValues.push(priceBar.date + 10800 / 3); // should be three hours ?? + 10800
+                openValues.push(priceBar.open);
+                highValues.push(priceBar.high);
+                lowValues.push(priceBar.low);
+                closeValues.push(priceBar.close);
+                volumeValues.push(priceBar.volume);
             }
         }
-        
+
         return {
             xValues,
             openValues,
@@ -102,7 +102,7 @@ async function loadCandleData(): Promise<TCandleData> {
             volumeValues,
         };
     } catch (error) {
-        console.error('Error loading candle data:', error);
+        console.error("Error loading candle data:", error);
         throw error;
     }
 }
@@ -120,19 +120,20 @@ async function loadHeatmapData(): Promise<TParsedHeatmapData> {
 
     try {
         // File copied in webpack.config.js
-        const dataFile = "https://raw.githubusercontent.com/ABTSoftware/SciChart.JS.Examples/refs/heads/master/Sandbox/CustomerExamples/OrderBookHeatmap/src/Data/orderbook_levels.csv";
+        const dataFile =
+            "https://raw.githubusercontent.com/ABTSoftware/SciChart.JS.Examples/refs/heads/master/Sandbox/CustomerExamples/OrderBookHeatmap/src/Data/orderbook_levels.csv";
         const response = await fetch(dataFile);
         const csvText = await response.text();
-        
+
         // Split into lines
-        const lines = csvText.split('\n');
-        
+        const lines = csvText.split("\n");
+
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i].trim();
             if (!line) continue; // Skip empty lines
-            
-            const rowData = line.split(',');
-            
+
+            const rowData = line.split(",");
+
             if (i === 0) {
                 // Header row - extract date offsets
                 const [_, ...cellOffsets] = rowData;
@@ -140,7 +141,7 @@ async function loadHeatmapData(): Promise<TParsedHeatmapData> {
                     // https://stackoverflow.com/questions/50781887/javascript-date-parse-with-specific-locale
                     const dateParser = /(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})/;
                     const splitDate = dateString.match(dateParser);
-                    
+
                     if (splitDate) {
                         const date = new Date(
                             Number.parseInt(splitDate[3]), // year
@@ -157,19 +158,17 @@ async function loadHeatmapData(): Promise<TParsedHeatmapData> {
             } else {
                 // Data rows
                 const [price, ...zValuesRow] = rowData;
-                
+
                 if (!Number.isNaN(Number.parseInt(price))) {
-                    zValues.push(
-                        zValuesRow.map((val: string) => Number.parseInt(val))
-                    );
+                    zValues.push(zValuesRow.map((val: string) => Number.parseInt(val)));
                     yCellOffsets.push(Number.parseInt(price));
                 }
             }
         }
-        
+
         return { zValues, xCellOffsets, yCellOffsets };
     } catch (error) {
-        console.error('Error loading heatmap data:', error);
+        console.error("Error loading heatmap data:", error);
         throw error;
     }
 }
@@ -177,10 +176,9 @@ async function loadHeatmapData(): Promise<TParsedHeatmapData> {
 // SCICHART EXAMPLE
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(
-        rootElement,
-        { theme: new SciChartJsNavyTheme() }
-    );
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
+        theme: new SciChartJsNavyTheme(),
+    });
 
     // Add an XAxis of type DateTimeAxis
     // Note for crypto data this is fine, but for stocks/forex you will need to use CategoryAxis which collapses gaps at weekends
@@ -207,19 +205,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
-    const {
-        xValues,
-        openValues,
-        highValues,
-        lowValues,
-        closeValues,
-        volumeValues,
-    } = await loadCandleData();
+    const { xValues, openValues, highValues, lowValues, closeValues, volumeValues } = await loadCandleData();
 
     const gradientStops = [
         { offset: 0, color: "blue" },
         { offset: 0.3, color: "white" },
-        { offset: 0.5, color: "green" },
+        { offset: 0.5, color: "orange" },
         { offset: 0.7, color: "yellow" },
         { offset: 1, color: "red" },
     ];
@@ -237,10 +228,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         yStart: yCellOffsets[0],
         yStep: yCellOffsets[1] - yCellOffsets[0],
         zValues,
+        dataSeriesName: "Order Value",
     });
 
-    xAxis.visibleRangeLimit = heatmapDataSeries.getXRange();
-    priceAxis.visibleRangeLimit = heatmapDataSeries.getYRange();
+    // xAxis.visibleRangeLimit = heatmapDataSeries.getXRange();
+    // priceAxis.visibleRangeLimit = heatmapDataSeries.getYRange();
 
     // Create a Heatmap RenderableSeries with the color map. ColorMap.minimum/maximum defines the values in
     // HeatmapDataSeries which correspond to gradient stops at 0..1
@@ -252,7 +244,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     heatmapSeries.useLinearTextureFiltering = false;
 
     sciChartSurface.renderableSeries.add(heatmapSeries);
-    xAxis.visibleRange = heatmapSeries.getXRange();
+    // xAxis.visibleRange = heatmapSeries.getXRange();
 
     // Create and add the Candlestick series
     // The Candlestick Series requires a special dataseries type called OhlcDataSeries with o,h,l,c and date values
@@ -332,8 +324,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(
         new ZoomExtentsModifier(),
-        new ZoomPanModifier(),
-        new MouseWheelZoomModifier(),
+        new ZoomPanModifier({
+            enableZoom: true,
+            horizontalGrowFactor: 0.005, // Enable horizontal zooming
+            verticalGrowFactor: 0, // Disable vertical zooming
+            xyDirection: EXyDirection.XDirection, // Optional: restrict panning to X only
+        }),
+        new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
         new CursorModifier({
             crosshairStroke: appTheme.VividOrange,
             axisLabelFill: appTheme.VividOrange,
@@ -346,31 +343,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     return { sciChartSurface, candlestickSeries, ohlcSeries };
 };
-
-// Override the Renderableseries to display on the scichart overview
-// export const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
-//     if (defaultSeries.type === ESeriesType.CandlestickSeries) {
-//         // Swap the default candlestick series on the overview chart for a mountain series. Same data
-//         return new FastMountainRenderableSeries(
-//             defaultSeries.parentSurface.webAssemblyContext2D,
-//             {
-//                 dataSeries: defaultSeries.dataSeries,
-//                 fillLinearGradient: new GradientParams(
-//                     new Point(0, 0),
-//                     new Point(0, 1),
-//                     [
-//                         { color: appTheme.VividSkyBlue + "77", offset: 0 },
-//                         { color: "Transparent", offset: 1 },
-//                     ]
-//                 ),
-//                 stroke: appTheme.VividSkyBlue,
-//             }
-//         );
-//     }
-//     // hide all other series
-//     return undefined;
-// };
-
 
 // Override the Renderableseries to display on the scichart overview
 const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
@@ -394,13 +366,11 @@ export const sciChartOverview = {
     transformRenderableSeries: getOverviewSeries,
 };
 
-
 // Override the standard tooltip displayed by CursorModifier
-const getTooltipLegendTemplate = (
-    seriesInfos: SeriesInfo[],
-    svgAnnotation: CursorTooltipSvgAnnotation
-) => {
+const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: CursorTooltipSvgAnnotation) => {
     let outputSvgString = "";
+
+    console.log({ seriesInfos });
 
     // Foreach series there will be a seriesInfo supplied by SciChart. This contains info about the series under the house
     seriesInfos.forEach((seriesInfo, index) => {
@@ -410,15 +380,23 @@ const getTooltipLegendTemplate = (
         if (seriesInfo.dataSeriesType === EDataSeriesType.Ohlc) {
             const o = seriesInfo as OhlcSeriesInfo;
             legendText = `Open=${o.formattedOpenValue} High=${o.formattedHighValue} Low=${o.formattedLowValue} Close=${o.formattedCloseValue}`;
+        } else if (seriesInfo.seriesName === "Order Value") {
+            legendText = `${seriesInfo.formattedYValue} Orders: ${seriesInfo.hitTestInfo.zValue}`;
         }
+
         outputSvgString += `<text x="8" y="${y}" font-size="13" font-family="Verdana" fill="${textColor}">
           ${seriesInfo.seriesName}: ${legendText}
       </text>`;
     });
 
     return `<svg width="100%" height="100%">
-              ${outputSvgString}
-          </svg>`;
+                <g transform=translate(5,5)>
+               ${
+                   outputSvgString ? `<rect width="560px" height="110px" fill="#ffffff" opacity="0.5" rx="5" />` : ``
+               }         
+                ${outputSvgString}
+                <g>
+             </svg>`;
 };
 
 class VolumePaletteProvider extends DefaultPaletteProvider {
@@ -427,11 +405,7 @@ class VolumePaletteProvider extends DefaultPaletteProvider {
     private upColorArgb: number;
     private downColorArgb: number;
 
-    constructor(
-        masterData: OhlcDataSeries,
-        upColor: string,
-        downColor: string
-    ) {
+    constructor(masterData: OhlcDataSeries, upColor: string, downColor: string) {
         super();
         this.upColorArgb = parseColorToUIntArgb(upColor);
         this.downColorArgb = parseColorToUIntArgb(downColor);
