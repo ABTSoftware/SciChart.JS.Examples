@@ -59,10 +59,14 @@ async function loadCandleData(): Promise<TCandleData> {
     const volumeValues: number[] = [];
 
     try {
-        // File copied in webpack.config.js
         const filepath =
-            "https://raw.githubusercontent.com/ABTSoftware/SciChart.JS.Examples/refs/heads/master/Sandbox/CustomerExamples/OrderBookHeatmap/src/Data/COINBASE_BTCUSD.csv";
+            "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/BTCUSDT_OHLC.csv";
         const response = await fetch(filepath);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const csvText = await response.text();
 
         // Split into lines and skip header row
@@ -74,22 +78,27 @@ async function loadCandleData(): Promise<TCandleData> {
 
             const rowData = line.split(",");
 
-            if (rowData.length >= 8) {
+            if (rowData.length >= 6) {
                 const priceBar = {
                     date: Number.parseInt(rowData[0]),
                     open: Number.parseFloat(rowData[1]),
                     high: Number.parseFloat(rowData[2]),
                     low: Number.parseFloat(rowData[3]),
                     close: Number.parseFloat(rowData[4]),
-                    volume: Number.parseFloat(rowData[6]),
+                    volume: Number.parseFloat(rowData[5]),
                 };
 
-                xValues.push(priceBar.date + 10800 / 3); // should be three hours ?? + 10800
-                openValues.push(priceBar.open);
-                highValues.push(priceBar.high);
-                lowValues.push(priceBar.low);
-                closeValues.push(priceBar.close);
-                volumeValues.push(priceBar.volume);
+                // Validate the data
+                if (!isNaN(priceBar.date) && !isNaN(priceBar.open) && !isNaN(priceBar.high) &&
+                    !isNaN(priceBar.low) && !isNaN(priceBar.close) && !isNaN(priceBar.volume)) {
+                    
+                    xValues.push(priceBar.date);
+                    openValues.push(priceBar.open);
+                    highValues.push(priceBar.high);
+                    lowValues.push(priceBar.low);
+                    closeValues.push(priceBar.close);
+                    volumeValues.push(priceBar.volume);
+                }
             }
         }
 
@@ -121,7 +130,7 @@ async function loadHeatmapData(): Promise<TParsedHeatmapData> {
     try {
         // File copied in webpack.config.js
         const dataFile =
-            "https://raw.githubusercontent.com/ABTSoftware/SciChart.JS.Examples/refs/heads/master/Sandbox/CustomerExamples/OrderBookHeatmap/src/Data/orderbook_levels.csv";
+            "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/orderbook_levels.csv";
         const response = await fetch(dataFile);
         const csvText = await response.text();
 
@@ -137,30 +146,17 @@ async function loadHeatmapData(): Promise<TParsedHeatmapData> {
             if (i === 0) {
                 // Header row - extract date offsets
                 const [_, ...cellOffsets] = rowData;
-                xCellOffsets = cellOffsets.map((dateString: string) => {
-                    // https://stackoverflow.com/questions/50781887/javascript-date-parse-with-specific-locale
-                    const dateParser = /(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})/;
-                    const splitDate = dateString.match(dateParser);
-
-                    if (splitDate) {
-                        const date = new Date(
-                            Number.parseInt(splitDate[3]), // year
-                            Number.parseInt(splitDate[2]) - 1, // monthIndex
-                            Number.parseInt(splitDate[1]), // day
-                            Number.parseInt(splitDate[4]), // hours
-                            Number.parseInt(splitDate[5]) // minutes
-                            // Number.parseInt(splitDate[6]) //seconds
-                        );
-                        return date.getTime() / 1000;
-                    }
-                    return 0;
+                xCellOffsets = cellOffsets.map((timestampString: string) => {
+                    // New format uses Unix timestamps directly
+                    const timestamp = Number.parseInt(timestampString);
+                    return timestamp || 0;
                 });
             } else {
                 // Data rows
                 const [price, ...zValuesRow] = rowData;
 
                 if (!Number.isNaN(Number.parseInt(price))) {
-                    zValues.push(zValuesRow.map((val: string) => Number.parseInt(val)));
+                    zValues.push(zValuesRow.map((val: string) => Number.parseFloat(val) || 0));
                     yCellOffsets.push(Number.parseInt(price));
                 }
             }
@@ -216,23 +212,33 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     ];
     const colorMap = new HeatmapColorMap({
         minimum: 0,
-        maximum: 100,
+        maximum: 1,
         gradientStops,
     });
 
     const { zValues, xCellOffsets, yCellOffsets } = await loadHeatmapData();
 
+    // Calculate the average step size from all timestamps to get more accurate spacing
+    let totalStep = 0;
+    let stepCount = 0;
+    for (let i = 1; i < xCellOffsets.length; i++) {
+        totalStep += xCellOffsets[i] - xCellOffsets[i - 1];
+        stepCount++;
+    }
+    const averageXStep = stepCount > 0 ? totalStep / stepCount : (xCellOffsets[1] - xCellOffsets[0]);
+
     const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
         xStart: xCellOffsets[0],
-        xStep: xCellOffsets[1] - xCellOffsets[0],
+        xStep: averageXStep,
         yStart: yCellOffsets[0],
         yStep: yCellOffsets[1] - yCellOffsets[0],
         zValues,
         dataSeriesName: "Order Value",
     });
 
-    // xAxis.visibleRangeLimit = heatmapDataSeries.getXRange();
-    // priceAxis.visibleRangeLimit = heatmapDataSeries.getYRange();
+    // Set axis ranges to show both heatmap and candle data
+    const candleXRange = [Math.min(...xValues), Math.max(...xValues)];
+    const heatmapXRange = [Math.min(...xCellOffsets), Math.max(...xCellOffsets)];
 
     // Create a Heatmap RenderableSeries with the color map. ColorMap.minimum/maximum defines the values in
     // HeatmapDataSeries which correspond to gradient stops at 0..1
@@ -244,7 +250,20 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     heatmapSeries.useLinearTextureFiltering = false;
 
     sciChartSurface.renderableSeries.add(heatmapSeries);
-    // xAxis.visibleRange = heatmapSeries.getXRange();
+    
+    // Set initial visible range to show overlapping data
+    const overlapStart = Math.max(candleXRange[0], heatmapXRange[0]);
+    const overlapEnd = Math.min(candleXRange[1], heatmapXRange[1]);
+    
+    if (overlapStart < overlapEnd) {
+        // There is overlap, show the overlapping region
+        xAxis.visibleRange = new NumberRange(overlapStart, overlapEnd);
+        console.log("Setting visible range to overlap:", overlapStart, overlapEnd);
+    } else {
+        // No overlap, show the most recent data (heatmap range)
+        xAxis.visibleRange = new NumberRange(heatmapXRange[0], heatmapXRange[1]);
+        console.log("No overlap found, showing heatmap range:", heatmapXRange);
+    }
 
     // Create and add the Candlestick series
     // The Candlestick Series requires a special dataseries type called OhlcDataSeries with o,h,l,c and date values
@@ -259,13 +278,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const candlestickSeries = new FastCandlestickRenderableSeries(wasmContext, {
         dataSeries: candleDataSeries,
         stroke: appTheme.ForegroundColor, // used by cursorModifier below
-        strokeThickness: 1,
-        brushUp: appTheme.VividGreen + "77",
-        brushDown: appTheme.MutedRed + "77",
+        strokeThickness: 2, // Make it more visible
+        brushUp: appTheme.VividGreen + "AA", // More opaque
+        brushDown: appTheme.MutedRed + "AA", // More opaque
         strokeUp: appTheme.VividGreen,
         strokeDown: appTheme.MutedRed,
+        dataPointWidth: 0.8, // Make candlesticks wider
+        isVisible: true, // Explicitly set to visible
     });
     sciChartSurface.renderableSeries.add(candlestickSeries);
+    console.log("Added candlestick series with", candleDataSeries.count(), "data points");
 
     // Add an Ohlcseries. this will be invisible to begin with
     const ohlcSeries = new FastOhlcRenderableSeries(wasmContext, {
@@ -277,49 +299,55 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         strokeDown: appTheme.MutedRed,
         isVisible: false,
     });
-    sciChartSurface.renderableSeries.add(ohlcSeries);
+    sciChartSurface.renderableSeries.add(ohlcSeries); // temp
 
     // Add some moving averages using SciChart's filters/transforms API
     // when candleDataSeries updates, XyMovingAverageFilter automatically recomputes
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyMovingAverageFilter(candleDataSeries, {
-                dataSeriesName: "Moving Average (20)",
-                length: 20,
-            }),
-            stroke: appTheme.VividSkyBlue,
-        })
-    );
 
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyMovingAverageFilter(candleDataSeries, {
-                dataSeriesName: "Moving Average (50)",
-                length: 50,
-            }),
-            stroke: appTheme.VividPink,
-        })
-    );
+    const ma20Series = new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyMovingAverageFilter(candleDataSeries, {
+            dataSeriesName: "Moving Average (20)",
+            length: 20,
+        }),
+        stroke: appTheme.VividSkyBlue,
+        strokeThickness: 2,
+        isVisible: true,
+    });
+    sciChartSurface.renderableSeries.add(ma20Series);
+    console.log("Added MA20 series with", ma20Series.dataSeries.count(), "data points");
+
+    const ma50Series = new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyMovingAverageFilter(candleDataSeries, {
+            dataSeriesName: "Moving Average (50)",
+            length: 50,
+        }),
+        stroke: appTheme.VividPink,
+        strokeThickness: 2,
+        isVisible: true,
+    });
+    sciChartSurface.renderableSeries.add(ma50Series);
+    console.log("Added MA50 series with", ma50Series.dataSeries.count(), "data points");
 
     // Add volume data onto the chart
-    sciChartSurface.renderableSeries.add(
-        new FastColumnRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, {
-                xValues,
-                yValues: volumeValues,
-                dataSeriesName: "Volume",
-            }),
-            strokeThickness: 0,
-            // This is how we get volume to scale - on a hidden YAxis
-            yAxisId: Y_AXIS_VOLUME_ID,
-            // This is how we colour volume bars red or green
-            paletteProvider: new VolumePaletteProvider(
-                candleDataSeries,
-                appTheme.VividGreen + "77",
-                appTheme.MutedRed + "77"
-            ),
-        })
-    );
+    const volumeSeries = new FastColumnRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, {
+            xValues,
+            yValues: volumeValues,
+            dataSeriesName: "Volume",
+        }),
+        strokeThickness: 0,
+        // This is how we get volume to scale - on a hidden YAxis
+        yAxisId: Y_AXIS_VOLUME_ID,
+        // This is how we colour volume bars red or green
+        paletteProvider: new VolumePaletteProvider(
+            candleDataSeries,
+            appTheme.VividGreen + "77",
+            appTheme.MutedRed + "77"
+        ),
+        isVisible: true,
+    });
+    sciChartSurface.renderableSeries.add(volumeSeries);
+    console.log("Added volume series with", volumeSeries.dataSeries.count(), "data points");
 
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(
@@ -369,8 +397,6 @@ export const sciChartOverview = {
 // Override the standard tooltip displayed by CursorModifier
 const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: CursorTooltipSvgAnnotation) => {
     let outputSvgString = "";
-
-    console.log({ seriesInfos });
 
     // Foreach series there will be a seriesInfo supplied by SciChart. This contains info about the series under the house
     seriesInfos.forEach((seriesInfo, index) => {
