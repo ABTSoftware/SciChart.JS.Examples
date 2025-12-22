@@ -58,6 +58,9 @@ async function loadCandleData(): Promise<TCandleData> {
     const closeValues: number[] = [];
     const volumeValues: number[] = [];
 
+
+    // 
+    // https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/BTCUSDT_OHLC.csv
     try {
         const filepath =
             "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/BTCUSDT_OHLC.csv";
@@ -126,6 +129,9 @@ async function loadHeatmapData(): Promise<TParsedHeatmapData> {
     const zValues: number[][] = [];
     let xCellOffsets: number[] = [];
     const yCellOffsets: number[] = [];
+
+
+    //https://raw.githubusercontent.com/ABTSoftware/SciChart.JS.Examples/refs/heads/master/Sandbox/CustomerExamples/OrderBookHeatmap/src/Data/orderbook_levels.csv
 
     try {
         // File copied in webpack.config.js
@@ -204,7 +210,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { xValues, openValues, highValues, lowValues, closeValues, volumeValues } = await loadCandleData();
 
     const gradientStops = [
-        { offset: 0, color: "blue" },
+        { offset: 0, color: "darkblue" },
         { offset: 0.3, color: "white" },
         { offset: 0.5, color: "orange" },
         { offset: 0.7, color: "yellow" },
@@ -227,11 +233,20 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     }
     const averageXStep = stepCount > 0 ? totalStep / stepCount : (xCellOffsets[1] - xCellOffsets[0]);
 
+    // Calculate Y-axis step size more carefully
+    let totalYStep = 0;
+    let yStepCount = 0;
+    for (let i = 1; i < yCellOffsets.length; i++) {
+        totalYStep += yCellOffsets[i] - yCellOffsets[i - 1];
+        yStepCount++;
+    }
+    const averageYStep = yStepCount > 0 ? totalYStep / yStepCount : (yCellOffsets[1] - yCellOffsets[0]);
+
     const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
         xStart: xCellOffsets[0],
         xStep: averageXStep,
         yStart: yCellOffsets[0],
-        yStep: yCellOffsets[1] - yCellOffsets[0],
+        yStep: averageYStep,
         zValues,
         dataSeriesName: "Order Value",
     });
@@ -243,13 +258,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a Heatmap RenderableSeries with the color map. ColorMap.minimum/maximum defines the values in
     // HeatmapDataSeries which correspond to gradient stops at 0..1
     const heatmapSeries = new UniformHeatmapRenderableSeries(wasmContext, {
-        opacity: 0.2,
+        opacity: 0.5,
         dataSeries: heatmapDataSeries,
         colorMap,
     });
     heatmapSeries.useLinearTextureFiltering = false;
 
     sciChartSurface.renderableSeries.add(heatmapSeries);
+    
+    // Set Y-axis range to include the full heatmap data range
+    const heatmapYRange = [Math.min(...yCellOffsets), Math.max(...yCellOffsets)];
+    priceAxis.visibleRange = new NumberRange(heatmapYRange[0], heatmapYRange[1]);
     
     // Set initial visible range to show overlapping data
     const overlapStart = Math.max(candleXRange[0], heatmapXRange[0]);
@@ -258,11 +277,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     if (overlapStart < overlapEnd) {
         // There is overlap, show the overlapping region
         xAxis.visibleRange = new NumberRange(overlapStart, overlapEnd);
-        console.log("Setting visible range to overlap:", overlapStart, overlapEnd);
     } else {
         // No overlap, show the most recent data (heatmap range)
         xAxis.visibleRange = new NumberRange(heatmapXRange[0], heatmapXRange[1]);
-        console.log("No overlap found, showing heatmap range:", heatmapXRange);
     }
 
     // Create and add the Candlestick series
