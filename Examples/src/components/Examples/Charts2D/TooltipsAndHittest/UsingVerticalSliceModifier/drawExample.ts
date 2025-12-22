@@ -19,6 +19,8 @@ import {
     NativeTextAnnotation,
     EWrapTo,
     EHorizontalAnchorPoint,
+    TextAnnotation,
+    Logger,
 } from "scichart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -26,7 +28,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
-
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             growBy: new NumberRange(0.05, 0.05),
@@ -146,7 +147,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
     });
     // Link the annotation position with the verticalSlice
-    sciChartSurface.preRender.subscribe((data) => {
+    sciChartSurface.layoutMeasured.subscribe((data) => {
         textAnn1.x1 = vSlice1.verticalLine.x1;
     });
     sciChartSurface.annotations.add(textAnn1);
@@ -159,7 +160,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         yCoordinateMode: ECoordinateMode.Relative,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
     });
-    sciChartSurface.preRender.subscribe((data) => {
+    sciChartSurface.layoutMeasured.subscribe((data) => {
         textAnn2.x1 = vSlice2.verticalLine.x1;
     });
     sciChartSurface.annotations.add(textAnn2);
