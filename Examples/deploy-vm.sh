@@ -1,5 +1,5 @@
 #!/bin/bash
-#Instead of using this script from here add it to a teamcity job directly, it makes is easier to modify when needed
+#Instead of using this script add it's content to a teamcity job directly, it makes is easier to modify when needed
 echo "Start staging deploy"
 server=$1
 appRoot=$2
