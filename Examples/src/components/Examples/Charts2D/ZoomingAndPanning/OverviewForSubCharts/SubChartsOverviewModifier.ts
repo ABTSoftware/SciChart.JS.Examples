@@ -98,10 +98,8 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
     public override onAttach(): void {
         super.onAttach();
 
-        // Use a longer delay to ensure all subcharts are fully initialized
-        setTimeout(() => {
-            this.initializeOverview();
-        }, 300);
+        // Wait for the parent surface to be ready
+        this.parentSurface.nextStateRender().then(() => this.initializeOverview());
     }
 
     public override onDetach(): void {
@@ -275,6 +273,7 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
     private createOverviewSeries(dataSeries: XyDataSeries[]): void {
         if (!this.overviewSubSurface) return;
 
+        // This should use same method as normal overview - clone series using toJson then reuse dataSeries
         const wasmContext = this.parentSurface.webAssemblyContext2D;
         const colors = this.options.colors || ["#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4", "#feca57"];
 
