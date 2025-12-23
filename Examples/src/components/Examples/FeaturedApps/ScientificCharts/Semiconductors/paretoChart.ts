@@ -146,7 +146,7 @@ export const drawParetoChart = async (
         stroke: appTheme.MutedSkyBlue,
         strokeThickness: 1,
         opacity: 0.8,
-        cornerRadius: 3,
+        cornerRadius: 0,
         dataLabels: {
             horizontalTextPosition: EHorizontalTextPosition.Center,
             verticalTextPosition: EVerticalTextPosition.Above,
