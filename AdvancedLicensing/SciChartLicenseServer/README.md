@@ -9,6 +9,7 @@ The zip file here contains binaries for
 - Linux x64
 - Linux arm
 - Linux arm64
+- MUSL x64 (Alpine Linux)
 - MUSL arm64 (Alpine Linux)
 - MacOS arm64 (Apple)
 - MacOS x64 (Intel)
