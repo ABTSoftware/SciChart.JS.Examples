@@ -18,12 +18,12 @@ export default function Overview() {
     const columnChartRef = useRef<{
         sciChartSurface: SciChartSurface;
         updateData: (batchData: WaferLotData[], fireSelectionChanged: boolean) => void;
-        selectionModifier: DataPointSelectionModifier;
+        updateSelection: (point: WaferLotData) => void;
     } | null>(null);
     const paretoChartRef = useRef<{
         sciChartSurface: SciChartSurface;
         updateData: (batchData: WaferLotData[], fireSelectionChanged: boolean) => void;
-        selectionModifier: DataPointSelectionModifier;
+        updateSelection: (point: WaferLotData) => void;
     } | null>(null);
     const waferChartRef = useRef<{
         sciChartSurface: SciChartSurface;
@@ -69,21 +69,9 @@ export default function Overview() {
     const handleBatchSelected = (point: WaferLotData, isColumnChart: boolean) => {
         setSelectedBatch(point);
         if (isColumnChart) {
-            //@ts-ignore
-            paretoChartRef.current?.selectionModifier.clearSelectedDataPoints();
-            // the pareto chart gets the selection from metadata, which is shared
+            paretoChartRef.current?.updateSelection(point);
         } else {
-            //@ts-ignore
-            columnChartRef.current?.selectionModifier.clearSelectedDataPoints();
-            // The stacked column chart gets the selection from the selectionModifier, which is not shared, so we manually sync the selection
-            const series = columnChartRef.current?.sciChartSurface.renderableSeries.get(0);
-            const index = point.Batch - 1;
-            //@ts-ignore
-            columnChartRef.current?.selectionModifier.addSelectedDataPoint(
-                series,
-                index,
-                new DataPointInfo(series, point, index)
-            );
+            columnChartRef.current?.updateSelection(point);
         }
         waferChartRef.current?.generateSubcharts(point);
     };

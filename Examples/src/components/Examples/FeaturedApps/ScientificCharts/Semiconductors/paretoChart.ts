@@ -201,6 +201,18 @@ export const drawParetoChart = async (
         }
     });
 
+    const updateSelection = (point: WaferLotData) => {
+        selectionModifier.clearSelectedDataPoints();
+        // We need to tell the selectionModifier about which point is currntly selected so it will be deselected when the selection changes
+        // The data is not ordered by batch, so we have to search
+        for (let i = 0; i < columnData.count(); i++) {
+            const md = columnData.getMetadataAt(i) as WaferLotData;
+            if (md.isSelected) {
+                selectionModifier.addSelectedDataPoint(columnSeries, i, new DataPointInfo(columnSeries, md, i));
+            }
+        }
+    };
+
     // Add interactivity modifiers
     sciChartSurface.chartModifiers.add(
         new MouseWheelZoomModifier(),
@@ -226,22 +238,18 @@ export const drawParetoChart = async (
         sciChartSurface.title = data[0].Date;
         const selectedIndex = data.findIndex((b) => b.isSelected);
         // We need to manually clear and reset the selectionModifier
-        // These methods are currently private but will be exposed in next version
-        //@ts-ignore
         selectionModifier.clearSelectedDataPoints();
-        //@ts-ignore
         selectionModifier.addSelectedDataPoint(
             columnSeries,
             selectedIndex,
             new DataPointInfo(columnSeries, data[selectedIndex], selectedIndex)
         );
         if (fireSelectionChanged) {
-            //@ts-ignore
             selectionModifier.raiseSelectionChanged(false);
         }
     };
     updateData(waferData, true);
 
     await sciChartSurface.nextStateRender();
-    return { sciChartSurface, updateData, selectionModifier };
+    return { sciChartSurface, updateData, updateSelection };
 };
