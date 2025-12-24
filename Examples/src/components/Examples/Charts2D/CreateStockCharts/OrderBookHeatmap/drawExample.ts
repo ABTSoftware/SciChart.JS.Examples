@@ -58,18 +58,14 @@ async function loadCandleData(): Promise<TCandleData> {
     const closeValues: number[] = [];
     const volumeValues: number[] = [];
 
-
-    // 
-    // https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/BTCUSDT_OHLC.csv
     try {
-        const filepath =
-            "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/BTCUSDT_OHLC.csv";
+        const filepath = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/1s/BTCUSDT_OHLC.csv";
         const response = await fetch(filepath);
-        
+
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const csvText = await response.text();
 
         // Split into lines and skip header row
@@ -92,9 +88,14 @@ async function loadCandleData(): Promise<TCandleData> {
                 };
 
                 // Validate the data
-                if (!isNaN(priceBar.date) && !isNaN(priceBar.open) && !isNaN(priceBar.high) &&
-                    !isNaN(priceBar.low) && !isNaN(priceBar.close) && !isNaN(priceBar.volume)) {
-                    
+                if (
+                    !isNaN(priceBar.date) &&
+                    !isNaN(priceBar.open) &&
+                    !isNaN(priceBar.high) &&
+                    !isNaN(priceBar.low) &&
+                    !isNaN(priceBar.close) &&
+                    !isNaN(priceBar.volume)
+                ) {
                     xValues.push(priceBar.date);
                     openValues.push(priceBar.open);
                     highValues.push(priceBar.high);
@@ -130,13 +131,9 @@ async function loadHeatmapData(): Promise<TParsedHeatmapData> {
     let xCellOffsets: number[] = [];
     const yCellOffsets: number[] = [];
 
-
-    //https://raw.githubusercontent.com/ABTSoftware/SciChart.JS.Examples/refs/heads/master/Sandbox/CustomerExamples/OrderBookHeatmap/src/Data/orderbook_levels.csv
-
     try {
         // File copied in webpack.config.js
-        const dataFile =
-            "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/orderbook_levels.csv";
+        const dataFile = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/1s/orderbook_levels.csv";
         const response = await fetch(dataFile);
         const csvText = await response.text();
 
@@ -210,11 +207,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { xValues, openValues, highValues, lowValues, closeValues, volumeValues } = await loadCandleData();
 
     const gradientStops = [
-        { offset: 0, color: "darkblue" },
-        { offset: 0.3, color: "white" },
-        { offset: 0.5, color: "orange" },
-        { offset: 0.7, color: "yellow" },
-        { offset: 1, color: "red" },
+        { offset: 0, color: appTheme.DarkIndigo },
+        { offset: 0.1, color: appTheme.ForegroundColor },
+        { offset: 0.4, color: appTheme.PaleTeal},
+        { offset: 0.7, color: appTheme.PaleOrange },
+        { offset: 1, color: appTheme.VividRed },
     ];
     const colorMap = new HeatmapColorMap({
         minimum: 0,
@@ -231,7 +228,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         totalStep += xCellOffsets[i] - xCellOffsets[i - 1];
         stepCount++;
     }
-    const averageXStep = stepCount > 0 ? totalStep / stepCount : (xCellOffsets[1] - xCellOffsets[0]);
+    const averageXStep = stepCount > 0 ? totalStep / stepCount : xCellOffsets[1] - xCellOffsets[0];
 
     // Calculate Y-axis step size more carefully
     let totalYStep = 0;
@@ -240,7 +237,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         totalYStep += yCellOffsets[i] - yCellOffsets[i - 1];
         yStepCount++;
     }
-    const averageYStep = yStepCount > 0 ? totalYStep / yStepCount : (yCellOffsets[1] - yCellOffsets[0]);
+    const averageYStep = yStepCount > 0 ? totalYStep / yStepCount : yCellOffsets[1] - yCellOffsets[0];
 
     const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
         xStart: xCellOffsets[0],
@@ -258,22 +255,22 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a Heatmap RenderableSeries with the color map. ColorMap.minimum/maximum defines the values in
     // HeatmapDataSeries which correspond to gradient stops at 0..1
     const heatmapSeries = new UniformHeatmapRenderableSeries(wasmContext, {
-        opacity: 0.5,
+        opacity: 0.8,
         dataSeries: heatmapDataSeries,
         colorMap,
     });
     heatmapSeries.useLinearTextureFiltering = false;
 
     sciChartSurface.renderableSeries.add(heatmapSeries);
-    
+
     // Set Y-axis range to include the full heatmap data range
     const heatmapYRange = [Math.min(...yCellOffsets), Math.max(...yCellOffsets)];
     priceAxis.visibleRange = new NumberRange(heatmapYRange[0], heatmapYRange[1]);
-    
+
     // Set initial visible range to show overlapping data
     const overlapStart = Math.max(candleXRange[0], heatmapXRange[0]);
     const overlapEnd = Math.min(candleXRange[1], heatmapXRange[1]);
-    
+
     if (overlapStart < overlapEnd) {
         // There is overlap, show the overlapping region
         xAxis.visibleRange = new NumberRange(overlapStart, overlapEnd);
@@ -302,6 +299,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         strokeDown: appTheme.MutedRed,
         dataPointWidth: 0.8, // Make candlesticks wider
         isVisible: true, // Explicitly set to visible
+        opacity: 0.2,
     });
     sciChartSurface.renderableSeries.add(candlestickSeries);
     console.log("Added candlestick series with", candleDataSeries.count(), "data points");
@@ -329,6 +327,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         stroke: appTheme.VividSkyBlue,
         strokeThickness: 2,
         isVisible: true,
+        opacity: 0.2,
     });
     sciChartSurface.renderableSeries.add(ma20Series);
     console.log("Added MA20 series with", ma20Series.dataSeries.count(), "data points");
@@ -341,6 +340,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         stroke: appTheme.VividPink,
         strokeThickness: 2,
         isVisible: true,
+        opacity: 0.2,
     });
     sciChartSurface.renderableSeries.add(ma50Series);
     console.log("Added MA50 series with", ma50Series.dataSeries.count(), "data points");
@@ -377,9 +377,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
         new CursorModifier({
-            crosshairStroke: appTheme.VividOrange,
-            axisLabelFill: appTheme.VividOrange,
+            crosshairStroke: appTheme.VividOrange + 55,
+            axisLabelFill: appTheme.VividOrange + 55,
             tooltipLegendTemplate: getTooltipLegendTemplate,
+            
         })
     );
 
@@ -435,7 +436,7 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Curs
     return `<svg width="100%" height="100%">
                 <g transform=translate(5,5)>
                ${
-                   outputSvgString ? `<rect width="560px" height="110px" fill="#ffffff" opacity="0.5" rx="5" />` : ``
+                   outputSvgString ? `<rect width="560px" height="110px" fill="#ffffff" opacity="0.4" rx="5" />` : ``
                }         
                 ${outputSvgString}
                 <g>
