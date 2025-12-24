@@ -27,7 +27,8 @@ async function initSciChart() {
 }
 
 SciChartSurface.configure({
-  wasmUrl: `scichart/4.0.0-beta.734/scichart2d.wasm`,
+  wasmUrl: `scichart/5.0.0-alpha.135/scichart2d.wasm`,
+  wasmNoSimdUrl: `scichart/5.0.0-alpha.135/scichart2d-nosimd.wasm`,
 });
 
 initSciChart();
