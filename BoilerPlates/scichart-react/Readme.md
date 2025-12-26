@@ -160,12 +160,12 @@ npm install
 npm start
 ```
 
-# SciChart.js Tutorials and Getting Started
+## SciChart.js Tutorials and Getting Started
 
 We have a wealth of information on our site showing how to get started with SciChart.js!
 
 Take a look at:
 
-- [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes community licensing details, first steps and more
-- [Documentation website](https://www.scichart.com/documentation/js/current/webframe.html): You will find tutorials, documentation and API documentation there
-- [Official scichart.js demos](https://demo.scichart.com): view our demos online! Full github source code also available at [github.com/abtsoftware/scichart.js.examples](https://github.com/abtsoftware/scichart.js.examples)
+- [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
+- [SciChart.js Documentation](www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
+- [Official scichart.js demos](https://scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)

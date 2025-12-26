@@ -13,7 +13,7 @@ SciChart.js is commercial software with a [free community license](https://scich
 
 SciChart.js has a Wasm (webAssembly) file which must be deployed to output folders for correct operation of our Js chart library.
 
-Nuxt requires .wasm file to be in output folder /public/_
+Nuxt requires .wasm file to be in output folder /public/\_
 
 To do this, we use npm package copy-files-from-to and copy-files-from-to.json with this config
 
@@ -28,7 +28,15 @@ To do this, we use npm package copy-files-from-to and copy-files-from-to.json wi
       "to": "./public/scichart2d.wasm"
     },
     {
+      "from": "./node_modules/scichart/_wasm/scichart2d-nosimd.wasm",
+      "to": "./public/scichart2d.wasm"
+    },
+    {
       "from": "./node_modules/scichart/_wasm/scichart3d.wasm",
+      "to": "./public/scichart3d.wasm"
+    },
+    {
+      "from": "./node_modules/scichart/_wasm/scichart3d-nosimd.wasm",
       "to": "./public/scichart3d.wasm"
     }
   ]
@@ -119,4 +127,12 @@ yarn preview
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## SciChart.js Tutorials and Getting Started
+
+We have a wealth of information on our site showing how to get started with SciChart.js!
+
+Take a look at:
+
+- [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
+- [SciChart.js Documentation](www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
+- [Official scichart.js demos](https://scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)
