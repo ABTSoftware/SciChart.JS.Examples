@@ -13,7 +13,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "scichart": "^4.0.0-beta.788",
+    "scichart": "^5.0.0-alpha.135",
     "scichart-react": "^0.1.13",
     "vite-plugin-static-copy": "^1.0.4"
   },
@@ -28,5 +28,8 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
+  },
+  "overrides": {
+    "scichart": "^5.0.0-alpha.135"
   }
 }
