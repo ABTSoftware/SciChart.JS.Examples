@@ -6,7 +6,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "BigHeatmapExample",
         id: "chart2D_basicCharts_BigHeatmapExample",
-        imagePath: "javascript-heatmap-chart-with-contours.jpg",
+        imagePath: "javascript-heatmap-chart-earthquakes.jpg",
         description:
             "Our Contours Chart example demonstrates how to create a **JavaScript Contour-map Chart** using our powerful JavaScript Chart Library.",
         tips: [],
@@ -53,7 +53,7 @@ const metaData: IExampleMetadata =
         metaKeywords: "contour, contours, heatmap, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/BigHeatmapExample",
-        thumbnailImage: "javascript-heatmap-chart-with-contours.jpg",
+        thumbnailImage: "javascript-heatmap-chart-earthquakes.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",

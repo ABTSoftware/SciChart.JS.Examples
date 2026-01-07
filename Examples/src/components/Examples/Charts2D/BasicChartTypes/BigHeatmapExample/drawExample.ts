@@ -35,18 +35,22 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         minLat: -90,
         maxLat: 90,
         minLon: -180,
-        maxLon: 180
+        maxLon: 180,
     };
 
     // Create X & Y Axis with proper world coordinate bounds
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-        isVisible: false,
-        visibleRange: new NumberRange(worldBounds.minLon, worldBounds.maxLon)
-    }));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        isVisible: false,
-        visibleRange: new NumberRange(worldBounds.minLat, worldBounds.maxLat)
-    }));
+    sciChartSurface.xAxes.add(
+        new NumericAxis(wasmContext, {
+            isVisible: false,
+            visibleRange: new NumberRange(worldBounds.minLon, worldBounds.maxLon),
+        })
+    );
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            isVisible: false,
+            visibleRange: new NumberRange(worldBounds.minLat, worldBounds.maxLat),
+        })
+    );
 
     const heatmapWidth = 600;
     const heatmapHeight = 400;
@@ -68,26 +72,33 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const convertedData = await fetch(baseUrl + "worldConverted.json").then((response) => response.json());
 
     console.log("Analyzing convertedData coordinate system...");
-    
+
     // Analyze the coordinate bounds of convertedData to understand its coordinate system
-    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    let minX = Infinity,
+        maxX = -Infinity,
+        minY = Infinity,
+        maxY = -Infinity;
     convertedData.forEach((d: any) => {
         d.outline.forEach((point: number[]) => {
-            minX = -180;//Math.min(minX, point[0]); // Lon
-            maxX = 180//Math.max(maxX, point[0]);
-            minY = -90 //Math.min(minY, point[1]); // Lat Y(-55.52 to 83.61)
-            maxY = 90 //Math.max(maxY, point[1]);
+            minX = -180; //Math.min(minX, point[0]); // Lon
+            maxX = 180; //Math.max(maxX, point[0]);
+            minY = -90; //Math.min(minY, point[1]); // Lat Y(-55.52 to 83.61)
+            maxY = 90; //Math.max(maxY, point[1]);
         });
     });
-    
-    console.log(`ConvertedData bounds: X(${minX.toFixed(2)} to ${maxX.toFixed(2)}), Y(${minY.toFixed(2)} to ${maxY.toFixed(2)})`);
+
+    console.log(
+        `ConvertedData bounds: X(${minX.toFixed(2)} to ${maxX.toFixed(2)}), Y(${minY.toFixed(2)} to ${maxY.toFixed(2)})`
+    );
 
     // Transform convertedData coordinates to match world lat/lon bounds
     const transformedOutlines = convertedData.map((d: any) => {
         return d.outline.map((point: number[]) => {
             // Scale from convertedData coordinate system to world lat/lon coordinates
-            const scaledX = worldBounds.minLon + ((point[0] - minX) / (maxX - minX)) * (worldBounds.maxLon - worldBounds.minLon);
-            const scaledY = worldBounds.minLat + ((point[1] - minY) / (maxY - minY)) * (worldBounds.maxLat - worldBounds.minLat);
+            const scaledX =
+                worldBounds.minLon + ((point[0] - minX) / (maxX - minX)) * (worldBounds.maxLon - worldBounds.minLon);
+            const scaledY =
+                worldBounds.minLat + ((point[1] - minY) / (maxY - minY)) * (worldBounds.maxLat - worldBounds.minLat);
             return [scaledX, scaledY];
         });
     });
@@ -123,7 +134,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Reverse the heatmap data by Y-axis to match proper geographic orientation
     const reversedZValues = initialZValues.slice().reverse();
-    
+
     // Create heatmap data series with proper world coordinate mapping
     const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
         zValues: reversedZValues,
@@ -148,7 +159,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     { offset: 0.6, color: "#FFA500" }, // Orange
                     { offset: 0.4, color: "#FFFF00" }, // Yellow
                     { offset: 0.2, color: "#90EE90" }, // Light green
-                    { offset: 0, color: "#0000FF" }, // Blue for lowest/no activity
+                    { offset: 0, color: "#000000" }, // Blue for lowest/no activity
                 ],
             }),
         })
@@ -199,14 +210,13 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
                 { offset: 0.6, color: "#FFA500" }, // Orange
                 { offset: 0.4, color: "#FFFF00" }, // Yellow
                 { offset: 0.2, color: "#90EE90" }, // Light green
-                { offset: 0, color: "#0000FF" }, // Blue for lowest/no activity
+                { offset: 0, color: "#0001FF" }, // Blue for lowest/no activity
             ],
         },
     });
 
     return { sciChartSurface: heatmapLegend.innerSciChartSurface.sciChartSurface };
 };
-
 
 // Function to fetch earthquake data from CSV
 async function fetchEarthquakeData(): Promise<EarthquakeData[]> {
