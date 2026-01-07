@@ -98,7 +98,12 @@ export default function StylingDemoChart() {
     };
 
     const handleAxisChange = (e: { target: { value: string } }) => {
-        setSelectedAxis(e.target.value as "x" | "y" | "z");
+
+        const selectedAxis = e.target.value as "x" | "y" | "z"
+
+        setSelectedAxis(selectedAxis);
+        controlsRef.current.updateAxisTitleColor(selectedAxis);
+        
     };
 
     const handleLabelOrientationModeChange = (e: { target: { value: string } }) => {

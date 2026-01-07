@@ -86,7 +86,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
 
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Value 1",
+        axisTitle: "X Axis",
         visibleRange: new NumberRange(25, 110),
         labelPrecision: 0,
         drawMinorGridLines: false,
@@ -95,7 +95,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelOrientationMode: E3DLabelOrientationMode.Auto,
     });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Value 2",
+        axisTitle: "Y Axis",
         visibleRange: new NumberRange(0, 50000),
         labelPrecision: 0,
         drawMinorGridLines: false,
@@ -103,7 +103,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         tickLabelsOffset: 10,
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: "Value 3",
+        axisTitle: "Z Axis",
         visibleRange: new NumberRange(1965, 2010),
         labelPrecision: 0,
         drawMinorGridLines: false,
@@ -192,6 +192,26 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChart3DSurface.renderableSeries.add(renderableSeries);
     }
 
+    // set orage color to selected (at start) x axis
+    sciChart3DSurface.xAxis.titleStyle.color = appTheme.MutedOrange;
+
+    // update axis title color based on selected axis
+    const updateAxisTitleColor = (axis?: "x" | "y" | "z") => {
+        sciChart3DSurface.xAxis.titleStyle.color = "white";
+        sciChart3DSurface.yAxis.titleStyle.color = "white";
+        sciChart3DSurface.zAxis.titleStyle.color = "white";
+
+        if (axis === "x" || !axis) {
+            sciChart3DSurface.xAxis.titleStyle.color = appTheme.MutedOrange;
+        }
+        if (axis === "y" || !axis) {
+            sciChart3DSurface.yAxis.titleStyle.color = appTheme.MutedOrange;
+        }
+        if (axis === "z" || !axis) {
+            sciChart3DSurface.zAxis.titleStyle.color = appTheme.MutedOrange;
+        }
+    };
+
     const updateFont = (font: string, axis?: "x" | "y" | "z") => {
         if (axis === "x" || !axis) {
             sciChart3DSurface.xAxis.labelStyle.fontFamily = font;
@@ -248,6 +268,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         setAxisLabelFontSize,
         enableMajorGridLines,
         setLabelOrientationMode,
+        updateAxisTitleColor,
     };
 
     return { sciChartSurface: sciChart3DSurface, wasmContext, controls };
