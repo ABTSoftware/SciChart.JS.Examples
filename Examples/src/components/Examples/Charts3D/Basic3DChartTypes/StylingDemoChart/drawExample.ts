@@ -2,6 +2,8 @@ import {
     CameraController,
     CubePointMarker3D,
     CylinderPointMarker3D,
+    EAxisPlaneDrawLabelsMode,
+    EAxisPlaneVisibilityMode,
     EllipsePointMarker3D,
     MouseWheelZoomModifier3D,
     NumberRange,
@@ -109,9 +111,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         tickLabelsOffset: 10,
     });
 
-    //sciChart3DSurface.xAxis.backgroundColor = "red";
-    // sciChart3DSurface.xAxis.planeBorderColor = "red";
-    // sciChart3DSurface.xAxis.planeBorderThickness = 20;
+    // sciChart3DSurface.xyAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.LocalY;
+    // sciChart3DSurface.zyAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.Hidden;
+    // sciChart3DSurface.zxAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.Both;
+
+    // Doesn't work??
+    //sciChart3DSurface.xAxis.axisPlaneBackgroundFill = "red";
+
+    //sciChart3DSurface.xAxis.planeBorderColor = "red";
+    //sciChart3DSurface.xAxis.planeBorderThickness = 20;
 
     // title offset
 
