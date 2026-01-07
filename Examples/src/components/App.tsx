@@ -33,6 +33,7 @@ import { baseAppPath } from "../constants";
 
 SciChartSurfaceBase.DEFAULT_THEME = appTheme.SciChartJsTheme;
 SciChartDefaults.useSharedCache = true;
+SciChartDefaults.autoFontName = "Arial";
 
 const NotFound = () => (
     <div
@@ -53,7 +54,7 @@ const NotFound = () => (
 
 const ChatbotScript = (): React.ReactElement | null => {
     React.useEffect(() => {
-        const script = document.createElement('script');
+        const script = document.createElement("script");
         script.src = "https://chat.scichart.com/chatbot.js";
         script.type = "text/javascript";
         script.defer = true;
@@ -65,7 +66,7 @@ const ChatbotScript = (): React.ReactElement | null => {
     }, []);
 
     return null;
-}
+};
 
 SciChartSurface.configure({
     wasmUrl: `${baseAppPath}/scichart2d.wasm`,
@@ -172,8 +173,13 @@ export default function App() {
             {isHomePage && (
                 <Helmet>
                     <link rel="canonical" href={`https://www.scichart.com/demo/${framework}`} />
-                    <meta name="description" content={`The Homepage of SciChart.js's High Performance ${framework.slice(0,1).toUpperCase() + framework.slice(1)} Examples & Demos`} />
-                    <title>{`SciChart.js Demo | ${framework.slice(0,1).toUpperCase() + framework.slice(1)}`}</title>
+                    <meta
+                        name="description"
+                        content={`The Homepage of SciChart.js's High Performance ${
+                            framework.slice(0, 1).toUpperCase() + framework.slice(1)
+                        } Examples & Demos`}
+                    />
+                    <title>{`SciChart.js Demo | ${framework.slice(0, 1).toUpperCase() + framework.slice(1)}`}</title>
                 </Helmet>
             )}
             <style>
@@ -214,7 +220,7 @@ export default function App() {
                         />
                     </Drawer>
                 )}
-                <div className={classes.MainAppContent} style={{position: "relative"}}>
+                <div className={classes.MainAppContent} style={{ position: "relative" }}>
                     <SciChartNavbar toggleDrawer={toggleDrawer} theme={theme} setTheme={setTheme} />
 
                     {is404 ? (

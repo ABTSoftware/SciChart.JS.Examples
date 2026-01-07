@@ -30,7 +30,10 @@ async function initSciChart() {
 
     // Create an X Axis and add to the chart
     sciChartSurface.xAxes.add(
-      new NumericAxis(wasmContext, { axisTitle: "X Axis" })
+      new NumericAxis(wasmContext, {
+        axisTitle: "X Axis",
+        useNativeText: false,
+      })
     );
 
     // Create Y Axis and add to the chart
@@ -40,6 +43,7 @@ async function initSciChart() {
         axisAlignment: EAxisAlignment.Right,
         autoRange: EAutoRange.Always,
         growBy: new NumberRange(0.2, 0.2),
+        useNativeText: false,
       })
     );
 
@@ -78,7 +82,9 @@ async function initSciChart() {
     );
 
     // Create an X Axis and add to the chart
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+    sciChartSurface.xAxes.add(
+      new NumericAxis(wasmContext, { useNativeText: false })
+    );
 
     // Create Y Axis and add to the chart
     sciChartSurface.yAxes.add(
@@ -87,6 +93,7 @@ async function initSciChart() {
         axisAlignment: EAxisAlignment.Left,
         autoRange: EAutoRange.Always,
         growBy: new NumberRange(0.2, 0.2),
+        useNativeText: false,
       })
     );
 

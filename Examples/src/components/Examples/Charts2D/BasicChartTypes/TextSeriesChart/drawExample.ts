@@ -40,7 +40,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         "https://www.scichart.com/demo/api/tweetData"
     ).then((r) => r.json());
     const series = new FastTextRenderableSeries(wasmContext, {
-        dataLabels: { style: { fontFamily: "arial", fontSize: 10 }, calculateTextBounds: false },
+        dataLabels: { style: { fontFamily: "Arial", fontSize: 10 }, calculateTextBounds: false },
         dataSeries: new XyTextDataSeries(wasmContext, data),
     });
     sciChartSurface.renderableSeries.add(series);

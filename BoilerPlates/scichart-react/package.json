@@ -23,7 +23,10 @@
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "scichart": "^4.0.0-beta.734",
+    "scichart": "^5.0.0-alpha.135",
     "scichart-react": "^0.2.0-beta.2"
+  },
+  "overrides": {
+    "scichart": "^5.0.0-alpha.135"
   }
 }

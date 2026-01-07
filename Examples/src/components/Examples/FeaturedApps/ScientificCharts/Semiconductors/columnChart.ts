@@ -15,6 +15,7 @@ import {
     DataPointInfo,
     Thickness,
     ESelectionMode,
+    DataPointSelectionPaletteProvider,
 } from "scichart";
 
 import { WaferLotData } from "./waferData";
@@ -73,6 +74,8 @@ export const drawColumnChart = async (
 
     const columnCollection = new StackedColumnCollection(wasmContext, { dataPointWidth: 0.7 });
 
+    const paletteProvider = new DataPointSelectionPaletteProvider({ stroke: "white", fill: "#ffff00aa" });
+
     const measure1Series_stacked = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries,
         fill: appTheme.PaleSkyBlue,
@@ -81,6 +84,7 @@ export const drawColumnChart = async (
         stackedGroupId: "measures",
         seriesName: "Measure 1",
         yArrayFilter: "y1",
+        paletteProvider,
     });
 
     const measure2Series_stacked = new StackedColumnRenderableSeries(wasmContext, {
@@ -91,6 +95,7 @@ export const drawColumnChart = async (
         stackedGroupId: "measures",
         seriesName: "Measure 2",
         yArrayFilter: "y2",
+        paletteProvider,
     });
 
     const measure3Series_stacked = new StackedColumnRenderableSeries(wasmContext, {
@@ -101,19 +106,12 @@ export const drawColumnChart = async (
         stackedGroupId: "measures",
         seriesName: "Measure 3",
         yArrayFilter: "y3",
+        paletteProvider,
     });
 
     // Add all series to the chart
     columnCollection.add(measure1Series_stacked, measure2Series_stacked, measure3Series_stacked);
     sciChartSurface.renderableSeries.add(columnCollection);
-
-    const selectionAnnotation = new BoxAnnotation({
-        stroke: "white",
-        fill: "#ffff00AA",
-        isHidden: true,
-        xCoordinateMode: ECoordinateMode.Pixel,
-    });
-    sciChartSurface.annotations.add(selectionAnnotation);
 
     const selectionModifier = new DataPointSelectionModifier({
         allowClickSelect: true, // Enables single-click selection
@@ -127,26 +125,18 @@ export const drawColumnChart = async (
             if (onBatchSelected && selectedPoints[0].index !== undefined) {
                 onBatchSelected(selectedPoints[0].metadata as WaferLotData, true);
             }
-        } else {
-            selectionAnnotation.isHidden = true;
         }
     });
 
-    sciChartSurface.layoutMeasured.subscribe(() => {
-        if (selectionModifier.selectedDataPoints.length > 0) {
-            const index = selectionModifier.selectedDataPoints[0].index;
-            const xCC = xAxis.getCurrentCoordinateCalculator();
-            const dpw = columnCollection.getColumnWidth(xCC) / 2;
-            const xCoord = xCC.getCoordinate(index); // Use index here because of category x axis
-            selectionAnnotation.x1 = xCoord - dpw;
-            selectionAnnotation.x2 = xCoord + dpw;
-            selectionAnnotation.y1 = 0;
-            selectionAnnotation.y2 = measure3Series_stacked.accumulatedValues.get(index);
-            selectionAnnotation.isHidden = false;
-        } else {
-            selectionAnnotation.isHidden = true;
-        }
-    });
+    const updateSelection = (point: WaferLotData) => {
+        selectionModifier.clearSelectedDataPoints();
+        const index = point.Batch - 1;
+        selectionModifier.addSelectedDataPoint(
+            measure1Series_stacked,
+            index,
+            new DataPointInfo(measure1Series_stacked, point, index)
+        );
+    };
 
     const updateData = (batchData: WaferLotData[], fireSelectionChanged: boolean) => {
         const xValues: number[] = [];
@@ -163,17 +153,13 @@ export const drawColumnChart = async (
         dataSeries.appendRangeN(xValues, [y1Values, y2Values, y3Values], batchData);
         sciChartSurface.title = batchData[0].Date;
         // We need to manually clear and reset the selectionModifier
-        // These methods are currently private but will be exposed in next version
-        //@ts-ignore
         selectionModifier.clearSelectedDataPoints();
-        //@ts-ignore
         selectionModifier.addSelectedDataPoint(
             measure1Series_stacked,
             0,
             new DataPointInfo(measure1Series_stacked, batchData[0], 0)
         );
         if (fireSelectionChanged) {
-            //@ts-ignore
             selectionModifier.raiseSelectionChanged(false);
         }
     };
@@ -197,5 +183,5 @@ export const drawColumnChart = async (
     // Zoom to fit
     sciChartSurface.zoomExtents();
 
-    return { sciChartSurface, updateData, selectionModifier };
+    return { sciChartSurface, updateData, updateSelection };
 };

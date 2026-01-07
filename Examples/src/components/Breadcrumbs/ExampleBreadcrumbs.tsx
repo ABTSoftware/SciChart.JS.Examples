@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 const onBreadcrumbPathChange = (value: TBreadcrumbPath) => {};
 
 export const ExampleBreadcrumbs = () => {
+    const navigate = useNavigate();
     const { isIFrame, currentExample, framework: selectedFramework } = useExampleRouteParams();
     const memoizedMenuPath = useMemo(() => getExampleCategoryPath(currentExample), [currentExample]);
 
@@ -104,19 +105,21 @@ export const ExampleBreadcrumbs = () => {
                         }}
                         onClick={(e) => {
                             e.preventDefault();
-                            // Handle same-page navigation
-                            if (window.location.pathname === `/${selectedFramework}`) {
-                                const hash = link.split("#")[1];
-                                const element = document.getElementById(hash);
-                                if (element) {
-                                    element.scrollIntoView({
-                                        behavior: "smooth",
-                                        block: "start",
-                                    });
+
+                            const [path, hash] = link.split("#");
+                            if (window.location.pathname.endsWith(path)) {
+                                if (hash) {
+                                    const element = document.getElementById(hash);
+                                    if (element) {
+                                        element.scrollIntoView({
+                                            behavior: "smooth",
+                                            block: "start",
+                                        });
+                                    }
+                                    navigate(`${path}#${hash}`, { replace: true });
                                 }
-                                window.history.replaceState(null, "", link);
                             } else {
-                                window.location.href = link;
+                                navigate(link);
                             }
                         }}
                     >

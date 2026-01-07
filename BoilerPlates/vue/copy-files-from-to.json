@@ -8,7 +8,15 @@
       "to": "./public/scichart2d.wasm"
     },
     {
+      "from": "./node_modules/scichart/_wasm/scichart2d-nosimd.wasm",
+      "to": "./public/scichart2d.wasm"
+    },
+    {
       "from": "./node_modules/scichart/_wasm/scichart3d.wasm",
+      "to": "./public/scichart3d.wasm"
+    },
+    {
+      "from": "./node_modules/scichart/_wasm/scichart3d-nosimd.wasm",
       "to": "./public/scichart3d.wasm"
     }
   ]

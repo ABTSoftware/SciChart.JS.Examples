@@ -6,6 +6,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import livereload from "rollup-plugin-livereload";
 import css from "rollup-plugin-css-only";
 import fs from "fs";
+import copy from "rollup-plugin-copy";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -39,6 +40,9 @@ export default {
     file: "public/bundle.js",
   },
   plugins: [
+    copy({
+      targets: [{ src: "src/index.html", dest: "public" }],
+    }),
     svelte({
       compilerOptions: {
         // enable run-time checks when not in production
@@ -59,6 +63,18 @@ export default {
         });
       },
     },
+    {
+      name: "wasm",
+      generateBundle() {
+        this.emitFile({
+          type: "asset",
+          fileName: "scichart2d-nosimd.wasm",
+          source: fs.readFileSync(
+            "node_modules/scichart/_wasm/scichart2d-nosimd.wasm"
+          ),
+        });
+      },
+    },
     // similar for scichart3d (only if you use 3D charts) >>
     {
       name: "wasm",
@@ -72,7 +88,18 @@ export default {
         });
       },
     },
-
+    {
+      name: "wasm",
+      generateBundle() {
+        this.emitFile({
+          type: "asset",
+          fileName: "scichart3d-nosimd.wasm",
+          source: fs.readFileSync(
+            "node_modules/scichart/_wasm/scichart3d-nosimd.wasm"
+          ),
+        });
+      },
+    },
     // we'll extract any component CSS out into
     // a separate file - better for performance
     css({ output: "bundle.css" }),
