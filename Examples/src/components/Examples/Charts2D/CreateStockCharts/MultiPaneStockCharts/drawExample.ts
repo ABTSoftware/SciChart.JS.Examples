@@ -1,6 +1,6 @@
 import {
     SciChartVerticalGroup,
-    IndexAxis,
+    DiscontinuousDateAxis,
     EAxisAlignment,
     SciChartSurface,
     EAutoRange,
@@ -111,9 +111,9 @@ export const getChartsInitializationAPI = () => {
 
     const dataPromise = getTradingData();
 
-    let chart1XAxis: IndexAxis;
-    let chart2XAxis: IndexAxis;
-    let chart3XAxis: IndexAxis;
+    let chart1XAxis: DiscontinuousDateAxis;
+    let chart2XAxis: DiscontinuousDateAxis;
+    let chart3XAxis: DiscontinuousDateAxis;
     let priceChartSurface: SciChartSurface;
     let macdChartSurface: SciChartSurface;
     let rsiChartSurface: SciChartSurface;
@@ -136,7 +136,7 @@ export const getChartsInitializationAPI = () => {
         const { wasmContext, sciChartSurface } = chart;
         const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = data;
 
-        chart1XAxis = new IndexAxis(wasmContext, {
+        chart1XAxis = new DiscontinuousDateAxis(wasmContext, {
             drawLabels: false,
             drawMajorTickLines: false,
             drawMinorTickLines: false,
@@ -270,7 +270,7 @@ export const getChartsInitializationAPI = () => {
             dataPromise,
         ]);
 
-        chart2XAxis = new IndexAxis(wasmContext, {
+        chart2XAxis = new DiscontinuousDateAxis(wasmContext, {
             drawLabels: false,
             drawMajorTickLines: false,
             drawMinorTickLines: false,
@@ -357,7 +357,7 @@ export const getChartsInitializationAPI = () => {
             dataPromise,
         ]);
 
-        chart3XAxis = new IndexAxis(wasmContext, {
+        chart3XAxis = new DiscontinuousDateAxis(wasmContext, {
             autoRange: EAutoRange.Once,
             labelProvider: new SmartDateLabelProvider(),
         });

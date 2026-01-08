@@ -13,7 +13,7 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
     SciChartJsNavyTheme,
-    IndexAxis,
+    DiscontinuousDateAxis,
 } from "scichart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -22,9 +22,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         theme: new SciChartJsNavyTheme(),
     });
 
-    // Add IndexAxis - which collapses gaps in stock market data
+    // Add DiscontinuousDateAxis - which collapses gaps in stock market data
     sciChartSurface.xAxes.add(
-        new IndexAxis(wasmContext, {
+        new DiscontinuousDateAxis(wasmContext, {
             labelProvider: new SmartDateLabelProvider(),
             growBy: new NumberRange(0.05, 0.05),
         })

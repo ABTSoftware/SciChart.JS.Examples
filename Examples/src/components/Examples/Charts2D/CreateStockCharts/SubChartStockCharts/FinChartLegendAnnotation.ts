@@ -133,7 +133,7 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
             let index: number = -1;
             if (this.xAxis.type === EAxisType.CategoryAxis) {
                 index = Math.round(xCalc.getDataValue(this.x1));
-            } else if (this.xAxis.type === EAxisType.IndexAxis) {
+            } else if (this.xAxis.type === EAxisType.DiscontinuousDateAxis) {
                 const indexCoordCalc = xCalc as IndexCoordinateCalculator;
                 const val = indexCoordCalc.getDataValue(this.x1);
                 index = Math.round(indexCoordCalc.indexCalculator.GetIndex(val));
@@ -160,7 +160,7 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
 /** @ignore */
 const defaultFinanceLegendTemplate: TFinanceLegendTemplate = (la: FinChartLegendAnnotation): string => {
     const outputStrings: string[] = [];
-    const subSurface = la.sciFinanceChart.subCharts.find(study => study.id === la.paneId);
+    const subSurface = la.sciFinanceChart.subCharts.find((study) => study.id === la.paneId);
     let outputStr = "";
     if (la.xIndex >= 0) {
         subSurface.renderableSeries.asArray().forEach(({ dataSeries }) => {

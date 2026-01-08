@@ -124,7 +124,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             theme: appTheme.SciChartJsTheme,
         },
         xAxes: {
-            type: EAxisType.IndexAxis,
+            type: EAxisType.DiscontinuousDateAxis,
             options: {
                 isVisible: false,
             },
@@ -151,7 +151,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     subChartContainerId: subChartWrapper1,
                 },
                 xAxes: {
-                    type: EAxisType.IndexAxis,
+                    type: EAxisType.DiscontinuousDateAxis,
                     options: {
                         drawLabels: false,
                         autoRange: EAutoRange.Once,
@@ -272,7 +272,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 },
                 xAxes: [
                     {
-                        type: EAxisType.IndexAxis,
+                        type: EAxisType.DiscontinuousDateAxis,
                         options: {
                             drawLabels: false,
                             drawMajorTickLines: false,
@@ -337,7 +337,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     subChartContainerId: subChartWrapper3,
                 },
                 xAxes: {
-                    type: EAxisType.IndexAxis,
+                    type: EAxisType.DiscontinuousDateAxis,
                     options: {
                         drawLabels: true,
                         drawMajorTickLines: true,
