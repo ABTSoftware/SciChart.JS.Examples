@@ -13,6 +13,9 @@ import {
     Slider,
     Typography,
     Stack,
+    Accordion,
+    AccordionSummary,
+    AccordionDetails,
 } from "@mui/material";
 
 import { Dialog, DialogTitle, IconButton } from "@mui/material";
@@ -24,6 +27,7 @@ import ListItem from "@mui/material/ListItem";
 import Button from "@mui/material/Button";
 
 import CloseIcon from "@mui/icons-material/Close";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { appTheme } from "../../../theme";
 import { useRef, useState } from "react";
@@ -56,13 +60,25 @@ export default function StylingDemoChart() {
 
     const [selectedAxis, setSelectedAxis] = useState<"x" | "y" | "z">("x");
     const [xAxisTitleOffset, setXAxisTitleOffset] = useState(10);
-    const [tickLabelsOffset, setTickLabelsOffset] = useState(50);
+    const [tickLabelsOffset, setTickLabelsOffset] = useState(10);
     const [labelFontSize, setLabelFontSize] = useState(20);
     const [font, setFont] = useState("arial");
     const [labelOrientationMode, setLabelOrientationMode] = useState<E3DLabelOrientationMode>(
         E3DLabelOrientationMode.Auto
     );
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+
+    const [selectedPlane, setSelectedPlane] = useState<"xy" | "zy" | "zx">("xy");
+    const [visabilityMode, setVisabilityMode] = useState("auto");
+    const [planeDrawTitlesMode, setPlaneDrawTitlesMode] = useState("both");
+    const [planeDrawLabelsMode, setPlaneDrawLabelsMode] = useState("both");
+    const [planeIsVisible, setPlaneIsVisible] = useState("true");
+
+    const [expanded, setExpanded] = React.useState<string | false>("panel1");
+
+    const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+        setExpanded(isExpanded ? panel : false);
+    };
 
     const handleClickOpen = () => {
         setIsDialogOpen(true);
@@ -97,13 +113,47 @@ export default function StylingDemoChart() {
         }
     };
 
-    const handleAxisChange = (e: { target: { value: string } }) => {
+    const handlePlaneChange = (e: { target: { value: string } }) => {
+        const newValue = e.target.value as "xy" | "zy" | "zx";
 
-        const selectedAxis = e.target.value as "x" | "y" | "z"
+        controlsRef.current.setPlaneBackground(newValue);
+
+        setSelectedPlane(newValue);
+    };
+
+    const handleVisabilityMode = (e: { target: { value: string } }) => {
+        const newValue = e.target.value as string;
+        setVisabilityMode(newValue);
+
+        controlsRef.current.setVisabilityMode(selectedPlane, newValue);
+    };
+
+    const handlePlaneDrawTitlesMode = (e: { target: { value: string } }) => {
+        const newValue = e.target.value as string;
+        setPlaneDrawTitlesMode(newValue);
+
+        controlsRef.current.setDrawTitlesMode(selectedPlane, newValue);
+    };
+
+    const handlePlaneDrawLabelsMode = (e: { target: { value: string } }) => {
+        const newValue = e.target.value as string;
+        setPlaneDrawLabelsMode(newValue);
+
+        controlsRef.current.setDrawLabelsMode(selectedPlane, newValue);
+    };
+
+    const handlePlaneIsVisible = (e: { target: { value: string } }) => {
+        const newValue = e.target.value as string;
+        setPlaneIsVisible(newValue);
+
+        controlsRef.current.setIsVisible(selectedPlane, newValue);
+    };
+
+    const handleAxisChange = (e: { target: { value: string } }) => {
+        const selectedAxis = e.target.value as "x" | "y" | "z";
 
         setSelectedAxis(selectedAxis);
         controlsRef.current.updateAxisTitleColor(selectedAxis);
-        
     };
 
     const handleLabelOrientationModeChange = (e: { target: { value: string } }) => {
@@ -114,102 +164,278 @@ export default function StylingDemoChart() {
 
     const controlPanel = (
         <>
-            <Typography variant="inherit" className={commonClasses.FormControlLabel}>
-                Select Axis
-            </Typography>
-            <FormControl fullWidth className={commonClasses.formControl}>
-                <Select
-                    labelId="axis-label"
-                    id="axis"
-                    variant="standard"
-                    inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
-                    sx={{ margin: "0.5em 0em", color: "inherit", "& .MuiSvgIcon-root": { color: "inherit" } }}
-                    value={selectedAxis}
-                    onChange={handleAxisChange}
-                >
-                    <MenuItem value="x">X Axis</MenuItem>
-                    <MenuItem value="y">Y Axis</MenuItem>
-                    <MenuItem value="z">Z Axis</MenuItem>
-                </Select>
-            </FormControl>
+            <Accordion
+                defaultExpanded
+                expanded={expanded === "panel1"}
+                onChange={handleChange("panel1")}
+                sx={{
+                    backgroundColor: appTheme.DarkIndigo,
+                    color: appTheme.ForegroundColor,
+                    border: `1px solid ${appTheme.Indigo}`,
+                    "&:before": { display: "none" },
+                    "& .MuiAccordionSummary-root": {
+                        backgroundColor: appTheme.Indigo,
+                        borderBottom: `1px solid ${appTheme.VividSkyBlue}22`,
+                    },
+                    "& .MuiAccordionDetails-root": {
+                        backgroundColor: appTheme.DarkIndigo,
+                    },
+                }}
+            >
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography variant="h6">Axis Configuration</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <FormControl fullWidth className={commonClasses.formControl}>
+                        <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                            Select Axis
+                        </Typography>
+                        <FormControl fullWidth className={commonClasses.formControl}>
+                            <Select
+                                labelId="axis-label"
+                                id="axis"
+                                variant="standard"
+                                inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
+                                sx={{
+                                    margin: "0.5em 0em",
+                                    color: "inherit",
+                                    "& .MuiSvgIcon-root": { color: "inherit" },
+                                }}
+                                value={selectedAxis}
+                                onChange={handleAxisChange}
+                            >
+                                <MenuItem value="x">X Axis</MenuItem>
+                                <MenuItem value="y">Y Axis</MenuItem>
+                                <MenuItem value="z">Z Axis</MenuItem>
+                            </Select>
+                        </FormControl>
 
-            <Typography variant="inherit" className={commonClasses.FormControlLabel}>
-                Change Font
-            </Typography>
-            <FormControl fullWidth className={commonClasses.formControl}>
-                <Select
-                    labelId="font-label"
-                    id="font"
-                    variant="standard"
-                    inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
-                    sx={{ margin: "0.5em 0em", color: "inherit", "& .MuiSvgIcon-root": { color: "inherit" } }}
-                    value={font}
-                    onChange={handleFontChange}
-                >
-                    {fonts.map((el) => (
-                        <MenuItem key={el.name} value={el.name}>
-                            {el.name.toUpperCase()}
-                        </MenuItem>
-                    ))}
-                </Select>
-            </FormControl>
+                        <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                            Change Font
+                        </Typography>
+                        <FormControl fullWidth className={commonClasses.formControl}>
+                            <Select
+                                labelId="font-label"
+                                id="font"
+                                variant="standard"
+                                inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
+                                sx={{
+                                    margin: "0.5em 0em",
+                                    color: "inherit",
+                                    "& .MuiSvgIcon-root": { color: "inherit" },
+                                }}
+                                value={font}
+                                onChange={handleFontChange}
+                            >
+                                {fonts.map((el) => (
+                                    <MenuItem key={el.name} value={el.name}>
+                                        {el.name.toUpperCase()}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
 
-            <Typography variant="inherit" className={commonClasses.FormControlLabel}>
-                Axis Font Size: {labelFontSize}
-            </Typography>
-            <Slider
-                id="labelFontSize"
-                onChange={handleLabelFontSize}
-                step={1}
-                min={10}
-                max={30}
-                value={labelFontSize}
-                valueLabelDisplay="off"
-            />
+                        <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                            Axis Font Size: {labelFontSize}
+                        </Typography>
+                        <Slider
+                            id="labelFontSize"
+                            onChange={handleLabelFontSize}
+                            step={1}
+                            min={10}
+                            max={30}
+                            value={labelFontSize}
+                            valueLabelDisplay="off"
+                        />
 
-            <Typography variant="inherit" className={commonClasses.FormControlLabel}>
-                Axis Title Offset: {xAxisTitleOffset}
-            </Typography>
-            <Slider
-                id="xAxisTitleOffset"
-                onChange={handleXAxisTitleOffset}
-                step={1}
-                min={0}
-                max={100}
-                value={xAxisTitleOffset}
-                valueLabelDisplay="off"
-            />
+                        <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                            Axis Title Offset: {xAxisTitleOffset}
+                        </Typography>
+                        <Slider
+                            id="xAxisTitleOffset"
+                            onChange={handleXAxisTitleOffset}
+                            step={1}
+                            min={0}
+                            max={100}
+                            value={xAxisTitleOffset}
+                            valueLabelDisplay="off"
+                        />
 
-            <Typography variant="inherit" className={commonClasses.FormControlLabel}>
-                Tick Labels Offset: {tickLabelsOffset}
-            </Typography>
-            <Slider
-                id="tickLabelsOffset"
-                onChange={handleTickLabelsOffset}
-                step={1}
-                min={0}
-                max={100}
-                value={tickLabelsOffset}
-                valueLabelDisplay="off"
-            />
+                        <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                            Tick Labels Offset: {tickLabelsOffset}
+                        </Typography>
+                        <Slider
+                            id="tickLabelsOffset"
+                            onChange={handleTickLabelsOffset}
+                            step={1}
+                            min={0}
+                            max={100}
+                            value={tickLabelsOffset}
+                            valueLabelDisplay="off"
+                        />
 
-            <Typography variant="inherit" className={commonClasses.FormControlLabel}>
-                Label Orientation Mode
-            </Typography>
-            <FormControl fullWidth className={commonClasses.formControl}>
-                <Select
-                    labelId="label-orientation-label"
-                    id="label-orientation"
-                    variant="standard"
-                    inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
-                    sx={{ margin: "0.5em 0em", color: "inherit", "& .MuiSvgIcon-root": { color: "inherit" } }}
-                    value={labelOrientationMode}
-                    onChange={handleLabelOrientationModeChange}
-                >
-                    <MenuItem value={E3DLabelOrientationMode.Auto}>Auto</MenuItem>
-                    <MenuItem value={E3DLabelOrientationMode.Horizontal}>Horizontal</MenuItem>
-                </Select>
-            </FormControl>
+                        <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                            Label Orientation Mode
+                        </Typography>
+                        <FormControl fullWidth className={commonClasses.formControl}>
+                            <Select
+                                labelId="label-orientation-label"
+                                id="label-orientation"
+                                variant="standard"
+                                inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
+                                sx={{
+                                    margin: "0.5em 0em",
+                                    color: "inherit",
+                                    "& .MuiSvgIcon-root": { color: "inherit" },
+                                }}
+                                value={labelOrientationMode}
+                                onChange={handleLabelOrientationModeChange}
+                            >
+                                <MenuItem value={E3DLabelOrientationMode.Auto}>Auto</MenuItem>
+                                <MenuItem value={E3DLabelOrientationMode.Horizontal}>Horizontal</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </FormControl>
+                </AccordionDetails>
+            </Accordion>
+            <Accordion
+                expanded={expanded === "panel2"}
+                onChange={handleChange("panel2")}
+                sx={{
+                    backgroundColor: appTheme.DarkIndigo,
+                    color: appTheme.ForegroundColor,
+                    border: `1px solid ${appTheme.Indigo}`,
+                    "&:before": { display: "none" },
+                    "& .MuiAccordionSummary-root": {
+                        backgroundColor: appTheme.Indigo,
+                        borderBottom: `1px solid ${appTheme.VividSkyBlue}22`,
+                    },
+                    "& .MuiAccordionDetails-root": {
+                        backgroundColor: appTheme.DarkIndigo,
+                    },
+                }}
+            >
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography variant="h6">Plane Configuration</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                        Select Plane
+                    </Typography>
+                    <FormControl fullWidth className={commonClasses.formControl}>
+                        <Select
+                            labelId="plane-label"
+                            id="plane"
+                            variant="standard"
+                            inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
+                            sx={{
+                                margin: "0.5em 0em",
+                                color: "inherit",
+                                "& .MuiSvgIcon-root": { color: "inherit" },
+                            }}
+                            value={selectedPlane}
+                            onChange={handlePlaneChange}
+                        >
+                            <MenuItem value="xy">XY Plane</MenuItem>
+                            <MenuItem value="zy">ZY Plane</MenuItem>
+                            <MenuItem value="zx">ZX Plane</MenuItem>
+                        </Select>
+                    </FormControl>
+
+                    <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                        Visability Mode
+                    </Typography>
+                    <FormControl fullWidth className={commonClasses.formControl}>
+                        <Select
+                            labelId="font-label"
+                            id="font"
+                            variant="standard"
+                            inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
+                            sx={{
+                                margin: "0.5em 0em",
+                                color: "inherit",
+                                "& .MuiSvgIcon-root": { color: "inherit" },
+                            }}
+                            value={visabilityMode}
+                            onChange={handleVisabilityMode}
+                        >
+                            <MenuItem value="auto">Auto</MenuItem>
+                            <MenuItem value="negativeSide">Negative Side</MenuItem>
+                            <MenuItem value="positiveSide">Positive Side</MenuItem>
+                        </Select>
+                    </FormControl>
+
+                    <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                        Draw Titles Mode
+                    </Typography>
+                    <FormControl fullWidth className={commonClasses.formControl}>
+                        <Select
+                            labelId="font-label"
+                            id="font"
+                            variant="standard"
+                            inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
+                            sx={{
+                                margin: "0.5em 0em",
+                                color: "inherit",
+                                "& .MuiSvgIcon-root": { color: "inherit" },
+                            }}
+                            value={planeDrawTitlesMode}
+                            onChange={handlePlaneDrawTitlesMode}
+                        >
+                            <MenuItem value="both">Both</MenuItem>
+                            <MenuItem value="hidden">Hidden</MenuItem>
+                            <MenuItem value="localx">LocalX</MenuItem>
+                            <MenuItem value="localy">LocalY </MenuItem>
+                        </Select>
+                    </FormControl>
+
+                    <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                        Draw Lables Mode
+                    </Typography>
+                    <FormControl fullWidth className={commonClasses.formControl}>
+                        <Select
+                            labelId="font-label"
+                            id="font"
+                            variant="standard"
+                            inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
+                            sx={{
+                                margin: "0.5em 0em",
+                                color: "inherit",
+                                "& .MuiSvgIcon-root": { color: "inherit" },
+                            }}
+                            value={planeDrawLabelsMode}
+                            onChange={handlePlaneDrawLabelsMode}
+                        >
+                            <MenuItem value="both">Both</MenuItem>
+                            <MenuItem value="hidden">Hidden</MenuItem>
+                            <MenuItem value="localx">LocalX</MenuItem>
+                            <MenuItem value="localy">LocalY </MenuItem>
+                        </Select>
+                    </FormControl>
+
+                    <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                        Is Visible
+                    </Typography>
+                    <FormControl fullWidth className={commonClasses.formControl}>
+                        <Select
+                            labelId="font-label"
+                            id="font"
+                            variant="standard"
+                            inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
+                            sx={{
+                                margin: "0.5em 0em",
+                                color: "inherit",
+                                "& .MuiSvgIcon-root": { color: "inherit" },
+                            }}
+                            value={planeIsVisible}
+                            onChange={handlePlaneIsVisible}
+                        >
+                            <MenuItem value="true">True</MenuItem>
+                            <MenuItem value="false">False</MenuItem>
+                        </Select>
+                    </FormControl>
+                </AccordionDetails>
+            </Accordion>
         </>
     );
 

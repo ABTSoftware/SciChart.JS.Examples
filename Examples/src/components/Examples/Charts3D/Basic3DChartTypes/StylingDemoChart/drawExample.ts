@@ -69,8 +69,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChart3DSurface.worldDimensions = new Vector3(300, 200, 300);
 
     const camera = sciChart3DSurface.camera;
-    camera.position = new Vector3(-390.48, 272.08, -529.63);
-    camera.target = new Vector3(0, 0, 0);
+    camera.position = new Vector3(-190.48, 272.08, -529.63);
+    camera.target = new Vector3(0, 60, 0);
+    
     // propertyChanged is raised each time any property changes on the camera
     // camera.propertyChanged.subscribe(args => {
     //     // Log current properties to console. debugOutput returns array of strings
@@ -91,7 +92,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelPrecision: 0,
         drawMinorGridLines: false,
         drawMajorGridLines: false,
-        tickLabelsOffset: 50,
+        tickLabelsOffset: 10,
         labelOrientationMode: E3DLabelOrientationMode.Auto,
     });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
@@ -111,15 +112,211 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         tickLabelsOffset: 10,
     });
 
-    // sciChart3DSurface.xyAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.LocalY;
+    // sciChart3DSurface.xyAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.LocalX;
     // sciChart3DSurface.zyAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.Hidden;
     // sciChart3DSurface.zxAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.Both;
 
-    // Doesn't work??
-    //sciChart3DSurface.xAxis.axisPlaneBackgroundFill = "red";
+    // sciChart3DSurface.xyAxisPlane.visibilityMode = EAxisPlaneVisibilityMode.PositiveSide;
+    // sciChart3DSurface.xyAxisPlane.drawTitlesMode = EAxisPlaneDrawLabelsMode.LocalX;
+    // sciChart3DSurface.xyAxisPlane.isVisible = false;
+    // sciChart3DSurface.xyAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.Both
 
-    //sciChart3DSurface.xAxis.planeBorderColor = "red";
-    //sciChart3DSurface.xAxis.planeBorderThickness = 20;
+    sciChart3DSurface.xAxis.drawMajorBands = true;
+    sciChart3DSurface.xAxis.axisBandsFill = appTheme.MutedOrange + "cc";
+
+    sciChart3DSurface.yAxis.drawMajorBands = true;
+    sciChart3DSurface.yAxis.axisBandsFill = appTheme.MutedOrange + "cc";
+
+    sciChart3DSurface.zAxis.drawMajorBands = true;
+    sciChart3DSurface.zAxis.axisBandsFill = appTheme.MutedBlue + "cc";
+
+    const setPlaneBackground = (plane: string) => {
+        sciChart3DSurface.xAxis.axisBandsFill = appTheme.MutedBlue + "cc";
+        sciChart3DSurface.yAxis.axisBandsFill = appTheme.MutedBlue + "cc";
+        sciChart3DSurface.zAxis.axisBandsFill = appTheme.MutedBlue + "cc";
+
+        if (plane === "xy") {
+            sciChart3DSurface.xAxis.axisBandsFill = appTheme.MutedOrange + "cc";
+            sciChart3DSurface.yAxis.axisBandsFill = appTheme.MutedOrange + "cc";
+        }
+
+        if (plane === "zy") {
+            sciChart3DSurface.yAxis.axisBandsFill = appTheme.MutedOrange + "cc";
+            sciChart3DSurface.zAxis.axisBandsFill = appTheme.MutedOrange + "cc";
+        }
+
+        if (plane === "zx") {
+            sciChart3DSurface.xAxis.axisBandsFill = appTheme.MutedOrange + "cc";
+            sciChart3DSurface.zAxis.axisBandsFill = appTheme.MutedOrange + "cc";
+        }
+    };
+
+    const setIsVisible = (plane: string, mode: string) => {
+        if (plane === "xy") {
+            if (mode === "true") {
+                sciChart3DSurface.xyAxisPlane.isVisible = true;
+            }
+            if (mode === "false") {
+                sciChart3DSurface.xyAxisPlane.isVisible = false;
+            }
+        }
+
+        if (plane === "zy") {
+            if (mode === "true") {
+                sciChart3DSurface.zyAxisPlane.isVisible = true;
+            }
+            if (mode === "false") {
+                sciChart3DSurface.zyAxisPlane.isVisible = false;
+            }
+        }
+
+        if (plane === "zx") {
+            if (mode === "true") {
+                sciChart3DSurface.zxAxisPlane.isVisible = true;
+            }
+            if (mode === "false") {
+                sciChart3DSurface.zxAxisPlane.isVisible = false;
+            }
+        }
+    };
+
+    const setDrawLabelsMode = (plane: string, mode: string) => {
+        if (plane === "xy") {
+            if (mode === "both") {
+                sciChart3DSurface.xyAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.Both;
+            }
+            if (mode === "hidden") {
+                sciChart3DSurface.xyAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.Hidden;
+            }
+            if (mode === "localx") {
+                sciChart3DSurface.xyAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.LocalX;
+            }
+            if (mode === "localy") {
+                sciChart3DSurface.xyAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.LocalY;
+            }
+        }
+
+        if (plane === "zy") {
+            if (mode === "both") {
+                sciChart3DSurface.zyAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.Both;
+            }
+            if (mode === "hidden") {
+                sciChart3DSurface.zyAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.Hidden;
+            }
+            if (mode === "localx") {
+                sciChart3DSurface.zyAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.LocalX;
+            }
+            if (mode === "localy") {
+                sciChart3DSurface.zyAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.LocalY;
+            }
+        }
+
+        if (plane === "zx") {
+            if (mode === "both") {
+                sciChart3DSurface.zxAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.Both;
+            }
+            if (mode === "hidden") {
+                sciChart3DSurface.zxAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.Hidden;
+            }
+            if (mode === "localx") {
+                sciChart3DSurface.zxAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.LocalX;
+            }
+            if (mode === "localy") {
+                sciChart3DSurface.zxAxisPlane.drawLabelsMode = EAxisPlaneDrawLabelsMode.LocalY;
+            }
+        }
+    };
+
+    const setDrawTitlesMode = (plane: string, mode: string) => {
+        if (plane === "xy") {
+            if (mode === "both") {
+                sciChart3DSurface.xyAxisPlane.drawTitlesMode = EAxisPlaneDrawLabelsMode.Both;
+            }
+            if (mode === "hidden") {
+                sciChart3DSurface.xyAxisPlane.drawTitlesMode = EAxisPlaneDrawLabelsMode.Hidden;
+            }
+            if (mode === "localx") {
+                sciChart3DSurface.xyAxisPlane.drawTitlesMode = EAxisPlaneDrawLabelsMode.LocalX;
+            }
+            if (mode === "localy") {
+                sciChart3DSurface.xyAxisPlane.drawTitlesMode = EAxisPlaneDrawLabelsMode.LocalY;
+            }
+        }
+
+        if (plane === "zy") {
+            if (mode === "both") {
+                sciChart3DSurface.zyAxisPlane.drawTitlesMode = EAxisPlaneDrawLabelsMode.Both;
+            }
+            if (mode === "hidden") {
+                sciChart3DSurface.zyAxisPlane.drawTitlesMode = EAxisPlaneDrawLabelsMode.Hidden;
+            }
+            if (mode === "localx") {
+                sciChart3DSurface.zyAxisPlane.drawTitlesMode = EAxisPlaneDrawLabelsMode.LocalX;
+            }
+            if (mode === "localy") {
+                sciChart3DSurface.zyAxisPlane.drawTitlesMode = EAxisPlaneDrawLabelsMode.LocalY;
+            }
+        }
+
+        if (plane === "zx") {
+            if (mode === "both") {
+                sciChart3DSurface.zxAxisPlane.drawTitlesMode = EAxisPlaneDrawLabelsMode.Both;
+            }
+            if (mode === "hidden") {
+                sciChart3DSurface.zxAxisPlane.drawTitlesMode = EAxisPlaneDrawLabelsMode.Hidden;
+            }
+            if (mode === "localx") {
+                sciChart3DSurface.zxAxisPlane.drawTitlesMode = EAxisPlaneDrawLabelsMode.LocalX;
+            }
+            if (mode === "localy") {
+                sciChart3DSurface.zxAxisPlane.drawTitlesMode = EAxisPlaneDrawLabelsMode.LocalY;
+            }
+        }
+    };
+
+    const setVisabilityMode = (plane: string, mode: string) => {
+        if (plane === "xy") {
+            if (mode === "auto") {
+                sciChart3DSurface.xyAxisPlane.visibilityMode = EAxisPlaneVisibilityMode.Auto;
+            }
+            if (mode === "negativeSide") {
+                sciChart3DSurface.xyAxisPlane.visibilityMode = EAxisPlaneVisibilityMode.NegativeSide;
+            }
+            if (mode === "positiveSide") {
+                sciChart3DSurface.xyAxisPlane.visibilityMode = EAxisPlaneVisibilityMode.PositiveSide;
+            }
+        }
+
+        if (plane === "zy") {
+            if (mode === "auto") {
+                sciChart3DSurface.zyAxisPlane.visibilityMode = EAxisPlaneVisibilityMode.Auto;
+            }
+            if (mode === "negativeSide") {
+                sciChart3DSurface.zyAxisPlane.visibilityMode = EAxisPlaneVisibilityMode.NegativeSide;
+            }
+            if (mode === "positiveSide") {
+                sciChart3DSurface.zyAxisPlane.visibilityMode = EAxisPlaneVisibilityMode.PositiveSide;
+            }
+        }
+
+        if (plane === "zx") {
+            if (mode === "auto") {
+                sciChart3DSurface.zxAxisPlane.visibilityMode = EAxisPlaneVisibilityMode.Auto;
+            }
+            if (mode === "negativeSide") {
+                sciChart3DSurface.zxAxisPlane.visibilityMode = EAxisPlaneVisibilityMode.NegativeSide;
+            }
+            if (mode === "positiveSide") {
+                sciChart3DSurface.zxAxisPlane.visibilityMode = EAxisPlaneVisibilityMode.PositiveSide;
+            }
+        }
+    };
+
+    // Doesn't work??
+    // sciChart3DSurface.xAxis.axisPlaneBackgroundFill = "red";
+
+    sciChart3DSurface.xAxis.planeBorderColor = "red";
+    sciChart3DSurface.xAxis.planeBorderThickness = 20;
 
     // title offset
 
@@ -193,7 +390,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     }
 
     // set orage color to selected (at start) x axis
-    sciChart3DSurface.xAxis.titleStyle.color = appTheme.MutedOrange;
+    sciChart3DSurface.xAxis.titleStyle.color = appTheme.VividOrange;
 
     // update axis title color based on selected axis
     const updateAxisTitleColor = (axis?: "x" | "y" | "z") => {
@@ -202,13 +399,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChart3DSurface.zAxis.titleStyle.color = "white";
 
         if (axis === "x" || !axis) {
-            sciChart3DSurface.xAxis.titleStyle.color = appTheme.MutedOrange;
+            sciChart3DSurface.xAxis.titleStyle.color = appTheme.VividOrange;
         }
         if (axis === "y" || !axis) {
-            sciChart3DSurface.yAxis.titleStyle.color = appTheme.MutedOrange;
+            sciChart3DSurface.yAxis.titleStyle.color = appTheme.VividOrange;
         }
         if (axis === "z" || !axis) {
-            sciChart3DSurface.zAxis.titleStyle.color = appTheme.MutedOrange;
+            sciChart3DSurface.zAxis.titleStyle.color = appTheme.VividOrange;
         }
     };
 
@@ -228,15 +425,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         // sciChart3DSurface.yAxis.axisTitleStyle // future update
     };
-
-    sciChart3DSurface.xAxis.drawMajorBands = true;
-    sciChart3DSurface.xAxis.axisBandsFill = appTheme.MutedBlue + "cc";
-
-    sciChart3DSurface.yAxis.drawMajorBands = true;
-    sciChart3DSurface.yAxis.axisBandsFill = appTheme.MutedBlue + "cc";
-
-    sciChart3DSurface.zAxis.drawMajorBands = true;
-    sciChart3DSurface.zAxis.axisBandsFill = appTheme.MutedBlue + "cc";
 
     const enableGridBands = (enable: boolean, axis?: "x" | "y" | "z") => {
         if (axis === "x" || !axis) sciChart3DSurface.xAxis.drawMajorBands = enable;
@@ -269,6 +457,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         enableMajorGridLines,
         setLabelOrientationMode,
         updateAxisTitleColor,
+        setVisabilityMode,
+        setDrawTitlesMode,
+        setDrawLabelsMode,
+        setIsVisible,
+        setPlaneBackground,
     };
 
     return { sciChartSurface: sciChart3DSurface, wasmContext, controls };
