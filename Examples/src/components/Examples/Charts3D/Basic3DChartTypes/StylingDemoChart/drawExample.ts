@@ -71,7 +71,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const camera = sciChart3DSurface.camera;
     camera.position = new Vector3(-190.48, 272.08, -529.63);
     camera.target = new Vector3(0, 60, 0);
-    
+
     // propertyChanged is raised each time any property changes on the camera
     // camera.propertyChanged.subscribe(args => {
     //     // Log current properties to console. debugOutput returns array of strings
@@ -131,23 +131,25 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChart3DSurface.zAxis.axisBandsFill = appTheme.MutedBlue + "cc";
 
     const setPlaneBackground = (plane: string) => {
-        sciChart3DSurface.xAxis.axisBandsFill = appTheme.MutedBlue + "cc";
-        sciChart3DSurface.yAxis.axisBandsFill = appTheme.MutedBlue + "cc";
-        sciChart3DSurface.zAxis.axisBandsFill = appTheme.MutedBlue + "cc";
-
         if (plane === "xy") {
             sciChart3DSurface.xAxis.axisBandsFill = appTheme.MutedOrange + "cc";
             sciChart3DSurface.yAxis.axisBandsFill = appTheme.MutedOrange + "cc";
+
+            sciChart3DSurface.zAxis.axisBandsFill = appTheme.MutedBlue + "cc";
         }
 
         if (plane === "zy") {
             sciChart3DSurface.yAxis.axisBandsFill = appTheme.MutedOrange + "cc";
             sciChart3DSurface.zAxis.axisBandsFill = appTheme.MutedOrange + "cc";
+
+            sciChart3DSurface.xAxis.axisBandsFill = appTheme.MutedBlue + "cc";
         }
 
         if (plane === "zx") {
             sciChart3DSurface.xAxis.axisBandsFill = appTheme.MutedOrange + "cc";
             sciChart3DSurface.zAxis.axisBandsFill = appTheme.MutedOrange + "cc";
+
+            sciChart3DSurface.yAxis.axisBandsFill = appTheme.MutedBlue + "cc";
         }
     };
 
@@ -315,8 +317,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Doesn't work??
     // sciChart3DSurface.xAxis.axisPlaneBackgroundFill = "red";
 
-    sciChart3DSurface.xAxis.planeBorderColor = "red";
-    sciChart3DSurface.xAxis.planeBorderThickness = 20;
+    // sciChart3DSurface.xAxis.planeBorderColor = "red";
+    // sciChart3DSurface.xAxis.planeBorderThickness = 20;
 
     // title offset
 
@@ -391,21 +393,36 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // set orage color to selected (at start) x axis
     sciChart3DSurface.xAxis.titleStyle.color = appTheme.VividOrange;
+    sciChart3DSurface.xAxis.labelStyle.color = appTheme.VividOrange;
 
     // update axis title color based on selected axis
     const updateAxisTitleColor = (axis?: "x" | "y" | "z") => {
-        sciChart3DSurface.xAxis.titleStyle.color = "white";
-        sciChart3DSurface.yAxis.titleStyle.color = "white";
-        sciChart3DSurface.zAxis.titleStyle.color = "white";
-
         if (axis === "x" || !axis) {
             sciChart3DSurface.xAxis.titleStyle.color = appTheme.VividOrange;
+            sciChart3DSurface.xAxis.labelStyle.color = appTheme.VividOrange;
+
+            sciChart3DSurface.yAxis.titleStyle.color = "white";
+            sciChart3DSurface.zAxis.titleStyle.color = "white";
+            sciChart3DSurface.yAxis.labelStyle.color = "white";
+            sciChart3DSurface.zAxis.labelStyle.color = "white";
         }
         if (axis === "y" || !axis) {
             sciChart3DSurface.yAxis.titleStyle.color = appTheme.VividOrange;
+            sciChart3DSurface.yAxis.labelStyle.color = appTheme.VividOrange;
+
+            sciChart3DSurface.xAxis.titleStyle.color = "white";
+            sciChart3DSurface.zAxis.titleStyle.color = "white";
+            sciChart3DSurface.xAxis.labelStyle.color = "white";
+            sciChart3DSurface.zAxis.labelStyle.color = "white";
         }
         if (axis === "z" || !axis) {
             sciChart3DSurface.zAxis.titleStyle.color = appTheme.VividOrange;
+            sciChart3DSurface.zAxis.labelStyle.color = appTheme.VividOrange;
+
+            sciChart3DSurface.xAxis.titleStyle.color = "white";
+            sciChart3DSurface.yAxis.titleStyle.color = "white";
+            sciChart3DSurface.xAxis.labelStyle.color = "white";
+            sciChart3DSurface.yAxis.labelStyle.color = "white";
         }
     };
 
