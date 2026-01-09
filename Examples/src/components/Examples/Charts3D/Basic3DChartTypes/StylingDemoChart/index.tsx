@@ -68,7 +68,7 @@ export default function StylingDemoChart() {
     );
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
-    const [selectedPlane, setSelectedPlane] = useState<"xy" | "zy" | "zx">("xy");
+    const [selectedPlane, setSelectedPlane] = useState<"xy" | "zy" | "zx">("zx");
     const [visabilityMode, setVisabilityMode] = useState("auto");
     const [planeDrawTitlesMode, setPlaneDrawTitlesMode] = useState("both");
     const [planeDrawLabelsMode, setPlaneDrawLabelsMode] = useState("both");
@@ -154,6 +154,8 @@ export default function StylingDemoChart() {
 
         setSelectedAxis(selectedAxis);
         controlsRef.current.updateAxisTitleColor(selectedAxis);
+
+        // controlsRef.current.enableMajorGridLines(true, selectedAxis)
     };
 
     const handleLabelOrientationModeChange = (e: { target: { value: string } }) => {

@@ -125,10 +125,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChart3DSurface.xAxis.axisBandsFill = appTheme.MutedOrange + "cc";
 
     sciChart3DSurface.yAxis.drawMajorBands = true;
-    sciChart3DSurface.yAxis.axisBandsFill = appTheme.MutedOrange + "cc";
+    sciChart3DSurface.yAxis.axisBandsFill = appTheme.MutedBlue + "cc";
 
     sciChart3DSurface.zAxis.drawMajorBands = true;
-    sciChart3DSurface.zAxis.axisBandsFill = appTheme.MutedBlue + "cc";
+    sciChart3DSurface.zAxis.axisBandsFill = appTheme.MutedOrange + "cc";
 
     const setPlaneBackground = (plane: string) => {
         if (plane === "xy") {
@@ -454,9 +454,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChart3DSurface.zAxis.majorGridLineStyle.color = "red";
 
     const enableMajorGridLines = (enable: boolean, axis?: "x" | "y" | "z") => {
-        if (axis === "x" || !axis) sciChart3DSurface.xAxis.drawMajorGridLines = enable;
-        if (axis === "y" || !axis) sciChart3DSurface.yAxis.drawMajorGridLines = enable;
-        if (axis === "z" || !axis) sciChart3DSurface.zAxis.drawMajorGridLines = enable;
+        if (axis === "x" || !axis) {
+            sciChart3DSurface.xAxis.drawMajorGridLines = enable;
+        }
+        if (axis === "y" || !axis) {
+            sciChart3DSurface.yAxis.drawMajorGridLines = enable;
+        }
+        if (axis === "z" || !axis) {
+            sciChart3DSurface.zAxis.drawMajorGridLines = enable;
+        }
     };
 
     const setLabelOrientationMode = (mode: E3DLabelOrientationMode, axis?: "x" | "y" | "z") => {
