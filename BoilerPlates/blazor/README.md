@@ -20,7 +20,7 @@ cd MyBlazorApp
 dotnet run
 ```
 
-# Blazor JavaScript Interop
+## Blazor JavaScript Interop
 
 To interop with JS we updated `Components\Pages\Home.razor` page and created `wwwroot\chartInterop.js` file.
 
