@@ -454,6 +454,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChart3DSurface.zAxis.majorGridLineStyle.color = "red";
 
     const enableMajorGridLines = (enable: boolean, axis?: "x" | "y" | "z") => {
+        sciChart3DSurface.xAxis.drawMajorGridLines = false;
+        sciChart3DSurface.yAxis.drawMajorGridLines = false;
+        sciChart3DSurface.zAxis.drawMajorGridLines = false;
+
         if (axis === "x" || !axis) {
             sciChart3DSurface.xAxis.drawMajorGridLines = enable;
         }

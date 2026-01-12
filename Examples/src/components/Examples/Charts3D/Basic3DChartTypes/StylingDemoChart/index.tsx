@@ -66,6 +66,8 @@ export default function StylingDemoChart() {
     const [labelOrientationMode, setLabelOrientationMode] = useState<E3DLabelOrientationMode>(
         E3DLabelOrientationMode.Auto
     );
+    const [enableMajorGridLines, setEnableMajorGridLines] = useState("false")
+
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
     const [selectedPlane, setSelectedPlane] = useState<"xy" | "zy" | "zx">("zx");
@@ -162,6 +164,15 @@ export default function StylingDemoChart() {
         const newMode = e.target.value as E3DLabelOrientationMode;
         setLabelOrientationMode(newMode);
         controlsRef.current.setLabelOrientationMode(newMode, selectedAxis);
+    };
+
+    const handleEnableMajorGridLines = (e: { target: { value: string } }) => {
+        const newMode = e.target.value;
+        const newModeBool = e.target.value === "true" 
+        console.log(newMode)
+
+        setEnableMajorGridLines(newMode);
+        controlsRef.current.enableMajorGridLines(newModeBool, selectedAxis);
     };
 
     const controlPanel = (
@@ -295,6 +306,28 @@ export default function StylingDemoChart() {
                             >
                                 <MenuItem value={E3DLabelOrientationMode.Auto}>Auto</MenuItem>
                                 <MenuItem value={E3DLabelOrientationMode.Horizontal}>Horizontal</MenuItem>
+                            </Select>
+                        </FormControl>
+
+                        <Typography variant="inherit" className={commonClasses.FormControlLabel}>
+                            Enable Major Grid Lines
+                        </Typography>
+                        <FormControl fullWidth className={commonClasses.formControl}>
+                            <Select
+                                labelId="label-orientation-label"
+                                id="label-orientation"
+                                variant="standard"
+                                inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
+                                sx={{
+                                    margin: "0.5em 0em",
+                                    color: "inherit",
+                                    "& .MuiSvgIcon-root": { color: "inherit" },
+                                }}
+                                value={enableMajorGridLines}
+                                onChange={handleEnableMajorGridLines}
+                            >
+                                <MenuItem value={"true"}>Enable</MenuItem>
+                                <MenuItem value={"false"}>Disable</MenuItem>
                             </Select>
                         </FormControl>
                     </FormControl>
