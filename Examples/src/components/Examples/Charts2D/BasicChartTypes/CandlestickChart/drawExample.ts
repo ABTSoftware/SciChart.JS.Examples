@@ -36,6 +36,10 @@ import {
 import { appTheme } from "../../../theme";
 import { simpleBinanceRestClient } from "../../../ExampleData/binanceRestClient";
 import { ExampleDataProvider, TPriceBar } from "../../../ExampleData/ExampleDataProvider";
+import {
+    DEFAULT_LABEL_THRESHOLDS,
+    ETradeChartLabelFormat,
+} from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
 
 const Y_AXIS_VOLUME_ID = "Y_AXIS_VOLUME_ID";
 
@@ -49,6 +53,9 @@ export const drawExample = (dataSource: string) => async (rootElement: string | 
     const xAxis = new DiscontinuousDateAxis(wasmContext, {
         // autoRange.never as we're setting visibleRange explicitly below. If you dont do this, leave this flag default
         autoRange: EAutoRange.Never,
+        cursorLabelFormat: ENumericFormat.Date_HHMM,
+        // Increase this threshold as the default value is right on our default range
+        labelThresholds: { [ETradeChartLabelFormat.Minutes]: 60 * 60 * 24 * 10 },
     });
     sciChartSurface.xAxes.add(xAxis);
 
@@ -88,15 +95,8 @@ export const drawExample = (dataSource: string) => async (rootElement: string | 
     if (dataSource !== "Random") {
         priceBars = await simpleBinanceRestClient.getCandles("BTCUSDT", "1h", startDate, endDate, 500, dataSource);
     } else {
-        priceBars = ExampleDataProvider.getRandomCandles(300, 60000, startDate, 60 * 60);
+        priceBars = ExampleDataProvider.getRandomCandles(300, 60000, startDate, 60 * 60, true);
     }
-
-    // Filter out weekends (Saturday = 6, Sunday = 0)
-    priceBars = priceBars.filter((priceBar: any) => {
-        const date = new Date(priceBar.date * 1000); // Convert timestamp to Date
-        const dayOfWeek = date.getDay();
-        return dayOfWeek !== 0 && dayOfWeek !== 6; // Keep only Monday(1) through Friday(5)
-    });
 
     // Maps PriceBar { date, open, high, low, close, volume } to structure-of-arrays expected by scichart
     priceBars.forEach((priceBar: any) => {
@@ -108,9 +108,9 @@ export const drawExample = (dataSource: string) => async (rootElement: string | 
         volumeValues.push(priceBar.volume);
     });
     // Zoom to the latest 100 candles
-    const startViewportRange = new Date();
-    startViewportRange.setHours(startDate.getHours() - 100);
-    xAxis.visibleRange = new NumberRange(startViewportRange.getTime() / 1000, endDate.getTime() / 1000);
+    const lastBar = priceBars[priceBars.length - 1];
+    const firstVisiblebar = priceBars[priceBars.length - 100];
+    xAxis.visibleRange = new NumberRange(firstVisiblebar.date, lastBar.date);
 
     // Create and add the Candlestick series
     // The Candlestick Series requires a special dataseries type called OhlcDataSeries with o,h,l,c and date values
