@@ -210,9 +210,16 @@ export class ExampleDataProvider {
         return values;
     };
 
-    static getRandomCandles = (count: number, startPrice: number, startDate: Date, interval: number) => {
+    static getRandomCandles = (
+        count: number,
+        startPrice: number,
+        startDate: Date,
+        interval: number,
+        skipWeekends = false
+    ) => {
+        const startTime = Math.floor(startDate.getTime() / 1000 / interval) * interval;
         let p: TPriceBar = {
-            date: startDate.getTime() / 1000,
+            date: startTime,
             open: startPrice,
             high: startPrice,
             low: startPrice,
@@ -229,8 +236,12 @@ export class ExampleDataProvider {
                 p.volume += Math.abs(r) * 200;
             }
             bars.push(p);
+            let date = (p.date += interval);
+            if (skipWeekends && new Date(date * 1000).getDay() > 4) {
+                date += 48 * 60 * 60;
+            }
             p = {
-                date: (p.date += interval),
+                date,
                 open: p.close,
                 high: p.close,
                 low: p.close,
