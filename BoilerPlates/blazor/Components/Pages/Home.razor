@@ -1,0 +1,29 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@inject IJSRuntime JS
+
+<PageTitle>SciChart.js with Blazor</PageTitle>
+
+<h1>SciChart.js with Blazor</h1>
+
+<div id="myChart" style="width: 900px; height:600px"></div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync(
+                "renderChart",
+                "myChart",
+                new[] { 0, 1, 2, 3, 4 },
+                new[] { 2, 1, 4, 3, 2 }
+            );
+        }
+    }
+    
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("Initialized");
+    }
+}

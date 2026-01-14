@@ -1,5 +1,5 @@
-import GitHubIcon from "@mui/icons-material/GitHub";
-import SubdirectoryArrowRight from "@mui/icons-material/SubdirectoryArrowRight";
+import { GitHub as GitHubIcon } from "@mui/icons-material";
+import { SubdirectoryArrowRight } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { FC, useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router";
@@ -39,10 +39,10 @@ const ExamplesRoot: FC<TProps> = (props) => {
     const titleText = examplePage
         ? getFrameworkContent(examplePage.title, framework)
         : ExampleStrings.siteHomeTitle(frameworkName);
-        
+
     const seoPrefixTitle = getFrameworkContent(examplePage.pageTitle, framework);
     const seoTitleText = seoPrefixTitle + ExampleStrings.exampleGenericTitleSuffix(framework, seoPrefixTitle.length);
-    
+
     const subtitleText = examplePage ? examplePage.subtitle(frameworkName) : undefined;
 
     const documentationLinks = examplePage ? examplePage.documentationLinks : undefined;

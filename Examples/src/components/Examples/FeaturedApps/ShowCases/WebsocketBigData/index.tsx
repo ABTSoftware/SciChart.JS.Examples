@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import CloseIcon from "@mui/icons-material/Close";
-import SettingsIcon from "@mui/icons-material/Settings";
+import { Settings as SettingsIcon } from "@mui/icons-material";
 
 // Note: `Mark` needs to be imported directly from the module as it is no longer exported from `@mui/material`.
 // The direct import for Mark is as follows:

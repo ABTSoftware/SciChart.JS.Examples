@@ -1,5 +1,5 @@
 import * as React from "react";
-import SettingsIcon from "@mui/icons-material/Settings";
+import { Settings as SettingsIcon } from "@mui/icons-material";
 import { CSSProperties, ChangeEventHandler, useEffect, useRef, useState } from "react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { ChartModifierBase2D, ISciChartSubSurface } from "scichart";

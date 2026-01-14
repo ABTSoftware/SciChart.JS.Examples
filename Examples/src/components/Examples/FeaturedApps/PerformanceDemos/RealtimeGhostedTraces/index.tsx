@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import PauseIcon from "@mui/icons-material/Pause";
+import { PlayArrow as PlayArrowIcon } from "@mui/icons-material";
+import { Pause as PauseIcon } from "@mui/icons-material";
 import Button from "@mui/material/Button";
 import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";

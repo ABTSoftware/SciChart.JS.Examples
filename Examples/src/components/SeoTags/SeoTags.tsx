@@ -21,8 +21,7 @@ const SeoTags: FC<TProps> = (props) => {
     const exampleUrl = rawUrl.replace(/\/+$/, "");
 
     useEffect(() => {
-        if (window.location.pathname.endsWith("/") &&
-            window.location.pathname !== "/") {
+        if (window.location.pathname.endsWith("/") && window.location.pathname !== "/") {
             const noSlash = window.location.pathname.replace(/\/+$/, "");
             window.history.replaceState({}, "", noSlash + window.location.search);
         }

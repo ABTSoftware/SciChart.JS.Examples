@@ -15,12 +15,12 @@ const plugins = [rehypeRaw as any];
 const MarkdownContent: FC<TProps> = (props) => {
     const { currentExample, selectedFramework } = props;
     return (
-        <div 
+        <div
             id="EXAMPLE_MARKDOWN_CONTENT"
             style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '5px',
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
             }}
             className={classes.MARKDOWN_CONTENT}
         >

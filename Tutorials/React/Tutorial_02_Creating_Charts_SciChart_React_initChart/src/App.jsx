@@ -23,7 +23,7 @@ const initChart = async (rootElement) => {
       id: "New SciChart Chart",
       theme: new SciChartJsNavyTheme(),
       title: "SciChart-React with initChart",
-      titleStyle: { fontSize: 16, color: "White " },
+      titleStyle: { fontSize: 16, color: "white" },
     }
   );
   sciChartSurface.xAxes.add(

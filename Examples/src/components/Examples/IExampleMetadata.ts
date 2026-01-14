@@ -3,27 +3,27 @@ export interface IExampleMetadata {
     exampleTitle?: string;
     id: string; // another different unique id!!
     /** Path to the example's thumbnail image */
-    imagePath: string; 
+    imagePath: string;
     /** General description of the example */
-    description: string; 
+    description: string;
     /** Array of tips related to the example */
-    tips: string[]; 
+    tips: string[];
     /** Framework-specific data keyed by framework name (e.g., "react", "angular", "javascript") */
-    frameworks: Record<string, IFrameworkData>; 
+    frameworks: Record<string, IFrameworkData>;
     /** Links to related documentation */
-    documentationLinks?: IDocumentationLink[]; 
+    documentationLinks?: IDocumentationLink[];
     /** URL path for the example */
-    path: string; 
+    path: string;
     /** Meta keywords for SEO */
-    metaKeywords: string; 
+    metaKeywords: string;
     /** Whether the example is shown on the website */
-    onWebsite: boolean; 
+    onWebsite: boolean;
     /** File path for the example - helpful for showing the right folder source code in the demo */
-    filepath: string; 
+    filepath: string;
     /** The image that will appear in the example grid */
     thumbnailImage: string;
-    /** Optional layout type for the example page 
-     * @options "default" | "max-width"  
+    /** Optional layout type for the example page
+     * @options "default" | "max-width"
      * @note choose "max-width" for a big dashboard example
      */
     pageLayout?: string;
@@ -33,14 +33,14 @@ export interface IExampleMetadata {
     markdownContent?: string | null;
     reactComponent?: string | null;
     /** Flag to indicate if the example is new (if new it will have a banner across the thumbnail) */
-    isNew?: boolean; 
+    isNew?: boolean;
     /**
      * Optional alternative names for the chart type that will be displayed on the example page, under the description
-     * 
+     *
      * @example "This type of plot is also known as a Spider Chart, Web Chart, Cobweb Chart, or Kiviat Chart"
      *
      * @example "This chart type is also known as a Scatter Plot, Dot Plot, or XY-Plot"
-     * 
+     *
      * !! Markdown formatting supported
      */
     alsoKnownAs?: string;
@@ -53,24 +53,24 @@ export interface IDocumentationLink {
 }
 
 export interface IFrameworkData {
-    /** 
-     * The subtitle `<h2>` that shows under the title  
+    /**
+     * The subtitle `<h2>` that shows under the title
      * @note Markdown formatted string
      */
-    subtitle: string; 
-    /** 
-     * The title that will show on the example page as the `<h1>` 
+    subtitle: string;
+    /**
+     * The title that will show on the example page as the `<h1>`
      * @note Markdown formatted string
      */
-    title: string; 
-    /** 
+    title: string;
+    /**
      * The page title (what shows in the browser tab)
      */
-    pageTitle: string; 
-    /** 
-     * Meta description (what shows in search engine results under the page title) 
+    pageTitle: string;
+    /**
+     * Meta description (what shows in search engine results under the page title)
      * @note Plain text string (not MD)
      */
-    metaDescription: string; 
-    markdownContent: string | null; 
+    metaDescription: string;
+    markdownContent: string | null;
 }

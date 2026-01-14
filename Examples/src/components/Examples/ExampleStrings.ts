@@ -11,24 +11,27 @@ export const ExampleStrings = {
     exampleGenericTitleSuffix: (frameworkName: TFrameworkName | EPageFramework, prefixLength?: number) => {
         // to make sure there are no long titles (it ideally should be between 45-60 characters)
         if (prefixLength > 64) {
-            console.warn(`The meta title is too long (${prefixLength} characters long) and may be truncated in search results. Consider using titles under 60 characters.`);
+            console.warn(
+                `The meta title is too long (${prefixLength} characters long) and may be truncated in search results. Consider using titles under 60 characters.`
+            );
         }
-        if (prefixLength > 50) { // [51, +]
+        if (prefixLength > 50) {
+            // [51, +]
             return ``;
-        }
-        else if (prefixLength > 43) { // [44, 50]
+        } else if (prefixLength > 43) {
+            // [44, 50]
             return ` | SciChart`;
-        }
-        else if (prefixLength > 38) { // [39, 43]
+        } else if (prefixLength > 38) {
+            // [39, 43]
             return ` | SciChart.js`;
-        }
-        else if (prefixLength > 32) { // [33, 38]
+        } else if (prefixLength > 32) {
+            // [33, 38]
             return ` | SciChart.js Demo`;
-        }
-        else if (prefixLength > 25) { // [26, 32]
-            return ` | ${frameworkName.slice(0,1).toUpperCase() + frameworkName.slice(1)} Charts | SciChart.js`
-        }                        // [0, 25]
-        return ` | ${frameworkName.slice(0,1).toUpperCase() + frameworkName.slice(1)} Charts | SciChart.js Demo`
+        } else if (prefixLength > 25) {
+            // [26, 32]
+            return ` | ${frameworkName.slice(0, 1).toUpperCase() + frameworkName.slice(1)} Charts | SciChart.js`;
+        } // [0, 25]
+        return ` | ${frameworkName.slice(0, 1).toUpperCase() + frameworkName.slice(1)} Charts | SciChart.js Demo`;
     },
 
     // Documentation links and link tooltips
