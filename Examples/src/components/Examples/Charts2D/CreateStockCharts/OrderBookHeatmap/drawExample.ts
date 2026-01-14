@@ -59,7 +59,7 @@ async function loadCandleData(): Promise<TCandleData> {
     const volumeValues: number[] = [];
 
     try {
-        const filepath = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/1s/BTCUSDT_OHLC.csv";
+        const filepath = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/12min/LTCUSDT_OHLC.csv";
         const response = await fetch(filepath);
 
         if (!response.ok) {
@@ -124,16 +124,21 @@ type TParsedHeatmapData = {
     zValues: number[][];
     xCellOffsets: number[];
     yCellOffsets: number[];
+    minValue: number;
+    maxValue: number;
 };
 
 async function loadHeatmapData(): Promise<TParsedHeatmapData> {
     const zValues: number[][] = [];
     let xCellOffsets: number[] = [];
     const yCellOffsets: number[] = [];
+    let minValue = Infinity;
+    let maxValue = -Infinity;
 
     try {
         // File copied in webpack.config.js
-        const dataFile = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/1s/orderbook_levels.csv";
+        const dataFile =
+            "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/12min/orderbook_levels.csv";
         const response = await fetch(dataFile);
         const csvText = await response.text();
 
@@ -159,13 +164,29 @@ async function loadHeatmapData(): Promise<TParsedHeatmapData> {
                 const [price, ...zValuesRow] = rowData;
 
                 if (!Number.isNaN(Number.parseInt(price))) {
-                    zValues.push(zValuesRow.map((val: string) => Number.parseFloat(val) || 0));
-                    yCellOffsets.push(Number.parseInt(price));
+                    const rowValues = zValuesRow.map((val: string) => {
+                        const numVal = Number.parseFloat(val) || 0;
+                        // Track min/max values for non-zero values
+                        if (numVal > 0) {
+                            minValue = Math.min(minValue, numVal);
+                            maxValue = Math.max(maxValue, numVal);
+                        }
+                        return numVal;
+                    });
+
+                    zValues.push(rowValues);
+                    yCellOffsets.push(Number.parseFloat(price));
                 }
             }
         }
 
-        return { zValues, xCellOffsets, yCellOffsets };
+        // Handle edge case where no valid values were found
+        if (minValue === Infinity) {
+            minValue = 0;
+            maxValue = 1;
+        }
+
+        return { zValues, xCellOffsets, yCellOffsets, minValue, maxValue };
     } catch (error) {
         console.error("Error loading heatmap data:", error);
         throw error;
@@ -206,20 +227,75 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const { xValues, openValues, highValues, lowValues, closeValues, volumeValues } = await loadCandleData();
 
+    const { zValues, xCellOffsets, yCellOffsets, minValue, maxValue } = await loadHeatmapData();
+
+    console.log({ minValue, maxValue });
+
+    // #1034A6 - Egyptian Blue (lowest)
+
+    // #412F88 - Purple
+
+    // #722B6A - Magenta
+
+    // #A2264B - Amaranth Purple
+
+    // #D3212D - Amaranth Red
+
+    // #F62D2D - Deep Red (highest)
+
+    // const gradientStops = [
+    //     { offset: 0, color: appTheme.DarkIndigo },
+    //     { offset: 0.03, color: "#412F88" },
+    //     { offset: 0.05, color: "#722B6A" },
+    //     { offset: 0.07, color: "#A2264B" },
+    //     { offset: 0.5, color: "#D3212D" },
+    //     { offset: 1, color: "#F62D2D" },
+    // ];
+
+    // const gradientStops = [
+    //     { offset: 0, color: appTheme.DarkIndigo },
+    //     { offset: 0.03, color: appTheme.VividPurple },
+    //     { offset: 0.05, color: appTheme.VividBlue },
+    //     { offset: 0.07, color: appTheme.PaleOrange },
+    //     { offset: 0.5, color: appTheme.VividRed },
+    // ];
+
+    // #1d4877 - Dark blue (lowest liquidity)
+
+    // #1b8a5a - Teal/cyan
+
+    // #fbb021 - Yellow (medium)
+
+    // #f68838 - Orange
+
+    // #ee3e32 - Red (highest liquidity)
+
+    // const gradientStops = [
+    //     { offset: 0, color: appTheme.DarkIndigo },
+    //     { offset: 0.03, color: "#1b8a5a" },
+    //     { offset: 0.05, color: "#fbb021" },
+    //     { offset: 0.07, color: "#f68838" },
+    //     { offset: 0.5, color: "#ee3e32" },
+    // ];
+
     const gradientStops = [
         { offset: 0, color: appTheme.DarkIndigo },
-        { offset: 0.1, color: appTheme.ForegroundColor },
-        { offset: 0.4, color: appTheme.PaleTeal},
-        { offset: 0.7, color: appTheme.PaleOrange },
+        { offset: 0.03, color: appTheme.ForegroundColor },
         { offset: 1, color: appTheme.VividRed },
     ];
+
+    //     #005AD9 - Blue (low)
+
+    // #FFE135 - Yellow (medium)
+
+    // #E60026 - Red (high)
+
+    // Create color map with dynamic range based on actual data spread
     const colorMap = new HeatmapColorMap({
-        minimum: 0,
-        maximum: 1,
+        minimum: minValue,
+        maximum: maxValue,
         gradientStops,
     });
-
-    const { zValues, xCellOffsets, yCellOffsets } = await loadHeatmapData();
 
     // Calculate the average step size from all timestamps to get more accurate spacing
     let totalStep = 0;
@@ -255,7 +331,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a Heatmap RenderableSeries with the color map. ColorMap.minimum/maximum defines the values in
     // HeatmapDataSeries which correspond to gradient stops at 0..1
     const heatmapSeries = new UniformHeatmapRenderableSeries(wasmContext, {
-        opacity: 0.8,
+        opacity: 0.4,
         dataSeries: heatmapDataSeries,
         colorMap,
     });
@@ -287,7 +363,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         highValues,
         lowValues,
         closeValues,
-        dataSeriesName: "BTC/USDT",
+        dataSeriesName: "LTC/USDT",
     });
     const candlestickSeries = new FastCandlestickRenderableSeries(wasmContext, {
         dataSeries: candleDataSeries,
@@ -299,9 +375,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         strokeDown: appTheme.MutedRed,
         dataPointWidth: 0.8, // Make candlesticks wider
         isVisible: true, // Explicitly set to visible
-        opacity: 0.2,
+        opacity: 1,
     });
-    sciChartSurface.renderableSeries.add(candlestickSeries);
+
     console.log("Added candlestick series with", candleDataSeries.count(), "data points");
 
     // Add an Ohlcseries. this will be invisible to begin with
@@ -314,7 +390,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         strokeDown: appTheme.MutedRed,
         isVisible: false,
     });
-    sciChartSurface.renderableSeries.add(ohlcSeries); // temp
+    // sciChartSurface.renderableSeries.add(ohlcSeries); // temp
 
     // Add some moving averages using SciChart's filters/transforms API
     // when candleDataSeries updates, XyMovingAverageFilter automatically recomputes
@@ -327,9 +403,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         stroke: appTheme.VividSkyBlue,
         strokeThickness: 2,
         isVisible: true,
-        opacity: 0.2,
+        opacity: 1,
     });
-    sciChartSurface.renderableSeries.add(ma20Series);
+
     console.log("Added MA20 series with", ma20Series.dataSeries.count(), "data points");
 
     const ma50Series = new FastLineRenderableSeries(wasmContext, {
@@ -340,9 +416,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         stroke: appTheme.VividPink,
         strokeThickness: 2,
         isVisible: true,
-        opacity: 0.2,
+        opacity: 1,
     });
-    sciChartSurface.renderableSeries.add(ma50Series);
+
+    // sciChartSurface.renderableSeries.add(candlestickSeries);
+    // sciChartSurface.renderableSeries.add(ma20Series);
+    // sciChartSurface.renderableSeries.add(ma50Series);
+
     console.log("Added MA50 series with", ma50Series.dataSeries.count(), "data points");
 
     // Add volume data onto the chart
@@ -380,7 +460,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             crosshairStroke: appTheme.VividOrange + 55,
             axisLabelFill: appTheme.VividOrange + 55,
             tooltipLegendTemplate: getTooltipLegendTemplate,
-            
         })
     );
 
