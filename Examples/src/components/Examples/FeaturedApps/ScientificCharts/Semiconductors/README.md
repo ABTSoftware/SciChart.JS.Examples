@@ -89,7 +89,7 @@ Data is generated semi-randomly for demonstration purposes in [`waferData.ts`](w
 
 -   [`StackedColumnRenderableSeries`](columnChart.ts:76) displaying three measures as stacked components
 -   [`XyNDataSeries`](columnChart.ts:72) with `arrayCount: 3` for multi-dimensional data
--   Custom selection annotation ([`BoxAnnotation`](columnChart.ts:110)) that highlights selected columns
+-   [`DataPointSelectionPaletteProvider`](columnChart.ts:77) for visual selection feedback
 -   Dynamic column width calculation and coordinate mapping
 
 #### 3. Pareto Chart ([`paretoChart.ts`](paretoChart.ts))
@@ -143,8 +143,7 @@ Each chart exposes specific methods that enable seamless inter-chart coordinatio
     - Different selection mechanisms require manual synchronization between column and Pareto views
 
 3. **Cross-Chart Selection Management**:
-    - Column chart uses `DataPointSelectionModifier` for selection tracking
-    - Pareto chart uses metadata-based selection through shared data objects
+    - Column and Pareto chart share selection information via shared metadata
     - Manual synchronization ensures consistent selection state across both chart types when toggling views
 
 ### Performance Optimizations

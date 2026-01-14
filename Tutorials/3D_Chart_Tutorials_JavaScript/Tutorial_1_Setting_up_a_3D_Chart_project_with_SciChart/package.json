@@ -4,19 +4,18 @@
   "description": "First Tutorial with SciChart.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "start": "webpack-dev-server"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "scichart": "^3.5.711"
+    "scichart": "^5.0.0-alpha.135"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^6.0.3",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "copy-webpack-plugin": "^13.0.0",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
   }
 }
