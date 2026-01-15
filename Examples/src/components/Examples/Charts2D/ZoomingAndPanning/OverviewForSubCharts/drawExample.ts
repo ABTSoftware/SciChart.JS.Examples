@@ -14,13 +14,12 @@ import {
     I2DSubSurfaceOptions,
     EAutoRange,
     RolloverModifier,
+    EXyDirection,
 } from "scichart";
 
 import { appTheme } from "../../../theme";
 import { SubChartsOverviewModifier } from "./SubChartsOverviewModifier";
-import { AxisSynchroniser } from "./AxisSynchroniser";
-
-
+import { AxisSynchroniser } from "../../MultiChart/SyncMultiChart/AxisSynchroniser";
 
 const colorsArr = [
     appTheme.MutedBlue,
@@ -92,6 +91,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             growBy: new NumberRange(0.1, 0.1),
             axisTitle: `Pane ${i + 1}`,
             axisTitleStyle: { fontSize: 14 },
+            drawMinorGridLines: false,
         });
 
         subChart.xAxes.add(subXAxis);
@@ -117,7 +117,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         subChart.chartModifiers.add(
             new ZoomPanModifier(),
-            new MouseWheelZoomModifier(),
+            new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
             new ZoomExtentsModifier(),
             new RolloverModifier({ modifierGroup: "one" })
         );
@@ -135,7 +135,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const overviewModifier = new SubChartsOverviewModifier({
         overviewPosition: new Rect(0, 0.8, 1, 0.2),
         isTransparent: true,
-        colors: colorsArr,
         axisTitle: "Overview - All Charts",
         labelStyle: {
             color: "#ffffff80",
@@ -147,10 +146,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             strokeThickness: 1,
         },
         yAxisGrowBy: new NumberRange(0.1, 0.1),
-        strokeThickness: 2,
-        opacity: 0.8,
-        adjustSubChartPositions: false,
-        overviewHeightRatio: 0.2,
     });
 
     sciChartSurface.chartModifiers.add(overviewModifier);

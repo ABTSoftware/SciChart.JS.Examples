@@ -14,15 +14,16 @@ import {
     OverviewRangeSelectionModifier,
     ISciChartSubSurface,
     IRenderableSeries,
+    buildSeries,
+    IOverviewOptions,
+    IBaseRenderableSeriesOptions,
 } from "scichart";
 
-export interface ISubChartsOverviewModifierOptions extends IChartModifierBaseOptions {
+export interface ISubChartsOverviewModifierOptions extends IChartModifierBaseOptions, IOverviewOptions {
     /** Position of the overview subsurface (default: bottom 20% of the chart) */
     overviewPosition?: Rect;
     /** Whether the overview subsurface should be transparent */
     isTransparent?: boolean;
-    /** Colors array for the overview series */
-    colors?: string[];
     /** Overview axis title */
     axisTitle?: string;
     /** Overview axis label style */
@@ -38,21 +39,6 @@ export interface ISubChartsOverviewModifierOptions extends IChartModifierBaseOpt
     };
     /** Y-axis grow by range */
     yAxisGrowBy?: NumberRange;
-    /** Stroke thickness for overview series */
-    strokeThickness?: number;
-    /** Opacity for overview series */
-    opacity?: number;
-    /**
-     * Whether to automatically adjust subchart positions when overview is attached/detached
-     * If true, subcharts will be resized to make room for overview
-     * If false, overview will overlap with existing content
-     */
-    adjustSubChartPositions?: boolean;
-    /**
-     * The height ratio of the overview (0-1, default: 0.2 = 20%)
-     * Only used when adjustSubChartPositions is true
-     */
-    overviewHeightRatio?: number;
 }
 
 /**
@@ -68,8 +54,6 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
     private overviewYAxis: NumericAxis;
     private rangeSelectionModifier: OverviewRangeSelectionModifier;
     private allSubCharts: ISciChartSubSurface[] = [];
-    private allDataSeries: XyDataSeries[] = [];
-    private seriesColorMap: Map<XyDataSeries, string> = new Map();
 
     constructor(options?: ISubChartsOverviewModifierOptions) {
         super(options);
@@ -87,10 +71,6 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
                 strokeThickness: 1,
             },
             yAxisGrowBy: new NumberRange(0.1, 0.1),
-            strokeThickness: 2,
-            opacity: 0.8,
-            adjustSubChartPositions: false,
-            overviewHeightRatio: 0.2,
             ...options,
         };
     }
@@ -119,27 +99,19 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
 
         // If overview is already created, add series from this subchart
         if (this.overviewSubSurface) {
-            this.addSubChartSeriesToOverview(subChart);
+            this.addSeriesToOverview(subChart.renderableSeries.asArray(), subChart.id);
         }
 
         // Subscribe to series collection changes on this subchart
         subChart.renderableSeries.collectionChanged.subscribe((args) => {
             if (this.overviewSubSurface) {
                 // Handle new series
-
                 if (args.getNewItems()) {
-                    args.getNewItems().forEach((series: IRenderableSeries) => {
-                        if (series.dataSeries instanceof XyDataSeries) {
-                            this.addSeriesToOverview([series.dataSeries]);
-                        }
-                    });
-
-                    // Handle removed series
-                    args.getOldItems().forEach((series: IRenderableSeries) => {
-                        if (series.dataSeries instanceof XyDataSeries) {
-                            this.removeSeriesFromOverview([series.dataSeries]);
-                        }
-                    });
+                    this.addSeriesToOverview(args.getNewItems(), subChart.id);
+                }
+                // Handle removed series
+                if (args.getOldItems()) {
+                    this.removeSeriesFromOverview(args.getOldItems(), subChart.id);
                 }
             }
         });
@@ -152,35 +124,28 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
 
             // Remove corresponding series from overview
             if (this.overviewSubSurface) {
-                const seriesToRemove: XyDataSeries[] = [];
-                subChart.renderableSeries.asArray().forEach((series) => {
-                    if (series.dataSeries instanceof XyDataSeries) {
-                        seriesToRemove.push(series.dataSeries);
-                    }
-                });
-                this.removeSeriesFromOverview(seriesToRemove);
+                this.removeSeriesFromOverview(subChart.renderableSeries.asArray(), subChart.id);
             }
         }
     }
 
     public override onAttachSeries(series: IRenderableSeries): void {
         // Handle series attached to main surface
-        if (series.dataSeries instanceof XyDataSeries && this.overviewSubSurface) {
-            this.addSeriesToOverview([series.dataSeries]);
+        if (this.overviewSubSurface) {
+            this.addSeriesToOverview([series], this.parentSurface.id);
         }
     }
 
     public override onDetachSeries(series: IRenderableSeries): void {
         // Handle series detached from main surface
-        if (series.dataSeries instanceof XyDataSeries && this.overviewSubSurface) {
-            this.removeSeriesFromOverview([series.dataSeries]);
+        if (this.overviewSubSurface) {
+            this.removeSeriesFromOverview([series], this.parentSurface.id);
         }
     }
 
     private initializeOverview(): void {
         this.createOverviewSubSurface();
-        this.collectExistingData();
-        this.addAllSeriesToOverview();
+        this.addAllSeries();
         this.setupRangeSelection();
     }
 
@@ -222,7 +187,9 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
         this.overviewSubSurface.yAxes.add(this.overviewYAxis);
     }
 
-    private collectExistingData(): void {
+    private addAllSeries(): void {
+        this.addSeriesToOverview(this.parentSurface.renderableSeries.asArray(), this.parentSurface.id);
+
         // Collect all existing subcharts and their data
         this.parentSurface.subCharts.forEach((subChart: ISciChartSubSurface) => {
             if (subChart.id !== "overviewSubSurface") {
@@ -232,85 +199,46 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
                 }
 
                 // Collect all data series from this subchart
-                subChart.renderableSeries.asArray().forEach((series) => {
-                    if (series.dataSeries instanceof XyDataSeries && !this.allDataSeries.includes(series.dataSeries)) {
-                        this.allDataSeries.push(series.dataSeries);
-                    }
-                });
+                this.addSeriesToOverview(subChart.renderableSeries.asArray(), subChart.id);
             }
         });
     }
 
-    private addAllSeriesToOverview(): void {
-        if (this.allDataSeries.length > 0) {
-            // Create overview series for all collected data series
-            this.createOverviewSeries(this.allDataSeries);
-        }
-    }
-
-    private addSubChartSeriesToOverview(subChart: ISciChartSubSurface): void {
-        const seriesToAdd: XyDataSeries[] = [];
-        subChart.renderableSeries.asArray().forEach((series) => {
-            if (series.dataSeries instanceof XyDataSeries && !this.allDataSeries.includes(series.dataSeries)) {
-                seriesToAdd.push(series.dataSeries);
-            }
-        });
-
-        if (seriesToAdd.length > 0) {
-            this.addSeriesToOverview(seriesToAdd);
-        }
-    }
-
-    private addSeriesToOverview(dataSeries: XyDataSeries[]): void {
-        // Add new series to tracking and create overview series
-        const newSeries = dataSeries.filter((series) => !this.allDataSeries.includes(series));
-        if (newSeries.length > 0) {
-            this.allDataSeries.push(...newSeries);
-            this.createOverviewSeries(newSeries);
-        }
-    }
-
-    private createOverviewSeries(dataSeries: XyDataSeries[]): void {
-        if (!this.overviewSubSurface) return;
-
-        // This should use same method as normal overview - clone series using toJson then reuse dataSeries
+    private addSeriesToOverview(renderableSeries: IRenderableSeries[], parentId: string): void {
         const wasmContext = this.parentSurface.webAssemblyContext2D;
-        const colors = this.options.colors || ["#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4", "#feca57"];
 
-        dataSeries.forEach((series) => {
-            const colorIndex = this.overviewSubSurface.renderableSeries.asArray().length % colors.length;
-            const color = colors[colorIndex] || "#ffffff";
+        let transform = (rendSeries: IRenderableSeries) => {
+            // return undefined to skip
+            // clone the series using builder api
+            const json = rendSeries.toJSON(true);
+            (json.options as IBaseRenderableSeriesOptions).id = parentId + "_" + rendSeries.id;
+            const [overviewSeries] = buildSeries(wasmContext, json);
+            overviewSeries.dataSeries.delete();
+            overviewSeries.dataSeries = rendSeries.dataSeries;
+            overviewSeries.xAxisId = this.overviewXAxis.id;
+            overviewSeries.yAxisId = this.overviewYAxis.id;
+            return overviewSeries;
+        };
 
-            // Store color mapping
-            this.seriesColorMap.set(series, color);
+        if (this.options?.transformRenderableSeries) {
+            transform = (rs: IRenderableSeries) => this.options?.transformRenderableSeries(rs, this.overviewSubSurface);
+        }
 
-            const overviewSeries = new FastLineRenderableSeries(wasmContext, {
-                dataSeries: series,
-                strokeThickness: this.options.strokeThickness,
-                opacity: this.options.opacity,
-                stroke: color,
-            });
+        const newSeries = renderableSeries.map(transform).filter((rendSeries: IRenderableSeries) => rendSeries);
 
-            this.overviewSubSurface.renderableSeries.add(overviewSeries);
-        });
+        this.overviewSubSurface.renderableSeries.add(...newSeries);
     }
 
-    private removeSeriesFromOverview(dataSeries: XyDataSeries[]): void {
+    private removeSeriesFromOverview(renderableSeries: IRenderableSeries[], parentId: string): void {
         if (!this.overviewSubSurface) return;
 
-        dataSeries.forEach((series) => {
-            const index = this.allDataSeries.indexOf(series);
-            if (index > -1) {
-                this.allDataSeries.splice(index, 1);
-                this.seriesColorMap.delete(series);
-
-                // Find and remove the corresponding overview series
-                const overviewSeries = this.overviewSubSurface.renderableSeries
-                    .asArray()
-                    .find((os) => os.dataSeries === series);
-                if (overviewSeries) {
-                    this.overviewSubSurface.renderableSeries.remove(overviewSeries, true);
-                }
+        renderableSeries.forEach((series) => {
+            // Find and remove the corresponding overview series
+            const overviewSeries = this.overviewSubSurface.renderableSeries.getById(parentId + "_" + series.id);
+            if (overviewSeries) {
+                // Disconnect data before removing and deleting otherwise it would delete the shared dataSeries
+                overviewSeries.dataSeries = undefined;
+                this.overviewSubSurface.renderableSeries.remove(overviewSeries, true);
             }
         });
     }
@@ -347,46 +275,17 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
                     }
                 });
 
-                // Set initial selection to use the full range (0-99) instead of limited range
-                // Create a NumberRange with the known data range
-                const fullDataRange = new NumberRange(0, 99);
-                this.rangeSelectionModifier.selectedArea = fullDataRange;
+                this.overviewSubSurface.zoomExtents();
+                this.rangeSelectionModifier.selectedArea = this.overviewXAxis.visibleRange;
             }
         }
 
         this.overviewSubSurface.chartModifiers.add(this.rangeSelectionModifier);
 
-        // Additional fix: Subscribe to overview axis visible range changes to ensure full selection
-        this.overviewXAxis.visibleRangeChanged.subscribe(() => {
-            // Set selection to full range after axis range is established
-            setTimeout(() => {
-                const fullRange = this.overviewXAxis.visibleRange;
-                if (fullRange && fullRange.max > 50) {
-                    // Only update if we have a reasonable range
-                    this.rangeSelectionModifier.selectedArea = fullRange;
-                }
-            }, 100);
+        this.overviewXAxis.visibleRangeChanged.subscribe(({ visibleRange: overviewVisibleRange }) => {
+            const updatedSelectedRange = this.allSubCharts[0].xAxes.get(0).visibleRange.clip(overviewVisibleRange);
+            this.rangeSelectionModifier.selectedArea = updatedSelectedRange;
         });
-    }
-
-    /**
-     * Updates the colors used for the overview series
-     */
-    public updateColors(colors: string[]): void {
-        this.options.colors = colors;
-
-        // Update existing series colors
-        if (this.overviewSubSurface) {
-            this.overviewSubSurface.renderableSeries.asArray().forEach((series, index) => {
-                const colorIndex = index % colors.length;
-                series.stroke = colors[colorIndex];
-
-                // Update color mapping
-                if (series.dataSeries instanceof XyDataSeries) {
-                    this.seriesColorMap.set(series.dataSeries, colors[colorIndex]);
-                }
-            });
-        }
     }
 
     /**
