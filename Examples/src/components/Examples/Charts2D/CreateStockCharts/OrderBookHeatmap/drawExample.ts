@@ -281,10 +281,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const gradientStops = [
         { offset: 0, color: appTheme.DarkIndigo },
         { offset: 0.03, color: appTheme.ForegroundColor },
-        { offset: 1, color: appTheme.VividRed },
+        { offset: 0.4, color: appTheme.VividRed },
     ];
 
-    //     #005AD9 - Blue (low)
+    // #005AD9 - Blue (low)
 
     // #FFE135 - Yellow (medium)
 
@@ -390,7 +390,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         strokeDown: appTheme.MutedRed,
         isVisible: false,
     });
-    // sciChartSurface.renderableSeries.add(ohlcSeries); // temp
+    sciChartSurface.renderableSeries.add(ohlcSeries); // temp
 
     // Add some moving averages using SciChart's filters/transforms API
     // when candleDataSeries updates, XyMovingAverageFilter automatically recomputes
@@ -419,9 +419,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         opacity: 1,
     });
 
-    // sciChartSurface.renderableSeries.add(candlestickSeries);
-    // sciChartSurface.renderableSeries.add(ma20Series);
-    // sciChartSurface.renderableSeries.add(ma50Series);
+    sciChartSurface.renderableSeries.add(candlestickSeries);
+    sciChartSurface.renderableSeries.add(ma20Series);
+    sciChartSurface.renderableSeries.add(ma50Series);
 
     console.log("Added MA50 series with", ma50Series.dataSeries.count(), "data points");
 
@@ -457,8 +457,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
         new CursorModifier({
-            crosshairStroke: appTheme.VividOrange + 55,
-            axisLabelFill: appTheme.VividOrange + 55,
+            crosshairStroke: appTheme.DarkIndigo + 55,
+            axisLabelFill: appTheme.DarkIndigo + 55,
             tooltipLegendTemplate: getTooltipLegendTemplate,
         })
     );
@@ -515,7 +515,7 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Curs
     return `<svg width="100%" height="100%">
                 <g transform=translate(5,5)>
                ${
-                   outputSvgString ? `<rect width="560px" height="110px" fill="#ffffff" opacity="0.4" rx="5" />` : ``
+                   outputSvgString ? `<rect width="480px" height="110px" fill="#000000" opacity="0.4" rx="5" />` : ``
                }         
                 ${outputSvgString}
                 <g>

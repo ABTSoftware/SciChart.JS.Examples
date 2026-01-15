@@ -6,7 +6,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "OrderBookHeatmap",
         id: "chart2D_createStockCharts_OrderBookHeatmap",
-        imagePath: "javascript-realtime-ticking-stock-charts.jpg",
+        imagePath: "javascript-order-book-heatmap.jpg",
         description:
             "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
         tips: [],
@@ -53,7 +53,7 @@ const metaData: IExampleMetadata =
         metaKeywords: "real-time, ticking, updating, stock, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/CreateStockCharts/OrderBookHeatmap",
-        thumbnailImage: "javascript-realtime-ticking-stock-charts.jpg",
+        thumbnailImage: "javascript-order-book-heatmap.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
