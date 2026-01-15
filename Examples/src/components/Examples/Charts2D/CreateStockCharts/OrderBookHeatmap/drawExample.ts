@@ -41,6 +41,12 @@ import {
 
 import { appTheme } from "../../../theme";
 
+// const ohlcFilePath = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/LTCUSDT_OHLC.csv"
+// const orderbookLevels = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/orderbook_levels.csv";
+
+const ohlcFilePath = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/12min/LTCUSDT_OHLC.csv";
+const orderbookLevels = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/12min/orderbook_levels.csv";
+
 type TCandleData = {
     xValues: number[];
     openValues: number[];
@@ -59,7 +65,7 @@ async function loadCandleData(): Promise<TCandleData> {
     const volumeValues: number[] = [];
 
     try {
-        const filepath = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/12min/LTCUSDT_OHLC.csv";
+        const filepath = ohlcFilePath;
         const response = await fetch(filepath);
 
         if (!response.ok) {
@@ -137,8 +143,7 @@ async function loadHeatmapData(): Promise<TParsedHeatmapData> {
 
     try {
         // File copied in webpack.config.js
-        const dataFile =
-            "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/12min/orderbook_levels.csv";
+        const dataFile = orderbookLevels;
         const response = await fetch(dataFile);
         const csvText = await response.text();
 
