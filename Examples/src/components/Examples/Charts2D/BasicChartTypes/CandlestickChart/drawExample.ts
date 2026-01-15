@@ -3,6 +3,7 @@ import {
     CursorModifier,
     CursorTooltipSvgAnnotation,
     DateTimeNumericAxis,
+    DiscontinuousDateAxis,
     EAutoRange,
     EDataSeriesType,
     EFillPaletteMode,
@@ -35,6 +36,10 @@ import {
 import { appTheme } from "../../../theme";
 import { simpleBinanceRestClient } from "../../../ExampleData/binanceRestClient";
 import { ExampleDataProvider, TPriceBar } from "../../../ExampleData/ExampleDataProvider";
+import {
+    DEFAULT_LABEL_THRESHOLDS,
+    ETradeChartLabelFormat,
+} from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
 
 const Y_AXIS_VOLUME_ID = "Y_AXIS_VOLUME_ID";
 
@@ -44,12 +49,13 @@ export const drawExample = (dataSource: string) => async (rootElement: string | 
         theme: appTheme.SciChartJsTheme,
     });
 
-    // Add an XAxis of type DateTimeAxis
-    // Note for crypto data this is fine, but for stocks/forex you will need to use CategoryAxis which collapses gaps at weekends
-    // In future we have a hybrid IndexDateAxis which 'magically' solves problems of different # of points in stock market datasetd with gaps
-    const xAxis = new DateTimeNumericAxis(wasmContext, {
+    // We have a hybrid DiscontinuousDateAxis which 'magically' solves problems of different # of points in stock market datasetd with gaps
+    const xAxis = new DiscontinuousDateAxis(wasmContext, {
         // autoRange.never as we're setting visibleRange explicitly below. If you dont do this, leave this flag default
         autoRange: EAutoRange.Never,
+        cursorLabelFormat: ENumericFormat.Date_HHMM,
+        // Increase this threshold as the default value is right on our default range
+        labelThresholds: { [ETradeChartLabelFormat.Minutes]: 60 * 60 * 24 * 10 },
     });
     sciChartSurface.xAxes.add(xAxis);
 
@@ -89,8 +95,9 @@ export const drawExample = (dataSource: string) => async (rootElement: string | 
     if (dataSource !== "Random") {
         priceBars = await simpleBinanceRestClient.getCandles("BTCUSDT", "1h", startDate, endDate, 500, dataSource);
     } else {
-        priceBars = ExampleDataProvider.getRandomCandles(300, 60000, startDate, 60 * 60);
+        priceBars = ExampleDataProvider.getRandomCandles(300, 60000, startDate, 60 * 60, true);
     }
+
     // Maps PriceBar { date, open, high, low, close, volume } to structure-of-arrays expected by scichart
     priceBars.forEach((priceBar: any) => {
         xValues.push(priceBar.date);
@@ -101,9 +108,9 @@ export const drawExample = (dataSource: string) => async (rootElement: string | 
         volumeValues.push(priceBar.volume);
     });
     // Zoom to the latest 100 candles
-    const startViewportRange = new Date();
-    startViewportRange.setHours(startDate.getHours() - 100);
-    xAxis.visibleRange = new NumberRange(startViewportRange.getTime() / 1000, endDate.getTime() / 1000);
+    const lastBar = priceBars[priceBars.length - 1];
+    const firstVisiblebar = priceBars[priceBars.length - 100];
+    xAxis.visibleRange = new NumberRange(firstVisiblebar.date, lastBar.date);
 
     // Create and add the Candlestick series
     // The Candlestick Series requires a special dataseries type called OhlcDataSeries with o,h,l,c and date values
@@ -138,7 +145,7 @@ export const drawExample = (dataSource: string) => async (rootElement: string | 
     });
     sciChartSurface.renderableSeries.add(ohlcSeries);
 
-    // Add some moving averages using SciChart's filters/transforms API
+    //Add some moving averages using SciChart's filters/transforms API
     // when candleDataSeries updates, XyMovingAverageFilter automatically recomputes
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {

@@ -233,12 +233,10 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
     private addLineAnnotations(paneId: string) {
         const subChart = this.getSciChartSurface(paneId);
         const xLineAnnotation = this.newLineAnnotation();
-        console.log("addLineAnnotations", xLineAnnotation.xAxisId);
         this.xLineAnnotations.set(paneId, xLineAnnotation);
         const yLineAnnotation = this.newLineAnnotation();
         this.yLineAnnotations.set(paneId, yLineAnnotation);
         subChart.annotations.add(xLineAnnotation, yLineAnnotation);
-        console.log("addLineAnnotations", xLineAnnotation.xAxis);
     }
 
     private removeLineAnnotations(paneId: string) {

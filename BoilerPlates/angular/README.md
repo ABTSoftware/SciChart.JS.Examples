@@ -1,6 +1,6 @@
 # Angular SciChart Boilerplate
 
-This boilerplate uses Angular 20 and SciChart.js 4.0.
+This boilerplate uses Angular 20 and SciChart.js 5.0.
 
 ![](img/image.png)
 
@@ -16,13 +16,6 @@ npm start
 ```
 npm run build
 ```
-
-## Licensing
-
-SciChart.js is commercial software with a [free community license](https://scichart.com/community-licensing).
-
-- From SciChart.js v3.2 and onwards, trial licenses are not required. Instead the chart initialises with a [Community License](https://scichart.com/community-licensing)
-- For commercial licensing, follow steps from [scichart.com/licensing-scichart-js](https://scichart.com/licensing-scichart-js).
 
 ## Steps to create it from scratch
 
@@ -48,6 +41,11 @@ This can be done by modifying `angular.json` file
 "assets": [
     {
         "glob": "scichart2d.wasm",
+        "input": "./node_modules/scichart/_wasm/",
+        "output": "."
+    },
+    {
+        "glob": "scichart2d-nosimd.wasm",
         "input": "./node_modules/scichart/_wasm/",
         "output": "."
     }
@@ -135,6 +133,5 @@ We have a wealth of information on our site showing how to get started with SciC
 Take a look at:
 
 - [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
-- [Javascript / npm tutorials](https://www.scichart.com/documentation/js/v4/get-started/tutorials-js-npm-webpack/tutorial-02-adding-series-and-data/): using npm, webpack, and scichart.js, create static and dynamic charts with zooming, panning tooltips and more
-- [Vanilla Javascript tutorials](https://www.scichart.com/documentation/js/v4/get-started/tutorials-cdn/tutorial-01-using-cdn/): using only vanilla javascript and HTML,
+- [SciChart.js Documentation](www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
 - [Official scichart.js demos](https://scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)

@@ -107,7 +107,7 @@ Data is generated semi-randomly in \`waferData.ts\` using a hierarchical structu
 
 \n- \`StackedColumnRenderableSeries\` displaying three measures as stacked components.
 \n- \`XyNDataSeries\` with \`arrayCount: 3\` for multi-dimensional data.
-\n- Selection annotation via \`BoxAnnotation\`.
+\n- \`DataPointSelectionPaletteProvider\` for visual selection feedback.
 \n- Dynamic column width calculation and coordinate mapping.
 
 
@@ -160,8 +160,7 @@ Data is generated semi-randomly in \`waferData.ts\` using a hierarchical structu
 
 #### 3. **Selection Management:**
 
-\n-Column chart uses \`DataPointSelectionModifier\`.
-\n-Pareto chart uses metadata-based selection.
+\n-Column and Pareto chart share selection information via shared metadata
 \n-Manual synchronization ensures consistent state between both views.
 
 
