@@ -186,8 +186,9 @@ export const drawExample = async (
                 axisSynchroniser.removeAxis(xAxis);
             }
             
-            // Delete the subchart (this will trigger the overview modifier's onDetachSubSurface)
-            subChart.delete();
+            // Use removeSubChart on the parent surface to properly remove from subChartsProperty array
+            // This prevents MouseManager from iterating over deleted subcharts
+            sciChartSurface.removeSubChart(subChart);
             subChartMap.delete(id);
         }
     };
@@ -222,74 +223,84 @@ export const drawExample = async (
     };
     
     const recreateSubChartsWithLayout = (configs: SubChartConfig[]) => {
-        // Clear existing subcharts - use the proper removeSubChart function to ensure cleanup
-        const currentIds = Array.from(subChartMap.keys());
-        currentIds.forEach(id => {
-            removeSubChart(id);
-        });
+        // Suspend updates to prevent MouseManager from iterating over partially deleted subcharts
+        sciChartSurface.suspendUpdates();
         
-        // Recreate with proper layout
-        const count = configs.length;
-        if (count === 0) return;
-        
-        configs.forEach((config, index) => {
-            // Calculate position: each subchart takes 1/count of the available 80% height
-            // Y position starts at (index/count) * 0.8 and has height of (1/count) * 0.8
-            const yStart = (index / count) * 0.8;
-            const height = (1 / count) * 0.8;
-            const rect = new Rect(0, yStart, 1, height);
-            
-            const subChartOptions: I2DSubSurfaceOptions = {
-                id: config.id,
-                position: rect,
-                coordinateMode: ESubSurfacePositionCoordinateMode.Relative,
-            };
-            
-            const subChart = SciChartSubSurface.createSubSurface(sciChartSurface, subChartOptions);
-            
-            // Create axes for the subchart
-            const subXAxis = new NumericAxis(wasmContext);
-            const subYAxis = new NumericAxis(wasmContext, {
-                growBy: new NumberRange(0.1, 0.1),
-                axisTitle: config.title,
-                axisTitleStyle: { fontSize: 14 },
-                drawMinorGridLines: false,
+        try {
+            // Clear existing subcharts - use the proper removeSubChart function to ensure cleanup
+            const currentIds = Array.from(subChartMap.keys());
+            currentIds.forEach(id => {
+                removeSubChart(id);
             });
             
-            subChart.xAxes.add(subXAxis);
-            subChart.yAxes.add(subYAxis);
+            // Recreate with proper layout
+            const count = configs.length;
+            if (count === 0) {
+                sciChartSurface.resumeUpdates();
+                return;
+            }
             
-            // Create data and series
-            const data = createLineData(config.phase);
-            const dataSeries = new XyDataSeries(wasmContext, {
-                xValues: data.xValues,
-                yValues: data.yValues,
+            configs.forEach((config, index) => {
+                // Calculate position: each subchart takes 1/count of the available 80% height
+                // Y position starts at (index/count) * 0.8 and has height of (1/count) * 0.8
+                const yStart = (index / count) * 0.8;
+                const height = (1 / count) * 0.8;
+                const rect = new Rect(0, yStart, 1, height);
+                
+                const subChartOptions: I2DSubSurfaceOptions = {
+                    id: config.id,
+                    position: rect,
+                    coordinateMode: ESubSurfacePositionCoordinateMode.Relative,
+                };
+                
+                const subChart = SciChartSubSurface.createSubSurface(sciChartSurface, subChartOptions);
+                
+                // Create axes for the subchart
+                const subXAxis = new NumericAxis(wasmContext);
+                const subYAxis = new NumericAxis(wasmContext, {
+                    growBy: new NumberRange(0.1, 0.1),
+                    axisTitle: config.title,
+                    axisTitleStyle: { fontSize: 14 },
+                    drawMinorGridLines: false,
+                });
+                
+                subChart.xAxes.add(subXAxis);
+                subChart.yAxes.add(subYAxis);
+                
+                // Create data and series
+                const data = createLineData(config.phase);
+                const dataSeries = new XyDataSeries(wasmContext, {
+                    xValues: data.xValues,
+                    yValues: data.yValues,
+                });
+                
+                const lineSeries = new FastLineRenderableSeries(wasmContext, {
+                    dataSeries,
+                    strokeThickness: 4,
+                    stroke: config.color,
+                    opacity: 0.6,
+                });
+                
+                // Add to synchronizer and subchart
+                axisSynchroniser.addAxis(subXAxis);
+                subChart.renderableSeries.add(lineSeries);
+                
+                // Add modifiers
+                subChart.chartModifiers.add(
+                    new ZoomPanModifier(),
+                    new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
+                    new ZoomExtentsModifier(),
+                    new RolloverModifier({ modifierGroup: "one" })
+                );
+                
+                // Store reference
+                subChartMap.set(config.id, subChart);
+                
+                subChart.zoomExtents();
             });
-            
-            const lineSeries = new FastLineRenderableSeries(wasmContext, {
-                dataSeries,
-                strokeThickness: 4,
-                stroke: config.color,
-                opacity: 0.6,
-            });
-            
-            // Add to synchronizer and subchart
-            axisSynchroniser.addAxis(subXAxis);
-            subChart.renderableSeries.add(lineSeries);
-            
-            // Add modifiers
-            subChart.chartModifiers.add(
-                new ZoomPanModifier(),
-                new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
-                new ZoomExtentsModifier(),
-                new RolloverModifier({ modifierGroup: "one" })
-            );
-            
-            // Store reference
-            subChartMap.set(config.id, subChart);
-            
-            subChart.zoomExtents();
-        });
+        } finally {
+            sciChartSurface.resumeUpdates();
+        }
     };
 
     // Initialize with provided configs

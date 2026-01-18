@@ -83,9 +83,17 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
     }
 
     public override onDetach(): void {
-        if (this.overviewSubSurface) {
+        // Clear the allSubCharts array to prevent any callbacks from accessing deleted subcharts
+        this.allSubCharts = [];
+        
+        if (this.overviewSubSurface && !this.overviewSubSurface.isDeleted) {
             this.overviewSubSurface.delete();
         }
+        this.overviewSubSurface = undefined;
+        this.overviewXAxis = undefined;
+        this.overviewYAxis = undefined;
+        this.rangeSelectionModifier = undefined;
+        
         super.onDetach();
     }
 
@@ -98,13 +106,14 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
         this.allSubCharts.push(subChart);
 
         // If overview is already created, add series from this subchart
-        if (this.overviewSubSurface) {
+        if (this.overviewSubSurface && !this.overviewSubSurface.isDeleted) {
             this.addSeriesToOverview(subChart.renderableSeries.asArray(), subChart.id);
         }
 
         // Subscribe to series collection changes on this subchart
         subChart.renderableSeries.collectionChanged.subscribe((args) => {
-            if (this.overviewSubSurface) {
+            // Check if overview and subchart are still valid
+            if (this.overviewSubSurface && !this.overviewSubSurface.isDeleted && !subChart.isDeleted) {
                 // Handle new series
                 if (args.getNewItems()) {
                     this.addSeriesToOverview(args.getNewItems(), subChart.id);
@@ -118,12 +127,18 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
     }
 
     public override onDetachSubSurface(subChart: ISciChartSubSurface): void {
+        // Skip the overview subsurface itself
+        if (subChart.id === "overviewSubSurface") {
+            return;
+        }
+
         const index = this.allSubCharts.indexOf(subChart);
         if (index > -1) {
             this.allSubCharts.splice(index, 1);
 
             // Remove corresponding series from overview
-            if (this.overviewSubSurface) {
+            // Only try to access renderableSeries if the subchart is not deleted
+            if (this.overviewSubSurface && !this.overviewSubSurface.isDeleted && !subChart.isDeleted) {
                 this.removeSeriesFromOverview(subChart.renderableSeries.asArray(), subChart.id);
             }
         }
@@ -131,14 +146,14 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
 
     public override onAttachSeries(series: IRenderableSeries): void {
         // Handle series attached to main surface
-        if (this.overviewSubSurface) {
+        if (this.overviewSubSurface && !this.overviewSubSurface.isDeleted) {
             this.addSeriesToOverview([series], this.parentSurface.id);
         }
     }
 
     public override onDetachSeries(series: IRenderableSeries): void {
         // Handle series detached from main surface
-        if (this.overviewSubSurface) {
+        if (this.overviewSubSurface && !this.overviewSubSurface.isDeleted) {
             this.removeSeriesFromOverview([series], this.parentSurface.id);
         }
     }
@@ -205,6 +220,10 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
     }
 
     private addSeriesToOverview(renderableSeries: IRenderableSeries[], parentId: string): void {
+        if (!this.overviewSubSurface || this.overviewSubSurface.isDeleted || !this.overviewXAxis || !this.overviewYAxis) {
+            return;
+        }
+        
         const wasmContext = this.parentSurface.webAssemblyContext2D;
 
         let transform = (rendSeries: IRenderableSeries) => {
@@ -230,9 +249,12 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
     }
 
     private removeSeriesFromOverview(renderableSeries: IRenderableSeries[], parentId: string): void {
-        if (!this.overviewSubSurface) return;
+        if (!this.overviewSubSurface || this.overviewSubSurface.isDeleted) return;
 
         renderableSeries.forEach((series) => {
+            // Check if series is still valid
+            if (!series) return;
+            
             // Find and remove the corresponding overview series
             const overviewSeries = this.overviewSubSurface.renderableSeries.getById(parentId + "_" + series.id);
             if (overviewSeries) {
@@ -251,6 +273,8 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
 
         this.rangeSelectionModifier.onSelectedAreaChanged = (selectedRange: NumberRange) => {
             this.allSubCharts.forEach((subChart) => {
+                // Check if subchart is still valid (not deleted)
+                if (!subChart || subChart.isDeleted) return;
                 const subChartXAxis = subChart.xAxes.get(0);
                 if (subChartXAxis && !selectedRange.equals(subChartXAxis.visibleRange)) {
                     subChartXAxis.setVisibleRangeWithLimits(selectedRange);
@@ -266,6 +290,8 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
             if (lastSubChartXAxis) {
                 // When last subchart zoom changes, update the overview selection
                 lastSubChartXAxis.visibleRangeChanged.subscribe(({ visibleRange }: { visibleRange: NumberRange }) => {
+                    // Check if overview is still valid
+                    if (!this.overviewSubSurface || this.overviewSubSurface.isDeleted || !this.overviewXAxis) return;
                     const updatedSelectedRange = visibleRange.clip(this.overviewXAxis.visibleRange);
                     const shouldUpdateSelectedRange = !updatedSelectedRange.equals(
                         this.rangeSelectionModifier.selectedArea
@@ -283,7 +309,13 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
         this.overviewSubSurface.chartModifiers.add(this.rangeSelectionModifier);
 
         this.overviewXAxis.visibleRangeChanged.subscribe(({ visibleRange: overviewVisibleRange }) => {
-            const updatedSelectedRange = this.allSubCharts[0].xAxes.get(0).visibleRange.clip(overviewVisibleRange);
+            // Check if there are valid subcharts
+            if (this.allSubCharts.length === 0) return;
+            const firstSubChart = this.allSubCharts[0];
+            if (!firstSubChart || firstSubChart.isDeleted) return;
+            const firstXAxis = firstSubChart.xAxes.get(0);
+            if (!firstXAxis) return;
+            const updatedSelectedRange = firstXAxis.visibleRange.clip(overviewVisibleRange);
             this.rangeSelectionModifier.selectedArea = updatedSelectedRange;
         });
     }
