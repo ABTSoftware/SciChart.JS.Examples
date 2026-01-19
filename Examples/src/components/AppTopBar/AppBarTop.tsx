@@ -73,7 +73,7 @@ const AppBarTop: FC<TProps> = (props) => {
                     {isMd ? null : (
                         <>
                             <a
-                                href="https://www.scichart.com/documentation/js/current/typedoc/index.html"
+                                href="https://www.scichart.com/documentation/js/v4/typedoc/index.html"
                                 title="SciChart.js TypeDoc"
                                 target="_blank"
                             >
