@@ -13,7 +13,7 @@ export class AxisSynchroniser {
     private axes: AxisBase2D[] = [];
     public visibleRangeChanged: EventHandler<VisibleRangeChangedArgs> = new EventHandler<VisibleRangeChangedArgs>();
 
-    public constructor(initialRange: NumberRange, axes?: AxisBase2D[]) {
+    public constructor(initialRange?: NumberRange, axes?: AxisBase2D[]) {
         this.visibleRange = initialRange;
         this.publishChange = this.publishChange.bind(this);
         if (axes) {
@@ -72,12 +72,23 @@ export class AxisSynchroniser {
             this.axes.push(axis);
             if (axis.isCategoryAxis) {
                 const cc = axis.getCurrentCoordinateCalculator() as CategoryCoordinateCalculator;
-                axis.visibleRange = new NumberRange(
-                    cc.transformDataToIndex(this.visibleRange.min),
-                    cc.transformDataToIndex(this.visibleRange.max)
-                );
+                if (this.visibleRange) {
+                    axis.visibleRange = new NumberRange(
+                        cc.transformDataToIndex(this.visibleRange.min),
+                        cc.transformDataToIndex(this.visibleRange.max)
+                    );
+                } else {
+                    this.visibleRange = new NumberRange(
+                        cc.transformDataToIndex(axis.visibleRange.min),
+                        cc.transformDataToIndex(axis.visibleRange.max)
+                    );
+                }
             } else {
-                axis.visibleRange = this.visibleRange;
+                if (this.visibleRange) {
+                    axis.visibleRange = this.visibleRange;
+                } else {
+                    this.visibleRange = axis.visibleRange;
+                }
             }
             axis.visibleRangeChanged.subscribe((data) => this.publishChange(data, axis));
         }
@@ -88,6 +99,13 @@ export class AxisSynchroniser {
         if (index >= 0) {
             this.axes.splice(index, 1);
             axis.visibleRangeChanged.unsubscribe((data) => this.publishChange(data, axis));
+        }
+    }
+
+    public clear() {
+        for (let i = this.axes.length - 1; i >= 0; i--) {
+            const axis = this.axes[i];
+            this.removeAxis(axis);
         }
     }
 }
