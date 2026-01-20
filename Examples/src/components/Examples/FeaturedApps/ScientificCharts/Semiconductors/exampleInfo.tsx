@@ -202,8 +202,8 @@ The **Semiconductors Dashboard** showcases advanced SciChart.js capabilities —
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Column%20Series%20Type.html",
-                title: "This specific page in the Semiconductors Dashboard documentation will help you to get started",
+                href: "https://www.scichart.com/documentation/js/v4/intro",
+                title: "This specific page in the documentation will help you to get started",
                 linkTitle: "Semiconductors Dashboard Documentation",
             },
         ],
