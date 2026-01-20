@@ -44,7 +44,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/The%20Scatter%20Series%20Type.html",
+                href: "https://www.scichart.com/documentation/js/v4/2d-charts/chart-types/xy-scatter-renderable-series/",
                 title: "This specific page in the JavaScript Correlation Plot documentation will help you to get started",
                 linkTitle: "JavaScript Correlation Plot Documentation",
             },
