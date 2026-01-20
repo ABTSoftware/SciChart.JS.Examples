@@ -44,7 +44,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/SciChart_JS_User_Manual.html",
+                href: "https://www.scichart.com/documentation/js/v4/intro/",
                 title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
                 linkTitle: "SciChart.js Documentation Home",
             },
@@ -57,8 +57,8 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
-        extraDependencies: {"socket.io-client": "^4.7.5"},
-        isNew: false
+        extraDependencies: { "socket.io-client": "^4.7.5" },
+        isNew: false,
     };
 //// End of computer generated metadata
 

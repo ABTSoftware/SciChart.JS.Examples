@@ -116,6 +116,7 @@ export default [
     "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier",
     "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale",
     "../Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers",
+    "../Examples/Charts2D/ZoomingAndPanning/OverviewForSubCharts",
     "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier",
     "../Examples/Charts2D/ZoomingAndPanning/PolarModifiers",
     "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan",
