@@ -44,9 +44,9 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/The%20Band%20Series%20type.html",
-                title: "The specific page for the JavaScript Digital Line Chart documentation will help you to get started",
-                linkTitle: "JavaScript Band Chart Documentation",
+                href: "https://www.scichart.com/documentation/js/v4/2d-charts/chart-types/fast-triangle-renderable-series/",
+                title: "The specific page for the JavaScript The Triangle Series Type documentation will help you to get started",
+                linkTitle: "JavaScript The Triangle Series Type Documentation",
             },
         ],
         path: "multi-map-example",
