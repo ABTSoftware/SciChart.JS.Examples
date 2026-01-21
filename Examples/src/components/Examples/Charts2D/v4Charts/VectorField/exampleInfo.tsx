@@ -44,9 +44,9 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Column%20Series%20Type.html",
-                title: "This specific page in the JavaScript Vector Field documentation will help you to get started",
-                linkTitle: "JavaScript Vector Field Documentation",
+                href: "https://www.scichart.com/documentation/js/v4/2d-charts/chart-types/fast-line-segment-renderable-series/",
+                title: "This specific page in the JavaScript Line Segment Series Type documentation will help you to get started",
+                linkTitle: "JavaScript Line Segment Series Type Documentation",
             },
         ],
         path: "vector-field",
