@@ -44,9 +44,9 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Column%20Series%20Type.html",
-                title: "This specific page in the JavaScript Gantt Chart documentation will help you to get started",
-                linkTitle: "JavaScript Gantt Chart Documentation",
+                href: "https://www.scichart.com/documentation/js/v4/2d-charts/chart-types/fast-rectangle-renderable-series/",
+                title: "This specific page in the JavaScript The Rectangle Series Type documentation will help you to get started",
+                linkTitle: "JavaScript The Rectangle Series Type Documentation",
             },
         ],
         path: "gantt-chart",
