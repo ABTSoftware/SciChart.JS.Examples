@@ -24,6 +24,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout,
             EXAMPLES_PAGES.featuredApps_showcases_eventMarkers,
             EXAMPLES_PAGES.featuredApps_showcases_populationPyramid,
+            EXAMPLES_PAGES.featuredApps_performanceDemos_Load1MillionWithSvgCursor,
         ],
     },
     {
@@ -60,7 +61,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     },
     {
         id: "chart2D_v4Charts",
-        title: "[NEW] Charts added in v4",
+        title: "Charts added in v4",
         submenu: [
             EXAMPLES_PAGES.chart2D_v4Charts_HistogramChart,
             EXAMPLES_PAGES.chart2D_v4Charts_GanttChart,
@@ -133,7 +134,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
     },
     {
         id: "chart2D_polarCharts",
-        title: "[NEW] Polar Charts",
+        title: "Polar Charts",
         submenu: [
             EXAMPLES_PAGES.chart2D_polarCharts_PolarLineChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarSplineLineChart,
@@ -205,6 +206,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels,
             EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels,
             EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels,
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_DateAxisPrecisionLabelFormatting,
         ],
     },
     {
@@ -252,7 +254,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_VirtualizedDataOverview,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_PolarModifiers,
-            //EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision,
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_OverviewForSubCharts,
         ],
     },

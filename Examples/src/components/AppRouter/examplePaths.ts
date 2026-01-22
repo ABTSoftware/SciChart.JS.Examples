@@ -9,6 +9,7 @@ export default [
     "../Examples/Charts2D/Animations/GenericAnimation",
     "../Examples/Charts2D/Animations/StartupAnimation",
     "../Examples/Charts2D/Animations/StyleAnimation",
+    "../Examples/Charts2D/AxisLabelCustomization/DateAxisPrecisionLabelFormatting",
     "../Examples/Charts2D/AxisLabelCustomization/ImageLabels",
     "../Examples/Charts2D/AxisLabelCustomization/MultiLineLabels",
     "../Examples/Charts2D/AxisLabelCustomization/RotatedLabels",
@@ -120,6 +121,7 @@ export default [
     "../Examples/Charts2D/ZoomingAndPanning/PolarModifiers",
     "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan",
     "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview",
+    "../Examples/Charts2D/ZoomingAndPanning/ZoomHighPrecision",
     "../Examples/Charts2D/v4Charts/AnimatedColumns",
     "../Examples/Charts2D/v4Charts/BoxPlotChart",
     "../Examples/Charts2D/v4Charts/GanttChart",
@@ -144,6 +146,7 @@ export default [
     "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo",
     "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints",
     "../Examples/FeaturedApps/PerformanceDemos/Load500By500",
+    "../Examples/FeaturedApps/PerformanceDemos/MillionPointsSvgOrNativeCursor",
     "../Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces",
     "../Examples/FeaturedApps/PerformanceDemos/RealtimePerformanceDemo",
     "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer",
@@ -161,5 +164,5 @@ export default [
     "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard",
     "../Examples/FeaturedApps/ShowCases/PopulationPyramid",
     "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard",
-    "../Examples/FeaturedApps/ShowCases/WebsocketBigData",
+    "../Examples/FeaturedApps/ShowCases/WebsocketBigData"
 ];
