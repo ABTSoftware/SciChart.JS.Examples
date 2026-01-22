@@ -1,6 +1,6 @@
 import * as React from "react";
 import commonClasses from "../../../styles/Examples.module.scss";
-import { drawExample, fonts } from "./drawExample";
+import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import {
     ButtonGroup,
@@ -33,6 +33,7 @@ import { appTheme } from "../../../theme";
 import { useRef, useState } from "react";
 import { useViewType } from "./containerSizeHooks";
 import { E3DLabelOrientationMode } from "scichart/types/TextStyle3D";
+import { EAxisPlaneDrawLabelsMode } from "scichart";
 
 const styles = {
     combobox: {
@@ -49,8 +50,6 @@ const configButtonWrapperStyle: React.CSSProperties = {
     zIndex: 2,
 };
 
-const pointMarkers = ["CylinderPointMarker3D", "CubePointMarker3D", "PyramidPointMarker3D", "SpherePointMarker3D"];
-
 // REACT COMPONENT
 export default function StylingDemoChart() {
     const controlsRef = useRef(null);
@@ -62,18 +61,21 @@ export default function StylingDemoChart() {
     const [xAxisTitleOffset, setXAxisTitleOffset] = useState(10);
     const [tickLabelsOffset, setTickLabelsOffset] = useState(10);
     const [labelFontSize, setLabelFontSize] = useState(20);
-    const [font, setFont] = useState("arial");
     const [labelOrientationMode, setLabelOrientationMode] = useState<E3DLabelOrientationMode>(
         E3DLabelOrientationMode.Auto
     );
-    const [enableMajorGridLines, setEnableMajorGridLines] = useState("false")
+    const [enableMajorGridLines, setEnableMajorGridLines] = useState("false");
 
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
     const [selectedPlane, setSelectedPlane] = useState<"xy" | "zy" | "zx">("zx");
     const [visabilityMode, setVisabilityMode] = useState("auto");
-    const [planeDrawTitlesMode, setPlaneDrawTitlesMode] = useState("both");
-    const [planeDrawLabelsMode, setPlaneDrawLabelsMode] = useState("both");
+    const [planeDrawTitlesMode, setPlaneDrawTitlesMode] = useState<EAxisPlaneDrawLabelsMode>(
+        EAxisPlaneDrawLabelsMode.Both
+    );
+    const [planeDrawLabelsMode, setPlaneDrawLabelsMode] = useState<EAxisPlaneDrawLabelsMode>(
+        EAxisPlaneDrawLabelsMode.Both
+    );
     const [planeIsVisible, setPlaneIsVisible] = useState("true");
 
     const [expanded, setExpanded] = React.useState<string | false>("panel1");
@@ -90,8 +92,6 @@ export default function StylingDemoChart() {
         setIsDialogOpen(false);
     };
 
-    // const fonts = ["arial", "braahone", "allura", "antic", "coda", "forum", "kenia", "metal"];
-
     const handleLabelFontSize = (_: any, newValue: any) => {
         setLabelFontSize(newValue);
         controlsRef.current.setAxisLabelFontSize(newValue, selectedAxis);
@@ -105,14 +105,6 @@ export default function StylingDemoChart() {
     const handleTickLabelsOffset = (_: any, newValue: any) => {
         setTickLabelsOffset(newValue);
         controlsRef.current.setTickLabelsOffset(newValue, selectedAxis);
-    };
-
-    const handleFontChange = (e: { target: { value: string } }) => {
-        const newValue = e.target.value as string;
-        if (newValue !== font) {
-            setFont(newValue);
-            controlsRef.current.updateFont(newValue, selectedAxis);
-        }
     };
 
     const handlePlaneChange = (e: { target: { value: string } }) => {
@@ -130,15 +122,15 @@ export default function StylingDemoChart() {
         controlsRef.current.setVisabilityMode(selectedPlane, newValue);
     };
 
-    const handlePlaneDrawTitlesMode = (e: { target: { value: string } }) => {
-        const newValue = e.target.value as string;
+    const handlePlaneDrawTitlesMode = (e: { target: { value: EAxisPlaneDrawLabelsMode } }) => {
+        const newValue = e.target.value;
         setPlaneDrawTitlesMode(newValue);
 
         controlsRef.current.setDrawTitlesMode(selectedPlane, newValue);
     };
 
-    const handlePlaneDrawLabelsMode = (e: { target: { value: string } }) => {
-        const newValue = e.target.value as string;
+    const handlePlaneDrawLabelsMode = (e: { target: { value: EAxisPlaneDrawLabelsMode } }) => {
+        const newValue = e.target.value;
         setPlaneDrawLabelsMode(newValue);
 
         controlsRef.current.setDrawLabelsMode(selectedPlane, newValue);
@@ -168,8 +160,8 @@ export default function StylingDemoChart() {
 
     const handleEnableMajorGridLines = (e: { target: { value: string } }) => {
         const newMode = e.target.value;
-        const newModeBool = e.target.value === "true" 
-        console.log(newMode)
+        const newModeBool = e.target.value === "true";
+        console.log(newMode);
 
         setEnableMajorGridLines(newMode);
         controlsRef.current.enableMajorGridLines(newModeBool, selectedAxis);
@@ -220,31 +212,6 @@ export default function StylingDemoChart() {
                                 <MenuItem value="x">X Axis</MenuItem>
                                 <MenuItem value="y">Y Axis</MenuItem>
                                 <MenuItem value="z">Z Axis</MenuItem>
-                            </Select>
-                        </FormControl>
-
-                        <Typography variant="inherit" className={commonClasses.FormControlLabel}>
-                            Change Font
-                        </Typography>
-                        <FormControl fullWidth className={commonClasses.formControl}>
-                            <Select
-                                labelId="font-label"
-                                id="font"
-                                variant="standard"
-                                inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
-                                sx={{
-                                    margin: "0.5em 0em",
-                                    color: "inherit",
-                                    "& .MuiSvgIcon-root": { color: "inherit" },
-                                }}
-                                value={font}
-                                onChange={handleFontChange}
-                            >
-                                {fonts.map((el) => (
-                                    <MenuItem key={el.name} value={el.name}>
-                                        {el.name.toUpperCase()}
-                                    </MenuItem>
-                                ))}
                             </Select>
                         </FormControl>
 
@@ -417,10 +384,10 @@ export default function StylingDemoChart() {
                             value={planeDrawTitlesMode}
                             onChange={handlePlaneDrawTitlesMode}
                         >
-                            <MenuItem value="both">Both</MenuItem>
-                            <MenuItem value="hidden">Hidden</MenuItem>
-                            <MenuItem value="localx">LocalX</MenuItem>
-                            <MenuItem value="localy">LocalY </MenuItem>
+                            <MenuItem value={EAxisPlaneDrawLabelsMode.Both}>Both</MenuItem>
+                            <MenuItem value={EAxisPlaneDrawLabelsMode.Hidden}>Hidden</MenuItem>
+                            <MenuItem value={EAxisPlaneDrawLabelsMode.LocalX}>LocalX</MenuItem>
+                            <MenuItem value={EAxisPlaneDrawLabelsMode.LocalY}>LocalY </MenuItem>
                         </Select>
                     </FormControl>
 
@@ -441,10 +408,10 @@ export default function StylingDemoChart() {
                             value={planeDrawLabelsMode}
                             onChange={handlePlaneDrawLabelsMode}
                         >
-                            <MenuItem value="both">Both</MenuItem>
-                            <MenuItem value="hidden">Hidden</MenuItem>
-                            <MenuItem value="localx">LocalX</MenuItem>
-                            <MenuItem value="localy">LocalY </MenuItem>
+                            <MenuItem value={EAxisPlaneDrawLabelsMode.Both}>Both</MenuItem>
+                            <MenuItem value={EAxisPlaneDrawLabelsMode.Hidden}>Hidden</MenuItem>
+                            <MenuItem value={EAxisPlaneDrawLabelsMode.LocalX}>LocalX</MenuItem>
+                            <MenuItem value={EAxisPlaneDrawLabelsMode.LocalY}>LocalY </MenuItem>
                         </Select>
                     </FormControl>
 
