@@ -25,6 +25,11 @@
                 "glob": "scichart2d.wasm",
                 "input": "./node_modules/scichart/_wasm/",
                 "output": "."
+              },
+              {
+                "glob": "scichart2d-nosimd.wasm",
+                "input": "./node_modules/scichart/_wasm/",
+                "output": "."
               }
             ],
             "styles": ["src/styles.css"]

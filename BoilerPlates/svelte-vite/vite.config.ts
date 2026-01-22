@@ -12,6 +12,10 @@ export default defineConfig({
           src: "node_modules/scichart/_wasm/scichart2d.wasm",
           dest: "/",
         },
+        {
+          src: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm",
+          dest: "/",
+        },
         // same for scichart3d if needed
       ],
     }),

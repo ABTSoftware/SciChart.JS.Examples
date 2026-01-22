@@ -27,10 +27,12 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
         { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart3d.data", to: "" },
+        // This one also needed to work in browsers without SIMD support
+        { from: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm", to: "" },
+        // Optional: if including 3D charts copy these files
         { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
+        { from: "node_modules/scichart/_wasm/scichart3d-nosimd.wasm", to: "" },
       ],
     }),
   ],

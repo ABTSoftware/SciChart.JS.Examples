@@ -29,7 +29,9 @@ module.exports = {
       patterns: [
         { from: "src/index.html", to: "" },
         { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
+        { from: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm", to: "" },
         { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
+        { from: "node_modules/scichart/_wasm/scichart3d-nosimd.wasm", to: "" },
       ],
     }),
   ],

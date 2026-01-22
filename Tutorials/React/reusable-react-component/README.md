@@ -6,8 +6,7 @@ This example provides a template for an application using scichart in React
 
 Open this folder in terminal and run the following commands:
 
-* `npm install`
-* `npm start`
+-   `npm install`
+-   `npm run dev`
 
 Then visit https://localhost:8080 in your web browser!
-
