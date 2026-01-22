@@ -210,9 +210,17 @@ export class ExampleDataProvider {
         return values;
     };
 
-    static getRandomCandles = (count: number, startPrice: number, startDate: Date, interval: number) => {
+    static getRandomCandles = (
+        count: number,
+        startPrice: number,
+        startDate: Date,
+        interval: number,
+        skipWeekends: boolean = false,
+        volatility: number = 0.001
+    ) => {
+        const startTime = Math.floor(startDate.getTime() / 1000 / interval) * interval;
         let p: TPriceBar = {
-            date: startDate.getTime() / 1000,
+            date: startTime,
             open: startPrice,
             high: startPrice,
             low: startPrice,
@@ -223,14 +231,18 @@ export class ExampleDataProvider {
         for (let c = 0; c < count; c++) {
             for (let t = 0; t < 20; t++) {
                 const r = Math.random() - 0.5;
-                p.close += p.close * (r / 1000);
+                p.close += p.close * r * volatility;
                 p.high = Math.max(p.high, p.close);
                 p.low = Math.min(p.low, p.close);
                 p.volume += Math.abs(r) * 200;
             }
             bars.push(p);
+            let date = (p.date += interval);
+            if (skipWeekends && new Date(date * 1000).getDay() > 4) {
+                date += 48 * 60 * 60;
+            }
             p = {
-                date: (p.date += interval),
+                date,
                 open: p.close,
                 high: p.close,
                 low: p.close,
@@ -241,14 +253,28 @@ export class ExampleDataProvider {
         return bars;
     };
 
-    static getRandomOHLCVData = (count: number, startPrice: number, startDate: Date, interval: number) => {
+    static getRandomOHLCVData = (
+        count: number,
+        startPrice: number,
+        startDate: Date,
+        interval: number,
+        skipWeekends: boolean = false,
+        volatility: number = 0.001
+    ) => {
         const xValues: number[] = [];
         const openValues: number[] = [];
         const highValues: number[] = [];
         const lowValues: number[] = [];
         const closeValues: number[] = [];
         const volumeValues: number[] = [];
-        const priceBars = ExampleDataProvider.getRandomCandles(count, startPrice, startDate, interval);
+        const priceBars = ExampleDataProvider.getRandomCandles(
+            count,
+            startPrice,
+            startDate,
+            interval,
+            skipWeekends,
+            volatility
+        );
         priceBars.forEach((priceBar: any) => {
             xValues.push(priceBar.date);
             openValues.push(priceBar.open);

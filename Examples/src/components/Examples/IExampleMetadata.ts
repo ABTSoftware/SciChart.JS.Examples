@@ -26,7 +26,7 @@ export interface IExampleMetadata {
      * @options "default" | "max-width"
      * @note choose "max-width" for a big dashboard example
      */
-    pageLayout?: string;
+    pageLayout?: "default" | "max-width";
     extraDependencies?: Record<string, string>;
     sandboxConfig?: Record<string, any>;
     /** The optional .md formatted string that provides any additional info */

@@ -1,6 +1,6 @@
 # Angular SciChart Boilerplate with scichart-angular
 
-This boilerplate uses Angular 20 and SciChart.js 4.0.
+This boilerplate uses Angular 20 and SciChart.js 5.0.
 
 This project provides a boilerplate for creating charts in Angular with SciChart.js, as well as a setup guide.
 
@@ -42,7 +42,7 @@ SciChart.js uses WebAssembly files which must be fetched asynchronously from CDN
 Simply run the following lines on client side once before initializing a chart:
 
 ```ts
-import { SciChartSurface, SciChart3DSurface } from "scichart";
+import { SciChartSurface, SciChart3DSurface } from 'scichart';
 
 // ...
 
@@ -63,7 +63,17 @@ In this project, we've configured Angular to copy the WASM files from the `node_
     "output": "/"
   },
   {
+    "glob": "scichart2d-nosimd.wasm",
+    "input": "node_modules/scichart/_wasm",
+    "output": "/"
+  },
+  {
     "glob": "scichart3d.wasm",
+    "input": "node_modules/scichart/_wasm",
+    "output": "/"
+  },
+  {
+    "glob": "scichart3d-nosimd.wasm",
     "input": "node_modules/scichart/_wasm",
     "output": "/"
   }
@@ -73,7 +83,7 @@ In this project, we've configured Angular to copy the WASM files from the `node_
 Then, in your application code, use the `loadWasmLocal()` method to load the WASM files (currently this is the default behaviour):
 
 ```ts
-import { SciChartSurface, SciChart3DSurface } from "scichart";
+import { SciChartSurface, SciChart3DSurface } from 'scichart';
 
 // ...
 
@@ -85,16 +95,19 @@ Or to manually specify their location:
 
 ```ts
 SciChartSurface.configure({
-    wasmUrl: "/scichart2d.wasm",
+  wasmUrl: '/scichart2d.wasm',
+  wasmNoSimdUrl: '/scichart2d-nosimd.wasm',
 });
 
 SciChart3DSurface.configure({
-    wasmUrl: "/scichart3d.wasm",
+  wasmUrl: '/scichart3d.wasm',
+  wasmNoSimdUrl: '/scichart3d-nosimd.wasm',
 });
 ```
 
-In the is example it will fetch the dependencies from `http://localhost:4200/scichart2d.wasm` and `http://localhost:4200/scichart3d.wasm` respectively.
+If wasmNoSimdUrl is not specified it will search scichart2d-nosimd.wasm next to scichart2d.wasm
 
+In the is example it will fetch the dependencies from `http://localhost:4200/scichart2d.wasm`, `http://localhost:4200/scichart2d-nosimd.wasm`, `http://localhost:4200/scichart3d.wasm` and `http://localhost:4200/scichart3d-nosimd.wasm` respectively.
 
 > Note: other methods to [load WASM from CDN](https://www.scichart.com/documentation/js/v4/2d-charts/surface/deploying-wasm/) are available to simplify getting started
 
@@ -118,7 +131,7 @@ The SecondChartGroup component demonstrates how to use the config approach to cr
   <div class="charts-grid" *ngIf="showChart">
     <div class="chart-wrapper">
       <h4>2D Chart</h4>
-      <scichart-angular 
+      <scichart-angular
         [config]="config"
         (onInit)="onInit2DHandler($event)"
         (onDelete)="onDelete2DHandler($event)"
@@ -126,7 +139,7 @@ The SecondChartGroup component demonstrates how to use the config approach to cr
     </div>
     <div class="chart-wrapper">
       <h4>3D Chart</h4>
-      <scichart-angular 
+      <scichart-angular
         [config]="config3D"
         (onInit)="onInit3DHandler($event)"
         (onDelete)="onDelete3DHandler($event)"
@@ -163,7 +176,7 @@ import {
   standalone: true,
   imports: [CommonModule, FormsModule, ScichartAngularComponent],
   templateUrl: './second-chart-group.component.html',
-  styleUrl: './second-chart-group.component.css'
+  styleUrl: './second-chart-group.component.css',
 })
 export class SecondChartGroupComponent {
   showChart = true;
@@ -179,16 +192,16 @@ export class SecondChartGroupComponent {
           fill: '#3ca832',
           stroke: '#eb911c',
           strokeThickness: 4,
-          opacity: 0.4
+          opacity: 0.4,
         },
-        xyData: { xValues: [1, 2, 3, 4, 5, 6, 7, 8], yValues: [1, 4, 7, 3, 6, 2, 5, 8] }
-      }
+        xyData: { xValues: [1, 2, 3, 4, 5, 6, 7, 8], yValues: [1, 4, 7, 3, 6, 2, 5, 8] },
+      },
     ],
     modifiers: [
       { type: EChart2DModifierType.ZoomPan, options: { enableZoom: true } },
       { type: EChart2DModifierType.MouseWheelZoom },
-      { type: EChart2DModifierType.ZoomExtents }
-    ]
+      { type: EChart2DModifierType.ZoomExtents },
+    ],
   };
 
   // 3D Chart Configuration
@@ -333,7 +346,7 @@ import { drawExample3D } from '../drawExample3D';
   standalone: true,
   imports: [CommonModule, FormsModule, ScichartAngularComponent],
   templateUrl: './first-chart-group.component.html',
-  styleUrl: './first-chart-group.component.css'
+  styleUrl: './first-chart-group.component.css',
 })
 export class FirstChartGroupComponent {
   showCharts = true;
@@ -341,27 +354,19 @@ export class FirstChartGroupComponent {
   public drawChart2D = drawExample2D;
   public drawChart3D = drawExample3D;
 
-  onInit2DHandler = (
-    initResult: Awaited<ReturnType<typeof drawExample2D>>
-  ) => {
+  onInit2DHandler = (initResult: Awaited<ReturnType<typeof drawExample2D>>) => {
     console.log('onInit2DHandler', initResult);
   };
 
-  onDelete2DHandler = (
-    initResult: Awaited<ReturnType<typeof drawExample2D>>
-  ) => {
+  onDelete2DHandler = (initResult: Awaited<ReturnType<typeof drawExample2D>>) => {
     console.log('onDelete2DHandler', initResult);
   };
 
-  onInit3DHandler = (
-    initResult: Awaited<ReturnType<typeof drawExample3D>>
-  ) => {
+  onInit3DHandler = (initResult: Awaited<ReturnType<typeof drawExample3D>>) => {
     console.log('onInit3DHandler', initResult);
   };
 
-  onDelete3DHandler = (
-    initResult: Awaited<ReturnType<typeof drawExample3D>>
-  ) => {
+  onDelete3DHandler = (initResult: Awaited<ReturnType<typeof drawExample3D>>) => {
     console.log('onDelete3DHandler', initResult);
   };
 
@@ -385,77 +390,72 @@ The FirstChartGroup component uses the following chart initialization functions:
 
 ```typescript
 import {
-    FastBandRenderableSeries,
-    MouseWheelZoomModifier,
-    NumberRange,
-    NumericAxis,
-    SciChartJsNavyTheme,
-    SciChartSurface,
-    SweepAnimation,
-    XyyDataSeries,
-    ZoomExtentsModifier,
-    ZoomPanModifier,
+  FastBandRenderableSeries,
+  MouseWheelZoomModifier,
+  NumberRange,
+  NumericAxis,
+  SciChartJsNavyTheme,
+  SciChartSurface,
+  SweepAnimation,
+  XyyDataSeries,
+  ZoomExtentsModifier,
+  ZoomPanModifier,
 } from 'scichart';
 
 export const drawExample2D = async (rootElement: string | HTMLDivElement) => {
-    // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(
-        rootElement,
-        {
-            theme: new SciChartJsNavyTheme(),
-        }
-    );
+  // Create a SciChartSurface
+  const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
+    theme: new SciChartJsNavyTheme(),
+  });
 
-    // Create an XAxis and YAxis
-    sciChartSurface.xAxes.add(
-        new NumericAxis(wasmContext, { axisTitle: 'X Axis' })
-    );
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, {
-            growBy: new NumberRange(0.4, 0.4),
-            axisTitle: 'Y Axis',
-        })
-    );
+  // Create an XAxis and YAxis
+  sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisTitle: 'X Axis' }));
+  sciChartSurface.yAxes.add(
+    new NumericAxis(wasmContext, {
+      growBy: new NumberRange(0.4, 0.4),
+      axisTitle: 'Y Axis',
+    })
+  );
 
-    // Create some data for the example. We need X, Y and Y1 values
-    const xValues = [];
-    const yValues = [];
-    const y1Values = [];
-    const POINTS = 50;
-    const STEP = (3 * Math.PI) / POINTS;
-    for (let i = 0; i <= POINTS; i++) {
-        const k = 1 - i / 100;
-        xValues.push(i);
-        yValues.push(Math.sin(i * STEP) * k * 0.7);
-        y1Values.push(Math.cos(i * STEP) * k);
-    }
+  // Create some data for the example. We need X, Y and Y1 values
+  const xValues = [];
+  const yValues = [];
+  const y1Values = [];
+  const POINTS = 50;
+  const STEP = (3 * Math.PI) / POINTS;
+  for (let i = 0; i <= POINTS; i++) {
+    const k = 1 - i / 100;
+    xValues.push(i);
+    yValues.push(Math.sin(i * STEP) * k * 0.7);
+    y1Values.push(Math.cos(i * STEP) * k);
+  }
 
-    // Create the band series and add to the chart
-    // The bandseries requires a special dataseries type called XyyDataSeries with X,Y and Y1 values
-    sciChartSurface.renderableSeries.add(
-        new FastBandRenderableSeries(wasmContext, {
-            dataSeries: new XyyDataSeries(wasmContext, {
-                xValues,
-                yValues,
-                y1Values,
-            }),
-            strokeThickness: 3,
-            fill: '#ff5f00',
-            fillY1: '#87CEEB',
-            stroke: '#ff5f00',
-            strokeY1: '#87CEEB',
-            animation: new SweepAnimation({ delay: 1000, duration: 800 }),
-        })
-    );
+  // Create the band series and add to the chart
+  // The bandseries requires a special dataseries type called XyyDataSeries with X,Y and Y1 values
+  sciChartSurface.renderableSeries.add(
+    new FastBandRenderableSeries(wasmContext, {
+      dataSeries: new XyyDataSeries(wasmContext, {
+        xValues,
+        yValues,
+        y1Values,
+      }),
+      strokeThickness: 3,
+      fill: '#ff5f00',
+      fillY1: '#87CEEB',
+      stroke: '#ff5f00',
+      strokeY1: '#87CEEB',
+      animation: new SweepAnimation({ delay: 1000, duration: 800 }),
+    })
+  );
 
-    // Optional: Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(
-        new ZoomExtentsModifier(),
-        new ZoomPanModifier(),
-        new MouseWheelZoomModifier()
-    );
+  // Optional: Add some interactivity modifiers
+  sciChartSurface.chartModifiers.add(
+    new ZoomExtentsModifier(),
+    new ZoomPanModifier(),
+    new MouseWheelZoomModifier()
+  );
 
-    return { wasmContext, sciChartSurface };
+  return { wasmContext, sciChartSurface };
 };
 ```
 
@@ -463,123 +463,119 @@ export const drawExample2D = async (rootElement: string | HTMLDivElement) => {
 
 ```typescript
 import {
-    CameraController,
-    EDrawMeshAs,
-    GradientColorPalette,
-    MouseWheelZoomModifier3D,
-    NumberRange,
-    NumericAxis3D,
-    OrbitModifier3D,
-    ResetCamera3DModifier,
-    SciChart3DSurface,
-    SciChartJsNavyTheme,
-    SurfaceMeshRenderableSeries3D,
-    TooltipModifier3D,
-    UniformGridDataSeries3D,
-    Vector3,
-    zeroArray2D,
+  CameraController,
+  EDrawMeshAs,
+  GradientColorPalette,
+  MouseWheelZoomModifier3D,
+  NumberRange,
+  NumericAxis3D,
+  OrbitModifier3D,
+  ResetCamera3DModifier,
+  SciChart3DSurface,
+  SciChartJsNavyTheme,
+  SurfaceMeshRenderableSeries3D,
+  TooltipModifier3D,
+  UniformGridDataSeries3D,
+  Vector3,
+  zeroArray2D,
 } from 'scichart';
 
 export const drawExample3D = async (rootElement: string | HTMLDivElement) => {
-    // Create a SciChart3DSurface
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(
-        rootElement,
-        {
-            theme: new SciChartJsNavyTheme(),
-        }
-    );
+  // Create a SciChart3DSurface
+  const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(rootElement, {
+    theme: new SciChartJsNavyTheme(),
+  });
 
-    // Create and position the camera in the 3D world
-    sciChart3DSurface.camera = new CameraController(wasmContext, {
-        position: new Vector3(-200, 150, 200),
-        target: new Vector3(0, 50, 0),
-    });
-    // Set the worlddimensions, which defines the Axis cube size
-    sciChart3DSurface.worldDimensions = new Vector3(200, 100, 200);
+  // Create and position the camera in the 3D world
+  sciChart3DSurface.camera = new CameraController(wasmContext, {
+    position: new Vector3(-200, 150, 200),
+    target: new Vector3(0, 50, 0),
+  });
+  // Set the worlddimensions, which defines the Axis cube size
+  sciChart3DSurface.worldDimensions = new Vector3(200, 100, 200);
 
-    // Add an X,Y and Z Axis
-    sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: 'X Axis',
-    });
-    sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: 'Y Axis',
-        visibleRange: new NumberRange(0, 0.3),
-    });
-    sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
-        axisTitle: 'Z Axis',
-    });
+  // Add an X,Y and Z Axis
+  sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
+    axisTitle: 'X Axis',
+  });
+  sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
+    axisTitle: 'Y Axis',
+    visibleRange: new NumberRange(0, 0.3),
+  });
+  sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
+    axisTitle: 'Z Axis',
+  });
 
-    // Create a 2D array using the helper function zeroArray2D
-    // and fill this with data
-    const zSize = 25;
-    const xSize = 25;
-    const heightmapArray = zeroArray2D([zSize, xSize]);
-    for (let z = 0; z < zSize; z++) {
-        for (let x = 0; x < xSize; x++) {
-            const xVal = (x / xSize) * 25.0;
-            const zVal = (z / zSize) * 25.0;
-            const y = Math.sin(xVal * 0.2) / ((zVal + 1) * 2);
-            heightmapArray[z][x] = y;
-        }
+  // Create a 2D array using the helper function zeroArray2D
+  // and fill this with data
+  const zSize = 25;
+  const xSize = 25;
+  const heightmapArray = zeroArray2D([zSize, xSize]);
+  for (let z = 0; z < zSize; z++) {
+    for (let x = 0; x < xSize; x++) {
+      const xVal = (x / xSize) * 25.0;
+      const zVal = (z / zSize) * 25.0;
+      const y = Math.sin(xVal * 0.2) / ((zVal + 1) * 2);
+      heightmapArray[z][x] = y;
     }
+  }
 
-    // Create a UniformGridDataSeries3D
-    const dataSeries = new UniformGridDataSeries3D(wasmContext, {
-        yValues: heightmapArray,
-        xStep: 1,
-        zStep: 1,
-        dataSeriesName: 'Uniform Surface Mesh',
-    });
+  // Create a UniformGridDataSeries3D
+  const dataSeries = new UniformGridDataSeries3D(wasmContext, {
+    yValues: heightmapArray,
+    xStep: 1,
+    zStep: 1,
+    dataSeriesName: 'Uniform Surface Mesh',
+  });
 
-    // Create the color map
-    const colorMap = new GradientColorPalette(wasmContext, {
-        gradientStops: [
-            { offset: 1, color: 'pink' },
-            { offset: 0.9, color: '#FF5E01 ' },
-            { offset: 0.7, color: 'red' },
-            { offset: 0.5, color: 'green' },
-            { offset: 0.3, color: '#87CEEB' },
-            { offset: 0.15, color: 'indigo' },
-            { offset: 0, color: '#1F0954' },
-        ],
-    });
+  // Create the color map
+  const colorMap = new GradientColorPalette(wasmContext, {
+    gradientStops: [
+      { offset: 1, color: 'pink' },
+      { offset: 0.9, color: '#FF5E01 ' },
+      { offset: 0.7, color: 'red' },
+      { offset: 0.5, color: 'green' },
+      { offset: 0.3, color: '#87CEEB' },
+      { offset: 0.15, color: 'indigo' },
+      { offset: 0, color: '#1F0954' },
+    ],
+  });
 
-    // Finally, create a SurfaceMeshRenderableSeries3D and add to the chart
-    const series = new SurfaceMeshRenderableSeries3D(wasmContext, {
-        dataSeries,
-        minimum: 0,
-        maximum: 0.5,
-        opacity: 0.9,
-        cellHardnessFactor: 1.0,
-        shininess: 0,
-        lightingFactor: 0.0,
-        highlight: 1.0,
-        stroke: 'blue',
-        strokeThickness: 2.0,
-        contourStroke: 'blue',
-        contourInterval: 2,
-        contourOffset: 0,
-        contourStrokeThickness: 2,
-        drawSkirt: false,
-        drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME,
-        meshColorPalette: colorMap,
-        isVisible: true,
-    });
+  // Finally, create a SurfaceMeshRenderableSeries3D and add to the chart
+  const series = new SurfaceMeshRenderableSeries3D(wasmContext, {
+    dataSeries,
+    minimum: 0,
+    maximum: 0.5,
+    opacity: 0.9,
+    cellHardnessFactor: 1.0,
+    shininess: 0,
+    lightingFactor: 0.0,
+    highlight: 1.0,
+    stroke: 'blue',
+    strokeThickness: 2.0,
+    contourStroke: 'blue',
+    contourInterval: 2,
+    contourOffset: 0,
+    contourStrokeThickness: 2,
+    drawSkirt: false,
+    drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME,
+    meshColorPalette: colorMap,
+    isVisible: true,
+  });
 
-    sciChart3DSurface.renderableSeries.add(series);
+  sciChart3DSurface.renderableSeries.add(series);
 
-    // Optional: Add some interactivity modifiers
-    sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
-    sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
-    sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
-    sciChart3DSurface.chartModifiers.add(
-        new TooltipModifier3D({ tooltipContainerBackground: '#B3EBF2' })
-    );
+  // Optional: Add some interactivity modifiers
+  sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
+  sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
+  sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
+  sciChart3DSurface.chartModifiers.add(
+    new TooltipModifier3D({ tooltipContainerBackground: '#B3EBF2' })
+  );
 
-    return { sciChartSurface: sciChart3DSurface, wasmContext };
+  return { sciChartSurface: sciChart3DSurface, wasmContext };
 };
 ```
-
 
 ## Code scaffolding
 
@@ -633,7 +629,6 @@ We have a wealth of information on our site showing how to get started with SciC
 
 Take a look at:
 
-- [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes community licensing details, first steps and more
-- [Javascript / npm tutorials](https://www.scichart.com/documentation/js/v4/get-started/tutorials-js-npm-webpack/tutorial-02-adding-series-and-data/): using npm, webpack, and scichart.js, create static and dynamic charts with zooming, panning tooltips and more
-- [Vanilla Javascript tutorials](https://www.scichart.com/documentation/js/v4/get-started/tutorials-cdn/tutorial-01-using-cdn/): using only vanilla javascript and HTML
+- [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
+- [SciChart.js Documentation](www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
 - [Official scichart.js demos](https://scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)
