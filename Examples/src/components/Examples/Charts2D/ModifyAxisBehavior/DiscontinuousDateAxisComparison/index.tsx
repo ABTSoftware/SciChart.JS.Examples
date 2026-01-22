@@ -1,13 +1,13 @@
 import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartReact, SciChartGroup, TResolvedReturnType, IInitResult } from "scichart-react";
-import { createIndexChart, createDiscontinuousDateChart, createCategoryChart } from "./drawExample";
+import { createNumericChart, createDiscontinuousDateChart, createCategoryChart } from "./drawExample";
 import { AxisSynchroniser } from "../../MultiChart/SyncMultiChart/AxisSynchroniser";
 import { NumberRange, SciChartSurface } from "scichart";
 import React from "react";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { appTheme } from "../../../theme";
 
-export default function AxisTypeComparisonExample() {
+export default function DiscontinuousDateAxisComparisonExample() {
     const axisSynchroniserRef = React.useRef<AxisSynchroniser>(new AxisSynchroniser());
     const [customSettings, setCustomSettings] = React.useState(true);
 
@@ -65,9 +65,9 @@ export default function AxisTypeComparisonExample() {
                         }}
                     />
 
-                    {/* Index Chart */}
+                    {/* Numeric Chart */}
                     <SciChartReact
-                        initChart={createIndexChart(customSettings)}
+                        initChart={createNumericChart(customSettings)}
                         style={{
                             width: "100%",
                             flex: "1 1 0",

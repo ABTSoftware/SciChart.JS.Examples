@@ -1,33 +1,22 @@
 import {
-    ENumericFormat,
-    EllipsePointMarker,
-    FastRectangleRenderableSeries,
-    FastLineRenderableSeries,
-    LegendModifier,
-    LogarithmicAxis,
-    MouseWheelZoomModifier,
-    NumericAxis,
-    RubberBandXyZoomModifier,
-    SciChartSurface,
-    SweepAnimation,
-    XyDataSeries,
-    Thickness,
-    ZoomExtentsModifier,
-    IndexAxis,
-    NumericLabelProvider,
-    NumberRange,
     CategoryAxis,
-    EAxisAlignment,
-    SmartDateLabelProvider,
-    AxisMarkerAnnotation,
-    ELabelPlacement,
-    LabelProviderBase2D,
-    ZoomPanModifier,
-    EXyDirection,
-    RolloverModifier,
     DiscontinuousDateAxis,
+    ENumericFormat,
+    EXyDirection,
+    EllipsePointMarker,
+    FastCandlestickRenderableSeries,
+    FastLineRenderableSeries,
+    MouseWheelZoomModifier,
+    NumberRange,
+    NumericAxis,
+    NumericLabelProvider,
+    OhlcDataSeries,
+    RolloverModifier,
+    SciChartSurface,
+    XyDataSeries,
     XyScatterRenderableSeries,
-    AxisBase2D,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -51,49 +40,54 @@ class DayOfWeekLabelProvider extends NumericLabelProvider {
 
 // Helper function to create data series
 const createDataSeries = (wasmContext: any, isCategoryAxis: boolean) => {
-    // X values from the first series are used as baseXValues for the Index and DiscontinuousDate axis, unless you specify them explicitly.
-    const startDate = Date.UTC(2024, 0, 6, 0, 0, 0, 0) / 1000;
-    const dataSeries = new XyDataSeries(wasmContext, {
-        xValues: [1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 15, 16].map((x) => startDate + x * 24 * 60 * 60),
-        yValues: [1, 4, 3, 5.21, 2, 2, 1.3, 2, 3, 4, 2, 2],
+    // X values from the first series are used as baseXValues for the DiscontinuousDate axis, unless you specify them explicitly.
+    const startDate = new Date(Date.UTC(2024, 0, 6, 0, 0, 0, 0));
+    const startTime = startDate.getTime() / 1000;
+    const ohlcSeries = new OhlcDataSeries(wasmContext, {
+        containsNaN: false,
+        isSorted: true,
+        xValues: [1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 15, 16].map((x) => startTime + x * 24 * 60 * 60),
+        openValues: [2, 5, 4, 6.2, 3, 3, 2.3, 3, 4, 5, 3, 3],
+        highValues: [4.2, 7.5, 6.8, 8.5, 5.5, 5.2, 4.8, 5.7, 6.9, 7.5, 5.8, 6.2],
+        lowValues: [0.8, 3.0, 2.0, 4.5, 1.0, 1.2, 0.5, 1.5, 2.5, 3.5, 1.5, 1.0],
+        closeValues: [3.5, 3.8, 6.0, 8.0, 2.0, 4.5, 1.2, 5.0, 6.2, 4.0, 5.0, 2.5],
     });
 
-    // Index and DiscontinuousDate axis support data with values at the same x coordinate, and data in between baseXValues
+    // DiscontinuousDate axis supports data with values at the same x coordinate, and data in between baseValues
     const dataSeries1 = new XyDataSeries(wasmContext, {
-        xValues: [1, 2, 2, 5, 5.5, 8, 9, 9.5, 9.8, 11, 15, 16].map((x) => startDate + x * 24 * 60 * 60),
+        containsNaN: false,
+        isSorted: true,
+        xValues: [1, 2, 2, 5, 5.5, 8, 9, 9.5, 9.8, 11, 15, 16].map((x) => startTime + x * 24 * 60 * 60),
         yValues: [2, 5, 4, 6.2, 3, 3, 2.3, 3, 4, 5, 3, 3],
     });
     if (!isCategoryAxis) {
         dataSeries1.appendRange(
-            [5, 5, 9, 9, 13, 14].map((x) => startDate + x * 24 * 60 * 60),
+            [5, 5, 9, 9, 15, 15].map((x) => startTime + x * 24 * 60 * 60),
             [3, 4, 4, 5.5, 4.5, 1]
         );
     }
 
-    // Index and DiscontinuousDate axis support data with more or less x values than the baseXValues
+    // DiscontinuousDate axis supports data with more or less x values than the baseValues
     const dataSeries2 = new XyDataSeries(wasmContext, {
-        xValues: [1, 3, 5, 8, 11, 16].map((x) => startDate + x * 24 * 60 * 60),
+        containsNaN: false,
+        isSorted: true,
+        xValues: [1, 3, 5, 8, 11, 16].map((x) => startTime + x * 24 * 60 * 60),
         yValues: [3, 6, 5, 7.21, 4, 4],
     });
 
-    return { dataSeries, dataSeries1, dataSeries2 };
+    return { ohlcSeries, dataSeries1, dataSeries2 };
 };
 
 // Helper function to add series to a chart
 const addSeriesToChart = (sciChartSurface: SciChartSurface, wasmContext: any, dataSeries: any) => {
     sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: dataSeries.dataSeries,
-            stroke: appTheme.VividOrange,
-            opacity: 0.8,
-            strokeThickness: 4,
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                width: 8,
-                height: 8,
-                fill: appTheme.VividOrange,
-                strokeThickness: 0,
-                opacity: 0.7,
-            }),
+        new FastCandlestickRenderableSeries(wasmContext, {
+            dataSeries: dataSeries.ohlcSeries,
+            strokeThickness: 1,
+            brushUp: appTheme.VividGreen + "77",
+            brushDown: appTheme.MutedRed + "77",
+            strokeUp: appTheme.VividGreen,
+            strokeDown: appTheme.MutedRed,
         })
     );
 
@@ -128,13 +122,6 @@ const addSeriesToChart = (sciChartSurface: SciChartSurface, wasmContext: any, da
     );
 };
 
-const axisCustomSettings = (axis: AxisBase2D) => {
-    axis.labelProvider = new DayOfWeekLabelProvider({ cursorLabelFormat: ENumericFormat.Date_DDMMHHMM });
-    axis.autoTicks = false;
-    axis.majorDelta = 24 * 60 * 60;
-    axis.minorDelta = 4 * 60 * 60;
-};
-
 // Create Discontinuous Date Axis Chart
 export const createDiscontinuousDateChart =
     (customSettings: boolean) => async (rootElement: string | HTMLDivElement) => {
@@ -150,13 +137,18 @@ export const createDiscontinuousDateChart =
             growBy: new NumberRange(0.05, 0.05),
             dataGap: 24 * 60 * 60, // This is auto-calculated using the minimum gap between baseXValues, but should be set where possible to avoid that calculation.
             cursorLabelFormat: ENumericFormat.Date_DDMMHHMM,
-            axisTitle: "Discontinuous Date X Axis - Fixed gap between baseXValues.  Ideal for financial data.",
+            axisTitle: "Discontinuous Date X Axis - Fixed gap between baseValues.  Ideal for financial data.",
             axisTitleStyle: {
                 fontSize: 16,
             },
         });
         if (customSettings) {
-            axisCustomSettings(xAxisDiscontinuous);
+            xAxisDiscontinuous.labelProvider = new DayOfWeekLabelProvider({
+                cursorLabelFormat: ENumericFormat.Date_DDMMHHMM,
+            });
+            xAxisDiscontinuous.autoTicks = false;
+            xAxisDiscontinuous.majorDelta = 24 * 60 * 60;
+            xAxisDiscontinuous.minorDelta = 4 * 60 * 60;
         }
 
         const yAxisLinear = new NumericAxis(wasmContext, {
@@ -183,8 +175,8 @@ export const createDiscontinuousDateChart =
         return { sciChartSurface, wasmContext };
     };
 
-// Create Index Axis Chart
-export const createIndexChart = (customSettings: boolean) => async (rootElement: string | HTMLDivElement) => {
+// Create Numeric Axis Chart
+export const createNumericChart = (customSettings: boolean) => async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: {
             ...appTheme.SciChartJsTheme,
@@ -193,15 +185,18 @@ export const createIndexChart = (customSettings: boolean) => async (rootElement:
         },
     });
 
-    const xAxisIndex = new IndexAxis(wasmContext, {
+    const xAxisNumeric = new NumericAxis(wasmContext, {
         labelFormat: ENumericFormat.Date_DDMM,
-        axisTitle: "Index X Axis - Nonlinear but continuous",
+        axisTitle: "Numeric X Axis - Cannot hide gaps",
         axisTitleStyle: {
             fontSize: 16,
         },
     });
     if (customSettings) {
-        axisCustomSettings(xAxisIndex);
+        xAxisNumeric.labelProvider = new DayOfWeekLabelProvider({ cursorLabelFormat: ENumericFormat.Date_DDMMHHMM });
+        xAxisNumeric.autoTicks = false;
+        xAxisNumeric.majorDelta = 24 * 60 * 60;
+        xAxisNumeric.minorDelta = 4 * 60 * 60;
     }
 
     const yAxisLinear = new NumericAxis(wasmContext, {
@@ -211,7 +206,7 @@ export const createIndexChart = (customSettings: boolean) => async (rootElement:
         growBy: new NumberRange(0.1, 0.1),
     });
 
-    sciChartSurface.xAxes.add(xAxisIndex);
+    sciChartSurface.xAxes.add(xAxisNumeric);
     sciChartSurface.yAxes.add(yAxisLinear);
 
     const dataSeries = createDataSeries(wasmContext, false);
@@ -241,7 +236,7 @@ export const createCategoryChart = (customSettings: boolean) => async (rootEleme
         autoTicks: false,
         majorDelta: 1,
         minorDelta: 0.2,
-        axisTitle: "Category X Axis.  Data plotted by index only",
+        axisTitle: "Category X Axis.  Hides gaps, but plots by index only",
         axisTitleStyle: {
             fontSize: 16,
         },
