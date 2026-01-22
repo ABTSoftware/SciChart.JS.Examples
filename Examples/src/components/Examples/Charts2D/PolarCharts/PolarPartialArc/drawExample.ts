@@ -14,6 +14,7 @@ import {
     GenericAnimation,
     easing,
     NumberRange,
+    EActionType,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -118,7 +119,7 @@ export const drawExample = async (
 
     sciChartSurface.chartModifiers.add(
         new PolarPanModifier({ xyDirection: EXyDirection.XDirection }),
-        new PolarMouseWheelZoomModifier({ growFactor: 0.0002 }),
+        new PolarMouseWheelZoomModifier({ defaultActionType: EActionType.Pan }),
 
         // Customise `zoomExtents` modifier to update frontend sliders via `onAnimationUpdate` Callback
         new PolarZoomExtentsModifier({
