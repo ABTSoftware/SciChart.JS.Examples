@@ -45,7 +45,8 @@ import { appTheme } from "../../../theme";
 // const orderbookLevels = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/orderbook_levels.csv";
 
 const ohlcFilePath = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/12min/LTCUSDT_OHLC.csv";
-const orderbookLevels = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/12min/orderbook_levels.csv";
+const orderbookLevels =
+    "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/12min/orderbook_levels.csv";
 
 type TCandleData = {
     xValues: number[];
@@ -206,9 +207,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     // Add an XAxis of type DateTimeAxis
-    // Note for crypto data this is fine, but for stocks/forex you will need to use CategoryAxis which collapses gaps at weekends
-    // In future we have a hybrid IndexDateAxis which 'magically' solves problems of different # of points in stock market datasetd with gaps
-    const xAxis = new DateTimeNumericAxis(wasmContext);
+    // Note for crypto data this is fine, but for stocks/forex you will need to use DiscontinuousDateAxis which collapses gaps at weekends
+    const xAxis = new DateTimeNumericAxis(wasmContext, {
+        cursorLabelFormat: ENumericFormat.Date_HHMMSS,
+    });
     sciChartSurface.xAxes.add(xAxis);
 
     // Create a NumericAxis on the YAxis with 2 Decimal Places
@@ -219,22 +221,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     sciChartSurface.yAxes.add(priceAxis);
 
-    const Y_AXIS_VOLUME_ID = "Y_AXIS_VOLUME_ID";
-    // Create a secondary YAxis to host volume data on its own scale
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, {
-            id: Y_AXIS_VOLUME_ID,
-            growBy: new NumberRange(0, 4),
-            isVisible: false,
-            autoRange: EAutoRange.Always,
-        })
-    );
-
     const { xValues, openValues, highValues, lowValues, closeValues, volumeValues } = await loadCandleData();
 
     const { zValues, xCellOffsets, yCellOffsets, minValue, maxValue } = await loadHeatmapData();
-
-    console.log({ minValue, maxValue });
 
     // #1034A6 - Egyptian Blue (lowest)
 
@@ -339,6 +328,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         opacity: 0.4,
         dataSeries: heatmapDataSeries,
         colorMap,
+        stroke: appTheme.PaleSkyBlue, // for legend text
     });
     heatmapSeries.useLinearTextureFiltering = false;
 
@@ -383,73 +373,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         opacity: 1,
     });
 
-    console.log("Added candlestick series with", candleDataSeries.count(), "data points");
-
-    // Add an Ohlcseries. this will be invisible to begin with
-    const ohlcSeries = new FastOhlcRenderableSeries(wasmContext, {
-        dataSeries: candleDataSeries,
-        stroke: appTheme.ForegroundColor, // used by cursorModifier below
-        strokeThickness: 1,
-        dataPointWidth: 0.9,
-        strokeUp: appTheme.VividGreen,
-        strokeDown: appTheme.MutedRed,
-        isVisible: false,
-    });
-    sciChartSurface.renderableSeries.add(ohlcSeries); // temp
-
-    // Add some moving averages using SciChart's filters/transforms API
-    // when candleDataSeries updates, XyMovingAverageFilter automatically recomputes
-
-    const ma20Series = new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyMovingAverageFilter(candleDataSeries, {
-            dataSeriesName: "Moving Average (20)",
-            length: 20,
-        }),
-        stroke: appTheme.VividSkyBlue,
-        strokeThickness: 2,
-        isVisible: true,
-        opacity: 1,
-    });
-
-    console.log("Added MA20 series with", ma20Series.dataSeries.count(), "data points");
-
-    const ma50Series = new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyMovingAverageFilter(candleDataSeries, {
-            dataSeriesName: "Moving Average (50)",
-            length: 50,
-        }),
-        stroke: appTheme.VividPink,
-        strokeThickness: 2,
-        isVisible: true,
-        opacity: 1,
-    });
-
     sciChartSurface.renderableSeries.add(candlestickSeries);
-    sciChartSurface.renderableSeries.add(ma20Series);
-    sciChartSurface.renderableSeries.add(ma50Series);
-
-    console.log("Added MA50 series with", ma50Series.dataSeries.count(), "data points");
-
-    // Add volume data onto the chart
-    const volumeSeries = new FastColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, {
-            xValues,
-            yValues: volumeValues,
-            dataSeriesName: "Volume",
-        }),
-        strokeThickness: 0,
-        // This is how we get volume to scale - on a hidden YAxis
-        yAxisId: Y_AXIS_VOLUME_ID,
-        // This is how we colour volume bars red or green
-        paletteProvider: new VolumePaletteProvider(
-            candleDataSeries,
-            appTheme.VividGreen + "77",
-            appTheme.MutedRed + "77"
-        ),
-        isVisible: true,
-    });
-    sciChartSurface.renderableSeries.add(volumeSeries);
-    console.log("Added volume series with", volumeSeries.dataSeries.count(), "data points");
+    console.log("Added candlestick series with", candleDataSeries.count(), "data points");
 
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(
@@ -462,8 +387,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
         new CursorModifier({
-            crosshairStroke: appTheme.DarkIndigo + 55,
-            axisLabelFill: appTheme.DarkIndigo + 55,
+            crosshairStroke: appTheme.PaleOrange + 55,
+            axisLabelFill: appTheme.PaleOrange + 55,
             tooltipLegendTemplate: getTooltipLegendTemplate,
         })
     );
@@ -471,7 +396,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Note: Overview is handled by the React component using SciChartNestedOverview
     // No need to create it here as it would conflict with the React component
 
-    return { sciChartSurface, candlestickSeries, ohlcSeries };
+    return { sciChartSurface, candlestickSeries };
 };
 
 // Override the Renderableseries to display on the scichart overview
@@ -520,51 +445,9 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Curs
     return `<svg width="100%" height="100%">
                 <g transform=translate(5,5)>
                ${
-                   outputSvgString ? `<rect width="480px" height="110px" fill="#000000" opacity="0.4" rx="5" />` : ``
+                   outputSvgString ? `<rect width="480px" height="50px" fill="#000000" opacity="0.4" rx="5" />` : ``
                }         
                 ${outputSvgString}
                 <g>
              </svg>`;
 };
-
-class VolumePaletteProvider extends DefaultPaletteProvider {
-    fillPaletteMode: EFillPaletteMode = EFillPaletteMode.SOLID;
-    private ohlcDataSeries: OhlcDataSeries;
-    private upColorArgb: number;
-    private downColorArgb: number;
-
-    constructor(masterData: OhlcDataSeries, upColor: string, downColor: string) {
-        super();
-        this.upColorArgb = parseColorToUIntArgb(upColor);
-        this.downColorArgb = parseColorToUIntArgb(downColor);
-        this.ohlcDataSeries = masterData;
-    }
-
-    // Return up or down color for the volume bars depending on Ohlc data
-    overrideFillArgb(
-        xValue: number,
-        yValue: number,
-        index: number,
-        opacity?: number,
-        metadata?: IPointMetadata
-    ): number {
-        const isUpCandle =
-            this.ohlcDataSeries.getNativeOpenValues().get(index) >=
-            this.ohlcDataSeries.getNativeCloseValues().get(index);
-        return isUpCandle ? this.upColorArgb : this.downColorArgb;
-    }
-
-    // Apply same logic as for overrideFillArgb if columns could be thinner than 1px
-    overrideStrokeArgb(
-        xValue: number,
-        yValue: number,
-        index: number,
-        opacity?: number,
-        metadata?: IPointMetadata
-    ): number {
-        const isUpCandle =
-            this.ohlcDataSeries.getNativeOpenValues().get(index) >=
-            this.ohlcDataSeries.getNativeCloseValues().get(index);
-        return isUpCandle ? this.upColorArgb : this.downColorArgb;
-    }
-}
