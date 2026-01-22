@@ -44,7 +44,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/CursorModifier.html",
+                href: "https://www.scichart.com/documentation/js/v4/2d-charts/chart-modifier-api/cursor-modifier/cursor-modifier-overview/",
                 title: "The specific page for the SciChart.js API documentation for the CursorModifier to help you to get started",
                 linkTitle: "CursorModifier documentation",
             },
