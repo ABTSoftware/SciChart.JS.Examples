@@ -44,7 +44,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/ZoomPanModifier.html",
+                href: "https://www.scichart.com/documentation/js/v4/2d-charts/chart-modifier-api/chart-modifier-api-overview/#zoom-pan-modifiers",
                 title: "Zoom and Pan Modifier Documentation",
                 linkTitle: "SciChart.js Zooming and Panning Documentation",
             },
@@ -58,7 +58,7 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: true,
+        isNew: false,
     };
 //// End of computer generated metadata
 

@@ -44,7 +44,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Scatter%20Series%20Type.html",
+                href: "https://www.scichart.com/documentation/js/v4/2d-charts/chart-types/xy-scatter-renderable-series/",
                 title: "This specific page in the JavaScript Polar Scatter Chart documentation will help you to get started",
                 linkTitle: "JavaScript Polar Scatter Chart Documentation",
             },
@@ -58,7 +58,7 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: true,
+        isNew: false,
     };
 //// End of computer generated metadata
 

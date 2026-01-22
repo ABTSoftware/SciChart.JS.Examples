@@ -57,6 +57,7 @@
     "country-flag-icons": "^1.5.7",
     "crossfilter2": "^1.5.4",
     "d3-hierarchy": "^3.1.2",
+    "date-fns": "^4.1.0",
     "express": "^4.17.1",
     "follow-redirects": "^1.15.9",
     "lz-string": "^1.5.0",
@@ -73,7 +74,7 @@
     "rehype-raw": "^7.0.0",
     "request": "^2.88.2",
     "rxjs": "^7.5.6",
-    "scichart": "5.0.0-alpha.135",
+    "scichart": "5.0.0-beta.162",
     "scichart-react": "1.0.0",
     "socket.io": "^4.5.2",
     "socket.io-client": "^4.7.5",
@@ -130,7 +131,7 @@
   "overrides": {
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "scichart": "5.0.0-alpha.135"
+    "scichart": "5.0.0-beta.162"
   },
   "browserslist": [
     "defaults",
