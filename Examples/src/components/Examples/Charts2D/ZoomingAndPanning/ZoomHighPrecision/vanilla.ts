@@ -1,4 +1,4 @@
-import { drawExample, drawOverview } from "./drawExample";
+import { drawExample } from "./drawExample";
 
 /**
  * Creates charts on the provided root elements
@@ -6,10 +6,8 @@ import { drawExample, drawOverview } from "./drawExample";
  */
 const create = async () => {
     const { sciChartSurface } = await drawExample("chart");
-    const { sciChartSurface: overviewSurface } = await drawOverview(sciChartSurface, "overview");
 
     const destructor = () => {
-        overviewSurface.delete();
         sciChartSurface.delete();
     };
 
