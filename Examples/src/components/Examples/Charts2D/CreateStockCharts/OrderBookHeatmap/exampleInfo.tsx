@@ -1,6 +1,34 @@
 import { createExampleInfo } from "../../../exampleInfoUtils";
 import { IExampleMetadata } from "../../../IExampleMetadata";
 
+const markdownContent = `
+## Order Book Heatmap Chart
+
+This example demonstrates how to create an **Order Book Heatmap** visualization using SciChart.js, combining a **UniformHeatmapRenderableSeries** with a **FastCandlestickRenderableSeries** to display historical orderbook depth levels alongside price candles.
+
+
+### What is an Order Book Heatmap?
+
+An order book heatmap visualizes the distribution of buy and sell orders at different price levels over time. The intensity of color represents the volume of orders at each price point, helping traders identify:
+- **Support and resistance levels** - Areas with high order concentration
+- **Liquidity zones** - Where large orders are clustered
+- **Price walls** - Significant order accumulations that may affect price movement
+
+
+### Key Features
+
+- **UniformHeatmapDataSeries** - Efficiently stores 2D grid data with uniform X and Y spacing
+- **HeatmapColorMap** - Configurable gradient color mapping from order volume to visual intensity
+- **Candlestick overlay** - Price action displayed on top of the heatmap for context
+- **Custom tooltips** - CursorModifier with custom template showing OHLC data and order values
+- **Interactive navigation** - ZoomPanModifier, MouseWheelZoomModifier, and ZoomExtentsModifier for exploring the data
+
+
+### Implementation Highlights
+
+The heatmap uses a custom color gradient that transitions from dark (low volume) through white to red (high volume), making it easy to spot areas of high liquidity. The candlestick series is overlaid with semi-transparent colors to ensure both datasets remain visible.
+`;
+
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
@@ -16,7 +44,7 @@ const metaData: IExampleMetadata =
                 pageTitle: "JavaScript Orderbook Heatmap",
                 metaDescription:
                     "Create a Javascript heatmap chart showing historical orderbook levels using the high performance SciChart.js chart library. Get free demo now.",
-                markdownContent: "",
+                markdownContent,
             },
             react: {
                 subtitle: "Create a heatmap chart showing historical orderbook levels",
@@ -24,16 +52,15 @@ const metaData: IExampleMetadata =
                 pageTitle: "React Orderbook Heatmap",
                 metaDescription:
                     "Create a React heatmap chart showing historical orderbook levels, using the high performance SciChart.js chart library. Get free demo now.",
-                markdownContent: "",
+                markdownContent,
             },
             angular: {
-                subtitle:
-                    "Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips. ***Large trades > $25,000 size are plotted as bubbles.***",
+                subtitle: "Create a heatmap chart showing historical orderbook levels",
                 title: "Angular Orderbook Heatmap",
                 pageTitle: "Angular Orderbook Heatmap",
                 metaDescription:
                     "Create an Angular heatmap chart showing historical orderbook levels, using the high performance SciChart.js chart library. Get free demo now.",
-                markdownContent: "",
+                markdownContent,
             },
         },
         documentationLinks: [

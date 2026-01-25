@@ -6,17 +6,15 @@ import {
     NumberRange,
     NumericAxis,
     SciChartSurface,
-    UniformContoursRenderableSeries,
     UniformHeatmapDataSeries,
     UniformHeatmapRenderableSeries,
     XyDataSeries,
-    zeroArray2D,
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-// Interface for earthquake data
+/** Earthquake data structure from CSV */
 interface EarthquakeData {
     latitude: number;
     longitude: number;
@@ -24,6 +22,7 @@ interface EarthquakeData {
     depth: number;
 }
 
+/** Base URL for fetching data files - handles both local and production environments */
 const baseUrl =
     typeof window !== "undefined" &&
     !window.location.hostname.includes("scichart.com") &&
@@ -31,13 +30,17 @@ const baseUrl =
         ? "https://www.scichart.com/demo"
         : "";
 
+/**
+ * Creates a heatmap visualization of earthquake data overlaid on a world map.
+ * The heatmap displays earthquake magnitudes using a color gradient from black (no activity)
+ * to red (highest magnitude).
+ */
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
-    // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
 
-    // Define world coordinate bounds for proper alignment
+    // World coordinate bounds (standard lat/lon ranges)
     const worldBounds = {
         minLat: -90,
         maxLat: 90,
@@ -45,7 +48,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         maxLon: 180,
     };
 
-    // Create X & Y Axis with proper world coordinate bounds
+    // Configure axes with world coordinate bounds (hidden for clean map appearance)
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             isVisible: false,
@@ -59,42 +62,27 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
+    // Heatmap resolution
     const heatmapWidth = 600;
     const heatmapHeight = 400;
 
+    // Magnitude range for color mapping (Richter scale)
     const colorPaletteMin = 0;
-    const colorPaletteMax = 10; // Max magnitude for earthquakes
+    const colorPaletteMax = 10;
 
-    // Fetch and process earthquake data
-    console.log("Fetching earthquake data...");
+    // Load earthquake data and world map outlines
     const earthquakeData = await fetchEarthquakeData();
-
     const convertedData = await fetch(baseUrl + "worldConverted.json").then((response) => response.json());
 
-    console.log("Analyzing convertedData coordinate system...");
+    // Define coordinate bounds for the world map data
+    const minX = -180;
+    const maxX = 180;
+    const minY = -90;
+    const maxY = 90;
 
-    // Analyze the coordinate bounds of convertedData to understand its coordinate system
-    let minX = Infinity,
-        maxX = -Infinity,
-        minY = Infinity,
-        maxY = -Infinity;
-    convertedData.forEach((d: any) => {
-        d.outline.forEach((point: number[]) => {
-            minX = -180; //Math.min(minX, point[0]); // Lon
-            maxX = 180; //Math.max(maxX, point[0]);
-            minY = -90; //Math.min(minY, point[1]); // Lat Y(-55.52 to 83.61)
-            maxY = 90; //Math.max(maxY, point[1]);
-        });
-    });
-
-    console.log(
-        `ConvertedData bounds: X(${minX.toFixed(2)} to ${maxX.toFixed(2)}), Y(${minY.toFixed(2)} to ${maxY.toFixed(2)})`
-    );
-
-    // Transform convertedData coordinates to match world lat/lon bounds
+    // Transform world map coordinates to match the chart's coordinate system
     const transformedOutlines = convertedData.map((d: any) => {
         return d.outline.map((point: number[]) => {
-            // Scale from convertedData coordinate system to world lat/lon coordinates
             const scaledX =
                 worldBounds.minLon + ((point[0] - minX) / (maxX - minX)) * (worldBounds.maxLon - worldBounds.minLon);
             const scaledY =
@@ -103,14 +91,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         });
     });
 
-    console.log("Transformed world outlines to lat/lon coordinate system");
-
-    // Create outline series with transformed coordinates
+    // Create line series for country/continent outlines
     const outlinesSC = transformedOutlines.map((outline: number[][]) => {
         const xVals = outline.map((d: number[]) => d[0]);
         const yVals = outline.map((d: number[]) => d[1]);
 
-        const lineSeries = new FastLineRenderableSeries(wasmContext, {
+        return new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: xVals,
                 yValues: yVals,
@@ -119,23 +105,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             strokeThickness: 2,
             opacity: 1,
         });
-
-        return lineSeries;
     });
 
     sciChartSurface.renderableSeries.add(...outlinesSC);
 
-    console.log(`Loaded ${earthquakeData.length} earthquake records`);
-
     // Generate heatmap from earthquake data
     const initialZValues = generateEarthquakeHeatmap(earthquakeData, heatmapWidth, heatmapHeight);
 
-    console.log("Generated earthquake heatmap data");
-
-    // Reverse the heatmap data by Y-axis to match proper geographic orientation
+    // Reverse Y-axis to match geographic orientation (north at top)
     const reversedZValues = initialZValues.slice().reverse();
 
-    // Create heatmap data series with proper world coordinate mapping
+    // Create heatmap data series with world coordinate mapping
     const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
         zValues: reversedZValues,
         xStart: worldBounds.minLon,
@@ -144,7 +124,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         yStep: (worldBounds.maxLat - worldBounds.minLat) / heatmapHeight,
     });
 
-    // Create a background heatmap series with the same data and add to the chart
+    // Add heatmap with semi-transparent overlay
     sciChartSurface.renderableSeries.add(
         new UniformHeatmapRenderableSeries(wasmContext, {
             dataSeries: heatmapDataSeries,
@@ -154,18 +134,18 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 minimum: colorPaletteMin,
                 maximum: colorPaletteMax,
                 gradientStops: [
-                    { offset: 1, color: "#FF0000" }, // Red for highest magnitude
+                    { offset: 1, color: "#FF0000" }, // Red - highest magnitude
                     { offset: 0.8, color: "#FF4500" }, // Orange-red
                     { offset: 0.6, color: "#FFA500" }, // Orange
                     { offset: 0.4, color: "#FFFF00" }, // Yellow
                     { offset: 0.2, color: "#90EE90" }, // Light green
-                    { offset: 0, color: "#000000" }, // Blue for lowest/no activity
+                    { offset: 0, color: "#000000" }, // Black - no activity
                 ],
             }),
         })
     );
 
-    // Add interaction
+    // Add interactive chart modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier({ enableZoom: true }));
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
@@ -173,6 +153,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     return { sciChartSurface };
 };
 
+/**
+ * Creates a heatmap legend showing the magnitude color scale.
+ */
 export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) => {
     const { heatmapLegend, wasmContext } = await HeatmapLegend.create(rootElement, {
         theme: {
@@ -205,12 +188,12 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
             minimum: 0,
             maximum: 10,
             gradientStops: [
-                { offset: 1, color: "#FF0000" }, // Red for highest magnitude
+                { offset: 1, color: "#FF0000" }, // Red - highest magnitude
                 { offset: 0.8, color: "#FF4500" }, // Orange-red
                 { offset: 0.6, color: "#FFA500" }, // Orange
                 { offset: 0.4, color: "#FFFF00" }, // Yellow
                 { offset: 0.2, color: "#90EE90" }, // Light green
-                { offset: 0, color: "#0001FF" }, // Blue for lowest/no activity
+                { offset: 0, color: "#0001FF" }, // Blue - no activity
             ],
         },
     });
@@ -218,36 +201,33 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
     return { sciChartSurface: heatmapLegend.innerSciChartSurface.sciChartSurface };
 };
 
-// Function to fetch earthquake data from CSV
+/** Fetches earthquake data from CSV file */
 async function fetchEarthquakeData(): Promise<EarthquakeData[]> {
     try {
         const response = await fetch(baseUrl + "earthquakes-23k.csv");
         const csvText = await response.text();
-
         return parseEarthquakeCSV(csvText);
     } catch (error) {
         console.error("Error fetching earthquake data:", error);
-        // Return empty array if fetch fails
         return [];
     }
 }
 
-// Function to parse CSV data
+/** Parses CSV text into earthquake data objects */
 function parseEarthquakeCSV(csvText: string): EarthquakeData[] {
     const lines = csvText.trim().split("\n");
     const earthquakes: EarthquakeData[] = [];
 
-    // Skip header row (Date,Latitude,Longitude,Magnitude)
+    // CSV format: Date,Latitude,Longitude,Magnitude (skip header row)
     for (let i = 1; i < lines.length; i++) {
         const columns = lines[i].split(",");
 
         if (columns.length >= 4) {
-            // CSV format: Date,Latitude,Longitude,Magnitude
-            const latitude = parseFloat(columns[1]); // Column 1: Latitude
-            const longitude = parseFloat(columns[2]); // Column 2: Longitude
-            const magnitude = parseFloat(columns[3]); // Column 3: Magnitude
+            const latitude = parseFloat(columns[1]);
+            const longitude = parseFloat(columns[2]);
+            const magnitude = parseFloat(columns[3]);
 
-            // Validate data - ensure proper geographic bounds
+            // Validate geographic bounds and magnitude
             if (
                 !isNaN(latitude) &&
                 !isNaN(longitude) &&
@@ -262,7 +242,7 @@ function parseEarthquakeCSV(csvText: string): EarthquakeData[] {
                     latitude,
                     longitude,
                     magnitude,
-                    depth: 0, // Depth not available in this dataset
+                    depth: 0, // Not available in this dataset
                 });
             }
         }
@@ -271,7 +251,7 @@ function parseEarthquakeCSV(csvText: string): EarthquakeData[] {
     return earthquakes;
 }
 
-// Function to generate heatmap from earthquake data
+/** Generates a heatmap grid from earthquake data */
 function generateEarthquakeHeatmap(earthquakes: EarthquakeData[], width: number, height: number): number[][] {
     // Initialize grid with zeros
     const grid: number[][] = [];
@@ -283,33 +263,28 @@ function generateEarthquakeHeatmap(earthquakes: EarthquakeData[], width: number,
         return grid;
     }
 
-    // Use world map bounds: Latitude -90 to 90, Longitude -180 to 180
+    // World map bounds
     const minLat = -90;
     const maxLat = 90;
     const minLon = -180;
     const maxLon = 180;
 
-    console.log(`Using world map bounds: Lat ${minLat} to ${maxLat}, Lon ${minLon} to ${maxLon}`);
-    console.log(`Processing ${earthquakes.length} earthquakes`);
-
-    // Map earthquakes to grid using world coordinates
+    // Map each earthquake to a grid cell
     earthquakes.forEach((earthquake) => {
-        // Convert lat/lon to grid coordinates (0-based)
+        // Convert lat/lon to grid coordinates
         const x = Math.floor(((earthquake.longitude - minLon) / (maxLon - minLon)) * width);
         const y = Math.floor(((maxLat - earthquake.latitude) / (maxLat - minLat)) * height); // Flip Y for proper orientation
 
-        // Ensure coordinates are within bounds
         if (x >= 0 && x < width && y >= 0 && y < height) {
-            // Use maximum magnitude for overlapping earthquakes in same cell
+            // Use maximum magnitude when multiple earthquakes fall in the same cell
             grid[y][x] = Math.max(grid[y][x], earthquake.magnitude);
         }
     });
 
-    // Apply smoothing to make the heatmap more visually appealing
     return smoothHeatmap(grid, width, height);
 }
 
-// Function to smooth the heatmap data
+/** Applies a 3x3 averaging filter to smooth the heatmap */
 function smoothHeatmap(grid: number[][], width: number, height: number): number[][] {
     const smoothed: number[][] = [];
 
@@ -319,7 +294,7 @@ function smoothHeatmap(grid: number[][], width: number, height: number): number[
             let sum = 0;
             let count = 0;
 
-            // Average with neighboring cells
+            // Average with neighboring cells (3x3 kernel)
             for (let dy = -1; dy <= 1; dy++) {
                 for (let dx = -1; dx <= 1; dx++) {
                     const ny = y + dy;
