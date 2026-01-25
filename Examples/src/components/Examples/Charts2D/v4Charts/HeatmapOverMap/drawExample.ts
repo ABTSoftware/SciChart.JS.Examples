@@ -24,6 +24,13 @@ interface EarthquakeData {
     depth: number;
 }
 
+const baseUrl =
+    typeof window !== "undefined" &&
+    !window.location.hostname.includes("scichart.com") &&
+    !window.location.hostname.includes("localhost")
+        ? "https://www.scichart.com/demo"
+        : "";
+
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
@@ -61,13 +68,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Fetch and process earthquake data
     console.log("Fetching earthquake data...");
     const earthquakeData = await fetchEarthquakeData();
-
-    const baseUrl =
-        typeof window !== "undefined" &&
-        !window.location.hostname.includes("scichart.com") &&
-        !window.location.hostname.includes("localhost")
-            ? "https://www.scichart.com/demo"
-            : "";
 
     const convertedData = await fetch(baseUrl + "worldConverted.json").then((response) => response.json());
 
@@ -221,7 +221,7 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
 // Function to fetch earthquake data from CSV
 async function fetchEarthquakeData(): Promise<EarthquakeData[]> {
     try {
-        const response = await fetch("https://raw.githubusercontent.com/plotly/datasets/master/earthquakes-23k.csv");
+        const response = await fetch(baseUrl + "earthquakes-23k.csv");
         const csvText = await response.text();
 
         return parseEarthquakeCSV(csvText);

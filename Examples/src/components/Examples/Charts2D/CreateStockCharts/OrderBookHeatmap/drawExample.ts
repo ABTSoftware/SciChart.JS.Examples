@@ -41,12 +41,15 @@ import {
 
 import { appTheme } from "../../../theme";
 
-// const ohlcFilePath = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/LTCUSDT_OHLC.csv"
-// const orderbookLevels = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/orderbook_levels.csv";
+const ohlcFilePath = "LTCUSDT_OHLC.csv";
+const orderbookLevels = "orderbook_levels.csv";
 
-const ohlcFilePath = "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/12min/LTCUSDT_OHLC.csv";
-const orderbookLevels =
-    "https://raw.githubusercontent.com/chule/sc_histogram/refs/heads/main/12min/orderbook_levels.csv";
+const baseUrl =
+    typeof window !== "undefined" &&
+    !window.location.hostname.includes("scichart.com") &&
+    !window.location.hostname.includes("localhost")
+        ? "https://www.scichart.com/demo"
+        : "";
 
 type TCandleData = {
     xValues: number[];
@@ -66,7 +69,7 @@ async function loadCandleData(): Promise<TCandleData> {
     const volumeValues: number[] = [];
 
     try {
-        const filepath = ohlcFilePath;
+        const filepath = baseUrl + ohlcFilePath;
         const response = await fetch(filepath);
 
         if (!response.ok) {
@@ -144,7 +147,7 @@ async function loadHeatmapData(): Promise<TParsedHeatmapData> {
 
     try {
         // File copied in webpack.config.js
-        const dataFile = orderbookLevels;
+        const dataFile = baseUrl + orderbookLevels;
         const response = await fetch(dataFile);
         const csvText = await response.text();
 
