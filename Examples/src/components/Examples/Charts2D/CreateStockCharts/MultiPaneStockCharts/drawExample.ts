@@ -255,6 +255,7 @@ export const getChartsInitializationAPI = () => {
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
         priceChartSurface = sciChartSurface;
+        sciChartSurface.zoomExtentsX();
 
         return { wasmContext, sciChartSurface };
     };
@@ -462,24 +463,11 @@ export const getChartsInitializationAPI = () => {
         synchronizeAxes();
 
         // Force showing the latest 200 bars
-        const oneDay = 600; // One day in javascript Date() has a value of 600
-        const twoHundredDays = oneDay * 200; // 200 days in JS date
-        const twoHundredDaysSciChartFormat = twoHundredDays / 1000; // SciChart expects date.getTime() / 1000
+        const twoHundredDaysOfSeconds = 60 * 60 * 24 * 200;
         chart1XAxis.visibleRange = new NumberRange(
-            chart1XAxis.visibleRange.max - twoHundredDaysSciChartFormat,
+            chart1XAxis.visibleRange.max - twoHundredDaysOfSeconds,
             chart1XAxis.visibleRange.max
         );
-
-        // Call zoomExtents on all charts after initialization
-        if (priceChartSurface) {
-            priceChartSurface.zoomExtents();
-        }
-        if (macdChartSurface) {
-            macdChartSurface.zoomExtents();
-        }
-        if (rsiChartSurface) {
-            rsiChartSurface.zoomExtents();
-        }
     };
 
     return { drawPriceChart, drawMacdChart, drawRsiChart, drawOverview, configureAfterInit };
