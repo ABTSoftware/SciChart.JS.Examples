@@ -50,7 +50,7 @@ const metaData: IExampleMetadata =
         path: "high-precision-date-axis",
         metaKeywords: "date, formatting, nanoseconds, date-fns, precision, axis, custom, javascript, webgl",
         onWebsite: true,
-        filepath: "Charts2D/AxisLabelCustomization/HighPrecisionDateAxis",
+        filepath: "Charts2D/AxisLabelCustomization/DateAxisPrecisionLabelFormatting",
         thumbnailImage: "javascript-date-axis-precision-formatting.jpg",
         sandboxConfig: {},
         markdownContent: null,
