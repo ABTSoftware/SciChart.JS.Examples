@@ -1,34 +1,39 @@
-# Load One Million Points Example
+# High Performance SVG Cursor
 
 ## Overview
 
-This example demonstrates the creation and performance testing of a SciChart.js chart that loads one million data points. The example is implemented with both Angular and React frameworks. Users can reload the data points and view performance metrics such as data generation time, point appending time, and rendering time.
+This example demonstrates the **Decoupled Render Loop** in SciChart.js. Even with **1 Million Points** and a complex Gradient Palette causing frame drops on the main chart, the **SVG Cursor** remains smooth at 60 FPS because it does not trigger a WebGL redraw.
 
 ## Technologies Used
 
--   **SciChart.js** for high performance charting
--   **Angular**: Standalone Angular component using SciChartAngular
--   **React**: React component implementation with SciChartReact
--   **Material UI**: Angular Material components and MUI for UI controls
--   **TypeScript/JavaScript** for chart and control logic
+-   SciChart.js – High performance charting library
+-   WebGL – For rendering 1 million scatter points
+-   SVG – For decoupled cursor rendering layer
+-   TypeScript – Custom palette provider implementation
+-   Vanilla JavaScript – Core chart implementation
 
 ## Code Explanation
 
--   **angular.ts**: Contains the Angular component which integrates the SciChartAngular component. It sets up the chart by calling the `drawExample` function. A toolbar provides a button to reload the chart data and a display for performance metrics. It handles the connection between the UI and the chart controls exposed by the drawExample function.
+The example centers on the `drawExample` function which generates a SciChartSurface with 1 million scatter points forming a bounded cloud between Y=-500 and Y=500. Key components include:
 
--   **drawExample.js / drawExample.ts**: These files implement the chart creation and data loading logic. They create a SciChartSurface with numeric X and Y axes and add watermark annotations and renderable series. One million data points are generated and appended to a data series, and performance timings for data generation, appending, and frame rendering are recorded. The functions `startUpdate`, `stopUpdate`, and `reloadOnce` allow for continuous reloading of data, while `subscribeToInfo` provides a way to relay the performance information to the UI.
+-   **Data Generation**: Creates `Float64Array` for 1M xValues (sequential indices) and yValues (random distribution).
+-   **Scatter Series**: Uses `XyScatterRenderableSeries` with tiny `EllipsePointMarker` (1x1 pixels) and a custom `GradientPaletteProvider`.
+-   **Axes**: Numeric X axis with engineering format, Y axis with 1% growBy padding.
+-   **Interactivity**: `ZoomExtentsModifier`, `MouseWheelZoomModifier` for basic navigation.
+-   **Dynamic Modifiers**: Toggles between `CursorModifier` and `RolloverModifier` with `isSvgOnly` property controlling SVG vs Native rendering. See [CursorModifier Overview](https://www.scichart.com/documentation/js/v5/2d-charts/chart-modifier-api/cursor-modifier/cursor-modifier-overview/).
+-   **State Management**: `rebuildActiveModifier()` function handles switching modes while preserving accent color styling.
 
--   **index.tsx**: This file provides the React implementation of the example. It uses the SciChartReact component and Material UI buttons to let the user toggle continuous data reload and perform a one-off reload test. Performance results are displayed via MUI alerts. It demonstrates similar functionality as the Angular version, but with React-specific state management and hooks.
-
--   **javascript-chart-performance-load-one-million-points.jpg**: An image asset included with the example that likely serves as a preview or screenshot of the rendered chart.
+The metadata file defines example configuration including framework subtitles and documentation links.
 
 ## Customization
 
-Key configuration options include:
+Several advanced customizations make this example unique:
 
--   **Chart Appearance**: Axes ranges and themes can be customized via the SciChartSurface configuration and the `appTheme` object, including colors, stroke thickness, and annotation styles.
--   **Data Generation & Performance Metrics**: The example measures and displays the time taken for generating one million data points, appending them to the series, and rendering the frame. These metrics can be used to evaluate performance improvements or to tweak data generation parameters.
--   **Chart Modifiers**: The chart supports zooming and panning through tools like ZoomExtentsModifier, ZoomPanModifier, and MouseWheelZoomModifier which can be configured or extended as needed.
+-   **GradientPaletteProvider**: Custom class extending `DefaultPaletteProvider` that implements `IPointMarkerPaletteProvider`. Pre-calculates color channels from hex strings using `parseColorToUIntArgb()` and `extractColorChannels()`. Performs linear interpolation (lerp) between Indigo (low Y) and VividOrange (high Y) colors per-point based on Y-value fraction within the data range.
+-   **Decoupled SVG Rendering**: `isSvgOnly: true` on modifiers draws crosshairs/tooltips to a separate SVG layer above WebGL canvas, preventing mouse movement from triggering expensive WebGL redraws.
+-   **Performance Simulation**: Tiny point markers + per-point gradient shading intentionally create heavy rendering load (15-30 FPS chart) to demonstrate smooth 60 FPS cursor interaction.
+-   **Dynamic Tooltip**: Custom `tooltipDataTemplate` in RolloverModifier returns formatted X/Y coordinate strings.
+-   **Control API**: Exposed `setSvgMode()` and `toggleUseCursorOrRollover()` functions allow runtime switching between Native/SVG and Cursor/Rollover modes.
 
 ## Running the Example
 
@@ -36,28 +41,28 @@ To run any example from the SciChart.JS.Examples repository, follow these steps:
 
 1. **Clone the Repository**: Download the entire repository to your local machine using Git:
 
-    ```bash
-    git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
-    ```
+```bash
+git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
+```
 
 2. **Navigate to the Examples Directory**: Change into the `Examples` folder:
 
-    ```bash
-    cd SciChart.JS.Examples/Examples
-    ```
+```bash
+cd SciChart.JS.Examples/Examples
+```
 
 3. **Install Dependencies**: Install the necessary packages using npm:
 
-    ```bash
-    npm install
-    ```
+```bash
+npm install
+```
 
 4. **Run the Development Server**: Start the development server to view and interact with the examples:
 
-    ```bash
-    npm run dev
-    ```
+```bash
+npm run dev
+```
 
-    This will launch the demo application, allowing you to explore various examples, including the one in question.
+This will launch the demo application, allowing you to explore various examples, including the one in question.
 
 For more detailed instructions, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md).
