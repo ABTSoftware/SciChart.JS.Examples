@@ -141,7 +141,7 @@ export default [
     "../Examples/Charts3D/Basic3DChartTypes/Column3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/PointLine3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart",
-    "../Examples/Charts3D/Basic3DChartTypes/StylingDemoChart",
+    "../Examples/Charts3D/Basic3DChartTypes/Styling3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart",
     "../Examples/FeaturedApps/FeatureDemos/AxisLayout",
     "../Examples/FeaturedApps/FeatureDemos/AxisTypes",

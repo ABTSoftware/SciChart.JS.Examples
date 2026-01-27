@@ -83,13 +83,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Utils to get/set axis settings
     const getPlane = (plane: TSelectedAxisPlane) => {
         switch (plane) {
-            case "xy": return sciChart3DSurface.xyAxisPlane;
-            case "zy": return sciChart3DSurface.zyAxisPlane;
-            case "zx": return sciChart3DSurface.zxAxisPlane;
-            default: return null; 
+            case "xy":
+                return sciChart3DSurface.xyAxisPlane;
+            case "zy":
+                return sciChart3DSurface.zyAxisPlane;
+            case "zx":
+                return sciChart3DSurface.zxAxisPlane;
+            default:
+                return null;
         }
     };
-    
+
     const setPlaneBackground = (plane: TSelectedAxisPlane) => {
         sciChart3DSurface.xAxis.axisPlaneBackgroundFill = "transparent";
         sciChart3DSurface.yAxis.axisPlaneBackgroundFill = "transparent";
@@ -97,11 +101,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         const unselectedPlaneColor = "#44444466";
         if (plane === "xy") {
             sciChart3DSurface.zAxis.axisPlaneBackgroundFill = unselectedPlaneColor;
-        }
-        else if (plane === "zy") {
+        } else if (plane === "zy") {
             sciChart3DSurface.xAxis.axisPlaneBackgroundFill = unselectedPlaneColor;
-        }
-        else if (plane === "zx") {
+        } else if (plane === "zx") {
             sciChart3DSurface.yAxis.axisPlaneBackgroundFill = unselectedPlaneColor;
         }
     };
@@ -194,16 +196,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // update axis title color based on selected axis
     const updateAxisTitleColor = (axis?: TAxis) => {
-        const SELECTED_AXIS_COLOR = (currentTheme === EThemeProviderType.Light) ? "#000000" : "#FFFFFF";        
-        const UNSELECTED_AXIS_COLOR = "#777777"
+        const SELECTED_AXIS_COLOR = currentTheme === EThemeProviderType.Light ? "#000000" : "#FFFFFF";
+        const UNSELECTED_AXIS_COLOR = "#777777";
         if (axis === "x" || !axis) {
             sciChart3DSurface.xAxis.titleStyle.color = SELECTED_AXIS_COLOR;
             sciChart3DSurface.xAxis.labelStyle.color = SELECTED_AXIS_COLOR;
 
-            sciChart3DSurface.yAxis.titleStyle.color = UNSELECTED_AXIS_COLOR
-            sciChart3DSurface.zAxis.titleStyle.color = UNSELECTED_AXIS_COLOR
-            sciChart3DSurface.yAxis.labelStyle.color = UNSELECTED_AXIS_COLOR
-            sciChart3DSurface.zAxis.labelStyle.color = UNSELECTED_AXIS_COLOR
+            sciChart3DSurface.yAxis.titleStyle.color = UNSELECTED_AXIS_COLOR;
+            sciChart3DSurface.zAxis.titleStyle.color = UNSELECTED_AXIS_COLOR;
+            sciChart3DSurface.yAxis.labelStyle.color = UNSELECTED_AXIS_COLOR;
+            sciChart3DSurface.zAxis.labelStyle.color = UNSELECTED_AXIS_COLOR;
         }
         if (axis === "y" || !axis) {
             sciChart3DSurface.yAxis.titleStyle.color = SELECTED_AXIS_COLOR;
@@ -268,7 +270,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 break;
         }
         updateAxisTitleColor();
-    }
+    };
 
     const setAxisBandsFill = (color: string, axis: TAxis) => {
         getAxis(axis).axisBandsFill = color;
