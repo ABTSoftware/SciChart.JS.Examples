@@ -74,6 +74,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_v4Charts_BoxPlotChart,
             EXAMPLES_PAGES.chart2D_v4Charts_TriangleSeriesChart,
             EXAMPLES_PAGES.chart2D_v4Charts_TreemapChart,
+            EXAMPLES_PAGES.chart2D_v4Charts_SankeyChart,
             EXAMPLES_PAGES.chart2D_v4Charts_HeatmapOverMap,
             //EXAMPLES_PAGES.chart2D_v4Charts_HeatmapRectangle,
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerBarsDemo,
