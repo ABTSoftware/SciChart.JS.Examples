@@ -14,6 +14,7 @@ import {
     TEasingFn,
     SciChartSurface,
     XyDataSeries,
+    EDataChangeType,
 } from "scichart";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 
@@ -98,12 +99,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 xyDataSeries.getNativeXValues().set(count - 1, currentX);
                 xyDataSeries.getNativeYValues().set(count - 1, currentY);
 
+                // Force native redraw
+                xyDataSeries.notifyDataChanged(EDataChangeType.Update, count - 1, 1);
+
                 // update location of pulsing dot
                 pulsingDotAnnotation.x1 = currentX;
                 pulsingDotAnnotation.y1 = currentY;
 
-                // Force redraw
-                // can use xyDataSeries.notifyDataChanged();
                 // to just update, but if we want to zoom to fit, we must use zoomExtents
                 sciChartSurface.zoomExtents();
             },
