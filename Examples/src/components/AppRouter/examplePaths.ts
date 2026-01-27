@@ -166,7 +166,6 @@ export default [
     "../Examples/FeaturedApps/ShowCases/EventMarkers",
     "../Examples/FeaturedApps/ShowCases/HeatmapInteractions",
     "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard",
-    "../Examples/FeaturedApps/ShowCases/OverviewForSubCharts",
     "../Examples/FeaturedApps/ShowCases/PopulationPyramid",
     "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard",
     "../Examples/FeaturedApps/ShowCases/WebsocketBigData",
