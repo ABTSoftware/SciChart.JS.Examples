@@ -1,14 +1,14 @@
-import { drawExample, drawHeatmapLegend } from "./drawExample";
+import { drawExample } from "./drawExample";
 
 /**
  * Creates charts on the provided root elements
  * @returns cleanup function
  */
 const create = async () => {
-    const charts = await Promise.all([drawExample("chart"), drawHeatmapLegend("legend")]);
+    const { sciChartSurface } = await drawExample("chart");
 
     const destructor = () => {
-        charts.forEach(({ sciChartSurface }) => sciChartSurface.delete());
+        sciChartSurface.delete();
     };
 
     return destructor;
