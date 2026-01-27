@@ -1,7 +1,6 @@
 import { createExampleInfo } from "../../../exampleInfoUtils";
 import { IExampleMetadata } from "../../../IExampleMetadata";
 
-
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
@@ -62,7 +61,6 @@ const metaData: IExampleMetadata =
         isNew: false,
     };
 //// End of computer generated metadata
-
 
 const realtimeGhostedTracesExampleInfo = createExampleInfo(metaData);
 export default realtimeGhostedTracesExampleInfo;

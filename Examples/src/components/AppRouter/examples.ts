@@ -22,6 +22,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_showcases_servertrafficdashboard,
             EXAMPLES_PAGES.featuredApps_showcases_richInteractions,
             EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout,
+            EXAMPLES_PAGES.featuredApps_showcases_overviewForSubCharts,
             EXAMPLES_PAGES.featuredApps_showcases_eventMarkers,
             EXAMPLES_PAGES.featuredApps_showcases_populationPyramid,
             EXAMPLES_PAGES.featuredApps_performanceDemos_Load1MillionWithSvgCursor,
@@ -326,6 +327,7 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_RealtimeSurfaceMesh3DChart,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_Column3DChart,
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_Styling3DChart,
         ],
     },
 ];

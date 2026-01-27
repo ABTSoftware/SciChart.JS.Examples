@@ -9,10 +9,7 @@ export default function Overview() {
     return (
         <div className={commonClasses.ChartWrapper}>
             <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                <SciChartReact
-                    className={commonClasses.ChartWithNestedToolbar}
-                    initChart={drawExample}
-                >
+                <SciChartReact className={commonClasses.ChartWithNestedToolbar} initChart={drawExample}>
                     <ChartHeader />
                 </SciChartReact>
             </div>
@@ -31,20 +28,20 @@ const ChartHeader = () => {
     };
 
     return (
-        <div className={commonClasses.ToolbarRow} style={{ justifyContent: 'flex-start', padding: '10px 20px' }}>
+        <div className={commonClasses.ToolbarRow} style={{ justifyContent: "flex-start", padding: "10px 20px" }}>
             <FormControlLabel
                 control={
                     <Switch
                         checked={useDateFns}
                         onChange={handleToggle}
                         sx={{
-                            '& .MuiSwitch-switchBase.Mui-checked': {
+                            "& .MuiSwitch-switchBase.Mui-checked": {
                                 color: appTheme.ForegroundColor,
-                                '&:hover': {
-                                    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                                "&:hover": {
+                                    backgroundColor: "rgba(255, 255, 255, 0.08)",
                                 },
                             },
-                            '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+                            "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
                                 backgroundColor: appTheme.ForegroundColor,
                                 opacity: 0.5,
                             },
@@ -54,8 +51,8 @@ const ChartHeader = () => {
                 label='Use "date-fns" for X-Axis format'
                 sx={{
                     color: appTheme.ForegroundColor,
-                    userSelect: 'none',
-                    whiteSpace: 'nowrap'
+                    userSelect: "none",
+                    whiteSpace: "nowrap",
                 }}
             />
         </div>

@@ -141,6 +141,7 @@ export default [
     "../Examples/Charts3D/Basic3DChartTypes/Column3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/PointLine3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart",
+    "../Examples/Charts3D/Basic3DChartTypes/Styling3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart",
     "../Examples/FeaturedApps/FeatureDemos/AxisLayout",
     "../Examples/FeaturedApps/FeatureDemos/AxisTypes",
@@ -165,7 +166,8 @@ export default [
     "../Examples/FeaturedApps/ShowCases/EventMarkers",
     "../Examples/FeaturedApps/ShowCases/HeatmapInteractions",
     "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard",
+    "../Examples/FeaturedApps/ShowCases/OverviewForSubCharts",
     "../Examples/FeaturedApps/ShowCases/PopulationPyramid",
     "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard",
-    "../Examples/FeaturedApps/ShowCases/WebsocketBigData"
+    "../Examples/FeaturedApps/ShowCases/WebsocketBigData",
 ];

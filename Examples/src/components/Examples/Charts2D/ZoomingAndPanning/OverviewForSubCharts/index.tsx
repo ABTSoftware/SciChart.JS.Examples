@@ -72,7 +72,10 @@ export default function OverviewForSubCharts() {
     };
 
     return (
-        <div className={commonClasses.ChartWithNestedToolbar} style={{ display: "flex", flexDirection: "column", height: "100%", position: "relative" }}>
+        <div
+            className={commonClasses.ChartWithNestedToolbar}
+            style={{ display: "flex", flexDirection: "column", height: "100%", position: "relative" }}
+        >
             <div ref={chartRef} style={{ width: "100%", height: "100%" }} />
 
             {/* Compact floating controls positioned at bottom-right */}
@@ -132,9 +135,7 @@ export default function OverviewForSubCharts() {
                     Remove Chart
                 </button>
 
-                <span style={{ color: "#ccc", fontSize: "11px", margin: "0 4px" }}>
-                    {subCharts.length}
-                </span>
+                <span style={{ color: "#ccc", fontSize: "11px", margin: "0 4px" }}>{subCharts.length}</span>
 
                 <div style={{ display: "flex", gap: "3px", alignItems: "center" }}>
                     {subCharts.map((config, index) => (

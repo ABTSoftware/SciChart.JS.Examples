@@ -19,6 +19,8 @@ import {
     NativeTextAnnotation,
     EWrapTo,
     EHorizontalAnchorPoint,
+    TextAnnotation,
+    Logger,
 } from "scichart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -26,7 +28,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
-
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             growBy: new NumberRange(0.05, 0.05),

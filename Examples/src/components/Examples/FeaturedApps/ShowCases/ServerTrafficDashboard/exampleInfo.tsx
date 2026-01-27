@@ -2,7 +2,6 @@ import { createExampleInfo } from "../../../exampleInfoUtils";
 import { IExampleMetadata } from "../../../IExampleMetadata";
 import { EPageLayout } from "../../../../../helpers/types/types";
 
-
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
@@ -65,7 +64,6 @@ const metaData: IExampleMetadata =
         isNew: false,
     };
 //// End of computer generated metadata
-
 
 export const serverTrafficDashboardDemoExampleInfo = createExampleInfo(metaData);
 export default serverTrafficDashboardDemoExampleInfo;

@@ -13,7 +13,7 @@ const metaData: IExampleMetadata =
         frameworks: {
             javascript: {
                 subtitle:
-                    "Creates a **JavaScript Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode (for letter \"**S**\"), drawing triangles in list mode (for letter \"**c**\") and drawing polygons (for letter \"**i**\").",
+                    'Creates a **JavaScript Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode (for letter "**S**"), drawing triangles in list mode (for letter "**c**") and drawing polygons (for letter "**i**").',
                 title: "JavaScript Triangle Series | Triangle Mesh Chart",
                 pageTitle: "JavaScript Triangle Series | Triangle Mesh Chart",
                 metaDescription:
@@ -23,7 +23,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Creates a **React Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode (for letter \"**S**\"), drawing triangles in list mode (for letter \"**c**\") and drawing polygons (for letter \"**i**\").",
+                    'Creates a **React Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode (for letter "**S**"), drawing triangles in list mode (for letter "**c**") and drawing polygons (for letter "**i**").',
                 title: "React Triangle Series | Triangle Mesh Chart",
                 pageTitle: "React Triangle Series | Triangle Mesh Chart",
                 metaDescription:
@@ -33,7 +33,7 @@ const metaData: IExampleMetadata =
             },
             angular: {
                 subtitle:
-                    "Creates a **Angular Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode (for letter \"**S**\"), drawing triangles in list mode (for letter \"**c**\") and drawing polygons (for letter \"**i**\").",
+                    'Creates a **Angular Triangle Series Chart** using SciChart.js, with the following features: drawing triangles in strip mode (for letter "**S**"), drawing triangles in list mode (for letter "**c**") and drawing polygons (for letter "**i**").',
                 title: "Angular Triangle Series | Triangle Mesh Chart",
                 pageTitle: "Angular Triangle Series | Triangle Mesh Chart",
                 metaDescription:
@@ -58,7 +58,7 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: false
+        isNew: false,
     };
 //// End of computer generated metadata
 

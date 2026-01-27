@@ -6,7 +6,7 @@ import {
     XyDataSeries,
     PolarLineRenderableSeries,
     EllipsePointMarker,
-    PolarNumericAxis, 
+    PolarNumericAxis,
     EPolarAxisMode,
     EPolarLabelMode,
     EAxisAlignment,
@@ -29,13 +29,13 @@ const calcRadiusFromAngleFraction = (angleFraction: number) => {
 };
 
 export const drawExample = async (
-    rootElement: string | HTMLDivElement, 
+    rootElement: string | HTMLDivElement,
     innerRadius: number,
     totalAngle: number,
-    onAnimationUpdate?: (values: { innerRadius: number, totalAngle: number }) => void
+    onAnimationUpdate?: (values: { innerRadius: number; totalAngle: number }) => void
 ) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Add axes
@@ -81,16 +81,16 @@ export const drawExample = async (
     sciChartSurface.xAxes.add(angularXAxis);
 
     // Add a basic line series to better visualize the polar chart
-    const PETAL_NUMBER = 6; 
-    const POINTS_PER_PETAL = 100; 
+    const PETAL_NUMBER = 6;
+    const POINTS_PER_PETAL = 100;
 
     const polarlineSeries = new PolarLineRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
-            xValues: Array.from({length: PETAL_NUMBER * POINTS_PER_PETAL + 1}, (_, i) => i / POINTS_PER_PETAL ),
-            yValues: Array.from({length: PETAL_NUMBER * POINTS_PER_PETAL + 1}, (_, i) => {
+            xValues: Array.from({ length: PETAL_NUMBER * POINTS_PER_PETAL + 1 }, (_, i) => i / POINTS_PER_PETAL),
+            yValues: Array.from({ length: PETAL_NUMBER * POINTS_PER_PETAL + 1 }, (_, i) => {
                 const angleFraction = i / (PETAL_NUMBER * POINTS_PER_PETAL);
                 return 5 + 5 * Math.sin(2 * Math.PI * angleFraction * PETAL_NUMBER);
-            })
+            }),
         }),
         stroke: appTheme.VividOrange,
         interpolateLine: true,
@@ -99,7 +99,7 @@ export const drawExample = async (
             width: 8,
             height: 8,
             stroke: appTheme.VividOrange,
-            fill: appTheme.DarkIndigo
+            fill: appTheme.DarkIndigo,
         }),
     });
     sciChartSurface.renderableSeries.add(polarlineSeries);
@@ -107,15 +107,15 @@ export const drawExample = async (
     // customize `zoomExtents` modifier to update frontend sliders via Callback
     const zoomExtentsMod = new PolarZoomExtentsModifier();
     zoomExtentsMod.animationDuration = 200;
-    zoomExtentsMod.onZoomExtents = ((sciChartSurface) => {
+    zoomExtentsMod.onZoomExtents = (sciChartSurface) => {
         setTimeout(() => {
             onAnimationUpdate({
                 innerRadius: radialYAxis.innerRadius,
-                totalAngle: angularXAxis.totalAngle
+                totalAngle: angularXAxis.totalAngle,
             });
         }, 200); // wait for `zoomExtents` animation to complete
         return true;
-    })
+    };
 
     sciChartSurface.chartModifiers.add(
         new PolarPanModifier({ xyDirection: EXyDirection.XDirection }),
@@ -124,23 +124,23 @@ export const drawExample = async (
         // Customise `zoomExtents` modifier to update frontend sliders via `onAnimationUpdate` Callback
         new PolarZoomExtentsModifier({
             animationDuration: 200,
-            onZoomExtents: ((sciChartSurface) => {
+            onZoomExtents: (sciChartSurface) => {
                 setTimeout(() => {
                     onAnimationUpdate({
                         innerRadius: radialYAxis.innerRadius,
-                        totalAngle: angularXAxis.totalAngle
+                        totalAngle: angularXAxis.totalAngle,
                     });
                 }, 200); // wait for animation to complete
                 return true;
-            })
-        }),
+            },
+        })
     );
 
     // Animation which animates a polar surface to look like a Cartesian coordinate system for better understanding
-    type polarAnimationOptions = { 
+    type polarAnimationOptions = {
         angleFraction: number;
-        startAngle: number; 
-        radius: number 
+        startAngle: number;
+        radius: number;
     };
 
     const animateAll = (from: polarAnimationOptions, to: polarAnimationOptions, progress: number) => {
@@ -191,7 +191,7 @@ export const drawExample = async (
         if (onAnimationUpdate) {
             onAnimationUpdate({
                 innerRadius: radialYAxis.innerRadius,
-                totalAngle: angularXAxis.totalAngle
+                totalAngle: angularXAxis.totalAngle,
             });
         }
     };
@@ -211,23 +211,23 @@ export const drawExample = async (
         },
     });
 
-    return { 
-        sciChartSurface, 
-        wasmContext, 
+    return {
+        sciChartSurface,
+        wasmContext,
         controls: {
             startAnimation: () => {
                 allAnimation.reset();
                 sciChartSurface.addAnimation(allAnimation);
             },
             endAnimation: () => {
-                sciChartSurface.getAnimations().forEach(a => a.cancel())
+                sciChartSurface.getAnimations().forEach((a) => a.cancel());
             },
-            changeInnerRadiusInternal: (value: number) => { 
-                radialYAxis.innerRadius = value; 
+            changeInnerRadiusInternal: (value: number) => {
+                radialYAxis.innerRadius = value;
             },
-            changeTotalAngleInternal: (value: number) => { 
-                angularXAxis.totalAngle = value; 
-            }
-        }
+            changeTotalAngleInternal: (value: number) => {
+                angularXAxis.totalAngle = value;
+            },
+        },
     };
 };

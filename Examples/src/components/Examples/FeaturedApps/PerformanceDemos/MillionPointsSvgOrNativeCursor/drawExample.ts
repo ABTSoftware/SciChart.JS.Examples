@@ -32,10 +32,10 @@ const extractColorChannels = (uintColor: number) => {
 class GradientPaletteProvider extends DefaultPaletteProvider implements IPointMarkerPaletteProvider {
     private readonly minY: number;
     private readonly maxY: number;
-    
+
     // Color Channel Data
-    private startColor: { r: number, g: number, b: number, a: number };
-    private endColor: { r: number, g: number, b: number, a: number };
+    private startColor: { r: number; g: number; b: number; a: number };
+    private endColor: { r: number; g: number; b: number; a: number };
 
     constructor(minY: number, maxY: number, startHex: string, endHex: string) {
         super();
@@ -57,13 +57,13 @@ class GradientPaletteProvider extends DefaultPaletteProvider implements IPointMa
         const r = Math.floor(this.startColor.r + (this.endColor.r - this.startColor.r) * fraction);
         const g = Math.floor(this.startColor.g + (this.endColor.g - this.startColor.g) * fraction);
         const b = Math.floor(this.startColor.b + (this.endColor.b - this.startColor.b) * fraction);
-        
+
         // Reassemble into UInt ARGB
         const colorUint = (255 << 24) | (r << 16) | (g << 8) | b;
 
-        return { 
-            stroke: colorUint, 
-            fill: colorUint 
+        return {
+            stroke: colorUint,
+            fill: colorUint,
         };
     }
 }
@@ -73,34 +73,38 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         theme: appTheme.SciChartJsTheme,
     });
 
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-        labelFormat: ENumericFormat.Engineering,
-    }));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        growBy: new NumberRange(0.01, 0.01),
-    }));
+    sciChartSurface.xAxes.add(
+        new NumericAxis(wasmContext, {
+            labelFormat: ENumericFormat.Engineering,
+        })
+    );
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            growBy: new NumberRange(0.01, 0.01),
+        })
+    );
 
     // 1. Data Generation (Bounded Cloud)
     const count = 1_000_000;
     const xValues = new Float64Array(count);
     const yValues = new Float64Array(count);
-    
+
     const Y_MIN = -500;
     const Y_MAX = 500;
 
-    for(let i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
         xValues[i] = i;
         yValues[i] = Y_MIN + Math.random() * (Y_MAX - Y_MIN);
     }
 
     // 2. Create Scatter Series with Gradient Palette
     const scatterSeries = new XyScatterRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { 
+        dataSeries: new XyDataSeries(wasmContext, {
             xValues,
             yValues,
             containsNaN: false,
             isSorted: true,
-            dataSeriesName: "Bounded Cloud Series"
+            dataSeriesName: "Bounded Cloud Series",
         }),
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 1,
@@ -108,18 +112,18 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             strokeThickness: 0.5,
         }),
         paletteProvider: new GradientPaletteProvider(
-            Y_MIN, 
-            Y_MAX, 
+            Y_MIN,
+            Y_MAX,
             appTheme.Indigo, // Start (Low Y)
             appTheme.VividOrange // End (High Y)
-        )
+        ),
     });
     sciChartSurface.renderableSeries.add(scatterSeries);
 
     sciChartSurface.chartModifiers.add(
         new ZoomExtentsModifier(),
         new MouseWheelZoomModifier({
-            xyDirection: EXyDirection.XDirection
+            xyDirection: EXyDirection.XDirection,
         })
     );
 
@@ -145,8 +149,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 axisLabelFill: accentColor,
                 tooltipContainerBackground: accentColor,
             });
-        } 
-        else {
+        } else {
             activeModifier = new RolloverModifier({
                 isSvgOnly: isSvgMode,
                 showTooltip: true,
@@ -158,7 +161,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     valuesWithLabels.push(`X: ${xySeriesInfo.formattedXValue}`);
                     valuesWithLabels.push(`Y: ${xySeriesInfo.formattedYValue}`);
                     return valuesWithLabels;
-                }
+                },
             });
             (activeModifier as RolloverModifier).rolloverLineAnnotation.axisLabelFill = accentColor;
         }
@@ -177,11 +180,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         rebuildActiveModifier();
     };
 
-    return { 
-        sciChartSurface, 
-        controls: { 
+    return {
+        sciChartSurface,
+        controls: {
             setSvgMode,
-            toggleUseCursorOrRollover
-        } 
+            toggleUseCursorOrRollover,
+        },
     };
 };

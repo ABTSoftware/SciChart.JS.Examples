@@ -37,7 +37,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelProvider: new SmartDateLabelProvider({
             datePrecision: EDatePrecision.Seconds,
             highPrecisionLabelMode: EHighPrecisionLabelMode.Suffix,
-            
+
             showWiderDateOnFirstLabel: true,
             showYearOnWiderDate: true,
 
@@ -48,24 +48,24 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Special handling for huge dates that do not fit in standard JS Date object
     const sdlp = xAxis.labelProvider as SmartDateLabelProvider;
-    const YEAR = 86400 * 365.25; 
+    const YEAR = 86400 * 365.25;
     const originalWideDateFormatter = sdlp.formatDateWide.bind(sdlp);
     const originalPreciseDateFormatter = sdlp.formatDatePrecise.bind(sdlp);
 
     sdlp.formatDateWide = (labelRange: string, valueInSeconds: number): string => {
         // even with huge values, use k, m, b suffixes for thousands, millions, billions or years
         if (valueInSeconds > YEAR * 9999) {
-            return 'Year ' + formatNumber(valueInSeconds / YEAR, ENumericFormat.Engineering, 1) ; // e.g. "Year 500M" -> year 500 million
+            return "Year " + formatNumber(valueInSeconds / YEAR, ENumericFormat.Engineering, 1); // e.g. "Year 500M" -> year 500 million
         }
         return originalWideDateFormatter(labelRange, valueInSeconds);
     };
     sdlp.formatDatePrecise = (labelRange: string, valueInSeconds: number, rawValue?: number): string => {
         if (valueInSeconds > YEAR * 9999) {
-            const cutTime = (valueInSeconds % 86400); // a bit of a hack, since we can't format dates hours from year 500 Million :)
+            const cutTime = valueInSeconds % 86400; // a bit of a hack, since we can't format dates hours from year 500 Million :)
             return originalPreciseDateFormatter(labelRange, cutTime, rawValue);
         }
         return originalPreciseDateFormatter(labelRange, valueInSeconds, rawValue);
-    }
+    };
     sciChartSurface.xAxes.add(xAxis);
 
     sciChartSurface.yAxes.add(
@@ -73,7 +73,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             axisAlignment: EAxisAlignment.Left,
             growBy: new NumberRange(0.1, 0.1),
             labelPrecision: 3,
-            autoRange: EAutoRange.Always
+            autoRange: EAutoRange.Always,
         })
     );
 
@@ -91,7 +91,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         strokeThickness: 2,
         pointMarker: new EllipsePointMarker(wasmContext, {
             fill: appTheme.ForegroundColor,
-        })
+        }),
     });
 
     // Override getYRange to improve performance on zoom/pan with large datasets
@@ -141,10 +141,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
     sciChartSurface.zoomExtents();
 
-    return { 
-        wasmContext, 
-        sciChartSurface, 
-        controls: { 
+    return {
+        wasmContext,
+        sciChartSurface,
+        controls: {
             zoomInPrecise: () => {
                 const clusterIndex = currentDataset.id === "secondPrecision" ? 2 : 15;
                 const pointsPerCluster = 10;
@@ -160,12 +160,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 const minX = xValues.get(startDataIndex);
                 const maxX = xValues.get(endDataIndex);
 
-                let padding = 3; 
+                let padding = 3;
                 xAxis.animateVisibleRange(
-                    new NumberRange(
-                        minX - padding,
-                        maxX + padding
-                    ),
+                    new NumberRange(minX - padding, maxX + padding),
                     3000,
                     (t) => 1 - Math.pow(1 - t, 10) // very exaggerated ease out :)
                 );
@@ -174,7 +171,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 sciChartSurface.zoomExtents(2000);
             },
             setDataset: (id: TDatasetId) => {
-                const next = datasets.find(d => d.id === id)!;
+                const next = datasets.find((d) => d.id === id)!;
                 currentDataset = next;
 
                 const dataSeries = lineSeries.dataSeries as XyDataSeries;
@@ -206,7 +203,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 }
 
                 sciChartSurface.zoomExtents();
-            }
-        } 
+            },
+        },
     };
 };

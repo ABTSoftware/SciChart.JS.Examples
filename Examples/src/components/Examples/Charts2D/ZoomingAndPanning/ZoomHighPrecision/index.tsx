@@ -37,20 +37,20 @@ const ChartHeader = () => {
     };
 
     return (
-        <div className={commonClasses.ToolbarRow} style={{ order: 1, gap: 12, padding: 12, alignItems: 'center' }}>
+        <div className={commonClasses.ToolbarRow} style={{ order: 1, gap: 12, padding: 12, alignItems: "center" }}>
             <Select
                 size="small"
                 value={dataset}
                 onChange={handleDatasetChange}
                 sx={{
-                    color: 'white',
+                    color: "white",
                     minWidth: 260,
-                    '.MuiSvgIcon-root': {
-                        color: 'white',
+                    ".MuiSvgIcon-root": {
+                        color: "white",
                     },
-                    '.MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'white',
-                    }
+                    ".MuiOutlinedInput-notchedOutline": {
+                        borderColor: "white",
+                    },
                 }}
             >
                 <MenuItem value="secondPrecision">Precision: 1 Second / Range: 1 BILLION Years</MenuItem>
@@ -60,12 +60,7 @@ const ChartHeader = () => {
             </Select>
 
             <FormControlLabel
-                control={
-                    <Switch
-                        checked={isZoomInActive}
-                        onChange={handleZoomToggle}
-                    />
-                }
+                control={<Switch checked={isZoomInActive} onChange={handleZoomToggle} />}
                 label="Precise Zoom In"
             />
         </div>

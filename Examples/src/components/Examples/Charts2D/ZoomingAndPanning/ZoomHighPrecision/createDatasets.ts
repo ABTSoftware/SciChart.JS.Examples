@@ -36,10 +36,7 @@ export const createDatasets = (): DatasetDefinition[] => {
 
         for (let j = 0; j < POINTS_PER_CLUSTER; j++) {
             x1[idx] = clusterStart + j * SECOND;
-            y1[idx] =
-                0.5 * Math.sin(c) -
-                Math.cos(c * 0.3) +
-                Math.random() / 100;
+            y1[idx] = 0.5 * Math.sin(c) - Math.cos(c * 0.3) + Math.random() / 100;
             idx++;
         }
     }
@@ -74,7 +71,8 @@ export const createDatasets = (): DatasetDefinition[] => {
     const x3 = new Float64Array(count3);
     const y3 = new Float64Array(count3);
 
-    idx = 0;y3
+    idx = 0;
+    y3;
 
     for (let c = 0; c < CLUSTERS_3; c++) {
         const clusterStart = base + c * CLUSTER_SPACING_3 * MICRO_IN_SEC;
@@ -88,7 +86,7 @@ export const createDatasets = (): DatasetDefinition[] => {
 
     // Dataset #4 - nanosecond precision -> 50 days range
     const CLUSTERS_4 = 150;
-    const DAYS_50 = DAY * 50;  // 50 days
+    const DAYS_50 = DAY * 50; // 50 days
     const CLUSTER_SPACING_4 = DAYS_50 / CLUSTERS_4;
 
     const count4 = CLUSTERS_4 * POINTS_PER_CLUSTER;

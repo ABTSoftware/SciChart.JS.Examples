@@ -7,7 +7,7 @@ const metaData: IExampleMetadata =
         reactComponent: "PolarMultipleRadialAxesRadarChart",
         id: "chart2D_polarCharts_PolarMultipleRadialAxesRadarChart",
         imagePath: "javascript-polar-multiple-axes-radar-chart.jpg",
-        description:    
+        description:
             "Creates a **JavaScript Polar Radar Chart with Multiple Radial Axes**, also known as a **Spider Chart** using SciChart.js, which expresses the complexity, memory usage, stability, adaptability, scalability, and cache efficiency of two popular sorting algorithms",
         tips: [],
         frameworks: {
@@ -52,7 +52,7 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: false
+        isNew: false,
     };
 //// End of computer generated metadata
 

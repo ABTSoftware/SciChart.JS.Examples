@@ -22,10 +22,12 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
 
     const seoPrefixTitle = getFrameworkContent(examplePage.pageTitle, framework);
     const seoTitleText = seoPrefixTitle + ExampleStrings.exampleGenericTitleSuffix(framework, seoPrefixTitle.length);
-    
+
     const seoDescription = examplePage ? getFrameworkContent(examplePage.metaDescription, framework) : "";
     const subtitleText = (examplePage ? examplePage.subtitle(framework) : "") as string;
-    const seoKeywords = examplePage ? examplePage.metaKeywords : "chart, data, javascript, webassembly, scichart, react";
+    const seoKeywords = examplePage
+        ? examplePage.metaKeywords
+        : "chart, data, javascript, webassembly, scichart, react";
     const basePath = "https://www.scichart.com/demo";
     const exampleImage = examplePage ? examplePage.thumbnailImage : undefined;
     const exampleUrl = examplePage ? examplePage.path : "";

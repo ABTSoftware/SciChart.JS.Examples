@@ -85,7 +85,7 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
     public override onDetach(): void {
         // Clear the allSubCharts array to prevent any callbacks from accessing deleted subcharts
         this.allSubCharts = [];
-        
+
         if (this.overviewSubSurface && !this.overviewSubSurface.isDeleted) {
             this.overviewSubSurface.delete();
         }
@@ -93,7 +93,7 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
         this.overviewXAxis = undefined;
         this.overviewYAxis = undefined;
         this.rangeSelectionModifier = undefined;
-        
+
         super.onDetach();
     }
 
@@ -220,10 +220,15 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
     }
 
     private addSeriesToOverview(renderableSeries: IRenderableSeries[], parentId: string): void {
-        if (!this.overviewSubSurface || this.overviewSubSurface.isDeleted || !this.overviewXAxis || !this.overviewYAxis) {
+        if (
+            !this.overviewSubSurface ||
+            this.overviewSubSurface.isDeleted ||
+            !this.overviewXAxis ||
+            !this.overviewYAxis
+        ) {
             return;
         }
-        
+
         const wasmContext = this.parentSurface.webAssemblyContext2D;
 
         let transform = (rendSeries: IRenderableSeries) => {
@@ -254,7 +259,7 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
         renderableSeries.forEach((series) => {
             // Check if series is still valid
             if (!series) return;
-            
+
             // Find and remove the corresponding overview series
             const overviewSeries = this.overviewSubSurface.renderableSeries.getById(parentId + "_" + series.id);
             if (overviewSeries) {

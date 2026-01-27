@@ -18,7 +18,7 @@ import {
     RubberBandXyZoomModifier,
     NativeTextAnnotation,
     EHorizontalAnchorPoint,
-    ECoordinateMode
+    ECoordinateMode,
 } from "scichart";
 import { format, fromUnixTime } from "date-fns";
 
@@ -37,9 +37,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         axisTitle: "Time",
         datePrecision: EDatePrecision.Nanoseconds, // Very important -> 1 x-value increment == 1 nanosecond
         highPrecisionLabelMode: EHighPrecisionLabelMode.Suffix,
-        dateOffset: startTimeSeconds, // in seconds 
+        dateOffset: startTimeSeconds, // in seconds
         labelStyle: {
-            color: "#FFFFFF" // make them stand out a bit
+            color: "#FFFFFF", // make them stand out a bit
         },
 
         showWiderDateOnFirstLabel: true,
@@ -60,17 +60,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // 2. Define the Custom "date-fns" implementations
     // Wide dates -> e.g. "Jan 01, 2025 12:00:00"
-    const customFormatDateWide = (
-        labelRange: ETradeChartLabelFormat | string, 
-        valueInSeconds: number
-    ) => {
+    const customFormatDateWide = (labelRange: ETradeChartLabelFormat | string, valueInSeconds: number) => {
         const date = toUTC(fromUnixTime(valueInSeconds));
-        if (labelRange === ETradeChartLabelFormat.Nanoseconds ||
+        if (
+            labelRange === ETradeChartLabelFormat.Nanoseconds ||
             labelRange === ETradeChartLabelFormat.Microseconds ||
-            labelRange === ETradeChartLabelFormat.MilliSeconds) {
+            labelRange === ETradeChartLabelFormat.MilliSeconds
+        ) {
             return format(date, "MMM dd, yyyy HH:mm:ss");
-        } else if (labelRange === ETradeChartLabelFormat.Seconds ||
-                labelRange === ETradeChartLabelFormat.Minutes) {
+        } else if (labelRange === ETradeChartLabelFormat.Seconds || labelRange === ETradeChartLabelFormat.Minutes) {
             return format(date, "MMM dd, yyyy");
         } else if (labelRange === ETradeChartLabelFormat.Days) {
             return format(date, "MMM yyyy");
@@ -86,23 +84,24 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         rawValue?: number
     ) => {
         const date = toUTC(fromUnixTime(valueInSeconds));
-        
+
         // High precision logic
-        if (labelRange === ETradeChartLabelFormat.Nanoseconds ||
+        if (
+            labelRange === ETradeChartLabelFormat.Nanoseconds ||
             labelRange === ETradeChartLabelFormat.Microseconds ||
             labelRange === ETradeChartLabelFormat.MilliSeconds
         ) {
             const mode = labelProvider.highPrecisionLabelMode;
-            
+
             if (mode === EHighPrecisionLabelMode.Suffix && rawValue !== undefined) {
                 const tps = labelProvider.datePrecision;
                 const wholeSeconds = Math.floor(rawValue / tps);
-                const ticksWithinSecond = rawValue - (wholeSeconds * tps);
+                const ticksWithinSecond = rawValue - wholeSeconds * tps;
                 const subSecondOffset = ticksWithinSecond / tps;
-                
+
                 const seconds = date.getUTCSeconds();
-                const secondsStr = seconds.toString().padStart(2, '0');
-                
+                const secondsStr = seconds.toString().padStart(2, "0");
+
                 if (labelRange === ETradeChartLabelFormat.Nanoseconds) {
                     const ns = Math.round(subSecondOffset * 1_000_000_000);
                     return `${secondsStr}:${ns}ns`;
@@ -116,12 +115,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             }
             return format(date, "ss.SSS");
         }
-        
+
         if (labelRange === ETradeChartLabelFormat.Seconds) return format(date, "HH:mm:ss");
         if (labelRange === ETradeChartLabelFormat.Minutes) return format(date, "HH:mm");
-        if (labelRange === ETradeChartLabelFormat.Days ||
-            labelRange === ETradeChartLabelFormat.Months) return format(date, "dd");
-        
+        if (labelRange === ETradeChartLabelFormat.Days || labelRange === ETradeChartLabelFormat.Months)
+            return format(date, "dd");
+
         return format(date, "dd/MM/yy");
     };
 
@@ -141,24 +140,25 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Apply custom by default initially
     setUseDateFns(true);
 
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        axisTitle: "Signal (mV)",
-        autoRange: EAutoRange.Always,
-        growBy: new NumberRange(0.1, 0.1)
-    }));
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            axisTitle: "Signal (mV)",
+            autoRange: EAutoRange.Always,
+            growBy: new NumberRange(0.1, 0.1),
+        })
+    );
 
-
-    // Data Generation 
+    // Data Generation
     const xValues: number[] = [];
     const yValues: number[] = [];
     type Generator = (i: number) => number;
 
     const addCluster = (startOffsetNano: number, count: number, generator: Generator) => {
         for (let i = 0; i < count; i++) {
-            const x = startOffsetNano + (i * 10_000_000);
+            const x = startOffsetNano + i * 10_000_000;
             const noise = (Math.random() - 0.5) * 0.05;
             const y = generator(i) + noise;
-            
+
             xValues.push(x);
             yValues.push(y);
         }
@@ -172,7 +172,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // 2. Frequency Chirp
     addCluster(1 * ONE_MIN, 2000, (i) => {
-        const freq = 0.01 + (i * 0.00005);
+        const freq = 0.01 + i * 0.00005;
         return Math.sin(i * freq);
     });
 
@@ -186,7 +186,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // 4. Noisy "Heartbeat"
     addCluster(4 * ONE_MIN, 2000, (i) => {
         // spike every 200 points
-        if (i % 200 < 20) return 1.0 + Math.random(); 
+        if (i % 200 < 20) return 1.0 + Math.random();
         return Math.random() * 0.2;
     });
 
@@ -196,7 +196,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             yValues,
             containsNaN: false,
             isSorted: true,
-            dataSeriesName: "Sensor A"
+            dataSeriesName: "Sensor A",
         }),
         stroke: "#50C7E0",
         strokeThickness: 2,
@@ -206,17 +206,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             height: 4,
             fill: "#2e3a59",
             stroke: "#50C7E0",
-            strokeThickness: 1
+            strokeThickness: 1,
         }),
     });
     lineSeries.rolloverModifierProps.tooltipLabelX = "X";
     sciChartSurface.renderableSeries.add(lineSeries);
 
-    sciChartSurface.chartModifiers.add(
-        new MouseWheelZoomModifier(),
-        new ZoomExtentsModifier(),
-        new ZoomPanModifier()
-    );
+    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier(), new ZoomExtentsModifier(), new ZoomPanModifier());
     sciChartSurface.zoomExtents();
 
     sciChartSurface.annotations.add(
@@ -231,13 +227,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             lineSpacing: 10,
             fontSize: 16,
             opacity: 0.7,
-            textColor: "#FFFFFF"
+            textColor: "#FFFFFF",
         })
     );
 
-    return { 
-        wasmContext, 
+    return {
+        wasmContext,
         sciChartSurface,
-        controls: { setUseDateFns }
-    }
+        controls: { setUseDateFns },
+    };
 };

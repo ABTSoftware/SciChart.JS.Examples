@@ -1,7 +1,6 @@
 import { createExampleInfo } from "../../../exampleInfoUtils";
 import { IExampleMetadata } from "../../../IExampleMetadata";
 
-
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!
     {
@@ -59,10 +58,9 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: false
+        isNew: false,
     };
 //// End of computer generated metadata
-
 
 const loadOneMillionPointsExampleInfo = createExampleInfo(metaData);
 export default loadOneMillionPointsExampleInfo;
