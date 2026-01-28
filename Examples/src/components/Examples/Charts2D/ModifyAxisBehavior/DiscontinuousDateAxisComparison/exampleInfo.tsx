@@ -44,7 +44,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/v4/DiscontinuousDateAxis.html",
+                href: "https://www.scichart.com/documentation/js/v5/DiscontinuousDateAxis.html",
                 title: "SciChart.js LDiscontinuous Date Axis Documentation",
                 linkTitle: "SciChart.js Documentation Home",
             },

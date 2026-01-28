@@ -62,7 +62,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/v4/2d-charts/chart-types/uniform-heatmap-renderable-series/uniform-heatmap-chart-type/",
+                href: "https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/uniform-heatmap-renderable-series/uniform-heatmap-chart-type/",
                 title: "The specific page for the JavaScript Heatmap Chart documentation will help you to get started",
                 linkTitle: "JavaScript Heatmap Chart Documentation",
             },
