@@ -1,6 +1,6 @@
 import {
     SciChartVerticalGroup,
-    CategoryAxis,
+    DiscontinuousDateAxis,
     EAxisAlignment,
     SciChartSurface,
     EAutoRange,
@@ -111,9 +111,12 @@ export const getChartsInitializationAPI = () => {
 
     const dataPromise = getTradingData();
 
-    let chart1XAxis: CategoryAxis;
-    let chart2XAxis: CategoryAxis;
-    let chart3XAxis: CategoryAxis;
+    let chart1XAxis: DiscontinuousDateAxis;
+    let chart2XAxis: DiscontinuousDateAxis;
+    let chart3XAxis: DiscontinuousDateAxis;
+    let priceChartSurface: SciChartSurface;
+    let macdChartSurface: SciChartSurface;
+    let rsiChartSurface: SciChartSurface;
     const axisAlignment = EAxisAlignment.Right;
 
     const upCol = appTheme.VividGreen;
@@ -133,7 +136,7 @@ export const getChartsInitializationAPI = () => {
         const { wasmContext, sciChartSurface } = chart;
         const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = data;
 
-        chart1XAxis = new CategoryAxis(wasmContext, {
+        chart1XAxis = new DiscontinuousDateAxis(wasmContext, {
             drawLabels: false,
             drawMajorTickLines: false,
             drawMinorTickLines: false,
@@ -251,6 +254,8 @@ export const getChartsInitializationAPI = () => {
         );
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
+        priceChartSurface = sciChartSurface;
+        sciChartSurface.zoomExtentsX();
 
         return { wasmContext, sciChartSurface };
     };
@@ -266,7 +271,7 @@ export const getChartsInitializationAPI = () => {
             dataPromise,
         ]);
 
-        chart2XAxis = new CategoryAxis(wasmContext, {
+        chart2XAxis = new DiscontinuousDateAxis(wasmContext, {
             drawLabels: false,
             drawMajorTickLines: false,
             drawMinorTickLines: false,
@@ -337,6 +342,7 @@ export const getChartsInitializationAPI = () => {
         );
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
+        macdChartSurface = sciChartSurface;
 
         return { wasmContext, sciChartSurface };
     };
@@ -352,7 +358,7 @@ export const getChartsInitializationAPI = () => {
             dataPromise,
         ]);
 
-        chart3XAxis = new CategoryAxis(wasmContext, {
+        chart3XAxis = new DiscontinuousDateAxis(wasmContext, {
             autoRange: EAutoRange.Once,
             labelProvider: new SmartDateLabelProvider(),
         });
@@ -417,6 +423,7 @@ export const getChartsInitializationAPI = () => {
         );
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
+        rsiChartSurface = sciChartSurface;
 
         return { wasmContext, sciChartSurface };
     };
@@ -456,11 +463,9 @@ export const getChartsInitializationAPI = () => {
         synchronizeAxes();
 
         // Force showing the latest 200 bars
-        const oneDay = 600; // One day in javascript Date() has a value of 600
-        const twoHundredDays = oneDay * 200; // 200 days in JS date
-        const twoHundredDaysSciChartFormat = twoHundredDays / 1000; // SciChart expects date.getTime() / 1000
+        const twoHundredDaysOfSeconds = 60 * 60 * 24 * 200;
         chart1XAxis.visibleRange = new NumberRange(
-            chart1XAxis.visibleRange.max - twoHundredDaysSciChartFormat,
+            chart1XAxis.visibleRange.max - twoHundredDaysOfSeconds,
             chart1XAxis.visibleRange.max
         );
     };

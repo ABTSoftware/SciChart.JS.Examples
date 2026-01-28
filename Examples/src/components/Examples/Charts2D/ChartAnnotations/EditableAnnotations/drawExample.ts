@@ -360,6 +360,8 @@ const mapAnnotationTypeToName = (type: EAnnotationType): string => {
             return "CustomAnnotation";
         case EAnnotationType.SVG:
             return "SvgAnnotation";
+        case EAnnotationType.SvgLineAnnotation:
+            return "SvgLineAnnotation";
         case EAnnotationType.HtmlCustomAnnotation:
             return "HtmlCustomAnnotation";
         case EAnnotationType.HtmlTextAnnotation:

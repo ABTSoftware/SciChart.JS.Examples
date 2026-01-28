@@ -10,10 +10,10 @@ import {
 import FooterGrid from "./FooterGrid";
 import { useNavigate } from "react-router";
 import classes from "./AppFooter.module.scss";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import { Facebook as FacebookIcon } from "@mui/icons-material";
+import { YouTube as YouTubeIcon } from "@mui/icons-material";
+import { LinkedIn as LinkedInIcon } from "@mui/icons-material";
+import { Twitter as TwitterIcon } from "@mui/icons-material";
 import Button from "@mui/material/Button";
 import { libraryVersion } from "scichart";
 

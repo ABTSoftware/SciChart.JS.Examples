@@ -15,9 +15,17 @@ export default defineConfig(async () => ({
           src: "node_modules/scichart/_wasm/scichart2d.wasm",
           dest: "",
         },
+        {
+          src: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm",
+          dest: "",
+        },
         // same for 3d if needed:
         {
           src: "node_modules/scichart/_wasm/scichart3d.wasm",
+          dest: "",
+        },
+        {
+          src: "node_modules/scichart/_wasm/scichart3d-nosimd.wasm",
           dest: "",
         },
       ],

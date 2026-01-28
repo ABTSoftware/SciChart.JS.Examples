@@ -15,7 +15,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This example demonstrates a high performance Scatter chart grid with 5000 points per chart using the subcharts api in SciChart.js which can be used to create a **JavaScript Correlation Plot**",
                 title: "JavaScript Correlation Plot",
-                pageTitle: "JavaScript Correlation Plot | JavaScript Charts | SciChart.js",
+                pageTitle: "JavaScript Correlation Plot",
                 metaDescription:
                     "Create JavaScript Correlation Plot with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
                 markdownContent:
@@ -25,7 +25,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This example demonstrates a high performance Scatter chart grid with 5000 points per chart using the subcharts api in SciChart.js which can be used to create a **React Correlation Plot**",
                 title: "React Correlation Plot",
-                pageTitle: "React Correlation Plot | JavaScript Charts | SciChart.js",
+                pageTitle: "React Correlation Plot",
                 metaDescription:
                     "Create React Correlation Plot with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
                 markdownContent:
@@ -35,7 +35,7 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This example demonstrates a high performance Scatter chart grid using the subcharts api in SciChart.js which could be used to create a **Angular Correlation Plot**",
                 title: "Angular Correlation Plot",
-                pageTitle: "Angular Correlation Plot | JavaScript Charts | SciChart.js",
+                pageTitle: "Angular Correlation Plot",
                 metaDescription:
                     "Create Angular Correlation Plot with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
                 markdownContent:
@@ -44,7 +44,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/The%20Scatter%20Series%20Type.html",
+                href: "https://www.scichart.com/documentation/js/v4/2d-charts/chart-types/xy-scatter-renderable-series/",
                 title: "This specific page in the JavaScript Correlation Plot documentation will help you to get started",
                 linkTitle: "JavaScript Correlation Plot Documentation",
             },

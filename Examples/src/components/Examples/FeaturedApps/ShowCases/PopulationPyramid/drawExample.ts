@@ -56,7 +56,7 @@ class CustomDataLabelManager implements IDataLabelLayoutManager {
                         const outerLabelPosition = outerLabel.position;
                         const innerLabelPosition = innerLabel.position;
 
-                        if (outerLabelPosition.y !== innerLabelPosition.y) {
+                        if (Math.abs(outerLabelPosition.y - innerLabelPosition.y) > outerLabel.rect.height / 2) {
                             continue; // do not align labels if they are not on the same level
                         }
 
@@ -69,7 +69,7 @@ class CustomDataLabelManager implements IDataLabelLayoutManager {
                         const marginBetweenLabels = 12;
 
                         if (Math.abs(outerLabelPosition.x - innerLabelPosition.x) < limitWidth) {
-                            console.log(`Aligning labels: ${outerLabel.text} with ${innerLabel.text}`);
+                            // console.log(`Aligning labels: ${outerLabel.text} with ${innerLabel.text}`);
                             let newX;
                             if (i == 0) {
                                 // if we are in Male (left) chart, draw left

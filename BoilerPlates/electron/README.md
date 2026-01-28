@@ -29,12 +29,13 @@ e.g. with webpack.config.js:
       patterns: [
         { from: "src/index.html", to: "" },
         { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
+        { from: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm", to: "" },
       ],
     })
   ],
 ```
 
-> Note: other methods to [load wasm from CDN](https://www.scichart.com/documentation/js/current/webframe.html#Deploying%20Wasm%20or%20WebAssembly%20and%20Data%20Files%20with%20your%20app.html) are available to simplify getting started
+> Note: other methods to [load wasm from CDN](https://www.scichart.com/documentation/js/v4/2d-charts/surface/deploying-wasm/) are available to simplify getting started
 
 ## Step 3: Creating the Chart
 

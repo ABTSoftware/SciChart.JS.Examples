@@ -115,6 +115,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             axisLabelStroke: appTheme.ForegroundColor,
             // Shows an additional legend in top left of the screen
             tooltipLegendTemplate: getTooltipLegendTemplate,
+            // Use SVG to render the tooltip & axis labels of the CursorModifier
+            isSvgOnly: true,
         }),
         // Add further zooming and panning behaviours
         new ZoomPanModifier({ enableZoom: true }),

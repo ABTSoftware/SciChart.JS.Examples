@@ -56,6 +56,7 @@ export const createExampleInfo = (metadata: IExampleMetadata): TExampleInfo => (
     extraDependencies: normalizeValue(metadata.extraDependencies) as Record<string, string> | undefined,
     reactComponent: metadata.reactComponent,
     isNew: metadata?.isNew,
+    alsoKnownAs: metadata?.alsoKnownAs,
 });
 
 function normalizeValue(value: unknown): unknown {

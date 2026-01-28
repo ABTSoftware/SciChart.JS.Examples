@@ -62,7 +62,7 @@ const AppBarTop: FC<TProps> = (props) => {
     return (
         <AppBar position="sticky" className={classes.AppBar}>
             <Toolbar className={classes.ToolBar} disableGutters>
-                <a className={classes.Logo} href="https://www.scichart.com/demo/" title="SciChart Demo">
+                <a className={classes.Logo} href="https://www.scichart.com/demo" title="SciChart Demo">
                     {typeof window !== "undefined" && window?.innerWidth <= 768 ? (
                         <img className={classes.LogoSmall} src={LogoSmall} alt="scichart-logo" />
                     ) : (
@@ -73,7 +73,7 @@ const AppBarTop: FC<TProps> = (props) => {
                     {isMd ? null : (
                         <>
                             <a
-                                href="https://www.scichart.com/documentation/js/current/typedoc/index.html"
+                                href="https://www.scichart.com/documentation/js/v4/typedoc/index.html"
                                 title="SciChart.js TypeDoc"
                                 target="_blank"
                             >

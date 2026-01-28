@@ -2,9 +2,6 @@ import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { useState, useRef, useEffect } from "react";
-import ToggleButton from "@mui/material/ToggleButton";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
 
 type TooltipType = "cursor" | "rollover" | "verticalSlice";
 
@@ -12,19 +9,86 @@ type TooltipType = "cursor" | "rollover" | "verticalSlice";
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     const [type, setType] = useState<TooltipType>("cursor");
-    const [cutRight, setCutRight] = useState(false);
-    const setMapFunc = useRef(null);
+    const setTypeFunc = useRef(null);
     const setDataFunc = useRef(null);
-    const setSlice = useRef(null);
+    const cb = useRef(null);
+    const [showData, setShowData] = useState(true);
+    const [showRolloverData, setShowRolloverData] = useState(false);
+    const [showClickData, setShowClickData] = useState(false);
+    const [seriesInfos, setSeriesInfos] = useState(null);
+    const [rolloverInfo, setRolloverInfo] = useState(null);
+    const [clickInfo, setClickInfo] = useState(null);
 
     useEffect(() => {
-        if (setMapFunc.current) {
-            setMapFunc.current(type);
+        setTimeout(() => {
+            if (cb.current && showData) {
+                cb.current(setSeriesInfos);
+            }
+        }, 500);
+    }, []);
+
+    useEffect(() => {
+        if (!showData) {
+            setSeriesInfos(null);
+        }
+
+        if (cb.current && showData) {
+            cb.current(setSeriesInfos);
+            setShowClickData(false);
+            setShowRolloverData(false);
+        }
+    }, [showData]);
+
+    useEffect(() => {
+        if (!showRolloverData) {
+            setRolloverInfo(null);
+        }
+
+        if (cb.current && showRolloverData) {
+            cb.current(setRolloverInfo);
+            setShowClickData(false);
+            setShowData(false);
+        }
+    }, [showRolloverData]);
+
+    useEffect(() => {
+        if (!showClickData) {
+            setClickInfo(null);
+        }
+
+        if (cb.current && showClickData) {
+            cb.current(setClickInfo);
+            setShowData(false);
+            setShowRolloverData(false);
+        }
+    }, [showClickData]);
+
+    useEffect(() => {
+        if (setTypeFunc.current) {
+            setTypeFunc.current(type);
+
+            if (type === "cursor") {
+                setShowClickData(false);
+                setShowRolloverData(false);
+                setShowData(true);
+            }
+
+            if (type === "verticalSlice") {
+                setShowClickData(true);
+                setShowRolloverData(false);
+                setShowData(false);
+            }
+
+            if (type === "rollover") {
+                setShowClickData(false);
+                setShowRolloverData(true);
+                setShowData(false);
+            }
         }
     }, [type]);
 
     return (
-        <div className="" style={{ width: "100%", height: "100%", position: "relative" }}>
+        <div className="wrapperDiv" style={{ width: "100%", height: "100%", position: "relative" }}>
             <div className="" style={{ position: "absolute", zIndex: "900", pointerEvents: "none" }}>
                 <div style={{ pointerEvents: "all" }}>
                     <button
@@ -64,56 +128,79 @@ export default function ChartComponent() {
                     >
                         VERTICAL SLICE
                     </button>
-
-                    {type === "verticalSlice" ? (
-                        <span className="">
-                            <FormControlLabel
-                                control={
-                                    <Switch
-                                        checked={cutRight}
-                                        onChange={() => {
-                                            setCutRight((value) => !value);
-                                            setSlice.current(!cutRight);
-                                            console.log({ cutRight: !cutRight });
-                                        }}
-                                    />
-                                }
-                                label={`Slice ${cutRight ? "right" : "left"}`}
-                                style={{ margin: 0, background: "#163149", color: "white", paddingRight: "10px" }}
-                            />
-                            <button
-                                onClick={() => {
-                                    setDataFunc.current();
-                                }}
-                                style={{
-                                    color: "rgb(0, 188, 212)",
-                                    display: "inline-block",
-                                    padding: "10px 24px",
-                                    background: "#163149",
-                                    cursor: "pointer",
-                                }}
-                            >
-                                RESET DATA
-                            </button>
-                        </span>
-                    ) : null}
                 </div>
             </div>
+            {type === "verticalSlice" && showClickData && clickInfo ? (
+                <div
+                    className="verticalSliceInfo"
+                    style={{
+                        zIndex: 900,
+                        position: "absolute",
+                        color: "white",
+                        left: "10px",
+                        bottom: "20px",
+                        fontSize: "12px",
+                    }}
+                >
+                    <div className="">Currently in React state:</div>
+                    <div className="">{clickInfo}</div>
+                </div>
+            ) : null}
+            {type === "cursor" && showData && seriesInfos?.length ? (
+                <div
+                    style={{
+                        zIndex: 900,
+                        position: "absolute",
+                        color: "white",
+                        left: "10px",
+                        bottom: "20px",
+                        fontSize: "12px",
+                    }}
+                >
+                    <div className="">Currently in React state:</div>
+                    <div className="">
+                        {" "}
+                        index: {seriesInfos[0].dataSeriesIndex}, xValue: {seriesInfos[0].xValue.toFixed(2)}, yValue[0]:
+                        {seriesInfos[0].yValue.toFixed(2)}
+                    </div>
+                </div>
+            ) : null}
+
+            {type === "rollover" && showRolloverData && rolloverInfo ? (
+                <div
+                    style={{
+                        zIndex: 900,
+                        position: "absolute",
+                        color: "white",
+                        left: "10px",
+                        bottom: "20px",
+                        fontSize: "12px",
+                    }}
+                >
+                    <div className="">Currently in React state:</div>
+                    <div className="">
+                        {" "}
+                        index: {rolloverInfo.dataSeriesIndex}, xValue: {rolloverInfo.xValue.toFixed(2)}, yValue:
+                        {rolloverInfo.yValue.toFixed(2)}
+                    </div>
+                </div>
+            ) : null}
+
             <SciChartReact
                 initChart={drawExample}
                 className={commonClasses.ChartWrapper}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     // get the "setMap" function that is returned by "drawExample"
-                    let { setType, setData, sliceRightFunction } = initResult;
+                    let { setType, setData, callBack } = initResult;
 
                     // assign function to ref so we can call it later
-                    setMapFunc.current = setType;
+                    setTypeFunc.current = setType;
 
                     // reset data
                     setDataFunc.current = setData;
 
-                    // set slice direction
-                    setSlice.current = sliceRightFunction;
+                    // set callback
+                    cb.current = callBack;
                 }}
             />
         </div>

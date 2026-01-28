@@ -1,8 +1,8 @@
 import { CSSProperties, useRef, useState } from "react";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import PauseIcon from "@mui/icons-material/Pause";
-import SettingsIcon from "@mui/icons-material/Settings";
+import { FormControlLabel } from "@mui/material";
+import { PlayArrow as PlayArrowIcon } from "@mui/icons-material";
+import { Pause as PauseIcon } from "@mui/icons-material";
+import { Settings as SettingsIcon } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
 import Switch from "@mui/material/Switch";
 import List from "@mui/material/List";

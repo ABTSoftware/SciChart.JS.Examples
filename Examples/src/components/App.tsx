@@ -33,6 +33,7 @@ import { baseAppPath } from "../constants";
 
 SciChartSurfaceBase.DEFAULT_THEME = appTheme.SciChartJsTheme;
 SciChartDefaults.useSharedCache = true;
+SciChartDefaults.autoFontName = "Arial";
 
 const NotFound = () => (
     <div
@@ -146,7 +147,7 @@ export default function App() {
     React.useEffect(() => {
         if (window.location.hostname.includes("scichart.com")) {
             SciChartSurface.setRuntimeLicenseKey(
-                "shxKbfsTuNZPuUvgOGmB86JpC1O6sF/i9U7xaDYpPElY8ZsqUe83JjR6lUV+dZG7LWdO+/pEqECULJESzyFKBapZW1VeENYWi7Iuwzm5jXRg1GmjJDFprbvaJ5YSETDE4xOO5q5x36H93Za54vnZEhJFW0sk5S1vYHYbMJSyeSCvVkRgNPosuHuwKHjrzDToyh1qnr4gvCXFeNVCQnvHXQs8si6r2vhZ7S7vLeLqm4NseZ8kRe3QhGSPcThjHNumKEqg9oUn8ZjoG7hjCnexNoLYynV7CjRlHmmi0eS8hNz0bcoBWm6ctmW+9R2MU3CNcWh4hcVe92ghauAA5bUoIRa8qseFQJAJVamsfiWVJ7EC1GF+CLO68iGrZ7HpKg0SvLTODDAtrBYHKOzuZJH5x9sl5gzEwy9U5eOoS6oCPzCjOoPU4Ph7U9GHfFujxzGcgEC0UB57p0kEpQWaSJNJeaNLnJd3A448ja86X3iQT9mkVfCeoOGdavHMOpDuyoSuMxzGNQE198hqN1rQKE8Zr5U+I29XYBuJ5yg94tv7kaPpooJIMaJCMytb+0ivEFdje23dGriu7GtdM9TaZNGUDMT/nbPxrvdcoDEgjBRtxQ7ApoVX+PXJShzHBWjQTnDa8Em+/c/UZgFDmcFAwh86WUtO1bcT8rbRawbW4xhCdDZ3XuuWYuL0JJ8FVmKafK0m60Irzl40M8wh/9Ntl1I8ir5l+CVM+PXHL9t0O/AXbYI53gsTPpBD91xV/PYibNZ3BroAWOjwPHr3OLOd7Ro="
+                "H+Bf3l0m3O9Gx8d4X/vCChsFHOhjiTQ0T2lzaif9nz2klHiSfReMWWMGw2Cq4EuOyFgJRqRnlUrbnMIuRnnSu16d96IYP0XhtTJj0V7/ysnEdR7prle0i83/Ozaogy7X2wbeXM0iNBAjwbxJhkJfMtVVNCLh+jJN0122J1PImaqnohEeSO0E5BCGzya0a7tRMVzWOijgaO6CVPNyjfkccY07DgqjDgDKPQGhbgxCgPyvgHVwnLgbCG4p348eTEOGAmwQANZAVEAS5q3kul3OscYLLD+My0ArsWxushDi1xU1egn/pmfr7Mp3nMSpcMd2wv2QA9+XTJJIFGiYqtn95oDSeo5mrBF+mLekv8vMIvVsmvdAtclaTQMSSwXlAn4BpGTpzrMC9FZNTIyKGGBHR9Yhhp7rt1DhfTum1RPXo5j6ELYzqxL2/IuKnrjW3Oe8cOdiN5x9srgWCtFsEpxJBz07CSRutCzgEdwSrNMK6JJsHaWU6xgxlsPUHnWE1dDYmVbvgkKe+5lTsdGQ2wFIqp4/7nmKpm/pXEBPQyOk98PJ3rUKwCkDM7lz9HlheHD1I20BhUkJnVB4eVHrY/xCWvI+O/NutTIH+OAgD8FrwNnjTdCiqnq9pWsqEUjBIfg/noUuIciSUP6nCLiHxdn1fFr7d5xrJBvmsQF4p+5/NvAaCUgTY1NyV/rJhmQI8aLBnSlfCd0+hkKKiif9rhnbPJa2EG7+06e5897mUr5KvZeGXcQHcgSngSxxu9J+WEBtfszDhf4IAnq1LBoNc/Q="
             );
         }
 
@@ -172,6 +173,13 @@ export default function App() {
             {isHomePage && (
                 <Helmet>
                     <link rel="canonical" href={`https://www.scichart.com/demo/${framework}`} />
+                    <meta
+                        name="description"
+                        content={`The Homepage of SciChart.js's High Performance ${
+                            framework.slice(0, 1).toUpperCase() + framework.slice(1)
+                        } Examples & Demos`}
+                    />
+                    <title>{`SciChart.js Demo | ${framework.slice(0, 1).toUpperCase() + framework.slice(1)}`}</title>
                 </Helmet>
             )}
             <style>
