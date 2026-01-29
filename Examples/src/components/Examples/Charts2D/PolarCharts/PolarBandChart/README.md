@@ -74,4 +74,4 @@ To run this example from the SciChart.JS.Examples repository:
    npm run dev
    ```
 
-For more details on polar charts, see the [Polar Chart documentation](https://www.scichart.com/documentation/js/v4/typedoc/classes/scichartpolarsurface.html).
+For more details on polar charts, see the [Polar Chart documentation](https://www.scichart.com/documentation/js/v5/typedoc/classes/scichartpolarsurface.html).
