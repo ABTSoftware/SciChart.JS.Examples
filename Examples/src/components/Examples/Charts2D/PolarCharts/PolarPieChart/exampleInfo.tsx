@@ -41,7 +41,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Column%20Series%20Type.html",
+                href: "https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/polar-pie-chart/",
                 title: "This specific page in the JavaScript Polar Pie Chart documentation will help you to get started",
                 linkTitle: "JavaScript Polar Pie Chart Documentation",
             },

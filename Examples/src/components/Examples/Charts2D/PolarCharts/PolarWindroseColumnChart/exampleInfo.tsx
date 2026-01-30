@@ -31,7 +31,7 @@ const metaData: IExampleMetadata =
                 metaDescription:
                     "View the React Windrose Chart example to display directional data with stacked columns in a polar layout. Try the polar chart demo with customizable labels.",
                 markdownContent:
-                    "## Polar Windrose Column Chart - React\n\n### Overview\nThis React example showcases a **Polar Windrose Column Chart** using SciChart.js, wrapped in a reusable component. The chart displays directional data with stacked columns in a polar layout.\n\n### Technical Implementation\nThe implementation uses [SciChartReact](https://www.scichart.com/documentation/js/v5/typedoc/classes/scichartreact.html) component with an `initChart` prop pointing to the `drawExample` function. The polar surface configuration matches the JavaScript version, using [EPolarAxisMode](https://www.scichart.com/documentation/js/v5/typedoc/enums/epolaraxismode.html) for axis setup.\n\n### Features and Capabilities\nThe chart features compass-direction labels via custom label provider and stacked columns with distinct colors. The [PolarMouseWheelZoomModifier](https://www.scichart.com/documentation/js/v5/typedoc/classes/polarmousewheelzoommodifier.html) enables intuitive zooming.\n\n### Integration and Best Practices\nThe example demonstrates React best practices by encapsulating chart logic in a separate function and using CSS modules for styling. For performance, consider memoizing the `initChart` callback in production apps.",
+                    "## Polar Windrose Column Chart - React\n\n### Overview\nThis React example showcases a **Polar Windrose Column Chart** using SciChart.js, wrapped in a reusable component. The chart displays directional data with stacked columns in a polar layout.\n\n### Technical Implementation\nThe implementation uses [SciChart React](https://www.scichart.com/blog/react-charts-with-scichart-js/) component with an `initChart` prop pointing to the `drawExample` function. The polar surface configuration matches the JavaScript version, using [EPolarAxisMode](https://www.scichart.com/documentation/js/v5/typedoc/enums/epolaraxismode.html) for axis setup.\n\n### Features and Capabilities\nThe chart features compass-direction labels via custom label provider and stacked columns with distinct colors. The [PolarMouseWheelZoomModifier](https://www.scichart.com/documentation/js/v5/typedoc/classes/polarmousewheelzoommodifier.html) enables intuitive zooming.\n\n### Integration and Best Practices\nThe example demonstrates React best practices by encapsulating chart logic in a separate function and using CSS modules for styling. For performance, consider memoizing the `initChart` callback in production apps.",
             },
             angular: {
                 subtitle:
@@ -46,7 +46,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Column%20Series%20Type.html",
+                href: "https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/polar-stacked-column-renderable-series/",
                 title: "This specific page in the JavaScript Windrose Column Chart documentation will help you to get started",
                 linkTitle: "JavaScript Windrose Column Chart Documentation",
             },

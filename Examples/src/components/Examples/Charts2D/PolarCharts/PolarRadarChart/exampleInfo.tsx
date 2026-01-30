@@ -46,10 +46,9 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Column%20Series%20Type.html",
+                href: "https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/polar-radar-chart/",
                 title: "This specific page in the JavaScript Polar Radar Chart documentation will help you to get started",
-                linkTitle:
-                    "## Angular Polar Radar Chart\n\n### Overview\nThis example illustrates creating a **Polar Radar Chart** in Angular using SciChart.js, displaying comparative metrics of sorting algorithms such as Quick Sort and Bubble Sort in a polar format.\n\n### Technical Implementation\nThe chart is set up asynchronously in an Angular component, utilizing SciChartPolarSurface with themed styling. It adds specialized axes like PolarNumericAxis and PolarCategoryAxis, rendering data via PolarMountainRenderableSeries and PolarLineRenderableSeries with XyDataSeries, optimized for performance with dashed gridlines and native text, per the [Polar Radar Chart documentation](https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/polar-radar-chart/).\n\n### Features and Capabilities\nSupports real-time capabilities by updating data series and includes advanced options like animations, custom point markers, and modifiers including PolarLegendModifier for interactive legends and zooming.\n\n### Integration and Best Practices\nAngular integration employs the ScichartAngularComponent for declarative chart embedding, ensuring efficient async handling and cleanup. Use standalone components for modular design and optimize with proper theming for high-performance applications.",
+                linkTitle: "Polar Radar Chart",
             },
         ],
         path: "polar-radar-chart",
