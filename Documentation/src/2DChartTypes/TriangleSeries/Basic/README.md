@@ -1,10 +1,10 @@
 # The Triangle Series Type
 
-Triangle Series can be created using the [TriangleRenderableSeries](https://www.scichart.com/documentation/js/v4/typedoc/classes/trianglerenderableseries.html) type.
+Triangle Series can be created using the [TriangleRenderableSeries](https://www.scichart.com/documentation/js/v5/typedoc/classes/trianglerenderableseries.html) type.
 
 The TriangleRenderableSeries class in SciChart.js is a specialized renderable series used for visualizing data as a series of triangles on a 2D chart. It extends the base BaseRenderableSeries class and provides additional properties and methods tailored for rendering triangle shapes.
 
-Here is a simple Triangle Series made using [XyDataSeries](https://www.scichart.com/documentation/js/v4/typedoc/classes/xydataseries.html):
+Here is a simple Triangle Series made using [XyDataSeries](https://www.scichart.com/documentation/js/v5/typedoc/classes/xydataseries.html):
 
 ```javascript
 const sXValues = [200, 400, 400, 200, 200, 400, 420, 420, 620, 620, 620, 420];
