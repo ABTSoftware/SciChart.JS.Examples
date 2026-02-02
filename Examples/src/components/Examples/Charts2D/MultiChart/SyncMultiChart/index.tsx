@@ -4,7 +4,7 @@ import { appTheme } from "../../../theme";
 
 import { Button, Checkbox, FormControlLabel, Typography } from "@mui/material";
 import { NumberRange, SciChartSurface, SciChartVerticalGroup } from "scichart";
-// import { PerformanceMeasurementModifier } from "scichart-addons/PerformanceMeasurementModifier";
+import { PerformanceMeasurementModifier } from "scichart-addons/PerformanceMeasurementModifier";
 import { AxisSynchroniser } from "./AxisSynchroniser";
 import { addToOverview, createChart, createOverview, removeFromOverview } from "./drawExample";
 
@@ -110,7 +110,7 @@ export default function SyncMultiChart() {
             const { sciChartSurface } = await createOverview(pane.divId, axisSynchroniserRef.current);
             verticalGroupRef.current.addSurfaceToGroup(sciChartSurface);
             pane.sciChartSurface = sciChartSurface;
-            // sciChartSurface.chartModifiers.add(new PerformanceMeasurementModifier({ verbose: true }));
+            sciChartSurface.chartModifiers.add(new PerformanceMeasurementModifier({ verbose: true }));
         } else {
             const { sciChartSurface } = await createChart(pane.divId, id);
             verticalGroupRef.current.addSurfaceToGroup(sciChartSurface);
