@@ -15,7 +15,7 @@ export default function HighPrecisionDatasets() {
 
 const ChartHeader = () => {
     const initResult = useContext(SciChartSurfaceContext) as TResolvedReturnType<typeof drawExample>;
-    const [dataset, setDataset] = React.useState("secondPrecision");
+    const [dataset, setDataset] = React.useState("nanosecondPrecision");
     const [isZoomInActive, setIsZoomInActive] = React.useState(false);
 
     const handleDatasetChange = (event: any) => {

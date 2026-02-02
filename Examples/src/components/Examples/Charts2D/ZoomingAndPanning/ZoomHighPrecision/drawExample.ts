@@ -78,7 +78,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
 
     const datasets = createDatasets();
-    let currentDataset = datasets[0]; // the Seconds one
+    let currentDataset = datasets[3]; // the NanoSeconds one
 
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
@@ -94,42 +94,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
     });
 
-    // Override getYRange to improve performance on zoom/pan with large datasets
-    lineSeries.getYRange = (visibleRange) => {
-        const xValues = lineSeries.dataSeries.getNativeXValues();
-        const yValues = lineSeries.dataSeries.getNativeYValues();
-        const count = xValues.size();
-        // if one point
-        // We will expand zero width ranges in the axis
-        if (count === 1) {
-            const y = yValues.get(0);
-            return new NumberRange(y, y);
-        }
-
-        const indicesRange = getIndicesRange(
-            wasmContext,
-            xValues,
-            visibleRange,
-            lineSeries.dataSeries.dataDistributionCalculator.isSortedAscending
-        );
-
-        const iMin = Math.max(Math.floor(indicesRange.min + 1), 0);
-        const iMax = Math.min(Math.ceil(indicesRange.max - 1), count - 1);
-        if (iMax < iMin) {
-            return undefined;
-        }
-
-        let minMax;
-        try {
-            minMax = wasmContext.NumberUtil.MinMaxWithIndex(yValues, iMin, iMax - iMin + 1, false);
-            if (!isRealNumber(minMax.minD) || !isRealNumber(minMax.maxD)) {
-                return undefined;
-            }
-            return new NumberRange(minMax.minD, minMax.maxD);
-        } finally {
-            deleteSafe(minMax);
-        }
-    };
     sciChartSurface.renderableSeries.add(lineSeries);
 
     // Add modifiers
