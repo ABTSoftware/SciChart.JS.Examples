@@ -29,15 +29,16 @@ The `PerformanceMeasurementModifier` is a powerful tool for measuring and analyz
 
 #### Usage from Examples App
 
-Add a dependency into Examples/package.json
-`"scichart-addons": "../Addons",`
-
-Then uncomment its usage ate Examples/src/components/AppRouter/ChartControlWrapper.tsx:35
+1. Add a dependency into Examples/package.json
+   `"scichart-addons": "../Addons",`
+2. Run `npm i` in Addons
+3. Run `npm i` in Examples
+4. Then uncomment its usage at Examples/src/components/AppRouter/ChartControlWrapper.tsx:35
 
 The modifier will be shown when opening a fullscreen version of an example.
 
 ```typescript
-import { PerformanceMeasurementModifier } from "./Addons/PerformanceMeasurementModifier";
+import { PerformanceMeasurementModifier } from "scichart-addons";
 import { EPerformanceMarkType } from "scichart";
 
 // Add the modifier to your chart
