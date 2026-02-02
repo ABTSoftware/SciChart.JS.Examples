@@ -2,7 +2,7 @@
 
 ## Overview
 
-This example demonstrates how to create a **polar pie chart** in JavaScript using SciChart.js, simulating pie segments with [PolarColumnRenderableSeries](https://www.scichart.com/documentation/js/v4/typedoc/classes/polarcolumnrenderableseries.html) on a [SciChartPolarSurface](https://www.scichart.com/documentation/js/v4/typedoc/classes/scichartpolarsurface.html). The chart visualizes framework popularity data with colored segments.
+This example demonstrates how to create a **polar pie chart** in JavaScript using SciChart.js, simulating pie segments with [PolarColumnRenderableSeries](https://www.scichart.com/documentation/js/v5/typedoc/classes/polarcolumnrenderableseries.html) on a [SciChartPolarSurface](https://www.scichart.com/documentation/js/v5/typedoc/classes/scichartpolarsurface.html). The chart visualizes framework popularity data with colored segments.
 
 ## Technologies Used
 

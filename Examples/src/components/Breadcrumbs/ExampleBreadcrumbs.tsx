@@ -105,7 +105,7 @@ export const ExampleBreadcrumbs = () => {
                         }}
                         onClick={(e) => {
                             e.preventDefault();
-                            
+
                             const [path, hash] = link.split("#");
                             if (window.location.pathname.endsWith(path)) {
                                 if (hash) {

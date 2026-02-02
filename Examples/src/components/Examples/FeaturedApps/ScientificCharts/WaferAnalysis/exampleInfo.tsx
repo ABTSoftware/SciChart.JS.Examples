@@ -105,9 +105,9 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Column%20Series%20Type.html",
-                title: "This specific page in the Wafer Analysis Chart documentation will help you to get started",
-                linkTitle: "Wafer Analysis Chart Documentation",
+                href: "https://www.scichart.com/documentation/js/v5/intro",
+                title: "This documentation will help you to get started",
+                linkTitle: "SciChart.js Documentation version",
             },
         ],
         path: "wafer-analysis",

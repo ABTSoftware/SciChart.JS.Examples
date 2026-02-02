@@ -29,6 +29,7 @@ export default function SmoothStackedMountainChart() {
                 size="small"
                 color="primary"
                 aria-label="small outlined button group"
+                style={{ justifyContent: "start" }}
             >
                 <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
                     Stacked mode

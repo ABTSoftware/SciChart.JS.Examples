@@ -109,7 +109,7 @@ If wasmNoSimdUrl is not specified it will search scichart2d-nosimd.wasm next to 
 
 In the is example it will fetch the dependencies from `http://localhost:4200/scichart2d.wasm`, `http://localhost:4200/scichart2d-nosimd.wasm`, `http://localhost:4200/scichart3d.wasm` and `http://localhost:4200/scichart3d-nosimd.wasm` respectively.
 
-> Note: other methods to [load WASM from CDN](https://www.scichart.com/documentation/js/v4/2d-charts/surface/deploying-wasm/) are available to simplify getting started
+> Note: other methods to [load WASM from CDN](https://www.scichart.com/documentation/js/v5/2d-charts/surface/deploying-wasm/) are available to simplify getting started
 
 ### Step 3: Creating the Chart
 
@@ -118,7 +118,7 @@ The component requires one of `[config]` or `[initChart]` properties to create a
 
 #### With Config
 
-The SecondChartGroup component demonstrates how to use the config approach to create both 2D and 3D charts using the [Builder API](https://www.scichart.com/documentation/js/v4/2d-charts/builder-api/builder-api-overview/).
+The SecondChartGroup component demonstrates how to use the config approach to create both 2D and 3D charts using the [Builder API](https://www.scichart.com/documentation/js/v5/2d-charts/builder-api/builder-api-overview/).
 
 `second-chart-group.component.html`:
 

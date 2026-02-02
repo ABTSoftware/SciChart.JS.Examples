@@ -101,6 +101,7 @@ export class AudioDataProvider {
             throw new Error("Audio isn't initialized!");
         }
 
+        //@ts-ignore
         this.analyserNode.getByteTimeDomainData(this.freqByteData);
 
         for (let i = 0; i < this.bufferSizeProperty; i++) {

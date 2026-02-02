@@ -35,7 +35,7 @@ e.g. with webpack.config.js:
   ],
 ```
 
-> Note: other methods to [load wasm from CDN](https://www.scichart.com/documentation/js/v4/2d-charts/surface/deploying-wasm/) are available to simplify getting started
+> Note: other methods to [load wasm from CDN](https://www.scichart.com/documentation/js/v5/2d-charts/surface/deploying-wasm/) are available to simplify getting started
 
 ## Step 3: Creating the Chart
 
