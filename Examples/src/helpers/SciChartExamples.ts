@@ -12,11 +12,16 @@ const getGalleryItems = (category: string, menuItem: TMenuItem, framework: EPage
             return {
                 imgPath: subMenu.thumbnailImage,
                 title: getFrameworkContent(subMenu.title, framework),
-                seoTitle: getFrameworkContent(subMenu.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix,
+                seoTitle:
+                    getFrameworkContent(subMenu.pageTitle, framework) +
+                    ExampleStrings.exampleGenericTitleSuffix(
+                        framework,
+                        getFrameworkContent(subMenu.pageTitle, framework).length
+                    ),
                 examplePath: subMenu.path,
                 subTitle: subMenu.subtitle(framework),
                 metaDescription: getFrameworkContent(subMenu.metaDescription, framework),
-                isNew: subMenu.isNew
+                isNew: subMenu.isNew,
             };
         }),
     };

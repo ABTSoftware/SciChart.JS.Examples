@@ -341,7 +341,7 @@ export default function SciChartNavbar({
                                                 className="menu-item menu-item-type-custom menu-item-object-custom menu-item-8028"
                                             >
                                                 <a
-                                                    href="https://www.scichart.com/documentation/js/v4/intro/"
+                                                    href="https://www.scichart.com/documentation/js/v5/intro/"
                                                     title="JS Chart Documentation"
                                                 >
                                                     JS Documentation

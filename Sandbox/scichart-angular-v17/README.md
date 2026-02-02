@@ -109,7 +109,7 @@ http://localhost:4200/scichart2d.wasm
 http://localhost:4200/scichart3d.wasm
 ```
 
-> Note: other methods to [load wasm from CDN](https://www.scichart.com/documentation/js/v4/2d-charts/surface/deploying-wasm/) are available to simplify getting started
+> Note: other methods to [load wasm from CDN](https://www.scichart.com/documentation/js/v5/2d-charts/surface/deploying-wasm/) are available to simplify getting started
 
 ---
 
@@ -120,7 +120,7 @@ The component requires one of `[config]` or `[initChart]` properties to create a
 
 #### With Config
 
-Pass a config object that will be used to generate a chart via the [Builder API](https://www.scichart.com/documentation/js/v4/2d-charts/builder-api/builder-api-overview/).
+Pass a config object that will be used to generate a chart via the [Builder API](https://www.scichart.com/documentation/js/v5/2d-charts/builder-api/builder-api-overview/).
 
 `app.component.html`:
 
@@ -245,6 +245,6 @@ We have a wealth of information on our site showing how to get started with SciC
 Take a look at:
 
 -   [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes community licensing details, first steps and more
--   [Javascript / npm tutorials](https://www.scichart.com/documentation/js/v4/get-started/tutorials-js-npm-webpack/tutorial-02-adding-series-and-data/): using npm, webpack, and scichart.js, create static and dynamic charts with zooming, panning tooltips and more
--   [Vanilla Javascript tutorials](https://www.scichart.com/documentation/js/v4/get-started/tutorials-cdn/tutorial-01-using-cdn/): using only vanilla javascript and HTML,
+-   [Javascript / npm tutorials](https://www.scichart.com/documentation/js/v5/get-started/tutorials-js-npm-webpack/tutorial-02-adding-series-and-data/): using npm, webpack, and scichart.js, create static and dynamic charts with zooming, panning tooltips and more
+-   [Vanilla Javascript tutorials](https://www.scichart.com/documentation/js/v5/get-started/tutorials-cdn/tutorial-01-using-cdn/): using only vanilla javascript and HTML,
 -   [Official scichart.js demos](https://scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)

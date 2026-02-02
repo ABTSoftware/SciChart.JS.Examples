@@ -14,15 +14,15 @@ export const ExampleStrings = {
 
     // Documentation links and link tooltips
     //
-    urlDocumentationHome: `https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html`,
+    urlDocumentationHome: `https://www.scichart.com/documentation/js/v5/intro/`,
     titleDocumentationHome: `The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts`,
-    urlTutorialsHome: `https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2001%20-%20Setting%20up%20a%20Project%20with%20SciChart.js.html`,
+    urlTutorialsHome: `https://www.scichart.com/documentation/js/v5/get-started/tutorials-js-npm-webpack/tutorial-01-setting-up-npm-project-with-scichart-js/`,
     titleTutorialsHome: `Start here with the SciChart.js Tutorials if you haven't already`,
     urlTutorials3DHome: `#`,
     titleTutorials3DHome: `Start here with the SciChart3D.js Tutorials if you haven't already`,
-    urlRenderSeriesPropertiesDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Common%20RenderableSeries%20Features.html`,
+    urlRenderSeriesPropertiesDocumentation: `https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/renderable-series-api-overview/`,
     urlTitleRenderSeriesProperties: `Learn about common RenderableSeries properties in SciChart.js`,
-    urlPerformanceTipsDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Common%20RenderableSeries%20Features.html`,
+    urlPerformanceTipsDocumentation: `https://www.scichart.com/documentation/js/v5/2d-charts/performance-tips/performance-tips-and-tricks/`,
     urlTitlePerformanceTipsDocumentation: `Go to the Performance Tips and Tricks page in the SciChart.js Documentation`,
     urlJavascriptChartFeatures: `https://www.scichart.com/javascript-chart-features/`,
 
@@ -32,28 +32,28 @@ export const ExampleStrings = {
     urlDataAnimation: `data-animation`,
     titleDataAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Chart Data Animation`,
     urlTitleDataAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Chart Data Animation`,
-    urlDataAnimationDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Dataset%20Animations.html`,
+    urlDataAnimationDocumentation: `https://www.scichart.com/documentation/js/v5/2d-charts/animations-api/dataset-animations/`,
     urlTitleDataAnimationDocumentation: `The specific page for the JavaScript Dataset Animation documentation will help you to get started`,
 
     // Style Animation
     urlStyleAnimation: `style-animation`,
     titleStyleAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Style Animation`,
     urlTitleStyleAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Chart Style Animation`,
-    urlStyleAnimationDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Series%20Style%20Animations.html`,
+    urlStyleAnimationDocumentation: `https://www.scichart.com/documentation/js/v5/2d-charts/animations-api/style-transition-animations/`,
     urlTitleStyleAnimationDocumentation: `The specific page for the JavaScript Style Transition Animation documentation will help you to get started`,
 
     // OnStart Animation
     urlStartupAnimation: `startup-animation`,
     titleStartupAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Startup Animation`,
     urlTitleStartupAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Startup Animation`,
-    urlStartupAnimationDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Series%20Startup%20Animations.html`,
+    urlStartupAnimationDocumentation: `https://www.scichart.com/documentation/js/v5/2d-charts/animations-api/series-startup-animations/`,
     urlTitleStartupAnimationDocumentation: `The specific page for the JavaScript Startup Animation documentation will help you to get started`,
 
     // Generic Animations
     urlGenericAnimation: `generic-animation`,
     titleGenericAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Generic Animation`,
     urlTitleGenericAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Generic Animation`,
-    urlGenericAnimationDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Generic%20Animations.html`,
+    urlGenericAnimationDocumentation: `https://www.scichart.com/documentation/js/v5/2d-charts/animations-api/generic-animations/`,
     urlTitleGenericAnimationDocumentation: `The specific page for the JavaScript Generic Animation documentation will help you to get started`,
 
     // Scatter chart
@@ -62,7 +62,7 @@ export const ExampleStrings = {
     pageTitleScatterChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Scatter Chart | JavaScript Charts | SciChart.js`,
     urlTitleScatterChart: `The JavaScript Scatter Chart example demonstrates how to create a Scatter Chart with SciChart.js`,
-    urlScatterChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Scatter%20Series%20Type.html`,
+    urlScatterChartDocumentation: `https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/xy-scatter-renderable-series/`,
     urlTitleScatterChartDocumentation: `This specific page in the JavaScript Scatter Chart documentation will help you to get started`,
 
     // Band chart
