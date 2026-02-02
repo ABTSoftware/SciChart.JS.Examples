@@ -202,7 +202,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     // sciChartSurface.debugRendering = true;
     const xAxis = new NumericAxis(wasmContext, {
-        growBy: new NumberRange(0.025, 0.025),
+        growBy: new NumberRange(0.02, 0.02),
     });
     sciChartSurface.xAxes.add(xAxis);
 

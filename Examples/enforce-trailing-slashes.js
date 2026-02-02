@@ -38,7 +38,7 @@ function walk(dir) {
         "build",
         "remove-trailing-slashes.js",
         "add-trailing-slashes.js",
-        "server",
+        "server"
     ];
 
     for (const file of files) {

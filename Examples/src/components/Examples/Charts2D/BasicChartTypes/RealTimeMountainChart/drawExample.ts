@@ -14,8 +14,6 @@ import {
     TEasingFn,
     SciChartSurface,
     XyDataSeries,
-    EDataChangeType,
-    GenericAnimation,
 } from "scichart";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 
@@ -85,36 +83,36 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         const count = xyDataSeries.count();
         const startX = xyDataSeries.getNativeXValues().get(count - 1);
         const startY = xyDataSeries.getNativeYValues().get(count - 1);
-        xyDataSeries.append(startX, startY);
-        const animation = new GenericAnimation<number>({
-            from: 0,
-            to: 1,
-            onAnimate: (from, to, progress) => {
-                // Using the interpolation factor (ranges from 0..1) compute the X,Y value now
-                const currentX = (endX - startX) * progress + startX;
-                const currentY = (endY - startY) * progress + startY;
-                console.log(currentX, currentY);
-                // Update X,Y value by direct access to the inner webassembly arrays
-                xyDataSeries.getNativeXValues().set(count, currentX);
-                xyDataSeries.getNativeYValues().set(count, currentY);
 
-                // Force native redraw
-                xyDataSeries.notifyDataChanged(EDataChangeType.Update, count - 1, 1);
+        // use the DoubleAnimator class in scichart/Core/Animations/ to setup an animation from 0...1
+        animationToken = DoubleAnimator.animate(
+            0,
+            1,
+            duration,
+            (interpolationFactor) => {
+                // Using the interpolation factor (ranges from 0..1) compute the X,Y value now
+                const currentX = (endX - startX) * interpolationFactor + startX;
+                const currentY = (endY - startY) * interpolationFactor + startY;
+
+                // Update X,Y value by direct access to the inner webassembly arrays
+                xyDataSeries.getNativeXValues().set(count - 1, currentX);
+                xyDataSeries.getNativeYValues().set(count - 1, currentY);
 
                 // update location of pulsing dot
                 pulsingDotAnnotation.x1 = currentX;
                 pulsingDotAnnotation.y1 = currentY;
 
+                // Force redraw
+                // can use xyDataSeries.notifyDataChanged();
                 // to just update, but if we want to zoom to fit, we must use zoomExtents
                 sciChartSurface.zoomExtents();
-
-                // update location of pulsing dot
-                pulsingDotAnnotation.x1 = currentX;
-                pulsingDotAnnotation.y1 = currentY;
             },
-            ease,
-        });
-        sciChartSurface.addAnimation(animation);
+            () => {
+                // Animation complete, append the point
+                xyDataSeries.append(endX, endY);
+            },
+            ease
+        );
     };
 
     // This is the loop where we add a new X,Y point and animate every 1 second to demonstrate animations

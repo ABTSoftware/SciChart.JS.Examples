@@ -24,7 +24,6 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout,
             EXAMPLES_PAGES.featuredApps_showcases_eventMarkers,
             EXAMPLES_PAGES.featuredApps_showcases_populationPyramid,
-            EXAMPLES_PAGES.featuredApps_performanceDemos_Load1MillionWithSvgCursor,
         ],
     },
     {
@@ -51,7 +50,6 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
             EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart,
             EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts,
-            EXAMPLES_PAGES.chart2D_createStockCharts_OrderBookHeatmap,
             EXAMPLES_PAGES.chart2D_createStockCharts_SubchartStockCharts,
             EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
             EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
@@ -62,7 +60,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     },
     {
         id: "chart2D_v4Charts",
-        title: "Charts added in v4",
+        title: "[NEW] Charts added in v4",
         submenu: [
             EXAMPLES_PAGES.chart2D_v4Charts_HistogramChart,
             EXAMPLES_PAGES.chart2D_v4Charts_GanttChart,
@@ -74,7 +72,6 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_v4Charts_BoxPlotChart,
             EXAMPLES_PAGES.chart2D_v4Charts_TriangleSeriesChart,
             EXAMPLES_PAGES.chart2D_v4Charts_TreemapChart,
-            EXAMPLES_PAGES.chart2D_v4Charts_HeatmapOverMap,
             //EXAMPLES_PAGES.chart2D_v4Charts_HeatmapRectangle,
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerBarsDemo,
             EXAMPLES_PAGES.chart2D_v4Charts_LinearGauges,
@@ -110,7 +107,6 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart,
             EXAMPLES_PAGES.chart2D_basicCharts_NonUniformHeatmapChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ContourChart,
-            EXAMPLES_PAGES.chart2D_v4Charts_HeatmapOverMap,
             EXAMPLES_PAGES.chart2D_basicCharts_MountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_SplineMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart,
@@ -137,7 +133,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
     },
     {
         id: "chart2D_polarCharts",
-        title: "Polar Charts",
+        title: "[NEW] Polar Charts",
         submenu: [
             EXAMPLES_PAGES.chart2D_polarCharts_PolarLineChart,
             EXAMPLES_PAGES.chart2D_polarCharts_PolarSplineLineChart,
@@ -196,8 +192,6 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_StaticAxis,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DiscontinuousDateAxisComparison,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_BaseValueAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes,
             EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes,
             EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout,
@@ -210,7 +204,6 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels,
             EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels,
             EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels,
-            EXAMPLES_PAGES.chart2D_axisLabelCustomization_DateAxisPrecisionLabelFormatting,
         ],
     },
     {
@@ -258,8 +251,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_VirtualizedDataOverview,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_PolarModifiers,
-            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision,
-            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_OverviewForSubCharts,
+            //EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision,
         ],
     },
     {
@@ -326,7 +318,6 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_RealtimeSurfaceMesh3DChart,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_Column3DChart,
-            EXAMPLES_PAGES.chart3D_basic3DChartTypes_Styling3DChart,
         ],
     },
 ];

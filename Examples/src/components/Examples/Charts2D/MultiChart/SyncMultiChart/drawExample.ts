@@ -87,7 +87,7 @@ export const createOverview = async (divId: string, axisSynchroniser: AxisSynchr
     // When the range selection is moved, updated the linked charts
     rangeSelectionModifier.onSelectedAreaChanged = (selectedRange: NumberRange) => {
         if (!selectedRange.equals(axisSynchroniser.visibleRange)) {
-            axisSynchroniser.publishChange({ visibleRange: selectedRange }, xAxis);
+            axisSynchroniser.publishChange({ visibleRange: selectedRange });
         }
     };
     rangeSelectionModifier.selectedArea = axisSynchroniser.visibleRange;

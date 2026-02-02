@@ -56,7 +56,8 @@ export const createCandlestickChart = async (rootElement: string | HTMLDivElemen
     });
 
     // Add an XAxis of type DateTimeAxis
-    // Note for crypto data this is fine, but for stocks/forex you will need to use DiscontinuousDateAxis which collapses gaps at weekends
+    // Note for crypto data this is fine, but for stocks/forex you will need to use CategoryAxis which collapses gaps at weekends
+    // In future we have a hybrid IndexDateAxis which 'magically' solves problems of different # of points in stock market datasetd with gaps
     const xAxis = new DateTimeNumericAxis(wasmContext);
     // xAxis.labelProvider.useCache = false;
     sciChartSurface.xAxes.add(xAxis);

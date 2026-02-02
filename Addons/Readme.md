@@ -29,12 +29,10 @@ The `PerformanceMeasurementModifier` is a powerful tool for measuring and analyz
 
 #### Usage from Examples App
 
-- `npm i` in Addons
-- Add a dependency into Examples/package.json
-  `"scichart-addons": "../Addons",`
+Add a dependency into Examples/package.json
+`"scichart-addons": "../Addons",`
 
-- `npm i` in Examples
-- Then uncomment its usage ate Examples/src/components/AppRouter/ChartControlWrapper.tsx:35
+Then uncomment its usage ate Examples/src/components/AppRouter/ChartControlWrapper.tsx:35
 
 The modifier will be shown when opening a fullscreen version of an example.
 

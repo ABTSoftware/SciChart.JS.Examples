@@ -7,8 +7,8 @@
    also examples for testing and profiling memory usage at **[/Tutorials/MemoryTests](Tutorials/MemoryTests)**
 3. Ready to run starter projects for React, Angular, Vue, Electron, Next.js, Nuxt.js any many more in the **[/Boilerplates](Boilerplates)** folder
 4. Standalone examples of customisations and solutions created in response to customer requests in the **[/Sandbox/CustomerExamples](Sandbox/CustomerExamples)** folder
-5. Supporting code for the **v3 documentation**, which is published online at [www.scichart.com/documentation/js/current](https://www.scichart.com/documentation/js/current/webframe.html) is found in the **[/Documentation](Documentation)** folder. Source for **[v4 Documentation](https://www.scichart.com/documentation/js/v5/intro/)** is now in its own repo [scichart.js.docs](https://github.com/abtsoftware/scichart.js.docs)
-6. **Advanced Licensing** technical details for customers needing to deploy to unknown or localhost domains in the **[/AdvancedLicensing](AdvancedLicensing)** folder. Further documentation on this is at [Deploying SciChart.js with Advanced Licensing (OEM)](https://www.scichart.com/documentation/js/v5/user-manual/licensing-scichart-js/deploying-with-advanced-licensing/).
+5. Supporting code for the **v3 documentation**, which is published online at [www.scichart.com/documentation/js/current](https://www.scichart.com/documentation/js/current/webframe.html) is found in the **[/Documentation](Documentation)** folder. Source for **[v4 Documentation](https://www.scichart.com/documentation/js/v4/intro/)** is now in its own repo [scichart.js.docs](https://github.com/abtsoftware/scichart.js.docs)
+6. **Advanced Licensing** technical details for customers needing to deploy to unknown or localhost domains in the **[/AdvancedLicensing](AdvancedLicensing)** folder. Further documentation on this is at [Deploying SciChart.js with Advanced Licensing (OEM)](https://www.scichart.com/documentation/js/v4/user-manual/licensing-scichart-js/deploying-with-advanced-licensing/).
 
 > **Scroll down for how to compile the demo app, find tutorials and boilerplate examples**
 
@@ -36,8 +36,8 @@
 > Other useful links below:
 >
 > - [Changelog for SciChart.js Library](https://www.scichart.com/changelog/scichart-js/)
-> - [Video Tutorials](https://www.scichart.com/documentation/js/v5/get-started/tutorials-js-npm-webpack/tutorial-01-setting-up-npm-project-with-scichart-js/)
-> - [SciChart.js Documentation](https://www.scichart.com/documentation/js/v5/intro/)
+> - [Video Tutorials](https://www.scichart.com/documentation/js/v4/get-started/tutorials-js-npm-webpack/tutorial-01-setting-up-npm-project-with-scichart-js/)
+> - [SciChart.js Documentation](https://www.scichart.com/documentation/js/v4/intro/)
 > - [SciChart Community forums](https://scichart.com/questions)
 > - [SciChart Stackoverflow tag](https://stackoverflow.com/tags/scichart)
 > - [Contact Us (Technical support or sales)](https://scichart.com/contact-us)
@@ -81,4 +81,4 @@ The [/Documentation](Documentation) folder contains supporting code and project 
 
 However, you can browse into [/Documentation](Documentation) and start the project if you want to browse 100s of mini code samples that are hosted throughout the docs.
 
-Source for **[v4 Documentation](https://www.scichart.com/documentation/js/v5/intro/)** is now in its own repo [scichart.js.docs](https://github.com/abtsoftware/scichart.js.docs)
+Source for **[v4 Documentation](https://www.scichart.com/documentation/js/v4/intro/)** is now in its own repo [scichart.js.docs](https://github.com/abtsoftware/scichart.js.docs)

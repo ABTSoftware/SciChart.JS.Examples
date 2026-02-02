@@ -32,7 +32,7 @@ The annotations could be dived by the type of a node where they are rendered.
 
 We refer to HTML and SVG Annotations as "DOM Annotations" since they share some similar logic and same rendering principles. Thus the common base class is **DomAnnotation**.
 
-**NOTE** There are [isDomAnnotation](https://www.scichart.com/documentation/js/v5/typedoc/classes/annotationbase.html#isdomannotation) and [isSvgAnnotation](https://www.scichart.com/documentation/js/current/typedoc/classes/annotationbase.html#issvgannotation) properties on an annotation.
+**NOTE** There are [isDomAnnotation](https://www.scichart.com/documentation/js/v4/typedoc/classes/annotationbase.html#isdomannotation) and [isSvgAnnotation](https://www.scichart.com/documentation/js/current/typedoc/classes/annotationbase.html#issvgannotation) properties on an annotation.
 
 So, the significant difference between DOM Annotations and Native Annotations is
 is that each DOM Annotation instance is added as a separate node to the DOM-tree

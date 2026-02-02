@@ -7,7 +7,7 @@ const metaData: IExampleMetadata =
         reactComponent: "PolarMultipleRadialAxesRadarChart",
         id: "chart2D_polarCharts_PolarMultipleRadialAxesRadarChart",
         imagePath: "javascript-polar-multiple-axes-radar-chart.jpg",
-        description:
+        description:    
             "Creates a **JavaScript Polar Radar Chart with Multiple Radial Axes**, also known as a **Spider Chart** using SciChart.js, which expresses the complexity, memory usage, stability, adaptability, scalability, and cache efficiency of two popular sorting algorithms",
         tips: [],
         frameworks: {
@@ -38,7 +38,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/v4/2d-charts/chart-types/polar-radar-chart/",
+                href: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Column%20Series%20Type.html",
                 title: "This specific page in the JavaScript Polar Radar Chart with Multiple Radial Axes documentation will help you to get started",
                 linkTitle: "JavaScript Polar Radar Chart with Multiple Radial Axes Documentation",
             },
@@ -52,7 +52,7 @@ const metaData: IExampleMetadata =
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: false,
+        isNew: true
     };
 //// End of computer generated metadata
 

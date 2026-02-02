@@ -1,10 +1,6 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import {
-    EPageFramework,
-    FRAMEWORK_NAME,
-    getFrameworkContent,
-} from "../../helpers/shared/Helpers/frameworkParametrization";
+import { EPageFramework, FRAMEWORK_NAME, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { EPageLayout, ETheme, ExampleSourceFile, GalleryItem } from "../../helpers/types/types";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
@@ -206,7 +202,10 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                     />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 15, width: "100%" }}>
-                    <div id="EXAMPLE_CONTENT_WRAPPER" className={classes.contentwrapper}>
+                    <div 
+                        id="EXAMPLE_CONTENT_WRAPPER"
+                        className={classes.contentwrapper}
+                    >
                         <div style={{ display: "flex" }}>
                             <ExampleBreadcrumbs />
 
@@ -270,7 +269,10 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                                 />
                             </div>
                         )}
-                        <MarkdownContent selectedFramework={selectedFramework} currentExample={currentExample} />
+                        <MarkdownContent 
+                            selectedFramework={selectedFramework} 
+                            currentExample={currentExample} 
+                        />
                     </div>
                     <GalleryItems examples={seeAlso} needsH1={false} />
                 </div>
