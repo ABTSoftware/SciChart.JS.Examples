@@ -1,7 +1,6 @@
 import {
     DateTimeNumericAxis,
     EllipsePointMarker,
-    isRealNumber,
     MouseWheelZoomModifier,
     RubberBandXyZoomModifier,
     ZoomExtentsModifier,
@@ -14,7 +13,6 @@ import {
     EAutoRange,
     EAxisAlignment,
     EExecuteOn,
-    deleteSafe,
     SmartDateLabelProvider,
     EHighPrecisionLabelMode,
     EDatePrecision,
@@ -22,7 +20,6 @@ import {
     ENumericFormat,
 } from "scichart";
 import { TDatasetId, createDatasets } from "./createDatasets";
-import { getIndicesRange } from "scichart/Charting/Model/BaseDataSeries";
 import { appTheme } from "../../../theme";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -79,20 +76,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
-    const datasets = createDatasets();
-    let currentDataset = datasets[3]; // the NanoSeconds one
-
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
-            xValues: currentDataset.xValues,
-            yValues: currentDataset.yValues,
             containsNaN: false,
             isSorted: true,
+            // x/y values will be appended when switching datasets, for now just create empty data series
         }),
-        stroke: appTheme.VividTeal,
         strokeThickness: 2,
         pointMarker: new EllipsePointMarker(wasmContext, {
-            fill: appTheme.ForegroundColor,
+            fill: appTheme.ForegroundColor
         }),
     });
 
@@ -107,12 +99,48 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
     sciChartSurface.zoomExtents();
 
+    // Datasets handling
+    const datasets = createDatasets();
+
+    const useDataset = (id: TDatasetId) => {
+        const next = datasets.find((d) => d.id === id)!;
+        const dataSeries = lineSeries.dataSeries as XyDataSeries;
+        dataSeries.clear();
+        dataSeries.appendRange(next.xValues, next.yValues);
+
+        const sdlp = xAxis.labelProvider as SmartDateLabelProvider;
+        switch (id) {
+            case "secondPrecision":
+                lineSeries.stroke = appTheme.VividOrange;
+                sdlp.datePrecision = EDatePrecision.Seconds;
+                sdlp.showSecondsOnPreciseDate = true;
+                break;
+            case "millisecondPrecision":
+                lineSeries.stroke = appTheme.VividPink;
+                sdlp.datePrecision = EDatePrecision.Milliseconds;
+                sdlp.showSecondsOnPreciseDate = false;
+                break;
+            case "microsecondPrecision":
+                lineSeries.stroke = appTheme.VividPurple;
+                sdlp.datePrecision = EDatePrecision.Microseconds;
+                sdlp.showSecondsOnPreciseDate = true;
+                break;
+            case "nanosecondPrecision":
+                lineSeries.stroke = appTheme.VividTeal;
+                sdlp.datePrecision = EDatePrecision.Nanoseconds;
+                sdlp.showSecondsOnPreciseDate = true;
+                break;
+        }
+        sciChartSurface.zoomExtents();
+    }
+    useDataset("nanosecondPrecision"); // default to nanosecond precision
+
     return {
         wasmContext,
         sciChartSurface,
         controls: {
             zoomInPrecise: () => {
-                const clusterIndex = currentDataset.id === "secondPrecision" ? 2 : 15;
+                const clusterIndex = 15; // on which cluster to zoom in
                 const pointsPerCluster = 10;
 
                 const dataSeries = lineSeries.dataSeries as XyDataSeries;
@@ -136,40 +164,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             zoomOut: () => {
                 sciChartSurface.zoomExtents(2000);
             },
-            setDataset: (id: TDatasetId) => {
-                const next = datasets.find((d) => d.id === id)!;
-                currentDataset = next;
-
-                const dataSeries = lineSeries.dataSeries as XyDataSeries;
-                dataSeries.clear();
-                dataSeries.appendRange(next.xValues, next.yValues);
-
-                const sdlp = xAxis.labelProvider as SmartDateLabelProvider;
-                switch (id) {
-                    case "secondPrecision":
-                        lineSeries.stroke = appTheme.VividOrange;
-                        sdlp.datePrecision = EDatePrecision.Seconds;
-                        sdlp.showSecondsOnPreciseDate = true;
-                        break;
-                    case "millisecondPrecision":
-                        lineSeries.stroke = appTheme.VividPink;
-                        sdlp.datePrecision = EDatePrecision.Milliseconds;
-                        sdlp.showSecondsOnPreciseDate = false;
-                        break;
-                    case "microsecondPrecision":
-                        lineSeries.stroke = appTheme.VividPurple;
-                        sdlp.datePrecision = EDatePrecision.Microseconds;
-                        sdlp.showSecondsOnPreciseDate = true;
-                        break;
-                    case "nanosecondPrecision":
-                        lineSeries.stroke = appTheme.VividTeal;
-                        sdlp.datePrecision = EDatePrecision.Nanoseconds;
-                        sdlp.showSecondsOnPreciseDate = true;
-                        break;
-                }
-
-                sciChartSurface.zoomExtents();
-            },
+            useDataset
         },
     };
 };

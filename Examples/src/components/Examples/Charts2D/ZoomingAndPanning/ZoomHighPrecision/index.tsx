@@ -21,7 +21,7 @@ const ChartHeader = () => {
     const handleDatasetChange = (event: any) => {
         const value = event.target.value;
         setDataset(value);
-        initResult?.controls.setDataset(value);
+        initResult?.controls.useDataset(value);
         setIsZoomInActive(false);
     };
 
