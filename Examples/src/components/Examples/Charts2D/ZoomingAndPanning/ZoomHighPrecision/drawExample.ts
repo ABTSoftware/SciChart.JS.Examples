@@ -35,8 +35,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         useNativeText: true,
         growBy: new NumberRange(0.05, 0.05),
         labelProvider: new SmartDateLabelProvider({
-            datePrecision: EDatePrecision.Seconds,
             highPrecisionLabelMode: EHighPrecisionLabelMode.Suffix,
+            datePrecision: EDatePrecision.Nanoseconds, 
+            // the default dataset is using nanosecond precision, 
+            // this will be changed when switching datasets
 
             showWiderDateOnFirstLabel: true,
             showYearOnWiderDate: true,
@@ -87,7 +89,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             containsNaN: false,
             isSorted: true,
         }),
-        stroke: appTheme.VividOrange,
+        stroke: appTheme.VividTeal,
         strokeThickness: 2,
         pointMarker: new EllipsePointMarker(wasmContext, {
             fill: appTheme.ForegroundColor,
