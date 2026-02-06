@@ -1,0 +1,73 @@
+.app-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 56px;
+}
+
+.app-bar-left {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.app-bar-logo {
+    height: 32px;
+    width: auto;
+}
+
+.app-bar-title {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.app-bar-center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.app-bar-right {
+    flex: 0 0 auto;
+}
+
+.app-bar-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.app-bar-button:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--accent-color);
+}
+
+.app-bar-button:active {
+    transform: scale(0.98);
+}
+
+.app-bar-button svg {
+    flex-shrink: 0;
+}
+
+.app-bar .theme-toggle {
+    position: static;
+    margin: 0;
+}

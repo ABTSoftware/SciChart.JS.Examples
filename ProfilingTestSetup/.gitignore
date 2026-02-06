@@ -1,0 +1,11 @@
+build/
+build-reports/
+
+# Playwright
+node_modules/
+/test-results/
+/test-results-archive/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

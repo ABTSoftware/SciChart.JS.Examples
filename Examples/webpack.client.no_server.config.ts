@@ -2,6 +2,7 @@ const { merge } = require("webpack-merge");
 const webpackClientConfig = require("./webpack.client.config.js");
 const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
+const path = require("path");
 const tq3080_DSM_2M = require("./src/server/Data/tq3080_DSM_2M");
 const { candlesADAUSDT } = require("./src/server/BinanceData/candlesADAUSDT");
 const { candlesBTCUSDT } = require("./src/server/BinanceData/candlesBTCUSDT");
@@ -17,6 +18,10 @@ module.exports = {
     mode: "development",
     resolve: {
         extensions: [".tsx", ".ts", ".js", ".css"],
+        alias: {
+            scichart: path.resolve(__dirname, "./node_modules/scichart"),
+            "scichart-addons": path.resolve(__dirname, "../Addons"),
+        },
         fallback: {
             child_process: false,
             fs: false,

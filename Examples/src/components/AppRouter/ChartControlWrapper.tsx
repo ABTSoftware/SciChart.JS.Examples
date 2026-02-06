@@ -3,7 +3,8 @@ import { useSearchParams } from "react-router";
 import { IInitResult, SciChartGroup } from "scichart-react";
 // import { InfoToolbar } from "../Examples/Toolbar";
 import { TExamplePage } from "./examplePages";
-import { SciChartSurfaceBase } from "scichart";
+import { SciChartSurface, ESurfaceType } from "scichart";
+// import { PerformanceMeasurementModifier } from "scichart-addons/PerformanceMeasurementModifier";
 
 export default function ChartControlWrapper(props: { children: ReactNode; examplePage: TExamplePage }) {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -25,6 +26,14 @@ export default function ChartControlWrapper(props: { children: ReactNode; exampl
                     // ).then(() => {
                     //     // consider all charts to be rendered
                     // });
+                    const [firstResult] = chartInitResults;
+                    const firstSurface =
+                        firstResult.sciChartSurface.surfaceType === ESurfaceType.SciChartSurfaceType
+                            ? (firstResult.sciChartSurface as SciChartSurface)
+                            : null;
+                    if (firstSurface) {
+                        // firstSurface.chartModifiers.add(new PerformanceMeasurementModifier({ verbose: true }));
+                    }
                 }}
             >
                 {/* {!hideToolbar ? <InfoToolbar examplePage={props.examplePage} /> : null} */}

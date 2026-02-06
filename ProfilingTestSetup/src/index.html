@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <title>SciChart Memory And Performance Profiling Setup</title>
+        <script defer type="text/javascript" src="bundle.js"></script>
+        <style>
+            :root {
+                --bg-primary: #1e1e1e;
+                --bg-secondary: #252526;
+                --bg-tertiary: #2d2d30;
+                --text-primary: #e0e0e0;
+                --text-secondary: #b0b0b0;
+                --accent-primary: #0e639c;
+                --accent-hover: #1177bb;
+                --border-color: #3e3e42;
+                --success: #4ec9b0;
+                --warning: #ce9178;
+                --danger: #f48771;
+                --info: #569cd6;
+                --app-bar-height: 57px;
+                --controls-bar-height: 90px;
+                --total-header-height: 147px;
+            }
+
+            body.light-theme {
+                --bg-primary: #ffffff;
+                --bg-secondary: #f3f3f3;
+                --bg-tertiary: #e8e8e8;
+                --text-primary: #1e1e1e;
+                --text-secondary: #616161;
+                --accent-primary: #0078d4;
+                --accent-hover: #106ebe;
+                --border-color: #d0d0d0;
+                --success: #107c10;
+                --warning: #ca5010;
+                --danger: #d13438;
+                --info: #0078d4;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+                    sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: var(--bg-primary);
+                color: var(--text-primary);
+                transition:
+                    background-color 0.3s,
+                    color 0.3s;
+            }
+
+            .app-bar {
+                background-color: var(--bg-secondary);
+                color: var(--text-primary);
+                padding: 12px 20px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .app-bar h1 {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            .theme-toggle {
+                background: none;
+                border: 1px solid var(--border-color);
+                color: var(--text-primary);
+                padding: 6px 12px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s;
+            }
+
+            .theme-toggle:hover {
+                background-color: var(--bg-tertiary);
+                border-color: var(--accent-primary);
+            }
+
+            .controls-bar {
+                background-color: var(--bg-secondary);
+                padding: 12px 20px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+                align-items: center;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .controls-bar.main-controls {
+                position: fixed;
+                top: var(--app-bar-height);
+                left: 0;
+                right: 0;
+                z-index: 999;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: auto auto;
+                gap: 8px 12px;
+                padding: 10px 20px;
+            }
+
+            .controls-bar.main-controls > label {
+                display: flex;
+                justify-content: center;
+            }
+
+            .controls-bar.main-controls > input[type="button"] {
+                width: 100%;
+            }
+
+            .right-content .controls-bar {
+                position: sticky;
+                z-index: 998;
+                left: 0;
+                right: 0;
+            }
+
+            .right-content .controls-bar input[type="button"][style*="danger"],
+            .right-content .controls-bar input[id*="delete"],
+            .right-content .controls-bar input[id*="Delete"] {
+                margin-left: auto;
+            }
+
+            .right-content .controls-bar:nth-of-type(1) {
+                top: 0;
+            }
+
+            .right-content .controls-bar:nth-of-type(2) {
+                top: 49px;
+            }
+
+            .right-content .controls-bar:nth-of-type(3) {
+                top: 98px;
+            }
+
+            .controls-bar input[type="button"] {
+                padding: 8px 16px;
+                background-color: var(--accent-primary);
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 13px;
+                font-weight: 500;
+                transition: all 0.2s;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            }
+
+            .controls-bar input[type="button"]:hover {
+                background-color: var(--accent-hover);
+                transform: translateY(-1px);
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            }
+
+            .controls-bar input[type="button"]:active {
+                transform: translateY(0);
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            }
+
+            .main-layout {
+                display: flex;
+                margin-top: var(--total-header-height);
+                height: calc(100vh - var(--total-header-height));
+            }
+
+            .sidebar {
+                width: 260px;
+                background-color: var(--bg-secondary);
+                border-right: 1px solid var(--border-color);
+                overflow-y: auto;
+                padding: 12px 8px 12px 8px;
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                position: fixed;
+                top: var(--total-header-height);
+                bottom: 0;
+                left: 0;
+                z-index: 997;
+            }
+
+            .right-content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                margin-left: 260px;
+            }
+
+            .sidebar-section {
+                background-color: var(--bg-tertiary);
+                padding: 6px 8px;
+                border-radius: 4px;
+                border: 1px solid var(--border-color);
+            }
+
+            .sidebar-section label {
+                display: block;
+                margin-bottom: 2px;
+                font-size: 11px;
+                color: var(--text-secondary);
+            }
+
+            .sidebar input[type="button"] {
+                width: 100%;
+                padding: 7px;
+                background-color: var(--accent-primary);
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 12px;
+                font-weight: 500;
+                transition: all 0.2s;
+                margin-bottom: 4px;
+            }
+
+            .sidebar input[type="button"]:last-child {
+                margin-bottom: 0;
+            }
+
+            .sidebar input[type="button"]:hover {
+                background-color: var(--accent-hover);
+                transform: translateY(-1px);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+
+            .content-wrapper {
+                flex: 1;
+                padding: 20px;
+                overflow-y: auto;
+            }
+
+            .config-section {
+                background-color: var(--bg-secondary);
+                padding: 16px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                border: 1px solid var(--border-color);
+            }
+
+            select,
+            input[type="range"] {
+                background-color: var(--bg-tertiary);
+                color: var(--text-primary);
+                border: 1px solid var(--border-color);
+                border-radius: 4px;
+                padding: 4px 8px;
+            }
+
+            label {
+                color: var(--text-secondary);
+                font-size: 14px;
+            }
+
+            #containerId {
+                min-height: 400px;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                gap: 10px;
+                margin-top: 20px;
+                background-color: var(--bg-secondary);
+                border-radius: 8px;
+                padding: 10px;
+                border: 1px solid var(--border-color);
+            }
+
+            #containerId .chart {
+                position: relative;
+                flex: none;
+                width: 300px;
+                height: 200px;
+                border-radius: 4px;
+                overflow: hidden;
+            }
+
+            .chart-delete {
+                position: absolute;
+                top: 4px;
+                right: 4px;
+                width: 24px;
+                height: 24px;
+                border: none;
+                border-radius: 3px;
+                background-color: rgba(244, 135, 113, 0.9);
+                color: white;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 14px;
+                line-height: 1;
+                transition: all 0.2s;
+                z-index: 10;
+                opacity: 0;
+            }
+
+            .chart:hover .chart-delete {
+                opacity: 1;
+            }
+
+            .chart-delete:hover {
+                background-color: #d32f2f;
+                transform: scale(1.1);
+            }
+
+            .chart-delete:active {
+                transform: scale(0.9);
+            }
+
+            .chart-group {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                width: 100;
+            }
+
+            .sidebar input[type="checkbox"] {
+                margin-right: 8px;
+                cursor: pointer;
+            }
+
+            .value-selector {
+                display: block;
+                width: 100%;
+                margin-top: 2px;
+            }
+
+            input[type="range"] {
+                cursor: pointer;
+            }
+
+            input[type="range"]::-webkit-slider-thumb {
+                background-color: var(--accent-primary);
+            }
+
+            input[type="range"]::-moz-range-thumb {
+                background-color: var(--accent-primary);
+            }
+
+            /* Toggle Switch Styles */
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 40px;
+                height: 22px;
+                margin-right: 8px;
+            }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: var(--border-color);
+                transition: 0.3s;
+                border-radius: 22px;
+            }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 16px;
+                width: 16px;
+                left: 3px;
+                bottom: 3px;
+                background-color: white;
+                transition: 0.3s;
+                border-radius: 50%;
+            }
+
+            input:checked + .slider {
+                background-color: var(--accent-primary);
+            }
+
+            input:checked + .slider:before {
+                transform: translateX(18px);
+            }
+
+            .switch-label {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                user-select: none;
+                font-size: 13px;
+            }
+
+            .sidebar .switch-label {
+                font-size: 12px;
+            }
+
+            .chart-group {
+                position: relative;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                width: 100%;
+                padding: 40px 10px 10px 10px;
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                background-color: var(--bg-tertiary);
+                margin-bottom: 10px;
+            }
+
+            .chart-group-controls {
+                position: absolute;
+                top: 6px;
+                left: 10px;
+                right: 10px;
+                display: flex;
+                gap: 6px;
+                align-items: center;
+                z-index: 10;
+            }
+
+            .chart-group-controls button {
+                padding: 5px 10px;
+                color: white;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+                font-size: 11px;
+                font-weight: 500;
+                transition: all 0.2s;
+                background-color: var(--accent-primary);
+            }
+
+            .chart-group-controls button:hover {
+                background-color: var(--accent-hover);
+                transform: translateY(-1px);
+            }
+
+            .chart-group-controls button:active {
+                transform: translateY(0);
+            }
+
+            .chart-group-controls .danger {
+                background-color: var(--danger);
+                margin-left: auto;
+                padding: 5px 8px;
+            }
+
+            .chart-group-controls .danger:hover {
+                background-color: #d32f2f;
+                transform: scale(1.05);
+            }
+
+            .chart-group-controls .danger:active {
+                transform: scale(0.98);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- App Bar -->
+        <div class="app-bar">
+            <div style="display: flex; align-items: center; gap: 16px">
+                <img src="scichart-logo.svg" alt="SciChart Logo" style="height: 32px" />
+                <h1>Memory And Performance Profiling Setup</h1>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px">
+                <button
+                    id="profilerDataButton"
+                    title="Returns data that could be used in the Profiler App"
+                    style="
+                        background-color: var(--success);
+                        color: white;
+                        border: none;
+                        padding: 8px 16px;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        font-size: 13px;
+                        font-weight: 500;
+                        transition: all 0.2s;
+                    "
+                >
+                    📊 Get Profiler Data
+                </button>
+                <button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme">
+                    🌙 Dark Mode
+                </button>
+            </div>
+        </div>
+
+        <!-- Debug Controls Bar -->
+        <div class="controls-bar main-controls">
+            <!-- Row 1: Switches -->
+            <label
+                class="switch-label"
+                title="Records objects that need to be deleted and collected (should be set before creating charts)"
+            >
+                <label class="switch">
+                    <input type="checkbox" checked id="memoryDebug" />
+                    <span class="slider"></span>
+                </label>
+                <span>Memory Debug</span>
+            </label>
+            <label class="switch-label" title="Enable memory usage tracing for chart groups">
+                <label class="switch">
+                    <input type="checkbox" checked id="memoryTrace" />
+                    <span class="slider"></span>
+                </label>
+                <span>Memory Trace</span>
+            </label>
+            <label
+                class="switch-label"
+                title="Records chart lifecycle events using Performance API (should be set before creating charts)"
+            >
+                <label class="switch">
+                    <input type="checkbox" checked id="performanceDebug" />
+                    <span class="slider"></span>
+                </label>
+                <span>Performance Debug</span>
+            </label>
+            <label class="switch-label" title="Enable performance tracing for chart groups">
+                <label class="switch">
+                    <input type="checkbox" checked id="performanceTrace" />
+                    <span class="slider"></span>
+                </label>
+                <span>Performance Trace</span>
+            </label>
+
+            <!-- Row 2: Buttons -->
+            <input
+                title="Outputs current ObjectRegistry state to Console"
+                type="button"
+                value="Log Memory Debug"
+                id="logMemoryDebug"
+            />
+            <input
+                title="Outputs memory usage logs from all chart groups"
+                type="button"
+                value="Log Memory Trace"
+                id="logMemoryTrace"
+            />
+            <input
+                title="Outputs all Performance API marks to Console"
+                type="button"
+                value="Log Performance Debug"
+                id="logPerformanceDebug"
+            />
+            <input
+                title="Outputs performance data from all chart groups"
+                type="button"
+                value="Log Performance Trace"
+                id="logPerformanceTrace"
+            />
+        </div>
+
+        <!-- Main Layout with Sidebar -->
+        <div class="main-layout">
+            <!-- Left Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-section">
+                    <label for="initializerTypeSelect">Initializer Type:</label>
+                    <select
+                        id="initializerTypeSelect"
+                        style="width: 100%; margin-top: 4px"
+                    ></select>
+                </div>
+                <div class="sidebar-section">
+                    <label for="seriesTypeSelect">Series Type:</label>
+                    <select id="seriesTypeSelect" style="width: 100%; margin-top: 4px"></select>
+                </div>
+                <div class="sidebar-section" title="Defines the number of chart surfaces to create">
+                    <label>Number of surfaces <span id="surfacesLabel">1</span></label>
+                    <input
+                        class="value-selector"
+                        id="surfacesSelector"
+                        type="range"
+                        min="1"
+                        max="100"
+                        step="1"
+                    />
+                </div>
+                <div
+                    class="sidebar-section"
+                    id="subChartsContainer"
+                    style="display: none"
+                    title="Defines the number of subcharts on the chart"
+                >
+                    <label>SubCharts <span id="subChartsSelectorLabel">0</span></label>
+                    <input
+                        class="value-selector"
+                        id="subChartsSelector"
+                        type="range"
+                        min="0"
+                        max="64"
+                        step="1"
+                    />
+                </div>
+                <div class="sidebar-section" title="Defines the number of series on the chart">
+                    <label>Series <span id="seriesLabel">0</span></label>
+                    <input
+                        class="value-selector"
+                        id="seriesSelector"
+                        type="range"
+                        min="0"
+                        max="1000"
+                        step="1"
+                    />
+                </div>
+                <div
+                    class="sidebar-section"
+                    title="Defines the FIFO capacity to create data series with"
+                >
+                    <label>Capacity <span id="capacityLabel">0</span></label>
+                    <input
+                        class="value-selector"
+                        id="capacitySelector"
+                        type="range"
+                        min="0"
+                        max="1000000"
+                        step="10000"
+                    />
+                </div>
+                <div
+                    class="sidebar-section"
+                    title="Defines the size of data array appended per update"
+                >
+                    <label>Chunk size <span id="chunkSizeLabel"></span></label>
+                    <input
+                        class="value-selector"
+                        id="chunkSizeSelector"
+                        type="range"
+                        min="0"
+                        max="1000"
+                        step="100"
+                    />
+                </div>
+                <div
+                    class="sidebar-section"
+                    title="Synchronizes data updates with the frame rate for smoother animations"
+                >
+                    <label class="switch-label">
+                        <label class="switch">
+                            <input type="checkbox" checked id="syncToFps" />
+                            <span class="slider"></span>
+                        </label>
+                        <span>Sync to FPS</span>
+                    </label>
+                </div>
+                <div
+                    class="sidebar-section"
+                    id="intervalContainer"
+                    style="display: none"
+                    title="Defines the data update interval when auto update enabled"
+                >
+                    <label>Update Interval <span id="intervalLabel">0</span></label>
+                    <input
+                        class="value-selector"
+                        id="intervalSelector"
+                        type="range"
+                        min="1"
+                        max="30"
+                        step="1"
+                    />
+                </div>
+                <input
+                    title="Creates a chart group with configured number of surfaces"
+                    type="button"
+                    value="Create Chart Group"
+                    id="create1"
+                />
+            </div>
+
+            <!-- Right Content Area -->
+            <div class="right-content">
+                <!-- WASM Control Bar -->
+                <div class="controls-bar" style="background-color: var(--bg-secondary)">
+                    <span style="font-weight: 500; margin-right: 8px">Engine:</span>
+                    <label
+                        class="switch-label"
+                        title="Defines if the WASM contexts should be destroyed automatically (should be set before creating charts)"
+                    >
+                        <label class="switch">
+                            <input type="checkbox" checked id="autoDispose" />
+                            <span class="slider"></span>
+                        </label>
+                        <span>Auto Delete Engine</span>
+                    </label>
+                    <input
+                        title="Pre-initializes a shared Wasm Context for multi-charts"
+                        type="button"
+                        value="Init 2D Engine"
+                        id="initSharedWasm"
+                    />
+                    <input
+                        title="Deletes 2D and 3D Shared WASM Contexts"
+                        type="button"
+                        value="Delete Shared Engines"
+                        id="deleteWasm"
+                        style="background-color: var(--danger)"
+                    />
+                </div>
+
+                <!-- All Groups Control Bar -->
+                <div class="controls-bar" style="background-color: var(--bg-tertiary)">
+                    <span style="font-weight: 500; margin-right: 8px">All Groups:</span>
+                    <input
+                        title="Append data to all chart groups"
+                        type="button"
+                        value="Append Data (All)"
+                        id="appendAllGroups"
+                    />
+                    <input
+                        title="Remove data from all chart groups"
+                        type="button"
+                        value="Remove Data (All)"
+                        id="removeAllGroups"
+                    />
+                    <input
+                        title="Toggle dynamic update for all chart groups"
+                        type="button"
+                        value="Toggle Update (All)"
+                        id="toggleAnimateAllGroups"
+                    />
+                    <input
+                        title="Delete all chart groups"
+                        type="button"
+                        value="Delete All Groups"
+                        id="deleteAllGroups"
+                        style="background-color: var(--danger)"
+                    />
+                </div>
+
+                <!-- Last Group Control Bar -->
+                <div class="controls-bar" style="background-color: var(--bg-tertiary)">
+                    <span style="font-weight: 500; margin-right: 8px">Last Group:</span>
+                    <input
+                        title="Append data to last chart group"
+                        type="button"
+                        value="Append Data (Last)"
+                        id="appendLastGroup"
+                    />
+                    <input
+                        title="Remove data from last chart group"
+                        type="button"
+                        value="Remove Data (Last)"
+                        id="removeLastGroup"
+                    />
+                    <input
+                        title="Toggle dynamic update for last chart group"
+                        type="button"
+                        value="Toggle Update (Last)"
+                        id="toggleAnimateLastGroup"
+                    />
+                    <input
+                        title="Delete last chart group"
+                        type="button"
+                        value="Delete Last Group"
+                        id="deleteLastGroup"
+                        style="background-color: var(--danger)"
+                    />
+                </div>
+
+                <!-- Main Content Area -->
+                <div class="content-wrapper">
+                    <!-- Chart container -->
+                    <div id="containerId"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
