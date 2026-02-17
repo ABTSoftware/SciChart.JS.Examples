@@ -17,8 +17,8 @@ SciChartSurfaceBase.DEFAULT_THEME = new SciChartJsNavyTheme();
 // }
 PerformanceDebugHelper.enableDebug = false;
 PerformanceDebugHelper.debugLevel = EPerformanceDebugLevel.Verbose;
-SciChartSurface.autoDisposeWasmContext = true;
-SciChart3DSurface.autoDisposeWasmContext = true;
+SciChartSurface.autoDisposeWasmContext = false;
+SciChart3DSurface.autoDisposeWasmContext = false;
 SciChartDefaults.useNativeText = true;
 SciChartDefaults.useSharedCache = true;
 // labelCache.setMaxSize(2000);

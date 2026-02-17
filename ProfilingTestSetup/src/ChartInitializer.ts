@@ -25,9 +25,11 @@ export class ChartInitializer extends ResultsConsoleOutputApi {
     protected chartGroupContainer: HTMLDivElement;
 
     protected controlsProperty = {
+        getSurfaces: () => this.surfaces,
         initWasmContext: () => this.initWasmContext(),
         createChartGroup: () => this.createChartGroup(),
         createChart: () => this.createChart(),
+        deleteChart: (surface: SciChartSurfaceBase) => this.removeChart(surface),
         appendData: () => this.appendData(),
         removeData: () => this.removeData(),
         toggleAnimate: () => this.toggleAnimate(),
@@ -55,9 +57,11 @@ export class ChartInitializer extends ResultsConsoleOutputApi {
 
         const rootElement = this.createRootElement(index);
 
-        await this.initChart(rootElement);
+        const chart = await this.initChart(rootElement);
 
         this.checkMemoryUsage(EMemoryUsageLogEntryType.AfterSurfaceInit);
+
+        return chart;
     }
 
     protected async createChartGroup() {
@@ -438,8 +442,12 @@ export class ChartInitializer extends ResultsConsoleOutputApi {
         // Remove from surface data map
         this.surfaceDataSeriesMap.delete(surface as SciChartSurface);
 
+        this.checkMemoryUsage(EMemoryUsageLogEntryType.BeforeSurfaceDelete);
+
         // Delete the surface
         surface.delete(true);
+
+        this.checkMemoryUsage(EMemoryUsageLogEntryType.AfterSurfaceDelete);
 
         // Remove wrapper div from DOM (which contains both button and chart)
         const elementToRemove = wrapperDiv || chartDiv;

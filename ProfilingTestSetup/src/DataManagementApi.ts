@@ -81,6 +81,10 @@ export class DataManagementApi extends PerformanceTrackingApi {
 
         const { dataSeriesArray } = this.surfaceDataSeriesMap.get(surface);
 
+        if (!dataSettings.seriesCount) {
+            surface.invalidateElement();
+        }
+
         for (let i = 0; i < dataSettings.seriesCount; i++) {
             const dataSeries = dataSeriesArray[i];
             if (dataSeries.type === EDataSeriesType.HeatmapUniform) {

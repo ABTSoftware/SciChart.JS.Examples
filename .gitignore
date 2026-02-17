@@ -5,6 +5,7 @@
 **/.cache
 **/artifacts
 .DS_Store
+.env
 ExampleDependencies/lib
 Sandbox/demo-electron/dist/main/main.js
 !Sandbox/DocumentationSnippets/**/package-lock.json

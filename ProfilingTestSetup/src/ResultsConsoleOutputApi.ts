@@ -1,9 +1,9 @@
 import { DataUpdateApi } from "./DataUpdateApi";
 import { bytesToMB } from "./helpers";
-import { TCollectedPerformanceData } from "./types";
+import { MemoryUsageLogEntry, TCollectedPerformanceData } from "./types";
 
 export class ResultsConsoleOutputApi extends DataUpdateApi {
-    public override outputMemoryUsageLogs(): any {
+    public override async outputMemoryUsageLogs(): Promise<MemoryUsageLogEntry[]> {
         if (this.options.enableConsoleOutput) {
             console.groupCollapsed(`Memory Usage Logs`);
             this.memoryUsageLogs.forEach(log => {

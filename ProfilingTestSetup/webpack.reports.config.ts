@@ -46,6 +46,7 @@ const config = (env: any, argv: any): Configuration => {
             new CopyPlugin({
                 patterns: [
                     { from: "reports/index.html", to: "index.html" },
+                    { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
                     {
                         from: "test-results/results.json",
                         to: "results.json",

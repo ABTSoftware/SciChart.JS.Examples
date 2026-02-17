@@ -553,13 +553,38 @@ class TestReportViewer {
                 this.renderScalabilityGraph(testMetricsMap, contentEl, suite.title);
             }
 
-            // Render combined performance metrics table if data exists
-            if (testPerformanceMap.size > 0) {
+            // Render combined performance metrics table if data exists and is valid
+            const hasValidTableData = testPerformanceMap.size > 0 &&
+                Array.from(testPerformanceMap.values()).some(data =>
+                    data.performanceData && data.performanceData.length > 0 &&
+                    data.performanceData.some(perfData =>
+                        perfData.preRenderStart?.length > 0 ||
+                        perfData.renderToWebGl?.length > 0 ||
+                        perfData.renderEnd?.length > 0 ||
+                        perfData.framePainted?.length > 0
+                    )
+                );
+
+            if (hasValidTableData) {
                 this.renderPerformanceMetricsTableByTest(
                     testPerformanceMap,
                     contentEl,
                     suite.title
                 );
+            } else if (testPerformanceMap.size > 0) {
+                // Has data but it's empty - show a message
+                const noDataEl = document.createElement("div");
+                noDataEl.className = "chart-container";
+                noDataEl.innerHTML = `
+                    <div style="padding: 20px; text-align: center; color: #a0a0a0;">
+                        <div style="font-size: 16px; margin-bottom: 10px;">📊 No Performance Metrics</div>
+                        <div style="font-size: 13px;">Performance data collection is disabled or incomplete.</div>
+                        <div style="font-size: 12px; margin-top: 8px; color: #666;">
+                            Set <code style="background: #2d2d2d; padding: 2px 6px; border-radius: 3px;">enableRenderTracing: true</code> to collect performance metrics.
+                        </div>
+                    </div>
+                `;
+                contentEl.appendChild(noDataEl);
             }
         }
 
@@ -825,8 +850,7 @@ class TestReportViewer {
         const { memoryData, performanceData, browserAnimationFrameData } = evaluationData;
 
         // Create memory chart container
-        // TODO work in progress in scope of SCJS-2292, thus disabled for now
-        if (false && memoryData && memoryData.length > 0) {
+        if (memoryData && memoryData.length > 0) {
             const memoryChartContainer = document.createElement("div");
             memoryChartContainer.className = "chart-container";
 
@@ -891,7 +915,16 @@ class TestReportViewer {
         }
 
         // Create performance chart container
-        if (performanceData && performanceData.length > 0) {
+        // Check if performance data exists and has valid data (not just empty arrays)
+        const hasValidPerformanceData = performanceData && performanceData.length > 0 &&
+            performanceData.some(data =>
+                data.preRenderStart?.length > 0 ||
+                data.renderToWebGl?.length > 0 ||
+                data.renderEnd?.length > 0 ||
+                data.framePainted?.length > 0
+            );
+
+        if (hasValidPerformanceData) {
             console.log("Rendering performance chart with", performanceData.length, "data entries");
             const perfChartContainer = document.createElement("div");
             perfChartContainer.className = "chart-container";
@@ -932,7 +965,20 @@ class TestReportViewer {
                     });
             }, 100);
         } else {
-            console.log("No performance data available");
+            console.log("No valid performance data available - enableRenderTracing might be disabled");
+            // Show a message to the user
+            const noDataContainer = document.createElement("div");
+            noDataContainer.className = "chart-container";
+            noDataContainer.innerHTML = `
+                <div style="padding: 20px; text-align: center; color: #a0a0a0;">
+                    <div style="font-size: 16px; margin-bottom: 10px;">⚡ No Performance Data</div>
+                    <div style="font-size: 13px;">Performance tracing is disabled or no render events were captured.</div>
+                    <div style="font-size: 12px; margin-top: 8px; color: #666;">
+                        Set <code style="background: #2d2d2d; padding: 2px 6px; border-radius: 3px;">enableRenderTracing: true</code> in your test options.
+                    </div>
+                </div>
+            `;
+            container.appendChild(noDataContainer);
         }
     }
 

@@ -18,10 +18,10 @@ export const getChartInitializer = (options: TTestOptions) => {
             break;
         }
 
-        // case EInitializerType.GraphSummary: {
-        //     chartInitializer = new GraphSummaryInitializer(options);
-        //     break;
-        // }
+        case EInitializerType.GraphSummary: {
+            chartInitializer = new GraphSummaryInitializer(options);
+            break;
+        }
 
         default: {
             chartInitializer = new ChartInitializer(options);

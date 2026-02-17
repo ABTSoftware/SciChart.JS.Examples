@@ -45,6 +45,7 @@ export class DataUpdateApi extends DataManagementApi {
             dataUpdateStart = [];
             dataUpdateEnd = [];
             preRenderStart = [];
+            renderToWebGl = [];
             renderEnd = [];
             framePainted = [];
             cancelAnimationFramesTracking = undefined;

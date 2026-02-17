@@ -13,6 +13,7 @@ import { GraphSummaryInitializer } from "./custom/GraphSummaryInitializer";
 import { EInitializerType } from "./InitializerTypes";
 import { EUpdateIntervalBaseline, TSetupOptions } from "./types";
 import { ChartInitializer } from "./ChartInitializer";
+import { EMemoryUsageLogEntryType } from "./MemoryTrackingApi";
 
 const getDataForProfiler = () => {
     const performanceInfoData = [PerformanceDebugHelper.toJSON()];
@@ -198,9 +199,9 @@ export function initializeControlBindings(options?: TSetupOptions) {
         enableMemoryTracing = (ev.target as HTMLInputElement).checked;
         console.log("enableMemoryTracing =", enableMemoryTracing);
     };
-    (document.querySelector("#autoDispose") as HTMLInputElement).onclick = function (
-        ev: MouseEvent
-    ) {
+    const autoDisposeToggle = document.querySelector("#autoDispose") as HTMLInputElement;
+    autoDisposeToggle.checked = SciChartSurface.autoDisposeWasmContext;
+    autoDisposeToggle.onclick = function (ev: MouseEvent) {
         SciChartSurface.autoDisposeWasmContext = (ev.target as HTMLInputElement).checked;
         SciChart3DSurface.autoDisposeWasmContext = (ev.target as HTMLInputElement).checked;
         console.log("autoDisposeWasmContext =", SciChartSurface.autoDisposeWasmContext);
@@ -307,11 +308,12 @@ export function initializeControlBindings(options?: TSetupOptions) {
         getDataForProfiler();
     };
 
-    // (document.querySelector("#addMemoryCheckpoint") as HTMLInputElement).onclick = function (
-    //     ev: MouseEvent
-    // ) {
-    //     controls.addMemoryUsageCheckpoint();
-    // };
+    (document.querySelector("#addMemoryCheckpoint") as HTMLInputElement).onclick = function () {
+        chartInitializers.forEach(init => {
+            init.addMemoryUsageCheckpoint(EMemoryUsageLogEntryType.OnDemand);
+        });
+        console.log("Memory checkpoint added for all chart initializers");
+    };
 
     // All Groups Controls
     (document.querySelector("#appendAllGroups") as HTMLInputElement).onclick = () => {

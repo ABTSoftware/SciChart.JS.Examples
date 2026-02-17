@@ -1,6 +1,7 @@
 import { TCollectedMetrics, TTestOptions, NetworkResourceMetrics } from "./types";
 import { getChartInitializer } from "./chart-creation";
 import "./global-chart-configs";
+import { SciChartSurfaceBase } from "scichart";
 
 function getNetworkMetrics(): NetworkResourceMetrics {
     const metrics: NetworkResourceMetrics = {
@@ -79,3 +80,59 @@ async function initExample(options: TTestOptions) {
 
 // @ts-ignore
 window.initExample = initExample;
+
+async function initChartCleanupTest(options: TTestOptions) {
+    const createChartRepeats = 5;
+    SciChartSurfaceBase.autoDisposeWasmContext = false;
+    SciChartSurfaceBase.wasmContextDisposeTimeout = 0;
+
+    const initExampleStart = performance.now();
+    const chartInitializer = getChartInitializer(options);
+
+    const controls = chartInitializer.getControls();
+
+    await controls.createChartGroup();
+    controls.addMemoryUsageCheckpoint();
+
+    for (let i = 0; i < createChartRepeats; ++i) {
+        await controls.createChart();
+
+        await controls.toggleAnimate();
+
+        const [firstSurface] = controls.getSurfaces();
+
+        await controls.deleteChart(firstSurface);
+    }
+
+    controls.addMemoryUsageCheckpoint();
+
+    // controls.deleteChart()
+
+    // TODO consider enabling if cleanup required
+    // controls.cleanup();
+
+    const memoryData = await chartInitializer.outputMemoryUsageLogs();
+
+    const performanceData = await chartInitializer.outputPerformanceData();
+    const initializationPerformanceData =
+        await chartInitializer.outputInitializationPerformanceData();
+
+    const browserAnimationFrameData = chartInitializer.browserAnimationFrameData;
+
+    const networkMetrics = getNetworkMetrics();
+
+    const initExampleEnd = performance.now();
+    const result: TCollectedMetrics = {
+        initExampleStart,
+        initExampleEnd,
+        initializationPerformanceData,
+        memoryData,
+        performanceData,
+        networkMetrics,
+        browserAnimationFrameData
+    };
+    return result;
+}
+
+// @ts-ignore
+window.initChartCleanupTest = initChartCleanupTest;

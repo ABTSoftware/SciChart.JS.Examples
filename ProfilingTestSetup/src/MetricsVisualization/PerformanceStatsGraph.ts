@@ -361,8 +361,6 @@ export const drawPerformanceStatsGraph =
             return subSurface;
         });
 
-        console.log("subCharts[0]", subCharts[0]);
-
         const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(rootElement, {
             surface: { createSuspended: true, loader: false, disableAspect: false },
             // xAxes: { type: EAxisType.NumericAxis, options: { isVisible: false } },

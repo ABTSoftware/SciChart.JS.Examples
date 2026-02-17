@@ -97,6 +97,15 @@ export default defineConfig({
             use: {
                 ...devices["Desktop Safari"]
             }
+        },
+
+        {
+            name: "chromium",
+            testDir: "tests/LongRunningTests",
+            use: {
+                launchOptions,
+                ...devices["Desktop Chrome"]
+            }
         }
 
         /* Test against mobile viewports. */

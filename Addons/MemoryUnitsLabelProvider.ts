@@ -1,7 +1,10 @@
 import { NumericLabelProvider, TFormatLabelFn } from "scichart";
 
 export class MemoryUnitsLabelProvider extends NumericLabelProvider {
-    override get formatLabel(): TFormatLabelFn {
+    public override get formatLabel(): TFormatLabelFn {
+        return formatBytes;
+    }
+    public override get formatCursorLabel() {
         return formatBytes;
     }
 }

@@ -1,5 +1,6 @@
 import { ESeriesType } from "scichart";
 import { EInitializerType } from "./InitializerTypes";
+import { MallinfoStats } from "scichart/types/TSciChart";
 
 export type TUpdateSetup = {
     /** Could synchronize with frame rate or do multiple updates per frame */
@@ -84,6 +85,7 @@ export type MemoryUsageLogEntry = {
     totalJSHeapSize: number;
     jsHeapSizeLimit: number;
     HEAPF64: number;
+    wasmHeapStats: MallinfoStats
 };
 
 export type NetworkResourceMetrics = {

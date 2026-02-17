@@ -1,4 +1,4 @@
-import { getSharedWasmContext, MemoryUsageHelper, TSciChart } from "scichart";
+import { getSharedWasmContext, TSciChart } from "scichart";
 import { bytesToMB, cloneArray } from "./helpers";
 import { ChartInitializerBase } from "./ChartInitializerBase";
 import { MemoryUsageLogEntry } from "./types";
@@ -13,7 +13,7 @@ export class MemoryTrackingApi extends ChartInitializerBase {
         return this.checkMemoryUsage(name);
     }
 
-    public outputMemoryUsageLogs(): any {
+    public async outputMemoryUsageLogs(): Promise<MemoryUsageLogEntry[]> {
         return cloneArray(this.memoryUsageLogs);
     }
 
@@ -49,8 +49,24 @@ export class MemoryTrackingApi extends ChartInitializerBase {
         if (this.sharedWasmContext) {
             const wasmContext = this.sharedWasmContext;
 
+            const mallInfoRes = wasmContext.GetMallinfoStats();
+
+            const wasmHeapStats = {
+                arena: mallInfoRes.arena,
+                ordblks: mallInfoRes.ordblks,
+                smblks: mallInfoRes.smblks,
+                hblks: mallInfoRes.hblks,
+                hblkhd: mallInfoRes.hblkhd,
+                usmblks: mallInfoRes.usmblks,
+                fsmblks: mallInfoRes.fsmblks,
+                uordblks: mallInfoRes.uordblks,
+                fordblks: mallInfoRes.fordblks,
+                keepcost: mallInfoRes.keepcost
+            };
+            mallInfoRes.delete();
+
             // @ts-ignore "HEAPF64" is not exposed in TSciChart types but still is accessible
-            Object.assign(logEntry, { HEAPF64: wasmContext["HEAPF64"].byteLength });
+            Object.assign(logEntry, { HEAPF64: wasmContext["HEAPF64"].byteLength, wasmHeapStats });
         }
 
         return logEntry as MemoryUsageLogEntry;
@@ -72,5 +88,7 @@ export enum EMemoryUsageLogEntryType {
     AfterSurfaceInit = "After Surface Init",
     BeforeWasmInit = "Before Wasm Init",
     AfterWasmInit = "After Wasm Init",
+    BeforeSurfaceDelete = "Before Surface Delete",
+    AfterSurfaceDelete = "After Surface Delete",
     OnDemand = "OnDemand"
 }
