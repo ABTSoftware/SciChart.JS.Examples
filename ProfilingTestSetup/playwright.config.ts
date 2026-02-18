@@ -100,7 +100,7 @@ export default defineConfig({
         },
 
         {
-            name: "chromium",
+            name: "long",
             testDir: "tests/LongRunningTests",
             use: {
                 launchOptions,

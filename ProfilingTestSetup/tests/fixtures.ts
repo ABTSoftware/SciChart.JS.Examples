@@ -49,7 +49,7 @@ export const test = base.extend<{ forEachTest: void; pageLoadMetrics: PageLoadMe
             const testMode = process.env.TEST_MODE || "file";
 
             let url: string;
-            if (testMode === "dev") {
+            if (testMode === "url") {
                 url = process.env.TEST_URL || "http://localhost:8080";
                 // console.log(`Running test in DEV mode against: ${url}`);
             } else {
