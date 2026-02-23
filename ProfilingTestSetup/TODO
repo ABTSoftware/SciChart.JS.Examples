@@ -1,0 +1,28 @@
+## TODO
+
+- [ ] Add support for Heatmap Series
+- [ ] Add support for Polar surface
+- [ ] Add support for 3D surface
+- [ ] Allow specifying the whole init function (like drawExample format)
+- [ ] Preallocate space in the structure for collecting tracing data
+- [ ] Example of detailed measurement
+- [ ] allow enabling FPS modifier and opening Profiler.
+
+- [ ] Add an option to prepare all data together before update of chart group;
+  effectively generate data for all surfaces in the group, then append to all, then verifying that all of the surfaces were rerendered
+- [ ] Create a configuration for generating data stream and batching updates
+- [ ] Create example of configuration for GenericAnimation based data update and fluent realtime scrolling 
+
+- [ ] Basic Visual Tests with snapshot comparison
+- [ ] Performance Tests for Annotations
+- [ ] Interaction Performance Tests (Tooltip, hit test, zoom, pan)
+
+- [ ] Visual tests on a complex chart configuration (allow providing a custom config)
+- [ ] Realtime Updates examples (seeded)
+
+- [ ] Long Running Tests (measuring memory while running for days)
+- [ ] Custom update measurements (measure render time and memory usage at each frame)
+
+- [ ] Investigate performance.memory alternative for Firefox and Webkit
+- [ ] Investigate Memory measurement with CDP
+- [ ] Display overall CPU and RAM Usage of a PC in report

@@ -82,4 +82,4 @@ To run this example from the SciChart.JS.Examples repository:
     npm run dev
     ```
 
-For more details, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md) and the [Polar Radar Chart documentation](https://www.scichart.com/documentation/js/v4/2d-charts/chart-types/polar-radar-chart/).
+For more details, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md) and the [Polar Radar Chart documentation](https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/polar-radar-chart/).

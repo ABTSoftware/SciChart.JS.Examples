@@ -132,4 +132,4 @@ npm install
 npm run dev
 ```
 
-For more information on polar charts, refer to the [SciChart.js Polar Charts Documentation](https://www.scichart.com/documentation/js/v4/2d-charts/polar-charts.html).
+For more information on polar charts, refer to the [SciChart.js Polar Charts Documentation](https://www.scichart.com/documentation/js/v5/2d-charts/polar-charts.html).

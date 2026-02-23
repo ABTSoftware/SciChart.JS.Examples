@@ -1,6 +1,6 @@
 # Order Book Heatmap Example
 
-This example demonstrates how to create an **Order Book Heatmap** chart with a candlestick overlay using SciChart.JS. It combines [`UniformHeatmapRenderableSeries`](https://www.scichart.com/documentation/js/v4/2d-charts/chart-types/uniform-heatmap-renderable-series/uniform-heatmap-chart-type) with [`FastCandlestickRenderableSeries`](https://www.scichart.com/documentation/js/v4/2d-charts/chart-types/fast-candlestick-renderable-series/) to visualize order book depth alongside price action.
+This example demonstrates how to create an **Order Book Heatmap** chart with a candlestick overlay using SciChart.JS. It combines [`UniformHeatmapRenderableSeries`](https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/uniform-heatmap-renderable-series/uniform-heatmap-chart-type) with [`FastCandlestickRenderableSeries`](https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/fast-candlestick-renderable-series/) to visualize order book depth alongside price action.
 
 ## Overview
 

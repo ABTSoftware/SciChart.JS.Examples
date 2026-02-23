@@ -1,0 +1,40 @@
+{
+    "name": "scichart-performance-memory-test",
+    "version": "1.0.0",
+    "description": "SciChart.js Test Setup",
+    "main": "index.js",
+    "scripts": {
+        "dev": "webpack serve --open --mode development",
+        "build": "webpack",
+        "watch": "webpack watch --mode production",
+        "start": "ts-node server",
+        "dev:test": "cross-env TEST_MODE=url webpack serve --open --config webpack.test.config.ts",
+        "build:test": "cross-env TEST_MODE=file webpack --config webpack.test.config.ts",
+        "test": "npm run preserve-results && cross-env TEST_MODE=file npx playwright test",
+        "test:dev": "cross-env TEST_MODE=url npx playwright test",
+        "test:full": "npm run build:test && npm run test && npm run build:reports",
+        "dev:reports": "webpack serve --open --config webpack.reports.config.ts",
+        "build:reports": "webpack --config webpack.reports.config.ts --mode production",
+        "preserve-results": "cross-env PREVIOUS_DIR=test-results-archive node scripts/preserve-results.js"
+    },
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "@playwright/test": "^1.56.1",
+        "@types/node": "^24.9.2",
+        "copy-webpack-plugin": "^11.0.0",
+        "cross-env": "^7.0.3",
+        "ts-loader": "^9.4.2",
+        "webpack": "^5.83.1",
+        "webpack-cli": "^5.1.1",
+        "webpack-dev-server": "^4.15.0"
+    },
+    "dependencies": {
+        "express": "^4.18.2",
+        "prettier": "^3.6.2",
+        "scichart": "^5.0.178",
+        "scichart-addons": "../Addons",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.0.4"
+    }
+}

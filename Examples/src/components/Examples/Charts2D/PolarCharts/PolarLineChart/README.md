@@ -4,7 +4,7 @@ This example demonstrates several features of SciChart.js, which are explained b
 
 ### Documentation
 
-For more information about the Polar Line Chart, please see the [SciChart.js Polar Line Renderable Series Documentation](https://scichart.com/documentation/js/v4/2d-charts/chart-types/polar-line-renderable-series/).
+For more information about the Polar Line Chart, please see the [SciChart.js Polar Line Renderable Series Documentation](https://scichart.com/documentation/js/v5/2d-charts/chart-types/polar-line-renderable-series/).
 
 ---
 

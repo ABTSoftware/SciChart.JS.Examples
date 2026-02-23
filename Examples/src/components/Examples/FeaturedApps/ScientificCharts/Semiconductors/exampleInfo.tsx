@@ -202,7 +202,7 @@ The **Semiconductors Dashboard** showcases advanced SciChart.js capabilities —
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/v4/intro",
+                href: "https://www.scichart.com/documentation/js/v5/intro",
                 title: "This specific page in the documentation will help you to get started",
                 linkTitle: "Semiconductors Dashboard Documentation",
             },

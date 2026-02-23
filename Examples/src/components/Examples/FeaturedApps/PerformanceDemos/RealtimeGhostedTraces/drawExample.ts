@@ -12,6 +12,7 @@ import {
 } from "scichart";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { appTheme } from "../../../theme";
+// import { PerformanceMeasurementModifier } from "scichart-addons/PerformanceMeasurementModifier";
 
 const AMPLITUDE = 200;
 
@@ -64,6 +65,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Control the placement of the axis by specifying CentralAxesLayoutManager
     // and isInnerAxis property
     sciChartSurface.layoutManager = new CentralAxesLayoutManager(options);
+
+    // sciChartSurface.chartModifiers.add(new PerformanceMeasurementModifier({ verbose: true }));
 
     const addSeries = (stroke: string, opacity: number) => {
         const amplitude = Math.random() * AMPLITUDE;

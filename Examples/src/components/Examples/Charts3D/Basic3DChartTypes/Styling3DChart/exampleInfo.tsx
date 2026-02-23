@@ -44,7 +44,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/v4/3d-charts/scichart-3d-basics/scichart-3d-basics-overview/",
+                href: "https://www.scichart.com/documentation/js/v5/3d-charts/scichart-3d-basics/scichart-3d-basics-overview/",
                 title: "SciChart.js 3D Surface Creation Documentation",
                 linkTitle: "JavaScript 3D Surface Creation Documentation",
             },

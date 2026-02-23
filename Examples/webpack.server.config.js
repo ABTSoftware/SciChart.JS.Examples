@@ -80,6 +80,10 @@ module.exports = {
     },
     resolve: {
         extensions: [".tsx", ".ts", ".js"],
+        alias: {
+            scichart: path.resolve(__dirname, "./node_modules/scichart"),
+            "scichart-addons": path.resolve(__dirname, "../Addons"),
+        },
     },
     optimization: {
         minimizer: [

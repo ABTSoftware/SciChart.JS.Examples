@@ -1,7 +1,6 @@
 import {
     DateTimeNumericAxis,
     EllipsePointMarker,
-    isRealNumber,
     MouseWheelZoomModifier,
     RubberBandXyZoomModifier,
     ZoomExtentsModifier,
@@ -14,7 +13,6 @@ import {
     EAutoRange,
     EAxisAlignment,
     EExecuteOn,
-    deleteSafe,
     SmartDateLabelProvider,
     EHighPrecisionLabelMode,
     EDatePrecision,
@@ -22,7 +20,6 @@ import {
     ENumericFormat,
 } from "scichart";
 import { TDatasetId, createDatasets } from "./createDatasets";
-import { getIndicesRange } from "scichart/Charting/Model/BaseDataSeries";
 import { appTheme } from "../../../theme";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -35,8 +32,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         useNativeText: true,
         growBy: new NumberRange(0.05, 0.05),
         labelProvider: new SmartDateLabelProvider({
-            datePrecision: EDatePrecision.Seconds,
             highPrecisionLabelMode: EHighPrecisionLabelMode.Suffix,
+            datePrecision: EDatePrecision.Nanoseconds,
+            // the default dataset is using nanosecond precision,
+            // this will be changed when switching datasets
 
             showWiderDateOnFirstLabel: true,
             showYearOnWiderDate: true,
@@ -77,59 +76,18 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
-    const datasets = createDatasets();
-    let currentDataset = datasets[0]; // the Seconds one
-
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
-            xValues: currentDataset.xValues,
-            yValues: currentDataset.yValues,
             containsNaN: false,
             isSorted: true,
+            // x/y values will be appended when switching datasets, for now just create empty data series
         }),
-        stroke: appTheme.VividOrange,
         strokeThickness: 2,
         pointMarker: new EllipsePointMarker(wasmContext, {
             fill: appTheme.ForegroundColor,
         }),
     });
 
-    // Override getYRange to improve performance on zoom/pan with large datasets
-    lineSeries.getYRange = (visibleRange) => {
-        const xValues = lineSeries.dataSeries.getNativeXValues();
-        const yValues = lineSeries.dataSeries.getNativeYValues();
-        const count = xValues.size();
-        // if one point
-        // We will expand zero width ranges in the axis
-        if (count === 1) {
-            const y = yValues.get(0);
-            return new NumberRange(y, y);
-        }
-
-        const indicesRange = getIndicesRange(
-            wasmContext,
-            xValues,
-            visibleRange,
-            lineSeries.dataSeries.dataDistributionCalculator.isSortedAscending
-        );
-
-        const iMin = Math.max(Math.floor(indicesRange.min + 1), 0);
-        const iMax = Math.min(Math.ceil(indicesRange.max - 1), count - 1);
-        if (iMax < iMin) {
-            return undefined;
-        }
-
-        let minMax;
-        try {
-            minMax = wasmContext.NumberUtil.MinMaxWithIndex(yValues, iMin, iMax - iMin + 1, false);
-            if (!isRealNumber(minMax.minD) || !isRealNumber(minMax.maxD)) {
-                return undefined;
-            }
-            return new NumberRange(minMax.minD, minMax.maxD);
-        } finally {
-            deleteSafe(minMax);
-        }
-    };
     sciChartSurface.renderableSeries.add(lineSeries);
 
     // Add modifiers
@@ -141,12 +99,48 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
     sciChartSurface.zoomExtents();
 
+    // Datasets handling
+    const datasets = createDatasets();
+
+    const useDataset = (id: TDatasetId) => {
+        const next = datasets.find((d) => d.id === id)!;
+        const dataSeries = lineSeries.dataSeries as XyDataSeries;
+        dataSeries.clear();
+        dataSeries.appendRange(next.xValues, next.yValues);
+
+        const sdlp = xAxis.labelProvider as SmartDateLabelProvider;
+        switch (id) {
+            case "secondPrecision":
+                lineSeries.stroke = appTheme.VividOrange;
+                sdlp.datePrecision = EDatePrecision.Seconds;
+                sdlp.showSecondsOnPreciseDate = true;
+                break;
+            case "millisecondPrecision":
+                lineSeries.stroke = appTheme.VividPink;
+                sdlp.datePrecision = EDatePrecision.Milliseconds;
+                sdlp.showSecondsOnPreciseDate = false;
+                break;
+            case "microsecondPrecision":
+                lineSeries.stroke = appTheme.VividPurple;
+                sdlp.datePrecision = EDatePrecision.Microseconds;
+                sdlp.showSecondsOnPreciseDate = true;
+                break;
+            case "nanosecondPrecision":
+                lineSeries.stroke = appTheme.VividTeal;
+                sdlp.datePrecision = EDatePrecision.Nanoseconds;
+                sdlp.showSecondsOnPreciseDate = true;
+                break;
+        }
+        sciChartSurface.zoomExtents();
+    };
+    useDataset("nanosecondPrecision"); // default to nanosecond precision
+
     return {
         wasmContext,
         sciChartSurface,
         controls: {
             zoomInPrecise: () => {
-                const clusterIndex = currentDataset.id === "secondPrecision" ? 2 : 15;
+                const clusterIndex = 15; // on which cluster to zoom in
                 const pointsPerCluster = 10;
 
                 const dataSeries = lineSeries.dataSeries as XyDataSeries;
@@ -170,40 +164,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             zoomOut: () => {
                 sciChartSurface.zoomExtents(2000);
             },
-            setDataset: (id: TDatasetId) => {
-                const next = datasets.find((d) => d.id === id)!;
-                currentDataset = next;
-
-                const dataSeries = lineSeries.dataSeries as XyDataSeries;
-                dataSeries.clear();
-                dataSeries.appendRange(next.xValues, next.yValues);
-
-                const sdlp = xAxis.labelProvider as SmartDateLabelProvider;
-                switch (id) {
-                    case "secondPrecision":
-                        lineSeries.stroke = appTheme.VividOrange;
-                        sdlp.datePrecision = EDatePrecision.Seconds;
-                        sdlp.showSecondsOnPreciseDate = true;
-                        break;
-                    case "millisecondPrecision":
-                        lineSeries.stroke = appTheme.VividPink;
-                        sdlp.datePrecision = EDatePrecision.Milliseconds;
-                        sdlp.showSecondsOnPreciseDate = false;
-                        break;
-                    case "microsecondPrecision":
-                        lineSeries.stroke = appTheme.VividPurple;
-                        sdlp.datePrecision = EDatePrecision.Microseconds;
-                        sdlp.showSecondsOnPreciseDate = true;
-                        break;
-                    case "nanosecondPrecision":
-                        lineSeries.stroke = appTheme.VividTeal;
-                        sdlp.datePrecision = EDatePrecision.Nanoseconds;
-                        sdlp.showSecondsOnPreciseDate = true;
-                        break;
-                }
-
-                sciChartSurface.zoomExtents();
-            },
+            useDataset,
         },
     };
 };

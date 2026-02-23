@@ -10,7 +10,7 @@ There are also important points to consider:
 
 - SciChart.JS is a client side library (requires browser Web APIs to run), thus the initialization and configuration code should be executed on the client;
 - A chart initialization is an async operation and should be handled accordingly;
-- SciChart related resources may require an explicit cleanup depending on use case. [Memory Best Practices](https://www.scichart.com/documentation/js/v4/2d-charts/performance-tips/memory-best-practices/);
+- SciChart related resources may require an explicit cleanup depending on use case. [Memory Best Practices](https://www.scichart.com/documentation/js/v5/2d-charts/performance-tips/memory-best-practices/);
 - NextJS has the `React.StrictMode` enabled by default in dev mode. There many different scenarios where this may cause unexpected effects such as double chart initialization. As a result you might experience performance degradation, memory leaks, invalid object references, and more.
 
 To simplify dealing with the mentioned pitfalls we have created [the official React Wrapper for SciChart](https://www.npmjs.com/package/scichart-react), which is referenced in an alternative approach above.
@@ -46,7 +46,7 @@ SciChart3DSurface.configure({
 
 It is more predictable and will fetch the files served from the `public` folder as expected.
 
-Find more info at [Deploying Wasm Docs](https://www.scichart.com/documentation/js/v4/2d-charts/surface/deploying-wasm/)
+Find more info at [Deploying Wasm Docs](https://www.scichart.com/documentation/js/v5/2d-charts/surface/deploying-wasm/)
 
 ## Project setup
 

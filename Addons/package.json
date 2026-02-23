@@ -1,0 +1,16 @@
+{
+  "name": "scichart-addons",
+  "version": "0.0.1",
+  "description": "SciChart performance monitoring and utility addons",
+  "private": true,
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "scichart": "5.0.170"
+  }
+}
