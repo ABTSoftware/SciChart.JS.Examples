@@ -2,7 +2,7 @@
 
 ## Overview
 
-This example demonstrates how to create an animated column chart visualizing ATP tennis rankings over time using SciChart.js. The implementation uses [FastRectangleRenderableSeries](https://www.scichart.com/documentation/js/current/typedoc/classes/fastrectanglerenderableseries.html) with custom coloring by country and smooth animations between yearly data updates.
+This example demonstrates how to create an animated column chart visualizing ATP tennis rankings over time using SciChart.js. The implementation uses [FastRectangleRenderableSeries](https://www.scichart.com/documentation/js/v5/typedoc/classes/fastrectanglerenderableseries.html) with custom coloring by country and smooth animations between yearly data updates.
 
 ## Technologies Used
 
