@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <!-- Spectrum fill gradient (vertical) -->
+    <linearGradient id="sf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#ffeea0" stop-opacity="0.95"/>
+      <stop offset="25%"  stop-color="#60c8f0" stop-opacity="0.70"/>
+      <stop offset="100%" stop-color="#0a2540" stop-opacity="0.08"/>
+    </linearGradient>
+
+    <!-- Waterfall: strong signal (orange center) -->
+    <linearGradient id="ws" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#010609"/>
+      <stop offset="24%"  stop-color="#061e3c"/>
+      <stop offset="36%"  stop-color="#0c5068"/>
+      <stop offset="43%"  stop-color="#1e9848"/>
+      <stop offset="50%"  stop-color="#e8901c"/>
+      <stop offset="57%"  stop-color="#1e9848"/>
+      <stop offset="64%"  stop-color="#0c5068"/>
+      <stop offset="76%"  stop-color="#061e3c"/>
+      <stop offset="100%" stop-color="#010609"/>
+    </linearGradient>
+
+    <!-- Waterfall: medium signal (teal/green center) -->
+    <linearGradient id="wm" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#010609"/>
+      <stop offset="28%"  stop-color="#051530"/>
+      <stop offset="40%"  stop-color="#093850"/>
+      <stop offset="48%"  stop-color="#156840"/>
+      <stop offset="50%"  stop-color="#a86c10"/>
+      <stop offset="52%"  stop-color="#156840"/>
+      <stop offset="60%"  stop-color="#093850"/>
+      <stop offset="72%"  stop-color="#051530"/>
+      <stop offset="100%" stop-color="#010609"/>
+    </linearGradient>
+
+    <!-- Waterfall: weak / noise row -->
+    <linearGradient id="ww" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#010508"/>
+      <stop offset="38%"  stop-color="#040e1c"/>
+      <stop offset="50%"  stop-color="#0d2848"/>
+      <stop offset="62%"  stop-color="#040e1c"/>
+      <stop offset="100%" stop-color="#010508"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100" height="100" fill="#020c18"/>
+
+  <!-- Spectrum background -->
+  <rect width="100" height="50" fill="#02080f"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="0"  y1="16" x2="100" y2="16" stroke="#0c1c2c" stroke-width="0.6"/>
+  <line x1="0"  y1="32" x2="100" y2="32" stroke="#0c1c2c" stroke-width="0.6"/>
+  <line x1="25" y1="0"  x2="25"  y2="49" stroke="#0c1c2c" stroke-width="0.6"/>
+  <line x1="50" y1="0"  x2="50"  y2="49" stroke="#0c1c2c" stroke-width="0.6"/>
+  <line x1="75" y1="0"  x2="75"  y2="49" stroke="#0c1c2c" stroke-width="0.6"/>
+
+  <!-- Spectrum fill under curve -->
+  <path
+    d="M 0,46 L 18,45.5 L 28,44.5
+       C 33,43 37.5,39.5 41.5,33
+       C 44.5,26.5 47,15.5 50,6
+       C 53,15.5 55.5,26.5 58.5,33
+       C 62.5,39.5 67,43 72,44.5
+       L 82,45.5 L 100,46
+       L 100,49 L 0,49 Z"
+    fill="url(#sf)"/>
+
+  <!-- Spectrum line -->
+  <path
+    d="M 0,46 L 18,45.5 L 28,44.5
+       C 33,43 37.5,39.5 41.5,33
+       C 44.5,26.5 47,15.5 50,6
+       C 53,15.5 55.5,26.5 58.5,33
+       C 62.5,39.5 67,43 72,44.5
+       L 82,45.5 L 100,46"
+    fill="none"
+    stroke="#d8f0ff"
+    stroke-width="1.6"
+    stroke-linejoin="round"
+    stroke-linecap="round"/>
+
+  <!-- Peak highlight dot -->
+  <circle cx="50" cy="6" r="2.5" fill="#ffffff" opacity="0.9"/>
+
+  <!-- Divider -->
+  <line x1="0" y1="50" x2="100" y2="50" stroke="#1e3850" stroke-width="1"/>
+
+  <!-- Waterfall rows -->
+  <rect x="0" y="50" width="100" height="7" fill="url(#ws)"/>
+  <rect x="0" y="57" width="100" height="7" fill="url(#ws)"/>
+  <rect x="0" y="64" width="100" height="7" fill="url(#wm)"/>
+  <rect x="0" y="71" width="100" height="7" fill="url(#ws)"/>
+  <rect x="0" y="78" width="100" height="7" fill="url(#wm)"/>
+  <rect x="0" y="85" width="100" height="5" fill="url(#ww)"/>
+  <rect x="0" y="90" width="100" height="5" fill="url(#ww)"/>
+  <rect x="0" y="95" width="100" height="5" fill="url(#ww)"/>
+</svg>
