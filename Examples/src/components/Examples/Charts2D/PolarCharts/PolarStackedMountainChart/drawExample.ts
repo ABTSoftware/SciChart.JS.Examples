@@ -82,7 +82,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.xAxes.add(polarXAxis);
 
     // Make collection to hold all the stacked mountains renderable series
-    const mountainCollection = new PolarStackedMountainCollection(wasmContext)
+    const mountainCollection = new PolarStackedMountainCollection(wasmContext);
+    mountainCollection.separatePositiveNegativeStacks = false;
     mountainCollection.animation = new WaveAnimation({ duration: 800, zeroLine: 0 }),
 
     MountainsDatasets.forEach(({yValues, fillColor}) => {
