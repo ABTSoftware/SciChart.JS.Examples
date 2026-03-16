@@ -48,17 +48,21 @@ type FrequencyAxisCache = {
   bins: number;
   frequencyHz: number;
   sampleRate: number;
-  values: number[];
+  values: Float64Array;
 };
 
 function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
 }
 
-function makeFrequencyAxis(centerHz: number, sampleRate: number, bins: number): number[] {
+function makeFrequencyAxis(
+  centerHz: number,
+  sampleRate: number,
+  bins: number,
+): Float64Array {
   const startHz = centerHz - sampleRate / 2;
   const stepHz = sampleRate / bins;
-  const x = new Array<number>(bins);
+  const x = new Float64Array(bins);
   for (let i = 0; i < bins; i += 1) {
     x[i] = startHz + i * stepHz;
   }

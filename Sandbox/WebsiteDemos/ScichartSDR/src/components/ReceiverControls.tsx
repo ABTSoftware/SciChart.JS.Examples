@@ -75,10 +75,6 @@ type ReceiverControlsProps = {
   minDb: number;
   maxDb: number;
   zoomLevel: number;
-  modeScheme: string;
-  stereoDetected: boolean;
-  centerFrequencyHz: number;
-  tunedFrequencyHz: number;
   liveDataSource: RadioLiveDataSource;
   onStartStop: () => void;
   onOpenPresets: () => void;
@@ -190,10 +186,6 @@ export function ReceiverControls({
   minDb,
   maxDb,
   zoomLevel,
-  // modeScheme,
-  // stereoDetected,
-  // centerFrequencyHz,
-  // tunedFrequencyHz,
   liveDataSource,
   onStartStop,
   onOpenPresets,
@@ -550,12 +542,6 @@ export function ReceiverControls({
           </Box>
         </DialogContent>
       </Dialog>
-
-      {/* <Box className="status-strip">
-        <Typography variant="body2">Station: ...</Typography>
-        <Typography variant="body2">RDS blocks: -- | sync: -- | g0: -- | best: --</Typography>
-        <Typography variant="body2">Peak: {signalPeakDb.toFixed(1)} dB | Mode: {modeScheme} | Stereo: {stereoDetected ? "yes" : "no"} | Center: {(centerFrequencyHz / 1_000_000).toFixed(3)} MHz | Tuned: {(tunedFrequencyHz / 1_000_000).toFixed(3)} MHz | USB: {connected ? "ready" : "idle"}</Typography>
-      </Box> */}
 
       {error ? <Alert className="error-strip" severity="error">{error}</Alert> : null}
     </Box>

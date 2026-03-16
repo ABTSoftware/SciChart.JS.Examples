@@ -9,7 +9,6 @@ import { Demodulator } from "@jtarrio/signals/demod/demodulator.js";
 import { Spectrum } from "@jtarrio/signals/demod/spectrum.js";
 import { CompositeReceiver } from "@jtarrio/signals/radio/sample_receiver.js";
 import { Radio, RtlProvider } from "@jtarrio/webrtlsdr/radio.js";
-import { RdsReceiver } from "../rdsReceiver";
 import { getReceiverRuntimeProfile } from "../performanceProfile";
 import {
   clamp,
@@ -32,11 +31,9 @@ interface UseRadioParams {
   settings: SettingsState;
 }
 
-const EMPTY_STATION_INFO = {
-  name: "",
-  tunedFrequencyHz: 0,
-  scheme: "",
-};
+function createSpectrumBuffers(size: number): [Float64Array, Float64Array] {
+  return [new Float64Array(size), new Float64Array(size)];
+}
 
 export function useRadio({ frequency, settings }: UseRadioParams) {
   const [connected, setConnected] = useState(false);
@@ -44,15 +41,15 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [stereoDetected, setStereoDetected] = useState(false);
-  const [stationInfo, setStationInfo] = useState(EMPTY_STATION_INFO);
 
   const radioRef = useRef<Radio | null>(null);
   const demodRef = useRef<Demodulator | null>(null);
-  const rdsRef = useRef<RdsReceiver | null>(null);
   const spectrumRef = useRef<Spectrum | null>(null);
   const spectrumBufferRef = useRef<Float32Array>(
     new Float32Array(settings.fftSize),
   );
+  const liveSpectrumBuffersRef = useRef(createSpectrumBuffers(settings.fftSize));
+  const liveSpectrumBufferIndexRef = useRef(0);
   const stopRequestedRef = useRef(false);
   const prevCenterForDeviceHzRef = useRef<number | null>(null);
   const prevFrequencyOffsetRef = useRef<number | null>(null);
@@ -65,10 +62,6 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
     gain: number | null;
     biasTee: boolean;
     directSampling: number;
-  } | null>(null);
-  const lastRdsContextRef = useRef<{
-    tunedFrequencyHz: number;
-    scheme: string;
   } | null>(null);
   const pipelineConfigRef = useRef<{
     performanceTradeoff: SettingsState["performanceTradeoff"];
@@ -101,12 +94,10 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
   const resetRadioInternals = useCallback(() => {
     radioRef.current = null;
     demodRef.current = null;
-    rdsRef.current = null;
     spectrumRef.current = null;
     prevCenterForDeviceHzRef.current = null;
     prevFrequencyOffsetRef.current = null;
     lastWrittenHwRef.current = null;
-    lastRdsContextRef.current = null;
     pipelineConfigRef.current = null;
   }, []);
 
@@ -166,6 +157,8 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
 
   useEffect(() => {
     spectrumBufferRef.current = new Float32Array(settings.fftSize);
+    liveSpectrumBuffersRef.current = createSpectrumBuffers(settings.fftSize);
+    liveSpectrumBufferIndexRef.current = 0;
     if (spectrumRef.current) {
       spectrumRef.current.size = settings.fftSize;
     }
@@ -204,22 +197,12 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
 
     if (!isPlaying) {
       demod.setSampleRate(currentSettings.sampleRate);
-      rdsRef.current?.setSampleRate(currentSettings.sampleRate);
     }
 
     const prevCenter = prevCenterForDeviceHzRef.current;
     const prevOffset = prevFrequencyOffsetRef.current;
     const centerChanged = prevCenter === null || prevCenter !== centerForDeviceHz;
     const offsetChanged = prevOffset === null || prevOffset !== frequencyOffset;
-    const nextRdsContext = {
-      tunedFrequencyHz: currentFrequency.tunedFrequencyHz,
-      scheme: currentFrequency.modeState.scheme,
-    };
-    const previousRdsContext = lastRdsContextRef.current;
-    const rdsContextChanged =
-      !previousRdsContext ||
-      previousRdsContext.tunedFrequencyHz !== nextRdsContext.tunedFrequencyHz ||
-      previousRdsContext.scheme !== nextRdsContext.scheme;
     if (centerChanged && offsetChanged) {
       demod.expectFrequencyAndSetOffset(centerForDeviceHz, frequencyOffset);
     } else if (offsetChanged) {
@@ -227,13 +210,8 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
     }
     prevCenterForDeviceHzRef.current = centerForDeviceHz;
     prevFrequencyOffsetRef.current = frequencyOffset;
-    lastRdsContextRef.current = nextRdsContext;
     demod.setVolume(currentSettings.volume);
     demod.setMode(currentFrequency.modeState);
-
-    if (rdsContextChanged) {
-      rdsRef.current?.reset();
-    }
 
     if (!isPlaying) {
       return;
@@ -312,7 +290,6 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
     stopRequestedRef.current = false;
     setBusy(true);
     setError(null);
-    setStationInfo(EMPTY_STATION_INFO);
 
     const pipelineConfig = pipelineConfigRef.current;
     const needsPipelineRebuild =
@@ -338,18 +315,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
         ),
       });
       const spectrum = new Spectrum(currentSettings.fftSize);
-      const rds = new RdsReceiver(
-        currentSettings.sampleRate,
-        () => demod.getFrequencyOffset(),
-        (name) => {
-          setStationInfo({
-            name,
-            tunedFrequencyHz: frequencyRef.current.tunedFrequencyHz,
-            scheme: frequencyRef.current.modeState.scheme,
-          });
-        },
-      );
-      const receiver = CompositeReceiver.of(rds, spectrum, demod);
+      const receiver = CompositeReceiver.of(spectrum, demod);
       const radio = new Radio(new RtlProvider(), receiver, {
         buffersPerSecond: runtimeProfile.radioBuffersPerSecond,
       });
@@ -368,7 +334,6 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
           setPlaying(false);
           playingRef.current = false;
           setBusy(false);
-          setStationInfo(EMPTY_STATION_INFO);
           resetLiveData();
         }
         if (detail.type === "directSampling") {
@@ -389,7 +354,6 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
             setPlaying(false);
             playingRef.current = false;
             setBusy(false);
-            setStationInfo(EMPTY_STATION_INFO);
             resetLiveData();
             stopRequestedRef.current = false;
             return;
@@ -403,7 +367,6 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
             playingRef.current = false;
             setBusy(false);
             setError(null);
-            setStationInfo(EMPTY_STATION_INFO);
             resetLiveData();
             return;
           }
@@ -419,7 +382,6 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
           playingRef.current = false;
           setConnected(false);
           setBusy(false);
-          setStationInfo(EMPTY_STATION_INFO);
           setStereoDetected(false);
           resetLiveData();
           stopRequestedRef.current = false;
@@ -431,7 +393,6 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
       });
 
       demodRef.current = demod;
-      rdsRef.current = rds;
       spectrumRef.current = spectrum;
       radioRef.current = radio;
       pipelineConfigRef.current = {
@@ -473,7 +434,6 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
       setPlaying(false);
       playingRef.current = false;
       setBusy(false);
-      setStationInfo(EMPTY_STATION_INFO);
       setStereoDetected(false);
       resetLiveData();
     });
@@ -496,7 +456,6 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
     setPlaying(false);
     playingRef.current = false;
     setStereoDetected(false);
-    setStationInfo(EMPTY_STATION_INFO);
     setBusy(false);
     resetLiveData();
   }, [clearPendingHardwareUpdate, resetLiveData, resetRadioInternals]);
@@ -542,7 +501,8 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
 
       const raw = spectrumBufferRef.current;
       spectrum.getSpectrum(raw);
-      const nextSpectrumDb = new Float64Array(raw.length);
+      const nextBufferIndex = liveSpectrumBufferIndexRef.current === 0 ? 1 : 0;
+      const nextSpectrumDb = liveSpectrumBuffersRef.current[nextBufferIndex];
       const half = Math.floor(raw.length / 2);
       let peak = minDb;
 
@@ -560,6 +520,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
         }
       }
 
+      liveSpectrumBufferIndexRef.current = nextBufferIndex;
       publishLiveData({
         spectrumDb: nextSpectrumDb,
         signalPeakDb: peak,
@@ -590,12 +551,6 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
     };
   }, [clearPendingHardwareUpdate, resetRadioInternals]);
 
-  const visibleStationName =
-    stationInfo.tunedFrequencyHz === frequency.tunedFrequencyHz &&
-    stationInfo.scheme === frequency.modeState.scheme
-      ? stationInfo.name
-      : "";
-
   return {
     connected,
     playing,
@@ -603,7 +558,6 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
     error,
     setError,
     stereoDetected,
-    stationName: visibleStationName,
     subscribeLiveData,
     getLiveDataSnapshot,
     resetLiveData,

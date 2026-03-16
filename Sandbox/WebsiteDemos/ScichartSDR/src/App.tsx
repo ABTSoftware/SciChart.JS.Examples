@@ -169,14 +169,6 @@ function App() {
           />
         </Box>
 
-        {radio.stationName ? (
-          <Box className="rds-station-bar">
-            <Typography className="rds-station-name">
-              {radio.stationName}
-            </Typography>
-          </Box>
-        ) : null}
-
         <button
           type="button"
           className="controls-toggle-btn"
@@ -226,10 +218,6 @@ function App() {
           minDb={settings.dbRange[0]}
           maxDb={settings.dbRange[1]}
           zoomLevel={frequency.zoomLevel}
-          modeScheme={frequency.modeState.scheme}
-          stereoDetected={radio.stereoDetected}
-          centerFrequencyHz={frequency.centerFrequencyHz}
-          tunedFrequencyHz={frequency.tunedFrequencyHz}
           liveDataSource={radio}
           onStartStop={() =>
             void (radio.playing ? radio.stopRadio() : radio.connectAndStart())

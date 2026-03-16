@@ -145,10 +145,18 @@ export function getReceiverRuntimeProfile(params: {
     sampleRate,
   } = params;
   const shouldReduceUiLoad =
-    isConstrainedDevice ||
     performanceTradeoff !== "cpu" ||
     sampleRate >= HIGH_SAMPLE_RATE_THRESHOLD ||
     fftSize > FFT_SIZE;
+
+  if (isConstrainedDevice) {
+    return {
+      liveDataIntervalMs: 140,
+      radioBuffersPerSecond: 8,
+      waterfallRows: 120,
+      waterfallDecimation: 6,
+    };
+  }
 
   if (shouldReduceUiLoad) {
     return {

@@ -168,24 +168,6 @@
   top: 50%;
 }
 
-.rds-station-bar {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3px 12px;
-  background: rgba(6, 14, 26, 0.9);
-  border-top: 1px solid rgba(54, 94, 141, 0.5);
-}
-
-.rds-station-name {
-  font-size: 0.82rem !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.12em !important;
-  color: #7ec8e3 !important;
-  text-transform: uppercase;
-}
-
 .controls-toggle-btn {
   display: block;
   width: 100%;

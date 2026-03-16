@@ -60,10 +60,15 @@ function getChartErrorMessage(exception: unknown): string {
   return String(error.cause ?? exception);
 }
 
-function makeFallbackRows(rowCount: number, colCount: number, minDb: number, maxDb: number): number[][] {
-  const rows = new Array<number[]>(rowCount);
+function makeFallbackRows(
+  rowCount: number,
+  colCount: number,
+  minDb: number,
+  maxDb: number,
+): Float64Array[] {
+  const rows = new Array<Float64Array>(rowCount);
   for (let r = 0; r < rowCount; r += 1) {
-    const row = new Array<number>(colCount);
+    const row = new Float64Array(colCount);
     for (let c = 0; c < colCount; c += 1) {
       const base = minDb + 16 + 8 * Math.sin(c / 42) + 4 * Math.cos((r + c) / 23);
       row[c] = clamp(base, minDb, maxDb);
@@ -91,7 +96,9 @@ export function WaterfallChart({
   const surfaceRef = useRef<SciChartSurface | null>(null);
   const xAxisRef = useRef<NumericAxis | null>(null);
   const dataSeriesRef = useRef<UniformHeatmapDataSeries | null>(null);
-  const rowsRef = useRef<number[][]>(makeFallbackRows(rows, fftSize, minDb, maxDb));
+  const rowsRef = useRef<Float64Array[]>(
+    makeFallbackRows(rows, fftSize, minDb, maxDb),
+  );
   const frameCountRef = useRef(0);
   const lastRenderMsRef = useRef(0);
 
@@ -282,9 +289,12 @@ export function WaterfallChart({
     if (now - lastRenderMsRef.current < 16) return; // cap at ~60fps
     lastRenderMsRef.current = now;
 
-    const nextRow = Array.from(spectrumDb, (value) => clamp(value, minDb, maxDb));
-    rowsRef.current.pop();
-    rowsRef.current.unshift(nextRow);
+    const recycledRow = rowsRef.current.pop();
+    if (!recycledRow || recycledRow.length !== fftSize) return;
+    for (let i = 0; i < fftSize; i += 1) {
+      recycledRow[i] = clamp(spectrumDb[i], minDb, maxDb);
+    }
+    rowsRef.current.unshift(recycledRow);
 
     const dataSeries = dataSeriesRef.current;
     if (!dataSeries) return;
