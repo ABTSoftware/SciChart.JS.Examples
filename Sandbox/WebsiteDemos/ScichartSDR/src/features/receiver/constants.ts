@@ -2,7 +2,7 @@ import type { ReceiverPreset } from "./types";
 
 export const FFT_SIZE = 2048;
 export const WATERFALL_ROWS = 300;
-export const WATERFALL_DECIMATION = 2; // add one row every N FFT frames
+export const WATERFALL_DECIMATION = 1; // update the waterfall on every published live snapshot
 export const DEFAULT_MODE = "WBFM";
 export const DEFAULT_FREQUENCY_HZ = 88_500_000;
 

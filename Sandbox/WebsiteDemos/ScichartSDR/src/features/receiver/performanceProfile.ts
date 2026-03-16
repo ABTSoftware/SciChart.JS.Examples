@@ -154,7 +154,7 @@ export function getReceiverRuntimeProfile(params: {
       liveDataIntervalMs: 140,
       radioBuffersPerSecond: 8,
       waterfallRows: 120,
-      waterfallDecimation: 6,
+      waterfallDecimation: 1,
     };
   }
 
@@ -163,7 +163,7 @@ export function getReceiverRuntimeProfile(params: {
       liveDataIntervalMs: 100,
       radioBuffersPerSecond: 10,
       waterfallRows: 180,
-      waterfallDecimation: 4,
+      waterfallDecimation: 1,
     };
   }
 
