@@ -15,7 +15,6 @@ import {
   FormControl,
   FormControlLabel,
   IconButton,
-  InputAdornment,
   InputLabel,
   MenuItem,
   Select,
@@ -47,7 +46,6 @@ type ReceiverControlsProps = {
   tunedFrequencyDisplay: number;
   displayScale: DisplayScale;
   scaleFactor: number;
-  stepHz: number;
   mode: string;
   schemes: string[];
   hasStereoControl: boolean;
@@ -83,10 +81,7 @@ type ReceiverControlsProps = {
   onCloseSettings: () => void;
   onSetCenterFrequency: (frequencyHz: number) => void;
   onSetTunedFrequency: (frequencyHz: number) => void;
-  onSetStepHz: (stepHz: number) => void;
   onSetDisplayScale: (scale: DisplayScale) => void;
-  onStepDown: () => void;
-  onStepUp: () => void;
   onApplyScheme: (scheme: string) => void;
   onToggleMono: (mono: boolean) => void;
   onSetSquelch: (squelch: number) => void;
@@ -158,7 +153,6 @@ export function ReceiverControls({
   tunedFrequencyDisplay,
   displayScale,
   scaleFactor,
-  stepHz,
   mode,
   schemes,
   hasStereoControl,
@@ -194,10 +188,7 @@ export function ReceiverControls({
   onCloseSettings,
   onSetCenterFrequency,
   onSetTunedFrequency,
-  onSetStepHz,
   onSetDisplayScale,
-  onStepDown,
-  onStepUp,
   onApplyScheme,
   onToggleMono,
   onSetSquelch,
@@ -338,14 +329,6 @@ export function ReceiverControls({
             if (e.key === "Escape") { tunedDraftRef.current = null; setTunedDraft(null); (e.target as HTMLInputElement).blur(); }
           }}
         />
-
-        <Box className="gain-group step-group">
-          <TextField className="receiver-input receiver-step-input" size="small" label="Step" type="number" value={stepHz} onChange={(e) => onSetStepHz(Math.max(1, Math.round(Number(e.target.value || 1))))} slotProps={{ input: { endAdornment: <InputAdornment position="end">Hz</InputAdornment> } }} />
-          <Box className="step-buttons">
-            <Button size="small" className="mini-step-btn" onClick={onStepDown}>-</Button>
-            <Button size="small" className="mini-step-btn" onClick={onStepUp}>+</Button>
-          </Box>
-        </Box>
 
         <FormControl className="receiver-input receiver-scale-input" size="small">
           <InputLabel id="scale-label">Scale</InputLabel>
@@ -498,7 +481,6 @@ export function ReceiverControls({
             <Typography className="help-text"><strong>Click</strong> anywhere on the spectrum or waterfall to tune to that frequency.</Typography>
             <Typography className="help-text"><strong>Drag</strong> the highlighted tuning window to shift the tuned frequency.</Typography>
             <Typography className="help-text"><strong>Center / Tuned</strong> fields: type a frequency and press Enter to jump directly.</Typography>
-            <Typography className="help-text"><strong>Step</strong>: sets the increment for the − / + buttons.</Typography>
             <Typography className="help-text"><strong>Scale</strong>: switches frequency display between MHz, kHz, and Hz.</Typography>
           </Box>
 

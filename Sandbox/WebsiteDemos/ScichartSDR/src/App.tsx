@@ -190,7 +190,6 @@ function App() {
           tunedFrequencyDisplay={frequency.tunedFrequencyDisplay}
           displayScale={frequency.displayScale}
           scaleFactor={frequency.scaleFactor}
-          stepHz={frequency.stepHz}
           mode={frequency.mode}
           schemes={frequency.schemes}
           hasStereoControl={frequency.hasStereoControl}
@@ -237,10 +236,7 @@ function App() {
             }
           }}
           onSetTunedFrequency={frequency.updateTunedFrequency}
-          onSetStepHz={frequency.setStepHz}
           onSetDisplayScale={frequency.setDisplayScale}
-          onStepDown={() => frequency.stepTune(-1)}
-          onStepUp={() => frequency.stepTune(1)}
           onApplyScheme={frequency.applyScheme}
           onToggleMono={(mono) => {
             frequency.updateModeState((config) => {
