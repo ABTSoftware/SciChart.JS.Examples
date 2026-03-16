@@ -17,10 +17,9 @@ import {
   FFT_SIZES,
   HIGH_SAMPLE_RATE_THRESHOLD,
   SAMPLE_RATES,
-  WATERFALL_DECIMATION,
-  WATERFALL_ROWS,
 } from "./features/receiver/constants";
 import { useFrequency } from "./features/receiver/hooks/useFrequency";
+import { getReceiverRuntimeProfile } from "./features/receiver/performanceProfile";
 import { useReceiverSettings } from "./features/receiver/hooks/useReceiverSettings";
 import { useRadio } from "./features/receiver/hooks/useRadio";
 import { usePinchZoom } from "./features/receiver/hooks/usePinchZoom";
@@ -33,6 +32,21 @@ function App() {
   const settings = useReceiverSettings();
   const frequency = useFrequency(settings.sampleRate);
   const radio = useRadio({ frequency, settings });
+  const runtimeProfile = useMemo(
+    () =>
+      getReceiverRuntimeProfile({
+        isConstrainedDevice: settings.performanceProfile.isConstrainedDevice,
+        sampleRate: settings.sampleRate,
+        fftSize: settings.fftSize,
+        performanceTradeoff: settings.performanceTradeoff,
+      }),
+    [
+      settings.fftSize,
+      settings.performanceProfile.isConstrainedDevice,
+      settings.performanceTradeoff,
+      settings.sampleRate,
+    ],
+  );
 
   const [controlsVisible, setControlsVisible] = useState(true);
   const chartsContainerRef = useRef<HTMLDivElement | null>(null);
@@ -134,8 +148,8 @@ function App() {
               sampleRate={settings.sampleRate}
               zoomLevel={frequency.zoomLevel}
               fftSize={settings.fftSize}
-              rows={WATERFALL_ROWS}
-              decimation={WATERFALL_DECIMATION}
+              rows={runtimeProfile.waterfallRows}
+              decimation={runtimeProfile.waterfallDecimation}
               minDb={settings.dbRange[0]}
               maxDb={settings.dbRange[1]}
               onTune={frequency.updateTunedFrequency}
@@ -307,7 +321,8 @@ function App() {
           onSetSampleRate={(nextSampleRate) => {
             settings.setSampleRate(nextSampleRate);
             settings.setPerformanceTradeoff(
-              nextSampleRate >= HIGH_SAMPLE_RATE_THRESHOLD
+              settings.performanceProfile.isConstrainedDevice ||
+                nextSampleRate >= HIGH_SAMPLE_RATE_THRESHOLD
                 ? "latency"
                 : "cpu",
             );

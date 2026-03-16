@@ -44,6 +44,13 @@ type SpectrumRenderState = {
   visibleMinHz: number;
 };
 
+type FrequencyAxisCache = {
+  bins: number;
+  frequencyHz: number;
+  sampleRate: number;
+  values: number[];
+};
+
 function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
 }
@@ -100,6 +107,12 @@ export function SpectrumChart({
   const yAxisRef = useRef<NumericAxis | null>(null);
   const dataSeriesRef = useRef<XyDataSeries | null>(null);
   const mountainRef = useRef<FastMountainRenderableSeries | null>(null);
+  const frequencyAxisCacheRef = useRef<FrequencyAxisCache>({
+    bins: fftSize,
+    frequencyHz,
+    sampleRate,
+    values: makeFrequencyAxis(frequencyHz, sampleRate, fftSize),
+  });
 
   const safeZoom = clamp(zoomLevel, 1, 4);
   const visibleSpanHz = sampleRate / safeZoom;
@@ -140,11 +153,26 @@ export function SpectrumChart({
     }
 
     const state = renderStateRef.current;
-    const x = makeFrequencyAxis(
-      state.frequencyHz,
-      state.sampleRate,
-      state.fftSize,
-    );
+    const cachedAxis = frequencyAxisCacheRef.current;
+    const x =
+      cachedAxis.frequencyHz === state.frequencyHz &&
+      cachedAxis.sampleRate === state.sampleRate &&
+      cachedAxis.bins === state.fftSize
+        ? cachedAxis.values
+        : (() => {
+            const values = makeFrequencyAxis(
+              state.frequencyHz,
+              state.sampleRate,
+              state.fftSize,
+            );
+            frequencyAxisCacheRef.current = {
+              bins: state.fftSize,
+              frequencyHz: state.frequencyHz,
+              sampleRate: state.sampleRate,
+              values,
+            };
+            return values;
+          })();
     const y =
       state.spectrumDb && state.spectrumDb.length === state.fftSize
         ? state.spectrumDb
@@ -155,10 +183,6 @@ export function SpectrumChart({
     xAxis.visibleRange = new NumberRange(state.visibleMinHz, state.visibleMaxHz);
     yAxis.visibleRange = new NumberRange(state.minDb, state.maxDb);
     mountain.zeroLineY = state.minDb;
-    if (xAxis.labelProvider) {
-      xAxis.labelProvider.formatLabel = (value: number) =>
-        (value / 1_000_000).toFixed(3);
-    }
     surface.invalidateElement();
   }, []);
 

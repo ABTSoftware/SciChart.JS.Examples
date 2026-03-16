@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
-import { FFT_SIZE } from "../constants";
 import { loadPresetsFromStorage, savePresetsToStorage } from "../presetsStorage";
+import {
+  clampInitialFftSize,
+  clampInitialPerformanceTradeoff,
+  clampInitialSampleRate,
+  getReceiverHardwareProfile,
+} from "../performanceProfile";
 import {
   loadReceiverSettingsFromStorage,
   saveReceiverSettingsToStorage,
@@ -12,9 +17,8 @@ import type {
   ReceiverPreset,
 } from "../types";
 
-const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-
 export function useReceiverSettings() {
+  const [performanceProfile] = useState(() => getReceiverHardwareProfile());
   const [savedSettings] = useState(() => loadReceiverSettingsFromStorage());
   const [volume, setVolume] = useState(savedSettings.volume ?? 0.7);
   const [ppm, setPpm] = useState(savedSettings.ppm ?? 0);
@@ -35,16 +39,19 @@ export function useReceiverSettings() {
   );
   const [performanceTradeoff, setPerformanceTradeoff] =
     useState<PerformanceTradeoff>(
-      savedSettings.performanceTradeoff ?? (isMobile ? "latency" : "cpu"),
+      clampInitialPerformanceTradeoff(
+        savedSettings.performanceTradeoff,
+        performanceProfile,
+      ),
     );
   const [manualGain, setManualGain] = useState(savedSettings.manualGain ?? false);
   const [gainDb, setGainDb] = useState(savedSettings.gainDb ?? 20);
   const [gainControlDisabled, setGainControlDisabled] = useState(false);
   const [sampleRate, setSampleRate] = useState(
-    savedSettings.sampleRate ?? (isMobile ? 1_024_000 : 2_048_000),
+    clampInitialSampleRate(savedSettings.sampleRate, performanceProfile),
   );
   const [fftSize, setFftSize] = useState(
-    savedSettings.fftSize ?? (isMobile ? 1024 : FFT_SIZE),
+    clampInitialFftSize(savedSettings.fftSize, performanceProfile),
   );
   const [dbRange, setDbRange] = useState<[number, number]>(
     savedSettings.dbRange ?? [-85, -15],
@@ -134,5 +141,6 @@ export function useReceiverSettings() {
     setPresetsOpen,
     settingsOpen,
     setSettingsOpen,
+    performanceProfile,
   };
 }

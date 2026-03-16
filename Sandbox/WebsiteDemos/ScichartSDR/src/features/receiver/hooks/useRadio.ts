@@ -10,6 +10,7 @@ import { Spectrum } from "@jtarrio/signals/demod/spectrum.js";
 import { CompositeReceiver } from "@jtarrio/signals/radio/sample_receiver.js";
 import { Radio, RtlProvider } from "@jtarrio/webrtlsdr/radio.js";
 import { RdsReceiver } from "../rdsReceiver";
+import { getReceiverRuntimeProfile } from "../performanceProfile";
 import {
   clamp,
   getDemodModeOptions,
@@ -57,6 +58,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
   const prevFrequencyOffsetRef = useRef<number | null>(null);
   const hardwareUpdateTimerRef = useRef<number | null>(null);
   const usbOperationChainRef = useRef<Promise<void>>(Promise.resolve());
+  const stabilityFallbackAppliedRef = useRef(false);
   const lastWrittenHwRef = useRef<{
     centerHz: number;
     ppm: number;
@@ -130,6 +132,37 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
   }, []);
 
   const getLiveDataSnapshot = useCallback(() => liveDataRef.current, []);
+
+  const applyPerformanceFallback = useCallback(() => {
+    const currentSettings = settingsRef.current;
+    const fallbackSampleRate =
+      currentSettings.performanceProfile.fallbackSampleRate;
+    const fallbackFftSize = currentSettings.performanceProfile.fallbackFftSize;
+    const fallbackPerformanceTradeoff =
+      currentSettings.performanceProfile.fallbackPerformanceTradeoff;
+
+    const shouldLowerSampleRate = currentSettings.sampleRate > fallbackSampleRate;
+    const shouldLowerFftSize = currentSettings.fftSize > fallbackFftSize;
+    const shouldLowerTradeoff =
+      currentSettings.performanceTradeoff === "cpu" &&
+      currentSettings.performanceTradeoff !== fallbackPerformanceTradeoff;
+
+    if (!shouldLowerSampleRate && !shouldLowerFftSize && !shouldLowerTradeoff) {
+      return false;
+    }
+
+    stabilityFallbackAppliedRef.current = true;
+    if (shouldLowerSampleRate) {
+      currentSettings.setSampleRate(fallbackSampleRate);
+    }
+    if (shouldLowerFftSize) {
+      currentSettings.setFftSize(fallbackFftSize);
+    }
+    if (shouldLowerTradeoff) {
+      currentSettings.setPerformanceTradeoff(fallbackPerformanceTradeoff);
+    }
+    return true;
+  }, []);
 
   useEffect(() => {
     spectrumBufferRef.current = new Float32Array(settings.fftSize);
@@ -260,6 +293,21 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
       return;
     }
     const currentSettings = settingsRef.current;
+    if (
+      currentSettings.sampleRate >
+        currentSettings.performanceProfile.fallbackSampleRate ||
+      currentSettings.fftSize >
+        currentSettings.performanceProfile.fallbackFftSize ||
+      currentSettings.performanceTradeoff === "cpu"
+    ) {
+      stabilityFallbackAppliedRef.current = false;
+    }
+    const runtimeProfile = getReceiverRuntimeProfile({
+      isConstrainedDevice: currentSettings.performanceProfile.isConstrainedDevice,
+      sampleRate: currentSettings.sampleRate,
+      fftSize: currentSettings.fftSize,
+      performanceTradeoff: currentSettings.performanceTradeoff,
+    });
 
     stopRequestedRef.current = false;
     setBusy(true);
@@ -302,7 +350,9 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
         },
       );
       const receiver = CompositeReceiver.of(rds, spectrum, demod);
-      const radio = new Radio(new RtlProvider(), receiver);
+      const radio = new Radio(new RtlProvider(), receiver, {
+        buffersPerSecond: runtimeProfile.radioBuffersPerSecond,
+      });
 
       radio.addEventListener("radio", (event) => {
         const detail = (event as CustomEvent<RadioEventDetail>).detail;
@@ -328,6 +378,13 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
           }
         }
         if (detail.type === "error") {
+          const disconnected = isUsbDisconnectError(detail.exception);
+          const appliedFallback =
+            !stopRequestedRef.current &&
+            !stabilityFallbackAppliedRef.current &&
+            !disconnected &&
+            isTransferInterruptedError(detail.exception) &&
+            applyPerformanceFallback();
           if (isNoDeviceSelectedError(detail.exception)) {
             setPlaying(false);
             playingRef.current = false;
@@ -340,7 +397,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
           if (
             stopRequestedRef.current &&
             (isTransferInterruptedError(detail.exception) ||
-              isUsbDisconnectError(detail.exception))
+              disconnected)
           ) {
             setPlaying(false);
             playingRef.current = false;
@@ -353,7 +410,11 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
           // Clear radio so user can reconnect without page refresh
           clearPendingHardwareUpdate();
           resetRadioInternals();
-          setError(getRadioErrorMessage(detail.exception));
+          setError(
+            appliedFallback
+              ? "USB transfer failed. Lower-load settings were applied automatically. Press START to reconnect."
+              : getRadioErrorMessage(detail.exception),
+          );
           setPlaying(false);
           playingRef.current = false;
           setConnected(false);
@@ -388,7 +449,13 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
     void radio.start().finally(() => {
       setBusy(false);
     });
-  }, [applyRadioSettings, clearPendingHardwareUpdate, resetLiveData, resetRadioInternals]);
+  }, [
+    applyPerformanceFallback,
+    applyRadioSettings,
+    clearPendingHardwareUpdate,
+    resetLiveData,
+    resetRadioInternals,
+  ]);
 
   const stopRadio = useCallback(() => {
     if (!radioRef.current) {
@@ -459,6 +526,13 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
     if (!playing) {
       return;
     }
+    const runtimeProfile = getReceiverRuntimeProfile({
+      isConstrainedDevice: settings.performanceProfile.isConstrainedDevice,
+      sampleRate: settings.sampleRate,
+      fftSize: settings.fftSize,
+      performanceTradeoff: settings.performanceTradeoff,
+    });
+    const [minDb, maxDb] = settings.dbRange;
 
     const tick = () => {
       const spectrum = spectrumRef.current;
@@ -470,15 +544,15 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
       spectrum.getSpectrum(raw);
       const nextSpectrumDb = new Float64Array(raw.length);
       const half = Math.floor(raw.length / 2);
-      let peak = settings.dbRange[0];
+      let peak = minDb;
 
       for (let i = 0; i < raw.length; i += 1) {
         const shiftedIndex = i < half ? i + half : i - half;
         const value = raw[shiftedIndex];
         const clampedValue = clamp(
-          Number.isFinite(value) ? value : settings.dbRange[0],
-          settings.dbRange[0],
-          settings.dbRange[1],
+          Number.isFinite(value) ? value : minDb,
+          minDb,
+          maxDb,
         );
         nextSpectrumDb[i] = clampedValue;
         if (clampedValue > peak) {
@@ -492,9 +566,17 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
       });
     };
 
-    const id = window.setInterval(tick, 50);
+    const id = window.setInterval(tick, runtimeProfile.liveDataIntervalMs);
     return () => window.clearInterval(id);
-  }, [publishLiveData, settings.dbRange, playing]);
+  }, [
+    playing,
+    publishLiveData,
+    settings.dbRange,
+    settings.fftSize,
+    settings.performanceProfile.isConstrainedDevice,
+    settings.performanceTradeoff,
+    settings.sampleRate,
+  ]);
 
   useEffect(() => {
     return () => {
