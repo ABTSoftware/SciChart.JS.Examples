@@ -21,6 +21,9 @@ export function useReceiverSettings() {
   const [performanceProfile] = useState(() => getReceiverHardwareProfile());
   const [savedSettings] = useState(() => loadReceiverSettingsFromStorage());
   const [volume, setVolume] = useState(savedSettings.volume ?? 0.7);
+  const [keepScreenAwake, setKeepScreenAwake] = useState(
+    savedSettings.keepScreenAwake ?? performanceProfile.isMobile,
+  );
   const [ppm, setPpm] = useState(savedSettings.ppm ?? 0);
   const [wbfmDeemphasisUs, setWbfmDeemphasisUs] = useState(
     savedSettings.wbfmDeemphasisUs ?? 50,
@@ -69,6 +72,7 @@ export function useReceiverSettings() {
     const id = window.setTimeout(() => {
       saveReceiverSettingsToStorage({
         volume,
+        keepScreenAwake,
         ppm,
         wbfmDeemphasisUs,
         biasTEnabled,
@@ -92,6 +96,7 @@ export function useReceiverSettings() {
     directSamplingChannel,
     fftSize,
     gainDb,
+    keepScreenAwake,
     lowFrequencyMethod,
     manualGain,
     performanceTradeoff,
@@ -106,6 +111,8 @@ export function useReceiverSettings() {
   return {
     volume,
     setVolume,
+    keepScreenAwake,
+    setKeepScreenAwake,
     ppm,
     setPpm,
     wbfmDeemphasisUs,

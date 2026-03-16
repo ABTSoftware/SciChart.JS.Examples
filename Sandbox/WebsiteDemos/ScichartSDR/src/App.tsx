@@ -23,6 +23,7 @@ import { getReceiverRuntimeProfile } from "./features/receiver/performanceProfil
 import { useReceiverSettings } from "./features/receiver/hooks/useReceiverSettings";
 import { useRadio } from "./features/receiver/hooks/useRadio";
 import { usePinchZoom } from "./features/receiver/hooks/usePinchZoom";
+import { useScreenWakeLock } from "./features/receiver/hooks/useScreenWakeLock";
 import { createModeState } from "./features/receiver/modeHelpers";
 import { reconcileFrequency } from "./features/receiver/radioHelpers";
 import type { ModeState } from "./features/receiver/types";
@@ -32,6 +33,9 @@ function App() {
   const settings = useReceiverSettings();
   const frequency = useFrequency(settings.sampleRate);
   const radio = useRadio({ frequency, settings });
+  const screenWakeLock = useScreenWakeLock(
+    settings.keepScreenAwake && radio.playing,
+  );
   const runtimeProfile = useMemo(
     () =>
       getReceiverRuntimeProfile({
@@ -214,6 +218,9 @@ function App() {
           upconverterFrequencyHz={settings.upconverterFrequencyHz}
           upconverterBiasTee={settings.upconverterBiasTee}
           performanceTradeoff={settings.performanceTradeoff}
+          keepScreenAwake={settings.keepScreenAwake}
+          screenWakeLockSupported={screenWakeLock.supported}
+          screenWakeLockActive={screenWakeLock.active}
           minDb={settings.dbRange[0]}
           maxDb={settings.dbRange[1]}
           zoomLevel={frequency.zoomLevel}
@@ -267,6 +274,7 @@ function App() {
           onSetUpconverterFrequencyHz={settings.setUpconverterFrequencyHz}
           onSetUpconverterBiasTee={settings.setUpconverterBiasTee}
           onSetPerformanceTradeoff={settings.setPerformanceTradeoff}
+          onSetKeepScreenAwake={settings.setKeepScreenAwake}
           onApplyPreset={(preset) => {
             const numericScaleToDisplay = (s: number) =>
               s === 1_000_000 ? "MHz" : s === 1_000 ? "kHz" : "Hz";

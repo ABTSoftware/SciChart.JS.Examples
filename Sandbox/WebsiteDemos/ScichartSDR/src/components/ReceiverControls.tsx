@@ -70,6 +70,9 @@ type ReceiverControlsProps = {
   upconverterFrequencyHz: number;
   upconverterBiasTee: boolean;
   performanceTradeoff: PerformanceTradeoff;
+  keepScreenAwake: boolean;
+  screenWakeLockSupported: boolean;
+  screenWakeLockActive: boolean;
   minDb: number;
   maxDb: number;
   zoomLevel: number;
@@ -101,6 +104,7 @@ type ReceiverControlsProps = {
   onSetUpconverterFrequencyHz: (value: number) => void;
   onSetUpconverterBiasTee: (enabled: boolean) => void;
   onSetPerformanceTradeoff: (value: PerformanceTradeoff) => void;
+  onSetKeepScreenAwake: (enabled: boolean) => void;
   onDisconnect: () => void;
 };
 
@@ -177,6 +181,9 @@ export function ReceiverControls({
   upconverterFrequencyHz,
   upconverterBiasTee,
   performanceTradeoff,
+  keepScreenAwake,
+  screenWakeLockSupported,
+  screenWakeLockActive,
   minDb,
   maxDb,
   zoomLevel,
@@ -208,6 +215,7 @@ export function ReceiverControls({
   onSetUpconverterFrequencyHz,
   onSetUpconverterBiasTee,
   onSetPerformanceTradeoff,
+  onSetKeepScreenAwake,
   onDisconnect,
 }: ReceiverControlsProps) {
   const theme = useTheme();
@@ -460,6 +468,17 @@ export function ReceiverControls({
           {lowFrequencyMethod === "upconverter" ? <Box className="settings-line"><Typography>Upconverter frequency:</Typography><TextField size="small" type="number" value={upconverterFrequencyHz} inputProps={{ min: 1, max: 1_800_000_000, step: 1 }} onChange={(e) => onSetUpconverterFrequencyHz(Number(e.target.value || 0))} /></Box> : null}
           {lowFrequencyMethod === "upconverter" ? <Box className="settings-line"><Typography>Use bias T for upconverter:</Typography><Checkbox checked={upconverterBiasTee} onChange={(e) => onSetUpconverterBiasTee(e.target.checked)} /></Box> : null}
           <Box className="settings-line"><Typography>Performance trade-off:</Typography><Select size="small" MenuProps={{ disableScrollLock: true }} value={performanceTradeoff} disabled={playing} onChange={(e) => onSetPerformanceTradeoff(e.target.value as PerformanceTradeoff)}><MenuItem value="cpu">Use more CPU</MenuItem><MenuItem value="latency">Have more latency</MenuItem><MenuItem value="quality">Have worse quality</MenuItem></Select></Box>
+          <Box className="settings-line"><Typography>Keep screen awake:</Typography><Checkbox checked={keepScreenAwake} onChange={(e) => onSetKeepScreenAwake(e.target.checked)} /></Box>
+          <Typography variant="body2" color="text.secondary">
+            {screenWakeLockSupported
+              ? screenWakeLockActive
+                ? "The screen will stay awake while audio is playing and this page remains visible."
+                : "Helps on mobile by preventing auto-sleep while audio is playing."
+              : "This browser does not expose screen wake lock, so playback may stop when the display sleeps."}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Browsers may still pause playback after you manually lock the screen or switch away from the page.
+          </Typography>
 
           <Box className="settings-line"><Button className="control-btn" size="small" variant="outlined" onClick={onDisconnect} disabled={busy || !connected}>DISCONNECT USB</Button></Box>
         </DialogContent>
@@ -473,7 +492,15 @@ export function ReceiverControls({
         <DialogContent className="settings-modal-content">
           <Box className="help-section">
             <Typography className="help-heading">Getting started</Typography>
-            <Typography className="help-text">Click <strong>START</strong> to connect your RTL-SDR dongle via USB. Your browser will prompt you to select the device. Once connected, the spectrum and waterfall displays will show live RF data.</Typography>
+            <Typography className="help-text">Click <strong>START</strong> to connect your RTL-SDR dongle via USB. Your browser will prompt you to select the device, then the spectrum and waterfall will begin showing live RF data.</Typography>
+            <Typography className="help-text">Use <strong>Settings → DISCONNECT USB</strong> to release the dongle without closing the page.</Typography>
+            <Typography className="help-text">If a USB transfer fails on a slower machine, the app may apply lower-load settings automatically. Press <strong>START</strong> again to reconnect.</Typography>
+          </Box>
+
+          <Box className="help-section">
+            <Typography className="help-heading">Mobile listening</Typography>
+            <Typography className="help-text">Turn on <strong>Settings → Keep screen awake</strong> to reduce the chance of mobile playback stopping when the phone tries to sleep.</Typography>
+            <Typography className="help-text">Browsers do not guarantee SDR playback after the screen is manually locked or the page is pushed into the background.</Typography>
           </Box>
 
           <Box className="help-section">

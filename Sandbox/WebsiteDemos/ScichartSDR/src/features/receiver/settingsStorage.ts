@@ -14,6 +14,7 @@ const RECEIVER_SETTINGS_STORAGE_KEY = "sdr-radio-settings-v2";
 
 export type PersistedReceiverSettings = {
   volume?: number;
+  keepScreenAwake?: boolean;
   ppm?: number;
   wbfmDeemphasisUs?: number;
   biasTEnabled?: boolean;
@@ -64,6 +65,9 @@ export function loadReceiverSettingsFromStorage(): PersistedReceiverSettings {
 
     if (typeof parsed.volume === "number" && Number.isFinite(parsed.volume)) {
       next.volume = clamp(parsed.volume, 0, 1);
+    }
+    if (typeof parsed.keepScreenAwake === "boolean") {
+      next.keepScreenAwake = parsed.keepScreenAwake;
     }
     if (typeof parsed.ppm === "number" && Number.isFinite(parsed.ppm)) {
       next.ppm = clamp(Math.round(parsed.ppm), -500, 500);
