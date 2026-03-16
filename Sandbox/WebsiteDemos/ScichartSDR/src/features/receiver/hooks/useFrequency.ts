@@ -5,7 +5,7 @@ import { createModeState } from "../modeHelpers";
 import { clamp, reconcileFrequency, sideBandsForMode } from "../radioHelpers";
 import type { DisplayScale, ModeState } from "../types";
 
-const FREQ_STORAGE_KEY = "sdr-radio-freq-v1";
+const FREQ_STORAGE_KEY = "sdr-radio-freq-v2";
 
 function isDisplayScale(value: unknown): value is DisplayScale {
   return value === "Hz" || value === "kHz" || value === "MHz";

@@ -95,6 +95,7 @@ export function WaterfallChart({
   const hostRef = useRef<HTMLDivElement | null>(null);
   const surfaceRef = useRef<SciChartSurface | null>(null);
   const xAxisRef = useRef<NumericAxis | null>(null);
+  const yAxisRef = useRef<NumericAxis | null>(null);
   const dataSeriesRef = useRef<UniformHeatmapDataSeries | null>(null);
   const rowsRef = useRef<Float64Array[]>(
     makeFallbackRows(rows, fftSize, minDb, maxDb),
@@ -131,8 +132,9 @@ export function WaterfallChart({
 
   const resetWaterfallSurface = useCallback(() => {
     const xAxis = xAxisRef.current;
+    const yAxis = yAxisRef.current;
     const dataSeries = dataSeriesRef.current;
-    if (!xAxis || !dataSeries) {
+    if (!xAxis || !yAxis || !dataSeries) {
       return;
     }
 
@@ -148,6 +150,7 @@ export function WaterfallChart({
     dataSeries.xStart = state.frequencyHz - state.sampleRate / 2;
     dataSeries.xStep = state.sampleRate / state.fftSize;
     xAxis.visibleRange = new NumberRange(state.visibleMinHz, state.visibleMaxHz);
+    yAxis.visibleRange = new NumberRange(0, state.rows);
     dataSeries.setZValues(rowsRef.current);
     surfaceRef.current?.invalidateElement();
   }, []);
@@ -246,6 +249,7 @@ export function WaterfallChart({
 
       surfaceRef.current = sciChartSurface;
       xAxisRef.current = xAxis;
+      yAxisRef.current = yAxis;
       dataSeriesRef.current = dataSeries;
       resetWaterfallSurface();
 
@@ -268,6 +272,7 @@ export function WaterfallChart({
       surfaceRef.current?.delete();
       surfaceRef.current = null;
       xAxisRef.current = null;
+      yAxisRef.current = null;
       dataSeriesRef.current = null;
       resizeObserver?.disconnect();
       resizeObserver = null;

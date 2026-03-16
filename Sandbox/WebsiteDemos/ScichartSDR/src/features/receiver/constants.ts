@@ -4,7 +4,7 @@ export const FFT_SIZE = 2048;
 export const WATERFALL_ROWS = 300;
 export const WATERFALL_DECIMATION = 2; // add one row every N FFT frames
 export const DEFAULT_MODE = "WBFM";
-export const DEFAULT_FREQUENCY_HZ = 98_084_000;
+export const DEFAULT_FREQUENCY_HZ = 88_500_000;
 
 export const WATERFALL_MIN_DB = -99;
 export const DB_FLOOR_LIMIT = -150;

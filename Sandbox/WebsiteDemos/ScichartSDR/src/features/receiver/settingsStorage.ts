@@ -10,7 +10,7 @@ import type {
   PerformanceTradeoff,
 } from "./types";
 
-const RECEIVER_SETTINGS_STORAGE_KEY = "sdr-radio-settings-v1";
+const RECEIVER_SETTINGS_STORAGE_KEY = "sdr-radio-settings-v2";
 
 export type PersistedReceiverSettings = {
   volume?: number;
