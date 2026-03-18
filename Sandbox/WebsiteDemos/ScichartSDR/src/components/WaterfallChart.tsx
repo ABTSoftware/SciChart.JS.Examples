@@ -7,6 +7,7 @@ import {
 } from "react";
 import {
   EAxisAlignment,
+  EDataChangeType,
   HeatmapColorMap,
   NumericAxis,
   NumberRange,
@@ -294,16 +295,23 @@ export function WaterfallChart({
     if (now - lastRenderMsRef.current < 16) return; // cap at ~60fps
     lastRenderMsRef.current = now;
 
-    const recycledRow = rowsRef.current.pop();
+    const rows = rowsRef.current;
+    const recycledRow = rows[rows.length - 1];
     if (!recycledRow || recycledRow.length !== fftSize) return;
     for (let i = 0; i < fftSize; i += 1) {
       recycledRow[i] = clamp(spectrumDb[i], minDb, maxDb);
     }
-    rowsRef.current.unshift(recycledRow);
+    // Shift row references down by 1 and place recycled row at front.
+    // copyWithin is a single native memcpy vs unshift which reallocates.
+    rows.copyWithin(1, 0, rows.length - 1);
+    rows[0] = recycledRow;
 
     const dataSeries = dataSeriesRef.current;
     if (!dataSeries) return;
-    dataSeries.setZValues(rowsRef.current);
+    // Skip setZValues() which runs forEach validation over all rows every frame.
+    // The dataSeries already holds a reference to our rows array, so direct
+    // mutation + notifyDataChanged is sufficient and avoids O(rows) validation.
+    dataSeries.notifyDataChanged(EDataChangeType.Append);
     surfaceRef.current?.invalidateElement();
   }, [decimation, fftSize, maxDb, minDb, spectrumDb]);
 

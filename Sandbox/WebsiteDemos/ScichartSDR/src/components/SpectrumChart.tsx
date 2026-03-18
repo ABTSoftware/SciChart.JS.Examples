@@ -182,11 +182,18 @@ export function SpectrumChart({
         ? state.spectrumDb
         : makeFallbackSpectrum(state.fftSize, state.minDb, state.maxDb);
 
-    dataSeries.clear();
+    // fifoCapacity auto-evicts old data, so no clear() needed.
+    // This avoids deallocating + reallocating native WASM vectors each frame.
     dataSeries.appendRange(x, y);
-    xAxis.visibleRange = new NumberRange(state.visibleMinHz, state.visibleMaxHz);
-    yAxis.visibleRange = new NumberRange(state.minDb, state.maxDb);
-    mountain.zeroLineY = state.minDb;
+    const xRange = xAxis.visibleRange;
+    if (xRange.min !== state.visibleMinHz || xRange.max !== state.visibleMaxHz) {
+      xAxis.visibleRange = new NumberRange(state.visibleMinHz, state.visibleMaxHz);
+    }
+    const yRange = yAxis.visibleRange;
+    if (yRange.min !== state.minDb || yRange.max !== state.maxDb) {
+      yAxis.visibleRange = new NumberRange(state.minDb, state.maxDb);
+      mountain.zeroLineY = state.minDb;
+    }
     surface.invalidateElement();
   }, []);
 
@@ -289,7 +296,7 @@ export function SpectrumChart({
       });
 
       const dataSeries = new XyDataSeries(wasmContext, {
-        capacity: initialState.fftSize,
+        fifoCapacity: initialState.fftSize,
         containsNaN: false,
         dataEvenlySpacedInX: true,
         dataIsSortedInX: true,
