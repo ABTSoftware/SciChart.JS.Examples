@@ -23,7 +23,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Showcases how SciChart.js can be used in a **Medical context**, drawing ECGs with our High Performance JavaScript Charts",
+                    "Showcases how SciChart.js can be used in a medical context, drawing ECGs with our high performance [React Charts](https://www.scichart.com/react-charts/).",
                 title: "React Vital Signs ECG/EKG Medical Demo",
                 pageTitle: "React Vital Signs ECG/EKG Medical Demo",
                 metaDescription:

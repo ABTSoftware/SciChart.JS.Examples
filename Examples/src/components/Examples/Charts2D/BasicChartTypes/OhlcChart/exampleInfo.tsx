@@ -23,7 +23,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "For this example, we demonstrate how to create a **React OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
+                    "For this example, we demonstrate how to create a React OHLC Chart or Stock Chart using SciChart.js. This uses our powerful [React Charts](https://www.scichart.com/react-charts/) Component.",
                 title: "React OHLC Chart",
                 pageTitle: "React OHLC Chart",
                 metaDescription:
