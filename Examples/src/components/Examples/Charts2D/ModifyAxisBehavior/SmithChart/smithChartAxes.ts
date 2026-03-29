@@ -15,9 +15,9 @@ export function xArcCircleCenter(
 }
 
 /**
- * Returns start/end angles (radians, CCW in native Y-up space) for the
- * constant-X arc from the unit-circle intersection to the point (1, 0).
- * Always endAngle > startAngle (CCW sweep).
+ * Returns start/end angles (radians, CCW in Y-up space) for the
+ * constant-X arc clipped to the unit circle.
+ * The arc runs from the unit-circle intersection to the point (1, 0).
  */
 export function xArcAngles(
     absX: number,
@@ -37,12 +37,10 @@ export function xArcAngles(
     if (isPositive) {
         startAngle = thetaToIntersection;
         endAngle = thetaToOrigin;
-        // Ensure counter-clockwise sweep: wrap endAngle if angle positions require it
         while (endAngle <= startAngle) endAngle += 2 * Math.PI;
     } else {
         startAngle = thetaToOrigin;
         endAngle = thetaToIntersection;
-        // Ensure counter-clockwise sweep: wrap endAngle if angle positions require it
         while (endAngle <= startAngle) endAngle += 2 * Math.PI;
     }
 
@@ -82,9 +80,9 @@ import {
 
 // ── Tick Providers ────────────────────────────────────────────────────────────
 
-/** Fixed R tick values. r=0 is the unit circle; negatives never appear on a Smith chart. */
+/** Fixed R tick values (r=0 omitted — outer circle drawn separately). */
 export class SmithResistanceTickProvider {
-    private readonly _major = [0, 0.2, 0.5, 1, 2, 5, 10, 20, 50];
+    private readonly _major = [0.2, 0.5, 1, 2, 5, 10, 20, 50];
     private readonly _minor = [0.1, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 1.2, 1.4, 1.6, 1.8, 3, 4];
 
     constructor(_opts: any) {}
@@ -113,7 +111,7 @@ export class SmithReactanceTickProvider {
 export class SmithChartResistanceAxis extends NumericAxis {
     private sibling: SmithChartReactanceAxis | null = null;
     // Full R-value lists — stored here to bypass SciChart's visible-range tick filter
-    private readonly _majorR = [0, 0.2, 0.5, 1, 2, 5, 10, 20, 50];
+    private readonly _majorR = [0.2, 0.5, 1, 2, 5, 10, 20, 50];
     private readonly _minorR = [0.1, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 1.2, 1.4, 1.6, 1.8, 3, 4];
 
     constructor(wasmContext: TSciChart, options?: object) {
@@ -130,7 +128,6 @@ export class SmithChartResistanceAxis extends NumericAxis {
     override measure(): void {
         super.measure();
         this.sibling = (this.parentSurface?.yAxes?.get(0) as SmithChartReactanceAxis) ?? null;
-        console.log(`[SmithR] measure() sibling=${!!this.sibling} isPrimary=${this.isPrimaryAxis} drawMajorGL=${this.drawMajorGridLines} drawMinorGL=${this.drawMinorGridLines}`);
     }
 
     protected override drawGridLines(
@@ -139,20 +136,16 @@ export class SmithChartResistanceAxis extends NumericAxis {
         linesPen: SCRTPen,
         isMajor: boolean
     ): void {
-        try {
-        if (!this.sibling) { console.warn("[SmithR] no sibling"); return; }
+        if (!this.sibling) return;
 
         const wasmContext = this.webAssemblyContext2D;
         const xCalc = this.getCurrentCoordinateCalculator();
         const yCalc = this.sibling.getCurrentCoordinateCalculator();
         const vpHeight = this.parentSurface.renderSurface.viewportSize.height;
-        const aspectRatio = xCalc.getCoordWidth(1) / yCalc.getCoordWidth(1);
         const clipRect = Rect.intersect(this.parentSurface.clipRect, this.parentSurface.seriesViewRect);
         const leftPad = (this.parentSurface.padding?.left ?? 0) * DpiHelper.PIXEL_RATIO;
         const topPad = (this.parentSurface.padding?.top ?? 0) * DpiHelper.PIXEL_RATIO;
-        console.log(`[SmithR] drawGridLines isMajor=${isMajor} vpH=${vpHeight} ar=${aspectRatio.toFixed(3)} svr=${JSON.stringify(this.parentSurface.seriesViewRect)} lp=${leftPad} tp=${topPad}`);
 
-        // Use our own R-value lists — not getTicksWithCoords() which filters against visibleRange
         const dataValues = isMajor ? this._majorR : this._minorR;
 
         const vecArcs = getVectorArcVertex(wasmContext);
@@ -169,8 +162,7 @@ export class SmithChartResistanceAxis extends NumericAxis {
                 cx_px, cy_native,
                 0, 2 * Math.PI,
                 radius_px, 0,
-                1,
-                aspectRatio,
+                1, 1,
                 linesPen.m_fThickness
             );
             arc.MakeCircularArc(arcParams);
@@ -193,7 +185,6 @@ export class SmithChartResistanceAxis extends NumericAxis {
 
             renderContext.drawLinesNative(vertices, linesPen, ELineDrawMode.DiscontinuousLine, clipRect, leftPad, topPad);
         }
-        } catch (e) { console.error("[SmithR] drawGridLines threw:", e); }
     }
 }
 
@@ -219,7 +210,6 @@ export class SmithChartReactanceAxis extends NumericAxis {
     override measure(): void {
         super.measure();
         this.sibling = (this.parentSurface?.xAxes?.get(0) as SmithChartResistanceAxis) ?? null;
-        console.log(`[SmithX] measure() sibling=${!!this.sibling} isPrimary=${this.isPrimaryAxis} drawMajorGL=${this.drawMajorGridLines} drawMinorGL=${this.drawMinorGridLines}`);
     }
 
     protected override drawGridLines(
@@ -228,20 +218,16 @@ export class SmithChartReactanceAxis extends NumericAxis {
         linesPen: SCRTPen,
         isMajor: boolean
     ): void {
-        try {
-        if (!this.sibling) { console.warn("[SmithX] no sibling"); return; }
+        if (!this.sibling) return;
 
         const wasmContext = this.webAssemblyContext2D;
         const xCalc = this.sibling.getCurrentCoordinateCalculator();
         const yCalc = this.getCurrentCoordinateCalculator();
         const vpHeight = this.parentSurface.renderSurface.viewportSize.height;
-        const aspectRatio = xCalc.getCoordWidth(1) / yCalc.getCoordWidth(1);
         const clipRect = Rect.intersect(this.parentSurface.clipRect, this.parentSurface.seriesViewRect);
         const leftPad = (this.parentSurface.padding?.left ?? 0) * DpiHelper.PIXEL_RATIO;
         const topPad = (this.parentSurface.padding?.top ?? 0) * DpiHelper.PIXEL_RATIO;
-        console.log(`[SmithX] drawGridLines isMajor=${isMajor} vpH=${vpHeight} ar=${aspectRatio.toFixed(3)}`);
 
-        // Use our own X-value lists — not getTicksWithCoords() which filters against visibleRange
         const dataValues = isMajor ? this._majorX : this._minorX;
 
         const vecArcs = getVectorArcVertex(wasmContext);
@@ -260,7 +246,7 @@ export class SmithChartReactanceAxis extends NumericAxis {
                 pos_cx_px, pos_cy_native,
                 posAngles.startAngle, posAngles.endAngle,
                 pos_radius_px, 0,
-                1, aspectRatio,
+                1, 1,
                 linesPen.m_fThickness
             );
             arc.MakeCircularArc(posArcParams);
@@ -278,7 +264,7 @@ export class SmithChartReactanceAxis extends NumericAxis {
                 neg_cx_px, neg_cy_native,
                 negAngles.startAngle, negAngles.endAngle,
                 neg_radius_px, 0,
-                1, aspectRatio,
+                1, 1,
                 linesPen.m_fThickness
             );
             arc.MakeCircularArc(negArcParams);
@@ -288,6 +274,5 @@ export class SmithChartReactanceAxis extends NumericAxis {
         if (vecArcs.size() > 0) {
             renderContext.drawArcs(vecArcs, 0, 0, 0, clipRect, linesPen, undefined, leftPad, topPad);
         }
-        } catch (e) { console.error("[SmithX] drawGridLines threw:", e); }
     }
 }

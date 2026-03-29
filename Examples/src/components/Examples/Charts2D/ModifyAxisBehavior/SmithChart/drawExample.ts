@@ -1,44 +1,39 @@
 import { appTheme } from "../../../theme";
 import {
-    ArcAnnotation,
     ChartModifierBase2D,
     EAxisAlignment,
     ECoordinateMode,
     EHorizontalAnchorPoint,
     EllipsePointMarker,
     EVerticalAnchorPoint,
+    FastLineRenderableSeries,
     ModifierMouseArgs,
     MouseWheelZoomModifier,
     NumberRange,
     PinchZoomModifier,
     SciChartSurface,
     TextAnnotation,
+    TSciChart,
     XyDataSeries,
     XyScatterRenderableSeries,
     ZoomExtentsModifier,
 } from "scichart";
-import {
-    SmithChartResistanceAxis,
-    SmithChartReactanceAxis,
-    arcHeightFromCenter,
-    rCircleParams,
-} from "./smithChartAxes";
+import { SmithChartResistanceAxis, SmithChartReactanceAxis, rCircleParams } from "./smithChartAxes";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
-    console.log("[Smith] drawExample starting, custom axes:", typeof SmithChartResistanceAxis, typeof SmithChartReactanceAxis);
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
 
-    // ── Axes ──────────────────────────────────────────────────────────────────
+    // ── Axes (custom: draw constant-R circles and constant-X arcs as grid lines) ─
     const gridColor = appTheme.ForegroundColor + "30";
-    const outerColor = appTheme.ForegroundColor + "80";
+    const outerCircleColor = appTheme.ForegroundColor + "80";
 
     sciChartSurface.xAxes.add(
         new SmithChartResistanceAxis(wasmContext, {
             visibleRange: new NumberRange(-1.15, 1.15),
             axisAlignment: EAxisAlignment.Bottom,
-            majorGridLineStyle: { color: outerColor, strokeThickness: 1.5 },
+            majorGridLineStyle: { color: gridColor, strokeThickness: 1 },
             minorGridLineStyle: { color: gridColor, strokeThickness: 0.5 },
         })
     );
@@ -52,59 +47,48 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
+    // ── Outer unit circle (drawn as a series for prominent styling) ───────────
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries: createCircle(wasmContext, 0, 0, 1),
+            stroke: outerCircleColor,
+            strokeThickness: 2,
+        })
+    );
+
     // ── Highlight colours ─────────────────────────────────────────────────────
     const rHighlightColor = "#FF4444";
     const xHighlightColor = "#4488FF";
     const gammaColor = "#44CC44";
 
-    // ── ArcAnnotation highlights ──────────────────────────────────────────────
-    // Full circles (R circle and |Γ| circle) use two semicircle ArcAnnotations
-    // because ArcAnnotation height=0 on a diameter chord is ambiguous.
+    // ── Interactive highlight series (polyline-based for correct full circles) ─
+    const rCircleDS = new XyDataSeries(wasmContext);
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries: rCircleDS,
+            stroke: rHighlightColor,
+            strokeThickness: 2.5,
+        })
+    );
 
-    // R circle — upper semicircle (initial: r=1, cx=0.5, rad=0.5)
-    const rCircleUpper = new ArcAnnotation({
-        x1: 0, y1: 0, x2: 1, y2: 0,
-        height: 0.5,
-        isLineMode: true,
-        stroke: rHighlightColor,
-        strokeThickness: 2.5,
-    });
-    // R circle — lower semicircle
-    const rCircleLower = new ArcAnnotation({
-        x1: 0, y1: 0, x2: 1, y2: 0,
-        height: -0.5,
-        isLineMode: true,
-        stroke: rHighlightColor,
-        strokeThickness: 2.5,
-    });
+    const xArcDS = new XyDataSeries(wasmContext);
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries: xArcDS,
+            stroke: xHighlightColor,
+            strokeThickness: 2.5,
+        })
+    );
 
-    // X arc — single arc annotation
-    const xArcAnnotation = new ArcAnnotation({
-        x1: 1, y1: 0, x2: 1, y2: 0,
-        height: 0,
-        isLineMode: true,
-        stroke: xHighlightColor,
-        strokeThickness: 2.5,
-    });
-
-    // |Γ| circle — upper semicircle (initial: at origin, collapsed)
-    const gammaCircleUpper = new ArcAnnotation({
-        x1: 0, y1: 0, x2: 0, y2: 0,
-        height: 0,
-        isLineMode: true,
-        stroke: gammaColor,
-        strokeThickness: 1.5,
-        strokeDashArray: [5, 5],
-    });
-    // |Γ| circle — lower semicircle
-    const gammaCircleLower = new ArcAnnotation({
-        x1: 0, y1: 0, x2: 0, y2: 0,
-        height: 0,
-        isLineMode: true,
-        stroke: gammaColor,
-        strokeThickness: 1.5,
-        strokeDashArray: [5, 5],
-    });
+    const gammaCircleDS = new XyDataSeries(wasmContext);
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries: gammaCircleDS,
+            stroke: gammaColor,
+            strokeThickness: 1.5,
+            strokeDashArray: [5, 5],
+        })
+    );
 
     // ── Draggable point ───────────────────────────────────────────────────────
     const pointDS = new XyDataSeries(wasmContext);
@@ -174,8 +158,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         verticalAnchorPoint: EVerticalAnchorPoint.Top,
     });
 
-    // ── Grid labels (TextAnnotations at key positions) ────────────────────────
-    for (const [r, label] of [[0.2,"0.2"],[0.5,"0.5"],[1,"1"],[2,"2"],[5,"5"],[10,"10"],[20,"20"],[50,"50"]] as [number,string][]) {
+    // ── Grid labels (R values along real axis, X values along unit circle) ────
+    for (const [r, label] of [[0.2, "0.2"], [0.5, "0.5"], [1, "1"], [2, "2"], [5, "5"], [10, "10"], [20, "20"], [50, "50"]] as [number, string][]) {
         const { cx, rad } = rCircleParams(r);
         sciChartSurface.annotations.add(new TextAnnotation({
             text: label,
@@ -215,11 +199,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         verticalAnchorPoint: EVerticalAnchorPoint.Center,
     }));
 
-    // Add all highlight annotations and readouts
     sciChartSurface.annotations.add(
-        rCircleUpper, rCircleLower,
-        xArcAnnotation,
-        gammaCircleUpper, gammaCircleLower,
         gammaTextAnnotation, gammaMagTextAnnotation,
         impedanceTextAnnotation, resistanceLabel, reactanceLabel
     );
@@ -228,8 +208,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     function updateInteractiveElements(gammaR: number, gammaI: number) {
         const mag = Math.sqrt(gammaR * gammaR + gammaI * gammaI);
-        const gr = mag > 1 ? gammaR / mag : gammaR;
-        const gi = mag > 1 ? gammaI / mag : gammaI;
+        let gr = gammaR;
+        let gi = gammaI;
+        if (mag > 1) {
+            gr = gammaR / mag;
+            gi = gammaI / mag;
+        }
         const gammaMag = Math.sqrt(gr * gr + gi * gi);
 
         // Z = (1+Γ)/(1−Γ)
@@ -237,61 +221,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         const r = denom > 1e-10 ? (1 - gr * gr - gi * gi) / denom : Infinity;
         const x = denom > 1e-10 ? (2 * gi) / denom : Infinity;
 
-        // Update draggable point
         pointDS.clear();
         pointDS.append(gr, gi);
 
-        // Update R circle highlight (two semicircles)
-        if (isFinite(r) && r >= 0) {
-            const { cx, rad } = rCircleParams(r);
-            rCircleUpper.x1 = cx - rad;
-            rCircleUpper.y1 = 0;
-            rCircleUpper.x2 = cx + rad;
-            rCircleUpper.y2 = 0;
-            rCircleUpper.height = rad;
-            rCircleLower.x1 = cx - rad;
-            rCircleLower.y1 = 0;
-            rCircleLower.x2 = cx + rad;
-            rCircleLower.y2 = 0;
-            rCircleLower.height = -rad;
-        }
+        populateRCircle(rCircleDS, r);
+        populateXArc(xArcDS, x);
+        populateCircle(gammaCircleDS, 0, 0, gammaMag);
 
-        // Update X arc highlight
-        if (isFinite(x) && Math.abs(x) > 0.001) {
-            const absX = Math.abs(x);
-            const isPos = x > 0;
-            const xv2 = absX * absX;
-            const xInt = (xv2 - 1) / (1 + xv2);
-            const yInt = isPos ? (2 * absX) / (1 + xv2) : -(2 * absX) / (1 + xv2);
-            const cy_arc = isPos ? 1 / absX : -1 / absX;
-            xArcAnnotation.x1 = 1;
-            xArcAnnotation.y1 = 0;
-            xArcAnnotation.x2 = xInt;
-            xArcAnnotation.y2 = yInt;
-            xArcAnnotation.height = arcHeightFromCenter(1, 0, xInt, yInt, 1, cy_arc);
-        } else if (isFinite(x)) {
-            // Near-zero reactance: collapse arc
-            xArcAnnotation.x1 = -1;
-            xArcAnnotation.x2 = 1;
-            xArcAnnotation.height = 0;
-        }
-
-        // Update |Γ| circle highlight (two semicircles)
-        const gRad = gammaMag;
-        if (gRad > 0.001) {
-            gammaCircleUpper.x1 = -gRad;
-            gammaCircleUpper.y1 = 0;
-            gammaCircleUpper.x2 = gRad;
-            gammaCircleUpper.y2 = 0;
-            gammaCircleUpper.height = gRad;
-            gammaCircleLower.x1 = -gRad;
-            gammaCircleLower.y1 = 0;
-            gammaCircleLower.x2 = gRad;
-            gammaCircleLower.y2 = 0;
-            gammaCircleLower.height = -gRad;
-        }
-
-        // Update text readouts
         const signG = gi >= 0 ? "+" : "−";
         gammaTextAnnotation.text = `Γ = ${gr.toFixed(3)} ${signG} j${Math.abs(gi).toFixed(3)}`;
         gammaMagTextAnnotation.text = `|Γ| = ${gammaMag.toFixed(3)}`;
@@ -347,5 +283,132 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new PinchZoomModifier()
     );
 
+    // ── Preserve aspect ratio (ensures circles stay circular) ─────────────────
+    const xAxis = sciChartSurface.xAxes.get(0);
+    const yAxis = sciChartSurface.yAxes.get(0);
+
+    sciChartSurface.preRender.subscribe(() => {
+        const result = preserveAspectRatio(
+            sciChartSurface.viewRect.width,
+            sciChartSurface.viewRect.height,
+            xAxis.visibleRange.min,
+            xAxis.visibleRange.max,
+            yAxis.visibleRange.min,
+            yAxis.visibleRange.max
+        );
+        xAxis.visibleRange = new NumberRange(result.minVisibleX, result.maxVisibleX);
+        yAxis.visibleRange = new NumberRange(result.minVisibleY, result.maxVisibleY);
+    });
+
     return { sciChartSurface, wasmContext };
 };
+
+// ── Helper functions ──────────────────────────────────────────────────────────
+
+function createCircle(wasmContext: TSciChart, cx: number, cy: number, radius: number, points: number = 360): XyDataSeries {
+    const ds = new XyDataSeries(wasmContext);
+    for (let i = 0; i <= points; i++) {
+        const angle = (i / points) * 2 * Math.PI;
+        ds.append(cx + radius * Math.cos(angle), cy + radius * Math.sin(angle));
+    }
+    return ds;
+}
+
+function populateRCircle(ds: XyDataSeries, r: number) {
+    ds.clear();
+    if (!isFinite(r) || r < 0) return;
+    const cx = r / (1 + r);
+    const rad = 1 / (1 + r);
+    const n = 200;
+    for (let i = 0; i <= n; i++) {
+        const angle = (i / n) * 2 * Math.PI;
+        ds.append(cx + rad * Math.cos(angle), rad * Math.sin(angle));
+    }
+}
+
+function populateXArc(ds: XyDataSeries, xVal: number) {
+    ds.clear();
+    if (!isFinite(xVal)) return;
+
+    if (Math.abs(xVal) < 0.001) {
+        ds.append(-1, 0);
+        ds.append(1, 0);
+        return;
+    }
+
+    const absX = Math.abs(xVal);
+    const isPos = xVal > 0;
+    const radius = 1 / absX;
+    const cx = 1;
+    const cy = isPos ? radius : -radius;
+
+    const xv2 = absX * absX;
+    const xInt = (xv2 - 1) / (1 + xv2);
+    const yInt = isPos ? (2 * absX) / (1 + xv2) : (-2 * absX) / (1 + xv2);
+
+    const thetaOther = Math.atan2(yInt - cy, xInt - cx);
+    const thetaOrigin = isPos ? -Math.PI / 2 : Math.PI / 2;
+
+    let startAngle: number;
+    let endAngle: number;
+
+    if (isPos) {
+        startAngle = thetaOther;
+        endAngle = thetaOrigin;
+        while (endAngle <= startAngle) endAngle += 2 * Math.PI;
+    } else {
+        startAngle = thetaOrigin;
+        endAngle = thetaOther;
+        while (endAngle <= startAngle) endAngle += 2 * Math.PI;
+    }
+
+    const n = 200;
+    for (let i = 0; i <= n; i++) {
+        const angle = startAngle + (i / n) * (endAngle - startAngle);
+        ds.append(cx + radius * Math.cos(angle), cy + radius * Math.sin(angle));
+    }
+}
+
+function populateCircle(ds: XyDataSeries, cx: number, cy: number, radius: number) {
+    ds.clear();
+    if (radius < 0.001) return;
+    const n = 200;
+    for (let i = 0; i <= n; i++) {
+        const angle = (i / n) * 2 * Math.PI;
+        ds.append(cx + radius * Math.cos(angle), cy + radius * Math.sin(angle));
+    }
+}
+
+function preserveAspectRatio(
+    width: number,
+    height: number,
+    minVisibleX: number,
+    maxVisibleX: number,
+    minVisibleY: number,
+    maxVisibleY: number
+) {
+    const visibleWidth = maxVisibleX - minVisibleX;
+    const visibleHeight = maxVisibleY - minVisibleY;
+    const containerAspectRatio = width / height;
+    const visibleAspectRatio = visibleWidth / visibleHeight;
+
+    let newMinX: number, newMaxX: number, newMinY: number, newMaxY: number;
+
+    if (containerAspectRatio > visibleAspectRatio) {
+        const newVisibleWidth = visibleHeight * containerAspectRatio;
+        const widthDiff = newVisibleWidth - visibleWidth;
+        newMinX = minVisibleX - widthDiff / 2;
+        newMaxX = maxVisibleX + widthDiff / 2;
+        newMinY = minVisibleY;
+        newMaxY = maxVisibleY;
+    } else {
+        const newVisibleHeight = visibleWidth / containerAspectRatio;
+        const heightDiff = newVisibleHeight - visibleHeight;
+        newMinX = minVisibleX;
+        newMaxX = maxVisibleX;
+        newMinY = minVisibleY - heightDiff / 2;
+        newMaxY = maxVisibleY + heightDiff / 2;
+    }
+
+    return { minVisibleX: newMinX, maxVisibleX: newMaxX, minVisibleY: newMinY, maxVisibleY: newMaxY };
+}
