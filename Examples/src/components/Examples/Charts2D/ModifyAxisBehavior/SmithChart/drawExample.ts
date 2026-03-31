@@ -3,6 +3,7 @@ import {
     ChartModifierBase2D,
     EAxisAlignment,
     ECoordinateMode,
+    EExecuteOn,
     EHorizontalAnchorPoint,
     EllipsePointMarker,
     EVerticalAnchorPoint,
@@ -17,8 +18,9 @@ import {
     XyDataSeries,
     XyScatterRenderableSeries,
     ZoomExtentsModifier,
+    ZoomPanModifier,
 } from "scichart";
-import { SmithChartResistanceAxis, SmithChartReactanceAxis, rCircleParams } from "./smithChartAxes";
+import { SmithChartResistanceAxis, SmithChartReactanceAxis } from "./smithChartAxes";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
@@ -26,15 +28,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     // ── Axes (custom: draw constant-R circles and constant-X arcs as grid lines) ─
-    const gridColor = appTheme.ForegroundColor + "30";
-    const outerCircleColor = appTheme.ForegroundColor + "80";
+    const gridColor = "#aaaaaa"; //appTheme.SciChartJsTheme.polarMajorGridLineBrush;
+    const outerCircleColor = "#cccccc"; //appTheme.SciChartJsTheme.polarMajorGridLineBrush;
 
     sciChartSurface.xAxes.add(
         new SmithChartResistanceAxis(wasmContext, {
             visibleRange: new NumberRange(-1.15, 1.15),
             axisAlignment: EAxisAlignment.Bottom,
-            majorGridLineStyle: { color: gridColor, strokeThickness: 1 },
-            minorGridLineStyle: { color: gridColor, strokeThickness: 0.5 },
+            majorGridLineStyle: { color: gridColor, strokeThickness: 2 },
+            minorGridLineStyle: { color: gridColor, strokeThickness: 1 },
         })
     );
 
@@ -42,8 +44,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new SmithChartReactanceAxis(wasmContext, {
             visibleRange: new NumberRange(-1.15, 1.15),
             axisAlignment: EAxisAlignment.Left,
-            majorGridLineStyle: { color: gridColor, strokeThickness: 1 },
-            minorGridLineStyle: { color: gridColor, strokeThickness: 0.5 },
+            majorGridLineStyle: { color: gridColor, strokeThickness: 2 },
+            minorGridLineStyle: { color: gridColor, strokeThickness: 1 },
         })
     );
 
@@ -106,102 +108,74 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
-    // ── Text readouts ─────────────────────────────────────────────────────────
+    // ── Text readouts (fixed pixel position so they're always visible) ────────
     const gammaTextAnnotation = new TextAnnotation({
-        x1: 0.02, y1: 0.02,
-        xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
+        x1: 10,
+        y1: 10,
+        xCoordinateMode: ECoordinateMode.Pixel,
+        yCoordinateMode: ECoordinateMode.Pixel,
         text: "Γ = 0.000 + j0.000",
-        fontSize: 14, fontFamily: "monospace",
+        fontSize: 14,
+        fontFamily: "monospace",
         textColor: appTheme.ForegroundColor,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
         verticalAnchorPoint: EVerticalAnchorPoint.Top,
     });
     const gammaMagTextAnnotation = new TextAnnotation({
-        x1: 0.02, y1: 0.06,
-        xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
+        x1: 10,
+        y1: 30,
+        xCoordinateMode: ECoordinateMode.Pixel,
+        yCoordinateMode: ECoordinateMode.Pixel,
         text: "|Γ| = 0.000",
-        fontSize: 14, fontFamily: "monospace",
+        fontSize: 14,
+        fontFamily: "monospace",
         textColor: gammaColor,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
         verticalAnchorPoint: EVerticalAnchorPoint.Top,
     });
     const impedanceTextAnnotation = new TextAnnotation({
-        x1: 0.02, y1: 0.10,
-        xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
+        x1: 10,
+        y1: 50,
+        xCoordinateMode: ECoordinateMode.Pixel,
+        yCoordinateMode: ECoordinateMode.Pixel,
         text: "Z = 1.000 + j0.000",
-        fontSize: 14, fontFamily: "monospace",
+        fontSize: 14,
+        fontFamily: "monospace",
         textColor: appTheme.ForegroundColor,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
         verticalAnchorPoint: EVerticalAnchorPoint.Top,
     });
     const resistanceLabel = new TextAnnotation({
-        x1: 0.02, y1: 0.14,
-        xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
+        x1: 10,
+        y1: 70,
+        xCoordinateMode: ECoordinateMode.Pixel,
+        yCoordinateMode: ECoordinateMode.Pixel,
         text: "R = 1.000",
-        fontSize: 14, fontFamily: "monospace",
+        fontSize: 14,
+        fontFamily: "monospace",
         textColor: rHighlightColor,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
         verticalAnchorPoint: EVerticalAnchorPoint.Top,
     });
     const reactanceLabel = new TextAnnotation({
-        x1: 0.02, y1: 0.18,
-        xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
+        x1: 10,
+        y1: 90,
+        xCoordinateMode: ECoordinateMode.Pixel,
+        yCoordinateMode: ECoordinateMode.Pixel,
         text: "X = 0.000",
-        fontSize: 14, fontFamily: "monospace",
+        fontSize: 14,
+        fontFamily: "monospace",
         textColor: xHighlightColor,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
         verticalAnchorPoint: EVerticalAnchorPoint.Top,
     });
 
-    // ── Grid labels (R values along real axis, X values along unit circle) ────
-    for (const [r, label] of [[0.2, "0.2"], [0.5, "0.5"], [1, "1"], [2, "2"], [5, "5"], [10, "10"], [20, "20"], [50, "50"]] as [number, string][]) {
-        const { cx, rad } = rCircleParams(r);
-        sciChartSurface.annotations.add(new TextAnnotation({
-            text: label,
-            x1: cx - rad, y1: 0,
-            xCoordShift: 0, yCoordShift: -15,
-            fontSize: 10,
-            textColor: appTheme.ForegroundColor,
-            opacity: 0.7,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        }));
-    }
-    for (const x of [0.2, 0.5, 1, 2, 5, 10, 20, 50]) {
-        const xv2 = x * x;
-        const lx = (xv2 - 1) / (1 + xv2);
-        const ly = 2 * x / (1 + xv2);
-        const label = x >= 1 ? x.toString() : x.toFixed(1);
-        sciChartSurface.annotations.add(new TextAnnotation({
-            text: `+${label}`, x1: lx, y1: ly,
-            xCoordShift: 15, yCoordShift: 0, fontSize: 10,
-            textColor: appTheme.ForegroundColor, opacity: 0.7,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-            verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        }));
-        sciChartSurface.annotations.add(new TextAnnotation({
-            text: `-${label}`, x1: lx, y1: -ly,
-            xCoordShift: 15, yCoordShift: 0, fontSize: 10,
-            textColor: appTheme.ForegroundColor, opacity: 0.7,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-            verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        }));
-    }
-    sciChartSurface.annotations.add(new TextAnnotation({
-        text: "0.0", x1: -1, y1: 0,
-        xCoordShift: -20, yCoordShift: 0, fontSize: 10,
-        textColor: appTheme.ForegroundColor, opacity: 0.7,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
-        verticalAnchorPoint: EVerticalAnchorPoint.Center,
-    }));
-
     sciChartSurface.annotations.add(
-        gammaTextAnnotation, gammaMagTextAnnotation,
-        impedanceTextAnnotation, resistanceLabel, reactanceLabel
+        gammaTextAnnotation,
+        gammaMagTextAnnotation,
+        impedanceTextAnnotation,
+        resistanceLabel,
+        reactanceLabel
     );
 
     // ── Update logic ──────────────────────────────────────────────────────────
@@ -254,13 +228,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         modifierMouseDown(args: ModifierMouseArgs) {
             super.modifierMouseDown(args);
+            if (!this.checkExecuteConditions(args).isPrimary) return;
             this.isDragging = true;
             this.handleDrag(args);
             args.handled = true;
         }
         modifierMouseMove(args: ModifierMouseArgs) {
             super.modifierMouseMove(args);
-            if (this.isDragging) { this.handleDrag(args); args.handled = true; }
+            if (this.isDragging) {
+                this.handleDrag(args);
+                args.handled = true;
+            }
         }
         modifierMouseUp(args: ModifierMouseArgs) {
             super.modifierMouseUp(args);
@@ -269,43 +247,29 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         private handleDrag(args: ModifierMouseArgs) {
             const xCalc = this.parentSurface.xAxes.get(0).getCurrentCoordinateCalculator();
             const yCalc = this.parentSurface.yAxes.get(0).getCurrentCoordinateCalculator();
-            updateInteractiveElements(
-                xCalc.getDataValue(args.mousePoint.x),
-                yCalc.getDataValue(args.mousePoint.y)
-            );
+            updateInteractiveElements(xCalc.getDataValue(args.mousePoint.x), yCalc.getDataValue(args.mousePoint.y));
         }
     }
 
     sciChartSurface.chartModifiers.add(
-        new SmithChartDragModifier(),
+        new SmithChartDragModifier({ executeCondition: { button: EExecuteOn.MouseLeftButton } }),
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier(),
-        new PinchZoomModifier()
+        new ZoomPanModifier({ executeCondition: { button: EExecuteOn.MouseRightButton } })
     );
-
-    // ── Preserve aspect ratio (ensures circles stay circular) ─────────────────
-    const xAxis = sciChartSurface.xAxes.get(0);
-    const yAxis = sciChartSurface.yAxes.get(0);
-
-    sciChartSurface.preRender.subscribe(() => {
-        const result = preserveAspectRatio(
-            sciChartSurface.viewRect.width,
-            sciChartSurface.viewRect.height,
-            xAxis.visibleRange.min,
-            xAxis.visibleRange.max,
-            yAxis.visibleRange.min,
-            yAxis.visibleRange.max
-        );
-        xAxis.visibleRange = new NumberRange(result.minVisibleX, result.maxVisibleX);
-        yAxis.visibleRange = new NumberRange(result.minVisibleY, result.maxVisibleY);
-    });
 
     return { sciChartSurface, wasmContext };
 };
 
 // ── Helper functions ──────────────────────────────────────────────────────────
 
-function createCircle(wasmContext: TSciChart, cx: number, cy: number, radius: number, points: number = 360): XyDataSeries {
+function createCircle(
+    wasmContext: TSciChart,
+    cx: number,
+    cy: number,
+    radius: number,
+    points: number = 360
+): XyDataSeries {
     const ds = new XyDataSeries(wasmContext);
     for (let i = 0; i <= points; i++) {
         const angle = (i / points) * 2 * Math.PI;
@@ -377,38 +341,4 @@ function populateCircle(ds: XyDataSeries, cx: number, cy: number, radius: number
         const angle = (i / n) * 2 * Math.PI;
         ds.append(cx + radius * Math.cos(angle), cy + radius * Math.sin(angle));
     }
-}
-
-function preserveAspectRatio(
-    width: number,
-    height: number,
-    minVisibleX: number,
-    maxVisibleX: number,
-    minVisibleY: number,
-    maxVisibleY: number
-) {
-    const visibleWidth = maxVisibleX - minVisibleX;
-    const visibleHeight = maxVisibleY - minVisibleY;
-    const containerAspectRatio = width / height;
-    const visibleAspectRatio = visibleWidth / visibleHeight;
-
-    let newMinX: number, newMaxX: number, newMinY: number, newMaxY: number;
-
-    if (containerAspectRatio > visibleAspectRatio) {
-        const newVisibleWidth = visibleHeight * containerAspectRatio;
-        const widthDiff = newVisibleWidth - visibleWidth;
-        newMinX = minVisibleX - widthDiff / 2;
-        newMaxX = maxVisibleX + widthDiff / 2;
-        newMinY = minVisibleY;
-        newMaxY = maxVisibleY;
-    } else {
-        const newVisibleHeight = visibleWidth / containerAspectRatio;
-        const heightDiff = newVisibleHeight - visibleHeight;
-        newMinX = minVisibleX;
-        newMaxX = maxVisibleX;
-        newMinY = minVisibleY - heightDiff / 2;
-        newMaxY = maxVisibleY + heightDiff / 2;
-    }
-
-    return { minVisibleX: newMinX, maxVisibleX: newMaxX, minVisibleY: newMinY, maxVisibleY: newMaxY };
 }

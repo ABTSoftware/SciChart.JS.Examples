@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.scichart.com)",
+      "Bash(az mysql:*)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "Bash(find C:SciChartSciChart.Dev.AltWebsrcSciChartsrcChartingVisualsAxis -name *.ts)",
+      "Bash(xargs grep:*)",
+      "Bash(find C:SciChartSciChart.Dev.AltCore.CppsrcSciChart.Charting.3D.Nativeshaders -name *.h -o -name *.fx)",
+      "mcp__chrome-devtools__navigate_page",
+      "mcp__chrome-devtools__take_screenshot",
+      "mcp__chrome-devtools__evaluate_script",
+      "mcp__chrome-devtools__resize_page",
+      "mcp__chrome-devtools__list_console_messages"
+    ]
+  }
+}
