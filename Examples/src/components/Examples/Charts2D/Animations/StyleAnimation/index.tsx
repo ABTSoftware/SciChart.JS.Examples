@@ -29,10 +29,10 @@ export default function StyleAnimation() {
                     color="primary"
                     aria-label="small outlined button group"
                 >
-                    <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
+                    <ToggleButton value={0}>
                         Animate Styles 1
                     </ToggleButton>
-                    <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
+                    <ToggleButton value={1}>
                         Animate Styles 2
                     </ToggleButton>
                 </ToggleButtonGroup>

@@ -42,10 +42,10 @@ export default function DrawBehindAxes() {
                 color="primary"
                 aria-label="small outlined button group"
             >
-                <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
+                <ToggleButton value={0}>
                     Draw Series behind Axis
                 </ToggleButton>
-                <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
+                <ToggleButton value={1}>
                     Clip series at Viewport Edge
                 </ToggleButton>
             </ToggleButtonGroup>

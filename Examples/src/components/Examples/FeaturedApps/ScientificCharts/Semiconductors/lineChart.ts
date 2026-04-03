@@ -48,7 +48,7 @@ export const drawLineChart = async (
         titleStyle: {
             fontSize: 16,
             useNativeText: false,
-            color: appTheme.PaleSkyBlue,
+            color: appTheme.PaleTeal,
             placeWithinChart: true,
         },
     });
@@ -59,14 +59,14 @@ export const drawLineChart = async (
         sciChartSurface.titleStyle = {
             fontSize: 16,
             useNativeText: false,
-            color: appTheme.PaleSkyBlue,
+            color: appTheme.PaleTeal,
             padding: new Thickness(5, 5, 5, 5),
         };
     } else {
         sciChartSurface.titleStyle = {
             fontSize: 26,
             useNativeText: false,
-            color: appTheme.PaleSkyBlue,
+            color: appTheme.PaleTeal,
             padding: new Thickness(15, 5, 5, 5),
         };
     }
@@ -135,13 +135,13 @@ export const drawLineChart = async (
     // Create and add a line series to the chart
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         dataSeries: dataSeries,
-        stroke: appTheme.PaleSkyBlue,
+        stroke: appTheme.PaleTeal,
         strokeThickness: 3,
         isDigitalLine: false,
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 20,
             height: 20,
-            fill: appTheme.PaleSkyBlue,
+            fill: appTheme.PaleTeal,
             strokeThickness: 0,
         }),
         paletteProvider: new DataPointSelectionPaletteProvider({

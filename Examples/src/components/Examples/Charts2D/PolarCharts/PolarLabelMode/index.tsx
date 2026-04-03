@@ -50,7 +50,7 @@ export default function ChartComponent() {
                             <ToggleButton 
                                 key={key} 
                                 value={key} 
-                                style={{ color: appTheme.ForegroundColor }}
+                               
                             >
                                 {key}
                             </ToggleButton>

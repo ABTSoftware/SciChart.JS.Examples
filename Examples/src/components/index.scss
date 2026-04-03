@@ -41,45 +41,78 @@ body {
     --text: #f5f5f5;
     --bg: #121212;
     --bg-darker: #1f1f1f;
-    --border-color: #343434;
-
+    --bg-chart: #3C3C3FFF;
+    --border-color: #2e4e75;
     --primary: #121212;
+    --bg-toolbars: #3C3C3FFF;
+
     --light-blue: rgb(62, 136, 205);
     --markdown-code-text: rgb(160, 196, 150); // 132, 193, 152 // 200, 200, 146 // (200, 200, 14)
     --markdown-code-background: #333;
+    --link-text: rgb(95, 201, 224);
+    --link-text-hover: rgb(123, 211, 232);
 }
 
 @media (prefers-color-scheme: light) {
     :root {
         --text: #080808;
-        --bg: #fff;
+        --bg: #FFFFFF;
         --bg-darker: #e5e5e5;
+        --bg-chart: #F9F9F9FF;
         --border-color: #b4d0db;
         --primary: #050a30;
+        --bg-toolbars: #F9F9F9FF;
+
         --light-blue: rgb(42, 99, 151);
         --markdown-code-text: #ff4444;
         --markdown-code-background: #e5e5e5;
+        --link-text: rgb(65, 188, 157);
+        --link-text-hover: rgb(65, 188, 157);
     }
 }
 
-/* override prefrences, if set by user inside app */
+/* override preferences, if set by user inside app */
+[data-theme="navy"] {
+    --text: #f5f5f5;
+    --bg: #121212;
+    --bg-darker: #1f1f1f;
+    --bg-chart: #17243d;
+    --border-color: #343434;
+    --primary: #121212;
+    --bg-toolbars: #17243d;
+
+    --light-blue: rgb(62, 136, 205);
+    --markdown-code-text: rgb(160, 196, 150);
+    --markdown-code-background: #333;
+    --link-text: rgb(95, 201, 224);
+    --link-text-hover: rgb(123, 211, 232);
+}
+
 [data-theme="dark"] {
     --text: #f5f5f5;
     --bg: #121212;
     --bg-darker: #1f1f1f;
+    --bg-chart: #1C1C1EFF;
     --border-color: #343434;
     --primary: #121212;
+    --bg-toolbars: #1C1C1EFF;
+
     --light-blue: rgb(62, 136, 205);
     --markdown-code-text: rgb(160, 196, 150);
     --markdown-code-background: #333;
+    --link-text: rgb(95, 201, 224);
+    --link-text-hover: rgb(123, 211, 232);
 }
 
 [data-theme="light"] {
     --text: #080808;
     --bg: #fff;
-    --bg-darker: #e5e5e5;
+    --bg-darker: #f9f9f9;
     --border-color: #b4d0db;
+    --bg-chart: #F9F9F9FF;
     --primary: #050a30;
+    --bg-toolbars: #17243d;
+
     --light-blue: rgb(42, 99, 151);
     --markdown-code-text: #ff4444;
     --markdown-code-background: #e5e5e5;

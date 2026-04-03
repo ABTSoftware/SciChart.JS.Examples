@@ -94,7 +94,7 @@ export default function ChartComponent() {
                     <button
                         onClick={() => setType("cursor")}
                         style={{
-                            color: type === "cursor" ? "white" : "rgb(0, 188, 212)",
+                            color: type === "cursor" ? "var(--text)" : "rgb(0, 188, 212)",
                             display: "inline-block",
                             padding: "10px 24px",
                             background: type === "cursor" ? "#14233c" : "#163149",
@@ -107,7 +107,7 @@ export default function ChartComponent() {
                     <button
                         onClick={() => setType("rollover")}
                         style={{
-                            color: type === "rollover" ? "white" : "rgb(0, 188, 212)",
+                            color: type === "rollover" ? "var(--text)" : "rgb(0, 188, 212)",
                             display: "inline-block",
                             padding: "10px 24px",
                             background: type === "rollover" ? "#14233c" : "#163149",
@@ -119,7 +119,7 @@ export default function ChartComponent() {
                     <button
                         onClick={() => setType("verticalSlice")}
                         style={{
-                            color: type === "verticalSlice" ? "white" : "rgb(0, 188, 212)",
+                            color: type === "verticalSlice" ? "var(--text)" : "rgb(0, 188, 212)",
                             display: "inline-block",
                             padding: "10px 24px",
                             background: type === "verticalSlice" ? "#14233c" : "#163149",
@@ -136,9 +136,9 @@ export default function ChartComponent() {
                     style={{
                         zIndex: 900,
                         position: "absolute",
-                        color: "white",
+                        color: "var(--text)",
                         left: "10px",
-                        bottom: "20px",
+                        bottom: "30px",
                         fontSize: "12px",
                     }}
                 >
@@ -151,9 +151,9 @@ export default function ChartComponent() {
                     style={{
                         zIndex: 900,
                         position: "absolute",
-                        color: "white",
+                        color: "var(--text)",
                         left: "10px",
-                        bottom: "20px",
+                        bottom: "30px",
                         fontSize: "12px",
                     }}
                 >
@@ -171,9 +171,9 @@ export default function ChartComponent() {
                     style={{
                         zIndex: 900,
                         position: "absolute",
-                        color: "white",
+                        color: "var(--text)",
                         left: "10px",
-                        bottom: "20px",
+                        bottom: "30px",
                         fontSize: "12px",
                     }}
                 >

@@ -32,13 +32,21 @@ export default function Load1MillionPointsChart() {
                     return controls.stopUpdate;
                 }}
             />
-            <div className={commonClasses.ToolbarRow} style={{ gap: "0px", paddingRight: "0px" }}>
+            <div 
+                className={commonClasses.ToolbarRow} 
+                style={{ 
+                    gap: "0px", 
+                    paddingRight: "0px", 
+                    borderTop: "1px solid var(--border-color)" 
+                }}
+            >
                 <div
                     style={{
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-between",
                         height: "100%",
+                        borderRight: "1px solid var(--border-color)"
                     }}
                 >
                     <Button
@@ -58,7 +66,6 @@ export default function Load1MillionPointsChart() {
                         onClick={() => {
                             controlsRef.current.reloadOnce();
                         }}
-                        style={{ color: appTheme.ForegroundColor }}
                         title="Reload Test"
                     >
                         <RefreshIcon />

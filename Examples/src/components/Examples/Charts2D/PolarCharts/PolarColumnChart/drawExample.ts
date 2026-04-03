@@ -31,10 +31,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawMinorTickLines: false,
         drawMajorTickLines: false,
         drawMinorGridLines: false,
-        majorGridLineStyle: {
-            color: appTheme.DarkIndigo,
-            strokeThickness: 1,
-        },
         startAngle: Math.PI / 2,
         drawLabels: false, // no radial labels
 
@@ -57,13 +53,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         useNativeText: true,
         labelPrecision: 0,
-        labelStyle: {
-            color: "white",
-        },
-        majorGridLineStyle: {
-            color: appTheme.DarkIndigo,
-            strokeThickness: 1,
-        },
     });
     sciChartSurface.xAxes.add(polarXAxis);
 
@@ -82,11 +71,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 { color: appTheme.MutedBlue, offset: 1 }
             ]
         ),
-        stroke: "white",
+        // stroke: "white",
         strokeThickness: 1.5,
         dataPointWidth: 0.8,
         dataLabels: {
-            color: "white",
+            // color: "white",
             style: {
                 fontSize: 14,
                 fontFamily: "Default",

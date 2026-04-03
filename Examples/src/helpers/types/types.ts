@@ -30,6 +30,7 @@ export enum EPageLayout {
 }
 
 export enum ETheme {
+    navy = "navy",
     dark = "dark",
     light = "light",
 }

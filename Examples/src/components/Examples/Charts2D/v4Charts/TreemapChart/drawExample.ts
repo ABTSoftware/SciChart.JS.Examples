@@ -310,7 +310,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         resamplingMode: EResamplingMode.None,
         dataLabelProvider: new TreemapDataLabelProvider({
             skipMode: EDataLabelSkipMode.ShowAll,
-            color: "white",
+            color: appTheme.TextColor,
             style: {
                 fontSize: 13,
                 multiLineAlignment: EMultiLineAlignment.Center,

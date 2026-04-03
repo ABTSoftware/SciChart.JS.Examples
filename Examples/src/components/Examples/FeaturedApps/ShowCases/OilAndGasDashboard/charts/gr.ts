@@ -5,6 +5,7 @@ import { axesSetup, generateModifiers, getRandomSinewave } from "./chartUtils";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { ELegendOrientation, TLegendItem } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
+import { appTheme } from "../theme";
 
 export default async function initGrChart(
     rootElement: string | HTMLDivElement,
@@ -57,22 +58,23 @@ function generateLegend(sciChartSurface: SciChartSurface) {
         // console.log(sciChartSurface.renderableSeries.getById(item.id).getDataSeriesName());
 
         const { id, color, name } = item;
-        const bg = `background: radial-gradient(circle, rgb(60, 60, 63) 0%, rgb(28, 28, 30) 100%);`;
+        const legendTextColor = appTheme.LegendTextColor;
+        const bg = `background: ${appTheme.SidebarBackground};`;
         let str: string = ``;
         let lineType: string = "dashed";
         if (name === "GR") {
             lineType = "solid";
             const secondaryColor = sciChartSurface.renderableSeries.asArray()[1].stroke;
             str += `
-            <span class="scichart__legend-item-justify" style="color: ${color}">
+            <span class="scichart__legend-item-justify" style="color: ${legendTextColor}">
                 <span>${Math.random().toFixed(2)}</span>
                 <span>${Math.random().toFixed(2)}</span>
                 <span>${Math.random().toFixed(2)}</span>
             </span>
             <span class="scichart__legend-item" style="background-color: rgba(253,161,7,255); padding-top: 10px;">
-                <label for="${id}" style="color: ${secondaryColor}; ${bg}; padding: 4px 10px; display: inline-block;">${name}</label>
+                <label for="${id}" style="color: ${legendTextColor}; ${bg}; padding: 4px 10px; display: inline-block;">${name}</label>
             </span>
-            <span class="scichart__legend-item-justify" style="color: ${secondaryColor}">
+            <span class="scichart__legend-item-justify" style="color: ${legendTextColor}">
                 <span>${Math.random().toFixed(2)}</span>
                 <span>${Math.random().toFixed(2)}</span>
                 <span>${Math.random().toFixed(2)}</span>
@@ -81,9 +83,9 @@ function generateLegend(sciChartSurface: SciChartSurface) {
         }
         str += `
         <span class="scichart__legend-item scichart__legend-item-simple">
-            <label for="${id}" style="color: ${color};">${name}</label>
+            <label for="${id}" style="color: ${legendTextColor};">${name}</label>
             <span class="scichart__legend-line" style="border-top: 2px ${lineType} ${color}"></span>
-            <span class="scichart__legend-item-justify" style="color: ${color}">
+            <span class="scichart__legend-item-justify" style="color: ${legendTextColor}">
                 <span>${Math.random().toFixed(2)}</span>
                 <span>${Math.random().toFixed(2)}</span>
                 <span>${Math.random().toFixed(2)}</span>

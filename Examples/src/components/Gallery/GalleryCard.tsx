@@ -1,8 +1,9 @@
-import { FC, useContext } from "react";
-import { useNavigate, Link } from "react-router";
+import { FC } from "react";
+import { Link } from "react-router";
 import classes from "./Gallery.module.scss";
 import { Tooltip } from "@mui/material";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { ThemedImage } from "../ThemedImage/ThemedImage";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
     imgPath: string;
@@ -12,16 +13,15 @@ type TProps = {
 };
 
 const GalleryCard: FC<TProps> = (props) => {
-    const framework = useContext(FrameworkContext);
-    const history = useNavigate();
-
+    const { state } = _useContext();
+    const framework = state.framework;
     const { imgPath, title, seoTitle, examplePath } = props;
 
     return (
         <div className={classes.GalleryItemCard}>
             <Link className={classes.GalleryItemCardImage} to={`/${framework}/${examplePath}`}>
-                <Tooltip title={<img src={imgPath} width={600} height={600} alt={seoTitle} />}>
-                    <img src={imgPath} data-title={seoTitle} alt={seoTitle} />
+                <Tooltip title={<ThemedImage src={imgPath} width={600} height={600} alt={seoTitle} />}>
+                    <ThemedImage src={imgPath} data-title={seoTitle} alt={seoTitle} />
                 </Tooltip>
                 <h5 className={classes.GalleryItemTitle}>{title}</h5>
             </Link>

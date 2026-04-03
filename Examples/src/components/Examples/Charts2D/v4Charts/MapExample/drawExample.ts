@@ -36,6 +36,8 @@ const dataArray: { name: string; areaData: number[][] }[] = [];
 const outlines: number[][][] = [];
 
 function setMapJson(mapJson: any) {
+    dataArray.length = 0;
+    outlines.length = 0;
     mapJson.forEach((d: any) => {
         outlines.push(d.outline);
         dataArray.push({ name: d.name, areaData: d.areaData });
@@ -56,7 +58,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const xAxis = sciChartSurface.xAxes.get(0);
     const yAxis = sciChartSurface.yAxes.get(0);
 
-    let firsStime = true;
+    let firstTime = true;
 
     const setMap = (key: Keytype) => {
         sciChartSurface.renderableSeries.clear(true);
@@ -92,8 +94,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     xValues: xVals,
                     yValues: yVals,
                 }),
-                stroke: appTheme.DarkIndigo,
-                strokeThickness: 2,
+                stroke: "#FFFFFF",
+                strokeThickness: 1,
                 opacity: 1,
             });
 
@@ -129,7 +131,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     fontSize: 14,
                     padding: new Thickness(0, 0, 3, 3),
                 },
-                color: "#EEE",
+                color: appTheme.TextColor,
                 metaDataSelector: (md) => {
                     const metadata = md as unknown as { name: string };
                     return metadata.name.toString();
@@ -138,25 +140,25 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         });
         sciChartSurface.renderableSeries.add(citiesSeries);
 
-        if (firsStime) {
+        if (firstTime) {
             sciChartSurface.zoomExtents();
-            firsStime = false;
+            firstTime = false;
         }
-
-        sciChartSurface.preRender.subscribe(() => {
-            const result = preserveAspectRatio(
-                sciChartSurface.viewRect.width,
-                sciChartSurface.viewRect.height,
-                xAxis.visibleRange.min,
-                xAxis.visibleRange.max,
-                yAxis.visibleRange.min,
-                yAxis.visibleRange.max
-            );
-
-            xAxis.visibleRange = new NumberRange(result.minVisibleX, result.maxVisibleX);
-            yAxis.visibleRange = new NumberRange(result.minVisibleY, result.maxVisibleY);
-        });
     };
+
+    sciChartSurface.preRender.subscribe(() => {
+        const result = preserveAspectRatio(
+            sciChartSurface.viewRect.width,
+            sciChartSurface.viewRect.height,
+            xAxis.visibleRange.min,
+            xAxis.visibleRange.max,
+            yAxis.visibleRange.min,
+            yAxis.visibleRange.max
+        );
+
+        xAxis.visibleRange = new NumberRange(result.minVisibleX, result.maxVisibleX);
+        yAxis.visibleRange = new NumberRange(result.minVisibleY, result.maxVisibleY);
+    });
 
     // Add zoom/pan controls
     sciChartSurface.chartModifiers.add(

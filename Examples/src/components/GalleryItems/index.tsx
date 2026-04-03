@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import classes from "./index.scss";
 import { Link } from "react-router";
 import { GalleryItem } from "../../helpers/types/types";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { ThemedImage } from "../ThemedImage/ThemedImage";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
     examples: GalleryItem[];
@@ -99,7 +100,8 @@ interface ExampleProps {
 
 const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(
     ({ example, index, gridType, setGridType, needsH1 }, ref) => {
-        const framework = useContext(FrameworkContext);
+        const { state } = _useContext();
+        const framework = state.framework;
 
         return (
             <div>
@@ -155,7 +157,7 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(
                                             <span>NEW!</span>
                                         </div>
                                     )}
-                                    <img src={item.imgPath} alt={item.seoTitle} title={item.title} />
+                                    <ThemedImage src={item.imgPath} alt={item.seoTitle} title={item.title} />
                                 </div>
                                 <div className={classes.content}>
                                     <h3>{item.title}</h3>

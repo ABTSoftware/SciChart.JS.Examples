@@ -57,7 +57,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawMajorTickLines: false,
         drawMinorGridLines: false,
         majorGridLineStyle: {
-            color: appTheme.DarkIndigo,
             strokeThickness: 1,
         },
         startAngle: Math.PI / 2,
@@ -80,11 +79,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         useNativeText: true,
         labelPrecision: 0,
-        labelStyle: {
-            color: "white",
-        },
         majorGridLineStyle: {
-            color: appTheme.DarkIndigo,
             strokeThickness: 1,
         },
     });
@@ -98,7 +93,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         pointMarker: new TrianglePointMarker(wasmContext, {
             width: 14,
             height: 12,
-            fill: "#000000",
+            fill: "#FFFFFF00",
             stroke: "#FFAA00",
             strokeThickness: 2,
         }),
@@ -120,6 +115,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         multiLineAlignment: EMultiLineAlignment.Center,
         lineSpacing: 5,
+        textColor: appTheme.TextColor
     });
     sciChartSurface.annotations.add(detailTextAnnotation);
 

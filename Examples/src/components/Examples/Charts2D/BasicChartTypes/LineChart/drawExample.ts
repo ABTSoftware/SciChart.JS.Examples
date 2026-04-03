@@ -41,12 +41,9 @@ export const getChartsInitializationAPI = () => {
             disableAspect: true,
             titleStyle: {
                 placeWithinChart: true,
-                color: appTheme.ForegroundColor + "C4",
                 fontSize: 16,
             },
         });
-
-        sciChartSurface.background = "transparent";
 
         const xAxis = new NumericAxis(wasmContext, { maxAutoTicks: 5 });
         sciChartSurface.xAxes.add(xAxis);

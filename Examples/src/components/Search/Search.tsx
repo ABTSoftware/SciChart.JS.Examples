@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react";
+import { useMemo } from "react";
 import { useNavigate } from "react-router";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
@@ -6,12 +6,13 @@ import { Search as SearchIcon } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
 import { generateSearchItems, TSearchItem } from "./searchItems";
 import classes from "./Search.module.scss";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { ALL_MENU_ITEMS } from "../AppRouter/examples";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 export default function Search() {
     const navigate = useNavigate();
-    const framework = useContext(FrameworkContext);
+    const { state } = _useContext();
+    const framework = state.framework;
     const searchItems: TSearchItem[] = useMemo(() => generateSearchItems(ALL_MENU_ITEMS, framework), [framework]);
 
     const handleChange = (_e: any, value: TSearchItem | string) => {

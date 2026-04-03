@@ -85,9 +85,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         zoomExtentsToInitialRange: true,
         labelPostfix: "%",
         labelPrecision: 0,
-        labelStyle: {
-            color: "white",
-        },
+        // labelStyle: {
+        //     color: "white",
+        // },
         innerRadius: 0.15,
         startAngle: Math.PI / 2,
     });
@@ -100,13 +100,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         visibleRange: new NumberRange(-1, DATA_UK.data.length),
         drawMajorGridLines: false,
         drawMinorGridLines: false,
+        drawMinorTickLines: false, // ticks don't make sense on category axes
         useNativeText: true,
         zoomExtentsToInitialRange: true,
         flippedCoordinates: true,
         labelPrecision: 0,
-        labelStyle: {
-            color: "white",
-        },
+        // labelStyle: {
+        //     color: "white",
+        // },
         totalAngle: Math.PI * 2,
         startAngle: Math.PI / 2,
         autoTicks: false,
@@ -126,7 +127,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 padding: Thickness.fromNumber(0),
             },
             polarLabelMode: EPolarLabelMode.Parallel,
-            color: "white",
+            // color: "white",
             precision: 0,
         },
         dataPointWidth: 0.6,

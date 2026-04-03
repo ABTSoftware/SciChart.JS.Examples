@@ -76,7 +76,6 @@ export default function ChartComponent() {
                 width: "100%",
                 height: "100%",
                 display: "flex",
-                background: appTheme.DarkIndigo,
             }}>
                 <div style={{
                     height: '100%', 
@@ -108,7 +107,8 @@ export default function ChartComponent() {
                             />
 
                             <p style={{
-                                color: modifiersActive[type] ? "#fff" : "#bbb",
+                                color: "var(--text)",
+                                opacity: modifiersActive[type] ? 1 : 0.5,
                                 fontSize: 16,
                                 fontWeight: modifiersActive[type] ? "semibold" : "normal",
                             }}>{type}</p>

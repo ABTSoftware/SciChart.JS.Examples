@@ -188,7 +188,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             fontSize: 12,
             padding: new Thickness(0, 3, 0, 3),
         },
-        color: "#EEEEEE",
+        color: appTheme.TextColor,
         numericFormat: ENumericFormat.Engineering,
     };
 
@@ -200,6 +200,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             dataSeriesName: "Male Europe",
         }),
         fill: appTheme.VividBlue + "99",
+        stroke: appTheme.TextColor,
         stackedGroupId: "MaleSeries",
         dataLabels,
     });
@@ -210,7 +211,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             yValues: PopulationData.yValues.Africa.male,
             dataSeriesName: "Male Africa",
         }),
-        fill: appTheme.VividBlue,
+        fill: appTheme.VividBlue + "cc",
+        stroke: appTheme.TextColor,
         stackedGroupId: "MaleSeries",
         dataLabels,
     });
@@ -223,6 +225,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             dataSeriesName: "Female Europe",
         }),
         fill: appTheme.VividRed + "99",
+        stroke: appTheme.TextColor,
         stackedGroupId: "FemaleSeries",
         dataLabels,
     });
@@ -233,7 +236,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             yValues: PopulationData.yValues.Africa.female,
             dataSeriesName: "Female Africa",
         }),
-        fill: appTheme.VividRed,
+        fill: appTheme.VividRed + "cc",
+        stroke: appTheme.TextColor,
         stackedGroupId: "FemaleSeries",
         dataLabels,
     });
@@ -267,7 +271,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         showCheckboxes: true,
         showSeriesMarkers: true,
         showLegend: true,
-        backgroundColor: "#222",
         placement: ELegendPlacement.TopLeft,
     });
 
@@ -275,7 +278,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         showCheckboxes: true,
         showSeriesMarkers: true,
         showLegend: true,
-        backgroundColor: "#222",
         placement: ELegendPlacement.TopRight,
     });
 

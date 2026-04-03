@@ -21,6 +21,7 @@ const MarkdownContent: FC<TProps> = (props) => {
                 display: "flex",
                 flexDirection: "column",
                 gap: "5px",
+                color: "var(--text)",
             }}
             className={classes.MARKDOWN_CONTENT}
         >

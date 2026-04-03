@@ -1,22 +1,17 @@
 import { Button } from "@mui/material";
-import { ETheme } from "../../helpers/types/types";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./styles.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
+import { ETheme } from "../../helpers/types/types";
 
 // for testing only - to see logged in UI
 // document.cookie = "wordpress_logged_in_=true;expires=Thu,18Dec2023-12:00:00UTC;path=/";
 
-export default function SciChartNavbar({
-    toggleDrawer,
-    setTheme,
-    theme,
-}: {
-    toggleDrawer: () => void;
-    setTheme: (theme: ETheme) => void;
-    theme: ETheme;
-}) {
+export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => void }) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { state, setTheme } = _useContext();
+    const theme = state.theme;
 
     function checkLoginStatus() {
         const cookies = document.cookie.split("; ");
@@ -24,46 +19,164 @@ export default function SciChartNavbar({
         return !!loggedInCookie;
     }
 
-    function toggleTheme() {
-        const newTheme = theme == ETheme.dark ? ETheme.light : ETheme.dark;
-        document.documentElement.setAttribute("data-theme", newTheme);
-        document
-            .querySelector('meta[name="theme-color"]')
-            ?.setAttribute("content", getComputedStyle(document.documentElement).getPropertyValue("--bg"));
-        setTheme(newTheme);
-    }
+    const getThemeLabel = (themeValue: ETheme) =>
+        themeValue === ETheme.navy ? "SciChartNavy" : themeValue === ETheme.light ? "SciChartLight" : "SciChartDark";
 
-    const ThemeToggleComponent = () => {
+    const currentThemeLabel = getThemeLabel(theme);
+
+    const themeOptions: Array<{ value: ETheme; label: string }> = [
+        { value: ETheme.navy, label: getThemeLabel(ETheme.navy) },
+        { value: ETheme.light, label: getThemeLabel(ETheme.light) },
+        { value: ETheme.dark, label: getThemeLabel(ETheme.dark) },
+    ];
+
+    const ThemeIcon = ({ themeValue, size = 22 }: { themeValue: ETheme; size?: number }) => (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox={themeValue === ETheme.dark ? "-1 -1 26 26" : "0 0 24 24"}
+            strokeWidth="1.5"
+            stroke="currentColor"
+            height={`${size}px`}
+            width={`${size}px`}
+        >
+            {themeValue === ETheme.light ? (
+                <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                />
+            ) : themeValue === ETheme.dark ? (
+                <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+                />
+            ) : (
+                <>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 11c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
+                </>
+            )}
+        </svg>
+    );
+
+    const ThemeSelectComponent = () => {
+        const [isOpen, setIsOpen] = useState(false);
+        const menuRef = useRef<HTMLDivElement | null>(null);
+
+        useEffect(() => {
+            const handleOutsideClick = (event: MouseEvent) => {
+                if (!menuRef.current) return;
+                if (!menuRef.current.contains(event.target as Node)) {
+                    setIsOpen(false);
+                }
+            };
+
+            const handleEscape = (event: KeyboardEvent) => {
+                if (event.key === "Escape") {
+                    setIsOpen(false);
+                }
+            };
+
+            document.addEventListener("mousedown", handleOutsideClick);
+            document.addEventListener("keydown", handleEscape);
+            return () => {
+                document.removeEventListener("mousedown", handleOutsideClick);
+                document.removeEventListener("keydown", handleEscape);
+            };
+        }, []);
+
         return (
-            <button
-                onClick={toggleTheme}
-                aria-label="toggle theme"
-                style={{ height: "100%", borderRadius: 8, fontSize: 22, padding: 6, aspectRatio: 1 }}
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="#FFF"
-                    height="24px"
-                    width="24px"
+            <div ref={menuRef} style={{ position: "relative", display: "inline-flex", alignItems: "center" }}>
+                <button
+                    type="button"
+                    aria-label="select theme"
+                    aria-expanded={isOpen}
+                    title={`Current theme: ${currentThemeLabel}`}
+                    onClick={() => setIsOpen((prev) => !prev)}
+                    style={{
+                        height: "100%",
+                        borderRadius: 8,
+                        padding: "6px",
+                        color: "#fff",
+                        border: "1px solid rgba(255,255,255,0.2)",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 6,
+                        background: "rgba(255,255,255,0.06)",
+                        cursor: "pointer",
+                    }}
                 >
-                    {theme == ETheme.dark ? (
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                        />
-                    ) : (
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
-                        />
-                    )}
-                </svg>
-            </button>
+                    <ThemeIcon themeValue={theme} />
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        width="14"
+                        height="14"
+                        style={{
+                            transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                            transition: "transform 120ms ease",
+                        }}
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6" />
+                    </svg>
+                </button>
+
+                {isOpen && (
+                    <div
+                        role="listbox"
+                        aria-label="Theme options"
+                        style={{
+                            position: "absolute",
+                            top: "calc(100% + 8px)",
+                            right: 0,
+                            borderRadius: 10,
+                            padding: 6,
+                            background: "rgba(24, 24, 28, 0.98)",
+                            border: "1px solid rgba(255,255,255,0.12)",
+                            boxShadow: "0 12px 30px rgba(0,0,0,0.35)",
+                            zIndex: 2000,
+                        }}
+                    >
+                        {themeOptions.map((option) => {
+                            const isSelected = option.value === theme;
+                            return (
+                                <button
+                                    type="button"
+                                    key={option.value}
+                                    role="option"
+                                    aria-selected={isSelected}
+                                    onClick={() => {
+                                        setTheme(option.value);
+                                        setIsOpen(false);
+                                    }}
+                                    style={{
+                                        width: "100%",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                        gap: 10,
+                                        padding: "8px 10px",
+                                        borderRadius: 8,
+                                        background: isSelected ? "rgba(255,255,255,0.15)" : "transparent",
+                                        color: "#fff",
+                                        cursor: "pointer",
+                                    }}
+                                >
+                                    <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
+                                        <ThemeIcon themeValue={option.value} size={18} />
+                                        <span style={{ fontWeight: 500 }}>{option.label}</span>
+                                    </span>
+                                </button>
+                            );
+                        })}
+                    </div>
+                )}
+            </div>
         );
     };
 
@@ -573,7 +686,12 @@ export default function SciChartNavbar({
                                         <a href="https://www.scichart.com/contact-us/">Contact Us</a>
                                     </li>
 
-                                    <ThemeToggleComponent />
+                                    <li
+                                        id="menu-item-theme-select"
+                                        className="menu-item menu-item-type-custom menu-item-object-custom"
+                                    >
+                                        <ThemeSelectComponent />
+                                    </li>
 
                                     <li
                                         id="menu-item-5373"
@@ -639,11 +757,11 @@ export default function SciChartNavbar({
                 {/* Mobile only */}
                 <div className="mobile-buttons">
                     <div className="icon">
-                        <ThemeToggleComponent />
+                        <ThemeSelectComponent />
                     </div>
                     <div className="icon menu-burger">
                         <Button onClick={toggleDrawer} aria-label="menu" sx={{ minWidth: 36 }}>
-                            <MenuIcon sx={{ color: "#888" }} />
+                            <MenuIcon sx={{ color: "#fff" }} />
                         </Button>
                     </div>
                 </div>

@@ -62,16 +62,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const radialYAxis = new PolarNumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Right,
         polarAxisMode: EPolarAxisMode.Radial,
+        
         drawMinorGridLines: false,
         drawMajorTickLines: false,
         drawMinorTickLines: false,
-        majorGridLineStyle: {
-            color: appTheme.DarkIndigo,
-            strokeThickness: 1
-        },
-        labelStyle: {
-            color: "white"
-        },
+
         startAngle: Math.PI / 2, // draw labels at 12 o'clock
         autoTicks: false,
         majorDelta: 1,

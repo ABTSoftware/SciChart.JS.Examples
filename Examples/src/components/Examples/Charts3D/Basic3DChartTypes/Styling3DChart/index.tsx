@@ -27,6 +27,8 @@ import { appTheme } from "../../../theme";
 import { useViewType } from "./containerSizeHooks";
 import { EAxisPlaneDrawLabelsMode, EThemeProviderType, E3DLabelOrientationMode } from "scichart";
 
+const PANEL_TEXT_COLOR = "#FFFFFF";
+
 const selectStyle = {
     margin: "0.5em 0em",
     color: "inherit",
@@ -351,7 +353,7 @@ export default function Styling3DChart() {
                         <MenuItem value="zy">ZY Plane</MenuItem>
                         <MenuItem value="zx">ZX Plane</MenuItem>
                     </Select>
-                    <Typography variant="inherit">Visability Mode</Typography>
+                    <Typography variant="inherit">Visibility Mode</Typography>
                     <FormControl fullWidth className={commonClasses.formControl}>
                         <Select
                             labelId="font-label"
@@ -397,7 +399,7 @@ export default function Styling3DChart() {
                     </FormControl>
 
                     <Typography variant="inherit" className={commonClasses.FormControlLabel}>
-                        Draw Lables Mode
+                        Draw Labels Mode
                     </Typography>
                     <FormControl fullWidth className={commonClasses.formControl}>
                         <Select
@@ -461,7 +463,7 @@ export default function Styling3DChart() {
             />
             <div style={isMobileView ? mobileContainerStyle : desktopContainerStyle}>
                 {isMobileView && (
-                    <IconButton onClick={handleClickOpen} sx={{ color: appTheme.ForegroundColor }}>
+                    <IconButton onClick={handleClickOpen} sx={{ color: PANEL_TEXT_COLOR }}>
                         <SettingsIcon fontSize="large" />
                     </IconButton>
                 )}
@@ -470,22 +472,22 @@ export default function Styling3DChart() {
                     <Dialog
                         open={isDialogOpen}
                         onClose={handleClose}
-                        sx={{ "& .MuiDialog-paper": { background: appTheme.DarkIndigo } }}
+                        sx={{ "& .MuiDialog-paper": { background: appTheme.DarkIndigo, color: PANEL_TEXT_COLOR } }}
                     >
                         <DialogTitle
                             sx={{
-                                color: appTheme.ForegroundColor,
+                                color: PANEL_TEXT_COLOR,
                                 display: "flex",
                                 justifyContent: "space-between",
                                 alignItems: "center",
                             }}
                         >
                             Configuration
-                            <IconButton onClick={handleClose} sx={{ color: "grey.500" }}>
+                            <IconButton onClick={handleClose} sx={{ color: PANEL_TEXT_COLOR }}>
                                 <CloseIcon />
                             </IconButton>
                         </DialogTitle>
-                        <div style={{ padding: "10px", color: appTheme.ForegroundColor }}>{controlPanel}</div>
+                        <div style={{ padding: "10px", color: PANEL_TEXT_COLOR }}>{controlPanel}</div>
                     </Dialog>
                 )}
             </div>
@@ -495,7 +497,7 @@ export default function Styling3DChart() {
 
 const accordionStyle = {
     backgroundColor: appTheme.DarkIndigo,
-    color: appTheme.ForegroundColor,
+    color: PANEL_TEXT_COLOR,
     border: `1px solid ${appTheme.Indigo}`,
     "&:before": { display: "none" },
     "& .MuiAccordionSummary-root": {
@@ -503,6 +505,7 @@ const accordionStyle = {
         borderBottom: `1px solid ${appTheme.VividSkyBlue}22`,
     },
     "& .MuiAccordionDetails-root": { backgroundColor: appTheme.DarkIndigo },
+    "& .MuiSvgIcon-root": { color: PANEL_TEXT_COLOR },
 };
 
 const colorInputStyle = { flex: 1, height: "30px", border: "none", borderRadius: "4px", cursor: "pointer" };
@@ -511,7 +514,7 @@ const desktopContainerStyle: React.CSSProperties = {
     width: "300px",
     padding: "0 10px",
     overflowY: "auto",
-    color: appTheme.ForegroundColor,
+    color: PANEL_TEXT_COLOR,
     fontSize: "0.8em",
 };
 const mobileContainerStyle: React.CSSProperties = { position: "absolute", zIndex: 2 };

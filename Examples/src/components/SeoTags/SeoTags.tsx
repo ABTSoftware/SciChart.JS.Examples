@@ -1,6 +1,6 @@
-import { FC, useContext, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
     title: string;
@@ -14,7 +14,8 @@ type TProps = {
 const baseUrl = "https://www.scichart.com/demo";
 
 const SeoTags: FC<TProps> = (props) => {
-    const framework = useContext(FrameworkContext);
+    const { state } = _useContext();
+    const framework = state.framework;
     const { title, keywords, description, image, url } = props;
 
     const rawUrl = `${baseUrl}/${framework}/${url}`;

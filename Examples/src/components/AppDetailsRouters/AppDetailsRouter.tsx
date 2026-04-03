@@ -1,11 +1,10 @@
 import { FC, useContext, useEffect, useState } from "react";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import {
     EPageFramework,
     FRAMEWORK_NAME,
     getFrameworkContent,
 } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { EPageLayout, ETheme, ExampleSourceFile, GalleryItem } from "../../helpers/types/types";
+import { EPageLayout, ExampleSourceFile, GalleryItem } from "../../helpers/types/types";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
 import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
@@ -24,16 +23,16 @@ import { SourceFilesContext } from "./SourceFilesLoading/SourceFilesContext";
 import type { StackBlitzResponse } from "../../helpers/types/types";
 import { ToolbarGroup } from "../buttons/Toolbar";
 import { Tooltip } from "@mui/material";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
     currentExample: TExamplePage;
     isIFrame?: boolean;
     seeAlso: GalleryItem[];
-    theme: ETheme;
 };
 
 const AppDetailsRouter: FC<TProps> = (props) => {
-    const { currentExample, seeAlso, theme } = props;
+    const { currentExample, seeAlso } = props;
 
     const initialSourceFilesVariant = useContext(SourceFilesContext);
     const getInitialSelectedFile = () =>
@@ -52,7 +51,8 @@ const AppDetailsRouter: FC<TProps> = (props) => {
     const [sourceFramework, setSourceFramework] = useState<EPageFramework | null>(initialSourceFilesVariant.framework);
     const [sandboxFramework, setSandboxFramework] = useState<EPageFramework | null>(null);
 
-    const selectedFramework = useContext(FrameworkContext);
+    const { state } = _useContext();
+    const selectedFramework = state.framework;
     const pageTitle = getFrameworkContent(currentExample.title, selectedFramework);
 
     let initialOpenedMenuItems = {
@@ -265,7 +265,6 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                                     desiredFramework={selectedFramework}
                                     actualFramework={sourceFramework}
                                     examplePath={currentExample.path}
-                                    theme={theme}
                                     isMaxWidth={isMaxWidth}
                                 />
                             </div>

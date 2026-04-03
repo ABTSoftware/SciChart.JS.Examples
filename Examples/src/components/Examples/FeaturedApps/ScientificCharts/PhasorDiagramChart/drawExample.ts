@@ -35,7 +35,6 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     // Add master axes
     const xAxis = new NumericAxis(wasmContext, {
         labelStyle: {
-            color: "white",
             padding: new Thickness(0, 0, 8, 0), // add a bit of bottom padding to labels
         },
         growBy: new NumberRange(0, 0.34), // start the mountain drawing at around 0.25 of the chart (from polar center)
@@ -53,7 +52,6 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         axisAlignment: EAxisAlignment.Right,
         autoTicks: false,
         majorDelta: 0.5,
-        labelStyle: { color: "#FFFFFF" },
     });
     sciChartSurface.yAxes.add(yAxis);
 
@@ -114,7 +112,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         axisAlignment: EAxisAlignment.Top,
         isInnerAxis: true,
         visibleRange: new NumberRange(0, Math.PI * 2), // full circle
-        labelStyle: { color: "#FFFFFF" },
+        labelStyle: { color: appTheme.TextColor },
 
         majorGridLineStyle: {
             color: "#FFFFFF44",
@@ -191,12 +189,12 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         strokeThickness: 3,
     });
 
-    // 3. VectorSum (white one)
+    // 3. VectorSum (white / black one - depending on theme)
     const vectorSum = new LineArrowAnnotation({
         x1: 0,
         y1: 0,
         strokeThickness: 3,
-        stroke: "white",
+        stroke: appTheme.TextColor,
         arrowStyle: {
             headLength: 10,
             headWidth: 10,
@@ -223,7 +221,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     // 4. Arc annotation acting as a degree indicator between `vector1` and `vector2`
     const vectorArc = new PolarArcAnnotation({
         y2: 0, // startRadius is always 0, the rest (y1, x2, x1) will be calculated in `updatePolarAnnotations()`
-        stroke: "#FFFFFF",
+        stroke: appTheme.TextColor,
         fill: "#FFFFFF22",
     });
 

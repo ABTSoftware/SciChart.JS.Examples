@@ -30,10 +30,10 @@ export default function PercentageChange() {
                 color="primary"
                 aria-label="small outlined button group"
             >
-                <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
+                <ToggleButton value={true}>
                     Percentage Change
                 </ToggleButton>
-                <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
+                <ToggleButton value={false}>
                     Original Data
                 </ToggleButton>
             </ToggleButtonGroup>

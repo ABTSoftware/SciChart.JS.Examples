@@ -16,7 +16,8 @@
     .FooterBottomSection {
         @extend %CommonFooterGridConfigs;
     }
-
+    
+    h3, 
     h4,
     h5,
     h6 {
@@ -119,7 +120,8 @@
     align-items: center;
     min-height: 60px;
     padding: base.$default-spacing * 2;
-    background-color: var(--gray);
+    background-color: var(--primary);
     color: rgb(174, 184, 193);
     text-align: center;
+    border-top: 1px solid var(--gray);
 }

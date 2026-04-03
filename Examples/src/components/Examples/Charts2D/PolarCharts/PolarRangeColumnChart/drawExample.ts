@@ -38,17 +38,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         polarAxisMode: EPolarAxisMode.Radial,
         drawLabels: true,
         labelPrecision: 0,
-        labelStyle: {
-            color: "white",
-        },
+        // labelStyle: {
+        //     color: "white",
+        // },
         labelPostfix: "°C",
         autoTicks: false,
         majorDelta: 1,
         drawMinorGridLines: false,
-        majorGridLineStyle: {
-            color: appTheme.DarkIndigo,
-            strokeThickness: 1,
-        },
         visibleRange: new NumberRange(11, 17), // min and max temperatures
         zoomExtentsToInitialRange: true,
         innerRadius: 0.05, // donut hole
@@ -64,15 +60,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         // replace minors with majors by not drawing majors and setting this:
         minorsPerMajor: 2,
+        
         drawMajorGridLines: false,
         drawMinorGridLines: true,
-        minorGridLineStyle: {
-            color: appTheme.DarkIndigo,
-            strokeThickness: 1,
-        },
-
         drawMajorTickLines: false,
         drawMinorTickLines: false,
+
         flippedCoordinates: true, // grow clockwise
         startAngle: Math.PI / 2 - Math.PI / 12,
         visibleRange: new NumberRange(0, 12), // 12 months

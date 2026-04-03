@@ -1,5 +1,13 @@
 import { IThemeProvider, SciChartJsNavyTheme } from "scichart";
 
+const getCssColor = (cssVar: string, fallback: string): string => {
+    if (typeof document === "undefined") {
+        return fallback;
+    }
+    const cssValue = getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim();
+    return cssValue || fallback;
+};
+
 export interface AppThemeBase {
     SciChartJsTheme: IThemeProvider;
 
@@ -36,9 +44,14 @@ export interface AppThemeBase {
 export class SciChart2022AppTheme implements AppThemeBase {
     SciChartJsTheme = new SciChartJsNavyTheme();
 
-    // General colors
-    ForegroundColor = "#FFFFFF";
-    Background = this.SciChartJsTheme.sciChartBackground;
+    // Dynamic colors
+    get TextColor() { return this.ForegroundColor; }
+    get ForegroundColor() {
+        return getCssColor("--text", "#F5F5F5");
+    }
+    get Background() {
+        return getCssColor("--bg-chart", this.SciChartJsTheme.sciChartBackground);
+    }
 
     // Series colors
     VividSkyBlue = "#50C7E0";

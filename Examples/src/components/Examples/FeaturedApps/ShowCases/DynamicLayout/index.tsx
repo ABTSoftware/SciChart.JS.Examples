@@ -35,10 +35,10 @@ const ChartToolbar = () => {
             color="primary"
             aria-label="small outlined button group"
         >
-            <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
+            <ToggleButton value={false}>
                 Single Chart
             </ToggleButton>
-            <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
+            <ToggleButton value={true}>
                 Chart Per Series
             </ToggleButton>
         </ToggleButtonGroup>

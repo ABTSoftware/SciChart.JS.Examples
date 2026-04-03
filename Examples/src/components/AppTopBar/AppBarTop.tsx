@@ -1,4 +1,4 @@
-import { FC, useContext, useState } from "react";
+import { FC } from "react";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,32 +13,33 @@ import Logo from "../../images/scichart-logo-app-bar.svg";
 import LogoSmall from "../../images/scichart-logo-app-bar-mobile.svg";
 import { TExamplePage } from "../AppRouter/examplePages";
 import npm from "./npm.svg";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { libraryVersion } from "scichart";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Theme } from "@mui/material";
 import { ETheme } from "../../helpers/types/types";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
     toggleDrawer: () => void;
     currentExample?: TExamplePage;
-    theme: ETheme;
-    setTheme: (theme: ETheme) => void;
 };
 
 const AppBarTop: FC<TProps> = (props) => {
-    const { toggleDrawer, currentExample, theme, setTheme } = props;
-    const selectedFramework = useContext(FrameworkContext);
+    const { toggleDrawer, currentExample } = props;
+    const { state, toggleTheme, getNextTheme } = _useContext();
+    const selectedFramework = state.framework;
+    const theme = state.theme;
 
-    function toggleTheme() {
-        const newTheme = theme == ETheme.dark ? ETheme.light : ETheme.dark;
-        document.documentElement.setAttribute("data-theme", newTheme);
-        document
-            .querySelector('meta[name="theme-color"]')
-            ?.setAttribute("content", getComputedStyle(document.documentElement).getPropertyValue("--bg"));
-        setTheme(newTheme);
-    }
+    const currentThemeLabel =
+        theme === ETheme.navy ? "SciChartNavy" : theme === ETheme.light ? "SciChartLight" : "SciChartDark";
+    const nextTheme = getNextTheme(theme);
+    const nextThemeLabel =
+        nextTheme === ETheme.navy
+            ? "SciChartNavy"
+            : nextTheme === ETheme.light
+            ? "SciChartLight"
+            : "SciChartDark";
 
     const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
     const contextualGithub =
@@ -92,28 +93,44 @@ const AppBarTop: FC<TProps> = (props) => {
 
                             <Search />
                         </>
-                    )}
+                    )}.
                     <div className={classes.FlexPlaceholder}></div>
-                    <Button onClick={toggleTheme} className={classes.ThemeButton} aria-label="toggle theme">
+                    <Button
+                        onClick={toggleTheme}
+                        className={classes.ThemeButton}
+                        aria-label="cycle theme"
+                        title={`${currentThemeLabel} -> ${nextThemeLabel}`}
+                        sx={{
+                            color: "#fff",
+                            "& svg": {
+                                color: "#fff",
+                            },
+                        }}
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
-                            viewBox="0 0 24 24"
+                            viewBox={theme === ETheme.dark ? "1 1 22 22" : "0 0 24 24"}
                             strokeWidth="1"
                             stroke="currentColor"
                         >
-                            {theme == ETheme.dark ? (
+                            {theme === ETheme.light ? (
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                     d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
                                 />
-                            ) : (
+                            ) : theme === ETheme.dark ? (
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                     d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
                                 />
+                            ) : (
+                                <>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 11c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
+                                </>
                             )}
                         </svg>
                     </Button>

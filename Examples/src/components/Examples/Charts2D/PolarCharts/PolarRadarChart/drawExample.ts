@@ -60,10 +60,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             strokeThickness: 1,
             strokeDashArray: [5, 5]
         },
-        labelStyle: {
-            color: EColor.White,
-            fontSize: 16,
-        },
         drawLabels: false,
         drawMinorGridLines: false,
         drawMajorTickLines: false,
@@ -76,10 +72,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const angularXAxis = new PolarCategoryAxis(wasmContext, {
         polarAxisMode: EPolarAxisMode.Angular,
         labels: LABELS,
-        labelStyle: {
-            fontSize: 16,
-            color: EColor.White,
-        },
         majorGridLineStyle: {
             color: EColor.BackgroundColor,
             strokeThickness: 1,

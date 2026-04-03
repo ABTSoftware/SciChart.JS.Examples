@@ -52,9 +52,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         startAngle: Math.PI / 2,
         zoomExtentsToInitialRange: true,
         labelPrecision: 0,
-        labelStyle: {
-            color: "white",
-        },
     });
     sciChartSurface.yAxes.add(radialYAxis);
 
@@ -68,9 +65,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         startAngle: Math.PI / 2, // start at 12 o'clock
         zoomExtentsToInitialRange: true,
         labelPrecision: 0,
-        labelStyle: {
-            color: "white",
-        },
     });
     sciChartSurface.xAxes.add(polarXAxis);
 

@@ -45,7 +45,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         zoomExtentsToInitialRange: true,
         labelStyle: {
-            color: "white",
             fontSize: 16
         },
     });

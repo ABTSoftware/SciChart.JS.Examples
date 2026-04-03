@@ -39,8 +39,8 @@ export default function ChartComponent() {
                     value="start"
                     onClick={handleToggleAnimation}
                     sx={{
-                        color: "#d5d5d5",
-                        borderColor: "#d5d5d5",
+                        color: "var(--text)",
+                        borderColor: "var(--text)",
                     }}
                 >
                     {isChartAnimating ? "Stop Rotation" : "Start Rotation"}

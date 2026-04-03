@@ -195,7 +195,7 @@ export default function SyncMultiChart() {
                                             color="primary"
                                             variant="outlined"
                                             onClick={() => removeChart(pane.id)}
-                                            style={{ color: appTheme.ForegroundColor }}
+                                           
                                         >
                                             Remove Chart
                                         </Button>

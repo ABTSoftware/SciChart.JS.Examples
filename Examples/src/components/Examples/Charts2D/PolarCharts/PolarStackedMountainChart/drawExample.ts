@@ -55,9 +55,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         startAngle: Math.PI / 2,
         zoomExtentsToInitialRange: true,
         labelPrecision: 0,
-        labelStyle: {
-            color: "white",
-        },
     });
     sciChartSurface.yAxes.add(radialYAxis);
 
@@ -75,9 +72,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         
         useNativeText: true,
         labelPrecision: 0,
-        labelStyle: {
-            color: "white",
-        },
     });
     sciChartSurface.xAxes.add(polarXAxis);
 
@@ -93,7 +87,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 yValues: [...yValues, yValues[0]] // close the loop by drawing to the first yValue
             }),
             fill: fillColor + "BB", // 75% opacity
-            stroke: "white",
+            // stroke: "white",
             strokeThickness: 1,
         });
         mountainCollection.add(polarMountain);

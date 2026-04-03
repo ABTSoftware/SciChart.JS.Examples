@@ -4,9 +4,8 @@ import { TMenuItem } from "../AppRouter/examples";
 import { Grid } from "@mui/material";
 import Box from "../../helpers/shared/Helpers/Box/Box";
 import classes from "./FooterGrid.module.scss";
-import { useContext } from "react";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
     historyPushPath: (path: string) => void;
@@ -17,7 +16,8 @@ type TProps = {
 
 const FooterGrid: React.FC<TProps> = (props) => {
     const { title, menuItems } = props;
-    const framework = useContext(FrameworkContext);
+    const { state } = _useContext();
+    const framework = state.framework;
 
     return (
         <Box mb={24} className={classes.FooterGrid}>

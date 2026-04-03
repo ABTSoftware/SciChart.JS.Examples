@@ -266,10 +266,11 @@ export default function WaferAnalysis() {
                     <SciChartReact initChart={initWaferChart} onInit={handleWaferChartInit} className="wafer-chart" />
                 </div>
 
+                <div id="wafer-legend"></div>
                 {/* Variable selection dropdown */}
                 <div className="variable-selection">
                     <div className="variable-selection-content">
-                        <div>Color by:</div>
+                        <p>Color by:</p>
                         <select
                             value={selectedVariable}
                             onChange={(e) => setSelectedVariable(e.target.value)}
@@ -283,7 +284,6 @@ export default function WaferAnalysis() {
                         </select>
                     </div>
                 </div>
-                <div id="wafer-legend"></div>
             </div>
 
             <div className="right-panel">

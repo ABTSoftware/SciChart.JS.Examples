@@ -75,13 +75,13 @@ export default function LogarithmicAxisExample() {
                     color="primary"
                     aria-label="small outlined button group"
                 >
-                    <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
+                    <ToggleButton value={0}>
                         Logarithmic X &amp; Y Axis
                     </ToggleButton>
-                    <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
+                    <ToggleButton value={1}>
                         Log X Axis, Linear Y Axis
                     </ToggleButton>
-                    <ToggleButton value={2} style={{ color: appTheme.ForegroundColor }}>
+                    <ToggleButton value={2}>
                         Linear X &amp; Y Axis
                     </ToggleButton>
                 </ToggleButtonGroup>

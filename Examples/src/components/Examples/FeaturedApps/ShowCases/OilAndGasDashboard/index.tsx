@@ -66,7 +66,6 @@ export default function OilAndGasDashboardShowcase() {
                     <div
                         id="sidebar-charts-2d"
                         className="sidebar-charts-2d"
-                        style={{ background: appTheme.SidebarBackground, color: appTheme.SidebarTextColor }}
                     >
                         <div className="sidebar-charts-2d-title-container">
                             <div className="sidebar-charts-2d-title-item sidebar-charts-2d-item sidebar-charts-2d-item-small">
@@ -116,7 +115,6 @@ export default function OilAndGasDashboardShowcase() {
             <div className="main-container">
                 <div
                     id="main-charts"
-                    style={{ background: appTheme.SidebarBackground, color: appTheme.SidebarTextColor }}
                 >
                     <div className="chart-container">
                         <div id="shale-legend" className="legend-root"></div>

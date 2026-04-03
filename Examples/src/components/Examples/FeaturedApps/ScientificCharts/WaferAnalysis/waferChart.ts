@@ -222,7 +222,7 @@ export const createInitWaferChart =
         }));
         const legend = new ManualLegend(
             {
-                textColor: appTheme.ForegroundColor,
+                textColor: "var(--text)",
                 backgroundColor: appTheme.SciChartJsTheme.loadingAnimationBackground + "CC",
                 items: legendItems,
                 orientation: ELegendOrientation.Horizontal,

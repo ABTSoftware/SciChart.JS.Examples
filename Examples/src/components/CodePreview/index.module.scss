@@ -110,6 +110,7 @@
         gap: 4px;
         padding: 3px 7px 3px 5px;
         cursor: pointer;
+        color: var(--text);
         background-color: var(--bg);
         border: 1px solid var(--border-color);
         border-radius: 8px 8px 0 0;
@@ -119,7 +120,7 @@
         
         &:hover,
         &.active {
-            background-color: #8881;
+            background-color: #8882;
         }
         
         svg {
@@ -131,11 +132,14 @@
         
         p {
             font-size: 15px;
+            margin: 0;
+            color: var(--text);
         }
     }
     
     .selectTab.activeTab {
-        background-color: #8883;
+        background-color: var(--bg);
+        border-bottom-color: var(--bg);
         position: relative;
     }
     

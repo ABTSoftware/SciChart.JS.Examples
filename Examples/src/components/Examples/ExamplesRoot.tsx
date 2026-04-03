@@ -1,10 +1,9 @@
 import { GitHub as GitHubIcon } from "@mui/icons-material";
 import { SubdirectoryArrowRight } from "@mui/icons-material";
 import { Button } from "@mui/material";
-import { FC, useContext, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router";
 import { baseGithubPath } from "../../constants";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { FRAMEWORK_NAME, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { GalleryItem } from "../../helpers/types/types";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
@@ -15,6 +14,7 @@ import GalleryItems from "../GalleryItems";
 import SeoTags from "../SeoTags/SeoTags";
 import { ExampleStrings } from "./ExampleStrings";
 import commonClasses from "./styles/Examples.module.scss";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
     // example: () => JSX.Element;
@@ -29,7 +29,8 @@ const ExamplesRoot: FC<TProps> = (props) => {
     const [firstRender, setFirstRender] = useState(true);
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
-    const framework = useContext(FrameworkContext);
+    const { state } = _useContext();
+    const framework = state.framework;
     const frameworkName = FRAMEWORK_NAME[framework];
     const myRef = useRef(null);
     const executeScroll = () => myRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
