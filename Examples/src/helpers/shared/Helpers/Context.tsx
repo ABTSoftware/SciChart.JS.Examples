@@ -30,8 +30,6 @@ type TStateContextValue = {
     setTheme: (theme: ETheme) => void;
     toggleTheme: () => void;
     getNextTheme: (currentTheme?: ETheme) => ETheme;
-    getThemedImageCandidates: (imagePath: string) => string[];
-    getThemedImagePath: (imagePath: string) => string;
 };
 
 const APP_THEME_STORAGE_KEY = "scichart-demo-theme";
@@ -323,17 +321,6 @@ const patchSciChartCreateMethodsOnce = () => {
 
 patchSciChartCreateMethodsOnce();
 
-const getImageBaseAndExtension = (imagePath: string): { base: string; extension: string; query: string } | null => {
-    const match = imagePath.match(/^(.+?)(\.[a-zA-Z0-9]+)(\?.*)?$/);
-    if (!match) return null;
-
-    return {
-        base: match[1],
-        extension: match[2],
-        query: match[3] ?? "",
-    };
-};
-
 export function StateProvider({
     children,
     framework,
@@ -391,35 +378,6 @@ export function StateProvider({
         }
     }, []);
 
-    const getThemedImageCandidates = useCallback(
-        (imagePath: string): string[] => {
-            const parsedPath = getImageBaseAndExtension(imagePath);
-            if (!parsedPath) return [imagePath];
-
-            const { base, extension, query } = parsedPath;
-            const suffix = themeRef.current;
-            const themedCandidates = [
-                `${base}-${suffix}${extension}${query}`,
-                `${base}.${suffix}${extension}${query}`,
-                `${base}_${suffix}${extension}${query}`,
-            ];
-
-            const orderedCandidates =
-                suffix === ETheme.navy ? [imagePath, ...themedCandidates] : [...themedCandidates, imagePath];
-
-            return Array.from(new Set(orderedCandidates));
-        },
-        []
-    );
-
-    const getThemedImagePath = useCallback(
-        (imagePath: string): string => {
-            const candidates = getThemedImageCandidates(imagePath);
-            return candidates[0] ?? imagePath;
-        },
-        [getThemedImageCandidates]
-    );
-
     useEffect(() => {
         surfaceRegistrars.add(registerSurface);
         return () => {
@@ -472,10 +430,8 @@ export function StateProvider({
             setTheme,
             toggleTheme,
             getNextTheme,
-            getThemedImageCandidates,
-            getThemedImagePath,
         }),
-        [state, setFramework, setTheme, toggleTheme, getNextTheme, getThemedImageCandidates, getThemedImagePath]
+        [state, setFramework, setTheme, toggleTheme, getNextTheme]
     );
 
     return <StateContext.Provider value={contextValue}>{children}</StateContext.Provider>;

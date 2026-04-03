@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import classes from "./index.scss";
 import { Link } from "react-router";
 import { GalleryItem } from "../../helpers/types/types";
-import { ThemedImage } from "../ThemedImage/ThemedImage";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
@@ -157,7 +156,7 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(
                                             <span>NEW!</span>
                                         </div>
                                     )}
-                                    <ThemedImage src={item.imgPath} alt={item.seoTitle} title={item.title} />
+                                    <img src={item.imgPath} alt={item.seoTitle} title={item.title} />
                                 </div>
                                 <div className={classes.content}>
                                     <h3>{item.title}</h3>
