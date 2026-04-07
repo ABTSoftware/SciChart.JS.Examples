@@ -62,6 +62,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const radialYAxis = new PolarNumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Right,
         polarAxisMode: EPolarAxisMode.Radial,
+        visibleRange: new NumberRange(0, 6),
+        zoomExtentsToInitialRange: true,
         
         drawMinorGridLines: false,
         drawMajorTickLines: false,
@@ -110,7 +112,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const collection = new PolarStackedColumnCollection(wasmContext, {
         isOneHundredPercent: false,
     });
-    collection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
     
     for(let i = 0; i < yValues.length; i++) {
         const dataSeries = new XyDataSeries(wasmContext, { xValues, yValues: yValues[i] });
@@ -120,6 +121,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             stroke: appTheme.DarkIndigo,
             strokeThickness: 2,
             dataPointWidthMode: EDataPointWidthMode.Range,
+            animation: new WaveAnimation({ duration: 1000 }),
         });
         collection.add(polarColumn);
     }

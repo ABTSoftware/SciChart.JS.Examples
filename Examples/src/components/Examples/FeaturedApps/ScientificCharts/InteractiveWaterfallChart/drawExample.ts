@@ -173,7 +173,7 @@ export const getChartsInitializationAPI = () => {
                     <line x1="50%" y1="10" x2="50%" y2="27" stroke="#FFBE93" stroke-dasharray="2,2" />
                     <circle cx="50%" cy="10" r="5" fill="#FFBE93" />
                     <rect x="2" y="27" rx="10" ry="10" width="96" height="30" fill="#64BAE433" stroke="#64BAE4" stroke-width="2" />
-                    <text x="50%" y="42" fill="white" text-anchor="middle" alignment-baseline="middle" >Drag me!</text>
+                    <text x="50%" y="42" fill="${appTheme.TextColor}" text-anchor="middle" alignment-baseline="middle" >Drag me!</text>
                   </g>
                 </svg>`,
             x1: 133,
@@ -197,7 +197,7 @@ export const getChartsInitializationAPI = () => {
                 <circle cx="5" cy="77" r="5" fill="#ffffff" />
                 <g>
                   <rect x="10" y="2" width="118" height="30" rx="10" ry="10" fill="#64BAE433" stroke="#64BAE4" stroke-width="2" />
-                  <text x="68" y="19" fill="white" text-anchor="middle" alignment-baseline="middle" font-size="12">Hover/click chart</text>
+                  <text x="68" y="19" fill="${appTheme.TextColor}" text-anchor="middle" alignment-baseline="middle" font-size="12">Hover/click chart</text>
                 </g>
               </g>
             </svg>`,
