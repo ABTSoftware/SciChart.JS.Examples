@@ -184,6 +184,7 @@ class SmithClickModifier extends ChartModifierBase2D {
 
     modifierMouseDown(args: ModifierMouseArgs) {
         super.modifierMouseDown(args);
+        this.dragTargetId = null; // reset any stale drag from missed mouseup
         if (!this.checkExecuteConditions(args).isPrimary) return;
 
         const { re, im } = this.pixelToData(args.mousePoint.x, args.mousePoint.y);

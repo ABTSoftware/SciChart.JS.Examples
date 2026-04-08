@@ -64,7 +64,9 @@ export default function SmithChartComponent() {
                             <Accordion
                                 key={marker.id}
                                 expanded={isActive}
-                                onChange={() => dispatch({ type: "SET_ACTIVE_MARKER", id: marker.id })}
+                                onChange={() =>
+                                    dispatch({ type: "SET_ACTIVE_MARKER", id: isActive ? null : marker.id })
+                                }
                                 disableGutters
                                 sx={{ border: `1px solid ${colour}`, "&:before": { display: "none" } }}
                             >

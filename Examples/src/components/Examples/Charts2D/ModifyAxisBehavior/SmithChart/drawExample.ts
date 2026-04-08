@@ -43,6 +43,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.chartModifiers.add(
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier(),
+        new PinchZoomModifier(),
         new ZoomPanModifier({ executeCondition: { button: EExecuteOn.MouseRightButton } })
     );
 
