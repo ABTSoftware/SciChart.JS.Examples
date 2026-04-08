@@ -20,6 +20,7 @@ import {
     ZoomPanModifier,
 } from "scichart";
 import { SmithChartResistanceAxis, SmithChartReactanceAxis } from "./smithChartAxes";
+import { populateRCircle, populateXArc, populateCircle } from "./smithChartMarkers";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
@@ -249,70 +250,3 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     return { sciChartSurface, wasmContext };
 };
-
-// ── Helper functions ──────────────────────────────────────────────────────────
-
-function populateRCircle(ds: XyDataSeries, r: number) {
-    ds.clear();
-    if (!isFinite(r) || r < 0) return;
-    const cx = r / (1 + r);
-    const rad = 1 / (1 + r);
-    const n = 200;
-    for (let i = 0; i <= n; i++) {
-        const angle = (i / n) * 2 * Math.PI;
-        ds.append(cx + rad * Math.cos(angle), rad * Math.sin(angle));
-    }
-}
-
-function populateXArc(ds: XyDataSeries, xVal: number) {
-    ds.clear();
-    if (!isFinite(xVal)) return;
-
-    if (Math.abs(xVal) < 0.001) {
-        ds.append(-1, 0);
-        ds.append(1, 0);
-        return;
-    }
-
-    const absX = Math.abs(xVal);
-    const isPos = xVal > 0;
-    const radius = 1 / absX;
-    const cx = 1;
-    const cy = isPos ? radius : -radius;
-
-    const xv2 = absX * absX;
-    const xInt = (xv2 - 1) / (1 + xv2);
-    const yInt = isPos ? (2 * absX) / (1 + xv2) : (-2 * absX) / (1 + xv2);
-
-    const thetaOther = Math.atan2(yInt - cy, xInt - cx);
-    const thetaOrigin = isPos ? -Math.PI / 2 : Math.PI / 2;
-
-    let startAngle: number;
-    let endAngle: number;
-
-    if (isPos) {
-        startAngle = thetaOther;
-        endAngle = thetaOrigin;
-        while (endAngle <= startAngle) endAngle += 2 * Math.PI;
-    } else {
-        startAngle = thetaOrigin;
-        endAngle = thetaOther;
-        while (endAngle <= startAngle) endAngle += 2 * Math.PI;
-    }
-
-    const n = 200;
-    for (let i = 0; i <= n; i++) {
-        const angle = startAngle + (i / n) * (endAngle - startAngle);
-        ds.append(cx + radius * Math.cos(angle), cy + radius * Math.sin(angle));
-    }
-}
-
-function populateCircle(ds: XyDataSeries, cx: number, cy: number, radius: number) {
-    ds.clear();
-    if (radius < 0.001) return;
-    const n = 200;
-    for (let i = 0; i <= n; i++) {
-        const angle = (i / n) * 2 * Math.PI;
-        ds.append(cx + radius * Math.cos(angle), cy + radius * Math.sin(angle));
-    }
-}
