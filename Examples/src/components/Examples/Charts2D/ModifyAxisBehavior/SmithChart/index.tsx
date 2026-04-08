@@ -1,7 +1,22 @@
 import * as React from "react";
 import { useRef, useEffect } from "react";
 import { SciChartReact } from "scichart-react";
-import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, Chip } from "@mui/material";
+import {
+    Box,
+    Typography,
+    Accordion,
+    AccordionSummary,
+    AccordionDetails,
+    Chip,
+    ToggleButtonGroup,
+    ToggleButton,
+    Slider,
+    TextField,
+    Checkbox,
+    FormControlLabel,
+    Stack,
+    Divider,
+} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { drawExample } from "./drawExample";
 import { useSmithChart, SmithState } from "./useSmithChart";
@@ -88,6 +103,93 @@ export default function SmithChartComponent() {
                         );
                     })}
                 </Box>
+            </Box>
+
+            {/* Toolbar */}
+            <Box
+                sx={{
+                    p: 1,
+                    borderTop: "1px solid",
+                    borderColor: "divider",
+                    display: "flex",
+                    gap: 2,
+                    alignItems: "center",
+                    flexWrap: "wrap",
+                }}
+            >
+                {/* Z/Y/ZY grid mode toggle */}
+                <Stack direction="row" alignItems="center" gap={1}>
+                    <Typography variant="caption">Grid:</Typography>
+                    <ToggleButtonGroup
+                        size="small"
+                        value={state.gridMode}
+                        exclusive
+                        onChange={(_, v) => v && dispatch({ type: "SET_GRID_MODE", mode: v })}
+                    >
+                        <ToggleButton value="Z">Z</ToggleButton>
+                        <ToggleButton value="Y">Y</ToggleButton>
+                        <ToggleButton value="ZY">ZY</ToggleButton>
+                    </ToggleButtonGroup>
+                </Stack>
+
+                {/* Z opacity slider — only when Z grid is visible */}
+                {(state.gridMode === "Z" || state.gridMode === "ZY") && (
+                    <Stack direction="row" alignItems="center" gap={1} sx={{ minWidth: 120 }}>
+                        <Typography variant="caption">Z α:</Typography>
+                        <Slider
+                            size="small"
+                            value={state.zOpacity}
+                            min={0}
+                            max={1}
+                            step={0.05}
+                            onChange={(_, v) => dispatch({ type: "SET_Z_OPACITY", opacity: v as number })}
+                            sx={{ width: 80 }}
+                        />
+                    </Stack>
+                )}
+
+                {/* Y opacity slider — only when Y grid is visible */}
+                {(state.gridMode === "Y" || state.gridMode === "ZY") && (
+                    <Stack direction="row" alignItems="center" gap={1} sx={{ minWidth: 120 }}>
+                        <Typography variant="caption">Y α:</Typography>
+                        <Slider
+                            size="small"
+                            value={state.yOpacity}
+                            min={0}
+                            max={1}
+                            step={0.05}
+                            onChange={(_, v) => dispatch({ type: "SET_Y_OPACITY", opacity: v as number })}
+                            sx={{ width: 80 }}
+                        />
+                    </Stack>
+                )}
+
+                <Divider orientation="vertical" flexItem />
+
+                {/* VSWR circle numeric input + shade toggle */}
+                <Stack direction="row" alignItems="center" gap={1}>
+                    <Typography variant="caption">VSWR:</Typography>
+                    <TextField
+                        size="small"
+                        type="number"
+                        value={state.vswr.toFixed(2)}
+                        inputProps={{ min: 1.01, max: 100, step: 0.1, style: { width: 60, fontSize: 12 } }}
+                        onChange={(e) => {
+                            const v = parseFloat(e.target.value);
+                            if (v > 1) dispatch({ type: "SET_VSWR", vswr: v });
+                        }}
+                    />
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                size="small"
+                                checked={state.vswrShaded}
+                                onChange={(e) => dispatch({ type: "SET_VSWR_SHADED", shaded: e.target.checked })}
+                            />
+                        }
+                        label={<Typography variant="caption">Shade</Typography>}
+                    />
+                </Stack>
             </Box>
         </Box>
     );
