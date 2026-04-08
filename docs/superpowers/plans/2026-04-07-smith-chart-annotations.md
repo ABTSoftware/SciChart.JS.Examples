@@ -6,7 +6,7 @@
 
 **Architecture:** React owns all app state via a `useSmithChart` hook; SciChart is updated imperatively through a single `update(state: SmithState)` function returned by `drawExample.ts`. The custom modifier fires `dispatch()` calls into the React reducer when user interactions occur (click-to-place, drag). New SciChart concerns are isolated in focused modules. Pure math is exported for unit testing.
 
-**Tech Stack:** React 19, SciChart.JS, TypeScript, MUI, Mocha + ts-node (tests run via `npm run testUnit` from `Examples/`)
+**Tech Stack:** React 19, SciChart.JS, TypeScript, MUI, Mocha + ts-node (tests run via `npm run testUnit` from `Examples/`; test files are co-located at `SmithChart/testUnit/`)
 
 **All file paths are relative to:** `Examples/src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/`
 
@@ -14,19 +14,20 @@
 
 ## File Map
 
-| File                                   | Status      | Responsibility                                                                                       |
-| -------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------- |
-| `useSmithChart.ts`                     | **Create**  | React state shape, reducer, initial state                                                            |
-| `smithChartMarkers.ts`                 | **Create**  | Marker readout math (exported), marker CustomAnnotation management, drag modifier, spoke annotations |
-| `smithChartRim.ts`                     | **Create**  | Pure helpers: `drawRimTicks`, `getRimLabelOffset`                                                    |
-| `smithChartAxes.ts`                    | **Modify**  | Add unit circle arc + angle-of-Γ rim ring drawing in `SmithChartResistanceAxis.drawGridLines`        |
-| `smithChartAdmittance.ts`              | **Create**  | Admittance axis pair (180°-rotated clones)                                                           |
-| `smithChartChain.ts`                   | **Create**  | Chain step math (exported for testing) + rendering adapter                                           |
-| `drawExample.ts`                       | **Rewrite** | Wire all modules; return `{ sciChartSurface, setDispatch, update }`                                  |
-| `index.tsx`                            | **Rewrite** | Layout, toolbar, readout panel; connect `dispatch` + `update` via `onInit`                           |
-| `testUnit/SmithChart/readouts.test.ts` | **Create**  | Unit tests for marker readout math                                                                   |
-| `testUnit/SmithChart/rim.test.ts`      | **Create**  | Unit tests for `getRimLabelOffset`                                                                   |
-| `testUnit/SmithChart/chain.test.ts`    | **Create**  | Unit tests for chain step math                                                                       |
+| File                             | Status      | Responsibility                                                                                       |
+| -------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------- |
+| `useSmithChart.ts`               | **Create**  | React state shape, reducer, initial state                                                            |
+| `smithChartMarkers.ts`           | **Create**  | Marker readout math (exported), marker CustomAnnotation management, drag modifier, spoke annotations |
+| `smithChartRim.ts`               | **Create**  | Pure helpers: `drawRimTicks`, `getRimLabelOffset`                                                    |
+| `smithChartAxes.ts`              | **Modify**  | Add unit circle arc + angle-of-Γ rim ring drawing in `SmithChartResistanceAxis.drawGridLines`        |
+| `smithChartAdmittance.ts`        | **Create**  | Admittance axis pair (180°-rotated clones)                                                           |
+| `smithChartChain.ts`             | **Create**  | Chain step math (exported for testing) + rendering adapter                                           |
+| `drawExample.ts`                 | **Rewrite** | Wire all modules; return `{ sciChartSurface, setDispatch, update }`                                  |
+| `index.tsx`                      | **Rewrite** | Layout, toolbar, readout panel; connect `dispatch` + `update` via `onInit`                           |
+| `testUnit/useSmithChart.test.ts` | **Create**  | Unit tests for state reducer                                                                         |
+| `testUnit/readouts.test.ts`      | **Create**  | Unit tests for marker readout math                                                                   |
+| `testUnit/rim.test.ts`           | **Create**  | Unit tests for `getRimLabelOffset`                                                                   |
+| `testUnit/chain.test.ts`         | **Create**  | Unit tests for chain step math                                                                       |
 
 ---
 
@@ -39,18 +40,30 @@
 **Files:**
 
 - Create: `useSmithChart.ts`
-- Create: `Examples/testUnit/SmithChart/` (directory)
+- Create: `testUnit/useSmithChart.test.ts`
+- Modify: `Examples/package.json` (`testUnit` glob)
 
-- [ ] **Step 1: Write the failing test**
+- [ ] **Step 1: Update `Examples/package.json` testUnit script**
 
-Create `Examples/testUnit/SmithChart/useSmithChart.test.ts`:
+Change the `testUnit` script from:
+
+```json
+"testUnit": "mocha --require ts-node/register \"testUnit/**/*.test.ts\""
+```
+
+To:
+
+```json
+"testUnit": "mocha --require ts-node/register \"src/**/testUnit/**/*.test.ts\""
+```
+
+- [ ] **Step 2: Write the failing test**
+
+Create `src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/testUnit/useSmithChart.test.ts`:
 
 ```ts
 import { assert } from "chai";
-import {
-  initialSmithState,
-  smithReducer,
-} from "../../src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/useSmithChart";
+import { initialSmithState, smithReducer } from "../useSmithChart";
 
 describe("smithReducer", () => {
   it("initial state has no markers", () => {
@@ -107,7 +120,7 @@ describe("smithReducer", () => {
 });
 ```
 
-- [ ] **Step 2: Run test — expect failure**
+- [ ] **Step 3: Run test — expect failure**
 
 ```bash
 cd Examples && npm run testUnit 2>&1 | head -20
@@ -115,7 +128,7 @@ cd Examples && npm run testUnit 2>&1 | head -20
 
 Expected: `Error: Cannot find module` or similar — `useSmithChart.ts` doesn't exist yet.
 
-- [ ] **Step 3: Create `useSmithChart.ts`**
+- [ ] **Step 4: Create `useSmithChart.ts`**
 
 ```ts
 import { useReducer } from "react";
@@ -277,7 +290,7 @@ export function useSmithChart() {
 }
 ```
 
-- [ ] **Step 4: Run tests — expect pass**
+- [ ] **Step 5: Run tests — expect pass**
 
 ```bash
 cd Examples && npm run testUnit 2>&1 | head -30
@@ -285,10 +298,10 @@ cd Examples && npm run testUnit 2>&1 | head -30
 
 Expected: `7 passing`
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 6: Commit**
 
 ```bash
-cd Examples && git add src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/useSmithChart.ts testUnit/SmithChart/useSmithChart.test.ts && git commit -m "feat(smith-chart): add useSmithChart state hook and reducer"
+cd Examples && git add Examples/package.json src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/useSmithChart.ts src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/testUnit/useSmithChart.test.ts && git commit -m "feat(smith-chart): add useSmithChart state hook and reducer"
 ```
 
 ---
@@ -298,15 +311,15 @@ cd Examples && git add src/components/Examples/Charts2D/ModifyAxisBehavior/Smith
 **Files:**
 
 - Create: `smithChartMarkers.ts` (math exports only for now)
-- Create: `Examples/testUnit/SmithChart/readouts.test.ts`
+- Create: `testUnit/readouts.test.ts`
 
 - [ ] **Step 1: Write failing tests**
 
-Create `Examples/testUnit/SmithChart/readouts.test.ts`:
+Create `src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/testUnit/readouts.test.ts`:
 
 ```ts
 import { assert } from "chai";
-import { computeReadouts } from "../../src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/smithChartMarkers";
+import { computeReadouts } from "../smithChartMarkers";
 
 const EPS = 1e-4;
 const approx = (a: number, b: number) => Math.abs(a - b) < EPS;
@@ -442,7 +455,7 @@ Expected: all readout tests passing.
 - [ ] **Step 5: Commit**
 
 ```bash
-cd Examples && git add src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/smithChartMarkers.ts testUnit/SmithChart/readouts.test.ts && git commit -m "feat(smith-chart): add marker readout math with unit tests"
+cd Examples && git add src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/smithChartMarkers.ts src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/testUnit/readouts.test.ts && git commit -m "feat(smith-chart): add marker readout math with unit tests"
 ```
 
 ---
@@ -452,15 +465,15 @@ cd Examples && git add src/components/Examples/Charts2D/ModifyAxisBehavior/Smith
 **Files:**
 
 - Create: `smithChartRim.ts`
-- Create: `Examples/testUnit/SmithChart/rim.test.ts`
+- Create: `testUnit/rim.test.ts`
 
 - [ ] **Step 1: Write failing tests**
 
-Create `Examples/testUnit/SmithChart/rim.test.ts`:
+Create `src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/testUnit/rim.test.ts`:
 
 ```ts
 import { assert } from "chai";
-import { getRimLabelOffset } from "../../src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/smithChartRim";
+import { getRimLabelOffset } from "../smithChartRim";
 
 describe("getRimLabelOffset", () => {
   it("0° (right): dx ≥ 0, dy ≈ -h/2 (centred vertically)", () => {
@@ -639,7 +652,7 @@ Expected: all rim tests passing.
 - [ ] **Step 5: Commit**
 
 ```bash
-cd Examples && git add src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/smithChartRim.ts testUnit/SmithChart/rim.test.ts && git commit -m "feat(smith-chart): add rim helper functions with unit tests"
+cd Examples && git add src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/smithChartRim.ts src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/testUnit/rim.test.ts && git commit -m "feat(smith-chart): add rim helper functions with unit tests"
 ```
 
 ---
@@ -2082,17 +2095,17 @@ cd Examples && git add src/components/Examples/Charts2D/ModifyAxisBehavior/Smith
 **Files:**
 
 - Create: `smithChartChain.ts`
-- Create: `Examples/testUnit/SmithChart/chain.test.ts`
+- Create: `testUnit/chain.test.ts`
 
 All math here is normalized (Z₀ = 1). Values entered by users are normalized by dividing/multiplying by Z₀ = 50Ω before/after.
 
 - [ ] **Step 1: Write failing chain math tests**
 
-Create `Examples/testUnit/SmithChart/chain.test.ts`:
+Create `src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/testUnit/chain.test.ts`:
 
 ```ts
 import { assert } from "chai";
-import { computeChainStep } from "../../src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/smithChartChain";
+import { computeChainStep } from "../smithChartChain";
 
 const EPS = 1e-4;
 const approx = (a: number, b: number) => Math.abs(a - b) < EPS;
@@ -2413,7 +2426,7 @@ Expected: all chain math tests passing.
 - [ ] **Step 5: Commit**
 
 ```bash
-cd Examples && git add src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/smithChartChain.ts testUnit/SmithChart/chain.test.ts && git commit -m "feat(smith-chart): add component chain math and rendering adapter with unit tests"
+cd Examples && git add src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/smithChartChain.ts src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/testUnit/chain.test.ts && git commit -m "feat(smith-chart): add component chain math and rendering adapter with unit tests"
 ```
 
 ---
@@ -2663,7 +2676,7 @@ Expected: all passing.
 - [ ] **Step 9: Final commit**
 
 ```bash
-cd Examples && git add src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/ testUnit/SmithChart/ && git commit -m "feat(smith-chart): Tier 2 complete — admittance overlay, VSWR circle, component chain"
+cd Examples && git add src/components/Examples/Charts2D/ModifyAxisBehavior/SmithChart/ && git commit -m "feat(smith-chart): Tier 2 complete — admittance overlay, VSWR circle, component chain"
 ```
 
 ---
