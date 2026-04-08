@@ -48,7 +48,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             zStep: 20,
             zOffset: 1,
             strokeThickness: 1,
-            stroke: appTheme.PaleSkyBlue,
+            stroke: appTheme.ForegroundColor,
         })
     );
 
@@ -57,7 +57,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new UniformHeatmapRenderableSeries(wasmContext, {
             dataSeries: heatmapDataSeries,
             useLinearTextureFiltering: false,
-            opacity: 0.5,
+            opacity: appTheme.isDark ? 0.5 : 0.85,
             colorMap: new HeatmapColorMap({
                 minimum: colorPaletteMin,
                 maximum: colorPaletteMax,
