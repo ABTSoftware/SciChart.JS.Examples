@@ -192,6 +192,7 @@ class SmithClickModifier extends ChartModifierBase2D {
         const hitId = this.hitTestMarkers(args.mousePoint.x, args.mousePoint.y);
         if (hitId !== null) {
             this.dragTargetId = hitId;
+            this.dispatch?.({ type: "SET_ACTIVE_MARKER", id: hitId });
             args.handled = true;
             return;
         }
@@ -417,7 +418,7 @@ export class SmithMarkersAdapter {
 
     private spokeText(marker: Marker): string {
         const angleDeg = (Math.atan2(marker.gamma.im, marker.gamma.re) * 180) / Math.PI;
-        return `${marker.label}\n${angleDeg.toFixed(1)}°`;
+        return `${marker.label} ${angleDeg.toFixed(1)}°`;
     }
 
     private makeSpokeTextAnnotation(id: string, marker: Marker, color: string): TextAnnotation {
