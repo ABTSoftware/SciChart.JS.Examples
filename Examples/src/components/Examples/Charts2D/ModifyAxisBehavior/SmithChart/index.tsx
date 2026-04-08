@@ -30,7 +30,6 @@ const COLOURS = ["#FF4444", "#44AAFF", "#FFAA00", "#44FF88", "#FF44CC", "#88FF44
 
 export default function SmithChartComponent() {
     const [state, dispatch] = useSmithChart();
-    const updateRef = useRef<((s: SmithState) => void) | null>(null);
     const chartApiRef = useRef<{
         update: (s: SmithState) => void;
         getChainTip: (s: SmithState) => GammaPoint | null;
@@ -41,7 +40,7 @@ export default function SmithChartComponent() {
     const [chainValue, setChainValue] = React.useState("1e-9");
 
     useEffect(() => {
-        updateRef.current?.(state);
+        chartApiRef.current?.update(state);
     }, [state]);
 
     return (
@@ -51,9 +50,8 @@ export default function SmithChartComponent() {
                     initChart={drawExample}
                     onInit={(result: any) => {
                         result.setDispatch(dispatch);
-                        updateRef.current = result.update;
                         chartApiRef.current = result;
-                        updateRef.current(state);
+                        chartApiRef.current.update(state);
                     }}
                     style={{
                         aspectRatio: "1 / 1",
@@ -134,7 +132,8 @@ export default function SmithChartComponent() {
                                     />
                                     <Typography variant="caption" sx={{ fontFamily: "monospace" }}>
                                         {step.type} {step.value.toExponential(2)}
-                                        {" → "}Γ={step.toGamma.re.toFixed(3)}+j{step.toGamma.im.toFixed(3)}
+                                        {" → "}Γ={step.toGamma.re.toFixed(3)}
+                                        {step.toGamma.im >= 0 ? "+" : ""}j{step.toGamma.im.toFixed(3)}
                                     </Typography>
                                 </Box>
                             ))}
@@ -250,9 +249,10 @@ export default function SmithChartComponent() {
                         type="number"
                         value={(state.frequency / 1e9).toFixed(3)}
                         inputProps={{ min: 0.001, max: 100, step: 0.1, style: { width: 60, fontSize: 12 } }}
-                        onChange={(e) =>
-                            dispatch({ type: "SET_FREQUENCY", frequency: parseFloat(e.target.value) * 1e9 })
-                        }
+                        onChange={(e) => {
+                            const v = parseFloat(e.target.value);
+                            if (v > 0) dispatch({ type: "SET_FREQUENCY", frequency: v * 1e9 });
+                        }}
                     />
                     <Typography variant="caption">GHz</Typography>
 
