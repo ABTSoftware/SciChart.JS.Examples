@@ -161,10 +161,10 @@ export class SmithChartAdmittanceReactanceAxis extends NumericAxis {
             const thetaEnd_pos = Math.atan2(yInt_pos - cy_pos, xInt - cx_data);
 
             // Negative B: centre is at (-1, -rad)
-            //   angle to (-1,0): atan2(0 - (-rad), 0) = atan2(rad, 0) = π/2
-            //   angle to intersection: atan2(yInt_neg - (-rad), xInt - (-1))
-            const thetaStart_neg = Math.atan2(-cy_neg, 0); // = π/2
-            const thetaEnd_neg = Math.atan2(yInt_neg - cy_neg, xInt - cx_data);
+            // Render CCW from unit-circle intersection to (-1,0) — the short arc inside the unit disk.
+            // (Swapped vs positive-B to get the correct short arc via the CCW renderer.)
+            const thetaStart_neg = Math.atan2(yInt_neg - cy_neg, xInt - cx_data); // intersection
+            const thetaEnd_neg = Math.atan2(-cy_neg, 0); // angle to (-1,0) = +π/2
 
             let posStart = thetaStart_pos;
             let posEnd = thetaEnd_pos;
