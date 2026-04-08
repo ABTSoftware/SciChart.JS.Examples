@@ -34,6 +34,7 @@ export type SmithState = {
     gridMode: GridMode;
     zOpacity: number; // 0–1
     yOpacity: number; // 0–1
+    _nextMarkerNum: number;
 };
 
 export type SmithAction =
@@ -52,10 +53,7 @@ export type SmithAction =
     | { type: "SET_Y_OPACITY"; opacity: number }
     | { type: "SET_FREQUENCY"; frequency: number };
 
-let _markerCounter = 0;
-
 export function initialSmithState(): SmithState {
-    _markerCounter = 0;
     return {
         markers: [],
         chain: [],
@@ -67,16 +65,17 @@ export function initialSmithState(): SmithState {
         gridMode: "Z",
         zOpacity: 1.0,
         yOpacity: 0.7,
+        _nextMarkerNum: 1,
     };
 }
 
 export function smithReducer(state: SmithState, action: SmithAction): SmithState {
     switch (action.type) {
         case "ADD_MARKER": {
-            _markerCounter++;
+            const num = state._nextMarkerNum;
             const marker: Marker = {
-                id: `m-${Date.now()}-${_markerCounter}`,
-                label: `M${_markerCounter}`,
+                id: `m-${num}`,
+                label: `M${num}`,
                 gamma: action.gamma,
                 isChainStart: false,
             };
@@ -84,6 +83,7 @@ export function smithReducer(state: SmithState, action: SmithAction): SmithState
                 ...state,
                 markers: [...state.markers, marker],
                 activeMarkerId: marker.id,
+                _nextMarkerNum: num + 1,
             };
         }
         case "MOVE_MARKER":

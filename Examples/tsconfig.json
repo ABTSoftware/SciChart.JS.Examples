@@ -1,8 +1,10 @@
 {
     "ts-node": {
+        "transpileOnly": true,
         "compilerOptions": {
-            "module": "NodeNext",
-            "moduleResolution": "NodeNext"
+            "module": "CommonJS",
+            "moduleResolution": "node",
+            "esModuleInterop": true
         }
     },
     "compilerOptions": {
@@ -33,6 +35,6 @@
         "forceConsistentCasingInFileNames": true,
         "experimentalDecorators": true
     },
-    "include": ["src/**/*", "testUnit/**/*", "../ExampleDependencies/src/ExampleData/binanceRestClient.ts"],
+    "include": ["src/**/*", "src/**/testUnit/**/*", "../ExampleDependencies/src/ExampleData/binanceRestClient.ts"],
     "exclude": ["node_modules", "src/static/*", "src/**/vanilla.ts", "src/**/angular.ts"]
 }
