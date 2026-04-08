@@ -13,6 +13,7 @@ import { SmithChartResistanceAxis, SmithChartReactanceAxis } from "./smithChartA
 import { SmithChartAdmittanceResistanceAxis, SmithChartAdmittanceReactanceAxis } from "./smithChartAdmittance";
 import { SmithMarkersAdapter } from "./smithChartMarkers";
 import { SmithVswrAdapter } from "./smithChartVswr";
+import { SmithChainAdapter } from "./smithChartChain";
 import { SmithState, SmithAction } from "./useSmithChart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -61,6 +62,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // vswrAdapter must be created first so SmithVswrModifier gets priority over SmithClickModifier
     const vswrAdapter = new SmithVswrAdapter(sciChartSurface);
     const markersAdapter = new SmithMarkersAdapter(sciChartSurface, wasmContext);
+    const chainAdapter = new SmithChainAdapter(sciChartSurface, wasmContext);
 
     sciChartSurface.chartModifiers.add(
         new MouseWheelZoomModifier(),
@@ -72,6 +74,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const update = (state: SmithState) => {
         markersAdapter.update(state);
         vswrAdapter.update(state);
+        chainAdapter.update(state);
 
         // Grid mode — show/hide impedance and admittance axes
         const zVisible = state.gridMode === "Z" || state.gridMode === "ZY";
@@ -101,7 +104,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const setDispatch = (dispatch: (a: SmithAction) => void) => {
         markersAdapter.setDispatch(dispatch);
         vswrAdapter.setDispatch(dispatch);
+        chainAdapter.setDispatch(dispatch);
     };
 
-    return { sciChartSurface, wasmContext, update, setDispatch };
+    return {
+        sciChartSurface,
+        wasmContext,
+        update,
+        setDispatch,
+        getChainTip: (s: SmithState) => chainAdapter.getChainTip(s),
+        addChainStep: chainAdapter.addStep.bind(chainAdapter),
+    };
 };

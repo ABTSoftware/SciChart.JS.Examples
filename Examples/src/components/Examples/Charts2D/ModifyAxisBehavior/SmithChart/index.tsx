@@ -19,14 +19,26 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { drawExample } from "./drawExample";
-import { useSmithChart, SmithState } from "./useSmithChart";
+import { useSmithChart, SmithState, GammaPoint, ComponentType } from "./useSmithChart";
 import { computeReadouts } from "./smithChartMarkers";
+import { CHAIN_COLOURS } from "./smithChartChain";
+import Button from "@mui/material/Button";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 
 const COLOURS = ["#FF4444", "#44AAFF", "#FFAA00", "#44FF88", "#FF44CC", "#88FF44"];
 
 export default function SmithChartComponent() {
     const [state, dispatch] = useSmithChart();
     const updateRef = useRef<((s: SmithState) => void) | null>(null);
+    const chartApiRef = useRef<{
+        update: (s: SmithState) => void;
+        getChainTip: (s: SmithState) => GammaPoint | null;
+        addChainStep: (from: GammaPoint, type: ComponentType, value: number, freq: number) => void;
+        setDispatch: (d: any) => void;
+    } | null>(null);
+    const [chainType, setChainType] = React.useState<ComponentType>("seriesL");
+    const [chainValue, setChainValue] = React.useState("1e-9");
 
     useEffect(() => {
         updateRef.current?.(state);
@@ -40,6 +52,7 @@ export default function SmithChartComponent() {
                     onInit={(result: any) => {
                         result.setDispatch(dispatch);
                         updateRef.current = result.update;
+                        chartApiRef.current = result;
                         updateRef.current(state);
                     }}
                     style={{
@@ -102,6 +115,42 @@ export default function SmithChartComponent() {
                             </Accordion>
                         );
                     })}
+                    {state.chain.length > 0 && (
+                        <>
+                            <Divider sx={{ my: 0.5 }} />
+                            <Typography variant="caption" sx={{ fontWeight: 700 }}>
+                                CHAIN ({state.chain.length} steps)
+                            </Typography>
+                            {state.chain.map((step, i) => (
+                                <Box key={step.id} sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+                                    <Box
+                                        sx={{
+                                            width: 8,
+                                            height: 8,
+                                            borderRadius: "50%",
+                                            bgcolor: CHAIN_COLOURS[i % CHAIN_COLOURS.length],
+                                            flexShrink: 0,
+                                        }}
+                                    />
+                                    <Typography variant="caption" sx={{ fontFamily: "monospace" }}>
+                                        {step.type} {step.value.toExponential(2)}
+                                        {" → "}Γ={step.toGamma.re.toFixed(3)}+j{step.toGamma.im.toFixed(3)}
+                                    </Typography>
+                                </Box>
+                            ))}
+                            {(state.markers.find((m) => m.isChainStart) || state.chainStartGamma) && (
+                                <Typography variant="caption" color="text.secondary">
+                                    Start:{" "}
+                                    {(() => {
+                                        const m = state.markers.find((m) => m.isChainStart);
+                                        if (m) return m.label;
+                                        const g = state.chainStartGamma!;
+                                        return `Γ=(${g.re.toFixed(3)},${g.im.toFixed(3)})`;
+                                    })()}
+                                </Typography>
+                            )}
+                        </>
+                    )}
                 </Box>
             </Box>
 
@@ -189,6 +238,80 @@ export default function SmithChartComponent() {
                         }
                         label={<Typography variant="caption">Shade</Typography>}
                     />
+                </Stack>
+
+                <Divider orientation="vertical" flexItem />
+
+                {/* Chain toolbar */}
+                <Stack direction="row" alignItems="center" gap={1} flexWrap="wrap">
+                    <Typography variant="caption">Freq:</Typography>
+                    <TextField
+                        size="small"
+                        type="number"
+                        value={(state.frequency / 1e9).toFixed(3)}
+                        inputProps={{ min: 0.001, max: 100, step: 0.1, style: { width: 60, fontSize: 12 } }}
+                        onChange={(e) =>
+                            dispatch({ type: "SET_FREQUENCY", frequency: parseFloat(e.target.value) * 1e9 })
+                        }
+                    />
+                    <Typography variant="caption">GHz</Typography>
+
+                    <Select
+                        size="small"
+                        value={chainType}
+                        onChange={(e) => setChainType(e.target.value as ComponentType)}
+                        sx={{ fontSize: 12, minWidth: 100 }}
+                    >
+                        {(
+                            [
+                                ["seriesL", "Series L"],
+                                ["seriesC", "Series C"],
+                                ["seriesR", "Series R"],
+                                ["shuntL", "Shunt L"],
+                                ["shuntC", "Shunt C"],
+                                ["shuntR", "Shunt R"],
+                                ["TL", "Trans. Line"],
+                            ] as [ComponentType, string][]
+                        ).map(([v, l]) => (
+                            <MenuItem key={v} value={v} sx={{ fontSize: 12 }}>
+                                {l}
+                            </MenuItem>
+                        ))}
+                    </Select>
+
+                    <TextField
+                        size="small"
+                        type="number"
+                        value={chainValue}
+                        inputProps={{ style: { width: 70, fontSize: 12 } }}
+                        onChange={(e) => setChainValue(e.target.value)}
+                        placeholder={chainType === "TL" ? "λ" : "SI"}
+                    />
+
+                    <Button
+                        size="small"
+                        variant="outlined"
+                        onClick={() => {
+                            const tip = chartApiRef.current?.getChainTip(state);
+                            if (!tip) return;
+                            const parsed = parseFloat(chainValue);
+                            if (isNaN(parsed)) return;
+                            chartApiRef.current?.addChainStep(tip, chainType, parsed, state.frequency);
+                        }}
+                        disabled={!chartApiRef.current?.getChainTip(state)}
+                    >
+                        Add
+                    </Button>
+
+                    <Button
+                        size="small"
+                        variant="outlined"
+                        color="warning"
+                        onClick={() => dispatch({ type: "UNDO_CHAIN_STEP" })}
+                        disabled={state.chain.length === 0}
+                    >
+                        Undo
+                    </Button>
                 </Stack>
             </Box>
         </Box>
