@@ -49,6 +49,7 @@ function normalizeShaderAngle(a: number): number {
 }
 
 import { NumericAxis, TSciChart, Rect, DpiHelper } from "scichart";
+import { drawRimTicks, getRimLabelOffset } from "./smithChartRim";
 import { WebGlRenderContext2D, ELineDrawMode } from "scichart/Charting/Drawing/WebGlRenderContext2D";
 import { SCRTPen } from "scichart/types/TSciChart";
 import {
@@ -90,7 +91,7 @@ export class SmithResistanceTickProvider {
         0.1, 5, 0.3, 5, 0.4, 5, 0.6, 5, 0.7, 5, 0.8, 5, 0.9, 5, 1.2, 5, 1.4, 5, 1.6, 5, 1.8, 5, 3, 5, 4, 5,
         /* tier 2 – clip at X=2 */
         0.05, 2, 0.15, 2, 0.25, 2, 0.35, 2, 0.45, 2, 0.55, 2, 0.65, 2, 0.75, 2, 0.85, 2, 0.95, 2, 1.1, 2, 1.3, 2, 1.5,
-        2, 1.7, 2, 1.9, 2, 2.5, 2, /* tier 3 – clip at X=1 (midpoints of tier-2 step → 0.025 spacing, equal gaps) */
+        2, 1.7, 2, 1.9, 2, 2.5, 2 /* tier 3 – clip at X=1 (midpoints of tier-2 step → 0.025 spacing, equal gaps) */,
         0.025, 1, 0.075, 1, 0.125, 1, 0.175, 1, 0.225, 1, 0.275, 1, 0.325, 1, 0.375, 1, 0.425, 1, 0.475, 1, 0.525, 1,
         0.575, 1, 0.625, 1, 0.675, 1, 0.725, 1, 0.775, 1, 0.825, 1, 0.875, 1, 0.925, 1, 0.975, 1, 1.25, 1,
     ];
@@ -113,7 +114,7 @@ export class SmithReactanceTickProvider {
         0.1, 5, 0.3, 5, 0.4, 5, 0.6, 5, 0.7, 5, 0.8, 5, 0.9, 5, 1.2, 5, 1.4, 5, 1.6, 5, 1.8, 5, 3, 5, 4, 5,
         /* tier 2 – clip at R=2 */
         0.05, 2, 0.15, 2, 0.25, 2, 0.35, 2, 0.45, 2, 0.55, 2, 0.65, 2, 0.75, 2, 0.85, 2, 0.95, 2, 1.1, 2, 1.3, 2, 1.5,
-        2, 1.7, 2, 1.9, 2, 2.5, 2, /* tier 3 – clip at R=1 (midpoints of tier-2 step → 0.025 spacing, equal gaps) */
+        2, 1.7, 2, 1.9, 2, 2.5, 2 /* tier 3 – clip at R=1 (midpoints of tier-2 step → 0.025 spacing, equal gaps) */,
         0.025, 1, 0.075, 1, 0.125, 1, 0.175, 1, 0.225, 1, 0.275, 1, 0.325, 1, 0.375, 1, 0.425, 1, 0.475, 1, 0.525, 1,
         0.575, 1, 0.625, 1, 0.675, 1, 0.725, 1, 0.775, 1, 0.825, 1, 0.875, 1, 0.925, 1, 0.975, 1, 1.25, 1,
     ];
@@ -250,6 +251,17 @@ class SmithChartAxisRenderer extends AxisRenderer {
                 const text = r >= 1 ? r.toString() : r.toFixed(1);
                 drawLabel(text, xCalc.getCoordinate(cx - rad), yCalc.getCoordinate(0), Math.PI / 2);
             }
+
+            // Rim labels (angle-of-Γ ring)
+            const rAxis = axis as SmithChartResistanceAxis;
+            for (const lbl of rAxis._pendingRimLabels ?? []) {
+                // lbl.px and lbl.py are already in absolute pixel coords
+                // Convert to SVR-relative before drawing
+                const approxW = 32;
+                const approxH = 12;
+                const o = getRimLabelOffset(lbl.angleDeg, approxW, approxH);
+                drawLabel(lbl.text, lbl.px - svr.left + o.dx, lbl.py - svr.top + o.dy, lbl.angleDeg);
+            }
         } else {
             for (const x of majorTicks) {
                 const xv2 = x * x;
@@ -324,6 +336,7 @@ class SmithChartAxisRenderer extends AxisRenderer {
 
 export class SmithChartResistanceAxis extends NumericAxis {
     private sibling: SmithChartReactanceAxis | null = null;
+    public _pendingRimLabels: { text: string; px: number; py: number; angleDeg: number }[] = [];
 
     constructor(wasmContext: TSciChart, options?: object) {
         super(wasmContext, {
@@ -426,6 +439,44 @@ export class SmithChartResistanceAxis extends NumericAxis {
                 clipRect,
                 leftPad,
                 topPad
+            );
+
+            // Unit circle as hardware arc (radius=1, centre=(0,0))
+            const ucVec = getVectorArcVertex(wasmContext);
+            const ucArc = getArcVertex(wasmContext);
+            const ucx_px = xCalc.getCoordinate(0);
+            const ucy_native = vpHeight - yCalc.getCoordinate(0);
+            const urad_px = Math.abs(xCalc.getCoordWidth(1));
+            const ucParams = getArcParams(
+                wasmContext,
+                ucx_px,
+                ucy_native,
+                0,
+                2 * Math.PI,
+                urad_px,
+                0,
+                1,
+                aspectRatio,
+                linesPen.m_fThickness * 2
+            );
+            ucArc.MakeCircularArc(ucParams);
+            ucVec.push_back(ucArc);
+            renderContext.drawArcs(ucVec, 0, 0, 0, clipRect, linesPen, undefined, leftPad, topPad);
+
+            // Angle-of-Γ rim ring ticks + labels
+            this._pendingRimLabels = [];
+            drawRimTicks(
+                renderContext,
+                xCalc,
+                yCalc,
+                wasmContext,
+                linesPen,
+                clipRect,
+                leftPad,
+                topPad,
+                (text, px, py, angleDeg) => {
+                    this._pendingRimLabels.push({ text, px, py, angleDeg });
+                }
             );
         }
     }

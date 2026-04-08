@@ -14,7 +14,6 @@ import {
     PinchZoomModifier,
     SciChartSurface,
     TextAnnotation,
-    TSciChart,
     XyDataSeries,
     XyScatterRenderableSeries,
     ZoomExtentsModifier,
@@ -29,7 +28,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // ── Axes (custom: draw constant-R circles and constant-X arcs as grid lines) ─
     const gridColor = "#aaaaaa"; //appTheme.SciChartJsTheme.polarMajorGridLineBrush;
-    const outerCircleColor = "#cccccc"; //appTheme.SciChartJsTheme.polarMajorGridLineBrush;
 
     sciChartSurface.xAxes.add(
         new SmithChartResistanceAxis(wasmContext, {
@@ -46,15 +44,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             axisAlignment: EAxisAlignment.Left,
             majorGridLineStyle: { color: gridColor, strokeThickness: 2 },
             minorGridLineStyle: { color: gridColor, strokeThickness: 1 },
-        })
-    );
-
-    // ── Outer unit circle (drawn as a series for prominent styling) ───────────
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: createCircle(wasmContext, 0, 0, 1),
-            stroke: outerCircleColor,
-            strokeThickness: 2,
         })
     );
 
@@ -262,21 +251,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 };
 
 // ── Helper functions ──────────────────────────────────────────────────────────
-
-function createCircle(
-    wasmContext: TSciChart,
-    cx: number,
-    cy: number,
-    radius: number,
-    points: number = 360
-): XyDataSeries {
-    const ds = new XyDataSeries(wasmContext);
-    for (let i = 0; i <= points; i++) {
-        const angle = (i / points) * 2 * Math.PI;
-        ds.append(cx + radius * Math.cos(angle), cy + radius * Math.sin(angle));
-    }
-    return ds;
-}
 
 function populateRCircle(ds: XyDataSeries, r: number) {
     ds.clear();
