@@ -1,34 +1,24 @@
-import { appTheme } from "../../../theme";
 import {
-    ChartModifierBase2D,
-    EAxisAlignment,
-    ECoordinateMode,
-    EExecuteOn,
-    EHorizontalAnchorPoint,
-    EllipsePointMarker,
-    EVerticalAnchorPoint,
-    FastLineRenderableSeries,
-    ModifierMouseArgs,
-    MouseWheelZoomModifier,
-    NumberRange,
-    PinchZoomModifier,
     SciChartSurface,
-    TextAnnotation,
-    XyDataSeries,
-    XyScatterRenderableSeries,
+    EAxisAlignment,
+    NumberRange,
     ZoomExtentsModifier,
+    MouseWheelZoomModifier,
+    PinchZoomModifier,
     ZoomPanModifier,
+    EExecuteOn,
 } from "scichart";
+import { appTheme } from "../../../theme";
 import { SmithChartResistanceAxis, SmithChartReactanceAxis } from "./smithChartAxes";
-import { populateRCircle, populateXArc, populateCircle } from "./smithChartMarkers";
+import { SmithMarkersAdapter } from "./smithChartMarkers";
+import { SmithState, SmithAction } from "./useSmithChart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
 
-    // ── Axes (custom: draw constant-R circles and constant-X arcs as grid lines) ─
-    const gridColor = "#aaaaaa"; //appTheme.SciChartJsTheme.polarMajorGridLineBrush;
+    const gridColor = "#aaaaaa";
 
     sciChartSurface.xAxes.add(
         new SmithChartResistanceAxis(wasmContext, {
@@ -48,205 +38,21 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
-    // ── Highlight colours ─────────────────────────────────────────────────────
-    const rHighlightColor = "#FF4444";
-    const xHighlightColor = "#4488FF";
-    const gammaColor = "#44CC44";
-
-    // ── Interactive highlight series (polyline-based for correct full circles) ─
-    const rCircleDS = new XyDataSeries(wasmContext);
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: rCircleDS,
-            stroke: rHighlightColor,
-            strokeThickness: 2.5,
-        })
-    );
-
-    const xArcDS = new XyDataSeries(wasmContext);
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: xArcDS,
-            stroke: xHighlightColor,
-            strokeThickness: 2.5,
-        })
-    );
-
-    const gammaCircleDS = new XyDataSeries(wasmContext);
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: gammaCircleDS,
-            stroke: gammaColor,
-            strokeThickness: 1.5,
-            strokeDashArray: [5, 5],
-        })
-    );
-
-    // ── Draggable point ───────────────────────────────────────────────────────
-    const pointDS = new XyDataSeries(wasmContext);
-    pointDS.append(0, 0);
-    sciChartSurface.renderableSeries.add(
-        new XyScatterRenderableSeries(wasmContext, {
-            dataSeries: pointDS,
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                width: 14,
-                height: 14,
-                fill: gammaColor,
-                stroke: "#FFFFFF",
-                strokeThickness: 2,
-            }),
-        })
-    );
-
-    // ── Text readouts (fixed pixel position so they're always visible) ────────
-    const gammaTextAnnotation = new TextAnnotation({
-        x1: 10,
-        y1: 10,
-        xCoordinateMode: ECoordinateMode.Pixel,
-        yCoordinateMode: ECoordinateMode.Pixel,
-        text: "Γ = 0.000 + j0.000",
-        fontSize: 14,
-        fontFamily: "monospace",
-        textColor: appTheme.ForegroundColor,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-        verticalAnchorPoint: EVerticalAnchorPoint.Top,
-    });
-    const gammaMagTextAnnotation = new TextAnnotation({
-        x1: 10,
-        y1: 30,
-        xCoordinateMode: ECoordinateMode.Pixel,
-        yCoordinateMode: ECoordinateMode.Pixel,
-        text: "|Γ| = 0.000",
-        fontSize: 14,
-        fontFamily: "monospace",
-        textColor: gammaColor,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-        verticalAnchorPoint: EVerticalAnchorPoint.Top,
-    });
-    const impedanceTextAnnotation = new TextAnnotation({
-        x1: 10,
-        y1: 50,
-        xCoordinateMode: ECoordinateMode.Pixel,
-        yCoordinateMode: ECoordinateMode.Pixel,
-        text: "Z = 1.000 + j0.000",
-        fontSize: 14,
-        fontFamily: "monospace",
-        textColor: appTheme.ForegroundColor,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-        verticalAnchorPoint: EVerticalAnchorPoint.Top,
-    });
-    const resistanceLabel = new TextAnnotation({
-        x1: 10,
-        y1: 70,
-        xCoordinateMode: ECoordinateMode.Pixel,
-        yCoordinateMode: ECoordinateMode.Pixel,
-        text: "R = 1.000",
-        fontSize: 14,
-        fontFamily: "monospace",
-        textColor: rHighlightColor,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-        verticalAnchorPoint: EVerticalAnchorPoint.Top,
-    });
-    const reactanceLabel = new TextAnnotation({
-        x1: 10,
-        y1: 90,
-        xCoordinateMode: ECoordinateMode.Pixel,
-        yCoordinateMode: ECoordinateMode.Pixel,
-        text: "X = 0.000",
-        fontSize: 14,
-        fontFamily: "monospace",
-        textColor: xHighlightColor,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-        verticalAnchorPoint: EVerticalAnchorPoint.Top,
-    });
-
-    sciChartSurface.annotations.add(
-        gammaTextAnnotation,
-        gammaMagTextAnnotation,
-        impedanceTextAnnotation,
-        resistanceLabel,
-        reactanceLabel
-    );
-
-    // ── Update logic ──────────────────────────────────────────────────────────
-
-    function updateInteractiveElements(gammaR: number, gammaI: number) {
-        const mag = Math.sqrt(gammaR * gammaR + gammaI * gammaI);
-        let gr = gammaR;
-        let gi = gammaI;
-        if (mag > 1) {
-            gr = gammaR / mag;
-            gi = gammaI / mag;
-        }
-        const gammaMag = Math.sqrt(gr * gr + gi * gi);
-
-        // Z = (1+Γ)/(1−Γ)
-        const denom = (1 - gr) * (1 - gr) + gi * gi;
-        const r = denom > 1e-10 ? (1 - gr * gr - gi * gi) / denom : Infinity;
-        const x = denom > 1e-10 ? (2 * gi) / denom : Infinity;
-
-        pointDS.clear();
-        pointDS.append(gr, gi);
-
-        populateRCircle(rCircleDS, r);
-        populateXArc(xArcDS, x);
-        populateCircle(gammaCircleDS, 0, 0, gammaMag);
-
-        const signG = gi >= 0 ? "+" : "−";
-        gammaTextAnnotation.text = `Γ = ${gr.toFixed(3)} ${signG} j${Math.abs(gi).toFixed(3)}`;
-        gammaMagTextAnnotation.text = `|Γ| = ${gammaMag.toFixed(3)}`;
-
-        if (!isFinite(r) || !isFinite(x)) {
-            impedanceTextAnnotation.text = "Z = ∞";
-            resistanceLabel.text = "R = ∞";
-            reactanceLabel.text = "X = ∞";
-        } else {
-            const signZ = x >= 0 ? "+" : "−";
-            impedanceTextAnnotation.text = `Z = ${r.toFixed(3)} ${signZ} j${Math.abs(x).toFixed(3)}`;
-            resistanceLabel.text = `R = ${r.toFixed(3)}`;
-            reactanceLabel.text = `X = ${x >= 0 ? "" : "−"}${Math.abs(x).toFixed(3)}`;
-        }
-    }
-
-    updateInteractiveElements(0, 0);
-
-    // ── Drag modifier ─────────────────────────────────────────────────────────
-
-    class SmithChartDragModifier extends ChartModifierBase2D {
-        readonly type = "SmithChartDragModifier";
-        private isDragging = false;
-
-        modifierMouseDown(args: ModifierMouseArgs) {
-            super.modifierMouseDown(args);
-            if (!this.checkExecuteConditions(args).isPrimary) return;
-            this.isDragging = true;
-            this.handleDrag(args);
-            args.handled = true;
-        }
-        modifierMouseMove(args: ModifierMouseArgs) {
-            super.modifierMouseMove(args);
-            if (this.isDragging) {
-                this.handleDrag(args);
-                args.handled = true;
-            }
-        }
-        modifierMouseUp(args: ModifierMouseArgs) {
-            super.modifierMouseUp(args);
-            this.isDragging = false;
-        }
-        private handleDrag(args: ModifierMouseArgs) {
-            const xCalc = this.parentSurface.xAxes.get(0).getCurrentCoordinateCalculator();
-            const yCalc = this.parentSurface.yAxes.get(0).getCurrentCoordinateCalculator();
-            updateInteractiveElements(xCalc.getDataValue(args.mousePoint.x), yCalc.getDataValue(args.mousePoint.y));
-        }
-    }
+    const markersAdapter = new SmithMarkersAdapter(sciChartSurface, wasmContext);
 
     sciChartSurface.chartModifiers.add(
-        new SmithChartDragModifier({ executeCondition: { button: EExecuteOn.MouseLeftButton } }),
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier(),
         new ZoomPanModifier({ executeCondition: { button: EExecuteOn.MouseRightButton } })
     );
 
-    return { sciChartSurface, wasmContext };
+    const update = (state: SmithState) => {
+        markersAdapter.update(state);
+    };
+
+    const setDispatch = (dispatch: (a: SmithAction) => void) => {
+        markersAdapter.setDispatch(dispatch);
+    };
+
+    return { sciChartSurface, wasmContext, update, setDispatch };
 };
