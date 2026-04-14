@@ -25,6 +25,7 @@ export default [
     "../Examples/Charts2D/BasicChartTypes/DonutChart",
     "../Examples/Charts2D/BasicChartTypes/ErrorBarsChart",
     "../Examples/Charts2D/BasicChartTypes/FanChart",
+    "../Examples/Charts2D/BasicChartTypes/ForceDirectedGraph",
     "../Examples/Charts2D/BasicChartTypes/HeatmapChart",
     "../Examples/Charts2D/BasicChartTypes/ImpulseChart",
     "../Examples/Charts2D/BasicChartTypes/LineChart",
