@@ -60,7 +60,7 @@ export class NodeTooltipModifier extends ChartModifierBase2D {
             this.adjacency[e.targetIdx].add(e.sourceIdx);
         }
 
-        const maxDegree = Math.max(...this.adjacency.map(s => s.size)) + 1;
+        const maxDegree = this.adjacency.reduce((m, s) => Math.max(m, s.size), 0) + 1;
         for (let i = 0; i < maxDegree; i++) {
             this.pool.push(new TextAnnotation({
                 isHidden: true,
@@ -83,8 +83,8 @@ export class NodeTooltipModifier extends ChartModifierBase2D {
     }
 
     public onDetach(): void {
-        super.onDetach();
         for (const a of this.pool) this.parentSurface.annotations.remove(a);
+        super.onDetach();
     }
 
     private toDataCoords(args: ModifierMouseArgs): { x: number; y: number } | null {
