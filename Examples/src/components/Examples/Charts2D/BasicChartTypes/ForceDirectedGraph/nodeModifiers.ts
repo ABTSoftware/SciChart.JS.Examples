@@ -41,6 +41,8 @@ export class EdgeHoverState {
 // ─── Node tooltip modifier ───────────────────────────────────────────────────
 
 const TOOLTIP_SNAP_PIXELS = 12;
+const LABEL_TEXT_COLOR = "#ffffff";
+const LABEL_BACKGROUND_COLOR = "rgba(23,36,61,0.92)";
 
 export class NodeTooltipModifier extends ChartModifierBase2D {
     public readonly type = EChart2DModifierType.Custom;
@@ -73,10 +75,10 @@ export class NodeTooltipModifier extends ChartModifierBase2D {
                 yCoordinateMode: ECoordinateMode.DataValue,
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
                 verticalAnchorPoint: EVerticalAnchorPoint.Center,
-                textColor: "#ffffff",
+                textColor: LABEL_TEXT_COLOR,
                 fontSize: 14,
                 fontFamily: "sans-serif",
-                background: "rgba(102,51,153,0.88)",
+                background: LABEL_BACKGROUND_COLOR,
                 x1: 0, y1: 0, text: "",
             }));
         }
@@ -254,8 +256,14 @@ export class NodeDragModifier extends ChartModifierBase2D {
 
 // ─── Node hover palette provider ─────────────────────────────────────────────
 
-const HOVER_FILL = parseColorToUIntArgb("#FF6B35");   // orange
-const HOVER_STROKE = parseColorToUIntArgb("#FFFFFF");  // white
+// const HOVER_FILL = parseColorToUIntArgb("#634e96");   // SciChart purple
+// const HOVER_STROKE = parseColorToUIntArgb("#634e96");   // SciChart purple
+
+const HOVER_FILL = parseColorToUIntArgb("#47bde6");   // SciChart purple
+const HOVER_STROKE = parseColorToUIntArgb("#274b92");   // SciChart purple
+
+// #47bde6  #274b92
+
 
 export class NodeHoverPaletteProvider implements IPointMarkerPaletteProvider {
     public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
