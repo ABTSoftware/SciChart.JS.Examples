@@ -7,6 +7,11 @@ import {
     ECoordinateMode,
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
+    IPointMarkerPaletteProvider,
+    EStrokePaletteMode,
+    TPointMarkerArgb,
+    IRenderableSeries,
+    parseColorToUIntArgb,
 } from "scichart";
 
 // ─── Simulation types (re-exported for use in drawExample.ts) ────────────────
@@ -244,5 +249,33 @@ export class NodeDragModifier extends ChartModifierBase2D {
         this.dragState.current = null;
         this.reheat();
         args.handled = true;
+    }
+}
+
+// ─── Node hover palette provider ─────────────────────────────────────────────
+
+const HOVER_FILL = parseColorToUIntArgb("#FF6B35");   // orange
+const HOVER_STROKE = parseColorToUIntArgb("#FFFFFF");  // white
+
+export class NodeHoverPaletteProvider implements IPointMarkerPaletteProvider {
+    public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
+    private edgeHover: EdgeHoverState;
+
+    constructor(edgeHover: EdgeHoverState) {
+        this.edgeHover = edgeHover;
+    }
+
+    public onAttached(_parentSeries: IRenderableSeries): void {}
+    public onDetached(): void {}
+
+    public overridePointMarkerArgb(
+        _xValue: number,
+        _yValue: number,
+        index: number
+    ): TPointMarkerArgb | undefined {
+        if (index === this.edgeHover.hoveredNodeIdx) {
+            return { fill: HOVER_FILL, stroke: HOVER_STROKE };
+        }
+        return undefined;
     }
 }

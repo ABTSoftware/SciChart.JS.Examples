@@ -19,6 +19,7 @@ import {
     EdgeHoverState,
     NodeTooltipModifier,
     NodeDragModifier,
+    NodeHoverPaletteProvider,
     DragStateRef,
 } from "./nodeModifiers";
 import { AIRPORTS, ROUTES } from "./airportData";
@@ -146,6 +147,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             stroke: "#47bde6",
             strokeThickness: 1.5,
         }),
+        paletteProvider: new NodeHoverPaletteProvider(edgeHover),
     }));
 
     const dragState: DragStateRef = { current: null };
