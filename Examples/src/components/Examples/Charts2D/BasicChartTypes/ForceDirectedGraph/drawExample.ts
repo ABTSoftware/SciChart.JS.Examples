@@ -154,10 +154,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     let running = true;
     let loopAlive = false;
     let autoZoomed = false;
-    let animFrameId: number;
+    let animFrameId: number = 0;
 
     function frame() {
-        if (!running) { loopAlive = false; return; }
+        if (!running || sciChartSurface.isDeleted) { loopAlive = false; return; }
 
         const simActive = alpha >= 0.001 || !!dragState.current;
 
@@ -228,7 +228,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         wasmContext,
         stopAnimation: () => {
             running = false;
-            cancelAnimationFrame(animFrameId);
+            if (animFrameId) cancelAnimationFrame(animFrameId);
         },
     };
 };
