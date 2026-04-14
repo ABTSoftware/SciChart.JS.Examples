@@ -24,3 +24,5 @@ Examples/exampleInfo.*
 .aider*
 Examples/logs
 Examples/logs/all.log
+
+/docs/
