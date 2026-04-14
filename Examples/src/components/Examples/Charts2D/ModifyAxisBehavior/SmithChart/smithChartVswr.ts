@@ -3,8 +3,6 @@ import {
     ArcAnnotation,
     CustomAnnotation,
     ECoordinateMode,
-    EHorizontalAnchorPoint,
-    EVerticalAnchorPoint,
     ChartModifierBase2D,
     ModifierMouseArgs,
     EExecuteOn,
@@ -34,10 +32,11 @@ class SmithVswrModifier extends ChartModifierBase2D {
         if (!this.checkExecuteConditions(args).isPrimary) return;
         const xCalc = this.parentSurface.xAxes.get(0).getCurrentCoordinateCalculator();
         const yCalc = this.parentSurface.yAxes.get(0).getCurrentCoordinateCalculator();
+        const svr = this.parentSurface.seriesViewRect;
         const hx = xCalc.getCoordinate(this.handleRe);
         const hy = yCalc.getCoordinate(0);
-        const dx = args.mousePoint.x - hx;
-        const dy = args.mousePoint.y - hy;
+        const dx = args.mousePoint.x - svr.left - hx;
+        const dy = args.mousePoint.y - svr.top - hy;
         if (dx * dx + dy * dy <= 12 * 12) {
             this.dragging = true;
             args.handled = true;
@@ -48,7 +47,8 @@ class SmithVswrModifier extends ChartModifierBase2D {
         super.modifierMouseMove(args);
         if (!this.dragging) return;
         const xCalc = this.parentSurface.xAxes.get(0).getCurrentCoordinateCalculator();
-        const re = Math.min(Math.max(xCalc.getDataValue(args.mousePoint.x), 0.001), 0.999);
+        const svr = this.parentSurface.seriesViewRect;
+        const re = Math.min(Math.max(xCalc.getDataValue(args.mousePoint.x - svr.left), 0.001), 0.999);
         const vswr = (1 + re) / (1 - re);
         this.dispatch({ type: "SET_VSWR", vswr });
         args.handled = true;
@@ -91,9 +91,7 @@ export class SmithVswrAdapter {
             y1: 0,
             xCoordinateMode: ECoordinateMode.DataValue,
             yCoordinateMode: ECoordinateMode.DataValue,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-            verticalAnchorPoint: EVerticalAnchorPoint.Center,
-            svgString: `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"><circle cx="6" cy="6" r="4" fill="#FFAA00" stroke="#ffffff" stroke-width="1.5"/></svg>`,
+            svgString: `<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1" style="overflow:visible"><circle cx="0" cy="0" r="4" fill="#FFAA00" stroke="#ffffff" stroke-width="1.5"/></svg>`,
         });
         surface.annotations.add(this.handle);
 

@@ -41,14 +41,8 @@ export function xArcAngles(absX: number, isPositive: boolean): { startAngle: num
     return { startAngle, endAngle };
 }
 
-/** Normalize an angle to [0, 2π) */
-function normalizeShaderAngle(a: number): number {
-    let n = a % (2 * Math.PI);
-    if (n < 0) n += 2 * Math.PI;
-    return n;
-}
-
 import { NumericAxis, TSciChart, Rect, DpiHelper } from "scichart";
+import { SciChartSurfaceBase } from "scichart/Charting/Visuals/SciChartSurfaceBase";
 import { drawRimTicks, getRimLabelOffset } from "./smithChartRim";
 import { WebGlRenderContext2D, ELineDrawMode } from "scichart/Charting/Drawing/WebGlRenderContext2D";
 import { SCRTPen } from "scichart/types/TSciChart";
@@ -367,7 +361,11 @@ export class SmithChartResistanceAxis extends NumericAxis {
         const wasmContext = this.webAssemblyContext2D;
         const xCalc = this.getCurrentCoordinateCalculator();
         const yCalc = this.sibling.getCurrentCoordinateCalculator();
-        const vpHeight = this.parentSurface.renderSurface.viewportSize.height;
+        // Use master canvas height so the y-flip matches the C++ matTransform.
+        // viewportSize tracks the visible (target) canvas which shrinks on resize;
+        // the master WebGL canvas only grows, and SCRTSetMainWindowSize uses its height.
+        const vpHeight =
+            SciChartSurfaceBase.domMasterCanvas?.height ?? this.parentSurface.renderSurface.viewportSize.height;
         const clipRect = Rect.intersect(this.parentSurface.clipRect, this.parentSurface.seriesViewRect);
         const leftPad = (this.parentSurface.padding?.left ?? 0) * DpiHelper.PIXEL_RATIO;
         const topPad = (this.parentSurface.padding?.top ?? 0) * DpiHelper.PIXEL_RATIO;
@@ -516,7 +514,11 @@ export class SmithChartReactanceAxis extends NumericAxis {
         const wasmContext = this.webAssemblyContext2D;
         const xCalc = this.sibling.getCurrentCoordinateCalculator();
         const yCalc = this.getCurrentCoordinateCalculator();
-        const vpHeight = this.parentSurface.renderSurface.viewportSize.height;
+        // Use master canvas height so the y-flip matches the C++ matTransform.
+        // viewportSize tracks the visible (target) canvas which shrinks on resize;
+        // the master WebGL canvas only grows, and SCRTSetMainWindowSize uses its height.
+        const vpHeight =
+            SciChartSurfaceBase.domMasterCanvas?.height ?? this.parentSurface.renderSurface.viewportSize.height;
         const svr = this.parentSurface.seriesViewRect;
         const clipRect = Rect.intersect(this.parentSurface.clipRect, svr);
         const leftPad = (this.parentSurface.padding?.left ?? 0) * DpiHelper.PIXEL_RATIO;
@@ -534,15 +536,13 @@ export class SmithChartReactanceAxis extends NumericAxis {
         const drawArc = (absX: number, gapDistance: number) => {
             const pos = xArcCircleCenter(absX, true);
             const posAngles = xArcAngles(absX, true);
-            let posStart = normalizeShaderAngle(posAngles.startAngle);
-            let posEnd = normalizeShaderAngle(posAngles.endAngle);
-            if (posStart > posEnd) posEnd += 2 * Math.PI;
+            const posStart = posAngles.startAngle;
+            let posEnd = posAngles.endAngle;
 
             const neg = xArcCircleCenter(absX, false);
             const negAngles = xArcAngles(absX, false);
-            let negStart = normalizeShaderAngle(negAngles.startAngle);
-            let negEnd = normalizeShaderAngle(negAngles.endAngle);
-            if (negStart > negEnd) negEnd += 2 * Math.PI;
+            let negStart = negAngles.startAngle;
+            const negEnd = negAngles.endAngle;
 
             if (gapDistance > 0) {
                 const sinHalfGap = gapDistance / (2 * pos.rad);

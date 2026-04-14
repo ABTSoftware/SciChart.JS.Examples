@@ -142,6 +142,9 @@ export class SmithChainAdapter {
         if (state.chain.length > 0) return state.chain[state.chain.length - 1].toGamma;
         const startMarker = state.markers.find((m) => m.isChainStart);
         if (startMarker) return startMarker.gamma;
-        return state.chainStartGamma;
+        if (state.chainStartGamma) return state.chainStartGamma;
+        // Fall back: use the active marker as implicit chain start
+        const active = state.markers.find((m) => m.id === state.activeMarkerId);
+        return active?.gamma ?? null;
     }
 }

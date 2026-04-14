@@ -1,7 +1,14 @@
 import { NumericAxis, TSciChart, Rect, DpiHelper } from "scichart";
-import { WebGlRenderContext2D } from "scichart/Charting/Drawing/WebGlRenderContext2D";
+import { SciChartSurfaceBase } from "scichart/Charting/Visuals/SciChartSurfaceBase";
+import { WebGlRenderContext2D, ELineDrawMode } from "scichart/Charting/Drawing/WebGlRenderContext2D";
 import { SCRTPen } from "scichart/types/TSciChart";
-import { getArcParams, getVectorArcVertex, getArcVertex } from "scichart/Charting/Visuals/Helpers/NativeObject";
+import {
+    getArcParams,
+    getVectorArcVertex,
+    getArcVertex,
+    getVectorColorVertex,
+    getVertex,
+} from "scichart/Charting/Visuals/Helpers/NativeObject";
 import { SmithResistanceTickProvider, SmithReactanceTickProvider } from "./smithChartAxes";
 
 // ── Admittance resistance axis (constant-G circles) ──────────────────────────
@@ -22,6 +29,17 @@ export class SmithChartAdmittanceResistanceAxis extends NumericAxis {
         this.tickProvider = new SmithResistanceTickProvider(wasmContext) as any;
     }
 
+    // SciChart only draws grid lines for isPrimaryAxis axes. Admittance axes are
+    // always secondary (Z axes attach first). Override getter so this axis
+    // participates in grid drawing whenever it is visible, without disturbing
+    // the Z axis isPrimaryAxis state.
+    override get isPrimaryAxis(): boolean {
+        return this.isVisible;
+    }
+    override set isPrimaryAxis(_: boolean) {
+        // Suppress: visibility-based participation is managed by the getter above.
+    }
+
     override measure(): void {
         super.measure();
         this.sibling = (this.parentSurface?.yAxes?.get(1) as SmithChartAdmittanceReactanceAxis) ?? null;
@@ -37,7 +55,8 @@ export class SmithChartAdmittanceResistanceAxis extends NumericAxis {
         const wasmContext = this.webAssemblyContext2D;
         const xCalc = this.getCurrentCoordinateCalculator();
         const yCalc = this.sibling.getCurrentCoordinateCalculator();
-        const vpHeight = this.parentSurface.renderSurface.viewportSize.height;
+        const vpHeight =
+            SciChartSurfaceBase.domMasterCanvas?.height ?? this.parentSurface.renderSurface.viewportSize.height;
         const clipRect = Rect.intersect(this.parentSurface.clipRect, this.parentSurface.seriesViewRect);
         const leftPad = (this.parentSurface.padding?.left ?? 0) * DpiHelper.PIXEL_RATIO;
         const topPad = (this.parentSurface.padding?.top ?? 0) * DpiHelper.PIXEL_RATIO;
@@ -57,13 +76,15 @@ export class SmithChartAdmittanceResistanceAxis extends NumericAxis {
             const cx_px = xCalc.getCoordinate(cx);
             const cy_native = vpHeight - yCalc.getCoordinate(0);
             const radius_px = Math.abs(xCalc.getCoordWidth(rad));
+            // Gap must be centered at angle π (toward the tangent point (-1,0)),
+            // not at angle 0 as in the Z resistance circles.
             arc.MakeCircularArc(
                 getArcParams(
                     wasmContext,
                     cx_px,
                     cy_native,
-                    arcGap,
-                    2 * Math.PI - arcGap,
+                    Math.PI + arcGap,
+                    3 * Math.PI - arcGap,
                     radius_px,
                     0,
                     1,
@@ -78,6 +99,42 @@ export class SmithChartAdmittanceResistanceAxis extends NumericAxis {
             for (const g of tp.getMajorTicks(0, 0, null) as number[]) {
                 drawGCircle(g, 0); // full circles
             }
+
+            // Unit circle (radius=1, centre=(0,0)) — drawn here so it appears in Y-only mode
+            const ucVec = getVectorArcVertex(wasmContext);
+            const ucArc = getArcVertex(wasmContext);
+            ucArc.MakeCircularArc(
+                getArcParams(
+                    wasmContext,
+                    xCalc.getCoordinate(0),
+                    vpHeight - yCalc.getCoordinate(0),
+                    0,
+                    2 * Math.PI,
+                    Math.abs(xCalc.getCoordWidth(1)),
+                    0,
+                    1,
+                    aspectRatio,
+                    linesPen.m_fThickness * 2
+                )
+            );
+            ucVec.push_back(ucArc);
+            renderContext.drawArcs(ucVec, 0, 0, 0, clipRect, linesPen, undefined, leftPad, topPad);
+
+            // Real axis line from (-1,0) to (1,0)
+            const vertices = getVectorColorVertex(wasmContext);
+            const vertex = getVertex(wasmContext, 0, 0);
+            vertex.SetPosition(xCalc.getCoordinate(-1), yCalc.getCoordinate(0));
+            vertices.push_back(vertex);
+            vertex.SetPosition(xCalc.getCoordinate(1), yCalc.getCoordinate(0));
+            vertices.push_back(vertex);
+            renderContext.drawLinesNative(
+                vertices,
+                linesPen,
+                ELineDrawMode.DiscontinuousLine,
+                clipRect,
+                leftPad,
+                topPad
+            );
         } else {
             // Minor ticks are encoded as flat pairs [g, bClip, g, bClip, ...]
             const minor = tp.getMinorTicks(0, 0, null) as number[];
@@ -113,6 +170,13 @@ export class SmithChartAdmittanceReactanceAxis extends NumericAxis {
         this.tickProvider = new SmithReactanceTickProvider(wasmContext) as any;
     }
 
+    override get isPrimaryAxis(): boolean {
+        return this.isVisible;
+    }
+    override set isPrimaryAxis(_: boolean) {
+        // Suppress: see SmithChartAdmittanceResistanceAxis for rationale.
+    }
+
     override measure(): void {
         super.measure();
         this.sibling = (this.parentSurface?.xAxes?.get(1) as SmithChartAdmittanceResistanceAxis) ?? null;
@@ -128,7 +192,8 @@ export class SmithChartAdmittanceReactanceAxis extends NumericAxis {
         const wasmContext = this.webAssemblyContext2D;
         const xCalc = this.sibling.getCurrentCoordinateCalculator();
         const yCalc = this.getCurrentCoordinateCalculator();
-        const vpHeight = this.parentSurface.renderSurface.viewportSize.height;
+        const vpHeight =
+            SciChartSurfaceBase.domMasterCanvas?.height ?? this.parentSurface.renderSurface.viewportSize.height;
         const clipRect = Rect.intersect(this.parentSurface.clipRect, this.parentSurface.seriesViewRect);
         const leftPad = (this.parentSurface.padding?.left ?? 0) * DpiHelper.PIXEL_RATIO;
         const topPad = (this.parentSurface.padding?.top ?? 0) * DpiHelper.PIXEL_RATIO;
@@ -153,25 +218,15 @@ export class SmithChartAdmittanceReactanceAxis extends NumericAxis {
             const yInt_pos = (2 * absB) / (1 + bv2);
             const yInt_neg = -yInt_pos;
 
-            // Angles from centre to (-1,0) and to unit circle intersection
-            // Positive B: centre is at (-1, rad)
-            //   angle to (-1,0): atan2(0 - rad, -1 - (-1)) = atan2(-rad, 0) = -π/2
-            //   angle to intersection: atan2(yInt_pos - rad, xInt - (-1))
-            const thetaStart_pos = Math.atan2(-cy_pos, 0); // = -π/2
-            const thetaEnd_pos = Math.atan2(yInt_pos - cy_pos, xInt - cx_data);
-
-            // Negative B: centre is at (-1, -rad)
-            // Render CCW from unit-circle intersection to (-1,0) — the short arc inside the unit disk.
-            // (Swapped vs positive-B to get the correct short arc via the CCW renderer.)
-            const thetaStart_neg = Math.atan2(yInt_neg - cy_neg, xInt - cx_data); // intersection
-            const thetaEnd_neg = Math.atan2(-cy_neg, 0); // angle to (-1,0) = +π/2
-
-            let posStart = thetaStart_pos;
-            let posEnd = thetaEnd_pos;
+            // Angles from centre to arc endpoints (raw atan2 — shader handles negative angles).
+            // Positive B: centre (-1, +1/b); arc from (-1,0) CCW to unit-circle intersection.
+            let posStart = Math.atan2(-cy_pos, 0); // = -π/2
+            let posEnd = Math.atan2(yInt_pos - cy_pos, xInt - cx_data);
             while (posEnd <= posStart) posEnd += 2 * Math.PI;
 
-            let negStart = thetaStart_neg;
-            let negEnd = thetaEnd_neg;
+            // Negative B: centre (-1, -1/b); arc CCW from unit-circle intersection to (-1,0).
+            const negStart = Math.atan2(yInt_neg - cy_neg, xInt - cx_data);
+            let negEnd = Math.atan2(-cy_neg, 0); // = +π/2
             while (negEnd <= negStart) negEnd += 2 * Math.PI;
 
             if (gapDistance > 0) {

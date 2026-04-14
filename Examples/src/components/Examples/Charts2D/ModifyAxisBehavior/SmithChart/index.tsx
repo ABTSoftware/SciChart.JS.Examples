@@ -18,6 +18,8 @@ import {
     Divider,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import { drawExample } from "./drawExample";
 import { useSmithChart, SmithState, GammaPoint, ComponentType } from "./useSmithChart";
 import { computeReadouts } from "./smithChartMarkers";
@@ -97,6 +99,16 @@ export default function SmithChartComponent() {
                                 sx={{ border: `1px solid ${colour}`, "&:before": { display: "none" } }}
                             >
                                 <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ minHeight: 32, py: 0 }}>
+                                    <IconButton
+                                        size="small"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            dispatch({ type: "REMOVE_MARKER", id: marker.id });
+                                        }}
+                                        sx={{ mr: 0.5, p: "2px" }}
+                                    >
+                                        <CloseIcon fontSize="small" />
+                                    </IconButton>
                                     <Chip
                                         label={marker.label}
                                         size="small"

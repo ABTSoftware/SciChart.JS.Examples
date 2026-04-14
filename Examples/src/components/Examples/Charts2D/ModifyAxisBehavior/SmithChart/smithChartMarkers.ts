@@ -160,9 +160,7 @@ function spokeTextId(markerId: string) {
 // ── CustomAnnotation SVG for a coloured dot ───────────────────────────────────
 
 function makeDotSvg(color: string): string {
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14">
-  <circle cx="7" cy="7" r="5" fill="${color}" stroke="#ffffff" stroke-width="2"/>
-</svg>`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1" style="overflow:visible"><circle cx="0" cy="0" r="5" fill="${color}" stroke="#ffffff" stroke-width="2"/></svg>`;
 }
 
 // ── SmithClickModifier ────────────────────────────────────────────────────────
@@ -228,18 +226,22 @@ class SmithClickModifier extends ChartModifierBase2D {
     private pixelToData(px: number, py: number): { re: number; im: number } {
         const xCalc = this.parentSurface.xAxes.get(0).getCurrentCoordinateCalculator();
         const yCalc = this.parentSurface.yAxes.get(0).getCurrentCoordinateCalculator();
-        return { re: xCalc.getDataValue(px), im: yCalc.getDataValue(py) };
+        const svr = this.parentSurface.seriesViewRect;
+        return { re: xCalc.getDataValue(px - svr.left), im: yCalc.getDataValue(py - svr.top) };
     }
 
     private hitTestMarkers(px: number, py: number): string | null {
         const RADIUS_PX = 12;
+        const xCalc = this.parentSurface.xAxes.get(0).getCurrentCoordinateCalculator();
+        const yCalc = this.parentSurface.yAxes.get(0).getCurrentCoordinateCalculator();
+        const svr = this.parentSurface.seriesViewRect;
+        const localX = px - svr.left;
+        const localY = py - svr.top;
         for (const [id, pos] of this.markerPositions) {
-            const xCalc = this.parentSurface.xAxes.get(0).getCurrentCoordinateCalculator();
-            const yCalc = this.parentSurface.yAxes.get(0).getCurrentCoordinateCalculator();
             const sx = xCalc.getCoordinate(pos.re);
             const sy = yCalc.getCoordinate(pos.im);
-            const dx = px - sx;
-            const dy = py - sy;
+            const dx = localX - sx;
+            const dy = localY - sy;
             if (dx * dx + dy * dy <= RADIUS_PX * RADIUS_PX) {
                 return id;
             }
@@ -372,8 +374,6 @@ export class SmithMarkersAdapter {
             y1: marker.gamma.im,
             xCoordinateMode: ECoordinateMode.DataValue,
             yCoordinateMode: ECoordinateMode.DataValue,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-            verticalAnchorPoint: EVerticalAnchorPoint.Center,
             svgString: makeDotSvg(color),
         });
     }
