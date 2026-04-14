@@ -18,7 +18,7 @@ const metaData: IExampleMetadata =
                 pageTitle: "JavaScript Force Directed Graph",
                 metaDescription:
                     "JavaScript Force Directed Graph demo by SciChart.js. Visualize network graphs with physics simulation, interactive node dragging, and hover tooltips.",
-                markdownContent: null,
+                markdownContent: "## Force Directed Graph (JavaScript)\n\n### Overview\nThis example demonstrates a **Force Directed Graph** built with SciChart.js, visualizing ~60 US airports connected by ~2300 flight routes. The graph uses a custom physics simulation to position nodes, with geographic anchoring that keeps airports near their real-world lat/lon positions.\n\n### Technical Implementation\nThe chart is initialized using `SciChartSurface.create()`. Edges are rendered using `FastLineSegmentRenderableSeries` with an `XyxyDataSeries` (two endpoints per segment). Airport nodes are rendered as `XyScatterRenderableSeries` with `EllipsePointMarker`. The physics loop uses `requestAnimationFrame` and applies repulsion, spring, and geographic anchor forces each tick.\n\n### Interactivity\nTwo custom `ChartModifierBase2D` subclasses provide interactivity: `NodeTooltipModifier` highlights connected routes and labels neighbours on hover, and `NodeDragModifier` allows dragging nodes to explore the graph structure. Standard `ZoomPanModifier` and `MouseWheelZoomModifier` are also included.",
             },
             react: {
                 subtitle:
@@ -27,7 +27,7 @@ const metaData: IExampleMetadata =
                 pageTitle: "React Force Directed Graph",
                 metaDescription:
                     "React Force Directed Graph demo by SciChart.js. Visualize network graphs with physics simulation, interactive node dragging, and hover tooltips.",
-                markdownContent: null,
+                markdownContent: "## Force Directed Graph (React)\n\n### Overview\nThis example demonstrates a **Force Directed Graph** built with SciChart.js in React, visualizing ~60 US airports connected by ~2300 flight routes. The graph uses a custom physics simulation to position nodes, with geographic anchoring that keeps airports near their real-world lat/lon positions.\n\n### Technical Implementation\nThe chart is initialized through the `<SciChartReact/>` component using an `initChart` prop pointing to the `drawExample` function. Edges are rendered using `FastLineSegmentRenderableSeries` with an `XyxyDataSeries`. Airport nodes are rendered as `XyScatterRenderableSeries` with `EllipsePointMarker`. The physics loop uses `requestAnimationFrame` and applies repulsion, spring, and geographic anchor forces each tick.\n\n### Interactivity\nTwo custom `ChartModifierBase2D` subclasses provide interactivity: `NodeTooltipModifier` highlights connected routes and labels neighbours on hover, and `NodeDragModifier` allows dragging nodes to explore the graph structure. Standard `ZoomPanModifier` and `MouseWheelZoomModifier` are also included.",
             },
             angular: {
                 subtitle:
@@ -36,16 +36,10 @@ const metaData: IExampleMetadata =
                 pageTitle: "Angular Force Directed Graph",
                 metaDescription:
                     "Angular Force Directed Graph demo by SciChart.js. Visualize network graphs with physics simulation, interactive node dragging, and hover tooltips.",
-                markdownContent: null,
+                markdownContent: "## Force Directed Graph (Angular)\n\n### Overview\nThis example demonstrates a **Force Directed Graph** built with SciChart.js in Angular, visualizing ~60 US airports connected by ~2300 flight routes. The graph uses a custom physics simulation to position nodes, with geographic anchoring that keeps airports near their real-world lat/lon positions.\n\n### Technical Implementation\nThe chart is initialized using the `[initChart]` property binding with the `drawExample` function. Edges are rendered using `FastLineSegmentRenderableSeries` with an `XyxyDataSeries`. Airport nodes are rendered as `XyScatterRenderableSeries` with `EllipsePointMarker`. The physics loop uses `requestAnimationFrame` and applies repulsion, spring, and geographic anchor forces each tick.\n\n### Interactivity\nTwo custom `ChartModifierBase2D` subclasses provide interactivity: `NodeTooltipModifier` highlights connected routes and labels neighbours on hover, and `NodeDragModifier` allows dragging nodes to explore the graph structure. Standard `ZoomPanModifier` and `MouseWheelZoomModifier` are also included.",
             },
         },
-        documentationLinks: [
-            {
-                href: "https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/",
-                title: "SciChart.js Chart Types documentation",
-                linkTitle: "SciChart.js Chart Types Documentation",
-            },
-        ],
+        documentationLinks: [],
         path: "force-directed-graph",
         metaKeywords: "force directed, graph, network, simulation, airports, routes, physics, javascript, webgl",
         onWebsite: true,
