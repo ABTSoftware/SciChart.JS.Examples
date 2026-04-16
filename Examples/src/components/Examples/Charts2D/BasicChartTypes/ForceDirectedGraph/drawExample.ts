@@ -10,6 +10,7 @@ import {
     ZoomPanModifier,
     ZoomExtentsModifier,
     MouseWheelZoomModifier,
+    PinchZoomModifier,
     EAutoRange,
 } from "scichart";
 import { appTheme } from "../../../theme";
@@ -112,8 +113,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         theme: appTheme.SciChartJsTheme,
     });
 
-    const xAxis = new NumericAxis(wasmContext, { isVisible: false, autoRange: EAutoRange.Never });
-    const yAxis = new NumericAxis(wasmContext, { isVisible: false, autoRange: EAutoRange.Never });
+    const xAxis = new NumericAxis(wasmContext, {
+        isVisible: false,
+        autoRange: EAutoRange.Never,
+        visibleRangeLimit: new NumberRange(-600, 600),
+    });
+    const yAxis = new NumericAxis(wasmContext, {
+        isVisible: false,
+        autoRange: EAutoRange.Never,
+        visibleRangeLimit: new NumberRange(-600, 600),
+    });
     xAxis.visibleRange = new NumberRange(-300, 300);
     yAxis.visibleRange = new NumberRange(-300, 300);
     sciChartSurface.xAxes.add(xAxis);
@@ -141,8 +150,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(new XyScatterRenderableSeries(wasmContext, {
         dataSeries: nodeDataSeries,
         pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 10,
-            height: 10,
+            width: 14,
+            height: 14,
             fill: "#274b92",
             stroke: "#47bde6",
             strokeThickness: 1.5,
@@ -220,7 +229,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new NodeDragModifier(nodes, dragState, () => { alpha = Math.max(alpha, 0.3); startLoop(); }),
         new ZoomPanModifier(),
         new ZoomExtentsModifier(),
-        new MouseWheelZoomModifier()
+        new MouseWheelZoomModifier(),
+        new PinchZoomModifier()
     );
 
     startLoop();

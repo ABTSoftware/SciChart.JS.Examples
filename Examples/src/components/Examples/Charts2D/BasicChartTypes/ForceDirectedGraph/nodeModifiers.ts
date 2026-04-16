@@ -40,9 +40,10 @@ export class EdgeHoverState {
 
 // ─── Node tooltip modifier ───────────────────────────────────────────────────
 
-const TOOLTIP_SNAP_PIXELS = 12;
+const TOOLTIP_SNAP_PIXELS = 24;
 const LABEL_TEXT_COLOR = "#ffffff";
 const LABEL_BACKGROUND_COLOR = "rgba(23,36,61,0.92)";
+const LABEL_OFFSET_PIXELS = 20; // offset from node center so labels appear above the finger on touch
 
 export class NodeTooltipModifier extends ChartModifierBase2D {
     public readonly type = EChart2DModifierType.Custom;
@@ -74,7 +75,7 @@ export class NodeTooltipModifier extends ChartModifierBase2D {
                 xCoordinateMode: ECoordinateMode.DataValue,
                 yCoordinateMode: ECoordinateMode.DataValue,
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-                verticalAnchorPoint: EVerticalAnchorPoint.Center,
+                verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
                 textColor: LABEL_TEXT_COLOR,
                 fontSize: 14,
                 fontFamily: "sans-serif",
@@ -104,15 +105,17 @@ export class NodeTooltipModifier extends ChartModifierBase2D {
 
     private showLabels(hoveredIdx: number): void {
         const xCalc = this.parentSurface.xAxes.get(0).getCurrentCoordinateCalculator();
-        const offsetDataUnits = Math.abs(xCalc.getDataValue(8) - xCalc.getDataValue(0));
+        const yCalc = this.parentSurface.yAxes.get(0).getCurrentCoordinateCalculator();
+        const offsetX = Math.abs(xCalc.getDataValue(LABEL_OFFSET_PIXELS) - xCalc.getDataValue(0));
+        const offsetY = Math.abs(yCalc.getDataValue(0) - yCalc.getDataValue(LABEL_OFFSET_PIXELS));
         const toLabel = [hoveredIdx, ...this.adjacency[hoveredIdx]];
         let poolIdx = 0;
         for (const nodeIdx of toLabel) {
             const node = this.nodes[nodeIdx];
             const a = this.pool[poolIdx++];
             a.text = node.label;
-            a.x1 = node.x + offsetDataUnits;
-            a.y1 = node.y;
+            a.x1 = node.x + offsetX;
+            a.y1 = node.y + offsetY;
             a.isHidden = false;
         }
         for (; poolIdx < this.pool.length; poolIdx++) {
@@ -126,8 +129,7 @@ export class NodeTooltipModifier extends ChartModifierBase2D {
         }
     }
 
-    public modifierMouseMove(args: ModifierMouseArgs): void {
-        super.modifierMouseMove(args);
+    private hitTestNode(args: ModifierMouseArgs): void {
         const pt = this.toDataCoords(args);
         if (!pt) { this.edgePalette.hoveredNodeIdx = -1; this.hideAll(); return; }
 
@@ -160,6 +162,27 @@ export class NodeTooltipModifier extends ChartModifierBase2D {
         }
     }
 
+    public modifierMouseDown(args: ModifierMouseArgs): void {
+        super.modifierMouseDown(args);
+        this.hitTestNode(args);
+    }
+
+    public modifierMouseMove(args: ModifierMouseArgs): void {
+        super.modifierMouseMove(args);
+        this.hitTestNode(args);
+    }
+
+    // Clear highlight when finger lifts (no mouseLeave on touch)
+    public modifierMouseUp(args: ModifierMouseArgs): void {
+        super.modifierMouseUp(args);
+        if (this.lastHoveredIdx !== -1) {
+            this.edgePalette.hoveredNodeIdx = -1;
+            this.hideAll();
+            this.lastHoveredIdx = -1;
+            this.requestRedraw();
+        }
+    }
+
     public modifierMouseWheel(args: ModifierMouseArgs): void {
         super.modifierMouseWheel(args);
         if (this.lastHoveredIdx !== -1) {
@@ -188,13 +211,16 @@ interface DragState {
 
 export type DragStateRef = { current: DragState | null };
 
-const DRAG_SNAP_PIXELS = 8;
+const DRAG_SNAP_PIXELS = 24;
+const DRAG_THRESHOLD_PIXELS = 6; // minimum movement before committing to a drag (prevents accidental drags on tap)
 
 export class NodeDragModifier extends ChartModifierBase2D {
     public readonly type = EChart2DModifierType.Custom;
     private nodes: SimNode[];
     private dragState: DragStateRef;
     private reheat: () => void;
+    private pendingNodeIdx = -1;       // node hit on mouseDown, not yet committed to drag
+    private downPoint: { x: number; y: number } | null = null; // screen-space mouseDown position
 
     constructor(nodes: SimNode[], dragState: DragStateRef, reheat: () => void) {
         super();
@@ -229,14 +255,34 @@ export class NodeDragModifier extends ChartModifierBase2D {
         const snapDataUnits = Math.abs(xCalc.getDataValue(DRAG_SNAP_PIXELS) - xCalc.getDataValue(0));
 
         if (closestIdx >= 0 && minDist <= snapDataUnits) {
-            this.dragState.current = { nodeIdx: closestIdx, dataX: pt.x, dataY: pt.y };
-            this.reheat();
-            args.handled = true;
+            // Don't start drag yet — wait until finger moves past threshold
+            this.pendingNodeIdx = closestIdx;
+            this.downPoint = { x: args.mousePoint.x, y: args.mousePoint.y };
+            args.handled = true; // prevent ZoomPanModifier from starting a pan
         }
     }
 
     public modifierMouseMove(args: ModifierMouseArgs): void {
         super.modifierMouseMove(args);
+
+        // If we have a pending node but haven't committed to drag, check threshold
+        if (this.pendingNodeIdx >= 0 && !this.dragState.current && this.downPoint) {
+            const dx = args.mousePoint.x - this.downPoint.x;
+            const dy = args.mousePoint.y - this.downPoint.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist >= DRAG_THRESHOLD_PIXELS) {
+                // Commit to drag
+                const pt = this.toDataCoords(args);
+                if (pt) {
+                    this.dragState.current = { nodeIdx: this.pendingNodeIdx, dataX: pt.x, dataY: pt.y };
+                    this.reheat();
+                }
+                this.downPoint = null;
+            }
+            args.handled = true;
+            return;
+        }
+
         if (!this.dragState.current) return;
         const pt = this.toDataCoords(args);
         if (!pt) return;
@@ -247,6 +293,8 @@ export class NodeDragModifier extends ChartModifierBase2D {
 
     public modifierMouseUp(args: ModifierMouseArgs): void {
         super.modifierMouseUp(args);
+        this.pendingNodeIdx = -1;
+        this.downPoint = null;
         if (!this.dragState.current) return;
         this.dragState.current = null;
         this.reheat();
@@ -256,14 +304,8 @@ export class NodeDragModifier extends ChartModifierBase2D {
 
 // ─── Node hover palette provider ─────────────────────────────────────────────
 
-// const HOVER_FILL = parseColorToUIntArgb("#634e96");   // SciChart purple
-// const HOVER_STROKE = parseColorToUIntArgb("#634e96");   // SciChart purple
-
-const HOVER_FILL = parseColorToUIntArgb("#47bde6");   // SciChart purple
-const HOVER_STROKE = parseColorToUIntArgb("#274b92");   // SciChart purple
-
-// #47bde6  #274b92
-
+const HOVER_FILL = parseColorToUIntArgb("#47bde6");
+const HOVER_STROKE = parseColorToUIntArgb("#274b92");
 
 export class NodeHoverPaletteProvider implements IPointMarkerPaletteProvider {
     public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
