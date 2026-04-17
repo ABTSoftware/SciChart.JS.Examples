@@ -1,0 +1,23 @@
+{
+  "name": "theming-2d",
+  "version": "1.0.0",
+  "description": "Theming 2D Demo - Custom Light Theme with multiple chart types",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "scichart": "^5.1.4"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^14.0.0",
+    "ts-loader": "^9.5.7",
+    "typescript": "^6.0.3",
+    "webpack": "^5.106.2",
+    "webpack-cli": "^7.0.2",
+    "webpack-dev-server": "^5.2.3"
+  }
+}
