@@ -160,6 +160,7 @@ export default [
     "../Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart",
     "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo",
     "../Examples/FeaturedApps/ScientificCharts/PhasorDiagramChart",
+    "../Examples/FeaturedApps/ScientificCharts/EyeDiagramChart",
     "../Examples/FeaturedApps/ScientificCharts/Semiconductors",
     "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D",
     "../Examples/FeaturedApps/ScientificCharts/WaferAnalysis",
