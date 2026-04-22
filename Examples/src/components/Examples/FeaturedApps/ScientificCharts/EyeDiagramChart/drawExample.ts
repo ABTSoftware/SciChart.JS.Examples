@@ -121,6 +121,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             axisTitle: "Time (UI)",
+            axisTitleStyle: { fontSize: 11 },
             visibleRange: new NumberRange(0, 2),
             autoRange: EAutoRange.Never,
             drawMajorGridLines: false,
@@ -132,6 +133,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             axisTitle: "Voltage (V)",
+            axisTitleStyle: { fontSize: 11 },
             visibleRange: new NumberRange(-1.5, 1.5),
             autoRange: EAutoRange.Never,
             drawMajorGridLines: false,
