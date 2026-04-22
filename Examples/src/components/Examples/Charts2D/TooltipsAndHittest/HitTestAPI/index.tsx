@@ -30,15 +30,9 @@ export default function ChartComponent() {
                 color="primary"
                 aria-label="small outlined button group"
             >
-                <ToggleButton value={HIT_TEST_DATAPOINT}>
-                    Hit-Test Datapoint
-                </ToggleButton>
-                <ToggleButton value={HIT_TEST_X_SLICE}>
-                    Hit-Test X-Slice
-                </ToggleButton>
-                <ToggleButton value={HIT_TEST}>
-                    Hit-Test Series Body
-                </ToggleButton>
+                <ToggleButton value={HIT_TEST_DATAPOINT}>Hit-Test Datapoint</ToggleButton>
+                <ToggleButton value={HIT_TEST_X_SLICE}>Hit-Test X-Slice</ToggleButton>
+                <ToggleButton value={HIT_TEST}>Hit-Test Series Body</ToggleButton>
             </ToggleButtonGroup>
             <SciChartReact
                 initChart={drawExample}

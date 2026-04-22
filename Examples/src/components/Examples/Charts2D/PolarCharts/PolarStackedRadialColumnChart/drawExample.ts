@@ -5,9 +5,9 @@ import {
     XyDataSeries,
     PolarNumericAxis,
     SciChartPolarSurface,
-    EPolarAxisMode, 
-    NumberRange, 
-    EAxisAlignment, 
+    EPolarAxisMode,
+    NumberRange,
+    EAxisAlignment,
     EXyDirection,
     PolarCategoryAxis,
     TextLabelProvider,
@@ -18,22 +18,22 @@ import {
     ELegendPlacement,
     GradientParams,
     Point,
-    WaveAnimation
+    WaveAnimation,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
 const DATA: Record<string, number[]> = {
-    "Norway": [122, 125, 111],
-    "USA": [105, 110, 88],
-    "Germany": [92, 88, 60],
-    "Canada": [73, 64, 62],
-    "Austria": [64, 81, 87],
-    "Sweden": [57, 46, 55],
-    "Switzerland": [56, 45, 52],
-    "Russia": [47, 38, 35],
-    "Netherlands": [45, 44, 41],
-    "Finland": [43, 55, 59]
-}
+    Norway: [122, 125, 111],
+    USA: [105, 110, 88],
+    Germany: [92, 88, 60],
+    Canada: [73, 64, 62],
+    Austria: [64, 81, 87],
+    Sweden: [57, 46, 55],
+    Switzerland: [56, 45, 52],
+    Russia: [47, 38, 35],
+    Netherlands: [45, 44, 41],
+    Finland: [43, 55, 59],
+};
 const COUNTRIES = Object.keys(DATA);
 
 const MEDALS = [
@@ -48,7 +48,7 @@ const MEDALS = [
     {
         type: "Bronze",
         color: appTheme.MutedRed,
-    }
+    },
 ];
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -57,7 +57,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         title: "Winter Olympic medals per country",
         titleStyle: {
             fontSize: 24,
-        }
+        },
     });
 
     // Create Polar, Radial axes
@@ -96,20 +96,20 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         autoTicks: false,
         majorDelta: 25,
         startAngle: Math.PI,
-        totalAngle: Math.PI * 3 / 2 // 270 degrees, 3/4 of the circle
+        totalAngle: (Math.PI * 3) / 2, // 270 degrees, 3/4 of the circle
     });
     sciChartSurface.yAxes.add(yAxis);
 
     // SERIES
     const collection = new PolarStackedColumnCollection(wasmContext);
     collection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
-    
+
     const xValues = Array.from({ length: COUNTRIES.length }, (_, i) => i);
-    for(let i = 0; i < 3; i++){
+    for (let i = 0; i < 3; i++) {
         const polarColumn = new PolarStackedColumnRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues,
-                yValues: COUNTRIES.map(country => DATA[country][i]),
+                yValues: COUNTRIES.map((country) => DATA[country][i]),
                 dataSeriesName: MEDALS[i].type,
             }),
             // stroke: "white",
@@ -130,7 +130,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new PolarPanModifier({
             xyDirection: EXyDirection.XyDirection,
             zoomSize: true,
-            growFactor: 1
+            growFactor: 1,
         }),
         new PolarZoomExtentsModifier(),
         new PolarMouseWheelZoomModifier(),

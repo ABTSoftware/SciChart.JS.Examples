@@ -30,12 +30,8 @@ export default function PercentageChange() {
                 color="primary"
                 aria-label="small outlined button group"
             >
-                <ToggleButton value={true}>
-                    Percentage Change
-                </ToggleButton>
-                <ToggleButton value={false}>
-                    Original Data
-                </ToggleButton>
+                <ToggleButton value={true}>Percentage Change</ToggleButton>
+                <ToggleButton value={false}>Original Data</ToggleButton>
             </ToggleButtonGroup>
             {/* // Usage in SciChartReact */}
             <SciChartReact

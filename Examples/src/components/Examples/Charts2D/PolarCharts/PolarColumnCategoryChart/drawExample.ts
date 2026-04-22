@@ -6,9 +6,9 @@ import {
     XyDataSeries,
     PolarNumericAxis,
     SciChartPolarSurface,
-    EPolarAxisMode, 
-    NumberRange, 
-    EAxisAlignment, 
+    EPolarAxisMode,
+    NumberRange,
+    EAxisAlignment,
     EPolarLabelMode,
     PolarCategoryAxis,
     DefaultPaletteProvider,
@@ -39,28 +39,33 @@ class ColumnPaletteProvider extends DefaultPaletteProvider {
     }
 
     overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity: number, metadata: any) {
-        return yValue < this.threshold 
-            ? this.positiveStroke 
-            : this.negativeStroke;
+        return yValue < this.threshold ? this.positiveStroke : this.negativeStroke;
     }
 
     overrideFillArgb(xValue: number, yValue: number, index: number, opacity: number, metadata: any) {
-        return yValue < this.threshold 
-            ? this.positiveFillColor 
-            : this.negativeFillColor;
+        return yValue < this.threshold ? this.positiveFillColor : this.negativeFillColor;
     }
 }
 
 const DATA_UK = {
     labels: [
-        "Poultry", "Fruit", "Milk", "Cheese", "Pizza", "Meat", "Cereals",
-        "Eggs", "Oats", "Lamb", "Butter", "Chocolate", "Sheep", "OliveOil"
+        "Poultry",
+        "Fruit",
+        "Milk",
+        "Cheese",
+        "Pizza",
+        "Meat",
+        "Cereals",
+        "Eggs",
+        "Oats",
+        "Lamb",
+        "Butter",
+        "Chocolate",
+        "Sheep",
+        "OliveOil",
     ],
-    data: [
-        -18.5, -12.5, -11.7, -9.2, -7.2, -6.8, -5.9, 
-        7.8, 9.1, 10.2, 10.2, 11.7, 17.6, 22.1
-    ]
-}
+    data: [-18.5, -12.5, -11.7, -9.2, -7.2, -6.8, -5.9, 7.8, 9.1, 10.2, 10.2, 11.7, 17.6, 22.1],
+};
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
@@ -68,7 +73,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         title: "Cunsumer prices relative to past year in UK, 2024",
         titleStyle: {
             fontSize: 24,
-        }
+        },
     });
 
     const radialYAxis = new PolarNumericAxis(wasmContext, {
@@ -112,14 +117,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         startAngle: Math.PI / 2,
         autoTicks: false,
         majorDelta: 1,
-        labels: DATA_UK.labels
+        labels: DATA_UK.labels,
     });
     sciChartSurface.xAxes.add(polarXAxis);
 
     const polarColumn = new PolarColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: Array.from({ length: DATA_UK.data.length }, (_, i) => i),
-            yValues: DATA_UK.data
+            yValues: DATA_UK.data,
         }),
         dataLabels: {
             style: {
@@ -132,7 +137,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         },
         dataPointWidth: 0.6,
         strokeThickness: 2,
-        paletteProvider: new ColumnPaletteProvider(0), 
+        paletteProvider: new ColumnPaletteProvider(0),
         animation: new WaveAnimation({ duration: 800, zeroLine: 0, fadeEffect: true }),
     });
     sciChartSurface.renderableSeries.add(polarColumn);

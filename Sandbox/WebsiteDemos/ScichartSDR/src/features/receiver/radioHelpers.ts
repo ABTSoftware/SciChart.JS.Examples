@@ -32,11 +32,21 @@ export function isUsbDisconnectError(exception: unknown): boolean {
   if (!exception || typeof exception !== "object") {
     return false;
   }
-  const error = exception as { name?: string; message?: string; cause?: unknown };
-  if (error.name === "NetworkError" || error.name === "NotFoundError") return true;
+  const error = exception as {
+    name?: string;
+    message?: string;
+    cause?: unknown;
+  };
+  if (error.name === "NetworkError" || error.name === "NotFoundError")
+    return true;
   if (typeof error.message === "string") {
     const msg = error.message;
-    if (msg.includes("Error code: 5") || msg === "NetworkError" || msg.includes("device disconnected") || msg.includes("not found")) {
+    if (
+      msg.includes("Error code: 5") ||
+      msg === "NetworkError" ||
+      msg.includes("device disconnected") ||
+      msg.includes("not found")
+    ) {
       return true;
     }
   }
@@ -48,7 +58,11 @@ export function getRadioErrorMessage(exception: unknown): string {
   if (!exception || typeof exception !== "object") {
     return String(exception);
   }
-  const error = exception as { name?: string; message?: string; cause?: unknown };
+  const error = exception as {
+    name?: string;
+    message?: string;
+    cause?: unknown;
+  };
   if (error.name === "RadioError.NoUsbSupport") {
     return "This browser does not support WebUSB. Use Chrome, Edge, or Opera on desktop or Android.";
   }
@@ -61,7 +75,10 @@ export function getRadioErrorMessage(exception: unknown): string {
   return String(error.cause ?? exception);
 }
 
-export function getDemodModeOptions(performanceTradeoff: PerformanceTradeoff, fmDeemph: number): Record<string, object> {
+export function getDemodModeOptions(
+  performanceTradeoff: PerformanceTradeoff,
+  fmDeemph: number
+): Record<string, object> {
   const latency = performanceTradeoff === "latency";
   const quality = performanceTradeoff === "quality";
   return {
@@ -99,7 +116,10 @@ export function getDemodModeOptions(performanceTradeoff: PerformanceTradeoff, fm
   };
 }
 
-export function sideBandsForMode(scheme: string, bandwidthHz: number): { leftBandHz: number; rightBandHz: number } {
+export function sideBandsForMode(
+  scheme: string,
+  bandwidthHz: number
+): { leftBandHz: number; rightBandHz: number } {
   if (scheme === "USB") {
     return { leftBandHz: 0, rightBandHz: bandwidthHz };
   }
@@ -114,7 +134,7 @@ export function reconcileFrequency(
   tunedHz: number,
   sampleRate: number,
   leftBandHz: number,
-  rightBandHz: number,
+  rightBandHz: number
 ): { centerHz: number; tunedHz: number } {
   const safeCenter = Math.max(100_000, Math.round(centerHz));
   const safeTuned = Math.max(100_000, Math.round(tunedHz));

@@ -86,7 +86,9 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Curs
     });
 
     return `<svg width="100%" height="${legendHeight}">
-        <rect x="1" y="1" width="98%" height="${legendHeight - 2}" rx="4" ry="4" fill="#0D1523CC" stroke="#E8C667AA" stroke-width="1"/>
+        <rect x="1" y="1" width="98%" height="${
+            legendHeight - 2
+        }" rx="4" ry="4" fill="#0D1523CC" stroke="#E8C667AA" stroke-width="1"/>
         ${rows}
     </svg>`;
 };

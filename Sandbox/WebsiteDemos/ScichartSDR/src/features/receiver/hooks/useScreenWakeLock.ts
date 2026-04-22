@@ -32,14 +32,17 @@ export function useScreenWakeLock(enabled: boolean) {
     enabledRef.current = enabled;
   }, [enabled]);
 
-  const detachReleaseListener = useCallback((sentinel: WakeLockSentinelLike | null) => {
-    const listener = releaseListenerRef.current;
-    if (!listener || !sentinel) {
-      return;
-    }
-    sentinel.removeEventListener?.("release", listener);
-    releaseListenerRef.current = null;
-  }, []);
+  const detachReleaseListener = useCallback(
+    (sentinel: WakeLockSentinelLike | null) => {
+      const listener = releaseListenerRef.current;
+      if (!listener || !sentinel) {
+        return;
+      }
+      sentinel.removeEventListener?.("release", listener);
+      releaseListenerRef.current = null;
+    },
+    []
+  );
 
   const releaseWakeLock = useCallback(async () => {
     const sentinel = sentinelRef.current;

@@ -46,9 +46,11 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
   const demodRef = useRef<Demodulator | null>(null);
   const spectrumRef = useRef<Spectrum | null>(null);
   const spectrumBufferRef = useRef<Float32Array>(
-    new Float32Array(settings.fftSize),
+    new Float32Array(settings.fftSize)
   );
-  const liveSpectrumBuffersRef = useRef(createSpectrumBuffers(settings.fftSize));
+  const liveSpectrumBuffersRef = useRef(
+    createSpectrumBuffers(settings.fftSize)
+  );
   const liveSpectrumBufferIndexRef = useRef(0);
   const stopRequestedRef = useRef(false);
   const prevCenterForDeviceHzRef = useRef<number | null>(null);
@@ -132,7 +134,8 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
     const fallbackPerformanceTradeoff =
       currentSettings.performanceProfile.fallbackPerformanceTradeoff;
 
-    const shouldLowerSampleRate = currentSettings.sampleRate > fallbackSampleRate;
+    const shouldLowerSampleRate =
+      currentSettings.sampleRate > fallbackSampleRate;
     const shouldLowerFftSize = currentSettings.fftSize > fallbackFftSize;
     const shouldLowerTradeoff =
       currentSettings.performanceTradeoff === "cpu" &&
@@ -186,7 +189,8 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
         : 0;
     const centerForDeviceHz =
       inLowBand && currentSettings.lowFrequencyMethod === "upconverter"
-        ? currentFrequency.centerFrequencyHz + currentSettings.upconverterFrequencyHz
+        ? currentFrequency.centerFrequencyHz +
+          currentSettings.upconverterFrequencyHz
         : currentFrequency.centerFrequencyHz;
     const biasTeeEffective =
       inLowBand && currentSettings.lowFrequencyMethod === "upconverter"
@@ -201,7 +205,8 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
 
     const prevCenter = prevCenterForDeviceHzRef.current;
     const prevOffset = prevFrequencyOffsetRef.current;
-    const centerChanged = prevCenter === null || prevCenter !== centerForDeviceHz;
+    const centerChanged =
+      prevCenter === null || prevCenter !== centerForDeviceHz;
     const offsetChanged = prevOffset === null || prevOffset !== frequencyOffset;
     if (centerChanged && offsetChanged) {
       demod.expectFrequencyAndSetOffset(centerForDeviceHz, frequencyOffset);
@@ -247,7 +252,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
             }
             if (!last || last.directSampling !== capturedDirectSampling) {
               await capturedRadio.setDirectSamplingMethod(
-                capturedDirectSampling,
+                capturedDirectSampling
               );
             }
             lastWrittenHwRef.current = {
@@ -261,7 +266,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
             lastWrittenHwRef.current = null;
             setError(getRadioErrorMessage(exception));
           }
-        },
+        }
       );
     }, 50);
   }, [clearPendingHardwareUpdate]);
@@ -281,7 +286,8 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
       stabilityFallbackAppliedRef.current = false;
     }
     const runtimeProfile = getReceiverRuntimeProfile({
-      isConstrainedDevice: currentSettings.performanceProfile.isConstrainedDevice,
+      isConstrainedDevice:
+        currentSettings.performanceProfile.isConstrainedDevice,
       sampleRate: currentSettings.sampleRate,
       fftSize: currentSettings.fftSize,
       performanceTradeoff: currentSettings.performanceTradeoff,
@@ -297,7 +303,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
       (!pipelineConfig ||
         pipelineConfig.performanceTradeoff !==
           currentSettings.performanceTradeoff ||
-          pipelineConfig.wbfmDeemphasisUs !== currentSettings.wbfmDeemphasisUs);
+        pipelineConfig.wbfmDeemphasisUs !== currentSettings.wbfmDeemphasisUs);
 
     if (needsPipelineRebuild) {
       clearPendingHardwareUpdate();
@@ -311,7 +317,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
       const demod = new Demodulator({
         modeOptions: getDemodModeOptions(
           currentSettings.performanceTradeoff,
-          currentSettings.wbfmDeemphasisUs,
+          currentSettings.wbfmDeemphasisUs
         ),
       });
       const spectrum = new Spectrum(currentSettings.fftSize);
@@ -360,8 +366,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
           }
           if (
             stopRequestedRef.current &&
-            (isTransferInterruptedError(detail.exception) ||
-              disconnected)
+            (isTransferInterruptedError(detail.exception) || disconnected)
           ) {
             setPlaying(false);
             playingRef.current = false;
@@ -376,7 +381,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
           setError(
             appliedFallback
               ? "USB transfer failed. Lower-load settings were applied automatically. Press START to reconnect."
-              : getRadioErrorMessage(detail.exception),
+              : getRadioErrorMessage(detail.exception)
           );
           setPlaying(false);
           playingRef.current = false;
@@ -512,7 +517,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
         const clampedValue = clamp(
           Number.isFinite(value) ? value : minDb,
           minDb,
-          maxDb,
+          maxDb
         );
         nextSpectrumDb[i] = clampedValue;
         if (clampedValue > peak) {

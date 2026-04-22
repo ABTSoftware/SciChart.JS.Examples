@@ -35,11 +35,7 @@ const AppBarTop: FC<TProps> = (props) => {
         theme === ETheme.navy ? "SciChartNavy" : theme === ETheme.light ? "SciChartLight" : "SciChartDark";
     const nextTheme = getNextTheme(theme);
     const nextThemeLabel =
-        nextTheme === ETheme.navy
-            ? "SciChartNavy"
-            : nextTheme === ETheme.light
-            ? "SciChartLight"
-            : "SciChartDark";
+        nextTheme === ETheme.navy ? "SciChartNavy" : nextTheme === ETheme.light ? "SciChartLight" : "SciChartDark";
 
     const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
     const contextualGithub =
@@ -93,8 +89,8 @@ const AppBarTop: FC<TProps> = (props) => {
 
                             <Search />
                         </>
-                    )}.
-                    <div className={classes.FlexPlaceholder}></div>
+                    )}
+                    .<div className={classes.FlexPlaceholder}></div>
                     <Button
                         onClick={toggleTheme}
                         className={classes.ThemeButton}
@@ -128,13 +124,20 @@ const AppBarTop: FC<TProps> = (props) => {
                                 />
                             ) : (
                                 <>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 11c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M4 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0"
+                                    />
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M4 11c2-2 4-2 6 0s4 2 6 0 4-2 6 0"
+                                    />
                                 </>
                             )}
                         </svg>
                     </Button>
-
                     <Button
                         className={classes.BlueButton}
                         href="https://www.scichart.com/getting-started/scichart-javascript/"

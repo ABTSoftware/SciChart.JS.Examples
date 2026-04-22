@@ -5,36 +5,36 @@ module.exports = {
   mode: "development",
   entry: "./src/index.ts",
   performance: {
-    hints: false
+    hints: false,
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         use: "ts-loader",
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
-    ]
+    ],
   },
   resolve: {
-    extensions: [".js", ".ts"]
+    extensions: [".js", ".ts"],
   },
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "build")
+    path: path.resolve(__dirname, "build"),
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, "build")
+      directory: path.join(__dirname, "build"),
     },
-    port: 8080
+    port: 8080,
   },
   plugins: [
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" }
-      ]
-    })
-  ]
+        { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
+      ],
+    }),
+  ],
 };

@@ -16,10 +16,6 @@ export function LiveSignalMeter({
   const { signalPeakDb } = useRadioLiveData(liveDataSource);
 
   return (
-    <SignalMeter
-      signalPeakDb={signalPeakDb}
-      minDb={minDb}
-      maxDb={maxDb}
-    />
+    <SignalMeter signalPeakDb={signalPeakDb} minDb={minDb} maxDb={maxDb} />
   );
 }

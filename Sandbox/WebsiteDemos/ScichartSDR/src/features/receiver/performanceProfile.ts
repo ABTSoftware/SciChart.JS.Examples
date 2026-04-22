@@ -33,7 +33,7 @@ export type ReceiverRuntimeProfile = {
 function pickAllowedValueAtMost(
   values: readonly number[],
   maxValue: number,
-  fallback: number,
+  fallback: number
 ): number {
   let next = fallback;
   for (const value of values) {
@@ -93,7 +93,7 @@ export function getReceiverHardwareProfile(): ReceiverHardwareProfile {
 
 export function clampInitialSampleRate(
   sampleRate: number | undefined,
-  profile: ReceiverHardwareProfile,
+  profile: ReceiverHardwareProfile
 ): number {
   const next = sampleRate ?? profile.defaultSampleRate;
   if (!profile.isConstrainedDevice) {
@@ -102,13 +102,13 @@ export function clampInitialSampleRate(
   return pickAllowedValueAtMost(
     SAMPLE_RATES,
     Math.min(next, profile.fallbackSampleRate),
-    profile.fallbackSampleRate,
+    profile.fallbackSampleRate
   );
 }
 
 export function clampInitialFftSize(
   fftSize: number | undefined,
-  profile: ReceiverHardwareProfile,
+  profile: ReceiverHardwareProfile
 ): number {
   const next = fftSize ?? profile.defaultFftSize;
   if (!profile.isConstrainedDevice) {
@@ -117,13 +117,13 @@ export function clampInitialFftSize(
   return pickAllowedValueAtMost(
     FFT_SIZES,
     Math.min(next, profile.fallbackFftSize),
-    profile.fallbackFftSize,
+    profile.fallbackFftSize
   );
 }
 
 export function clampInitialPerformanceTradeoff(
   performanceTradeoff: PerformanceTradeoff | undefined,
-  profile: ReceiverHardwareProfile,
+  profile: ReceiverHardwareProfile
 ): PerformanceTradeoff {
   const next = performanceTradeoff ?? profile.defaultPerformanceTradeoff;
   if (!profile.isConstrainedDevice || next !== "cpu") {
@@ -138,12 +138,8 @@ export function getReceiverRuntimeProfile(params: {
   fftSize: number;
   performanceTradeoff: PerformanceTradeoff;
 }): ReceiverRuntimeProfile {
-  const {
-    fftSize,
-    isConstrainedDevice,
-    performanceTradeoff,
-    sampleRate,
-  } = params;
+  const { fftSize, isConstrainedDevice, performanceTradeoff, sampleRate } =
+    params;
   const shouldReduceUiLoad =
     performanceTradeoff !== "cpu" ||
     sampleRate >= HIGH_SAMPLE_RATE_THRESHOLD ||

@@ -6,7 +6,7 @@ import {
     XyDataSeries,
     PolarLineRenderableSeries,
     EllipsePointMarker,
-    PolarNumericAxis, 
+    PolarNumericAxis,
     EPolarAxisMode,
     NumberRange,
     EPolarLabelMode,
@@ -45,7 +45,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         zoomExtentsToInitialRange: true,
         labelStyle: {
-            fontSize: 16
+            fontSize: 16,
         },
     });
     sciChartSurface.xAxes.add(angularXAxis);
@@ -58,7 +58,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         pointMarker: new EllipsePointMarker(wasmContext),
         stroke: appTheme.VividOrange,
-        strokeThickness: 3
+        strokeThickness: 3,
     });
     sciChartSurface.renderableSeries.add(polarlineSeries);
 
@@ -73,15 +73,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         angularXAxis.polarLabelMode = newMode;
     }
 
-    return { 
-        sciChartSurface, 
-        wasmContext, 
-        controls: { 
+    return {
+        sciChartSurface,
+        wasmContext,
+        controls: {
             changePolarLabelMode,
             toggleIsInnerAxis: (isInnerAxis: boolean) => {
                 angularXAxis.isInnerAxis = isInnerAxis;
                 radialYAxis.isInnerAxis = isInnerAxis;
-            }
-        } 
+            },
+        },
     };
 };

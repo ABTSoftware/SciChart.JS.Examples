@@ -7,7 +7,7 @@
     height: 100%;
     position: relative;
     z-index: 10;
-    
+
     .code {
         position: absolute;
         width: 100%;
@@ -15,44 +15,44 @@
         overflow: auto;
         padding-bottom: 50px;
         user-select: none;
-        
+
         pre {
             user-select: text !important;
-            
+
             .linenumber {
                 user-select: none !important;
                 pointer-events: none;
             }
-            
+
             code {
                 user-select: text !important;
-                
+
                 span {
                     user-select: text !important;
                 }
             }
         }
-        
+
         .react-syntax-highlighter {
             user-select: none;
-            
+
             pre {
                 user-select: text !important;
             }
-            
+
             .react-syntax-highlighter-line-number {
                 user-select: none !important;
                 pointer-events: none;
             }
         }
-        
+
         [class*="linenumber"],
         [class*="line-number"] {
             user-select: none !important;
             pointer-events: none;
         }
     }
-    
+
     .rightButtonGroup {
         position: absolute;
         display: flex;
@@ -63,20 +63,22 @@
         justify-content: center;
         align-items: center;
         user-select: none;
-        
+
         button {
             height: 24px;
             width: 24px;
             color: #888;
             cursor: pointer;
             user-select: none;
-            
-            &:hover, &:active, &.active {
+
+            &:hover,
+            &:active,
+            &.active {
                 color: var(--text);
             }
         }
     }
-    
+
     &.fullscreenEditor {
         position: absolute;
         width: 100%;
@@ -100,7 +102,7 @@
     user-select: none;
     margin: 12px;
     gap: 2px;
-    
+
     .selectTab {
         user-select: none;
         display: flex;
@@ -117,32 +119,32 @@
         white-space: nowrap;
         overflow-wrap: normal;
         word-break: keep-all;
-        
+
         &:hover,
         &.active {
             background-color: #8882;
         }
-        
+
         svg {
             height: 22px;
             width: 22px;
             min-height: 22px;
             min-width: 22px;
         }
-        
+
         p {
             font-size: 15px;
             margin: 0;
             color: var(--text);
         }
     }
-    
+
     .selectTab.activeTab {
         background-color: var(--bg);
         border-bottom-color: var(--bg);
         position: relative;
     }
-    
+
     &::-webkit-scrollbar {
         height: 6px;
         border-radius: 0;

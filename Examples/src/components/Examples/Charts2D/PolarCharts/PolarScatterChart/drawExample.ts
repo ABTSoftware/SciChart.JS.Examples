@@ -5,9 +5,9 @@ import {
     XyDataSeries,
     PolarNumericAxis,
     SciChartPolarSurface,
-    EPolarAxisMode, 
-    NumberRange, 
-    EAxisAlignment, 
+    EPolarAxisMode,
+    NumberRange,
+    EAxisAlignment,
     EPolarLabelMode,
     PolarXyScatterRenderableSeries,
     SweepAnimation,
@@ -29,11 +29,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         axisAlignment: EAxisAlignment.Right,
         visibleRange: new NumberRange(0, 1400),
         zoomExtentsToInitialRange: true,
-        
+
         drawMinorTickLines: false,
         drawMajorTickLines: false,
         drawMinorGridLines: false,
-        
+
         startAngle: Math.PI / 2,
         drawLabels: false, // no radial labels
     });
@@ -67,15 +67,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             yVals: xValues.map((x) => 2 * x + x * Math.random() * 0.5),
             color: appTheme.VividOrange,
             name: "Circle Series",
-            pointMarkerType: EPointMarkerType.Ellipse
-        }, 
+            pointMarkerType: EPointMarkerType.Ellipse,
+        },
         {
             yVals: xValues.map((x) => x + x * Math.random() * 0.5),
             color: appTheme.VividSkyBlue,
             name: "Triangular Series",
             pointMarkerType: EPointMarkerType.Triangle,
-        }
-    ]
+        },
+    ];
 
     SCATTER_DATA.forEach(({ yVals, color, name, pointMarkerType }) => {
         const polarScatter = new PolarXyScatterRenderableSeries(wasmContext, {
@@ -96,7 +96,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     stroke: color,
                     strokeThickness: 1,
                     fill: color + "88",
-                }
+                },
             },
             animation: new SweepAnimation({ duration: 800 }),
         });
@@ -107,7 +107,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const customMarkerLegendModifier = new PolarLegendModifier({
         showCheckboxes: true,
         showSeriesMarkers: true,
-        backgroundColor: "#66666633"
+        backgroundColor: "#66666633",
     });
     // override "getLegendItemHTML" to add custom SVG shapes
     customMarkerLegendModifier.sciChartLegend.getLegendItemHTML = (
@@ -118,12 +118,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     ): string => {
         const display = orientation === ELegendOrientation.Vertical ? "flex" : "inline-flex";
         let str = `<span class="scichart__legend-item" style="display: ${display}; align-items: center; margin-right: 4px; padding: 0 4px 0 5px; white-space: nowrap; gap: 5px">`;
-        
+
         if (showCheckboxes) {
             const checked = item.checked ? "checked" : "";
             str += `<input ${checked} type="checkbox" id="${item.id}">`;
         }
-        
+
         if (showSeriesMarkers) {
             str += `<svg 
                 xmlns="http://www.w3.org/2000/svg"
@@ -137,14 +137,18 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                         case SCATTER_DATA[0].name: // Circle
                             return `<circle cx="12" cy="12" r="9" fill="${item.color + "88"}" stroke="${item.color}"/>`;
 
-                        case SCATTER_DATA[1].name: // Triangle 
-                            return `<polygon points="12,2 22,22 2,22" fill="${item.color + "88"}" stroke="${item.color}"/>`;
+                        case SCATTER_DATA[1].name: // Triangle
+                            return `<polygon points="12,2 22,22 2,22" fill="${item.color + "88"}" stroke="${
+                                item.color
+                            }"/>`;
 
-                        default: // Others 
-                            return `<rect x="2" y="2" width="20" height="20" fill="${item.color + "88"}" stroke="${item.color}"/>`;
+                        default: // Others
+                            return `<rect x="2" y="2" width="20" height="20" fill="${item.color + "88"}" stroke="${
+                                item.color
+                            }"/>`;
                     }
                 })()}
-            </svg>`
+            </svg>`;
         }
         str += `<label for="${item.id}">${item.name}</label>`;
         str += `</span>`;
@@ -156,8 +160,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new PolarPanModifier(),
         new PolarZoomExtentsModifier(),
         new PolarMouseWheelZoomModifier({
-            defaultActionType: EActionType.Zoom
-        }),
+            defaultActionType: EActionType.Zoom,
+        })
     );
 
     return { sciChartSurface, wasmContext };

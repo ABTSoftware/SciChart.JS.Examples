@@ -58,7 +58,7 @@ function clamp(value: number, min: number, max: number): number {
 function makeFrequencyAxis(
   centerHz: number,
   sampleRate: number,
-  bins: number,
+  bins: number
 ): Float64Array {
   const startHz = centerHz - sampleRate / 2;
   const stepHz = sampleRate / bins;
@@ -83,7 +83,7 @@ function getChartErrorMessage(exception: unknown): string {
 function makeFallbackSpectrum(
   fftSize: number,
   minDb: number,
-  maxDb: number,
+  maxDb: number
 ): Float64Array {
   const out = new Float64Array(fftSize);
   for (let i = 0; i < fftSize; i += 1) {
@@ -144,7 +144,16 @@ export function SpectrumChart({
       visibleMaxHz,
       visibleMinHz,
     };
-  }, [fftSize, frequencyHz, maxDb, minDb, sampleRate, spectrumDb, visibleMaxHz, visibleMinHz]);
+  }, [
+    fftSize,
+    frequencyHz,
+    maxDb,
+    minDb,
+    sampleRate,
+    spectrumDb,
+    visibleMaxHz,
+    visibleMinHz,
+  ]);
 
   const syncChartData = useCallback(() => {
     const surface = surfaceRef.current;
@@ -167,7 +176,7 @@ export function SpectrumChart({
             const values = makeFrequencyAxis(
               state.frequencyHz,
               state.sampleRate,
-              state.fftSize,
+              state.fftSize
             );
             frequencyAxisCacheRef.current = {
               bins: state.fftSize,
@@ -186,8 +195,14 @@ export function SpectrumChart({
     // This avoids deallocating + reallocating native WASM vectors each frame.
     dataSeries.appendRange(x, y);
     const xRange = xAxis.visibleRange;
-    if (xRange.min !== state.visibleMinHz || xRange.max !== state.visibleMaxHz) {
-      xAxis.visibleRange = new NumberRange(state.visibleMinHz, state.visibleMaxHz);
+    if (
+      xRange.min !== state.visibleMinHz ||
+      xRange.max !== state.visibleMaxHz
+    ) {
+      xAxis.visibleRange = new NumberRange(
+        state.visibleMinHz,
+        state.visibleMaxHz
+      );
     }
     const yRange = yAxis.visibleRange;
     if (yRange.min !== state.minDb || yRange.max !== state.maxDb) {
@@ -231,8 +246,8 @@ export function SpectrumChart({
       if (!host) {
         return;
       }
-      const { sciChartSurface, wasmContext } = await withSciChartCreateLock(() =>
-        SciChartSurface.createSingle(host),
+      const { sciChartSurface, wasmContext } = await withSciChartCreateLock(
+        () => SciChartSurface.createSingle(host)
       );
       const initialState = renderStateRef.current;
 
@@ -268,7 +283,8 @@ export function SpectrumChart({
           strokeThickness: 1,
         },
       });
-      xAxis.labelProvider.formatLabel = (value: number) => (value / 1_000_000).toFixed(3);
+      xAxis.labelProvider.formatLabel = (value: number) =>
+        (value / 1_000_000).toFixed(3);
 
       const yAxis = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Right,
@@ -301,16 +317,20 @@ export function SpectrumChart({
         dataEvenlySpacedInX: true,
         dataIsSortedInX: true,
       });
-      const fillGradient = new GradientParams(new Point(0, 0), new Point(0, 1), [
-        { offset: 0,    color: "rgba(242, 248, 245, 0.95)" }, // top   → bright white
-        { offset: 0.10, color: "rgba(215,  57, 234, 0.90)" }, // purple
-        { offset: 0.22, color: "rgba(231, 141,  68, 0.85)" }, // orange
-        { offset: 0.36, color: "rgba(239, 214, 106, 0.80)" }, // yellow
-        { offset: 0.50, color: "rgba( 98, 192,  88, 0.70)" }, // green
-        { offset: 0.66, color: "rgba( 15, 127, 128, 0.55)" }, // teal
-        { offset: 0.82, color: "rgba( 18,  64, 158, 0.40)" }, // blue
-        { offset: 1,    color: "rgba(  4,  17,  47, 0.15)" }, // bottom → near-black
-      ]);
+      const fillGradient = new GradientParams(
+        new Point(0, 0),
+        new Point(0, 1),
+        [
+          { offset: 0, color: "rgba(242, 248, 245, 0.95)" }, // top   → bright white
+          { offset: 0.1, color: "rgba(215,  57, 234, 0.90)" }, // purple
+          { offset: 0.22, color: "rgba(231, 141,  68, 0.85)" }, // orange
+          { offset: 0.36, color: "rgba(239, 214, 106, 0.80)" }, // yellow
+          { offset: 0.5, color: "rgba( 98, 192,  88, 0.70)" }, // green
+          { offset: 0.66, color: "rgba( 15, 127, 128, 0.55)" }, // teal
+          { offset: 0.82, color: "rgba( 18,  64, 158, 0.40)" }, // blue
+          { offset: 1, color: "rgba(  4,  17,  47, 0.15)" }, // bottom → near-black
+        ]
+      );
       const mountain = new FastMountainRenderableSeries(wasmContext, {
         dataSeries,
         stroke: "rgba(140, 220, 255, 0.85)",
@@ -345,7 +365,9 @@ export function SpectrumChart({
     };
 
     void initChart().catch((exception) => {
-      onError(`Chart initialization failed: ${getChartErrorMessage(exception)}`);
+      onError(
+        `Chart initialization failed: ${getChartErrorMessage(exception)}`
+      );
     });
 
     return () => {
@@ -364,7 +386,17 @@ export function SpectrumChart({
 
   useEffect(() => {
     syncChartData();
-  }, [syncChartData, fftSize, frequencyHz, maxDb, minDb, sampleRate, spectrumDb, visibleMaxHz, visibleMinHz]);
+  }, [
+    syncChartData,
+    fftSize,
+    frequencyHz,
+    maxDb,
+    minDb,
+    sampleRate,
+    spectrumDb,
+    visibleMaxHz,
+    visibleMinHz,
+  ]);
 
   const handleChartPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();

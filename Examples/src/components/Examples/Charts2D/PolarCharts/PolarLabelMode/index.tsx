@@ -12,10 +12,10 @@ export default function ChartComponent() {
     const [preset, setPreset] = useState<EPolarLabelMode>(EPolarLabelMode.Horizontal);
     const [isInnerAxis, setIsInnerAxis] = useState<boolean>(false);
 
-    const [controls, setControls] = useState({ 
+    const [controls, setControls] = useState({
         changePolarLabelMode: (newMode: EPolarLabelMode) => {},
         toggleIsInnerAxis: (isInnerAxis: boolean) => {},
-    })
+    });
 
     const handleToggleButtonChanged = (event: any, value: EPolarLabelMode) => {
         if (value === null) return;
@@ -30,13 +30,15 @@ export default function ChartComponent() {
 
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div style={{
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                background: appTheme.DarkIndigo,
-            }}>
+            <div
+                style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    background: appTheme.DarkIndigo,
+                }}
+            >
                 <div className={commonClasses.ToolbarRow}>
                     <ToggleButtonGroup
                         exclusive
@@ -45,22 +47,15 @@ export default function ChartComponent() {
                         size="medium"
                         color="primary"
                         aria-label="small outlined button group"
-                    >   
+                    >
                         {Object.keys(EPolarLabelMode).map((key) => (
-                            <ToggleButton 
-                                key={key} 
-                                value={key} 
-                               
-                            >
+                            <ToggleButton key={key} value={key}>
                                 {key}
                             </ToggleButton>
                         ))}
                     </ToggleButtonGroup>
 
-                    <Button
-                        onClick={() => handleToggleIsInnerAxis()}
-                        style={{ marginLeft: "auto" }}
-                    >
+                    <Button onClick={() => handleToggleIsInnerAxis()} style={{ marginLeft: "auto" }}>
                         <strong>isInnerAxis</strong>: {isInnerAxis ? "true" : "false"}
                     </Button>
                 </div>
@@ -73,5 +68,5 @@ export default function ChartComponent() {
                 />
             </div>
         </div>
-    )
+    );
 }

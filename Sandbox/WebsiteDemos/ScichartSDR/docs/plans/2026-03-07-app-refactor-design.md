@@ -20,16 +20,19 @@ src/features/receiver/hooks/
 ## Hook Responsibilities
 
 ### `useFrequency`
+
 - **State:** `centerFrequencyHz`, `tunedFrequencyHz`, `mode`, `modeState`, `stepHz`, `displayScale`
 - **Derived:** `scaleFactor`, `displayDecimals`, `bandwidthHz`, `leftBandHz`, `rightBandHz`, `tunedCenterPct`, `tunedWindowWidthPct`, `stereoEnabled`, `squelch`, `hasBandwidth`, `hasStereoControl`, `modeConfig`, `centerFrequencyDisplay`, `tunedFrequencyDisplay`
 - **Actions:** `updateCenterFrequency`, `updateTunedFrequency`, `updateModeState`, `applyScheme`, `stepTune`, `applyPresetFrequency`
 
 ### `useReceiverSettings`
+
 - **State:** `volume`, `gainDb`, `manualGain`, `gainControlDisabled`, `sampleRate`, `fftSize`, `ppm`, `wbfmDeemphasisUs`, `biasTEnabled`, `lowFrequencyMethod`, `directSamplingChannel`, `upconverterFrequencyHz`, `upconverterBiasTee`, `performanceTradeoff`, `dbRange`, `presets`, `presetsOpen`, `settingsOpen`, `currentPreset`
 - **Actions:** setters for all of the above, `onSetSampleRate` (reconciles frequency + sets performanceTradeoff)
 - **Side effects:** persists presets to localStorage
 
 ### `useRadio`
+
 - **Inputs:** `frequency` (from useFrequency), `settings` (from useReceiverSettings)
 - **State:** `connected`, `playing`, `busy`, `error`, `spectrumDb`, `signalPeakDb`, `stereoDetected`, `stationName`, `spectrumChartReady`, `waterfallChartReady`
 - **Actions:** `connectAndStart`, `stopRadio`, `disconnectRadio`

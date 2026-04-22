@@ -70,18 +70,22 @@ export class NodeTooltipModifier extends ChartModifierBase2D {
 
         const maxDegree = this.adjacency.reduce((m, s) => Math.max(m, s.size), 0) + 1;
         for (let i = 0; i < maxDegree; i++) {
-            this.pool.push(new TextAnnotation({
-                isHidden: true,
-                xCoordinateMode: ECoordinateMode.DataValue,
-                yCoordinateMode: ECoordinateMode.DataValue,
-                horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-                verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
-                textColor: LABEL_TEXT_COLOR,
-                fontSize: 14,
-                fontFamily: "sans-serif",
-                background: LABEL_BACKGROUND_COLOR,
-                x1: 0, y1: 0, text: "",
-            }));
+            this.pool.push(
+                new TextAnnotation({
+                    isHidden: true,
+                    xCoordinateMode: ECoordinateMode.DataValue,
+                    yCoordinateMode: ECoordinateMode.DataValue,
+                    horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+                    verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
+                    textColor: LABEL_TEXT_COLOR,
+                    fontSize: 14,
+                    fontFamily: "sans-serif",
+                    background: LABEL_BACKGROUND_COLOR,
+                    x1: 0,
+                    y1: 0,
+                    text: "",
+                })
+            );
         }
     }
 
@@ -131,7 +135,11 @@ export class NodeTooltipModifier extends ChartModifierBase2D {
 
     private hitTestNode(args: ModifierMouseArgs): void {
         const pt = this.toDataCoords(args);
-        if (!pt) { this.edgePalette.hoveredNodeIdx = -1; this.hideAll(); return; }
+        if (!pt) {
+            this.edgePalette.hoveredNodeIdx = -1;
+            this.hideAll();
+            return;
+        }
 
         const xCalc = this.parentSurface.xAxes.get(0).getCurrentCoordinateCalculator();
         const snapDataUnits = Math.abs(xCalc.getDataValue(TOOLTIP_SNAP_PIXELS) - xCalc.getDataValue(0));
@@ -142,7 +150,10 @@ export class NodeTooltipModifier extends ChartModifierBase2D {
             const dx = this.nodes[i].x - pt.x;
             const dy = this.nodes[i].y - pt.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < minDist) { minDist = dist; closestIdx = i; }
+            if (dist < minDist) {
+                minDist = dist;
+                closestIdx = i;
+            }
         }
 
         if (closestIdx >= 0 && minDist <= snapDataUnits) {
@@ -219,7 +230,7 @@ export class NodeDragModifier extends ChartModifierBase2D {
     private nodes: SimNode[];
     private dragState: DragStateRef;
     private reheat: () => void;
-    private pendingNodeIdx = -1;       // node hit on mouseDown, not yet committed to drag
+    private pendingNodeIdx = -1; // node hit on mouseDown, not yet committed to drag
     private downPoint: { x: number; y: number } | null = null; // screen-space mouseDown position
 
     constructor(nodes: SimNode[], dragState: DragStateRef, reheat: () => void) {
@@ -248,7 +259,10 @@ export class NodeDragModifier extends ChartModifierBase2D {
             const dx = this.nodes[i].x - pt.x;
             const dy = this.nodes[i].y - pt.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < minDist) { minDist = dist; closestIdx = i; }
+            if (dist < minDist) {
+                minDist = dist;
+                closestIdx = i;
+            }
         }
 
         const xCalc = this.parentSurface.xAxes.get(0).getCurrentCoordinateCalculator();
@@ -318,11 +332,7 @@ export class NodeHoverPaletteProvider implements IPointMarkerPaletteProvider {
     public onAttached(_parentSeries: IRenderableSeries): void {}
     public onDetached(): void {}
 
-    public overridePointMarkerArgb(
-        _xValue: number,
-        _yValue: number,
-        index: number
-    ): TPointMarkerArgb | undefined {
+    public overridePointMarkerArgb(_xValue: number, _yValue: number, index: number): TPointMarkerArgb | undefined {
         if (index === this.edgeHover.hoveredNodeIdx) {
             return { fill: HOVER_FILL, stroke: HOVER_STROKE };
         }

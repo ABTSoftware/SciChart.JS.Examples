@@ -111,7 +111,9 @@ export class SciChart2022AppTheme implements AppThemeBase {
         const brightness = getPerceivedBrightness(this.Background);
         return brightness === undefined || brightness < 128;
     }
-    get TextColor() { return this.ForegroundColor; }
+    get TextColor() {
+        return this.ForegroundColor;
+    }
     get ForegroundColor() {
         return getCssColor("--text", "#F5F5F5");
     }

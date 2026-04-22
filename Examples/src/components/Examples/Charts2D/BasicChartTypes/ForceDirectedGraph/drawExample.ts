@@ -41,14 +41,12 @@ function buildSimulation(): { nodes: SimNode[]; edges: SimEdge[] } {
         return { iata: a.iata, label: `${a.iata} – ${a.city}, ${a.state}`, x: geoX, y: geoY, vx: 0, vy: 0, geoX, geoY };
     });
 
-    const edges: SimEdge[] = ROUTES
-        .map(r => {
-            const si = iataToIdx.get(r.origin);
-            const ti = iataToIdx.get(r.destination);
-            if (si === undefined || ti === undefined) return null;
-            return { sourceIdx: si, targetIdx: ti };
-        })
-        .filter((e): e is SimEdge => e !== null);
+    const edges: SimEdge[] = ROUTES.map((r) => {
+        const si = iataToIdx.get(r.origin);
+        const ti = iataToIdx.get(r.destination);
+        if (si === undefined || ti === undefined) return null;
+        return { sourceIdx: si, targetIdx: ti };
+    }).filter((e): e is SimEdge => e !== null);
 
     return { nodes, edges };
 }
@@ -81,8 +79,8 @@ function tick(nodes: SimNode[], edges: SimEdge[], alpha: number): void {
     for (const edge of edges) {
         const src = nodes[edge.sourceIdx];
         const tgt = nodes[edge.targetIdx];
-        const dx = (tgt.x + tgt.vx) - (src.x + src.vx);
-        const dy = (tgt.y + tgt.vy) - (src.y + src.vy);
+        const dx = tgt.x + tgt.vx - (src.x + src.vx);
+        const dy = tgt.y + tgt.vy - (src.y + src.vy);
         const dist = Math.max(Math.sqrt(dx * dx + dy * dy), 1);
         const force = SPRING_K * (dist - SPRING_REST_LENGTH) * alpha;
         const fx = force * (dx / dist);
@@ -133,31 +131,37 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const edgeHover = new EdgeHoverState();
 
     const edgeDataSeries = new XyxyDataSeries(wasmContext);
-    sciChartSurface.renderableSeries.add(new FastLineSegmentRenderableSeries(wasmContext, {
-        dataSeries: edgeDataSeries,
-        stroke: "#47bde650",
-        strokeThickness: 2,
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineSegmentRenderableSeries(wasmContext, {
+            dataSeries: edgeDataSeries,
+            stroke: "#47bde650",
+            strokeThickness: 2,
+        })
+    );
 
     const edgeHighlightDataSeries = new XyxyDataSeries(wasmContext);
-    sciChartSurface.renderableSeries.add(new FastLineSegmentRenderableSeries(wasmContext, {
-        dataSeries: edgeHighlightDataSeries,
-        stroke: "#47bde6",
-        strokeThickness: 3,
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineSegmentRenderableSeries(wasmContext, {
+            dataSeries: edgeHighlightDataSeries,
+            stroke: "#47bde6",
+            strokeThickness: 3,
+        })
+    );
 
     const nodeDataSeries = new XyDataSeries(wasmContext);
-    sciChartSurface.renderableSeries.add(new XyScatterRenderableSeries(wasmContext, {
-        dataSeries: nodeDataSeries,
-        pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 14,
-            height: 14,
-            fill: "#274b92",
-            stroke: "#47bde6",
-            strokeThickness: 1.5,
-        }),
-        paletteProvider: new NodeHoverPaletteProvider(edgeHover),
-    }));
+    sciChartSurface.renderableSeries.add(
+        new XyScatterRenderableSeries(wasmContext, {
+            dataSeries: nodeDataSeries,
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 14,
+                height: 14,
+                fill: "#274b92",
+                stroke: "#47bde6",
+                strokeThickness: 1.5,
+            }),
+            paletteProvider: new NodeHoverPaletteProvider(edgeHover),
+        })
+    );
 
     const dragState: DragStateRef = { current: null };
 
@@ -168,7 +172,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     let animFrameId: number = 0;
 
     function frame() {
-        if (!running || sciChartSurface.isDeleted) { loopAlive = false; return; }
+        if (!running || sciChartSurface.isDeleted) {
+            loopAlive = false;
+            return;
+        }
 
         const simActive = alpha >= 0.001 || !!dragState.current;
 
@@ -191,15 +198,28 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             }
         }
 
-        const ex: number[] = [], ey: number[] = [], ex1: number[] = [], ey1: number[] = [];
-        const hx: number[] = [], hy: number[] = [], hx1: number[] = [], hy1: number[] = [];
+        const ex: number[] = [],
+            ey: number[] = [],
+            ex1: number[] = [],
+            ey1: number[] = [];
+        const hx: number[] = [],
+            hy: number[] = [],
+            hx1: number[] = [],
+            hy1: number[] = [];
         const h = edgeHover.hoveredNodeIdx;
         for (const edge of edges) {
-            const src = nodes[edge.sourceIdx], tgt = nodes[edge.targetIdx];
+            const src = nodes[edge.sourceIdx],
+                tgt = nodes[edge.targetIdx];
             if (h !== -1 && (edge.sourceIdx === h || edge.targetIdx === h)) {
-                hx.push(src.x); hy.push(src.y); hx1.push(tgt.x); hy1.push(tgt.y);
+                hx.push(src.x);
+                hy.push(src.y);
+                hx1.push(tgt.x);
+                hy1.push(tgt.y);
             } else {
-                ex.push(src.x); ey.push(src.y); ex1.push(tgt.x); ey1.push(tgt.y);
+                ex.push(src.x);
+                ey.push(src.y);
+                ex1.push(tgt.x);
+                ey1.push(tgt.y);
             }
         }
         edgeDataSeries.clear();
@@ -208,7 +228,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         edgeHighlightDataSeries.appendRange(hx, hy, hx1, hy1);
 
         nodeDataSeries.clear();
-        nodeDataSeries.appendRange(nodes.map(n => n.x), nodes.map(n => n.y));
+        nodeDataSeries.appendRange(
+            nodes.map((n) => n.x),
+            nodes.map((n) => n.y)
+        );
 
         if (simActive) {
             animFrameId = requestAnimationFrame(frame);
@@ -226,7 +249,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     sciChartSurface.chartModifiers.add(
         new NodeTooltipModifier(nodes, edges, edgeHover, () => startLoop()),
-        new NodeDragModifier(nodes, dragState, () => { alpha = Math.max(alpha, 0.3); startLoop(); }),
+        new NodeDragModifier(nodes, dragState, () => {
+            alpha = Math.max(alpha, 0.3);
+            startLoop();
+        }),
         new ZoomPanModifier(),
         new ZoomExtentsModifier(),
         new MouseWheelZoomModifier(),

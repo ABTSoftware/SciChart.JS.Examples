@@ -39,12 +39,8 @@ export default function HighPerformanceScatterCursor() {
                     color="primary"
                     aria-label="Cursor rendering mode (SVG or Native)"
                 >
-                    <ToggleButton value={true}>
-                        SVG
-                    </ToggleButton>
-                    <ToggleButton value={false}>
-                        Native
-                    </ToggleButton>
+                    <ToggleButton value={true}>SVG</ToggleButton>
+                    <ToggleButton value={false}>Native</ToggleButton>
                 </ToggleButtonGroup>
 
                 <ToggleButtonGroup

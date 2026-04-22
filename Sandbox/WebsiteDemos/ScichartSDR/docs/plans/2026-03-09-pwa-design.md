@@ -36,19 +36,19 @@ Configured in `vite.config.ts` via the plugin:
 ## Offline UI
 
 - New `OfflineNotice` component shown when `navigator.onLine === false`
-- Simple banner: *"No internet connection — radio hardware required to receive signals"*
+- Simple banner: _"No internet connection — radio hardware required to receive signals"_
 - App shell (charts, controls) remains visible; only radio connection is blocked by hardware absence
 
 ## Files Changed
 
-| File | Change |
-|---|---|
-| `vite.config.ts` | Add `VitePWA()` plugin with manifest + Workbox config |
-| `src/main.tsx` | Register SW via `registerSW` from `virtual:pwa-register` |
-| `src/components/OfflineNotice.tsx` | New component |
-| `src/App.tsx` | Add `<OfflineNotice />` |
-| `public/icons/` | Generated icon assets |
-| `package.json` | Add `vite-plugin-pwa`, `@vite-pwa/assets-generator` |
+| File                               | Change                                                   |
+| ---------------------------------- | -------------------------------------------------------- |
+| `vite.config.ts`                   | Add `VitePWA()` plugin with manifest + Workbox config    |
+| `src/main.tsx`                     | Register SW via `registerSW` from `virtual:pwa-register` |
+| `src/components/OfflineNotice.tsx` | New component                                            |
+| `src/App.tsx`                      | Add `<OfflineNotice />`                                  |
+| `public/icons/`                    | Generated icon assets                                    |
+| `package.json`                     | Add `vite-plugin-pwa`, `@vite-pwa/assets-generator`      |
 
 ## New Dependencies
 

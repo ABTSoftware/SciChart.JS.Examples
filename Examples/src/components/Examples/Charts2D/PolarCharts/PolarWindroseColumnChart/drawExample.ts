@@ -5,15 +5,15 @@ import {
     XyDataSeries,
     PolarNumericAxis,
     SciChartPolarSurface,
-    EPolarAxisMode, 
-    NumberRange, 
-    EAxisAlignment, 
+    EPolarAxisMode,
+    NumberRange,
+    EAxisAlignment,
     PolarStackedColumnCollection,
     PolarStackedColumnRenderableSeries,
     TFormatLabelFn,
     NumericLabelProvider,
     EDataPointWidthMode,
-    WaveAnimation
+    WaveAnimation,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -36,7 +36,7 @@ function getBiasedRandomWalkInBounds(min: number, max: number, count: number) {
 }
 
 /**
- * Custom label provider that displays compass directions at 45 degree intervals,  
+ * Custom label provider that displays compass directions at 45 degree intervals,
  * if any label value is NOT from `[0, 45, 90, 135, 180, 225, 270, 315]` it will be a decimal.
  */
 class CustomNESWLabelProvider extends NumericLabelProvider {
@@ -64,7 +64,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         polarAxisMode: EPolarAxisMode.Radial,
         visibleRange: new NumberRange(0, 6),
         zoomExtentsToInitialRange: true,
-        
+
         drawMinorGridLines: false,
         drawMajorTickLines: false,
         drawMinorTickLines: false,
@@ -73,7 +73,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         autoTicks: false,
         majorDelta: 1,
         labelPrecision: 0,
-        innerRadius: 0.05 // center hole
+        innerRadius: 0.05, // center hole
     });
     sciChartSurface.yAxes.add(radialYAxis);
 
@@ -88,11 +88,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         autoTicks: false,
         majorDelta: 15,
         drawMinorGridLines: false,
-        zoomExtentsToInitialRange: true
+        zoomExtentsToInitialRange: true,
     });
     sciChartSurface.xAxes.add(polarXAxis);
 
-    const xValues = Array.from({length: COLUMN_COUNT}, (_, i) => i * 360 / COLUMN_COUNT); // [0, 10, ..., 350],
+    const xValues = Array.from({ length: COLUMN_COUNT }, (_, i) => (i * 360) / COLUMN_COUNT); // [0, 10, ..., 350],
     const yValues = [
         getBiasedRandomWalkInBounds(1, 2, COLUMN_COUNT),
         getBiasedRandomWalkInBounds(0.3, 1, COLUMN_COUNT),
@@ -107,13 +107,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         appTheme.VividGreen,
         appTheme.VividOrange,
         appTheme.VividPink,
-    ]
+    ];
 
     const collection = new PolarStackedColumnCollection(wasmContext, {
         isOneHundredPercent: false,
     });
-    
-    for(let i = 0; i < yValues.length; i++) {
+
+    for (let i = 0; i < yValues.length; i++) {
         const dataSeries = new XyDataSeries(wasmContext, { xValues, yValues: yValues[i] });
         const polarColumn = new PolarStackedColumnRenderableSeries(wasmContext, {
             dataSeries,

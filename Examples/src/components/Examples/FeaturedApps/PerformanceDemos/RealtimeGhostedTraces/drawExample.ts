@@ -67,12 +67,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             intensity: 0.5,
         });
         const { xValues, yValues } = ExampleDataProvider.getNoisySinewave(500, 900, 7, amplitude, 30);
-        const lineSeries = new FastLineRenderableSeries(wasmContext, { 
+        const lineSeries = new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-            stroke, 
+            stroke,
             effect,
             strokeThickness: 3,
-            opacity
+            opacity,
         });
         sciChartSurface.renderableSeries.add(lineSeries);
         return lineSeries;

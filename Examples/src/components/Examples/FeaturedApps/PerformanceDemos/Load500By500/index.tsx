@@ -49,7 +49,10 @@ export default function Load500By500() {
                             controls.stopUpdate();
                         }}
                     />
-                    <div className={commonClasses.ToolbarRow} style={{ gap: "0px", paddingRight: "0px", borderTop: "1px solid var(--border-color)" }}>
+                    <div
+                        className={commonClasses.ToolbarRow}
+                        style={{ gap: "0px", paddingRight: "0px", borderTop: "1px solid var(--border-color)" }}
+                    >
                         <div
                             style={{
                                 display: "flex",
@@ -75,7 +78,6 @@ export default function Load500By500() {
                                 onClick={() => {
                                     controlsRef.current.reloadOnce();
                                 }}
-                               
                                 title="Reload Test"
                             >
                                 <RefreshIcon />

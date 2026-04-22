@@ -28,21 +28,21 @@ New hook attached to `chartsContainerRef` in `App.tsx`. Tracks up to two simulta
 
 Detect mobile once at init: `/Mobi|Android/i.test(navigator.userAgent)`.
 
-| Setting | Desktop | Mobile |
-|---|---|---|
-| `sampleRate` | 2,048,000 | 1,024,000 |
-| `fftSize` | 2048 | 1024 |
-| `performanceTradeoff` | `"cpu"` | `"latency"` |
+| Setting               | Desktop   | Mobile      |
+| --------------------- | --------- | ----------- |
+| `sampleRate`          | 2,048,000 | 1,024,000   |
+| `fftSize`             | 2048      | 1024        |
+| `performanceTradeoff` | `"cpu"`   | `"latency"` |
 
 Detection is not reactive — runs once in `useState` initializer. User can still change all settings via the Settings dialog.
 
 ## Files Changed
 
-| File | Change |
-|---|---|
-| `index.html` | Add `user-scalable=no, maximum-scale=1` to viewport |
-| `src/App.css` | `100vh → 100dvh` (3 places), `touch-action: none` on charts |
-| `src/features/receiver/hooks/usePinchZoom.ts` | New hook |
-| `src/features/receiver/hooks/index.ts` | Export `usePinchZoom` |
-| `src/App.tsx` | Wire `usePinchZoom` into `chartsContainerRef` |
-| `src/features/receiver/hooks/useReceiverSettings.ts` | Mobile-aware defaults |
+| File                                                 | Change                                                      |
+| ---------------------------------------------------- | ----------------------------------------------------------- |
+| `index.html`                                         | Add `user-scalable=no, maximum-scale=1` to viewport         |
+| `src/App.css`                                        | `100vh → 100dvh` (3 places), `touch-action: none` on charts |
+| `src/features/receiver/hooks/usePinchZoom.ts`        | New hook                                                    |
+| `src/features/receiver/hooks/index.ts`               | Export `usePinchZoom`                                       |
+| `src/App.tsx`                                        | Wire `usePinchZoom` into `chartsContainerRef`               |
+| `src/features/receiver/hooks/useReceiverSettings.ts` | Mobile-aware defaults                                       |

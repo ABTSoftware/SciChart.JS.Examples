@@ -321,13 +321,7 @@ const patchSciChartCreateMethodsOnce = () => {
 
 patchSciChartCreateMethodsOnce();
 
-export function StateProvider({
-    children,
-    framework,
-}: {
-    children: React.ReactNode;
-    framework: EPageFramework;
-}) {
+export function StateProvider({ children, framework }: { children: React.ReactNode; framework: EPageFramework }) {
     const [state, setState] = useState<StateType>(() => ({
         framework,
         theme: getInitialTheme(),

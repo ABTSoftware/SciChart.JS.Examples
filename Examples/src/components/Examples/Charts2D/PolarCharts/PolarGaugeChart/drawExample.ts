@@ -46,7 +46,7 @@ export const getChartsInitializationAPI = () => {
             axisAlignment: EAxisAlignment.Right,
 
             // start labels in sync with angular axis
-            startAngle: - Math.PI / 4,
+            startAngle: -Math.PI / 4,
 
             drawLabels: false,
             drawMinorGridLines: false,
@@ -65,7 +65,7 @@ export const getChartsInitializationAPI = () => {
             flippedCoordinates: true,
             useNativeText: true,
             totalAngle: (Math.PI * 3) / 2,
-            startAngle: - Math.PI / 4,
+            startAngle: -Math.PI / 4,
 
             drawMinorGridLines: false,
             drawMajorGridLines: false,
@@ -238,7 +238,7 @@ export const getChartsInitializationAPI = () => {
             flippedCoordinates: true,
             useNativeText: true,
             totalAngle: (Math.PI * 3) / 2,
-            startAngle: - Math.PI / 4,
+            startAngle: -Math.PI / 4,
             autoTicks: false,
             majorDelta: 10,
 
@@ -369,7 +369,7 @@ export const getChartsInitializationAPI = () => {
             visibleRange: new NumberRange(0, 10),
             zoomExtentsToInitialRange: true,
 
-            startAngle: - Math.PI / 4,
+            startAngle: -Math.PI / 4,
 
             drawLabels: false,
             drawMinorGridLines: false,
@@ -393,7 +393,7 @@ export const getChartsInitializationAPI = () => {
             flippedCoordinates: true,
             useNativeText: true,
             totalAngle: (Math.PI * 3) / 2,
-            startAngle: - Math.PI / 4,
+            startAngle: -Math.PI / 4,
 
             drawMinorGridLines: false,
             drawMajorGridLines: false,

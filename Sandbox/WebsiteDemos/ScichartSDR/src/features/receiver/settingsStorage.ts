@@ -34,15 +34,17 @@ function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
 }
 
-function isLowFrequencyMethodName(value: unknown): value is LowFrequencyMethodName {
+function isLowFrequencyMethodName(
+  value: unknown
+): value is LowFrequencyMethodName {
   return (
-    value === "default" ||
-    value === "directSampling" ||
-    value === "upconverter"
+    value === "default" || value === "directSampling" || value === "upconverter"
   );
 }
 
-function isDirectSamplingChannel(value: unknown): value is DirectSamplingChannel {
+function isDirectSamplingChannel(
+  value: unknown
+): value is DirectSamplingChannel {
   return value === "I" || value === "Q";
 }
 
@@ -94,7 +96,7 @@ export function loadReceiverSettingsFromStorage(): PersistedReceiverSettings {
       next.upconverterFrequencyHz = clamp(
         Math.round(parsed.upconverterFrequencyHz),
         1,
-        1_800_000_000,
+        1_800_000_000
       );
     }
     if (typeof parsed.upconverterBiasTee === "boolean") {
@@ -131,7 +133,7 @@ export function loadReceiverSettingsFromStorage(): PersistedReceiverSettings {
       const ceiling = clamp(
         parsed.dbRange[1],
         DB_FLOOR_LIMIT,
-        DB_CEILING_LIMIT,
+        DB_CEILING_LIMIT
       );
       next.dbRange = floor <= ceiling ? [floor, ceiling] : [ceiling, floor];
     }
@@ -143,7 +145,7 @@ export function loadReceiverSettingsFromStorage(): PersistedReceiverSettings {
 }
 
 export function saveReceiverSettingsToStorage(
-  settings: PersistedReceiverSettings,
+  settings: PersistedReceiverSettings
 ): void {
   if (typeof window === "undefined") {
     return;
@@ -151,6 +153,6 @@ export function saveReceiverSettingsToStorage(
 
   window.localStorage.setItem(
     RECEIVER_SETTINGS_STORAGE_KEY,
-    JSON.stringify(settings),
+    JSON.stringify(settings)
   );
 }

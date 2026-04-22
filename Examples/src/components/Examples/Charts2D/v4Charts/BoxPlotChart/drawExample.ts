@@ -131,11 +131,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         },
     });
     sub2.renderableSeries.add(boxSeries2);
-    
-    sub2.chartModifiers.add(
-        new ZoomPanModifier(), 
-        new ZoomExtentsModifier()
-    );
+
+    sub2.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier());
+
+    sub2.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier());
 
     return { sciChartSurface, wasmContext };
 };
