@@ -122,6 +122,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         new NumericAxis(wasmContext, {
             axisTitle: "Time (UI)",
             axisTitleStyle: { fontSize: 11 },
+            labelStyle: { fontSize: 10 },
             visibleRange: new NumberRange(0, 2),
             autoRange: EAutoRange.Never,
             drawMajorGridLines: false,
@@ -134,6 +135,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         new NumericAxis(wasmContext, {
             axisTitle: "Voltage (V)",
             axisTitleStyle: { fontSize: 11 },
+            labelStyle: { fontSize: 10 },
             visibleRange: new NumberRange(-1.5, 1.5),
             autoRange: EAutoRange.Never,
             drawMajorGridLines: false,
