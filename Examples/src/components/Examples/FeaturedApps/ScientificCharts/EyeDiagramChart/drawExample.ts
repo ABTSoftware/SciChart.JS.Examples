@@ -28,11 +28,11 @@ function gaussianRandom(): number {
  * @param prev  bit value (0 or 1) of the UI before the window
  * @param curr  bit value (0 or 1) of the central UI (UI 0–1)
  * @param next  bit value (0 or 1) of the UI after the window (UI 1–2)
- * @returns Float32Array of 200 voltage samples
+ * @returns Float32Array of 400 voltage samples
  */
 export function generateTrace(prev: number, curr: number, next: number): Float32Array {
-    const SAMPLES_PER_UI = 100;
-    const TOTAL_SAMPLES = 200;
+    const SAMPLES_PER_UI = 200;
+    const TOTAL_SAMPLES = 400;
     const TRANSITION_HALF = 10; // raised-cosine spans 20 samples (indices -10..+9)
     const JITTER_SIGMA = 2.5;   // samples
     const NOISE_SIGMA = 0.05;   // volts

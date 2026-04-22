@@ -8,9 +8,6 @@ export default function EyeDiagramChart() {
             <SciChartReact
                 style={{ width: "100%", height: "100%" }}
                 initChart={(rootElementId: string | HTMLDivElement) => drawExample(rootElementId)}
-                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                    initResult.controls.startAnimation();
-                }}
                 onDelete={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     initResult.controls.cleanup();
                 }}

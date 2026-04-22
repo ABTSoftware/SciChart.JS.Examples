@@ -1,8 +1,7 @@
 import { drawExample } from "./drawExample";
 
 const create = async () => {
-    const { sciChartSurface, controls } = await drawExample("chart");
-    controls.startAnimation();
+    const { controls } = await drawExample("chart");
 
     const destructor = () => {
         controls.cleanup();
