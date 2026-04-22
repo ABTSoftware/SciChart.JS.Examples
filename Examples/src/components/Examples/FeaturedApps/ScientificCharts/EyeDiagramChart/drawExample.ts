@@ -205,9 +205,6 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     let totalTraces = 0;
     let frameCount = 0;
     let lastStatsTime = performance.now();
-    let lastFps = 0;
-    let lastTracesPerSec = 0;
-
     const TRACES_PER_FRAME = 50;
 
     function animate() {
@@ -237,10 +234,10 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         if (frameCount % 30 === 0) {
             const now = performance.now();
             const elapsed = (now - lastStatsTime) / 1000; // seconds
-            lastFps = Math.round(30 / elapsed);
-            lastTracesPerSec = Math.round((30 * TRACES_PER_FRAME) / elapsed);
+            const fps = Math.round(30 / elapsed);
+            const tracesPerSec = Math.round((30 * TRACES_PER_FRAME) / elapsed);
             lastStatsTime = now;
-            statsDiv.textContent = `FPS: ${lastFps} | Traces/s: ${lastTracesPerSec} | Total: ${totalTraces.toLocaleString()}`;
+            statsDiv.textContent = `FPS: ${fps} | Traces/s: ${tracesPerSec} | Total: ${totalTraces.toLocaleString()}`;
         }
 
         rafHandle = requestAnimationFrame(animate);
@@ -261,11 +258,18 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     // Start automatically
     startAnimation();
 
+    function cleanup() {
+        stopAnimation();
+        if (container) container.removeChild(statsDiv);
+        sciChartSurface.delete();
+    }
+
     return {
         sciChartSurface,
         controls: {
             startAnimation,
             stopAnimation,
+            cleanup,
         },
     };
 }
