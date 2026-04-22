@@ -57,14 +57,14 @@ export function generateTrace(prev: number, curr: number, next: number): Float32
         const d0 = i - edge0; // distance from first edge
         const d1 = i - edge1; // distance from second edge
 
-        if (Math.abs(d0) < TRANSITION_HALF) {
+        if (d0 >= -TRANSITION_HALF && d0 < TRANSITION_HALF) {
             // Within raised-cosine transition zone for edge 0 (prev → curr)
-            const t = (d0 / (2 * TRANSITION_HALF)) + 0.5; // 0..1
+            const t = (d0 + TRANSITION_HALF) / (2 * TRANSITION_HALF); // 0..1
             const rc = 0.5 * (1 - Math.cos(Math.PI * t));
             v = vPrev + (vCurr - vPrev) * rc;
-        } else if (Math.abs(d1) < TRANSITION_HALF) {
+        } else if (d1 >= -TRANSITION_HALF && d1 < TRANSITION_HALF) {
             // Within raised-cosine transition zone for edge 1 (curr → next)
-            const t = (d1 / (2 * TRANSITION_HALF)) + 0.5; // 0..1
+            const t = (d1 + TRANSITION_HALF) / (2 * TRANSITION_HALF); // 0..1
             const rc = 0.5 * (1 - Math.cos(Math.PI * t));
             v = vCurr + (vNext - vCurr) * rc;
         } else if (i < edge0) {
