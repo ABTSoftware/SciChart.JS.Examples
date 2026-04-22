@@ -33,8 +33,8 @@ function gaussianRandom(): number {
 export function generateTrace(prev: number, curr: number, next: number): Float32Array {
     const SAMPLES_PER_UI = 200;
     const TOTAL_SAMPLES = 400;
-    const TRANSITION_HALF = 10; // raised-cosine spans 20 samples (indices -10..+9)
-    const JITTER_SIGMA = 2.5;   // samples
+    const TRANSITION_HALF = 20; // raised-cosine spans 40 samples (~10% of 1 UI)
+    const JITTER_SIGMA = 5.0;   // samples (~2.5% of 1 UI)
     const NOISE_SIGMA = 0.05;   // volts
 
     // Voltage levels: bit 1 → +1 V, bit 0 → −1 V
@@ -166,13 +166,14 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         useLinearTextureFiltering: true,
         colorMap: new HeatmapColorMap({
             minimum: 0,
-            maximum: 10,
+            maximum: 8,
             gradientStops: [
-                { offset: 0, color: "#000000" },
-                { offset: 0.15, color: "#00008B" },
-                { offset: 0.4, color: "#00FFFF" },
-                { offset: 0.7, color: "#FFFF00" },
-                { offset: 1, color: "#FFFFFF" },
+                { offset: 0,    color: "#000000" },
+                { offset: 0.15, color: "#0000FF" },
+                { offset: 0.4,  color: "#00FFFF" },
+                { offset: 0.6,  color: "#00FF00" },
+                { offset: 0.8,  color: "#FFFF00" },
+                { offset: 1,    color: "#FF0000" },
             ],
         }),
     });
