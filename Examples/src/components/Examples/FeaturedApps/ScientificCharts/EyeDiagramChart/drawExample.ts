@@ -23,59 +23,60 @@ function gaussianRandom(): number {
 }
 
 /**
- * Generates a 200-sample NRZ waveform for a 2-UI window.
+ * Generates a 400-sample NRZ waveform for a 2-UI window with crossings at t=0, 1UI, 2UI.
+ * Three visible crossing regions produce two eye openings matching a real oscilloscope display.
  *
- * @param prev  bit value (0 or 1) of the UI before the window
- * @param curr  bit value (0 or 1) of the central UI (UI 0–1)
- * @param next  bit value (0 or 1) of the UI after the window (UI 1–2)
+ * @param pprev bit value before the window start (drives crossing at t=0)
+ * @param prev  bit value for the first half of the window (UI 0–1)
+ * @param curr  bit value for the second half of the window (UI 1–2)
+ * @param next  bit value after the window end (drives crossing at t=2UI)
  * @returns Float32Array of 400 voltage samples
  */
-export function generateTrace(prev: number, curr: number, next: number): Float32Array {
+export function generateTrace(pprev: number, prev: number, curr: number, next: number): Float32Array {
     const SAMPLES_PER_UI = 200;
     const TOTAL_SAMPLES = 400;
     const TRANSITION_HALF = 20; // raised-cosine spans 40 samples (~10% of 1 UI)
-    const JITTER_SIGMA = 5.0;   // samples (~2.5% of 1 UI)
-    const NOISE_SIGMA = 0.05;   // volts
+    const JITTER_SIGMA = 4.0;   // samples (~2% of 1 UI)
+    const NOISE_SIGMA = 0.012;  // volts — kept low for clean, distinct crossing bands
 
-    // Voltage levels: bit 1 → +1 V, bit 0 → −1 V
-    const vPrev = prev === 1 ? 1.0 : -1.0;
-    const vCurr = curr === 1 ? 1.0 : -1.0;
-    const vNext = next === 1 ? 1.0 : -1.0;
+    const vPPrev = pprev === 1 ? 1.0 : -1.0;
+    const vPrev  = prev  === 1 ? 1.0 : -1.0;
+    const vCurr  = curr  === 1 ? 1.0 : -1.0;
+    const vNext  = next  === 1 ? 1.0 : -1.0;
 
     const out = new Float32Array(TOTAL_SAMPLES);
 
-    // Transition edge positions (in samples, relative to start of 2-UI window)
-    const jitter0 = Math.round(gaussianRandom() * JITTER_SIGMA);
-    const jitter1 = Math.round(gaussianRandom() * JITTER_SIGMA);
-    const edge0 = SAMPLES_PER_UI + jitter0;  // transition prev→curr at sample 100
-    const edge1 = 2 * SAMPLES_PER_UI + jitter1; // transition curr→next at sample 200
+    // Three crossing edges: at t=0, t=1UI, t=2UI (each with independent jitter)
+    const edgeA = 0                    + Math.round(gaussianRandom() * JITTER_SIGMA); // pprev→prev
+    const edgeB = SAMPLES_PER_UI       + Math.round(gaussianRandom() * JITTER_SIGMA); // prev→curr
+    const edgeC = 2 * SAMPLES_PER_UI   + Math.round(gaussianRandom() * JITTER_SIGMA); // curr→next
 
     for (let i = 0; i < TOTAL_SAMPLES; i++) {
+        const dA = i - edgeA;
+        const dB = i - edgeB;
+        const dC = i - edgeC;
+
         let v: number;
 
-        // Determine voltage contribution from each transition using raised cosine
-        const d0 = i - edge0; // distance from first edge
-        const d1 = i - edge1; // distance from second edge
-
-        if (d0 >= -TRANSITION_HALF && d0 < TRANSITION_HALF) {
-            // Within raised-cosine transition zone for edge 0 (prev → curr)
-            const t = (d0 + TRANSITION_HALF) / (2 * TRANSITION_HALF); // 0..1
-            const rc = 0.5 * (1 - Math.cos(Math.PI * t));
-            v = vPrev + (vCurr - vPrev) * rc;
-        } else if (d1 >= -TRANSITION_HALF && d1 < TRANSITION_HALF) {
-            // Within raised-cosine transition zone for edge 1 (curr → next)
-            const t = (d1 + TRANSITION_HALF) / (2 * TRANSITION_HALF); // 0..1
-            const rc = 0.5 * (1 - Math.cos(Math.PI * t));
-            v = vCurr + (vNext - vCurr) * rc;
-        } else if (i < edge0) {
+        if (dA >= -TRANSITION_HALF && dA < TRANSITION_HALF) {
+            const t = (dA + TRANSITION_HALF) / (2 * TRANSITION_HALF);
+            v = vPPrev + (vPrev - vPPrev) * 0.5 * (1 - Math.cos(Math.PI * t));
+        } else if (dB >= -TRANSITION_HALF && dB < TRANSITION_HALF) {
+            const t = (dB + TRANSITION_HALF) / (2 * TRANSITION_HALF);
+            v = vPrev + (vCurr - vPrev) * 0.5 * (1 - Math.cos(Math.PI * t));
+        } else if (dC >= -TRANSITION_HALF && dC < TRANSITION_HALF) {
+            const t = (dC + TRANSITION_HALF) / (2 * TRANSITION_HALF);
+            v = vCurr + (vNext - vCurr) * 0.5 * (1 - Math.cos(Math.PI * t));
+        } else if (i < edgeA) {
+            v = vPPrev;
+        } else if (i < edgeB) {
             v = vPrev;
-        } else if (i < edge1) {
+        } else if (i < edgeC) {
             v = vCurr;
         } else {
             v = vNext;
         }
 
-        // Gaussian amplitude noise
         out[i] = v + gaussianRandom() * NOISE_SIGMA;
     }
 
@@ -217,10 +218,11 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
 
         // Generate and bin 50 traces this frame
         for (let t = 0; t < TRACES_PER_FRAME; t++) {
-            const prev = Math.random() < 0.5 ? 0 : 1;
-            const curr = Math.random() < 0.5 ? 0 : 1;
-            const next = Math.random() < 0.5 ? 0 : 1;
-            const trace = generateTrace(prev, curr, next);
+            const pprev = Math.random() < 0.5 ? 0 : 1;
+            const prev  = Math.random() < 0.5 ? 0 : 1;
+            const curr  = Math.random() < 0.5 ? 0 : 1;
+            const next  = Math.random() < 0.5 ? 0 : 1;
+            const trace = generateTrace(pprev, prev, curr, next);
             binTrace(grid, trace);
         }
         totalTraces += TRACES_PER_FRAME;
