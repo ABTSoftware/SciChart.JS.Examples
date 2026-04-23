@@ -37,7 +37,7 @@ function gaussianRandom(): number {
 export function generateTrace(): Float32Array {
     const SAMPLES_PER_UI = 200;
     const TOTAL_SAMPLES = 400;
-    const TRANSITION_HALF = 20; // raised-cosine spans 40 samples (~10% of 1 UI)
+    const TRANSITION_HALF = 35; // raised-cosine spans 70 samples (~35% of 1 UI — matches real 100BASE-TX rise time)
     const JITTER_SIGMA = 4.0;   // samples (~2% of 1 UI)
     const NOISE_SIGMA = 0.012;  // volts — low for clean, distinct crossing bands
 
@@ -131,7 +131,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
             axisTitle: "Voltage (V)",
             axisTitleStyle: { fontSize: 11 },
             labelStyle: { fontSize: 10 },
-            visibleRange: new NumberRange(-1.5, 1.5),
+            visibleRange: new NumberRange(-1.15, 1.15),
             autoRange: EAutoRange.Never,
             drawMajorGridLines: false,
             drawMinorGridLines: false,
@@ -150,8 +150,8 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     const dataSeries = new UniformHeatmapDataSeries(wasmContext, {
         xStart: 0,
         xStep: 2 / (COLS - 1),
-        yStart: -1.5,
-        yStep: 3 / (ROWS - 1),
+        yStart: -1.15,
+        yStep: 2.3 / (ROWS - 1),
         zValues: zValuesLog,
     });
 
