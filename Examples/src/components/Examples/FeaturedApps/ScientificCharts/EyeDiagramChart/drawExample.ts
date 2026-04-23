@@ -23,63 +23,57 @@ function gaussianRandom(): number {
 }
 
 /**
- * Generates a 400-sample NRZ waveform for a 2-UI window with crossings at t=0, 1UI, 2UI.
- * Three visible crossing regions produce two eye openings matching a real oscilloscope display.
+ * Generates a 400-sample MLT-3 waveform for a 2-UI window.
  *
- * @param pprev bit value before the window start (drives crossing at t=0)
- * @param prev  bit value for the first half of the window (UI 0–1)
- * @param curr  bit value for the second half of the window (UI 1–2)
- * @param next  bit value after the window end (drives crossing at t=2UI)
+ * MLT-3 cycles through voltage levels [+1, 0, -1, 0] — the signal advances to the
+ * next level on each '1' bit and holds on each '0' bit. This produces three voltage
+ * rails and two stacked eye openings when overlaid.
+ *
+ * Three crossings are placed at t=0, t=1UI, t=2UI to produce the standard
+ * oscilloscope eye pattern (two openings per display window).
+ *
  * @returns Float32Array of 400 voltage samples
  */
-export function generateTrace(pprev: number, prev: number, curr: number, next: number): Float32Array {
+export function generateTrace(): Float32Array {
     const SAMPLES_PER_UI = 200;
     const TOTAL_SAMPLES = 400;
     const TRANSITION_HALF = 20; // raised-cosine spans 40 samples (~10% of 1 UI)
     const JITTER_SIGMA = 4.0;   // samples (~2% of 1 UI)
-    const NOISE_SIGMA = 0.012;  // volts — kept low for clean, distinct crossing bands
+    const NOISE_SIGMA = 0.012;  // volts — low for clean, distinct crossing bands
 
-    const vPPrev = pprev === 1 ? 1.0 : -1.0;
-    const vPrev  = prev  === 1 ? 1.0 : -1.0;
-    const vCurr  = curr  === 1 ? 1.0 : -1.0;
-    const vNext  = next  === 1 ? 1.0 : -1.0;
+    // MLT-3 state machine: state index cycles 0→1→2→3→0, voltages [+1, 0, -1, 0]
+    const STATE_V = [1.0, 0.0, -1.0, 0.0] as const;
+
+    // Start at a random state, then generate 4 consecutive levels (pprev, prev, curr, next)
+    // Each position: 50% chance to advance state (bit=1), 50% to hold (bit=0)
+    let state = Math.floor(Math.random() * 4);
+    const vLevels = Array.from({ length: 4 }, () => {
+        if (Math.random() < 0.5) state = (state + 1) % 4;
+        return STATE_V[state];
+    });
+    const [vPPrev, vPrev, vCurr, vNext] = vLevels;
 
     const out = new Float32Array(TOTAL_SAMPLES);
 
-    // Three crossing edges: at t=0, t=1UI, t=2UI (each with independent jitter)
-    const edgeA = 0                    + Math.round(gaussianRandom() * JITTER_SIGMA); // pprev→prev
-    const edgeB = SAMPLES_PER_UI       + Math.round(gaussianRandom() * JITTER_SIGMA); // prev→curr
-    const edgeC = 2 * SAMPLES_PER_UI   + Math.round(gaussianRandom() * JITTER_SIGMA); // curr→next
+    // Three crossing edges at t=0, t=1UI, t=2UI with independent per-edge jitter
+    const edgeA = 0                  + Math.round(gaussianRandom() * JITTER_SIGMA);
+    const edgeB = SAMPLES_PER_UI     + Math.round(gaussianRandom() * JITTER_SIGMA);
+    const edgeC = 2 * SAMPLES_PER_UI + Math.round(gaussianRandom() * JITTER_SIGMA);
+
+    const rc = (d: number) => 0.5 * (1 - Math.cos(Math.PI * (d + TRANSITION_HALF) / (2 * TRANSITION_HALF)));
 
     for (let i = 0; i < TOTAL_SAMPLES; i++) {
-        const dA = i - edgeA;
-        const dB = i - edgeB;
-        const dC = i - edgeC;
-
+        const dA = i - edgeA, dB = i - edgeB, dC = i - edgeC;
         let v: number;
-
-        if (dA >= -TRANSITION_HALF && dA < TRANSITION_HALF) {
-            const t = (dA + TRANSITION_HALF) / (2 * TRANSITION_HALF);
-            v = vPPrev + (vPrev - vPPrev) * 0.5 * (1 - Math.cos(Math.PI * t));
-        } else if (dB >= -TRANSITION_HALF && dB < TRANSITION_HALF) {
-            const t = (dB + TRANSITION_HALF) / (2 * TRANSITION_HALF);
-            v = vPrev + (vCurr - vPrev) * 0.5 * (1 - Math.cos(Math.PI * t));
-        } else if (dC >= -TRANSITION_HALF && dC < TRANSITION_HALF) {
-            const t = (dC + TRANSITION_HALF) / (2 * TRANSITION_HALF);
-            v = vCurr + (vNext - vCurr) * 0.5 * (1 - Math.cos(Math.PI * t));
-        } else if (i < edgeA) {
-            v = vPPrev;
-        } else if (i < edgeB) {
-            v = vPrev;
-        } else if (i < edgeC) {
-            v = vCurr;
-        } else {
-            v = vNext;
-        }
-
+        if      (dA >= -TRANSITION_HALF && dA < TRANSITION_HALF) v = vPPrev + (vPrev - vPPrev) * rc(dA);
+        else if (dB >= -TRANSITION_HALF && dB < TRANSITION_HALF) v = vPrev  + (vCurr - vPrev)  * rc(dB);
+        else if (dC >= -TRANSITION_HALF && dC < TRANSITION_HALF) v = vCurr  + (vNext - vCurr)  * rc(dC);
+        else if (i < edgeA) v = vPPrev;
+        else if (i < edgeB) v = vPrev;
+        else if (i < edgeC) v = vCurr;
+        else                v = vNext;
         out[i] = v + gaussianRandom() * NOISE_SIGMA;
     }
-
     return out;
 }
 
@@ -218,11 +212,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
 
         // Generate and bin 50 traces this frame
         for (let t = 0; t < TRACES_PER_FRAME; t++) {
-            const pprev = Math.random() < 0.5 ? 0 : 1;
-            const prev  = Math.random() < 0.5 ? 0 : 1;
-            const curr  = Math.random() < 0.5 ? 0 : 1;
-            const next  = Math.random() < 0.5 ? 0 : 1;
-            const trace = generateTrace(pprev, prev, curr, next);
+            const trace = generateTrace();
             binTrace(grid, trace);
         }
         totalTraces += TRACES_PER_FRAME;

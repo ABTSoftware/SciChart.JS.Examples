@@ -8,7 +8,7 @@ const metaData: IExampleMetadata =
         id: "featuredApps_scientificCharts_EyeDiagramChart",
         imagePath: "javascript-eye-diagram-chart.jpg",
         description:
-            "Demonstrates a real-time **Eye Diagram** (persistence display) using SciChart.js heatmap rendering. Thousands of NRZ waveform traces accumulate per second into a 2D density grid, producing the iconic oscilloscope glow effect.",
+            "Demonstrates a real-time **Eye Diagram** (persistence display) using SciChart.js heatmap rendering. Simulates an **MLT-3** signal (three voltage levels, used in 100BASE-TX Ethernet) — thousands of traces accumulate into a 2D density grid, producing the two-eye oscilloscope persistence pattern.",
         tips: [],
         frameworks: {
             javascript: {
