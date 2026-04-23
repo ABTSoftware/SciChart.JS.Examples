@@ -37,19 +37,26 @@ function gaussianRandom(): number {
 export function generateTrace(): Float32Array {
     const SAMPLES_PER_UI = 200;
     const TOTAL_SAMPLES = 400;
-    const TRANSITION_HALF = 35; // raised-cosine spans 70 samples (~35% of 1 UI — matches real 100BASE-TX rise time)
-    const JITTER_SIGMA = 4.0;   // samples (~2% of 1 UI)
-    const NOISE_SIGMA = 0.012;  // volts — low for clean, distinct crossing bands
+    const BASE_RISE_HALF = 35;      // raised-cosine half-width (~35% of 1 UI — real 100BASE-TX rise time)
+    const JITTER_SIGMA = 4.0;       // samples (~2% of 1 UI)
+    const NOISE_SIGMA = 0.010;      // volts — per-sample Gaussian noise
+    const AMPLITUDE_SIGMA = 0.025;  // ±2.5% per-trace amplitude scaling
+    const DC_OFFSET_SIGMA = 0.015;  // volts — per-trace DC offset
+    const RISE_SIGMA = 2.8;         // samples — per-edge rise time variation
 
     // MLT-3 state machine: state index cycles 0→1→2→3→0, voltages [+1, 0, -1, 0]
     const STATE_V = [1.0, 0.0, -1.0, 0.0] as const;
+
+    // Per-trace capture variations — real scope traces drift slightly in amplitude and DC level
+    const amplitudeScale = 1.0 + gaussianRandom() * AMPLITUDE_SIGMA;
+    const dcOffset = gaussianRandom() * DC_OFFSET_SIGMA;
 
     // Start at a random state, then generate 4 consecutive levels (pprev, prev, curr, next)
     // Each position: 50% chance to advance state (bit=1), 50% to hold (bit=0)
     let state = Math.floor(Math.random() * 4);
     const vLevels = Array.from({ length: 4 }, () => {
         if (Math.random() < 0.5) state = (state + 1) % 4;
-        return STATE_V[state];
+        return STATE_V[state] * amplitudeScale + dcOffset;
     });
     const [vPPrev, vPrev, vCurr, vNext] = vLevels;
 
@@ -60,14 +67,21 @@ export function generateTrace(): Float32Array {
     const edgeB = SAMPLES_PER_UI     + Math.round(gaussianRandom() * JITTER_SIGMA);
     const edgeC = 2 * SAMPLES_PER_UI + Math.round(gaussianRandom() * JITTER_SIGMA);
 
-    const rc = (d: number) => 0.5 * (1 - Math.cos(Math.PI * (d + TRANSITION_HALF) / (2 * TRANSITION_HALF)));
+    // Independent rise time per edge — each crossing X-pattern gets its own slew, producing
+    // realistic fuzz at the crossings instead of three identical curves stacked on top of each other
+    const clampRise = (r: number) => Math.max(26, Math.min(44, r));
+    const riseA = clampRise(Math.round(BASE_RISE_HALF + gaussianRandom() * RISE_SIGMA));
+    const riseB = clampRise(Math.round(BASE_RISE_HALF + gaussianRandom() * RISE_SIGMA));
+    const riseC = clampRise(Math.round(BASE_RISE_HALF + gaussianRandom() * RISE_SIGMA));
+
+    const rc = (d: number, half: number) => 0.5 * (1 - Math.cos(Math.PI * (d + half) / (2 * half)));
 
     for (let i = 0; i < TOTAL_SAMPLES; i++) {
         const dA = i - edgeA, dB = i - edgeB, dC = i - edgeC;
         let v: number;
-        if      (dA >= -TRANSITION_HALF && dA < TRANSITION_HALF) v = vPPrev + (vPrev - vPPrev) * rc(dA);
-        else if (dB >= -TRANSITION_HALF && dB < TRANSITION_HALF) v = vPrev  + (vCurr - vPrev)  * rc(dB);
-        else if (dC >= -TRANSITION_HALF && dC < TRANSITION_HALF) v = vCurr  + (vNext - vCurr)  * rc(dC);
+        if      (dA >= -riseA && dA < riseA) v = vPPrev + (vPrev - vPPrev) * rc(dA, riseA);
+        else if (dB >= -riseB && dB < riseB) v = vPrev  + (vCurr - vPrev)  * rc(dB, riseB);
+        else if (dC >= -riseC && dC < riseC) v = vCurr  + (vNext - vCurr)  * rc(dC, riseC);
         else if (i < edgeA) v = vPPrev;
         else if (i < edgeB) v = vPrev;
         else if (i < edgeC) v = vCurr;
@@ -115,7 +129,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     // X Axis — time in UI units
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
-            axisTitle: "Time (UI)",
+            axisTitle: "Time",
             axisTitleStyle: { fontSize: 11 },
             labelStyle: { fontSize: 10 },
             visibleRange: new NumberRange(0, 2),
@@ -128,7 +142,7 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     // Y Axis — voltage
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
-            axisTitle: "Voltage (V)",
+            axisTitle: "Voltage",
             axisTitleStyle: { fontSize: 11 },
             labelStyle: { fontSize: 10 },
             visibleRange: new NumberRange(-1.15, 1.15),
