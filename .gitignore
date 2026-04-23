@@ -24,5 +24,6 @@ Examples/exampleInfo.*
 .aider*
 Examples/logs
 Examples/logs/all.log
-
+.sciclawd
+.claude
 /docs/

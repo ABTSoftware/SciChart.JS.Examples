@@ -6,10 +6,9 @@ export interface SmithGridConfig {
     majorPxThreshold: number; // min pixel radius for a major circle/arc
     minorPxThreshold: number; // min pixel radius for a minor circle/arc
     targetTicks: number; // target major count (evenly spaced in s-space)
-    clipOffset: number; // the k in clipMajors[nClip - tier - k]; larger = shorter clips
     useCompactRange: boolean; // restrict lower R/G boundary to circles centred in viewport
-    maxTiers: number; // 0 = auto (nClip − clipOffset); >0 hard cap on tier iterations
-    minGapPx: number; // min pixel-radius gap between boundaries to allow subdivision
+    maxTiers: number; // 0 = auto (nClip); >0 hard cap on tier iterations
+    minGapPx: number; // target pixel gap at convergence point; effective s-gap = minGapPx / pixPerUnit (auto-scales with zoom)
     _version: number; // incremented on every change; drives stale-check invalidation
 }
 
@@ -17,10 +16,9 @@ export const smithGridConfig: SmithGridConfig = {
     majorPxThreshold: 15,
     minorPxThreshold: 5,
     targetTicks: 8,
-    clipOffset: 1,
     useCompactRange: true,
     maxTiers: 0,
-    minGapPx: 5,
+    minGapPx: 3.6,
     _version: 0,
 };
 
@@ -231,16 +229,15 @@ function compactLowerBound(
 function computeTieredMinors(
     candidates: number[],
     valueMajorsSorted: number[],
-    clipMajorsSorted: number[],
     pixPerUnit: number,
     xRange: NumberRange,
     yRange: NumberRange,
     isAdmittance: boolean,
-    isXFamily: boolean
+    isXFamily: boolean,
+    otherFamilyMajors: number[] = []
 ): number[] {
     const result: number[] = [];
-    const nClip = clipMajorsSorted.length;
-    if (nClip === 0) return result;
+    if (valueMajorsSorted.length === 0) return result;
 
     const cfg = smithGridConfig;
     const addedSet = new Set<number>(valueMajorsSorted);
@@ -249,21 +246,23 @@ function computeTieredMinors(
 
     let levelBoundaries = [compactLo, ...valueMajorsSorted.filter((v) => v > compactLo)];
 
-    const autoMaxTiers = Math.max(1, nClip - cfg.clipOffset);
-    const maxTiers = cfg.maxTiers > 0 ? Math.min(cfg.maxTiers, autoMaxTiers) : autoMaxTiers;
+    // maxTiers: default 8 (minGap check limits actual depth at any given zoom level).
+    const maxTiers = cfg.maxTiers > 0 ? cfg.maxTiers : 8;
+
+    // Dynamic gap threshold: cfg.minGapPx is a target pixel gap at the convergence point.
+    // Dividing by pixPerUnit converts to s-space, so it automatically tightens as you zoom in.
+    const effectiveMinGap = cfg.minGapPx / pixPerUnit;
 
     for (let tier = 1; tier <= maxTiers; tier++) {
-        const clipIdx = Math.max(0, nClip - tier - cfg.clipOffset);
-        const clip = clipMajorsSorted[clipIdx];
-
         const tierValues: number[] = [];
 
         for (let i = 0; i + 1 < levelBoundaries.length; i++) {
             const lo = levelBoundaries[i];
             const hi = levelBoundaries[i + 1];
 
-            const pixGap = pixelRadius(lo, pixPerUnit) - pixelRadius(hi, pixPerUnit);
-            if (pixGap < cfg.minGapPx) continue;
+            // Gap in s-space at the convergence end; compared against effectiveMinGap.
+            const pixGap = 1 / Math.sqrt(lo + 1) - 1 / Math.sqrt(hi + 1);
+            if (pixGap < effectiveMinGap) continue;
 
             const sLo = 1 / (hi + 1);
             const sHi = 1 / (lo + 1);
@@ -301,6 +300,12 @@ function computeTieredMinors(
                 : rCircleVisible(vBest, xRange, yRange);
             if (!isVisible) continue;
 
+            // Intrinsic clip gives a universal arc angle per tier, independent of viewport.
+            // Snapping to the nearest other-family major ensures the arc endpoint lands
+            // on a visible gridline intersection rather than floating mid-chart.
+            const intrinsicClip = (vBest + 1) * Math.pow(2, 3 - tier);
+            const anchor = otherFamilyMajors.find((a) => a >= intrinsicClip);
+            const clip = anchor !== undefined ? anchor : intrinsicClip;
             result.push(vBest, clip);
             tierValues.push(vBest);
             addedSet.add(vBest);
@@ -423,22 +428,22 @@ export class SmithGridCalculator {
         this._rMinor = computeTieredMinors(
             candidates,
             rMajorSorted,
-            xMajorSorted,
             pixPerUnit,
             xRange,
             yRange,
             isAdmittance,
-            false
+            false,
+            xMajorSorted
         );
         this._xMinor = computeTieredMinors(
             candidates,
             xMajorSorted,
-            rMajorSorted,
             pixPerUnit,
             xRange,
             yRange,
             isAdmittance,
-            true
+            true,
+            rMajorSorted
         );
     }
 }

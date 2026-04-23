@@ -81,10 +81,14 @@ export function populateRCircle(ds: XyDataSeries, r: number) {
     const cx = r / (1 + r);
     const rad = 1 / (1 + r);
     const n = 200;
+    const xArr = new Float64Array(n + 1);
+    const yArr = new Float64Array(n + 1);
     for (let i = 0; i <= n; i++) {
         const angle = (i / n) * 2 * Math.PI;
-        ds.append(cx + rad * Math.cos(angle), rad * Math.sin(angle));
+        xArr[i] = cx + rad * Math.cos(angle);
+        yArr[i] = rad * Math.sin(angle);
     }
+    ds.appendRange(xArr, yArr);
 }
 
 export function populateXArc(ds: XyDataSeries, xVal: number) {
@@ -92,8 +96,7 @@ export function populateXArc(ds: XyDataSeries, xVal: number) {
     if (!isFinite(xVal)) return;
 
     if (Math.abs(xVal) < 0.001) {
-        ds.append(-1, 0);
-        ds.append(1, 0);
+        ds.appendRange([-1, 1], [0, 0]);
         return;
     }
 
@@ -124,20 +127,28 @@ export function populateXArc(ds: XyDataSeries, xVal: number) {
     }
 
     const n = 200;
+    const xArr = new Float64Array(n + 1);
+    const yArr = new Float64Array(n + 1);
     for (let i = 0; i <= n; i++) {
         const angle = startAngle + (i / n) * (endAngle - startAngle);
-        ds.append(cx + radius * Math.cos(angle), cy + radius * Math.sin(angle));
+        xArr[i] = cx + radius * Math.cos(angle);
+        yArr[i] = cy + radius * Math.sin(angle);
     }
+    ds.appendRange(xArr, yArr);
 }
 
 export function populateCircle(ds: XyDataSeries, cx: number, cy: number, radius: number) {
     ds.clear();
     if (radius < 0.001) return;
     const n = 200;
+    const xArr = new Float64Array(n + 1);
+    const yArr = new Float64Array(n + 1);
     for (let i = 0; i <= n; i++) {
         const angle = (i / n) * 2 * Math.PI;
-        ds.append(cx + radius * Math.cos(angle), cy + radius * Math.sin(angle));
+        xArr[i] = cx + radius * Math.cos(angle);
+        yArr[i] = cy + radius * Math.sin(angle);
     }
+    ds.appendRange(xArr, yArr);
 }
 
 // ── Marker colours ────────────────────────────────────────────────────────────

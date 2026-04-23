@@ -77,7 +77,6 @@ export default function SmithChartComponent() {
         majorPxThreshold: smithGridConfig.majorPxThreshold,
         minorPxThreshold: smithGridConfig.minorPxThreshold,
         targetTicks: smithGridConfig.targetTicks,
-        clipOffset: smithGridConfig.clipOffset,
         useCompactRange: smithGridConfig.useCompactRange,
         maxTiers: smithGridConfig.maxTiers,
         minGapPx: smithGridConfig.minGapPx,
@@ -507,15 +506,6 @@ export default function SmithChartComponent() {
                                 onChange={(v) => applyGridCfg({ targetTicks: v })}
                             />
                             <GridSlider
-                                label="Clip offset"
-                                min={0}
-                                max={6}
-                                step={1}
-                                tooltip="Controls how much minor arcs are clipped away from the (1,0) convergence point. Higher = shorter arcs with bigger gaps at the right edge; lower = arcs extend closer to the singularity."
-                                value={gridCfg.clipOffset}
-                                onChange={(v) => applyGridCfg({ clipOffset: v })}
-                            />
-                            <GridSlider
                                 label="Max tiers (0=auto)"
                                 min={0}
                                 max={8}
@@ -525,11 +515,11 @@ export default function SmithChartComponent() {
                                 onChange={(v) => applyGridCfg({ maxTiers: v })}
                             />
                             <GridSlider
-                                label="Min gap px"
-                                min={2}
-                                max={40}
-                                step={1}
-                                tooltip="Minimum pixel-radius gap between adjacent boundaries before a subdivision is attempted. Prevents adding minor ticks into already-dense regions of the chart."
+                                label="Min gap (px)"
+                                min={0.5}
+                                max={10}
+                                step={0.5}
+                                tooltip="Target pixel gap between adjacent arc curves at the convergence point. Automatically scales with zoom (effectiveGap = minGapPx / pixPerUnit), so subdivision deepens as you zoom in. Higher = sparser grid; lower = denser."
                                 value={gridCfg.minGapPx}
                                 onChange={(v) => applyGridCfg({ minGapPx: v })}
                             />

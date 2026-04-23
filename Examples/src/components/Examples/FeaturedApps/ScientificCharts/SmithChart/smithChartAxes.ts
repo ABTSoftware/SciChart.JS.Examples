@@ -50,6 +50,10 @@ import {
     TTextStyle,
     TTickLineStyle,
     deleteSafe,
+    EAxisAlignment,
+    LabelProviderBase2D,
+    LabelInfo,
+    AxisBase2D,
 } from "scichart";
 import { Pen2DCache } from "scichart/Charting/Drawing/Pen2DCache";
 import { INumericAxisOptions } from "scichart/Charting/Visuals/Axis/NumericAxis";
@@ -74,50 +78,6 @@ import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import { convertMultiLineAlignment } from "scichart/types/TextPosition";
 
 // ── Tick Providers ────────────────────────────────────────────────────────────
-
-export class StaticSmithResistanceTickProvider {
-    private readonly _major = [0.2, 0.5, 1, 2, 5, 10, 20, 50];
-    private readonly _minor: number[] = [
-        /* tier 1 – clip at X=5 */
-        0.1, 5, 0.3, 5, 0.4, 5, 0.6, 5, 0.7, 5, 0.8, 5, 0.9, 5, 1.2, 5, 1.4, 5, 1.6, 5, 1.8, 5, 3, 5, 4, 5,
-        /* tier 2 – clip at X=2 */
-        0.05, 2, 0.15, 2, 0.25, 2, 0.35, 2, 0.45, 2, 0.55, 2, 0.65, 2, 0.75, 2, 0.85, 2, 0.95, 2, 1.1, 2, 1.3, 2, 1.5,
-        2, 1.7, 2, 1.9, 2, 2.5, 2 /* tier 3 – clip at X=1 */, 0.025, 1, 0.075, 1, 0.125, 1, 0.175, 1, 0.225, 1, 0.275,
-        1, 0.325, 1, 0.375, 1, 0.425, 1, 0.475, 1, 0.525, 1, 0.575, 1, 0.625, 1, 0.675, 1, 0.725, 1, 0.775, 1, 0.825, 1,
-        0.875, 1, 0.925, 1, 0.975, 1, 1.25, 1,
-    ];
-    constructor(_opts: any) {}
-    getMajorTicks(_a: number, _b: number, _r: any): number[] {
-        return [...this._major];
-    }
-    getMinorTicks(_a: number, _b: number, _r: any): number[] {
-        return [...this._minor];
-    }
-    attachedToAxis(_axis: any): void {}
-    detachedFromAxis(): void {}
-}
-
-export class StaticSmithReactanceTickProvider {
-    private readonly _major = [0.2, 0.5, 1, 2, 5, 10, 20, 50];
-    private readonly _minor: number[] = [
-        /* tier 1 – clip at R=5 */
-        0.1, 5, 0.3, 5, 0.4, 5, 0.6, 5, 0.7, 5, 0.8, 5, 0.9, 5, 1.2, 5, 1.4, 5, 1.6, 5, 1.8, 5, 3, 5, 4, 5,
-        /* tier 2 – clip at R=2 */
-        0.05, 2, 0.15, 2, 0.25, 2, 0.35, 2, 0.45, 2, 0.55, 2, 0.65, 2, 0.75, 2, 0.85, 2, 0.95, 2, 1.1, 2, 1.3, 2, 1.5,
-        2, 1.7, 2, 1.9, 2, 2.5, 2 /* tier 3 – clip at R=1 */, 0.025, 1, 0.075, 1, 0.125, 1, 0.175, 1, 0.225, 1, 0.275,
-        1, 0.325, 1, 0.375, 1, 0.425, 1, 0.475, 1, 0.525, 1, 0.575, 1, 0.625, 1, 0.675, 1, 0.725, 1, 0.775, 1, 0.825, 1,
-        0.875, 1, 0.925, 1, 0.975, 1, 1.25, 1,
-    ];
-    constructor(_opts: any) {}
-    getMajorTicks(_a: number, _b: number, _r: any): number[] {
-        return [...this._major];
-    }
-    getMinorTicks(_a: number, _b: number, _r: any): number[] {
-        return [...this._minor];
-    }
-    attachedToAxis(_axis: any): void {}
-    detachedFromAxis(): void {}
-}
 
 /**
  * Minor ticks are encoded as flat pairs: [value, clipOtherValue, value, clipOtherValue, ...].
@@ -152,9 +112,8 @@ export class SmithResistanceTickProvider extends TickProvider {
 
     private _runCompute(): SmithGridCalculator | null {
         const rAxis = this.parentAxis as SmithChartResistanceAxis | undefined;
-        if (!rAxis?.gridCalculator) return null;
-        // parentSurface is on AxisBase2D, not AxisCore (TickProvider's parentAxis type) — cast required
-        const surface = (rAxis as any).parentSurface;
+        if (!rAxis || !rAxis.gridCalculator) return null;
+        const surface = rAxis.parentSurface;
         if (!surface) return null;
         const xRange: NumberRange = rAxis.visibleRange;
         const yAxis = surface.yAxes?.get(0);
@@ -180,12 +139,10 @@ export class SmithReactanceTickProvider extends TickProvider {
     }
 
     private _runCompute(): SmithGridCalculator | null {
-        const yAxis = this.parentAxis;
+        const yAxis = this.parentAxis as AxisBase2D | undefined;
         if (!yAxis) return null;
-        // parentSurface is on AxisBase2D, not AxisCore (TickProvider's parentAxis type) — cast required
-        const surface = (yAxis as any).parentSurface;
+        const surface = yAxis.parentSurface;
         if (!surface) return null;
-        // Z resistance axis is always at xAxes[0] per registration order in drawExample.ts
         const rAxis = surface.xAxes?.get(0) as SmithChartResistanceAxis | undefined;
         if (!rAxis?.gridCalculator) return null;
         const xRange: NumberRange = rAxis.visibleRange;
@@ -217,33 +174,33 @@ export class SmithChartAxisRenderer extends AxisRenderer {
     /** No axis margin needed — labels are drawn inside the series view rect. */
     public override measure(
         _isHorizontalAxis: boolean,
-        _labelStyle: any,
+        _labelStyle: TTextStyle,
         _majorTickLabels: string[],
         _ticksSize: number,
-        _labelProvider: any,
+        _labelProvider: LabelProviderBase2D,
         _drawLabels: boolean,
         _drawTicks: boolean,
-        _labelInfos?: any[]
+        _labelInfos?: LabelInfo[]
     ): void {
-        (this as any).desiredHeight = 0;
-        (this as any).desiredWidth = 0;
-        (this as any).desiredTicksSize = 0;
+        this.desiredHeight = 0;
+        this.desiredWidth = 0;
+        this.desiredTicksSize = 0;
     }
 
     public override drawLabels(
         renderContext: WebGlRenderContext2D,
-        _axisAlignment: any,
-        _isInnerAxis: any,
-        _tickLabels: any,
-        _tickCoords: any,
-        _axisOffset: any,
-        labelStyle: any,
-        _isVerticalChart: any,
-        _isFlippedCoordinates: any,
-        labelProvider: any,
-        _labelInfos?: any
+        _axisAlignment: EAxisAlignment,
+        _isInnerAxis: boolean,
+        _tickLabels: string[],
+        _tickCoords: number[],
+        _axisOffset: number,
+        labelStyle: TTextStyle,
+        _isVerticalChart: boolean,
+        _isFlippedCoordinates: boolean,
+        labelProvider: LabelProviderBase2D,
+        _labelInfos?: LabelInfo[]
     ): void {
-        const axis = (this as any).parentAxis;
+        const axis = this.parentAxis;
         const surface = axis?.parentSurface;
         if (!surface) return;
 
@@ -256,7 +213,7 @@ export class SmithChartAxisRenderer extends AxisRenderer {
         // ── Set up rendering paths (mirrors PolarAxisRenderer pattern) ─────────
         const { multilineAlignment } = labelStyle;
         const textColor = parseColorToUIntArgb(labelStyle.color);
-        const wasmCtx = (this as any).webAssemblyContext;
+        const wasmCtx = this.webAssemblyContext;
 
         const nativeFont = labelProvider.useNativeText ? renderContext.getFont(labelStyle, true) : null;
         const textBounds = nativeFont ? getTextBounds(wasmCtx) : null;
@@ -306,8 +263,8 @@ export class SmithChartAxisRenderer extends AxisRenderer {
         // by AxisBase2D.getTicks(). AxisBase2D filters ticks to visibleRange (e.g. [-1.15, 1.15]),
         // which discards most Smith chart R/X values (e.g. 2, 5, 10, 20, 50). The renderer
         // fetches them unfiltered here so all circle/arc labels are placed correctly.
-        const tp = axis?.tickProvider as any;
-        const majorTicks: number[] = tp?.getMajorTicks(0, 0, null) ?? [];
+        const tp = axis?.tickProvider;
+        const majorTicks: number[] = tp?.getMajorTicks(0, 0, axis.visibleRange) ?? [];
 
         if (this._isResistanceAxis) {
             if (this._isAdmittance) {
@@ -315,7 +272,7 @@ export class SmithChartAxisRenderer extends AxisRenderer {
                 drawLabel("0", xCalc.getCoordinate(1), yCalc.getCoordinate(0), Math.PI);
                 for (const g of majorTicks) {
                     drawLabel(
-                        (labelProvider as any).formatLabel(g),
+                        labelProvider.formatLabel(g),
                         xCalc.getCoordinate((1 - g) / (1 + g)),
                         yCalc.getCoordinate(0),
                         Math.PI / 2
@@ -331,7 +288,7 @@ export class SmithChartAxisRenderer extends AxisRenderer {
                 for (const r of majorTicks) {
                     const { cx, rad } = rCircleParams(r);
                     drawLabel(
-                        (labelProvider as any).formatLabel(r),
+                        labelProvider.formatLabel(r),
                         xCalc.getCoordinate(cx - rad),
                         yCalc.getCoordinate(0),
                         Math.PI / 2
@@ -349,7 +306,7 @@ export class SmithChartAxisRenderer extends AxisRenderer {
                     const gi = (2 * x0) / denom;
                     const angleRad = Math.atan2(gi - xArcCy, gr - 1);
                     drawLabel(
-                        (labelProvider as any).formatLabel(rj),
+                        labelProvider.formatLabel(rj),
                         xCalc.getCoordinate(gr),
                         yCalc.getCoordinate(gi),
                         angleRad
@@ -414,7 +371,7 @@ export class SmithChartAxisRenderer extends AxisRenderer {
                     const bv2 = b * b;
                     const lx = (1 - bv2) / (1 + bv2);
                     const ly = (2 * b) / (1 + bv2);
-                    const label = (labelProvider as any).formatLabel(b);
+                    const label = labelProvider.formatLabel(b);
                     drawLabel(`+${label}`, xCalc.getCoordinate(lx), yCalc.getCoordinate(ly), Math.atan2(ly, lx));
                     drawLabel(`-${label}`, xCalc.getCoordinate(lx), yCalc.getCoordinate(-ly), Math.atan2(-ly, lx));
                 }
@@ -426,7 +383,7 @@ export class SmithChartAxisRenderer extends AxisRenderer {
                 const xv2 = x * x;
                 const lx = (xv2 - 1) / (1 + xv2);
                 const ly = (2 * x) / (1 + xv2);
-                const label = (labelProvider as any).formatLabel(x);
+                const label = labelProvider.formatLabel(x);
                 drawLabel(`+${label}`, xCalc.getCoordinate(lx), yCalc.getCoordinate(ly), Math.atan2(ly, lx));
                 drawLabel(`-${label}`, xCalc.getCoordinate(lx), yCalc.getCoordinate(-ly), Math.atan2(-ly, lx));
             }
@@ -441,7 +398,7 @@ export class SmithChartAxisRenderer extends AxisRenderer {
                     const gr = (r0 * r0 + xj * xj - 1) / denom;
                     const gi_pos = (2 * xj) / denom;
                     const gi_neg = -gi_pos;
-                    const text = (labelProvider as any).formatLabel(xj);
+                    const text = labelProvider.formatLabel(xj);
                     drawLabel(
                         `+${text}`,
                         xCalc.getCoordinate(gr),
@@ -578,7 +535,7 @@ export class SmithChartResistanceAxis extends NumericAxis {
         const topPad = (this.parentSurface.padding?.top ?? 0) * DpiHelper.PIXEL_RATIO;
 
         const aspectRatio = Math.abs(xCalc.getCoordWidth(1)) / Math.abs(yCalc.getCoordWidth(1));
-        const tp = this.tickProvider as any;
+        const tp = this.tickProvider;
 
         const vecArcs = getVectorArcVertex(wasmContext);
         const arc = getArcVertex(wasmContext);
@@ -591,6 +548,7 @@ export class SmithChartResistanceAxis extends NumericAxis {
             const cx_px = xCalc.getCoordinate(cx);
             const cy_native = vpHeight - yCalc.getCoordinate(cy);
             const radius_px = Math.abs(xCalc.getCoordWidth(rad));
+            if (gapDistance > 0 && (2 * Math.PI - 2 * arcGap) * radius_px < 10) return;
             const arcParams = getArcParams(
                 wasmContext,
                 cx_px,
@@ -608,12 +566,12 @@ export class SmithChartResistanceAxis extends NumericAxis {
         };
 
         if (isMajor) {
-            for (const r of tp.getMajorTicks(0, 0, null) as number[]) {
+            for (const r of tp.getMajorTicks(0, 0, this.visibleRange)) {
                 drawArc(r, 0); // full circles
             }
         } else {
             // Minor ticks are encoded as flat pairs [r, xClip, r, xClip, ...]
-            const minor = tp.getMinorTicks(0, 0, null) as number[];
+            const minor = tp.getMinorTicks(0, 0, this.visibleRange);
             for (let i = 0; i + 1 < minor.length; i += 2) {
                 const r = minor[i];
                 const xClip = minor[i + 1];
@@ -755,7 +713,7 @@ export class SmithChartReactanceAxis extends NumericAxis {
         const topPad = (this.parentSurface.padding?.top ?? 0) * DpiHelper.PIXEL_RATIO;
 
         const aspectRatio = Math.abs(xCalc.getCoordWidth(1)) / Math.abs(yCalc.getCoordWidth(1));
-        const tp = this.tickProvider as any;
+        const tp = this.tickProvider;
 
         const vecArcs = getVectorArcVertex(wasmContext);
         const arc = getArcVertex(wasmContext);
@@ -783,6 +741,7 @@ export class SmithChartReactanceAxis extends NumericAxis {
             const pos_cx_px = xCalc.getCoordinate(pos.cx);
             const pos_cy_native = vpHeight - yCalc.getCoordinate(pos.cy);
             const pos_radius_px = Math.abs(xCalc.getCoordWidth(pos.rad));
+            if (gapDistance > 0 && (posEnd - posStart) * pos_radius_px < 10) return;
             arc.MakeCircularArc(
                 getArcParams(
                     wasmContext,
@@ -820,12 +779,12 @@ export class SmithChartReactanceAxis extends NumericAxis {
         };
 
         if (isMajor) {
-            for (const x of tp.getMajorTicks(0, 0, null) as number[]) {
+            for (const x of tp.getMajorTicks(0, 0, this.visibleRange)) {
                 drawArc(x, 0); // full arcs
             }
         } else {
             // Minor ticks are encoded as flat pairs [x, rClip, x, rClip, ...]
-            const minor = tp.getMinorTicks(0, 0, null) as number[];
+            const minor = tp.getMinorTicks(0, 0, this.visibleRange);
             for (let i = 0; i + 1 < minor.length; i += 2) {
                 const x = minor[i];
                 const rClip = minor[i + 1];

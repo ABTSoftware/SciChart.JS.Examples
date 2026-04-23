@@ -27,7 +27,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new SmithChartResistanceAxis(wasmContext, {
             visibleRange: new NumberRange(-axisRange, axisRange),
             axisAlignment: EAxisAlignment.Bottom,
-            labelPrecision: 1,
+            labelPrecision: 2,
             majorGridLineStyle: { color: gridColor, strokeThickness: 2 },
             minorGridLineStyle: { color: gridColor + "77", strokeThickness: 1 },
             rimLineStyle: { color: appTheme.MutedBlue },
@@ -40,7 +40,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new SmithChartReactanceAxis(wasmContext, {
             visibleRange: new NumberRange(-axisRange, axisRange),
             axisAlignment: EAxisAlignment.Left,
-            labelPrecision: 1,
+            labelPrecision: 2,
             majorGridLineStyle: { color: gridColor, strokeThickness: 2 },
             minorGridLineStyle: { color: gridColor + "77", strokeThickness: 1 },
         })

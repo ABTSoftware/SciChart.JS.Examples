@@ -126,7 +126,9 @@ export class SmithChainAdapter {
             if (!this.stepSeries.has(step.id)) {
                 const colour = CHAIN_COLOURS[i % CHAIN_COLOURS.length];
                 const ds = new XyDataSeries(this.wasmContext);
-                step.arcPoints.forEach((p) => ds.append(p.re, p.im));
+                const xArr = step.arcPoints.map((p) => p.re);
+                const yArr = step.arcPoints.map((p) => p.im);
+                ds.appendRange(xArr, yArr);
                 const rs = new FastLineRenderableSeries(this.wasmContext, {
                     dataSeries: ds,
                     stroke: colour,
