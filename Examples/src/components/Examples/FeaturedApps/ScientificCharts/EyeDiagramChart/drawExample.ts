@@ -1,11 +1,18 @@
 import {
     EAutoRange,
+    ESubSurfacePositionCoordinateMode,
+    FastLineRenderableSeries,
     HeatmapColorMap,
+    I2DSubSurfaceOptions,
     NumberRange,
     NumericAxis,
+    Rect,
+    SciChartSubSurface,
     SciChartSurface,
+    Thickness,
     UniformHeatmapDataSeries,
     UniformHeatmapRenderableSeries,
+    XyDataSeries,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -122,46 +129,91 @@ export function binTrace(grid: Float32Array, trace: Float32Array): void {
 // ---------------------------------------------------------------------------
 
 export async function drawExample(rootElement: string | HTMLDivElement) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
+    // Single surface with two sub-charts avoids multi-surface init complexity
+    const { sciChartSurface: mainSurface, wasmContext } = await SciChartSurface.createSingle(
+        rootElement,
+        { theme: appTheme.SciChartJsTheme }
+    );
+
+    // Main surface axes (required by SciChart even when hidden)
+    mainSurface.xAxes.add(new NumericAxis(wasmContext, { isVisible: false, id: "mainX" }));
+    mainSurface.yAxes.add(new NumericAxis(wasmContext, { isVisible: false, id: "mainY" }));
+
+    // ── Top sub-chart: live waveform (top 28%) ────────────────────────────────
+
+    const lineSubOptions: I2DSubSurfaceOptions = {
         theme: appTheme.SciChartJsTheme,
-    });
+        position: new Rect(0, 0, 1, 0.28),
+        coordinateMode: ESubSurfacePositionCoordinateMode.Relative,
+        padding: Thickness.fromNumber(2),
+    };
+    const lineSurface = SciChartSubSurface.createSubSurface(mainSurface, lineSubOptions);
 
-    // X Axis — time in UI units
-    sciChartSurface.xAxes.add(
-        new NumericAxis(wasmContext, {
-            axisTitle: "Time",
-            axisTitleStyle: { fontSize: 11 },
-            labelStyle: { fontSize: 10 },
-            visibleRange: new NumberRange(0, 2),
-            autoRange: EAutoRange.Never,
-            drawMajorGridLines: false,
-            drawMinorGridLines: false,
+    lineSurface.xAxes.add(new NumericAxis(wasmContext, {
+        isVisible: false,
+        visibleRange: new NumberRange(0, 2),
+        autoRange: EAutoRange.Never,
+    }));
+
+    lineSurface.yAxes.add(new NumericAxis(wasmContext, {
+        axisTitle: "Voltage (V)",
+        axisTitleStyle: { fontSize: 11 },
+        labelStyle: { fontSize: 10 },
+        visibleRange: new NumberRange(-1.5, 1.5),
+        autoRange: EAutoRange.Never,
+        drawMajorGridLines: true,
+        drawMinorGridLines: false,
+    }));
+
+    const TRACE_LEN = 400;
+    const xTrace = Array.from({ length: TRACE_LEN }, (_, i) => (i / (TRACE_LEN - 1)) * 2);
+    const yBuffer = new Array<number>(TRACE_LEN).fill(0);
+
+    const lineDs = new XyDataSeries(wasmContext, { xValues: xTrace, yValues: yBuffer });
+    lineSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries: lineDs,
+            stroke: "#00E5FF",
+            strokeThickness: 1.5,
         })
     );
 
-    // Y Axis — voltage
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, {
-            axisTitle: "Voltage",
-            axisTitleStyle: { fontSize: 11 },
-            labelStyle: { fontSize: 10 },
-            visibleRange: new NumberRange(-1.15, 1.15),
-            autoRange: EAutoRange.Never,
-            drawMajorGridLines: false,
-            drawMinorGridLines: false,
-        })
-    );
+    // ── Bottom sub-chart: heatmap eye diagram (bottom 72%) ────────────────────
 
-    // Accumulation grid: 400 cols × 200 rows, col-major
+    const heatSubOptions: I2DSubSurfaceOptions = {
+        theme: appTheme.SciChartJsTheme,
+        position: new Rect(0, 0.28, 1, 0.72),
+        coordinateMode: ESubSurfacePositionCoordinateMode.Relative,
+        padding: Thickness.fromNumber(2),
+    };
+    const heatSurface = SciChartSubSurface.createSubSurface(mainSurface, heatSubOptions);
+
+    heatSurface.xAxes.add(new NumericAxis(wasmContext, {
+        axisTitle: "Time (UI)",
+        axisTitleStyle: { fontSize: 11 },
+        labelStyle: { fontSize: 10 },
+        visibleRange: new NumberRange(0, 2),
+        autoRange: EAutoRange.Never,
+        drawMajorGridLines: false,
+        drawMinorGridLines: false,
+    }));
+
+    heatSurface.yAxes.add(new NumericAxis(wasmContext, {
+        axisTitle: "Voltage (V)",
+        axisTitleStyle: { fontSize: 11 },
+        labelStyle: { fontSize: 10 },
+        visibleRange: new NumberRange(-1.15, 1.15),
+        autoRange: EAutoRange.Never,
+        drawMajorGridLines: false,
+        drawMinorGridLines: false,
+    }));
+
     const COLS = 400;
     const ROWS = 200;
     const grid = new Float32Array(COLS * ROWS);
-
-    // zValuesLog: 200 rows × 400 cols (row-major), for setZValues
     const zValuesLog: number[][] = Array.from({ length: ROWS }, () => new Array(COLS).fill(0));
 
-    // Heatmap data series
-    const dataSeries = new UniformHeatmapDataSeries(wasmContext, {
+    const heatDs = new UniformHeatmapDataSeries(wasmContext, {
         xStart: 0,
         xStep: 2 / (COLS - 1),
         yStart: -1.15,
@@ -169,52 +221,46 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         zValues: zValuesLog,
     });
 
-    // Heatmap renderable series
-    const renderableSeries = new UniformHeatmapRenderableSeries(wasmContext, {
-        dataSeries,
-        useLinearTextureFiltering: true,
-        colorMap: new HeatmapColorMap({
-            minimum: 0,
-            maximum: 8,
-            gradientStops: [
-                { offset: 0,    color: "#000000" },
-                { offset: 0.15, color: "#0000FF" },
-                { offset: 0.4,  color: "#00FFFF" },
-                { offset: 0.6,  color: "#00FF00" },
-                { offset: 0.8,  color: "#FFFF00" },
-                { offset: 1,    color: "#FF0000" },
-            ],
-        }),
-    });
+    heatSurface.renderableSeries.add(
+        new UniformHeatmapRenderableSeries(wasmContext, {
+            dataSeries: heatDs,
+            useLinearTextureFiltering: true,
+            colorMap: new HeatmapColorMap({
+                minimum: 0,
+                maximum: 8,
+                gradientStops: [
+                    { offset: 0,    color: "#000000" },
+                    { offset: 0.15, color: "#0000FF" },
+                    { offset: 0.4,  color: "#00FFFF" },
+                    { offset: 0.6,  color: "#00FF00" },
+                    { offset: 0.8,  color: "#FFFF00" },
+                    { offset: 1,    color: "#FF0000" },
+                ],
+            }),
+        })
+    );
 
-    sciChartSurface.renderableSeries.add(renderableSeries);
-
-    // Stats overlay
-    const statsDiv = document.createElement("div");
-    statsDiv.style.cssText = [
-        "position:absolute",
-        "top:8px",
-        "right:8px",
-        "font-family:monospace",
-        "font-size:12px",
-        "color:#ffffff",
-        "background:rgba(0,0,0,0.5)",
-        "padding:4px 8px",
-        "border-radius:4px",
-        "pointer-events:none",
-        "z-index:100",
-    ].join(";");
-    statsDiv.textContent = "FPS: -- | Traces/s: -- | Total: 0";
+    // ── Stats overlay ─────────────────────────────────────────────────────────
 
     const container = typeof rootElement === "string"
         ? document.getElementById(rootElement)
         : rootElement;
-    if (container) {
-        container.style.position = "relative";
-        container.appendChild(statsDiv);
-    }
 
-    // Animation state
+    if (container) container.style.position = "relative";
+
+    const statsDiv = document.createElement("div");
+    statsDiv.style.cssText = [
+        "position:absolute", "top:8px", "right:8px",
+        "font-family:monospace", "font-size:12px", "color:#ffffff",
+        "background:rgba(0,0,0,0.5)", "padding:4px 8px",
+        "border-radius:4px", "pointer-events:none", "z-index:100",
+    ].join(";");
+    statsDiv.textContent = "FPS: -- | Traces/s: -- | Total: 0";
+
+    if (container) container.appendChild(statsDiv);
+
+    // ── Animation loop ────────────────────────────────────────────────────────
+
     let rafHandle: number | null = null;
     let totalTraces = 0;
     let frameCount = 0;
@@ -222,29 +268,36 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
     const TRACES_PER_FRAME = 50;
 
     function animate() {
-        const frameStart = performance.now();
+        let lastTrace: Float32Array | null = null;
 
-        // Generate and bin 50 traces this frame
         for (let t = 0; t < TRACES_PER_FRAME; t++) {
             const trace = generateTrace();
             binTrace(grid, trace);
+            lastTrace = trace;
         }
         totalTraces += TRACES_PER_FRAME;
 
-        // Update zValuesLog from grid (log1p scaling)
+        // Replace line chart data with the last trace from this batch
+        if (lastTrace) {
+            for (let i = 0; i < TRACE_LEN; i++) {
+                yBuffer[i] = lastTrace[i];
+            }
+            lineDs.clear();
+            lineDs.appendRange(xTrace, yBuffer);
+        }
+
+        // Update heatmap
         for (let col = 0; col < COLS; col++) {
             for (let row = 0; row < ROWS; row++) {
                 zValuesLog[row][col] = Math.log1p(grid[col * ROWS + row]);
             }
         }
+        heatDs.setZValues(zValuesLog);
 
-        dataSeries.setZValues(zValuesLog);
-
-        // Update stats every 30 frames
         frameCount++;
         if (frameCount % 30 === 0) {
             const now = performance.now();
-            const elapsed = (now - lastStatsTime) / 1000; // seconds
+            const elapsed = (now - lastStatsTime) / 1000;
             const fps = Math.round(30 / elapsed);
             const tracesPerSec = Math.round((30 * TRACES_PER_FRAME) / elapsed);
             lastStatsTime = now;
@@ -266,21 +319,16 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         }
     }
 
-    // Start automatically
     startAnimation();
 
     function cleanup() {
         stopAnimation();
         if (container) container.removeChild(statsDiv);
-        sciChartSurface.delete();
+        mainSurface.delete();
     }
 
     return {
-        sciChartSurface,
-        controls: {
-            startAnimation,
-            stopAnimation,
-            cleanup,
-        },
+        sciChartSurface: mainSurface,
+        controls: { startAnimation, stopAnimation, cleanup },
     };
 }
