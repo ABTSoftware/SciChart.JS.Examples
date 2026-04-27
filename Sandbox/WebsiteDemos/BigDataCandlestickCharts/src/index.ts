@@ -41,8 +41,7 @@ async function loadPriceData(): Promise<priceBar[]> {
       const priceBars: priceBar[] = [];
       let rowCount = 0;
 
-      // File copied in webpack.config.js
-      Papa.parse('./Bitstamp_BTCUSD_2017_minute.csv', {
+      Papa.parse('https://raw.githubusercontent.com/klishevich/datasets/main/BTC/BTC-2021min.csv', {
         download: true,
         step: function(row) {
           // Skip header rows

@@ -2,18 +2,17 @@
 
 Demonstrates the performance of SciChart.js for loading huge amounts of data into candlestick charts.
 
-See companion blog post [blog.scichart.com/javascript-candlestick-charts-plotting-years-1-minute-data](https://blog.scichart.com/javascript-candlestick-charts-plotting-years-1-minute-data)
+See companion blog post [scichart.com/blog/javascript-candlestick-charts-plotting-years-1-minute-data/](https://www.scichart.com/blog/javascript-candlestick-charts-plotting-years-1-minute-data/)
 
-1. Clone the project and Cd into the root directory and do `npm install`
+1. Clone the project and `cd` into the root directory and do `npm install`
 2. Start the server `npm start`
 3. Open a browser at http://localhost:8080
-4. Wait as large files are downloaded (50MB Bitcoin price history per year of 1-minute bars)
+4. Wait as large files are downloaded (60MB Bitcoin price history per year of 1-minute bars)
 5. Zoom and Pan the chart to see all the data is there!
 6. Double click to reset zoom at any time
 
 ## Trial Licensing for SciChart.js
 
-SciChart.js is a commercial component, but we have a free 30-day trial which you can get by following the steps from [scichart.com/getting-started-scichart-js](https://www.scichart.com/getting-started-scichart-js).
+For enterprise and commercial use, SciChart.js is paid software, however, version 3.2 - 4.x and upwards of SciChart.js has a FREE Community License, which is licensed for personal use, non-commercial use, educational use and limited-time commercial evaluations.
 
-Head over to the getting started page and download the licensing wizard, create an account and click 'start trial' so you can view the example.
-
+Read more about licensing and find our [v5 documentation here](https://www.scichart.com/documentation/js/v5/user-manual/licensing-scichart-js/getting-started-for-free/).
