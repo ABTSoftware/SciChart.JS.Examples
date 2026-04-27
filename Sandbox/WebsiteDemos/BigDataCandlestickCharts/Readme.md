@@ -2,6 +2,8 @@
 
 Demonstrates the performance of SciChart.js for loading huge amounts of data into candlestick charts.
 
+![Chart](img/chart.png)
+
 See companion blog post [scichart.com/blog/javascript-candlestick-charts-plotting-years-1-minute-data/](https://www.scichart.com/blog/javascript-candlestick-charts-plotting-years-1-minute-data/)
 
 1. Clone the project and `cd` into the root directory and do `npm install`
