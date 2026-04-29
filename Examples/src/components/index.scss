@@ -41,10 +41,10 @@ body {
     --text: #f5f5f5;
     --bg: #121212;
     --bg-darker: #1f1f1f;
-    --bg-chart: #3C3C3FFF;
+    --bg-chart: #3c3c3fff;
     --border-color: #2e4e75;
     --primary: #121212;
-    --bg-toolbars: #3C3C3FFF;
+    --bg-toolbars: #3c3c3fff;
 
     --light-blue: rgb(62, 136, 205);
     --markdown-code-text: rgb(160, 196, 150); // 132, 193, 152 // 200, 200, 146 // (200, 200, 14)
@@ -56,12 +56,12 @@ body {
 @media (prefers-color-scheme: light) {
     :root {
         --text: #080808;
-        --bg: #FFFFFF;
+        --bg: #ffffff;
         --bg-darker: #e5e5e5;
-        --bg-chart: #F9F9F9FF;
+        --bg-chart: #f9f9f9ff;
         --border-color: #b4d0db;
         --primary: #050a30;
-        --bg-toolbars: #F9F9F9FF;
+        --bg-toolbars: #f9f9f9ff;
 
         --light-blue: rgb(42, 99, 151);
         --markdown-code-text: #ff4444;
@@ -92,10 +92,10 @@ body {
     --text: #f5f5f5;
     --bg: #121212;
     --bg-darker: #1f1f1f;
-    --bg-chart: #1C1C1EFF;
+    --bg-chart: #1c1c1eff;
     --border-color: #343434;
     --primary: #121212;
-    --bg-toolbars: #1C1C1EFF;
+    --bg-toolbars: #1c1c1eff;
 
     --light-blue: rgb(62, 136, 205);
     --markdown-code-text: rgb(160, 196, 150);
@@ -109,7 +109,7 @@ body {
     --bg: #fff;
     --bg-darker: #f9f9f9;
     --border-color: #b4d0db;
-    --bg-chart: #F9F9F9FF;
+    --bg-chart: #f9f9f9ff;
     --primary: #050a30;
     --bg-toolbars: #17243d;
 

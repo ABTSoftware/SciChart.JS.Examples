@@ -3,9 +3,16 @@
   padding: 2px;
   box-sizing: border-box;
   overflow: hidden;
-  background:
-    radial-gradient(1200px 700px at 0% 0%, rgba(19, 55, 101, 0.35), transparent 58%),
-    radial-gradient(1200px 700px at 100% 100%, rgba(17, 66, 123, 0.26), transparent 62%),
+  background: radial-gradient(
+      1200px 700px at 0% 0%,
+      rgba(19, 55, 101, 0.35),
+      transparent 58%
+    ),
+    radial-gradient(
+      1200px 700px at 100% 100%,
+      rgba(17, 66, 123, 0.26),
+      transparent 62%
+    ),
     linear-gradient(180deg, #0a121d 0%, #090e18 100%);
 }
 
@@ -18,8 +25,7 @@
   overflow: hidden;
   border: 1px solid rgba(80, 110, 150, 0.62);
   background: #040d1a;
-  box-shadow:
-    0 12px 34px rgba(0, 0, 0, 0.45),
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45),
     inset 0 0 0 1px rgba(149, 184, 223, 0.08);
 }
 
@@ -80,7 +86,11 @@
   width: var(--tuned-width);
   border-left: 1px solid rgba(255, 255, 255, 0.55);
   border-right: 1px solid rgba(255, 255, 255, 0.55);
-  background: linear-gradient(180deg, rgba(205, 214, 226, 0.3) 0%, rgba(179, 191, 206, 0.12) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(205, 214, 226, 0.3) 0%,
+    rgba(179, 191, 206, 0.12) 100%
+  );
   cursor: grab;
 }
 
@@ -223,7 +233,6 @@
   padding-top: 6px;
 }
 
-
 .control-btn {
   min-width: 78px !important;
   height: 28px !important;
@@ -273,7 +282,9 @@
   border-color: rgba(146, 181, 223, 0.9);
 }
 
-.receiver-input .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+.receiver-input
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
   border-width: 1px;
   border-color: rgba(100, 160, 240, 0.9);
 }
@@ -388,7 +399,6 @@
 .control-check .MuiSvgIcon-root {
   font-size: 1rem;
 }
-
 
 .smeter-wrap {
   display: flex;

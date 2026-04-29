@@ -1,9 +1,18 @@
 export type ModeState = { scheme: string; [key: string]: unknown };
 export type DisplayScale = "Hz" | "kHz" | "MHz";
-export type LowFrequencyMethodName = "default" | "directSampling" | "upconverter";
+export type LowFrequencyMethodName =
+  | "default"
+  | "directSampling"
+  | "upconverter";
 export type DirectSamplingChannel = "I" | "Q";
 export type PerformanceTradeoff = "cpu" | "latency" | "quality";
-export type PresetSortColumn = "name" | "frequency" | "mode" | "-name" | "-frequency" | "-mode";
+export type PresetSortColumn =
+  | "name"
+  | "frequency"
+  | "mode"
+  | "-name"
+  | "-frequency"
+  | "-mode";
 
 export type ReceiverPreset = {
   name: string;

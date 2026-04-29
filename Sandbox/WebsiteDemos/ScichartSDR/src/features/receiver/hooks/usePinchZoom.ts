@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 export function usePinchZoom(
   containerRef: React.RefObject<HTMLDivElement | null>,
-  setZoomLevel: (fn: (prev: number) => number) => void,
+  setZoomLevel: (fn: (prev: number) => number) => void
 ) {
   const pointersRef = useRef(new Map<number, { x: number; y: number }>());
   const lastDistRef = useRef<number | null>(null);

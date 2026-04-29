@@ -17,7 +17,6 @@ export default function HeatmapInteractions() {
                     onClick={() => {
                         controlsRef.current.stopUpdate();
                     }}
-                   
                 >
                     Start
                 </Button>
@@ -25,7 +24,6 @@ export default function HeatmapInteractions() {
                     onClick={() => {
                         controlsRef.current.stopUpdate();
                     }}
-                   
                 >
                     Stop
                 </Button>
@@ -33,7 +31,6 @@ export default function HeatmapInteractions() {
                     onClick={() => {
                         controlsRef.current.twoPoint();
                     }}
-                   
                 >
                     Load basic example
                 </Button>
@@ -41,7 +38,6 @@ export default function HeatmapInteractions() {
                     onClick={() => {
                         controlsRef.current.interference();
                     }}
-                   
                 >
                     Load double slit example
                 </Button>
@@ -50,7 +46,6 @@ export default function HeatmapInteractions() {
                     onClick={() => {
                         controlsRef.current.showHelp();
                     }}
-                   
                 >
                     Show Help
                 </Button>

@@ -13,18 +13,24 @@
 ### Task 1: Viewport meta — prevent browser zoom hijacking touch
 
 **Files:**
+
 - Modify: `index.html`
 
 **Step 1: Update the viewport meta tag**
 
 Replace:
+
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 ```
 
 With:
+
 ```html
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+/>
 ```
 
 `user-scalable=no` prevents the browser from intercepting pinch gestures as page zoom. Without this, touching the charts triggers browser zoom instead of reaching the app's pointer events.
@@ -49,6 +55,7 @@ git commit -m "fix: prevent browser zoom hijacking touch events on mobile"
 ### Task 2: CSS — fix 100dvh layout and add touch-action on charts
 
 **Files:**
+
 - Modify: `src/App.css`
 
 **Step 1: Fix `100vh` → `100dvh` and add touch-action**
@@ -58,6 +65,7 @@ Find and replace the following in `src/App.css`.
 **Change 1** — `.receiver-page`: replace `height: 100vh` with `height: 100dvh`.
 
 Before:
+
 ```css
 .receiver-page {
   height: 100vh;
@@ -65,6 +73,7 @@ Before:
 ```
 
 After:
+
 ```css
 .receiver-page {
   height: 100dvh;
@@ -74,44 +83,49 @@ After:
 **Change 2** — inside `@media (max-width: 900px)`, `.receiver-frame`: replace `height: 100vh` with `height: 100dvh`.
 
 Before (inside the 900px media query):
+
 ```css
-  .receiver-frame {
-    border-radius: 0;
-    height: 100vh;
-    min-height: 0;
-  }
+.receiver-frame {
+  border-radius: 0;
+  height: 100vh;
+  min-height: 0;
+}
 ```
 
 After:
+
 ```css
-  .receiver-frame {
-    border-radius: 0;
-    height: 100dvh;
-    min-height: 0;
-  }
+.receiver-frame {
+  border-radius: 0;
+  height: 100dvh;
+  min-height: 0;
+}
 ```
 
 **Change 3** — inside `@media (max-width: 600px)`, `.controls-panel`: replace `max-height: 50vh` with `max-height: 50dvh`.
 
 Before (inside the 600px media query):
+
 ```css
-  .controls-panel {
-    max-height: 50vh;
-    overflow-y: auto;
-  }
+.controls-panel {
+  max-height: 50vh;
+  overflow-y: auto;
+}
 ```
 
 After:
+
 ```css
-  .controls-panel {
-    max-height: 50dvh;
-    overflow-y: auto;
-  }
+.controls-panel {
+  max-height: 50dvh;
+  overflow-y: auto;
+}
 ```
 
 **Change 4** — add `touch-action: none` to `.receiver-charts` so single-finger swipes are not intercepted as page scroll:
 
 Before:
+
 ```css
 .receiver-charts {
   flex: 1;
@@ -125,6 +139,7 @@ Before:
 ```
 
 After:
+
 ```css
 .receiver-charts {
   flex: 1;
@@ -158,6 +173,7 @@ git commit -m "fix: use 100dvh for mobile address bar, touch-action none on char
 ### Task 3: usePinchZoom hook
 
 **Files:**
+
 - Create: `src/features/receiver/hooks/usePinchZoom.ts`
 - Modify: `src/features/receiver/hooks/index.ts`
 
@@ -170,7 +186,7 @@ import { useEffect, useRef } from "react";
 
 export function usePinchZoom(
   containerRef: React.RefObject<HTMLDivElement | null>,
-  setZoomLevel: (fn: (prev: number) => number) => void,
+  setZoomLevel: (fn: (prev: number) => number) => void
 ) {
   const pointersRef = useRef(new Map<number, { x: number; y: number }>());
   const lastDistRef = useRef<number | null>(null);
@@ -223,6 +239,7 @@ export function usePinchZoom(
 ```
 
 Key points:
+
 - Only activates when `pointersRef.current.size === 2` — single-finger interactions are untouched.
 - `lastDistRef` is reset to `null` when finger count drops below 2, preventing jumps when a new pinch starts.
 - Cleans up all listeners on unmount.
@@ -236,6 +253,7 @@ export { usePinchZoom } from "./usePinchZoom";
 ```
 
 Full file after edit:
+
 ```ts
 export { useFrequency } from "./useFrequency";
 export { usePinchZoom } from "./usePinchZoom";
@@ -263,6 +281,7 @@ git commit -m "feat: add usePinchZoom hook for two-finger zoom on charts"
 ### Task 4: Wire usePinchZoom into App.tsx
 
 **Files:**
+
 - Modify: `src/App.tsx`
 
 **Step 1: Import the hook**
@@ -321,6 +340,7 @@ git commit -m "feat: wire pinch-to-zoom on spectrum/waterfall charts"
 ### Task 5: Mobile-aware defaults in useReceiverSettings
 
 **Files:**
+
 - Modify: `src/features/receiver/hooks/useReceiverSettings.ts`
 
 **Step 1: Add mobile detection and apply to initial state**
@@ -334,29 +354,38 @@ const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 Then update three `useState` initializers:
 
 **`sampleRate`** — change from:
+
 ```ts
 const [sampleRate, setSampleRate] = useState(2_048_000);
 ```
+
 To:
+
 ```ts
 const [sampleRate, setSampleRate] = useState(isMobile ? 1_024_000 : 2_048_000);
 ```
 
 **`fftSize`** — change from:
+
 ```ts
 const [fftSize, setFftSize] = useState(FFT_SIZE);
 ```
+
 To:
+
 ```ts
 const [fftSize, setFftSize] = useState(isMobile ? 1024 : FFT_SIZE);
 ```
 
 **`performanceTradeoff`** — change from:
+
 ```ts
 const [performanceTradeoff, setPerformanceTradeoff] =
   useState<PerformanceTradeoff>("cpu");
 ```
+
 To:
+
 ```ts
 const [performanceTradeoff, setPerformanceTradeoff] =
   useState<PerformanceTradeoff>(isMobile ? "latency" : "cpu");

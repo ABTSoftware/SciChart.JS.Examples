@@ -6,10 +6,10 @@ This example demonstrates how to create an animated column chart visualizing ATP
 
 ## Technologies Used
 
-- SciChart.js – High performance WebGL charting library
-- Vanilla JavaScript – Core implementation
-- TypeScript – Type definitions
-- WebGL – For GPU-accelerated rendering
+-   SciChart.js – High performance WebGL charting library
+-   Vanilla JavaScript – Core implementation
+-   TypeScript – Type definitions
+-   WebGL – For GPU-accelerated rendering
 
 ## Code Explanation
 
@@ -36,16 +36,19 @@ Key non-obvious customizations in this example:
 To run this example from the SciChart.JS.Examples repository:
 
 1. **Clone the Repository**:
+
     ```bash
     git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
     ```
 
 2. **Navigate to the Example**:
+
     ```bash
     cd SciChart.JS.Examples/Examples/src/components/Charts2D/v4Charts/AnimatedColumns
     ```
 
 3. **Install Dependencies**:
+
     ```bash
     npm install
     ```

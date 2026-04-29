@@ -28,7 +28,11 @@ function loadSavedFreq(): {
       stepHz?: unknown;
       displayScale?: unknown;
     };
-    if (typeof p.centerHz === "number" && typeof p.tunedHz === "number" && typeof p.scheme === "string") {
+    if (
+      typeof p.centerHz === "number" &&
+      typeof p.tunedHz === "number" &&
+      typeof p.scheme === "string"
+    ) {
       return {
         centerHz: p.centerHz,
         tunedHz: p.tunedHz,
@@ -37,10 +41,14 @@ function loadSavedFreq(): {
           typeof p.stepHz === "number" && Number.isFinite(p.stepHz)
             ? Math.max(1, Math.round(p.stepHz))
             : undefined,
-        displayScale: isDisplayScale(p.displayScale) ? p.displayScale : undefined,
+        displayScale: isDisplayScale(p.displayScale)
+          ? p.displayScale
+          : undefined,
       };
     }
-  } catch { /* ignore */ }
+  } catch {
+    /* ignore */
+  }
   return null;
 }
 
@@ -53,10 +61,10 @@ export function useFrequency(sampleRate: number) {
   const [savedFrequency] = useState(() => loadSavedFreq());
 
   const [centerFrequencyHz, setCenterFrequencyHz] = useState(
-    () => savedFrequency?.centerHz ?? DEFAULT_FREQUENCY_HZ,
+    () => savedFrequency?.centerHz ?? DEFAULT_FREQUENCY_HZ
   );
   const [tunedFrequencyHz, setTunedFrequencyHz] = useState(
-    () => savedFrequency?.tunedHz ?? DEFAULT_FREQUENCY_HZ,
+    () => savedFrequency?.tunedHz ?? DEFAULT_FREQUENCY_HZ
   );
   const [modeState, setModeState] = useState<ModeState>(() => {
     const s = savedFrequency?.scheme;
@@ -64,7 +72,7 @@ export function useFrequency(sampleRate: number) {
   });
   const [stepHz, setStepHz] = useState(savedFrequency?.stepHz ?? 1000);
   const [displayScale, setDisplayScale] = useState<DisplayScale>(
-    savedFrequency?.displayScale ?? "MHz",
+    savedFrequency?.displayScale ?? "MHz"
   );
   const [zoomLevel, setZoomLevel] = useState(1);
   const mode = modeState.scheme;
@@ -76,7 +84,7 @@ export function useFrequency(sampleRate: number) {
   const effectiveBandwidthHz = hasBandwidth ? bandwidthHz : 180_000;
   const { leftBandHz, rightBandHz } = useMemo(
     () => sideBandsForMode(modeState.scheme, effectiveBandwidthHz),
-    [effectiveBandwidthHz, modeState.scheme],
+    [effectiveBandwidthHz, modeState.scheme]
   );
   const stereoEnabled = hasStereoControl ? modeConfig.getStereo() : false;
   const squelch = modeConfig.hasSquelch() ? modeConfig.getSquelch() : 0;
@@ -87,19 +95,22 @@ export function useFrequency(sampleRate: number) {
     return 1;
   }, [displayScale]);
 
-  const displayDecimals = displayScale === "MHz" ? 3 : displayScale === "kHz" ? 1 : 0;
+  const displayDecimals =
+    displayScale === "MHz" ? 3 : displayScale === "kHz" ? 1 : 0;
   const centerFrequencyDisplay = Number(
-    (centerFrequencyHz / scaleFactor).toFixed(displayDecimals),
+    (centerFrequencyHz / scaleFactor).toFixed(displayDecimals)
   );
   const tunedFrequencyDisplay = Number(
-    (tunedFrequencyHz / scaleFactor).toFixed(displayDecimals),
+    (tunedFrequencyHz / scaleFactor).toFixed(displayDecimals)
   );
 
   const safeZoom = clamp(zoomLevel, 1, 4);
   const visibleSpanHz = sampleRate / safeZoom;
   const visibleMinHz = centerFrequencyHz - visibleSpanHz / 2;
-  const tunedCenterPct = ((tunedFrequencyHz - visibleMinHz) / visibleSpanHz) * 100;
-  const tunedWindowWidthPct = ((leftBandHz + rightBandHz) / visibleSpanHz) * 100;
+  const tunedCenterPct =
+    ((tunedFrequencyHz - visibleMinHz) / visibleSpanHz) * 100;
+  const tunedWindowWidthPct =
+    ((leftBandHz + rightBandHz) / visibleSpanHz) * 100;
 
   const updateCenterFrequency = useCallback(
     (nextCenterHz: number) => {
@@ -108,12 +119,12 @@ export function useFrequency(sampleRate: number) {
         tunedFrequencyHz,
         sampleRate,
         leftBandHz,
-        rightBandHz,
+        rightBandHz
       );
       setCenterFrequencyHz(next.centerHz);
       setTunedFrequencyHz(next.tunedHz);
     },
-    [leftBandHz, rightBandHz, sampleRate, tunedFrequencyHz],
+    [leftBandHz, rightBandHz, sampleRate, tunedFrequencyHz]
   );
 
   const updateTunedFrequency = useCallback(
@@ -123,12 +134,12 @@ export function useFrequency(sampleRate: number) {
         nextTunedHz,
         sampleRate,
         leftBandHz,
-        rightBandHz,
+        rightBandHz
       );
       setCenterFrequencyHz(next.centerHz);
       setTunedFrequencyHz(next.tunedHz);
     },
-    [centerFrequencyHz, leftBandHz, rightBandHz, sampleRate],
+    [centerFrequencyHz, leftBandHz, rightBandHz, sampleRate]
   );
 
   const updateModeState = useCallback(
@@ -141,18 +152,21 @@ export function useFrequency(sampleRate: number) {
       const nextBandwidthHz = config.hasBandwidth()
         ? Math.round(config.getBandwidth())
         : 180_000;
-      const nextSideBands = sideBandsForMode(nextModeState.scheme, nextBandwidthHz);
+      const nextSideBands = sideBandsForMode(
+        nextModeState.scheme,
+        nextBandwidthHz
+      );
       const nextFrequency = reconcileFrequency(
         centerFrequencyHz,
         tunedFrequencyHz,
         sampleRate,
         nextSideBands.leftBandHz,
-        nextSideBands.rightBandHz,
+        nextSideBands.rightBandHz
       );
       setCenterFrequencyHz(nextFrequency.centerHz);
       setTunedFrequencyHz(nextFrequency.tunedHz);
     },
-    [centerFrequencyHz, modeState, sampleRate, tunedFrequencyHz],
+    [centerFrequencyHz, modeState, sampleRate, tunedFrequencyHz]
   );
 
   const applyScheme = useCallback(
@@ -164,42 +178,56 @@ export function useFrequency(sampleRate: number) {
       const nextBandwidthHz = modeCfg.hasBandwidth()
         ? Math.round(modeCfg.getBandwidth())
         : 180_000;
-      const nextSideBands = sideBandsForMode(nextModeState.scheme, nextBandwidthHz);
+      const nextSideBands = sideBandsForMode(
+        nextModeState.scheme,
+        nextBandwidthHz
+      );
       const nextFrequency = reconcileFrequency(
         centerFrequencyHz,
         tunedFrequencyHz,
         sampleRate,
         nextSideBands.leftBandHz,
-        nextSideBands.rightBandHz,
+        nextSideBands.rightBandHz
       );
       setCenterFrequencyHz(nextFrequency.centerHz);
       setTunedFrequencyHz(nextFrequency.tunedHz);
     },
-    [centerFrequencyHz, sampleRate, schemes, tunedFrequencyHz],
+    [centerFrequencyHz, sampleRate, schemes, tunedFrequencyHz]
   );
 
   const stepTune = useCallback(
     (direction: -1 | 1) => {
       updateTunedFrequency(tunedFrequencyHz + direction * stepHz);
     },
-    [stepHz, tunedFrequencyHz, updateTunedFrequency],
+    [stepHz, tunedFrequencyHz, updateTunedFrequency]
   );
 
   useEffect(() => {
     const id = window.setTimeout(() => {
       try {
-        window.localStorage.setItem(FREQ_STORAGE_KEY, JSON.stringify({
-          centerHz: centerFrequencyHz,
-          tunedHz: tunedFrequencyHz,
-          scheme: modeState.scheme,
-          stepHz,
-          displayScale,
-        }));
-      } catch { /* ignore */ }
+        window.localStorage.setItem(
+          FREQ_STORAGE_KEY,
+          JSON.stringify({
+            centerHz: centerFrequencyHz,
+            tunedHz: tunedFrequencyHz,
+            scheme: modeState.scheme,
+            stepHz,
+            displayScale,
+          })
+        );
+      } catch {
+        /* ignore */
+      }
     }, 150);
 
     return () => window.clearTimeout(id);
-  }, [centerFrequencyHz, tunedFrequencyHz, modeState.scheme, stepHz, displayScale]);
+  }, [
+    centerFrequencyHz,
+    tunedFrequencyHz,
+    modeState.scheme,
+    stepHz,
+    displayScale,
+  ]);
 
   return {
     schemes,

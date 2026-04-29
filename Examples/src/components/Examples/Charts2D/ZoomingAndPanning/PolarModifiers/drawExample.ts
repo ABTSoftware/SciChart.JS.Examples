@@ -30,7 +30,8 @@ import {
 import { appTheme } from "../../../theme";
 
 export const POLAR_MODIFIER_INFO: Partial<Record<EChart2DModifierType, string>> = {
-    [EChart2DModifierType.PolarZoomExtents]: "Double-click\nto reset the zoom at the original visible ranges.\n(pairs amazing with other modifiers)",
+    [EChart2DModifierType.PolarZoomExtents]:
+        "Double-click\nto reset the zoom at the original visible ranges.\n(pairs amazing with other modifiers)",
     [EChart2DModifierType.PolarMouseWheelZoom]: "Zoom The Polar Chart\nusing the mouse wheel or touchpad",
     [EChart2DModifierType.PolarMouseWheelZoom + " [Pan]"]: "Rotate The Polar Chart\nusing the mouse wheel or touchpad",
     [EChart2DModifierType.PolarPan + " [Cartesian]"]: "Click and drag\nto pan the chart in Cartesian mode",
@@ -100,7 +101,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         paletteProvider: new DataPointSelectionPaletteProvider({
             fill: "#FFFFFF",
             stroke: "#00AA00",
-        })
+        }),
     });
     sciChartSurface.renderableSeries.add(polarColumn);
 
@@ -115,7 +116,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         multiLineAlignment: EMultiLineAlignment.Center,
         lineSpacing: 5,
-        textColor: appTheme.TextColor
+        textColor: appTheme.TextColor,
     });
     sciChartSurface.annotations.add(detailTextAnnotation);
 
@@ -144,11 +145,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         backgroundColor: appTheme.DarkIndigo,
         textColor: STROKE,
     });
-    const PolarMouseWheelZoom = new PolarMouseWheelZoomModifier({ 
-        defaultActionType: EActionType.Zoom 
+    const PolarMouseWheelZoom = new PolarMouseWheelZoomModifier({
+        defaultActionType: EActionType.Zoom,
     });
-    const PolarMouseWheelZoomPAN = new PolarMouseWheelZoomModifier({ 
-        defaultActionType: EActionType.Pan 
+    const PolarMouseWheelZoomPAN = new PolarMouseWheelZoomModifier({
+        defaultActionType: EActionType.Pan,
     });
     const PolarPanCartesian = new PolarPanModifier({
         primaryPanMode: EPolarPanModifierPanMode.Cartesian,
@@ -185,7 +186,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                             return PolarPanCartesian;
                         case EChart2DModifierType.PolarPan + " [Polar]":
                             return PolarPanPolar;
-                        
+
                         case EChart2DModifierType.PolarZoomExtents:
                             return PolarZoomExtents;
                         default:

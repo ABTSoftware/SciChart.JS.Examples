@@ -63,10 +63,7 @@ export default function OilAndGasDashboardShowcase() {
         <ChartGroupLoader className={commonClasses.ChartWrapper} style={{ display: "flex" }} onInit={onInitAllCharts}>
             {isXs ? null : (
                 <div className="sidebar-charts">
-                    <div
-                        id="sidebar-charts-2d"
-                        className="sidebar-charts-2d"
-                    >
+                    <div id="sidebar-charts-2d" className="sidebar-charts-2d">
                         <div className="sidebar-charts-2d-title-container">
                             <div className="sidebar-charts-2d-title-item sidebar-charts-2d-item sidebar-charts-2d-item-small">
                                 <div className="sidebar-charts-2d-title">GR</div>
@@ -113,9 +110,7 @@ export default function OilAndGasDashboardShowcase() {
                 </div>
             )}
             <div className="main-container">
-                <div
-                    id="main-charts"
-                >
+                <div id="main-charts">
                     <div className="chart-container">
                         <div id="shale-legend" className="legend-root"></div>
                         <div

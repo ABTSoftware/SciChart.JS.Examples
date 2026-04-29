@@ -28,12 +28,8 @@ export default function ChartComponent() {
                     color="primary"
                     aria-label="small outlined button group"
                 >
-                    <ToggleButton value={1}>
-                        Normal Axis
-                    </ToggleButton>
-                    <ToggleButton value={0}>
-                        Static Axis
-                    </ToggleButton>
+                    <ToggleButton value={1}>Normal Axis</ToggleButton>
+                    <ToggleButton value={0}>Static Axis</ToggleButton>
                 </ToggleButtonGroup>
             </div>
 

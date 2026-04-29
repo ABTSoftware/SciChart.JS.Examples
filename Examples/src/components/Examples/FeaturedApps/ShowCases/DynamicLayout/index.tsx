@@ -35,12 +35,8 @@ const ChartToolbar = () => {
             color="primary"
             aria-label="small outlined button group"
         >
-            <ToggleButton value={false}>
-                Single Chart
-            </ToggleButton>
-            <ToggleButton value={true}>
-                Chart Per Series
-            </ToggleButton>
+            <ToggleButton value={false}>Single Chart</ToggleButton>
+            <ToggleButton value={true}>Chart Per Series</ToggleButton>
         </ToggleButtonGroup>
     );
 };

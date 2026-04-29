@@ -5,9 +5,9 @@ import {
     XyDataSeries,
     PolarNumericAxis,
     SciChartPolarSurface,
-    EPolarAxisMode, 
-    NumberRange, 
-    EAxisAlignment,  
+    EPolarAxisMode,
+    NumberRange,
+    EAxisAlignment,
     EPolarLabelMode,
     WaveAnimation,
     PolarStackedMountainCollection,
@@ -65,11 +65,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         visibleRange: new NumberRange(0, 10),
         polarLabelMode: EPolarLabelMode.Parallel,
-        
+
         startAngle: Math.PI / 2, // start at 12 o'clock
         flippedCoordinates: true, // go clockwise
         zoomExtentsToInitialRange: true,
-        
+
         useNativeText: true,
         labelPrecision: 0,
     });
@@ -78,20 +78,19 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Make collection to hold all the stacked mountains renderable series
     const mountainCollection = new PolarStackedMountainCollection(wasmContext);
     mountainCollection.separatePositiveNegativeStacks = false;
-    mountainCollection.animation = new WaveAnimation({ duration: 800, zeroLine: 0 }),
-
-    MountainsDatasets.forEach(({yValues, fillColor}) => {
-        const polarMountain = new PolarStackedMountainRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, {
-                xValues: [...xValues, xValues[xValues.length - 1] + 1], // add 1 more xValue to close the loop
-                yValues: [...yValues, yValues[0]] // close the loop by drawing to the first yValue
-            }),
-            fill: fillColor + "BB", // 75% opacity
-            // stroke: "white",
-            strokeThickness: 1,
+    (mountainCollection.animation = new WaveAnimation({ duration: 800, zeroLine: 0 })),
+        MountainsDatasets.forEach(({ yValues, fillColor }) => {
+            const polarMountain = new PolarStackedMountainRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, {
+                    xValues: [...xValues, xValues[xValues.length - 1] + 1], // add 1 more xValue to close the loop
+                    yValues: [...yValues, yValues[0]], // close the loop by drawing to the first yValue
+                }),
+                fill: fillColor + "BB", // 75% opacity
+                // stroke: "white",
+                strokeThickness: 1,
+            });
+            mountainCollection.add(polarMountain);
         });
-        mountainCollection.add(polarMountain);
-    })
     sciChartSurface.renderableSeries.add(mountainCollection);
 
     sciChartSurface.chartModifiers.add(

@@ -76,7 +76,7 @@ export const drawExample = (emojiUrls: string[]) => async (rootElement: string |
         }
         return textureManager.createTextTexture([labelText], labelStyle);
     };
-    xAxis.labelProvider.getLabelTexture = getLabelTexture;;
+    xAxis.labelProvider.getLabelTexture = getLabelTexture;
 
     // Disable shared cache for this provider, otherwise other axes might pick up the emoji textures
     xAxis.labelProvider.useSharedCache = false;

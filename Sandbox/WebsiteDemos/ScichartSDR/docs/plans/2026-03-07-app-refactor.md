@@ -13,6 +13,7 @@
 ### Task 1: Create hooks directory and `useFrequency` hook
 
 **Files:**
+
 - Create: `src/features/receiver/hooks/useFrequency.ts`
 
 **Step 1: Create the file with complete implementation**
@@ -32,11 +33,13 @@ export function useFrequency(sampleRate: number) {
     return schemes[0] ?? DEFAULT_MODE;
   }, [schemes]);
 
-  const [centerFrequencyHz, setCenterFrequencyHz] = useState(DEFAULT_FREQUENCY_HZ);
-  const [tunedFrequencyHz, setTunedFrequencyHz] = useState(DEFAULT_FREQUENCY_HZ);
+  const [centerFrequencyHz, setCenterFrequencyHz] =
+    useState(DEFAULT_FREQUENCY_HZ);
+  const [tunedFrequencyHz, setTunedFrequencyHz] =
+    useState(DEFAULT_FREQUENCY_HZ);
   const [mode, setMode] = useState(initialMode);
   const [modeState, setModeState] = useState<ModeState>(() =>
-    createModeState(initialMode, schemes),
+    createModeState(initialMode, schemes)
   );
   const [stepHz, setStepHz] = useState(1000);
   const [displayScale, setDisplayScale] = useState<DisplayScale>("MHz");
@@ -48,7 +51,7 @@ export function useFrequency(sampleRate: number) {
   const effectiveBandwidthHz = hasBandwidth ? bandwidthHz : 180_000;
   const { leftBandHz, rightBandHz } = useMemo(
     () => sideBandsForMode(modeState.scheme, effectiveBandwidthHz),
-    [effectiveBandwidthHz, modeState.scheme],
+    [effectiveBandwidthHz, modeState.scheme]
   );
   const stereoEnabled = hasStereoControl ? modeConfig.getStereo() : false;
   const squelch = modeConfig.hasSquelch() ? modeConfig.getSquelch() : 0;
@@ -59,19 +62,22 @@ export function useFrequency(sampleRate: number) {
     return 1;
   }, [displayScale]);
 
-  const displayDecimals = displayScale === "MHz" ? 3 : displayScale === "kHz" ? 1 : 0;
+  const displayDecimals =
+    displayScale === "MHz" ? 3 : displayScale === "kHz" ? 1 : 0;
   const centerFrequencyDisplay = Number(
-    (centerFrequencyHz / scaleFactor).toFixed(displayDecimals),
+    (centerFrequencyHz / scaleFactor).toFixed(displayDecimals)
   );
   const tunedFrequencyDisplay = Number(
-    (tunedFrequencyHz / scaleFactor).toFixed(displayDecimals),
+    (tunedFrequencyHz / scaleFactor).toFixed(displayDecimals)
   );
 
   const safeZoom = clamp(1, 0.25, 4);
   const visibleSpanHz = sampleRate / safeZoom;
   const visibleMinHz = centerFrequencyHz - visibleSpanHz / 2;
-  const tunedCenterPct = ((tunedFrequencyHz - visibleMinHz) / visibleSpanHz) * 100;
-  const tunedWindowWidthPct = ((leftBandHz + rightBandHz) / visibleSpanHz) * 100;
+  const tunedCenterPct =
+    ((tunedFrequencyHz - visibleMinHz) / visibleSpanHz) * 100;
+  const tunedWindowWidthPct =
+    ((leftBandHz + rightBandHz) / visibleSpanHz) * 100;
 
   const updateCenterFrequency = useCallback(
     (nextCenterHz: number) => {
@@ -80,12 +86,12 @@ export function useFrequency(sampleRate: number) {
         tunedFrequencyHz,
         sampleRate,
         leftBandHz,
-        rightBandHz,
+        rightBandHz
       );
       setCenterFrequencyHz(next.centerHz);
       setTunedFrequencyHz(next.tunedHz);
     },
-    [leftBandHz, rightBandHz, sampleRate, tunedFrequencyHz],
+    [leftBandHz, rightBandHz, sampleRate, tunedFrequencyHz]
   );
 
   const updateTunedFrequency = useCallback(
@@ -95,12 +101,12 @@ export function useFrequency(sampleRate: number) {
         nextTunedHz,
         sampleRate,
         leftBandHz,
-        rightBandHz,
+        rightBandHz
       );
       setCenterFrequencyHz(next.centerHz);
       setTunedFrequencyHz(next.tunedHz);
     },
-    [centerFrequencyHz, leftBandHz, rightBandHz, sampleRate],
+    [centerFrequencyHz, leftBandHz, rightBandHz, sampleRate]
   );
 
   const updateModeState = useCallback(
@@ -113,18 +119,21 @@ export function useFrequency(sampleRate: number) {
       const nextBandwidthHz = config.hasBandwidth()
         ? Math.round(config.getBandwidth())
         : 180_000;
-      const nextSideBands = sideBandsForMode(nextModeState.scheme, nextBandwidthHz);
+      const nextSideBands = sideBandsForMode(
+        nextModeState.scheme,
+        nextBandwidthHz
+      );
       const nextFrequency = reconcileFrequency(
         centerFrequencyHz,
         tunedFrequencyHz,
         sampleRate,
         nextSideBands.leftBandHz,
-        nextSideBands.rightBandHz,
+        nextSideBands.rightBandHz
       );
       setCenterFrequencyHz(nextFrequency.centerHz);
       setTunedFrequencyHz(nextFrequency.tunedHz);
     },
-    [centerFrequencyHz, modeState, sampleRate, tunedFrequencyHz],
+    [centerFrequencyHz, modeState, sampleRate, tunedFrequencyHz]
   );
 
   const applyScheme = useCallback(
@@ -137,25 +146,28 @@ export function useFrequency(sampleRate: number) {
       const nextBandwidthHz = modeCfg.hasBandwidth()
         ? Math.round(modeCfg.getBandwidth())
         : 180_000;
-      const nextSideBands = sideBandsForMode(nextModeState.scheme, nextBandwidthHz);
+      const nextSideBands = sideBandsForMode(
+        nextModeState.scheme,
+        nextBandwidthHz
+      );
       const nextFrequency = reconcileFrequency(
         centerFrequencyHz,
         tunedFrequencyHz,
         sampleRate,
         nextSideBands.leftBandHz,
-        nextSideBands.rightBandHz,
+        nextSideBands.rightBandHz
       );
       setCenterFrequencyHz(nextFrequency.centerHz);
       setTunedFrequencyHz(nextFrequency.tunedHz);
     },
-    [centerFrequencyHz, sampleRate, schemes, tunedFrequencyHz],
+    [centerFrequencyHz, sampleRate, schemes, tunedFrequencyHz]
   );
 
   const stepTune = useCallback(
     (direction: -1 | 1) => {
       updateTunedFrequency(tunedFrequencyHz + direction * stepHz);
     },
-    [stepHz, tunedFrequencyHz, updateTunedFrequency],
+    [stepHz, tunedFrequencyHz, updateTunedFrequency]
   );
 
   return {
@@ -216,6 +228,7 @@ git commit -m "refactor: add useFrequency hook"
 ### Task 2: Create `useReceiverSettings` hook
 
 **Files:**
+
 - Create: `src/features/receiver/hooks/useReceiverSettings.ts`
 
 **Step 1: Create the file**
@@ -223,7 +236,10 @@ git commit -m "refactor: add useFrequency hook"
 ```typescript
 import { useEffect, useState } from "react";
 import { FFT_SIZE } from "../constants";
-import { loadPresetsFromStorage, savePresetsToStorage } from "../presetsStorage";
+import {
+  loadPresetsFromStorage,
+  savePresetsToStorage,
+} from "../presetsStorage";
 import type {
   DirectSamplingChannel,
   LowFrequencyMethodName,
@@ -252,7 +268,7 @@ export function useReceiverSettings() {
   const [fftSize, setFftSize] = useState(FFT_SIZE);
   const [dbRange, setDbRange] = useState<[number, number]>([-85, -15]);
   const [presets, setPresets] = useState<ReceiverPreset[]>(() =>
-    loadPresetsFromStorage(),
+    loadPresetsFromStorage()
   );
   const [presetsOpen, setPresetsOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -320,6 +336,7 @@ git commit -m "refactor: add useReceiverSettings hook"
 ### Task 3: Create `useRadio` hook
 
 **Files:**
+
 - Create: `src/features/receiver/hooks/useRadio.ts`
 
 **Step 1: Create the file**
@@ -367,7 +384,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
   const rdsRef = useRef<RdsReceiver | null>(null);
   const spectrumRef = useRef<Spectrum | null>(null);
   const spectrumBufferRef = useRef<Float32Array>(
-    new Float32Array(settings.fftSize),
+    new Float32Array(settings.fftSize)
   );
   const stopRequestedRef = useRef(false);
   const prevCenterForDeviceHzRef = useRef<number | null>(null);
@@ -421,7 +438,8 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
 
     const prevCenter = prevCenterForDeviceHzRef.current;
     const prevOffset = prevFrequencyOffsetRef.current;
-    const centerChanged = prevCenter === null || prevCenter !== centerForDeviceHz;
+    const centerChanged =
+      prevCenter === null || prevCenter !== centerForDeviceHz;
     const offsetChanged = prevOffset === null || prevOffset !== frequencyOffset;
     if (centerChanged && offsetChanged) {
       demod.expectFrequencyAndSetOffset(centerForDeviceHz, frequencyOffset);
@@ -469,7 +487,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
             }
             if (!last || last.directSampling !== capturedDirectSampling) {
               await capturedRadio.setDirectSamplingMethod(
-                capturedDirectSampling,
+                capturedDirectSampling
               );
             }
             lastWrittenHwRef.current = {
@@ -483,7 +501,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
             lastWrittenHwRef.current = null;
             setError(getRadioErrorMessage(exception));
           }
-        },
+        }
       );
     }, 50);
   }, [
@@ -517,7 +535,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
       const demod = new Demodulator({
         modeOptions: getDemodModeOptions(
           settings.performanceTradeoff,
-          settings.wbfmDeemphasisUs,
+          settings.wbfmDeemphasisUs
         ),
       });
       const spectrum = new Spectrum(settings.fftSize);
@@ -526,7 +544,7 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
         () => demod.getFrequencyOffset(),
         (name) => {
           setStationName(name);
-        },
+        }
       );
       const receiver = CompositeReceiver.of(rds, spectrum, demod);
       const radio = new Radio(new RtlProvider(), receiver);
@@ -681,8 +699,8 @@ export function useRadio({ frequency, settings }: UseRadioParams) {
         clamp(
           Number.isFinite(value) ? value : settings.dbRange[0],
           settings.dbRange[0],
-          settings.dbRange[1],
-        ),
+          settings.dbRange[1]
+        )
       );
 
       setSpectrumDb(nextSpectrumDb);
@@ -748,6 +766,7 @@ git commit -m "refactor: add useRadio hook"
 ### Task 4: Rewrite App.tsx to use the three hooks
 
 **Files:**
+
 - Modify: `src/App.tsx`
 
 **Step 1: Replace App.tsx content**
@@ -777,7 +796,10 @@ import {
 import { useFrequency } from "./features/receiver/hooks/useFrequency";
 import { useReceiverSettings } from "./features/receiver/hooks/useReceiverSettings";
 import { useRadio } from "./features/receiver/hooks/useRadio";
-import { reconcileFrequency, sideBandsForMode } from "./features/receiver/radioHelpers";
+import {
+  reconcileFrequency,
+  sideBandsForMode,
+} from "./features/receiver/radioHelpers";
 import type { ModeState } from "./features/receiver/types";
 import "./App.css";
 
@@ -801,8 +823,8 @@ function App() {
         frequency.displayScale === "MHz"
           ? 1_000_000
           : frequency.displayScale === "kHz"
-            ? 1_000
-            : 1,
+          ? 1_000
+          : 1,
       tuningStep: frequency.stepHz,
       scheme: frequency.modeState.scheme,
       bandwidth: frequency.bandwidthHz,
@@ -821,11 +843,11 @@ function App() {
       settings.gainDb,
       settings.manualGain,
       settings.presets.length,
-    ],
+    ]
   );
 
   const handleWindowPointerDown = (
-    event: ReactPointerEvent<HTMLDivElement>,
+    event: ReactPointerEvent<HTMLDivElement>
   ) => {
     event.stopPropagation();
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -834,7 +856,7 @@ function App() {
   };
 
   const handleWindowPointerMove = (
-    event: ReactPointerEvent<HTMLDivElement>,
+    event: ReactPointerEvent<HTMLDivElement>
   ) => {
     if (event.buttons === 0) return;
     const container = chartsContainerRef.current;
@@ -845,10 +867,7 @@ function App() {
       ((event.clientX - windowDragStartXRef.current) / rect.width) *
       frequency.visibleSpanHz;
     frequency.updateTunedFrequency(
-      Math.max(
-        100_000,
-        Math.round(windowDragStartFreqRef.current + deltaHz),
-      ),
+      Math.max(100_000, Math.round(windowDragStartFreqRef.current + deltaHz))
     );
   };
 
@@ -865,7 +884,9 @@ function App() {
             maxDb={settings.dbRange[1]}
             spectrumDb={radio.spectrumDb}
             onTune={frequency.updateTunedFrequency}
-            onError={(e) => { /* error handled by radio hook */ }}
+            onError={(e) => {
+              /* error handled by radio hook */
+            }}
             onReadyChange={setSpectrumChartReady}
           />
           <Box className="waterfall-layer">
@@ -879,7 +900,9 @@ function App() {
               maxDb={settings.dbRange[1]}
               spectrumDb={radio.spectrumDb}
               onTune={frequency.updateTunedFrequency}
-              onError={(e) => { /* error handled by radio hook */ }}
+              onError={(e) => {
+                /* error handled by radio hook */
+              }}
               onReadyChange={setWaterfallChartReady}
             />
           </Box>
@@ -887,7 +910,9 @@ function App() {
             className="tuned-window"
             style={
               {
-                "--tuned-left": `${frequency.tunedCenterPct - frequency.tunedWindowWidthPct / 2}%`,
+                "--tuned-left": `${
+                  frequency.tunedCenterPct - frequency.tunedWindowWidthPct / 2
+                }%`,
                 "--tuned-width": `${frequency.tunedWindowWidthPct}%`,
               } as React.CSSProperties
             }
@@ -1007,14 +1032,14 @@ function App() {
             frequency.setModeState(nextModeState);
             const nextSideBands = sideBandsForMode(
               nextModeState.scheme,
-              preset.bandwidth,
+              preset.bandwidth
             );
             const nextFrequency = reconcileFrequency(
               frequency.centerFrequencyHz,
               preset.tunedFrequency,
               settings.sampleRate,
               nextSideBands.leftBandHz,
-              nextSideBands.rightBandHz,
+              nextSideBands.rightBandHz
             );
             frequency.setCenterFrequencyHz(nextFrequency.centerHz);
             frequency.setTunedFrequencyHz(nextFrequency.tunedHz);
@@ -1023,16 +1048,14 @@ function App() {
           onSetSampleRate={(nextSampleRate) => {
             settings.setSampleRate(nextSampleRate);
             settings.setPerformanceTradeoff(
-              nextSampleRate >= HIGH_SAMPLE_RATE_THRESHOLD
-                ? "latency"
-                : "cpu",
+              nextSampleRate >= HIGH_SAMPLE_RATE_THRESHOLD ? "latency" : "cpu"
             );
             const next = reconcileFrequency(
               frequency.centerFrequencyHz,
               frequency.tunedFrequencyHz,
               nextSampleRate,
               frequency.leftBandHz,
-              frequency.rightBandHz,
+              frequency.rightBandHz
             );
             frequency.setCenterFrequencyHz(next.centerHz);
             frequency.setTunedFrequencyHz(next.tunedHz);
@@ -1083,6 +1106,7 @@ npm run dev
 ```
 
 Open the app in the browser. Verify:
+
 - Spectrum and waterfall charts render
 - Connect button works
 - Frequency tuning works (click on spectrum, drag tuned window)
@@ -1106,6 +1130,7 @@ git commit -m "refactor: simplify App.tsx using useFrequency, useReceiverSetting
 ### Task 5: Create hooks index barrel (optional cleanup)
 
 **Files:**
+
 - Create: `src/features/receiver/hooks/index.ts`
 
 **Step 1: Create barrel export**

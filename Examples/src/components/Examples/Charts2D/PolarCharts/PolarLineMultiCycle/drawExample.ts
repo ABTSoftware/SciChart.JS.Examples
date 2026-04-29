@@ -160,7 +160,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawLabels: true,
         labelPrecision: 0,
         labelStyle: {
-            color: appTheme.TextColor
+            color: appTheme.TextColor,
         },
         labelPostfix: "°C",
         autoTicks: false,

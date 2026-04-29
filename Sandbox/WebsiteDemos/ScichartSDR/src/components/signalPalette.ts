@@ -1,4 +1,7 @@
-import { DB_CEILING_LIMIT, DB_FLOOR_LIMIT } from "../features/receiver/constants";
+import {
+  DB_CEILING_LIMIT,
+  DB_FLOOR_LIMIT,
+} from "../features/receiver/constants";
 
 type ColorStop = {
   offset: number;
@@ -76,7 +79,7 @@ function toColorString(color: ColorStop): string {
 function buildGradientStops(
   stops: readonly ColorStop[],
   minDb: number,
-  maxDb: number,
+  maxDb: number
 ): GradientStop[] {
   const start = normalizeDb(minDb);
   const end = normalizeDb(maxDb);
@@ -110,7 +113,10 @@ function buildGradientStops(
   return scaledStops;
 }
 
-export function buildSignalMeterGradientStops(minDb: number, maxDb: number): GradientStop[] {
+export function buildSignalMeterGradientStops(
+  minDb: number,
+  maxDb: number
+): GradientStop[] {
   return buildGradientStops(METER_STOPS, minDb, maxDb);
 }
 

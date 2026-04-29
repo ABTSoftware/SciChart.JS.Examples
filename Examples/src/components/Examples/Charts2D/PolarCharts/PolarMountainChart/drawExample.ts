@@ -5,15 +5,15 @@ import {
     XyDataSeries,
     PolarNumericAxis,
     SciChartPolarSurface,
-    EPolarAxisMode, 
-    NumberRange, 
-    EAxisAlignment, 
-    GradientParams, 
-    Point, 
+    EPolarAxisMode,
+    NumberRange,
+    EAxisAlignment,
+    GradientParams,
+    Point,
     EPolarLabelMode,
     WaveAnimation,
     PolarMountainRenderableSeries,
-    PolarLegendModifier
+    PolarLegendModifier,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -34,7 +34,7 @@ const MountainsDatasets = [
         fillColor: appTheme.VividPink,
         interpolateLine: false,
     },
-]
+];
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
@@ -68,28 +68,24 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     sciChartSurface.xAxes.add(polarXAxis);
 
-    MountainsDatasets.forEach(({yValues, fillColor, interpolateLine}) => {
+    MountainsDatasets.forEach(({ yValues, fillColor, interpolateLine }) => {
         const polarMountain = new PolarMountainRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: [...xValues, xValues[xValues.length - 1] + 1], // add 1 more xValue to close the loop
                 yValues: [...yValues, yValues[0]], // close the loop by drawing to the first yValue
                 dataSeriesName: interpolateLine ? "Interpolated" : "Straight",
             }),
-            fillLinearGradient: new GradientParams(
-                new Point(0, 0), 
-                new Point(0, 1), 
-                [
-                    { color: fillColor + "AA", offset: 0 },
-                    { color: fillColor + "33", offset: 0.3 },
-                ]
-            ),
+            fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+                { color: fillColor + "AA", offset: 0 },
+                { color: fillColor + "33", offset: 0.3 },
+            ]),
             interpolateLine: interpolateLine,
             stroke: fillColor, // this also gives off the color for the legend marker
             strokeThickness: 2,
             animation: new WaveAnimation({ duration: 800, zeroLine: 0 }),
         });
         sciChartSurface.renderableSeries.add(polarMountain);
-    })
+    });
 
     sciChartSurface.chartModifiers.add(
         new PolarPanModifier(),

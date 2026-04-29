@@ -49,7 +49,6 @@ function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
 }
 
-
 function getChartErrorMessage(exception: unknown): string {
   if (!exception || typeof exception !== "object") {
     return String(exception);
@@ -65,13 +64,14 @@ function makeFallbackRows(
   rowCount: number,
   colCount: number,
   minDb: number,
-  maxDb: number,
+  maxDb: number
 ): Float64Array[] {
   const rows = new Array<Float64Array>(rowCount);
   for (let r = 0; r < rowCount; r += 1) {
     const row = new Float64Array(colCount);
     for (let c = 0; c < colCount; c += 1) {
-      const base = minDb + 16 + 8 * Math.sin(c / 42) + 4 * Math.cos((r + c) / 23);
+      const base =
+        minDb + 16 + 8 * Math.sin(c / 42) + 4 * Math.cos((r + c) / 23);
       row[c] = clamp(base, minDb, maxDb);
     }
     rows[r] = row;
@@ -99,7 +99,7 @@ export function WaterfallChart({
   const yAxisRef = useRef<NumericAxis | null>(null);
   const dataSeriesRef = useRef<UniformHeatmapDataSeries | null>(null);
   const rowsRef = useRef<Float64Array[]>(
-    makeFallbackRows(rows, fftSize, minDb, maxDb),
+    makeFallbackRows(rows, fftSize, minDb, maxDb)
   );
   const frameCountRef = useRef(0);
   const lastRenderMsRef = useRef(0);
@@ -129,7 +129,16 @@ export function WaterfallChart({
       visibleMaxHz,
       visibleMinHz,
     };
-  }, [fftSize, frequencyHz, maxDb, minDb, rows, sampleRate, visibleMaxHz, visibleMinHz]);
+  }, [
+    fftSize,
+    frequencyHz,
+    maxDb,
+    minDb,
+    rows,
+    sampleRate,
+    visibleMaxHz,
+    visibleMinHz,
+  ]);
 
   const resetWaterfallSurface = useCallback(() => {
     const xAxis = xAxisRef.current;
@@ -144,13 +153,16 @@ export function WaterfallChart({
       state.rows,
       state.fftSize,
       state.minDb,
-      state.maxDb,
+      state.maxDb
     );
     frameCountRef.current = 0;
     lastRenderMsRef.current = 0;
     dataSeries.xStart = state.frequencyHz - state.sampleRate / 2;
     dataSeries.xStep = state.sampleRate / state.fftSize;
-    xAxis.visibleRange = new NumberRange(state.visibleMinHz, state.visibleMaxHz);
+    xAxis.visibleRange = new NumberRange(
+      state.visibleMinHz,
+      state.visibleMaxHz
+    );
     yAxis.visibleRange = new NumberRange(0, state.rows);
     dataSeries.setZValues(rowsRef.current);
     surfaceRef.current?.invalidateElement();
@@ -180,8 +192,8 @@ export function WaterfallChart({
       if (!host) {
         return;
       }
-      const { sciChartSurface, wasmContext } = await withSciChartCreateLock(() =>
-        SciChartSurface.createSingle(host),
+      const { sciChartSurface, wasmContext } = await withSciChartCreateLock(
+        () => SciChartSurface.createSingle(host)
       );
       const initialState = renderStateRef.current;
 
@@ -245,7 +257,7 @@ export function WaterfallChart({
               { offset: 1, color: "#eef5f9" },
             ],
           }),
-        }),
+        })
       );
 
       surfaceRef.current = sciChartSurface;
@@ -265,7 +277,9 @@ export function WaterfallChart({
     };
 
     void initChart().catch((exception) => {
-      onError(`Chart initialization failed: ${getChartErrorMessage(exception)}`);
+      onError(
+        `Chart initialization failed: ${getChartErrorMessage(exception)}`
+      );
     });
 
     return () => {
@@ -283,7 +297,17 @@ export function WaterfallChart({
 
   useEffect(() => {
     resetWaterfallSurface();
-  }, [resetWaterfallSurface, fftSize, frequencyHz, maxDb, minDb, rows, sampleRate, visibleMaxHz, visibleMinHz]);
+  }, [
+    resetWaterfallSurface,
+    fftSize,
+    frequencyHz,
+    maxDb,
+    minDb,
+    rows,
+    sampleRate,
+    visibleMaxHz,
+    visibleMinHz,
+  ]);
 
   useEffect(() => {
     if (!spectrumDb || spectrumDb.length !== fftSize) return;

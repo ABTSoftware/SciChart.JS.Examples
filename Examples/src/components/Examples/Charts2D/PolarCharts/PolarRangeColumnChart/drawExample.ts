@@ -60,7 +60,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         // replace minors with majors by not drawing majors and setting this:
         minorsPerMajor: 2,
-        
+
         drawMajorGridLines: false,
         drawMinorGridLines: true,
         drawMajorTickLines: false,

@@ -1,4 +1,8 @@
-import { INITIAL_PRESETS, PRESETS_SORT_STORAGE_KEY, PRESETS_STORAGE_KEY } from "./constants";
+import {
+  INITIAL_PRESETS,
+  PRESETS_SORT_STORAGE_KEY,
+  PRESETS_STORAGE_KEY,
+} from "./constants";
 import type { PresetSortColumn, ReceiverPreset } from "./types";
 
 function isReceiverPreset(value: unknown): value is ReceiverPreset {
@@ -47,7 +51,12 @@ export function savePresetsToStorage(presets: ReceiverPreset[]): void {
 }
 
 const VALID_SORT_COLUMNS: PresetSortColumn[] = [
-  "name", "frequency", "mode", "-name", "-frequency", "-mode",
+  "name",
+  "frequency",
+  "mode",
+  "-name",
+  "-frequency",
+  "-mode",
 ];
 
 export function loadSortColumnFromStorage(): PresetSortColumn {

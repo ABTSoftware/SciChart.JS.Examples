@@ -13,6 +13,7 @@
 ### Task 1: Install dependencies
 
 **Files:**
+
 - Modify: `package.json` (via npm)
 
 **Step 1: Install dev dependencies**
@@ -43,6 +44,7 @@ git commit -m "chore: add vite-plugin-pwa and assets-generator"
 ### Task 2: Generate PWA icon assets
 
 **Files:**
+
 - Create: `pwa-assets.config.ts` (project root)
 - Create: `public/icons/` (generated, not hand-written)
 
@@ -51,12 +53,12 @@ git commit -m "chore: add vite-plugin-pwa and assets-generator"
 Create `pwa-assets.config.ts` at the project root:
 
 ```ts
-import { defineConfig, minimalPreset } from '@vite-pwa/assets-generator/config'
+import { defineConfig, minimalPreset } from "@vite-pwa/assets-generator/config";
 
 export default defineConfig({
   preset: minimalPreset,
-  images: ['public/favicon.svg'],
-})
+  images: ["public/favicon.svg"],
+});
 ```
 
 `minimalPreset` generates: `pwa-64x64.png`, `pwa-192x192.png`, `pwa-512x512.png`, `maskable-icon-512x512.png`, `apple-touch-icon-180x180.png` — all output to `public/`.
@@ -89,6 +91,7 @@ git commit -m "chore: generate PWA icon assets from favicon.svg"
 ### Task 3: Configure VitePWA plugin
 
 **Files:**
+
 - Modify: `vite.config.ts`
 
 **Step 1: Update vite.config.ts**
@@ -96,76 +99,84 @@ git commit -m "chore: generate PWA icon assets from favicon.svg"
 Replace the entire file with:
 
 ```ts
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { VitePWA } from 'vite-plugin-pwa'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { VitePWA } from "vite-plugin-pwa";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: './',
+  base: "./",
   plugins: [
     react({
       babel: {
-        plugins: [['babel-plugin-react-compiler']],
+        plugins: [["babel-plugin-react-compiler"]],
       },
     }),
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: "autoUpdate",
       pwaAssets: {
         config: true,
       },
       manifest: {
-        name: 'SciChart SDR',
-        short_name: 'SDR Radio',
-        description: 'Software Defined Radio receiver with spectrum and waterfall display',
-        theme_color: '#040d1a',
-        background_color: '#090e18',
-        display: 'standalone',
-        orientation: 'landscape',
-        start_url: '.',
-        scope: '.',
+        name: "SciChart SDR",
+        short_name: "SDR Radio",
+        description:
+          "Software Defined Radio receiver with spectrum and waterfall display",
+        theme_color: "#040d1a",
+        background_color: "#090e18",
+        display: "standalone",
+        orientation: "landscape",
+        start_url: ".",
+        scope: ".",
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,wasm,data}'],
+        globPatterns: ["**/*.{js,css,html,wasm,data}"],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
       },
     }),
   ],
-  assetsInclude: ['**/*.wasm', '**/*.data'],
+  assetsInclude: ["**/*.wasm", "**/*.data"],
   build: {
     chunkSizeWarningLimit: 3000,
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          if (!id.includes('/node_modules/')) {
-            return undefined
+          if (!id.includes("/node_modules/")) {
+            return undefined;
           }
 
-          if (id.includes('/node_modules/scichart/')) {
-            return 'scichart-vendor'
+          if (id.includes("/node_modules/scichart/")) {
+            return "scichart-vendor";
           }
 
-          if (id.includes('/node_modules/@mui/') || id.includes('/node_modules/@emotion/')) {
-            return 'mui-vendor'
+          if (
+            id.includes("/node_modules/@mui/") ||
+            id.includes("/node_modules/@emotion/")
+          ) {
+            return "mui-vendor";
           }
 
-          if (id.includes('/node_modules/@jtarrio/')) {
-            return 'sdr-vendor'
+          if (id.includes("/node_modules/@jtarrio/")) {
+            return "sdr-vendor";
           }
 
-          if (id.includes('/node_modules/react/') || id.includes('/node_modules/react-dom/')) {
-            return 'react-vendor'
+          if (
+            id.includes("/node_modules/react/") ||
+            id.includes("/node_modules/react-dom/")
+          ) {
+            return "react-vendor";
           }
 
-          return undefined
+          return undefined;
         },
       },
     },
   },
-})
+});
 ```
 
 Key additions:
+
 - `VitePWA(...)` plugin with `autoUpdate` SW registration
 - `pwaAssets: { config: true }` — reads `pwa-assets.config.ts` and auto-injects icon tags into the HTML
 - `workbox.globPatterns` includes `**/*.wasm` so WASM files are precached
@@ -192,6 +203,7 @@ git commit -m "feat: configure VitePWA plugin with Workbox and manifest"
 ### Task 4: Register service worker in main.tsx
 
 **Files:**
+
 - Modify: `src/main.tsx`
 - Modify: `tsconfig.app.json`
 
@@ -208,16 +220,14 @@ This gives TypeScript the type declaration for the `virtual:pwa-register` module
 **Step 2: Update main.tsx**
 
 ```ts
-import { registerSW } from 'virtual:pwa-register'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { registerSW } from "virtual:pwa-register";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.tsx";
 
-registerSW({ immediate: true })
+registerSW({ immediate: true });
 
-createRoot(document.getElementById('root')!).render(
-  <App />,
-)
+createRoot(document.getElementById("root")!).render(<App />);
 ```
 
 `registerSW({ immediate: true })` registers the service worker and activates it immediately on first install. With `registerType: 'autoUpdate'`, updates apply automatically when a new SW is available.
@@ -242,34 +252,35 @@ git commit -m "feat: register PWA service worker in app entry point"
 ### Task 5: Create OfflineNotice component
 
 **Files:**
+
 - Create: `src/components/OfflineNotice.tsx`
 
 **Step 1: Create the component**
 
 ```tsx
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 export function OfflineNotice() {
-  const [offline, setOffline] = useState(!navigator.onLine)
+  const [offline, setOffline] = useState(!navigator.onLine);
 
   useEffect(() => {
-    const goOffline = () => setOffline(true)
-    const goOnline = () => setOffline(false)
-    window.addEventListener('offline', goOffline)
-    window.addEventListener('online', goOnline)
+    const goOffline = () => setOffline(true);
+    const goOnline = () => setOffline(false);
+    window.addEventListener("offline", goOffline);
+    window.addEventListener("online", goOnline);
     return () => {
-      window.removeEventListener('offline', goOffline)
-      window.removeEventListener('online', goOnline)
-    }
-  }, [])
+      window.removeEventListener("offline", goOffline);
+      window.removeEventListener("online", goOnline);
+    };
+  }, []);
 
-  if (!offline) return null
+  if (!offline) return null;
 
   return (
     <div className="offline-notice">
       No internet connection — radio hardware required to receive signals
     </div>
-  )
+  );
 }
 ```
 
@@ -314,6 +325,7 @@ git commit -m "feat: add OfflineNotice component for offline state"
 ### Task 6: Wire OfflineNotice into App.tsx
 
 **Files:**
+
 - Modify: `src/App.tsx`
 
 **Step 1: Import and render OfflineNotice**
@@ -321,7 +333,7 @@ git commit -m "feat: add OfflineNotice component for offline state"
 At the top of `App.tsx`, add the import alongside existing imports:
 
 ```ts
-import { OfflineNotice } from './components/OfflineNotice'
+import { OfflineNotice } from "./components/OfflineNotice";
 ```
 
 Inside the `return (...)`, place `<OfflineNotice />` as the last child inside `<Box className="receiver-page">`, just before the closing `</Box>`:
@@ -334,7 +346,7 @@ return (
     </Paper>
     <OfflineNotice />
   </Box>
-)
+);
 ```
 
 **Step 2: Verify build**

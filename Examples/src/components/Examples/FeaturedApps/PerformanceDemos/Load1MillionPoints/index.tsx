@@ -32,12 +32,12 @@ export default function Load1MillionPointsChart() {
                     return controls.stopUpdate;
                 }}
             />
-            <div 
-                className={commonClasses.ToolbarRow} 
-                style={{ 
-                    gap: "0px", 
-                    paddingRight: "0px", 
-                    borderTop: "1px solid var(--border-color)" 
+            <div
+                className={commonClasses.ToolbarRow}
+                style={{
+                    gap: "0px",
+                    paddingRight: "0px",
+                    borderTop: "1px solid var(--border-color)",
                 }}
             >
                 <div
@@ -46,7 +46,7 @@ export default function Load1MillionPointsChart() {
                         flexDirection: "column",
                         justifyContent: "space-between",
                         height: "100%",
-                        borderRight: "1px solid var(--border-color)"
+                        borderRight: "1px solid var(--border-color)",
                     }}
                 >
                     <Button

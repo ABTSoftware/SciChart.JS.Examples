@@ -20,13 +20,7 @@ import {
 
 import { appTheme } from "../../../theme";
 
-import {
-    getMinMax,
-    interpolateColor,
-    keyData,
-    australiaData,
-    preserveAspectRatio,
-} from "./helpers";
+import { getMinMax, interpolateColor, keyData, australiaData, preserveAspectRatio } from "./helpers";
 
 import { australianCities } from "./australiaData";
 

@@ -27,7 +27,7 @@ function processFile(filePath) {
         fs.writeFileSync(filePath, newContent, "utf8");
         console.log("- Updated:", filePath);
     } else {
-        // console.log("- No changes needed:", filePath); 
+        // console.log("- No changes needed:", filePath);
     }
 }
 

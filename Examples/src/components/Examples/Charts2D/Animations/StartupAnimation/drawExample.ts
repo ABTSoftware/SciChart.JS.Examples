@@ -100,7 +100,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         yCoordinateMode: ECoordinateMode.Relative,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        textColor: appTheme.TextColor
+        textColor: appTheme.TextColor,
     });
     sciChartSurface.annotations.add(watermark);
 
