@@ -377,6 +377,12 @@ const mapAnnotationTypeToName = (type: EAnnotationType): string => {
         // @ts-ignore
         case EAnnotationType.RenderContextCustomAnnotation:
             return "RenderContextCustomAnnotation";
+        case EAnnotationType.CompositeAnnotation:
+            return "CompositeAnnotation";
+        case EAnnotationType.PolyLineAnnotation:
+            return "PolyLineAnnotation";
+        case EAnnotationType.FreehandDrawingAnnotation:
+            return "FreehandDrawingAnnotation";
         default: {
             const handleInvalidType = (value: never): never => {
                 throw new Error(`Invalid annotation type: ${value}`);
