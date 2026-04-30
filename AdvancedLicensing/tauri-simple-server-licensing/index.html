@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>SciChart Simple Server Licensing (Tauri)</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 20px;
+        background: #1a1a2e;
+        color: #eee;
+      }
+      #scichart-root {
+        width: 100%;
+        height: 500px;
+        margin-top: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>SciChart Simple Server Licensing (Tauri)</h2>
+    <p>
+      The license token is generated in the <strong>Rust backend</strong> via
+      Tauri's invoke bridge. The Server Secret is compiled into the native
+      binary and never reaches the webview.
+    </p>
+    <div id="scichart-root"></div>
+    <script src="bundle.js"></script>
+  </body>
+</html>

@@ -1,20 +1,35 @@
-# Advanced Licensing For SciChart.JS
+# Advanced Licensing for SciChart.JS
 
-Standard SciChart.JS licenses allow for production deployment to a fixed host name, which is not localhost. If you are building an application that will be deployed by third parties to hosts you do not know or control (ie OEM scenarios) or if you are building an embedded system that has to run on localhost, then you will need one of our Advanced Licensing solutions.
+Standard SciChart.JS licenses allow production deployment to a fixed, known hostname. If you are building an application that will be deployed by third parties to hosts you do not know or control (OEM scenarios), or that must run on localhost, you will need an Advanced Licensing solution.
 
-Advanced licensing requires a BUNDLE license and a commitment to maintain an active license for the lifetime of the project. For full details please see the knowlegebase article [SciChart Advanced Licensing](https://support.scichart.com/support/solutions/articles/101000516558-scichart-standard-advanced-licensing).
+Advanced Licensing requires a BUNDLE license and a commitment to maintain an active license for the lifetime of the project. See the knowledgebase article [SciChart Advanced Licensing](https://support.scichart.com/support/solutions/articles/101000516558-scichart-standard-advanced-licensing) for full details.
 
-Once the necessary license type and agreement is in place, Advanced Licensing will be enabled for your license. This adds new functionality to the Licenses section of the [My Account](https://scichart.com/my-account) page which will enable you to generate the key pairs needed.
+Before implementing, [submit a support request](https://support.scichart.com/support/tickets/new) or email [support@scichart.com](mailto:support@scichart.com) with your intended deployment details, server tech stack, and target platform — we will confirm the correct solution for your use case.
 
-Before trying to implement any of these solutions we recommend [submitting a support request](https://support.scichart.com/support/tickets/new) or emailing [support@scichart.com](mailto:support@scichart.com) with details of your intended deployment, including the host requirement, the client and server tech stack and the target platform and architecture (eg windows/linux, x86/x64/arm/arm64), and we will make sure you get the correct solution.
+---
 
-## Prebuilt Solutions
+## Choose an approach
 
-- [dotnet-server-licensing](/AdvancedLicensing/dotnet-server-licensing/)
-  If your server uses .net then you can make use of our [SciChart.Server.Licensing](https://www.nuget.org/packages/SciChart.Server.Licensing/) nuget package. This includes blazor applications and electron.net
-- [nodejs-server-licensing](/AdvancedLicensing/nodejs-server-licensing/)
-  How to use ffi-napi to call the native server licensing component from node.js
+### [Simple Server Validation](SimpleServerSideLicensing/)
 
-## Manual Integration
+Server computes an HMAC-SHA256 token using a hex key from MyAccount. No native binaries, no FFI, no challenge/response. Requires a license with the `"SV"` feature flag.
 
-For other server languages you will need to write interop code to call our native library. Native binaries and full api details are in [SciChartLicenseServer](/AdvancedLicensing/SciChartLicenseServer/)
+**Use this if:** you have a web server you control, or are building an Electron or Tauri desktop app, and want the easiest possible integration.
+
+Runnable examples: Node.js · .NET Minimal API · .NET MVC · Spring Boot · Electron · Tauri
+
+Language snippets: Python · Django · Go · Ruby · PHP · Rust
+
+→ **[SimpleServerSideLicensing/README.md](SimpleServerSideLicensing/)**
+
+---
+
+### [Native Server Licensing](NativeServerSideLicensing/)
+
+Server signs a challenge from the client using a native DLL (NaCl asymmetric cryptography). Provides strong domain enforcement beyond CORS.
+
+**Use this if:** you need challenge-based domain binding, or you are distributing a component to customers who run their own servers.
+
+Runnable examples: .NET (NuGet) · Node.js (ffi-rs)
+
+→ **[NativeServerSideLicensing/README.md](NativeServerSideLicensing/)**

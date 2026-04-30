@@ -1,0 +1,12 @@
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+node_modules/
+wwwroot/bundle.js
+wwwroot/*.js
+wwwroot/*.mjs
+wwwroot/*.wasm
+wwwroot/*.data
