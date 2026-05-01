@@ -227,7 +227,7 @@ SciChartSurface.useWasmFromCDN();`
                     },
                     dependencies: {
                         "parcel-bundler": "^1.6.1",
-                        scichart: "5.1.10"
+                        scichart: "5.1.14"
                     },
                     devDependencies: {
                         "@babel/core": "7.2.0",
