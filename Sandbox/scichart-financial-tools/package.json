@@ -1,0 +1,24 @@
+{
+  "name": "fin-tools-demo",
+  "version": "1.0.0",
+  "description": "Standalone SciChart.js example: fin-tools-demo",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server --config webpack.dev.config.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "scichart": "5.1.14",
+    "scichart-financial-tools": "5.1.14"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.0.3",
+    "file-loader": "^6.2.0",
+    "ts-loader": "^9.4.2",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
+  }
+}
