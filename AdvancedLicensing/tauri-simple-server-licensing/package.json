@@ -1,0 +1,23 @@
+{
+  "name": "tauri-simple-server-licensing",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "webpack",
+    "dev": "cargo tauri dev",
+    "tauri": "cargo tauri"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2",
+    "scichart": "latest"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2",
+    "@types/node": "^20",
+    "copy-webpack-plugin": "^11",
+    "ts-loader": "^9",
+    "typescript": "^5",
+    "webpack": "^5",
+    "webpack-cli": "^5"
+  }
+}
