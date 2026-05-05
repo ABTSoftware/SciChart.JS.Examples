@@ -3,14 +3,15 @@ import { useEffect, useState } from "react";
 import { SciChartReact, type TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 import { australiaData, getMinMax, interpolateColor, keyData } from "./helpers";
+import { convertGeoJson, type ConvertedState } from "./convertGeoJson";
 
 export default function App() {
-    const [mapData, setMapData] = useState<unknown[] | null>(null);
+    const [mapData, setMapData] = useState<ConvertedState[] | null>(null);
 
     useEffect(() => {
-        fetch("./australiaConverted.json")
+        fetch("./australiaBig.json")
             .then((res) => res.json())
-            .then((data: unknown[]) => setMapData(data))
+            .then((geojson) => setMapData(convertGeoJson(geojson)))
             .catch((err) => console.error("Failed to load map data", err));
     }, []);
 

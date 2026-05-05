@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "poly2tri": "^1.5.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "scichart": "^5.1.4",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
+    "@types/poly2tri": "^0.9.27",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
