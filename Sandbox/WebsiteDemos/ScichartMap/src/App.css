@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #040d1a;
+  overflow: hidden;
+}
+
+.map-page {
+  width: 100vw;
+  height: 100dvh;
+  background: #040d1a;
+  overflow: hidden;
+  position: relative;
+}
+
+.map-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.map-legend {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  color: #F5F5F5;
+  font-size: 11px;
+  pointer-events: none;
+  font-family: Arial, sans-serif;
+}
+
+.map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.6;
+}
+
+.map-legend-swatch {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+}
