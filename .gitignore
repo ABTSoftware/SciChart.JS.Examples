@@ -11,6 +11,7 @@ Sandbox/demo-electron/dist/main/main.js
 !Sandbox/DocumentationSnippets/**/package-lock.json
 Documentation/documentx/SciChart.js.dxp.bak
 Documentation/documentx/DocsOut/**
+Sandbox/WebsiteDemos/ScichartMap/public/*.wasm
 Documentation/static/scichart3d.wasm
 Documentation/static/scichart3d.data
 Documentation/static/scichart2d.wasm
