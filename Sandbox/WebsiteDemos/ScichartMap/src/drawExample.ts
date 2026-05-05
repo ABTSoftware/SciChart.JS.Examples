@@ -11,7 +11,7 @@ import {
     FastBubbleRenderableSeries,
     EllipsePointMarker,
     XyzDataSeries,
-    IPointMetadata,
+    type IPointMetadata,
     EHorizontalTextPosition,
     Thickness,
     EVerticalTextPosition,
