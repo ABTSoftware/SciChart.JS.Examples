@@ -10,8 +10,7 @@ export default defineConfig({
         manualChunks: (id) => {
           if (!id.includes("/node_modules/")) return undefined;
           if (id.includes("/node_modules/scichart/")) return "scichart-vendor";
-          if (id.includes("/node_modules/@mui/") || id.includes("/node_modules/@emotion/")) return "mui-vendor";
-          if (id.includes("/node_modules/react/") || id.includes("/node_modules/react-dom/")) return "react-vendor";
+if (id.includes("/node_modules/react/") || id.includes("/node_modules/react-dom/")) return "react-vendor";
           return undefined;
         },
       },

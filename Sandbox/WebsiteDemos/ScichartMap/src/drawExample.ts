@@ -138,8 +138,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             yAxis.visibleRange.max
         );
 
-        xAxis.visibleRange = new NumberRange(result.minVisibleX, result.maxVisibleX);
-        yAxis.visibleRange = new NumberRange(result.minVisibleY, result.maxVisibleY);
+        const eps = 1e-9;
+        if (Math.abs(result.minVisibleX - xAxis.visibleRange.min) > eps ||
+            Math.abs(result.maxVisibleX - xAxis.visibleRange.max) > eps) {
+            xAxis.visibleRange = new NumberRange(result.minVisibleX, result.maxVisibleX);
+        }
+        if (Math.abs(result.minVisibleY - yAxis.visibleRange.min) > eps ||
+            Math.abs(result.maxVisibleY - yAxis.visibleRange.max) > eps) {
+            yAxis.visibleRange = new NumberRange(result.minVisibleY, result.maxVisibleY);
+        }
     });
 
     sciChartSurface.chartModifiers.add(
