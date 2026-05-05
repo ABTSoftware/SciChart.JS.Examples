@@ -1,12 +1,11 @@
 import "./App.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { SciChartReact, type TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 import { australiaData, getMinMax, interpolateColor, keyData } from "./helpers";
 
 export default function App() {
     const [mapData, setMapData] = useState<unknown[] | null>(null);
-    const setMapFunc = useRef<(() => void) | null>(null);
 
     useEffect(() => {
         fetch("./australiaConverted.json")
@@ -38,7 +37,6 @@ export default function App() {
                         const { setMap, setMapJson } = initResult;
                         setMapJson(mapData);
                         setMap();
-                        setMapFunc.current = setMap;
                     }}
                 />
             )}
