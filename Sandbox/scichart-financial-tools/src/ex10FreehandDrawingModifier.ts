@@ -1,4 +1,5 @@
-import { SciChartSurface, NumericAxis, FreehandDrawingModifier } from "scichart";
+import { SciChartSurface, NumericAxis } from "scichart";
+import { FreehandDrawingModifier } from 'scichart-financial-tools';
 
 export async function ex10FreehandDrawingModifier() {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create("scichart-root");

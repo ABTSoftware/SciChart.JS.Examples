@@ -25,7 +25,7 @@ export async function ex11HeikinAshiDataFilter() {
     
     const rs = new FastCandlestickRenderableSeries(wasmContext, {
         dataSeries: heikinAshiFilter,
-        dataPointWidth: 0.9,
+        dataPointWidth: 0.6,
         strokeThickness: 1
     });
 

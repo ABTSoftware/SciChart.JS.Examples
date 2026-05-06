@@ -1,5 +1,5 @@
-import { SciChartSurface, NumericAxis, Thickness, ESnapMode } from "scichart";
-import { MeasureAnnotation } from "scichart-financial-tools";
+import { SciChartSurface, NumericAxis, Thickness } from "scichart";
+import { MeasureAnnotation, ESnapMode } from "scichart-financial-tools";
 
 const formatMeasureNumber = (value: number, decimals: number): string => {
     if (!isFinite(value)) {
@@ -22,6 +22,7 @@ export async function ex7MeasureAnnotation() {
 
     const growingMeasure = new MeasureAnnotation({
         isEditable: true,
+        isSelected: true,
         strokeThickness: 2,
         growingColor: "#2563EB",
         decliningColor: "#DC2626",

@@ -2,42 +2,38 @@ import {
     AnnotationHoverModifier,
     DiscontinuousDateAxis,
     EAnnotationClippingMode,
-    EAnnotationVisibilityMode,
     EAutoRange,
     EAxisAlignment,
     EXyDirection,
     ECursorStyle,
-    EMultiPointLabelAnchorMode,
     ETextAlignment,
     ENumericFormat,
     FastCandlestickRenderableSeries,
-    IMultiPointAnnotationBaseOptions,
-    IMultiPointLabelFormatParams,
     MouseWheelZoomModifier,
     NumberRange,
     NumericAxis,
     OhlcDataSeries,
-    SciChartJsNavyTheme,
     SciChartSurface,
     Thickness,
-    TMultiPointLabelFormatter,
     ZoomExtentsModifier,
     ZoomPanModifier,
     toEngineering,
     DpiHelper,
     EVerticalTextPosition,
-    EHorizontalTextPosition,
-    ESegmentLabelRotationMode,
-    SciChartJSLightTheme,
-    EHorizontalAlignment,
-    SciChartJSDarkTheme,
-    EAxisLabelDrawMode,
+    EHorizontalTextPosition
 } from "scichart";
 import {
     ChannelAnnotation,
     ExtendedLineAnnotation,
     SciTraderDarkTheme,
-    StopLossTakeProfitAnnotation
+    StopLossTakeProfitAnnotation,
+    EAnnotationVisibilityMode,
+    EMultiPointLabelAnchorMode,
+    IMultiPointAnnotationBaseOptions,
+    IMultiPointLabelFormatParams,
+    TMultiPointLabelFormatter,
+    ESegmentLabelRotationMode,
+    EAxisLabelDrawMode
 } from "scichart-financial-tools";
 
 const CANDLE_COUNT = 260;
@@ -330,7 +326,7 @@ export const createStressLabels = (
 
                     // horizontalTextPosition: EHorizontalTextPosition.Left,
                     // alignment: kind?.alignment ?? alignments[1],
-                    
+
                     xOffset: kind.xOffset,
                     padding: segmentLabelPadding,
                     ...segmentLabelTextStyle,
@@ -366,17 +362,17 @@ export const createStressAnnotationOptions = (
     axisLabelStroke: "#000000",
     axisSpanFillOpacity: 0.2,
     labels: createStressLabels(startPoint, pointCount, prefix, labelOptions),
-    
+
     selectionBoxStroke: "#66666644",
     selectionBoxThickness: 8,
-    
+
     // pointLabelVisibility: EAnnotationVisibilityMode.Always,
     segmentLabelVisibility: EAnnotationVisibilityMode.OnInteraction,
     axisLabelVisibility: EAnnotationVisibilityMode.OnInteraction,
-    
+
     // adornerVisibility: EAnnotationVisibilityMode.OnInteraction,
     gripVisibility: EAnnotationVisibilityMode.Always,
-    
+
     formatLabel: labelFormatter ? labelFormatter : (params: IMultiPointLabelFormatParams) => {
         const { label, anchorValuePoint, anchorMode, defaultText } = params;
         if (defaultText?.trim()) {
@@ -418,7 +414,7 @@ export const createStressAnnotationOptions = (
         }
 
         if (annotation instanceof ChannelAnnotation && label.anchorMode === EMultiPointLabelAnchorMode.Point) {
-            if(label.id.includes("1")) {
+            if (label.id.includes("1")) {
                 return {
                     fontSize: (rest[1].y <= p1.y) ? 13 : 0,
                 }

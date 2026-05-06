@@ -9,6 +9,7 @@ export async function ex4FlatBottomChannelAnnotation() {
 
     const annotation = new FlatBottomChannelAnnotation({
         isEditable: true,
+        isSelected: true,
         points: [
             { x: 1, y: 5 },
             { x: 5, y: 8 },

@@ -1,5 +1,9 @@
-import { SciChartSurface, NumericAxis, EMultiPointLabelAnchorMode, EVerticalTextPosition, ETextAlignment, Thickness, EHorizontalTextPosition, IMultiPointLabelFormatParams } from "scichart";
-import { EFibonacciLabelColorMode, EFibonacciLabelPlacement, FibonacciRetracementAnnotation, TFibonacciLevelLabelFormatParams } from "scichart-financial-tools";
+import { SciChartSurface, NumericAxis, EVerticalTextPosition, ETextAlignment, Thickness, EHorizontalTextPosition } from "scichart";
+import {
+    EFibonacciLabelColorMode, EFibonacciLabelPlacement,
+    FibonacciRetracementAnnotation, TFibonacciLevelLabelFormatParams,
+    EMultiPointLabelAnchorMode, IMultiPointLabelFormatParams
+} from "scichart-financial-tools";
 
 const compactFibonacciLabel = (params: TFibonacciLevelLabelFormatParams): string => {
     return `${(params.threshold * 100).toFixed(1)}% (${params.valueLabel})`;
@@ -13,6 +17,7 @@ export async function ex6FibonacciRetracementAnnotation() {
 
     const standardFib = new FibonacciRetracementAnnotation({
         isEditable: true,
+        isSelected: true,
         strokeThickness: 2,
         fillOpacity: 0.25,
         showConnectorLine: false,
@@ -29,16 +34,16 @@ export async function ex6FibonacciRetracementAnnotation() {
         isEditable: true,
         strokeThickness: 2,
         thresholds: [
-            0, 
-            0.382, 
-            0.5, 
-            0.618, 
-            1, 
-            1.618, 
+            0,
+            0.382,
+            0.5,
+            0.618,
+            1,
+            1.618,
             2.618
         ],
         regionColors: [
-            "#0d9cde", 
+            "#0d9cde",
             "#064a6a"
         ],
         fillOpacity: 0.2,

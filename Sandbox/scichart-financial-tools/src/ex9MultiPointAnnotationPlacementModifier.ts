@@ -1,4 +1,4 @@
-import { SciChartSurface, NumericAxis, EAnnotationType, FreehandDrawingModifier } from "scichart";
+import { SciChartSurface, NumericAxis } from "scichart";
 import { ETradingAnnotationType, MultiPointAnnotationPlacementModifier } from "scichart-financial-tools";
 
 export async function ex9MultiPointAnnotationPlacementModifier() {
