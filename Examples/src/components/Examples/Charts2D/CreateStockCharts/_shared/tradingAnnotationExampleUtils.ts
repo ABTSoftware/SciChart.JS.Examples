@@ -276,7 +276,7 @@ export const createTradingLabels = (
                 fontWeight: "400",
                 padding: new Thickness(0),
                 yOffset: -3,
-                color: TRADING_ANNOTATION_COLORS.foreground,
+                // color: TRADING_ANNOTATION_COLORS.foreground,
             });
         }
     }
@@ -300,7 +300,7 @@ export const createTradingLabels = (
                 fontSize: 12,
                 fontWeight: "400",
                 padding: new Thickness(1, 5),
-                color: TRADING_ANNOTATION_COLORS.foreground,
+                // color: TRADING_ANNOTATION_COLORS.foreground,
             });
         });
     }
