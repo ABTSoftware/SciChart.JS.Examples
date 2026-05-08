@@ -91,7 +91,7 @@ export const getChartsInitializationAPI = () => {
                 y2: yVal,
 
                 fill: GRADIENT_COLROS[i],
-                strokeThickness: 2,
+                strokeThickness: 1,
             });
             sciChartSurface.annotations.add(highlightArc);
         });

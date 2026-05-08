@@ -59,6 +59,10 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_createStockCharts_DepthChart,
             EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers,
             EXAMPLES_PAGES.chart2D_createStockCharts_SharedChart,
+            EXAMPLES_PAGES.chart2D_createStockCharts_TradingAnnotationsToolbox,
+            // EXAMPLES_PAGES.chart2D_createStockCharts_DynamicAnnotationLabels,
+            // EXAMPLES_PAGES.chart2D_createStockCharts_PairedDashedPolylineAnnotation,
+            EXAMPLES_PAGES.chart2D_createStockCharts_FreehandDrawingTools,
         ],
     },
     {

@@ -402,7 +402,7 @@ export const getChartsInitializationAPI = () => {
             visibleRange: new NumberRange(0, 5),
             zoomExtentsToInitialRange: true,
             majorGridLineStyle: {
-                color: appTheme.DarkIndigo,
+                // color: appTheme.DarkIndigo,
                 strokeThickness: 1,
             },
         });
@@ -421,7 +421,7 @@ export const getChartsInitializationAPI = () => {
             }),
 
             majorGridLineStyle: {
-                color: appTheme.DarkIndigo,
+                // color: appTheme.DarkIndigo,
                 strokeThickness: 1,
             },
             autoTicks: false,
