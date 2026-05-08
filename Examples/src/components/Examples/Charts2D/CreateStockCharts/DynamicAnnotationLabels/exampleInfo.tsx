@@ -44,7 +44,6 @@ const metaData: IExampleMetadata = {
     markdownContent: null,
     pageLayout: "default",
     extraDependencies: {},
-    isNew: true,
 };
 
 export default createExampleInfo(metaData);
