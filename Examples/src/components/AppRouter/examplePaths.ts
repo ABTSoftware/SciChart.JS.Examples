@@ -58,7 +58,7 @@ export default [
     "../Examples/Charts2D/CreateStockCharts/PairedDashedPolylineAnnotation",
     "../Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts",
     "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts",
-    "../Examples/Charts2D/CreateStockCharts/TradingAnnotationsToolbox",
+    "../Examples/Charts2D/CreateStockCharts/TradingDrawingTools",
     "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart",
     "../Examples/Charts2D/Filters/CustomFilters",
     "../Examples/Charts2D/Filters/PercentageChange",

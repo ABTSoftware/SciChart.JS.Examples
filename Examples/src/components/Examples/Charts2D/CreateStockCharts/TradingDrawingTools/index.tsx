@@ -1,9 +1,6 @@
 import * as React from "react";
-import { Checkbox, FormControl, FormControlLabel, IconButton, MenuItem, Select, ToggleButton } from "@mui/material";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import EditIcon from "@mui/icons-material/Edit";
-import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import { IconButton, MenuItem, MenuList, Tooltip } from "@mui/material";
+import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import { ETradingAnnotationType } from "scichart-financial-tools";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import commonClasses from "../../../styles/Examples.module.scss";
@@ -149,24 +146,24 @@ const tools: TToolDefinition[] = [
         ),
     },
     "separator",
-    {
-        value: "fibonacci",
-        annotationType: ETradingAnnotationType.FibonacciRetracementAnnotation,
-        label: "Fibonacci Retracement",
-        icon: icon(
-            <>
-                <line x1="4" y2="4" x2="16" y1="6" />
-                <line x1="6" y2="9" x2="18" y1="11" />
-                <line x1="8" y2="14" x2="20" y1="16" />
-                <line x1="10" y2="19" x2="22" y1="21" />
-            </>
-        ),
-    },
+    // {
+    //     value: "fibonacci",
+    //     annotationType: ETradingAnnotationType.FibonacciRetracementAnnotation,
+    //     label: "Fibonacci Retracement",
+    //     icon: icon(
+    //         <>
+    //             <line x1="4" y2="4" x2="16" y1="6" />
+    //             <line x1="6" y2="9" x2="18" y1="11" />
+    //             <line x1="8" y2="14" x2="20" y1="16" />
+    //             <line x1="10" y2="19" x2="22" y1="21" />
+    //         </>
+    //     ),
+    // },
     {
         value: "verticalFibonacci",
         annotationType: ETradingAnnotationType.FibonacciRetracementAnnotation,
         options: { verticalOnly: true },
-        label: "Vertical Fibonacci Ret.",
+        label: "Fibonacci Retracement",
         icon: icon(
             <>
                 <line x1="4" y1="5" x2="20" y2="5" />
@@ -227,29 +224,11 @@ const tools: TToolDefinition[] = [
     },
 ];
 
-export default function TradingAnnotationsToolbox() {
+export default function TradingDrawingTools() {
     const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample> | undefined>(undefined);
-    const [selectedTool, setSelectedTool] = React.useState("channel");
-    const [keepPlacing, setKeepPlacing] = React.useState(false);
-    const [drawEnabled, setDrawEnabled] = React.useState(false);
+    const chartWrapperRef = React.useRef<HTMLDivElement>(null);
+    const [selectedTool, setSelectedTool] = React.useState("");
     const [isReady, setIsReady] = React.useState(false);
-
-    const selectedDefinition = tools.find(
-        (tool): tool is TToolItemDefinition => isToolItemDefinition(tool) && tool.value === selectedTool
-    );
-
-    React.useEffect(() => {
-        controlsRef.current?.setKeepPlacingAfterComplete(keepPlacing);
-    }, [keepPlacing]);
-
-    React.useEffect(() => {
-        if (!isReady) return;
-        if (drawEnabled && selectedDefinition) {
-            controlsRef.current?.startTool(selectedDefinition.annotationType, selectedDefinition.options);
-        } else {
-            controlsRef.current?.stopActiveTools();
-        }
-    }, [drawEnabled, isReady, selectedDefinition]);
 
     React.useEffect(
         () => () => {
@@ -258,114 +237,143 @@ export default function TradingAnnotationsToolbox() {
         []
     );
 
+    React.useEffect(() => {
+        const wrapper = chartWrapperRef.current;
+        if (!selectedTool || !wrapper) return undefined;
+        const clear = () => setSelectedTool("");
+        wrapper.addEventListener("mousedown", clear);
+        return () => wrapper.removeEventListener("mousedown", clear);
+    }, [selectedTool]);
+
     return (
         <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow} style={{ gap: 8, alignItems: "center" }}>
-                <FormControl size="small" sx={{ width: 160, flexShrink: 0 }}>
-                    <Select
-                        value={selectedTool}
-                        onChange={(event) => {
-                            setSelectedTool(event.target.value);
-                            setDrawEnabled(true);
+            <div style={{ display: "flex", flex: 1, minHeight: 0 }}>
+                <div
+                    style={{
+                        width: 200,
+                        flexShrink: 0,
+                        display: "flex",
+                        flexDirection: "column",
+                        background: "var(--bg-toolbars)",
+                        color: "#ffffff",
+                    }}
+                >
+                    <div
+                        style={{
+                            flexShrink: 0,
+                            padding: "10px 16px",
+                            fontWeight: 600,
+                            fontSize: 14,
+                            letterSpacing: 0.3,
+                            textTransform: "uppercase",
+                            borderBottom: "1px solid rgba(255,255,255,0.15)",
+                            background: "var(--bg-toolbars)",
                         }}
-                        sx={{
-                            color: "inherit",
-                            "& .MuiSvgIcon-root": { color: "inherit" },
-                            "& .MuiSelect-select": { paddingRight: "28px !important" },
-                        }}
-                        inputProps={{ MenuProps: { disableScrollLock: true } }}
-                        renderValue={() => (
-                            <span style={{ display: "inline-flex", alignItems: "center", maxWidth: 96 }}>
-                                {selectedDefinition?.icon}
-                                <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                                    {selectedDefinition?.label}
-                                </span>
-                            </span>
-                        )}
                     >
-                        {tools.map((tool, index) => {
-                            if (!isToolItemDefinition(tool)) {
-                                return (
-                                    <hr
-                                        key={`separator-${index}`}
-                                        style={{ margin: "5px 0", borderColor: "rgba(0,0,0,0.2)" }}
-                                    />
-                                );
-                            }
+                        Select Annotation
+                    </div>
+                    <MenuList
+                        dense
+                        sx={{
+                            flex: 1,
+                            overflowY: "auto",
+                            overflowX: "hidden",
+                            padding: "4px 0",
+                            "& .MuiMenuItem-root": {
+                                color: "#ffffff",
+                                borderLeft: "3px solid transparent",
+                                transition: "background-color 120ms, border-color 120ms",
+                            },
+                            "& .MuiMenuItem-root.Mui-selected, & .MuiMenuItem-root.Mui-selected:hover, & .MuiMenuItem-root.Mui-selected:focus":
+                                {
+                                    backgroundColor: "#2D7FF9",
+                                    borderLeftColor: "#FFFFFF",
+                                    color: "#FFFFFF",
+                                    fontWeight: 700,
+                                },
+                        }}
+                    >
+                    {tools.map((tool, index) => {
+                        if (!isToolItemDefinition(tool)) {
                             return (
-                                <MenuItem key={tool.value} value={tool.value}>
-                                    <span style={{ display: "inline-flex", alignItems: "center" }}>
-                                        {tool.icon}
+                                <hr
+                                    key={`separator-${index}`}
+                                    style={{ margin: "5px 8px", borderColor: "rgba(255,255,255,0.2)" }}
+                                />
+                            );
+                        }
+                        return (
+                            <MenuItem
+                                key={tool.value}
+                                selected={tool.value === selectedTool}
+                                onClick={() => {
+                                    setSelectedTool(tool.value);
+                                    if (isReady) {
+                                        controlsRef.current?.startTool(tool.annotationType, tool.options);
+                                    }
+                                }}
+                                title={tool.label}
+                            >
+                                <span
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        minWidth: 0,
+                                        width: "100%",
+                                    }}
+                                >
+                                    {tool.icon}
+                                    <span
+                                        style={{
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            whiteSpace: "nowrap",
+                                            minWidth: 0,
+                                            flex: 1,
+                                        }}
+                                    >
                                         {tool.label}
                                     </span>
-                                </MenuItem>
-                            );
-                        })}
-                    </Select>
-                </FormControl>
+                                </span>
+                            </MenuItem>
+                        );
+                    })}
+                </MenuList>
+                </div>
 
-                <ToggleButton
-                    size="small"
-                    color="primary"
-                    value="draw"
-                    selected={drawEnabled}
-                    onClick={() => setDrawEnabled((value) => !value)}
+                <div
+                    ref={chartWrapperRef}
+                    style={{ flex: 1, minWidth: 0, display: "flex", position: "relative" }}
                 >
-                    <EditIcon fontSize="small" style={{ marginRight: 6 }} />
-                    Draw
-                </ToggleButton>
-
-                <FormControlLabel
-                    control={
-                        <Checkbox
+                    <SciChartReact
+                        style={{ flex: 1 }}
+                        initChart={drawExample}
+                        onInit={(result: TResolvedReturnType<typeof drawExample>) => {
+                            controlsRef.current = result;
+                            result.setKeepPlacingAfterComplete(false);
+                            setIsReady(true);
+                        }}
+                    />
+                    <Tooltip title="Delete all annotations" placement="right" arrow>
+                        <IconButton
                             size="small"
-                            checked={keepPlacing}
-                            onChange={(event) => setKeepPlacing(event.target.checked)}
-                        />
-                    }
-                    label="Keep drawing"
-                    sx={{ marginLeft: 0, marginRight: 0 }}
-                />
-
-                <span style={{ flex: 1 }} />
-
-                <IconButton
-                    size="small"
-                    color="primary"
-                    title="Duplicate selected annotation"
-                    aria-label="Duplicate selected annotation"
-                    onClick={() => controlsRef.current?.duplicateSelectedAnnotation()}
-                >
-                    <ContentCopyIcon fontSize="small" />
-                </IconButton>
-                <IconButton
-                    size="small"
-                    color="primary"
-                    title="Delete selected annotation"
-                    aria-label="Delete selected annotation"
-                    onClick={() => controlsRef.current?.removeSelectedAnnotations()}
-                >
-                    <DeleteOutlineIcon fontSize="small" />
-                </IconButton>
-                <IconButton
-                    size="small"
-                    color="primary"
-                    title="Reset annotations"
-                    aria-label="Reset annotations"
-                    onClick={() => controlsRef.current?.resetAnnotations()}
-                >
-                    <RestartAltIcon fontSize="small" />
-                </IconButton>
+                            aria-label="Delete all annotations"
+                            onClick={() => controlsRef.current?.deleteAllAnnotations()}
+                            sx={{
+                                position: "absolute",
+                                top: 8,
+                                left: 8,
+                                zIndex: 2,
+                                backgroundColor: "rgba(0, 0, 0, 0.55)",
+                                color: "#ffffff",
+                                "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.75)" },
+                            }}
+                        >
+                            <DeleteSweepIcon fontSize="small" />
+                        </IconButton>
+                    </Tooltip>
+                </div>
             </div>
-
-            <SciChartReact
-                initChart={drawExample}
-                onInit={(result: TResolvedReturnType<typeof drawExample>) => {
-                    controlsRef.current = result;
-                    result.setKeepPlacingAfterComplete(keepPlacing);
-                    setIsReady(true);
-                }}
-            />
         </div>
     );
 }

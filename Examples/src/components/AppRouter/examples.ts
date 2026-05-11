@@ -59,7 +59,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_createStockCharts_DepthChart,
             EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers,
             EXAMPLES_PAGES.chart2D_createStockCharts_SharedChart,
-            EXAMPLES_PAGES.chart2D_createStockCharts_TradingAnnotationsToolbox,
+            EXAMPLES_PAGES.chart2D_createStockCharts_TradingDrawingTools,
             // EXAMPLES_PAGES.chart2D_createStockCharts_DynamicAnnotationLabels,
             // EXAMPLES_PAGES.chart2D_createStockCharts_PairedDashedPolylineAnnotation,
             EXAMPLES_PAGES.chart2D_createStockCharts_FreehandDrawingTools,
@@ -94,7 +94,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
         id: "chart2D_v5Charts",
         title: "Charts added in v5",
         submenu: [
-            EXAMPLES_PAGES.chart2D_createStockCharts_TradingAnnotationsToolbox,
+            EXAMPLES_PAGES.chart2D_createStockCharts_TradingDrawingTools,
             EXAMPLES_PAGES.chart2D_createStockCharts_FreehandDrawingTools,
             EXAMPLES_PAGES.featuredApps_scientificCharts_SmithChart,
             EXAMPLES_PAGES.featuredApps_performanceDemos_Load1MillionWithSvgCursor,

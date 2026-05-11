@@ -66,6 +66,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const preparePlacementOptions = <T extends IMultiPointAnnotationBaseOptions>(options: T): T => options;
 
     const stopActiveTools = () => {
+        console.log('stop active tools');
         placementModifier.stopPlacement(true);
         freehandDrawingModifier.stopDrawing(true);
     };
@@ -148,8 +149,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                         midLineStrokeDashArray: [4, 3],
                         showMidLine: true,
                         showMidPointGrips: true,
+                        
                     } as any),
                 });
+                console.log('placing channel');
                 return;
             case ETradingAnnotationType.FlatBottomChannelAnnotation:
                 placementModifier.startPlacement({
@@ -264,14 +267,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                         opacity: 1,
                         showConnectorLine: true,
                         connectorLineStrokeDashArray: options.verticalOnly ? [16, 4] : [6, 4],
-                        thresholds: options.verticalOnly ? [-0.618, -0.236, 0, 0.618, 1, 2.618] : undefined, // use defaults
+                        //thresholds: options.verticalOnly ? [-0.618, -0.236, 0, 0.618, 1, 2.618] : undefined, // use defaults
                         verticalOnly: options.verticalOnly,
-                        fibonacciLabelPlacement: EFibonacciLabelPlacement.Top,
-                        fibonacciLabelColorMode: EFibonacciLabelColorMode.MultiColor,
-                        formatFibonacciLabel: (params: TFibonacciLevelLabelFormatParams) => {
-                            const percentage = `${(params.threshold * 100).toFixed(1)}%`;
-                            return `${percentage}\n${params.valueLabel}`;
-                        },
+                        // fibonacciLabelPlacement: EFibonacciLabelPlacement.Top,
+                        // fibonacciLabelColorMode: EFibonacciLabelColorMode.MultiColor,
+                        // formatFibonacciLabel: (params: TFibonacciLevelLabelFormatParams) => {
+                            // const percentage = `${(params.threshold * 100).toFixed(1)}%`;
+                            // return `${percentage}\n${params.valueLabel}`;
+                        // },
                     } as any),
                 });
                 return;
@@ -425,11 +428,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const disposeKeyboard = addKeyboardShortcuts(removeSelectedAnnotations, duplicateSelectedAnnotation);
 
+    const deleteAllAnnotations = () => {
+        sciChartSurface.annotations.clear(true);
+    };
+
     return {
         sciChartSurface,
         startTool,
         stopActiveTools,
         resetAnnotations: addSeedAnnotations,
+        deleteAllAnnotations,
         removeSelectedAnnotations,
         duplicateSelectedAnnotation,
         setKeepPlacingAfterComplete: (enabled: boolean) => {
