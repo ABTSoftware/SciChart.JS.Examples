@@ -2,6 +2,7 @@ import * as React from "react";
 import { IconButton, Popover, Tooltip } from "@mui/material";
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import GestureIcon from "@mui/icons-material/Gesture";
+import SaveAltIcon from "@mui/icons-material/SaveAlt";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
@@ -20,8 +21,8 @@ const activeOverlayButtonSx = {
     "&:hover": { backgroundColor: "#2D7FF9" },
 };
 
-const DEFAULT_DRAWING_COLOR = "#3388FF";
-const COLOR_PALETTE = ["#3388FF", "#4EC385", "#F97066", "#F7C948", "#C792EA", "#F5F5F5"];
+const DEFAULT_DRAWING_COLOR = "#686c70";
+const COLOR_PALETTE = ["#686c70", "#3388FF", "#4EC385", "#F97066", "#F7C948", "#C792EA", "#F5F5F5"];
 
 export default function FreehandDrawingTools() {
     const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample> | undefined>(undefined);
@@ -47,6 +48,22 @@ export default function FreehandDrawingTools() {
             controlsRef.current?.startDrawing("editableOutline", next);
         }
     };
+
+    React.useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key !== "Backspace") return;
+            const target = e.target as HTMLElement | null;
+            if (
+                target &&
+                (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable)
+            ) {
+                return;
+            }
+            controlsRef.current?.removeLast();
+        };
+        document.addEventListener("keydown", handleKeyDown);
+        return () => document.removeEventListener("keydown", handleKeyDown);
+    }, []);
 
     return (
         <div className={commonClasses.ChartWithToolbar}>
@@ -119,6 +136,27 @@ export default function FreehandDrawingTools() {
                         sx={{ ...overlayButtonSx, top: 8, left: 88 }}
                     >
                         <DeleteSweepIcon fontSize="small" />
+                    </IconButton>
+                </Tooltip>
+                <Tooltip title="Log annotation points JSON to console" placement="right" arrow>
+                    <IconButton
+                        size="small"
+                        aria-label="Log annotation points JSON to console"
+                        onClick={() => {
+                            const data = controlsRef.current?.exportAnnotations() ?? [];
+                            // eslint-disable-next-line no-console
+                            console.log(JSON.stringify(data, null, 2));
+                        }}
+                        sx={{
+                            ...overlayButtonSx,
+                            top: 8,
+                            left: 128,
+                            opacity: 0.06,
+                            transition: "opacity 150ms ease",
+                            "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.75)", opacity: 1 },
+                        }}
+                    >
+                        <SaveAltIcon fontSize="small" />
                     </IconButton>
                 </Tooltip>
             </div>
