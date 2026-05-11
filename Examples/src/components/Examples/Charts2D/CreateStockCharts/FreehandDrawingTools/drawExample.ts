@@ -1,8 +1,10 @@
 import {
     AnnotationHoverModifier,
     ECursorStyle,
+    EObservableArrayChangedAction,
     EXyDirection,
     MouseWheelZoomModifier,
+    NumberRange,
     ZoomExtentsModifier,
 } from "scichart";
 import {
@@ -16,64 +18,180 @@ import { createFinancialChart, TRADING_ANNOTATION_COLORS } from "../_shared/trad
 
 export type TFreehandVariant = "editableOutline" | "nonEditableLine" | "thickHighlight" | "locked";
 
-const initialAnnotationPoints = [
-    [
-        { x: 1705011193.3878717, y: 64468.72724223288 },
-        { x: 1705091701.298787, y: 64731.83152817384 },
-        { x: 1705182626.599438, y: 64991.96738381112 },
-        { x: 1705283746.3193119, y: 65225.061563389245 },
-        { x: 1705393873.0107985, y: 65442.87918701428 },
-        { x: 1705499198.0582361, y: 65614.36033760624 },
-        { x: 1705643221.452908, y: 65833.73457712222 },
-        { x: 1705692414.970289, y: 65922.53408364578 },
-        { x: 1705748401.3102448, y: 66054.08622661626 },
-        { x: 1705772347.3061619, y: 66119.53649477549 },
-        { x: 1705775095.5473561, y: 66136.04386329351 },
-    ],
-    [
-        { x: 1704923778.5764449, y: 65514.70072021555 },
-        { x: 1704939775.414341, y: 65561.79740100933 },
-        { x: 1705065287.071156, y: 66001.19748669335 },
-        { x: 1705197767.852811, y: 66445.77422522401 },
-        { x: 1705643682.9500144, y: 67881.04647742368 },
-        { x: 1705664434.763713, y: 67952.21640397293 },
-        { x: 1705681152.3667524, y: 68035.36865284556 },
-        { x: 1705702189.3752918, y: 68075.40626157571 },
-    ],
-    [
-        { x: 1705179473.9001055, y: 65538.33956153634 },
-        { x: 1705181771.0149152, y: 65538.33956153634 },
-        { x: 1705200365.718544, y: 65621.85381410456 },
-        { x: 1705305924.1072152, y: 66165.94536854768 },
-        { x: 1705313665.8508062, y: 66186.07277402142 },
-        { x: 1705332986.5049393, y: 65940.30846509831 },
-        { x: 1705346245.4723625, y: 65852.63117003103 },
-        { x: 1705365026.8489783, y: 65770.02192670174 },
-        { x: 1705386349.0523586, y: 65707.72109069397 },
-        { x: 1705433095.0794683, y: 65596.3325535668 },
-        { x: 1705444668.8046494, y: 65580.58539280946 },
-        { x: 1705447598.53347, y: 65590.79389702456 },
-        { x: 1705480141.857501, y: 66128.33318457786 },
-        { x: 1705498632.853915, y: 66401.93557769037 },
-        { x: 1705522205.5038583, y: 66699.43021471056 },
-        { x: 1705543771.4191937, y: 66934.04480981009 },
-        { x: 1705558394.1364927, y: 67070.77360562724 },
-        { x: 1705581054.162945, y: 67236.39029635095 },
-        { x: 1705581837.1524174, y: 67203.77376338 },
-        { x: 1705579695.5984302, y: 66940.05407115657 },
-        { x: 1705582226.0544732, y: 66845.06430143876 },
-        { x: 1705588215.146133, y: 66767.95751428214 },
-        { x: 1705595065.0076761, y: 66709.49391744744 },
-        { x: 1705618347.277418, y: 66560.89140041557 },
-        { x: 1705627649.814593, y: 66518.06636322953 },
-    ],
-] as const;
+const generateHandDrawnTrendline = () => {
+    const startX = 1705104000; // 2024-01-13 00:00 UTC
+    const endX = 1705276800; // 2024-01-15 00:00 UTC
+    const startY = 65000;
+    const endY = 67500;
+    const count = 110;
+    let seed = 1337;
+    const rand = () => {
+        seed = (seed * 9301 + 49297) % 233280;
+        return seed / 233280;
+    };
+    const points: { x: number; y: number }[] = [];
+    for (let i = 0; i < count; i++) {
+        const t = i / (count - 1);
+        const drift = Math.sin(t * Math.PI * 1.6 + 0.4) * 18;
+        const yJitter = (rand() - 0.5) * 16;
+        const xJitter = (rand() - 0.5) * ((endX - startX) / count) * 0.35;
+        points.push({
+            x: startX + (endX - startX) * t + xJitter,
+            y: startY + (endY - startY) * t + drift + yJitter,
+        });
+    }
+    return points;
+};
+
+const handDrawnTrendlinePoints = generateHandDrawnTrendline();
+
+type TInitialFreehandAnnotation = {
+    points: { x: number; y: number }[];
+    stroke: string;
+    strokeThickness: number;
+};
+
+const initialFreehandAnnotations: TInitialFreehandAnnotation[] = [
+    {
+        points: [
+            { x: 1705074424.9760892, y: 65731.6718827903 },
+            { x: 1705075600.6684432, y: 65642.12282942746 },
+            { x: 1705087445.885085, y: 65307.71857034999 },
+            { x: 1705085666.0820355, y: 65356.5315837517 },
+            { x: 1705081130.604812, y: 65410.78777490682 },
+            { x: 1705070214.7892404, y: 65438.14998565657 },
+            { x: 1705086971.8905394, y: 65356.648641337786 },
+            { x: 1705090526.8496335, y: 65388.83947751397 },
+            { x: 1705094908.9756804, y: 65460.77136416947 },
+            { x: 1705091521.3087788, y: 65449.416778318235 },
+        ],
+        stroke: "#F97066",
+        strokeThickness: 4,
+    },
+    {
+        points: [
+            { x: 1705025064.4852417, y: 66127.82401853298 },
+            { x: 1705025394.4226215, y: 65871.17526101925 },
+            { x: 1705024855.3700008, y: 65954.7251130947 },
+            { x: 1705029753.3136415, y: 65982.08732384446 },
+            { x: 1705035097.3697963, y: 65992.00795426602 },
+            { x: 1705040343.8388386, y: 65986.09654616822 },
+            { x: 1705044791.0229604, y: 65964.20677756841 },
+            { x: 1705045278.9585223, y: 65933.80106958018 },
+            { x: 1705043201.74713, y: 65906.67297400262 },
+            { x: 1705035543.48231, y: 65873.80905670639 },
+            { x: 1705027936.3345492, y: 65859.3231804271 },
+            { x: 1705022132.2248645, y: 65859.11832965145 },
+        ],
+        stroke: "#F97066",
+        strokeThickness: 4,
+    },
+    {
+        points: [
+            { x: 1705060251.609766, y: 65972.86903893946 },
+            { x: 1705060688.4282691, y: 65910.50660994725 },
+            { x: 1705065716.4880598, y: 65861.5180101664 },
+            { x: 1705069043.7438917, y: 65854.55308379373 },
+            { x: 1705070656.2547488, y: 65860.55228508111 },
+            { x: 1705072877.523307, y: 65910.76998951596 },
+            { x: 1705073388.6938958, y: 65974.47858074827 },
+            { x: 1705080935.4305873, y: 65866.11252042063 },
+        ],
+        stroke: "#F97066",
+        strokeThickness: 4,
+    },
+    {
+        points: [
+            { x: 1705091646.7779233, y: 65990.3691480607 },
+            { x: 1705091860.5401695, y: 65928.09451225805 },
+            { x: 1705094035.338674, y: 65896.19632004711 },
+            { x: 1705100819.966488, y: 65890.43123393191 },
+            { x: 1705104123.987293, y: 65914.89626942581 },
+            { x: 1705104742.0390048, y: 65990.60326323289 },
+            { x: 1705105169.5634973, y: 65837.34561863774 },
+            { x: 1705103979.9301271, y: 65712.03547272283 },
+            { x: 1705100095.033653, y: 65693.04287937887 },
+            { x: 1705092195.1245549, y: 65700.32971411331 },
+            { x: 1705088156.876904, y: 65734.97875959748 },
+            { x: 1705088291.6400592, y: 65779.40211352061 },
+            { x: 1705102172.2450452, y: 65854.20191103544 },
+            { x: 1705112846.4163384, y: 65896.78160797758 },
+        ],
+        stroke: "#F97066",
+        strokeThickness: 4,
+    },
+    {
+        points: [
+            { x: 1705271913.4095333, y: 68272.31899579709 },
+            { x: 1705254473.1984477, y: 68281.71286708124 },
+            { x: 1705243325.0326085, y: 68256.80886563948 },
+            { x: 1705241071.2350128, y: 68237.43583514073 },
+            { x: 1705240253.362071, y: 68204.68897543059 },
+            { x: 1705263358.2726805, y: 68162.25560047108 },
+            { x: 1705266676.2345016, y: 68137.556449805 },
+            { x: 1705266866.7617211, y: 68104.31209535395 },
+            { x: 1705263558.0939107, y: 68079.99338184268 },
+            { x: 1705255137.720213, y: 68056.46480703754 },
+            { x: 1705245188.4817545, y: 68058.92301634554 },
+            { x: 1705237929.859395, y: 68076.89135581115 },
+        ],
+        stroke: "#4EC385",
+        strokeThickness: 4,
+    },
+    {
+        points: [
+            { x: 1705282146.115318, y: 68129.39168317485 },
+            { x: 1705292318.4100335, y: 68129.39168317485 },
+            { x: 1705293675.335596, y: 68157.39771064813 },
+            { x: 1705293670.6885908, y: 68187.07180872327 },
+            { x: 1705292443.8791778, y: 68194.03673509593 },
+            { x: 1705280305.9011989, y: 68194.82687380207 },
+            { x: 1705275919.1281466, y: 68183.64787432998 },
+            { x: 1705274227.6181984, y: 68106.59471828281 },
+            { x: 1705277666.402159, y: 68075.6037223641 },
+            { x: 1705283721.4501324, y: 68055.26496678006 },
+            { x: 1705292304.4690173, y: 68053.74321816083 },
+            { x: 1705297546.2910542, y: 68064.07355013373 },
+        ],
+        stroke: "#4EC385",
+        strokeThickness: 4,
+    },
+    {
+        points: [
+            { x: 1705314953.9731023, y: 68304.74394714547 },
+            { x: 1705314517.1545992, y: 68072.50169633258 },
+        ],
+        stroke: "#4EC385",
+        strokeThickness: 4,
+    },
+    {
+        points: [
+            { x: 1705332956.4718356, y: 68300.50060964952 },
+            { x: 1705332956.4718356, y: 68178.23396097307 },
+            { x: 1705330897.8484647, y: 68051.95808997288 },
+        ],
+        stroke: "#4EC385",
+        strokeThickness: 4,
+    },
+    {
+        points: [
+            { x: 1705294609.3836718, y: 67929.01836017639 },
+            { x: 1705294474.6205165, y: 67825.6272472578 },
+            { x: 1705285682.4863908, y: 67528.6814157308 },
+            { x: 1705283005.8113081, y: 67676.43735377946 },
+            { x: 1705285306.0789573, y: 67543.25508519965 },
+            { x: 1705300334.4942653, y: 67679.27600024227 },
+        ],
+        stroke: "#4EC385",
+        strokeThickness: 4,
+    },
+];
 
 const variantOptions = (variant: TFreehandVariant, background: string): IFreehandDrawingAnnotationOptions => {
     const base: IFreehandDrawingAnnotationOptions = {
         isEditable: true,
-        strokeThickness: 2,
-        showBoxOutline: true,
+        strokeThickness: 4,
+        showBoxOutline: false,
         boxOutlineStrokeDashArray: [6, 4],
         snapMode: ESnapMode.None,
         annotationsGripsRadius: 4,
@@ -99,7 +217,7 @@ const variantOptions = (variant: TFreehandVariant, background: string): IFreehan
                 annotationsGripsStroke: TRADING_ANNOTATION_COLORS.lockedFreehand,
                 keepAspectRatioOnResize: true,
                 forcedAspectRatio: 1,
-                showBoxOutlineOnlyWhenSelected: true,
+                showBoxOutlineOnlyWhenSelected: false,
             };
         case "nonEditableLine":
             return {
@@ -111,7 +229,7 @@ const variantOptions = (variant: TFreehandVariant, background: string): IFreehan
                 showBoxOutline: false,
                 gripVisibility: EAnnotationVisibilityMode.OnInteraction,
                 allowMove: false,
-                showBoxOutlineOnlyWhenSelected: true,
+                showBoxOutlineOnlyWhenSelected: false,
             };
         case "thickHighlight":
             return {
@@ -120,18 +238,21 @@ const variantOptions = (variant: TFreehandVariant, background: string): IFreehan
                 fill: `${TRADING_ANNOTATION_COLORS.warning}33`,
                 annotationsGripsStroke: TRADING_ANNOTATION_COLORS.warning,
                 strokeThickness: 4,
-                showBoxOutlineOnlyWhenSelected: true,
+                showBoxOutlineOnlyWhenSelected: false,
             };
     }
 };
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
-    const { sciChartSurface } = await createFinancialChart(rootElement, {
+    const { sciChartSurface, xAxis } = await createFinancialChart(rootElement, {
         volatility: 0.0023,
         title: "BTC / USDT - Freehand Drawing",
         startDate: new Date("2024-01-01T00:00:00Z"),
         dataSeed: 2024,
     });
+
+    // Jan 20 2024 00:00 UTC
+    xAxis.visibleRange = new NumberRange(xAxis.visibleRange.min, 1705708800);
 
     const freehandDrawingModifier = new FreehandDrawingModifier({
         isDrawing: false,
@@ -153,33 +274,61 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
 
     sciChartSurface.annotations.add(
-        ...initialAnnotationPoints.map(
-            (points, index) =>
+        ...initialFreehandAnnotations.map(
+            (data) =>
                 new FreehandDrawingAnnotation({
-                    points: [...points],
+                    points: data.points,
+                    stroke: data.stroke,
+                    strokeThickness: data.strokeThickness,
                     isEditable: false,
                     isSelected: false,
                     allowMove: false,
                     showBoxOutline: false,
-                    stroke:
-                        index === 0
-                            ? TRADING_ANNOTATION_COLORS.freehand
-                            : index === 1
-                            ? TRADING_ANNOTATION_COLORS.warning
-                            : TRADING_ANNOTATION_COLORS.lockedFreehand,
-                    strokeThickness: index === 1 ? 4 : 2,
-                    fill: index === 1 ? `${TRADING_ANNOTATION_COLORS.warning}33` : undefined,
+                    opacity: 0.9,
                     gripVisibility: EAnnotationVisibilityMode.OnInteraction,
                 })
-        )
+        ),
+        new FreehandDrawingAnnotation({
+            points: handDrawnTrendlinePoints,
+            isEditable: true,
+            isSelected: false,
+            allowMove: true,
+            showBoxOutline: false,
+            stroke: "#686c70",
+            annotationsGripsStroke: "#9AA0A6",
+            strokeThickness: 7,
+            opacity: 0.9,
+            gripVisibility: EAnnotationVisibilityMode.OnInteraction,
+        })
     );
 
     return {
         sciChartSurface,
-        startDrawing: (variant: TFreehandVariant) =>
-            freehandDrawingModifier.startDrawing(variantOptions(variant, sciChartSurface.background)),
+        startDrawing: (variant: TFreehandVariant, color?: string) => {
+            const options = variantOptions(variant, sciChartSurface.background);
+            if (color) {
+                options.stroke = color;
+                options.annotationsGripsStroke = color;
+            }
+            freehandDrawingModifier.startDrawing(options);
+        },
         stopDrawing: () => freehandDrawingModifier.stopDrawing(true),
         clear: () => sciChartSurface.annotations.clear(true),
+        removeLast: () => {
+            const annotations = sciChartSurface.annotations;
+            if (annotations.size() > 0) {
+                annotations.removeAt(annotations.size() - 1, true);
+            }
+        },
+        exportAnnotations: () =>
+            sciChartSurface.annotations
+                .asArray()
+                .filter((a): a is FreehandDrawingAnnotation => a instanceof FreehandDrawingAnnotation)
+                .map((a) => ({
+                    points: a.points.map((p) => ({ x: p.x, y: p.y })),
+                    stroke: a.stroke,
+                    strokeThickness: a.strokeThickness,
+                })),
         setKeepDrawingAfterComplete: (enabled: boolean) => {
             (freehandDrawingModifier as any).keepDrawingAfterCompleteProperty = enabled;
         },
