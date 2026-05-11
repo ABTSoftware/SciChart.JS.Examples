@@ -1,6 +1,7 @@
 import {
     AnnotationHoverModifier,
     ECursorStyle,
+    EObservableArrayChangedAction,
     EXyDirection,
     MouseWheelZoomModifier,
     ZoomExtentsModifier,
@@ -72,8 +73,8 @@ const initialAnnotationPoints = [
 const variantOptions = (variant: TFreehandVariant, background: string): IFreehandDrawingAnnotationOptions => {
     const base: IFreehandDrawingAnnotationOptions = {
         isEditable: true,
-        strokeThickness: 2,
-        showBoxOutline: true,
+        strokeThickness: 3,
+        showBoxOutline: false,
         boxOutlineStrokeDashArray: [6, 4],
         snapMode: ESnapMode.None,
         annotationsGripsRadius: 4,
@@ -99,7 +100,7 @@ const variantOptions = (variant: TFreehandVariant, background: string): IFreehan
                 annotationsGripsStroke: TRADING_ANNOTATION_COLORS.lockedFreehand,
                 keepAspectRatioOnResize: true,
                 forcedAspectRatio: 1,
-                showBoxOutlineOnlyWhenSelected: true,
+                showBoxOutlineOnlyWhenSelected: false,
             };
         case "nonEditableLine":
             return {
@@ -111,7 +112,7 @@ const variantOptions = (variant: TFreehandVariant, background: string): IFreehan
                 showBoxOutline: false,
                 gripVisibility: EAnnotationVisibilityMode.OnInteraction,
                 allowMove: false,
-                showBoxOutlineOnlyWhenSelected: true,
+                showBoxOutlineOnlyWhenSelected: false,
             };
         case "thickHighlight":
             return {
@@ -120,7 +121,7 @@ const variantOptions = (variant: TFreehandVariant, background: string): IFreehan
                 fill: `${TRADING_ANNOTATION_COLORS.warning}33`,
                 annotationsGripsStroke: TRADING_ANNOTATION_COLORS.warning,
                 strokeThickness: 4,
-                showBoxOutlineOnlyWhenSelected: true,
+                showBoxOutlineOnlyWhenSelected: false,
             };
     }
 };
@@ -176,8 +177,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     return {
         sciChartSurface,
-        startDrawing: (variant: TFreehandVariant) =>
-            freehandDrawingModifier.startDrawing(variantOptions(variant, sciChartSurface.background)),
+        startDrawing: (variant: TFreehandVariant, color?: string) => {
+            const options = variantOptions(variant, sciChartSurface.background);
+            if (color) {
+                options.stroke = color;
+                options.annotationsGripsStroke = color;
+            }
+            freehandDrawingModifier.startDrawing(options);
+        },
         stopDrawing: () => freehandDrawingModifier.stopDrawing(true),
         clear: () => sciChartSurface.annotations.clear(true),
         setKeepDrawingAfterComplete: (enabled: boolean) => {
