@@ -151,9 +151,9 @@ export default function FreehandDrawingTools() {
                             ...overlayButtonSx,
                             top: 8,
                             left: 128,
-                            opacity: 0.06,
+                            opacity: 0.00,
                             transition: "opacity 150ms ease",
-                            "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.75)", opacity: 1 },
+                            "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.75)", opacity: 0.06 },
                         }}
                     >
                         <SaveAltIcon fontSize="small" />
