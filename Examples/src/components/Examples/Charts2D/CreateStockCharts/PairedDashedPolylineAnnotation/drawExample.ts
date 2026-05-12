@@ -44,7 +44,7 @@ class PairedDashedPolylineAnnotation extends PolyLineAnnotation {
     private pairStrokeThicknessProperty = 2;
     private pairStrokeDashArrayProperty = [7, 5];
     private showPairConnectorsProperty = true;
-    private placementPointCountProperty = 6;
+    private customPlacementPointCount = 6;
     private pairStrokePenCache: any;
 
     constructor(options?: IPairedDashedPolylineAnnotationOptions) {
@@ -53,7 +53,7 @@ class PairedDashedPolylineAnnotation extends PolyLineAnnotation {
         this.pairStrokeThicknessProperty = options?.pairStrokeThickness ?? this.pairStrokeThicknessProperty;
         this.pairStrokeDashArrayProperty = options?.pairStrokeDashArray ?? this.pairStrokeDashArrayProperty;
         this.showPairConnectorsProperty = options?.showPairConnectors ?? this.showPairConnectorsProperty;
-        this.placementPointCountProperty = Math.max(4, Math.floor(options?.placementPointCount ?? this.placementPointCountProperty));
+        this.customPlacementPointCount = Math.max(4, Math.floor(options?.placementPointCount ?? this.customPlacementPointCount));
     }
 
     public get showPairConnectors(): boolean {
@@ -132,13 +132,13 @@ class PairedDashedPolylineAnnotation extends PolyLineAnnotation {
             pairStrokeThickness: this.pairStrokeThicknessProperty,
             pairStrokeDashArray: this.pairStrokeDashArrayProperty,
             showPairConnectors: this.showPairConnectorsProperty,
-            placementPointCount: this.placementPointCountProperty,
+            placementPointCount: this.customPlacementPointCount,
         });
         return json;
     }
 
     protected override getPlacementPointCountInternal(): number {
-        return this.placementPointCountProperty;
+        return this.customPlacementPointCount;
     }
 
     protected override notifyPropertyChanged(propertyName: string): void {

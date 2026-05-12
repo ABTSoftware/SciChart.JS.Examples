@@ -10,7 +10,7 @@ const metaData: IExampleMetadata = {
     tips: [],
     frameworks: {
         javascript: {
-            subtitle: "JavaScript Freehand Drawing Demo for trading and financial charts using SciChart.js.",
+            subtitle: "JavaScript Freehand Drawing Demo for trading and financial charts using SciChart.js. Can be used for drawing trends, arrow, markers, text, etc.",
             title: "JavaScript Freehand Drawing Tools",
             pageTitle: "JavaScript Freehand Drawing Tools",
             metaDescription:
@@ -19,7 +19,7 @@ const metaData: IExampleMetadata = {
                 "## JavaScript Freehand Drawing Tools\n\nThis example demonstrates `FreehandDrawingModifier` and `FreehandDrawingAnnotation`. Select color, switch between drawing and edit modes, delete annotations using backspace button and delete icon. This tool can be used for drawing trend lines, event markers, text or any arbitrary drawing for financial and trading charts.",
         },
         react: {
-            subtitle: "React Freehand Drawing Demo for trading and financial charts using SciChart.js.",
+            subtitle: "React Freehand Drawing Demo for trading and financial charts using SciChart.js. Can be used for drawing trends, arrow, markers, text, etc.",
             title: "React Freehand Drawing Tools",
             pageTitle: "React Freehand Drawing Tools",
             metaDescription:

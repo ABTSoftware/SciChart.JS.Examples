@@ -371,7 +371,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 fibonacciLabelColorMode: EFibonacciLabelColorMode.MultiColor,
                 showConnectorLine: true,
                 connectorLineStrokeDashArray: [16, 4],
-                thresholds: [-0.618, -0.236, 0, 0.618, 1, 2.618],
+                // thresholds: [-0.618, -0.236, 0, 0.618, 1, 2.618],
                 verticalOnly: true,
                 formatFibonacciLabel: (params: TFibonacciLevelLabelFormatParams) => {
                     const percentage = `${(params.threshold * 100).toFixed(1)}%`;
@@ -379,8 +379,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 },
                 points: [
                     {x: 1705587439, y: 63110},
-                    {x: 1705782618, y: 63110},
-                    {x: 1705782618, y: 64283}
+                    {x: 1705822618, y: 65283}
                 ],
             }),
             new ExtendedLineAnnotation({
