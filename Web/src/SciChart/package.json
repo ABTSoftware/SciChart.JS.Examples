@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "scichart": "5.2.10",
+    "scichart-financial-tools": "5.2.10"
+  }
+}
