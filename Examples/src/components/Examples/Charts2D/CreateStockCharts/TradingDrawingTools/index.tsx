@@ -173,6 +173,61 @@ const tools: TToolDefinition[] = [
             </>
         ),
     },
+    {
+        value: "fibonacciExtension",
+        annotationType: ETradingAnnotationType.FibonacciExtensionAnnotation,
+        label: "Fibonacci Extension",
+        icon: icon(
+            <>
+                <line x1="4" y1="20" x2="20" y2="6" />
+                <line x1="4" y1="6" x2="20" y2="20" />
+                <line x1="4" y1="13" x2="22" y2="13" strokeDasharray="2 2" />
+                <line x1="14" y1="4" x2="22" y2="4" />
+                <line x1="14" y1="9" x2="22" y2="9" />
+                <line x1="14" y1="17" x2="22" y2="17" />
+                <line x1="14" y1="22" x2="22" y2="22" />
+            </>
+        ),
+    },
+    {
+        value: "fibonacciCircles",
+        annotationType: ETradingAnnotationType.FibonacciCirclesAnnotation,
+        label: "Fibonacci Circles",
+        icon: icon(
+            <>
+                <ellipse cx="12" cy="12" rx="3" ry="3" />
+                <ellipse cx="12" cy="12" rx="6" ry="6" />
+                <ellipse cx="12" cy="12" rx="9" ry="9" />
+            </>
+        ),
+    },
+    {
+        value: "fibonacciSpeedResistanceArcs",
+        annotationType: ETradingAnnotationType.FibonacciSpeedResistanceArcsAnnotation,
+        label: "Fibonacci Speed Resistance Arcs",
+        icon: icon(
+            <>
+                <path d="M4 20 A 4 4 0 0 1 12 20" />
+                <path d="M4 20 A 8 8 0 0 1 20 20" />
+                <path d="M4 20 A 12 12 0 0 1 28 20" />
+                <line x1="4" y1="20" x2="22" y2="6" strokeDasharray="2 2" />
+            </>
+        ),
+    },
+    {
+        value: "fibonacciWedge",
+        annotationType: ETradingAnnotationType.FibonacciWedgeAnnotation,
+        label: "Fibonacci Wedge",
+        icon: icon(
+            <>
+                <line x1="4" y1="20" x2="20" y2="4" />
+                <line x1="4" y1="20" x2="22" y2="14" />
+                <path d="M9 17 A 5 5 0 0 0 8.4 13" />
+                <path d="M13 13 A 10 10 0 0 0 12 4.8" />
+                <path d="M17 9 A 15 15 0 0 0 15.5 -3" />
+            </>
+        ),
+    },
     "separator",
     {
         value: "measure",

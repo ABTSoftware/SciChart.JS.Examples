@@ -278,6 +278,66 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     } as any),
                 });
                 return;
+            case ETradingAnnotationType.FibonacciExtensionAnnotation:
+                placementModifier.startPlacement({
+                    type: ETradingAnnotationType.FibonacciExtensionAnnotation,
+                    options: preparePlacementOptions({
+                        ...createTradingAnnotationOptions("FBE", 3, undefined, { includeSegmentLabels: false }),
+                        isEditable: true,
+                        strokeThickness: 2,
+                        regionColors: FIB_REGION_COLORS,
+                        fillOpacity: 0.25,
+                        opacity: 1,
+                        showConnectorLine: true,
+                        connectorLineStrokeDashArray: [6, 4],
+                    } as any),
+                });
+                return;
+            case ETradingAnnotationType.FibonacciCirclesAnnotation:
+                placementModifier.startPlacement({
+                    type: ETradingAnnotationType.FibonacciCirclesAnnotation,
+                    options: preparePlacementOptions({
+                        ...createTradingAnnotationOptions("FBC", 2, undefined, { includeSegmentLabels: false }),
+                        isEditable: true,
+                        strokeThickness: 2,
+                        regionColors: FIB_REGION_COLORS,
+                        fillOpacity: 0.2,
+                        opacity: 1,
+                        showConnectorLine: true,
+                        connectorLineStrokeDashArray: [6, 4],
+                    } as any),
+                });
+                return;
+            case ETradingAnnotationType.FibonacciSpeedResistanceArcsAnnotation:
+                placementModifier.startPlacement({
+                    type: ETradingAnnotationType.FibonacciSpeedResistanceArcsAnnotation,
+                    options: preparePlacementOptions({
+                        ...createTradingAnnotationOptions("FSR", 2, undefined, { includeSegmentLabels: false }),
+                        isEditable: true,
+                        strokeThickness: 2,
+                        regionColors: FIB_REGION_COLORS,
+                        fillOpacity: 0.2,
+                        opacity: 1,
+                        showConnectorLine: true,
+                        connectorLineStrokeDashArray: [6, 4],
+                    } as any),
+                });
+                return;
+            case ETradingAnnotationType.FibonacciWedgeAnnotation:
+                placementModifier.startPlacement({
+                    type: ETradingAnnotationType.FibonacciWedgeAnnotation,
+                    options: preparePlacementOptions({
+                        ...createTradingAnnotationOptions("FBW", 3, undefined, { includeSegmentLabels: false }),
+                        isEditable: true,
+                        strokeThickness: 2,
+                        regionColors: FIB_REGION_COLORS,
+                        fillOpacity: 0.2,
+                        opacity: 1,
+                        showConnectorLine: true,
+                        connectorLineStrokeDashArray: [6, 4],
+                    } as any),
+                });
+                return;
             case ETradingAnnotationType.MeasureAnnotation:
                 placementModifier.startPlacement({
                     type: ETradingAnnotationType.MeasureAnnotation,
