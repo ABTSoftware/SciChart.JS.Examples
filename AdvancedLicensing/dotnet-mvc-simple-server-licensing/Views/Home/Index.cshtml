@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<h2>SciChart Simple Server Licensing</h2>
+<p class="text-muted">
+    The chart below is rendered after server-side license validation.
+    SciChart automatically calls <code>GET /api/license</code> on first load and
+    re-validates once every 24 hours. The token is cached in a browser cookie for 7 days.
+</p>
+
+<div id="scichart-root" style="width: 100%; height: 400px;"></div>
+
+@section Scripts {
+    <script src="~/bundle.js"></script>
+}

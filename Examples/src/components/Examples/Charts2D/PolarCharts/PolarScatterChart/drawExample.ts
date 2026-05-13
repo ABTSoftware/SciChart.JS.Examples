@@ -35,10 +35,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawMinorGridLines: false,
 
         startAngle: Math.PI / 2,
-        majorGridLineStyle: {
-            color: appTheme.DarkIndigo,
-            strokeThickness: 1,
-        },
         drawLabels: false, // no radial labels
     });
     sciChartSurface.yAxes.add(radialYAxis);
@@ -62,13 +58,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         useNativeText: true,
         labelPrecision: 0,
         labelPostfix: "°",
-        labelStyle: {
-            color: "white",
-        },
-        majorGridLineStyle: {
-            color: appTheme.DarkIndigo,
-            strokeThickness: 1,
-        },
     });
     sciChartSurface.xAxes.add(polarXAxis);
 

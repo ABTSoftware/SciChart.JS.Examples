@@ -42,6 +42,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             labelPrecision: 0,
             growBy: new NumberRange(0, 0.05),
             axisTitle: "Sales $USD (Billion)",
+            drawMinorGridLines: false,
         })
     );
 
@@ -54,7 +55,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const yValues5 = [7, 24, 21, 11, 19, 17, 14, 27, 26, 22, 28, 16];
 
     const dataLabels: IStackedColumnSeriesDataLabelProviderOptions = {
-        color: "#FFfFFF",
+        color: appTheme.TextColor,
         style: { fontSize: 12, fontFamily: "Arial", padding: new Thickness(0, 0, 2, 0) },
         precision: 0,
         positionMode: EColumnDataLabelPosition.Outside,
@@ -66,7 +67,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const rendSeries1 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues1, dataSeriesName: "EU" }),
         fill: appTheme.VividPurple,
-        stroke: appTheme.PaleSkyBlue,
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
         dataLabels,
@@ -75,7 +75,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues2, dataSeriesName: "Asia" }),
         fill: appTheme.VividPink,
-        stroke: appTheme.PaleSkyBlue,
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
         dataLabels,
@@ -84,7 +83,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues3, dataSeriesName: "USA" }),
         fill: appTheme.VividOrange,
-        stroke: appTheme.PaleSkyBlue,
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
         dataLabels,
@@ -93,7 +91,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const rendSeries4 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues4, dataSeriesName: "UK" }),
         fill: appTheme.VividSkyBlue,
-        stroke: appTheme.PaleSkyBlue,
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
         dataLabels,
@@ -102,7 +99,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const rendSeries5 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues5, dataSeriesName: "Latam" }),
         fill: appTheme.VividTeal,
-        stroke: appTheme.PaleSkyBlue,
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
         dataLabels,

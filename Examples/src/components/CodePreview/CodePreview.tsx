@@ -9,6 +9,7 @@ import { Dialog } from "../Dialog/Dialog";
 import classes from "./index.module.scss";
 import { getFileName } from "../AppDetailsRouters/utils";
 import { ETheme } from "../../helpers/types/types";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 import "react-syntax-highlighter/dist/esm/styles/hljs/dark";
 import { IconButton } from "../buttons/IconButton";
 
@@ -266,7 +267,6 @@ type CodeEditorProps = {
     desiredFramework: EPageFramework;
     actualFramework: EPageFramework | null;
     examplePath: string;
-    theme: ETheme;
     isMaxWidth: boolean;
 };
 
@@ -380,9 +380,10 @@ export const CodePreview: FC<CodeEditorProps> = ({
     desiredFramework,
     actualFramework,
     examplePath,
-    theme,
     isMaxWidth,
 }) => {
+    const { state } = _useContext();
+    const theme = state.theme;
     const [hasShownDialog, setHasShownDialog] = useState(false);
     const [showDialog, setShowDialog] = useState(false);
     const [hasCopied, setHasCopied] = useState(false);
@@ -542,7 +543,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
                 <SyntaxHighlighter
                     language={EditorLanguageMap[selectedFile.name.split(".").pop() as keyof typeof EditorLanguageMap]}
                     // @ts-ignore
-                    style={theme === ETheme.dark ? DarkStyles : LightStyles}
+                    style={theme === ETheme.light ? LightStyles : DarkStyles}
                     showLineNumbers={true}
                     lineNumberStyle={{ color: "#888" }}
                     wrapLines

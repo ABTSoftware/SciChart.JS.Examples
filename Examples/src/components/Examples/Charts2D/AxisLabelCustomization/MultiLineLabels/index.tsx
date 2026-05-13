@@ -48,15 +48,9 @@ export default function MultiLineLabels() {
                     color="primary"
                     aria-label="small outlined button group"
                 >
-                    <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
-                        Multi-Line
-                    </ToggleButton>
-                    <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
-                        Single Line Rotated
-                    </ToggleButton>
-                    <ToggleButton value={2} style={{ color: appTheme.ForegroundColor }}>
-                        Multi-Line Rotated
-                    </ToggleButton>
+                    <ToggleButton value={0}>Multi-Line</ToggleButton>
+                    <ToggleButton value={1}>Single Line Rotated</ToggleButton>
+                    <ToggleButton value={2}>Multi-Line Rotated</ToggleButton>
                 </ToggleButtonGroup>
             </div>
             <SciChartReact

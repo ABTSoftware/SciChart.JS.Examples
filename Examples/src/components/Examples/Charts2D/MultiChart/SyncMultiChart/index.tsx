@@ -191,12 +191,7 @@ export default function SyncMultiChart() {
                             {pane.sciChartSurface ? (
                                 <div style={styles.toolCol}>
                                     <div>
-                                        <Button
-                                            color="primary"
-                                            variant="outlined"
-                                            onClick={() => removeChart(pane.id)}
-                                            style={{ color: appTheme.ForegroundColor }}
-                                        >
+                                        <Button color="primary" variant="outlined" onClick={() => removeChart(pane.id)}>
                                             Remove Chart
                                         </Button>
                                         <FormControlLabel

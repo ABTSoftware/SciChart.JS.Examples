@@ -216,8 +216,10 @@ export class ExampleDataProvider {
         startDate: Date,
         interval: number,
         skipWeekends: boolean = false,
-        volatility: number = 0.001
+        volatility: number = 0.001,
+        seed?: number
     ) => {
+        const random = createSeededRandom(seed);
         const startTime = Math.floor(startDate.getTime() / 1000 / interval) * interval;
         let p: TPriceBar = {
             date: startTime,
@@ -230,7 +232,7 @@ export class ExampleDataProvider {
         const bars: TPriceBar[] = [];
         for (let c = 0; c < count; c++) {
             for (let t = 0; t < 20; t++) {
-                const r = Math.random() - 0.5;
+                const r = random() - 0.5;
                 p.close += p.close * r * volatility;
                 p.high = Math.max(p.high, p.close);
                 p.low = Math.min(p.low, p.close);
@@ -259,7 +261,8 @@ export class ExampleDataProvider {
         startDate: Date,
         interval: number,
         skipWeekends: boolean = false,
-        volatility: number = 0.001
+        volatility: number = 0.001,
+        seed?: number
     ) => {
         const xValues: number[] = [];
         const openValues: number[] = [];
@@ -273,7 +276,8 @@ export class ExampleDataProvider {
             startDate,
             interval,
             skipWeekends,
-            volatility
+            volatility,
+            seed
         );
         priceBars.forEach((priceBar: any) => {
             xValues.push(priceBar.date);
@@ -286,6 +290,22 @@ export class ExampleDataProvider {
         return { xValues, openValues, highValues, lowValues, closeValues, volumeValues };
     };
 }
+
+const createSeededRandom = (seed?: number) => {
+    if (seed === undefined) {
+        return Math.random;
+    }
+
+    let state = seed % 2147483647;
+    if (state <= 0) {
+        state += 2147483646;
+    }
+
+    return () => {
+        state = (state * 16807) % 2147483647;
+        return (state - 1) / 2147483646;
+    };
+};
 
 const fetchData = (endpoint: string) => {
     if (typeof window === "undefined") {

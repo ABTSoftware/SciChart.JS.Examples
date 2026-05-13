@@ -98,7 +98,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             fontFamily: "Arial",
             fontSize: 24,
             fontWeight: "bold",
-            color: "White",
+            color: appTheme.TextColor,
         },
     });
 
@@ -130,7 +130,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             fontFamily: "Arial",
             fontSize: 24,
             fontWeight: "bold",
-            color: "White",
+            color: appTheme.TextColor,
         },
     });
     mainSurface.yAxes.add(mainYAxis);

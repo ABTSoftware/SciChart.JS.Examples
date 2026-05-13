@@ -70,9 +70,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         autoTicks: false,
         majorDelta: 1,
 
-        labelStyle: {
-            color: "white",
-        },
         useNativeText: true,
         flippedCoordinates: true, // Norway will be outermost, Finland innermost
         innerRadius: 0.1, // donut hole
@@ -115,7 +112,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 yValues: COUNTRIES.map((country) => DATA[country][i]),
                 dataSeriesName: MEDALS[i].type,
             }),
-            stroke: "white",
+            // stroke: "white",
             strokeThickness: 1.5,
             fill: MEDALS[i].color, // keep the "fill" although overriden by "fillLinearGradient" for legend marker color
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [

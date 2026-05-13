@@ -6,7 +6,7 @@ This example demonstrates how to create and use a static axis in SciChart.js. In
 
 ## Technologies Used
 
--   [SciChart.js](https://www.scichart.com/scichart-js-documentation/) for charting
+-   [SciChart.js](https://www.scichart.com/documentation/js/v5/intro/) for charting
 -   React with TypeScript (using the SciChartReact component from scichart-react)
 -   Material-UI for UI elements such as Toggle Buttons
 

@@ -23,7 +23,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Our team demonstrates how to create a **React 3D Bubble Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
+                    "Our team demonstrates how to create a React 3D Bubble Chart using SciChart.js, capable of creating detailed 3D [React Charts](https://www.scichart.com/react-charts/).",
                 title: "React 3D Bubble Chart",
                 pageTitle: "React 3D Bubble Chart | 3D JavaScript Charts | View Now",
                 metaDescription:

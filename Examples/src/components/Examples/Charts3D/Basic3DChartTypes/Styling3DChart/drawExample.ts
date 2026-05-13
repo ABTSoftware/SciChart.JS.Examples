@@ -194,11 +194,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChart3DSurface.renderableSeries.add(renderableSeries);
     }
 
+    let selectedAxisTitle: TAxis = "x";
+
     // update axis title color based on selected axis
-    const updateAxisTitleColor = (axis?: TAxis) => {
-        const SELECTED_AXIS_COLOR = currentTheme === EThemeProviderType.Light ? "#000000" : "#FFFFFF";
+    const updateAxisTitleColor = (axis: TAxis = selectedAxisTitle) => {
+        selectedAxisTitle = axis;
+        const SELECTED_AXIS_COLOR = "#FFFFFF";
         const UNSELECTED_AXIS_COLOR = "#777777";
-        if (axis === "x" || !axis) {
+        if (axis === "x") {
             sciChart3DSurface.xAxis.titleStyle.color = SELECTED_AXIS_COLOR;
             sciChart3DSurface.xAxis.labelStyle.color = SELECTED_AXIS_COLOR;
 
@@ -206,8 +209,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             sciChart3DSurface.zAxis.titleStyle.color = UNSELECTED_AXIS_COLOR;
             sciChart3DSurface.yAxis.labelStyle.color = UNSELECTED_AXIS_COLOR;
             sciChart3DSurface.zAxis.labelStyle.color = UNSELECTED_AXIS_COLOR;
-        }
-        if (axis === "y" || !axis) {
+        } else if (axis === "y") {
             sciChart3DSurface.yAxis.titleStyle.color = SELECTED_AXIS_COLOR;
             sciChart3DSurface.yAxis.labelStyle.color = SELECTED_AXIS_COLOR;
 
@@ -215,8 +217,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             sciChart3DSurface.zAxis.titleStyle.color = UNSELECTED_AXIS_COLOR;
             sciChart3DSurface.xAxis.labelStyle.color = UNSELECTED_AXIS_COLOR;
             sciChart3DSurface.zAxis.labelStyle.color = UNSELECTED_AXIS_COLOR;
-        }
-        if (axis === "z" || !axis) {
+        } else {
             sciChart3DSurface.zAxis.titleStyle.color = SELECTED_AXIS_COLOR;
             sciChart3DSurface.zAxis.labelStyle.color = SELECTED_AXIS_COLOR;
 
@@ -243,7 +244,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         getAxis(axis).labelOrientationMode = mode;
     };
 
-    let currentTheme: EThemeProviderType = EThemeProviderType.Navy;
     const lightTheme = new SciChartJSLightTheme();
     const darkTheme = new SciChartJSDarkTheme();
     const darkThemeV2 = new SciChartJSDarkv2Theme();
@@ -253,20 +253,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         switch (themeName) {
             case EThemeProviderType.Light:
                 sciChart3DSurface.applyTheme(lightTheme);
-                currentTheme = EThemeProviderType.Light;
                 break;
             case EThemeProviderType.Dark:
                 sciChart3DSurface.applyTheme(darkTheme);
-                currentTheme = EThemeProviderType.Dark;
                 break;
             case EThemeProviderType.DarkV2:
                 sciChart3DSurface.applyTheme(darkThemeV2);
-                currentTheme = EThemeProviderType.DarkV2;
                 break;
             case EThemeProviderType.Navy:
             default:
                 sciChart3DSurface.applyTheme(navyTheme);
-                currentTheme = EThemeProviderType.Navy;
                 break;
         }
         updateAxisTitleColor();

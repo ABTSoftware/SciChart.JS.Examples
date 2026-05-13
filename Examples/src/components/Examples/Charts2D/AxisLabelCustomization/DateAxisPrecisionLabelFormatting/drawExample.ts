@@ -38,9 +38,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         datePrecision: EDatePrecision.Nanoseconds, // Very important -> 1 x-value increment == 1 nanosecond
         highPrecisionLabelMode: EHighPrecisionLabelMode.Suffix,
         dateOffset: startTimeSeconds, // in seconds
-        labelStyle: {
-            color: "#FFFFFF", // make them stand out a bit
-        },
 
         showWiderDateOnFirstLabel: true,
         showYearOnWiderDate: true,

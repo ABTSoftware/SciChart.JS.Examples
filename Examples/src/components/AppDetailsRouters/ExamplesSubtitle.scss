@@ -1,5 +1,18 @@
 .subtitle {
     display: block;
+    color: var(--text);
+
+    p,
+    span,
+    strong,
+    em,
+    li {
+        color: var(--text);
+    }
+
+    a {
+        color: var(--light-blue);
+    }
 
     &.maxWidth {
         width: 100%;

@@ -72,21 +72,21 @@ export default function UserAnnotatedStockChart() {
                 >
                     <ToggleButton
                         value={"pan"}
-                        style={{ color: appTheme.ForegroundColor, borderColor: "#00bcd466" }}
+                        style={{ borderColor: "#00bcd466" }}
                         onClick={() => handleToggleButtonChanged(null, "pan")}
                     >
                         Pan
                     </ToggleButton>
                     <ToggleButton
                         value={"line"}
-                        style={{ color: appTheme.ForegroundColor, borderColor: "#00bcd466" }}
+                        style={{ borderColor: "#00bcd466" }}
                         onClick={() => handleToggleButtonChanged(null, "line")}
                     >
                         Lines
                     </ToggleButton>
                     <ToggleButton
                         value={"marker"}
-                        style={{ color: appTheme.ForegroundColor, borderColor: "#00bcd466" }}
+                        style={{ borderColor: "#00bcd466" }}
                         onClick={() => handleToggleButtonChanged(null, "marker")}
                     >
                         Markers

@@ -31,12 +31,8 @@ export default function SmoothStackedMountainChart() {
                 aria-label="small outlined button group"
                 style={{ justifyContent: "start" }}
             >
-                <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
-                    Stacked mode
-                </ToggleButton>
-                <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
-                    100% Stacked mode
-                </ToggleButton>
+                <ToggleButton value={false}>Stacked mode</ToggleButton>
+                <ToggleButton value={true}>100% Stacked mode</ToggleButton>
             </ToggleButtonGroup>
             <SciChartReact
                 initChart={drawExample}

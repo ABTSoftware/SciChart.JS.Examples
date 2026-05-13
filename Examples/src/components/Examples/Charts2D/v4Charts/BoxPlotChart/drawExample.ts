@@ -17,15 +17,6 @@ import {
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-const NUMERIC_AXIS_OPTIONS = {
-    axisAlignment: EAxisAlignment.Left,
-    growBy: new NumberRange(0.05, 0.05),
-    autoRange: EAutoRange.Once,
-    flippedCoordinates: false,
-    labelFormat: ENumericFormat.Decimal,
-    labelPrecision: 0,
-};
-
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement);
 
@@ -139,8 +130,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             strokeThickness: 2,
         },
     });
-    sub2.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier());
     sub2.renderableSeries.add(boxSeries2);
+
+    sub2.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier());
+
+    sub2.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier());
 
     return { sciChartSurface, wasmContext };
 };

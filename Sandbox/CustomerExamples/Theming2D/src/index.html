@@ -1,0 +1,35 @@
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Theming 2D Demo</title>
+    <script async type="text/javascript" src="bundle.js"></script>
+    <style>
+      body {
+        font-family: "Arial";
+        background: #f0f0f0;
+        margin: 20px;
+      }
+      h1 {
+        color: #333;
+      }
+      .chart-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .chart-container {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Theming 2D Demo - Custom Light Theme</h1>
+    <div class="chart-grid">
+      <div id="chart1" class="chart-container"></div>
+      <div id="chart2" class="chart-container"></div>
+      <div id="chart3" class="chart-container"></div>
+      <div id="chart4" class="chart-container"></div>
+    </div>
+  </body>
+</html>

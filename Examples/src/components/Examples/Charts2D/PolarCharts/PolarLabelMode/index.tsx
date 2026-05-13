@@ -49,7 +49,7 @@ export default function ChartComponent() {
                         aria-label="small outlined button group"
                     >
                         {Object.keys(EPolarLabelMode).map((key) => (
-                            <ToggleButton key={key} value={key} style={{ color: appTheme.ForegroundColor }}>
+                            <ToggleButton key={key} value={key}>
                                 {key}
                             </ToggleButton>
                         ))}

@@ -47,10 +47,6 @@ export const drawExample = async (
         drawLabels: true,
         labelPrecision: 0,
 
-        majorGridLineStyle: {
-            color: "gray",
-            strokeThickness: 1,
-        },
         isInnerAxis: true,
         visibleRange: new NumberRange(0, 10),
         zoomExtentsToInitialRange: true,
@@ -69,11 +65,6 @@ export const drawExample = async (
         flippedCoordinates: true,
         drawMinorGridLines: false,
         useNativeText: true,
-
-        majorGridLineStyle: {
-            color: "gray",
-            strokeThickness: 1,
-        },
 
         totalAngle,
         startAngle: Math.PI / 2,
@@ -99,7 +90,7 @@ export const drawExample = async (
             width: 8,
             height: 8,
             stroke: appTheme.VividOrange,
-            fill: appTheme.DarkIndigo,
+            fill: appTheme.Background,
         }),
     });
     sciChartSurface.renderableSeries.add(polarlineSeries);

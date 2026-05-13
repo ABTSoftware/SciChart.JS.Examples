@@ -55,9 +55,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         startAngle: Math.PI / 2,
         zoomExtentsToInitialRange: true,
         labelPrecision: 0,
-        labelStyle: {
-            color: "white",
-        },
     });
     sciChartSurface.yAxes.add(radialYAxis);
 
@@ -75,14 +72,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         useNativeText: true,
         labelPrecision: 0,
-        labelStyle: {
-            color: "white",
-        },
     });
     sciChartSurface.xAxes.add(polarXAxis);
 
     // Make collection to hold all the stacked mountains renderable series
     const mountainCollection = new PolarStackedMountainCollection(wasmContext);
+    mountainCollection.separatePositiveNegativeStacks = false;
     (mountainCollection.animation = new WaveAnimation({ duration: 800, zeroLine: 0 })),
         MountainsDatasets.forEach(({ yValues, fillColor }) => {
             const polarMountain = new PolarStackedMountainRenderableSeries(wasmContext, {
@@ -91,7 +86,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     yValues: [...yValues, yValues[0]], // close the loop by drawing to the first yValue
                 }),
                 fill: fillColor + "BB", // 75% opacity
-                stroke: "white",
+                // stroke: "white",
                 strokeThickness: 1,
             });
             mountainCollection.add(polarMountain);

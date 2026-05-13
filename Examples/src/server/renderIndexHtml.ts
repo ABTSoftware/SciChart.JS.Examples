@@ -21,6 +21,7 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
             <meta property="og:type" content="website">
             <meta name="twitter:card" content="summary_large_image">
             <meta name="twitter:site" content="@scichart">
+            <meta name="theme-color" content="#121212">
             ${helmet.title.toString()}
             ${helmet.meta.toString()}
 

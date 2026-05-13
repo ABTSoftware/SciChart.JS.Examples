@@ -44,7 +44,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/v4/2d-charts/axis-api/axis-styling/polar-axis-styling/#polar-labels",
+                href: "https://www.scichart.com/documentation/js/v5/2d-charts/axis-api/axis-styling/polar-axis-styling/#polar-labels",
                 title: "This specific page in the JavaScript Polar Label Modes documentation will help you to get started",
                 linkTitle: "JavaScript Polar Label Modes Documentation",
             },

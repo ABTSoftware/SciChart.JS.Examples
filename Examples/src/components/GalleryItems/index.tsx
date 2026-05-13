@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import classes from "./index.scss";
 import { Link } from "react-router";
 import { GalleryItem } from "../../helpers/types/types";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
     examples: GalleryItem[];
@@ -99,7 +99,8 @@ interface ExampleProps {
 
 const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(
     ({ example, index, gridType, setGridType, needsH1 }, ref) => {
-        const framework = useContext(FrameworkContext);
+        const { state } = _useContext();
+        const framework = state.framework;
 
         return (
             <div>

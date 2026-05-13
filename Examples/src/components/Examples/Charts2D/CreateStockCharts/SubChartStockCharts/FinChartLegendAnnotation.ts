@@ -10,6 +10,7 @@ import {
     ISciChartSubSurface,
     EAxisType,
     IndexCoordinateCalculator,
+    DpiHelper,
 } from "scichart";
 
 export type TFinanceLegendTemplate = (legendAnnotation: FinChartLegendAnnotation) => string;
@@ -132,10 +133,13 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
         if (this.template) {
             let index: number = -1;
             if (this.xAxis.type === EAxisType.CategoryAxis) {
-                index = Math.round(xCalc.getDataValue(this.x1));
-            } else if (this.xAxis.type === EAxisType.DiscontinuousDateAxis) {
+                index = Math.round(xCalc.getDataValue(this.x1 * DpiHelper.PIXEL_RATIO));
+            } else if (
+                this.xAxis.type === EAxisType.BaseValueAxis ||
+                this.xAxis.type === EAxisType.DiscontinuousDateAxis
+            ) {
                 const indexCoordCalc = xCalc as IndexCoordinateCalculator;
-                const val = indexCoordCalc.getDataValue(this.x1);
+                const val = indexCoordCalc.getDataValue(this.x1 * DpiHelper.PIXEL_RATIO);
                 index = Math.round(indexCoordCalc.indexCalculator.GetIndex(val));
             }
 

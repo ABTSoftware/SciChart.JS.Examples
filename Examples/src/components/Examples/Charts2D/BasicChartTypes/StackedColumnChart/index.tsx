@@ -41,10 +41,10 @@ export default function StackedColumnChart() {
                         color="primary"
                         aria-label="small outlined button group"
                     >
-                        <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
+                        <ToggleButton value={false}>
                             Stacked&nbsp;mode
                         </ToggleButton>
-                        <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
+                        <ToggleButton value={true}>
                             100%&nbsp;Stacked&nbsp;mode
                         </ToggleButton>
                     </ToggleButtonGroup>
@@ -52,7 +52,7 @@ export default function StackedColumnChart() {
                     <ToggleButtonGroup style={{ marginLeft: "auto" }} className={commonClasses.ToolbarRow} size="small">
                         <ToggleButton
                             value={areDataLabelsVisible}
-                            style={{ color: appTheme.ForegroundColor }}
+                           
                             onClick={handleToggleDataLabels}
                         >
                             {areDataLabelsVisible ? "Hide" : "Show"}&nbsp;Data&nbsp;Labels

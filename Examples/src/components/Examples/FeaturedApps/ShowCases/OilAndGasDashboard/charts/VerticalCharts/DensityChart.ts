@@ -86,7 +86,7 @@ const generateDensityLegend = (
             <div class="color-label" style="background-color: ${appTheme.DensityBackgroundTwo};"></div>
         </div>
         <span class="scichart__legend-line" style="border-top: 2px solid ${appTheme.DensityLegendSeparator}"></span>
-        <div class="legend-text-item" style="color: $theme.LegendTextColor}">
+        <div class="legend-text-item" style="color: ${appTheme.LegendTextColor}">
             <span>${-0.2}</span>
             <span>${"DENSITY"}</span>
             <span>${0.2}</span>

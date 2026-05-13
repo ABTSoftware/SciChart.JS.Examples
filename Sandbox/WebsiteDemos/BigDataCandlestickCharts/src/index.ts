@@ -36,48 +36,32 @@ type priceBar = {
 };
 
 async function loadPriceData(): Promise<priceBar[]> {
-  return new Promise<priceBar[]>((resolve, reject) => {
-    setTimeout(() => {
-      const priceBars: priceBar[] = [];
-      let rowCount = 0;
-
-      // File copied in webpack.config.js
-      Papa.parse('./Bitstamp_BTCUSD_2017_minute.csv', {
-        download: true,
-        step: function(row) {
-          // Skip header rows
-          // Row format: Array (9)
-          // 0 "1514764740" // Unix timestamp
-          // 1 "2017-12-31 23:59:00"
-          // 2 "BTC/USD" // Symbol
-          // 3 "13913.28" // Open
-          // 4 "13913.28" // High
-          // 5 "13867.18" // Low
-          // 6 "13880.00" // Close
-          // 7 "0.59174759" // Volume BTC
-          // 8 "8213.4565492" // Volume USD
-          if (++rowCount > 2) {
-            const rowData = row.data as Array<string>;
-            const priceBar = {
-                date: Number.parseInt(rowData[0]),
-                open: Number.parseFloat(rowData[3]),
-                high: Number.parseFloat(rowData[4]),
-                low: Number.parseFloat(rowData[5]),
-                close: Number.parseFloat(rowData[6]),
-                volume: Number.parseFloat(rowData[8])
-            };
-            if (!Number.isNaN(priceBar.date)) {
-              priceBars.push(priceBar);
-            }
-          }
-        },
-        complete: function() {
-          // CSV Data is in reverse date order
-          resolve(priceBars.reverse());
+  const response = await fetch('https://stagingdemo.scichart.com/fileshare/btc_data/BTC-2021min.csv');
+  const text = await response.text();
+  
+  const priceBars: priceBar[] = [];
+  let rowCount = 0;
+  
+  Papa.parse(text, {
+    step: function(row) {
+      if (++rowCount > 2) {
+        const rowData = row.data as Array<string>;
+        const priceBar = {
+          date: Number.parseInt(rowData[0]),
+          open: Number.parseFloat(rowData[3]),
+          high: Number.parseFloat(rowData[4]),
+          low: Number.parseFloat(rowData[5]),
+          close: Number.parseFloat(rowData[6]),
+          volume: Number.parseFloat(rowData[8])
+        };
+        if (!Number.isNaN(priceBar.date)) {
+          priceBars.push(priceBar);
         }
-      });
-    }, 0);
+      }
+    }
   });
+  
+  return priceBars.reverse();
 }
 
 async function runExample() {
@@ -110,7 +94,7 @@ async function runExample() {
   sciChartSurface.renderableSeries.add(new FastColumnRenderableSeries(wasmContext, { dataSeries: volumeSeries, yAxisId: "volumeYAxis", dataPointWidth: 0.1, strokeThickness: 0 }))
 
   // Add the candlestick series with highest z-index
-  sciChartSurface.renderableSeries.add(new FastCandlestickRenderableSeries(wasmContext, { dataSeries: ohlcDataSeries, strokeUp: "#67BDAF", strokeDown: "#DC7969", brushUp: "#67BDAF77", brushDown: "#DC796977"  }));
+  sciChartSurface.renderableSeries.add(new FastCandlestickRenderableSeries(wasmContext, { dataSeries: ohlcDataSeries, strokeUp: "#67BDAF", strokeDown: "#DC7969", brushUp: "#67BDAF77", brushDown: "#DC796977" }));
 
   // Add a moving average
   const movingAverage50Data = new XyMovingAverageFilter(ohlcDataSeries, { dataSeriesName: "MA (50)", length: 50 });
@@ -168,10 +152,10 @@ async function initSciChart() {
 
   // Add some zoom, pan interaction
   sciChartSurface.chartModifiers.add(
-      new ZoomPanModifier(),
-      new ZoomExtentsModifier(),
-      new MouseWheelZoomModifier(),
-      new LegendModifier({ showCheckboxes: false, showLegend: true })
+    new ZoomPanModifier(),
+    new ZoomExtentsModifier(),
+    new MouseWheelZoomModifier(),
+    new LegendModifier({ showCheckboxes: false, showLegend: true })
   )
 
   // That's it! You just created your first SciChartSurface!

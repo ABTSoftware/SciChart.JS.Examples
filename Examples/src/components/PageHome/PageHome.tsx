@@ -3,13 +3,14 @@ import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import SeoTags from "../SeoTags/SeoTags";
 import { ExampleStrings } from "../Examples/ExampleStrings";
 import classes from "./PageHome.module.scss";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 export const HOME_PAGE_TITLE = "HOMEPAGE";
 
 export default function PageHome() {
-    const framework = React.useContext(FrameworkContext);
+    const { state } = _useContext();
+    const framework = state.framework;
 
     React.useEffect(() => {
         updateGoogleTagManagerPage();

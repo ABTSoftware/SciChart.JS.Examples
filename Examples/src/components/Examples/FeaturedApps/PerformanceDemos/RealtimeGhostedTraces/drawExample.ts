@@ -37,12 +37,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             visibleRange: new NumberRange(0, 900),
             isInnerAxis: true,
             axisAlignment: EAxisAlignment.Top,
-            labelStyle: {
-                color: appTheme.PaleSkyBlue,
-            },
             axisBorder: {
                 borderTop: 1,
-                color: appTheme.VividSkyBlue,
             },
         })
     );
@@ -52,12 +48,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             visibleRange: new NumberRange(-300, 300),
             isInnerAxis: true,
             axisAlignment: EAxisAlignment.Left,
-            labelStyle: {
-                color: appTheme.PaleSkyBlue,
-            },
             axisBorder: {
                 borderLeft: 1,
-                color: appTheme.VividSkyBlue,
             },
         })
     );
@@ -74,12 +66,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             range: 0,
             intensity: 0.5,
         });
-        const lineSeries = new FastLineRenderableSeries(wasmContext, { stroke, effect });
-        lineSeries.strokeThickness = 3;
-        lineSeries.opacity = opacity;
-        sciChartSurface.renderableSeries.add(lineSeries);
         const { xValues, yValues } = ExampleDataProvider.getNoisySinewave(500, 900, 7, amplitude, 30);
-        lineSeries.dataSeries = new XyDataSeries(wasmContext, { xValues, yValues });
+        const lineSeries = new FastLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+            stroke,
+            effect,
+            strokeThickness: 3,
+            opacity,
+        });
+        sciChartSurface.renderableSeries.add(lineSeries);
         return lineSeries;
     };
 

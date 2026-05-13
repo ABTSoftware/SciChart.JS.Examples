@@ -32,7 +32,7 @@ export const drawExample = async (
 ) => {
     // Create the SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
-        theme: appTheme.SciChartJsTheme,
+        // theme: appTheme.SciChartJsTheme,
     });
 
     // Create an X,Y Axis

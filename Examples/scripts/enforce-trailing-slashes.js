@@ -26,6 +26,8 @@ function processFile(filePath) {
     if (newContent !== content) {
         fs.writeFileSync(filePath, newContent, "utf8");
         console.log("- Updated:", filePath);
+    } else {
+        // console.log("- No changes needed:", filePath);
     }
 }
 
@@ -56,6 +58,6 @@ function walk(dir) {
 }
 
 console.log("- Scanning `/examples` for Markdown demo links without trailing slashes...");
-const targetDir = path.join(__dirname, "src", "components", "Examples");
+const targetDir = path.join(__dirname, "../src", "components", "Examples");
 walk(targetDir);
 console.log("Done! All Markdown demo links are now slash-safe.");

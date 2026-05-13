@@ -220,7 +220,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             style: {
                 fontSize: 12,
             },
-            color: "white",
+            color: appTheme.ForegroundColor,
         }),
     });
 

@@ -63,7 +63,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             yValues,
             dataSeriesName: "Original Data",
         }),
-        stroke: "white",
+        stroke: "#CCCCCC",
         strokeThickness: 3,
     });
 

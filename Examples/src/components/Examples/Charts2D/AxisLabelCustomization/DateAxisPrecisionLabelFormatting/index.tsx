@@ -36,13 +36,13 @@ const ChartHeader = () => {
                         onChange={handleToggle}
                         sx={{
                             "& .MuiSwitch-switchBase.Mui-checked": {
-                                color: appTheme.ForegroundColor,
+                                color: "#FFFFFF",
                                 "&:hover": {
                                     backgroundColor: "rgba(255, 255, 255, 0.08)",
                                 },
                             },
                             "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
-                                backgroundColor: appTheme.ForegroundColor,
+                                backgroundColor: "#FFFFFF",
                                 opacity: 0.5,
                             },
                         }}
@@ -50,7 +50,7 @@ const ChartHeader = () => {
                 }
                 label='Use "date-fns" for X-Axis format'
                 sx={{
-                    color: appTheme.ForegroundColor,
+                    color: "#FFFFFF",
                     userSelect: "none",
                     whiteSpace: "nowrap",
                 }}

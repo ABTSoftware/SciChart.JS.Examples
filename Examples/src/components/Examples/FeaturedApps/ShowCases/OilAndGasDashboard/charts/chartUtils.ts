@@ -109,31 +109,32 @@ export function generateDefaultLegend(sciChartSurface: SciChartSurface, typeColo
         // console.log(sciChartSurface.renderableSeries.getById(item.id).getDataSeriesName());
 
         const { id, color, name } = item;
-        const bg = `background: radial-gradient(circle, rgb(60, 60, 63) 0%, rgb(28, 28, 30) 100%);`;
+        const legendTextColor = appTheme.LegendTextColor;
+        const bg = `background: ${appTheme.SidebarBackground};`;
         let str: string = ``;
         str += `
             <span style="display: block; padding-left: 42.5px">
                 <span class="scichart__legend-item scichart__legend-item-simple" style="padding-top: 15px">
-                    <label for="${id}" style="color: ${color};">${name}</label>
+                    <label for="${id}" style="color: ${legendTextColor};">${name}</label>
                     <span class="scichart__legend-line" style="border-top: 2px solid ${color}"></span>
-                    <span class="scichart__legend-item-justify" style="color: ${color}">
+                    <span class="scichart__legend-item-justify" style="color: ${legendTextColor}">
                         <span>${Math.random().toFixed(2)}</span>
                         <span>${Math.random().toFixed(2)}</span>
                         <span>${Math.random().toFixed(2)}</span>
                     </span>
                 </span>
                 <span class="scichart__legend-item" style="background-color: ${typeColor}; padding-top: 10px;">
-                    <label for="${id}" style="color: ${color}; ${bg}; padding: 4px 10px; display: inline-block;">${name}</label>
+                    <label for="${id}" style="color: ${legendTextColor}; ${bg}; padding: 4px 10px; display: inline-block;">${name}</label>
                 </span>
-                <span class="scichart__legend-item-justify" style="color: ${color}">
+                <span class="scichart__legend-item-justify" style="color: ${legendTextColor}">
                     <span>${Math.random().toFixed(2)}</span>
                     <span>${Math.random().toFixed(2)}</span>
                     <span>${Math.random().toFixed(2)}</span>
                 </span>
                 <span class="scichart__legend-item scichart__legend-item-simple">
-                    <label for="${id}" style="color: ${color};">${name}</label>
+                    <label for="${id}" style="color: ${legendTextColor};">${name}</label>
                     <span class="scichart__legend-line" style="border-top: 2px dashed ${color}"></span>
-                    <span class="scichart__legend-item-justify" style="color: ${color}">
+                    <span class="scichart__legend-item-justify" style="color: ${legendTextColor}">
                         <span>${Math.random().toFixed(2)}</span>
                         <span>${Math.random().toFixed(2)}</span>
                         <span>${Math.random().toFixed(2)}</span>

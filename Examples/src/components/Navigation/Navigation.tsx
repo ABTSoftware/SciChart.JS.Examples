@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useRef } from "react";
+import { FC } from "react";
 import List from "@mui/material/List";
 import { useNavigate, useLocation } from "react-router";
 import {
@@ -11,7 +11,7 @@ import {
 } from "../AppRouter/examples";
 import ListItemsBlock from "./ListItemsBlock";
 import classes from "./Navigation.module.scss";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
     onExpandClick: (id: string) => void;
@@ -24,7 +24,8 @@ const Navigation: FC<TProps> = (props) => {
     const { onExpandClick, testIsOpened, toggleDrawer, mostVisibleCategory } = props;
     const navigate = useNavigate();
     const location = useLocation();
-    const framework = useContext(FrameworkContext);
+    const { state } = _useContext();
+    const framework = state.framework;
     const historyPushPath = (path: string) => {
         if (!path) return;
         navigate(path);

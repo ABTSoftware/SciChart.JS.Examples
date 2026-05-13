@@ -23,7 +23,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Demonstrates how to create a React Candlestick Chart using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how to create a React Candlestick Chart using SciChart.js, high performance [React Charts](https://www.scichart.com/react-charts/).",
                 title: "React Candlestick Chart",
                 pageTitle: "React Candlestick Chart | Online JavaScript Chart Examples",
                 metaDescription:

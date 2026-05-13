@@ -133,7 +133,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         y1: 4.2,
         fontSize: 22,
         text: "Drag the lines!",
-        textColor: "White",
+        textColor: appTheme.TextColor,
     });
     // Add a horizontal threshold at Y=5
     const horizontalLine = new HorizontalLineAnnotation({

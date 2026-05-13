@@ -23,7 +23,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Demonstrates how to visualize **LiDAR UAV Data** from the Defra survey using SciChart.js. A 1km x 1km slice of London is visualised as a 3D point-cloud with contour map overlaid. A heatmap legend on the right indicates the heightmap.",
+                    "This [React Charts](https://www.scichart.com/react-charts/) demo visualizes a 1km x 1km slice of London with a point cloud overlaid by a contour map, and it includes a dynamic heatmap legend to indicate elevation values.",
                 title: "LiDAR 3D Point Cloud of Geospatial Data",
                 pageTitle: "LiDAR 3D Point Cloud of Geospatial Data",
                 metaDescription:

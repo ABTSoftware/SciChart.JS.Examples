@@ -625,8 +625,8 @@ export default function SubChartStockCharts() {
                 id={dividerId1}
                 style={{
                     width: "100%",
-                    height: "6px",
-                    backgroundColor: "#2B2D70",
+                    height: "2px",
+                    backgroundColor: "var(--border-color)",
                     cursor: "row-resize",
                     position: "absolute",
                     zIndex: 1,
@@ -644,8 +644,8 @@ export default function SubChartStockCharts() {
                 id={dividerId2}
                 style={{
                     width: "100%",
-                    height: "6px",
-                    backgroundColor: "#2B2D70",
+                    height: "2px",
+                    backgroundColor: "var(--border-color)",
                     cursor: "row-resize",
                     position: "absolute",
                     zIndex: 1,

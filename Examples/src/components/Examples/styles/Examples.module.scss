@@ -65,7 +65,7 @@ html {
 
     display: flex;
     flex-direction: column;
-    background: #14233c; // DarkIndigo
+    background: var(--bg-chart);
 }
 
 .ChartWithToolbar > div {
@@ -129,11 +129,20 @@ html {
     // flex-wrap: wrap;
     flex: none;
     padding: 0px;
-    color: base.$color-primary-white;
-    background: #14233c; // DarkIndigo
+    color: #ffffff;
+    background: var(--bg-toolbars) !important;
     font-size: 1em;
     text-align: center;
     max-width: 100%;
+
+    > * {
+        background: var(--bg-toolbars) !important;
+    }
+
+    span,
+    p {
+        color: #ffffff;
+    }
 
     // TODO consider whether this should be applied globally and what would be a proper size
     @media only screen and (max-width: 768px) {
@@ -142,6 +151,10 @@ html {
 
     .ToggleButtonGroup {
         font-size: inherit;
+
+        button {
+            color: #ffffff !important;
+        }
     }
 
     button {
@@ -172,7 +185,8 @@ html {
 
 .Notification {
     font-size: inherit;
-    padding: 0.5em;
+    background: var(--bg-toolbars) !important;
+    color: #ffffff;
 
     .NotificationTitle {
         font-size: 1.2em;
@@ -181,10 +195,12 @@ html {
 
 /////*****ExamplesRoot*****/////
 .ExamplesRoot {
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     overflow: hidden;
     padding: 0;
     margin: 0;
+    background: var(--bg-chart) !important;
 
     .SciChartLogo {
         text-align: right;
@@ -282,13 +298,13 @@ html {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    border-left: 1px solid #364ba0;
+    border-left: 1px solid var(--border-color);
     padding: 6px;
     height: 25%;
     width: 100%;
     line-height: 1.4;
     background-color: black;
-    border-bottom: 1px solid #364ba0;
+    border-bottom: 1px solid var(--border-color);
     //@include sm {
     //    height: auto;
     //}

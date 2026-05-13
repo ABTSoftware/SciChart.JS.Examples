@@ -39,12 +39,8 @@ export default function HighPerformanceScatterCursor() {
                     color="primary"
                     aria-label="Cursor rendering mode (SVG or Native)"
                 >
-                    <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
-                        SVG
-                    </ToggleButton>
-                    <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
-                        Native
-                    </ToggleButton>
+                    <ToggleButton value={true}>SVG</ToggleButton>
+                    <ToggleButton value={false}>Native</ToggleButton>
                 </ToggleButtonGroup>
 
                 <ToggleButtonGroup
@@ -55,7 +51,7 @@ export default function HighPerformanceScatterCursor() {
                     color="primary"
                     aria-label="Choose Cursor or Rollover"
                 >
-                    <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
+                    <ToggleButton value={true}>
                         <svg
                             style={{ width: 32, height: 32 }}
                             xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +78,7 @@ export default function HighPerformanceScatterCursor() {
                         </svg>
                         &nbsp; Cursor
                     </ToggleButton>
-                    <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
+                    <ToggleButton value={false}>
                         <svg
                             style={{ width: 32, height: 32 }}
                             xmlns="http://www.w3.org/2000/svg"

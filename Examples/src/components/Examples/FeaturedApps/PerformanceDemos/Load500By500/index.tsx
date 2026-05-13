@@ -49,7 +49,10 @@ export default function Load500By500() {
                             controls.stopUpdate();
                         }}
                     />
-                    <div className={commonClasses.ToolbarRow} style={{ gap: "0px", paddingRight: "0px" }}>
+                    <div
+                        className={commonClasses.ToolbarRow}
+                        style={{ gap: "0px", paddingRight: "0px", borderTop: "1px solid var(--border-color)" }}
+                    >
                         <div
                             style={{
                                 display: "flex",
@@ -75,20 +78,17 @@ export default function Load500By500() {
                                 onClick={() => {
                                     controlsRef.current.reloadOnce();
                                 }}
-                                style={{ color: appTheme.ForegroundColor }}
                                 title="Reload Test"
                             >
                                 <RefreshIcon />
                             </Button>
                         </div>
-                        <div style={{ width: "100%" }}>
+                        <div style={{ width: "100%", borderLeft: "1px solid var(--border-color)" }}>
                             <Alert
                                 key="0"
                                 className={commonClasses.Notification}
                                 sx={{
-                                    backgroundColor: appTheme.Indigo,
-                                    color: appTheme.ForegroundColor,
-
+                                    color: "#FFFFFF",
                                     "& .MuiAlert-message": {
                                         flex: "auto",
                                     },

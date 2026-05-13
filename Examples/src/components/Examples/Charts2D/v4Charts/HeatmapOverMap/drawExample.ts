@@ -101,8 +101,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 xValues: xVals,
                 yValues: yVals,
             }),
-            stroke: "#ffffff",
-            strokeThickness: 2,
+            stroke: appTheme.ForegroundColor,
+            strokeThickness: 1,
             opacity: 1,
         });
     });
@@ -129,17 +129,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new UniformHeatmapRenderableSeries(wasmContext, {
             dataSeries: heatmapDataSeries,
             useLinearTextureFiltering: false,
-            opacity: 0.5,
+            opacity: 0.8,
             colorMap: new HeatmapColorMap({
                 minimum: colorPaletteMin,
                 maximum: colorPaletteMax,
                 gradientStops: [
                     { offset: 1, color: "#FF0000" }, // Red - highest magnitude
-                    { offset: 0.8, color: "#FF4500" }, // Orange-red
-                    { offset: 0.6, color: "#FFA500" }, // Orange
-                    { offset: 0.4, color: "#FFFF00" }, // Yellow
-                    { offset: 0.2, color: "#90EE90" }, // Light green
-                    { offset: 0, color: "#000000" }, // Black - no activity
+                    { offset: 0.8, color: "#DD4500" }, // Orange-red
+                    { offset: 0.6, color: "#DDA500" }, // Orange
+                    { offset: 0.4, color: "#CCCC00" }, // Yellow
+                    { offset: 0.2, color: "#90CE60" }, // Light green
+                    { offset: 0, color: appTheme.Background }, // background color - no activity
                 ],
             }),
         })
@@ -189,11 +189,11 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
             maximum: 10,
             gradientStops: [
                 { offset: 1, color: "#FF0000" }, // Red - highest magnitude
-                { offset: 0.8, color: "#FF4500" }, // Orange-red
-                { offset: 0.6, color: "#FFA500" }, // Orange
-                { offset: 0.4, color: "#FFFF00" }, // Yellow
-                { offset: 0.2, color: "#90EE90" }, // Light green
-                { offset: 0, color: "#0001FF" }, // Blue - no activity
+                { offset: 0.8, color: "#DD4500" }, // Orange-red
+                { offset: 0.6, color: "#DDA500" }, // Orange
+                { offset: 0.4, color: "#CCCC00" }, // Yellow
+                { offset: 0.2, color: "#90CE60" }, // Light green
+                { offset: 0, color: appTheme.Background }, // background color - no activity
             ],
         },
     });

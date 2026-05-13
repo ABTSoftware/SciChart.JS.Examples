@@ -23,7 +23,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "For an example that demonstrates how create a **React Pie Chart**, our demo code teaches you how to do this with SciChart's JavaScript Charting Library.",
+                    "For an example that demonstrates how create a React Pie Chart, our demo code teaches you how to do this with SciChart's React Chart Library.",
                 title: "React Pie Chart",
                 pageTitle: "React Pie Chart",
                 metaDescription:

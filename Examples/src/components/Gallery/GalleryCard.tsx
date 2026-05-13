@@ -1,8 +1,8 @@
-import { FC, useContext } from "react";
-import { useNavigate, Link } from "react-router";
+import { FC } from "react";
+import { Link } from "react-router";
 import classes from "./Gallery.module.scss";
 import { Tooltip } from "@mui/material";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
     imgPath: string;
@@ -12,9 +12,8 @@ type TProps = {
 };
 
 const GalleryCard: FC<TProps> = (props) => {
-    const framework = useContext(FrameworkContext);
-    const history = useNavigate();
-
+    const { state } = _useContext();
+    const framework = state.framework;
     const { imgPath, title, seoTitle, examplePath } = props;
 
     return (

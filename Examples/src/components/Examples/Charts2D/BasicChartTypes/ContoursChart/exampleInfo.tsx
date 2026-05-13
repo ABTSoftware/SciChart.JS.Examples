@@ -23,7 +23,7 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Our Contours Chart example demonstrates how to create a **React Contour-map Chart** using our powerful JavaScript Chart Library.",
+                    "Our Contours Chart example demonstrates how to create a React Contour-map Chart using our powerful React Chart Library.",
                 title: "React Heatmap Chart With Contours Example",
                 pageTitle: "React Heatmap Chart With Contours",
                 metaDescription:

@@ -72,9 +72,6 @@ export const getChartsInitializationAPI = () => {
             drawMinorTickLines: false,
             drawMajorTickLines: false,
             labelPrecision: 0,
-            labelStyle: {
-                color: "#FFFFFF",
-            },
         });
         angularYAxis.labelProvider.formatLabel = (value: number) => {
             if (columnYValues.includes(value) || value === 0) {
@@ -94,7 +91,7 @@ export const getChartsInitializationAPI = () => {
                 y2: yVal,
 
                 fill: GRADIENT_COLROS[i],
-                strokeThickness: 2,
+                strokeThickness: 1,
             });
             sciChartSurface.annotations.add(highlightArc);
         });
@@ -159,9 +156,6 @@ export const getChartsInitializationAPI = () => {
             drawMinorTickLines: false,
             drawMajorTickLines: false,
             labelPrecision: 0,
-            labelStyle: {
-                color: "#FFFFFF",
-            },
         });
         sciChartSurface.xAxes.add(angularXAxis);
 
@@ -300,9 +294,6 @@ export const getChartsInitializationAPI = () => {
 
             isInnerAxis: true,
             labelPrecision: 0,
-            labelStyle: {
-                color: "white",
-            },
         });
         sciChartSurface.yAxes.add(psiAxis, barAxis);
 
@@ -396,7 +387,6 @@ export const getChartsInitializationAPI = () => {
 
             polarLabelMode: EPolarLabelMode.Parallel,
             labelStyle: {
-                color: "#FFFFFF",
                 padding: new Thickness(5, 5, 5, 5),
             },
 
@@ -535,9 +525,6 @@ export const getChartsInitializationAPI = () => {
             drawMinorTickLines: false,
             drawMajorTickLines: false,
             labelPrecision: 0,
-            labelStyle: {
-                color: "#FFFFFF",
-            },
         });
         sciChartSurface.yAxes.add(angularYAxis);
 
@@ -682,7 +669,6 @@ export const getChartsInitializationAPI = () => {
             isInnerAxis: true,
             labelPrecision: 0,
             labelStyle: {
-                color: "white",
                 fontSize: 25,
                 padding: Thickness.fromNumber(8),
             },

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">RTL SDR app logo</title>
+  <desc id="desc">A rounded square logo with radio waves, a tuned frequency marker, and a spectrum display.</desc>
+  <defs>
+    <linearGradient id="bg" x1="64" y1="40" x2="448" y2="472" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0c1b2e"/>
+      <stop offset="0.55" stop-color="#08111d"/>
+      <stop offset="1" stop-color="#04080f"/>
+    </linearGradient>
+    <radialGradient id="cyanGlow" cx="0" cy="0" r="1" gradientTransform="translate(160 132) rotate(44) scale(206 192)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#34d6ff" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#34d6ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="greenGlow" cx="0" cy="0" r="1" gradientTransform="translate(360 382) rotate(135) scale(220 196)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7de36c" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#7de36c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ring" x1="148" y1="132" x2="364" y2="348" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3ae3ff"/>
+      <stop offset="0.5" stop-color="#71d7ff"/>
+      <stop offset="1" stop-color="#8ee86b"/>
+    </linearGradient>
+    <linearGradient id="marker" x1="256" y1="112" x2="256" y2="378" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffe58b"/>
+      <stop offset="1" stop-color="#ffb347"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="92" y1="340" x2="420" y2="444" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0d2138"/>
+      <stop offset="1" stop-color="#081321"/>
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+
+  <rect x="16" y="16" width="480" height="480" rx="108" fill="url(#bg)"/>
+  <rect x="16" y="16" width="480" height="480" rx="108" fill="url(#cyanGlow)"/>
+  <rect x="16" y="16" width="480" height="480" rx="108" fill="url(#greenGlow)"/>
+  <rect x="32" y="32" width="448" height="448" rx="92" fill="none" stroke="#94c5ff" stroke-opacity="0.14"/>
+
+  <circle cx="256" cy="224" r="126" fill="none" stroke="#17324f" stroke-width="22"/>
+  
+  <circle cx="256" cy="224" r="90" fill="#07101d" stroke="#8accff" stroke-opacity="0.14" stroke-width="1.5"/>
+
+  
+  
+  
+  
+
+  
+  
+  
+  <circle cx="256" cy="224" r="7" fill="#0b1624"/>
+
+  <rect x="92" y="338" width="328" height="104" rx="28" fill="url(#panel)" stroke="#73aae0" stroke-opacity="0.22" stroke-width="2"/>
+  <path d="M112 372H400" stroke="#aad2ff" stroke-opacity="0.16" stroke-width="2" stroke-dasharray="6 12"/>
+  <path d="M112 398H400" stroke="#aad2ff" stroke-opacity="0.11" stroke-width="2" stroke-dasharray="6 12"/>
+
+  <rect x="118" y="390" width="14" height="28" rx="7" fill="#1f6cff"/>
+  <rect x="144" y="376" width="14" height="42" rx="7" fill="#2e84ff"/>
+  <rect x="170" y="360" width="14" height="58" rx="7" fill="#2eb1ff"/>
+  <rect x="196" y="342" width="14" height="76" rx="7" fill="#35d6ff"/>
+  <rect x="222" y="326" width="14" height="92" rx="7" fill="#57e8d6"/>
+  <rect x="248" y="304" width="16" height="114" rx="8" fill="#ffe58b"/>
+  <rect x="276" y="330" width="14" height="88" rx="7" fill="#88e56c"/>
+  <rect x="302" y="348" width="14" height="70" rx="7" fill="#4cd479"/>
+  <rect x="328" y="364" width="14" height="54" rx="7" fill="#29b46d"/>
+  <rect x="354" y="380" width="14" height="38" rx="7" fill="#1e8f6c"/>
+  <rect x="380" y="392" width="14" height="26" rx="7" fill="#156d65"/>
+
+  
+  
+  
+</svg>

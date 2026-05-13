@@ -3,6 +3,15 @@ import { SciChartJSDarkv2Theme } from "scichart/Charting/Themes/SciChartJSDarkv2
 import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
 import { SciChartJsNavyTheme } from "scichart/Charting/Themes/SciChartJsNavyTheme";
 
+const getCssColor = (cssVar: string, fallback: string): string => {
+    if (typeof document === "undefined") {
+        return fallback;
+    }
+
+    const cssValue = getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim();
+    return cssValue || fallback;
+};
+
 export interface AppThemeBase {
     SciChartJsTheme: ThemeProvider;
 
@@ -78,9 +87,15 @@ export class App2022BrandTheme implements AppThemeBase {
     SciChartJsTheme = new SciChartJsNavyTheme();
 
     // general colours
-    LegendTextColor = "LightGray";
-    SidebarBackground = this.SciChartJsTheme.sciChartBackground;
-    SidebarTextColor = "#FFF";
+    get LegendTextColor() {
+        return getCssColor("--text", "LightGray");
+    }
+    get SidebarBackground() {
+        return getCssColor("--bg-darker", this.SciChartJsTheme.sciChartBackground);
+    }
+    get SidebarTextColor() {
+        return getCssColor("--text", "#FFF");
+    }
 
     // Charts grid colours
     ChartsGridStroke1 = "#AE408E";
@@ -151,9 +166,15 @@ export class AppDarkTheme implements AppThemeBase {
     SciChartJsTheme = new SciChartJSDarkv2Theme();
 
     // general colours
-    LegendTextColor = "LightGray";
-    SidebarBackground = this.SciChartJsTheme.sciChartBackground;
-    SidebarTextColor = "#FFF";
+    get LegendTextColor() {
+        return getCssColor("--text", "LightGray");
+    }
+    get SidebarBackground() {
+        return getCssColor("--bg-darker", this.SciChartJsTheme.sciChartBackground);
+    }
+    get SidebarTextColor() {
+        return getCssColor("--text", "#FFF");
+    }
 
     // Charts grid colours
     ChartsGridStroke1 = "#d52aa7";
@@ -224,9 +245,15 @@ export class AppLightTheme implements AppThemeBase {
     SciChartJsTheme = new SciChartJSLightTheme();
 
     // general colours
-    LegendTextColor = "#222";
-    SidebarBackground = this.SciChartJsTheme.sciChartBackground;
-    SidebarTextColor = "#222";
+    get LegendTextColor() {
+        return getCssColor("--text", "#222");
+    }
+    get SidebarBackground() {
+        return getCssColor("--bg-darker", this.SciChartJsTheme.sciChartBackground);
+    }
+    get SidebarTextColor() {
+        return getCssColor("--text", "#222");
+    }
 
     // Charts grid colours
     ChartsGridStroke1 = "#DF69A8";

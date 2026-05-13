@@ -62,7 +62,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             fontFamily: "Arial",
             padding: new Thickness(0, 0, 2, 0), // lift label above the top by 2 pixels
         },
-        color: "white",
         positionMode: EColumnDataLabelPosition.Outside,
         verticalTextPosition: EVerticalTextPosition.Center,
         precision: 0,
@@ -73,7 +72,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const rendSeries1 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: tomatoesData, dataSeriesName: "Tomato" }),
         fill: appTheme.VividPink,
-        stroke: "white",
         stackedGroupId: "Group0",
         dataLabels,
     });
@@ -81,7 +79,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: pepperData, dataSeriesName: "Pepper" }),
         fill: appTheme.VividOrange,
-        stroke: "white",
         stackedGroupId: "Group1",
         dataLabels,
     });
@@ -89,7 +86,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: cucumberData, dataSeriesName: "Cucumber" }),
         fill: appTheme.VividSkyBlue,
-        stroke: "white",
         stackedGroupId: "Group2",
         dataLabels,
     });

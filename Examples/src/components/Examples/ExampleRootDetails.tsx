@@ -1,4 +1,4 @@
-import { useContext, FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 import SeoTags from "../SeoTags/SeoTags";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
@@ -6,8 +6,8 @@ import { getExampleComponent } from "../AppRouter/getExampleComponent";
 import { ExampleStrings } from "./ExampleStrings";
 import commonClasses from "./styles/Examples.module.scss";
 import { GalleryItem } from "../../helpers/types/types";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
     // example: () => JSX.Element;
@@ -17,7 +17,8 @@ type TProps = {
 
 const ExamplesRootDetails: FC<TProps> = (props) => {
     const { examplePage, seeAlso } = props;
-    const framework = useContext(FrameworkContext);
+    const { state } = _useContext();
+    const framework = state.framework;
     const ExampleComponent = getExampleComponent(examplePage.id);
 
     const seoPrefixTitle = getFrameworkContent(examplePage.pageTitle, framework);

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval'; worker-src blob:; connect-src 'self' blob:;"
+    />
+    <title>SciChart Simple Server Licensing (Electron)</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 20px;
+        background: #1a1a2e;
+        color: #eee;
+      }
+      code {
+        background: #333;
+        padding: 2px 6px;
+        border-radius: 3px;
+      }
+      #scichart-root {
+        width: 100%;
+        height: 500px;
+        margin-top: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>SciChart Simple Server Licensing (Electron)</h2>
+    <p>
+      The license token is generated in the <strong>main process</strong> via
+      IPC. The Server Secret never appears in renderer code or DevTools.
+    </p>
+    <div id="scichart-root"></div>
+    <script src="bundle.js"></script>
+  </body>
+</html>

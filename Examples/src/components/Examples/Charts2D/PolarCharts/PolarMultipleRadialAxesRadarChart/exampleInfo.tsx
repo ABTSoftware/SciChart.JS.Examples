@@ -38,7 +38,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/v4/2d-charts/chart-types/polar-radar-chart/",
+                href: "https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/polar-radar-chart/",
                 title: "This specific page in the JavaScript Polar Radar Chart with Multiple Radial Axes documentation will help you to get started",
                 linkTitle: "JavaScript Polar Radar Chart with Multiple Radial Axes Documentation",
             },

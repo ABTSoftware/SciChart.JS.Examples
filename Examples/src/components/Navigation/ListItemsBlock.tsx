@@ -1,12 +1,12 @@
-import { FC, Fragment, useContext, useEffect, useRef, useState } from "react";
+import { FC, Fragment, useEffect, useRef, useState } from "react";
 import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
 import { TMenuItem } from "../AppRouter/examples";
 import MenuListItemText from "../../helpers/shared/MenuListItemText/MenuListItemText";
 import classes from "./ListItemsBlock.module.scss";
 import ListItemCollapseArrowIcon from "./ListItemCollapseArrowIcon";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { getFrameworkContent, useExampleRouteParams } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
     onExpandClick: (id: string) => void;
@@ -19,7 +19,8 @@ type TProps = {
 };
 
 const ListItemsBlock: FC<TProps> = (props) => {
-    const selectedFramework = useContext(FrameworkContext);
+    const { state } = _useContext();
+    const selectedFramework = state.framework;
     const match = useExampleRouteParams();
     const { onExpandClick, checkIsOpened, historyPushPath, title, menuItems, menuItemsId, mostVisibleCategory } = props;
 

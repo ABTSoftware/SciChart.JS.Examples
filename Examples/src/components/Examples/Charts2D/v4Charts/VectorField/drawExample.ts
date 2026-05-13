@@ -45,6 +45,11 @@ class LineSegmentPaletteProvider implements IStrokePaletteProvider {
     }
 }
 
+/**
+ * Format function
+ */
+const fFn = (v: number) => v.toFixed(1);
+
 // Tooltip Data Template
 const tooltipDataTemplate: TCursorTooltipDataTemplate = (seriesInfos: SeriesInfo[]) => {
     const valuesWithLabels: string[] = [];
@@ -53,7 +58,7 @@ const tooltipDataTemplate: TCursorTooltipDataTemplate = (seriesInfos: SeriesInfo
         if (xySI.isWithinDataBounds) {
             if (!isNaN(xySI.yValue) && xySI.isHit) {
                 valuesWithLabels.push(
-                    `start (${xySI.xValue},${xySI.yValue}) end (${xySI.point2xValue},${xySI.point2yValue})`
+                    `start (${fFn(xySI.xValue)},${fFn(xySI.yValue)}) end (${fFn(xySI.point2xValue)},${fFn(xySI.point2yValue)})`
                 );
             }
         }

@@ -36,12 +36,8 @@ export default function DiscontinuousDateAxisComparisonExample() {
                     color="primary"
                     aria-label="axis settings toggle"
                 >
-                    <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
-                        Default axis settings
-                    </ToggleButton>
-                    <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
-                        Custom LabelProvider and explicit tick delta
-                    </ToggleButton>
+                    <ToggleButton value={false}>Default axis settings</ToggleButton>
+                    <ToggleButton value={true}>Custom LabelProvider and explicit tick delta</ToggleButton>
                 </ToggleButtonGroup>
             </div>
             <div

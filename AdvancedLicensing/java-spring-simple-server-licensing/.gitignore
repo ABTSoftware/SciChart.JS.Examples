@@ -1,0 +1,12 @@
+target/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+node_modules/
+src/main/resources/static/bundle.js
+src/main/resources/static/*.wasm
+src/main/resources/static/*.data
+src/main/resources/static/*.js
+src/main/resources/static/*.mjs

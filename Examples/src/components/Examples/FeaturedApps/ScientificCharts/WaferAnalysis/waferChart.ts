@@ -112,7 +112,7 @@ class WaferRangeSelectionModifier extends DataPointSelectionModifier {
     public setColFilter: Dispatch<[number, number]>;
     private isFiltered: boolean = false;
 
-    protected selectManyPoints(rect: Rect, selectionMode: ESelectionMode) {
+    protected selectManyPoints(rect: Rect, selectionMode: ESelectionMode): boolean {
         if (this.parentSurface && this.setRowFilter && this.setColFilter) {
             const rs = this.getIncludedRenderableSeries()[0];
 
@@ -140,12 +140,14 @@ class WaferRangeSelectionModifier extends DataPointSelectionModifier {
             this.setColFilter([leftXData, rightXData]);
             this.isFiltered = true;
         }
+        return true;
     }
 
-    protected selectSinglePoint(point: Point, selectionMode: ESelectionMode): void {
+    protected selectSinglePoint(point: Point, selectionMode: ESelectionMode): boolean {
         this.setRowFilter(undefined);
         this.setColFilter(undefined);
         this.isFiltered = false;
+        return true;
     }
 
     public modifierMouseUp(args: ModifierMouseArgs): void {
@@ -222,7 +224,7 @@ export const createInitWaferChart =
         }));
         const legend = new ManualLegend(
             {
-                textColor: appTheme.ForegroundColor,
+                textColor: "var(--text)",
                 backgroundColor: appTheme.SciChartJsTheme.loadingAnimationBackground + "CC",
                 items: legendItems,
                 orientation: ELegendOrientation.Horizontal,

@@ -55,7 +55,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             isInnerAxis: true, // required for central axis
             axisAlignment: EAxisAlignment.Top,
             labelStyle: {
-                color: appTheme.PaleSkyBlue,
+                color: appTheme.TextColor,
             },
             axisBorder: {
                 borderTop: 1,
@@ -70,7 +70,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             isInnerAxis: true, // required for central axis
             axisAlignment: EAxisAlignment.Left,
             labelStyle: {
-                color: appTheme.PaleSkyBlue,
+                color: appTheme.TextColor,
             },
             axisBorder: {
                 borderLeft: 1,

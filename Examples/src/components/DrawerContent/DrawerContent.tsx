@@ -1,16 +1,16 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Navigation from "../Navigation/Navigation";
 import { Link } from "react-router";
 import classes from "./DrawerContent.module.scss";
-import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import Search from "../Search/Search";
 import { EPageFramework } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { useMediaQuery } from "@mui/material";
 import { Theme } from "@mui/material/styles";
 import { TExamplePage } from "../AppRouter/examplePages";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 // tslint:disable-next-line:no-var-requires
 const APP_VERSION = require("../../../package.json").dependencies.scichart;
@@ -61,7 +61,8 @@ const FrameworkSVG = {
 };
 
 const DrawerContent: FC<TProps> = (props) => {
-    const framework = useContext(FrameworkContext);
+    const { state } = _useContext();
+    const framework = state.framework;
     const { testIsOpened, toggleOpenedMenuItem, toggleDrawer, currentExample } = props;
 
     const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
@@ -80,11 +81,12 @@ const DrawerContent: FC<TProps> = (props) => {
                             to={currentExample ? `${fw}/${currentExample.path}` : `/${fw}`}
                         >
                             {FrameworkSVG[fw]}
+                            <label style={{ display: "none" }}>Framework: {fw}</label>
                         </Link>
                     ))}
                 </div>
             </div>
-            {(isMedium || true) && <Divider sx={{ backgroundColor: "var(--border-color)" }} />}
+            {(isMedium || true) && <Divider />}
             {(isMedium || true) && <Search />}
             <Navigation
                 testIsOpened={testIsOpened}

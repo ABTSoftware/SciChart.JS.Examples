@@ -53,7 +53,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             strokeDashArray: [5, 5],
         },
         labelStyle: {
-            color: EColor.White,
             fontSize: 16,
         },
         drawLabels: false,
@@ -70,7 +69,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labels: LABELS,
         labelStyle: {
             fontSize: 16,
-            color: EColor.White,
         },
         majorGridLineStyle: {
             color: EColor.BackgroundColor,
