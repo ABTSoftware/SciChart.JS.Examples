@@ -11,8 +11,8 @@ import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMous
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
 import { EExecuteOn } from "scichart/types/ChartModifiers/ExecuteOn";
-import { EAnnotationType } from "scichart/Charting/Visuals/Annotations/IAnnotation";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import { EAnnotationType } from "scichart/Charting/Visuals/Annotations/types/EAnnotationType";
+import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/types/ECoordinateMode";
 
 // ── Shared helper ─────────────────────────────────────────────────────────────
 // Computes the centre and radius of the VSWR circle in screen pixel space.
