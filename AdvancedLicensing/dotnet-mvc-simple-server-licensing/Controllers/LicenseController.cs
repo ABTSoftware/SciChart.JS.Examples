@@ -16,20 +16,9 @@ public class LicenseController : ControllerBase
     // Hex-decode the Server Secret to bytes once. HMAC keys are raw bytes, not hex strings.
     private static readonly byte[] SecretBytes = Convert.FromHexString(SCICHART_SERVER_SECRET);
 
-    // Inline-mode tokens are not bound to a client nonce, so the same token can be
-    // served to many clients while it's still within its licence-declared valid_time.
-    // We refresh periodically; the licence (not this server) determines how long a
-    // token actually remains valid on the client.
-    private const int InlineRefreshSeconds = 30 * 60;
-
     // Constrain echoed client nonces — defence against header / log injection if a
     // malformed nonce ever reaches a downstream system.
     private static readonly Regex ClientNoncePattern = new("^[0-9a-fA-F]{8,64}$", RegexOptions.Compiled);
-
-    // Inline-token cache. Lock guards both fields together.
-    private static readonly object CacheLock = new();
-    private static string? _cachedInlineToken;
-    private static long _cachedInlineTokenIssuedAt;
 
     private static string SignToken(string payload)
     {
@@ -37,6 +26,10 @@ public class LicenseController : ControllerBase
         return $"{payload}:{Convert.ToHexString(mac).ToLower()}";
     }
 
+    // Every request gets a fresh token. A cached inline token's serverNow timestamp
+    // would eventually fall outside the licence's max_skew window — HMAC-SHA256 is
+    // cheap, simpler to sign per request than to tie a cache TTL to the licence.
+    //
     // Mode is selected by the request: ?nonce=<value> → round-trip; otherwise inline.
     // The licence on the client side enforces which one it will accept.
     [HttpGet]
@@ -44,6 +37,7 @@ public class LicenseController : ControllerBase
     {
         var now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         var rawNonce = nonce ?? string.Empty;
+        var serverNonce = Convert.ToHexString(RandomNumberGenerator.GetBytes(8)).ToLower();
 
         if (rawNonce.Length > 0)
         {
@@ -51,19 +45,9 @@ public class LicenseController : ControllerBase
             {
                 return BadRequest("malformed client nonce");
             }
-            var serverNonce = Convert.ToHexString(RandomNumberGenerator.GetBytes(8)).ToLower();
             return Content(SignToken($"v2:{rawNonce}:{serverNonce}:{now}"));
         }
 
-        lock (CacheLock)
-        {
-            if (_cachedInlineToken is null || now - _cachedInlineTokenIssuedAt > InlineRefreshSeconds)
-            {
-                var serverNonce = Convert.ToHexString(RandomNumberGenerator.GetBytes(8)).ToLower();
-                _cachedInlineToken = SignToken($"v2:{serverNonce}:{now}");
-                _cachedInlineTokenIssuedAt = now;
-            }
-            return Content(_cachedInlineToken);
-        }
+        return Content(SignToken($"v2:{serverNonce}:{now}"));
     }
 }

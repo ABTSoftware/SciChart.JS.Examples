@@ -2,7 +2,6 @@ use hmac::{Hmac, Mac};
 use once_cell::sync::Lazy;
 use rand::Rng;
 use sha2::Sha256;
-use std::sync::Mutex;
 use std::time::{SystemTime, UNIX_EPOCH};
 
 type HmacSha256 = Hmac<Sha256>;
@@ -16,17 +15,6 @@ const SCICHART_SERVER_SECRET: &str = "YOUR_SERVER_SECRET_HERE";
 // passing the hex string directly would silently produce a different key.
 static SECRET_BIN: Lazy<Vec<u8>> =
     Lazy::new(|| hex::decode(SCICHART_SERVER_SECRET).expect("SERVER_SECRET must be 64 hex chars"));
-
-// Inline-mode tokens are not bound to a client nonce, so the same token can be
-// reused while it's still within the licence-declared valid_time. We refresh
-// periodically; the licence (not this code) determines how long the WASM will
-// keep accepting the token on the client side.
-const INLINE_REFRESH_SECONDS: u64 = 30 * 60;
-
-struct LicenseCache {
-    token: Option<String>,
-    issued_at: u64,
-}
 
 fn sign(payload: &str) -> String {
     let mut mac = HmacSha256::new_from_slice(&SECRET_BIN).expect("HMAC init failed");
@@ -45,31 +33,26 @@ fn rand_hex_8() -> String {
 //   v2:<serverNonce>:<serverNow>:<hmac>
 // The HMAC signs the full payload up to (but not including) the final colon.
 //
+// Every request gets a fresh token. A cached inline token's serverNow timestamp
+// would eventually fall outside the licence's max_skew window — HMAC-SHA256 is
+// cheap, simpler to sign per request than to tie a cache TTL to the licence.
+//
 // This integration is inline-mode only — Tauri's invoke bridge does not pass a
 // client nonce through SciChart's dependency callback, so the corresponding
 // licence must have validate_nonce=0.
 #[tauri::command]
-fn get_license_token(cache: tauri::State<Mutex<LicenseCache>>) -> String {
-    let mut c = cache.lock().unwrap();
+fn get_license_token() -> String {
     let now = SystemTime::now()
         .duration_since(UNIX_EPOCH)
         .unwrap()
         .as_secs();
-    if c.token.is_none() || now.saturating_sub(c.issued_at) > INLINE_REFRESH_SECONDS {
-        let server_nonce = rand_hex_8();
-        c.token = Some(sign(&format!("v2:{server_nonce}:{now}")));
-        c.issued_at = now;
-    }
-    c.token.clone().unwrap()
+    let server_nonce = rand_hex_8();
+    sign(&format!("v2:{server_nonce}:{now}"))
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
-        .manage(Mutex::new(LicenseCache {
-            token: None,
-            issued_at: 0,
-        }))
         .invoke_handler(tauri::generate_handler![get_license_token])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

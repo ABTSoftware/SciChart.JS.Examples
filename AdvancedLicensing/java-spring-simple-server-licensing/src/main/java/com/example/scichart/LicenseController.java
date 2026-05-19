@@ -23,12 +23,6 @@ public class LicenseController {
     private static final String SCICHART_SERVER_SECRET =
             "YOUR_SERVER_SECRET_HERE";
 
-    // Inline-mode tokens are not bound to a client nonce, so the same token can be
-    // served to many clients while it's still within its licence-declared valid_time.
-    // We refresh periodically; the licence (not this server) determines how long a
-    // token actually remains valid on the client.
-    private static final long INLINE_REFRESH_SECONDS = 30 * 60;
-
     // Constrain echoed client nonces — defence against header / log injection if a
     // malformed nonce ever reaches a downstream system.
     private static final Pattern CLIENT_NONCE_PATTERN = Pattern.compile("^[0-9a-fA-F]{8,64}$");
@@ -39,41 +33,25 @@ public class LicenseController {
     // Lazy-decoded once, then cached for the lifetime of the process.
     private static volatile byte[] secretBytes;
 
-    // Cached inline token shared across requests — safe because inline tokens are
-    // not bound to a particular client. In a multi-instance deployment, move this
-    // to a distributed cache (e.g. Redis).
-    private static volatile String cachedInlineToken = "";
-    private static volatile long cachedInlineTokenIssuedAt = 0;
-
+    // Every request gets a fresh token. A cached inline token's serverNow timestamp
+    // would eventually fall outside the licence's max_skew window — HMAC-SHA256 is
+    // cheap, simpler to sign per request than to tie a cache TTL to the licence.
+    //
     // Mode is selected by the request: ?nonce=<value> → round-trip; otherwise inline.
     // The licence on the client side enforces which one it will accept.
     @GetMapping("/api/license")
     public ResponseEntity<String> get(@RequestParam(name = "nonce", required = false) String rawNonce) {
         long now = System.currentTimeMillis() / 1000;
+        String serverNonce = HEX.formatHex(randomBytes(8));
 
         if (rawNonce != null && !rawNonce.isEmpty()) {
             if (!CLIENT_NONCE_PATTERN.matcher(rawNonce).matches()) {
                 return ResponseEntity.badRequest().body("Error: malformed client nonce");
             }
-            String serverNonce = HEX.formatHex(randomBytes(8));
             return ResponseEntity.ok(signToken("v2:" + rawNonce + ":" + serverNonce + ":" + now));
         }
 
-        String token = cachedInlineToken;
-        long issuedAt = cachedInlineTokenIssuedAt;
-        if (token.isEmpty() || now - issuedAt > INLINE_REFRESH_SECONDS) {
-            synchronized (LicenseController.class) {
-                token = cachedInlineToken;
-                issuedAt = cachedInlineTokenIssuedAt;
-                if (token.isEmpty() || now - issuedAt > INLINE_REFRESH_SECONDS) {
-                    String serverNonce = HEX.formatHex(randomBytes(8));
-                    token = signToken("v2:" + serverNonce + ":" + now);
-                    cachedInlineToken = token;
-                    cachedInlineTokenIssuedAt = now;
-                }
-            }
-        }
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(signToken("v2:" + serverNonce + ":" + now));
     }
 
     private static String signToken(String payload) {

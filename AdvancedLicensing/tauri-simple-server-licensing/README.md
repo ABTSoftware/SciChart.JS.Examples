@@ -9,7 +9,7 @@ This is the desktop equivalent of running a web server, with one notable securit
 This example produces an **inline-shape** v2 token only — `v2:serverNonce:serverNow:hmac` — delivered to the webview via Tauri's `invoke` bridge rather than over HTTP:
 
 - The Rust backend signs the token in-process; it never crosses an untrusted network on the way to the webview.
-- The same token is reused for the lifetime of its refresh interval (30 minutes by default).
+- A fresh token is generated per invoke — caching is not used. The embedded `serverNow` would otherwise drift outside the licence's `max_skew` window once the cache age exceeds it.
 
 The webview-side dependency callback for `invoke` integrations has no client-nonce mechanism, so round-trip-shape tokens aren't producible on this path. The licence therefore must permit inline delivery (`validate_nonce=0`); a `validate_nonce=1` licence — which restricts the client to round-trip-shape tokens — cannot be used here because it would reject every inline-shape response. The cross-origin replay scenario that round-trip-shape tokens defend against isn't meaningful for a token minted in the same trusted process that consumes it.
 

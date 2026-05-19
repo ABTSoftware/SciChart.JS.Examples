@@ -8,7 +8,7 @@ Requires a license key with the **`SV:H:V:N` feature flag**. Contact [support@sc
 
 A v2 token can take one of two shapes on the wire:
 
-- **Inline** (4 fields) — `v2:serverNonce:serverNow:hmac`. Independent of any client state; servable to many clients, embeddable in HTML via a `<meta>` tag, and cacheable on a CDN for up to `valid_time`.
+- **Inline** (4 fields) — `v2:serverNonce:serverNow:hmac`. Independent of any client state; servable to many clients and embeddable in HTML via a `<meta>` tag. Should still be signed per request — the embedded `serverNow` ages relative to the client's clock and will fall outside `max_skew` once the token is older than the licence's tolerance, so caching past that point causes valid clients to reject otherwise-correct tokens.
 - **Round-trip** (5 fields) — `v2:clientNonce:serverNonce:serverNow:hmac`. The client generates a random nonce in WASM and sends it as `?nonce=<hex>`; the server echoes it into the signed token. A captured response is bound to the requesting client and cannot be replayed on another origin.
 
 For most deployments the two shapes are **interchangeable under a single licence**: your server can serve an inline token in HTML for first paint _and_ a round-trip token for subsequent re-validation; the SciChart client accepts whichever arrives. This is the common case.
@@ -84,7 +84,7 @@ All implementations follow the same pattern:
 
 1. Hex-decode the Server Secret to bytes.
 2. If the request carries `?nonce=<hex>`, validate it (`^[0-9a-fA-F]{8,64}$`) and emit a round-trip token.
-3. Otherwise emit an inline token (cacheable per `valid_time`).
+3. Otherwise emit an inline token. Sign per request — caching is not recommended because the embedded `serverNow` falls outside `max_skew` once the cache age exceeds the licence's tolerance.
 4. Sign with `HMAC-SHA256(secret, payload)` where the payload is the token text up to (but not including) the final colon and HMAC.
 
 Replace `YOUR_SERVER_SECRET_HERE` with your 64-char hex Server Secret in each snippet.
@@ -105,29 +105,20 @@ SCICHART_SERVER_SECRET = "YOUR_SERVER_SECRET_HERE"
 SECRET_BIN = bytes.fromhex(SCICHART_SERVER_SECRET)
 NONCE_RE   = re.compile(r"^[0-9a-fA-F]{8,64}$")
 
-INLINE_REFRESH_SECONDS = 30 * 60
-_cached_inline_token   = None
-_cached_issued_at      = 0
-
 def sign(payload: str) -> str:
     mac = hmac.new(SECRET_BIN, payload.encode(), hashlib.sha256).hexdigest()
     return f"{payload}:{mac}"
 
 @app.get("/api/license")
 def get_license():
-    global _cached_inline_token, _cached_issued_at
-    now = int(time.time())
+    now          = int(time.time())
+    server_nonce = secrets.token_hex(8)
     client_nonce = request.args.get("nonce", "")
     if client_nonce:
         if not NONCE_RE.match(client_nonce):
             abort(400, "malformed client nonce")
-        server_nonce = secrets.token_hex(8)
         return sign(f"v2:{client_nonce}:{server_nonce}:{now}")
-    if _cached_inline_token is None or now - _cached_issued_at > INLINE_REFRESH_SECONDS:
-        server_nonce        = secrets.token_hex(8)
-        _cached_inline_token = sign(f"v2:{server_nonce}:{now}")
-        _cached_issued_at    = now
-    return _cached_inline_token
+    return sign(f"v2:{server_nonce}:{now}")
 ```
 
 Same logic works with **FastAPI** — return a `PlainTextResponse` and read the query param via `Query`.
@@ -182,19 +173,14 @@ import (
     "fmt"
     "net/http"
     "regexp"
-    "sync"
     "time"
 )
 
 const sciChartServerSecret = "YOUR_SERVER_SECRET_HERE"
-const inlineRefreshSeconds = 30 * 60
 
 var (
-    secretBin           []byte
-    nonceRe             = regexp.MustCompile(`^[0-9a-fA-F]{8,64}$`)
-    mu                  sync.Mutex
-    cachedInlineToken   string
-    cachedIssuedAt      int64
+    secretBin []byte
+    nonceRe   = regexp.MustCompile(`^[0-9a-fA-F]{8,64}$`)
 )
 
 func init() {
@@ -219,6 +205,7 @@ func randHex(n int) string {
 
 func licenseHandler(w http.ResponseWriter, r *http.Request) {
     now         := time.Now().Unix()
+    serverNonce := randHex(8)
     clientNonce := r.URL.Query().Get("nonce")
     w.Header().Set("Content-Type", "text/plain")
 
@@ -227,17 +214,11 @@ func licenseHandler(w http.ResponseWriter, r *http.Request) {
             http.Error(w, "malformed client nonce", http.StatusBadRequest)
             return
         }
-        fmt.Fprint(w, sign(fmt.Sprintf("v2:%s:%s:%d", clientNonce, randHex(8), now)))
+        fmt.Fprint(w, sign(fmt.Sprintf("v2:%s:%s:%d", clientNonce, serverNonce, now)))
         return
     }
 
-    mu.Lock()
-    defer mu.Unlock()
-    if cachedInlineToken == "" || now-cachedIssuedAt > inlineRefreshSeconds {
-        cachedInlineToken = sign(fmt.Sprintf("v2:%s:%d", randHex(8), now))
-        cachedIssuedAt    = now
-    }
-    fmt.Fprint(w, cachedInlineToken)
+    fmt.Fprint(w, sign(fmt.Sprintf("v2:%s:%d", serverNonce, now)))
 }
 
 func main() {
@@ -263,10 +244,6 @@ SCICHART_SERVER_SECRET = 'YOUR_SERVER_SECRET_HERE'
 SECRET_BIN             = [SCICHART_SERVER_SECRET].pack('H*')
 NONCE_RE               = /\A[0-9a-fA-F]{8,64}\z/
 
-INLINE_REFRESH_SECONDS = 30 * 60
-$cached_inline_token   = nil
-$cached_issued_at      = 0
-
 def sign(payload)
   mac = OpenSSL::HMAC.hexdigest('SHA256', SECRET_BIN, payload)
   "#{payload}:#{mac}"
@@ -283,11 +260,7 @@ get '/api/license' do
     return sign("v2:#{client_nonce}:#{server_nonce}:#{now}")
   end
 
-  if $cached_inline_token.nil? || now - $cached_issued_at > INLINE_REFRESH_SECONDS
-    $cached_inline_token = sign("v2:#{server_nonce}:#{now}")
-    $cached_issued_at    = now
-  end
-  $cached_inline_token
+  sign("v2:#{server_nonce}:#{now}")
 end
 ```
 

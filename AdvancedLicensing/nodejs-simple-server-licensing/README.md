@@ -6,7 +6,7 @@ Demonstrates SciChart's **Simple Server Validation v2** flow — server-side lic
 
 A v2 token can take one of two shapes on the wire:
 
-- **Inline** (4 fields) — `v2:serverNonce:serverNow:hmac`. Independent of any client state; servable to many clients, embeddable in HTML via a `<meta>` tag, cacheable for up to `valid_time`.
+- **Inline** (4 fields) — `v2:serverNonce:serverNow:hmac`. Independent of any client state; servable to many clients and embeddable in HTML via a `<meta>` tag. Should still be signed per request — the embedded `serverNow` ages relative to the client's clock and will fall outside `max_skew` once the token is older than the licence's tolerance, so caching past that point causes valid clients to reject otherwise-correct tokens.
 - **Round-trip** (5 fields) — `v2:clientNonce:serverNonce:serverNow:hmac`. The client generates a random nonce in WASM and sends it as `?nonce=<hex>`; the server echoes it into the signed token. A captured response is bound to the requesting client and cannot be replayed on another origin.
 
 For most deployments the two shapes are interchangeable under a single licence — mix inline meta-tag delivery and round-trip requests freely, the SciChart client accepts whichever arrives. Deployments that can't keep server and client clocks in reasonable alignment should be locked to round-trip only: inline tokens can drift stale, round-trip tokens are signed against the request that produced them.
@@ -90,7 +90,7 @@ See [../SimpleServerSideLicensing-Readme.md](../SimpleServerSideLicensing-Readme
 
 > **Key point in all cases:** hex-decode the Server Secret to binary bytes before passing to HMAC. Do not use the hex string directly as the key.
 
-> **Inline-mode caching:** inline tokens are not bound to a particular client and can be cached / CDN-distributed up to `valid_time`. Round-trip responses cannot be cached — each request gets its own signed token.
+> **Inline-mode caching:** not recommended. Inline tokens are not bound to a particular client, but the embedded `serverNow` ages relative to the client's clock and will fall outside `max_skew` once the cache is older than the licence's tolerance — sign per request. Round-trip responses cannot be cached either.
 
 ## Differences from Advanced Server Licensing
 
