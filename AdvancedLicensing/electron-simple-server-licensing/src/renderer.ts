@@ -3,8 +3,19 @@ import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 
-// Runtime license key with SV (SimpleValidation) feature flag.
+// Runtime license key carrying an SV:H:V:N feature flag (SimpleValidation v2).
 // Replace with your own key from SciChart MyAccount.
+//
+// The feature string encodes the v2 parameters:
+//   SV:<max_skew>:<valid_time>:<validate_nonce>
+//     max_skew — H or H.MM, e.g. 0.05 (5 min), 1.30 (90 min); 0 disables the check
+//     valid_time — H or H.MM, e.g. 168 (7 days), 0.30 (30 min)
+//     validate_nonce  — must be 0 for this Electron example
+//
+// Electron-bridge integrations are inline-mode only. The IPC dependency
+// callback signature is (orderId) => string | null with no client nonce, so
+// the licence must have validate_nonce=0. Round-trip mode is unavailable on
+// this path; for the threat model see the README.
 SciChartSurface.setRuntimeLicenseKey("YOUR_CLIENT_LICENSE_KEY_HERE");
 
 // Instead of a network fetch to /api/license, route through IPC so the HMAC
