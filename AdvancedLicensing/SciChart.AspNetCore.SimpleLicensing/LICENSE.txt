@@ -1,0 +1,15 @@
+SciChart.AspNetCore.SimpleLicensing
+Copyright (c) SciChart Ltd. All rights reserved.
+
+This package is licensed under the SciChart End User License Agreement.
+
+You may only use this package together with a valid SciChart.js licence that
+includes the Simple Server Validation (SV) feature. Use without such a licence
+is not permitted.
+
+The current SciChart EULA is available at:
+    https://www.scichart.com/scichart-eula/
+
+For licensing enquiries, contact:
+    sales@scichart.com    — commercial licences
+    support@scichart.com  — technical support

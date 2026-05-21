@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>SciChart.AspNetCore.SimpleLicensing</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>SciChart Ltd</Authors>
+    <Company>SciChart Ltd</Company>
+    <Product>SciChart.js Advanced Licensing</Product>
+    <Description>Server-side support for SciChart.js Simple Server Validation v2 in ASP.NET Core: token service, tag helper for inline meta-tag delivery, and an endpoint mapper for the round-trip shape.</Description>
+    <PackageProjectUrl>https://www.scichart.com</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ABTSoftware/SciChart.JS.Examples</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageTags>scichart;licensing;aspnetcore;hmac</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IsPackable>true</IsPackable>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="LICENSE.txt" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>
