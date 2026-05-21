@@ -144,6 +144,7 @@ export default [
     "../Examples/Charts2D/v4Charts/WaterfallChart",
     "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/Column3DChart",
+    "../Examples/Charts3D/Basic3DChartTypes/LogarithmicAxis3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/PointLine3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/Styling3DChart",
