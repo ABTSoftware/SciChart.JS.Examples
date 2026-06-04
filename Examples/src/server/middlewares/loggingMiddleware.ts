@@ -11,9 +11,8 @@ const stream: StreamOptions = {
 };
 
 const skip = () => {
-    // const env = process.env.NODE_ENV || "development";
-    // return env !== "development";
-    return false;
+    const env = process.env.NODE_ENV || "development";
+    return env !== "development";
 };
 
 morgan.token("route", (req: Request) => {
