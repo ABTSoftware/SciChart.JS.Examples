@@ -152,7 +152,7 @@ export class SmithChartAdmittanceResistanceAxis extends NumericAxis {
                     0,
                     1,
                     aspectRatio,
-                    linesPen.m_fThickness
+                    linesPen.GetThickness()
                 )
             );
             vecArcs.push_back(arc);
@@ -168,7 +168,7 @@ export class SmithChartAdmittanceResistanceAxis extends NumericAxis {
                         0,
                         1,
                         aspectRatio,
-                        linesPen.m_fThickness
+                        linesPen.GetThickness()
                     )
                 );
                 vecArcs.push_back(arc);
@@ -199,7 +199,7 @@ export class SmithChartAdmittanceResistanceAxis extends NumericAxis {
                     0,
                     1,
                     aspectRatio,
-                    linesPen.m_fThickness * 2
+                    linesPen.GetThickness() * 2
                 )
             );
             ucVec.push_back(ucArc);
@@ -330,7 +330,7 @@ export class SmithChartAdmittanceReactanceAxis extends NumericAxis {
                     0,
                     1,
                     aspectRatio,
-                    linesPen.m_fThickness
+                    linesPen.GetThickness()
                 )
             );
             vecArcs.push_back(arc);
@@ -346,7 +346,7 @@ export class SmithChartAdmittanceReactanceAxis extends NumericAxis {
                     0,
                     1,
                     aspectRatio,
-                    linesPen.m_fThickness
+                    linesPen.GetThickness()
                 )
             );
             vecArcs.push_back(arc);

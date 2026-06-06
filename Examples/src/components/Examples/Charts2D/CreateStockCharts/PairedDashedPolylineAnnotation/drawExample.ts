@@ -100,7 +100,6 @@ class PairedDashedPolylineAnnotation extends PolyLineAnnotation {
         const pairPen = this.resolvePenFromCache(
             this.pairStrokePenCache,
             this.pairStrokeThicknessProperty,
-            this.opacity,
             true
         );
         if (!pairPen) return;

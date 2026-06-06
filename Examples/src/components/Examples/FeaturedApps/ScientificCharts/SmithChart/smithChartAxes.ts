@@ -559,7 +559,7 @@ export class SmithChartResistanceAxis extends NumericAxis {
                 0,
                 1,
                 aspectRatio,
-                linesPen.m_fThickness
+                linesPen.GetThickness()
             );
             arc.MakeCircularArc(arcParams);
             vecArcs.push_back(arc);
@@ -618,7 +618,7 @@ export class SmithChartResistanceAxis extends NumericAxis {
                     rs.strokeDashArray
                 );
             }
-            const ucThickness = this.rimLineStyle ? ucPenPre.m_fThickness : linesPen.m_fThickness * 2;
+            const ucThickness = this.rimLineStyle ? ucPenPre.GetThickness() : linesPen.GetThickness() * 2;
             const ucParams = getArcParams(
                 wasmContext,
                 ucx_px,
@@ -647,7 +647,7 @@ export class SmithChartResistanceAxis extends NumericAxis {
                 );
             }
             const tickSizePx = this.rimTickLineStyle?.tickSize ?? DEFAULT_RIM_TICK_SIZE;
-            const rimLineHalfThicknessPx = ucPenPre.m_fThickness / 2;
+            const rimLineHalfThicknessPx = ucPenPre.GetThickness() / 2;
             drawRimTicks(
                 renderContext,
                 xCalc,
@@ -753,7 +753,7 @@ export class SmithChartReactanceAxis extends NumericAxis {
                     0,
                     1,
                     aspectRatio,
-                    linesPen.m_fThickness
+                    linesPen.GetThickness()
                 )
             );
             vecArcs.push_back(arc);
@@ -772,7 +772,7 @@ export class SmithChartReactanceAxis extends NumericAxis {
                     0,
                     1,
                     aspectRatio,
-                    linesPen.m_fThickness
+                    linesPen.GetThickness()
                 )
             );
             vecArcs.push_back(arc);
