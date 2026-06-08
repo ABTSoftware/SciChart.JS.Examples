@@ -47,7 +47,7 @@ cargo install tauri-cli --version "^2" --locked
 
 **2. Set the Server Secret.**
 
-In `src-tauri/src/lib.rs`, replace the placeholder with your Server Secret from [SciChart MyAccount](https://www.scichart.com/profile) — a 64-char hex string only present if Advanced Licensing with Simple Validation is enabled on your order:
+In `src-tauri/src/lib.rs`, replace the placeholder with your Server Secret from [SciChart MyAccount](https://www.scichart.com/profile) (**Orders & Keys → Manage Licenses → Runtime License Key**, the _Server Secret_ section) — a 64-char hex string, only present if your license carries the Simple Server Validation (`SV`) feature:
 
 ```rust
 const SCICHART_SERVER_SECRET: &str = "YOUR_64_HEX_CHAR_SERVER_SECRET";
