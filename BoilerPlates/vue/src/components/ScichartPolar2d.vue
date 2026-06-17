@@ -17,6 +17,7 @@ import {
     EPolarAxisMode,
     EPolarGridlineMode,
     XyDataSeries,
+    SciChartSurface,
 } from "scichart";
 
 async function initSciChartPolar2D() {
@@ -64,6 +65,8 @@ async function initSciChartPolar2D() {
         strokeThickness: 4,
     });
     sciChartSurface.renderableSeries.add(polarMountain);
+
+    return sciChartSurface;
 };
 
 export default defineComponent({

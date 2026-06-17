@@ -14,7 +14,7 @@
     "scichart": "^5.0.0-alpha.135"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^13.0.0",
+    "copy-webpack-plugin": "^14.0.0",
     "ts-loader": "^9.4.2",
     "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1",
