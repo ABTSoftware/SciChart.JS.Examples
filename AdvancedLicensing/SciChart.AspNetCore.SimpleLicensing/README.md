@@ -17,7 +17,7 @@ Use both together. The tag helper covers initial validation on every full page l
   - `max_skew` — accepted client/server clock skew as `H` or `H.MM`
   - `valid_time` — token validity in the client's wall clock (`H.MM`)
   - `validate_nonce` — `0` permissive (inline or round-trip); `1` restricted (round-trip only)
-- A 64-char hex Server Secret from [SciChart MyAccount](https://www.scichart.com/profile) (**Orders & Keys → Manage Licenses → Runtime License Key**, the _Server Secret_ section)
+- A 64-char hex Server Secret from [SciChart MyAccount](https://www.scichart.com/my-account/) (**Orders & Keys → Manage Licenses → Runtime License Key**, the _Server Secret_ section)
 
 Contact [support@scichart.com](mailto:support@scichart.com) to have an SV v2 feature added to your license.
 

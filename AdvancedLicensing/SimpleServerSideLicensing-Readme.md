@@ -60,7 +60,7 @@ Example licences:
 
 ## What you need
 
-- Your **Server Secret** — a 64-character hex string found in [SciChart MyAccount](https://www.scichart.com/profile) under **Orders & Keys → Manage Licenses → Runtime License Key**, in the **Server Secret** section. Only present if your license carries the Simple Server Validation (`SV`) feature.
+- Your **Server Secret** — a 64-character hex string found in [SciChart MyAccount](https://www.scichart.com/my-account/) under **Orders & Keys → Manage Licenses → Runtime License Key**, in the **Server Secret** section. Only present if your license carries the Simple Server Validation (`SV`) feature.
 - Your **client license key** — the full license key string passed to `setRuntimeLicenseKey`. Must carry an `SV:H:V:N` feature.
 
 > **Important:** always hex-decode the Server Secret to raw bytes before passing it to HMAC. Do not use the hex string directly as the HMAC key.

@@ -42,7 +42,7 @@ and caches the result in a cookie until valid_time has elapsed.
 ## Setup
 
 1. **Get your Server Secret**
-   Log in to [SciChart MyAccount](https://www.scichart.com/profile) and open **Orders & Keys → Manage Licenses → Runtime License Key**. Copy the **Server Secret** (a 64-char hex string) from the _Server Secret_ section. Only present if your license carries the Simple Server Validation (`SV`) feature.
+   Log in to [SciChart MyAccount](https://www.scichart.com/my-account/) and open **Orders & Keys → Manage Licenses → Runtime License Key**. Copy the **Server Secret** (a 64-char hex string) from the _Server Secret_ section. Only present if your license carries the Simple Server Validation (`SV`) feature.
 
 2. **Set the Server Secret**
    Edit `src/main/java/com/example/scichart/LicenseController.java` and replace `SCICHART_SERVER_SECRET` with your Server Secret. In production, prefer externalising this via `application.properties`:
