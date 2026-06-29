@@ -19,11 +19,10 @@ import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/types/ECo
 function getVswrCirclePixels(
     xCalc: CoordinateCalculatorBase,
     yCalc: CoordinateCalculatorBase,
-    vpH: number,
     dataRadius: number
 ): { cx: number; cy: number; radius_px: number; aspectRatio: number } {
     const cx = xCalc.getCoordinate(0);
-    const cy = vpH - yCalc.getCoordinate(0);
+    const cy = yCalc.getCoordinate(0);
     const radius_px = Math.abs(xCalc.getCoordWidth(dataRadius));
     const aspectRatio = Math.abs(xCalc.getCoordWidth(1)) / Math.abs(yCalc.getCoordWidth(1));
     return { cx, cy, radius_px, aspectRatio };
@@ -72,7 +71,6 @@ class SmithVswrFillAnnotation extends ArcAnnotationBase {
         const { cx, cy, radius_px, aspectRatio } = getVswrCirclePixels(
             xCalc,
             yCalc,
-            this.getViewportHeight(),
             this._radius
         );
 
@@ -142,7 +140,6 @@ class SmithVswrStrokeAnnotation extends ArcAnnotationBase {
         const { cx, cy, radius_px, aspectRatio } = getVswrCirclePixels(
             xCalc,
             yCalc,
-            this.getViewportHeight(),
             this._radius
         );
 

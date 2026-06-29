@@ -1,5 +1,4 @@
 import { NumericAxis, TSciChart, Rect, DpiHelper } from "scichart";
-import { SciChartSurfaceBase } from "scichart/Charting/Visuals/SciChartSurfaceBase";
 import { WebGlRenderContext2D, ELineDrawMode } from "scichart/Charting/Drawing/WebGlRenderContext2D";
 import { SCRTPen } from "scichart/types/TSciChart";
 import {
@@ -121,8 +120,6 @@ export class SmithChartAdmittanceResistanceAxis extends NumericAxis {
         const wasmContext = this.webAssemblyContext2D;
         const xCalc = this.getCurrentCoordinateCalculator();
         const yCalc = this.sibling.getCurrentCoordinateCalculator();
-        const vpHeight =
-            SciChartSurfaceBase.domMasterCanvas?.height ?? this.parentSurface.renderSurface.viewportSize.height;
         const clipRect = Rect.intersect(this.parentSurface.clipRect, this.parentSurface.seriesViewRect);
         const leftPad = (this.parentSurface.padding?.left ?? 0) * DpiHelper.PIXEL_RATIO;
         const topPad = (this.parentSurface.padding?.top ?? 0) * DpiHelper.PIXEL_RATIO;
@@ -138,7 +135,7 @@ export class SmithChartAdmittanceResistanceAxis extends NumericAxis {
             if (sinHalfGap >= 1) return;
             const arcGap = sinHalfGap > 0 ? 2 * Math.asin(sinHalfGap) : 0;
             const cx_px = xCalc.getCoordinate(cx);
-            const cy_native = vpHeight - yCalc.getCoordinate(0);
+            const cy_native = yCalc.getCoordinate(0);
             const radius_px = Math.abs(xCalc.getCoordWidth(rad));
             // Gap centred at angle π — the tangent point (-1,0) where all G-circles converge.
             arc.MakeCircularArc(
@@ -192,7 +189,7 @@ export class SmithChartAdmittanceResistanceAxis extends NumericAxis {
                 getArcParams(
                     wasmContext,
                     xCalc.getCoordinate(0),
-                    vpHeight - yCalc.getCoordinate(0),
+                    yCalc.getCoordinate(0),
                     0,
                     2 * Math.PI,
                     Math.abs(xCalc.getCoordWidth(1)),
@@ -277,8 +274,6 @@ export class SmithChartAdmittanceReactanceAxis extends NumericAxis {
         const wasmContext = this.webAssemblyContext2D;
         const xCalc = this.sibling.getCurrentCoordinateCalculator();
         const yCalc = this.getCurrentCoordinateCalculator();
-        const vpHeight =
-            SciChartSurfaceBase.domMasterCanvas?.height ?? this.parentSurface.renderSurface.viewportSize.height;
         const clipRect = Rect.intersect(this.parentSurface.clipRect, this.parentSurface.seriesViewRect);
         const leftPad = (this.parentSurface.padding?.left ?? 0) * DpiHelper.PIXEL_RATIO;
         const topPad = (this.parentSurface.padding?.top ?? 0) * DpiHelper.PIXEL_RATIO;
@@ -323,7 +318,7 @@ export class SmithChartAdmittanceReactanceAxis extends NumericAxis {
                 getArcParams(
                     wasmContext,
                     cx_px,
-                    vpHeight - yCalc.getCoordinate(cy_pos),
+                    yCalc.getCoordinate(cy_pos),
                     posStart,
                     posEnd,
                     rad_px,
@@ -339,7 +334,7 @@ export class SmithChartAdmittanceReactanceAxis extends NumericAxis {
                 getArcParams(
                     wasmContext,
                     cx_px,
-                    vpHeight - yCalc.getCoordinate(cy_neg),
+                    yCalc.getCoordinate(cy_neg),
                     negStart,
                     negEnd,
                     rad_px,

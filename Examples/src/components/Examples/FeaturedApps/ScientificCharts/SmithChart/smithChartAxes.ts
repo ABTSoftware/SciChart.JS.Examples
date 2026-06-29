@@ -57,7 +57,6 @@ import {
 } from "scichart";
 import { Pen2DCache } from "scichart/Charting/Drawing/Pen2DCache";
 import { INumericAxisOptions } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { SciChartSurfaceBase } from "scichart/Charting/Visuals/SciChartSurfaceBase";
 import { drawRimTicks, RimConfig, DEFAULT_RIM_TICK_SIZE } from "./smithChartRim";
 import { TickProvider } from "scichart/Charting/Numerics/TickProviders/TickProvider";
 import { NumberRange } from "scichart/Core/NumberRange";
@@ -525,11 +524,6 @@ export class SmithChartResistanceAxis extends NumericAxis {
         const wasmContext = this.webAssemblyContext2D;
         const xCalc = this.getCurrentCoordinateCalculator();
         const yCalc = this.sibling.getCurrentCoordinateCalculator();
-        // Use master canvas height so the y-flip matches the C++ matTransform.
-        // viewportSize tracks the visible (target) canvas which shrinks on resize;
-        // the master WebGL canvas only grows, and SCRTSetMainWindowSize uses its height.
-        const vpHeight =
-            SciChartSurfaceBase.domMasterCanvas?.height ?? this.parentSurface.renderSurface.viewportSize.height;
         const clipRect = Rect.intersect(this.parentSurface.clipRect, this.parentSurface.seriesViewRect);
         const leftPad = (this.parentSurface.padding?.left ?? 0) * DpiHelper.PIXEL_RATIO;
         const topPad = (this.parentSurface.padding?.top ?? 0) * DpiHelper.PIXEL_RATIO;
@@ -546,7 +540,7 @@ export class SmithChartResistanceAxis extends NumericAxis {
             if (sinHalfGap >= 1) return;
             const arcGap = sinHalfGap > 0 ? 2 * Math.asin(sinHalfGap) : 0;
             const cx_px = xCalc.getCoordinate(cx);
-            const cy_native = vpHeight - yCalc.getCoordinate(cy);
+            const cy_native = yCalc.getCoordinate(cy);
             const radius_px = Math.abs(xCalc.getCoordWidth(rad));
             if (gapDistance > 0 && (2 * Math.PI - 2 * arcGap) * radius_px < 10) return;
             const arcParams = getArcParams(
@@ -606,7 +600,7 @@ export class SmithChartResistanceAxis extends NumericAxis {
             const ucVec = getVectorArcVertex(wasmContext);
             const ucArc = getArcVertex(wasmContext);
             const ucx_px = xCalc.getCoordinate(0);
-            const ucy_native = vpHeight - yCalc.getCoordinate(0);
+            const ucy_native = yCalc.getCoordinate(0);
             const urad_px = Math.abs(xCalc.getCoordWidth(1));
             let ucPenPre = linesPen;
             if (this.rimLineStyle) {
@@ -702,11 +696,6 @@ export class SmithChartReactanceAxis extends NumericAxis {
         const wasmContext = this.webAssemblyContext2D;
         const xCalc = this.sibling.getCurrentCoordinateCalculator();
         const yCalc = this.getCurrentCoordinateCalculator();
-        // Use master canvas height so the y-flip matches the C++ matTransform.
-        // viewportSize tracks the visible (target) canvas which shrinks on resize;
-        // the master WebGL canvas only grows, and SCRTSetMainWindowSize uses its height.
-        const vpHeight =
-            SciChartSurfaceBase.domMasterCanvas?.height ?? this.parentSurface.renderSurface.viewportSize.height;
         const svr = this.parentSurface.seriesViewRect;
         const clipRect = Rect.intersect(this.parentSurface.clipRect, svr);
         const leftPad = (this.parentSurface.padding?.left ?? 0) * DpiHelper.PIXEL_RATIO;
@@ -739,7 +728,7 @@ export class SmithChartReactanceAxis extends NumericAxis {
             }
 
             const pos_cx_px = xCalc.getCoordinate(pos.cx);
-            const pos_cy_native = vpHeight - yCalc.getCoordinate(pos.cy);
+            const pos_cy_native = yCalc.getCoordinate(pos.cy);
             const pos_radius_px = Math.abs(xCalc.getCoordWidth(pos.rad));
             if (gapDistance > 0 && (posEnd - posStart) * pos_radius_px < 10) return;
             arc.MakeCircularArc(
@@ -759,7 +748,7 @@ export class SmithChartReactanceAxis extends NumericAxis {
             vecArcs.push_back(arc);
 
             const neg_cx_px = xCalc.getCoordinate(neg.cx);
-            const neg_cy_native = vpHeight - yCalc.getCoordinate(neg.cy);
+            const neg_cy_native = yCalc.getCoordinate(neg.cy);
             const neg_radius_px = Math.abs(xCalc.getCoordWidth(neg.rad));
             arc.MakeCircularArc(
                 getArcParams(
