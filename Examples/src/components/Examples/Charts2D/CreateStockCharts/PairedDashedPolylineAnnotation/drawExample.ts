@@ -11,23 +11,45 @@ import {
     SciChartSurface,
     Thickness,
 } from "scichart";
-import { 
-    MultiPointAnnotationPlacementModifier, 
-    EAnnotationVisibilityMode, 
+import {
+    MultiPointAnnotationPlacementModifier,
+    EAnnotationVisibilityMode,
     EMultiPointLabelAnchorMode,
+    EAxisLabelDrawMode,
     ESegmentLabelRotationMode,
-    ESnapMode,
     PolyLineAnnotation,
     IPolyLineAnnotationOptions,
+    IMultiPointLabelStyleFormatParams
 } from "scichart-financial-tools";
 import {
     addDefaultFinancialModifiers,
     createFinancialChart,
     createTradingAnnotationOptions,
-    TRADING_ANNOTATION_COLORS,
 } from "../_shared/tradingAnnotationExampleUtils";
 
 const PAIRED_DASHED_POLYLINE = "PairedDashedPolylineAnnotation";
+
+const PAIRED_POLYLINE_COLORS = {
+    primaryStroke: "#4F8EF7",
+    primaryFill: "#4F8EF724",
+    primaryConnector: "#A7C7FF",
+
+    secondaryStroke: "#B77AF7",
+    secondaryFill: "#B77AF720",
+    secondaryConnector: "#F8FAFC",
+
+    placementStroke: "#16A34A",
+    placementFill: "#16A34A24",
+    placementConnector: "#86EFAC",
+};
+
+const DEFAULT_PAIR_STROKE_DASH_ARRAY = [6, 4];
+
+const normalizePlacementPointCount = (pointCount = 5) => {
+    const safeNumber = Number.isFinite(pointCount) ? Math.floor(pointCount) : 5;
+
+    return Math.max(3, Math.min(9, safeNumber));
+};
 
 interface IPairedDashedPolylineAnnotationOptions extends IPolyLineAnnotationOptions {
     pairStroke?: string;
@@ -37,23 +59,28 @@ interface IPairedDashedPolylineAnnotationOptions extends IPolyLineAnnotationOpti
     placementPointCount?: number;
 }
 
+// @ts-ignore - placementPointCountProperty is private in `PolyLineAnnotation`
 class PairedDashedPolylineAnnotation extends PolyLineAnnotation {
     public readonly type = PAIRED_DASHED_POLYLINE as any;
 
-    private pairStrokeProperty = TRADING_ANNOTATION_COLORS.connector;
-    private pairStrokeThicknessProperty = 2;
-    private pairStrokeDashArrayProperty = [7, 5];
+    private pairStrokeProperty = PAIRED_POLYLINE_COLORS.primaryConnector;
+    private pairStrokeThicknessProperty = 1.5;
+    private pairStrokeDashArrayProperty = DEFAULT_PAIR_STROKE_DASH_ARRAY;
     private showPairConnectorsProperty = true;
-    private customPlacementPointCount = 6;
+    // @ts-ignore - placementPointCountProperty is private in `PolyLineAnnotation`
+    private placementPointCountProperty = 5;
     private pairStrokePenCache: any;
 
     constructor(options?: IPairedDashedPolylineAnnotationOptions) {
         super(options);
+
         this.pairStrokeProperty = options?.pairStroke ?? this.pairStrokeProperty;
         this.pairStrokeThicknessProperty = options?.pairStrokeThickness ?? this.pairStrokeThicknessProperty;
         this.pairStrokeDashArrayProperty = options?.pairStrokeDashArray ?? this.pairStrokeDashArrayProperty;
         this.showPairConnectorsProperty = options?.showPairConnectors ?? this.showPairConnectorsProperty;
-        this.customPlacementPointCount = Math.max(4, Math.floor(options?.placementPointCount ?? this.customPlacementPointCount));
+        this.placementPointCountProperty = normalizePlacementPointCount(
+            options?.placementPointCount ?? this.placementPointCountProperty
+        );
     }
 
     public get showPairConnectors(): boolean {
@@ -67,6 +94,7 @@ class PairedDashedPolylineAnnotation extends PolyLineAnnotation {
 
     public override onAttach(scs: SciChartSurface): void {
         super.onAttach(scs);
+
         this.pairStrokePenCache = this.updatePenCache(
             this.pairStrokePenCache,
             this.pairStrokeProperty,
@@ -103,12 +131,15 @@ class PairedDashedPolylineAnnotation extends PolyLineAnnotation {
             this.opacity,
             true
         );
+
         if (!pairPen) return;
 
         this.getConnectorPairs().forEach(([startIndex, endIndex]) => {
             const start = pixelPoints[startIndex];
             const end = pixelPoints[endIndex];
+
             if (!start || !end) return;
+
             renderContext.drawLines([start.x, start.y, end.x, end.y], pairPen, seriesViewRect, clipRect);
         });
     }
@@ -116,33 +147,39 @@ class PairedDashedPolylineAnnotation extends PolyLineAnnotation {
     private getConnectorPairs(): Array<readonly [number, number]> {
         const lastPointIndex = this.points.length - 1;
         const pairs: Array<readonly [number, number]> = [];
+
         for (let startIndex = 1; startIndex + 2 <= lastPointIndex; startIndex += 2) {
             pairs.push([startIndex, startIndex + 2]);
         }
+
         if (lastPointIndex > 0) {
             pairs.push([0, lastPointIndex]);
         }
+
         return pairs;
     }
 
     public override toJSON() {
         const json = super.toJSON();
+
         Object.assign(json.options, {
             pairStroke: this.pairStrokeProperty,
             pairStrokeThickness: this.pairStrokeThicknessProperty,
             pairStrokeDashArray: this.pairStrokeDashArrayProperty,
             showPairConnectors: this.showPairConnectorsProperty,
-            placementPointCount: this.customPlacementPointCount,
+            placementPointCount: this.placementPointCountProperty,
         });
+
         return json;
     }
 
     protected override getPlacementPointCountInternal(): number {
-        return this.customPlacementPointCount;
+        return this.placementPointCountProperty;
     }
 
     protected override notifyPropertyChanged(propertyName: string): void {
         super.notifyPropertyChanged(propertyName);
+
         if (["pairStroke", "pairStrokeThickness", "pairStrokeDashArray", "opacity"].includes(propertyName)) {
             this.pairStrokePenCache = this.updatePenCache(
                 this.pairStrokePenCache,
@@ -162,7 +199,7 @@ registerType(
     true
 );
 
-const createConnectorLabels = (pointCount: number, prefix: string) => {
+const createConnectorLabels = (pointCount: number, prefix: string, drawPointLabels: boolean = true) => {
     const lastPointIndex = pointCount - 1;
     const labels: any[] = [];
 
@@ -177,8 +214,6 @@ const createConnectorLabels = (pointCount: number, prefix: string) => {
             verticalTextPosition: EVerticalTextPosition.Above,
             alignment: ETextAlignment.Center,
             text: `Peak ${startIndex + 1} -> ${startIndex + 3}`,
-            fontSize: 12,
-            fontWeight: "800",
             padding: new Thickness(2, 8, 2, 8),
         });
     }
@@ -193,8 +228,6 @@ const createConnectorLabels = (pointCount: number, prefix: string) => {
         verticalTextPosition: EVerticalTextPosition.Below,
         alignment: ETextAlignment.Center,
         text: `Odd 1 -> ${pointCount}`,
-        fontSize: 12,
-        fontWeight: "800",
         padding: new Thickness(2, 8, 2, 8),
     });
 
@@ -202,14 +235,31 @@ const createConnectorLabels = (pointCount: number, prefix: string) => {
         {
             id: `${prefix}-axis-1`,
             anchorMode: EMultiPointLabelAnchorMode.Axis,
+            axisLabelDrawMode: EAxisLabelDrawMode.Both,
             pointIndex: 0,
         },
         {
             id: `${prefix}-axis-${pointCount}`,
             anchorMode: EMultiPointLabelAnchorMode.Axis,
+            axisLabelDrawMode: EAxisLabelDrawMode.Both,
             pointIndex: lastPointIndex,
         }
     );
+
+    // also add point labels:
+    if (drawPointLabels) {
+        for (let i = 0; i <= lastPointIndex; i++) {
+            labels.push({
+                id: `${prefix}-point-${i}`,
+                anchorMode: EMultiPointLabelAnchorMode.Point,
+                pointIndex: i,
+                verticalTextPosition: i % 2 === 0 ? EVerticalTextPosition.Below : EVerticalTextPosition.Above,
+                alignment: ETextAlignment.Center,
+                yOffset: i % 2 === 0 ? 5 : -5, // add more spacing between labels and grips
+                text: `(${i + 1})`,
+            });
+        }
+    }
 
     return labels;
 };
@@ -221,32 +271,63 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     const placementModifier = new MultiPointAnnotationPlacementModifier();
+
     addDefaultFinancialModifiers(sciChartSurface);
     sciChartSurface.chartModifiers.add(placementModifier);
 
-    const createDemoAnnotation = () =>
+    const createPrimaryDemoAnnotation = () =>
         new PairedDashedPolylineAnnotation({
-            ...createTradingAnnotationOptions("PAIR", 6),
+            ...createTradingAnnotationOptions("PAIR", 5),
             isEditable: true,
-            stroke: TRADING_ANNOTATION_COLORS.snappedPolyline,
+            stroke: PAIRED_POLYLINE_COLORS.primaryStroke,
             strokeThickness: 2,
-            fill: `${TRADING_ANNOTATION_COLORS.snappedPolyline}33`,
-            pairStroke: TRADING_ANNOTATION_COLORS.connector,
-            pairStrokeThickness: 2,
-            pairStrokeDashArray: [8, 5],
-            snapMode: ESnapMode.DataPoint,
-            snapToSeriesId: candlestickSeries.id,
-            snapToDataPointRadius: 35,
+            fill: PAIRED_POLYLINE_COLORS.primaryFill,
+            pairStroke: PAIRED_POLYLINE_COLORS.primaryConnector,
+            pairStrokeThickness: 1.5,
+            pairStrokeDashArray: [6, 4],
+            snapToDataPoint: false,
+            placementPointCount: 5,
             points: [
-                { x: xAt(166), y: yAt(166, -0.08) },
-                { x: xAt(176), y: yAt(176, 0.09) },
-                { x: xAt(190), y: yAt(190, -0.06) },
-                { x: xAt(204), y: yAt(204, 0.11) },
-                { x: xAt(220), y: yAt(220, -0.05) },
-                { x: xAt(236), y: yAt(236, 0.07) },
+                { x: xAt(226), y: yAt(226, -0.1) },
+                { x: xAt(245), y: yAt(245, 0.1) },
+                { x: xAt(278), y: yAt(278, -0.12) },
+                { x: xAt(304), y: yAt(304, 0.1) },
+                { x: xAt(324), y: yAt(324, -0.1) },
             ],
-            labels: createConnectorLabels(6, "PAIR"),
-            pointLabelVisibility: EAnnotationVisibilityMode.OnInteraction,
+            labels: createConnectorLabels(5, "PAIR", false),
+            segmentLabelVisibility: EAnnotationVisibilityMode.Always,
+            axisLabelVisibility: EAnnotationVisibilityMode.OnInteraction,
+            clipping: EAnnotationClippingMode.SeriesViewRect,
+        });
+
+    const createSecondaryDemoAnnotation = () =>
+        new PairedDashedPolylineAnnotation({
+            ...createTradingAnnotationOptions("LAD", 7),
+            isEditable: true,
+            stroke: PAIRED_POLYLINE_COLORS.secondaryStroke,
+            strokeThickness: 2,
+            fill: PAIRED_POLYLINE_COLORS.secondaryFill,
+            pairStroke: PAIRED_POLYLINE_COLORS.secondaryConnector,
+            pairStrokeThickness: 1.5,
+            pairStrokeDashArray: [4, 3],
+            snapToDataPoint: false,
+            placementPointCount: 7,
+            points: [
+                { x: xAt(336), y: yAt(336, -0.1) },
+                { x: xAt(358), y: yAt(358, 0.1) },
+                { x: xAt(380), y: yAt(380, -0.1) },
+                { x: xAt(404), y: yAt(404, 0.1) },
+                { x: xAt(428), y: yAt(428, -0.1) },
+                { x: xAt(452), y: yAt(452, 0.1) },
+                { x: xAt(476), y: yAt(476, -0.1) },
+            ],
+            labels: createConnectorLabels(7, "LAD"),
+            formatLabelStyle: ({ label, defaultStyle, ...rest }: IMultiPointLabelStyleFormatParams) => {
+                if (label.anchorMode === EMultiPointLabelAnchorMode.Point) {
+                    return { ...defaultStyle, color: "#FFF"};
+                }
+                return { ...defaultStyle };
+            },
             segmentLabelVisibility: EAnnotationVisibilityMode.Always,
             axisLabelVisibility: EAnnotationVisibilityMode.OnInteraction,
             clipping: EAnnotationClippingMode.SeriesViewRect,
@@ -254,57 +335,49 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const reset = () => {
         sciChartSurface.annotations.clear(true);
-        sciChartSurface.annotations.add(
-            createDemoAnnotation(),
-            new PairedDashedPolylineAnnotation({
-                ...createTradingAnnotationOptions("LAD", 5),
-                isEditable: true,
-                stroke: TRADING_ANNOTATION_COLORS.freePolyline,
-                strokeThickness: 2,
-                fill: `${TRADING_ANNOTATION_COLORS.freePolyline}33`,
-                pairStroke: TRADING_ANNOTATION_COLORS.warning,
-                pairStrokeDashArray: [4, 4],
-                points: [
-                    { x: xAt(244), y: yAt(244, -0.05) },
-                    { x: xAt(256), y: yAt(256, 0.08) },
-                    { x: xAt(270), y: yAt(270, -0.1) },
-                    { x: xAt(286), y: yAt(286, 0.09) },
-                    { x: xAt(302), y: yAt(302, -0.04) },
-                ],
-                labels: createConnectorLabels(5, "LAD"),
-                pointLabelVisibility: EAnnotationVisibilityMode.OnInteraction,
-                segmentLabelVisibility: EAnnotationVisibilityMode.Always,
-                axisLabelVisibility: EAnnotationVisibilityMode.OnInteraction,
-            })
-        );
+        sciChartSurface.annotations.add(createPrimaryDemoAnnotation(), createSecondaryDemoAnnotation());
     };
 
     reset();
 
     return {
         sciChartSurface,
-        startPlacement: (pointCount = 6) => {
-            const safePointCount = Math.max(4, Math.min(12, Math.floor(pointCount)));
+
+        startPlacement: (pointCount = 5) => {
+            const safePointCount = normalizePlacementPointCount(pointCount);
+
             placementModifier.startPlacement({
                 type: PAIRED_DASHED_POLYLINE as any,
                 options: {
                     ...createTradingAnnotationOptions("NEW", safePointCount),
                     isEditable: true,
-                    stroke: TRADING_ANNOTATION_COLORS.flatChannel,
+                    stroke: PAIRED_POLYLINE_COLORS.placementStroke,
                     strokeThickness: 2,
-                    fill: `${TRADING_ANNOTATION_COLORS.flatChannel}33`,
-                    pairStroke: TRADING_ANNOTATION_COLORS.connector,
-                    pairStrokeDashArray: [8, 5],
+                    fill: PAIRED_POLYLINE_COLORS.placementFill,
+                    pairStroke: PAIRED_POLYLINE_COLORS.placementConnector,
+                    pairStrokeThickness: 1.5,
+                    pairStrokeDashArray: [7, 4],
                     showPairConnectors: true,
                     placementPointCount: safePointCount,
+                    snapToDataPoint: false,
                     labels: createConnectorLabels(safePointCount, "NEW"),
                     pointLabelVisibility: EAnnotationVisibilityMode.OnInteraction,
                     segmentLabelVisibility: EAnnotationVisibilityMode.Always,
+                    axisLabelVisibility: EAnnotationVisibilityMode.OnInteraction,
+                    clipping: EAnnotationClippingMode.SeriesViewRect,
                 } as any,
             });
         },
+
         stopPlacement: () => placementModifier.stopPlacement(true),
+
         reset,
+
+        deleteAllAnnotations: () => {
+            placementModifier.stopPlacement(true);
+            sciChartSurface.annotations.clear(true);
+        },
+
         togglePairConnectors: () => {
             sciChartSurface.annotations.asArray().forEach((annotation) => {
                 if (annotation instanceof PairedDashedPolylineAnnotation) {

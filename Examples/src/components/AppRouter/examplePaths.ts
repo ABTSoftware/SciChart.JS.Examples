@@ -52,6 +52,7 @@ export default [
     "../Examples/Charts2D/ChartAnnotations/TradeMarkers",
     "../Examples/Charts2D/CreateStockCharts/DepthChart",
     "../Examples/Charts2D/CreateStockCharts/DynamicAnnotationLabels",
+    "../Examples/Charts2D/CreateStockCharts/FinancialDataFilters",
     "../Examples/Charts2D/CreateStockCharts/FreehandDrawingTools",
     "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts",
     "../Examples/Charts2D/CreateStockCharts/OrderBookHeatmap",
@@ -145,6 +146,7 @@ export default [
     "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/Column3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/LogarithmicAxis3DChart",
+    "../Examples/Charts3D/Basic3DChartTypes/Interactive3DWaterfallSpectralChart",
     "../Examples/Charts3D/Basic3DChartTypes/PointLine3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/Styling3DChart",
@@ -175,5 +177,6 @@ export default [
     "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard",
     "../Examples/FeaturedApps/ShowCases/PopulationPyramid",
     "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard",
+    "../Examples/FeaturedApps/ShowCases/WebsocketBigData",
     "../Examples/FeaturedApps/ShowCases/WebsocketBigData",
 ];
