@@ -8,9 +8,8 @@ import {
     Rect,
     NumericAxis,
     EAutoRange,
+    ENumericFormat,
     NumberRange,
-    FastLineRenderableSeries,
-    XyDataSeries,
     OverviewRangeSelectionModifier,
     ISciChartSubSurface,
     IRenderableSeries,
@@ -39,6 +38,8 @@ export interface ISubChartsOverviewModifierOptions extends IChartModifierBaseOpt
     };
     /** Y-axis grow by range */
     yAxisGrowBy?: NumberRange;
+    /** Label format for the overview X axis */
+    xAxisLabelFormat?: ENumericFormat;
 }
 
 /**
@@ -54,6 +55,8 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
     private overviewYAxis: NumericAxis;
     private rangeSelectionModifier: OverviewRangeSelectionModifier;
     private allSubCharts: ISciChartSubSurface[] = [];
+    private rangeSourceSubChart: ISciChartSubSurface | undefined;
+    private rangeSourceHandler: ((args: { visibleRange: NumberRange }) => void) | undefined;
 
     constructor(options?: ISubChartsOverviewModifierOptions) {
         super(options);
@@ -83,6 +86,8 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
     }
 
     public override onDetach(): void {
+        this.teardownRangeSourceSubscription();
+
         // Clear the allSubCharts array to prevent any callbacks from accessing deleted subcharts
         this.allSubCharts = [];
 
@@ -108,6 +113,11 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
         // If overview is already created, add series from this subchart
         if (this.overviewSubSurface && !this.overviewSubSurface.isDeleted) {
             this.addSeriesToOverview(subChart.renderableSeries.asArray(), subChart.id);
+
+            // Make sure we have a live subscription to track subchart range changes
+            if (this.rangeSelectionModifier) {
+                this.setupRangeSourceSubscription();
+            }
         }
 
         // Subscribe to series collection changes on this subchart
@@ -132,15 +142,24 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
             return;
         }
 
+        // If this subchart was the range source, tear down the subscription
+        if (this.rangeSourceSubChart === subChart) {
+            this.teardownRangeSourceSubscription();
+        }
+
         const index = this.allSubCharts.indexOf(subChart);
         if (index > -1) {
             this.allSubCharts.splice(index, 1);
 
             // Remove corresponding series from overview
-            // Only try to access renderableSeries if the subchart is not deleted
             if (this.overviewSubSurface && !this.overviewSubSurface.isDeleted && !subChart.isDeleted) {
                 this.removeSeriesFromOverview(subChart.renderableSeries.asArray(), subChart.id);
             }
+        }
+
+        // If we no longer have a source subscription, try to attach to another subchart
+        if (!this.rangeSourceSubChart && this.rangeSelectionModifier) {
+            this.setupRangeSourceSubscription();
         }
     }
 
@@ -185,6 +204,7 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
             axisTitleStyle: { fontSize: 14 },
             labelStyle: this.options.labelStyle,
             majorTickLineStyle: this.options.majorTickLineStyle,
+            labelFormat: this.options.xAxisLabelFormat,
         });
 
         this.overviewYAxis = new NumericAxis(wasmContext, {
@@ -287,42 +307,73 @@ export class SubChartsOverviewModifier extends ChartModifierBase2D {
             });
         };
 
-        // Get the last subchart's X axis for synchronization
-        if (this.allSubCharts.length > 0) {
-            const lastSubChart = this.allSubCharts[this.allSubCharts.length - 1];
-            const lastSubChartXAxis = lastSubChart.xAxes.get(0);
+        this.overviewSubSurface.zoomExtents();
 
-            if (lastSubChartXAxis) {
-                // When last subchart zoom changes, update the overview selection
-                lastSubChartXAxis.visibleRangeChanged.subscribe(({ visibleRange }: { visibleRange: NumberRange }) => {
-                    // Check if overview is still valid
-                    if (!this.overviewSubSurface || this.overviewSubSurface.isDeleted || !this.overviewXAxis) return;
-                    const updatedSelectedRange = visibleRange.clip(this.overviewXAxis.visibleRange);
-                    const shouldUpdateSelectedRange = !updatedSelectedRange.equals(
-                        this.rangeSelectionModifier.selectedArea
-                    );
-                    if (shouldUpdateSelectedRange) {
-                        this.rangeSelectionModifier.selectedArea = updatedSelectedRange;
-                    }
-                });
+        // Subscribe to one current subchart to keep selectedArea in sync with user pan/zoom.
+        // The subscription is refreshed dynamically as subcharts are added/removed.
+        this.setupRangeSourceSubscription();
 
-                this.overviewSubSurface.zoomExtents();
-                this.rangeSelectionModifier.selectedArea = this.overviewXAxis.visibleRange;
+        // Set initial selectedArea to match the current subchart visible range
+        const firstSubChart = this.allSubCharts.find((sc) => sc && !sc.isDeleted);
+        if (firstSubChart) {
+            const firstXAxis = firstSubChart.xAxes.get(0);
+            if (firstXAxis) {
+                this.rangeSelectionModifier.selectedArea = firstXAxis.visibleRange.clip(this.overviewXAxis.visibleRange);
             }
+        } else {
+            this.rangeSelectionModifier.selectedArea = this.overviewXAxis.visibleRange;
         }
 
         this.overviewSubSurface.chartModifiers.add(this.rangeSelectionModifier);
 
         this.overviewXAxis.visibleRangeChanged.subscribe(({ visibleRange: overviewVisibleRange }) => {
-            // Check if there are valid subcharts
-            if (this.allSubCharts.length === 0) return;
-            const firstSubChart = this.allSubCharts[0];
-            if (!firstSubChart || firstSubChart.isDeleted) return;
-            const firstXAxis = firstSubChart.xAxes.get(0);
-            if (!firstXAxis) return;
-            const updatedSelectedRange = firstXAxis.visibleRange.clip(overviewVisibleRange);
+            if (!this.rangeSelectionModifier) return;
+            const activeSubChart = this.allSubCharts.find((sc) => sc && !sc.isDeleted);
+            if (!activeSubChart) return;
+            const activeXAxis = activeSubChart.xAxes.get(0);
+            if (!activeXAxis) return;
+            const updatedSelectedRange = activeXAxis.visibleRange.clip(overviewVisibleRange);
             this.rangeSelectionModifier.selectedArea = updatedSelectedRange;
         });
+    }
+
+    private setupRangeSourceSubscription(): void {
+        // If current source is still valid, keep it
+        if (this.rangeSourceSubChart && !this.rangeSourceSubChart.isDeleted) {
+            return;
+        }
+
+        // Clean up any stale source state
+        this.teardownRangeSourceSubscription();
+
+        const subChart = this.allSubCharts.find((sc) => sc && !sc.isDeleted);
+        if (!subChart) return;
+
+        const xAxis = subChart.xAxes.get(0);
+        if (!xAxis) return;
+
+        this.rangeSourceSubChart = subChart;
+        this.rangeSourceHandler = ({ visibleRange }) => {
+            if (!this.overviewSubSurface || this.overviewSubSurface.isDeleted || !this.overviewXAxis) return;
+            if (!this.rangeSelectionModifier) return;
+            const updatedSelectedRange = visibleRange.clip(this.overviewXAxis.visibleRange);
+            if (!updatedSelectedRange.equals(this.rangeSelectionModifier.selectedArea)) {
+                this.rangeSelectionModifier.selectedArea = updatedSelectedRange;
+            }
+        };
+
+        xAxis.visibleRangeChanged.subscribe(this.rangeSourceHandler);
+    }
+
+    private teardownRangeSourceSubscription(): void {
+        if (this.rangeSourceSubChart && this.rangeSourceHandler && !this.rangeSourceSubChart.isDeleted) {
+            const xAxis = this.rangeSourceSubChart.xAxes.get(0);
+            if (xAxis) {
+                xAxis.visibleRangeChanged.unsubscribe(this.rangeSourceHandler);
+            }
+        }
+        this.rangeSourceSubChart = undefined;
+        this.rangeSourceHandler = undefined;
     }
 
     /**

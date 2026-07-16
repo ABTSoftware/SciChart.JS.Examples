@@ -48,6 +48,10 @@ Key customizations in this example:
     - Applies `ENumericFormat.Engineering` format consistently across Y-axis and data labels
     - Uses 2 decimal places precision for clean display of large numbers
 
+## Related Example
+
+If you want the 3D spectral counterpart that keeps the stacked waterfall look in 3D, see [Interactive3DWaterfallSpectralChart](../../../Charts3D/Basic3DChartTypes/Interactive3DWaterfallSpectralChart/README.md) in `SciChart.JS.Examples/Examples/src/components/Examples/Charts3D/Basic3DChartTypes/Interactive3DWaterfallSpectralChart/`.
+
 ## Running the Example
 
 To run this example from the SciChart.JS.Examples repository:

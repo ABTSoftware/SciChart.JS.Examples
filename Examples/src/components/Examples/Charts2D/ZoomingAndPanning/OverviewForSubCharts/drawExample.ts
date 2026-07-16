@@ -14,12 +14,8 @@ import {
     I2DSubSurfaceOptions,
     EAutoRange,
     EXyDirection,
-    CursorModifier,
     ENumericFormat,
-    SeriesInfo,
-    CursorTooltipSvgAnnotation,
 } from "scichart";
-import { appTheme } from "../../../theme";
 import { SubChartsOverviewModifier } from "./SubChartsOverviewModifier";
 import { AxisSynchroniser } from "../../MultiChart/SyncMultiChart/AxisSynchroniser";
 
@@ -66,33 +62,6 @@ const createLineData = (phase: number, startX: number, count: number) => {
     return { xValues, yValues };
 };
 
-const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: CursorTooltipSvgAnnotation) => {
-    const legendItems = seriesInfos.filter((si) => si.isWithinDataBounds);
-    if (!legendItems.length) {
-        return "<svg width='100%' height='100%'></svg>";
-    }
-
-    const lineHeight = 18;
-    const padding = 8;
-    const titleY = padding + 12;
-    const legendHeight = padding * 2 + 12 + lineHeight * legendItems.length;
-    const currentTime = legendItems[0].formattedXValue;
-
-    let rows = `<text x="${padding}" y="${titleY}" font-size="12" font-family="Verdana" fill="#d4d7dd">Time: ${currentTime}</text>`;
-    legendItems.forEach((seriesInfo, index) => {
-        const y = titleY + 8 + (index + 1) * lineHeight;
-        const seriesColor = seriesInfo.stroke || "#E8C667";
-        rows += `<text x="${padding}" y="${y}" font-size="12" font-family="Verdana" fill="${seriesColor}">${seriesInfo.seriesName}: ${seriesInfo.formattedYValue}</text>`;
-    });
-
-    return `<svg width="100%" height="${legendHeight}">
-        <rect x="1" y="1" width="98%" height="${
-            legendHeight - 2
-        }" rx="4" ry="4" fill="#0D1523CC" stroke="#E8C667AA" stroke-width="1"/>
-        ${rows}
-    </svg>`;
-};
-
 export const drawExample = async (
     rootElement: string | HTMLDivElement,
     initialConfigs: SubChartConfig[]
@@ -134,6 +103,7 @@ export const drawExample = async (
             strokeThickness: 1,
         },
         yAxisGrowBy: new NumberRange(0.1, 0.1),
+        xAxisLabelFormat: ENumericFormat.Date_HHMMSS,
     });
 
     sciChartSurface.chartModifiers.add(overviewModifier);
@@ -146,21 +116,6 @@ export const drawExample = async (
             title: runtime.title,
         }));
 
-    const createCursorModifier = () =>
-        new CursorModifier({
-            modifierGroup: "subcharts-cursor",
-            showAxisLabels: true,
-            showTooltip: true,
-            isSvgOnly: false,
-            crosshairStroke: appTheme.ForegroundColor,
-            crosshairStrokeThickness: 1,
-            axisLabelFill: appTheme.ForegroundColor,
-            axisLabelStroke: "#0D1523",
-            tooltipContainerBackground: "#0D1523",
-            tooltipTextStroke: appTheme.ForegroundColor,
-            tooltipLegendTemplate: getTooltipLegendTemplate,
-        });
-
     const createSubChart = (config: SubChartConfig, rect: Rect) => {
         const subChartOptions: I2DSubSurfaceOptions = {
             id: config.id,
@@ -170,8 +125,11 @@ export const drawExample = async (
 
         const subChart = SciChartSubSurface.createSubSurface(sciChartSurface, subChartOptions);
 
+        // X axis uses Never autorange so user pan/zoom is not overridden by streaming data.
+        // The streaming loop advances visibleRange manually while the user is at the live edge.
         const subXAxis = new NumericAxis(wasmContext, {
-            autoRange: EAutoRange.Always,
+            autoRange: EAutoRange.Never,
+            visibleRange: axisSynchroniser.visibleRange,
             labelFormat: ENumericFormat.Date_HHMMSS,
             cursorLabelFormat: ENumericFormat.Date_HHMMSS,
             drawMinorGridLines: false,
@@ -209,8 +167,7 @@ export const drawExample = async (
         subChart.chartModifiers.add(
             new ZoomPanModifier(),
             new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
-            new ZoomExtentsModifier(),
-            createCursorModifier()
+            new ZoomExtentsModifier()
         );
 
         subChartMap.set(config.id, subChart);
@@ -221,8 +178,6 @@ export const drawExample = async (
             color: config.color,
             title: config.title,
         });
-
-        subChart.zoomExtents();
     };
 
     const clearAllSubCharts = () => {
@@ -232,6 +187,14 @@ export const drawExample = async (
             if (xAxis) {
                 axisSynchroniser.removeAxis(xAxis);
             }
+            // SciChartSurface.removeSubChart does not fire onDetachSubSurface on modifiers, so
+            // proactively clear the renderable series first. That triggers collectionChanged on
+            // the subchart's series collection, which the overview modifier listens to and uses
+            // to disconnect its shared dataSeries before the subchart deletion deletes them.
+            const seriesToRemove = subChart.renderableSeries.asArray().slice();
+            seriesToRemove.forEach((series) => {
+                subChart.renderableSeries.remove(series, false);
+            });
             sciChartSurface.removeSubChart(subChart);
         });
         subChartMap.clear();
@@ -283,6 +246,13 @@ export const drawExample = async (
     sciChartSurface.zoomExtents();
 
     const streamInterval = window.setInterval(() => {
+        // Snapshot whether the user was at the live edge before this tick — if so, we advance
+        // the visible range together with the new data so the chart auto-scrolls. If the user
+        // has zoomed/panned away from the live edge, we leave the visible range alone.
+        const previousLastX = nextStreamX - 1;
+        const currentRange = axisSynchroniser.visibleRange;
+        const wasFollowingLive = currentRange != null && currentRange.max >= previousLastX - 0.5;
+
         subChartRuntimeMap.forEach((runtime) => {
             runtime.dataSeries.append(nextStreamX, getYValue(nextStreamX, runtime.phase));
             const excess = runtime.dataSeries.count() - POINTS_ON_CHART;
@@ -290,6 +260,22 @@ export const drawExample = async (
                 runtime.dataSeries.removeRange(0, excess);
             }
         });
+
+        if (wasFollowingLive && currentRange != null) {
+            const newRange = new NumberRange(currentRange.min + 1, currentRange.max + 1);
+            if (subChartRuntimeMap.size > 0) {
+                subChartRuntimeMap.forEach((runtime) => {
+                    const xAxis = runtime.subChart.xAxes.get(0);
+                    if (xAxis) {
+                        xAxis.visibleRange = newRange;
+                    }
+                });
+            } else {
+                // No subcharts but keep the synchroniser following live so newly added charts
+                // start at the current live edge.
+                axisSynchroniser.visibleRange = newRange;
+            }
+        }
 
         nextStreamX += 1;
     }, STREAM_INTERVAL_MS);

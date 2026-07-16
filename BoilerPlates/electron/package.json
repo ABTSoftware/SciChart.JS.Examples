@@ -15,19 +15,19 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.5",
-    "@electron-forge/maker-deb": "^6.0.5",
-    "@electron-forge/maker-rpm": "^6.0.5",
-    "@electron-forge/maker-squirrel": "^6.0.5",
-    "@electron-forge/maker-zip": "^6.0.5",
-    "@electron-forge/plugin-webpack": "^6.0.5",
+    "@electron-forge/cli": "^8.0.0-alpha.9",
+    "@electron-forge/maker-deb": "^8.0.0-alpha.9",
+    "@electron-forge/maker-rpm": "^8.0.0-alpha.9",
+    "@electron-forge/maker-squirrel": "^8.0.0-alpha.9",
+    "@electron-forge/maker-zip": "^8.0.0-alpha.9",
+    "@electron-forge/plugin-webpack": "^8.0.0-alpha.9",
     "@types/node": "^24.0.14",
-    "@typescript-eslint/eslint-plugin": "^5.56.0",
-    "@typescript-eslint/parser": "^5.56.0",
+    "@typescript-eslint/eslint-plugin": "^8.61.1",
+    "@typescript-eslint/parser": "^8.61.1",
     "@vercel/webpack-asset-relocator-loader": "^1.7.3",
     "css-loader": "^6.7.3",
-    "electron": "23.1.4",
-    "eslint": "^8.36.0",
+    "electron": "^42.4.1",
+    "eslint": "^8.57.1",
     "eslint-plugin-import": "^2.27.5",
     "fork-ts-checker-webpack-plugin": "^7.3.0",
     "node-loader": "^2.0.0",
@@ -37,8 +37,11 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "copy-webpack-plugin": "^11.0.0",
+    "copy-webpack-plugin": "^14.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "scichart": "^5.0.0-alpha.135"
+  },
+  "overrides": {
+    "cross-spawn": "^7.0.6"
   }
 }

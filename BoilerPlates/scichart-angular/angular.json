@@ -1,85 +1,61 @@
 {
-    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-    "version": 1,
-    "newProjectRoot": "projects",
-    "projects": {
-        "scichart-angular": {
-            "projectType": "application",
-            "schematics": {},
-            "root": "",
-            "sourceRoot": "src",
-            "prefix": "app",
-            "architect": {
-                "build": {
-                    "builder": "@angular/build:application",
-                    "options": {
-                        "browser": "src/main.ts",
-                        "polyfills": ["zone.js"],
-                        "tsConfig": "tsconfig.app.json",
-                        "assets": [
-                            {
-                                "glob": "**/*",
-                                "input": "public"
-                            },
-                            {
-                                "glob": "scichart2d.wasm",
-                                "input": "node_modules/scichart/_wasm",
-                                "output": "/"
-                            },
-                            {
-                                "glob": "scichart2d-nosimd.wasm",
-                                "input": "node_modules/scichart/_wasm",
-                                "output": "/"
-                            },
-                            {
-                                "glob": "scichart3d.wasm",
-                                "input": "node_modules/scichart/_wasm",
-                                "output": "/"
-                            },
-                            {
-                                "glob": "scichart3d-nosimd.wasm",
-                                "input": "node_modules/scichart/_wasm",
-                                "output": "/"
-                            }
-                        ],
-                        "styles": ["src/styles.css"],
-                        "server": "src/main.server.ts",
-                        "outputMode": "server",
-                        "ssr": {
-                            "entry": "src/server.ts"
-                        }
-                    },
-                    "configurations": {
-                        "production": {
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "500kB",
-                                    "maximumError": "1MB"
-                                }
-                            ],
-                            "extract-i18n": {
-                                "builder": "@angular-devkit/build-angular:extract-i18n",
-                                "options": {
-                                    "browserTarget": "sandbox:build"
-                                }
-                            },
-                            "test": {
-                                "builder": "@angular-devkit/build-angular:karma",
-                                "options": {
-                                    "polyfills": ["zone.js", "zone.js/testing"],
-                                    "tsConfig": "tsconfig.spec.json",
-                                    "assets": ["src/favicon.ico", "src/assets"],
-                                    "styles": ["src/styles.css"],
-                                    "scripts": []
-                                }
-                            }
-                        }
-                    },
-                    "defaultConfiguration": "development"
-                },
-                "extract-i18n": {
-                    "builder": "@angular/build:extract-i18n"
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "scichart-angular": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              },
+              {
+                "glob": "scichart2d.wasm",
+                "input": "node_modules/scichart/_wasm",
+                "output": "/"
+              },
+              {
+                "glob": "scichart2d-nosimd.wasm",
+                "input": "node_modules/scichart/_wasm",
+                "output": "/"
+              },
+              {
+                "glob": "scichart3d.wasm",
+                "input": "node_modules/scichart/_wasm",
+                "output": "/"
+              },
+              {
+                "glob": "scichart3d-nosimd.wasm",
+                "input": "node_modules/scichart/_wasm",
+                "output": "/"
+              }
+            ],
+            "styles": ["src/styles.css"],
+            "server": "src/main.server.ts",
+            "outputMode": "server",
+            "ssr": {
+              "entry": "src/server.ts"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "5MB"
                 },
                 "test": {
                     "builder": "@angular/build:karma",

@@ -21,12 +21,15 @@ module.exports = {
         filename: "bundle.js",
         path: path.resolve(__dirname, "build")
     },
+    performance: {
+        hints: false
+    },
     plugins: [
         new CopyPlugin({
             patterns: [
                 { from: "src/index.html", to: "" },
-                { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
-                { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" }
+                { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
+                { from: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm", to: "" }
             ]
         })
     ]

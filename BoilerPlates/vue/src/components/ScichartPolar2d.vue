@@ -8,16 +8,17 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import {
-  SciChartPolarSurface,
-  SciChartJsNavyTheme,
-  PolarNumericAxis,
-  NumberRange,
-  PolarCategoryAxis,
-  PolarMountainRenderableSeries,
-  EPolarAxisMode,
-  EPolarGridlineMode,
-  XyDataSeries
-} from 'scichart'
+    SciChartPolarSurface,
+    SciChartJsNavyTheme,
+    PolarNumericAxis,
+    NumberRange,
+    PolarCategoryAxis,
+    PolarMountainRenderableSeries,
+    EPolarAxisMode,
+    EPolarGridlineMode,
+    XyDataSeries,
+    SciChartSurface,
+} from "scichart";
 
 async function initSciChartPolar2D() {
   const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(
@@ -52,22 +53,24 @@ async function initSciChartPolar2D() {
   })
   sciChartSurface.yAxes.add(radialYAxis)
 
-  const xValues = [0, 1, 2, 3, 4, 5]
-  const yValues = [9, 10, 7, 5, 8, 6] // values for: "Offense", "Shooting", "Defense", "Rebounds", "Passing", "Bench"
+    const xValues = [0, 1, 2, 3, 4, 5];
+    const yValues = [9, 10, 7, 5, 8, 6]; // values for: "Offense", "Shooting", "Defense", "Rebounds", "Passing", "Bench"
+    
+    // Radar / Spider Charts may also work with `PolarLineRenderableSeries`
+    const polarMountain = new PolarMountainRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, {
+            xValues: [...xValues, xValues[xValues.length] + 1], // + 1 to close the loop
+            yValues: [...yValues, yValues[0]], // re-plot first point to close the loop
+            dataSeriesName: "Golden State Warriors",
+        }),
+        stroke: "#FFC72C", // Golden State Warriors gold
+        fill: "#1D428A80", // Golden State Warriors blue with 50% opacity
+        strokeThickness: 4,
+    });
+    sciChartSurface.renderableSeries.add(polarMountain);
 
-  // Radar / Spider Charts may also work with `PolarLineRenderableSeries`
-  const polarMountain = new PolarMountainRenderableSeries(wasmContext, {
-    dataSeries: new XyDataSeries(wasmContext, {
-      xValues: [...xValues, xValues[xValues.length] + 1], // + 1 to close the loop
-      yValues: [...yValues, yValues[0]], // re-plot first point to close the loop
-      dataSeriesName: 'Golden State Warriors'
-    }),
-    stroke: '#FFC72C', // Golden State Warriors gold
-    fill: '#1D428A80', // Golden State Warriors blue with 50% opacity
-    strokeThickness: 4
-  })
-  sciChartSurface.renderableSeries.add(polarMountain)
-}
+    return sciChartSurface;
+};
 
 export default defineComponent({
   // Best practise in Vue.js is to ensure that sciChartSurface is deleted on component unmount.

@@ -62,7 +62,7 @@ The package contains no native dependency — just `System.Security.Cryptography
 ## Setup
 
 1. **Get your Server Secret**
-   Log in to [SciChart MyAccount](https://www.scichart.com/profile). Find your license's Server Secret, a 64-char hex string. Only present if Advanced Licensing with Simple Validation is enabled on your order.
+   Log in to [SciChart MyAccount](https://www.scichart.com/my-account/) and open **Orders & Keys → Manage Licenses → Runtime License Key**. Copy the **Server Secret** (a 64-char hex string) from the _Server Secret_ section. Only present if your license carries the Simple Server Validation (`SV`) feature.
 
 2. **Set the Server Secret**
    Edit `appsettings.json` and replace `YOUR_SERVER_SECRET_HERE`:

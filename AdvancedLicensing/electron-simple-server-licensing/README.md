@@ -54,7 +54,7 @@ This example produces an **inline-shape** v2 token only — `v2:serverNonce:serv
 ## Setup
 
 1. **Get your Server Secret**
-   Log in to [SciChart MyAccount](https://www.scichart.com/profile). Find your license's Server Secret, a 64-char hex string. Only present if Advanced Licensing with Simple Validation is enabled on your order.
+   Log in to [SciChart MyAccount](https://www.scichart.com/my-account/) and open **Orders & Keys → Manage Licenses → Runtime License Key**. Copy the **Server Secret** (a 64-char hex string) from the _Server Secret_ section. Only present if your license carries the Simple Server Validation (`SV`) feature.
 
 2. **Set the Server Secret**
    Edit `src/main.ts` and replace `SCICHART_SERVER_SECRET` with your Server Secret. This constant lives only in the main process — it is never bundled into the renderer.

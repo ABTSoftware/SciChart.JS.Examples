@@ -22,11 +22,11 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Creates a **React Semiconductors Dashboard** using SciChart.js, by leveraging the **FastRectangleRenderableSeries**, and its `customTextureOptions` property to have a custom tiling texture fill.",
-                title: "Semiconductors Dashboard",
-                pageTitle: "React Semiconductors Dashboard | JavaScript Charts | SciChart.js",
+                    "Creates a React Semiconductors Dashboard using SciChart.js. Use the FastRectangleRenderableSeries and its customTextureOptions property to create a custom tiling texture fill.",
+                title: "React Semiconductors Dashboard",
+                pageTitle: "React Semiconductors Dashboard | Try Demo | SciChart",
                 metaDescription:
-                    "React **Semiconductors Dashboard** using SciChart.js, by leveraging the **FastRectangleRenderableSeries**, and its `customTextureOptions` property to have a custom tiling texture fill.",
+                    "Deploy a high-performance React Semiconductors Dashboard. Link multiple charts seamlessly with fully custom layouts. Try SciChart today.",
                 markdownContent: `
 ## Semiconductors Dashboard Example - React
 
@@ -208,7 +208,7 @@ The **Semiconductors Dashboard** showcases advanced SciChart.js capabilities —
             },
         ],
         path: "semiconductors-dashboard",
-        metaKeywords: "semiconductor, wafer, yield, heatmap, chart, javascript, webgl, canvas",
+        metaKeywords: "React semiconductors dashboard",
         onWebsite: true,
         filepath: "FeaturedApps/ScientificCharts/Semiconductors",
         thumbnailImage: "semiconductors-dashboard.jpg",
