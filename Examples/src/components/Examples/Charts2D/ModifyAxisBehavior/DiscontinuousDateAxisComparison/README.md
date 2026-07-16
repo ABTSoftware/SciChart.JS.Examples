@@ -51,4 +51,4 @@ This will launch the demo application, allowing you to explore various examples,
 
 For more detailed instructions, refer to the [github](https://github.com/abtsoftware/scichart.js.examples) repo.
 
-For more information, see the [DiscontinuousDateAxis documentation](https://www.scichart.com/documentation/js/v5/2d-charts/axis-api/axis-types/discontinuous-date-axis/). 
+For more information, see the [DiscontinuousDateAxis documentation](https://www.scichart.com/documentation/js/v5/2d-charts/axis-api/axis-types/discontinuous-date-axis/).

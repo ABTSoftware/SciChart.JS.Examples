@@ -237,7 +237,6 @@ export default function App() {
                                 <GalleryItems
                                     examples={allGalleryItems}
                                     setMostVisibleCategory={setMostVisibleCategory}
-                                    needsH1={true}
                                 />
                             </div>
                         </div>

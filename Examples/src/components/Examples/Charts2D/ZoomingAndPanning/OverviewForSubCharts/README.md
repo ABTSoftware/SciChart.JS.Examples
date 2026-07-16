@@ -19,10 +19,11 @@ The core logic centers on the `drawExample` function, which initializes a single
 Interaction modifiers like `ZoomPanModifier`, `MouseWheelZoomModifier` (X-direction only), `ZoomExtentsModifier`, and `RolloverModifier` are added per subchart. A custom `SubChartsOverviewModifier` creates a bottom overview subsurface (20% height) aggregating all subchart series, enabling unified range selection. The `SubChartManager` interface exposes methods (`updateSubCharts`, `addSubChart`, `removeSubChart`) for runtime management, using `suspendUpdates()` and `removeSubChart()` to prevent MouseManager issues during recreation. [Subchart Positioning Docs](https://www.scichart.com/documentation/js/current/SubChartPositioning.html)
 
 Framework wrappers include:
-- **index.tsx**: React component with state-managed `subCharts` array, refs for surface/manager, and floating UI controls for add/remove/color updates.
-- **angular.ts / vanilla.js**: Similar initialization calling `drawExample`, with cleanup on destroy.
-- **overview-for-subcharts.jpg**: Preview thumbnail image.
-- Custom utils: `SubChartsOverviewModifier`, `AxisSynchroniser` for overview and sync logic.
+
+-   **index.tsx**: React component with state-managed `subCharts` array, refs for surface/manager, and floating UI controls for add/remove/color updates.
+-   **angular.ts / vanilla.js**: Similar initialization calling `drawExample`, with cleanup on destroy.
+-   **overview-for-subcharts.jpg**: Preview thumbnail image.
+-   Custom utils: `SubChartsOverviewModifier`, `AxisSynchroniser` for overview and sync logic.
 
 ## Customization
 

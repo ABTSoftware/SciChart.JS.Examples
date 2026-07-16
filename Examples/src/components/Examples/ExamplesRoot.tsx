@@ -175,7 +175,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
 
                     {seeAlso && (
                         <div className={!showSource && !firstRender ? commonClasses.Animation : ""}>
-                            <GalleryItems examples={seeAlso} setMostVisibleCategory={() => {}} needsH1={true} />
+                            <GalleryItems examples={seeAlso} setMostVisibleCategory={() => {}} />
                         </div>
                     )}
                 </div>

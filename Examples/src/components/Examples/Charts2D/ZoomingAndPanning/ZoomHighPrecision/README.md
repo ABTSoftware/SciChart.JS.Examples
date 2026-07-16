@@ -8,7 +8,7 @@ It renders a FastLineRenderableSeries with toggleable datasets across four preci
 
 ## Technologies Used
 
--   SciChart.js – High performance charting library 
+-   SciChart.js – High performance charting library
 -   Angular – For Angular integration
 -   React – For React integration with MUI controls
 -   Vanilla JavaScript – For plain JavaScript implementation

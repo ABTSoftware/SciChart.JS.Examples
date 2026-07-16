@@ -1,7 +1,4 @@
-import { 
-  SciChartSurface,
-  NumericAxis,
-} from "scichart";
+import { SciChartSurface, NumericAxis } from "scichart";
 
 async function initSciChart(divElement, external) {
   // const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(divElement.id);

@@ -150,8 +150,11 @@ export const drawMemoryStatsGraph =
                     type: EChart2DModifierType.Rollover,
                     options: {
                         tooltipDataTemplate: (seriesInfo, tooltipTitle) => {
-                            const metadata = seriesInfo.pointMetadata as { event?: string; isSelected?: boolean };
-                            const eventText = metadata?.event ? metadata.event: '';
+                            const metadata = seriesInfo.pointMetadata as {
+                                event?: string;
+                                isSelected?: boolean;
+                            };
+                            const eventText = metadata?.event ? metadata.event : "";
                             return [
                                 tooltipTitle,
                                 seriesInfo.formattedYValue,
@@ -389,8 +392,8 @@ const formatUnixDateToHumanStringHHMMSSms = (timestamp: DOMHighResTimeStamp): st
         milliseconds <= 9
             ? `00${milliseconds}`
             : milliseconds <= 99
-              ? `0${milliseconds}`
-              : milliseconds.toString(10);
+            ? `0${milliseconds}`
+            : milliseconds.toString(10);
 
     return `${hoursString}:${minutesString}:${secondsString}:${millisecondsString}`;
 };

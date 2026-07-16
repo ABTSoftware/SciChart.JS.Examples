@@ -39,6 +39,13 @@ const styles: Record<string, CSSProperties> = {
     },
 };
 
+const configButtonWrapperStyle: CSSProperties = {
+    gridArea: "1 / 1 / 2 / 2",
+    pointerEvents: "none",
+    touchAction: "none",
+    zIndex: 2,
+};
+
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function SubchartsGrid() {

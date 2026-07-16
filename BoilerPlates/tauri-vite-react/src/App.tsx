@@ -7,20 +7,22 @@ import {
   SplineMountainRenderableSeries,
   ZoomPanModifier,
   MouseWheelZoomModifier,
-  ZoomExtentsModifier
+  ZoomExtentsModifier,
 } from "scichart";
 
 SciChartSurface.UseCommunityLicense();
 
 // This is for the programmatic way of defining a chart
 async function drawExample(rootElement: string | HTMLDivElement) {
-  const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement);
+  const { sciChartSurface, wasmContext } = await SciChartSurface.create(
+    rootElement
+  );
 
   // Create an X,Y Axis and add to the chart
   const xAxis = new NumericAxis(wasmContext, {
     axisTitle: "X Axis",
     growBy: new NumberRange(0.1, 0.1),
-  })
+  });
   sciChartSurface.xAxes.add(xAxis);
 
   const yAxis = new NumericAxis(wasmContext, {
@@ -46,7 +48,7 @@ async function drawExample(rootElement: string | HTMLDivElement) {
     new ZoomPanModifier(),
     new MouseWheelZoomModifier(),
     new ZoomExtentsModifier()
-  )
+  );
 
   return { sciChartSurface, wasmContext };
 }
@@ -64,9 +66,8 @@ function App() {
     >
       <h1>SciChart with Tauri + React + Vite</h1>
 
-      <SciChartReact 
-        style={{ width: '90%' }}
-
+      <SciChartReact
+        style={{ width: "90%" }}
         // This is for our useBuilderAPI config (uncomment and comment `initChart` to see)
         // config={{
         //   type: ESciChartSurfaceType.Default2D,

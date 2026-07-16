@@ -64,7 +64,7 @@ export default function Column3DChart() {
 
     return (
         <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow} style={{padding: "0 8px"}}>
+            <div className={commonClasses.ToolbarRow} style={{ padding: "0 8px" }}>
                 <FormControlLabel
                     control={
                         <select style={styles.combobox} value={column3DType} onChange={handleColumn3DTypeChange}>

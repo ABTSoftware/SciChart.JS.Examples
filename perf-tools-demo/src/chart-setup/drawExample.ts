@@ -71,16 +71,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
   // and isInnerAxis property
   sciChartSurface.layoutManager = new CentralAxesLayoutManager(options);
 
-  const statsModifier = new PerformanceStatsModifier()
+  const statsModifier = new PerformanceStatsModifier();
 
-
-  const perfMeasurementModifier = new PerformanceMeasurementModifier()
+  const perfMeasurementModifier = new PerformanceMeasurementModifier();
 
   sciChartSurface.chartModifiers.add(statsModifier);
   sciChartSurface.chartModifiers.add(perfMeasurementModifier);
 
   statsModifier.performanceStatsAnnotation.y1 = 0.2;
-
 
   const addSeries = (stroke: string, opacity: number) => {
     const amplitude = Math.random() * AMPLITUDE;

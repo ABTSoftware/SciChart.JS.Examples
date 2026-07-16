@@ -70,7 +70,8 @@
     outline: none;
     stroke: var(--button-icon-color);
 
-    &.selected, :hover {
+    &.selected,
+    :hover {
         color: var(--text) !important;
     }
 }

@@ -8,7 +8,7 @@ export class DataUpdateApi extends DataManagementApi {
     protected toggleAnimateList: Array<() => void> = [];
 
     protected performDataUpdate(params: {
-        sciChartSurface: SciChartSurface,
+        sciChartSurface: SciChartSurface;
         dataGenerationStart: DOMHighResTimeStamp[];
         dataUpdateStart: DOMHighResTimeStamp[];
         dataUpdateEnd: DOMHighResTimeStamp[];

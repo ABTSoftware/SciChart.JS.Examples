@@ -6,11 +6,11 @@ This example demonstrates how to create multiple **JavaScript Polar Gauge Charts
 
 ## Technologies Used
 
-- SciChart.js – High performance WebGL charting library
-- React – For React integration
-- Angular – For Angular integration
-- TypeScript – Used in Angular and Vanilla examples
-- WebGL – For high-performance rendering
+-   SciChart.js – High performance WebGL charting library
+-   React – For React integration
+-   Angular – For Angular integration
+-   TypeScript – Used in Angular and Vanilla examples
+-   WebGL – For high-performance rendering
 
 ## Code Explanation
 
@@ -24,55 +24,63 @@ The example consists of six different gauge implementations (`gauge1` to `gauge6
 6. **Gauge6**: Includes tick marks and danger zone highlighting
 
 Key components used across implementations:
-- `SciChartPolarSurface`: The base polar chart surface
-- `PolarNumericAxis`: Configured with `EPolarAxisMode.Radial` or `EPolarAxisMode.Angular`
-- `PolarPointerAnnotation`: For gauge needle/pointer visualization
-- `PolarArcAnnotation`: For arc segments and background fills
-- `TextAnnotation`/`NativeTextAnnotation`: For label display
+
+-   `SciChartPolarSurface`: The base polar chart surface
+-   `PolarNumericAxis`: Configured with `EPolarAxisMode.Radial` or `EPolarAxisMode.Angular`
+-   `PolarPointerAnnotation`: For gauge needle/pointer visualization
+-   `PolarArcAnnotation`: For arc segments and background fills
+-   `TextAnnotation`/`NativeTextAnnotation`: For label display
 
 ## Customization
 
 Notable customizations in this example include:
 
-1. **Pointer Customization**: 
-   - Gauge4 implements a custom pill-shaped pointer using `getPointerArrowSvg` override
-   - Gauge6 uses `isStrokeAboveCenter` and `strokeLineJoin` for pointer styling
+1. **Pointer Customization**:
 
-2. **Conditional Rendering**: 
-   - Gauge5 dynamically shows/hides arc segments based on pointer value thresholds
+    - Gauge4 implements a custom pill-shaped pointer using `getPointerArrowSvg` override
+    - Gauge6 uses `isStrokeAboveCenter` and `strokeLineJoin` for pointer styling
+
+2. **Conditional Rendering**:
+
+    - Gauge5 dynamically shows/hides arc segments based on pointer value thresholds
 
 3. **Axis Configuration**:
-   - Gauge3 demonstrates dual angular axes with different label modes
-   - Gauge6 implements custom major/minor tick styling with `tickSize` and `strokeThickness`
+
+    - Gauge3 demonstrates dual angular axes with different label modes
+    - Gauge6 implements custom major/minor tick styling with `tickSize` and `strokeThickness`
 
 4. **Annotation Layers**:
-   - Several gauges use `EAnnotationLayer.Background` to control rendering order
+
+    - Several gauges use `EAnnotationLayer.Background` to control rendering order
 
 5. **Gradient Fills**:
-   - Gauge2 uses `fillLinearGradient` on its `PolarColumnRenderableSeries`
+    - Gauge2 uses `fillLinearGradient` on its `PolarColumnRenderableSeries`
 
 ## Running the Example
 
 To run this example from the SciChart.JS.Examples repository:
 
 1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
-   ```
+
+    ```bash
+    git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
+    ```
 
 2. **Navigate to the Examples Directory**:
-   ```bash
-   cd SciChart.JS.Examples/Examples
-   ```
+
+    ```bash
+    cd SciChart.JS.Examples/Examples
+    ```
 
 3. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
+
+    ```bash
+    npm install
+    ```
 
 4. **Run the Development Server**:
-   ```bash
-   npm run dev
-   ```
+    ```bash
+    npm run dev
+    ```
 
 For more detailed instructions, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md).

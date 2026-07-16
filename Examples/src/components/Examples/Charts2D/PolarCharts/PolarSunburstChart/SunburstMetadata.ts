@@ -1,7 +1,4 @@
-import { 
-    IPointMetadata, 
-    parseColorToUIntArgb 
-} from "scichart";
+import { IPointMetadata, parseColorToUIntArgb } from "scichart";
 
 export class SunburstMetadata implements IPointMetadata {
     public static create(title: string, start: number, end: number, level: number, id: number[], colorHtml: string) {

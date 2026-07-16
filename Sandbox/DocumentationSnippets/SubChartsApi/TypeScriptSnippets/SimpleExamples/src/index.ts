@@ -1,5 +1,16 @@
-import { EAxisType, ECoordinateMode, ESeriesType, FastLineRenderableSeries, NumberRange, NumericAxis, Rect, SciChartSurface, Thickness, XyDataSeries, chartBuilder  } from "scichart";
-
+import {
+    EAxisType,
+    ECoordinateMode,
+    ESeriesType,
+    FastLineRenderableSeries,
+    NumberRange,
+    NumericAxis,
+    Rect,
+    SciChartSurface,
+    Thickness,
+    XyDataSeries,
+    chartBuilder,
+} from 'scichart';
 
 export async function simpleSubChart(divElementId: string) {
     // create a main (regular) surface which will contain a sub-chart
@@ -389,4 +400,4 @@ updateSubChartPositionWithBuilderApi('scichart-div-4b');
 padding('scichart-div-5');
 nonTransparentSubChart('scichart-div-6');
 nonTransparentSubChartWithBuilderApi('scichart-div-6b');
-subChartPixelCoordinateMode("scichart-div-7");
+subChartPixelCoordinateMode('scichart-div-7');

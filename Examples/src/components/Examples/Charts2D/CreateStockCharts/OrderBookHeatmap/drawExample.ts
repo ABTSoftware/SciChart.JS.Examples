@@ -412,9 +412,7 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Curs
 
     return `<svg width="100%" height="100%">
                 <g transform=translate(5,5)>
-               ${
-                   outputSvgString ? `<rect width="480px" height="50px" fill="#000000" opacity="0.4" rx="5" />` : ``
-               }
+               ${outputSvgString ? `<rect width="480px" height="50px" fill="#000000" opacity="0.4" rx="5" />` : ``}
                 ${outputSvgString}
                 <g>
              </svg>`;

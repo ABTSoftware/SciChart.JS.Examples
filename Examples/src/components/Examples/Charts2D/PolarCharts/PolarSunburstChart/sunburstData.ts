@@ -17,7 +17,7 @@ export const sunburstData: TElement = {
             name: "Cain",
             value: 14,
             colorHtml: appTheme.MutedRed,
-            children: []
+            children: [],
         },
         {
             name: "Seth",
@@ -28,21 +28,21 @@ export const sunburstData: TElement = {
                     name: "Enos",
                     value: 10,
                     children: [],
-                    colorHtml: appTheme.PaleSkyBlue
+                    colorHtml: appTheme.PaleSkyBlue,
                 },
                 {
                     name: "Noam",
                     value: 4,
                     children: [],
-                    colorHtml: appTheme.MutedBlue
-                }
-            ]
+                    colorHtml: appTheme.MutedBlue,
+                },
+            ],
         },
         {
             name: "Abel",
             value: 6,
             colorHtml: appTheme.VividTeal,
-            children: []
+            children: [],
         },
         {
             name: "Awan",
@@ -58,19 +58,19 @@ export const sunburstData: TElement = {
                             name: "Michael",
                             value: 3,
                             colorHtml: appTheme.PaleOrange,
-                            children: []
-                        }
-                    ]
-                }
-            ]
+                            children: [],
+                        },
+                    ],
+                },
+            ],
         },
         {
             name: "Azura",
             value: 8,
             colorHtml: appTheme.MutedPurple,
-            children: []
-        }
-    ]
+            children: [],
+        },
+    ],
 };
 
 type TLevelDataEntry = {
@@ -101,7 +101,7 @@ const getDataByLevelInternal = (
         start: startX,
         end: startX + curElement.value,
         name: curElement.name,
-        colorHtml: curElement.colorHtml
+        colorHtml: curElement.colorHtml,
     });
     let startChild = startX;
     for (let i = 0; i < curElement.children.length; i++) {
@@ -117,7 +117,7 @@ export const getElementById = (id: number[]): TElement | undefined => {
         name: "root",
         value: -1,
         colorHtml: "#000000",
-        children: [sunburstData]
+        children: [sunburstData],
     };
     for (let i = 0; i < id.length; i++) {
         const levelIndex = id[i];
@@ -140,7 +140,7 @@ export const getDataById = (id: number[]): TLevelDataForChart[] => {
         const x1Values: number[] = [];
         const yValues: number[] = [];
         const metadata: SunburstMetadata[] = [];
-        levelDataList.forEach(v => {
+        levelDataList.forEach((v) => {
             xValues.push(v.start);
             x1Values.push(v.end);
             yValues.push(i + 1);
@@ -148,7 +148,7 @@ export const getDataById = (id: number[]): TLevelDataForChart[] => {
         });
         res.push({
             data: [xValues, yValues, x1Values],
-            metadata
+            metadata,
         });
     }
 

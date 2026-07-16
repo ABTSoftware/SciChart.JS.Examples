@@ -51,7 +51,7 @@ export class OverviewSubSurfaceModifier extends CustomChartModifier2D {
             if (this.overviewSurface) {
                 const newMappedSeries = args
                     .getNewItems()
-                    .map((rs) => this.options.transformRenderableSeries(rs, this.overviewSurface))
+                    .map(rs => this.options.transformRenderableSeries(rs, this.overviewSurface))
                     .filter((rendSeries: IRenderableSeries) => rendSeries);
 
                 this.overviewSurface.renderableSeries.add(...newMappedSeries);
@@ -138,7 +138,7 @@ export class OverviewSubSurfaceModifier extends CustomChartModifier2D {
         );
 
         const renderableSeries = existingSeries
-            .map((rs) => (options?.transformRenderableSeries ?? defaultTransform)(rs))
+            .map(rs => (options?.transformRenderableSeries ?? defaultTransform)(rs))
             .filter((rendSeries: IRenderableSeries) => rendSeries);
 
         sciChartSurface.xAxes.add(xAxis);

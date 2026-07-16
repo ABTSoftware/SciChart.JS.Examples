@@ -33,8 +33,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         growBy: new NumberRange(0.05, 0.05),
         labelProvider: new SmartDateLabelProvider({
             highPrecisionLabelMode: EHighPrecisionLabelMode.Suffix,
-            datePrecision: EDatePrecision.Nanoseconds, 
-            // the default dataset is using nanosecond precision, 
+            datePrecision: EDatePrecision.Nanoseconds,
+            // the default dataset is using nanosecond precision,
             // this will be changed when switching datasets
 
             showWiderDateOnFirstLabel: true,
@@ -84,7 +84,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         strokeThickness: 2,
         pointMarker: new EllipsePointMarker(wasmContext, {
-            fill: appTheme.ForegroundColor
+            fill: appTheme.ForegroundColor,
         }),
     });
 
@@ -132,7 +132,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 break;
         }
         sciChartSurface.zoomExtents();
-    }
+    };
     useDataset("nanosecondPrecision"); // default to nanosecond precision
 
     return {
@@ -164,7 +164,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             zoomOut: () => {
                 sciChartSurface.zoomExtents(2000);
             },
-            useDataset
+            useDataset,
         },
     };
 };

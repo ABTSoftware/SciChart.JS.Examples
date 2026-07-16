@@ -1,4 +1,16 @@
-import { NumberRange, SciChartSurface, NumericAxis, SciChartJsNavyTheme, TriangleRenderableSeries, XyDataSeries, ETriangleSeriesDrawMode, ZoomPanModifier, ZoomExtentsModifier, EFillPaletteMode, parseColorToUIntArgb } from "scichart";
+import {
+    NumberRange,
+    SciChartSurface,
+    NumericAxis,
+    SciChartJsNavyTheme,
+    TriangleRenderableSeries,
+    XyDataSeries,
+    ETriangleSeriesDrawMode,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    EFillPaletteMode,
+    parseColorToUIntArgb
+} from "scichart";
 async function basicTriangleSeriesChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme()
@@ -18,8 +30,8 @@ async function basicTriangleSeriesChart(divElementId) {
     };
     class TrianglePaletteProvider {
         fillPaletteMode = EFillPaletteMode.SOLID;
-        onAttached() { }
-        onDetached() { }
+        onAttached() {}
+        onDetached() {}
         overrideFillArgb(_xValue, _yValue, index, opacity) {
             // return SciChart.parseColorToUIntArgb(Math.floor(index / 3) % 2 === 0 ? "cornflowerblue" : "lightgray");
             console.log(Math.floor(index / 3));
@@ -35,7 +47,7 @@ async function basicTriangleSeriesChart(divElementId) {
         isDigitalLine: false,
         opacity: 0.5,
         drawMode: ETriangleSeriesDrawMode.List, // Polygon / List / Strip
-        paletteProvider: new TrianglePaletteProvider(),
+        paletteProvider: new TrianglePaletteProvider()
         // dataLabels: {
         //     style: {
         //         fontSize: 14

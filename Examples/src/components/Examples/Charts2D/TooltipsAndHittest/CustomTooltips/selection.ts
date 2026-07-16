@@ -73,7 +73,9 @@ class Selection {
                 children = Array.from(element.querySelectorAll(selector));
             } else if (typeof selector === "function") {
                 const result = selector.call(element, element.__data__, i, this.elements);
-                children = (result instanceof NodeList ? Array.from(result) : Array.from(result)).filter((node): node is Element => node instanceof Element);
+                children = (result instanceof NodeList ? Array.from(result) : Array.from(result)).filter(
+                    (node): node is Element => node instanceof Element
+                );
             }
 
             selected.push(...(children as SelectionNode[]));

@@ -40,7 +40,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             drawMajorTickLines: false,
             drawMinorGridLines: false,
             drawMinorTickLines: false,
-            labelPrecision: 0
+            labelPrecision: 0,
         });
         sciChartSurface.xAxes.add(xAxis);
 
@@ -55,7 +55,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             drawMajorTickLines: false,
             drawMinorGridLines: false,
             drawMinorTickLines: false,
-            labelPrecision: 0
+            labelPrecision: 0,
         });
         sciChartSurface.yAxes.add(yAxis);
     };

@@ -34,7 +34,9 @@ const COLOR_MAP = new HeatmapColorMap({
  ******************************************************************************/
 class LCG {
     private state: number;
-    constructor(seed: number) { this.state = seed & 0xffffffff; }
+    constructor(seed: number) {
+        this.state = seed & 0xffffffff;
+    }
     next() {
         this.state = (1664525 * this.state + 1013904223) & 0xffffffff;
         return this.state / 0x100000000;
@@ -60,18 +62,18 @@ class Perlin2D {
             this.perm[i] = p[i & 255];
         }
     }
-    private fade(t: number) { 
-        return t * t * t * (t * (t * 6 - 15) + 10); 
+    private fade(t: number) {
+        return t * t * t * (t * (t * 6 - 15) + 10);
     }
-    private lerp(a: number, b: number, t: number) { 
-        return a + t * (b - a); 
+    private lerp(a: number, b: number, t: number) {
+        return a + t * (b - a);
     }
     private grad(hash: number, x: number, y: number) {
         // 8 possible gradients
         const h = hash & 7;
         const u = h < 4 ? x : y;
         const v = h < 4 ? y : x;
-        return ((h & 1) ? -u : u) + ((h & 2) ? -2 * v : 2 * v);
+        return (h & 1 ? -u : u) + (h & 2 ? -2 * v : 2 * v);
     }
     public noise(x: number, y: number) {
         const X = Math.floor(x) & 255;
@@ -80,22 +82,14 @@ class Perlin2D {
         const yf = y - Math.floor(y);
         const u = this.fade(xf);
         const v = this.fade(yf);
-    
-        const aa = this.perm[X + this.perm[Y]] 
-        const ab = this.perm[X + this.perm[Y+1]] 
-        const ba = this.perm[X +1 + this.perm[Y]] 
-        const bb = this.perm[X +1 + this.perm[Y+1]]
-    
-        const x1 = this.lerp(
-            this.grad(aa, xf, yf),
-            this.grad(ba, xf - 1, yf), 
-            u
-        );
-        const x2 = this.lerp(
-            this.grad(ab, xf, yf - 1),
-            this.grad(bb, xf - 1, yf - 1),
-            u
-        );
+
+        const aa = this.perm[X + this.perm[Y]];
+        const ab = this.perm[X + this.perm[Y + 1]];
+        const ba = this.perm[X + 1 + this.perm[Y]];
+        const bb = this.perm[X + 1 + this.perm[Y + 1]];
+
+        const x1 = this.lerp(this.grad(aa, xf, yf), this.grad(ba, xf - 1, yf), u);
+        const x2 = this.lerp(this.grad(ab, xf, yf - 1), this.grad(bb, xf - 1, yf - 1), u);
         // normalize to [0, 1]
         return (this.lerp(x1, x2, v) + 1) * 0.5;
     }
@@ -111,8 +105,8 @@ for (let i = 0; i < H; i++) {
 }
 
 // instead of x*0.02 … use circular coords:
-const ANGULAR_SCALE = 0.3;   // tweak to stretch/shrink features around the circle
-const DEPTH_SCALE = 0.02;  // your existing “forward” scale
+const ANGULAR_SCALE = 0.3; // tweak to stretch/shrink features around the circle
+const DEPTH_SCALE = 0.02; // your existing “forward” scale
 const TWO_PI = Math.PI * 2;
 
 function fillInitial() {
@@ -141,7 +135,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawMinorTickLines: false,
         labelPrecision: 0,
         labelStyle: {
-            color: "white"
+            color: "white",
         },
         startAngle: Math.PI / 2, // start at 12 o'clock
     });
@@ -155,7 +149,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawMinorTickLines: false,
         labelPrecision: 0,
         labelStyle: {
-            color: "white"
+            color: "white",
         },
         totalAngle: Math.PI * 2, // full circle
         startAngle: Math.PI / 2, // start at 12 o'clock
@@ -193,19 +187,19 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const addNewRow = () => {
         const row = new Array<number>(W);
         const depth = vY * DEPTH_SCALE;
-    
+
         for (let i = 0; i < W; i++) {
             const theta = (i / W) * TWO_PI;
             const nx = Math.cos(theta) * ANGULAR_SCALE;
             const ny = Math.sin(theta) * ANGULAR_SCALE;
-            row[i]= perlin.noise(nx + depth, ny + depth);
+            row[i] = perlin.noise(nx + depth, ny + depth);
         }
         vY += speed;
-    
+
         heatmap.pop();
         heatmap.unshift(row);
         dataSeries.setZValues(heatmap);
-    }
+    };
 
     const changeHeatmapFully = () => {
         for (let y = 0; y < H; y++) {
@@ -218,12 +212,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             }
         }
         dataSeries.setZValues(heatmap);
-    }
+    };
 
     const animate = () => {
         addNewRow();
         // changeHeatmapFully();
-    
+
         requestAnimationFrame(animate);
     };
 
@@ -254,7 +248,7 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
                 strokeThickness: 1,
             },
         },
-        colorMap: COLOR_MAP
+        colorMap: COLOR_MAP,
     });
 
     return { sciChartSurface: heatmapLegend.innerSciChartSurface.sciChartSurface };

@@ -341,17 +341,14 @@ export class ChartInitializer extends ResultsConsoleOutputApi {
             initialPoints: this.options.dataChunkSize
         };
 
-        this.data = Array.from(this.surfaceDataSeriesMap.entries()).reduce(
-            (acc, [surface]) => {
-                acc[surface.id] = Array.from(Array(dataSettings.seriesCount)).map(() => ({
-                    xValues: Array.from(Array(Math.max(dataSettings.initialPoints))) as number[],
-                    yValues: Array.from(Array(Math.max(dataSettings.initialPoints))) as number[]
-                }));
+        this.data = Array.from(this.surfaceDataSeriesMap.entries()).reduce((acc, [surface]) => {
+            acc[surface.id] = Array.from(Array(dataSettings.seriesCount)).map(() => ({
+                xValues: Array.from(Array(Math.max(dataSettings.initialPoints))) as number[],
+                yValues: Array.from(Array(Math.max(dataSettings.initialPoints))) as number[]
+            }));
 
-                return acc;
-            },
-            {} as Record<string, Record<string, number[]>[]>
-        );
+            return acc;
+        }, {} as Record<string, Record<string, number[]>[]>);
 
         const dataGenerationStart = performance.now();
         this.generateDataForSurface(sciChartSurface);

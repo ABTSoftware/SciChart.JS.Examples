@@ -132,10 +132,9 @@ $drawerWidthDesktop: min(350px, 25vw);
         display: none;
         margin-left: auto;
 
-        
         height: 30px;
         gap: 6px;
-        
+
         @media screen and (min-width: 1900px) {
             display: flex;
         }

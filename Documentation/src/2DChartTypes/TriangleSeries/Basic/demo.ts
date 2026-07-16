@@ -62,7 +62,7 @@ async function basicTriangleSeriesChart(divElementId) {
         isDigitalLine: false,
         opacity: 0.5,
         drawMode: ETriangleSeriesDrawMode.List, // Polygon / List / Strip
-        paletteProvider: new TrianglePaletteProvider(),
+        paletteProvider: new TrianglePaletteProvider()
         // dataLabels: {
         //     style: {
         //         fontSize: 14

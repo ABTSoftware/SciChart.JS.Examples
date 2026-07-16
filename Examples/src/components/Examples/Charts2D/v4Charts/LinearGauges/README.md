@@ -6,10 +6,10 @@ This example demonstrates how to create **JavaScript Linear Gauges** using SciCh
 
 ## Technologies Used
 
-- SciChart.js - High performance WebGL charting library
-- WebGL - For accelerated rendering
-- TypeScript - Used in the implementation
-- SVG - For custom axis labels and annotations
+-   SciChart.js - High performance WebGL charting library
+-   WebGL - For accelerated rendering
+-   TypeScript - Used in the implementation
+-   SVG - For custom axis labels and annotations
 
 ## Code Explanation
 
@@ -21,10 +21,11 @@ The example provides six distinct gauge implementations (`gauge1` through `gauge
 
 3. **Annotations**: Text and arrow annotations are added using `TextAnnotation` and `LineArrowAnnotation` to indicate values and create visual indicators.
 
-4. **Orientation Variants**: 
-   - Vertical gauges (gauge1, gauge2, gauge4)
-   - Horizontal gauges (gauge3, gauge5)
-   - Animated gauge (gauge6) with periodic value updates
+4. **Orientation Variants**:
+
+    - Vertical gauges (gauge1, gauge2, gauge4)
+    - Horizontal gauges (gauge3, gauge5)
+    - Animated gauge (gauge6) with periodic value updates
 
 5. **Custom Axis Rendering**: The example includes a `CustomAxisRenderer` class that extends `AxisRenderer` to create styled SVG labels with rounded rectangles.
 
@@ -47,23 +48,26 @@ Key customization aspects in this example include:
 To run this example from the SciChart.JS.Examples repository:
 
 1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
-   ```
+
+    ```bash
+    git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
+    ```
 
 2. **Navigate to the Examples Directory**:
-   ```bash
-   cd SciChart.JS.Examples/Examples
-   ```
+
+    ```bash
+    cd SciChart.JS.Examples/Examples
+    ```
 
 3. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
+
+    ```bash
+    npm install
+    ```
 
 4. **Run the Development Server**:
-   ```bash
-   npm run dev
-   ```
+    ```bash
+    npm run dev
+    ```
 
 For more detailed instructions, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md).

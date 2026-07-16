@@ -274,7 +274,6 @@ const GalleryItems: React.FC<TProps> = ({ examples, setMostVisibleCategory, need
                     index={index}
                     gridType={gridType}
                     setGridType={setGridType}
-                    needsH1={needsH1}
                 />
             ))}
         </div>

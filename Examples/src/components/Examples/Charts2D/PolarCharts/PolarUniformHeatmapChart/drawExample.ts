@@ -4,9 +4,9 @@ import {
     PolarPanModifier,
     PolarNumericAxis,
     SciChartPolarSurface,
-    EPolarAxisMode, 
-    NumberRange, 
-    EAxisAlignment, 
+    EPolarAxisMode,
+    NumberRange,
+    EAxisAlignment,
     EPolarLabelMode,
     HeatmapColorMap,
     UniformHeatmapDataSeries,
@@ -32,13 +32,13 @@ const COLOR_MAP = new HeatmapColorMap({
         { offset: 0.8, color: appTheme.VividSkyBlue },
         { offset: 0.9, color: appTheme.Indigo },
         { offset: 1, color: appTheme.DarkIndigo },
-    ]
-})
+    ],
+});
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
-        padding: new Thickness(0, 60, 0, 0)
+        padding: new Thickness(0, 60, 0, 0),
     });
 
     const radialAxisY = new PolarNumericAxis(wasmContext, {
@@ -51,7 +51,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawMajorTickLines: false,
         drawMinorTickLines: false,
         labelPrecision: 0,
-        innerRadius: 0.2
+        innerRadius: 0.2,
     });
     sciChartSurface.yAxes.add(radialAxisY);
 
@@ -65,7 +65,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawMinorTickLines: false,
         polarLabelMode: EPolarLabelMode.Parallel,
         labelPrecision: 0,
-        totalAngle: Math.PI / 2
+        totalAngle: Math.PI / 2,
     });
     sciChartSurface.xAxes.add(angularAxisX);
 
@@ -121,7 +121,7 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
                 strokeThickness: 1,
             },
         },
-        colorMap: COLOR_MAP
+        colorMap: COLOR_MAP,
     });
 
     return { sciChartSurface: heatmapLegend.innerSciChartSurface.sciChartSurface };

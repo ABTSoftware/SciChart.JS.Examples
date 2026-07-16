@@ -554,15 +554,19 @@ class TestReportViewer {
             }
 
             // Render combined performance metrics table if data exists and is valid
-            const hasValidTableData = testPerformanceMap.size > 0 &&
-                Array.from(testPerformanceMap.values()).some(data =>
-                    data.performanceData && data.performanceData.length > 0 &&
-                    data.performanceData.some(perfData =>
-                        perfData.preRenderStart?.length > 0 ||
-                        perfData.renderToWebGl?.length > 0 ||
-                        perfData.renderEnd?.length > 0 ||
-                        perfData.framePainted?.length > 0
-                    )
+            const hasValidTableData =
+                testPerformanceMap.size > 0 &&
+                Array.from(testPerformanceMap.values()).some(
+                    data =>
+                        data.performanceData &&
+                        data.performanceData.length > 0 &&
+                        data.performanceData.some(
+                            perfData =>
+                                perfData.preRenderStart?.length > 0 ||
+                                perfData.renderToWebGl?.length > 0 ||
+                                perfData.renderEnd?.length > 0 ||
+                                perfData.framePainted?.length > 0
+                        )
                 );
 
             if (hasValidTableData) {
@@ -916,12 +920,15 @@ class TestReportViewer {
 
         // Create performance chart container
         // Check if performance data exists and has valid data (not just empty arrays)
-        const hasValidPerformanceData = performanceData && performanceData.length > 0 &&
-            performanceData.some(data =>
-                data.preRenderStart?.length > 0 ||
-                data.renderToWebGl?.length > 0 ||
-                data.renderEnd?.length > 0 ||
-                data.framePainted?.length > 0
+        const hasValidPerformanceData =
+            performanceData &&
+            performanceData.length > 0 &&
+            performanceData.some(
+                data =>
+                    data.preRenderStart?.length > 0 ||
+                    data.renderToWebGl?.length > 0 ||
+                    data.renderEnd?.length > 0 ||
+                    data.framePainted?.length > 0
             );
 
         if (hasValidPerformanceData) {
@@ -965,7 +972,9 @@ class TestReportViewer {
                     });
             }, 100);
         } else {
-            console.log("No valid performance data available - enableRenderTracing might be disabled");
+            console.log(
+                "No valid performance data available - enableRenderTracing might be disabled"
+            );
             // Show a message to the user
             const noDataContainer = document.createElement("div");
             noDataContainer.className = "chart-container";

@@ -60,7 +60,7 @@ const seriesTypesVariations = [
 ];
 
 const dataPointsNumberVariations = [
-    100, //500, 1000
+    100 //500, 1000
     // 2000, 4000, 20000
 ];
 const seriesNumberVariations = [

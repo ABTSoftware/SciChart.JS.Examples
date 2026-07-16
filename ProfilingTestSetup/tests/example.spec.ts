@@ -5,7 +5,12 @@ import {
     PlaywrightWorkerArgs,
     PlaywrightWorkerOptions
 } from "@playwright/test";
-import { EUpdateIntervalBaseline, TCollectedMetrics, TSetupOptions, TTestOptions } from "../src/types";
+import {
+    EUpdateIntervalBaseline,
+    TCollectedMetrics,
+    TSetupOptions,
+    TTestOptions
+} from "../src/types";
 import { test } from "./fixtures";
 import { ESeriesType } from "scichart";
 import { EInitializerType } from "../src/InitializerTypes";
@@ -38,7 +43,7 @@ test("get started link", async ({
         surfacesNumber: 1,
         updatesNumber: 10,
         syncDataUpdateWithFrameRate: true,
-        intervalBaseline: EUpdateIntervalBaseline.PaintEnd,
+        intervalBaseline: EUpdateIntervalBaseline.PaintEnd
     };
 
     const evaluationResult = await page.evaluate<TCollectedMetrics, TTestOptions>(

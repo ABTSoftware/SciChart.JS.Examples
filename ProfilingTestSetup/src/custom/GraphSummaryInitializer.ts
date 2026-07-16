@@ -103,7 +103,7 @@ export class GraphSummaryInitializer extends ChartInitializer {
         modalOverlay.appendChild(modalContent);
 
         // Close modal on overlay click
-        modalOverlay.addEventListener("click", (e) => {
+        modalOverlay.addEventListener("click", e => {
             if (e.target === modalOverlay) {
                 document.body.removeChild(modalOverlay);
             }
@@ -153,12 +153,15 @@ export class GraphSummaryInitializer extends ChartInitializer {
         const performanceData = super.outputPerformanceData();
 
         // Check if performance data is valid (not empty arrays)
-        const hasValidData = performanceData && performanceData.length > 0 &&
-            performanceData.some((data: TCollectedPerformanceData) =>
-                data.preRenderStart?.length > 0 ||
-                data.renderToWebGl?.length > 0 ||
-                data.renderEnd?.length > 0 ||
-                data.framePainted?.length > 0
+        const hasValidData =
+            performanceData &&
+            performanceData.length > 0 &&
+            performanceData.some(
+                (data: TCollectedPerformanceData) =>
+                    data.preRenderStart?.length > 0 ||
+                    data.renderToWebGl?.length > 0 ||
+                    data.renderEnd?.length > 0 ||
+                    data.framePainted?.length > 0
             );
 
         if (hasValidData) {

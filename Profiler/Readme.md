@@ -63,10 +63,11 @@ The profiler displays performance debug data collected with SciChart's Performan
 ## How to use the Performance Monitor Graph
 
 Features supported on the chart:
-- Mousewheel zoom
-- Drag to pan
-- Drag with right button to select time range
-- Click on a data segment to see its details
+
+-   Mousewheel zoom
+-   Drag to pan
+-   Drag with right button to select time range
+-   Click on a data segment to see its details
 
 ## Using the Mark Type Selector Tree
 

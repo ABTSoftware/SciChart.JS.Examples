@@ -4,9 +4,9 @@ import {
     PolarPanModifier,
     PolarNumericAxis,
     SciChartPolarSurface,
-    EPolarAxisMode, 
-    NumberRange, 
-    EAxisAlignment, 
+    EPolarAxisMode,
+    NumberRange,
+    EAxisAlignment,
     EPolarLabelMode,
     HeatmapColorMap,
     UniformHeatmapDataSeries,
@@ -28,8 +28,8 @@ const COLOR_MAP = new HeatmapColorMap({
         { offset: 0.4, color: appTheme.VividOrange },
         { offset: 0.5, color: "white" },
         { offset: 0.6, color: appTheme.VividTeal },
-    ]
-})
+    ],
+});
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
@@ -43,7 +43,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         useNativeText: true,
         labelPrecision: 0,
         labelStyle: {
-            color: "white"
+            color: "white",
         },
 
         autoTicks: false,
@@ -68,13 +68,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
         useNativeText: true,
         totalAngleDegrees: 360,
-        
+
         autoTicks: false,
         majorDelta: 45,
         labelPostfix: "°",
         labelPrecision: 0,
         labelStyle: {
-            color: "white"
+            color: "white",
         },
         polarLabelMode: EPolarLabelMode.Parallel,
 
@@ -95,12 +95,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             xStep: 1,
             yStart: 0,
             yStep: 1,
-            containsNaN: true
+            containsNaN: true,
         }),
         colorMap: COLOR_MAP,
         stroke: "white",
         strokeThickness: 5,
-        opacity: 0.8
+        opacity: 0.8,
     });
     sciChartSurface.renderableSeries.add(heatmapSeries);
 
@@ -142,7 +142,7 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
                 strokeThickness: 1,
             },
         },
-        colorMap: COLOR_MAP
+        colorMap: COLOR_MAP,
     });
 
     return { sciChartSurface: heatmapLegend.innerSciChartSurface.sciChartSurface };
