@@ -22,11 +22,11 @@ const metaData: IExampleMetadata =
             },
             react: {
                 subtitle:
-                    "Creates a **React Wafer Analysis Chart** using SciChart.js, by leveraging the **FastRectangleRenderableSeries**, and crossfilter to enable live filtering.",
-                title: "Wafer Analysis Chart",
-                pageTitle: "React Wafer Analysis Chart | JavaScript Charts | SciChart.js",
+                    "Creates a React Wafer Analysis Chart using SciChart.js. Leverage the FastRectangleRenderableSeries and crossfilter to enable live filtering.",
+                title: "React Wafer Analysis Chart",
+                pageTitle: "React Wafer Analysis Chart | Try Now | SciChart",
                 metaDescription:
-                    "React **Wafer Analysis Chart** using SciChart.js, by leveraging the **FastRectangleRenderableSeries**, and crossfilter to enable live filtering.",
+                    "Render a React Wafer Analysis Chart with live crossfilter data updates at a smooth 60 FPS. Optimize your semiconductor workflows. Try the demo.",
                 markdownContent: `## Wafer Analysis Dashboard - React\n\n### Overview\n\n#### Dashboard/Interface Layout\n\nThe Wafer Analysis dashboard presents a comprehensive semiconductor wafer testing interface organized in a two-panel layout:\n\n**Left Panel:**\n
 - Main wafer visualization chart displaying the circular wafer map with individual dies\n
 - Variable selection dropdown for switching between different measurement variables (DEFECT, MR, HR, MR2, HDI)\n
@@ -111,7 +111,7 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "wafer-analysis",
-        metaKeywords: "heatmap, wafer, crossfilter, semiconductors, chart, javascript, webgl, canvas",
+        metaKeywords: "React wafer analysis chart",
         onWebsite: true,
         filepath: "FeaturedApps/ScientificCharts/WaferAnalysis",
         thumbnailImage: "wafer-analysis.jpg",

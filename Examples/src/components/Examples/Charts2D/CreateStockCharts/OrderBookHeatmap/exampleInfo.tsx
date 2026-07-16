@@ -47,11 +47,12 @@ const metaData: IExampleMetadata =
                 markdownContent,
             },
             react: {
-                subtitle: "Create a heatmap chart showing historical orderbook levels",
-                title: "Order Book Heatmap",
-                pageTitle: "React Orderbook Heatmap",
+                subtitle:
+                    "With the React BTC Order Book Heatmap Charts demo you can easily create a customized heatmap chart showing historical order book levels.",
+                title: "React BTC Order Book Heatmap Charts",
+                pageTitle: "React BTC Order Book Heatmap Charts | Try SciChart Demo",
                 metaDescription:
-                    "Create a React heatmap chart showing historical orderbook levels, using the high performance SciChart.js chart library. Get free demo now.",
+                    "Render a real-time React BTC order book heatmap with ease. Optimize your crypto exchange with a fast heatmap order book. Give the SciChart demo a try.",
                 markdownContent,
             },
             angular: {
@@ -71,7 +72,7 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "order-book-heatmap",
-        metaKeywords: "orderbook, heatmap, trading, stock, chart, javascript, webgl, canvas",
+        metaKeywords: "React BTC order book heatmap, heatmap order book",
         onWebsite: true,
         filepath: "Charts2D/CreateStockCharts/OrderBookHeatmap",
         thumbnailImage: "javascript-order-book-heatmap.jpg",

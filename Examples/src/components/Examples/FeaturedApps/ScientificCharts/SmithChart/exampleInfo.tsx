@@ -56,11 +56,11 @@ Three adapters add interactivity on top of the chart surface:
             },
             react: {
                 subtitle:
-                    "Demonstrates how to create a **React Smith Chart** using SciChart.js, High Performance JavaScript Charts",
+                    "Demonstrates how to create a React Smith Chart using SciChart.js, a high-performance rendering engine and fully customizable layouts, behaviors and design elements.",
                 title: "React Smith Chart",
-                pageTitle: "React  Smith Chart",
+                pageTitle: "React Smith Chart | Try Demo | SciChart",
                 metaDescription:
-                    "Interactive React Smith chart for RF impedance matching — place markers, build matching networks step by step with the component chain, and switch between impedance and admittance grids.",
+                    "Build interactive React Smith Chart components for RF impedance matching with zero data lag. No specialised polar surface required. Give the demo a try.",
                 markdownContent: `### What is a Smith Chart?
 
 RF and microwave engineers face a recurring problem: getting maximum power from a source into a load when both have complex, frequency-dependent impedances. A mismatch causes reflections that waste power, distort signals, and can damage amplifiers. Fixing it means choosing the right combination of inductors, capacitors, and transmission-line sections — but the interactions are non-linear and hard to reason about algebraically.
@@ -151,7 +151,7 @@ Three adapters add interactivity on top of the chart surface:
         },
         documentationLinks: [],
         path: "smith-chart",
-        metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
+        metaKeywords: "React smith chart",
         onWebsite: true,
         filepath: "FeaturedApps/ScientificCharts/SmithChart",
         thumbnailImage: "smith-chart.jpg",
