@@ -285,7 +285,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             pairStroke: PAIRED_POLYLINE_COLORS.primaryConnector,
             pairStrokeThickness: 1.5,
             pairStrokeDashArray: [6, 4],
-            snapToDataPoint: false,
             placementPointCount: 5,
             points: [
                 { x: xAt(226), y: yAt(226, -0.1) },
@@ -310,7 +309,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             pairStroke: PAIRED_POLYLINE_COLORS.secondaryConnector,
             pairStrokeThickness: 1.5,
             pairStrokeDashArray: [4, 3],
-            snapToDataPoint: false,
             placementPointCount: 7,
             points: [
                 { x: xAt(336), y: yAt(336, -0.1) },
@@ -359,7 +357,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     pairStrokeDashArray: [7, 4],
                     showPairConnectors: true,
                     placementPointCount: safePointCount,
-                    snapToDataPoint: false,
                     labels: createConnectorLabels(safePointCount, "NEW"),
                     pointLabelVisibility: EAnnotationVisibilityMode.OnInteraction,
                     segmentLabelVisibility: EAnnotationVisibilityMode.Always,
