@@ -14,7 +14,7 @@
     "dependencies": {
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "scichart": "^5.0.0-alpha.135",
+        "scichart": "6.0.0-alpha.135",
         "ts-node": "^10.9.1"
     },
     "devDependencies": {

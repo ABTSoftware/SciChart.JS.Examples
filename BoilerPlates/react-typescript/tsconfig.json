@@ -22,7 +22,7 @@
         "typeRoots": ["./src/types", "./node_modules/@types"],
         "types": ["react", "react-dom"],
         "esModuleInterop": false,
-        "skipLibCheck": false,
+        "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true
     },
     "include": ["src/**/*"],
