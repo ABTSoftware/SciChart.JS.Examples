@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "build": "webpack --mode production",
-        "start": "ts-node server",
+        "start": "ts-node --project tsconfig.server.json server",
         "dev": "webpack-dev-server --mode development"
     },
     "keywords": [],
