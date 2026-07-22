@@ -78,7 +78,6 @@ export const includeExternalModules = async (
                                 const externalContentx = await fs.promises.readFile(filepathx, "utf8");
                                 files[csPathx] = { content: externalContentx, isBinary: false };
                             } catch {
-                                console.log(externalImport[2], "not found at", filepath, "from", folderPath);
                                 files[csPath] = { content: "Could not load source", isBinary: false };
                             }
                         }
@@ -130,7 +129,6 @@ export const includeImportedModules = async (
                             content = await fs.promises.readFile(filepath, "utf8");
                             dirname = path.dirname(filepath);
                         } catch {
-                            console.log(localImport[1], "not loaded for", folderPath);
                             content = "could not load source";
                         }
                     }

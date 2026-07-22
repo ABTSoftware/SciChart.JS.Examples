@@ -24,7 +24,13 @@
         "allowSyntheticDefaultImports": true,
         "module": "ESNext",
         "moduleResolution": "bundler",
-        "target": "es5",
+        "baseUrl": ".",
+        "paths": {
+            "scichart-react": ["./src/scichart-react/index.ts"],
+            "scichart": ["./node_modules/scichart/esm/index.d.ts"],
+            "scichart/*": ["./node_modules/scichart/esm/*"]
+        },
+        "target": "es2018",
         "downlevelIteration": true,
         "jsx": "react-jsx",
         "allowJs": true,
