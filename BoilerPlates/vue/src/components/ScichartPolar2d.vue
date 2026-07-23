@@ -64,12 +64,15 @@ async function initSciChartPolar2D() {
         strokeThickness: 4,
     });
     sciChartSurface.renderableSeries.add(polarMountain);
+
+    // Return the surface so callers (beforeUnmount) can delete it.                                              
+    return sciChartSurface;
 };
 
 export default defineComponent({
   // Best practise in Vue.js is to ensure that sciChartSurface is deleted on component unmount.
   // Here's one way to do this
-  data(): { chartInitializationPromise?: Promise<SciChartSurface> } {
+  data(): { chartInitializationPromise?: Promise<SciChartPolarSurface> } {
     return {
       chartInitializationPromise: undefined
     }
@@ -80,7 +83,7 @@ export default defineComponent({
   },
   beforeUnmount() {
     console.log('SciChartPolar2d.vue beforeUnmount')
-    this.chartInitializationPromise!.then((sciChartSurface: SciChartSurface) => {
+    this.chartInitializationPromise!.then((sciChartSurface: SciChartPolarSurface) => {
       console.log('..deleting sciChartSurface')
       sciChartSurface.delete()
     })
