@@ -11,7 +11,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "scichart": "6.0.0-alpha.135",
+    "install": "0.13.0",
+    "npm": "11.18.0",
+    "scichart": "6.0.0-alpha.140",
     "serve": "^14.2.6"
   },
   "devDependencies": {

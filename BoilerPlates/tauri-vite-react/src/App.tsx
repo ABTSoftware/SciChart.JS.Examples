@@ -1,4 +1,4 @@
-import { SciChartReact } from "scichart-react";
+import { useEffect, useRef } from "react";
 import {
   SciChartSurface,
   XyDataSeries,
@@ -52,6 +52,17 @@ async function drawExample(rootElement: string | HTMLDivElement) {
 }
 
 function App() {
+  const chartRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Mount the chart programmatically (no scichart-react wrapper). Keep the surface promise so we
+    // can delete it on unmount — this also handles React StrictMode's double-invoke in dev.
+    const chartPromise = drawExample(chartRef.current!);
+    return () => {
+      chartPromise.then(({ sciChartSurface }) => sciChartSurface.delete());
+    };
+  }, []);
+
   return (
     <div
       style={{
@@ -64,39 +75,7 @@ function App() {
     >
       <h1>SciChart with Tauri + React + Vite</h1>
 
-      <SciChartReact 
-        style={{ width: '90%' }}
-
-        // This is for our useBuilderAPI config (uncomment and comment `initChart` to see)
-        // config={{
-        //   type: ESciChartSurfaceType.Default2D,
-        //   xAxes: [{ type: EAxisType.NumericAxis }],
-        //   yAxes: [{ type: EAxisType.NumericAxis }],
-        //   series: [
-        //     {
-        //       type: ESeriesType.SplineMountainSeries,
-        //       options: {
-        //         fill: "#3ca832",
-        //         stroke: "#eb911c",
-        //         strokeThickness: 4,
-        //         opacity: 0.4,
-        //       },
-        //       xyData: {
-        //         xValues: [1, 2, 3, 4],
-        //         yValues: [1, 4, 7, 3],
-        //       },
-        //     },
-        //   ],
-        //   modifiers: [
-        //     { type: EChart2DModifierType.ZoomPan, options: { enableZoom: true } },
-        //     { type: EChart2DModifierType.MouseWheelZoom },
-        //     { type: EChart2DModifierType.ZoomExtents },
-        //   ],
-        // }}
-
-        // or use initChart function
-        initChart={drawExample}
-      />
+      <div ref={chartRef} style={{ width: "90%", height: "60vh" }} />
     </div>
   );
 }

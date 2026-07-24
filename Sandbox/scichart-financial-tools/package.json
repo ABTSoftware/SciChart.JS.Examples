@@ -9,8 +9,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "scichart": "5.2.10",
-    "scichart-financial-tools": "5.2.10"
+    "scichart": "6.0.0-alpha.140",
+    "scichart-financial-tools": "6.0.0-alpha.140"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^6.0.3",

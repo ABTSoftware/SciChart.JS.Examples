@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "copy-files-from-to": "^3.8.0",
-    "scichart": "^5.0.0-alpha.135",
-    "nuxt": "^3.11.2",
+    "nuxt": "^4.5.0",
+    "scichart": "6.0.0-alpha.140",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   }

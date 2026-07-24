@@ -14,8 +14,7 @@
     "@tauri-apps/plugin-opener": "^2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "scichart": "^5.0.0-alpha.135",
-    "scichart-react": "^0.1.13",
+    "scichart": "6.0.0-alpha.140",
     "vite-plugin-static-copy": "^3.1.1"
   },
   "devDependencies": {
@@ -25,8 +24,5 @@
     "@vitejs/plugin-react": "^4.6.0",
     "typescript": "~5.8.3",
     "vite": "^7.0.4"
-  },
-  "overrides": {
-    "scichart": "^5.0.0-alpha.135"
   }
 }
