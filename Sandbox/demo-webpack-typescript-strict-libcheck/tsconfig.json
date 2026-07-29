@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es2020",
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "lib": ["es2020", "dom"],
+
+        "strict": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+
+        // The point of this example. With skipLibCheck: false, tsc type-checks every
+        // .d.ts under node_modules/scichart and surfaces invalid declarations there.
+        "skipLibCheck": false,
+
+        "rootDir": "./src",
+        "outDir": "./build",
+        "sourceMap": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "build"]
+}

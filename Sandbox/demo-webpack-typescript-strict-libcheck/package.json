@@ -1,0 +1,27 @@
+{
+  "name": "scichart-demo-webpack-typescript-strict-libcheck",
+  "version": "1.0.0",
+  "description": "Repro for TS2416 on CompositeAnnotation.type — webpack + typescript with skipLibCheck: false",
+  "main": "index.js",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "check:skiplib": "tsc --noEmit --skipLibCheck",
+    "build": "webpack",
+    "start": "webpack serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "scichart": "^5.2.55"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^14.0.0",
+    "prettier": "^3.9.6",
+    "ts-loader": "^9.6.2",
+    "typescript": "^6.0.3",
+    "webpack": "^5.109.2",
+    "webpack-cli": "^7.2.2",
+    "webpack-dev-server": "^6.0.0"
+  }
+}
