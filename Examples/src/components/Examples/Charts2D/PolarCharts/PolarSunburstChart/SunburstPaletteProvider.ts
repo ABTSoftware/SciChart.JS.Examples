@@ -1,10 +1,10 @@
 import {
-    IRenderableSeries, 
-    parseColorToUIntArgb, 
+    IRenderableSeries,
+    parseColorToUIntArgb,
     EFillPaletteMode,
     EStrokePaletteMode,
     IFillPaletteProvider,
-    IStrokePaletteProvider 
+    IStrokePaletteProvider,
 } from "scichart";
 import { SunburstMetadata } from "./SunburstMetadata";
 

@@ -257,8 +257,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const freehandDrawingModifier = new FreehandDrawingModifier({
         isDrawing: false,
         keepDrawingAfterComplete: true,
-        pointSamplingDistancePx: 1.2,
-        simplifyTolerancePx: 0.8,
+        pointSamplingDistancePx: 1,
+        simplifyTolerancePx: 0,
         maxPoints: 6000,
     });
 
@@ -274,19 +274,18 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
 
     sciChartSurface.annotations.add(
-        ...initialFreehandAnnotations.map(
-            (data) =>
-                new FreehandDrawingAnnotation({
-                    points: data.points,
-                    stroke: data.stroke,
-                    strokeThickness: data.strokeThickness,
-                    isEditable: true,
-                    isSelected: false,
-                    allowMove: true,
-                    showBoxOutline: false,
-                    opacity: 0.9,
-                    gripVisibility: EAnnotationVisibilityMode.OnInteraction,
-                })
+        ...initialFreehandAnnotations.map((data) =>
+            new FreehandDrawingAnnotation({
+                points: data.points,
+                stroke: data.stroke,
+                strokeThickness: data.strokeThickness,
+                isEditable: true,
+                isSelected: false,
+                allowMove: true,
+                showBoxOutline: false,
+                opacity: 0.9,
+                gripVisibility: EAnnotationVisibilityMode.OnInteraction,
+            })
         ),
         new FreehandDrawingAnnotation({
             points: handDrawnTrendlinePoints,

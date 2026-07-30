@@ -68,7 +68,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawMinorGridLines: false,
         drawMajorTickLines: false,
         drawMinorTickLines: false,
-
         startAngle: Math.PI / 2, // draw labels at 12 o'clock
         autoTicks: false,
         majorDelta: 1,

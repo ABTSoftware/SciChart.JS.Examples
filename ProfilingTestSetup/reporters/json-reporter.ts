@@ -72,7 +72,11 @@ class JsonReporter implements Reporter {
         // Filter to only include PerformanceTests
         const performanceTests = suite
             .allTests()
-            .filter(test => test.location.file.includes("PerformanceTests") || test.location.file.includes("LongRunningTests"));
+            .filter(
+                test =>
+                    test.location.file.includes("PerformanceTests") ||
+                    test.location.file.includes("LongRunningTests")
+            );
 
         const envTests = suite.allTests().filter(test => test.location.file.includes("EnvTests"));
 
@@ -1012,7 +1016,10 @@ class JsonReporter implements Reporter {
 
             for (const test of child.tests) {
                 // Only include tests from PerformanceTests folder
-                if (!test.location.file.includes("PerformanceTests") && !test.location.file.includes("LongRunningTests")) {
+                if (
+                    !test.location.file.includes("PerformanceTests") &&
+                    !test.location.file.includes("LongRunningTests")
+                ) {
                     continue;
                 }
 

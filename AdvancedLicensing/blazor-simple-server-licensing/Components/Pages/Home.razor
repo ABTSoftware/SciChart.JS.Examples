@@ -1,0 +1,24 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>SciChart Blazor Simple Server Licensing</PageTitle>
+
+<h1>SciChart Blazor Simple Server Licensing</h1>
+
+<div id="demo" style="display: flex; gap: 20px; align-items: flex-start;">
+    <div style="width: 600px; flex-shrink: 0;">
+        @if (_licenseReady)
+        {
+            <SciChartSurface HeightAspect="2" WidthAspect="3">
+                <XAxes>
+                    <NumericAxis />
+                </XAxes>
+                <YAxes>
+                    <NumericAxis />
+                </YAxes>
+                <MouseWheelZoomModifier />
+                <ZoomPanModifier />
+            </SciChartSurface>
+        }
+    </div>
+</div>

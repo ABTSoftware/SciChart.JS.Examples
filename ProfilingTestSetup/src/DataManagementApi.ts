@@ -33,12 +33,16 @@ export class DataManagementApi extends PerformanceTrackingApi {
             const dataSeries = dataSeriesArray[i];
             if (dataSeries.type === EDataSeriesType.HeatmapUniform) {
                 const heatmapDataSeries = dataSeries as UniformHeatmapDataSeries;
-                
-                this.data[surface.id][i].xValues = [heatmapDataSeries.xStart, heatmapDataSeries.xStep, heatmapDataSeries.yStart, heatmapDataSeries.yStep];
 
-                const zValues = Array.from([[]])
+                this.data[surface.id][i].xValues = [
+                    heatmapDataSeries.xStart,
+                    heatmapDataSeries.xStep,
+                    heatmapDataSeries.yStart,
+                    heatmapDataSeries.yStep
+                ];
+
+                const zValues = Array.from([[]]);
                 Object.assign(this.data[surface.id][i], zValues);
-
             } else {
                 const lastIndex = dataSeries.count() - 1;
                 const lastX = lastIndex > 0 ? dataSeries.getNativeXValues().get(lastIndex) : 0;

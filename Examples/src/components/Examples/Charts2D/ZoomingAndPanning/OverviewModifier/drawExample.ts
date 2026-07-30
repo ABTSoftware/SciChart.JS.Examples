@@ -104,5 +104,5 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 export const drawOverview = async (sciChartSurface: SciChartSurface, divOverviewId: string | HTMLDivElement) => {
     const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, overviewOptions);
 
-    return {sciChartSurface: overview.overviewSciChartSurface};
+    return { sciChartSurface: overview.overviewSciChartSurface };
 };

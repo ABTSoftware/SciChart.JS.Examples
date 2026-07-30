@@ -1,4 +1,16 @@
-import { SciChartSurface, NumericAxis, SciChartJsNavyTheme, TriangleRenderableSeries, XyDataSeries, ETriangleSeriesDrawMode, ZoomPanModifier, ZoomExtentsModifier, EFillPaletteMode, parseColorToUIntArgb, NumberRange } from "scichart";
+import {
+    SciChartSurface,
+    NumericAxis,
+    SciChartJsNavyTheme,
+    TriangleRenderableSeries,
+    XyDataSeries,
+    ETriangleSeriesDrawMode,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    EFillPaletteMode,
+    parseColorToUIntArgb,
+    NumberRange
+} from "scichart";
 async function triangleSeriesStripChart(divElementId) {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJsNavyTheme()
@@ -36,8 +48,8 @@ async function triangleSeriesStripChart(divElementId) {
     };
     class TrianglePaletteProvider {
         fillPaletteMode = EFillPaletteMode.SOLID;
-        onAttached() { }
-        onDetached() { }
+        onAttached() {}
+        onDetached() {}
         overrideFillArgb(_xValue, _yValue, index, opacity) {
             // return parseColorToUIntArgb(Math.floor(index / 3) % 2 === 0 ? "cornflowerblue" : "lightgray");
             // console.log(Math.floor(index / 3));

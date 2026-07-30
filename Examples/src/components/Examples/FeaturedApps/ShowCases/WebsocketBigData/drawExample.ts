@@ -440,7 +440,7 @@ export const drawExample =
             renderTime = new Date().getTime() - renderStart;
             avgRenderTime = (avgRenderTime * loadCount + renderTime) / (loadCount + 1);
             loadCount++;
-            
+
             // Only update messages every 10 renders to reduce DOM overhead
             messageUpdateCounter++;
             if (messageUpdateCounter >= 10) {
@@ -471,38 +471,38 @@ export const drawExample =
         const loadFromBuffer = () => {
             if (dataBuffer.length > 0) {
                 loadStart = new Date().getTime();
-                
+
                 // Process multiple buffered items more efficiently
                 const batchSize = Math.min(dataBuffer.length, 5); // Limit batch processing
                 let totalXLength = 0;
                 let totalYsLength = 0;
-                
+
                 // Calculate total lengths to pre-allocate arrays
                 for (let i = 0; i < batchSize; i++) {
                     totalXLength += dataBuffer[i].x.length;
                     if (i === 0) totalYsLength = dataBuffer[i].ys.length;
                 }
-                
+
                 // Pre-allocate arrays for better performance
                 const x = new Array(totalXLength);
                 const ys: number[][] = new Array(totalYsLength);
                 for (let j = 0; j < totalYsLength; j++) {
                     ys[j] = new Array(totalXLength);
                 }
-                
+
                 let xIndex = 0;
                 let yIndex = 0;
-                
+
                 // Copy data efficiently without spread operator
                 for (let i = 0; i < batchSize; i++) {
                     const el = dataBuffer[i];
                     const elXLength = el.x.length;
-                    
+
                     // Copy x values
                     for (let k = 0; k < elXLength; k++) {
                         x[xIndex++] = el.x[k];
                     }
-                    
+
                     // Copy y values
                     for (let y = 0; y < el.ys.length; y++) {
                         for (let k = 0; k < elXLength; k++) {
@@ -511,11 +511,11 @@ export const drawExample =
                     }
                     yIndex += elXLength;
                 }
-                
+
                 loadData({ x, ys, sendTime: dataBuffer[0].sendTime });
                 dataBuffer.splice(0, batchSize);
             }
-            
+
             if (isRunning) {
                 requestAnimationFrame(loadFromBuffer);
             }

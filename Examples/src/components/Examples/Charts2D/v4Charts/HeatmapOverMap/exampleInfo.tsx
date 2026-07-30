@@ -21,7 +21,7 @@ This example demonstrates how to create a **Heatmap visualization of earthquake 
 - **2.**  Each earthquake is mapped to a grid cell based on its geographic coordinates
 - **3.**  The maximum magnitude is used when multiple earthquakes fall in the same cell
 - **4.**  A smoothing pass averages neighboring cells for better visualization
-- **5.**  The heatmap is rendered with 50% opacity over the world map outlines`
+- **5.**  The heatmap is rendered with 50% opacity over the world map outlines`;
 
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!

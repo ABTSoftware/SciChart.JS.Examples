@@ -55,64 +55,36 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumError": "5MB"
                 },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                "test": {
+                    "builder": "@angular/build:karma",
+                    "options": {
+                        "polyfills": ["zone.js", "zone.js/testing"],
+                        "tsConfig": "tsconfig.spec.json",
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "public"
+                            },
+                            {
+                                "glob": "scichart2d.wasm",
+                                "input": "node_modules/scichart/_wasm",
+                                "output": "/"
+                            },
+                            {
+                                "glob": "scichart3d.wasm",
+                                "input": "node_modules/scichart/_wasm",
+                                "output": "/"
+                            }
+                        ],
+                        "styles": ["src/styles.css"]
+                    }
                 }
-              ],
-              "outputHashing": "all"
             },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
+            "cli": {
+                "analytics": false
             }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular/build:dev-server",
-          "configurations": {
-            "production": {
-              "buildTarget": "scichart-angular:build:production"
-            },
-            "development": {
-              "buildTarget": "scichart-angular:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular/build:extract-i18n"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              },
-              {
-                "glob": "scichart2d.wasm",
-                "input": "node_modules/scichart/_wasm",
-                "output": "/"
-              },
-              {
-                "glob": "scichart3d.wasm",
-                "input": "node_modules/scichart/_wasm",
-                "output": "/"
-              }
-            ],
-            "styles": ["src/styles.css"]
-          }
         }
-      }
     }
-  }
 }

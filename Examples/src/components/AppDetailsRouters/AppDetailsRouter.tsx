@@ -271,7 +271,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                         )}
                         <MarkdownContent selectedFramework={selectedFramework} currentExample={currentExample} />
                     </div>
-                    <GalleryItems examples={seeAlso} needsH1={false} />
+                    <GalleryItems examples={seeAlso} />
                 </div>
             </div>
         </div>

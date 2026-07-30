@@ -8,10 +8,5 @@
   "git": true,
   "version": 1,
   "framework": "react-cra",
-  "chosenAddOns": [
-    "biome",
-    "compiler",
-    "table",
-    "shadcn"
-  ]
+  "chosenAddOns": ["biome", "compiler", "table", "shadcn"]
 }

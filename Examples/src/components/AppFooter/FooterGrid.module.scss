@@ -14,8 +14,8 @@
             @extend %CommonFooterGridConfigs;
 
             grid-template-rows: repeat(3, 1fr);
-    
-            @include mixins.xs{
+
+            @include mixins.xs {
                 grid-template-rows: unset;
             }
         }
@@ -43,7 +43,7 @@
         grid-column-end: span 4;
     }
 
-    @include mixins.sm{
+    @include mixins.sm {
         padding: 0 16px;
 
         &:first-child {
@@ -55,5 +55,4 @@
             grid-column-start: 1;
         }
     }
-
 }

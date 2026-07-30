@@ -1,38 +1,82 @@
 # Simple Server Licensing Example (.NET 10 MVC)
 
-Demonstrates adding SciChart's **Simple Server Validation** endpoint to a standard ASP.NET Core MVC application. The pattern is a single `LicenseController` that slots naturally alongside your existing controllers — no changes to routing or middleware needed beyond the one shown.
+Demonstrates SciChart's **Simple Server Validation v2** flow in an ASP.NET Core MVC application via the [`SciChart.AspNetCore.SimpleLicensing`](../SciChart.AspNetCore.SimpleLicensing/) package.
+
+This example uses **inline meta-tag delivery as the primary path**: the licence token is rendered into `<head>` by the layout, so SciChart validates with no XHR on each full page load. The XHR endpoint stays mapped for re-validation when long-running sessions outlive the cached cookie.
 
 ## How it works
 
-1. The client sets a runtime license key that has the `"SV"` (SimpleValidation) feature flag.
-2. On load, SciChart calls `GET /api/license?orderid=<id>` on the same origin.
-3. `LicenseController.Get()` computes `HMAC-SHA256(serverSecret, "nonce:expiry")` and returns `nonce:expiry:hmac`.
-4. SciChart verifies the token in WASM (constant-time comparison) and caches it in a cookie.
-5. The token is valid for 7 days; SciChart re-validates once every 24 hours automatically.
+A v2 token can take one of two shapes on the wire:
 
-No challenge from client to server is required — CORS provides the domain-binding security.
+- **Inline** (4 fields) — `v2:serverNonce:serverNow:hmac`. Independent of any client state; servable to many clients and embeddable in HTML via a `<meta>` tag. Should still be signed per request — the embedded `serverNow` ages relative to the client's clock and will fall outside `max_skew` once the token is older than the licence's tolerance, so caching past that point causes valid clients to reject otherwise-correct tokens.
+- **Round-trip** (5 fields) — `v2:clientNonce:serverNonce:serverNow:hmac`. The client generates a random nonce in WASM and sends it as `?nonce=<hex>`; the server echoes it into the signed token. A captured response is bound to the requesting client and cannot be replayed on another origin.
+
+For most deployments the two shapes are interchangeable under a single licence — mix inline meta-tag delivery and round-trip requests freely, the SciChart client accepts whichever arrives. Deployments that can't keep server and client clocks in reasonable alignment should be locked to round-trip only: inline tokens can drift stale, round-trip tokens are signed against the request that produced them.
+
+The fourth field of `SV:H:V:N` chooses: `0` (permissive default) accepts both shapes; `1` (restricted) accepts round-trip only and disables inline delivery.
+
+```
+Initial validation, every full page load — no XHR:
+
+ASP.NET Core MVC renders:
+  <head>
+    <scichart-license />   →   <meta name="x-scichart-license"
+                                     content="v2:<serverNonce>:<serverNow>:<hmac>" />
+  </head>
+
+Browser loads → SciChart WASM reads the meta tag, verifies the HMAC against
+the runtime licence key's embedded secret, checks clock skew, and caches
+the result in `scLicense` until valid_time has elapsed.
+
+Re-validation (cached cookie expired without a page reload, or validate_nonce=1):
+
+Browser (SciChart.js)
+  → GET /api/license?orderid=<X>[&nonce=<hex>]
+  ← 200 OK  body: v2:[clientNonce:]serverNonce:serverNow:hmac
+
+Served by `MapSciChartLicenseEndpoint()` from the same package.
+```
+
+## What the package gives you
+
+|                                    |                                                                                                                                      |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `AddSciChartSimpleLicensing(...)`  | Registers the singleton token service; binds your Server Secret.                                                                     |
+| `<scichart-license />`             | Razor tag helper. One line in `_Layout.cshtml` head; emits a fresh `<meta name="x-scichart-license" content="v2:..." />` per render. |
+| `app.MapSciChartLicenseEndpoint()` | `GET /api/license` for re-validation after the cached cookie expires, and the only path used when `validate_nonce=1`.                |
+
+The package contains no native dependency — just `System.Security.Cryptography.HMACSHA256`.
 
 ## Prerequisites
 
-- [.NET 10 SDK](https://dotnet.microsoft.com/download)
+- [.NET 10 SDK](https://dotnet.microsoft.com/download) (the package itself targets `net8.0` and works with .NET 8+)
 - Node.js 18+ (for building the client bundle)
-- A SciChart license with the `"SV"` feature flag enabled
+- A SciChart license with the `SV:H:V:N` feature flag, where:
+
+  - `max_skew` — accepted client/server clock skew as `H` or `H.MM` (e.g. `0.05` = 5 min, `1` = 1 h, `1.30` = 90 min). `0` disables the check.
+  - `valid_time` — token validity in the client's wall clock, same `H.MM` format (e.g. `168` = 7 days, `0.30` = 30 min)
+  - `validate_nonce` — `0` accepts either shape (permissive default); `1` restricts to round-trip only (inline delivery disabled)
+
+  Contact [support@scichart.com](mailto:support@scichart.com) to have an SV v2 feature added to your license.
 
 ## Setup
 
 1. **Get your Server Secret**
-   Log in to [SciChart MyAccount](https://www.scichart.com/profile). Find your license's Server Secret, which is 64 hex characters. This will only be available if you have Advanced Licensing with Simple Validation enabled on your order.
+   Log in to [SciChart MyAccount](https://www.scichart.com/my-account/) and open **Orders & Keys → Manage Licenses → Runtime License Key**. Copy the **Server Secret** (a 64-char hex string) from the _Server Secret_ section. Only present if your license carries the Simple Server Validation (`SV`) feature.
 
 2. **Set the Server Secret**
-   Edit `Controllers/LicenseController.cs` and replace the `SCICHART_SERVER_SECRET` value with your Server Secret. In production, prefer loading it from configuration:
+   Edit `appsettings.json` and replace `YOUR_SERVER_SECRET_HERE`:
 
-   ```csharp
-   private readonly string _serverSecret =
-       configuration["SciChart:ServerSecret"] ?? throw new InvalidOperationException("SciChart:ServerSecret not configured");
+   ```json
+   "SciChart": {
+     "ServerSecret": "0123456789abcdef..."
+   }
    ```
 
+   For production, override via the standard ASP.NET Core configuration sources (user secrets, environment variables, key vault).
+
 3. **Set the client license key**
-   Edit `src/index.ts` and replace the key passed to `setRuntimeLicenseKey` with your full license key string.
+   Edit `src/index.ts` and replace the key passed to `setRuntimeLicenseKey` with your full license key string. The key must carry an `SV:H:V:N` feature.
 
 4. **Build the client bundle**
 
@@ -47,45 +91,74 @@ No challenge from client to server is required — CORS provides the domain-bind
    ```
    Open http://localhost:5000 — the chart should render without a watermark.
 
-## The controller
+## How the example is wired up
 
-`LicenseController.cs` is the only file that differs from a standard MVC project. It uses the standard `[ApiController]` + `[Route("api/[controller]")]` pattern, so `GET /api/license` is automatically wired up by `app.MapControllerRoute` in `Program.cs` — no extra routing configuration required.
+`Program.cs`:
 
 ```csharp
-[ApiController]
-[Route("api/[controller]")]
-public class LicenseController : ControllerBase
-{
-    private const string SCICHART_SERVER_SECRET = "<your 64-char hex Server Secret>";
-
-    [HttpGet]
-    public string Get()
-    {
-        var nonce  = Convert.ToHexString(RandomNumberGenerator.GetBytes(8)).ToLower();
-        var expiry = DateTimeOffset.UtcNow.ToUnixTimeSeconds() + 7 * 24 * 3600;
-        var msg    = Encoding.UTF8.GetBytes($"{nonce}:{expiry}");
-        var key    = Convert.FromHexString(SCICHART_SERVER_SECRET);
-        using var hmac = new HMACSHA256(key);
-        var mac    = Convert.ToHexString(hmac.ComputeHash(msg)).ToLower();
-        return $"{nonce}:{expiry}:{mac}";
-    }
-}
+builder.Services.AddSciChartSimpleLicensing(builder.Configuration.GetSection("SciChart"));
+// ...
+app.MapSciChartLicenseEndpoint();
 ```
 
-> **Key point:** hex-decode the Server Secret to binary bytes before passing to HMAC. Do not use the hex string directly as the key.
+`Views/_ViewImports.cshtml`:
+
+```cshtml
+@addTagHelper *, SciChart.AspNetCore.SimpleLicensing
+```
+
+`Views/Shared/_Layout.cshtml`:
+
+```cshtml
+<head>
+    <scichart-license />
+    ...
+</head>
+```
+
+That's the entire integration. Any new view rendered through `_Layout.cshtml` automatically carries a fresh server-signed v2 token.
 
 ## Verification
 
-- Open browser DevTools → Network. Look for `GET /api/license?orderid=...` returning `200`.
-- In Application → Cookies, you should see `scLicense` set with a 7-day expiry.
+- View source on http://localhost:5000 — you should see `<meta name="x-scichart-license" content="v2:..." />` in `<head>`.
+- Open browser DevTools → Network. On a fresh load with `validate_nonce=0` you should see **no** `/api/license` request — the meta tag covers validation. With `validate_nonce=1`, every load fires `GET /api/license?orderid=...&nonce=<hex>` returning `200`. Either way, the same endpoint will be hit later for re-validation once the cached cookie expires.
+- In Application → Cookies, `scLicense` is set with a future expiry.
 - The console should log `Simple server license validated`.
+
+## Token format
+
+Inline shape (4 colon-separated fields):
+
+```
+v2:<serverNonce>:<serverNow>:<hmac>
+```
+
+Round-trip shape (5 colon-separated fields):
+
+```
+v2:<clientNonce>:<serverNonce>:<serverNow>:<hmac>
+```
+
+- `serverNonce` — server-generated random hex (≥ 16 chars)
+- `serverNow` — server wall-clock Unix timestamp, decimal seconds
+- `clientNonce` (round-trip only) — verbatim echo of the request's `?nonce=` value, validated against `^[0-9a-fA-F]{8,64}$`
+- `hmac` — `HMAC-SHA256(serverSecret, payload)` where the payload is everything before the final colon
+
+## Server snippets for other languages
+
+See [../SimpleServerSideLicensing-Readme.md](../SimpleServerSideLicensing-Readme.md) for Python, Go, Ruby, PHP, and Rust snippets.
+
+> **Key point in all cases:** hex-decode the Server Secret to binary bytes before passing to HMAC. Do not use the hex string directly as the key.
+
+> **Inline-mode caching:** not recommended. Inline tokens are not bound to a particular client, but the embedded `serverNow` ages relative to the client's clock and will fall outside `max_skew` once the cache is older than the licence's tolerance — sign per request. Round-trip responses cannot be cached either.
 
 ## Differences from Advanced Server Licensing
 
-|                       | Simple (this example)             | Advanced                              |
-| --------------------- | --------------------------------- | ------------------------------------- |
-| Server dependency     | None (stdlib HMAC)                | `SciChart.Server.Licensing` NuGet     |
-| Challenge/response    | No (CORS provides domain binding) | Yes (NaCl asymmetric)                 |
-| Token validity        | 7 days, daily re-validation       | 7 days, daily re-validation           |
-| Required feature flag | `"SV"`                            | none                                  |
-| Security model        | Symmetric HMAC, server-side only  | Asymmetric, challenge enforces domain |
+|                             | Simple (this example)                                 | Advanced                            |
+| --------------------------- | ----------------------------------------------------- | ----------------------------------- |
+| Server dependency           | `SciChart.AspNetCore.SimpleLicensing` (BCL HMAC only) | `SciChart.Server.Licensing` NuGet   |
+| Crypto                      | Symmetric HMAC-SHA256                                 | Asymmetric NaCl box                 |
+| Token validity              | Per-licence (`valid_time`)                            | 7 days, daily re-validation         |
+| Cross-origin replay defence | Round-trip shape + client nonce                       | Encrypted challenge enforces domain |
+| Clock-skew tolerance        | Per-licence (`max_skew`, 0 disables)                  | Anchored on client time             |
+| Required feature flag       | `SV:H:V:N`                                            | none                                |

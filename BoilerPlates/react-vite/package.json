@@ -15,7 +15,7 @@
     "react-dom": "^18.2.0",
     "scichart": "6.0.0-alpha.140",
     "scichart-react": "^0.1.13",
-    "vite-plugin-static-copy": "^1.0.4"
+    "vite-plugin-static-copy": "^4.1.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
@@ -27,7 +27,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "typescript": "^5.2.2",
-    "vite": "^5.2.0"
+    "vite": "^8.0.16"
   },
   "overrides": {
     "scichart": "$scichart"

@@ -30,7 +30,7 @@ const SeoTags: FC<TProps> = (props) => {
 
     return (
         <Helmet>
-            <title>{title}</title>
+            <title>{`${title}`}</title>
             <link rel="canonical" href={exampleUrl} />
 
             <meta name="keywords" content={`${keywords}, ${framework}`} />

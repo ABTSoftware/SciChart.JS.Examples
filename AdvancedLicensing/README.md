@@ -12,7 +12,7 @@ Before implementing, [submit a support request](https://support.scichart.com/sup
 
 ### [Simple Server Validation](SimpleServerSideLicensing/)
 
-Server computes an HMAC-SHA256 token using a hex key from MyAccount. No native binaries, no FFI, no challenge/response. Requires a license with the `"SV"` feature flag.
+Server computes an HMAC-SHA256 token using a hex key from MyAccount. No native binaries, no FFI, no asymmetric challenge/response. Two modes (inline or round-trip with client nonce) selected per-licence. Requires a license with the `SV:H:V:N` feature flag.
 
 **Use this if:** you have a web server you control, or are building an Electron or Tauri desktop app, and want the easiest possible integration.
 

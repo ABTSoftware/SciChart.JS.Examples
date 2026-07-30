@@ -103,17 +103,18 @@ Each example consists of several components:
     - **Angular Implementation:**  
       Develop an Angular component (such as `angular.ts`) that imports the drawing function and integrates it using SciChart’s Angular component (`ScichartAngularComponent`). The example should demonstrate the Angular-specific way of handling components and data binding.
 
-4. **Create Thumbnail for the Example**  
+4. **Create Thumbnail for the Example**
 
     This image should be saved in the same folder as the example and referenced in the `exampleInfo.tsx` file under the `imagePath` and `thumbnailImage` field. It should also have a unique name, related to the example it represents.
 
-    - Recommended resolution: **750 x 500px**.  
-    > For this you can either use Snipping Tool for Windows, or Preview for Mac (also, for Retina displays, the preview should be at **375 x 250px** since it will be scaled up to 750 x 500px)
+    - Recommended resolution: **750 x 500px**.
+        > For this you can either use Snipping Tool for Windows, or Preview for Mac (also, for Retina displays, the preview should be at **375 x 250px** since it will be scaled up to 750 x 500px)
     - Recommended format: **JPG**.
     - Recommended size is between: **20kb** and **50kb**.
-    > For format & size compression, I really like this repo: [pic-smaller](https://github.com/joye61/pic-smaller), since compressing more than 10 images at a time online often requires subscriptions. Tutorial to use locally: https://github.com/joye61/pic-smaller/blob/master/README.md#develop
+        > For format & size compression, I really like this repo: [pic-smaller](https://github.com/joye61/pic-smaller), since compressing more than 10 images at a time online often requires subscriptions. Tutorial to use locally: https://github.com/joye61/pic-smaller/blob/master/README.md#develop
 
 5. **Update sitemap by running:**
+
 ```bash
 npm run generateSitemap # this will generate a new `sitemap.xml` file
 ```

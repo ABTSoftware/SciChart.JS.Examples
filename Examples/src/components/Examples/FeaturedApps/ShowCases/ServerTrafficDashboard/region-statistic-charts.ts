@@ -145,7 +145,7 @@ export const createRegionStatisticsColumnChart = async (
         growBy: new NumberRange(0.1, 0.1),
         autoTicks: false,
         majorDelta: 1,
-        useNativeText: false // need to be set to "false" to use the contires instead of text
+        useNativeText: false, // need to be set to "false" to use the contires instead of text
     });
     // Required to stop these country textures showing up on other charts
     xAxis.labelProvider.useSharedCache = false;

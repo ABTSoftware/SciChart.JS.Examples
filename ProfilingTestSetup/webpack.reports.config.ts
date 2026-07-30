@@ -63,7 +63,9 @@ const config = (env: any, argv: any): Configuration => {
                 inlineJs: isProduction,
                 inlineJson: isProduction,
                 inlineWasm: isProduction,
-                wasmFiles: [{ path: "node_modules/scichart/_wasm/scichart2d.wasm", name: "scichart2d.wasm" }],
+                wasmFiles: [
+                    { path: "node_modules/scichart/_wasm/scichart2d.wasm", name: "scichart2d.wasm" }
+                ],
                 jsonFiles: [
                     { path: "./test-results/results.json", name: "results" },
                     { path: previousResultsFile, name: "results.previous" }

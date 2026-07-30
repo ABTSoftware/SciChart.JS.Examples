@@ -1,0 +1,147 @@
+# SciChart.JS.Examples
+
+> Source code for SciChart.js demos, examples, tutorials, and boilerplates. SciChart.js is a high-performance WebGL-based JavaScript charting library (v5.2.28). This repository powers the live demo at https://demo.scichart.com and provides runnable starter projects for every major JavaScript framework.
+
+## Repository Overview
+
+SciChart.js is commercial software with a free Community Edition. All code in this repository is MIT-licensed and free to use in your own applications.
+
+- **Live Demo**: https://demo.scichart.com
+- **Documentation**: https://www.scichart.com/documentation/js/v5/intro/
+- **Getting Started**: https://scichart.com/getting-started/scichart-javascript
+- **Community Forums**: https://scichart.com/questions
+- **Changelog**: https://www.scichart.com/changelog/scichart-js/
+
+## Top-Level Directory Structure
+
+- `/Examples` — Source for the SciChart.js interactive demo app (demo.scichart.com). React/Next.js app with hundreds of live chart examples.
+- `/Tutorials` — Step-by-step tutorials for 2D charts, 3D charts, vanilla JS (CDN/no bundler), and React. Includes memory test projects.
+- `/BoilerPlates` — Ready-to-run starter projects for Angular, React, Vue, Next.js, Nuxt.js, Electron, Svelte, Tauri, Web Components, and more.
+- `/Documentation` — Supporting code for the v3 documentation site (browse 100s of mini code samples).
+- `/AdvancedLicensing` — Server-side licensing solutions for OEM/deployment scenarios (Node.js, .NET, Java Spring, Electron, Tauri).
+- `/Sandbox` — Customer examples, documentation snippets, and miscellaneous demos created in response to specific requests.
+- `/Addons` — Performance measurement utilities and helpers used by profiling examples.
+- `/ExampleDependencies` — Shared styles and utility classes used across the demo app examples (enables easy extraction to CodeSandbox).
+- `/Tools` — Build and development tooling.
+- `/Profiler` — Profiling and performance test setup.
+
+## /Examples — Demo Application
+
+The main demo app is a React/TypeScript application using Next.js. Run with:
+
+```shell
+cd Examples
+npm install
+npm run dev        # development mode
+npm run build
+npm start          # production mode
+```
+
+### Example Categories (`Examples/src/components/Examples/`)
+
+**Charts2D/**
+- `BasicChartTypes/` — Line, Band, Bar, Bubble, Candlestick, Column, Contours, Digital (Line/Band/Mountain), Donut, Error Bars, Fan, Force-Directed Graph, Heatmap, Impulse, Mountain, Non-Uniform Heatmap, OHLC, Pie, Polar, Scatter, Smooth/Spline variants, Stacked Column/Mountain, Text Series
+- `CreateStockCharts/` — Depth Chart, Dynamic Annotation Labels, Freehand Drawing Tools, Multi-Pane Stock Charts, Order Book Heatmap, Realtime Ticking Stock Charts, Sub-Chart Stock Charts, Trading Drawing Tools, User-Annotated Stock Charts
+- `Animations/` — Chart and series animation examples
+- `AxisLabelCustomization/` — Custom axis label formatting and rendering
+- `ChartAnnotations/` — All annotation types (line, box, text, custom, etc.)
+- `Filters/` — Data filtering and transformation API
+- `Legends/` — Legend customization and placement
+- `ModifyAxisBehavior/` — Axis range, ticks, scrolling, locking
+- `MultiChart/` — Synchronized, linked, and sub-chart layouts
+- `PolarCharts/` — Polar/radial chart types
+- `StylingAndTheming/` — Theming, palette providers, custom rendering
+- `TooltipsAndHittest/` — Rollover, cursor, hit-test modifiers
+- `ZoomingAndPanning/` — Mouse/touch zoom, pan, overview, rubber-band
+
+**Charts3D/**
+- `Basic3DChartTypes/` — 3D Surface, Scatter, Impulse, Column, Waterfall charts
+
+**FeaturedApps/**
+- `FeatureDemos/` — Deep-dive feature demonstrations
+- `MedicalCharts/` — ECG, vital signs, medical trace examples
+- `PerformanceDemos/` — Million-point rendering, FIFO, realtime stress tests
+- `ScientificCharts/` — Spectrogram, lidar, audio analyser, oil & gas
+- `ShowCases/` — Full application showcases
+
+**BuilderApi/** — Declarative JSON-based chart construction API examples
+
+## /BoilerPlates — Starter Projects
+
+Each subdirectory is a self-contained runnable project with its own README:
+
+- `angular/` — Angular integration
+- `react-typescript/` — React + TypeScript (Create React App)
+- `react-vite/` — React + Vite
+- `scichart-react/` — Using the `scichart-react` wrapper component
+- `scichart-angular/` — Using the `scichart-angular` component
+- `next/` — Next.js integration
+- `nuxt/` — Nuxt.js integration
+- `vue/` — Vue.js integration
+- `electron/` — Electron desktop app
+- `tauri-vite-react/` — Tauri + Vite + React desktop app
+- `tauri-vite-vanilla/` — Tauri + Vite vanilla JS desktop app
+- `svelte-vite/` — Svelte + Vite
+- `svelte-rollup/` — Svelte + Rollup
+- `webpack-typescript/` — Vanilla webpack + TypeScript
+- `javascript/` — Plain JavaScript (no bundler)
+- `browser-global-module/` — Browser global (CDN) usage
+- `web-components/` — Web Components integration
+- `blazor/` — Blazor (C#/.NET) integration
+
+## /Tutorials — Learning Path
+
+### 2D Chart Tutorials (JavaScript/TypeScript, npm+webpack)
+Sequential tutorials covering: project setup → adding series & data → zoom/pan → realtime updates → annotations → tooltips & legends → multiple axes → linking charts → vertical charts
+
+### 3D Chart Tutorials
+Project setup and basic 3D chart creation with SciChart.js
+
+### Browser CDN Tutorials (no bundler)
+HTML page setup using SciChart via CDN, including offline WASM file serving
+
+### React Tutorials (`Tutorials/React/`)
+React-specific patterns: chart initialization/cleanup, data updates, FIFO series, reusable components, controlling chart behavior, toolbar integration, adding/removing/syncing charts, synchronizing multiple charts
+
+### Memory Tests (`Tutorials/MemoryTests/`)
+Projects for testing and profiling SciChart.js memory usage
+
+## /AdvancedLicensing — Server-Side Licensing
+
+For OEM deployments to unknown or localhost domains. Implementations available for:
+- Node.js (Express) — simple and full server licensing
+- .NET (ASP.NET Core MVC) — `SciChart.AspNetCore.SimpleLicensing` NuGet package
+- Java Spring Boot
+- Electron
+- Tauri
+
+Documentation: https://www.scichart.com/documentation/js/v5/user-manual/licensing-scichart-js/deploying-with-advanced-licensing/
+
+## /Sandbox — Customer & Documentation Examples
+
+### CustomerExamples/
+Standalone solutions created in response to customer requests. Each has its own README. Covers topics such as: 1D heatmaps, animated XY values, dynamic annotation creation, custom rollover modifiers, async data loading, date axes from JSON, draggable series, chart export to image, hit testing, logarithmic axes, mouse wheel panning, nearest-neighbour interpolation, oil & gas layouts, range selection, smart axis labels with timezone, stacked column charts with thresholds, step line charts, updating donut/legend charts, vertical heatmaps, vertically stacked axes.
+
+### DocumentationSnippets/
+Runnable code samples supporting the documentation, organized by API area: Accessibility, Animations, Annotations, Builder API, Chart Modifier API, Data Labels, Data Point Selection, Data Series API, Error Bars, Filters API, Generic Animations, Hit Test API, Legend Modifier, Metadata, Native Text, Non-Uniform Heatmap, Overview Control, Palette Providers, Pie Charts, Renderable Series API, Series Selection, Sub-Charts API, Styling & Theming. Each has TypeScript and JavaScript variants where applicable.
+
+## Key Technologies
+
+- **SciChart.js** v5.2.28 — Core charting library (WebAssembly + WebGL)
+- **scichart-financial-tools** v5.2.28 — Financial chart add-ons
+- **scichart-react** v1.0.0 — React wrapper component
+- **React** / **TypeScript** — Primary demo app stack
+- **Next.js** — Demo app framework (SSR + static export)
+
+## Licensing
+
+- **Community License** (free): academic, non-profit, bloggers, reasonable commercial trials. No tech support — feedback via forums.
+- **Commercial License**: https://www.scichart.com/scichart-eula — purchase at https://store.scichart.com
+
+## Optional Sections
+
+- [SciChart.js Documentation](https://www.scichart.com/documentation/js/v5/intro/)
+- [Video Tutorials](https://www.scichart.com/documentation/js/v5/get-started/tutorials-js-npm-webpack/tutorial-01-setting-up-npm-project-with-scichart-js/)
+- [GitHub Repository](https://github.com/abtsoftware/scichart.js.examples)
+- [Stack Overflow Tag](https://stackoverflow.com/tags/scichart)
+- [Contact / Support](https://scichart.com/contact-us)

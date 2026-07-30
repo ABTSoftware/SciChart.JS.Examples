@@ -43,7 +43,7 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
             <SeoTags
                 title={seoTitleText}
                 keywords={seoKeywords}
-                description={seoDescription ?? subtitleText} // if seoDescription is null, fallback to subtitle
+                description={seoDescription}
                 image={exampleImage}
                 url={exampleUrl}
                 framework={framework}

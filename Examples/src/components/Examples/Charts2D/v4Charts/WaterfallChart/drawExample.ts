@@ -143,10 +143,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 (metadata.profit === 0
                     ? ""
                     : `\n${metadata.profit > 0 ? "+" : ""}${formatNumber(
-                        metadata.profit,
-                        ENumericFormat.Engineering,
-                        this.precision
-                    )}$`)
+                          metadata.profit,
+                          ENumericFormat.Engineering,
+                          this.precision
+                      )}$`)
             );
         }
     }

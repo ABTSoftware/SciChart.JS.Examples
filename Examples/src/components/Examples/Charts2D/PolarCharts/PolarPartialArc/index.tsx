@@ -10,7 +10,7 @@ export default function ChartComponent() {
     const [innerRadius, setInnerRadius] = useState<number>(0.9977);
 
     const isUpdatingFromAnimation = useRef<boolean>(false);
-    
+
     const [controls, setControls] = useState({
         startAnimation: () => {},
         endAnimation: () => {},
@@ -18,7 +18,7 @@ export default function ChartComponent() {
         changeTotalAngleInternal: (value: number) => {},
     });
 
-    const handleAnimationUpdate = useCallback((values: { innerRadius: number, totalAngle: number }) => {
+    const handleAnimationUpdate = useCallback((values: { innerRadius: number; totalAngle: number }) => {
         isUpdatingFromAnimation.current = true;
         setInnerRadius(values.innerRadius);
         setTotalAngle(values.totalAngle);
@@ -44,35 +44,26 @@ export default function ChartComponent() {
 
     return (
         <div className={commonClasses.ChartWrapper}>
-            <div style={{
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                background: appTheme.DarkIndigo,
-            }}>
+            <div
+                style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    background: appTheme.DarkIndigo,
+                }}
+            >
                 <div className={commonClasses.ToolbarRow}>
-                    <ToggleButtonGroup
-                        exclusive
-                        size="medium"
-                        color="primary"
-                        aria-label="button group"
-                    >   
-                        <ToggleButton
-                            value="start"
-                            onClick={() => controls.startAnimation()}
-                        >
+                    <ToggleButtonGroup exclusive size="medium" color="primary" aria-label="button group">
+                        <ToggleButton value="start" onClick={() => controls.startAnimation()}>
                             Start
                         </ToggleButton>
 
-                        <ToggleButton
-                            value="end"
-                            onClick={() => controls.endAnimation()}
-                        >
+                        <ToggleButton value="end" onClick={() => controls.endAnimation()}>
                             End
                         </ToggleButton>
                     </ToggleButtonGroup>
-                    
+
                     <div style={{ flex: 1, paddingInline: 20 }}>
                         <Typography variant="body1" color="white">
                             Inner Radius: <strong>{innerRadius.toFixed(3)}</strong>
@@ -85,15 +76,14 @@ export default function ChartComponent() {
                             max={0.999}
                             step={0.001}
                             value={innerRadius}
-                            onChange={(e) => changeInnerRadius(
-                                parseFloat(e.target.value)
-                            )}
+                            onChange={(e) => changeInnerRadius(parseFloat(e.target.value))}
                         />
                     </div>
 
                     <div style={{ flex: 1, paddingInline: 20 }}>
                         <Typography variant="body1" color="white">
-                            Total Angle: <strong>{(totalAngle / Math.PI).toFixed(3)} * π</strong> or <strong>{(totalAngle).toFixed(3)}</strong>
+                            Total Angle: <strong>{(totalAngle / Math.PI).toFixed(3)} * π</strong> or{" "}
+                            <strong>{totalAngle.toFixed(3)}</strong>
                         </Typography>
 
                         <input
@@ -103,9 +93,7 @@ export default function ChartComponent() {
                             max={Math.PI * 2}
                             step={0.001}
                             value={totalAngle}
-                            onChange={(e) => changeTotalAngle(
-                                parseFloat(e.target.value)
-                            )}
+                            onChange={(e) => changeTotalAngle(parseFloat(e.target.value))}
                         />
                     </div>
                 </div>
@@ -121,5 +109,5 @@ export default function ChartComponent() {
                 />
             </div>
         </div>
-    )
+    );
 }

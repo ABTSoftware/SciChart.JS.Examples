@@ -7,11 +7,10 @@ import { AppBar } from "./AppBar";
 import "./theme.css";
 
 const isProd = process.env.NODE_ENV !== "development";
-const initialDebugInfo: TDebugInfo = { performanceInfoData: isProd ? [] : [JSON.parse(mockData)]};
+const initialDebugInfo: TDebugInfo = { performanceInfoData: isProd ? [] : [JSON.parse(mockData)] };
 export default function App() {
     const [debugInfo, setDebugInfo] = React.useState<TDebugInfo>(undefined);
     const displayStats = !!debugInfo;
-
 
     React.useEffect(() => {
         if (isProd) {

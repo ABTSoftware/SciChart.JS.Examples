@@ -17,37 +17,41 @@ import {
     EPolarAxisMode,
     EPolarGridlineMode,
     XyDataSeries,
+    SciChartSurface,
 } from "scichart";
 
 async function initSciChartPolar2D() {
-    const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create("scichart-root-polar", {
-        theme: new SciChartJsNavyTheme()
-    });
+  const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(
+    'scichart-root-polar',
+    {
+      theme: new SciChartJsNavyTheme()
+    }
+  )
 
-    const angularXAxis = new PolarCategoryAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Angular,
-        labels: [ "Offense", "Shooting", "Defense", "Rebounds", "Passing", "Bench" ], // categories
-        startAngle: Math.PI / 2, // start at 12 o'clock
-        flippedCoordinates: true, // go clockwise
+  const angularXAxis = new PolarCategoryAxis(wasmContext, {
+    polarAxisMode: EPolarAxisMode.Angular,
+    labels: ['Offense', 'Shooting', 'Defense', 'Rebounds', 'Passing', 'Bench'], // categories
+    startAngle: Math.PI / 2, // start at 12 o'clock
+    flippedCoordinates: true, // go clockwise
 
-        majorGridLineStyle: { color: "#88888844" },
-        drawMinorGridLines: false,
-    });
-    sciChartSurface.xAxes.add(angularXAxis);
+    majorGridLineStyle: { color: '#88888844' },
+    drawMinorGridLines: false
+  })
+  sciChartSurface.xAxes.add(angularXAxis)
 
-    const radialYAxis = new PolarNumericAxis(wasmContext, {
-        polarAxisMode: EPolarAxisMode.Radial,
-        gridlineMode: EPolarGridlineMode.Polygons, // this creates the radar chart look
-        visibleRange: new NumberRange(0, 10), 
-        startAngle: Math.PI / 2, // start at 12 o'clock
-        
-        labelPrecision: 0,
-        majorGridLineStyle: { color: "#88888844" },
-        drawMinorGridLines: false,
-        drawMajorTickLines: false,
-        drawMinorTickLines: false,
-    });
-    sciChartSurface.yAxes.add(radialYAxis);
+  const radialYAxis = new PolarNumericAxis(wasmContext, {
+    polarAxisMode: EPolarAxisMode.Radial,
+    gridlineMode: EPolarGridlineMode.Polygons, // this creates the radar chart look
+    visibleRange: new NumberRange(0, 10),
+    startAngle: Math.PI / 2, // start at 12 o'clock
+
+    labelPrecision: 0,
+    majorGridLineStyle: { color: '#88888844' },
+    drawMinorGridLines: false,
+    drawMajorTickLines: false,
+    drawMinorTickLines: false
+  })
+  sciChartSurface.yAxes.add(radialYAxis)
 
     const xValues = [0, 1, 2, 3, 4, 5];
     const yValues = [9, 10, 7, 5, 8, 6]; // values for: "Offense", "Shooting", "Defense", "Rebounds", "Passing", "Bench"
@@ -65,7 +69,7 @@ async function initSciChartPolar2D() {
     });
     sciChartSurface.renderableSeries.add(polarMountain);
 
-    // Return the surface so callers (beforeUnmount) can delete it.                                              
+    // Return the surface so callers (beforeUnmount) can delete it.
     return sciChartSurface;
 };
 

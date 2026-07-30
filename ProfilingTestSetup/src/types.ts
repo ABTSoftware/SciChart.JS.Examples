@@ -85,7 +85,7 @@ export type MemoryUsageLogEntry = {
     totalJSHeapSize: number;
     jsHeapSizeLimit: number;
     HEAPF64: number;
-    wasmHeapStats: MallinfoStats
+    wasmHeapStats: MallinfoStats;
 };
 
 export type NetworkResourceMetrics = {

@@ -97,7 +97,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.chartModifiers.add(
         new ZoomExtentsModifier(),
         new ZoomPanModifier({ enableZoom: true }),
-        new MouseWheelZoomModifier(),
+        new MouseWheelZoomModifier()
         // new SeriesSelectionModifier({
         //     enableHover: true,
         //     onHoverChanged: (args) => {

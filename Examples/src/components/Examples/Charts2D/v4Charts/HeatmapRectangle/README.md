@@ -6,9 +6,9 @@ This example demonstrates how to create a JavaScript Heatmap Chart using SciChar
 
 ## Technologies Used
 
-- SciChart.js – High performance WebGL charting library
-- TypeScript – For type-safe implementation
-- WebGL – For GPU-accelerated rendering
+-   SciChart.js – High performance WebGL charting library
+-   TypeScript – For type-safe implementation
+-   WebGL – For GPU-accelerated rendering
 
 ## Code Explanation
 
@@ -16,26 +16,30 @@ The example centers around the `drawExample` function which:
 
 1. **Generates Sample Data**: The `generateExampleData` function creates a 2D array of values with a circular pattern that animates over time, simulating dynamic heatmap data.
 
-2. **Color Mapping**: 
-   - `noGradientColor` provides discrete color steps without interpolation
-   - `getGradientColor` implements smooth color transitions between defined stops
-   - `interpolateColors` handles the actual color interpolation calculations
+2. **Color Mapping**:
 
-3. **Custom Palette Provider**: 
-   - The `HeatmapPaletteProvider` class extends `DefaultPaletteProvider` to implement custom coloring logic
-   - It supports both gradient and discrete coloring modes through the `isRangeIndependant` property
+    - `noGradientColor` provides discrete color steps without interpolation
+    - `getGradientColor` implements smooth color transitions between defined stops
+    - `interpolateColors` handles the actual color interpolation calculations
 
-4. **Data Transformation**: 
-   - The `transformData` function converts the 2D array into flat arrays of x, y coordinates
-   - Uses `XyzDataSeries` to store the heatmap values
+3. **Custom Palette Provider**:
+
+    - The `HeatmapPaletteProvider` class extends `DefaultPaletteProvider` to implement custom coloring logic
+    - It supports both gradient and discrete coloring modes through the `isRangeIndependant` property
+
+4. **Data Transformation**:
+
+    - The `transformData` function converts the 2D array into flat arrays of x, y coordinates
+    - Uses `XyzDataSeries` to store the heatmap values
 
 5. **Rendering**:
-   - Creates a `FastRectangleRenderableSeries` with the custom palette provider
-   - Supports toggling between gradient and discrete coloring via `setChart`
+
+    - Creates a `FastRectangleRenderableSeries` with the custom palette provider
+    - Supports toggling between gradient and discrete coloring via `setChart`
 
 6. **Interactivity**:
-   - Includes zoom/pan modifiers for navigation
-   - Features a custom tooltip showing x, y, and value information
+    - Includes zoom/pan modifiers for navigation
+    - Features a custom tooltip showing x, y, and value information
 
 ## Customization
 
@@ -54,23 +58,26 @@ Key customization aspects include:
 To run this example from the SciChart.JS.Examples repository:
 
 1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
-   ```
+
+    ```bash
+    git clone https://github.com/ABTSoftware/SciChart.JS.Examples.git
+    ```
 
 2. **Navigate to the Examples Directory**:
-   ```bash
-   cd SciChart.JS.Examples/Examples
-   ```
+
+    ```bash
+    cd SciChart.JS.Examples/Examples
+    ```
 
 3. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
+
+    ```bash
+    npm install
+    ```
 
 4. **Run the Development Server**:
-   ```bash
-   npm run dev
-   ```
+    ```bash
+    npm run dev
+    ```
 
 For more detailed instructions, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md).

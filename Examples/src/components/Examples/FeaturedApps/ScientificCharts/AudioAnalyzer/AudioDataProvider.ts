@@ -101,6 +101,7 @@ export class AudioDataProvider {
             throw new Error("Audio isn't initialized!");
         }
 
+        // needs to be cast `freqByteData as unknown as UInt8Array<ArrayBuffer>` or, ts-ignore
         //@ts-ignore
         this.analyserNode.getByteTimeDomainData(this.freqByteData);
 

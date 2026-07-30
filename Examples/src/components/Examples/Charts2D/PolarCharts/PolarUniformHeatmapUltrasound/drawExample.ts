@@ -4,8 +4,8 @@ import {
     PolarPanModifier,
     PolarNumericAxis,
     SciChartPolarSurface,
-    EPolarAxisMode, 
-    EAxisAlignment, 
+    EPolarAxisMode,
+    EAxisAlignment,
     HeatmapColorMap,
     UniformHeatmapDataSeries,
     PolarUniformHeatmapRenderableSeries,
@@ -20,10 +20,13 @@ async function parseCSV(): Promise<number[][]> {
     const fileData = await fetch(FETAL_DATA_PATH);
     const rows = (await fileData.text()).split("\n");
 
-    const zValues = rows.map(row => {
-        return row.split(",")
-            // from base 16 to decimal value
-            .map(value => parseInt(value, 16))
+    const zValues = rows.map((row) => {
+        return (
+            row
+                .split(",")
+                // from base 16 to decimal value
+                .map((value) => parseInt(value, 16))
+        );
     });
 
     return zValues;
@@ -34,8 +37,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         theme: appTheme.SciChartJsTheme,
         title: "Fetal ultrasound at 31 weeks",
         titleStyle: {
-            fontSize: 32
-        }
+            fontSize: 32,
+        },
     });
 
     const angularAxisX = new PolarNumericAxis(wasmContext, {
@@ -47,7 +50,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawMajorGridLines: false,
         drawMinorGridLines: false,
         totalAngle: Math.PI / 3,
-        startAngle: (Math.PI * 3 / 2) - (Math.PI / 6), 
+        startAngle: (Math.PI * 3) / 2 - Math.PI / 6,
         // (start at 270deg) - (half of totalAngle) = 240deg
         // could be simplified to `Math.PI * 4 / 3`
     });
@@ -62,7 +65,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         drawMajorGridLines: false,
         drawMinorGridLines: false,
         innerRadius: 0.4,
-        startAngle: Math.PI * 3 / 2 - Math.PI / 6, 
+        startAngle: (Math.PI * 3) / 2 - Math.PI / 6,
     });
     sciChartSurface.yAxes.add(radialAxisY);
 
@@ -74,16 +77,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             xStep: 1,
             yStart: 0,
             yStep: 1,
-            zValues: await parseCSV()
+            zValues: await parseCSV(),
         }),
         colorMap: new HeatmapColorMap({
             minimum: 0,
             maximum: 255,
             gradientStops: [
                 { offset: 0, color: "transparent" },
-                { offset: 1, color: "white" }
-            ]
-        })
+                { offset: 1, color: "white" },
+            ],
+        }),
     });
     sciChartSurface.renderableSeries.add(heatmapSeries);
 
@@ -98,7 +101,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         arrowHeadPosition: EArrowHeadPosition.StartEnd,
         arrowStyle: {
             headWidth: 18,
-            headLength: 14
+            headLength: 14,
         },
         isEditable: true,
         // strokeDashArray: [6, 30],
@@ -107,7 +110,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         // labelPlacement: ELabelPlacement.Auto,
     });
     const femurLine = new LineArrowAnnotation({
-        x1: 61, 
+        x1: 61,
         y1: 166,
         x2: 82,
         y2: 127,
@@ -115,17 +118,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         strokeThickness: 2,
         arrowHeadPosition: EArrowHeadPosition.StartEnd,
         arrowStyle: {
-            headWidth: 10
+            headWidth: 10,
         },
         // strokeDashArray: [6, 30],
         // labelValue: "Head diameter",
         // axisLabelFill: appTheme.VividTeal,
         // labelPlacement: ELabelPlacement.Auto,
     });
-    sciChartSurface.annotations.add(
-        headLine, 
-        femurLine
-    );
+    sciChartSurface.annotations.add(headLine, femurLine);
 
     sciChartSurface.chartModifiers.add(
         new PolarMouseWheelZoomModifier(),

@@ -3456,6 +3456,7 @@ version = "0.1.0"
 dependencies = [
  "hex",
  "hmac",
+ "once_cell",
  "rand 0.8.6",
  "serde",
  "serde_json",

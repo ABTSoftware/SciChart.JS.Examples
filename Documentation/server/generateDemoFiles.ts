@@ -36,7 +36,7 @@ var walk = function (dir: string, done: (err: any, entry?: Entry) => void) {
                             entry.entries.push(res);
                         }
                         if (!--pending) {
-                            entry.entries.sort((a, b) => a.name.localeCompare(b.name)); 
+                            entry.entries.sort((a, b) => a.name.localeCompare(b.name));
                             done(null, entry);
                         }
                     });
@@ -54,7 +54,7 @@ var walk = function (dir: string, done: (err: any, entry?: Entry) => void) {
                         entry.isTS = true;
                     }
                     if (!--pending) {
-                        entry.entries.sort((a, b) => a.name.localeCompare(b.name)); 
+                        entry.entries.sort((a, b) => a.name.localeCompare(b.name));
                         done(null, entry);
                     }
                 }
