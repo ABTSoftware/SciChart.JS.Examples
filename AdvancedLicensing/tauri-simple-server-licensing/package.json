@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^2",
-    "scichart": "5.2.42"
+    "scichart": "^5.2.62"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
