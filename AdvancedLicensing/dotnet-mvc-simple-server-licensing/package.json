@@ -6,7 +6,7 @@
     "build": "webpack"
   },
   "dependencies": {
-    "scichart": "latest"
+    "scichart": "^5.2.62"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

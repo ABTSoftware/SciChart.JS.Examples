@@ -25,11 +25,22 @@ max_skew, enforces server-time monotonicity across re-validations,
 and caches the result in a cookie until valid_time has elapsed.
 ```
 
+### Client/server interaction
+
+1. `SciChartSurface.create()` boots the WASM, which reads the `SV:H:V:N` feature from the runtime licence key.
+2. The WASM checks the `scLicense` cookie. Still valid → it stops here and **no request is made**.
+3. Otherwise, in round-trip mode it generates a client nonce, then calls `GET /api/license?orderid=<X>[&nonce=<hex>]`.
+4. The server signs a fresh token and returns it. It keeps no state, doesn't read the cookie, and ignores `orderid` — a multi-licence deployment would use `orderid` to pick which secret to sign with.
+5. The WASM verifies the HMAC, the clock skew against `max_skew`, that `serverNow` hasn't moved backwards since the last validation, and (round-trip) that its own nonce came back unchanged.
+6. On success it writes `scLicense` — licence key, accepted token, expiry, validation time — and renders without a watermark.
+
+The server only *issues* tokens; every check happens client-side and the result never comes back. A successful issue is not proof the client accepted it, so treat the browser console as the real verdict. Because of step 2 you will not see a request on every page load — once cached, the client stays quiet until `valid_time` elapses.
+
 ## Prerequisites
 
 - JDK 17+
-- Spring Boot 3
-- Maven 3.9+ (or use the Maven wrapper: `./mvnw`)
+- Spring Boot 3 (pulled in by Maven, nothing to install)
+- Maven 3.9+
 - Node.js 18+ (for building the client bundle)
 - A SciChart license with the `SV:H:V:N` feature flag, where:
 
@@ -38,6 +49,16 @@ and caches the result in a cookie until valid_time has elapsed.
   - `validate_nonce` — `0` accepts either shape (permissive default); `1` restricts to round-trip only (inline delivery disabled)
 
   Contact [support@scichart.com](mailto:support@scichart.com) to have an SV v2 feature added to your license.
+
+On macOS, install the JDK and Maven with Homebrew, then link the JDK so the system `java` picks it up:
+
+```bash
+brew install openjdk@17 maven
+sudo ln -sfn /opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk \
+  /Library/Java/JavaVirtualMachines/openjdk-17.jdk
+```
+
+Check with `java -version` (should report 17 or later) and `mvn -v`.
 
 ## Setup
 
@@ -66,16 +87,34 @@ and caches the result in a cookie until valid_time has elapsed.
    This writes `bundle.js` and the SciChart WASM files into `src/main/resources/static/`, where Spring Boot serves them automatically.
 
 5. **Run the server**
+
    ```bash
-   ./mvnw spring-boot:run
+   mvn spring-boot:run
    ```
-   Open http://localhost:8080 — the chart should render without a watermark.
+
+   Open http://localhost:8080 — the chart should render without a watermark. The port is set by `server.port` in `src/main/resources/application.properties`; override it per run with `mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=9090`.
+
+   Or package a standalone jar and run that:
+
+   ```bash
+   mvn clean package
+   java -jar target/scichart-spring-simple-server-licensing-1.0.0.jar
+   ```
+
+   Stop the server with `Ctrl+C`. Re-run `npm run build` after any change to `client/index.ts`; changes to the Java sources need a restart.
 
 ## Verification
 
 - Open browser DevTools → Network. Look for `GET /api/license?orderid=...` returning `200`. When the licence has validate_nonce=1 the URL also has `&nonce=<hex>`.
 - In Application → Cookies, you should see `scLicense` set with a future expiry.
 - The console should log `Simple server license validated`.
+- The server logs a line per issued token, e.g. `License token issued (inline) to 0:0:0:0:0:0:0:1: serverNonce=... serverNow=...`.
+
+![Chart rendering with the licence request in DevTools](./img/license-request.png)
+
+A successful run: the chart renders without a watermark and `GET /api/license?orderid=ABT-TEAM-Bundle` returns `200 OK`. The 95-byte response is an inline token — `v2:` + 16-char serverNonce + 10-digit serverNow + 64-char hmac + 2 separators — and the absence of `&nonce=` in the URL means this licence has `validate_nonce=0`.
+
+Use a private/incognito window, as shown, or clear the `scLicense` cookie first. On a normal reload the cached cookie suppresses the request entirely and you'll see neither the network call nor the server log.
 
 ## Token format
 

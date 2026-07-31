@@ -1,5 +1,8 @@
 package com.example.scichart;
 
+import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +19,8 @@ import java.util.regex.Pattern;
 
 @RestController
 public class LicenseController {
+
+    private static final Logger log = LoggerFactory.getLogger(LicenseController.class);
 
     // Server Secret from SciChart MyAccount (64 hex characters).
     // Requires Advanced Licensing with Simple Validation v2 enabled on your order.
@@ -40,17 +45,24 @@ public class LicenseController {
     // Mode is selected by the request: ?nonce=<value> → round-trip; otherwise inline.
     // The licence on the client side enforces which one it will accept.
     @GetMapping("/api/license")
-    public ResponseEntity<String> get(@RequestParam(name = "nonce", required = false) String rawNonce) {
+    public ResponseEntity<String> get(@RequestParam(name = "nonce", required = false) String rawNonce,
+                                      HttpServletRequest request) {
         long now = System.currentTimeMillis() / 1000;
         String serverNonce = HEX.formatHex(randomBytes(8));
 
         if (rawNonce != null && !rawNonce.isEmpty()) {
             if (!CLIENT_NONCE_PATTERN.matcher(rawNonce).matches()) {
+                log.warn("License token refused: malformed client nonce from {}", request.getRemoteAddr());
                 return ResponseEntity.badRequest().body("Error: malformed client nonce");
             }
+            // Safe to log rawNonce verbatim — CLIENT_NONCE_PATTERN has already restricted it to hex.
+            log.info("License token issued (round-trip) to {}: clientNonce={} serverNonce={} serverNow={}",
+                    request.getRemoteAddr(), rawNonce, serverNonce, now);
             return ResponseEntity.ok(signToken("v2:" + rawNonce + ":" + serverNonce + ":" + now));
         }
 
+        log.info("License token issued (inline) to {}: serverNonce={} serverNow={}",
+                request.getRemoteAddr(), serverNonce, now);
         return ResponseEntity.ok(signToken("v2:" + serverNonce + ":" + now));
     }
 
