@@ -2,7 +2,7 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/types/ECoordinateMode";
 import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
 
 async function initSciChart() {
@@ -40,7 +40,7 @@ async function initSciChart() {
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             x1: 0.5,
-            y1: 0.4
+            y1: 0.4,
         })
     );
 
@@ -54,7 +54,7 @@ async function initSciChart() {
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             x1: 0.5,
-            y1: 0.5
+            y1: 0.5,
         })
     );
 
@@ -68,7 +68,7 @@ async function initSciChart() {
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             x1: 0.5,
-            y1: 0.6
+            y1: 0.6,
         })
     );
 

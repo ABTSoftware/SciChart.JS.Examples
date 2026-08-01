@@ -83,7 +83,7 @@ export const createPageStatisticsChart: TPageStatsChartConfigFunc = async (divEl
     availablePages.forEach((page, index) => {
         const pageData = getNumberOfRequestsForPage(data, page);
         const dataSeries = new XyDataSeries(wasmContext, {
-            dataSeriesName: page,
+            seriesName: page,
             containsNaN: false,
             dataEvenlySpacedInX: true,
             isSorted: true,

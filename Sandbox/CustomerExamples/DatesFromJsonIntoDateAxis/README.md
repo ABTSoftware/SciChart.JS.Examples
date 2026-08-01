@@ -1,48 +1,47 @@
 # Dates from string into Date Axis
 
-This example shows how to setup a chart with DateTimeNumericAxis. 
+This example shows how to setup a chart with DateTimeNumericAxis.
 
 It assumes you've received data in string format 'DD MMM YYYY hh:mm:ss' in a json object
 and want to parse this and input into the chart.
 
-The DateTimeAxis in scichart expects dates in numeric format, as a unix time stamp 
-divided by 1000 (which we do for extra precision). This adds a few extra steps but 
+The DateTimeAxis in scichart expects dates in numeric format, as a unix time stamp
+divided by 1000 (which we do for extra precision). This adds a few extra steps but
 it's very easy to convert dates to scichart format.
 
 ## How to run the project
 
-* `npm install`
-* `npm start`
+- `npm install`
+- `npm start`
 
 ## Description
 
 ### webpack.config.js
 
-Use CopyPlugin to copy wasm and data files and serve them by webpack-dev-server. SciChart.js uses WebAssembly and those files **scichart2d.data**, **scichart2d.wasm** must be loaded.
+Use CopyPlugin to copy wasm and data files and serve them by webpack-dev-server. SciChart.js uses WebAssembly and those files **scichart2d.data**, **scichart.wasm** must be loaded.
 
 ```javascript
-const path = require('path');
+const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-  mode: 'development',
+  mode: "development",
   entry: "./src/index.js",
   performance: {
-    hints: false
+    hints: false,
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, "build"),
+    filename: "bundle.js",
   },
   plugins: [
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" }
-      ]
-    })
-  ]
+        { from: "node_modules/scichart/_wasm/scichart.wasm", to: "" },
+      ],
+    }),
+  ],
 };
 ```
 
@@ -54,7 +53,10 @@ You may need this to configure from where wasm and data files are served, update
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 
 // call this before SciChartSurface.create()
-SciChart.SciChartSurface.configure({ dataUrl: "/custom/scichart2d.data", wasmUrl: "/other/scichart2d.wasm" });
+SciChart.SciChartSurface.configure({
+  dataUrl: "/custom/scichart2d.data",
+  wasmUrl: "/other/scichart.wasm",
+});
 ```
 
 ### Chart div element
@@ -63,15 +65,15 @@ If you call `SciChartSurface.create("scichart-root")` an element with Id "scicha
 
 ```html
 <html lang="en-us">
-    <head>
-        <meta charset="utf-8" />
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-        <title>SciChart.js Tutorial 1</title>
-        <script async type="text/javascript" src="bundle.js"></script>
-    </head>
-    <body>
-        <!-- the Div where the SciChartSurface will reside -->
-        <div id="scichart-root" style="width: 800px; height: 600px;"></div>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>SciChart.js Tutorial 1</title>
+    <script async type="text/javascript" src="bundle.js"></script>
+  </head>
+  <body>
+    <!-- the Div where the SciChartSurface will reside -->
+    <div id="scichart-root" style="width: 800px; height: 600px;"></div>
+  </body>
 </html>
 ```

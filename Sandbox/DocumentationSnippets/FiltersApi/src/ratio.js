@@ -16,7 +16,7 @@ export async function initSciChart5() {
     const dataSeries = new XyDataSeries(wasmContext, {
         xValues: [1, 2, 3, 4, 5],
         yValues: [4, 3, 2, 4, 6],
-        dataSeriesName: 'Original',
+        seriesName: 'Original',
     });
     const originalLine = new FastLineRenderableSeries(wasmContext, {
         dataSeries,
@@ -28,7 +28,7 @@ export async function initSciChart5() {
     const divisorSeries = new XyDataSeries(wasmContext, {
         xValues: [1, 2, 3, 4, 5],
         yValues: [1, 2, 0.5, 3, 5],
-        dataSeriesName: 'Divisor',
+        seriesName: 'Divisor',
     });
     const divisorLine = new FastLineRenderableSeries(wasmContext, {
         dataSeries: divisorSeries,
@@ -37,7 +37,7 @@ export async function initSciChart5() {
     });
 
     // Create the filter, passing in the original series and divisorSeries
-    const ratioFilter = new XyRatioFilter(dataSeries, { divisorSeries, dataSeriesName: 'Ratio' });
+    const ratioFilter = new XyRatioFilter(dataSeries, { divisorSeries, seriesName: 'Ratio' });
     const ratioLine = new FastLineRenderableSeries(wasmContext, {
         dataSeries: ratioFilter,
         stroke: '#cc6600',

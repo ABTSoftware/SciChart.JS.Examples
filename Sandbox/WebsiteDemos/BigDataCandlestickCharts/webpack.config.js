@@ -10,35 +10,35 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: "ts-loader",
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
               name: "[path][name].[ext]",
             },
           },
         ],
       },
-    ]
+    ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js" ]
+    extensions: [".tsx", ".ts", ".js"],
   },
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "build")
+    path: path.resolve(__dirname, "build"),
   },
   plugins: [
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm", to: "" }
-      ]
-    })
-  ]
+        { from: "node_modules/scichart/_wasm/scichart.wasm", to: "" },
+        { from: "node_modules/scichart/_wasm/scichart-nosimd.wasm", to: "" },
+      ],
+    }),
+  ],
 };

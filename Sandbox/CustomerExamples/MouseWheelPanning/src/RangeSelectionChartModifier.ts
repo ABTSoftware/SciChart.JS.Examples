@@ -2,7 +2,7 @@ import { ChartModifierBase2D } from "scichart/Charting/ChartModifiers/ChartModif
 import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMouseArgs";
 import { Point } from "scichart/Core/Point";
 import { BoxAnnotation } from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/types/ECoordinateMode";
 
 // Create a TypeScript class which inherits ChartModifierbase2D to insert into SciChartSurface.chartModifiers collection
 export class RangeSelectionChartModifier extends ChartModifierBase2D {
@@ -24,7 +24,7 @@ export class RangeSelectionChartModifier extends ChartModifierBase2D {
       y2: 1,
       xCoordinateMode: ECoordinateMode.Pixel, // either, use pixel, or use datavalue + coordinate calculator (Axis dependent)
       fill: "#ffffff33",
-      strokeThickness: 0
+      strokeThickness: 0,
     });
   }
 

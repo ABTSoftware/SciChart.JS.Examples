@@ -36,7 +36,7 @@ async function initSciChart() {
     const yAxis1 = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Left,
         labelStyle: { color: 'white' },
-        visibleRange: new NumberRange(0, 8)
+        visibleRange: new NumberRange(0, 8),
     });
 
     const yAxis2Id = 'yAxis2Id';
@@ -44,7 +44,7 @@ async function initSciChart() {
         id: yAxis2Id,
         axisAlignment: EAxisAlignment.Right,
         labelStyle: { color: 'red' },
-        visibleRange: new NumberRange(0, 8)
+        visibleRange: new NumberRange(0, 8),
     });
 
     sciChartSurface.xAxes.add(xAxis);
@@ -61,7 +61,7 @@ async function initSciChart() {
         verticalAnchorPoint: EVerticalAnchorPoint.Center,
         svgString: `<svg id="two" width="50" height="50"  xmlns="http://www.w3.org/2000/svg">
                 <rect width="100%" height="100%" style="fill:white"><animate attributeName="rx" values="0;25;0" dur="2s" repeatCount="indefinite" color="#ffffff" /></rect>
-            </svg>`
+            </svg>`,
     });
 
     const customAnnotation2 = new CustomAnnotation({
@@ -74,7 +74,7 @@ async function initSciChart() {
         verticalAnchorPoint: EVerticalAnchorPoint.Center,
         svgString: `<svg id="two" width="50" height="50"  xmlns="http://www.w3.org/2000/svg">
                 <rect width="100%" height="100%" style="fill:red"><animate attributeName="rx" values="0;25;0" dur="2s" repeatCount="indefinite" color="#ffffff" /></rect>
-            </svg>`
+            </svg>`,
     });
 
     const lineSeries1 = new FastLineRenderableSeries(wasmContext, {
@@ -82,8 +82,8 @@ async function initSciChart() {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5],
             yValues: [3, 4, 3, 4, 3],
-            dataSeriesName: 'white'
-        })
+            seriesName: 'white',
+        }),
     });
 
     const lineSeries2 = new FastLineRenderableSeries(wasmContext, {
@@ -92,8 +92,8 @@ async function initSciChart() {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5, 6],
             yValues: [5, 6, 5, 5, 4, 3],
-            dataSeriesName: 'red'
-        })
+            seriesName: 'red',
+        }),
     });
 
     sciChartSurface.renderableSeries.add(lineSeries1, lineSeries2);
@@ -108,7 +108,7 @@ async function initSciChart() {
     sciChartSurface.chartModifiers.add(
         new DragSeriesModifier({
             annotations: [customAnnotation1, customAnnotation2],
-            executeOn: EExecuteOn.MouseLeftButton
+            executeOn: EExecuteOn.MouseLeftButton,
         })
     );
 }

@@ -257,7 +257,7 @@ const drawExample = async () => {
     highValues,
     lowValues,
     closeValues,
-    dataSeriesName: "BTC/USDT",
+    seriesName: "BTC/USDT",
   });
   const candlestickSeries = new FastCandlestickRenderableSeries(wasmContext, {
     dataSeries: candleDataSeries,
@@ -287,7 +287,7 @@ const drawExample = async () => {
   sciChartSurface.renderableSeries.add(
     new FastLineRenderableSeries(wasmContext, {
       dataSeries: new XyMovingAverageFilter(candleDataSeries, {
-        dataSeriesName: "Moving Average (20)",
+        seriesName: "Moving Average (20)",
         length: 20,
       }),
       stroke: appTheme.VividSkyBlue,
@@ -297,7 +297,7 @@ const drawExample = async () => {
   sciChartSurface.renderableSeries.add(
     new FastLineRenderableSeries(wasmContext, {
       dataSeries: new XyMovingAverageFilter(candleDataSeries, {
-        dataSeriesName: "Moving Average (50)",
+        seriesName: "Moving Average (50)",
         length: 50,
       }),
       stroke: appTheme.VividPink,
@@ -310,7 +310,7 @@ const drawExample = async () => {
       dataSeries: new XyDataSeries(wasmContext, {
         xValues,
         yValues: volumeValues,
-        dataSeriesName: "Volume",
+        seriesName: "Volume",
       }),
       strokeThickness: 0,
       // This is how we get volume to scale - on a hidden YAxis

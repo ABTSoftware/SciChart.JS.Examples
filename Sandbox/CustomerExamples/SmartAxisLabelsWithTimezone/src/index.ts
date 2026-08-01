@@ -9,7 +9,7 @@ import {
     EColor,
     FastLineRenderableSeries,
     CursorModifier,
-    ZoomExtentsModifier
+    ZoomExtentsModifier,
 } from 'scichart';
 import { axisLabelDateFormatter } from './axisLabelDateFormatter';
 import { DateTickProvider } from './DateTickProvider';
@@ -28,7 +28,7 @@ async function initSciChart() {
         // 5 seconds min size and 2 years max
         visibleRangeSizeLimit: new NumberRange(5, 2 * 31622400),
         useSharedCache: false,
-        useNativeText: true
+        useNativeText: true,
     });
 
     // Overrides getDeltaFromRange to get nice major and minor deltas for the ticks
@@ -42,7 +42,7 @@ async function initSciChart() {
         xAxis$.labelProvider = new SmartDateTZLabelProvider(timezone, locale);
         const dateTzConverter = createDateTzConverter(timezone);
         // This is needed for Cursor and Rollover chart modifiers
-        xAxis$.labelProvider.formatCursorLabel = timestamp =>
+        xAxis$.labelProvider.formatCursorLabel = (timestamp) =>
             axisLabelDateFormatter.toFullDateTime(timestamp, dateTzConverter, locale);
     };
     updateSettings(xAxis);
@@ -60,16 +60,16 @@ async function initSciChart() {
             visibleRangeSizeLimit: new NumberRange(0.1, 1000),
             useSharedCache: false,
             useNativeText: true,
-            labelPrecision: 2
+            labelPrecision: 2,
         })
     );
 
-    const dataSeries = createDataSeries(wasmContext, 0, { dataSeriesName: 'Sinewave Green' });
+    const dataSeries = createDataSeries(wasmContext, 0, { seriesName: 'Sinewave Green' });
     const renderableSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: EColor.Orange,
         strokeThickness: 3,
         dataSeries,
-        isVisible: true
+        isVisible: true,
     });
     sciChartSurface.renderableSeries.add(renderableSeries);
 

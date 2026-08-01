@@ -2,7 +2,7 @@ import { ChartModifierBase2D } from "scichart/Charting/ChartModifiers/ChartModif
 import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMouseArgs";
 import { Point } from "scichart/Core/Point";
 import { BoxAnnotation } from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/types/ECoordinateMode";
 import { translateFromCanvasToSeriesViewRect } from "scichart/utils/translate";
 
 type TDataPoint = {
@@ -39,7 +39,7 @@ export class HeatMapSeriesSelectionModifier extends ChartModifierBase2D {
       yCoordinateMode: ECoordinateMode.DataValue,
       xCoordinateMode: ECoordinateMode.DataValue,
       fill: "#ffffff33",
-      strokeThickness: 0
+      strokeThickness: 0,
     });
   }
 
@@ -138,7 +138,7 @@ export class HeatMapSeriesSelectionModifier extends ChartModifierBase2D {
         0
       );
 
-      console.log(firstRendSeries.dataSeries.dataSeriesName);
+      console.log(firstRendSeries.dataSeries.seriesName);
       console.log("startPointInfo", startPointInfo.hitTestPointValues);
       console.log(
         "xIndex start",

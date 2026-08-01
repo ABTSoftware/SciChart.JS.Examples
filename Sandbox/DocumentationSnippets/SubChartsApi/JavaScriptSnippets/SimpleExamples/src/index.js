@@ -1,5 +1,5 @@
 import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
-import { ECoordinateMode } from 'scichart/Charting/Visuals/Annotations/AnnotationBase';
+import { ECoordinateMode } from 'scichart/Charting/Visuals/Annotations/types/ECoordinateMode';
 import { NumericAxis } from 'scichart/Charting/Visuals/Axis/NumericAxis';
 import { FastLineRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries';
 import { SciChartSurface } from 'scichart/Charting/Visuals/SciChartSurface';
@@ -331,7 +331,7 @@ export async function subChartPadding(divElementId) {
     // Add a sub-chart to the main surface
     const subChartSurface = sciChartSurface.addSubChart({
         position: new Rect(0, 0, 0.5, 0.5),
-        subChartPadding: new Thickness(10, 20, 15, 30),
+        padding: new Thickness(10, 20, 15, 30),
     });
 
     subChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -398,4 +398,4 @@ updateSubChartPositionWithBuilderApi('scichart-div-4b');
 subChartPadding('scichart-div-5');
 nonTransparentSubChart('scichart-div-6');
 nonTransparentSubChartWithBuilderApi('scichart-div-6b');
-subChartPixelCoordinateMode("scichart-div-7");
+subChartPixelCoordinateMode('scichart-div-7');

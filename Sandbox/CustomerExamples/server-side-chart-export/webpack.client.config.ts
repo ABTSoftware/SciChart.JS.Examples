@@ -33,10 +33,7 @@ const config: Configuration = {
         new CopyPlugin({
             patterns: [
                 { from: "./client/index.html", to: "" },
-                { from: "./node_modules/scichart/_wasm/scichart2d.data", to: "" },
-                { from: "./node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
-                { from: "./node_modules/scichart/_wasm/scichart3d.data", to: "" },
-                { from: "./node_modules/scichart/_wasm/scichart3d.wasm", to: "" }
+                { from: "./node_modules/scichart/_wasm/scichart.wasm", to: "" }
             ]
         })
     ]

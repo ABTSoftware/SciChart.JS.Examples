@@ -12,13 +12,14 @@ SciChart.js is commercial software with a [free community license](https://scich
 ## Step 1: Adding SciChart to your Electron Application
 
 If you haven't already done so, add SciChart.js to your Electron application
+
 ```javascript
-npm install scichart 
+npm install scichart
 ```
 
 ## Step 2: Wasm file deployment
 
-SciChart.js uses WebAssembly files which must be served. The easiest way to do this is to copy the wasm files from the node_modules/scichart/_wasm folder to your output folder.
+SciChart.js uses WebAssembly files which must be served. The easiest way to do this is to copy the wasm files from the node_modules/scichart/\_wasm folder to your output folder.
 
 e.g. with webpack.config.js:
 
@@ -27,8 +28,7 @@ e.g. with webpack.config.js:
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
+        { from: "node_modules/scichart/_wasm/scichart.wasm", to: "" },
       ],
     })
   ],
@@ -52,7 +52,7 @@ import {
   NumberRange,
   MouseWheelZoomModifier,
   ZoomPanModifier,
-  ZoomExtentsModifier
+  ZoomExtentsModifier,
 } from "scichart";
 
 async function initSciChart() {
@@ -64,44 +64,64 @@ async function initSciChart() {
 
   // Initialize SciChartSurface. Don't forget to await!
   // Expects <div id="scichart-root"></div> in the DOM
-  const { sciChartSurface, wasmContext } = await SciChartSurface.create("scichart-root", {
-    theme: new SciChartJsNavyTheme(),
-    title: "SciChart.js First Chart",
-    titleStyle: { fontSize: 22 }
-  });
+  const { sciChartSurface, wasmContext } = await SciChartSurface.create(
+    "scichart-root",
+    {
+      theme: new SciChartJsNavyTheme(),
+      title: "SciChart.js First Chart",
+      titleStyle: { fontSize: 22 },
+    }
+  );
 
   // Create an XAxis and YAxis with growBy padding
   const growBy = new NumberRange(0.1, 0.1);
-  sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisTitle: "X Axis", growBy }));
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { axisTitle: "Y Axis", growBy }));
+  sciChartSurface.xAxes.add(
+    new NumericAxis(wasmContext, { axisTitle: "X Axis", growBy })
+  );
+  sciChartSurface.yAxes.add(
+    new NumericAxis(wasmContext, { axisTitle: "Y Axis", growBy })
+  );
 
   // Create a line series with some initial data
-  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-    stroke: "steelblue",
-    strokeThickness: 3,
-    dataSeries: new XyDataSeries(wasmContext, {
-      xValues: [0,1,2,3,4,5,6,7,8,9],
-      yValues: [0, 0.0998, 0.1986, 0.2955, 0.3894, 0.4794, 0.5646, 0.6442, 0.7173, 0.7833]
-    }),
-    pointMarker: new EllipsePointMarker(wasmContext, { width: 11, height: 11, fill: "#fff" }),
-    animation: new SweepAnimation({ duration: 300, fadeEffect: true })
-  }));
+  sciChartSurface.renderableSeries.add(
+    new FastLineRenderableSeries(wasmContext, {
+      stroke: "steelblue",
+      strokeThickness: 3,
+      dataSeries: new XyDataSeries(wasmContext, {
+        xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        yValues: [
+          0, 0.0998, 0.1986, 0.2955, 0.3894, 0.4794, 0.5646, 0.6442, 0.7173,
+          0.7833,
+        ],
+      }),
+      pointMarker: new EllipsePointMarker(wasmContext, {
+        width: 11,
+        height: 11,
+        fill: "#fff",
+      }),
+      animation: new SweepAnimation({ duration: 300, fadeEffect: true }),
+    })
+  );
 
   // Add some interaction modifiers to show zooming and panning
-  sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier(), new ZoomPanModifier(), new ZoomExtentsModifier());
+  sciChartSurface.chartModifiers.add(
+    new MouseWheelZoomModifier(),
+    new ZoomPanModifier(),
+    new ZoomExtentsModifier()
+  );
 
   return sciChartSurface;
 }
 
 // Note: When using SciChart.js in React, Angular, Vue use component lifecycle to delete the chart on unmount
 // for examples see the Vue/React/Angular boilerplates at https://www.scichart.com/getting-started/scichart-javascript/
-initSciChart(); 
+initSciChart();
 ```
 
 ### Recommendation: use React, Vue or Angular
 
-> In this example to keep it simple we just use a single JS file and Electron. 
-> The JS file is included in `renderer.ts`. In practice, 
+> In this example to keep it simple we just use a single JS file and Electron.
+> The JS file is included in `renderer.ts`. In practice,
 > we recommend using React or similar and obeying component lifecycle to delete
 > the chart on unmount. For more info, see the React, Vue or Angular boilerplate demos at [scichart.com/getting-started-scichart-js](https://scichart.com/getting-started-scichart-js)
 
@@ -114,29 +134,32 @@ initSciChart();
 
 You will need to have the **[SciChart Licensing Wizard](https://www.scichart.com/licensing-scichart-js/)** running with a trial or activated commercial license.
 
-___NOTE__ you may need to configure the security policy in dev mode to allow connection with the Licensing Wizard_
+**\_NOTE** you may need to configure the security policy in dev mode to allow connection with the Licensing Wizard\_
+
 ```javascript
-devContentSecurityPolicy: "connect-src 'self' * 'unsafe-eval'"
+devContentSecurityPolicy: "connect-src 'self' * 'unsafe-eval'";
 ```
 
 ### Runtime Licensing for Electron
 
-SciChart runtime licenses normally match the hostname, but for electron apps in runtime, there is no hostname (because the content for the mainWindow is loaded from a file, not a server).  Licenses for electon should use the app name, or appId instead.  You can add this to your license on the website [www.scichart.com/profile](https://www.scichart.com/profile)
+SciChart runtime licenses normally match the hostname, but for electron apps in runtime, there is no hostname (because the content for the mainWindow is loaded from a file, not a server). Licenses for electon should use the app name, or appId instead. You can add this to your license on the website [www.scichart.com/profile](https://www.scichart.com/profile)
 
-The Scichart license key must be set in the renderer, but it is preferable not to store it there.  We suggest using ipc to fetch it from the main process.
+The Scichart license key must be set in the renderer, but it is preferable not to store it there. We suggest using ipc to fetch it from the main process.
 
 In index.tsx (renderer)
+
 ```javascript
-import { ipcRenderer } from 'electron';
+import { ipcRenderer } from "electron";
 
 SciChartSurface.setRuntimeLicenseKey(ipcRenderer.sendSync("getLicense"));
 ```
 
 In main.ts
+
 ```javascript
 import { ipcMain } from "electron";
 
-ipcMain.on('getLicense', (event: any, arg: any) => {
-    event.returnValue = "RUNTIME LICENSE KEY HERE";
+ipcMain.on("getLicense", (event: any, arg: any) => {
+  event.returnValue = "RUNTIME LICENSE KEY HERE";
 });
 ```

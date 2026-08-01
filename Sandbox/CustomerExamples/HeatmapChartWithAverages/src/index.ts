@@ -38,30 +38,34 @@ async function initSciChart() {
   sciChartSurface.yAxes.add(
     new NumericAxis(wasmContext, {
       axisTitle: "Heatmap Y",
-      axisAlignment: EAxisAlignment.Left
+      axisAlignment: EAxisAlignment.Left,
     })
   );
 
   const initialZValues = [
     [0, 1, 2, 3],
     [4, 5, 6, 7],
-    [8, 9, 10, 11]
+    [8, 9, 10, 11],
   ];
 
   // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
-  const heatmapDataSeries = new UniformHeatmapDataSeries(
-    wasmContext, { xStart: 0, xStep: 1, yStart: 0, yStep: 1, zValues: initialZValues }
-  );
-  heatmapDataSeries.dataSeriesName = "First Heatmap DataSeries";
+  const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
+    xStart: 0,
+    xStep: 1,
+    yStart: 0,
+    yStep: 1,
+    zValues: initialZValues,
+  });
+  heatmapDataSeries.seriesName = "First Heatmap DataSeries";
 
   const gradientStops = [
     { offset: 0, color: "yellow" },
-    { offset: 1, color: "red" }
+    { offset: 1, color: "red" },
   ];
   const colorMap = new HeatmapColorMap({
     minimum: 0,
     maximum: 11,
-    gradientStops
+    gradientStops,
   });
 
   // Create a Heatmap RenderableSeries with the color map. ColorMap.minimum/maximum defines the values in
@@ -69,7 +73,7 @@ async function initSciChart() {
   const heatmapSeries = new UniformHeatmapRenderableSeries(wasmContext, {
     opacity: 0.5,
     dataSeries: heatmapDataSeries,
-    colorMap
+    colorMap,
   });
 
   // Add heatmap to the chart
@@ -77,21 +81,25 @@ async function initSciChart() {
 
   const initialZValues2 = [
     [1, 2, 1, 2],
-    [2, 1, 2, 3]
+    [2, 1, 2, 3],
   ];
 
   // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
-  const heatmapDataSeries2 = new UniformHeatmapDataSeries(
-    wasmContext, { xStart: 0, xStep: 1, yStart: 3, yStep: 1, zValues: initialZValues2}
-  );
-  heatmapDataSeries2.dataSeriesName = "Second Heatmap DataSeries";
+  const heatmapDataSeries2 = new UniformHeatmapDataSeries(wasmContext, {
+    xStart: 0,
+    xStep: 1,
+    yStart: 3,
+    yStep: 1,
+    zValues: initialZValues2,
+  });
+  heatmapDataSeries2.seriesName = "Second Heatmap DataSeries";
 
   // Create a Heatmap RenderableSeries with the color map. ColorMap.minimum/maximum defines the values in
   // HeatmapDataSeries which correspond to gradient stops at 0..1
   const heatmapSeries2 = new UniformHeatmapRenderableSeries(wasmContext, {
     opacity: 0.5,
     dataSeries: heatmapDataSeries2,
-    colorMap
+    colorMap,
   });
 
   // Add heatmap to the chart
@@ -103,7 +111,7 @@ async function initSciChart() {
     new NumericAxis(wasmContext, {
       axisTitle: "Averages",
       axisAlignment: EAxisAlignment.Right,
-      id: "y2axis"
+      id: "y2axis",
     })
   );
 
@@ -113,13 +121,13 @@ async function initSciChart() {
   let lineChartData = new XyDataSeries(wasmContext, {
     xValues,
     yValues,
-    dataSeriesName: "Line Data Series"
+    seriesName: "Line Data Series",
   });
 
   const lineRendSeries = new FastLineRenderableSeries(wasmContext, {
     dataSeries: lineChartData,
     yAxisId: "y2axis",
-    strokeThickness: 3
+    strokeThickness: 3,
   });
 
   sciChartSurface.renderableSeries.add(lineRendSeries);
@@ -135,14 +143,14 @@ async function initSciChart() {
   sciChartSurface.chartModifiers.add(new HeatMapSeriesSelectionModifier());
 
   const checkbox1 = document.querySelector("#firstHeatmap");
-  checkbox1.addEventListener("change", e => {
+  checkbox1.addEventListener("change", (e) => {
     heatmapSeries.isVisible = (e.target as HTMLInputElement).checked;
     updateLineChart();
     sciChartSurface.zoomExtents();
   });
 
   const checkbox2 = document.querySelector("#secondHeatmap");
-  checkbox2.addEventListener("change", e => {
+  checkbox2.addEventListener("change", (e) => {
     heatmapSeries2.isVisible = (e.target as HTMLInputElement).checked;
     updateLineChart();
     sciChartSurface.zoomExtents();
@@ -152,7 +160,7 @@ async function initSciChart() {
     const newYValues = calcYValues(allHeatmaps);
     const newLineChartData = new XyDataSeries(wasmContext, {
       xValues,
-      yValues: newYValues
+      yValues: newYValues,
     });
     lineRendSeries.dataSeries = newLineChartData;
     lineChartData.delete();
@@ -170,7 +178,7 @@ const calcYValues = (
   for (let i = 0; i < 4; i++) {
     let count = 0;
     let sum = 0;
-    allHeatmaps.forEach(hs => {
+    allHeatmaps.forEach((hs) => {
       if (hs.isVisible) {
         const heatmapDataSeries = hs.dataSeries as UniformHeatmapDataSeries;
         const rows = heatmapDataSeries.arrayHeight;

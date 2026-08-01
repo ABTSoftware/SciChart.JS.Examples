@@ -11,8 +11,8 @@ export function ensureSciChartWasmConfigured(): void {
   const base = import.meta.env.BASE_URL ?? "/";
   const normalizedBase = base.endsWith("/") ? base : `${base}/`;
   SciChartSurface.configure({
-    wasmUrl: `${normalizedBase}scichart/scichart2d.wasm`,
-    wasmNoSimdUrl: `${normalizedBase}scichart/scichart2d-nosimd.wasm`,
+    wasmUrl: `${normalizedBase}scichart/scichart.wasm`,
+    wasmNoSimdUrl: `${normalizedBase}scichart/scichart-nosimd.wasm`,
   });
 
   configured = true;

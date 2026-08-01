@@ -66,7 +66,7 @@ export class DragSeriesModifier extends ChartModifierBase2D {
             }
         });
 
-        console.log('Selected series', this.selectedRS?.dataSeries?.dataSeriesName);
+        console.log('Selected series', this.selectedRS?.dataSeries?.seriesName);
 
         args.handled = true;
         this.lastPoint = args.mousePoint;

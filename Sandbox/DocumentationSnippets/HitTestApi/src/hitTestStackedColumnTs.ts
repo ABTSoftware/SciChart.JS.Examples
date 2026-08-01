@@ -25,11 +25,11 @@ export async function hitTestStackedColumnTs(divId: string) {
     yAxis.growBy = new NumberRange(0, 0.1);
     sciChartSurface.yAxes.add(yAxis);
 
-    const dataSeries1 = new XyDataSeries(wasmContext, { xValues, yValues: porkData, dataSeriesName: 'Pork' });
-    const dataSeries2 = new XyDataSeries(wasmContext, { xValues, yValues: vealData, dataSeriesName: 'Veal' });
-    const dataSeries3 = new XyDataSeries(wasmContext, { xValues, yValues: tomatoesData, dataSeriesName: 'Tomato' });
-    const dataSeries4 = new XyDataSeries(wasmContext, { xValues, yValues: cucumberData, dataSeriesName: 'Cucumber' });
-    const dataSeries5 = new XyDataSeries(wasmContext, { xValues, yValues: pepperData, dataSeriesName: 'Pepper' });
+    const dataSeries1 = new XyDataSeries(wasmContext, { xValues, yValues: porkData, seriesName: 'Pork' });
+    const dataSeries2 = new XyDataSeries(wasmContext, { xValues, yValues: vealData, seriesName: 'Veal' });
+    const dataSeries3 = new XyDataSeries(wasmContext, { xValues, yValues: tomatoesData, seriesName: 'Tomato' });
+    const dataSeries4 = new XyDataSeries(wasmContext, { xValues, yValues: cucumberData, seriesName: 'Cucumber' });
+    const dataSeries5 = new XyDataSeries(wasmContext, { xValues, yValues: pepperData, seriesName: 'Pepper' });
 
     const rendSeries1 = new StackedColumnRenderableSeries(wasmContext);
     rendSeries1.fill = '#226Fb7';
@@ -84,7 +84,7 @@ export async function hitTestStackedColumnTs(divId: string) {
         svgString: `<svg width="8" height="8"><circle cx="50%" cy="50%" r="4" fill="#FF0000"/></svg>`,
         isHidden: true,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        verticalAnchorPoint: EVerticalAnchorPoint.Center
+        verticalAnchorPoint: EVerticalAnchorPoint.Center,
     });
     sciChartSurface.annotations.add(svgAnnotation);
 

@@ -1,4 +1,4 @@
-import { TModifierDefinition } from 'scichart/Builder/buildModifiers';
+import { TModifierDefinition } from 'scichart/Builder/types/ModifierDefinitions';
 import { SciChartSurface } from 'scichart/Charting/Visuals/SciChartSurface';
 import { Rect } from 'scichart/Core/Rect';
 import { EChart2DModifierType } from 'scichart/types/ChartModifierType';
@@ -6,7 +6,7 @@ import { ESeriesType } from 'scichart/types/SeriesType';
 import { chartBuilder } from 'scichart/Builder/chartBuilder';
 import { I2DSubSurfaceOptions } from 'scichart/Charting/Visuals/I2DSurfaceOptions';
 import { Thickness } from 'scichart/Core/Thickness';
-import { ISubChartDefinition } from 'scichart/Builder/buildSurface';
+import { ISubChartDefinition } from 'scichart/Builder/types/SurfaceDefinitions';
 import { EAxisType } from 'scichart/types/AxisType';
 import { NumericAxis } from 'scichart/Charting/Visuals/Axis/NumericAxis';
 import { FastLineRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries';
@@ -62,16 +62,16 @@ export const createChart = async (rootDivElementId) => {
         const position = new Rect(columnIndex * width, rowIndex * height, width, height);
 
         const subChartOptions = {
-            subChartPadding: Thickness.fromNumber(10),
+            padding: Thickness.fromNumber(10),
             id: `subChart-${subChartIndex}`,
             position,
         };
 
         const subSurface = sciChartSurface.addSubChart(subChartOptions);
-        
+
         subSurface.xAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
         subSurface.yAxes.add(new NumericAxis(wasmContext, { isVisible: false }));
-        
+
         subSurface.renderableSeries.add(
             new FastLineRenderableSeries(wasmContext, {
                 dataSeries: new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true, ...getData(0, 1000) }),
@@ -79,7 +79,7 @@ export const createChart = async (rootDivElementId) => {
                 strokeThickness: 3,
             })
         );
-        subSurface.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier())
+        subSurface.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier());
     }
 
     sciChartSurface.subCharts.forEach((subSurface) => {
@@ -97,10 +97,7 @@ export const createChart = async (rootDivElementId) => {
 };
 
 export const createChartWithBuilderApi = async (rootDivElementId) => {
-    const modifiers = [
-        { type: EChart2DModifierType.ZoomPan },
-        { type: EChart2DModifierType.MouseWheelZoom },
-    ];
+    const modifiers = [{ type: EChart2DModifierType.ZoomPan }, { type: EChart2DModifierType.MouseWheelZoom }];
 
     const subCharts = [];
     for (let subChartIndex = 0; subChartIndex < subChartsNumber; ++subChartIndex) {
@@ -113,7 +110,7 @@ export const createChartWithBuilderApi = async (rootDivElementId) => {
         subCharts.push({
             surface: {
                 id: `subChart-${subChartIndex}`,
-                subChartPadding: Thickness.fromNumber(10),
+                padding: Thickness.fromNumber(10),
                 position,
             },
             xAxes: {

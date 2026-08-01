@@ -10,32 +10,31 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
-                exclude: /node_modules/
-            }
-        ]
+                exclude: /node_modules/,
+            },
+        ],
     },
     resolve: {
-        extensions: ['.js', '.ts']
+        extensions: ['.js', '.ts'],
     },
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'build')
+        path: path.resolve(__dirname, 'build'),
     },
     plugins: [
         new CopyPlugin({
             patterns: [
                 { from: 'src/index.html', to: '' },
-                { from: 'node_modules/scichart/_wasm/scichart2d.data', to: '' },
-                { from: 'node_modules/scichart/_wasm/scichart2d.wasm', to: '' }
-            ]
-        })
+                { from: 'node_modules/scichart/_wasm/scichart.wasm', to: '' },
+            ],
+        }),
     ],
     devServer: {
         client: {
             overlay: {
                 warnings: false,
-                errors: true
-            }
-        }
-    }
+                errors: true,
+            },
+        },
+    },
 };

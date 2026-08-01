@@ -3,37 +3,52 @@ import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
 import { axesSetup, generateModifiers, getRandomSinewave } from "./utils";
 import { NumberRange } from "scichart/Core/NumberRange";
-import { ELegendOrientation, TLegendItem } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
+import {
+  ELegendOrientation,
+  TLegendItem,
+} from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 
-export default async function initVshChart(id: string, group: SciChartVerticalGroup, pointsCount: number, visibleRange: NumberRange) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id);
+export default async function initVshChart(
+  id: string,
+  group: SciChartVerticalGroup,
+  pointsCount: number,
+  visibleRange: NumberRange
+) {
+  const { sciChartSurface, wasmContext } = await SciChartSurface.create(id);
 
-    axesSetup(sciChartSurface, wasmContext, visibleRange, false);
+  axesSetup(sciChartSurface, wasmContext, visibleRange, false);
 
-    // Create some data and set on a line series
-    let color = Math.round((Math.random() * 250));
-    const lineSeries = new FastLineRenderableSeries(wasmContext, {
-        stroke: `rgba(${255 - color},${color},${(color + 125) % 255},0.7)`
-    });
-    lineSeries.dataSeries = getRandomSinewave(wasmContext, 0, Math.random() * 3, Math.random() * 50, pointsCount, 1).dataSeries;
-    lineSeries.dataSeries.dataSeriesName = 'VSH';
-    sciChartSurface.renderableSeries.add(lineSeries);
-    const getLegendItemHtml = generateLegend(sciChartSurface);
-    generateModifiers(sciChartSurface, id, getLegendItemHtml);
-    group.addSurfaceToGroup(sciChartSurface);
+  // Create some data and set on a line series
+  let color = Math.round(Math.random() * 250);
+  const lineSeries = new FastLineRenderableSeries(wasmContext, {
+    stroke: `rgba(${255 - color},${color},${(color + 125) % 255},0.7)`,
+  });
+  lineSeries.dataSeries = getRandomSinewave(
+    wasmContext,
+    0,
+    Math.random() * 3,
+    Math.random() * 50,
+    pointsCount,
+    1
+  ).dataSeries;
+  lineSeries.dataSeries.seriesName = "VSH";
+  sciChartSurface.renderableSeries.add(lineSeries);
+  const getLegendItemHtml = generateLegend(sciChartSurface);
+  generateModifiers(sciChartSurface, id, getLegendItemHtml);
+  group.addSurfaceToGroup(sciChartSurface);
 }
 
 function generateLegend(sciChartSurface: SciChartSurface) {
-    return (
-        orientation: ELegendOrientation,
-        showCheckboxes: boolean,
-        showSeriesMarkers: boolean,
-        item: TLegendItem
-    ): string => {
-        const { id, color, name } = item;
-        const bg = `background: radial-gradient(circle, rgb(60, 60, 63) 0%, rgb(28, 28, 30) 100%);`;
-        let str: string = ``;
-        const crossmark = `
+  return (
+    orientation: ELegendOrientation,
+    showCheckboxes: boolean,
+    showSeriesMarkers: boolean,
+    item: TLegendItem
+  ): string => {
+    const { id, color, name } = item;
+    const bg = `background: radial-gradient(circle, rgb(60, 60, 63) 0%, rgb(28, 28, 30) 100%);`;
+    let str: string = ``;
+    const crossmark = `
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="10" height="10" viewBox="0 0 256 256" xml:space="preserve">
             <g transform="translate(128 128) scale(0.72 0.72)">
                 <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(-175.05 -175.05000000000004) scale(3.89 3.89)">
@@ -43,7 +58,7 @@ function generateLegend(sciChartSurface: SciChartSurface) {
             </g>
         </svg>
         `;
-        str += `
+    str += `
             <span style="display: block; padding-left: 42.5px; padding-top: 67px;">
                 <span class="scichart__legend-item scichart__legend-item-simple" style="position: relative;">
                     <label for="${id}" style="color: #fff;">${name}_D</label>
@@ -67,10 +82,10 @@ function generateLegend(sciChartSurface: SciChartSurface) {
                 </span>
             </span>
         `;
-        // if (showCheckboxes) {
-        //     const checked = item.checked ? "checked" : "";
-        //     str += `<input ${checked} type="checkbox" id="${item.id}">`;
-        // }
-        return str;
-    };
+    // if (showCheckboxes) {
+    //     const checked = item.checked ? "checked" : "";
+    //     str += `<input ${checked} type="checkbox" id="${item.id}">`;
+    // }
+    return str;
+  };
 }

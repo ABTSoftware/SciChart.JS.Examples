@@ -10,15 +10,16 @@ SciChart.js is commercial software with a [free community license](https://scich
 # Step 1: Adding SciChart to your Angular Application
 
 If you haven't already done so, add SciChart.js to your Angular application
+
 ```javascript
-npm install scichart 
+npm install scichart
 ```
 
 ## Step 2: Wasm file deployment
 
-SciChart.js uses WebAssembly files which must be served. The easiest way to do this is to copy the wasm files from the node_modules/scichart/_wasm folder to your output folder.
+SciChart.js uses WebAssembly files which must be served. The easiest way to do this is to copy the wasm files from the node_modules/scichart/\_wasm folder to your output folder.
 
-Angular requires *.data file and wasm file to be in output folder /src/*. This is done using the `copy-files-to-from` npm package:
+Angular requires _.data file and wasm file to be in output folder /src/_. This is done using the `copy-files-to-from` npm package:
 
 To do this, we use npm package copy-files-from-to and copy-files-from-to.json with this config
 
@@ -29,12 +30,8 @@ To do this, we use npm package copy-files-from-to and copy-files-from-to.json wi
   },
   "copyFiles": [
     {
-      "from": "./node_modules/scichart/_wasm/scichart2d.data",
-      "to": "./src/scichart2d.data"
-    },
-    {
-      "from": "./node_modules/scichart/_wasm/scichart2d.wasm",
-      "to": "./src/scichart2d.wasm"
+      "from": "./node_modules/scichart/_wasm/scichart.wasm",
+      "to": "./src/scichart.wasm"
     }
   ]
 }
@@ -57,19 +54,7 @@ This is executed when building. See package.json scripts:
 Next, create a function to initialize a SciChartSurface like this:
 
 ```javascript
-import {
-  SciChartSurface, 
-  NumericAxis,
-  FastLineRenderableSeries,
-  XyDataSeries,
-  EllipsePointMarker,
-  SweepAnimation,
-  SciChartJsNavyTheme,
-  NumberRange,
-  MouseWheelZoomModifier,
-  ZoomPanModifier,
-  ZoomExtentsModifier
-} from "scichart";
+import { SciChartSurface, NumericAxis, FastLineRenderableSeries, XyDataSeries, EllipsePointMarker, SweepAnimation, SciChartJsNavyTheme, NumberRange, MouseWheelZoomModifier, ZoomPanModifier, ZoomExtentsModifier } from "scichart";
 
 async function initSciChart() {
   // LICENSING
@@ -82,7 +67,7 @@ async function initSciChart() {
   const { sciChartSurface, wasmContext } = await SciChartSurface.create("scichart-root", {
     theme: new SciChartJsNavyTheme(),
     title: "SciChart.js First Chart",
-    titleStyle: { fontSize: 22 }
+    titleStyle: { fontSize: 22 },
   });
 
   // Create an XAxis and YAxis with growBy padding
@@ -91,16 +76,18 @@ async function initSciChart() {
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { axisTitle: "Y Axis", growBy }));
 
   // Create a line series with some initial data
-  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-    stroke: "steelblue",
-    strokeThickness: 3,
-    dataSeries: new XyDataSeries(wasmContext, {
-      xValues: [0,1,2,3,4,5,6,7,8,9],
-      yValues: [0, 0.0998, 0.1986, 0.2955, 0.3894, 0.4794, 0.5646, 0.6442, 0.7173, 0.7833]
-    }),
-    pointMarker: new EllipsePointMarker(wasmContext, { width: 11, height: 11, fill: "#fff" }),
-    animation: new SweepAnimation({ duration: 300, fadeEffect: true })
-  }));
+  sciChartSurface.renderableSeries.add(
+    new FastLineRenderableSeries(wasmContext, {
+      stroke: "steelblue",
+      strokeThickness: 3,
+      dataSeries: new XyDataSeries(wasmContext, {
+        xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        yValues: [0, 0.0998, 0.1986, 0.2955, 0.3894, 0.4794, 0.5646, 0.6442, 0.7173, 0.7833],
+      }),
+      pointMarker: new EllipsePointMarker(wasmContext, { width: 11, height: 11, fill: "#fff" }),
+      animation: new SweepAnimation({ duration: 300, fadeEffect: true }),
+    })
+  );
 
   // Add some interaction modifiers to show zooming and panning
   sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier(), new ZoomPanModifier(), new ZoomExtentsModifier());
@@ -111,7 +98,7 @@ async function initSciChart() {
 
 ## Step 4: Create an Angular Component
 
-```javascript 
+```javascript
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -149,16 +136,19 @@ export class AppComponent implements OnInit, OnDestroy {
 ```
 
 ## Project setup
+
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 npm start
 ```
 
 ### Compiles and minifies for production
+
 ```
 npm run build
 ```
@@ -169,7 +159,7 @@ We have a wealth of information on our site showing how to get started with SciC
 
 Take a look at:
 
- * [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
- * [Javascript / npm tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2002%20-%20Adding%20Series%20and%20Data.html): using npm, webpack, and scichart.js, create static and dynamic charts with zooming, panning tooltips and more
- * [Vanilla Javascript tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2001%20-%20Including%20SciChart.js%20in%20an%20HTML%20Page.html): using only vanilla javascript and HTML,
- * [Official scichart.js demos](https://demo.scichart.com): view our demos online! Full github source code also available at [github.com/abtsoftware/scichart.js.examples](https://github.com/abtsoftware/scichart.js.examples)
+- [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
+- [Javascript / npm tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2002%20-%20Adding%20Series%20and%20Data.html): using npm, webpack, and scichart.js, create static and dynamic charts with zooming, panning tooltips and more
+- [Vanilla Javascript tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2001%20-%20Including%20SciChart.js%20in%20an%20HTML%20Page.html): using only vanilla javascript and HTML,
+- [Official scichart.js demos](https://demo.scichart.com): view our demos online! Full github source code also available at [github.com/abtsoftware/scichart.js.examples](https://github.com/abtsoftware/scichart.js.examples)

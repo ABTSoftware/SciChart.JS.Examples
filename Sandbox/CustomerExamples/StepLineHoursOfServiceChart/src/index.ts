@@ -7,7 +7,7 @@ import { SciChartJSLightTheme } from 'scichart/Charting/Themes/SciChartJSLightTh
 import { FastLineRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries';
 import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
 import { AxisMarkerAnnotation } from 'scichart/Charting/Visuals/Annotations/AxisMarkerAnnotation';
-import { ECoordinateMode } from 'scichart/Charting/Visuals/Annotations/AnnotationBase';
+import { ECoordinateMode } from 'scichart/Charting/Visuals/Annotations/types/ECoordinateMode';
 
 async function initSciChart() {
     // LICENSING //
@@ -26,14 +26,14 @@ async function initSciChart() {
     // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
     // instance must be passed to other types that exist on the same surface.
     const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-root', {
-        theme: new SciChartJSLightTheme()
+        theme: new SciChartJSLightTheme(),
     });
 
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Top,
         visibleRange: new NumberRange(0, 24),
-        autoTicks: false
+        autoTicks: false,
     });
     xAxis.majorDelta = 1;
     xAxis.minorDelta = 0.5;
@@ -49,12 +49,12 @@ async function initSciChart() {
         axisAlignment: EAxisAlignment.Left,
         visibleRange: new NumberRange(0.5, 4.5),
         autoTicks: false,
-        flippedCoordinates: true
+        flippedCoordinates: true,
     });
     yAxis.majorDelta = 1;
     yAxis.minorDelta = 1;
     yAxis.drawMajorBands = false;
-    yAxis.labelProvider.formatLabel = value => {
+    yAxis.labelProvider.formatLabel = (value) => {
         switch (value) {
             case 1:
                 return `Off Duty`;
@@ -74,7 +74,7 @@ async function initSciChart() {
         axisAlignment: EAxisAlignment.Right,
         visibleRange: new NumberRange(0.5, 4.5),
         autoTicks: false,
-        flippedCoordinates: true
+        flippedCoordinates: true,
     });
     yAxis2.drawMajorGridLines = false;
     yAxis2.drawMinorGridLines = false;
@@ -82,7 +82,7 @@ async function initSciChart() {
     yAxis2.drawMinorGridLines = false;
     yAxis2.majorDelta = 1;
     yAxis2.minorDelta = 1;
-    yAxis2.labelProvider.formatLabel = value => {
+    yAxis2.labelProvider.formatLabel = (value) => {
         switch (value) {
             case 1:
                 return formatMinutes(total[1]);
@@ -106,7 +106,7 @@ async function initSciChart() {
         isDigitalLine: true,
         stroke: 'blue',
         strokeThickness: 5,
-        dataSeries
+        dataSeries,
     });
     const axisMarkerAnnotation = new AxisMarkerAnnotation({
         yAxisId: 'yAxis2',
@@ -114,7 +114,7 @@ async function initSciChart() {
         color: '#555555FF',
         backgroundColor: '#F9F9F9FF',
         formattedValue: 'Total Hours',
-        y1: 0.5
+        y1: 0.5,
     });
     sciChartSurface.annotations.add(axisMarkerAnnotation);
 
@@ -126,7 +126,7 @@ function calcTotal(xValues: number[], yValues: number[]) {
         '1': 0,
         '2': 0,
         '3': 0,
-        '4': 0
+        '4': 0,
     };
     for (let i = 0; i < xValues.length - 1; i++) {
         const time = xValues[i + 1] - xValues[i];

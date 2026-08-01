@@ -7,7 +7,7 @@ import { NumberRange } from 'scichart/Core/NumberRange';
 import { LegendModifier } from 'scichart/Charting/ChartModifiers/LegendModifier';
 import { ELegendOrientation, TLegendItem } from 'scichart/Charting/Visuals/Legend/SciChartLegendBase';
 import { ISpritePointMarkerOptions, SpritePointMarker } from 'scichart/Charting/Visuals/PointMarkers/SpritePointMarker';
-import { createImageAsync } from "scichart/utils/imageUtil";
+import { createImageAsync } from 'scichart/utils/imageUtil';
 import { TSciChart } from 'scichart/types/TSciChart';
 
 async function initSciChart() {
@@ -34,41 +34,41 @@ async function initSciChart() {
     const yAxis1 = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Left,
         labelStyle: { color: 'white' },
-        visibleRange: new NumberRange(0, 8)
+        visibleRange: new NumberRange(0, 8),
     });
 
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxis1);
 
-    const imageBitmap = await createImageAsync("/public/star.svg");
+    const imageBitmap = await createImageAsync('/public/star.svg');
     const lineSeries1 = new FastLineRenderableSeries(wasmContext, {
         stroke: 'white',
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5],
             yValues: [3, 4, 3, 4, 3],
-            dataSeriesName: 'white'
+            seriesName: 'white',
         }),
         pointMarker: new StarPointMarker(wasmContext, {
             image: imageBitmap,
-            fill: 'white'
-        })
+            fill: 'white',
+        }),
     });
     const lineSeries2 = new FastLineRenderableSeries(wasmContext, {
         stroke: 'red',
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5],
             yValues: [5, 6, 5, 5, 4],
-            dataSeriesName: 'red',
+            seriesName: 'red',
         }),
         pointMarker: new StarPointMarker(wasmContext, {
             image: imageBitmap,
-            fill: 'red'
-        })
+            fill: 'red',
+        }),
     });
 
     sciChartSurface.renderableSeries.add(lineSeries1, lineSeries2);
     // Pass placementDivId to place the legend outside the chart
-    const legendModifier = new LegendModifier({ showCheckboxes: true, placementDivId: "place-for-legend" });
+    const legendModifier = new LegendModifier({ showCheckboxes: true, placementDivId: 'place-for-legend' });
 
     legendModifier.sciChartLegend.getLegendItemHTML = (
         orientation: ELegendOrientation,
@@ -77,16 +77,16 @@ async function initSciChart() {
         item: TLegendItem
     ): string => {
         sciChartSurface.renderableSeries.getById(item.id);
-        const display = orientation === ELegendOrientation.Vertical ? "flex" : "inline-flex";
+        const display = orientation === ELegendOrientation.Vertical ? 'flex' : 'inline-flex';
         let str = `<span class="scichart__legend-item" style="display: ${display}; align-items: center; margin-right: 4px; white-space: nowrap;">`;
         if (showCheckboxes) {
-            const checked = item.checked ? "checked" : "";
+            const checked = item.checked ? 'checked' : '';
             str += `<input ${checked} type="checkbox" id="${item.id}">`;
         }
         if (showSeriesMarkers) {
             if (item.gradient) {
-                let gradientStr = "";
-                item.gradient.gradientStops.forEach(s => {
+                let gradientStr = '';
+                item.gradient.gradientStops.forEach((s) => {
                     gradientStr += `,${s.color}`;
                 });
                 str += `<label for="${item.id}" style="background-image: linear-gradient(to right${gradientStr}); margin: 4px; width: 30px; height: 13px;"></label>`;
@@ -99,7 +99,7 @@ async function initSciChart() {
         str += `<label for="${item.id}" style="margin-left: 4px;">${item.name}</label>`;
         str += `</span>`;
         return str;
-    }
+    };
 
     sciChartSurface.chartModifiers.add(legendModifier);
     // sciChartSurface.chartModifiers.add(new LegendModifier({ showCheckboxes: true }));
@@ -118,7 +118,6 @@ async function initSciChart() {
 initSciChart();
 
 class StarPointMarker extends SpritePointMarker {
-
     constructor(webAssemblyContext: TSciChart, options?: ISpritePointMarkerOptions) {
         super(webAssemblyContext, options);
         this.image = options?.image;
@@ -136,11 +135,11 @@ class StarPointMarker extends SpritePointMarker {
         const centerY = context.canvas.height / 2;
         const halfHeight = this.height / 2;
         const halfWidth = this.width / 2;
-        
+
         context.fillStyle = fill;
         context.fillRect(0, 0, this.width * 2, this.height * 2);
-        context.globalCompositeOperation = "destination-in";
-        
+        context.globalCompositeOperation = 'destination-in';
+
         if (this.image) {
             context.drawImage(this.image, centerX - halfWidth, centerY - halfHeight, this.width, this.height);
         }

@@ -1,4 +1,4 @@
-import { TModifierDefinition } from 'scichart/Builder/buildModifiers';
+import { TModifierDefinition } from 'scichart/Builder/types/ModifierDefinitions';
 import { SciChartSurface } from 'scichart/Charting/Visuals/SciChartSurface';
 import { Rect } from 'scichart/Core/Rect';
 import { EChart2DModifierType } from 'scichart/types/ChartModifierType';
@@ -6,7 +6,7 @@ import { ESeriesType } from 'scichart/types/SeriesType';
 import { chartBuilder } from 'scichart/Builder/chartBuilder';
 import { I2DSubSurfaceOptions } from 'scichart/Charting/Visuals/I2DSurfaceOptions';
 import { Thickness } from 'scichart/Core/Thickness';
-import { ISubChartDefinition } from 'scichart/Builder/buildSurface';
+import { ISubChartDefinition } from 'scichart/Builder/types/SurfaceDefinitions';
 import { EAxisType } from 'scichart/types/AxisType';
 import { NumericAxis } from 'scichart/Charting/Visuals/Axis/NumericAxis';
 import { FastLineRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries';

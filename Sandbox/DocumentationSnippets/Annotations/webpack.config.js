@@ -1,49 +1,48 @@
-const path = require("path");
-const CopyPlugin = require("copy-webpack-plugin");
+const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    mode: "production",
-    entry: "./src/index.js",
+    mode: 'production',
+    entry: './src/index.js',
     performance: {
-        hints: false
+        hints: false,
     },
     module: {
         rules: [
             {
                 test: /\.ts?$/,
-                use: "ts-loader",
-                exclude: /node_modules/
+                use: 'ts-loader',
+                exclude: /node_modules/,
             },
             {
                 test: /\.(jpg|png)$/,
                 use: {
-                    loader: "url-loader"
-                }
+                    loader: 'url-loader',
+                },
             },
-        ]
+        ],
     },
     resolve: {
-        extensions: [".js", ".ts"]
+        extensions: ['.js', '.ts'],
     },
     output: {
-        filename: "bundle.js",
-        path: path.resolve(__dirname, "build")
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'build'),
     },
     plugins: [
         new CopyPlugin({
             patterns: [
-                { from: "src/index.html", to: "" },
-                { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
-                { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" }
-            ]
+                { from: 'src/index.html', to: '' },
+                { from: 'node_modules/scichart/_wasm/scichart.wasm', to: '' },
+            ],
         }),
     ],
     devServer: {
         client: {
             overlay: {
                 warnings: false,
-                errors: true
-            }
-        }
-    }
+                errors: true,
+            },
+        },
+    },
 };

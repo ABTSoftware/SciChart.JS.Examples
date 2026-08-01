@@ -6,8 +6,8 @@ This example showcases how to update LegendModifier checkboxes programmatically.
 
 To run the tutorial, open this folder in VSCode, and run the following commands:
 
-* `npm install`
-* `npm start`
+-   `npm install`
+-   `npm start`
 
 Then visit https://localhost:8080 in your web browser!
 
@@ -32,7 +32,7 @@ We extend the class like this:
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5],
             yValues: [3, 4, 3, 4, 3],
-            dataSeriesName: 'white'
+            seriesName: 'white'
         })
     });
     ...
@@ -47,6 +47,7 @@ We extend the class like this:
     }, 2000);
 }, 2000);
 ```
+
 ## Legend Customization
 
 With placementDivId legend can be attached into a specific element in the DOM and then customizable unically by id with CSS.

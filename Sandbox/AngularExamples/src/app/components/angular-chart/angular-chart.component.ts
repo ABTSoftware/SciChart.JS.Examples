@@ -7,7 +7,7 @@ import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef, NgZone, Inj
 import { getComponentByRoute } from "../../services/advancedExamples";
 
 SciChartSurface.loadWasmFromCDN();
-SciChart3DSurface.loadWasmFromCDN();
+SciChartSurface.loadWasmFromCDN();
 @Component({
     selector: "app-angular-chart",
     templateUrl: "./angular-chart.component.html",

@@ -24,7 +24,7 @@ webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     const destWasmFolder = "static/chunks/pages";
     config.plugins.push(new CopyPlugin({
         patterns: [
-            { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: destWasmFolder },
+            { from: "node_modules/scichart/_wasm/scichart.wasm", to: destWasmFolder },
         ]
     }),)
 

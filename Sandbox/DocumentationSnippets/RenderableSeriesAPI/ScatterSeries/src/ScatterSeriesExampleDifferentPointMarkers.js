@@ -1,15 +1,15 @@
 import { SciChartSurface } from 'scichart';
 import { NumericAxis } from 'scichart/Charting/Visuals/Axis/NumericAxis';
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
-import { SquarePointMarker } from "scichart/Charting/Visuals/PointMarkers/SquarePointMarker";
-import { TrianglePointMarker } from "scichart/Charting/Visuals/PointMarkers/TrianglePointMarker";
-import { CrossPointMarker } from "scichart/Charting/Visuals/PointMarkers/CrossPointMarker";
-import { createImageAsync } from "scichart/utils/imageUtil";
-import { SpritePointMarker } from "scichart/Charting/Visuals/PointMarkers/SpritePointMarker";
-import customPointImage from "./img/CustomMarkerImage.png";
-import { NumberRange } from "scichart/Core/NumberRange";
+import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
+import { EllipsePointMarker } from 'scichart/Charting/Visuals/PointMarkers/EllipsePointMarker';
+import { XyScatterRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries';
+import { SquarePointMarker } from 'scichart/Charting/Visuals/PointMarkers/SquarePointMarker';
+import { TrianglePointMarker } from 'scichart/Charting/Visuals/PointMarkers/TrianglePointMarker';
+import { CrossPointMarker } from 'scichart/Charting/Visuals/PointMarkers/CrossPointMarker';
+import { createImageAsync } from 'scichart/utils/imageUtil';
+import { SpritePointMarker } from 'scichart/Charting/Visuals/PointMarkers/SpritePointMarker';
+import customPointImage from './img/CustomMarkerImage.png';
+import { NumberRange } from 'scichart/Core/NumberRange';
 
 export const drawScatterSeriesPointMarkers = async (divElementId) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
@@ -26,10 +26,10 @@ export const drawScatterSeriesPointMarkers = async (divElementId) => {
                 width: 11,
                 height: 11,
                 strokeThickness: 2,
-                fill: "#0077FF99",
-                stroke: "LightSteelBlue"
+                fill: '#0077FF99',
+                stroke: 'LightSteelBlue',
             }),
-            dataSeries: dataSeriesArr[0]
+            dataSeries: dataSeriesArr[0],
         })
     );
 
@@ -40,10 +40,10 @@ export const drawScatterSeriesPointMarkers = async (divElementId) => {
                 width: 11,
                 height: 11,
                 strokeThickness: 2,
-                fill: "#FF000099",
-                stroke: "Red"
+                fill: '#FF000099',
+                stroke: 'Red',
             }),
-            dataSeries: dataSeriesArr[1]
+            dataSeries: dataSeriesArr[1],
         })
     );
 
@@ -54,10 +54,10 @@ export const drawScatterSeriesPointMarkers = async (divElementId) => {
                 width: 11,
                 height: 11,
                 strokeThickness: 2,
-                fill: "#FFDD00",
-                stroke: "#FF6600"
+                fill: '#FFDD00',
+                stroke: '#FF6600',
             }),
-            dataSeries: dataSeriesArr[2]
+            dataSeries: dataSeriesArr[2],
         })
     );
 
@@ -68,9 +68,9 @@ export const drawScatterSeriesPointMarkers = async (divElementId) => {
                 width: 11,
                 height: 11,
                 strokeThickness: 2,
-                stroke: "#FF00FF"
+                stroke: '#FF00FF',
             }),
-            dataSeries: dataSeriesArr[3]
+            dataSeries: dataSeriesArr[3],
         })
     );
 
@@ -80,20 +80,20 @@ export const drawScatterSeriesPointMarkers = async (divElementId) => {
     sciChartSurface.renderableSeries.add(
         new XyScatterRenderableSeries(wasmContext, {
             pointMarker: new SpritePointMarker(wasmContext, {
-                image: imageBitmap
+                image: imageBitmap,
             }),
-            dataSeries: dataSeriesArr[4]
+            dataSeries: dataSeriesArr[4],
         })
     );
 };
 
 function createData(wasmContext) {
     // Create some dataseries
-    const dataSeries1 = new XyDataSeries(wasmContext, { dataSeriesName: "Ellipse Marker" });
-    const dataSeries2 = new XyDataSeries(wasmContext, { dataSeriesName: "Square Marker" });
-    const dataSeries3 = new XyDataSeries(wasmContext, { dataSeriesName: "Triangle Marker" });
-    const dataSeries4 = new XyDataSeries(wasmContext, { dataSeriesName: "Cross Marker" });
-    const dataSeries5 = new XyDataSeries(wasmContext, { dataSeriesName: "Custom Marker" });
+    const dataSeries1 = new XyDataSeries(wasmContext, { seriesName: 'Ellipse Marker' });
+    const dataSeries2 = new XyDataSeries(wasmContext, { seriesName: 'Square Marker' });
+    const dataSeries3 = new XyDataSeries(wasmContext, { seriesName: 'Triangle Marker' });
+    const dataSeries4 = new XyDataSeries(wasmContext, { seriesName: 'Cross Marker' });
+    const dataSeries5 = new XyDataSeries(wasmContext, { seriesName: 'Custom Marker' });
 
     // Append values
     const dataSize = 30;

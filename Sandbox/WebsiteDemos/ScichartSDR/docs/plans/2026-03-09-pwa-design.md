@@ -28,7 +28,7 @@ Configured in `vite.config.ts` via the plugin:
 
 ## Service Worker / Caching
 
-- **Precache**: all Vite build artifacts + public WASM files (`scichart2d.wasm`, `scichart2d-nosimd.wasm`, `scichart2d.js`)
+- **Precache**: all Vite build artifacts + public WASM files (`scichart.wasm`, `scichart-nosimd.wasm`, `scichart2d.js`)
 - **Navigation**: `NetworkFirst` strategy
 - **Assets**: `CacheFirst` strategy
 - **Tradeoff**: initial SW install is large (~several MB for WASM) — acceptable for a desktop radio tool

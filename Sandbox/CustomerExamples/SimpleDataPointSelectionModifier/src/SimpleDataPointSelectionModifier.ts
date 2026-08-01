@@ -2,7 +2,7 @@ import { ChartModifierBase2D } from "scichart/Charting/ChartModifiers/ChartModif
 import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMouseArgs";
 import { Point } from "scichart/Core/Point";
 import { BoxAnnotation } from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/types/ECoordinateMode";
 import { translateFromCanvasToSeriesViewRect } from "scichart/utils/translate";
 import { testIsInBounds } from "scichart/utils/pointUtil";
 
@@ -40,7 +40,7 @@ export class SimpleDataPointSelectionModifier extends ChartModifierBase2D {
       yCoordinateMode: ECoordinateMode.DataValue,
       xCoordinateMode: ECoordinateMode.DataValue,
       fill: "#ffffff33",
-      strokeThickness: 0
+      strokeThickness: 0,
     });
   }
 
@@ -137,7 +137,7 @@ export class SimpleDataPointSelectionModifier extends ChartModifierBase2D {
 
     this.parentSurface.renderableSeries
       .asArray()
-      .filter(rs => rs.isVisible)
+      .filter((rs) => rs.isVisible)
       .forEach((rs, index) => {
         this.selectedPoints[index] = [];
         const dataSeries = rs.dataSeries;
@@ -183,7 +183,7 @@ export class SimpleDataPointSelectionModifier extends ChartModifierBase2D {
             this.selectedPoints[index].push({
               index: i,
               xValue: x,
-              yValue: y
+              yValue: y,
             });
           }
         }

@@ -12,7 +12,7 @@ import { LegendModifier } from 'scichart/Charting/ChartModifiers/LegendModifier'
 import { EAxisAlignment } from 'scichart/types/AxisAlignment';
 import { TSciChart } from 'scichart/types/TSciChart';
 import { NumberRange } from 'scichart/Core/NumberRange';
-import { CustomStackedColumnSeries } from "./CustomStackedColumnSeries";
+import { CustomStackedColumnSeries } from './CustomStackedColumnSeries';
 
 let dataSeries1: XyDataSeries;
 let dataSeries2: XyDataSeries;
@@ -40,9 +40,9 @@ async function initSciChart() {
 
     const yAxis = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Left,
-        growBy: new NumberRange(0, 0.1)
+        growBy: new NumberRange(0, 0.1),
     });
-    yAxis.labelProvider.formatLabel = dataValue => {
+    yAxis.labelProvider.formatLabel = (dataValue) => {
         return dataValue.toFixed(2);
     };
     sciChartSurface.yAxes.add(yAxis);
@@ -55,7 +55,7 @@ async function initSciChart() {
         orientation: ELegendOrientation.Horizontal,
         showLegend: true,
         showCheckboxes: true,
-        showSeriesMarkers: true
+        showSeriesMarkers: true,
     });
 
     sciChartSurface.chartModifiers.add(lm);
@@ -66,27 +66,27 @@ async function updateHistogram(wasmContext: TSciChart, sciChartSurface: SciChart
     // Threshold series
     const THRESHOLD = 5;
 
-    const thresholdDataSeries1 = new XyDataSeries(wasmContext, { dataSeriesName: 'Threshold' });
-    const thresholdDataSeries2 = new XyDataSeries(wasmContext, { dataSeriesName: 'Threshold' });
-    const thresholdDataSeries3 = new XyDataSeries(wasmContext, { dataSeriesName: 'Threshold' });
+    const thresholdDataSeries1 = new XyDataSeries(wasmContext, { seriesName: 'Threshold' });
+    const thresholdDataSeries2 = new XyDataSeries(wasmContext, { seriesName: 'Threshold' });
+    const thresholdDataSeries3 = new XyDataSeries(wasmContext, { seriesName: 'Threshold' });
 
     const thresholdSeries1 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: thresholdDataSeries1,
         fill: 'red',
         stroke: 'black',
-        stackedGroupId: '1'
+        stackedGroupId: '1',
     });
     const thresholdSeries2 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: thresholdDataSeries2,
         fill: 'red',
         stroke: 'black',
-        stackedGroupId: '2'
+        stackedGroupId: '2',
     });
     const thresholdSeries3 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: thresholdDataSeries3,
         fill: 'red',
         stroke: 'black',
-        stackedGroupId: '3'
+        stackedGroupId: '3',
     });
 
     const thresholdStackedCollection = new StackedColumnCollection(wasmContext);
@@ -95,9 +95,9 @@ async function updateHistogram(wasmContext: TSciChart, sciChartSurface: SciChart
     thresholdStackedCollection.add(thresholdSeries1, thresholdSeries2, thresholdSeries3);
 
     // Original Series
-    const dataSeries1 = new XyDataSeries(wasmContext, { dataSeriesName: 'Apple ' });
-    const dataSeries2 = new XyDataSeries(wasmContext, { dataSeriesName: 'Orange' });
-    const dataSeries3 = new XyDataSeries(wasmContext, { dataSeriesName: 'Grape' });
+    const dataSeries1 = new XyDataSeries(wasmContext, { seriesName: 'Apple ' });
+    const dataSeries2 = new XyDataSeries(wasmContext, { seriesName: 'Orange' });
+    const dataSeries3 = new XyDataSeries(wasmContext, { seriesName: 'Grape' });
 
     const rendSeries1 = new CustomStackedColumnSeries(wasmContext, thresholdSeries1);
     rendSeries1.dataSeries = dataSeries1;

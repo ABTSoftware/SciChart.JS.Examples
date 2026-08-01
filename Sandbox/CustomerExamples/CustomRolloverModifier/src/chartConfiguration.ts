@@ -52,7 +52,7 @@ export const drawChart = async (divElementId: string) => {
     yAxis.labelProvider.cursorPrecision = 2;
     sciChartSurface.yAxes.add(yAxis);
 
-    const dataSeries = createDataSeries(wasmContext, 0, { dataSeriesName: 'Sinewave A' });
+    const dataSeries = createDataSeries(wasmContext, 0, { seriesName: 'Sinewave A' });
 
     // Series 1
     const renderableSeries1 = new FastLineRenderableSeries(wasmContext, {
@@ -68,7 +68,6 @@ export const drawChart = async (divElementId: string) => {
         }),
     });
     sciChartSurface.renderableSeries.add(renderableSeries1);
-
 
     const rolloverModifier = new CustomRolloverModifier();
 

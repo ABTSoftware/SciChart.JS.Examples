@@ -10,10 +10,8 @@ import { SpherePointMarker3D } from "scichart/Charting3D/Visuals/PointMarkers/De
 import { ScatterRenderableSeries3D } from "scichart/Charting3D/Visuals/RenderableSeries/ScatterRenderableSeries3D";
 import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface";
 import { TSciChart3D } from "scichart/types/TSciChart3D";
-import {
-  EPieType,
-  SciChartPieSurface,
-} from "scichart/Charting/Visuals/SciChartPieSurface/SciChartPieSurface";
+import { SciChartPieSurface } from "scichart/Charting/Visuals/SciChartPieSurface/SciChartPieSurface";
+import { EPieType } from "scichart/Charting/Visuals/SciChartPieSurface/types/EPieType";
 import { PieSegment } from "scichart/Charting/Visuals/SciChartPieSurface/PieSegment/PieSegment";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";

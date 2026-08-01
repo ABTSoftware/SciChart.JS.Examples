@@ -3,7 +3,7 @@ import { NumericAxis } from 'scichart/Charting/Visuals/Axis/NumericAxis';
 import { FastLineRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries';
 import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
 import { TextAnnotation } from 'scichart/Charting/Visuals/Annotations/TextAnnotation';
-import { ECoordinateMode } from 'scichart/Charting/Visuals/Annotations/AnnotationBase';
+import { ECoordinateMode } from 'scichart/Charting/Visuals/Annotations/types/ECoordinateMode';
 
 type DataResult = {
     xValues: number[];
@@ -47,27 +47,27 @@ async function initSciChart() {
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxis);
 
-    getRandomData(100, 1000, data => {
+    getRandomData(100, 1000, (data) => {
         const { xValues, yValues } = data;
         const xyDataSeries = new XyDataSeries(wasmContext, { xValues, yValues });
         const lineSeries = new FastLineRenderableSeries(wasmContext, {
             dataSeries: xyDataSeries,
             stroke: 'green',
-            strokeThickness: 10
+            strokeThickness: 10,
         });
         sciChartSurface.renderableSeries.add(lineSeries);
     });
 
     return sciChartSurface;
-
-
 }
 
 async function drawExample() {
     const surface = await initSciChart();
-    const resp = await fetch("/api/getdata");
+    const resp = await fetch('/api/getdata');
     const data = await resp.text();
-    surface.annotations.add(new TextAnnotation({ text: data, x1: 0, y1:0.5, yCoordinateMode: ECoordinateMode.Relative }));
+    surface.annotations.add(
+        new TextAnnotation({ text: data, x1: 0, y1: 0.5, yCoordinateMode: ECoordinateMode.Relative })
+    );
 }
 
 drawExample();

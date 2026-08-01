@@ -4,7 +4,7 @@ import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 
 // You may need this to configure from where wasm and data files are served
-// SciChart.SciChartSurface.configure({ dataUrl: "/custom/scichart2d.data" wasmUrl: "/other/scichart2d.wasm" });
+// SciChart.SciChartSurface.configure({ dataUrl: "/custom/scichart2d.data" wasmUrl: "/other/scichart.wasm" });
 
 async function initSciChart() {
   // Create the SciChartSurface in the div 'scichart-root'
@@ -22,11 +22,11 @@ async function initSciChart() {
 
   const dataSeries = new XyDataSeries(wasmContext, {
     xValues: [1, 2, 5, 8, 10],
-    yValues: [3, 1, 7, 5, 8]
+    yValues: [3, 1, 7, 5, 8],
   });
   const renderableSeries = new FastLineRenderableSeries(wasmContext, {
     dataSeries,
-    stroke: "steelblue"
+    stroke: "steelblue",
   });
   sciChartSurface.renderableSeries.add(renderableSeries);
 }

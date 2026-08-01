@@ -85,7 +85,7 @@ export const createServerLoadChart: TServerStatsChartConfigFunc = async (divElem
     availableServers.forEach((server, index) => {
         const pageData = filter(data, server);
         const dataSeries = new XyDataSeries(wasmContext, {
-            dataSeriesName: server,
+            seriesName: server,
             containsNaN: false,
             dataEvenlySpacedInX: true,
             isSorted: true,

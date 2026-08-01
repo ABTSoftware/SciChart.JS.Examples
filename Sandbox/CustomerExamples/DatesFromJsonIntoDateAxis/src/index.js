@@ -3,13 +3,13 @@ import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {DateTimeNumericAxis} from "scichart/Charting/Visuals/Axis/DateTimeNumericAxis";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {ENumericFormat} from "scichart/types/NumericFormat";
+import { DateTimeNumericAxis } from "scichart/Charting/Visuals/Axis/DateTimeNumericAxis";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 
 // You may need this to configure from where wasm and data files are served
-// SciChart.SciChartSurface.configure({ dataUrl: "/custom/scichart2d.data" wasmUrl: "/other/scichart2d.wasm" });
+// SciChart.SciChartSurface.configure({ dataUrl: "/custom/scichart2d.data" wasmUrl: "/other/scichart.wasm" });
 
 // converts dateString in format 'DD MMM YYYY hh:mm:ss' to scichart format
 const convertToSciChartFormat = (dateString) => {
@@ -48,18 +48,23 @@ async function initSciChart() {
   ];
 
   // Convert this data to format scichart expects. We do this for performance & precision reasons
-  const xValues = rawData.map(row => convertToSciChartFormat(row.date));
-  const yValues = rawData.map(row => row.value);
+  const xValues = rawData.map((row) => convertToSciChartFormat(row.date));
+  const yValues = rawData.map((row) => row.value);
 
   // Add a series to the chart
-  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-    dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-    strokeThickness: 3,
-    stroke: "#50C7E0",
-  }));
+  sciChartSurface.renderableSeries.add(
+    new FastLineRenderableSeries(wasmContext, {
+      dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+      strokeThickness: 3,
+      stroke: "#50C7E0",
+    })
+  );
 
   // Add some interaction
-  sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier());
+  sciChartSurface.chartModifiers.add(
+    new ZoomPanModifier(),
+    new MouseWheelZoomModifier()
+  );
 }
 
 initSciChart();

@@ -1,5 +1,5 @@
-import { TModifierDefinition } from "scichart/Builder/buildModifiers";
-import { ISciChart2DDefinition } from "scichart/Builder/buildSurface";
+import { TModifierDefinition } from "scichart/Builder/types/ModifierDefinitions";
+import { ISciChart2DDefinition } from "scichart/Builder/types/SurfaceDefinitions";
 import { AxisCore } from "scichart/Charting/Visuals/Axis/AxisCore";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";

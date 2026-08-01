@@ -108,7 +108,7 @@ export class GridLayoutModifier extends ChartModifierBase2D {
                 borderTop: 2,
                 // borderBottom: 2,
             },
-            title: rs.dataSeries.dataSeriesName,
+            title: rs.dataSeries.seriesName,
             titleStyle: {
                 placeWithinChart: true,
                 fontSize: 12,

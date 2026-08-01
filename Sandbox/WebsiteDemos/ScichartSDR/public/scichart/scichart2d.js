@@ -154,7 +154,7 @@ var Module = (() => {
     var dataURIPrefix = "data:application/octet-stream;base64,";
     var isDataURI = (filename) => filename.startsWith(dataURIPrefix);
     function findWasmBinary() {
-      var f = "scichart2d.wasm";
+      var f = "scichart.wasm";
       if (!isDataURI(f)) {
         return locateFile(f);
       }
