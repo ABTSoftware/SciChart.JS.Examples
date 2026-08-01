@@ -24,7 +24,7 @@ SciChartDefaults.useSharedCache = true;
 // labelCache.setMaxSize(2000);
 
 // SciChartSurface.loadWasmFromCDN()
-// SciChart3DSurface.loadWasmFromCDN()
+// SciChartSurface.loadWasmFromCDN()
 
 SciChartSurface.UseCommunityLicense();
 

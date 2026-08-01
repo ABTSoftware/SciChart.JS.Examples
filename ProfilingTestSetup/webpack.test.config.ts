@@ -37,8 +37,7 @@ const config = (env: any, argv: any): Configuration => {
             new CopyPlugin({
                 patterns: [
                     { from: "src/testIndex.html", to: "index.html" },
-                    { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
-                    { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" }
+                    { from: "node_modules/scichart/_wasm/scichart.wasm", to: "" }
                 ]
             }),
             new InlineResourcesPlugin({
@@ -47,8 +46,8 @@ const config = (env: any, argv: any): Configuration => {
                 inlineWasm: isProduction,
                 wasmFiles: [
                     {
-                        path: "./node_modules/scichart/_wasm/scichart2d.wasm",
-                        name: "scichart2d.wasm"
+                        path: "./node_modules/scichart/_wasm/scichart.wasm",
+                        name: "scichart.wasm"
                     }
                 ]
             })

@@ -46,7 +46,7 @@ const config = (env: any, argv: any): Configuration => {
             new CopyPlugin({
                 patterns: [
                     { from: "reports/index.html", to: "index.html" },
-                    { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
+                    { from: "node_modules/scichart/_wasm/scichart.wasm", to: "" },
                     {
                         from: "test-results/results.json",
                         to: "results.json",
@@ -64,7 +64,7 @@ const config = (env: any, argv: any): Configuration => {
                 inlineJson: isProduction,
                 inlineWasm: isProduction,
                 wasmFiles: [
-                    { path: "node_modules/scichart/_wasm/scichart2d.wasm", name: "scichart2d.wasm" }
+                    { path: "node_modules/scichart/_wasm/scichart.wasm", name: "scichart.wasm" }
                 ],
                 jsonFiles: [
                     { path: "./test-results/results.json", name: "results" },

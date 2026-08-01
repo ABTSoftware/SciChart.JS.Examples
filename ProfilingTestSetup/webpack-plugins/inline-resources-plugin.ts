@@ -30,8 +30,7 @@ export class InlineResourcesPlugin {
             inlineWasm: options.inlineWasm ?? true,
             jsonFiles: options.jsonFiles ?? [],
             wasmFiles: options.wasmFiles ?? [
-                { path: "../../src/_wasm/scichart2d.wasm", name: "scichart2d.wasm" }
-                // { path: "../../src/_wasm/scichart3d.wasm", name: "scichart3d.wasm" }
+                { path: "../../src/_wasm/scichart.wasm", name: "scichart.wasm" }
             ]
         };
     }

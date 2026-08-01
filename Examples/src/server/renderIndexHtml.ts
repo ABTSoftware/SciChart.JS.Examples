@@ -42,8 +42,8 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
             ${css}
 
             <script async fetchpriority="high" type="text/javascript" src="bundle.js"></script>
-            <link rel="preload" href="scichart2d.wasm" as="fetch" crossorigin="anonymous" />
-            <link rel="preload" href="scichart3d.wasm" as="fetch" crossorigin="anonymous" />
+            <link rel="preload" href="scichart.wasm" as="fetch" crossorigin="anonymous" />
+            <link rel="preload" href="scichart.wasm" as="fetch" crossorigin="anonymous" />
         </head>
         <body ${helmet.bodyAttributes.toString()} style="margin: 0;">
             <!-- Display a message if JS has been disabled on the browser. -->

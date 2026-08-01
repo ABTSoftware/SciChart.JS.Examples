@@ -234,7 +234,7 @@ import { SciChartSurface, SciChart3DSurface } from 'scichart';
 
 SciChartSurface.UseCommunityLicense();
 SciChartSurface.loadWasmFromCDN();
-SciChart3DSurface.loadWasmFromCDN();
+SciChartSurface.loadWasmFromCDN();
 
 @Component({
   selector: 'app-root',

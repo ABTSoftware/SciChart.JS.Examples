@@ -13,7 +13,7 @@ import "./src/app";
 const vanillaCommonCode = `import { SciChart3DSurface, SciChartSurface } from "scichart";
 
 SciChartSurface.loadWasmFromCDN();
-SciChart3DSurface.loadWasmFromCDN();
+SciChartSurface.loadWasmFromCDN();
 `;
 
 export const indexHtmlTemplate = (customChartSetup?: string) => `<!DOCTYPE html>

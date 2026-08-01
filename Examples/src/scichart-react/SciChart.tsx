@@ -11,15 +11,15 @@ import { conflictingConfigsMessage, wrongInitResultMessage } from "./constants";
 
 // use base URL to resolve WASM module
 SciChartSurface.configure({
-    wasmUrl: "/scichart2d.wasm",
+    wasmUrl: "/scichart.wasm",
     // @ts-ignore the breaking change in v4 - data file is not required
-    dataUrl: "/scichart2d.data"
+    dataUrl: "/scichart2d.data",
 });
 
-SciChart3DSurface.configure({
-    wasmUrl: "/scichart3d.wasm",
+SciChartSurface.configure({
+    wasmUrl: "/scichart.wasm",
     // @ts-ignore the breaking change in v4 - data file is not required
-    dataUrl: "/scichart3d.data"
+    dataUrl: "/scichart3d.data",
 });
 
 // @ts-ignore this flag is not available in some versions
@@ -151,10 +151,8 @@ function SciChartComponent<
 
     const mergedInnerContainerProps = {
         ...innerContainerProps,
-        style: { height: "100%", width: "100%", ...innerContainerProps?.style }
+        style: { height: "100%", width: "100%", ...innerContainerProps?.style },
     };
-
-
 
     return (
         <SciChartSurfaceContext.Provider value={initResultRef.current}>

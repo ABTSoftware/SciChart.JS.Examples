@@ -1,7 +1,7 @@
 import { SciChartSurface, SciChart3DSurface, SciChartDefaults } from "./scichart.browser.mjs";
 
-SciChartSurface.configure({ wasmUrl: "/scichart2d.wasm" });
-SciChart3DSurface.configure({ wasmUrl: "/scichart3d.wasm" });
+SciChartSurface.configure({ wasmUrl: "/scichart.wasm" });
+SciChartSurface.configure({ wasmUrl: "/scichart.wasm" });
 SciChartDefaults.performanceWarnings = false;
 // if (window.location.hostname.includes("scichart")) {
 //     // TODO

@@ -82,7 +82,7 @@ const rootElement = document.getElementById("root");
 
 SciChartSurface.UseCommunityLicense();
 SciChartSurface.loadWasmFromCDN();
-SciChart3DSurface.loadWasmFromCDN();
+SciChartSurface.loadWasmFromCDN();
 
 const root = createRoot(rootElement)
 root.render(<><App />${SCICHART_ANCHOR}</>);

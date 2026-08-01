@@ -31,8 +31,7 @@ const config: Configuration = {
             patterns: [
                 { from: "src/index.html", to: "" },
                 { from: "src/scichart-logo.svg", to: "" },
-                { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
-                { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" }
+                { from: "node_modules/scichart/_wasm/scichart.wasm", to: "" }
             ]
         })
     ],
