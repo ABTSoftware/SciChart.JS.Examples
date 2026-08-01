@@ -19,11 +19,7 @@ module.exports = {
   },
   plugins: [
     new CopyPlugin({
-      patterns: [
-        { from: "src/index.html", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart3d-nosimd.wasm", to: "" },
-      ],
+      patterns: [{ from: "src/index.html", to: "" }],
     }),
   ],
 };
