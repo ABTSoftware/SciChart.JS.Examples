@@ -39,16 +39,14 @@ export default {
     }),
 
     // Serve WASM files from SciChart into the bundle
-    // scichart2d.wasm
+    // scichart.wasm
     {
       name: "wasm",
       generateBundle() {
         this.emitFile({
           type: "asset",
-          fileName: "scichart2d.wasm",
-          source: fs.readFileSync(
-            "node_modules/scichart/_wasm/scichart2d.wasm"
-          ),
+          fileName: "scichart.wasm",
+          source: fs.readFileSync("node_modules/scichart/_wasm/scichart.wasm"),
         });
       },
     },
@@ -57,9 +55,9 @@ export default {
       generateBundle() {
         this.emitFile({
           type: "asset",
-          fileName: "scichart2d-nosimd.wasm",
+          fileName: "scichart-nosimd.wasm",
           source: fs.readFileSync(
-            "node_modules/scichart/_wasm/scichart2d-nosimd.wasm"
+            "node_modules/scichart/_wasm/scichart-nosimd.wasm"
           ),
         });
       },

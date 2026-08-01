@@ -2,28 +2,18 @@
 
 import Head from "next/head";
 import { useEffect, useRef } from "react";
-import {
-  SciChart3DSurface,
-  SciChartSurface,
-  ESeriesType,
-  chartBuilder,
-} from "scichart";
+import { SciChartSurface, ESeriesType, chartBuilder } from "scichart";
 
 // Make sure the proper configurations are applied on the client side !
 
 // An example of WASM dependencies URLs configuration to fetch from origin server:
 SciChartSurface.configure({
-  wasmUrl: "scichart2d.wasm",
-});
-
-SciChart3DSurface.configure({
-  wasmUrl: "scichart3d.wasm",
+  wasmUrl: "scichart.wasm",
 });
 ////
 
 // Alternatively WASM files could be fetched from CDN instead:
 // SciChartSurface.loadWasmFromCDN()
-// SciChart3DSurface.loadWasmFromCDN()
 
 async function initSciChart(rootElement: string | HTMLDivElement) {
   const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(

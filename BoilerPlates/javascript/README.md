@@ -20,7 +20,7 @@ SciChart.js is commercial software with a [free community license](https://scich
 
 ### webpack.config.js
 
-Use CopyPlugin to copy wasm and data files and serve them by webpack-dev-server. SciChart.js uses WebAssembly and those files **scichart2d.wasm**, **scichart2d-nosimd.wasm** or **scichart3d.wasm**, **scichart3d-nosimd.wasm** must be loaded.
+Use CopyPlugin to copy wasm files and serve them by webpack-dev-server. SciChart.js uses WebAssembly, and one binary carries both the 2D and the 3D engine, so **scichart.wasm** and **scichart-nosimd.wasm** must be loaded.
 
 ```javascript
 const path = require("path");
@@ -40,10 +40,8 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" }, // if 3D charts are used
-        { from: "node_modules/scichart/_wasm/scichart3d-nosimd.wasm", to: "" }, // if 3D charts are used
+        { from: "node_modules/scichart/_wasm/scichart.wasm", to: "" },
+        { from: "node_modules/scichart/_wasm/scichart-nosimd.wasm", to: "" },
       ],
     }),
   ],
@@ -59,7 +57,7 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 
 // call this before SciChartSurface.create()
 SciChart.SciChartSurface.configure({
-  wasmUrl: "/other/scichart2d.wasm",
+  wasmUrl: "/other/scichart.wasm",
 });
 ```
 

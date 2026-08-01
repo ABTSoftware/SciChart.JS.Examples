@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {
-    SciChartSurface,
-    SciChart3DSurface,
-    MemoryUsageHelper,
-} from 'scichart';
+import { SciChartSurface, SciChart3DSurface, MemoryUsageHelper } from 'scichart';
 import { drawExample2D } from './drawExample2D';
 import { drawExample3D } from './drawExample3D';
 
@@ -20,15 +16,10 @@ SciChartSurface.UseCommunityLicense();
 /// WASM Fetching
 // Specify to fetch WASM dependencies from external CDN server
 // SciChartSurface.loadWasmFromCDN();
-// SciChart3DSurface.loadWasmFromCDN();
 
 // or from a custom/self-hosted location
 SciChartSurface.configure({
-    wasmUrl: '/scichart2d.wasm',
-});
-
-SciChart3DSurface.configure({
-    wasmUrl: '/scichart3d.wasm',
+    wasmUrl: '/scichart.wasm',
 });
 ///
 
@@ -52,27 +43,19 @@ export class AppComponent {
     public drawChart2D = drawExample2D;
     public drawChart3D = drawExample3D;
 
-    onInit2DHandler = (
-        initResult: Awaited<ReturnType<typeof drawExample2D>>
-    ) => {
+    onInit2DHandler = (initResult: Awaited<ReturnType<typeof drawExample2D>>) => {
         console.log('onInit2DHandler', initResult);
     };
 
-    onDelete2DHandler = (
-        initResult: Awaited<ReturnType<typeof drawExample2D>>
-    ) => {
+    onDelete2DHandler = (initResult: Awaited<ReturnType<typeof drawExample2D>>) => {
         console.log('onDelete2DHandler', initResult);
     };
 
-    onInit3DHandler = (
-        initResult: Awaited<ReturnType<typeof drawExample3D>>
-    ) => {
+    onInit3DHandler = (initResult: Awaited<ReturnType<typeof drawExample3D>>) => {
         console.log('onInit3DHandler', initResult);
     };
 
-    onDelete3DHandler = (
-        initResult: Awaited<ReturnType<typeof drawExample3D>>
-    ) => {
+    onDelete3DHandler = (initResult: Awaited<ReturnType<typeof drawExample3D>>) => {
         console.log('onDelete3DHandler', initResult);
     };
 

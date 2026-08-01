@@ -24,20 +24,12 @@ To do this, we use npm package copy-files-from-to and copy-files-from-to.json wi
   },
   "copyFiles": [
     {
-      "from": "./node_modules/scichart/_wasm/scichart2d.wasm",
-      "to": "./public/scichart2d.wasm"
+      "from": "./node_modules/scichart/_wasm/scichart.wasm",
+      "to": "./public/scichart.wasm"
     },
     {
-      "from": "./node_modules/scichart/_wasm/scichart2d-nosimd.wasm",
-      "to": "./public/scichart2d.wasm"
-    },
-    {
-      "from": "./node_modules/scichart/_wasm/scichart3d.wasm",
-      "to": "./public/scichart3d.wasm"
-    },
-    {
-      "from": "./node_modules/scichart/_wasm/scichart3d-nosimd.wasm",
-      "to": "./public/scichart3d.wasm"
+      "from": "./node_modules/scichart/_wasm/scichart-nosimd.wasm",
+      "to": "./public/scichart.wasm"
     }
   ]
 }

@@ -28,19 +28,15 @@ SciChart.js is commercial software with a [free community license](https://scich
 SciChart.js has a Wasm (webAssembly) and Data file which must be deployed to output folders for correct operation of our Js chart library.
 
 So we must make sure they are copied to the [./public](./public) folder.
-For this we use the `copyWasm` script which executes the npm package copy-files-from-to (see copy-files-from-to.json) to move `scichart2d.wasm`, `scichart2d-nosimd.wasm` and `scichart3d.wasm`, `scichart3d-nosimd.wasm`.
+For this we use the `copyWasm` script which executes the npm package copy-files-from-to (see copy-files-from-to.json) to move `scichart.wasm` and `scichart-nosimd.wasm`. One binary serves both the 2D and the 3D engine.
 
-Then we can specify the URLs where to fetch those files via `SciChartSurface.configure` and `SciChart3DSurface.configure`.
+Then we can specify the URLs where to fetch those files via `SciChartSurface.configure`.
 
 **The recommended basic setup is:**
 
 ```typescript
 SciChartSurface.configure({
-  wasmUrl: "/scichart2d.wasm",
-});
-
-SciChart3DSurface.configure({
-  wasmUrl: "/scichart3d.wasm",
+  wasmUrl: "/scichart.wasm",
 });
 ```
 

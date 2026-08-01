@@ -40,12 +40,12 @@ This can be done by modifying `angular.json` file
 ```json
 "assets": [
     {
-        "glob": "scichart2d.wasm",
+        "glob": "scichart.wasm",
         "input": "./node_modules/scichart/_wasm/",
         "output": "."
     },
     {
-        "glob": "scichart2d-nosimd.wasm",
+        "glob": "scichart-nosimd.wasm",
         "input": "./node_modules/scichart/_wasm/",
         "output": "."
     }

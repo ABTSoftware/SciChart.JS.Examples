@@ -56,10 +56,8 @@ export default {
       generateBundle() {
         this.emitFile({
           type: "asset",
-          fileName: "scichart2d.wasm",
-          source: fs.readFileSync(
-            "node_modules/scichart/_wasm/scichart2d.wasm"
-          ),
+          fileName: "scichart.wasm",
+          source: fs.readFileSync("node_modules/scichart/_wasm/scichart.wasm"),
         });
       },
     },
@@ -68,9 +66,9 @@ export default {
       generateBundle() {
         this.emitFile({
           type: "asset",
-          fileName: "scichart2d-nosimd.wasm",
+          fileName: "scichart-nosimd.wasm",
           source: fs.readFileSync(
-            "node_modules/scichart/_wasm/scichart2d-nosimd.wasm"
+            "node_modules/scichart/_wasm/scichart-nosimd.wasm"
           ),
         });
       },
@@ -81,10 +79,8 @@ export default {
       generateBundle() {
         this.emitFile({
           type: "asset",
-          fileName: "scichart3d.wasm",
-          source: fs.readFileSync(
-            "node_modules/scichart/_wasm/scichart3d.wasm"
-          ),
+          fileName: "scichart.wasm",
+          source: fs.readFileSync("node_modules/scichart/_wasm/scichart.wasm"),
         });
       },
     },
@@ -93,9 +89,9 @@ export default {
       generateBundle() {
         this.emitFile({
           type: "asset",
-          fileName: "scichart3d-nosimd.wasm",
+          fileName: "scichart-nosimd.wasm",
           source: fs.readFileSync(
-            "node_modules/scichart/_wasm/scichart3d-nosimd.wasm"
+            "node_modules/scichart/_wasm/scichart-nosimd.wasm"
           ),
         });
       },

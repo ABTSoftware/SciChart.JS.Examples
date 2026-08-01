@@ -46,7 +46,6 @@ import { SciChartSurface, SciChart3DSurface } from 'scichart';
 // ...
 
 SciChartSurface.loadWasmFromCDN();
-SciChart3DSurface.loadWasmFromCDN();
 ```
 
 #### Fetching WASM from own server
@@ -64,41 +63,42 @@ To do this, we use npm package `copy-files-from-to` and `copy-files-from-to.json
     },
     "copyFiles": [
         {
-            "from": "./node_modules/scichart/_wasm/scichart2d.wasm",
-            "to": "./src/scichart2d.wasm"
-        },
-        {
-            "from": "./node_modules/scichart/_wasm/scichart3d.wasm",
-            "to": "./src/scichart3d.wasm"
+            "from": "./node_modules/scichart/_wasm/scichart.wasm",
+            "to": "./src/scichart.wasm"
         }
     ]
 }
 ```
 
-Then this needs to be executed when building. See package.json scripts:
+Then this needs to be executed when building. In `package.json`:
 
 ```json
-  "scripts": {
-    "copyWasm": "copy-files-from-to --config copy-files-from-to.json",
-    "start": "npm run copyWasm && ng serve",
-    "build": "npm run copyWasm && ng build",
-  },
-  {
-    "glob": "scichart2d-nosimd.wasm",
-    "input": "node_modules/scichart/_wasm",
-    "output": "/"
-  },
-  {
-    "glob": "scichart3d.wasm",
-    "input": "node_modules/scichart/_wasm",
-    "output": "/"
-  },
-  {
-    "glob": "scichart3d-nosimd.wasm",
-    "input": "node_modules/scichart/_wasm",
-    "output": "/"
-  }
-],
+{
+    "scripts": {
+        "copyWasm": "copy-files-from-to --config copy-files-from-to.json",
+        "start": "npm run copyWasm && ng serve",
+        "build": "npm run copyWasm && ng build"
+    }
+}
+```
+
+Alternatively, Angular can copy the files itself via the `assets` array in `angular.json`:
+
+```json
+{
+    "assets": [
+        {
+            "glob": "scichart.wasm",
+            "input": "node_modules/scichart/_wasm",
+            "output": "/"
+        },
+        {
+            "glob": "scichart-nosimd.wasm",
+            "input": "node_modules/scichart/_wasm",
+            "output": "/"
+        }
+    ]
+}
 ```
 
 And then, it is recommended to specify the URLs of those on the client side accordingly to the location they are hosted from.
@@ -110,19 +110,14 @@ import { SciChartSurface, SciChart3DSurface } from 'scichart';
 // ...
 
 SciChartSurface.configure({
-    wasmUrl: '/scichart2d.wasm',
-    wasmNoSimdUrl: '/scichart2d-nosimd.wasm',
-});
-
-SciChart3DSurface.configure({
-    wasmUrl: '/scichart3d.wasm',
-    wasmNoSimdUrl: '/scichart3d-nosimd.wasm',
+    wasmUrl: '/scichart.wasm',
+    wasmNoSimdUrl: '/scichart-nosimd.wasm',
 });
 ```
 
-If wasmNoSimdUrl is not specified it will search scichart2d-nosimd.wasm next to scichart2d.wasm
+If wasmNoSimdUrl is not specified it will search scichart-nosimd.wasm next to scichart.wasm
 
-In the is example it will fetch the dependencies from `http://localhost:4200/scichart2d.wasm`, `http://localhost:4200/scichart2d-nosimd.wasm`, `http://localhost:4200/scichart3d.wasm` and `http://localhost:4200/scichart3d-nosimd.wasm` respectively.
+In this example it will fetch the dependencies from `http://localhost:4200/scichart.wasm` and `http://localhost:4200/scichart-nosimd.wasm` respectively.
 
 > Note: other methods to [load WASM from CDN](https://www.scichart.com/documentation/js/v5/2d-charts/surface/deploying-wasm/) are available to simplify getting started
 

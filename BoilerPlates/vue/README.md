@@ -29,20 +29,12 @@ Vue.js requires and \_.wasm files to be in the /public/js folder. This is done u
   },
   "copyFiles": [
     {
-      "from": "./node_modules/scichart/_wasm/scichart2d.wasm",
-      "to": "./public/scichart2d.wasm"
+      "from": "./node_modules/scichart/_wasm/scichart.wasm",
+      "to": "./public/scichart.wasm"
     },
     {
-      "from": "./node_modules/scichart/_wasm/scichart2d-nosimd.wasm",
-      "to": "./public/scichart2d.wasm"
-    },
-    {
-      "from": "./node_modules/scichart/_wasm/scichart3d.wasm",
-      "to": "./public/scichart3d.wasm"
-    },
-    {
-      "from": "./node_modules/scichart/_wasm/scichart3d-nosimd.wasm",
-      "to": "./public/scichart3d.wasm"
+      "from": "./node_modules/scichart/_wasm/scichart-nosimd.wasm",
+      "to": "./public/scichart.wasm"
     }
   ]
 }
