@@ -14,7 +14,7 @@ data set the properties CategoryAxis.defaultXStart and CategoryAxis.defaultXStep
 
 ### webpack.config.js
 
-Use CopyPlugin to copy wasm and data files and serve them by webpack-dev-server. SciChart.js uses WebAssembly and those files **scichart2d.data**, **scichart.wasm** must be loaded.
+Use CopyPlugin to copy the wasm file and serve it by webpack-dev-server. SciChart.js uses WebAssembly, and one binary carries both the 2D and the 3D engine, so **scichart.wasm** must be loaded.
 
 ```javascript
 const path = require("path");
@@ -50,7 +50,6 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 
 // call this before SciChartSurface.create()
 SciChart.SciChartSurface.configure({
-  dataUrl: "/custom/scichart2d.data",
   wasmUrl: "/other/scichart.wasm",
 });
 ```

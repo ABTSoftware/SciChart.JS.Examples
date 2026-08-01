@@ -28,5 +28,4 @@ coverage
 *.sw?
 
 *.tsbuildinfo
-scichart2d.wasm
-scichart3d.wasm
+scichart.wasm

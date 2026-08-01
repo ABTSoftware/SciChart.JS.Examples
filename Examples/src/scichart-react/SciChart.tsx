@@ -9,17 +9,10 @@ import { SciChartGroupContext } from "./SciChartGroupContext";
 import { DefaultFallback, fallbackWrapperStyle } from "./DefaultFallback";
 import { conflictingConfigsMessage, wrongInitResultMessage } from "./constants";
 
-// use base URL to resolve WASM module
+// use base URL to resolve WASM module.
+// One binary carries both the 2D and the 3D engine, so this single call serves both.
 SciChartSurface.configure({
     wasmUrl: "/scichart.wasm",
-    // @ts-ignore the breaking change in v4 - data file is not required
-    dataUrl: "/scichart2d.data",
-});
-
-SciChartSurface.configure({
-    wasmUrl: "/scichart.wasm",
-    // @ts-ignore the breaking change in v4 - data file is not required
-    dataUrl: "/scichart3d.data",
 });
 
 // @ts-ignore this flag is not available in some versions

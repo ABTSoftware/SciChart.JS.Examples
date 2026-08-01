@@ -41,5 +41,4 @@ testem.log
 .DS_Store
 Thumbs.db
 
-scichart2d.wasm
-scichart3d.wasm
+scichart.wasm

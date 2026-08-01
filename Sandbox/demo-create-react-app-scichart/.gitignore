@@ -27,5 +27,4 @@ yarn-debug.log*
 yarn-error.log*
 
 package-lock.json
-scichart2d.data
-scichart2d.wasm
+scichart.wasm

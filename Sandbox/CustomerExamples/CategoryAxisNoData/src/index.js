@@ -5,7 +5,7 @@ import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifie
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 
 // You may need this to configure from where wasm and data files are served
-// SciChart.SciChartSurface.configure({ dataUrl: "/custom/scichart2d.data" wasmUrl: "/other/scichart.wasm" });
+// SciChart.SciChartSurface.configure({ wasmUrl: "/other/scichart.wasm" });
 
 async function initSciChart() {
   // Create the SciChartSurface in the div 'scichart-root'

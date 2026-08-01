@@ -33,7 +33,7 @@ webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
 }
 ```
 
-Also the npm package copy-files-from-to (see copy-foiles-from-to.json) to move scichart2d.data
+Also the npm package copy-files-from-to (see copy-files-from-to.json) to move scichart.wasm
 
 If building 3D Charts ensure that 3D wasm files and 3D Data are also copied to the output directory.
 

@@ -183,10 +183,7 @@ https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/prefetch
 And be aware of the pitfalls they may cause, so be cautious while deciding whether to use this advice.
 
 ```html
-<link rel="preload" href="scichart2d.wasm" as="fetch" crossorigin="anonymous" />
-<link rel="preload" href="scichart2d.data" as="fetch" crossorigin="anonymous" />
-<link rel="preload" href="scichart3d.wasm" as="fetch" crossorigin="anonymous" />
-<link rel="preload" href="scichart3d.data" as="fetch" crossorigin="anonymous" />
+<link rel="preload" href="scichart.wasm" as="fetch" crossorigin="anonymous" />
 ```
 
 #### Precompile WASM and preinitialize SciChart Engine (wasmContext)
