@@ -1,6 +1,8 @@
 import * as http from "http";
 import * as socketIo from "socket.io";
 
+import { Logger } from "./services/logging";
+
 type TSubscription = {
     series: number[];
     startX: number;
@@ -24,7 +26,8 @@ const sendData = (
         return;
     }
 
-    console.log(`Creating ${pointsPerUpdate} points for ${series.length} series starting at x=${nextx}`);
+    // Fires on every tick of every subscription, so keep it off the production log.
+    Logger.debug(`Creating ${pointsPerUpdate} points for ${series.length} series starting at x=${nextx}`);
 
     const x: number[] = [];
     const ys: number[][] = new Array(series.length);
