@@ -11,15 +11,7 @@ import { conflictingConfigsMessage, wrongInitResultMessage } from "./constants";
 
 // use base URL to resolve WASM module
 SciChartSurface.configure({
-    wasmUrl: "/scichart2d.wasm",
-    // @ts-ignore the breaking change in v4 - data file is not required
-    dataUrl: "/scichart2d.data"
-});
-
-SciChart3DSurface.configure({
-    wasmUrl: "/scichart3d.wasm",
-    // @ts-ignore the breaking change in v4 - data file is not required
-    dataUrl: "/scichart3d.data"
+    wasmUrl: "/scichart.wasm"
 });
 
 // @ts-ignore this flag is not available in some versions
