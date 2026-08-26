@@ -8,6 +8,11 @@ import { EAxisType } from "scichart/types/AxisType";
 import { EChart2DModifierType } from "scichart/types/ChartModifierType";
 import { EThemeProviderType } from "scichart/types/ThemeProviderType";
 import { EXyDirection } from "scichart/types/XyDirection";
+import { registerAllTypes } from "scichart/Builder/register/all";
+
+// The Builder API is lean by default in v6. The definitions below name their types as
+// strings, so register the built-in types for every chart in this dashboard
+registerAllTypes();
 
 export const getDataRows = async (filename: string) => {
     const fileData = await fetch(filename);

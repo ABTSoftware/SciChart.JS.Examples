@@ -107,7 +107,7 @@ module.exports = {
                     from: "src/components/Examples/Charts2D/PolarCharts/PolarUniformHeatmapUltrasound/heatmap_data.csv",
                     to: "",
                 },
-                { from: "node_modules/scichart/_wasm/scichart.wasm", to: "" },
+                { from: "node_modules/scichart/_wasm/", to: "" },
                 { from: "sitemap.xml", to: "" },
                 { from: "robots.txt", to: "" },
                 { from: "src/assets", to: "assets" },
