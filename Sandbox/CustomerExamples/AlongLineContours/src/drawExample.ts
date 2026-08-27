@@ -19,10 +19,11 @@ export type CustomOptions = {
     maxLabelsPerLine: number;
     rotateToLine: boolean;
     avoidOverlaps: boolean;
+    overlapPadding: number;
 };
 const WIDTH = 220;
 const HEIGHT = 180;
-const LEVELS = [-8, -4, 0, 4, 8, 12, 16, 20];
+const LEVELS = [-15, -7, -3, -1, 0, 1, 3, 7, 15];
 const gradientStops = [
     { offset: 0, color: "#172554" },
     { offset: 0.25, color: "#075985" },
@@ -36,10 +37,8 @@ const makeTerrain = (): number[][] =>
         Array.from({ length: WIDTH }, (_, column) => {
             const x = -4 + (column / (WIDTH - 1)) * 8;
             const y = -3.2 + (row / (HEIGHT - 1)) * 6.4;
-            const leftPeak = 18 * Math.exp(-((x + 1.35) ** 2 / 1.2 + (y + 0.55) ** 2 / 0.9));
-            const rightPeak = 13 * Math.exp(-((x - 1.55) ** 2 / 1.4 + (y - 0.85) ** 2 / 1.1));
-            const ridge = 2.5 * Math.sin(x * 1.4) * Math.cos(y * 1.1);
-            return leftPeak + rightPeak + ridge - 0.65 * (x * x + y * y);
+
+			return x*x*x + Math.abs(1.0 / y) - 2*x;
         }),
     );
 
@@ -59,7 +58,7 @@ export const drawExample = async (element: HTMLDivElement): Promise<{
         yStep: 6.4 / (HEIGHT - 1),
         zValues: makeTerrain(),
     });
-    const colorMap = new HeatmapColorMap({ minimum: -12, maximum: 20, gradientStops });
+    const colorMap = new HeatmapColorMap({ minimum: -15, maximum: 15, gradientStops });
 
     sciChartSurface.renderableSeries.add(
         new UniformHeatmapRenderableSeries(wasmContext, { dataSeries, colorMap, opacity: 0.72 }),
@@ -75,21 +74,22 @@ export const drawExample = async (element: HTMLDivElement): Promise<{
         dataLabels: {
             color: "#f8fafc",
             style: { fontSize: 13 },
-            precision: 1,
+            precision: 3,
             numericFormat: ENumericFormat.Decimal,
             labelRowCount: 10,
         },
     });
     const defaultProvider = contourSeries.dataLabelProvider as ContoursDataLabelProvider;
     const customProvider = new AlongLineContoursDataLabelProvider({
-        color: "#f8fafc",
+        color: "#fff",
         style: { fontSize: 13 },
-        precision: 0,
+        precision: 1,
         numericFormat: ENumericFormat.Decimal,
         labelSpacing: 50,
         maxLabelsPerLine: 16,
         rotateToLine: true,
         avoidOverlaps: true,
+        overlapPadding: 4,
     });
     sciChartSurface.renderableSeries.add(contourSeries);
     sciChartSurface.chartModifiers.add(
@@ -106,11 +106,12 @@ export const drawExample = async (element: HTMLDivElement): Promise<{
             contourSeries.dataLabelProvider = isCustom ? customProvider : defaultProvider;
             sciChartSurface.invalidateElement();
         },
-        setCustomOptions: ({ labelSpacing, maxLabelsPerLine, rotateToLine, avoidOverlaps }) => {
+        setCustomOptions: ({ labelSpacing, maxLabelsPerLine, rotateToLine, avoidOverlaps, overlapPadding }) => {
             customProvider.labelSpacing = labelSpacing;
             customProvider.maxLabelsPerLine = maxLabelsPerLine;
             customProvider.rotateToLine = rotateToLine;
             customProvider.avoidOverlaps = avoidOverlaps;
+            customProvider.overlapPadding = overlapPadding;
         },
         delete: () => sciChartSurface.delete(),
     };

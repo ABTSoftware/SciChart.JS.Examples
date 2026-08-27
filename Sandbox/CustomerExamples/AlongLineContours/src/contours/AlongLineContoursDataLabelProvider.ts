@@ -104,6 +104,11 @@ export interface IAlongLineContoursDataLabelProviderOptions extends IContoursDat
      * when the parent series has minorsPerMajor > 0. Default false
      */
     labelMinorContours?: boolean;
+    /**
+     * Sets the padding in pixels between labels to determine if they overlap.
+     * Default 24
+     */
+    overlapPadding?: number;
 }
 export class AlongLineContoursDataLabelProvider extends ContoursDataLabelProvider {
     public readonly type: EDataLabelProviderType = EDataLabelProviderType.Contours;
@@ -112,6 +117,7 @@ export class AlongLineContoursDataLabelProvider extends ContoursDataLabelProvide
     private avoidOverlapsProperty: boolean = true;
     private maxLabelsPerLineProperty: number = 12;
     private labelMinorContoursProperty: boolean = false;
+    private overlapPaddingProperty: number = 0;
     /** Signature of the inputs {@link polylineCache} was traced from, see getPolylines */
     private polylineCacheKey: string;
     private polylineCache: TContourPolyline[] = [];
@@ -123,6 +129,7 @@ export class AlongLineContoursDataLabelProvider extends ContoursDataLabelProvide
         this.avoidOverlapsProperty = options?.avoidOverlaps ?? this.avoidOverlapsProperty;
         this.maxLabelsPerLineProperty = options?.maxLabelsPerLine ?? this.maxLabelsPerLineProperty;
         this.labelMinorContoursProperty = options?.labelMinorContours ?? this.labelMinorContoursProperty;
+        this.overlapPaddingProperty = options?.overlapPadding ?? this.overlapPaddingProperty;
     }
 
     /**
@@ -157,6 +164,18 @@ export class AlongLineContoursDataLabelProvider extends ContoursDataLabelProvide
     }
     public set avoidOverlaps(value: boolean) {
         this.avoidOverlapsProperty = value;
+        this.invalidateParent();
+    }
+
+    /**
+     * Gets or sets the padding in pixels between labels to determine if they overlap.  
+     * Default `0`
+     */
+    public get overlapPadding() {
+        return this.overlapPaddingProperty;
+    }
+    public set overlapPadding(value: number) {
+        this.overlapPaddingProperty = value;
         this.invalidateParent();
     }
 
@@ -404,7 +423,7 @@ export class AlongLineContoursDataLabelProvider extends ContoursDataLabelProvide
         ) {
             return undefined;
         }
-        if (this.avoidOverlaps && placedRects.some(rect => rectsOverlap(rect, label.rect))) {
+        if (this.avoidOverlaps && placedRects.some(rect => rectsOverlap(rect, label.rect, this.overlapPadding))) {
             return undefined;
         }
         return label;
@@ -563,5 +582,7 @@ const interpolateAlong = (points: number[], lengths: number[], arcPos: number): 
 };
 
 /** @ignore */
-const rectsOverlap = (first: Rect, second: Rect): boolean =>
-    first.left < second.right && second.left < first.right && first.top < second.bottom && second.top < first.bottom;
+const rectsOverlap = (first: Rect, second: Rect, padding?: number): boolean =>
+    padding !== 0
+    ? first.left - padding < second.right + padding && second.left - padding < first.right + padding && first.top - padding < second.bottom + padding && second.top - padding < first.bottom + padding
+    : first.left < second.right && second.left < first.right && first.top < second.bottom && second.top < first.bottom;

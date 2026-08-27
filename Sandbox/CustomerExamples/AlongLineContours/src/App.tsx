@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { drawExample, type CustomOptions } from "./drawExample";
 
 // One slider step is one complete subdivision level: 2^n labels on loops, 2^n - 1 on open lines.
-const MAX_LABELS_OPTIONS = [1, 2, 4, 8, 16, 32, 64];
+const MAX_LABELS_OPTIONS = [1, 2, 3, 4, 8, 16, 32, 64];
 
 export default function App() {
     const [isCustom, setIsCustom] = useState(true);
@@ -11,6 +11,7 @@ export default function App() {
         maxLabelsPerLine: 16,
         rotateToLine: true,
         avoidOverlaps: true,
+        overlapPadding: 4,
     });
     const chartElement = useRef<HTMLDivElement>(null);
     const chart = useRef<undefined | {
@@ -117,6 +118,19 @@ export default function App() {
                                     updateCustomOptions({
                                         maxLabelsPerLine: MAX_LABELS_OPTIONS[Number(event.target.value)],
                                     })
+                                }
+                                style={{ display: "block" }}
+                            />
+                        </label>
+                        <label>
+                            Overlap padding (px): {customOptions.overlapPadding}
+                            <input
+                                type="range"
+                                min="0"
+                                max="50"
+                                value={customOptions.overlapPadding}
+                                onChange={(event) =>
+                                    updateCustomOptions({ overlapPadding: Number(event.target.value) })
                                 }
                                 style={{ display: "block" }}
                             />
