@@ -18,7 +18,7 @@ npm install scichart scichart-react
 
 ## Step 2: Wasm file deployment
 
-SciChart.js uses WebAssembly files which must be served. The easiest way to do this is to copy the wasm files from the node_modules/scichart/\_wasm folder to your output folder.
+SciChart.js uses WebAssembly modules which must be served. The easiest way to do this is to copy everything from the node_modules/scichart/\_wasm folder to your output folder.
 
 e.g. with webpack.config.js:
 
@@ -27,8 +27,7 @@ e.g. with webpack.config.js:
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
+        { from: "node_modules/scichart/_wasm/", to: "" },
       ],
     })
   ],
@@ -36,13 +35,66 @@ e.g. with webpack.config.js:
 
 > Note: you can load wasm from CDN to simplify getting started `SciChartSurface.useWasmFromCDN();`
 
-## Step 3: Creating the chart
+## Step 3: Creating the chart with an init function
 
-After that, you can define a config object to create a SciChartSurface like this.
+The recommended way to create a chart is the `SciChartReact` component with an `initChart` function, which creates a SciChartSurface on the provided root element:
 
 ```javascript
 import React from "react";
 import { SciChartReact } from "scichart-react";
+import {
+  SciChartSurface,
+  NumericAxis,
+  NumberRange,
+  XyDataSeries,
+  FastLineRenderableSeries,
+  MouseWheelZoomModifier,
+  ZoomPanModifier,
+  ZoomExtentsModifier,
+} from "scichart";
+
+async function initChart(rootElement) {
+  const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement);
+
+  sciChartSurface.xAxes.add(
+    new NumericAxis(wasmContext, { axisTitle: "X Axis", growBy: new NumberRange(0.1, 0.1) })
+  );
+  sciChartSurface.yAxes.add(
+    new NumericAxis(wasmContext, { axisTitle: "Y Axis", growBy: new NumberRange(0.1, 0.1) })
+  );
+
+  sciChartSurface.renderableSeries.add(
+    new FastLineRenderableSeries(wasmContext, {
+      dataSeries: new XyDataSeries(wasmContext, {
+        xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        yValues: [0, 0.0998, 0.1986, 0.2955, 0.3894, 0.4794, 0.5646, 0.6442, 0.7173, 0.7833],
+      }),
+      stroke: "steelblue",
+      strokeThickness: 3,
+    })
+  );
+
+  sciChartSurface.chartModifiers.add(
+    new MouseWheelZoomModifier(),
+    new ZoomPanModifier({ enableZoom: true }),
+    new ZoomExtentsModifier()
+  );
+
+  return { sciChartSurface };
+}
+
+function App() {
+  return <SciChartReact initChart={initChart} style={{ maxWidth: 900 }} />;
+}
+```
+
+## Step 4: Alternative - declarative chart from a Builder API config
+
+Alternatively, you can define a Builder API config object and render it with the `SciChartDeclarative` component. This is the approach used in this boilerplate's `src/App.jsx`.
+
+```javascript
+import React from "react";
+import { SciChartDeclarative } from "scichart-react";
 import {
   SweepAnimation,
   SciChartJsNavyTheme,
@@ -119,9 +171,7 @@ const chartConfig = {
 };
 ```
 
-## Step 4: Create a React Component
-
-Charts can be initialized with the SciChartReact Component using the `config` property.
+Then render it with the SciChartDeclarative Component using the `config` property.
 
 ```javascript
 function App() {
@@ -145,7 +195,7 @@ function App() {
           scichart-react to create a simple chart with one X and Y axis
         </p>
       </header>
-      <SciChartReact config={chartConfig} style={{ maxWidth: 900 }} />
+      <SciChartDeclarative config={chartConfig} style={{ maxWidth: 900 }} />
     </div>
   );
 }
