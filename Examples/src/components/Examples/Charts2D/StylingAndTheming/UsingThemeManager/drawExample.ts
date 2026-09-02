@@ -113,20 +113,20 @@ export const getChartsInitializationAPI = () => {
 };
 
 // Create a custom theme based on light theme + some modifications
-const customTheme: IThemeProvider = {
-    ...new SciChartJSLightTheme(),
-    axisBandsFill: "#83D2F511",
-    axisBorder: "#1F3D68",
-    gridBackgroundBrush: "white",
-    gridBorderBrush: "white",
-    loadingAnimationForeground: "#6495ED77",
-    loadingAnimationBackground: "#E4F5FC",
-    majorGridLineBrush: "#264B9322",
-    minorGridLineBrush: "#264B9306",
-    sciChartBackground: "#E4F5FC",
-    tickTextBrush: "#1F3D68",
-    axisTitleColor: "#1F3D68",
-    // auto / default colour palette for lines and fills
-    strokePalette: ["#264B93", "#A16DAE", "#C52E60"],
-    fillPalette: ["#264B9333", "#A16DAE33", "#C52E6033"],
-};
+// (modifying a constructed theme instance, as SciChartSurface.create expects an IThemeProvider instance)
+const customTheme: IThemeProvider = new SciChartJSLightTheme();
+
+customTheme.axisBandsFill = "#83D2F511";
+customTheme.axisBorder = "#1F3D68";
+customTheme.gridBackgroundBrush = "white";
+customTheme.gridBorderBrush = "white";
+customTheme.loadingAnimationForeground = "#6495ED77";
+customTheme.loadingAnimationBackground = "#E4F5FC";
+customTheme.majorGridLineBrush = "#264B9322";
+customTheme.minorGridLineBrush = "#264B9306";
+customTheme.sciChartBackground = "#E4F5FC";
+customTheme.tickTextBrush = "#1F3D68";
+customTheme.axisTitleColor = "#1F3D68";
+// auto / default colour palette for lines and fills
+customTheme.strokePalette = ["#264B93", "#A16DAE", "#C52E60"];
+customTheme.fillPalette = ["#264B9333", "#A16DAE33", "#C52E6033"];
