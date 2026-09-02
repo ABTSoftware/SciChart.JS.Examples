@@ -8,22 +8,11 @@ export default defineConfig({
     react(),
     viteStaticCopy({
       targets: [
+        // WebAssembly modules copied to the output root, e.g. served at /scichart.wasm
         {
-          src: "node_modules/scichart/_wasm/scichart2d.wasm",
+          src: "node_modules/scichart/_wasm/*",
           dest: "",
-        },
-        {
-          src: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm",
-          dest: "",
-        },
-        // same for 3d if needed:
-        {
-          src: "node_modules/scichart/_wasm/scichart3d.wasm",
-          dest: "",
-        },
-        {
-          src: "node_modules/scichart/_wasm/scichart3d-nosimd.wasm",
-          dest: "",
+          rename: { stripBase: true },
         },
       ],
     }),
