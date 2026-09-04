@@ -25,9 +25,9 @@
         "module": "ESNext",
         "moduleResolution": "bundler",
         "baseUrl": ".",
-        "paths": {
-            "scichart-react": ["./src/scichart-react/index.ts"]
-        },
+        // "paths": {
+        //     "scichart-react": ["./src/scichart-react/index.ts"]
+        // },
         "target": "es2018",
         "downlevelIteration": true,
         "jsx": "react-jsx",
