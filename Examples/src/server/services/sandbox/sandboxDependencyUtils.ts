@@ -1,6 +1,8 @@
 import * as path from "path";
 import * as fs from "fs";
 
+import { Logger } from "../logging";
+
 export interface IFiles {
     [key: string]: {
         content: string;
@@ -33,6 +35,25 @@ export const handleInvalidFrameworkValue = (value: never): never => {
     throw new Error(`Invalid framework value=${value}!`);
 };
 
+// Candidates for an extension-less import, in the order a bundler would try them.
+// The /index variants matter for folder modules such as ./FloatingPanel,
+// which lives at FloatingPanel/index.tsx.
+const resolveSuffixes = [".ts", ".tsx", "/index.ts", "/index.tsx"];
+
+/** Resolve an extension-less module path to a file on disk, or undefined if none of the candidates exist. */
+const resolveModuleFile = async (basePath: string) => {
+    for (const suffix of resolveSuffixes) {
+        try {
+            const filepath = path.normalize(basePath + suffix);
+            const content = await fs.promises.readFile(filepath, "utf8");
+            return { filepath, suffix, content };
+        } catch {
+            // try the next candidate
+        }
+    }
+    return undefined;
+};
+
 export const includeExternalModules = async (
     examplefolderPath: string,
     folderPath: string,
@@ -55,32 +76,23 @@ export const includeExternalModules = async (
                         files[csPath] = { content: "https://www.scichart.com/demo/images/" + filename, isBinary: true };
                     }
                 } else {
-                    const filepath = path.join(folderPath, externalImport[1] + externalImport[2] + ".ts");
+                    const basePath = path.join(folderPath, externalImport[1] + externalImport[2]);
                     const filename = externalImport[2].substring(externalImport[2].lastIndexOf("/") + 1);
-                    let csPath = filepath.replace(examplefolderPath, "src").replace(/\\/g, "/");
-                    //console.log(externalImport[1] + externalImport[2], csPath);
+                    let csPathBase = basePath.replace(examplefolderPath, "src").replace(/\\/g, "/");
                     if (updateImports) {
-                        if (!filepath.includes(examplefolderPath)) {
-                            csPath = "src/" + filename + ".ts";
+                        if (!basePath.includes(examplefolderPath)) {
+                            csPathBase = "src/" + filename;
                             content = content.replace(externalImport[1] + externalImport[2], "./" + filename);
-                            //console.log("Updating import", filepath, csPath, externalImport[1] + externalImport[2]);
                         }
                     }
-                    const csPathx = csPath + "x";
-                    if (!files[csPath] && !files[csPathx]) {
-                        try {
-                            const externalContent = await fs.promises.readFile(filepath, "utf8");
-                            //console.log(filepath);
-                            files[csPath] = { content: externalContent, isBinary: false };
-                        } catch {
-                            const filepathx = filepath + "x";
-                            try {
-                                const externalContentx = await fs.promises.readFile(filepathx, "utf8");
-                                files[csPathx] = { content: externalContentx, isBinary: false };
-                            } catch {
-                                console.log(externalImport[2], "not found at", filepath, "from", folderPath);
-                                files[csPath] = { content: "Could not load source", isBinary: false };
-                            }
+                    if (!resolveSuffixes.some((suffix) => files[csPathBase + suffix])) {
+                        const resolved = await resolveModuleFile(basePath);
+                        if (resolved) {
+                            const ext = resolved.suffix.endsWith(".tsx") ? ".tsx" : ".ts";
+                            files[csPathBase + ext] = { content: resolved.content, isBinary: false };
+                        } else {
+                            Logger.debug(`${externalImport[2]} not found at ${basePath} from ${folderPath}`);
+                            files[csPathBase + ".ts"] = { content: "Could not load source", isBinary: false };
                         }
                     }
                 }
@@ -115,24 +127,15 @@ export const includeImportedModules = async (
                 }
             } else {
                 csPath = "src/" + localImport[1] + ".ts";
-                const csxPath = "src/" + localImport[1] + ".tsx";
-                if (!files[csPath] && !files[csxPath]) {
-                    try {
-                        const filepath = path.join(folderPath, localImport[1] + ".ts");
-                        //console.log(csPath);
-                        content = await fs.promises.readFile(filepath, "utf8");
-                        dirname = path.dirname(filepath);
-                    } catch (e) {
-                        try {
-                            const filepath = path.join(folderPath, localImport[1] + ".tsx");
-                            //console.log("not found. trying ", filepath);
-                            csPath = "src/" + localImport[1] + ".tsx";
-                            content = await fs.promises.readFile(filepath, "utf8");
-                            dirname = path.dirname(filepath);
-                        } catch {
-                            console.log(localImport[1], "not loaded for", folderPath);
-                            content = "could not load source";
-                        }
+                if (!resolveSuffixes.some((suffix) => files["src/" + localImport[1] + suffix])) {
+                    const resolved = await resolveModuleFile(path.join(folderPath, localImport[1]));
+                    if (resolved) {
+                        csPath = "src/" + localImport[1] + resolved.suffix;
+                        content = resolved.content;
+                        dirname = path.dirname(resolved.filepath);
+                    } else {
+                        Logger.debug(`${localImport[1]} not loaded for ${folderPath}`);
+                        content = "could not load source";
                     }
                     if (!localImport[1].includes("/")) {
                         // this only works if the import is in the base folder

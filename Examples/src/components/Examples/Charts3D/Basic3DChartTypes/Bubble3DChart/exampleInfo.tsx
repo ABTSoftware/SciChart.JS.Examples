@@ -13,11 +13,11 @@ const metaData: IExampleMetadata =
         frameworks: {
             javascript: {
                 subtitle:
-                    "Our team demonstrates how to create a **JavaScript 3D Bubble Chart** using SciChart.js, capable of creating detailed 3D JavaScript Charts.",
+                    "This example demonstrates how to create an interactive JavaScript 3D Bubble Chart using SciChart.js. The chart leverages the power of WebAssembly for high-performance rendering and offers advanced features such as custom tooltip rendering, interactive 3D modifiers, and efficient data series management.",
                 title: "JavaScript 3D Bubble Chart",
-                pageTitle: "JavaScript 3D Bubble Chart | 3D JavaScript Charts | View Now",
+                pageTitle: "JavaScript 3D Bubble Chart | Try Demo | SciChart",
                 metaDescription:
-                    "Create detailed JavaScript 3D Bubble Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.",
+                    "Create a detailed JavaScript 3D Bubble Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Try the free demo now.",
                 markdownContent:
                     "## Bubble 3D Chart in JavaScript\n\n### Overview\nThis example demonstrates the creation of an interactive 3D bubble chart using SciChart.js in a JavaScript environment. The chart leverages the power of WebAssembly for high-performance rendering and offers advanced features such as custom tooltip rendering, interactive 3D modifiers, and efficient data series management.\n\n### Technical Implementation\nThe chart is initialized by creating a new SciChart3DSurface with a WebAssembly context, as described in the [3D Tutorial](https://www.scichart.com/documentation/js/v5/3d-charts/scichart-3d-basics/scichart-3d-basics-overview/). Asynchronous initialization is handled using Promise.all to ensure that both the chart setup and data fetching complete before rendering. Interactive modifiers such as MouseWheelZoomModifier3D, OrbitModifier3D, and ResetCamera3DModifier are added to enable smooth 3D navigation; learn more in the [Orbit Modifier 3D documentation](https://www.scichart.com/documentation/js/v5/3d-charts/chart-modifier-3d-api/zooming-and-panning/orbit-modifier-3d/). Custom camera control is achieved via the CameraController, allowing for precise positioning of the 3D view.\n\n### Features and Capabilities\nThe example features a sophisticated custom tooltip implementation using TooltipModifier3D. Data points in the scatter renderable series are enriched with metadata (such as country, life expectancy, GDP per capita, and year), and tooltips are rendered using custom data and SVG templates as outlined in the [Tooltip Modifier 3D documentation](https://www.scichart.com/documentation/js/v5/3d-charts/chart-modifier-3d-api/tooltip-modifier-3d/). Additionally, each of the 3D axes is configured using NumericAxis3D with specified visible ranges and label precision. Detailed information on axis configuration can be found in the [NumericAxis3D API documentation](https://www.scichart.com/documentation/js/v5/typedoc/classes/numericaxis3d.html).\n\n### Integration and Best Practices\nResource cleanup is managed via a destructor function that calls the delete method on the SciChartSurface, in accordance with best practices described in the [Memory Best Practices documentation](https://www.scichart.com/documentation/js/v5/2d-charts/performance-tips/memory-best-practices/). The asynchronous pattern using Promise.all is further supported by guidelines discussed in the [MDN Promise.all documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all). By integrating these advanced features in a JavaScript framework, the example illustrates how to build high-performance, customizable 3D charts using SciChart.js.",
             },
@@ -50,7 +50,7 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "3d-bubble-chart",
-        metaKeywords: "3d, bubble, chart, javascript, webgl, canvas",
+        metaKeywords: "javascript 3d bubble chart",
         onWebsite: true,
         filepath: "Charts3D/Basic3DChartTypes/Bubble3DChart",
         thumbnailImage: "javascript-3d-bubble-chart.jpg",
