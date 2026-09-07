@@ -13,8 +13,8 @@ import {
     PolarCategoryAxis,
     PaletteFactory,
     PolarLineRenderableSeries,
-    EAnimationType,
     ELegendPlacement,
+    SweepAnimation,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -211,13 +211,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                       }),
 
                 seriesName: `${YEARS[i]}`,
-                animation: {
-                    type: EAnimationType.Sweep,
-                    options: {
-                        duration: 300,
-                        delay: 100 * i,
-                    },
-                },
+                animation: new SweepAnimation({
+                    duration: 300,
+                    delay: 100 * i,
+                }),
                 clipToTotalAngle: true,
                 dataSeries: new XyDataSeries(wasmContext, {
                     xValues: xValues,

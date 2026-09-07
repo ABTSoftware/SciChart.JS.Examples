@@ -77,9 +77,8 @@
     "rehype-raw": "^7.0.0",
     "request": "^2.88.2",
     "rxjs": "^7.5.6",
-    "scichart": "5.2.62",
-    "scichart-financial-tools": "5.2.62",
-    "scichart-react": "1.0.0",
+    "scichart": "6.0.0-alpha.169",
+    "scichart-financial-tools": "6.0.0-alpha.169",
     "socket.io": "^4.5.2",
     "socket.io-client": "^4.7.5",
     "websocket-ts": "^1.1.1",
@@ -134,14 +133,13 @@
   },
   "overrides": {
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "scichart": "$scichart"
   },
   "browserslist": [
     "defaults",
-    "not ie < 11",
     "last 2 versions",
     "> 1%",
-    "iOS 7",
-    "last 3 iOS versions"
+    "not dead"
   ]
 }

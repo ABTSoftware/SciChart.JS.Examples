@@ -68,7 +68,7 @@ module.exports = {
     resolve: {
         extensions: [".tsx", ".ts", ".js", ".css"],
         alias: {
-            scichart: path.resolve(__dirname, "./node_modules/scichart"),
+            "scichart-react": path.resolve(__dirname, "./src/scichart-react"),
             "scichart-addons": path.resolve(__dirname, "../Addons"),
         },
     },
@@ -102,9 +102,8 @@ module.exports = {
                     to: "",
                 },
                 { from: "src/server/vanillaDemo/common.js", to: "" },
-                { from: "node_modules/scichart/_wasm/scichart.browser.mjs", to: "" },
-                { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
-                { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
+                { from: "node_modules/scichart/_glue/scichart.browser.mjs", to: "" },
+                { from: "node_modules/scichart/_wasm/", to: "" },
                 { from: "sitemap.xml", to: "" },
                 { from: process.env.NOINDEX ? "robotsNoIndex.txt" : "robots.txt", to: "robots.txt" },
                 { from: "src/server/Data/geojson/australia.json", to: "" },

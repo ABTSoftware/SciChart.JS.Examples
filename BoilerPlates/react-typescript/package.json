@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "build": "webpack --mode production",
-        "start": "ts-node server",
+        "start": "ts-node --project tsconfig.server.json server",
         "dev": "webpack-dev-server --mode development"
     },
     "keywords": [],
@@ -14,7 +14,7 @@
     "dependencies": {
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "scichart": "^5.0.0-alpha.135",
+        "scichart": "6.0.0-alpha.145",
         "ts-node": "^10.9.1"
     },
     "devDependencies": {

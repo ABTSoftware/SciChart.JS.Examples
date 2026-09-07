@@ -12,12 +12,12 @@
   "dependencies": {
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-opener": "^2",
-    "scichart": "^5.0.0-alpha.135",
+    "scichart": "6.0.0-alpha.145",
     "vite-plugin-static-copy": "^3.1.1"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
-    "vite": "^6.0.3",
-    "typescript": "~5.6.2"
+    "typescript": "~5.6.2",
+    "vite": "^6.0.3"
   }
 }
