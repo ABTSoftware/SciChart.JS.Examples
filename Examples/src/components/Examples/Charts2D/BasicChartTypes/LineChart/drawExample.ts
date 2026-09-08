@@ -1,5 +1,6 @@
 import {
     BoxAnnotation,
+    EAnimationType,
     EAxisAlignment,
     ECoordinateMode,
     EDataLabelSkipMode,
@@ -25,9 +26,6 @@ import {
     Thickness,
     VerticalSliceModifier,
     XyDataSeries,
-    FadeAnimation,
-    SweepAnimation,
-    WaveAnimation,
 } from "scichart";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
@@ -84,7 +82,10 @@ export const getChartsInitializationAPI = () => {
                 stroke: appTheme.VividOrange,
                 strokeThickness: 3,
                 opacity: 1,
-                animation: new SweepAnimation({ duration: 500 }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { duration: 500 },
+                },
             })
         );
 
@@ -97,7 +98,10 @@ export const getChartsInitializationAPI = () => {
                 stroke: appTheme.VividTeal,
                 strokeThickness: 3,
                 opacity: 1,
-                animation: new SweepAnimation({ duration: 500 }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { duration: 500 },
+                },
             })
         );
 
@@ -125,7 +129,10 @@ export const getChartsInitializationAPI = () => {
                     fill: appTheme.ForegroundColor,
                     strokeThickness: 0,
                 }),
-                animation: new WaveAnimation({ duration: 500, delay: 200 }),
+                animation: {
+                    type: EAnimationType.Wave,
+                    options: { duration: 500, delay: 200 },
+                },
                 // Optional DataLabels may be added via this property.
                 dataLabels: {
                     style: { fontFamily: "Arial", fontSize: 11, padding: new Thickness(5, 5, 5, 5) },
@@ -149,7 +156,10 @@ export const getChartsInitializationAPI = () => {
                 dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
                 stroke: appTheme.VividOrange,
                 strokeThickness: 3,
-                animation: new WaveAnimation({ duration: 500, delay: 200 }),
+                animation: {
+                    type: EAnimationType.Wave,
+                    options: { duration: 500, delay: 200 },
+                },
             })
         );
 
@@ -185,7 +195,10 @@ export const getChartsInitializationAPI = () => {
                 strokeThickness: 3,
                 // Dashed line charts are enabled by setting the StrokeDashArray property. The array defines draw & gap pixel length
                 strokeDashArray: [2, 2],
-                animation: new SweepAnimation({ duration: 750 }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { duration: 750 },
+                },
             })
         );
 
@@ -199,7 +212,10 @@ export const getChartsInitializationAPI = () => {
                 strokeThickness: 3,
                 opacity: 0.77,
                 strokeDashArray: [3, 3],
-                animation: new SweepAnimation({ duration: 500 }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { duration: 500 },
+                },
             })
         );
 
@@ -213,7 +229,10 @@ export const getChartsInitializationAPI = () => {
                 strokeThickness: 3,
                 opacity: 0.55,
                 strokeDashArray: [10, 5],
-                animation: new SweepAnimation({ duration: 500 }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { duration: 500 },
+                },
             })
         );
 
@@ -259,14 +278,20 @@ export const getChartsInitializationAPI = () => {
                 dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
                 paletteProvider: xGradientPalette,
                 strokeThickness: 5,
-                animation: new SweepAnimation({ duration: 500 }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { duration: 500 },
+                },
             }),
 
             new FastLineRenderableSeries(wasmContext, {
                 dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: yValues }),
                 paletteProvider: yGradientPalette,
                 strokeThickness: 5,
-                animation: new SweepAnimation({ duration: 500 }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { duration: 500 },
+                },
             })
         );
 
@@ -298,7 +323,10 @@ export const getChartsInitializationAPI = () => {
                 opacity: 0.7,
                 onHoveredChanged,
                 onSelectedChanged,
-                animation: new SweepAnimation({ duration: 750 }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { duration: 750 },
+                },
             })
         );
 
@@ -313,7 +341,10 @@ export const getChartsInitializationAPI = () => {
                 opacity: 0.7,
                 onHoveredChanged,
                 onSelectedChanged,
-                animation: new SweepAnimation({ duration: 500 }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { duration: 500 },
+                },
             })
         );
 
@@ -328,7 +359,10 @@ export const getChartsInitializationAPI = () => {
                 opacity: 0.7,
                 onHoveredChanged,
                 onSelectedChanged,
-                animation: new SweepAnimation({ duration: 500 }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { duration: 500 },
+                },
             })
         );
 
@@ -362,7 +396,10 @@ export const getChartsInitializationAPI = () => {
                     fill: appTheme.VividOrange,
                     strokeThickness: 0,
                 }),
-                animation: new SweepAnimation({ duration: 400, delay: 250 }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { duration: 400, delay: 250 },
+                },
             })
         );
 
@@ -379,7 +416,10 @@ export const getChartsInitializationAPI = () => {
                     fill: appTheme.VividTeal,
                     strokeThickness: 0,
                 }),
-                animation: new SweepAnimation({ duration: 400, delay: 250 }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { duration: 400, delay: 250 },
+                },
             })
         );
 
@@ -432,33 +472,36 @@ export const getChartsInitializationAPI = () => {
                     fill: appTheme.VividTeal,
                     strokeThickness: 0,
                 }),
-                animation: new FadeAnimation({
-                    duration: 400,
-                    delay: 250,
-                    onCompleted: () => {
-                        // Highlight the gaps with annotations stretched vertically
-                        sciChartSurface.annotations.add(
-                            new BoxAnnotation({
-                                x1: 6,
-                                x2: 8,
-                                y1: 0.1,
-                                y2: 1.0,
-                                yCoordinateMode: ECoordinateMode.Relative,
-                                fill: appTheme.MutedTeal + "33",
-                                strokeThickness: 0,
-                            }),
-                            new BoxAnnotation({
-                                x1: 17,
-                                x2: 19,
-                                y1: 0.1,
-                                y2: 1,
-                                yCoordinateMode: ECoordinateMode.Relative,
-                                fill: appTheme.MutedTeal + "33",
-                                strokeThickness: 0,
-                            })
-                        );
+                animation: {
+                    type: EAnimationType.Fade,
+                    options: {
+                        duration: 400,
+                        delay: 250,
+                        onCompleted: () => {
+                            // Highlight the gaps with annotations stretched vertically
+                            sciChartSurface.annotations.add(
+                                new BoxAnnotation({
+                                    x1: 6,
+                                    x2: 8,
+                                    y1: 0.1,
+                                    y2: 1.0,
+                                    yCoordinateMode: ECoordinateMode.Relative,
+                                    fill: appTheme.MutedTeal + "33",
+                                    strokeThickness: 0,
+                                }),
+                                new BoxAnnotation({
+                                    x1: 17,
+                                    x2: 19,
+                                    y1: 0.1,
+                                    y2: 1,
+                                    yCoordinateMode: ECoordinateMode.Relative,
+                                    fill: appTheme.MutedTeal + "33",
+                                    strokeThickness: 0,
+                                })
+                            );
+                        },
                     },
-                }),
+                },
             })
         );
 
@@ -514,35 +557,38 @@ export const getChartsInitializationAPI = () => {
                     color: appTheme.PaleSkyBlue,
                     skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious,
                 },
-                animation: new WaveAnimation({
-                    duration: 400,
-                    delay: 250,
-                    onCompleted: () => {
-                        // Add annotations to show the thresholds
-                        sciChartSurface.annotations.add(
-                            new HorizontalLineAnnotation({
-                                stroke: appTheme.VividTeal,
-                                strokeDashArray: [2, 2],
-                                y1: THRESHOLD_HIGH_LEVEL,
-                                labelPlacement: ELabelPlacement.TopRight,
-                                labelValue: "High warning",
-                                axisLabelFill: appTheme.VividTeal,
-                                showLabel: true,
-                            })
-                        );
-                        sciChartSurface.annotations.add(
-                            new HorizontalLineAnnotation({
-                                stroke: appTheme.VividPink,
-                                strokeDashArray: [2, 2],
-                                labelPlacement: ELabelPlacement.BottomLeft,
-                                y1: THRESHOLD_LOW_LEVEL,
-                                labelValue: "Low warning",
-                                axisLabelFill: appTheme.VividPink,
-                                showLabel: true,
-                            })
-                        );
+                animation: {
+                    type: EAnimationType.Wave,
+                    options: {
+                        duration: 400,
+                        delay: 250,
+                        onCompleted: () => {
+                            // Add annotations to show the thresholds
+                            sciChartSurface.annotations.add(
+                                new HorizontalLineAnnotation({
+                                    stroke: appTheme.VividTeal,
+                                    strokeDashArray: [2, 2],
+                                    y1: THRESHOLD_HIGH_LEVEL,
+                                    labelPlacement: ELabelPlacement.TopRight,
+                                    labelValue: "High warning",
+                                    axisLabelFill: appTheme.VividTeal,
+                                    showLabel: true,
+                                })
+                            );
+                            sciChartSurface.annotations.add(
+                                new HorizontalLineAnnotation({
+                                    stroke: appTheme.VividPink,
+                                    strokeDashArray: [2, 2],
+                                    labelPlacement: ELabelPlacement.BottomLeft,
+                                    y1: THRESHOLD_LOW_LEVEL,
+                                    labelValue: "Low warning",
+                                    axisLabelFill: appTheme.VividPink,
+                                    showLabel: true,
+                                })
+                            );
+                        },
                     },
-                }),
+                },
             })
         );
 

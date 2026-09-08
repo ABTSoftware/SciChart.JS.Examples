@@ -13,11 +13,11 @@ const metaData: IExampleMetadata =
         frameworks: {
             javascript: {
                 subtitle:
-                    "This demo demonstrates how create a **JavaScript Donut Chart** with our powerful JavaScript library, SciChart.js.",
+                    "This JavaScript Donut Chart example illustrates the creation of an animated donut chart using SciChart.js. It demonstrates how to visualize market share data using dynamic, gradient-filled segments and configurable legends. The chart is constructed asynchronously to ensure smooth rendering and maximal performance in web applications.",
                 title: "JavaScript Donut Chart",
-                pageTitle: "JavaScript Donut Chart",
+                pageTitle: "JavaScript Donut Chart | Try the Demo | SciChart",
                 metaDescription:
-                    "Create JavaScript Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
+                    "Build a sleek JavaScript Donut Chart with SciChart. Includes custom color palettes, interactive selection, legends, and smooth dynamic data rendering.",
                 markdownContent:
                     "## Donut Chart - JavaScript\n\n### Overview\nThis example illustrates the creation of an animated **donut chart** using SciChart.js with JavaScript. It demonstrates how to visualize market share data using dynamic, gradient-filled segments and configurable legends. The chart is constructed asynchronously to ensure smooth rendering and maximal performance in web applications.\n\n### Technical Implementation\nThe chart is built by creating a new instance of `SciChartPieSurface` configured as with `pieType` = `EPieType.Donut`, setting `holeRadius` and `holeRadiusSizingMode` and animated transitions. Each segment is generated from a dataset by transforming data objects into `PieSegment` instances with custom linear gradients. The asynchronous initialization in the function `drawExample` ensures the chart is set up efficiently. For detailed guidance on initializing SciChart.js charts asynchronously, please refer to the [Getting Started with SciChart JS](https://www.scichart.com/getting-started/scichart-javascript/) documentation.\n\n### Features and Capabilities\nKey features of this implementation include animated updates, advanced gradient color configuration for each pie segment, dynamic legend orientation and placement, and relative radius adjustments for enhanced visual differentiation of data segments. These capabilities are essential for building interactive visualizations, as detailed in the [JavaScript Donut Chart Documentation](https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/donut-chart-type/).\n\n### Integration and Best Practices\nThis example follows best practices by using efficient asynchronous initialization and properly managing resources through a returned destructor function, enabling safe cleanup of the chart instance when no longer needed. Such optimizations are in line with recommendations from the [Memory Best Practices](https://www.scichart.com/documentation/js/v5/2d-charts/performance-tips/memory-best-practices/) guide. Additionally, the use of gradient configurations and dynamic legends simplifies further customization and integration of SciChart.js into standard JavaScript projects. For more technical insights on animated configurations and gradient customization, developers can also explore practical examples in the [JavaScript Donut Chart Documentation](https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/donut-chart-type/).",
             },
@@ -50,7 +50,8 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "donut-chart",
-        metaKeywords: "donut, chart, javascript, canvas",
+        metaKeywords:
+            "javascript donut chart, animated donut chart javascript, create a donut chart javascript, donut chart javascript example",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/DonutChart",
         thumbnailImage: "javascript-donut-chart.jpg",

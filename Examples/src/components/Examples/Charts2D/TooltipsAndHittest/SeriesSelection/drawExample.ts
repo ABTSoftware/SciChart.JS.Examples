@@ -12,9 +12,9 @@ import {
     XyDataSeries,
     SeriesSelectionModifier,
     AUTO_COLOR,
+    EPointMarkerType,
     LegendModifier,
     GenericAnimation,
-    EllipsePointMarker,
 } from "scichart";
 
 // Generate some data for the example
@@ -106,13 +106,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(
         new SplineLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: "First Series" }),
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                fill: AUTO_COLOR,
-                stroke: AUTO_COLOR,
-                strokeThickness: 3,
-                width: 20,
-                height: 20,
-            }),
+            pointMarker: {
+                type: EPointMarkerType.Ellipse,
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
+            },
             strokeThickness: 3,
             onHoveredChanged,
             onSelectedChanged,
@@ -122,13 +119,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(
         new SplineLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values, dataSeriesName: "Second Series" }),
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                fill: AUTO_COLOR,
-                stroke: AUTO_COLOR,
-                strokeThickness: 3,
-                width: 20,
-                height: 20,
-            }),
+            pointMarker: {
+                type: EPointMarkerType.Ellipse,
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
+            },
             strokeThickness: 3,
             onHoveredChanged,
             onSelectedChanged,
@@ -138,13 +132,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(
         new SplineLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values, dataSeriesName: "Third Series" }),
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                fill: AUTO_COLOR,
-                stroke: AUTO_COLOR,
-                strokeThickness: 3,
-                width: 20,
-                height: 20,
-            }),
+            pointMarker: {
+                type: EPointMarkerType.Ellipse,
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
+            },
             strokeThickness: 3,
             onHoveredChanged,
             onSelectedChanged,
@@ -154,13 +145,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(
         new SplineLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y3Values, dataSeriesName: "Fourth Series" }),
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                fill: AUTO_COLOR,
-                stroke: AUTO_COLOR,
-                strokeThickness: 3,
-                width: 20,
-                height: 20,
-            }),
+            pointMarker: {
+                type: EPointMarkerType.Ellipse,
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
+            },
             strokeThickness: 3,
             onHoveredChanged,
             onSelectedChanged,

@@ -1,5 +1,4 @@
-import { build2DChart } from "scichart/Builder/buildSurface";
-import { buildSeries } from "scichart/Builder/buildSeries";
+import { chartBuilder } from "scichart/Builder/chartBuilder";
 import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
 import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
 import { ELegendPlacement, ELegendOrientation, TLegendItem } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
@@ -13,7 +12,7 @@ import { EAxisAlignment } from "scichart";
 
 export const drawDensityChart = async (rootELement: string | HTMLDivElement) => {
     const yAxisId = "y-axis-id";
-    const { sciChartSurface, wasmContext } = await build2DChart(rootELement, {
+    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(rootELement, {
         ...getCommonChartConfigs("Density"),
         surface: {
             theme: appTheme.SciChartJsTheme,
@@ -40,7 +39,7 @@ export const drawDensityChart = async (rootELement: string | HTMLDivElement) => 
         dataSeries.append(x, dataRow[1], dataRow[2]);
     });
 
-    const renderableSeries = buildSeries(wasmContext, {
+    const renderableSeries = chartBuilder.buildSeries(wasmContext, {
         type: ESeriesType.BandSeries,
         options: {
             dataSeries,

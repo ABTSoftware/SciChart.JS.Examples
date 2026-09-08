@@ -4,17 +4,13 @@
   "description": "Tutorial with SciChart.js",
   "main": "index.js",
   "scripts": {
-    "build": "webpack build --mode production ",
-    "start": "webpack-dev-server",
-    "preview": "serve build"
+    "build": "webpack",
+    "start": "webpack-dev-server"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "install": "0.13.0",
-    "npm": "11.18.0",
-    "scichart": "6.0.0-alpha.145",
-    "serve": "^14.2.6"
+    "scichart": "^5.0.0-alpha.135"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^13.0.0",

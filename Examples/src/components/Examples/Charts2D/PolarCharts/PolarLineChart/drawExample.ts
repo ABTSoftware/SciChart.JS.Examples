@@ -287,7 +287,6 @@ export const getChartsInitializationAPI = () => {
     };
 
     const line4 = async (rootElement: string | HTMLDivElement) => {
-        const whiteColor = "#FFFFFFFD"
         const { sciChartSurface, wasmContext } = await SciChartPolarSurface.create(rootElement, {
             ...COMMON_POLAR_SURFACE_OPTIONS,
             title: "Y Palette Provider",
@@ -358,7 +357,7 @@ export const getChartsInitializationAPI = () => {
             }),
             stroke: appTheme.VividOrange,
             strokeThickness: 4,
-            paletteProvider: new ThresholdLinePaletteProvider(whiteColor, (yValue) => yValue > 4 && yValue < 5),
+            paletteProvider: new ThresholdLinePaletteProvider("white", (yValue) => yValue > 4 && yValue < 5),
             animation: new SweepAnimation({ duration: 800, fadeEffect: true }),
         });
 
@@ -371,7 +370,7 @@ export const getChartsInitializationAPI = () => {
             }),
             stroke: appTheme.VividTeal + "88",
             strokeThickness: 4,
-            paletteProvider: new ThresholdLinePaletteProvider(whiteColor, (yValue) => yValue > 2 && yValue < 3),
+            paletteProvider: new ThresholdLinePaletteProvider("white", (yValue) => yValue > 2 && yValue < 3),
             animation: new SweepAnimation({ duration: 800, fadeEffect: true }),
         });
         sciChartSurface.renderableSeries.add(polarLine1, polarLine2);

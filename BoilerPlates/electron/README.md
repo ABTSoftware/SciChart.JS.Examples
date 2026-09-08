@@ -143,24 +143,42 @@ devContentSecurityPolicy: "connect-src 'self' * 'unsafe-eval'";
 
 ### Runtime Licensing for Electron
 
-SciChart runtime licenses normally match the hostname, but for electron apps in runtime, there is no hostname (because the content for the mainWindow is loaded from a file, not a server). Licenses for electon should use the app name, or appId instead. You can add this to your license on the website [www.scichart.com/profile](https://www.scichart.com/profile)
+A runtime license key only applies in production mode, where the mainWindow content is loaded from a file (`file://`) rather than from a server. In dev mode (`npm start`) the renderer is served by the webpack dev server at `http://localhost:3000`, so the key is checked against the hostname `localhost` instead.
 
-The Scichart license key must be set in the renderer, but it is preferable not to store it there. We suggest using ipc to fetch it from the main process.
+To run this example in production mode:
 
-In index.tsx (renderer)
+> npm run package
+
+then launch the packaged app from the `out/` directory.
+
+The runtime license key must be set in `BoilerPlates/electron/src/chartInit2D.js`:
 
 ```javascript
-import { ipcRenderer } from "electron";
-
-SciChartSurface.setRuntimeLicenseKey(ipcRenderer.sendSync("getLicense"));
+SciChartSurface.setRuntimeLicenseKey("YOUR_RUNTIME_KEY");
 ```
 
-In main.ts
+When the key is applied correctly, the packaged app renders the chart and the console reports `checkstatus: LicenseOK` with `License Type: Full` and an empty `Machine Id` (there is no hostname when loading from a file):
+
+![Runtime license accepted in the packaged app](img/runtime-license-packaged.png)
+
+#### Debugging the license
+
+The output above is not printed by default. To enable it, run this in the DevTools console and reload:
 
 ```javascript
-import { ipcMain } from "electron";
+localStorage.setItem("LICENSE_DEBUG", "1");
+location.reload();
+```
 
-ipcMain.on("getLicense", (event: any, arg: any) => {
-  event.returnValue = "RUNTIME LICENSE KEY HERE";
-});
+SciChart then logs every step it takes when applying the license, ending with either `checkstatus: LicenseOK` or the reason it was rejected, followed by the `SciChart Debug dump`.
+
+Two things to note:
+
+- This example opens DevTools automatically in both dev and packaged builds (`mainWindow.webContents.openDevTools()` in `src/index.ts`).
+- `file://` and `http://localhost:3000` are separate storage origins, so the flag does not carry over between the packaged app and dev mode. Set it in whichever one you are debugging.
+
+To turn it off again:
+
+```javascript
+localStorage.removeItem("LICENSE_DEBUG");
 ```

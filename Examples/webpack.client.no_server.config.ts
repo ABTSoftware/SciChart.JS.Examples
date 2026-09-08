@@ -19,7 +19,7 @@ module.exports = {
     resolve: {
         extensions: [".tsx", ".ts", ".js", ".css"],
         alias: {
-            "scichart-react": path.resolve(__dirname, "./src/scichart-react"),
+            scichart: path.resolve(__dirname, "./node_modules/scichart"),
             "scichart-addons": path.resolve(__dirname, "../Addons"),
         },
         fallback: {
@@ -107,7 +107,8 @@ module.exports = {
                     from: "src/components/Examples/Charts2D/PolarCharts/PolarUniformHeatmapUltrasound/heatmap_data.csv",
                     to: "",
                 },
-                { from: "node_modules/scichart/_wasm/", to: "" },
+                { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
+                { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
                 { from: "sitemap.xml", to: "" },
                 { from: "robots.txt", to: "" },
                 { from: "src/assets", to: "assets" },

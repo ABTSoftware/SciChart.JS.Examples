@@ -10,6 +10,11 @@ export const ExampleStrings = {
     siteHomeMetaImage: `https://www.scichart.com/wp-content/uploads/2022/12/javascript-chart-collage-2022.jpg`,
     exampleGenericTitleSuffix: (frameworkName: TFrameworkName | EPageFramework, prefixLength?: number) => {
         // to make sure there are no long titles (it ideally should be between 45-60 characters)
+        if (prefixLength > 64) {
+            console.warn(
+                `The meta title is too long (${prefixLength} characters long) and may be truncated in search results. Consider using titles under 60 characters.`
+            );
+        }
         if (prefixLength > 50) {
             // [51, +]
             return ``;

@@ -1,5 +1,4 @@
-import { build2DChart } from "scichart/Builder/buildSurface";
-import { buildSeries } from "scichart/Builder/buildSeries";
+import { chartBuilder } from "scichart/Builder/chartBuilder";
 import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { ELegendPlacement, ELegendOrientation, TLegendItem } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
@@ -13,7 +12,7 @@ import { EAxisAlignment, EAxisType } from "scichart";
 
 export const drawShaleChart = async (rootELement: string | HTMLDivElement) => {
     const yAxisId = "y-axis-id";
-    const { sciChartSurface, wasmContext } = await build2DChart(rootELement, {
+    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(rootELement, {
         ...getCommonChartConfigs("Shale"),
         surface: {
             padding: Thickness.fromNumber(0),
@@ -46,7 +45,7 @@ export const drawShaleChart = async (rootELement: string | HTMLDivElement) => {
         dataSeries3.append(x, dataRow[3]);
     });
 
-    const renderableSeries = buildSeries(wasmContext, {
+    const renderableSeries = chartBuilder.buildSeries(wasmContext, {
         type: ESeriesType.StackedMountainCollection,
         series: [
             {

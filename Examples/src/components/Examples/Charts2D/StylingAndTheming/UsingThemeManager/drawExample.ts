@@ -1,4 +1,5 @@
 import {
+    EAnimationType,
     ECoordinateMode,
     EHorizontalAnchorPoint,
     FastLineRenderableSeries,
@@ -11,7 +12,6 @@ import {
     SciChartSurface,
     TextAnnotation,
     XyDataSeries,
-    SweepAnimation,
 } from "scichart";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
@@ -69,7 +69,10 @@ export const getChartsInitializationAPI = () => {
                 dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
                 stroke: "auto",
                 strokeThickness: 3,
-                animation: new SweepAnimation({ duration: 500 }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { duration: 500 },
+                },
             })
         );
 
@@ -81,7 +84,10 @@ export const getChartsInitializationAPI = () => {
                 dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
                 stroke: "auto",
                 strokeThickness: 3,
-                animation: new SweepAnimation({ duration: 500 }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { duration: 500 },
+                },
             })
         );
 
@@ -93,7 +99,10 @@ export const getChartsInitializationAPI = () => {
                 dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
                 stroke: "auto",
                 strokeThickness: 3,
-                animation: new SweepAnimation({ duration: 500 }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { duration: 500 },
+                },
             })
         );
 

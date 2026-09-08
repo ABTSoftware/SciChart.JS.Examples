@@ -2,6 +2,7 @@ import {
     applyOpacityToHtmlColor,
     AxisBase2D,
     buildAxes,
+    chartBuilder,
     configure2DSurface,
     convertColor,
     DoubleAnimator,
