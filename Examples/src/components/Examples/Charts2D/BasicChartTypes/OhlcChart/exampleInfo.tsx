@@ -13,11 +13,11 @@ const metaData: IExampleMetadata =
         frameworks: {
             javascript: {
                 subtitle:
-                    "This JavaScript OHLC Chart or Stock Chart example uses SciChart.js to visually represent market data, making it ideal for stock trading applications and financial data analysis. View the code, documentation and technical implementation advice below to create this example.",
+                    "For this example, we demonstrate how to create a **JavaScript OHLC Chart** or Stock Chart using SciChart.js. This is our powerful JavaScript Chart Component.",
                 title: "JavaScript OHLC Chart",
-                pageTitle: "JavaScript OHLC Chart | Try the Demo | SciChart",
+                pageTitle: "JavaScript OHLC Chart",
                 metaDescription:
-                    "Explore a financial JavaScript OHLC Chart demo with SciChart. Features real-time tick updates, technical indicators, zoom controls, and custom styling.",
+                    "Easily create JavaScript OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
                 markdownContent:
                     "## Ohlc Chart - JavaScript\n\n### Overview\nThis example demonstrates how to create an **Ohlc Chart** (Open-High-Low-Close Chart) using JavaScript with SciChart.js. It is designed to visually represent financial market data, making it ideal for stock trading applications and financial data analysis.\n\n### Technical Implementation\nThe chart is initialized by calling the asynchronous function that creates a `SciChartSurface` using [SciChartSurface.create](https://www.scichart.com/documentation/js/v5/2d-charts/surface/new-scichart-surface/#scichartsurfacecreate). A `CategoryAxis` is added and configured with a [SmartDateLabelProvider](https://www.scichart.com/documentation/js/v5/2d-charts/axis-api/axis-types/date-time-numeric-axis/#configuring-default-behaviour-with-the-smartdatelabelprovider) to effectively handle non-contiguous stock market dates, and a `NumericAxis` is used to display financial values with precise formatting. Financial data is managed via an `OhlcDataSeries` that feeds into a `FastOhlcRenderableSeries`, which renders the OHLC data points efficiently. A [SweepAnimation](https://www.scichart.com/documentation/js/v5/typedoc/classes/sweepanimation.html) enhances the visual presentation by animating the appearance of the series.\n\n### Features and Capabilities\nThis implementation includes several advanced features such as interactive chart modifiers. The chart supports intuitive user interactions through `ZoomExtentsModifier`, `ZoomPanModifier`, and `MouseWheelZoomModifier`, allowing for seamless zooming and panning operations. Additionally, performance optimizations are achieved with WebGL rendering, ensuring smooth animations and responsiveness even with large datasets. For detailed performance insights, refer to the [Getting Started with SciChart JS](https://www.scichart.com/getting-started/scichart-javascript/) documentation.\n\n### Integration and Best Practices\nThe example employs JavaScript integration, highlighting best practices for resource management. A cleanup function is provided by calling `sciChartSurface.delete()` to properly dispose of the chart resources when they are no longer needed, aligning with the guidelines in the [Memory Best Practices](https://www.scichart.com/documentation/js/v5/2d-charts/performance-tips/memory-best-practices/) documentation. This approach ensures that applications remain performant and free of memory leaks. The example serves as a robust reference for developers looking to integrate high-performance financial charts without additional framework dependencies.\n\nOverall, this Ohlc Chart example using JavaScript with SciChart.js encapsulates best practices for chart initialization, axis configuration, animation, interactivity, and resource management, providing an excellent starting point for building scalable financial data visualization applications.",
             },
@@ -50,7 +50,7 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "ohlc-chart",
-        metaKeywords: "javascript ohlc chart",
+        metaKeywords: "ohlc, stock, trading, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/OhlcChart",
         thumbnailImage: "javascript-ohlc-chart.jpg",

@@ -20,7 +20,7 @@
     "vite": "^8.0.16"
   },
   "dependencies": {
-    "scichart": "^5.0.0-alpha.135",
+    "scichart": "6.0.0-alpha.145",
     "svelte-routing": "^2.13.0"
   }
 }

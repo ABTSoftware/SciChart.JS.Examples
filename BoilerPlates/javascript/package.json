@@ -16,6 +16,6 @@
     "webpack-dev-server": "^5.2.5"
   },
   "dependencies": {
-    "scichart": "^5.0.0-alpha.135"
+    "scichart": "6.0.0-alpha.145"
   }
 }

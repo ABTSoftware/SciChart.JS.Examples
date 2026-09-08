@@ -31,8 +31,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "src/pages/", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm", to: "" }
+        { from: "node_modules/scichart/_wasm/", to: "" }
       ]
     })
   ]

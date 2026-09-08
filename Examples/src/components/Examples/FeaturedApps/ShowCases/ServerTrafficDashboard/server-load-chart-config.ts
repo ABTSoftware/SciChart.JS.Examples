@@ -21,7 +21,7 @@ import {
     EllipsePointMarker,
     Thickness,
     EBaseType,
-    chartBuilder,
+    registerFunction,
     ELegendOrientation,
     TCheckedChangedArgs,
     GradientParams,
@@ -254,5 +254,5 @@ const onHoverChanged = (args: HoveredChangedArgs) => {
     });
 };
 
-chartBuilder.registerFunction(EBaseType.OptionFunction, "onServerSelectionChanged", onSelectionChanged);
-chartBuilder.registerFunction(EBaseType.OptionFunction, "onServerHoverChanged", onHoverChanged);
+registerFunction(EBaseType.OptionFunction, "onServerSelectionChanged", onSelectionChanged);
+registerFunction(EBaseType.OptionFunction, "onServerHoverChanged", onHoverChanged);
