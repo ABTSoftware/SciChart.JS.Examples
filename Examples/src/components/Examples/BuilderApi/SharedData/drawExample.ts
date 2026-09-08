@@ -1,7 +1,6 @@
 import {
     SciChartSurface,
-    build2DChart,
-    registerAllTypes,
+    chartBuilder,
     ESeriesType,
     ISciChart2DDefinition,
     TSharedDataDefinition,
@@ -11,10 +10,6 @@ import {
     EVerticalAnchorPoint,
 } from "scichart";
 import { appTheme } from "../../theme";
-
-// The Builder API is lean by default in v6. This chart is defined with type-strings only,
-// so register the built-in types before building it
-registerAllTypes();
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a definition using dataIds
@@ -85,7 +80,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const sharedData: TSharedDataDefinition = { x: [1, 2, 3, 4, 5], col: [8, 2, 3, 7, 10], line: [10, 6, 7, 2, 16] };
 
     // Build the chart by combining the definition and data
-    return await build2DChart(rootElement, {
+    return await chartBuilder.build2DChart(rootElement, {
         ...chartTemplate,
         sharedData,
     });

@@ -13,8 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "copy-files-from-to": "^3.2.1",
-    "scichart": "6.0.0-alpha.145",
+    "scichart": "^5.0.0-alpha.135",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },

@@ -1,8 +1,4 @@
-import { SciChartSurface, build2DChart, registerAllTypes, TWebAssemblyChart } from "scichart";
-
-// The Builder API is lean by default in v6. This chart is defined purely by type-strings in JSON,
-// so register the built-in types before building it
-registerAllTypes();
+import { SciChartSurface, chartBuilder, TWebAssemblyChart } from "scichart";
 
 export const drawExample = async (
     divElementId: string | HTMLDivElement,
@@ -11,7 +7,7 @@ export const drawExample = async (
 ) => {
     try {
         // Build the SciChartSurface from Json passed in
-        const { sciChartSurface, wasmContext } = await build2DChart(divElementId, json);
+        const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(divElementId, json);
 
         return { sciChartSurface, wasmContext };
     } catch (error) {

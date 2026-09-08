@@ -12,11 +12,10 @@ import {
     PolarXyScatterRenderableSeries,
     SweepAnimation,
     PolarLegendModifier,
+    EPointMarkerType,
     ELegendOrientation,
     TLegendItem,
     EActionType,
-    EllipsePointMarker,
-    TrianglePointMarker,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -68,13 +67,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             yVals: xValues.map((x) => 2 * x + x * Math.random() * 0.5),
             color: appTheme.VividOrange,
             name: "Circle Series",
-            pointMarkerType: EllipsePointMarker,
+            pointMarkerType: EPointMarkerType.Ellipse,
         },
         {
             yVals: xValues.map((x) => x + x * Math.random() * 0.5),
             color: appTheme.VividSkyBlue,
             name: "Triangular Series",
-            pointMarkerType: TrianglePointMarker,
+            pointMarkerType: EPointMarkerType.Triangle,
         },
     ];
 
@@ -88,13 +87,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             opacity: 0.7,
             stroke: color, // set stroke color for Legend modifier markers
 
-            pointMarker: new pointMarkerType(wasmContext, {
-                width: 10,
-                height: 10,
-                stroke: color,
-                strokeThickness: 1,
-                fill: color + "88",
-            }),
+            // @ts-ignore
+            pointMarker: {
+                type: pointMarkerType,
+                options: {
+                    width: 10,
+                    height: 10,
+                    stroke: color,
+                    strokeThickness: 1,
+                    fill: color + "88",
+                },
+            },
             animation: new SweepAnimation({ duration: 800 }),
         });
         sciChartSurface.renderableSeries.add(polarScatter);

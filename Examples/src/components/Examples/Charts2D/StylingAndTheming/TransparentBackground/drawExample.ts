@@ -14,7 +14,7 @@ import {
     FastColumnRenderableSeries,
     XyDataSeries,
     WaveAnimation,
-    TextLabelProvider,
+    ELabelProviderType,
 } from "scichart";
 
 import { appTheme } from "../../../theme";
@@ -43,9 +43,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             axisBorder: { borderTop: 1, color: "#ccc" },
             growBy: new NumberRange(0.1, 0.1),
             axisTitle: "Quarter (Year)",
-            labelProvider: new TextLabelProvider({
-                labels: ["Q1 (2020)", "Q1 (2021)", "Q1 (2022)", "Q1 (2023)"],
-            }),
+            labelProvider: {
+                type: ELabelProviderType.Text,
+                options: {
+                    labels: ["Q1 (2020)", "Q1 (2021)", "Q1 (2022)", "Q1 (2023)"],
+                },
+            },
         })
     );
     sciChartSurface.yAxes.add(

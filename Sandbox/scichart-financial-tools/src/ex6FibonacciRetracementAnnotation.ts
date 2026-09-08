@@ -2,8 +2,7 @@ import { SciChartSurface, NumericAxis, EVerticalTextPosition, ETextAlignment, Th
 import {
     EFibonacciLabelColorMode, EFibonacciLabelPlacement,
     FibonacciRetracementAnnotation, TFibonacciLevelLabelFormatParams,
-    EMultiPointLabelAnchorMode, IMultiPointLabelFormatParams,
-    ETradingAnnotationType, MultiPointAnnotationPlacementModifier
+    EMultiPointLabelAnchorMode, IMultiPointLabelFormatParams
 } from "scichart-financial-tools";
 
 const compactFibonacciLabel = (params: TFibonacciLevelLabelFormatParams): string => {
@@ -15,8 +14,6 @@ export async function ex6FibonacciRetracementAnnotation() {
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
-
-    
 
     const standardFib = new FibonacciRetracementAnnotation({
         isEditable: true,
@@ -97,19 +94,5 @@ export async function ex6FibonacciRetracementAnnotation() {
     });
 
     sciChartSurface.annotations.add(standardFib, customFib);
-
-    const placementModifier = new MultiPointAnnotationPlacementModifier({
-        keepPlacingAfterComplete: false
-    });
-    sciChartSurface.chartModifiers.add(placementModifier);
-
-    document.getElementById("add-fibonacci").addEventListener("click", () => {
-        placementModifier.startPlacement({
-            type: ETradingAnnotationType.FibonacciRetracementAnnotation, options: {
-                isEditable: true
-            }
-        });
-    });
-
     sciChartSurface.zoomExtents();
 }

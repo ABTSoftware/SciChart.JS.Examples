@@ -7,9 +7,9 @@ import {
     ZoomPanModifier,
     ZoomExtentsModifier,
     MouseWheelZoomModifier,
+    EAnimationType,
     EllipsePointMarker,
     NumberRange,
-    WaveAnimation,
 } from "scichart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -31,7 +31,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         strokeThickness: 2,
         pointMarker: new EllipsePointMarker(wasmContext, { width: 1, height: 1 }),
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-        animation: new WaveAnimation({ duration: 500, delay: 200, fadeEffect: true }),
+        animation: { type: EAnimationType.Wave, options: { duration: 500, delay: 200, fadeEffect: true } },
     });
     sciChartSurface.renderableSeries.add(impulseSeries);
 

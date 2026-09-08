@@ -1,4 +1,4 @@
-import { EBaseType, TRolloverTooltipDataTemplate, XySeriesInfo, registerFunction } from "scichart";
+import { EBaseType, TRolloverTooltipDataTemplate, XySeriesInfo, chartBuilder } from "scichart";
 
 export type TChartViewOptions = { isMobileView: boolean; isLargeView: boolean };
 
@@ -12,4 +12,4 @@ const tooltipDataTemplate: TRolloverTooltipDataTemplate = (seriesInfo: XySeriesI
 
 export const tooltipDataTemplateKey = "CommonTooltipDataTemplate";
 
-registerFunction(EBaseType.OptionFunction, tooltipDataTemplateKey, tooltipDataTemplate);
+chartBuilder.registerFunction(EBaseType.OptionFunction, tooltipDataTemplateKey, tooltipDataTemplate);

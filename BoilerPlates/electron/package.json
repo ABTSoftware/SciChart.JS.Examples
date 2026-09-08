@@ -39,7 +39,7 @@
   "dependencies": {
     "copy-webpack-plugin": "^14.0.0",
     "electron-squirrel-startup": "^1.0.0",
-    "scichart": "6.0.0-alpha.145"
+    "scichart": "^5.2.62"
   },
   "overrides": {
     "cross-spawn": "^7.0.6"

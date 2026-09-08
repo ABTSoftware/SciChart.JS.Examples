@@ -22,6 +22,7 @@ const createFrameworkPropertyGetter = <T extends string = TFrameworkName, R = st
             const framework = metadata.frameworks[normalizedFramework];
 
             if (!framework) {
+                console.warn(`Framework ${frameworkName} not found in metadata`);
                 return defaultValue;
             }
 

@@ -1,5 +1,4 @@
-import { build2DChart } from "scichart/Builder/buildSurface";
-import { buildSeries } from "scichart/Builder/buildSeries";
+import { chartBuilder } from "scichart/Builder/chartBuilder";
 import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
 import { UniformHeatmapDataSeries } from "scichart/Charting/Model/UniformHeatmapDataSeries";
 import { ELegendPlacement, ELegendOrientation, TLegendItem } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
@@ -12,7 +11,7 @@ import { EAxisAlignment, EAxisType } from "scichart";
 
 export const drawSonicChart = async (rootELement: string | HTMLDivElement) => {
     const yAxisId = "y-axis-id";
-    const { sciChartSurface, wasmContext } = await build2DChart(rootELement, {
+    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(rootELement, {
         ...getCommonChartConfigs("Sonic"),
         surface: {
             theme: appTheme.SciChartJsTheme,
@@ -67,7 +66,7 @@ export const drawSonicChart = async (rootELement: string | HTMLDivElement) => {
     });
     dataSeries.hasNaNs = true;
 
-    const renderableSeries = buildSeries(wasmContext, {
+    const renderableSeries = chartBuilder.buildSeries(wasmContext, {
         type: ESeriesType.UniformHeatmapSeries,
         options: {
             dataSeries,

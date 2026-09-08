@@ -69,7 +69,11 @@ const ChatbotScript = (): React.ReactElement | null => {
 };
 
 SciChartSurface.configure({
-    wasmUrl: `${baseAppPath}/scichart.wasm`,
+    wasmUrl: `${baseAppPath}/scichart2d.wasm`,
+});
+
+SciChart3DSurface.configure({
+    wasmUrl: `${baseAppPath}/scichart3d.wasm`,
 });
 
 export default function App() {
