@@ -78,7 +78,7 @@ export default function Load1MillionPointsChart() {
                             className={commonClasses.Notification}
                             sx={{
                                 backgroundColor: appTheme.Indigo,
-                                color: appTheme.ForegroundColor,
+                                color: "#FFFFFF",
                                 textAlign: "left",
                             }}
                             severity="info"
