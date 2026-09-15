@@ -44,7 +44,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(
         new FastOhlcRenderableSeries(wasmContext, {
             dataSeries: new OhlcDataSeries(wasmContext, { xValues, openValues, highValues, lowValues, closeValues }),
-            strokeThickness: 1,
+            strokeThickness: 3,
             dataPointWidth: 0.7,
             strokeUp: "#50ff50",
             strokeDown: "#ff5050",

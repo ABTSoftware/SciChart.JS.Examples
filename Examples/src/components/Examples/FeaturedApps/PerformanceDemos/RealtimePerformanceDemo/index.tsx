@@ -31,8 +31,8 @@ export default function RealtimePerformanceDemo() {
                 <div style={{ flex: "none", flexBasis: "13em", textAlign: "left" }}>
                     # DataPoints: {stats.numberPoints.toLocaleString()}
                 </div>
-                <div style={{ flex: "none", flexBasis: "4em", textAlign: "left" }}>
-                    FPS: {stats.fps.toFixed(0).padStart(2, "0")}
+                <div style={{ flex: "none", flexBasis: "5em", textAlign: "left" }}>
+                    FPS:&nbsp;{stats.fps.toFixed(0).padStart(2, "0")}
                 </div>
             </div>
             <SciChartReact

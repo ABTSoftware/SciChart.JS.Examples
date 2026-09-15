@@ -320,6 +320,9 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
             updateCartesianProjection();
         }
     }
+    // Animation controls
+    let isAnimating = true;
+
     updatePolarAnnotations(); // call once to init sum, projections and arc
 
     // On change of any of the 2 vectors, update the annotations
@@ -352,9 +355,6 @@ export async function drawExample(rootElement: string | HTMLDivElement) {
         vector2.x2 += angleIncrement;
         vector1.dragDelta.raiseEvent(); // trigger annotation update (see lines 305-306)
     }
-
-    // Animation controls
-    let isAnimating = true;
 
     function animate() {
         if (!isAnimating) return;
