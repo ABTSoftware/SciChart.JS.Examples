@@ -22,8 +22,10 @@ export default function DrawBehindAxes() {
         sciChartSurfaceRef.current.xAxes.get(0).axisBorder.borderTop = value;
     };
 
+    // Follow the app theme rather than forcing a dark strip: MUI renders the inactive toggle label in
+    // the active theme's text colour, which is invisible against a dark background in light mode.
     return (
-        <div className={commonClasses.ChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+        <div className={commonClasses.ChartWrapper} style={{ background: appTheme.Background }}>
             <SciChartReact
                 initChart={drawExample}
                 style={{ height: "calc(100% - 100px)", width: "100%" }}
@@ -41,6 +43,9 @@ export default function DrawBehindAxes() {
                 size="medium"
                 color="primary"
                 aria-label="small outlined button group"
+                // MUI colours the unselected label from its own palette, which has too little contrast
+                // against the chart background in the dark themes. Track the app theme instead.
+                sx={{ "& .MuiToggleButton-root:not(.Mui-selected)": { color: appTheme.ForegroundColor } }}
             >
                 <ToggleButton value={0}>Draw Series behind Axis</ToggleButton>
                 <ToggleButton value={1}>Clip series at Viewport Edge</ToggleButton>

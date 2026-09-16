@@ -79,7 +79,7 @@ const metaData: IExampleMetadata =
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "default",
-        isNew: true,
+        isNew: false,
     };
 //// End of computer generated metadata
 

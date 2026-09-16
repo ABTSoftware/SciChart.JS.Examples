@@ -66,7 +66,7 @@ const tooltipDataTemplate: TCursorTooltipDataTemplate = (seriesInfos: SeriesInfo
     return valuesWithLabels;
 };
 
-function addArrowheads(xValues: number[], yValues: number[], arrowLength = 0.2, arrowAngle = Math.PI / 12) {
+function addArrowheads(xValues: number[], yValues: number[], arrowLength = 0.36, arrowAngle = Math.PI / 12) {
     function distance(x1: number, y1: number, x2: number, y2: number) {
         return Math.hypot(x2 - x1, y2 - y1);
     }
@@ -117,7 +117,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const yMin = -10;
     const yMax = 10;
 
-    const growBy = new NumberRange(0.1, 0.1);
+    // Negative growBy shrinks the autorange, cropping the sparse outer arrows so the field fills the viewport
+    const growBy = new NumberRange(-0.12, -0.12);
 
     const xAxis = new NumericAxis(wasmContext, {
         axisBorder: { color: "white", borderBottom: 1 },
@@ -162,7 +163,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             xValues: linesXValues,
             yValues: linesYValues,
         }),
-        strokeThickness: 2,
+        strokeThickness: 3,
         paletteProvider: new LineSegmentPaletteProvider(),
     });
 

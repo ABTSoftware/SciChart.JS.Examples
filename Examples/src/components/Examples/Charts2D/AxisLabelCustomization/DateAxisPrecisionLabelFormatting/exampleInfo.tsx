@@ -65,7 +65,7 @@ const metaData: IExampleMetadata =
         extraDependencies: {
             "date-fns": "^4.1.0",
         },
-        isNew: true,
+        isNew: false,
     };
 //// End of computer generated metadata
 

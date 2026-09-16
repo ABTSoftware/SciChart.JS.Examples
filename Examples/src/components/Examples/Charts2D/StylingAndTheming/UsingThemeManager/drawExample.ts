@@ -112,9 +112,12 @@ export const getChartsInitializationAPI = () => {
     return { createNavyThemeChart, createLightThemeChart, createDarkThemeChart, createCustomThemeChart };
 };
 
-// Create a custom theme based on light theme + some modifications
-const customTheme: IThemeProvider = {
-    ...new SciChartJSLightTheme(),
+// Create a custom theme based on light theme + some modifications.
+// Use applyOverrides() on a theme instance rather than spreading the theme into a plain object:
+// the spread drops the prototype, and SciChartSurface.create() rejects a plain object that has a
+// `type` but no `applyOverrides` as a Builder-API declarative theme definition.
+const customTheme = new SciChartJSLightTheme();
+customTheme.applyOverrides({
     axisBandsFill: "#83D2F511",
     axisBorder: "#1F3D68",
     gridBackgroundBrush: "white",
@@ -129,4 +132,4 @@ const customTheme: IThemeProvider = {
     // auto / default colour palette for lines and fills
     strokePalette: ["#264B93", "#A16DAE", "#C52E60"],
     fillPalette: ["#264B9333", "#A16DAE33", "#C52E6033"],
-};
+});

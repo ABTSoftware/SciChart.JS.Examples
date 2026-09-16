@@ -94,7 +94,7 @@ export default function ChartComponent() {
                     <button
                         onClick={() => setType("cursor")}
                         style={{
-                            color: type === "cursor" ? "var(--text)" : "rgb(0, 188, 212)",
+                            color: type === "cursor" ? "#FFFFFF" : "rgb(0, 188, 212)",
                             display: "inline-block",
                             padding: "10px 24px",
                             background: type === "cursor" ? "#14233c" : "#163149",
@@ -107,7 +107,7 @@ export default function ChartComponent() {
                     <button
                         onClick={() => setType("rollover")}
                         style={{
-                            color: type === "rollover" ? "var(--text)" : "rgb(0, 188, 212)",
+                            color: type === "rollover" ? "#FFFFFF" : "rgb(0, 188, 212)",
                             display: "inline-block",
                             padding: "10px 24px",
                             background: type === "rollover" ? "#14233c" : "#163149",
@@ -119,7 +119,7 @@ export default function ChartComponent() {
                     <button
                         onClick={() => setType("verticalSlice")}
                         style={{
-                            color: type === "verticalSlice" ? "var(--text)" : "rgb(0, 188, 212)",
+                            color: type === "verticalSlice" ? "#FFFFFF" : "rgb(0, 188, 212)",
                             display: "inline-block",
                             padding: "10px 24px",
                             background: type === "verticalSlice" ? "#14233c" : "#163149",

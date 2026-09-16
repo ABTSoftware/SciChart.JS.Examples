@@ -36,21 +36,21 @@ const styles: Record<string, React.CSSProperties> = {
         flexDirection: "row",
         padding: 0,
         width: "100%",
-        color: appTheme.ForegroundColor,
+        color: "#FFFFFF",
     },
     emptyRow: {
         display: "flex",
         flexBasis: 0,
         padding: 0,
         width: "100%",
-        color: appTheme.ForegroundColor,
+        color: "#FFFFFF",
     },
     toolCol: {
         display: "flex",
         flex: "none",
         width: "130px",
         padding: "10 10 5 0",
-        color: appTheme.ForegroundColor,
+        color: "#FFFFFF",
     },
     chartArea: {
         flex: "auto",
@@ -160,7 +160,7 @@ export default function SyncMultiChart() {
                             flex: "none",
                         }}
                     >
-                        <Typography style={{ color: appTheme.ForegroundColor, marginLeft: "20px" }}>
+                        <Typography style={{ color: "#FFFFFF", marginLeft: "20px" }}>
                             Click and drag or mousewheel to zoom/pan the charts.
                         </Typography>
                         <Button
@@ -170,7 +170,7 @@ export default function SyncMultiChart() {
                             style={{
                                 width: "120px",
                                 flex: "none",
-                                color: appTheme.ForegroundColor,
+                                color: "#FFFFFF",
                                 marginRight: "10px",
                             }}
                         >

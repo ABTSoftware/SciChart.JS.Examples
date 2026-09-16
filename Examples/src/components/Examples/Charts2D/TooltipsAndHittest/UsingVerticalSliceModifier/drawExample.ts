@@ -208,7 +208,7 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Roll
 
     // Content here is returned for the custom legend placed in top-left of the chart
     return `<svg width="100%" height="100%">
-                <text x="8" y="20" font-size="15" font-family="Verdana" fill="lightblue">Custom Rollover Legend</text>
+                <text x="8" y="20" font-size="17" font-weight="bold" font-family="Verdana" fill="${appTheme.ForegroundColor}">Custom Rollover Legend</text>
                 ${outputSvgString}
             </svg>`;
 };

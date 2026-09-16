@@ -32,7 +32,7 @@ registerAllTypes();
 
 // Define a custom PaletteProvider
 export class ExampleMountainPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
-    public static Name: "ExampleMountain";
+    public static Name = "ExampleMountain";
     public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
     public readonly fillPaletteMode = EFillPaletteMode.SOLID;
     private readonly palettedStroke: number;

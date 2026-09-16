@@ -203,10 +203,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 ...(i >= TEMPERATURE_DATA.length - 5
                     ? {
                           paletteProvider: highlightedPalette,
+                          // The palette provider overrides the stroke when drawing, but the legend swatch
+                          // reads stroke - so set it to the warm end of the gradient to keep the two in step
+                          stroke: appTheme.VividPink,
                           strokeThickness: 3,
                       }
                     : {
-                          stroke: `rgba(${i * 2}, ${i}, ${i * 2 + 20}, 1)`,
+                          // Cool slate-to-purple ramp for the older years. Keep the floor light enough
+                          // to stay visible against the dark themes' near-black background
+                          stroke: `rgba(${60 + i * 2}, ${70 + i}, ${110 + i * 2}, 1)`,
                           strokeThickness: 2,
                       }),
 
@@ -227,16 +232,21 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         );
     }
 
+    // A light panel with dark text, so the muted series swatches read against every app theme
+    const legendOptions = {
+        showCheckboxes: true,
+        backgroundColor: "rgba(225, 228, 235, 0.92)",
+        textColor: appTheme.DarkIndigo,
+    };
+
     // split half of the years into two legends
     const leftLegend = new PolarLegendModifier({
-        showCheckboxes: true,
-        backgroundColor: "rgba(90, 90, 90, 0.5)",
+        ...legendOptions,
         placement: ELegendPlacement.TopLeft,
     });
 
     const rightLegend = new PolarLegendModifier({
-        showCheckboxes: true,
-        backgroundColor: "rgba(90, 90, 90, 0.5)",
+        ...legendOptions,
         placement: ELegendPlacement.TopRight,
     });
 

@@ -159,7 +159,7 @@ Three adapters add interactivity on top of the chart surface:
         markdownContent: null,
         pageLayout: "default",
         extraDependencies: {},
-        isNew: true,
+        isNew: false,
     };
 //// End of computer generated metadata
 
