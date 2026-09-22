@@ -8,7 +8,7 @@ import {
   EPointMarkerType,
 } from "scichart";
 import React from "react";
-import { SciChartReact } from "scichart-react";
+import { SciChartDeclarative } from "scichart-react";
 
 const chartConfig = {
   surface: {
@@ -101,7 +101,7 @@ function App() {
           scichart-react to create a simple chart with one X and Y axis
         </p>
       </header>
-      <SciChartReact
+      <SciChartDeclarative
         config={chartConfig}
         onInit={onInit}
         style={{ maxWidth: 900, height: 600 }}

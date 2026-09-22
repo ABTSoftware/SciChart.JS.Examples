@@ -20,7 +20,7 @@ SciChart.js is commercial software with a [free community license](https://scich
 
 ### webpack.config.js
 
-Use CopyPlugin to copy wasm and data files and serve them by webpack-dev-server. SciChart.js uses WebAssembly and those files **scichart2d.wasm**, **scichart2d-nosimd.wasm** or **scichart3d.wasm**, **scichart3d-nosimd.wasm** must be loaded.
+Use CopyPlugin to copy the wasm files and serve them by webpack-dev-server. SciChart.js uses WebAssembly, and the `_wasm` folder holds every variant the runtime may ask for — **scichart.wasm**, **scichart-64.wasm** (Memory64) and **scichart-nosimd.wasm**, plus the matching **scichart-charting3d\*.wasm** for 3D charts. Copy the whole folder and the right one is always there. (There is no separate `.data` file: since v4 it is embedded in the wasm.)
 
 ```javascript
 const path = require("path");
@@ -40,10 +40,9 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" }, // if 3D charts are used
-        { from: "node_modules/scichart/_wasm/scichart3d-nosimd.wasm", to: "" }, // if 3D charts are used
+        // copy the whole folder - it holds the 2D, 3D, nosimd and 64-bit builds,
+        // and the runtime picks whichever the browser can run
+        { from: "node_modules/scichart/_wasm/", to: "" },
       ],
     }),
   ],
@@ -59,7 +58,7 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 
 // call this before SciChartSurface.create()
 SciChart.SciChartSurface.configure({
-  wasmUrl: "/other/scichart2d.wasm",
+  wasmUrl: "/other/scichart.wasm",
 });
 ```
 
@@ -89,5 +88,5 @@ We have a wealth of information on our site showing how to get started with SciC
 Take a look at:
 
 - [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
-- [SciChart.js Documentation](www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
+- [SciChart.js Documentation](https://www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
 - [Official scichart.js demos](https://scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)

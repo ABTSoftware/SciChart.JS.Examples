@@ -38,34 +38,29 @@ export default {
       },
     }),
 
-    // Serve WASM files from SciChart into the bundle
-    // scichart2d.wasm
+    // Serve WASM files from SciChart into the bundle. The folder holds the
+    // 2D, 3D, nosimd and 64-bit builds, and the runtime picks whichever the
+    // browser can run - so emit them all.
     {
       name: "wasm",
       generateBundle() {
-        this.emitFile({
-          type: "asset",
-          fileName: "scichart2d.wasm",
-          source: fs.readFileSync(
-            "node_modules/scichart/_wasm/scichart2d.wasm"
-          ),
-        });
+        const wasmDir = "node_modules/scichart/_wasm";
+        for (const file of fs.readdirSync(wasmDir)) {
+          if (!file.endsWith(".wasm")) continue;
+          this.emitFile({
+            type: "asset",
+            fileName: file,
+            source: fs.readFileSync(`${wasmDir}/${file}`),
+          });
+        }
       },
     },
-    {
-      name: "wasm",
-      generateBundle() {
-        this.emitFile({
-          type: "asset",
-          fileName: "scichart2d-nosimd.wasm",
-          source: fs.readFileSync(
-            "node_modules/scichart/_wasm/scichart2d-nosimd.wasm"
-          ),
-        });
-      },
-    },
-    // if needed, do the same for 3d .wasm file
   ],
+  output: {
+    // scichart loads its wasm glue via dynamic import, which rollup would
+    // otherwise split into extra chunks - not supported by the iife format
+    inlineDynamicImports: true,
+  },
 };
 ```
 
@@ -202,5 +197,5 @@ We have a wealth of information on our site showing how to get started with SciC
 Take a look at:
 
 - [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
-- [SciChart.js Documentation](www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
+- [SciChart.js Documentation](https://www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
 - [Official scichart.js demos](https://scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)

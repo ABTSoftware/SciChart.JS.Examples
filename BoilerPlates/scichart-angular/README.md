@@ -51,78 +51,40 @@ SciChart3DSurface.loadWasmFromCDN();
 
 #### Fetching WASM from own server
 
-The way to do this is to copy the wasm files from the `node_modules/scichart/_wasm` folder to your output folder.
+The way to do this is to copy the wasm files from the `node_modules/scichart/_wasm` folder to your
+output folder. That folder holds the 2D, 3D, nosimd and 64-bit builds, and the runtime picks
+whichever the browser can run - so copy all of them.
 
-Angular requires wasm file to be in output folder `/src/_`. This is done using the `copy-files-to-from` npm package:
-
-To do this, we use npm package `copy-files-from-to` and `copy-files-from-to.json` with this config:
-
-```json
-{
-    "copyFilesSettings": {
-        "whenFileExists": "overwrite"
-    },
-    "copyFiles": [
-        {
-            "from": "./node_modules/scichart/_wasm/scichart2d.wasm",
-            "to": "./src/scichart2d.wasm"
-        },
-        {
-            "from": "./node_modules/scichart/_wasm/scichart3d.wasm",
-            "to": "./src/scichart3d.wasm"
-        }
-    ]
-}
-```
-
-Then this needs to be executed when building. See package.json scripts:
+This is done in `angular.json` by adding the folder to the build target's `assets`:
 
 ```json
-  "scripts": {
-    "copyWasm": "copy-files-from-to --config copy-files-from-to.json",
-    "start": "npm run copyWasm && ng serve",
-    "build": "npm run copyWasm && ng build",
-  },
+"assets": [
   {
-    "glob": "scichart2d-nosimd.wasm",
-    "input": "node_modules/scichart/_wasm",
-    "output": "/"
-  },
-  {
-    "glob": "scichart3d.wasm",
-    "input": "node_modules/scichart/_wasm",
-    "output": "/"
-  },
-  {
-    "glob": "scichart3d-nosimd.wasm",
+    "glob": "*.wasm",
     "input": "node_modules/scichart/_wasm",
     "output": "/"
   }
 ],
 ```
 
-And then, it is recommended to specify the URLs of those on the client side accordingly to the location they are hosted from.
-For example:
+And then it is recommended to specify the URL on the client side according to where the files are
+hosted. As of v6 a single wasm binary covers both 2D and 3D charts, so one url is enough:
 
 ```ts
-import { SciChartSurface, SciChart3DSurface } from 'scichart';
+import { SciChartSurface } from 'scichart';
 
 // ...
 
 SciChartSurface.configure({
-    wasmUrl: '/scichart2d.wasm',
-    wasmNoSimdUrl: '/scichart2d-nosimd.wasm',
-});
-
-SciChart3DSurface.configure({
-    wasmUrl: '/scichart3d.wasm',
-    wasmNoSimdUrl: '/scichart3d-nosimd.wasm',
+    wasmUrl: '/scichart.wasm',
 });
 ```
 
-If wasmNoSimdUrl is not specified it will search scichart2d-nosimd.wasm next to scichart2d.wasm
-
-In the is example it will fetch the dependencies from `http://localhost:4200/scichart2d.wasm`, `http://localhost:4200/scichart2d-nosimd.wasm`, `http://localhost:4200/scichart3d.wasm` and `http://localhost:4200/scichart3d-nosimd.wasm` respectively.
+The other variants are derived from that url - `scichart-nosimd.wasm` for browsers without
+WebAssembly SIMD and `scichart-64.wasm` for browsers with Memory64 support - so in this example the
+dependencies are fetched from `http://localhost:4200/scichart.wasm`,
+`http://localhost:4200/scichart-nosimd.wasm` and `http://localhost:4200/scichart-64.wasm`
+respectively. You can override any of them explicitly with `wasmNoSimdUrl` and `wasm64Url`.
 
 > Note: other methods to [load WASM from CDN](https://www.scichart.com/documentation/js/v5/2d-charts/surface/deploying-wasm/) are available to simplify getting started
 
@@ -620,5 +582,5 @@ We have a wealth of information on our site showing how to get started with SciC
 Take a look at:
 
 -   [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
--   [SciChart.js Documentation](www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
+-   [SciChart.js Documentation](https://www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
 -   [Official scichart.js demos](https://scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)

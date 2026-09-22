@@ -17,33 +17,24 @@ npm install scichart
 
 ## Step 2: Wasm file deployment
 
-SciChart.js uses WebAssembly files which must be served. In `vite.config.js`, add the following to serve the wasm files:
+SciChart.js uses WebAssembly files which must be served. This boilerplate copies
+them into `public/` before vite runs, via the `copyWasm` step in the `dev` and
+`build` scripts:
 
 ```javascript
-// vite.config.js
-import { defineConfig } from "vite";
-import { svelte } from "@sveltejs/vite-plugin-svelte";
-import { viteStaticCopy } from "vite-plugin-static-copy";
+// scripts/copy-wasm.mjs
+import { mkdirSync, copyFileSync, readdirSync } from "node:fs";
+import { resolve } from "node:path";
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    svelte(),
-    viteStaticCopy({
-      targets: [
-        {
-          src: "node_modules/scichart/_wasm/scichart2d.wasm",
-          dest: "/",
-        },
-        {
-          src: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm",
-          dest: "/",
-        },
-        // same for scichart3d if needed
-      ],
-    }),
-  ],
-});
+// Copy every wasm file shipped by scichart - the folder holds the 2D, 3D,
+// nosimd and 64-bit builds, and the runtime picks whichever the browser can run.
+const fromDir = resolve(rootDir, "node_modules/scichart/_wasm");
+const toDir = resolve(rootDir, "public");
+
+mkdirSync(toDir, { recursive: true });
+for (const file of readdirSync(fromDir).filter((f) => f.endsWith(".wasm"))) {
+  copyFileSync(resolve(fromDir, file), resolve(toDir, file));
+}
 ```
 
 > Note: other methods to [Deploying Wasm with your app](https://www.scichart.com/documentation/js/v5/2d-charts/surface/deploying-wasm/) are available to simplify getting started
@@ -158,7 +149,7 @@ export const drawExample = async (divId) => {
 npm run dev
 ```
 
-Navigate to [localhost:8080](http://localhost:8080). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+Navigate to [localhost:5173](http://localhost:5173). You should see your app running. Edit a component file in `src`, save it and vite hot-reloads the page.
 
 ## Building and running in production mode
 
@@ -168,7 +159,7 @@ To create an optimised version of the app:
 npm run build
 ```
 
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
+The output lands in `dist/`. Serve it locally with `npm run preview`.
 
 ## SciChart.js Tutorials and Getting Started
 
@@ -177,5 +168,5 @@ We have a wealth of information on our site showing how to get started with SciC
 Take a look at:
 
 - [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
-- [SciChart.js Documentation](www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
+- [SciChart.js Documentation](https://www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
 - [Official scichart.js demos](https://scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)

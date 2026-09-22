@@ -40,12 +40,7 @@ This can be done by modifying `angular.json` file
 ```json
 "assets": [
     {
-        "glob": "scichart2d.wasm",
-        "input": "./node_modules/scichart/_wasm/",
-        "output": "."
-    },
-    {
-        "glob": "scichart2d-nosimd.wasm",
+        "glob": "*.wasm",
         "input": "./node_modules/scichart/_wasm/",
         "output": "."
     }
@@ -133,5 +128,5 @@ We have a wealth of information on our site showing how to get started with SciC
 Take a look at:
 
 - [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
-- [SciChart.js Documentation](www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
+- [SciChart.js Documentation](https://www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
 - [Official scichart.js demos](https://scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)

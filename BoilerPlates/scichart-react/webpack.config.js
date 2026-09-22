@@ -30,14 +30,10 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
-        // Required for scichart to load wasm files for 2D charts
-        // Loading from CDN is also possible by calling SciChartSurface.loadWasmFromCDN()
-        { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
-        // This one also needed to work in browsers without SIMD support
-        { from: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm", to: "" },
-        // Optional: if including 3D charts copy these files
-        { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart3d-nosimd.wasm", to: "" },
+        // Required for scichart to load its wasm files (2D, 3D and the
+        // nosimd / 64-bit variants). Loading from CDN is also possible by
+        // calling SciChartSurface.loadWasmFromCDN()
+        { from: "node_modules/scichart/_wasm/", to: "" },
       ],
     }),
   ],

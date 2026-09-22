@@ -36,21 +36,12 @@ export default defineConfig({
       // for serving wasm files
       targets: [
         {
-          src: "node_modules/scichart/_wasm/scichart2d.wasm",
-          dest: "/",
-        },
-        {
-          src: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm",
-          dest: "/",
-        },
-        // same for 3d if needed:
-        {
-          src: "node_modules/scichart/_wasm/scichart3d.wasm",
-          dest: "/",
-        },
-        {
-          src: "node_modules/scichart/_wasm/scichart3d-nosimd.wasm",
-          dest: "/",
+          // the folder holds the 2D, 3D, nosimd and 64-bit builds, and the
+          // runtime picks whichever the browser can run
+          src: "node_modules/scichart/_wasm/*",
+          dest: "",
+          // flatten, so the files land next to index.html
+          rename: { stripBase: true },
         },
       ],
     }),
@@ -95,9 +86,19 @@ export const chartConfig = {
 
 ## Step 4: Create a React Component
 
-Charts can be initialized with the SciChartReact Component using the `config` property.
+There are two components, and which one you want depends on how you defined the chart. A
+function that builds the surface goes to `SciChartReact` via `initChart`; a Builder API config
+goes to `SciChartDeclarative` via `config`. (Before `scichart-react@2` both props lived on
+`SciChartReact` — passing `config` to it now throws.)
 
-```javascript
+**Give the component an explicit height.** Neither component sizes itself: the root is
+`position: relative` with your `style` on top and the inner chart div is `height: 100%`, so
+`style={{ width: 900 }}` alone collapses to zero height inside an auto-height parent and no chart
+appears.
+
+```jsx
+import { SciChartReact } from "scichart-react";
+
 function App() {
   // LICENSING
   // Commercial licenses set your license code here
@@ -113,10 +114,24 @@ function App() {
   return (
     <div>
       <h1>SciChart with React + Vite</h1>
-      <SciChartReact config={chartConfig} style={{ width: 900 }} />
+      <SciChartReact
+        initChart={drawExample}
+        style={{ width: 900, height: 600 }}
+      />
     </div>
   );
 }
+```
+
+To use the `chartConfig` from Step 3 instead, swap the component:
+
+```jsx
+import { SciChartDeclarative } from "scichart-react";
+
+<SciChartDeclarative
+  config={chartConfig}
+  style={{ width: 900, height: 600 }}
+/>;
 ```
 
 # Running the example
@@ -132,5 +147,5 @@ We have a wealth of information on our site showing how to get started with SciC
 Take a look at:
 
 - [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
-- [SciChart.js Documentation](www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
+- [SciChart.js Documentation](https://www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
 - [Official scichart.js demos](https://scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)

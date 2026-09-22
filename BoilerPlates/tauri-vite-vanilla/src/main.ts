@@ -7,7 +7,7 @@ import {
 } from "scichart";
 
 // You may need this to configure from where the wasm file is served
-// SciChart.SciChartSurface.configure({ wasmUrl: "/other/scichart2d.wasm" });
+// SciChart.SciChartSurface.configure({ wasmUrl: "/other/scichart.wasm" });
 
 async function initSciChart() {
   // Create the SciChartSurface in the div 'scichart-root'

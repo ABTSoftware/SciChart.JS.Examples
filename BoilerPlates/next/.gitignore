@@ -29,5 +29,5 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-scichart2d.wasm
-scichart3d.wasm
+# wasm files copied out of node_modules by the copyWasm script
+*.wasm

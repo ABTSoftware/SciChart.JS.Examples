@@ -20,7 +20,7 @@ import {
     SciChartPieSurface,
     SciChartSurface,
     TSurfaceDefinition,
-    chartBuilder,
+    buildChart,
     generateGuid,
 } from 'scichart';
 
@@ -108,7 +108,7 @@ const createChartRoot = () => {
 
 function createChartFromConfig<TSurface extends ISciChartSurfaceBase>(config: string | TSurfaceDefinition) {
     return async (chartRoot: string | HTMLDivElement): Promise<IInitResult<SciChartSurface | SciChartPieSurface>> => {
-        const chart = await chartBuilder.buildChart(chartRoot, config as ISciChart2DDefinition);
+        const chart = await buildChart(chartRoot, config as ISciChart2DDefinition);
         if ('sciChartSurface' in chart) {
             // 2D Chart
             return { sciChartSurface: chart.sciChartSurface };

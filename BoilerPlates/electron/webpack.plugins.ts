@@ -7,10 +7,9 @@ export const plugins = [
   }),
   new CopyPlugin({
     patterns: [
-      { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
-      { from: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm", to: "" },
-      { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
-      { from: "node_modules/scichart/_wasm/scichart3d-nosimd.wasm", to: "" },
+      // electron-forge serves the renderer from .webpack/renderer/main_window,
+      // so the wasm files have to sit next to that entry point's index.html
+      { from: "node_modules/scichart/_wasm/", to: "main_window" },
     ],
   }),
 ];

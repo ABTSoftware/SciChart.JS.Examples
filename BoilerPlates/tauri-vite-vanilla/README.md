@@ -11,10 +11,11 @@ SciChart.js is commercial software with a [free community license](https://scich
 
 If you haven't already done so, add SciChart.js to your JavaScript application.
 
-```javascript
+```bash
 npm install scichart
 
-npm install vite-plugin-static-copy // needed for copying wasm files
+# needed for copying the wasm files into the build output
+npm install -D vite-plugin-static-copy
 ```
 
 ## Step 2: Wasm file deployment
@@ -35,20 +36,9 @@ export default defineConfig(async () => ({
     viteStaticCopy({
       targets: [
         {
-          src: "node_modules/scichart/_wasm/scichart2d.wasm",
-          dest: "",
-        },
-        {
-          src: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm",
-          dest: "",
-        },
-        // same for 3d if needed:
-        {
-          src: "node_modules/scichart/_wasm/scichart3d.wasm",
-          dest: "",
-        },
-        {
-          src: "node_modules/scichart/_wasm/scichart3d-nosimd.wasm",
+          // the folder holds the 2D, 3D, nosimd and 64-bit builds, and the
+          // runtime picks whichever the browser can run
+          src: "node_modules/scichart/_wasm/*",
           dest: "",
         },
       ],
@@ -128,5 +118,5 @@ We have a wealth of information on our site showing how to get started with SciC
 Take a look at:
 
 - [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
-- [SciChart.js Documentation](www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
+- [SciChart.js Documentation](https://www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
 - [Official scichart.js demos](https://scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)

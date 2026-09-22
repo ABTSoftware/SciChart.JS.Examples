@@ -1,5 +1,5 @@
 async function initSciChart() {
-  await SciChart.chartBuilder.buildChart("scichart-root", {
+  await SciChart.buildChart("scichart-root", {
     series: {
       type: "LineSeries",
       options: { stroke: "steelblue" },

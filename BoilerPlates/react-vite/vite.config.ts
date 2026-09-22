@@ -9,21 +9,12 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: "node_modules/scichart/_wasm/scichart2d.wasm",
+          // copy the whole folder so the nosimd / 64-bit / 3D wasm
+          // variants are served too
+          src: "node_modules/scichart/_wasm/*",
           dest: "",
-        },
-        {
-          src: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm",
-          dest: "",
-        },
-        // same for 3d if needed:
-        {
-          src: "node_modules/scichart/_wasm/scichart3d.wasm",
-          dest: "",
-        },
-        {
-          src: "node_modules/scichart/_wasm/scichart3d-nosimd.wasm",
-          dest: "",
+          // flatten, so the files land next to index.html
+          rename: { stripBase: true },
         },
       ],
     }),

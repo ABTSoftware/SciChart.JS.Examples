@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# wasm files copied out of node_modules by the copyWasm script
+public/

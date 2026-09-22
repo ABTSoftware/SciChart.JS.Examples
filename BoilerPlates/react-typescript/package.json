@@ -14,12 +14,13 @@
     "dependencies": {
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "scichart": "6.0.0-alpha.145",
+        "scichart": "6.0.0-alpha.196",
         "ts-node": "^10.9.1"
     },
     "devDependencies": {
         "@types/react": "^18.2.15",
         "@types/react-dom": "^18.2.7",
+        "@webgpu/types": "^0.1.74",
         "copy-webpack-plugin": "^14.0.0",
         "prettier": "^2.4.1",
         "ts-loader": "^9.4.2",
