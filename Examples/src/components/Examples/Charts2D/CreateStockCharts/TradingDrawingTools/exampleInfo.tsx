@@ -29,6 +29,15 @@ const metaData: IExampleMetadata = {
             markdownContent:
                 "## React Trading Drawing Tools\n\nThis example demonstrates a full drawing toolbar for financial and trading charts. It uses `scichart-financial-tools` for Polylines, Extended Lines, Channels, Rays, Pitchforks, Pitchfans, Fibonacci Retracements, Measure Tools and Stop-loss/Take-profit regions, with `MultiPointAnnotationPlacementModifier` for click-to-place workflows.",
         },
+        angular: {
+            subtitle:
+                "SciChart’s Angular Trading Drawing Tools demo shows how to use polylines, extended lines, rays, channels, pitchforks, pitchfans, Fibonacci retracements, stop loss, and Take Profit chart drawing tools for technical analysis.",
+            title: "Angular Trading Drawing Tools Demo",
+            pageTitle: "Angular Trading Drawing Tools for Devs | Try SciChart Demo",
+            metaDescription:
+                "Build high-performance financial apps with Angular trading drawing tools. Try SciChart’s demo to see the advanced drawing tools for trading apps in action.",
+            markdownContent: null,
+        },
     },
     documentationLinks: [
         {

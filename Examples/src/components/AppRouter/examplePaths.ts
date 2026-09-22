@@ -149,6 +149,7 @@ export default [
     "../Examples/Charts3D/Basic3DChartTypes/ImmediateMesh3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/Interactive3DWaterfallSpectralChart",
     "../Examples/Charts3D/Basic3DChartTypes/LogarithmicAxis3DChart",
+    "../Examples/Charts3D/Basic3DChartTypes/Model3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/PointLine3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart",
     "../Examples/Charts3D/Basic3DChartTypes/Styling3DChart",

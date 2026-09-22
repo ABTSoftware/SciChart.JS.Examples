@@ -97,6 +97,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_basicCharts_ParallelCoordinatesChart,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_ImmediateMesh3DChart,
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_Model3DChart,
         ],
     },
 ];
@@ -347,6 +348,7 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_LogarithmicAxis3DChart,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_Interactive3DWaterfallSpectralChart,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_ImmediateMesh3DChart,
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_Model3DChart,
         ],
     },
 ];

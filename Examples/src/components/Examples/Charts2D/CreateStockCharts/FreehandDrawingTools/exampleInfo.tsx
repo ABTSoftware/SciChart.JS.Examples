@@ -29,6 +29,15 @@ const metaData: IExampleMetadata = {
             markdownContent:
                 "## React Freehand Drawing Tools\n\nThis example demonstrates `FreehandDrawingModifier` and `FreehandDrawingAnnotation`. Select color, switch between drawing and edit modes, delete annotations using backspace button and delete icon. This tool can be used for drawing trend lines, event markers, text or any arbitrary drawing for financial and trading charts.",
         },
+        angular: {
+            subtitle:
+                "Try the Angular Freehand Drawing Tools Demo for trading and financial charts using SciChart.js. This example can be used for drawing trends, arrow, markers, text, and more. View all the code samples and documentation links below.",
+            title: "Angular Freehand Drawing Tools Demo",
+            pageTitle: "Angular Freehand Drawing Tools for Apps | Try SciChart Demo",
+            metaDescription:
+                "Deploy the ultimate Angular freehand drawing tool in your app. Render complex freehand drawing tools with a smooth UI experience. Try the SciChart demo today.",
+            markdownContent: null,
+        },
     },
     documentationLinks: [
         {

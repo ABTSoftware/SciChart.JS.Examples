@@ -30,6 +30,15 @@ const metaData: IExampleMetadata = {
                 "Draw custom lit 3D geometry in React with SciChart.js using ImmediateLitMeshContext. Emit per-vertex positions, normals, texture coordinates and colours from a custom 3D scene entity.",
             markdownContent,
         },
+        angular: {
+            subtitle:
+                "Demonstrates how to draw custom lit 3D geometry in Angular with `ImmediateLitMeshContext`, by emitting an aurora-like banked helix as a single triangle strip from a custom scene entity.",
+            title: "Angular Immediate Mesh 3D Chart",
+            pageTitle: "Angular Immediate Mesh 3D Chart | View 3D JavaScript Charts",
+            metaDescription:
+                "Draw custom lit 3D geometry in Angular with SciChart.js using ImmediateLitMeshContext. Emit per-vertex positions, normals, texture coordinates and colours from a custom 3D scene entity.",
+            markdownContent,
+        },
     },
     documentationLinks: [
         {
