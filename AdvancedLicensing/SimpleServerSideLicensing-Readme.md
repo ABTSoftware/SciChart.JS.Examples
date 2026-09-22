@@ -70,12 +70,12 @@ Example licences:
 
 | Example                                                                        | Stack                      | Notes                                                                                        |
 | ------------------------------------------------------------------------------ | -------------------------- | -------------------------------------------------------------------------------------------- |
-| [nodejs-simple-server-licensing](../nodejs-simple-server-licensing/)           | Node.js + Express          | Uses built-in `crypto` module                                                                |
-| [dotnet-simple-server-licensing](../dotnet-simple-server-licensing/)           | ASP.NET Core 8 Minimal API | Single `Program.cs`, no NuGet packages                                                       |
-| [dotnet-mvc-simple-server-licensing](../dotnet-mvc-simple-server-licensing/)   | ASP.NET Core 10 MVC        | `LicenseController` alongside existing controllers                                           |
-| [java-spring-simple-server-licensing](../java-spring-simple-server-licensing/) | Spring Boot 3 + Maven      | `@RestController` using `javax.crypto.Mac`                                                   |
-| [electron-simple-server-licensing](../electron-simple-server-licensing/)       | Electron                   | Token generated in main process via IPC                                                      |
-| [tauri-simple-server-licensing](../tauri-simple-server-licensing/)             | Tauri (Rust)               | Token generated in Rust backend via invoke bridge; Server Secret compiled into native binary |
+| [nodejs-simple-server-licensing](nodejs-simple-server-licensing/)           | Node.js + Express          | Uses built-in `crypto` module                                                                |
+| [dotnet-simple-server-licensing](dotnet-simple-server-licensing/)           | ASP.NET Core 8 Minimal API | Single `Program.cs`, no NuGet packages                                                       |
+| [dotnet-mvc-simple-server-licensing](dotnet-mvc-simple-server-licensing/)   | ASP.NET Core 10 MVC        | `LicenseController` alongside existing controllers                                           |
+| [java-spring-simple-server-licensing](java-spring-simple-server-licensing/) | Spring Boot 3 + Maven      | `@RestController` using `javax.crypto.Mac`                                                   |
+| [electron-simple-server-licensing](electron-simple-server-licensing/)       | Electron                   | Token generated in main process via IPC                                                      |
+| [tauri-simple-server-licensing](tauri-simple-server-licensing/)             | Tauri (Rust)               | Token generated in Rust backend via invoke bridge; Server Secret compiled into native binary |
 
 ---
 

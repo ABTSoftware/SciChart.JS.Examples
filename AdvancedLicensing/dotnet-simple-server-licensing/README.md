@@ -93,14 +93,3 @@ See [../SimpleServerSideLicensing-Readme.md](../SimpleServerSideLicensing-Readme
 > **Key point in all cases:** hex-decode the Server Secret to binary bytes before passing to HMAC. Do not use the hex string directly as the key.
 
 > **Inline-mode caching:** not recommended. Inline tokens are not bound to a particular client, but the embedded `serverNow` ages relative to the client's clock and will fall outside `max_skew` once the cache is older than the licence's tolerance — sign per request. Round-trip responses cannot be cached either.
-
-## Differences from Advanced Server Licensing
-
-|                             | Simple (this example)                | Advanced                            |
-| --------------------------- | ------------------------------------ | ----------------------------------- |
-| Server dependency           | None (stdlib HMAC)                   | `SciChart.Server.Licensing` NuGet   |
-| Crypto                      | Symmetric HMAC-SHA256                | Asymmetric NaCl box                 |
-| Token validity              | Per-licence (`valid_time`)           | 7 days, daily re-validation         |
-| Cross-origin replay defence | Round-trip shape + client nonce      | Encrypted challenge enforces domain |
-| Clock-skew tolerance        | Per-licence (`max_skew`, 0 disables) | Anchored on client time             |
-| Required feature flag       | `SV:H:V:N`                           | none                                |
