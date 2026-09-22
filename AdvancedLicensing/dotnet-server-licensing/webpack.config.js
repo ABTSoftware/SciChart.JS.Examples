@@ -24,8 +24,11 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
+        // SciChart 6 serves a DIRECTORY, not the old scichart2d.data/.wasm pair: _wasm/
+        // holds the core binary plus its nosimd and wasm64 variants, and the same three
+        // for charting3d. Copying the whole directory means new variants ship without
+        // touching this config. Matches the other samples here.
+        { from: "node_modules/scichart/_wasm", to: "." },
       ],
     }),
   ],

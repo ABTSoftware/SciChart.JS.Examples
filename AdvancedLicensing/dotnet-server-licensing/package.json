@@ -6,7 +6,7 @@
     "build": "webpack"
   },
   "dependencies": {
-    "scichart": "^3.3.575"
+    "scichart": "6.0.0-alpha.196"
   },
   "devDependencies": {
     "typescript": "4.9.5",

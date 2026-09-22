@@ -1,5 +1,7 @@
-﻿import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+﻿// Root-barrel import: this project is on TypeScript 4.9, which predates the
+// "bundler" moduleResolution needed to follow SciChart 6's package "exports" map,
+// so the old deep paths ("scichart/Charting/...") no longer resolve here.
+import { NumericAxis, SciChartSurface } from "scichart";
 
 async function initSciChart() {
   // LICENSING //
