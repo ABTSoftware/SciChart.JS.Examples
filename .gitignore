@@ -30,3 +30,5 @@ Examples/logs/all.log
 .sciclawd
 .claude
 /docs/
+# Playwright MCP session artifacts (console logs, page snapshots, screenshots)
+.playwright-mcp/

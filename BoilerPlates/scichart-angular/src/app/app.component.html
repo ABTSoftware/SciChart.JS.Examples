@@ -1,4 +1,4 @@
-<h1>Hello Angular 17 With Animations Chart</h1>
+<h1>Hello Angular With Animations Chart</h1>
 <div>
     <label>
         <input type="checkbox" [(ngModel)]="showCharts" /> Show Charts
@@ -23,3 +23,12 @@
         ></scichart-angular>
     </div>
 </div>
+
+<!--
+    To build a chart from a Builder API definition instead of an init function, use the
+    scichart-angular-declarative component (import ScichartAngularDeclarativeComponent):
+
+    <scichart-angular-declarative [config]="chartConfig"></scichart-angular-declarative>
+
+    Passing [config] to scichart-angular throws - the input moved in scichart-angular 2.0.
+-->

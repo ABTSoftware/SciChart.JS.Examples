@@ -1,6 +1,6 @@
 # Angular SciChart Boilerplate with scichart-angular
 
-This boilerplate uses Angular 20 and SciChart.js 5.0.
+This boilerplate uses Angular 22, SciChart.js 6 and scichart-angular 2.
 
 This folder provides a boilerplate for creating a chart in Angular with npm package scichart-angular,
 as well as a setup guide.
@@ -90,187 +90,22 @@ respectively. You can override any of them explicitly with `wasmNoSimdUrl` and `
 
 ### Step 3: Creating the Chart
 
-There are two ways to setup `SciChartAngular`.
-The component requires one of `[config]` or `[initChart]` properties to create a chart.
+There are two components, one per approach:
 
-#### With Config
+-   `<scichart-angular [initChart]="...">` builds the chart from a function you write. The Builder
+    API is never pulled in, so the bundle only contains the types your code imports.
+-   `<scichart-angular-declarative [config]="...">` builds the chart from a Builder API definition.
+    Every built-in type is registered for you, so any definition works with no setup - at the cost
+    of bundling the whole type universe.
 
-The SecondChartGroup component demonstrates how to use the config approach to create both 2D and 3D charts using the [Builder API](https://www.scichart.com/documentation/js/v5/2d-charts/builder-api/builder-api-overview/).
-
-`app.component.html`:
-
-```html
-<div class="second-chart-container">
-    <h3>Charts with Config Approach</h3>
-    <div>
-        <label> <input type="checkbox" [(ngModel)]="showChart" /> Show Charts </label>
-    </div>
-    <div class="charts-grid" *ngIf="showChart">
-        <div class="chart-wrapper">
-            <h4>2D Chart</h4>
-            <scichart-angular
-                [config]="config"
-                (onInit)="onInit2DHandler($event)"
-                (onDelete)="onDelete2DHandler($event)"
-            ></scichart-angular>
-        </div>
-        <div class="chart-wrapper">
-            <h4>3D Chart</h4>
-            <scichart-angular
-                [config]="config3D"
-                (onInit)="onInit3DHandler($event)"
-                (onDelete)="onDelete3DHandler($event)"
-            ></scichart-angular>
-        </div>
-    </div>
-</div>
-```
-
-`app.component.ts`:
-
-```ts
-import { Component } from '@angular/core';
-import { ScichartAngularComponent } from 'scichart-angular';
-
-import {
-  SciChartSurface,
-  NumericAxis,
-  XyDataSeries,
-  MouseWheelZoomModifier,
-  ZoomPanModifier,
-  ZoomExtentsModifier,
-  EChart2DModifierType,
-  ESeriesType,
-} from "scichart";
-
-@Component({
-  selector: 'app-second-chart-group',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ScichartAngularComponent],
-  templateUrl: './second-chart-group.component.html',
-  styleUrl: './second-chart-group.component.css',
-})
-export class AppComponent {
-  title = 'SciChartAngular Boilerplate';
-
-  config = {
-    xAxes: [{ type: EAxisType.NumericAxis }],
-    yAxes: [{ type: EAxisType.NumericAxis }],
-    series: [
-      {
-        type: ESeriesType.SplineMountainSeries,
-        options: {
-          fill: "#3ca832",
-          stroke: "#eb911c",
-          strokeThickness: 4,
-          opacity: 0.4,
-        },
-        xyData: { xValues: [1, 2, 3, 4, 5, 6, 7, 8], yValues: [1, 4, 7, 3, 6, 2, 5, 8] },
-      },
-    ],
-    modifiers: [
-      { type: EChart2DModifierType.ZoomPan, options: { enableZoom: true } },
-      { type: EChart2DModifierType.MouseWheelZoom },
-      { type: EChart2DModifierType.ZoomExtents },
-    ],
-  };
-
-  // 3D Chart Configuration
-  config3D = {
-    type: ESciChartSurfaceType.Default3D,
-    surface: {
-      theme: { type: EThemeProviderType.Navy },
-      cameraOptions: {
-        position: new Vector3(230, 300, 380),
-        target: new Vector3(0, 70, 0),
-        fieldOfView: 50,
-      },
-      isZYPlaneVisible: false,
-    },
-    xAxis: {
-      type: EAxisType.NumericAxis3D,
-      options: {
-        labelPrecision: 0,
-        visibleRange: new NumberRange(-5, 5),
-      },
-    },
-    yAxis: {
-      type: EAxisType.NumericAxis3D,
-      options: {
-        labelPrecision: 0,
-        visibleRange: new NumberRange(0, 8),
-        axisTitle: 'Y Axis',
-      },
-    },
-    zAxis: {
-      type: EAxisType.NumericAxis3D,
-      options: {
-        labelPrecision: 0,
-        visibleRange: new NumberRange(-5, 5),
-      },
-    },
-    series: [
-      {
-        type: ESeriesType3D.ColumnRenderableSeries3D,
-        options: {
-          stroke: '#AA0000FF',
-        },
-        xyzData: {
-          xValues: [0, 1, 2, 3, 4],
-          zValues: [0, -1, -2, -3, -4],
-          yValues: [1, 4, 2, 3, 0.5],
-        },
-      },
-      {
-        type: ESeriesType3D.PointLineRenderableSeries3D,
-        options: {
-          stroke: '#88aaFFFF',
-          strokeThickness: 5,
-          pointMarker: {
-            type: EPointMarker3DType.Ellipse,
-            options: {
-              size: 5,
-              fill: '#00FF66',
-            },
-          },
-        },
-        xyzData: {
-          xValues: [0, -1, -2, -3, -4],
-          zValues: [0, 1, 2, 3, 4],
-          yValues: [1, 4, 2, 3, 0.5],
-        },
-      },
-      // Additional series omitted for brevity
-    ],
-    modifiers: [
-      { type: EChart3DModifierType.MouseWheelZoom },
-      { type: EChart3DModifierType.Orbit },
-      { type: EChart3DModifierType.PinchZoom },
-      { type: EChart3DModifierType.Tooltip },
-      { type: EChart3DModifierType.ZoomExtents },
-    ],
-  };
-
-  // Event handlers
-  onInit2DHandler = (initResult: { sciChartSurface: SciChartSurface }) => {
-    console.log('onInit2DHandler', initResult);
-  };
-
-  onDelete2DHandler = (initResult: { sciChartSurface: SciChartSurface }) => {
-    console.log('onDelete2DHandler', initResult);
-  };
-
-  onInit3DHandler = (initResult: { sciChartSurface: SciChart3DSurface }) => {
-    console.log('onInit3DHandler', initResult);
-  };
-
-```
-
----
+> **Changed in scichart-angular 2.0:** `[config]` moved off `scichart-angular` onto the new
+> `scichart-angular-declarative` component. Setting `[config]` on `scichart-angular` throws, so the
+> move cannot pass unnoticed.
 
 #### With Initialization Function
 
-Alternatively you can pass a function which should create a surface on the provided root element.
+Pass a function which creates a surface on the provided root element. This is what this boilerplate
+uses - see `src/app/app.component.html` and `src/app/drawExample2D.ts` / `drawExample3D.ts`.
 
 `app.component.html`
 
@@ -334,7 +169,7 @@ export class FirstChartGroupComponent {
 }
 ```
 
-**NOTE** Make sure that in both cases `initChart` and `config` props do not change, as they should be only used for initial chart render. The component also provides `onInit` and `onDelete` events that you can use to handle chart initialization and cleanup.
+**NOTE** Make sure that in both cases the `initChart` and `config` inputs do not change, as they are only used for the initial chart render. The component also provides `onInit` and `onDelete` events that you can use to handle chart initialization and cleanup.
 
 The FirstChartGroup component uses the following chart initialization functions:
 
@@ -528,6 +363,182 @@ export const drawExample3D = async (rootElement: string | HTMLDivElement) => {
     return { sciChartSurface: sciChart3DSurface, wasmContext };
 };
 ```
+
+#### With a Builder API Config
+
+Pass a chart definition to `scichart-angular-declarative` to create 2D and 3D charts with the
+[Builder API](https://www.scichart.com/documentation/js/v5/2d-charts/builder-api/builder-api-overview/).
+
+`app.component.html`:
+
+```html
+<div class="second-chart-container">
+    <h3>Charts with Config Approach</h3>
+    <div>
+        <label> <input type="checkbox" [(ngModel)]="showChart" /> Show Charts </label>
+    </div>
+    <div class="charts-grid" *ngIf="showChart">
+        <div class="chart-wrapper">
+            <h4>2D Chart</h4>
+            <scichart-angular-declarative
+                [config]="config"
+                (onInit)="onInit2DHandler($event)"
+                (onDelete)="onDelete2DHandler($event)"
+            ></scichart-angular-declarative>
+        </div>
+        <div class="chart-wrapper">
+            <h4>3D Chart</h4>
+            <scichart-angular-declarative
+                [config]="config3D"
+                (onInit)="onInit3DHandler($event)"
+                (onDelete)="onDelete3DHandler($event)"
+            ></scichart-angular-declarative>
+        </div>
+    </div>
+</div>
+```
+
+`app.component.ts`:
+
+```ts
+import { Component } from '@angular/core';
+import { ScichartAngularDeclarativeComponent } from 'scichart-angular';
+
+import {
+  SciChartSurface,
+  NumericAxis,
+  XyDataSeries,
+  MouseWheelZoomModifier,
+  ZoomPanModifier,
+  ZoomExtentsModifier,
+  EChart2DModifierType,
+  ESeriesType,
+} from "scichart";
+
+@Component({
+  selector: 'app-second-chart-group',
+  standalone: true,
+  imports: [CommonModule, FormsModule, ScichartAngularDeclarativeComponent],
+  templateUrl: './second-chart-group.component.html',
+  styleUrl: './second-chart-group.component.css',
+})
+export class AppComponent {
+  title = 'SciChartAngular Boilerplate';
+
+  config = {
+    xAxes: [{ type: EAxisType.NumericAxis }],
+    yAxes: [{ type: EAxisType.NumericAxis }],
+    series: [
+      {
+        type: ESeriesType.SplineMountainSeries,
+        options: {
+          fill: "#3ca832",
+          stroke: "#eb911c",
+          strokeThickness: 4,
+          opacity: 0.4,
+        },
+        xyData: { xValues: [1, 2, 3, 4, 5, 6, 7, 8], yValues: [1, 4, 7, 3, 6, 2, 5, 8] },
+      },
+    ],
+    modifiers: [
+      { type: EChart2DModifierType.ZoomPan, options: { enableZoom: true } },
+      { type: EChart2DModifierType.MouseWheelZoom },
+      { type: EChart2DModifierType.ZoomExtents },
+    ],
+  };
+
+  // 3D Chart Configuration
+  config3D = {
+    type: ESciChartSurfaceType.Default3D,
+    surface: {
+      theme: { type: EThemeProviderType.Navy },
+      cameraOptions: {
+        position: new Vector3(230, 300, 380),
+        target: new Vector3(0, 70, 0),
+        fieldOfView: 50,
+      },
+      isZYPlaneVisible: false,
+    },
+    xAxis: {
+      type: EAxisType.NumericAxis3D,
+      options: {
+        labelPrecision: 0,
+        visibleRange: new NumberRange(-5, 5),
+      },
+    },
+    yAxis: {
+      type: EAxisType.NumericAxis3D,
+      options: {
+        labelPrecision: 0,
+        visibleRange: new NumberRange(0, 8),
+        axisTitle: 'Y Axis',
+      },
+    },
+    zAxis: {
+      type: EAxisType.NumericAxis3D,
+      options: {
+        labelPrecision: 0,
+        visibleRange: new NumberRange(-5, 5),
+      },
+    },
+    series: [
+      {
+        type: ESeriesType3D.ColumnRenderableSeries3D,
+        options: {
+          stroke: '#AA0000FF',
+        },
+        xyzData: {
+          xValues: [0, 1, 2, 3, 4],
+          zValues: [0, -1, -2, -3, -4],
+          yValues: [1, 4, 2, 3, 0.5],
+        },
+      },
+      {
+        type: ESeriesType3D.PointLineRenderableSeries3D,
+        options: {
+          stroke: '#88aaFFFF',
+          strokeThickness: 5,
+          pointMarker: {
+            type: EPointMarker3DType.Ellipse,
+            options: {
+              size: 5,
+              fill: '#00FF66',
+            },
+          },
+        },
+        xyzData: {
+          xValues: [0, -1, -2, -3, -4],
+          zValues: [0, 1, 2, 3, 4],
+          yValues: [1, 4, 2, 3, 0.5],
+        },
+      },
+      // Additional series omitted for brevity
+    ],
+    modifiers: [
+      { type: EChart3DModifierType.MouseWheelZoom },
+      { type: EChart3DModifierType.Orbit },
+      { type: EChart3DModifierType.PinchZoom },
+      { type: EChart3DModifierType.Tooltip },
+      { type: EChart3DModifierType.ZoomExtents },
+    ],
+  };
+
+  // Event handlers
+  onInit2DHandler = (initResult: { sciChartSurface: SciChartSurface }) => {
+    console.log('onInit2DHandler', initResult);
+  };
+
+  onDelete2DHandler = (initResult: { sciChartSurface: SciChartSurface }) => {
+    console.log('onDelete2DHandler', initResult);
+  };
+
+  onInit3DHandler = (initResult: { sciChartSurface: SciChart3DSurface }) => {
+    console.log('onInit3DHandler', initResult);
+  };
+
+```
+
+---
 
 ## Code scaffolding
 

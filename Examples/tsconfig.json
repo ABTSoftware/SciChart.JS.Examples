@@ -25,9 +25,12 @@
         "module": "ESNext",
         "moduleResolution": "bundler",
         "baseUrl": ".",
-        "paths": {
-            "scichart-react": ["./src/scichart-react/index.ts"]
-        },
+        // To build against the vendored copy in src/scichart-react instead of the npm package:
+        // uncomment the block below, uncomment the matching alias in the three webpack configs,
+        // and comment out "src/scichart-react/**" in "exclude" at the bottom of this file
+        // "paths": {
+        //     "scichart-react": ["./src/scichart-react/index.ts"]
+        // },
         "target": "es2018",
         "downlevelIteration": true,
         "jsx": "react-jsx",
@@ -38,5 +41,13 @@
         "experimentalDecorators": true
     },
     "include": ["src/**/*", "testUnit/**/*", "../ExampleDependencies/src/ExampleData/binanceRestClient.ts"],
-    "exclude": ["node_modules", "src/static/*", "src/**/vanilla.ts", "src/**/angular.ts"]
+    "exclude": [
+        "node_modules",
+        "src/static/*",
+        "src/**/vanilla.ts",
+        "src/**/angular.ts",
+        // The vendored scichart-react copy is kept as a fallback but is not part of the app -
+        // comment this out when re-enabling the "paths" entry above
+        "src/scichart-react/**"
+    ]
 }

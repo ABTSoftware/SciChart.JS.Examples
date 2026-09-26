@@ -32,8 +32,8 @@
         "@angular/ssr": "^22.1.0-next.0",
         "express": "^5.1.0",
         "rxjs": "~7.8.0",
-        "scichart": "6.0.0-alpha.196",
-        "scichart-angular": "^1.0.0",
+        "scichart": "6.0.1",
+        "scichart-angular": "2.0.0",
         "tslib": "^2.3.0",
         "zone.js": "~0.15.0"
     },
@@ -53,6 +53,6 @@
         "typescript": "~6.0.3"
     },
     "overrides": {
-        "scichart": "6.0.0-alpha.196"
+        "scichart": "$scichart"
     }
 }
