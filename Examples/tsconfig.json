@@ -25,9 +25,10 @@
         "module": "ESNext",
         "moduleResolution": "bundler",
         "baseUrl": ".",
-        "paths": {
-            "scichart-react": ["./src/scichart-react/index.ts"]
-        },
+        // Re-enable to build against the vendored copy in src/scichart-react instead of the npm package
+        // "paths": {
+        //     "scichart-react": ["./src/scichart-react/index.ts"]
+        // },
         "target": "es2018",
         "downlevelIteration": true,
         "jsx": "react-jsx",
