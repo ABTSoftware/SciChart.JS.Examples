@@ -22,7 +22,6 @@ export const getReactSandBoxConfig = async (
     let code = await fs.promises.readFile(tsPath, "utf8");
     let files: IFiles = {};
     await includeImportedModules(folderPath, files, code, true, true, baseUrl);
-    code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
     code = await includeExternalModules(folderPath, folderPath, files, code, true, true);
     // console.log("creating sandbox", currentExample.title, currentExample.path.replace("/", ""));
     // for (const f in files) {
@@ -44,12 +43,6 @@ export const getReactSandBoxConfig = async (
                     eject: "react-scripts eject",
                 },
                 dependencies: {
-                    "@emotion/react": pj.dependencies["@emotion/react"],
-                    "@emotion/styled": pj.dependencies["@emotion/styled"],
-                    "@mui/material": pj.dependencies["@mui/material"],
-                    "@mui/lab": pj.dependencies["@mui/lab"],
-                    "@mui/icons-material": pj.dependencies["@mui/icons-material"],
-                    sass: "^1.49.9",
                     "loader-utils": "3.2.1",
                     react: pj.dependencies["react"],
                     "react-dom": pj.dependencies["react-dom"],

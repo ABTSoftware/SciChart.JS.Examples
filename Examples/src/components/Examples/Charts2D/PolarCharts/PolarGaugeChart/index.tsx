@@ -1,6 +1,5 @@
 import * as React from "react";
 import { SciChartSurface } from "scichart";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { SciChartReact } from "scichart-react";
 import { getChartsInitializationAPI } from "./drawExample";
@@ -13,7 +12,7 @@ export default function GaugeChart() {
 
     return (
         <ChartGroupLoader
-            className={commonClasses.ChartWrapper}
+            className="sc-chart-wrapper"
             style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(3, 1fr)",

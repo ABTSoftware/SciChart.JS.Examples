@@ -1,5 +1,4 @@
 import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
@@ -8,7 +7,7 @@ import { ChartGroupLoader } from "scichart-react";
 
 export default function LiDAR3DPointCloudDemo() {
     return (
-        <ChartGroupLoader className={commonClasses.ChartWrapper}>
+        <ChartGroupLoader className="sc-chart-wrapper">
             <SciChartReact initChart={drawExample} style={{ height: "100%", width: "100%" }} />
             <SciChartReact
                 initChart={drawHeatmapLegend}

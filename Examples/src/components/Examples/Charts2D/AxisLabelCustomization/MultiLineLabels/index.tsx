@@ -1,11 +1,8 @@
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import * as React from "react";
 import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { TextLabelProvider, SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";
-import commonClasses from "../../../styles/Examples.module.scss";
-
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function MultiLineLabels() {
@@ -37,22 +34,35 @@ export default function MultiLineLabels() {
     };
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow}>
-                <ToggleButtonGroup
-                    className={commonClasses.ToggleButtonGroup}
-                    exclusive
-                    value={preset}
-                    onChange={handlePreset}
-                    size="medium"
-                    color="primary"
-                    aria-label="small outlined button group"
-                >
-                    <ToggleButton value={0}>Multi-Line</ToggleButton>
-                    <ToggleButton value={1}>Single Line Rotated</ToggleButton>
-                    <ToggleButton value={2}>Multi-Line Rotated</ToggleButton>
-                </ToggleButtonGroup>
-            </div>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="small outlined button group">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={preset === 0}
+                        onClick={(event) => handlePreset(event, 0)}
+                    >
+                        Multi-Line
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={preset === 1}
+                        onClick={(event) => handlePreset(event, 1)}
+                    >
+                        Single Line Rotated
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={preset === 2}
+                        onClick={(event) => handlePreset(event, 2)}
+                    >
+                        Multi-Line Rotated
+                    </button>
+                </div>
+            </header>
             <SciChartReact
                 initChart={drawExample}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {

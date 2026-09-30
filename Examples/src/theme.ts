@@ -2,6 +2,13 @@ import { cyan } from "@mui/material/colors"; // Correct way to import colors in 
 import { createTheme } from "@mui/material/styles";
 
 export const customTheme = createTheme({
+    components: {
+        MuiButtonBase: {
+            defaultProps: {
+                disableRipple: true,
+            },
+        },
+    },
     breakpoints: {
         values: {
             xs: 0,

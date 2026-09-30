@@ -1,9 +1,7 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, POLAR_MODIFIER_INFO } from "./drawExample";
 import { useState } from "react";
 import { EChart2DModifierType } from "scichart";
-import { Checkbox } from "@mui/material";
 import { appTheme } from "../../../theme";
 
 const ALL_POLAR_MODIFIER_TYPES = Array.from(Object.keys(POLAR_MODIFIER_INFO));
@@ -61,7 +59,7 @@ export default function ChartComponent() {
     };
 
     return (
-        <div className={commonClasses.ChartWrapper}>
+        <div className="sc-chart-wrapper">
             <div
                 style={{
                     width: "100%",
@@ -95,13 +93,12 @@ export default function ChartComponent() {
                                 paddingRight: 10,
                             }}
                         >
-                            <Checkbox
+                            <input
+                                type="checkbox"
+                                className="sc-checkbox"
+                                aria-label={`Enable ${type}`}
                                 checked={modifiersActive[type]}
                                 onChange={(event) => handleToggleButtonChanged(event, type as EChart2DModifierType)}
-                                inputProps={{ "aria-label": "controlled" }}
-                                style={{
-                                    color: appTheme.Indigo,
-                                }}
                             />
 
                             <p

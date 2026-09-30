@@ -1,11 +1,10 @@
 import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { draw3DChart, drawLineChart1, drawLineChart2, drawHeatmapLegend } from "./drawExample";
 import { SciChartReact, ChartGroupLoader } from "scichart-react";
 
 export default function TenorCurves3DChart() {
     return (
-        <ChartGroupLoader className={commonClasses.ChartWrapper} style={{ display: "flex", flexWrap: "wrap" }}>
+        <ChartGroupLoader className="sc-chart-wrapper flex flex-wrap">
             <div style={{ flex: "auto", flexBasis: "50%", position: "relative", minWidth: "200px" }}>
                 <SciChartReact initChart={draw3DChart} style={{ width: "100%", height: "100%" }} />
                 <SciChartReact

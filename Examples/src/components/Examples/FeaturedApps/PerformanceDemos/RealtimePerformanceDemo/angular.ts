@@ -10,8 +10,8 @@ import { drawExample } from "./drawExample";
         <div class="chart-wrapper">
             <div class="flex-outer-container">
                 <div class="toolbar-row">
-                    <button (click)="startUpdate()">Start</button>
-                    <button (click)="stopUpdate()">Stop</button>
+                    <button (click)="startUpdate()" class="sc-button">Start</button>
+                    <button (click)="stopUpdate()" class="sc-button">Stop</button>
                     <span class="data-points"># DataPoints: {{ stats.numberPoints.toLocaleString() }}</span>
                     <span class="fps">FPS: {{ stats.fps.toFixed(0) }}</span>
                 </div>

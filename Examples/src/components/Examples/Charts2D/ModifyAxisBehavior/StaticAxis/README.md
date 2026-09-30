@@ -8,12 +8,12 @@ This example demonstrates how to create and use a static axis in SciChart.js. In
 
 -   [SciChart.js](https://www.scichart.com/documentation/js/v5/intro/) for charting
 -   React with TypeScript (using the SciChartReact component from scichart-react)
--   Material-UI for UI elements such as Toggle Buttons
+-   shared CSS controls for UI elements such as Toggle Buttons
 
 ## Code Explanation
 
 -   **drawExample.js / drawExample.ts**: These files contain the main logic to set up the chart. They create two X axes: one marked as a static axis by setting `isStaticAxis: true` (so gridlines and labels maintain their initial positions even when the visible range changes) and a normal axis. The static axis is used to synchronize the normal axis’s visible range via a subscription to the static axis’s `visibleRangeChanged` event. A Y axis is also created, and a sine-based data series is built and rendered as a fast line renderable series. The example continuously appends new data points using `setInterval`, and a horizontal line annotation is added at y = 0. An internal control function `toggleStaticAxis` allows switching the primary axis between the static and normal axes.
--   **index.tsx**: The React component wraps the chart within a styled container and uses the `SciChartReact` component to initialize the chart using the `drawExample` function. A Material-UI ToggleButtonGroup is provided in the toolbar to switch the primary axis between the static and normal axes by calling the `toggleStaticAxis` control from the chart.
+-   **index.tsx**: The React component wraps the chart within a styled container and uses the `SciChartReact` component to initialize the chart using the `drawExample` function. A shared CSS controls button group is provided in the toolbar to switch the primary axis between the static and normal axes by calling the `toggleStaticAxis` control from the chart.
 -   **javascript-static-axis.jpg**: This image file shows a preview of the chart rendered by the example.
 
 ## Customization

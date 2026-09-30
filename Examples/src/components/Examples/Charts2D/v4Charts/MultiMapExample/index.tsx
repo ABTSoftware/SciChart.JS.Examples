@@ -1,9 +1,7 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { MouseEvent, useEffect, useRef, useState } from "react";
 import { fetchGeoJson } from "../../../ExampleData/ExampleDataProvider";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 type MapName = "worldConverted" | "europeConverted" | "australiaConverted" | "africaConverted";
 
@@ -37,28 +35,48 @@ export default function ChartComponent() {
     }, [mapName]);
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow}>
-                <ToggleButtonGroup
-                    className={commonClasses.ToggleButtonGroup}
-                    exclusive
-                    value={mapName}
-                    onChange={handleToggleButtonChanged}
-                    size="medium"
-                    color="primary"
-                    aria-label="map region"
-                >
-                    <ToggleButton value="worldConverted">World</ToggleButton>
-                    <ToggleButton value="europeConverted">Europe</ToggleButton>
-                    <ToggleButton value="australiaConverted">Australia</ToggleButton>
-                    <ToggleButton value="africaConverted">Africa</ToggleButton>
-                </ToggleButtonGroup>
-            </div>
-            <div className={commonClasses.FullHeightChartWrapper}>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="map region">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={mapName === "worldConverted"}
+                        onClick={(event) => handleToggleButtonChanged(event, "worldConverted")}
+                    >
+                        World
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={mapName === "europeConverted"}
+                        onClick={(event) => handleToggleButtonChanged(event, "europeConverted")}
+                    >
+                        Europe
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={mapName === "australiaConverted"}
+                        onClick={(event) => handleToggleButtonChanged(event, "australiaConverted")}
+                    >
+                        Australia
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={mapName === "africaConverted"}
+                        onClick={(event) => handleToggleButtonChanged(event, "africaConverted")}
+                    >
+                        Africa
+                    </button>
+                </div>
+            </header>
+            <div className="sc-chart-wrapper flex-auto">
                 {mapData ? (
                     <SciChartReact
                         initChart={drawExample}
-                        className={commonClasses.ChartWrapper}
+                        className="sc-chart-wrapper"
                         onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                             const { controls } = initResult;
                             controls.setConvertedData(mapData);

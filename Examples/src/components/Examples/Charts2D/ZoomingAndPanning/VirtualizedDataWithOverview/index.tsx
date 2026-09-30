@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
 import { SciChartReact } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { getChartsInitializationApi } from "./drawExample";
 
 export default function VirtualizedDataOverview() {
@@ -9,7 +8,7 @@ export default function VirtualizedDataOverview() {
     const [isMainChartInitialized, setIsMainChartInitialized] = useState(false);
 
     return (
-        <div className={commonClasses.ChartWrapper}>
+        <div className="sc-chart-wrapper">
             <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
                 <SciChartReact
                     style={{ flexBasis: 600, flexGrow: 1, flexShrink: 1 }}

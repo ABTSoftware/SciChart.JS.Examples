@@ -1,7 +1,5 @@
-import { GitHub as GitHubIcon } from "@mui/icons-material";
-import { SubdirectoryArrowRight } from "@mui/icons-material";
-import { Button } from "@mui/material";
-import { FC, useEffect, useRef, useState } from "react";
+import { GitHubIcon, SubdirectoryArrowRight } from "./icons";
+import { FC, useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router";
 import { baseGithubPath } from "../../constants";
 import { FRAMEWORK_NAME, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
@@ -23,17 +21,12 @@ type TProps = {
 };
 
 const ExamplesRoot: FC<TProps> = (props) => {
-    const [render, setRender] = useState(false);
     const { examplePage, seeAlso } = props;
-    const [showSource, setShowSource] = useState(false);
-    const [firstRender, setFirstRender] = useState(true);
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const { state } = _useContext();
     const framework = state.framework;
     const frameworkName = FRAMEWORK_NAME[framework];
-    const myRef = useRef(null);
-    const executeScroll = () => myRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
     const ExampleComponent = getExampleComponent(examplePage.id);
     // const ChartComponent = getExampleComponent(examplePage.id);
 
@@ -71,12 +64,6 @@ const ExamplesRoot: FC<TProps> = (props) => {
     //     );
     // };
 
-    useEffect(() => {
-        setRender(true);
-        return () => {
-            setRender(false);
-        };
-    }, []);
     return (
         <div className={commonClasses.ExamplesRoot}>
             <SeoTags
@@ -133,51 +120,32 @@ const ExamplesRoot: FC<TProps> = (props) => {
                             <div className={commonClasses.Example}>
                                 <ExampleComponent />
                                 <div className={commonClasses.ButtonsWrapper}>
-                                    {/*<Button*/}
-                                    {/*    onClick={() => {*/}
-                                    {/*        setShowSource(!showSource);*/}
-                                    {/*        setFirstRender(false);*/}
-                                    {/*        if (!showSource) {*/}
-                                    {/*            executeScroll();*/}
-                                    {/*        }*/}
-                                    {/*    }}*/}
-                                    {/*>*/}
-                                    {/*    <CodeIcon />*/}
-                                    {/*    <span className={commonClasses.ButtonsText}>VIEW SOURCE CODE</span>*/}
-                                    {/*</Button>*/}
-                                    <Button className={commonClasses.GitHubLink}>
+                                    <a
+                                        className={commonClasses.GitHubLink}
+                                        href={fullGithubUrl}
+                                        title={fullGithubUrl}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
                                         <GitHubIcon />
-                                        <a
-                                            href={fullGithubUrl}
-                                            title={fullGithubUrl}
-                                            target="_blank"
-                                            className={commonClasses.ButtonsText}
-                                        >
-                                            VIEW SOURCE IN GITHUB
-                                        </a>
-                                    </Button>
-                                    <Button className={commonClasses.GitHubLink}>
+                                        <span className={commonClasses.ButtonsText}>VIEW SOURCE IN GITHUB</span>
+                                    </a>
+                                    <Link
+                                        className={commonClasses.GitHubLink}
+                                        to={`/iframe/${examplePage.path}`}
+                                        title="View this example in Full Screen"
+                                        target="_blank"
+                                        rel="nofollow"
+                                    >
                                         <SubdirectoryArrowRight />
-                                        <Link
-                                            to={`/iframe/${examplePage.path}`}
-                                            title="View this example in Full Screen"
-                                            target="_blank"
-                                            rel="nofollow"
-                                            className={commonClasses.ButtonsText}
-                                        >
-                                            VIEW Full Screen
-                                        </Link>
-                                    </Button>
+                                        <span className={commonClasses.ButtonsText}>VIEW Full Screen</span>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
                     </ComponentWrapper>
 
-                    {seeAlso && (
-                        <div className={!showSource && !firstRender ? commonClasses.Animation : ""}>
-                            <GalleryItems examples={seeAlso} setMostVisibleCategory={() => {}} />
-                        </div>
-                    )}
+                    {seeAlso && <GalleryItems examples={seeAlso} setMostVisibleCategory={() => {}} />}
                 </div>
             </div>
         </div>

@@ -1,6 +1,4 @@
-import { ToggleButton, ToggleButtonGroup, ToggleButtonGroupProps } from "@mui/material";
 import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";
@@ -11,7 +9,7 @@ export default function PercentageChange() {
     const [chartKey, setChartKey] = React.useState(0);
     const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
 
-    const handleUsePercentage = (event: React.MouseEvent<HTMLElement>, newValue: ToggleButtonGroupProps["value"]) => {
+    const handleUsePercentage = (event: React.MouseEvent<HTMLElement>, newValue: boolean) => {
         if (newValue !== null) {
             setUsePercentage(newValue);
             // Force reinitialization of the chart by updating the key
@@ -20,24 +18,32 @@ export default function PercentageChange() {
     };
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <ToggleButtonGroup
-                className={commonClasses.ToolbarRow}
-                exclusive
-                value={usePercentage}
-                onChange={handleUsePercentage}
-                size="small"
-                color="primary"
-                aria-label="small outlined button group"
-            >
-                <ToggleButton value={true}>Percentage Change</ToggleButton>
-                <ToggleButton value={false}>Original Data</ToggleButton>
-            </ToggleButtonGroup>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="Data display mode">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={usePercentage === true}
+                        onClick={(event) => handleUsePercentage(event, true)}
+                    >
+                        Percentage Change
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={usePercentage === false}
+                        onClick={(event) => handleUsePercentage(event, false)}
+                    >
+                        Original Data
+                    </button>
+                </div>
+            </header>
             {/* // Usage in SciChartReact */}
             <SciChartReact
                 key={chartKey} // Change the key to force re-render
                 initChart={(rootElement) => drawExample(rootElement, usePercentage)}
-                className={commonClasses.ChartWrapper}
+                className="sc-chart-wrapper"
             />
         </div>
     );

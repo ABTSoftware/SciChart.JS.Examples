@@ -1,6 +1,4 @@
 import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
@@ -19,20 +17,27 @@ export default function StyleAnimation() {
     };
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow}>
-                <ToggleButtonGroup
-                    exclusive
-                    value={preset}
-                    onChange={handleToggleButtonChanged}
-                    size="medium"
-                    color="primary"
-                    aria-label="small outlined button group"
-                >
-                    <ToggleButton value={0}>Animate Styles 1</ToggleButton>
-                    <ToggleButton value={1}>Animate Styles 2</ToggleButton>
-                </ToggleButtonGroup>
-            </div>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="small outlined button group">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={preset === 0}
+                        onClick={(event) => handleToggleButtonChanged(event, 0)}
+                    >
+                        Animate Styles 1
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={preset === 1}
+                        onClick={(event) => handleToggleButtonChanged(event, 1)}
+                    >
+                        Animate Styles 2
+                    </button>
+                </div>
+            </header>
             <SciChartReact
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     setControls(initResult.controls);

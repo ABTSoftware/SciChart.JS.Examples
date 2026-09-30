@@ -1,5 +1,4 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { useState, useRef, useEffect } from "react";
 
@@ -100,6 +99,7 @@ export default function ChartComponent() {
                             background: type === "cursor" ? "#14233c" : "#163149",
                             cursor: "pointer",
                         }}
+                        className="sc-button"
                     >
                         CURSOR
                     </button>
@@ -113,6 +113,7 @@ export default function ChartComponent() {
                             background: type === "rollover" ? "#14233c" : "#163149",
                             cursor: "pointer",
                         }}
+                        className="sc-button"
                     >
                         ROLLOVER
                     </button>
@@ -125,6 +126,7 @@ export default function ChartComponent() {
                             background: type === "verticalSlice" ? "#14233c" : "#163149",
                             cursor: "pointer",
                         }}
+                        className="sc-button"
                     >
                         VERTICAL SLICE
                     </button>
@@ -188,7 +190,7 @@ export default function ChartComponent() {
 
             <SciChartReact
                 initChart={drawExample}
-                className={commonClasses.ChartWrapper}
+                className="sc-chart-wrapper"
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     // get the "setMap" function that is returned by "drawExample"
                     let { setType, setData, callBack } = initResult;

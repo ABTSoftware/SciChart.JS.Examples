@@ -6,10 +6,17 @@ import { BadRequestError, IHttpError, NotFoundError } from "./Errors";
 import { EPageFramework, EPlatform } from "../helpers/shared/Helpers/frameworkParametrization";
 import { getParameters } from "./codeSandboxLib";
 import { getSandboxConfig } from "./services/sandbox";
-import { SandboxConfig, IFiles, getSourceFilesForPath, loadStyles } from "./services/sandbox/sandboxDependencyUtils";
+import {
+    SandboxConfig,
+    IFiles,
+    getSourceFilesForPath,
+    loadStyles,
+    csStyles,
+} from "./services/sandbox/sandboxDependencyUtils";
 import { indexHtmlTemplate } from "./services/sandbox/vanillaTsConfig";
 import https from "https";
 import { ExampleSourceFile, SourceFilesVariant } from "../helpers/types/types";
+import { useSingleExampleStylesheet } from "./services/sandbox/sandboxStyles";
 
 //  const parameters = getParameters({ files, template:  getCodeSandboxTemplate(framework) });
 
@@ -757,6 +764,7 @@ const getCodeSandboxTemplate = (framework: EPageFramework) => {
 };
 
 export const readSourceFiles = async (framework: EPageFramework, folderPath: string, baseUrl: string) => {
+    await loadStyles();
     let files: IFiles = {};
     let actualFramework = framework;
 
@@ -793,11 +801,21 @@ export const readSourceFiles = async (framework: EPageFramework, folderPath: str
         }
     }
 
+    const uiCss = csStyles["src/index.css"].content;
+    const entryFileName =
+        actualFramework === EPageFramework.Angular
+            ? "angular.ts"
+            : actualFramework === EPageFramework.Vanilla
+            ? "vanilla.ts"
+            : "index.tsx";
+    const entryFilePath = path.join(folderPath, entryFileName);
+    if (files[entryFilePath] === undefined) throw new Error(`Example source not found: ${entryFileName}`);
+    const sourceFiles = useSingleExampleStylesheet({ ...csStyles, ...files }, uiCss, entryFilePath, "./index.css");
     const result: ExampleSourceFile[] = [];
-    for (const key in files) {
+    for (const key in sourceFiles) {
         const sep = key.indexOf("/") > 0 ? "/" : "\\";
         const name = key.substring(key.lastIndexOf(sep) + 1);
-        result.push({ name, content: files[key].content });
+        result.push({ name, content: sourceFiles[key].content });
     }
     return { files: result, framework: actualFramework };
 };

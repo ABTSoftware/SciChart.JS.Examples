@@ -9,7 +9,7 @@ This example demonstrates how to create an interactive 3D Column Chart using Sci
 -   SciChart.JS – for high performance 3D charting
 -   SciChart3DSurface and related 3D components from the SciChart library
 -   React with TypeScript – for creating the interactive component
--   Material UI – for form controls and slider components
+-   shared CSS controls – for form controls and slider components
 -   WASM – for high performance WebAssembly back-end context
 
 ## Code Explanation

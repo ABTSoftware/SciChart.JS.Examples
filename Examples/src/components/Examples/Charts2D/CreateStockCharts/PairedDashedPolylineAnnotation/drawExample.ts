@@ -339,6 +339,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     return {
         sciChartSurface,
+        isPlacing: () => placementModifier.isPlacing,
 
         startPlacement: (pointCount = 5) => {
             const safePointCount = normalizePlacementPointCount(pointCount);

@@ -1,10 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import ToggleButton from "@mui/material/ToggleButton";
-import Switch from "@mui/material/Switch";
-import { appTheme } from "../../../theme";
-import commonClasses from "../../../styles/Examples.module.scss";
+import { EColumnDataLabelPosition } from "scichart";
 import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
@@ -14,6 +10,7 @@ export default function StackedColumnChart() {
     const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
     const [controls, setControls] = useState<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
     const [areDataLabelsVisible, setAreDataLabelsVisible] = React.useState(true);
+    const [dataLabelPosition, setDataLabelPosition] = React.useState(EColumnDataLabelPosition.Center);
 
     const handleUsePercentage = (event: any, value: boolean) => {
         if (value !== null && controls) {
@@ -25,48 +22,47 @@ export default function StackedColumnChart() {
     };
 
     const handleToggleDataLabels = () => {
-        setAreDataLabelsVisible(!areDataLabelsVisible);
-        controls.toggleDataLabels(areDataLabelsVisible);
+        const visible = !areDataLabelsVisible;
+        setAreDataLabelsVisible(visible);
+        controls?.toggleDataLabels(visible);
+    };
+
+    const handleDataLabelPositionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const position = event.currentTarget.value as EColumnDataLabelPosition;
+        setDataLabelPosition(position);
+        controls?.setDataLabelPosition(position);
     };
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow}>
-                {/* <ToggleButtonGroup
-                        className={commonClasses.ToggleButtonGroup}
-                        exclusive
-                        size="small"
-                        value={use100PercentStackedMode}
-                        onChange={handleUsePercentage}
-                        color="primary"
-                        aria-label="small outlined button group"
-                    >
-                        <ToggleButton value={false}>
-                            Stacked&nbsp;mode
-                        </ToggleButton>
-                        <ToggleButton value={true}>
-                            100%&nbsp;Stacked&nbsp;mode
-                        </ToggleButton>
-                    </ToggleButtonGroup>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <label className="sc-switch">
+                    <input
+                        type="checkbox"
+                        checked={use100PercentStackedMode}
+                        onChange={(event) => handleUsePercentage(event, event.currentTarget.checked)}
+                    />
+                    <span>100% Mode</span>
+                </label>
 
-                    <ToggleButtonGroup style={{ marginLeft: "auto" }} className={commonClasses.ToolbarRow} size="small">
-                        <ToggleButton
-                            value={areDataLabelsVisible}
-                           
-                            onClick={handleToggleDataLabels}
-                        >
-                            {areDataLabelsVisible ? "Hide" : "Show"}&nbsp;Data&nbsp;Labels
-                        </ToggleButton>
-                    </ToggleButtonGroup> */}
-                <FormControlLabel
-                    control={<Switch checked={use100PercentStackedMode} onChange={handleUsePercentage} />}
-                    label="100%&nbsp;Mode"
-                    style={{ margin: 0, padding: "1em" }}
-                />
-                <ToggleButton value={areDataLabelsVisible} onClick={handleToggleDataLabels}>
-                    {areDataLabelsVisible ? "Hide" : "Show"}&nbsp;Data&nbsp;Labels
-                </ToggleButton>
-            </div>
+                <>
+                    <span>Label position</span>
+                    <select className="sc-select" value={dataLabelPosition} onChange={handleDataLabelPositionChange}>
+                        {Object.values(EColumnDataLabelPosition)
+                            .filter((p) => p !== EColumnDataLabelPosition.Position)
+                            .map((position) => (
+                                <option key={position} value={position}>
+                                    {position}
+                                </option>
+                            ))}
+                    </select>
+                </>
+
+                <label className="sc-switch">
+                    <input type="checkbox" checked={areDataLabelsVisible} onChange={handleToggleDataLabels} />
+                    Show Data Labels
+                </label>
+            </header>
             <SciChartReact
                 initChart={drawExample}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {

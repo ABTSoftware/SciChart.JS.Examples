@@ -1,8 +1,6 @@
 import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 
-import { Button, Checkbox, FormControlLabel, Typography } from "@mui/material";
 import { NumberRange, SciChartSurface, SciChartVerticalGroup } from "scichart";
 import { AxisSynchroniser } from "./AxisSynchroniser";
 import { addToOverview, createChart, createOverview, removeFromOverview } from "./drawExample";
@@ -144,7 +142,7 @@ export default function SyncMultiChart() {
 
     const firstFreePane = chartPanes.find((pane) => !pane.sciChartSurface);
     return (
-        <div className={commonClasses.ChartWrapper}>
+        <div className="sc-chart-wrapper">
             <div style={styles.flexOuterContainer}>
                 <div style={{ width: "100%", height: "100px", flex: "none" }}>
                     <div style={styles.chartArea} id={chartPanes[0].divId}></div>
@@ -160,12 +158,12 @@ export default function SyncMultiChart() {
                             flex: "none",
                         }}
                     >
-                        <Typography style={{ color: "#FFFFFF", marginLeft: "20px" }}>
+                        <span style={{ color: "#FFFFFF", marginLeft: "20px" }}>
                             Click and drag or mousewheel to zoom/pan the charts.
-                        </Typography>
-                        <Button
-                            color="primary"
-                            variant="outlined"
+                        </span>
+                        <button
+                            type="button"
+                            className="sc-button sc-button-secondary"
                             onClick={() => addChart(firstFreePane.id)}
                             style={{
                                 width: "120px",
@@ -175,7 +173,7 @@ export default function SyncMultiChart() {
                             }}
                         >
                             Add Chart
-                        </Button>
+                        </button>
                     </div>
                 ) : (
                     ""
@@ -191,20 +189,22 @@ export default function SyncMultiChart() {
                             {pane.sciChartSurface ? (
                                 <div style={styles.toolCol}>
                                     <div>
-                                        <Button color="primary" variant="outlined" onClick={() => removeChart(pane.id)}>
+                                        <button
+                                            type="button"
+                                            className="sc-button sc-button-secondary"
+                                            onClick={() => removeChart(pane.id)}
+                                        >
                                             Remove Chart
-                                        </Button>
-                                        <FormControlLabel
-                                            className={commonClasses.FormControlLabel}
-                                            control={
-                                                <Checkbox
-                                                    checked={pane.isSynced}
-                                                    onChange={() => handleChangeSynced(pane.id)}
-                                                />
-                                            }
-                                            labelPlacement="start"
-                                            label="Sync?"
-                                        />
+                                        </button>
+                                        <label className="sc-control">
+                                            <input
+                                                className="sc-checkbox"
+                                                type="checkbox"
+                                                checked={pane.isSynced}
+                                                onChange={() => handleChangeSynced(pane.id)}
+                                            />
+                                            <span>Sync?</span>
+                                        </label>
                                     </div>
                                 </div>
                             ) : (

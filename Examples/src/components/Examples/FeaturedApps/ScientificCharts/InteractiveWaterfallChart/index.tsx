@@ -1,7 +1,6 @@
 import * as React from "react";
 import { appTheme } from "../../../theme";
 import { SciChartReact } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { getChartsInitializationAPI } from "./drawExample";
 import { ChartGroupLoader } from "scichart-react";
 
@@ -12,7 +11,7 @@ export default function InteractiveWaterfallChart() {
 
     return (
         <ChartGroupLoader
-            className={commonClasses.ChartWrapper}
+            className="sc-chart-wrapper"
             style={{
                 width: "100%",
                 height: "100%",

@@ -1,10 +1,7 @@
 import * as React from "react";
 import { SciChartSurface, chartReviver, localStorageApi } from "scichart";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import commonClasses from "../../../styles/Examples.module.scss";
-import { drawExample } from "./drawExample";
-import { Button, ButtonGroup, MenuItem, Select, TextField } from "@mui/material";
 
+import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 const STORAGE_KEY = "Annotated-Charts";
@@ -58,104 +55,71 @@ export default function UserAnnotatedStockChart() {
     };
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow}>
-                <ToggleButtonGroup
-                    style={{ height: "50px" }}
-                    exclusive
-                    value={chartMode}
-                    onChange={handleToggleButtonChanged}
-                    size="small"
-                    color="primary"
-                    aria-label="small outlined button group"
-                >
-                    <ToggleButton
-                        value={"pan"}
-                        style={{ borderColor: "#00bcd466" }}
-                        onClick={() => handleToggleButtonChanged(null, "pan")}
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="small outlined button group">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={chartMode === "pan"}
+                        onClick={(event) => handleToggleButtonChanged(event, "pan")}
                     >
                         Pan
-                    </ToggleButton>
-                    <ToggleButton
-                        value={"line"}
-                        style={{ borderColor: "#00bcd466" }}
-                        onClick={() => handleToggleButtonChanged(null, "line")}
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={chartMode === "line"}
+                        onClick={(event) => handleToggleButtonChanged(event, "line")}
                     >
                         Lines
-                    </ToggleButton>
-                    <ToggleButton
-                        value={"marker"}
-                        style={{ borderColor: "#00bcd466" }}
-                        onClick={() => handleToggleButtonChanged(null, "marker")}
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={chartMode === "marker"}
+                        onClick={(event) => handleToggleButtonChanged(event, "marker")}
                     >
                         Markers
-                    </ToggleButton>
-                </ToggleButtonGroup>
+                    </button>
+                </div>
 
-                <TextField
-                    id="chartName"
-                    label="Save As"
-                    type="text"
-                    style={{ backgroundColor: "#00bcd111", marginLeft: "auto", borderRadius: 3 }}
-                    // the toolbar is dark in every theme, so follow its own white text rather than
-                    // the theme foreground, and give the outline a visible edge against it
-                    sx={{
-                        // MuiInputBase-root sets its own dark text.primary, so the typed text has to
-                        // be reset here - inheriting on the inner input alone picks up that dark color
-                        "& .MuiInputBase-root": { color: "inherit" },
-                        "& .MuiInputLabel-root": { color: "inherit" },
-                        "& .MuiOutlinedInput-notchedOutline": { borderColor: "currentColor", opacity: 0.4 },
-                    }}
-                    inputProps={{
-                        style: { color: "inherit", height: 13 },
-                        "aria-label": "Without label",
-                    }}
-                    value={name}
-                    multiline={false}
-                    variant="outlined"
-                    onChange={handleNameChanged}
-                ></TextField>
+                <label className="sc-control" htmlFor="chartName">
+                    Save As
+                    <input className="sc-input" id="chartName" type="text" value={name} onChange={handleNameChanged} />
+                </label>
 
-                <ButtonGroup color="primary" aria-label="small outlined button group" style={{ margin: "0 5px" }}>
-                    <Button id="btnSave" onClick={saveChart}>
+                <div className="sc-button-group" role="group" aria-label="Save chart">
+                    <button className="sc-button" type="button" id="btnSave" onClick={saveChart}>
                         Save
-                    </Button>
-                </ButtonGroup>
+                    </button>
+                </div>
 
-                <ButtonGroup color="primary" aria-label="small outlined button group">
-                    <Select
+                <div className="sc-button-group" role="group" aria-label="Load or reset chart">
+                    <select
+                        className="sc-select"
                         id="select-chart-names"
-                        inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
-                        style={{ color: "inherit", width: 150, backgroundColor: "#00bcd411" }}
-                        sx={{ "& .MuiSvgIcon-root": { color: "inherit" } }}
+                        aria-label="Select saved chart"
                         value={selectedChart}
-                        displayEmpty
-                        autoWidth={true}
                         onChange={handleSelectionChanged}
                     >
-                        {Object.keys(savedCharts).length > 0 ? (
-                            <MenuItem value="" disabled>
-                                Load from
-                            </MenuItem>
-                        ) : (
-                            <MenuItem value="" disabled>
-                                No saved charts
-                            </MenuItem>
-                        )}
+                        <option value="" disabled>
+                            {Object.keys(savedCharts).length > 0 ? "Load from" : "No saved charts"}
+                        </option>
                         {Object.keys(savedCharts).map((name: string, i: number) => (
-                            <MenuItem value={name} key={i}>
+                            <option value={name} key={i}>
                                 {name}
-                            </MenuItem>
+                            </option>
                         ))}
-                    </Select>
-                    <Button id="btnLoad" onClick={loadChart}>
+                    </select>
+                    <button className="sc-button" type="button" id="btnLoad" onClick={loadChart}>
                         Load
-                    </Button>
-                    <Button id="btnReset" onClick={resetChart}>
+                    </button>
+                    <button className="sc-button" type="button" id="btnReset" onClick={resetChart}>
                         Reset
-                    </Button>
-                </ButtonGroup>
-            </div>
+                    </button>
+                </div>
+            </header>
             <SciChartReact
                 initChart={drawExample}
                 onInit={({ sciChartSurface, controls }: TResolvedReturnType<typeof drawExample>) => {

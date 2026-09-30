@@ -98,7 +98,7 @@ export default function Overview() {
     };
 
     return data.length ? (
-        <div className="dashboard-container">
+        <div className="sc-chart-wrapper dashboard-container">
             <div className="dashboard-layout">
                 <div className="line-chart-container">
                     <SciChartReact initChart={initLineChart} className="sci-chart" onInit={handleLineChartInit} />
@@ -110,13 +110,13 @@ export default function Overview() {
                         <div className="chart-header">
                             <div className="chart-toggle-group">
                                 <button
-                                    className={`chart-toggle-button ${!showColumnChart ? "active" : ""}`}
+                                    className={`sc-button ${`chart-toggle-button ${!showColumnChart ? "active" : ""}`}`}
                                     onClick={() => setShowColumnChart(false)}
                                 >
                                     Pareto Chart
                                 </button>
                                 <button
-                                    className={`chart-toggle-button ${showColumnChart ? "active" : ""}`}
+                                    className={`sc-button ${`chart-toggle-button ${showColumnChart ? "active" : ""}`}`}
                                     onClick={() => setShowColumnChart(true)}
                                 >
                                     Column Chart

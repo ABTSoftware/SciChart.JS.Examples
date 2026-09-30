@@ -10,7 +10,7 @@ This example demonstrates a real-time stock chart that updates continuously, dis
 -   **SciChart.JS** for high-performance charting
 -   **RxJS** for handling real-time data streams
 -   **websocket-ts** for WebSocket connectivity to Binance
--   **@mui/material** for UI components and toolbar controls
+-   **shared CSS controls** for UI components and toolbar controls
 
 ## Code Explanation
 

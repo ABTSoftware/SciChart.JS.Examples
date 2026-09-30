@@ -1,5 +1,4 @@
 import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { FinChartLegendModifier, IFinanceLegendModifierOptions } from "./FinChartLegendModifier";
 
 import {
@@ -259,7 +258,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                                 openValues,
                                 closeValues,
                                 upCol + opacity,
-                                downCol + opacity
+                                downCol + opacity,
                             ),
                         },
                     },
@@ -439,7 +438,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             0,
             newPosition,
             1,
-            (subSurface3.subPosition as TXywhCoordinates).y - newPosition
+            (subSurface3.subPosition as TXywhCoordinates).y - newPosition,
         );
     };
 
@@ -458,7 +457,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             0,
             (subSurface1.subPosition as TXywhCoordinates).height,
             1,
-            newPosition - (subSurface1.subPosition as TXywhCoordinates).height
+            newPosition - (subSurface1.subPosition as TXywhCoordinates).height,
         );
         subSurface3.subPosition = new Rect(0, newPosition, 1, 1 - newPosition);
     };
@@ -610,16 +609,7 @@ const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
 
 export default function SubChartStockCharts() {
     return (
-        <div
-            className={commonClasses.ChartWrapper}
-            id={containerId2}
-            style={{
-                position: "relative",
-                width: "100%",
-                height: "100%",
-                touchAction: "none",
-            }}
-        >
+        <div className="sc-chart-wrapper" id={containerId2}>
             <div
                 id={subChartWrapper1}
                 style={{

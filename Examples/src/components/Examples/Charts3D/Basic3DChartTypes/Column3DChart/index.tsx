@@ -1,30 +1,10 @@
 import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChart3DSurface, TSciChart3D, ColumnRenderableSeries3D } from "scichart";
 import { drawExample, EColumn3DType, createPointMarker3D, EColumnColorMode } from "./drawExample";
-import {
-    Checkbox,
-    FormControl,
-    FormControlLabel,
-    InputLabel,
-    MenuItem,
-    Select,
-    Slider,
-    Typography,
-} from "@mui/material";
-import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 const column3DTypeSelect = Object.values(EColumn3DType);
 const colorModeSelect = Object.values(EColumnColorMode);
-
-const styles = {
-    combobox: {
-        color: "black",
-        backgroundColor: appTheme.Background,
-        margin: "10px 20px 10px 10px",
-    },
-};
 
 // REACT COMPONENT
 export default function Column3DChart() {
@@ -55,7 +35,7 @@ export default function Column3DChart() {
         }
     };
 
-    const handleDataPointWidthChange = (_: any, newValue: any) => {
+    const handleDataPointWidthChange = (_: React.ChangeEvent<HTMLInputElement>, newValue: number) => {
         const newDataPointWidth = Number(newValue);
         setDataPointWidth(newDataPointWidth);
         renderableSeries.dataPointWidthX = newDataPointWidth;
@@ -63,47 +43,44 @@ export default function Column3DChart() {
     };
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow} style={{ padding: "0 8px" }}>
-                <FormControlLabel
-                    control={
-                        <select style={styles.combobox} value={column3DType} onChange={handleColumn3DTypeChange}>
-                            {column3DTypeSelect.map((el) => (
-                                <option key={el} value={el}>
-                                    {el}
-                                </option>
-                            ))}
-                        </select>
-                    }
-                    labelPlacement="start"
-                    label="Column Shape"
-                />
-                <FormControlLabel
-                    control={
-                        <select style={styles.combobox} value={colorMode} onChange={handleColorChange}>
-                            {colorModeSelect.map((el) => (
-                                <option key={el} value={el}>
-                                    {el}
-                                </option>
-                            ))}
-                        </select>
-                    }
-                    labelPlacement="start"
-                    label="Color Mode"
-                />
-                <div style={{ width: 200 }}>
-                    <Typography variant="body1">Data-point width {dataPointWidth}</Typography>
-                    <Slider
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <label className="sc-control">
+                    Column Shape
+                    <select value={column3DType} onChange={handleColumn3DTypeChange} className="sc-select">
+                        {column3DTypeSelect.map((el) => (
+                            <option key={el} value={el}>
+                                {el}
+                            </option>
+                        ))}
+                    </select>
+                </label>
+
+                <label className="sc-control">
+                    Color Mode
+                    <select value={colorMode} onChange={handleColorChange} className="sc-select">
+                        {colorModeSelect.map((el) => (
+                            <option key={el} value={el}>
+                                {el}
+                            </option>
+                        ))}
+                    </select>
+                </label>
+
+                <label className="sc-control flex flex-col">
+                    <span>Data-point width {dataPointWidth}</span>
+                    <input
+                        type="range"
+                        className="sc-range"
                         id="seriesCount"
-                        onChange={handleDataPointWidthChange}
+                        onChange={(event) => handleDataPointWidthChange(event, event.currentTarget.valueAsNumber)}
                         step={0.05}
                         min={0}
                         max={1}
                         value={dataPointWidth}
-                        valueLabelDisplay="off"
                     />
-                </div>
-            </div>
+                </label>
+            </header>
             <SciChartReact
                 initChart={drawExample}
                 onInit={({ sciChartSurface, controls }: TResolvedReturnType<typeof drawExample>) => {

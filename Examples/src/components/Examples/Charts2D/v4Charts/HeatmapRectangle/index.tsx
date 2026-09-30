@@ -1,5 +1,4 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { useRef, useState } from "react";
 
@@ -25,6 +24,7 @@ export default function ChartComponent() {
                             background: isGradient ? "#14233c" : "#163149",
                             cursor: "pointer",
                         }}
+                        className="sc-button"
                     >
                         GRADIENT COLOURS
                     </button>
@@ -40,6 +40,7 @@ export default function ChartComponent() {
                             background: !isGradient ? "#14233c" : "#163149",
                             cursor: "pointer",
                         }}
+                        className="sc-button"
                     >
                         SOLID COLOURS
                     </button>
@@ -48,7 +49,7 @@ export default function ChartComponent() {
 
             <SciChartReact
                 initChart={drawExample}
-                className={commonClasses.ChartWrapper}
+                className="sc-chart-wrapper"
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     // get the "setChart" function that is returned by "drawExample"
                     let { setChart } = initResult;

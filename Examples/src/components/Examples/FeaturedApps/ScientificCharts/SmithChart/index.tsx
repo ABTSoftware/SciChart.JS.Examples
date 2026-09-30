@@ -1,26 +1,6 @@
 import * as React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
-import Chip from "@mui/material/Chip";
-import Divider from "@mui/material/Divider";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import Slider from "@mui/material/Slider";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import ToggleButton from "@mui/material/ToggleButton";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
-import CloseIcon from "@mui/icons-material/Close";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+import { CloseIcon, ExpandMoreIcon } from "../../../icons";
 import { FloatingPanel } from "../../../FloatingPanel";
 import { drawExample } from "./drawExample";
 import { useSmithChart, SmithState, GammaPoint, ComponentType, DragMode } from "./useSmithChart";
@@ -37,8 +17,9 @@ const ROW: React.CSSProperties = { display: "flex", flexDirection: "row", alignI
 const WRAP_ROW: React.CSSProperties = { ...ROW, flexWrap: "wrap" };
 
 export default function SmithChartComponent() {
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const [isMobile, setIsMobile] = React.useState(
+        () => typeof window !== "undefined" && window.matchMedia("(max-width: 600px)").matches
+    );
     const [state, dispatch] = useSmithChart();
     const chartRef = React.useRef<HTMLDivElement>(null);
     const chartApiRef = React.useRef<{
@@ -71,6 +52,33 @@ export default function SmithChartComponent() {
     const [chainOpen, setChainOpen] = React.useState(false);
     const [gridOpen, setGridOpen] = React.useState(false);
     const [examplesAnchor, setExamplesAnchor] = React.useState<null | HTMLElement>(null);
+    const examplesMenuRef = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+        const query = window.matchMedia("(max-width: 600px)");
+        const update = () => setIsMobile(query.matches);
+        query.addEventListener("change", update);
+        return () => query.removeEventListener("change", update);
+    }, []);
+
+    React.useEffect(() => {
+        if (!examplesAnchor) return undefined;
+        const closeOnOutsideClick = (event: PointerEvent) => {
+            const target = event.target as Node;
+            if (!examplesAnchor.contains(target) && !examplesMenuRef.current?.contains(target)) {
+                setExamplesAnchor(null);
+            }
+        };
+        const closeOnEscape = (event: KeyboardEvent) => {
+            if (event.key === "Escape") setExamplesAnchor(null);
+        };
+        document.addEventListener("pointerdown", closeOnOutsideClick);
+        document.addEventListener("keydown", closeOnEscape);
+        return () => {
+            document.removeEventListener("pointerdown", closeOnOutsideClick);
+            document.removeEventListener("keydown", closeOnEscape);
+        };
+    }, [examplesAnchor]);
 
     // Grid config — mirrors smithGridConfig for controlled inputs
     const [gridCfg, setGridCfg] = React.useState({
@@ -130,7 +138,7 @@ export default function SmithChartComponent() {
     }, [state]);
 
     return (
-        <div style={{ display: "flex", width: "100%", height: "100%", flexDirection: "column" }}>
+        <div className="sc-chart-wrapper flex flex-col">
             {/* On desktop: row layout with container query sizing. On mobile: column layout. */}
             <div
                 style={{
@@ -180,62 +188,74 @@ export default function SmithChartComponent() {
                             zIndex: 10,
                         }}
                     >
-                        <Button
-                            size="small"
-                            variant="outlined"
+                        <button
+                            className="sc-button sc-button-secondary"
                             onClick={(e) => setExamplesAnchor(e.currentTarget)}
                             style={{ fontSize: 10, padding: "2px 8px", minWidth: 0 }}
+                            type="button"
                         >
                             Examples
-                        </Button>
-                        <Button
-                            size="small"
-                            variant={chainOpen ? "contained" : "outlined"}
+                        </button>
+                        <button
+                            className="sc-button"
                             onClick={() => setChainOpen((v) => !v)}
                             style={{ fontSize: 10, padding: "2px 8px", minWidth: 0 }}
+                            type="button"
                         >
                             Chain
-                        </Button>
-                        <Button
-                            size="small"
-                            variant={gridOpen ? "contained" : "outlined"}
+                        </button>
+                        <button
+                            className="sc-button"
                             onClick={() => setGridOpen((v) => !v)}
                             style={{ fontSize: 10, padding: "2px 8px", minWidth: 0 }}
+                            type="button"
                         >
                             Grid
-                        </Button>
+                        </button>
                     </div>
 
                     {/* Examples dropdown menu */}
-                    <Menu
-                        anchorEl={examplesAnchor}
-                        open={Boolean(examplesAnchor)}
-                        onClose={() => setExamplesAnchor(null)}
-                    >
-                        {SCENARIOS.map((scenario) => (
-                            <MenuItem
-                                key={scenario.id}
-                                selected={state.activeScenarioId === scenario.id}
+                    {examplesAnchor && (
+                        <div
+                            ref={examplesMenuRef}
+                            className="sc-menu-popup"
+                            role="menu"
+                            style={{
+                                left: examplesAnchor.getBoundingClientRect().left,
+                                top: examplesAnchor.getBoundingClientRect().bottom + 4,
+                            }}
+                        >
+                            {SCENARIOS.map((scenario) => (
+                                <button
+                                    type="button"
+                                    key={scenario.id}
+                                    className={`sc-menu-item${
+                                        state.activeScenarioId === scenario.id ? " is-selected" : ""
+                                    }`}
+                                    role="menuitemradio"
+                                    aria-checked={state.activeScenarioId === scenario.id}
+                                    onClick={() => {
+                                        loadScenario(scenario);
+                                        setExamplesAnchor(null);
+                                    }}
+                                >
+                                    {scenario.title}
+                                </button>
+                            ))}
+                            <hr className="sc-divider" />
+                            <button
+                                type="button"
+                                className="sc-menu-item"
+                                role="menuitem"
                                 onClick={() => {
-                                    loadScenario(scenario);
+                                    dispatch({ type: "CLEAR" });
                                     setExamplesAnchor(null);
                                 }}
-                                style={{ fontSize: 12 }}
                             >
-                                {scenario.title}
-                            </MenuItem>
-                        ))}
-                        <Divider />
-                        <MenuItem
-                            onClick={() => {
-                                dispatch({ type: "CLEAR" });
-                                setExamplesAnchor(null);
-                            }}
-                            style={{ fontSize: 12 }}
-                        >
-                            Clear
-                        </MenuItem>
-                    </Menu>
+                                Clear
+                            </button>
+                        </div>
+                    )}
 
                     {/* Chain floating panel */}
                     <FloatingPanel
@@ -247,85 +267,86 @@ export default function SmithChartComponent() {
                         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                             {/* VSWR */}
                             <div style={ROW}>
-                                <Tooltip
+                                <span
+                                    className="sc-tooltip"
                                     title="VSWR = (1+|Γ|)/(1−|Γ|) — drag the orange handle on the real axis to resize the circle"
-                                    placement="top"
                                 >
-                                    <Typography variant="caption" style={{ cursor: "default" }}>
-                                        VSWR:
-                                    </Typography>
-                                </Tooltip>
-                                <TextField
-                                    size="small"
+                                    <span style={{ cursor: "default" }}>VSWR:</span>
+                                </span>
+                                <input
+                                    className="sc-input"
                                     type="number"
                                     value={state.vswr.toFixed(2)}
-                                    inputProps={{ min: 1.01, max: 100, step: 0.1, style: { width: 60, fontSize: 12 } }}
+                                    min={1.01}
+                                    max={100}
+                                    step={0.1}
+                                    style={{ width: 76, fontSize: 12 }}
                                     onChange={(e) => {
                                         const v = parseFloat(e.target.value);
                                         if (v > 1) dispatch({ type: "SET_VSWR", vswr: v });
                                     }}
                                 />
-                                <Tooltip
+                                <span
+                                    className="sc-tooltip"
                                     title="Fill the VSWR circle interior to mark the acceptable match region"
-                                    placement="top"
                                 >
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                size="small"
-                                                checked={state.vswrShaded}
-                                                onChange={(e) =>
-                                                    dispatch({ type: "SET_VSWR_SHADED", shaded: e.target.checked })
-                                                }
-                                            />
-                                        }
-                                        label={<Typography variant="caption">Shade</Typography>}
-                                    />
-                                </Tooltip>
-                                <Tooltip title="Show or hide the dashed VSWR circle outline" placement="top">
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                size="small"
-                                                checked={state.vswrOutline}
-                                                onChange={(e) =>
-                                                    dispatch({ type: "SET_VSWR_OUTLINE", outline: e.target.checked })
-                                                }
-                                            />
-                                        }
-                                        label={<Typography variant="caption">Outline</Typography>}
-                                    />
-                                </Tooltip>
+                                    <label className="sc-control">
+                                        <input
+                                            className="sc-checkbox"
+                                            type="checkbox"
+                                            checked={state.vswrShaded}
+                                            onChange={(e) =>
+                                                dispatch({ type: "SET_VSWR_SHADED", shaded: e.target.checked })
+                                            }
+                                        />
+                                        <span>Shade</span>
+                                    </label>
+                                </span>
+                                <span className="sc-tooltip" title="Show or hide the dashed VSWR circle outline">
+                                    <label className="sc-control">
+                                        <input
+                                            className="sc-checkbox"
+                                            type="checkbox"
+                                            checked={state.vswrOutline}
+                                            onChange={(e) =>
+                                                dispatch({ type: "SET_VSWR_OUTLINE", outline: e.target.checked })
+                                            }
+                                        />
+                                        <span>Outline</span>
+                                    </label>
+                                </span>
                             </div>
 
-                            <Divider />
+                            <hr className="sc-divider" />
 
                             {/* Chain builder */}
                             <div style={WRAP_ROW}>
-                                <Tooltip
+                                <span
+                                    className="sc-tooltip"
                                     title="Operating frequency for reactive components (L, C) and transmission lines"
-                                    placement="top"
                                 >
-                                    <Typography variant="caption" style={{ cursor: "default" }}>
-                                        Freq:
-                                    </Typography>
-                                </Tooltip>
-                                <TextField
-                                    size="small"
+                                    <span style={{ cursor: "default" }}>Freq:</span>
+                                </span>
+                                <input
+                                    className="sc-input"
                                     type="number"
                                     value={(state.frequency / 1e9).toFixed(3)}
-                                    inputProps={{ min: 0.001, max: 100, step: 0.1, style: { width: 60, fontSize: 12 } }}
+                                    min={0.001}
+                                    max={100}
+                                    step={0.1}
+                                    style={{ width: 76, fontSize: 12 }}
                                     onChange={(e) => {
                                         const v = parseFloat(e.target.value);
                                         if (v > 0) dispatch({ type: "SET_FREQUENCY", frequency: v * 1e9 });
                                     }}
                                 />
-                                <Typography variant="caption">GHz</Typography>
-                                <Tooltip
+                                <span>GHz</span>
+                                <span
+                                    className="sc-tooltip"
                                     title="Component type: series elements move along constant-R or constant-X curves; shunt elements move along constant-G or constant-B curves; TL rotates clockwise at constant |Γ|"
-                                    placement="top"
                                 >
-                                    <Select
+                                    <select
+                                        className="sc-select"
                                         value={chainType}
                                         onChange={(e) => setChainType(e.target.value as ComponentType)}
                                         style={{ fontSize: 12, minWidth: 100 }}
@@ -341,34 +362,36 @@ export default function SmithChartComponent() {
                                                 ["TL", "Trans. Line"],
                                             ] as [ComponentType, string][]
                                         ).map(([v, l]) => (
-                                            <MenuItem key={v} value={v} style={{ fontSize: 12 }}>
+                                            <option key={v} value={v}>
                                                 {l}
-                                            </MenuItem>
+                                            </option>
                                         ))}
-                                    </Select>
-                                </Tooltip>
-                                <Tooltip
+                                    </select>
+                                </span>
+                                <span
+                                    className="sc-tooltip"
                                     title={
                                         chainType === "TL"
                                             ? "Transmission line length in wavelengths (e.g. 0.25 = quarter-wave)"
                                             : "Component value — Henrys (L), Farads (C), or Ohms (R)"
                                     }
-                                    placement="top"
                                 >
-                                    <TextField
-                                        size="small"
+                                    <input
+                                        className="sc-input"
                                         type="number"
                                         value={chainValue}
-                                        inputProps={{ style: { width: 70, fontSize: 12 } }}
+                                        style={{ width: 84, fontSize: 12 }}
                                         onChange={(e) => setChainValue(e.target.value)}
                                         placeholder={chainType === "TL" ? "λ" : "SI"}
                                     />
-                                </Tooltip>
-                                <Tooltip title="Append this component step from the current chain tip" placement="top">
+                                </span>
+                                <span
+                                    className="sc-tooltip"
+                                    title="Append this component step from the current chain tip"
+                                >
                                     <span>
-                                        <Button
-                                            size="small"
-                                            variant="outlined"
+                                        <button
+                                            className="sc-button sc-button-secondary"
                                             onClick={() => {
                                                 const tip = chartApiRef.current?.getChainTip(state);
                                                 if (!tip) return;
@@ -382,23 +405,24 @@ export default function SmithChartComponent() {
                                                 );
                                             }}
                                             disabled={!chartApiRef.current?.getChainTip(state)}
+                                            type="button"
                                         >
                                             Add
-                                        </Button>
+                                        </button>
                                     </span>
-                                </Tooltip>
-                                <Tooltip title="Remove the last chain step" placement="top">
+                                </span>
+                                <span className="sc-tooltip" title="Remove the last chain step">
                                     <span>
-                                        <Button
-                                            size="small"
-                                            variant="outlined"
+                                        <button
+                                            className="sc-button sc-button-secondary"
                                             onClick={() => dispatch({ type: "UNDO_CHAIN_STEP" })}
                                             disabled={state.chain.length === 0}
+                                            type="button"
                                         >
                                             Undo
-                                        </Button>
+                                        </button>
                                     </span>
-                                </Tooltip>
+                                </span>
                             </div>
                         </div>
                     </FloatingPanel>
@@ -413,70 +437,94 @@ export default function SmithChartComponent() {
                         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                             {/* Z/Y/ZY grid mode */}
                             <div style={ROW}>
-                                <Typography variant="caption">Grid:</Typography>
-                                <ToggleButtonGroup
-                                    size="small"
-                                    value={state.gridMode}
-                                    exclusive
-                                    onChange={(_: any, v: any) => v && dispatch({ type: "SET_GRID_MODE", mode: v })}
-                                >
-                                    <Tooltip
+                                <span>Grid:</span>
+                                <div className="sc-button-group" role="group">
+                                    <span
+                                        className="sc-tooltip"
                                         title="Impedance grid — constant-R circles and constant-X arcs"
-                                        placement="top"
                                     >
-                                        <ToggleButton value="Z">Z</ToggleButton>
-                                    </Tooltip>
-                                    <Tooltip
+                                        <button
+                                            type="button"
+                                            className="sc-button"
+                                            aria-pressed={state.gridMode === "Z"}
+                                            onClick={() => dispatch({ type: "SET_GRID_MODE", mode: "Z" })}
+                                        >
+                                            Z
+                                        </button>
+                                    </span>
+                                    <span
+                                        className="sc-tooltip"
                                         title="Admittance grid — constant-G circles and constant-B arcs"
-                                        placement="top"
                                     >
-                                        <ToggleButton value="Y">Y</ToggleButton>
-                                    </Tooltip>
-                                    <Tooltip title="Both impedance and admittance grids overlaid" placement="top">
-                                        <ToggleButton value="ZY">ZY</ToggleButton>
-                                    </Tooltip>
-                                </ToggleButtonGroup>
+                                        <button
+                                            type="button"
+                                            className="sc-button"
+                                            aria-pressed={state.gridMode === "Y"}
+                                            onClick={() => dispatch({ type: "SET_GRID_MODE", mode: "Y" })}
+                                        >
+                                            Y
+                                        </button>
+                                    </span>
+                                    <span className="sc-tooltip" title="Both impedance and admittance grids overlaid">
+                                        <button
+                                            type="button"
+                                            className="sc-button"
+                                            aria-pressed={state.gridMode === "ZY"}
+                                            onClick={() => dispatch({ type: "SET_GRID_MODE", mode: "ZY" })}
+                                        >
+                                            ZY
+                                        </button>
+                                    </span>
+                                </div>
                             </div>
 
                             {/* Z opacity */}
                             {(state.gridMode === "Z" || state.gridMode === "ZY") && (
-                                <Tooltip title="Impedance grid opacity" placement="top">
+                                <span className="sc-tooltip" title="Impedance grid opacity">
                                     <div style={{ ...ROW, minWidth: 200 }}>
-                                        <Typography variant="caption">Z α:</Typography>
-                                        <Slider
+                                        <span>Z α:</span>
+                                        <input
+                                            className="sc-range flex-1"
+                                            type="range"
                                             value={state.zOpacity}
                                             min={0}
                                             max={1}
                                             step={0.05}
-                                            onChange={(_: any, v: any) =>
-                                                dispatch({ type: "SET_Z_OPACITY", opacity: v as number })
+                                            onChange={(event) =>
+                                                dispatch({
+                                                    type: "SET_Z_OPACITY",
+                                                    opacity: event.currentTarget.valueAsNumber,
+                                                })
                                             }
-                                            style={{ flex: 1 }}
                                         />
                                     </div>
-                                </Tooltip>
+                                </span>
                             )}
 
                             {/* Y opacity */}
                             {(state.gridMode === "Y" || state.gridMode === "ZY") && (
-                                <Tooltip title="Admittance grid opacity" placement="top">
+                                <span className="sc-tooltip" title="Admittance grid opacity">
                                     <div style={{ ...ROW, minWidth: 200 }}>
-                                        <Typography variant="caption">Y α:</Typography>
-                                        <Slider
+                                        <span>Y α:</span>
+                                        <input
+                                            className="sc-range flex-1"
+                                            type="range"
                                             value={state.yOpacity}
                                             min={0}
                                             max={1}
                                             step={0.05}
-                                            onChange={(_: any, v: any) =>
-                                                dispatch({ type: "SET_Y_OPACITY", opacity: v as number })
+                                            onChange={(event) =>
+                                                dispatch({
+                                                    type: "SET_Y_OPACITY",
+                                                    opacity: event.currentTarget.valueAsNumber,
+                                                })
                                             }
-                                            style={{ flex: 1 }}
                                         />
                                     </div>
-                                </Tooltip>
+                                </span>
                             )}
 
-                            <Divider style={{ margin: "4px 0" }} />
+                            <hr className="sc-divider" style={{ margin: "4px 0" }} />
 
                             <GridSlider
                                 label="Major px"
@@ -523,29 +571,26 @@ export default function SmithChartComponent() {
                                 value={gridCfg.minGapPx}
                                 onChange={(v) => applyGridCfg({ minGapPx: v })}
                             />
-                            <Tooltip
+                            <span
+                                className="sc-tooltip"
                                 title="When enabled, suppresses minor-tick subdivision in the large-arc sweep region (circles whose centres lie outside the viewport). Reduces clutter on the left side when zoomed into the right half of the chart."
-                                placement="left"
                             >
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            size="small"
-                                            checked={gridCfg.useCompactRange}
-                                            onChange={(e) => applyGridCfg({ useCompactRange: e.target.checked })}
-                                        />
-                                    }
-                                    label={<Typography variant="caption">Compact range</Typography>}
-                                    style={{ margin: 0 }}
-                                />
-                            </Tooltip>
-                            <Divider style={{ margin: "4px 0" }} />
-                            <Typography
-                                variant="caption"
+                                <label className="sc-control" style={{ margin: 0 }}>
+                                    <input
+                                        className="sc-checkbox"
+                                        type="checkbox"
+                                        checked={gridCfg.useCompactRange}
+                                        onChange={(e) => applyGridCfg({ useCompactRange: e.target.checked })}
+                                    />
+                                    <span>Compact range</span>
+                                </label>
+                            </span>
+                            <hr className="sc-divider" style={{ margin: "4px 0" }} />
+                            <span
                                 style={{ fontWeight: 700, color: "color-mix(in srgb, var(--text) 55%, transparent)" }}
                             >
                                 RIM
-                            </Typography>
+                            </span>
                             <GridSlider
                                 label="Label gap"
                                 min={1}
@@ -590,13 +635,10 @@ export default function SmithChartComponent() {
                 >
                     {state.scenarioSteps.length > 0 && (
                         <>
-                            <Typography variant="caption" style={{ fontWeight: 700, marginBottom: 4 }}>
-                                HOW IT WORKS
-                            </Typography>
+                            <span style={{ fontWeight: 700, marginBottom: 4 }}>HOW IT WORKS</span>
                             {state.scenarioSteps.map((step, i) => (
                                 <div key={i} style={{ display: "flex", gap: 6, marginBottom: 6 }}>
-                                    <Typography
-                                        variant="caption"
+                                    <span
                                         style={{
                                             color: "color-mix(in srgb, var(--text) 55%, transparent)",
                                             flexShrink: 0,
@@ -604,147 +646,97 @@ export default function SmithChartComponent() {
                                         }}
                                     >
                                         {i + 1}.
-                                    </Typography>
-                                    <Typography variant="caption" style={{ lineHeight: 1.4 }}>
-                                        {step}
-                                    </Typography>
+                                    </span>
+                                    <span style={{ lineHeight: 1.4 }}>{step}</span>
                                 </div>
                             ))}
-                            <Divider style={{ margin: "6px 0" }} />
+                            <hr className="sc-divider" style={{ margin: "6px 0" }} />
                         </>
                     )}
-                    <Typography variant="caption" style={{ fontWeight: 700, marginBottom: 4 }}>
-                        MARKERS
-                    </Typography>
+                    <span style={{ fontWeight: 700, marginBottom: 4 }}>MARKERS</span>
                     {state.markers.length === 0 && (
-                        <Typography
-                            variant="caption"
-                            style={{ color: "color-mix(in srgb, var(--text) 55%, transparent)" }}
-                        >
+                        <span style={{ color: "color-mix(in srgb, var(--text) 55%, transparent)" }}>
                             Click chart to place a marker
-                        </Typography>
+                        </span>
                     )}
                     {state.markers.map((marker, i) => {
                         const ro = computeReadouts(marker.gamma);
                         const colour = COLOURS[i % COLOURS.length];
                         const isActive = marker.id === state.activeMarkerId;
                         return (
-                            <Accordion
+                            <details
+                                className="sc-accordion sc-marker-accordion"
                                 key={marker.id}
-                                expanded={isActive}
-                                onChange={() =>
-                                    dispatch({ type: "SET_ACTIVE_MARKER", id: isActive ? null : marker.id })
-                                }
-                                sx={{
-                                    border: `1px solid ${colour}`,
-                                    bgcolor: "var(--bg-chart)",
-                                    color: "var(--text)",
-                                    "&:before": { display: "none" },
-                                    "& .MuiAccordionSummary-root": { bgcolor: "var(--bg-chart)", color: "var(--text)" },
-                                    "& .MuiAccordionDetails-root": { bgcolor: "var(--bg-chart)" },
-                                    "& .MuiToggleButton-root": {
-                                        color: "color-mix(in srgb, var(--text) 60%, transparent)",
-                                        borderColor: "color-mix(in srgb, var(--text) 25%, transparent)",
-                                    },
-                                    "& .MuiToggleButton-root.Mui-selected": {
-                                        bgcolor: "color-mix(in srgb, var(--text) 15%, transparent)",
-                                        color: "var(--text)",
-                                    },
+                                open={isActive}
+                                style={{ borderColor: colour }}
+                                onToggle={(event) => {
+                                    if (event.currentTarget.open) {
+                                        dispatch({ type: "SET_ACTIVE_MARKER", id: marker.id });
+                                    } else if (state.activeMarkerId === marker.id) {
+                                        dispatch({ type: "SET_ACTIVE_MARKER", id: null });
+                                    }
                                 }}
                             >
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    style={{ minHeight: 32, padding: "0 8px" }}
-                                >
-                                    <span
-                                        role="button"
-                                        tabIndex={0}
+                                <summary className="sc-accordion-summary sc-marker-summary">
+                                    <button
+                                        type="button"
+                                        className="sc-button sc-button-icon"
+                                        title={`Remove ${marker.label}`}
+                                        aria-label={`Remove ${marker.label}`}
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             dispatch({ type: "REMOVE_MARKER", id: marker.id });
                                         }}
-                                        onKeyDown={(e) => {
-                                            if (e.key === "Enter" || e.key === " ") {
-                                                e.stopPropagation();
-                                                dispatch({ type: "REMOVE_MARKER", id: marker.id });
-                                            }
-                                        }}
-                                        style={{
-                                            marginRight: 4,
-                                            padding: 2,
-                                            cursor: "pointer",
-                                            display: "inline-flex",
-                                            alignItems: "center",
-                                            borderRadius: "50%",
-                                        }}
                                     >
                                         <CloseIcon fontSize="small" />
+                                    </button>
+                                    <span className="sc-chip" style={{ backgroundColor: colour }}>
+                                        {marker.label}
                                     </span>
-                                    <Chip
-                                        label={marker.label}
-                                        size="small"
-                                        style={{
-                                            backgroundColor: colour,
-                                            color: "#fff",
-                                            marginRight: 8,
-                                            fontSize: 11,
-                                        }}
-                                    />
-                                    <Typography variant="caption" style={{ fontFamily: "monospace", lineHeight: 2 }}>
+                                    <span style={{ fontFamily: "monospace", lineHeight: 2 }}>
                                         Γ={marker.gamma.re.toFixed(3)}
                                         {marker.gamma.im >= 0 ? "+" : ""}j{marker.gamma.im.toFixed(3)}
-                                    </Typography>
-                                </AccordionSummary>
-                                <AccordionDetails
-                                    style={{ padding: 8, flexDirection: "column", alignItems: "stretch" }}
-                                >
+                                    </span>
+                                    <ExpandMoreIcon className="sc-accordion-chevron" />
+                                </summary>
+                                <div className="sc-accordion-details sc-marker-details">
                                     <div style={{ ...ROW, marginBottom: 6 }}>
-                                        <Typography
-                                            variant="caption"
+                                        <span
                                             style={{
                                                 color: "color-mix(in srgb, var(--text) 55%, transparent)",
                                                 minWidth: 36,
                                             }}
                                         >
                                             Drag:
-                                        </Typography>
-                                        <ToggleButtonGroup
-                                            size="small"
-                                            value={marker.dragMode}
-                                            exclusive
-                                            onChange={(_: any, v: any) =>
-                                                v &&
-                                                dispatch({
-                                                    type: "SET_DRAG_MODE",
-                                                    id: marker.id,
-                                                    mode: v as DragMode,
-                                                })
-                                            }
-                                        >
+                                        </span>
+                                        <div className="sc-button-group" role="group">
                                             {(["free", "gamma", "R", "X", "G", "B"] as DragMode[]).map((m) => (
-                                                <ToggleButton
+                                                <button
+                                                    type="button"
+                                                    className="sc-button"
+                                                    aria-pressed={marker.dragMode === m}
                                                     key={m}
-                                                    value={m}
                                                     style={{ padding: "1px 5px", fontSize: 10, lineHeight: 1.4 }}
+                                                    onClick={() =>
+                                                        dispatch({ type: "SET_DRAG_MODE", id: marker.id, mode: m })
+                                                    }
                                                 >
                                                     {m === "free" ? "Free" : m === "gamma" ? "|Γ|" : m}
-                                                </ToggleButton>
+                                                </button>
                                             ))}
-                                        </ToggleButtonGroup>
+                                        </div>
                                     </div>
                                     <ReadoutTable ro={ro} />
-                                </AccordionDetails>
-                            </Accordion>
+                                </div>
+                            </details>
                         );
                     })}
 
                     {/* Chain step list */}
                     {state.chain.length > 0 && (
                         <>
-                            <Divider style={{ margin: "4px 0" }} />
-                            <Typography variant="caption" style={{ fontWeight: 700 }}>
-                                CHAIN ({state.chain.length} steps)
-                            </Typography>
+                            <hr className="sc-divider" style={{ margin: "4px 0" }} />
+                            <span style={{ fontWeight: 700 }}>CHAIN ({state.chain.length} steps)</span>
                             {state.chain.map((step, i) => (
                                 <div key={step.id} style={ROW}>
                                     <div
@@ -756,18 +748,15 @@ export default function SmithChartComponent() {
                                             flexShrink: 0,
                                         }}
                                     />
-                                    <Typography variant="caption" style={{ fontFamily: "monospace" }}>
+                                    <span style={{ fontFamily: "monospace" }}>
                                         {step.type} {step.value.toExponential(2)}
                                         {" → "}Γ={step.toGamma.re.toFixed(3)}
                                         {step.toGamma.im >= 0 ? "+" : ""}j{step.toGamma.im.toFixed(3)}
-                                    </Typography>
+                                    </span>
                                 </div>
                             ))}
                             {(state.markers.find((m) => m.isChainStart) || state.chainStartGamma) && (
-                                <Typography
-                                    variant="caption"
-                                    style={{ color: "color-mix(in srgb, var(--text) 55%, transparent)" }}
-                                >
+                                <span style={{ color: "color-mix(in srgb, var(--text) 55%, transparent)" }}>
                                     Start:{" "}
                                     {(() => {
                                         const m = state.markers.find((m) => m.isChainStart);
@@ -775,7 +764,7 @@ export default function SmithChartComponent() {
                                         const g = state.chainStartGamma!;
                                         return `Γ=(${g.re.toFixed(3)},${g.im.toFixed(3)})`;
                                     })()}
-                                </Typography>
+                                </span>
                             )}
                         </>
                     )}
@@ -806,26 +795,25 @@ function GridSlider({
 }) {
     const inner = (
         <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <Typography variant="caption" style={{ minWidth: 76, flexShrink: 0 }}>
-                {label}:
-            </Typography>
-            <Slider
+            <span style={{ minWidth: 76, flexShrink: 0 }}>{label}:</span>
+            <input
+                className="sc-range flex-1"
+                type="range"
                 value={value}
                 min={min}
                 max={max}
                 step={step}
-                onChange={(_: any, v: any) => onChange(v as number)}
-                style={{ flex: 1 }}
+                onChange={(event) => onChange(event.currentTarget.valueAsNumber)}
             />
-            <Typography variant="caption" style={{ minWidth: 36, textAlign: "right", fontFamily: "monospace" }}>
+            <span style={{ minWidth: 36, textAlign: "right", fontFamily: "monospace" }}>
                 {format ? format(value) : value}
-            </Typography>
+            </span>
         </div>
     );
     return tooltip ? (
-        <Tooltip title={tooltip} placement="left">
+        <span className="sc-tooltip" title={tooltip}>
             {inner}
-        </Tooltip>
+        </span>
     ) : (
         inner
     );

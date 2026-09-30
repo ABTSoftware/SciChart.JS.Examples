@@ -1,7 +1,5 @@
 import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 
@@ -20,20 +18,27 @@ export default function SmoothStackedMountainChart() {
     };
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <ToggleButtonGroup
-                className={commonClasses.ToolbarRow}
-                exclusive
-                value={use100PercentStackedMode}
-                onChange={handleUsePercentage}
-                size="small"
-                color="primary"
-                aria-label="small outlined button group"
-                style={{ justifyContent: "start" }}
-            >
-                <ToggleButton value={false}>Stacked mode</ToggleButton>
-                <ToggleButton value={true}>100% Stacked mode</ToggleButton>
-            </ToggleButtonGroup>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="Stacked chart mode">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={!use100PercentStackedMode}
+                        onClick={(event) => handleUsePercentage(event, false)}
+                    >
+                        Stacked mode
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={use100PercentStackedMode}
+                        onClick={(event) => handleUsePercentage(event, true)}
+                    >
+                        100% Stacked mode
+                    </button>
+                </div>
+            </header>
             <SciChartReact
                 initChart={drawExample}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {

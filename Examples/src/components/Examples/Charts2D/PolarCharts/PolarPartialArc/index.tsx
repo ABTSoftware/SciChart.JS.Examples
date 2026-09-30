@@ -1,10 +1,8 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 import { useCallback, useRef, useState } from "react";
-import { ToggleButton, ToggleButtonGroup, Slider, Typography } from "@mui/material";
+import { PlayArrowIcon, StopIcon } from "../../../icons";
 import { appTheme } from "../../../theme";
-import commonClasses from "../../../styles/Examples.module.scss";
-
 export default function ChartComponent() {
     const [totalAngle, setTotalAngle] = useState<number>(0.004);
     const [innerRadius, setInnerRadius] = useState<number>(0.9977);
@@ -43,71 +41,72 @@ export default function ChartComponent() {
     }
 
     return (
-        <div className={commonClasses.ChartWrapper}>
-            <div
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    background: appTheme.DarkIndigo,
-                }}
-            >
-                <div className={commonClasses.ToolbarRow}>
-                    <ToggleButtonGroup exclusive size="medium" color="primary" aria-label="button group">
-                        <ToggleButton value="start" onClick={() => controls.startAnimation()}>
-                            Start
-                        </ToggleButton>
+        <div className="sc-chart-wrapper" style={{ background: appTheme.DarkIndigo }}>
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="button group">
+                    <button
+                        type="button"
+                        className="sc-button sc-button-icon"
+                        aria-label="Start animation"
+                        onClick={() => controls.startAnimation()}
+                    >
+                        <PlayArrowIcon />
+                    </button>
 
-                        <ToggleButton value="end" onClick={() => controls.endAnimation()}>
-                            End
-                        </ToggleButton>
-                    </ToggleButtonGroup>
-
-                    <div style={{ flex: 1, paddingInline: 20 }}>
-                        <Typography variant="body1" color="white">
-                            Inner Radius: <strong>{innerRadius.toFixed(3)}</strong>
-                        </Typography>
-
-                        <input
-                            style={{ width: "100%" }}
-                            type="range"
-                            min={0.001}
-                            max={0.999}
-                            step={0.001}
-                            value={innerRadius}
-                            onChange={(e) => changeInnerRadius(parseFloat(e.target.value))}
-                        />
-                    </div>
-
-                    <div style={{ flex: 1, paddingInline: 20 }}>
-                        <Typography variant="body1" color="white">
-                            Total Angle: <strong>{(totalAngle / Math.PI).toFixed(3)} * π</strong> or{" "}
-                            <strong>{totalAngle.toFixed(3)}</strong>
-                        </Typography>
-
-                        <input
-                            style={{ width: "100%" }}
-                            type="range"
-                            min={0}
-                            max={Math.PI * 2}
-                            step={0.001}
-                            value={totalAngle}
-                            onChange={(e) => changeTotalAngle(parseFloat(e.target.value))}
-                        />
-                    </div>
+                    <button
+                        type="button"
+                        className="sc-button sc-button-icon"
+                        aria-label="Stop animation"
+                        onClick={() => controls.endAnimation()}
+                    >
+                        <StopIcon />
+                    </button>
                 </div>
 
-                <SciChartReact
-                    initChart={(rootElementId: string | HTMLDivElement) =>
-                        drawExample(rootElementId, innerRadius, totalAngle, handleAnimationUpdate)
-                    }
-                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                        setControls(initResult.controls);
-                    }}
-                    style={{ flex: 1 }}
-                />
-            </div>
+                <div style={{ flex: 1, paddingInline: 20 }}>
+                    <span>
+                        Inner Radius: <strong>{innerRadius.toFixed(3)}</strong>
+                    </span>
+
+                    <input
+                        style={{ width: "100%" }}
+                        type="range"
+                        min={0.001}
+                        max={0.999}
+                        step={0.001}
+                        value={innerRadius}
+                        onChange={(e) => changeInnerRadius(parseFloat(e.target.value))}
+                        className="sc-range"
+                    />
+                </div>
+
+                <div style={{ flex: 1, paddingInline: 20 }}>
+                    <span>
+                        Total Angle: <strong>{(totalAngle / Math.PI).toFixed(3)} * π</strong> or{" "}
+                        <strong>{totalAngle.toFixed(3)}</strong>
+                    </span>
+
+                    <input
+                        style={{ width: "100%" }}
+                        type="range"
+                        min={0}
+                        max={Math.PI * 2}
+                        step={0.001}
+                        value={totalAngle}
+                        onChange={(e) => changeTotalAngle(parseFloat(e.target.value))}
+                        className="sc-range"
+                    />
+                </div>
+            </header>
+
+            <SciChartReact
+                initChart={(rootElementId: string | HTMLDivElement) =>
+                    drawExample(rootElementId, innerRadius, totalAngle, handleAnimationUpdate)
+                }
+                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                    setControls(initResult.controls);
+                }}
+            />
         </div>
     );
 }

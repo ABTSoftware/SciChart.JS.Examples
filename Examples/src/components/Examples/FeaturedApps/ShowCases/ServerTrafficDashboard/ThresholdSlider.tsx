@@ -64,6 +64,7 @@ const ThresholdSlider = () => {
                     height: 10,
                     background: "#0bdef4",
                 }}
+                className="sc-range"
             ></input>
         </div>
     );

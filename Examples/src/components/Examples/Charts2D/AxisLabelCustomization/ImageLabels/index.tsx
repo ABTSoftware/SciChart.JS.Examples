@@ -1,5 +1,4 @@
 import { SciChartReact } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 
 import appleLogo from "./images/apple.png";
@@ -39,5 +38,5 @@ const emojiUrls = [
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
-    return <SciChartReact initChart={drawExample(emojiUrls)} className={commonClasses.ChartWrapper} />;
+    return <SciChartReact initChart={drawExample(emojiUrls)} className="sc-chart-wrapper" />;
 }

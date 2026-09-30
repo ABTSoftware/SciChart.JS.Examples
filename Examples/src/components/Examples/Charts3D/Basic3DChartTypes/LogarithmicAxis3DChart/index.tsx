@@ -1,9 +1,7 @@
 import { useRef, useState } from "react";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
+
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { LogarithmicAxis3D, NumericAxis3D } from "scichart";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, X_RANGE_LINEAR, X_RANGE_LOG, Y_RANGE_LINEAR, Y_RANGE_LOG } from "./drawExample";
 
 export default function LogarithmicAxis3DChart() {
@@ -16,7 +14,11 @@ export default function LogarithmicAxis3DChart() {
         const { sciChartSurface, wasmContext } = chartRef.current;
         const useLog = !xIsLog;
         sciChartSurface.xAxis = useLog
-            ? new LogarithmicAxis3D(wasmContext, { axisTitle: "Frequency (Hz)", logBase: 10, visibleRange: X_RANGE_LOG })
+            ? new LogarithmicAxis3D(wasmContext, {
+                  axisTitle: "Frequency (Hz)",
+                  logBase: 10,
+                  visibleRange: X_RANGE_LOG,
+              })
             : new NumericAxis3D(wasmContext, { axisTitle: "Frequency (Hz)", visibleRange: X_RANGE_LINEAR });
         setXIsLog(useLog);
     };
@@ -32,7 +34,7 @@ export default function LogarithmicAxis3DChart() {
     };
 
     return (
-        <div className={commonClasses.ChartWrapper}>
+        <div className="sc-chart-wrapper">
             <SciChartReact
                 initChart={drawExample}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
@@ -40,17 +42,24 @@ export default function LogarithmicAxis3DChart() {
                 }}
                 style={{ height: "100%", width: "100%" }}
             />
-            <ButtonGroup
-                size="small"
-                style={{ position: "absolute", top: 8, left: 8 }}
-            >
-                <Button variant={xIsLog ? "contained" : "outlined"} onClick={toggleXAxis}>
+            <div className="sc-button-group" role="group" style={{ position: "absolute", top: 8, left: 8 }}>
+                <button
+                    type="button"
+                    className={`sc-button ${xIsLog ? "sc-button-primary" : "sc-button-secondary"}`}
+                    aria-pressed={xIsLog}
+                    onClick={toggleXAxis}
+                >
                     X: {xIsLog ? "Log" : "Linear"}
-                </Button>
-                <Button variant={yIsLog ? "contained" : "outlined"} onClick={toggleYAxis}>
+                </button>
+                <button
+                    type="button"
+                    className={`sc-button ${yIsLog ? "sc-button-primary" : "sc-button-secondary"}`}
+                    aria-pressed={yIsLog}
+                    onClick={toggleYAxis}
+                >
                     Y: {yIsLog ? "Log" : "Linear"}
-                </Button>
-            </ButtonGroup>
+                </button>
+            </div>
         </div>
     );
 }

@@ -1,5 +1,4 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { useRef, useState } from "react";
 
@@ -17,23 +16,17 @@ export default function ChartComponent() {
     };
 
     return (
-        <div className="" style={{ width: "100%", height: "100%", position: "relative" }}>
+        <div className="sc-chart-wrapper">
             <button
                 onClick={changeOrder}
-                style={{
-                    position: "absolute",
-                    zIndex: "100",
-                    color: order ? "rgb(0, 188, 212)" : "white",
-                    display: "inline-block",
-                    padding: "10px 24px",
-                    background: order ? "#163149" : "#14233c",
-                }}
+                style={{ position: "absolute", zIndex: 1 }}
+                className="sc-button sc-button-primary"
             >
                 REVERSE ORDER OF BAND SERIES
             </button>
             <SciChartReact
                 initChart={drawExample}
-                className={commonClasses.ChartWrapper}
+                className="w-full h-full"
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     // get the "changeOrder" function that is returned by "drawExample"
                     let { changeOrder } = initResult;

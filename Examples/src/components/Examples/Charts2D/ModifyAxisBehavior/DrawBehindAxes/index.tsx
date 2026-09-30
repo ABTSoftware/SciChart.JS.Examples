@@ -1,8 +1,6 @@
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import * as React from "react";
 import { SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
@@ -22,34 +20,36 @@ export default function DrawBehindAxes() {
         sciChartSurfaceRef.current.xAxes.get(0).axisBorder.borderTop = value;
     };
 
-    // Follow the app theme rather than forcing a dark strip: MUI renders the inactive toggle label in
-    // the active theme's text colour, which is invisible against a dark background in light mode.
     return (
-        <div className={commonClasses.ChartWrapper} style={{ background: appTheme.Background }}>
+        <div className="sc-chart-wrapper" style={{ background: appTheme.Background }}>
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="Series rendering mode">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={preset === 0}
+                        onClick={(event) => handleToggleButtonChanged(event, 0)}
+                    >
+                        Draw Series behind Axis
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={preset === 1}
+                        onClick={(event) => handleToggleButtonChanged(event, 1)}
+                    >
+                        Clip series at Viewport Edge
+                    </button>
+                </div>
+            </header>
             <SciChartReact
                 initChart={drawExample}
-                style={{ height: "calc(100% - 100px)", width: "100%" }}
-                className={commonClasses.ChartWrapper}
+                className="sc-chart-wrapper"
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     const { sciChartSurface } = initResult;
                     sciChartSurfaceRef.current = sciChartSurface;
                 }}
             />
-            <ToggleButtonGroup
-                style={{ height: "100px", padding: "10" }}
-                exclusive
-                value={preset}
-                onChange={handleToggleButtonChanged}
-                size="medium"
-                color="primary"
-                aria-label="small outlined button group"
-                // MUI colours the unselected label from its own palette, which has too little contrast
-                // against the chart background in the dark themes. Track the app theme instead.
-                sx={{ "& .MuiToggleButton-root:not(.Mui-selected)": { color: appTheme.ForegroundColor } }}
-            >
-                <ToggleButton value={0}>Draw Series behind Axis</ToggleButton>
-                <ToggleButton value={1}>Clip series at Viewport Edge</ToggleButton>
-            </ToggleButtonGroup>
         </div>
     );
 }

@@ -11,6 +11,7 @@ import {
     ZoomPanModifier,
     EColumnDataLabelPosition,
     IStackedColumnSeriesDataLabelProviderOptions,
+    StackedColumnSeriesDataLabelProvider,
     EVerticalTextPosition,
     NumberRange,
     Thickness,
@@ -40,7 +41,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             labelPrecision: 0,
-            growBy: new NumberRange(0, 0.05),
+            growBy: new NumberRange(0, 0.03),
             axisTitle: "Sales $USD (Billion)",
             drawMinorGridLines: false,
         })
@@ -58,7 +59,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         color: appTheme.TextColor,
         style: { fontSize: 12, fontFamily: "Arial", padding: new Thickness(0, 0, 2, 0) },
         precision: 0,
-        positionMode: EColumnDataLabelPosition.Outside,
+        positionMode: EColumnDataLabelPosition.Center,
         verticalTextPosition: EVerticalTextPosition.Center,
     };
 
@@ -120,7 +121,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new ZoomPanModifier({ enableZoom: true }),
         new MouseWheelZoomModifier()
     );
-
     sciChartSurface.zoomExtents();
 
     const toggleHundredPercentMode = (value: boolean) => {
@@ -128,13 +128,21 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChartSurface.zoomExtents(200);
     };
 
-    const toggleDataLabels = (areDataLabelsVisible: boolean) => {
+    const toggleDataLabels = (visible: boolean) => {
         for (let i = 0; i < 5; i++) {
             const columnSeries = stackedColumnCollection.get(i);
-            columnSeries.dataLabelProvider.style.fontSize = areDataLabelsVisible ? 0 : 12;
+            columnSeries.dataLabelProvider.style.fontSize = visible ? 12 : 0;
         }
         sciChartSurface.invalidateElement();
     };
 
-    return { sciChartSurface, controls: { toggleHundredPercentMode, toggleDataLabels } };
+    const setDataLabelPosition = (positionMode: EColumnDataLabelPosition) => {
+        for (let i = 0; i < 5; i++) {
+            (stackedColumnCollection.get(i).dataLabelProvider as StackedColumnSeriesDataLabelProvider)
+                .positionMode = positionMode;
+        }
+        sciChartSurface.invalidateElement();
+    };
+
+    return { sciChartSurface, controls: { toggleHundredPercentMode, toggleDataLabels, setDataLabelPosition } };
 };

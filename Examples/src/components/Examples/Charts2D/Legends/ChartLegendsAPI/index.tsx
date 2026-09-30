@@ -1,11 +1,7 @@
 import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { ELegendOrientation, ELegendPlacement, LegendModifier, SciChartSurface } from "scichart";
-import { appTheme } from "../../../theme";
 import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
 
 const placementSelect = [
     { value: ELegendPlacement.TopLeft, text: "Top-Left" },
@@ -69,42 +65,28 @@ export default function ChartLegendsAPI() {
         }
     };
 
-    const styles: Record<string, React.CSSProperties> = {
-        toolbar: {
-            padding: "10px",
-            fontSize: "13px",
-            flex: "none",
-            flexWrap: "wrap",
-        },
-        combobox: {
-            color: appTheme.Background,
-            backgroundColor: appTheme.ForegroundColor,
-            margin: "10px",
-        },
-    };
-
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow} style={styles.toolbar}>
-                <FormControlLabel
-                    control={<Switch checked={showLegendValue} onChange={handleChangeShowLegend} />}
-                    label=" Show Legend?"
-                />
-                <FormControlLabel
-                    control={<Switch checked={showCheckboxesValue} onChange={handleChangeShowCheckboxes} />}
-                    label=" Show Visibility Checkboxes?"
-                />
-                <FormControlLabel
-                    control={<Switch checked={showSeriesMarkersValue} onChange={handleChangeShowSeriesMarkers} />}
-                    label="Show Series Markers?"
-                />
-                <label id="sciChartPlacement-label">
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <label className="sc-switch">
+                    <input type="checkbox" checked={showLegendValue} onChange={handleChangeShowLegend} />
+                    Show Legend?
+                </label>
+                <label className="sc-switch">
+                    <input type="checkbox" checked={showCheckboxesValue} onChange={handleChangeShowCheckboxes} />
+                    Show Visibility Checkboxes?
+                </label>
+                <label className="sc-switch">
+                    <input type="checkbox" checked={showSeriesMarkersValue} onChange={handleChangeShowSeriesMarkers} />
+                    Show Series Markers?
+                </label>
+                <label className="sc-control" htmlFor="sciChartPlacement">
                     Legend Placement
                     <select
-                        style={styles.combobox}
                         id="sciChartPlacement"
                         value={placementValue}
                         onChange={handleChangePlacement}
+                        className="sc-select"
                     >
                         {placementSelect.map((el) => (
                             <option key={el.value} value={el.value}>
@@ -113,13 +95,13 @@ export default function ChartLegendsAPI() {
                         ))}
                     </select>
                 </label>
-                <label id="sciChartPlacement-label">
+                <label className="sc-control" htmlFor="sciChartOrientation">
                     Legend Orientation
                     <select
-                        style={styles.combobox}
                         id="sciChartOrientation"
                         value={orientationValue}
                         onChange={handleChangeOrientation}
+                        className="sc-select"
                     >
                         {orientationSelect.map((el) => (
                             <option key={el.value} value={el.value}>
@@ -128,10 +110,10 @@ export default function ChartLegendsAPI() {
                         ))}
                     </select>
                 </label>
-            </div>
+            </header>
             <SciChartReact
                 initChart={drawExample}
-                className={commonClasses.ChartWrapper}
+                className="sc-chart-wrapper"
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     const { sciChartSurface, legendModifier } = initResult;
                     legendModifierRef.current = legendModifier;

@@ -9,6 +9,7 @@
   },
   "scripts": {
     "generateExamplePaths": "node scripts/generateExamplePaths.js",
+    "exportExampleCss": "ts-node -P tsconfig.node.json -O '{\"module\":\"commonjs\",\"moduleResolution\":\"node\"}' scripts/exportExampleCss.ts",
     "updateExampleInfos": "ts-node -P tsconfig.node.json scripts/updateExampleInfos.ts",
     "updateExampleInfosJS": "node scripts/updateExampleInfos.js",
     "dev": "webpack-dev-server --config webpack.client.no_server.config.ts",
@@ -42,7 +43,6 @@
     "@angular/common": "^18.2.8",
     "@angular/core": "^18.2.8",
     "@angular/forms": "^18.2.8",
-    "@angular/material": "^18.2.8",
     "@babel/runtime": "^7.28.2",
     "@emotion/react": "^11.13.3",
     "@emotion/server": "^11.11.0",

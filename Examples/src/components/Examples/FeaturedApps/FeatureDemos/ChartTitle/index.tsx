@@ -1,6 +1,4 @@
 import * as React from "react";
-import { FormControlLabel, Switch } from "@mui/material";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import {
@@ -135,104 +133,67 @@ export default function FeatureChartTitle() {
         }
     };
 
-    const styles: Record<string, React.CSSProperties> = {
-        flexContainer: {
-            display: "flex",
-            flexDirection: "column",
-            height: "100%",
-            width: "100%",
-        },
-        toolbar: {
-            minHeight: "70px",
-            padding: "10px",
-            color: appTheme.ForegroundColor,
-            fontSize: "13px",
-            flex: "none",
-            flexWrap: "wrap",
-        },
-        combobox: {
-            color: "black",
-            backgroundColor: appTheme.Background,
-            margin: "10px 20px 10px 10px",
-        },
-        textarea: {
-            color: "black",
-            backgroundColor: appTheme.Background,
-            margin: "10px 20px 10px 10px",
-            verticalAlign: "middle",
-        },
-        chartElement: {
-            width: "100%",
-            flex: "auto",
-        },
-    };
-
     return (
-        <div className={commonClasses.ChartWithToolbar} style={{ background: appTheme.DarkIndigo }}>
-            <div className={commonClasses.ToolbarRow} style={styles.toolbar}>
-                <FormControlLabel
-                    className={commonClasses.FormControlLabel}
-                    control={
-                        <textarea style={styles.textarea} value={titleText} onChange={handleChangeTitleText}></textarea>
-                    }
-                    labelPlacement="start"
-                    label="Title text"
-                />
+        <div className="sc-chart-wrapper" style={{ background: appTheme.DarkIndigo }}>
+            <header className="sc-toolbar-row">
+                <label className="sc-control">
+                    <span>Title text</span>
+                    <textarea
+                        value={titleText}
+                        onChange={handleChangeTitleText}
+                        className="sc-input sc-textarea"
+                    />
+                </label>
 
-                <FormControlLabel
-                    className={commonClasses.FormControlLabel}
-                    control={
-                        <select style={styles.combobox} value={titleAlignment} onChange={selectTitleTextAlignment}>
-                            {Object.values(ETextAlignment).map((value) => (
-                                <option key={value} value={value}>
-                                    {value}
-                                </option>
-                            ))}
-                        </select>
-                    }
-                    labelPlacement="start"
-                    label="Title Alignment"
-                />
+                <label className="sc-control">
+                    <span>Title Alignment</span>
+                    <select
+                        className="sc-select"
+                        value={titleAlignment}
+                        onChange={selectTitleTextAlignment}
+                    >
+                        {Object.values(ETextAlignment).map((value) => (
+                            <option key={value} value={value}>
+                                {value}
+                            </option>
+                        ))}
+                    </select>
+                </label>
 
-                <FormControlLabel
-                    className={commonClasses.FormControlLabel}
-                    control={
-                        <select style={styles.combobox} value={titlePosition} onChange={selectTitleTextPosition}>
-                            {Object.values(ETitlePosition).map((value) => (
-                                <option key={value} value={value}>
-                                    {value}
-                                </option>
-                            ))}
-                        </select>
-                    }
-                    labelPlacement="start"
-                    label="Title Position"
-                />
+                <label className="sc-control">
+                    <span>Title Position</span>
+                    <select
+                        className="sc-select"
+                        value={titlePosition}
+                        onChange={selectTitleTextPosition}
+                    >
+                        {Object.values(ETitlePosition).map((value) => (
+                            <option key={value} value={value}>
+                                {value}
+                            </option>
+                        ))}
+                    </select>
+                </label>
 
-                <FormControlLabel
-                    className={commonClasses.FormControlLabel}
-                    control={
-                        <select
-                            style={styles.combobox}
-                            value={multilineAlignment}
-                            onChange={selectTitleTextMultilineAlignment}
-                        >
-                            {Object.values(EMultiLineAlignment).map((value) => (
-                                <option key={value} value={value}>
-                                    {value}
-                                </option>
-                            ))}
-                        </select>
-                    }
-                    labelPlacement="start"
-                    label="Multiline Text Alignment"
-                />
-                <FormControlLabel
-                    control={<Switch checked={placeWithinChart} onChange={handleChangePlaceWithinChart} />}
-                    label="Place Title within chart?"
-                    labelPlacement="start"
-                />
-            </div>
+                <label className="sc-control">
+                    <span>Multiline Text Alignment</span>
+                    <select
+                        className="sc-select"
+                        value={multilineAlignment}
+                        onChange={selectTitleTextMultilineAlignment}
+                    >
+                        {Object.values(EMultiLineAlignment).map((value) => (
+                            <option key={value} value={value}>
+                                {value}
+                            </option>
+                        ))}
+                    </select>
+                </label>
+                <label className="sc-switch">
+                    <input type="checkbox" checked={placeWithinChart} onChange={handleChangePlaceWithinChart} />
+                    Place Title within chart?
+                </label>
+            </header>
 
             <SciChartReact
                 initChart={drawExample}

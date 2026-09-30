@@ -1,90 +1,17 @@
-import * as React from "react";
-import { Box, Button, IconButton, ToggleButton, ToggleButtonGroup, Tooltip, Typography } from "@mui/material";
-import type { SxProps, Theme } from "@mui/material";
-import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
+import { useState, useRef, useCallback, type MouseEvent } from "react";
+import { DeleteSweepIcon } from "../../../icons";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 
 const POINT_OPTIONS = [3, 5, 7, 9];
 
-const toolbarStyle: React.CSSProperties = {
-    justifyContent: "flex-start",
-    alignItems: "center",
-    flexWrap: "wrap",
-    gap: 8,
-    padding: "6px 12px",
-};
-
-const controlGroupSx: SxProps<Theme> = {
-    display: "flex",
-    alignItems: "center",
-    flexWrap: "wrap",
-    gap: 1,
-};
-
-const pointToggleSx: SxProps<Theme> = {
-    backgroundColor: "rgba(255, 255, 255, 0.06)",
-    borderRadius: "8px",
-    "& .MuiToggleButton-root": {
-        minWidth: 36,
-        minHeight: 28,
-        color: "inherit",
-        borderColor: "rgba(255, 255, 255, 0.18)",
-        px: 1.35,
-        py: 0.25,
-        fontSize: "0.75rem",
-        fontWeight: 500,
-        lineHeight: 1.3,
-        textTransform: "none",
-    },
-    "& .MuiToggleButton-root.Mui-selected": {
-        color: "#ffffff",
-        backgroundColor: "rgba(14, 165, 233, 0.75)",
-    },
-    "& .MuiToggleButton-root.Mui-selected:hover": {
-        backgroundColor: "rgba(14, 165, 233, 0.9)",
-    },
-};
-
-const connectorButtonSx: SxProps<Theme> = {
-    minWidth: "auto",
-    minHeight: 28,
-    borderColor: "rgba(255, 255, 255, 0.18)",
-    color: "#ffffff",
-    padding: 0.25,
-    px: 0.9,
-    fontSize: "0.75rem",
-    fontWeight: 500,
-    lineHeight: 1.3,
-    textTransform: "none",
-    "&:hover": {
-        borderColor: "rgba(255, 255, 255, 0.35)",
-        backgroundColor: "rgba(255, 255, 255, 0.08)",
-    },
-};
-
-const deleteButtonSx: SxProps<Theme> = {
-    width: 28,
-    height: 28,
-    backgroundColor: "rgba(0, 0, 0, 0.55)",
-    color: "#ffffff",
-    "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.75)" },
-};
-
-const actionGroupSx: SxProps<Theme> = {
-    display: "flex",
-    alignItems: "center",
-    gap: 3,
-    ml: "auto",
-};
-
 export default function PairedDashedPolylineAnnotation() {
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample> | undefined>(undefined);
-    const [pointCount, setPointCount] = React.useState(5);
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample> | undefined>(undefined);
+    const [pointCount, setPointCount] = useState(0);
+    const [isConnectorLineVisible, setIsConnectorLineVisible] = useState(true)
 
-    const handlePointCountChange = React.useCallback(
-        (_event: React.MouseEvent<HTMLElement>, nextPointCount: number | null) => {
+    const handlePointCountChange = useCallback(
+        (_event: MouseEvent<HTMLElement>, nextPointCount: number | null) => {
             if (!nextPointCount) return;
 
             setPointCount(nextPointCount);
@@ -94,54 +21,59 @@ export default function PairedDashedPolylineAnnotation() {
     );
 
     return (
-        <div className={commonClasses.ChartWithToolbar} style={{ position: "relative" }}>
-            <div className={commonClasses.ToolbarRow} style={toolbarStyle}>
-                <Box sx={controlGroupSx}>
-                    <Typography component="span" sx={{ fontSize: "1rem", fontWeight: 500, whiteSpace: "nowrap" }}>
-                        Place polyline with N points: 
-                    </Typography>
+        <div
+            className="sc-chart-wrapper"
+            onClick={() => {
+                if (pointCount !== 0 && !controlsRef.current?.isPlacing()) setPointCount(0);
+            }}
+        >
+            <header className="sc-toolbar-row">
 
-                    <ToggleButtonGroup
-                        exclusive
-                        size="small"
-                        value={pointCount}
-                        onChange={handlePointCountChange}
+                <label className="sc-switch">
+                    <input
+                        type="checkbox"
+                        checked={isConnectorLineVisible}
+                        onChange={(e) => {
+                            controlsRef.current?.togglePairConnectors();
+                            setIsConnectorLineVisible(!isConnectorLineVisible);
+                        }}
+                    />
+                    <span>Show connectors</span>
+                </label>
+
+                <div className="flex gap-2 items-center">
+                    <span>&nbsp;Place polyline with N points:</span>
+
+                    <div
+                        className="sc-button-group"
+                        role="group"
                         aria-label="Polyline point count"
-                        sx={pointToggleSx}
                     >
                         {POINT_OPTIONS.map((count) => (
-                            <ToggleButton key={count} value={count} aria-label={`${count} points`}>
+                            <button
+                                type="button"
+                                className="sc-button"
+                                aria-pressed={pointCount === count}
+                                key={count}
+                                aria-label={`${count} points`}
+                                onClick={(event) => handlePointCountChange(event, count)}
+                            >
                                 {count}
-                            </ToggleButton>
+                            </button>
                         ))}
-                    </ToggleButtonGroup>
-                </Box>
+                    </div>
+                </div>
 
-                <Box sx={actionGroupSx}>
-                    <Tooltip title="Toggle connector lines" arrow>
-                        <Button
-                            variant="outlined"
-                            size="small"
-                            aria-label="Toggle connector lines"
-                            onClick={() => controlsRef.current?.togglePairConnectors()}
-                            sx={connectorButtonSx}
-                        >
-                            Toggle lines
-                        </Button>
-                    </Tooltip>
-
-                    <Tooltip title="Delete all annotations" placement="right" arrow>
-                        <IconButton
-                            size="small"
-                            aria-label="Delete all annotations"
-                            onClick={() => controlsRef.current?.deleteAllAnnotations()}
-                            sx={deleteButtonSx}
-                        >
-                            <DeleteSweepIcon fontSize="small" />
-                        </IconButton>
-                    </Tooltip>
-                </Box>
-            </div>
+                <button
+                    className="sc-button sc-button-danger"
+                    title="Delete all annotations"
+                    aria-label="Delete all annotations"
+                    onClick={() => controlsRef.current?.deleteAllAnnotations()}
+                    type="button"
+                >
+                    <DeleteSweepIcon fontSize="small" />
+                </button>
+            </header>
 
             <SciChartReact
                 initChart={drawExample}

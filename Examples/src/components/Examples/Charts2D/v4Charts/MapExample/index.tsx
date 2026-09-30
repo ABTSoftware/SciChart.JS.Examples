@@ -1,9 +1,7 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { MouseEvent, useEffect, useRef, useState } from "react";
 import { getMinMax, australiaData, Keytype, interpolateColor, keyData } from "./helpers";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
@@ -32,25 +30,36 @@ export default function ChartComponent() {
     }, []);
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow}>
-                <ToggleButtonGroup
-                    className={commonClasses.ToggleButtonGroup}
-                    exclusive
-                    value={key}
-                    onChange={handleToggleButtonChanged}
-                    size="medium"
-                    color="primary"
-                    aria-label="map metric"
-                >
-                    <ToggleButton value="population">Population</ToggleButton>
-                    <ToggleButton value="area_km2">
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="map metric">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={key === "population"}
+                        onClick={(event) => handleToggleButtonChanged(event, "population")}
+                    >
+                        Population
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={key === "area_km2"}
+                        onClick={(event) => handleToggleButtonChanged(event, "area_km2")}
+                    >
                         Area (km<sup>2</sup>)
-                    </ToggleButton>
-                    <ToggleButton value="population_density">Population Density</ToggleButton>
-                </ToggleButtonGroup>
-            </div>
-            <div className={commonClasses.FullHeightChartWrapper}>
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={key === "population_density"}
+                        onClick={(event) => handleToggleButtonChanged(event, "population_density")}
+                    >
+                        Population Density
+                    </button>
+                </div>
+            </header>
+            <div className="sc-chart-wrapper flex-auto">
                 <span
                     style={{
                         position: "absolute",
@@ -86,7 +95,7 @@ export default function ChartComponent() {
                 {mapData ? (
                     <SciChartReact
                         initChart={drawExample}
-                        className={commonClasses.ChartWrapper}
+                        className="sc-chart-wrapper"
                         onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                             const { setMap, setMapJson } = initResult;
 

@@ -1,11 +1,10 @@
 import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
 import { drawExample, overviewOptions } from "./drawExample";
 
 export default function Overview() {
     return (
-        <div className={commonClasses.ChartWrapper}>
+        <div className="sc-chart-wrapper">
             <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
                 <SciChartReact
                     initChart={drawExample}

@@ -1,10 +1,9 @@
-import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartReact, ChartGroupLoader } from "scichart-react";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
 
 export default function ContourChart() {
     return (
-        <ChartGroupLoader className={commonClasses.ChartWrapper}>
+        <ChartGroupLoader className="sc-chart-wrapper">
             <SciChartReact initChart={drawExample} style={{ width: "calc(100% - 60px)", height: "100%" }} />
             <SciChartReact
                 initChart={drawHeatmapLegend}

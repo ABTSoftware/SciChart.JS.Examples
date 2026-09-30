@@ -1,9 +1,8 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { useState } from "react";
 import { EPolarLabelMode } from "scichart";
-import { Button, ToggleButton, ToggleButtonGroup } from "@mui/material";
+
 import { appTheme } from "../../../theme";
 
 // React component needed as our examples app is react.
@@ -29,44 +28,32 @@ export default function ChartComponent() {
     };
 
     return (
-        <div className={commonClasses.ChartWrapper}>
-            <div
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    background: appTheme.DarkIndigo,
-                }}
-            >
-                <div className={commonClasses.ToolbarRow}>
-                    <ToggleButtonGroup
-                        exclusive
-                        value={preset}
-                        onChange={handleToggleButtonChanged}
-                        size="medium"
-                        color="primary"
-                        aria-label="small outlined button group"
-                    >
-                        {Object.keys(EPolarLabelMode).map((key) => (
-                            <ToggleButton key={key} value={key}>
-                                {key}
-                            </ToggleButton>
-                        ))}
-                    </ToggleButtonGroup>
-
-                    <Button onClick={() => handleToggleIsInnerAxis()} style={{ marginLeft: "auto" }}>
-                        <strong>isInnerAxis</strong>: {isInnerAxis ? "true" : "false"}
-                    </Button>
+        <div className="sc-chart-wrapper" style={{ background: appTheme.DarkIndigo }}>
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="small outlined button group">
+                    {Object.keys(EPolarLabelMode).map((key) => (
+                        <button
+                            type="button"
+                            className="sc-button"
+                            aria-pressed={preset === key}
+                            key={key}
+                            onClick={(event) => handleToggleButtonChanged(event, key as EPolarLabelMode)}
+                        >
+                            {key}
+                        </button>
+                    ))}
                 </div>
-                <SciChartReact
-                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                        setControls(initResult.controls);
-                    }}
-                    initChart={drawExample}
-                    style={{ flex: 1 }}
-                />
-            </div>
+
+                <button className="sc-button" onClick={() => handleToggleIsInnerAxis()} type="button">
+                    <strong>isInnerAxis</strong>: {isInnerAxis ? "true" : "false"}
+                </button>
+            </header>
+            <SciChartReact
+                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                    setControls(initResult.controls);
+                }}
+                initChart={drawExample}
+            />
         </div>
     );
 }

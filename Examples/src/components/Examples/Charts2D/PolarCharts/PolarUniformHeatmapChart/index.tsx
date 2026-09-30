@@ -1,5 +1,4 @@
 import { SciChartReact } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
 
 // React component needed as our examples app is react.
@@ -13,7 +12,7 @@ export default function ChartComponent() {
                 height: "100%",
             }}
         >
-            <SciChartReact initChart={drawExample} className={commonClasses.ChartWrapper} />
+            <SciChartReact initChart={drawExample} className="sc-chart-wrapper" />
             <SciChartReact
                 initChart={drawHeatmapLegend}
                 style={{

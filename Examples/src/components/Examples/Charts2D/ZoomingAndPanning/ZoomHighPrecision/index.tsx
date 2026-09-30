@@ -1,13 +1,12 @@
 import * as React from "react";
-import { MenuItem, Select, FormControlLabel, Switch } from "@mui/material";
 import { useContext } from "react";
 import { SciChartReact, SciChartSurfaceContext, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
+import type { TDatasetId } from "./createDatasets";
 
 export default function HighPrecisionDatasets() {
     return (
-        <SciChartReact className={commonClasses.ChartWithNestedToolbar} initChart={drawExample}>
+        <SciChartReact className="sc-chart-wrapper" initChart={drawExample}>
             <ChartHeader />
         </SciChartReact>
     );
@@ -18,8 +17,8 @@ const ChartHeader = () => {
     const [dataset, setDataset] = React.useState("nanosecondPrecision");
     const [isZoomInActive, setIsZoomInActive] = React.useState(false);
 
-    const handleDatasetChange = (event: any) => {
-        const value = event.target.value;
+    const handleDatasetChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = event.target.value as TDatasetId;
         setDataset(value);
         initResult?.controls.useDataset(value);
         setIsZoomInActive(false);
@@ -37,32 +36,26 @@ const ChartHeader = () => {
     };
 
     return (
-        <div className={commonClasses.ToolbarRow} style={{ order: 1, gap: 12, padding: 12, alignItems: "center" }}>
-            <Select
-                size="small"
-                value={dataset}
-                onChange={handleDatasetChange}
-                sx={{
-                    color: "white",
-                    minWidth: 260,
-                    ".MuiSvgIcon-root": {
-                        color: "white",
-                    },
-                    ".MuiOutlinedInput-notchedOutline": {
-                        borderColor: "white",
-                    },
-                }}
-            >
-                <MenuItem value="secondPrecision">Precision: 1 Second / Range: 1 BILLION Years</MenuItem>
-                <MenuItem value="millisecondPrecision">Precision: 1 Millisecond / Range: 70000 Years</MenuItem>
-                <MenuItem value="microsecondPrecision">Precision: 1 Microsecond / Range: 40 Years</MenuItem>
-                <MenuItem value="nanosecondPrecision">Precision: 1 Nanosecond / Range: 50 Days</MenuItem>
-            </Select>
+        <header className="sc-toolbar-row">
+            <label className="sc-control" htmlFor="precision-dataset">
+                Dataset
+                <select
+                    className="sc-select"
+                    id="precision-dataset"
+                    value={dataset}
+                    onChange={handleDatasetChange}
+                >
+                    <option value="secondPrecision">Precision: 1 Second / Range: 1 BILLION Years</option>
+                    <option value="millisecondPrecision">Precision: 1 Millisecond / Range: 70000 Years</option>
+                    <option value="microsecondPrecision">Precision: 1 Microsecond / Range: 40 Years</option>
+                    <option value="nanosecondPrecision">Precision: 1 Nanosecond / Range: 50 Days</option>
+                </select>
+            </label>
 
-            <FormControlLabel
-                control={<Switch checked={isZoomInActive} onChange={handleZoomToggle} />}
-                label="Precise Zoom In"
-            />
-        </div>
+            <label className="sc-switch">
+                <input type="checkbox" checked={isZoomInActive} onChange={handleZoomToggle} />
+                Precise Zoom In
+            </label>
+        </header>
     );
 };

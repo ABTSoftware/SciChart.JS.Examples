@@ -1,7 +1,4 @@
 import * as React from "react";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartSurface, StackedMountainCollection } from "scichart";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
@@ -24,30 +21,17 @@ export default function StackedMountainChart() {
     };
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            {/* <ToggleButtonGroup
-                    className={commonClasses.ToolbarRow}
-                    exclusive
-                    value={use100PercentStackedMode}
-                    onChange={handleUsePercentage}
-                    size="small"
-                    color="primary"
-                    aria-label="small outlined button group"
-                >
-                    <ToggleButton value={false}>
-                        Stacked mode
-                    </ToggleButton>
-                    <ToggleButton value={true}>
-                        100% Stacked mode
-                    </ToggleButton>
-                </ToggleButtonGroup> */}
-            <div className={commonClasses.ToolbarRow}>
-                <FormControlLabel
-                    control={<Switch value={use100PercentStackedMode} onChange={handleUsePercentage} />}
-                    label="100%&nbsp;Mode"
-                    style={{ margin: 0, padding: "1em" }}
-                />
-            </div>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <label className="sc-switch">
+                    <input
+                        type="checkbox"
+                        checked={use100PercentStackedMode}
+                        onChange={(event) => handleUsePercentage(event, event.currentTarget.checked)}
+                    />
+                    100% Mode
+                </label>
+            </header>
             <SciChartReact
                 initChart={drawExample}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {

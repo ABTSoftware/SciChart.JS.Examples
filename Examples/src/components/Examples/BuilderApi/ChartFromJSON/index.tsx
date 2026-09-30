@@ -1,7 +1,4 @@
 import * as React from "react";
-import commonClasses from "../../styles/Examples.module.scss";
-import { ButtonGroup, Button, TextField } from "@mui/material";
-import { Alert, AlertTitle } from "@mui/material";
 import { SciChartReact } from "scichart-react";
 import { centralLayoutJsonDefinition, defaultJsonDefinition, detailedJsonDefinition, drawExample } from "./drawExample";
 
@@ -51,59 +48,62 @@ export default function ChartFromJSON() {
     };
 
     return (
-        <div className={commonClasses.ChartWrapper}>
+        <div className="sc-chart-wrapper">
             <div style={{ display: "flex", flexDirection: "column", height: "100%", width: "100%" }}>
                 <Chart chartConfig={currentChartConfig} />
                 <div style={{ position: "absolute", left: 20, top: 20 }}>
                     {errors && (
-                        <Alert key="0" severity="error">
-                            <AlertTitle>Errors</AlertTitle>
+                        <div key="0" className="sc-alert sc-alert-error" role="alert">
+                            <strong className="sc-alert-title">Errors</strong>
                             {errors}
-                        </Alert>
+                        </div>
                     )}
                 </div>
                 <div>
-                    <div className={commonClasses.FormControl}>
-                        <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                            <Button id="eg1" onClick={loadMinimal}>
+                    <div className="sc-form-control">
+                        <div className="sc-button-group" role="group" aria-label="small outlined button group">
+                            <button
+                                type="button"
+                                className="sc-button sc-button-secondary"
+                                id="eg1"
+                                onClick={loadMinimal}
+                            >
                                 Simple example
-                            </Button>
-                            <Button id="eg2" onClick={loadFull}>
+                            </button>
+                            <button type="button" className="sc-button sc-button-secondary" id="eg2" onClick={loadFull}>
                                 Full example
-                            </Button>
-                            <Button id="eg3" onClick={loadCentral}>
+                            </button>
+                            <button
+                                type="button"
+                                className="sc-button sc-button-secondary"
+                                id="eg3"
+                                onClick={loadCentral}
+                            >
                                 Central Axes
-                            </Button>
-                        </ButtonGroup>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div>
-                    <TextField
+                    <textarea
+                        className="sc-input sc-textarea"
                         id="chartDef"
-                        type="text"
-                        fullWidth={true}
-                        multiline={true}
-                        minRows="8"
-                        maxRows="8"
-                        variant="outlined"
+                        rows={8}
                         value={json}
                         onChange={handleChangeJSON}
-                        sx={{
-                            "& .MuiOutlinedInput-notchedOutline": {
-                                borderColor: "var(--text)",
-                            },
-                            "& .MuiInputBase-input": {
-                                color: "var(--text)",
-                            },
-                        }}
                     />
                 </div>
-                <div className={[commonClasses.FormControl, commonClasses.AlignRight].join(" ")}>
-                    <ButtonGroup size="small" color="primary" aria-label="small outlined button group">
-                        <Button className={commonClasses.ButtonFilled} id="buildChart" onClick={handleBuild}>
+                <div className="sc-form-control sc-align-right">
+                    <div className="sc-button-group" role="group" aria-label="small outlined button group">
+                        <button
+                            type="button"
+                            className="sc-button sc-button-primary"
+                            id="buildChart"
+                            onClick={handleBuild}
+                        >
                             Apply
-                        </Button>
-                    </ButtonGroup>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

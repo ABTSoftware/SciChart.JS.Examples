@@ -1,13 +1,6 @@
 import * as React from "react";
 import { useRef } from "react";
-import AlertTitle from "@mui/material/AlertTitle";
-import Button from "@mui/material/Button";
-import Alert from "@mui/material/Alert";
-import { Refresh as RefreshIcon } from "@mui/icons-material";
-import { PlayArrow as PlayArrowIcon } from "@mui/icons-material";
-import { Pause as PauseIcon } from "@mui/icons-material";
-import { appTheme } from "../../../theme";
-import commonClasses from "../../../styles/Examples.module.scss";
+import { RefreshIcon, PlayArrowIcon, PauseIcon } from "../../../icons";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample, TTimeSpan } from "./drawExample";
 import { useViewType } from "../../../containerSizeHooks";
@@ -23,10 +16,10 @@ export default function Load500By500() {
 
     const viewRef = useRef<HTMLDivElement>(null);
     const viewInfo = useViewType(viewRef);
-    const { isLargeView, isMobileView } = viewInfo ?? {};
+    const { isMobileView } = viewInfo ?? {};
 
     return (
-        <div ref={viewRef} className={commonClasses.ChartWithToolbar}>
+        <div ref={viewRef} className="sc-chart-wrapper">
             {viewInfo ? (
                 <>
                     <SciChartReact
@@ -49,19 +42,16 @@ export default function Load500By500() {
                             controls.stopUpdate();
                         }}
                     />
-                    <div
-                        className={commonClasses.ToolbarRow}
-                        style={{ gap: "0px", paddingRight: "0px", borderTop: "1px solid var(--border-color)" }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "space-between",
-                                height: "100%",
-                            }}
+
+                    <header className="sc-toolbar-row">
+                        <div 
+                            className="flex flex-col gap-2" 
+                            role="group" 
+                            aria-label="Data reload controls"
                         >
-                            <Button
+                            <button
+                                className="sc-button sc-button-icon"
+                                aria-label={isStarted ? "Pause updates" : "Start updates"}
                                 onClick={() => {
                                     if (isStarted) {
                                         controlsRef.current.stopUpdate();
@@ -71,40 +61,32 @@ export default function Load500By500() {
                                     setIsStarted(!isStarted);
                                 }}
                                 title="Toggle reload every 200 milliseconds"
+                                type="button"
                             >
                                 {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
-                            </Button>
-                            <Button
+                            </button>
+                            <button
+                                className="sc-button sc-button-icon"
+                                aria-label="Reload once"
                                 onClick={() => {
                                     controlsRef.current.reloadOnce();
                                 }}
                                 title="Reload Test"
+                                type="button"
                             >
                                 <RefreshIcon />
-                            </Button>
+                            </button>
                         </div>
-                        <div style={{ width: "100%", borderLeft: "1px solid var(--border-color)" }}>
-                            <Alert
-                                key="0"
-                                className={commonClasses.Notification}
-                                sx={{
-                                    color: "#FFFFFF",
-                                    "& .MuiAlert-message": {
-                                        flex: "auto",
-                                    },
-                                }}
-                                severity="info"
-                            >
-                                <AlertTitle className={commonClasses.NotificationTitle}>Performance Results</AlertTitle>
-                                {timeSpans.map((ts, index) => (
-                                    <div key={index} style={{ display: "flex", justifyContent: "space-between" }}>
-                                        <p>{ts.title}</p>
-                                        <p>{ts.durationMs.toFixed(0)} ms</p>
-                                    </div>
-                                ))}
-                            </Alert>
+
+                        <div className="flex-1">
+                            <h4>Performance Results</h4>
+                            {timeSpans.map((ts, index) => (
+                                <div key={index}>
+                                    {ts.title}: {ts.durationMs.toFixed(0)} ms
+                                </div>
+                            ))}
                         </div>
-                    </div>
+                    </header>
                 </>
             ) : null}
         </div>

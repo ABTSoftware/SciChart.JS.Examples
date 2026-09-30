@@ -13,10 +13,10 @@ type TChartApi = Awaited<ReturnType<typeof drawExample>>;
     template: `
         <div style="position: relative; width: 100%; height: 100%;">
             <div style="position: absolute; z-index: 1; top: 10px; left: 12px;">
-                <button (click)="setFilterMode('source')">No Filter</button>
-                <button (click)="setFilterMode('heikinAshi')">Heikin-Ashi</button>
-                <button (click)="setFilterMode('renko')">Renko</button>
-                <button (click)="setFilterMode('pointAndFigure')">Point & Figure</button>
+                <button (click)="setFilterMode('source')" class="sc-button">No Filter</button>
+                <button (click)="setFilterMode('heikinAshi')" class="sc-button">Heikin-Ashi</button>
+                <button (click)="setFilterMode('renko')" class="sc-button">Renko</button>
+                <button (click)="setFilterMode('pointAndFigure')" class="sc-button">Point & Figure</button>
             </div>
             <scichart-angular [initChart]="drawExample" (onInit)="onInit($event)" style="width: 100%; height: 100%;">
             </scichart-angular>

@@ -1,12 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import { MatSliderModule } from "@angular/material/slider";
-import { MatRadioModule } from "@angular/material/radio";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatButtonToggleModule } from "@angular/material/button-toggle";
-import { MatCardModule } from "@angular/material/card";
-import { MatButtonModule } from "@angular/material/button";
-import { MatInputModule } from "@angular/material/input";
-import { MatSelectModule } from "@angular/material/select";
+import { FormsModule } from "@angular/forms";
 import { ScichartAngularComponent } from "scichart-angular";
 import { ISettings, TMessage } from "./drawExample";
 import { drawExample } from "./drawExample";
@@ -14,17 +7,7 @@ import { ESeriesType } from "scichart";
 
 @Component({
     standalone: true,
-    imports: [
-        ScichartAngularComponent,
-        MatSliderModule,
-        MatRadioModule,
-        MatFormFieldModule,
-        MatButtonToggleModule,
-        MatCardModule,
-        MatButtonModule,
-        MatInputModule,
-        MatSelectModule,
-    ],
+    imports: [ScichartAngularComponent, FormsModule],
     selector: "app-realtime-big-data-showcase",
     template: `
         <div style="display: flex; height: 100vh;">
@@ -35,70 +18,124 @@ import { ESeriesType } from "scichart";
             ></scichart-angular>
             <div style="width: 300px; padding: 10px;">
                 <form #form="ngForm">
-                    <mat-label>Series Type</mat-label>
-                    <mat-radio-group name="seriesType" [(ngModel)]="seriesType" (ngModelChange)="changeChart($event)">
-                        <mat-radio-button value="LineSeries">Line Chart</mat-radio-button>
-                        <mat-radio-button value="ColumnSeries">Column Chart with Stacked Axes</mat-radio-button>
-                        <mat-radio-button value="StackedMountainSeries">Stacked Mountain Chart</mat-radio-button>
-                        <mat-radio-button value="BandSeries">Band Chart</mat-radio-button>
-                        <mat-radio-button value="ScatterSeries">Scatter Chart</mat-radio-button>
-                        <mat-radio-button value="CandlestickSeries">Candlestick Chart</mat-radio-button>
-                    </mat-radio-group>
-                    <mat-slider
+                    <fieldset class="sc-control-row">
+                        <legend>Series Type</legend>
+                        <label class="sc-control"
+                            ><input
+                                class="sc-radio"
+                                type="radio"
+                                name="seriesType"
+                                value="LineSeries"
+                                [(ngModel)]="seriesType"
+                                (ngModelChange)="changeChart($event)"
+                            />Line Chart</label
+                        >
+                        <label class="sc-control"
+                            ><input
+                                class="sc-radio"
+                                type="radio"
+                                name="seriesType"
+                                value="ColumnSeries"
+                                [(ngModel)]="seriesType"
+                                (ngModelChange)="changeChart($event)"
+                            />Column Chart with Stacked Axes</label
+                        >
+                        <label class="sc-control"
+                            ><input
+                                class="sc-radio"
+                                type="radio"
+                                name="seriesType"
+                                value="StackedMountainSeries"
+                                [(ngModel)]="seriesType"
+                                (ngModelChange)="changeChart($event)"
+                            />Stacked Mountain Chart</label
+                        >
+                        <label class="sc-control"
+                            ><input
+                                class="sc-radio"
+                                type="radio"
+                                name="seriesType"
+                                value="BandSeries"
+                                [(ngModel)]="seriesType"
+                                (ngModelChange)="changeChart($event)"
+                            />Band Chart</label
+                        >
+                        <label class="sc-control"
+                            ><input
+                                class="sc-radio"
+                                type="radio"
+                                name="seriesType"
+                                value="ScatterSeries"
+                                [(ngModel)]="seriesType"
+                                (ngModelChange)="changeChart($event)"
+                            />Scatter Chart</label
+                        >
+                        <label class="sc-control"
+                            ><input
+                                class="sc-radio"
+                                type="radio"
+                                name="seriesType"
+                                value="CandlestickSeries"
+                                [(ngModel)]="seriesType"
+                                (ngModelChange)="changeChart($event)"
+                            />Candlestick Chart</label
+                        >
+                    </fieldset>
+                    <input
+                        class="sc-range"
+                        type="range"
                         name="seriesCount"
                         min="1"
                         [max]="maxSettings.seriesCount"
                         [(ngModel)]="settings.seriesCount"
                         (change)="handleFormChange(form)"
-                    >
-                        <input matSliderThumb />
-                    </mat-slider>
+                    />
                     <div>Number of Series: {{ settings.seriesCount }}</div>
-                    <mat-slider
+                    <input
+                        class="sc-range"
+                        type="range"
                         name="initialPoints"
                         min="0.1"
                         [max]="maxSettings.initialPoints"
                         [(ngModel)]="settings.initialPoints"
                         (change)="handleFormChange(form)"
-                        [marks]="getLogMarks(maxSettings.initialPoints)"
-                    >
-                        <input matSliderThumb />
-                    </mat-slider>
+                        step="0.1"
+                    />
                     <div>Initial Points: {{ settings.initialPoints }}</div>
-                    <mat-slider
+                    <input
+                        class="sc-range"
+                        type="range"
                         name="pointsOnChart"
                         min="0.1"
                         [max]="maxSettings.pointsOnChart"
                         [(ngModel)]="settings.pointsOnChart"
                         (change)="handleFormChange(form)"
-                        [marks]="getLogMarks(maxSettings.pointsOnChart)"
-                    >
-                        <input matSliderThumb />
-                    </mat-slider>
+                        step="0.1"
+                    />
                     <div>Max Points On Chart: {{ settings.pointsOnChart }}</div>
-                    <mat-slider
+                    <input
+                        class="sc-range"
+                        type="range"
                         name="pointsPerUpdate"
                         min="0.1"
                         [max]="maxSettings.pointsPerUpdate"
                         [(ngModel)]="settings.pointsPerUpdate"
                         (change)="handleFormChange(form)"
-                        [marks]="getLogMarks(maxSettings.pointsPerUpdate)"
-                    >
-                        <input matSliderThumb />
-                    </mat-slider>
+                        step="0.1"
+                    />
                     <div>Points Per Update: {{ settings.pointsPerUpdate }}</div>
-                    <mat-slider
+                    <input
+                        class="sc-range"
+                        type="range"
                         name="sendEvery"
                         min="{{ maxSettings.sendEvery }}"
                         max="500"
                         [(ngModel)]="settings.sendEvery"
                         (change)="handleFormChange(form)"
-                    >
-                        <input matSliderThumb />
-                    </mat-slider>
+                    />
                     <div>Send Data Interval (ms): {{ settings.sendEvery }}</div>
-                    <button mat-raised-button color="primary" (click)="startUpdate()">Start</button>
-                    <button mat-raised-button color="warn" (click)="stopUpdate()">Stop</button>
+                    <button type="button" (click)="startUpdate()" class="sc-button sc-button-primary">Start</button>
+                    <button type="button" (click)="stopUpdate()" class="sc-button sc-button-danger">Stop</button>
                 </form>
             </div>
         </div>

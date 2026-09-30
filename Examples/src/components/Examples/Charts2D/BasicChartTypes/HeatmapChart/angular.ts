@@ -82,7 +82,7 @@ import { drawExample, drawHeatmapLegend } from "./drawExample";
                         mat-raised-button
                         (click)="startUpdate()"
                         [ngStyle]="{ color: '#FFFFFF' }"
-                        class="toolbar-button"
+                        class="toolbar-button sc-button"
                     >
                         Start</button
                     >&nbsp;
@@ -90,7 +90,7 @@ import { drawExample, drawHeatmapLegend } from "./drawExample";
                         mat-raised-button
                         (click)="stopUpdate()"
                         [ngStyle]="{ color: '#FFFFFF' }"
-                        class="toolbar-button"
+                        class="toolbar-button sc-button"
                     >
                         Stop
                     </button>

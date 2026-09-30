@@ -9,7 +9,7 @@ This example demonstrates how to create and manage a large grid of subcharts on 
 -   SciChart.js – High performance charting library
 -   JavaScript and TypeScript for core implementation
 -   React (with TSX) for the UI integration
--   Material UI for toolbar and control components
+-   shared CSS controls for toolbar and control components
 
 ## Code Explanation
 

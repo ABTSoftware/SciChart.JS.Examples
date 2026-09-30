@@ -1,10 +1,9 @@
-import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartReact, SciChartGroup, TResolvedReturnType, IInitResult } from "scichart-react";
 import { createNumericChart, createDiscontinuousDateChart, createCategoryChart } from "./drawExample";
 import { AxisSynchroniser } from "../../MultiChart/SyncMultiChart/AxisSynchroniser";
 import { NumberRange, SciChartSurface } from "scichart";
 import React from "react";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+
 import { appTheme } from "../../../theme";
 
 export default function DiscontinuousDateAxisComparisonExample() {
@@ -25,21 +24,27 @@ export default function DiscontinuousDateAxisComparisonExample() {
     };
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow}>
-                <ToggleButtonGroup
-                    className={commonClasses.ToggleButtonGroup}
-                    exclusive
-                    value={customSettings}
-                    onChange={handleToggleButtonChanged}
-                    size="medium"
-                    color="primary"
-                    aria-label="axis settings toggle"
-                >
-                    <ToggleButton value={false}>Default axis settings</ToggleButton>
-                    <ToggleButton value={true}>Custom LabelProvider and explicit tick delta</ToggleButton>
-                </ToggleButtonGroup>
-            </div>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="axis settings toggle">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={customSettings === false}
+                        onClick={(event) => handleToggleButtonChanged(event, false)}
+                    >
+                        Default axis settings
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={customSettings === true}
+                        onClick={(event) => handleToggleButtonChanged(event, true)}
+                    >
+                        Custom LabelProvider and explicit tick delta
+                    </button>
+                </div>
+            </header>
             <div
                 style={{
                     display: "flex",

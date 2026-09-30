@@ -1,7 +1,6 @@
 import * as React from "react";
 import type { CSSProperties } from "react";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { drawExample } from "./drawExample";
 import { estimateModelProgress, formatProgressPercent } from "./modelLoadProgress";
@@ -99,7 +98,7 @@ export default function Model3DChart() {
     }, []);
 
     return (
-        <div className={commonClasses.ChartWrapper}>
+        <div className="sc-chart-wrapper">
             <SciChartReact initChart={drawExample} style={{ width: "100%", height: "100%" }} onInit={handleInit} />
             {isModelLoading && (
                 <div style={overlayStyle}>

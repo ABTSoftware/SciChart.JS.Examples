@@ -1,17 +1,7 @@
 import { CSSProperties, useRef, useState } from "react";
-import { FormControlLabel } from "@mui/material";
-import { PlayArrow as PlayArrowIcon } from "@mui/icons-material";
-import { Pause as PauseIcon } from "@mui/icons-material";
-import { Settings as SettingsIcon } from "@mui/icons-material";
-import CloseIcon from "@mui/icons-material/Close";
-import Switch from "@mui/material/Switch";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import Button from "@mui/material/Button";
-import { Dialog, DialogTitle, IconButton } from "@mui/material";
+import { PlayArrowIcon, PauseIcon, SettingsIcon, CloseIcon } from "../../../icons";
+import { BodyPortal } from "../../../Portal";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import { appTheme } from "../../../theme";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawGridExample, TMessage } from "./drawExample";
 
 const styles: Record<string, CSSProperties> = {
@@ -19,8 +9,7 @@ const styles: Record<string, CSSProperties> = {
         display: "flex",
         flex: "auto",
         flexBasis: "20%",
-        justifyContent: "space-between",
-        justifyItems: "space-between",
+        gap: "8px",
         marginRight: "8px",
     },
     infoItem: {
@@ -37,13 +26,6 @@ const styles: Record<string, CSSProperties> = {
         touchAction: "none",
         zIndex: 2,
     },
-};
-
-const configButtonWrapperStyle: CSSProperties = {
-    gridArea: "1 / 1 / 2 / 2",
-    pointerEvents: "none",
-    touchAction: "none",
-    zIndex: 2,
 };
 
 // React component needed as our examples app is react.
@@ -72,56 +54,47 @@ export default function SubchartsGrid() {
         drawGridExample(rootElement, (newMessages: TMessage[]) => {
             setMessages([...newMessages]);
         });
-    const switchStyleOverrides = {
-        width: "100%",
-        margin: 0,
-        padding: "1em",
-        color: appTheme.ForegroundColor,
-        accentColor: "#0bdef4",
-
-        "& .MuiSwitch-track": {
-            opacity: 1,
-            backgroundColor: appTheme.PalePink,
-        },
-    };
-    const configurationDialog = (
-        <Dialog
-            onClose={handleClose}
-            open={isDialogOpen}
-            sx={{ color: appTheme.ForegroundColor, "& .MuiDialog-paper": { background: appTheme.DarkIndigo } }}
-        >
-            <DialogTitle sx={{ display: "flex", padding: "16px" }}>
-                <div style={{ color: appTheme.ForegroundColor }}>Chart Configurations</div>
-                <IconButton
-                    aria-label="close"
-                    onClick={handleClose}
-                    sx={(theme) => ({
-                        alignSelf: "flex-start",
-                        justifySelf: "flex-end",
-                        marginLeft: "24px",
-                        padding: 0,
-                        color: theme.palette.grey[500],
-                    })}
-                >
-                    <CloseIcon />
-                </IconButton>
-            </DialogTitle>
-            <List>
-                <ListItem disablePadding>
-                    <FormControlLabel
-                        control={<Switch onChange={handleLabelsChange} />}
-                        label="Axis Labels"
-                        sx={switchStyleOverrides}
-                    />
-                </ListItem>
-            </List>
-        </Dialog>
-    );
+    const configurationDialog = isDialogOpen ? (
+        <BodyPortal>
+            <div
+                className="sc-modal-backdrop"
+                onClick={(event) => event.target === event.currentTarget && handleClose()}
+                onKeyDown={(event) => event.key === "Escape" && handleClose()}
+            >
+                <section className="sc-modal" role="dialog" aria-modal="true" aria-labelledby="subcharts-config-title">
+                    <header className="sc-modal-header">
+                        <strong id="subcharts-config-title">Chart Configurations</strong>
+                        <button
+                            className="sc-button sc-button-icon"
+                            aria-label="Close chart configurations"
+                            onClick={handleClose}
+                            autoFocus
+                            type="button"
+                        >
+                            <CloseIcon />
+                        </button>
+                    </header>
+                    <div className="sc-modal-body">
+                        <label className="sc-switch">
+                            <input
+                                type="checkbox"
+                                onChange={(event) => handleLabelsChange(event, event.currentTarget.checked)}
+                            />
+                            Axis Labels
+                        </label>
+                    </div>
+                </section>
+            </div>
+        </BodyPortal>
+    ) : null;
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow} style={{ justifyContent: "space-between" }}>
-                <Button
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <button
+                    className="sc-button sc-button-icon"
+                    aria-label={isStarted ? "Pause updates" : "Start updates"}
+                    title={isStarted ? "Pause updates" : "Start updates"}
                     onClick={() => {
                         if (isStarted) {
                             controlsRef.current.stopUpdate();
@@ -130,17 +103,20 @@ export default function SubchartsGrid() {
                         }
                         setIsStarted(!isStarted);
                     }}
+                    type="button"
                 >
                     {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
-                </Button>
+                </button>
 
                 <div style={styles.configButtonWrapperStyle} title="Chart Configurations">
-                    <IconButton
-                        sx={{ color: appTheme.ForegroundColor, pointerEvents: "all", touchAction: "all" }}
+                    <button
+                        className="sc-button sc-button-icon"
+                        aria-label="Chart configurations"
                         onClick={handleClickOpen}
+                        type="button"
                     >
                         <SettingsIcon fontSize="medium" />
-                    </IconButton>
+                    </button>
                     {configurationDialog}
                 </div>
 
@@ -152,7 +128,7 @@ export default function SubchartsGrid() {
                         </div>
                     ))}
                 </div>
-            </div>
+            </header>
             <SciChartReact
                 initChart={drawExample}
                 onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {

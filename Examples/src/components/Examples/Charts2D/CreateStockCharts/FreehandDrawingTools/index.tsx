@@ -1,31 +1,14 @@
 import * as React from "react";
-import { IconButton, Popover, Tooltip } from "@mui/material";
-import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
-import GestureIcon from "@mui/icons-material/Gesture";
-import SaveAltIcon from "@mui/icons-material/SaveAlt";
+import { DeleteSweepIcon, GestureIcon, SaveAltIcon } from "../../../icons";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
-
-const overlayButtonSx = {
-    position: "absolute" as const,
-    zIndex: 2,
-    backgroundColor: "rgba(0, 0, 0, 0.55)",
-    color: "#ffffff",
-    "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.75)" },
-};
-
-const activeOverlayButtonSx = {
-    ...overlayButtonSx,
-    backgroundColor: "#2D7FF9",
-    "&:hover": { backgroundColor: "#2D7FF9" },
-};
 
 const DEFAULT_DRAWING_COLOR = "#686c70";
 const COLOR_PALETTE = ["#686c70", "#3388FF", "#4EC385", "#F97066", "#F7C948", "#C792EA", "#F5F5F5"];
 
 export default function FreehandDrawingTools() {
     const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample> | undefined>(undefined);
+    const paletteRef = React.useRef<HTMLDivElement>(null);
     const [isDrawing, setIsDrawing] = React.useState(true);
     const [color, setColor] = React.useState(DEFAULT_DRAWING_COLOR);
     const [colorAnchor, setColorAnchor] = React.useState<HTMLElement | null>(null);
@@ -53,10 +36,7 @@ export default function FreehandDrawingTools() {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key !== "Backspace") return;
             const target = e.target as HTMLElement | null;
-            if (
-                target &&
-                (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable)
-            ) {
+            if (target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable)) {
                 return;
             }
             controlsRef.current?.removeLast();
@@ -65,8 +45,25 @@ export default function FreehandDrawingTools() {
         return () => document.removeEventListener("keydown", handleKeyDown);
     }, []);
 
+    React.useEffect(() => {
+        if (!colorAnchor) return undefined;
+        const closeOnOutsideClick = (event: PointerEvent) => {
+            const target = event.target as Node;
+            if (!colorAnchor.contains(target) && !paletteRef.current?.contains(target)) setColorAnchor(null);
+        };
+        const closeOnEscape = (event: KeyboardEvent) => {
+            if (event.key === "Escape") setColorAnchor(null);
+        };
+        document.addEventListener("pointerdown", closeOnOutsideClick);
+        document.addEventListener("keydown", closeOnEscape);
+        return () => {
+            document.removeEventListener("pointerdown", closeOnOutsideClick);
+            document.removeEventListener("keydown", closeOnEscape);
+        };
+    }, [colorAnchor]);
+
     return (
-        <div className={commonClasses.ChartWithToolbar}>
+        <div className="sc-chart-wrapper">
             <div style={{ flex: 1, minWidth: 0, display: "flex", position: "relative" }}>
                 <SciChartReact
                     style={{ flex: 1 }}
@@ -76,33 +73,32 @@ export default function FreehandDrawingTools() {
                         result.startDrawing("editableOutline", color);
                     }}
                 />
-                <Tooltip title="Drawing color" placement="right" arrow>
-                    <IconButton
-                        size="small"
-                        aria-label="Drawing color"
-                        onClick={(e) => setColorAnchor(e.currentTarget)}
-                        sx={{
-                            ...overlayButtonSx,
-                            top: 8,
-                            left: 8,
-                            backgroundColor: color,
-                            "&:hover": { backgroundColor: color, opacity: 0.85 },
+                <button
+                    className="sc-button sc-button-icon sc-overlay-button"
+                    aria-label="Drawing color"
+                    title="Drawing color"
+                    onClick={(e) => setColorAnchor(colorAnchor ? null : e.currentTarget)}
+                    type="button"
+                >
+                    <span
+                        style={{ display: "block", width: 20, height: 20, backgroundColor: color, borderRadius: "50%" }}
+                    />
+                </button>
+                {colorAnchor && (
+                    <div
+                        ref={paletteRef}
+                        className="sc-color-palette"
+                        role="group"
+                        aria-label="Drawing colors"
+                        style={{
+                            left: colorAnchor.getBoundingClientRect().right + 8,
+                            top: colorAnchor.getBoundingClientRect().top + colorAnchor.offsetHeight / 2,
                         }}
                     >
-                        <span style={{ display: "block", width: 20, height: 20 }} />
-                    </IconButton>
-                </Tooltip>
-                <Popover
-                    open={Boolean(colorAnchor)}
-                    anchorEl={colorAnchor}
-                    onClose={() => setColorAnchor(null)}
-                    anchorOrigin={{ vertical: "center", horizontal: "right" }}
-                    transformOrigin={{ vertical: "center", horizontal: "left" }}
-                >
-                    <div style={{ display: "flex", gap: 6, padding: 6, backgroundColor: "rgba(0, 0, 0, 0.85)" }}>
                         {COLOR_PALETTE.map((c) => (
                             <button
                                 key={c}
+                                type="button"
                                 aria-label={`Choose color ${c}`}
                                 onClick={() => handleSelectColor(c)}
                                 style={{
@@ -114,51 +110,42 @@ export default function FreehandDrawingTools() {
                                     cursor: "pointer",
                                     padding: 0,
                                 }}
+                                className="sc-button sc-color-swatch"
                             />
                         ))}
                     </div>
-                </Popover>
-                <Tooltip title="Toogle Draw / Select" placement="right" arrow>
-                    <IconButton
-                        size="small"
-                        aria-label="Draw freehand"
-                        onClick={toggleDrawing}
-                        sx={{ ...(isDrawing ? activeOverlayButtonSx : overlayButtonSx), top: 8, left: 48 }}
-                    >
-                        <GestureIcon fontSize="small" />
-                    </IconButton>
-                </Tooltip>
-                <Tooltip title="Delete all annotations" placement="right" arrow>
-                    <IconButton
-                        size="small"
-                        aria-label="Delete all annotations"
-                        onClick={() => controlsRef.current?.clear()}
-                        sx={{ ...overlayButtonSx, top: 8, left: 88 }}
-                    >
-                        <DeleteSweepIcon fontSize="small" />
-                    </IconButton>
-                </Tooltip>
-                <Tooltip title="Log annotation points JSON to console" placement="right" arrow>
-                    <IconButton
-                        size="small"
-                        aria-label="Log annotation points JSON to console"
-                        onClick={() => {
-                            const data = controlsRef.current?.exportAnnotations() ?? [];
-                            // eslint-disable-next-line no-console
-                            console.log(JSON.stringify(data, null, 2));
-                        }}
-                        sx={{
-                            ...overlayButtonSx,
-                            top: 8,
-                            left: 128,
-                            opacity: 0.00,
-                            transition: "opacity 150ms ease",
-                            "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.75)", opacity: 0.06 },
-                        }}
-                    >
-                        <SaveAltIcon fontSize="small" />
-                    </IconButton>
-                </Tooltip>
+                )}
+                <button
+                    className="sc-button sc-button-icon sc-overlay-button"
+                    aria-label="Draw freehand"
+                    title="Toggle draw / select"
+                    onClick={toggleDrawing}
+                    type="button"
+                >
+                    <GestureIcon fontSize="small" />
+                </button>
+                <button
+                    className="sc-button sc-button-icon sc-overlay-button"
+                    aria-label="Delete all annotations"
+                    title="Delete all annotations"
+                    onClick={() => controlsRef.current?.clear()}
+                    type="button"
+                >
+                    <DeleteSweepIcon fontSize="small" />
+                </button>
+                <button
+                    className="sc-button sc-button-icon sc-overlay-button"
+                    aria-label="Log annotation points JSON to console"
+                    title="Log annotation points JSON to console"
+                    onClick={() => {
+                        const data = controlsRef.current?.exportAnnotations() ?? [];
+                        // eslint-disable-next-line no-console
+                        console.log(JSON.stringify(data, null, 2));
+                    }}
+                    type="button"
+                >
+                    <SaveAltIcon fontSize="small" />
+                </button>
             </div>
         </div>
     );

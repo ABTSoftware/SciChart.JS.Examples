@@ -10,7 +10,7 @@ It renders a FastLineRenderableSeries with toggleable datasets across four preci
 
 -   SciChart.js – High performance charting library
 -   Angular – For Angular integration
--   React – For React integration with MUI controls
+-   React – For React integration with shared CSS controls
 -   Vanilla JavaScript – For plain JavaScript implementation
 -   TypeScript – Used across framework examples
 
@@ -20,7 +20,7 @@ The core `drawExample` function initializes a SciChartSurface with a DateTimeNum
 
 It generates four datasets via `createDatasets` spanning 1 billion years (seconds), 70,000 years (milliseconds), 40 years (microseconds), and 50 days (nanoseconds), rendered as XyDataSeries with FastLineRenderableSeries and theme-based strokes.
 
-Interactive controls allow dataset switching (updating datePrecision and stroke colors), precise zoom-in to clusters, and standard modifiers like RubberBandXyZoomModifier, ZoomPanModifier, MouseWheelZoomModifier, and ZoomExtentsModifier. Framework files include React TSX with MUI Select/Switch, Angular/TypeScript components, and vanilla wrappers, plus a thumbnail image `javascript-zoom-high-precision.jpg`.
+Interactive controls allow dataset switching (updating datePrecision and stroke colors), precise zoom-in to clusters, and standard modifiers like RubberBandXyZoomModifier, ZoomPanModifier, MouseWheelZoomModifier, and ZoomExtentsModifier. Framework files include React TSX with shared CSS controls Select/Switch, Angular/TypeScript components, and vanilla wrappers, plus a thumbnail image `javascript-zoom-high-precision.jpg`.
 
 ## Customization
 

@@ -1,9 +1,7 @@
 import * as React from "react";
-import { IconButton, MenuItem, MenuList, Tooltip } from "@mui/material";
-import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
+import { DeleteSweepIcon } from "../../../icons";
 import { ETradingAnnotationType } from "scichart-financial-tools";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 
 type TStartToolOptions = Parameters<TResolvedReturnType<typeof drawExample>["startTool"]>[1];
@@ -301,7 +299,7 @@ export default function TradingDrawingTools() {
     }, [selectedTool]);
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
+        <div className="sc-chart-wrapper">
             <div style={{ display: "flex", flex: 1, minHeight: 0 }}>
                 <div
                     style={{
@@ -327,79 +325,58 @@ export default function TradingDrawingTools() {
                     >
                         Select Annotation
                     </div>
-                    <MenuList
-                        dense
-                        sx={{
-                            flex: 1,
-                            overflowY: "auto",
-                            overflowX: "hidden",
-                            padding: "4px 0",
-                            "& .MuiMenuItem-root": {
-                                color: "#ffffff",
-                                borderLeft: "3px solid transparent",
-                                transition: "background-color 120ms, border-color 120ms",
-                            },
-                            "& .MuiMenuItem-root.Mui-selected, & .MuiMenuItem-root.Mui-selected:hover, & .MuiMenuItem-root.Mui-selected:focus":
-                                {
-                                    backgroundColor: "#2D7FF9",
-                                    borderLeftColor: "#FFFFFF",
-                                    color: "#FFFFFF",
-                                    fontWeight: 700,
-                                },
-                        }}
-                    >
-                    {tools.map((tool, index) => {
-                        if (!isToolItemDefinition(tool)) {
+                    <div className="sc-menu-list sc-menu-list-grow">
+                        {tools.map((tool, index) => {
+                            if (!isToolItemDefinition(tool)) {
+                                return (
+                                    <hr
+                                        key={`separator-${index}`}
+                                        style={{ margin: "5px 8px", borderColor: "rgba(255,255,255,0.2)" }}
+                                    />
+                                );
+                            }
                             return (
-                                <hr
-                                    key={`separator-${index}`}
-                                    style={{ margin: "5px 8px", borderColor: "rgba(255,255,255,0.2)" }}
-                                />
-                            );
-                        }
-                        return (
-                            <MenuItem
-                                key={tool.value}
-                                selected={tool.value === selectedTool}
-                                onClick={() => {
-                                    setSelectedTool(tool.value);
-                                    if (isReady) {
-                                        controlsRef.current?.startTool(tool.annotationType, tool.options);
-                                    }
-                                }}
-                                title={tool.label}
-                            >
-                                <span
-                                    style={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        minWidth: 0,
-                                        width: "100%",
+                                <button
+                                    type="button"
+                                    key={tool.value}
+                                    className={`sc-menu-item${tool.value === selectedTool ? " is-selected" : ""}`}
+                                    aria-pressed={tool.value === selectedTool}
+                                    onClick={() => {
+                                        setSelectedTool(tool.value);
+                                        if (isReady) {
+                                            controlsRef.current?.startTool(tool.annotationType, tool.options);
+                                        }
                                     }}
+                                    title={tool.label}
                                 >
-                                    {tool.icon}
                                     <span
                                         style={{
-                                            overflow: "hidden",
-                                            textOverflow: "ellipsis",
-                                            whiteSpace: "nowrap",
+                                            display: "flex",
+                                            alignItems: "center",
                                             minWidth: 0,
-                                            flex: 1,
+                                            width: "100%",
                                         }}
                                     >
-                                        {tool.label}
+                                        {tool.icon}
+                                        <span
+                                            style={{
+                                                overflow: "hidden",
+                                                textOverflow: "ellipsis",
+                                                whiteSpace: "nowrap",
+                                                minWidth: 0,
+                                                flex: 1,
+                                            }}
+                                        >
+                                            {tool.label}
+                                        </span>
                                     </span>
-                                </span>
-                            </MenuItem>
-                        );
-                    })}
-                </MenuList>
+                                </button>
+                            );
+                        })}
+                    </div>
                 </div>
 
-                <div
-                    ref={chartWrapperRef}
-                    style={{ flex: 1, minWidth: 0, display: "flex", position: "relative" }}
-                >
+                <div ref={chartWrapperRef} style={{ flex: 1, minWidth: 0, display: "flex", position: "relative" }}>
                     <SciChartReact
                         style={{ flex: 1 }}
                         initChart={drawExample}
@@ -409,24 +386,15 @@ export default function TradingDrawingTools() {
                             setIsReady(true);
                         }}
                     />
-                    <Tooltip title="Delete all annotations" placement="right" arrow>
-                        <IconButton
-                            size="small"
-                            aria-label="Delete all annotations"
-                            onClick={() => controlsRef.current?.deleteAllAnnotations()}
-                            sx={{
-                                position: "absolute",
-                                top: 8,
-                                left: 8,
-                                zIndex: 2,
-                                backgroundColor: "rgba(0, 0, 0, 0.55)",
-                                color: "#ffffff",
-                                "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.75)" },
-                            }}
-                        >
-                            <DeleteSweepIcon fontSize="small" />
-                        </IconButton>
-                    </Tooltip>
+                    <button
+                        className="sc-button sc-button-icon"
+                        aria-label="Delete all annotations"
+                        title="Delete all annotations"
+                        onClick={() => controlsRef.current?.deleteAllAnnotations()}
+                        type="button"
+                    >
+                        <DeleteSweepIcon fontSize="small" />
+                    </button>
                 </div>
             </div>
         </div>

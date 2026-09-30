@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Settings as SettingsIcon } from "@mui/icons-material";
+import { SettingsIcon, CloseIcon } from "../../../icons";
+import { BodyPortal } from "../../../Portal";
 import { CSSProperties, ChangeEventHandler, useEffect, useRef, useState } from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { ChartModifierBase2D, ISciChartSubSurface } from "scichart";
 import { GridLayoutModifier } from "./GridLayoutModifier";
 import { ModifierGroup } from "./ModifierGroup";
@@ -12,11 +12,6 @@ import { overviewOptions } from "./Overview";
 import ThresholdSlider from "./ThresholdSlider";
 import { SciChartReact as SciChart, SciChartNestedOverview } from "scichart-react";
 import { appTheme } from "../../../theme";
-import { Dialog, DialogTitle, FormControlLabel, IconButton, Typography } from "@mui/material";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import Switch from "@mui/material/Switch";
-import CloseIcon from "@mui/icons-material/Close";
 import { getPageStatisticsChartConfig } from "./page-statistics-chart-config";
 import { getServerLoadChartConfig } from "./server-load-chart-config";
 import { ChartGroupLoader } from "scichart-react";
@@ -122,99 +117,70 @@ function ServerTrafficDashboard() {
         setIsDialogOpen(false);
     };
 
-    const switchStyleOverrides = {
-        width: "100%",
-        margin: 0,
-        padding: "1em",
-        color: appTheme.ForegroundColor,
-        accentColor: "#0bdef4",
+    const configurationDialog = isDialogOpen ? (
+        <BodyPortal>
+            <div
+                className="sc-modal-backdrop"
+                onClick={(event) => event.target === event.currentTarget && handleClose()}
+                onKeyDown={(event) => event.key === "Escape" && handleClose()}
+            >
+                <section className="sc-modal" role="dialog" aria-modal="true" aria-labelledby="server-config-title">
+                    <header className="sc-modal-header">
+                        <strong id="server-config-title">Chart Configurations</strong>
+                        <button
+                            className="sc-button sc-button-icon"
+                            aria-label="Close chart configurations"
+                            onClick={handleClose}
+                            autoFocus
+                            type="button"
+                        >
+                            <CloseIcon />
+                        </button>
+                    </header>
+                    <div className="sc-modal-body">
+                        <strong className="sc-modal-section-title">Main Chart</strong>
 
-        "& .MuiSwitch-track": {
-            opacity: 1,
-            backgroundColor: appTheme.PalePink,
-        },
-    };
-
-    const configurationDialog = (
-        <Dialog
-            onClose={handleClose}
-            open={isDialogOpen}
-            sx={{ color: appTheme.ForegroundColor, "& .MuiDialog-paper": { background: appTheme.DarkIndigo } }}
-        >
-            <DialogTitle>
-                <span style={{ color: appTheme.ForegroundColor }}>Chart Configurations</span>
-                <IconButton
-                    aria-label="close"
-                    onClick={handleClose}
-                    sx={(theme) => ({
-                        position: "absolute",
-                        right: 8,
-                        top: 8,
-                        color: theme.palette.grey[500],
-                    })}
-                >
-                    <CloseIcon />
-                </IconButton>
-            </DialogTitle>
-            <List>
-                <Typography
-                    variant="subtitle2"
-                    fontWeight={"bold"}
-                    sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
-                >
-                    Main Chart
-                </Typography>
-
-                <ListItem disablePadding>
-                    <FormControlLabel
-                        control={<Switch checked={isVisibleRangeSynced} onChange={handleSyncVisibleRangeChange} />}
-                        label="Sync&nbsp;X-Axis&nbsp;visible&nbsp;range"
-                        sx={switchStyleOverrides}
-                    />
-                </ListItem>
-                <Typography
-                    variant="subtitle2"
-                    fontWeight={"bold"}
-                    sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
-                >
-                    URL Statistics Chart
-                </Typography>
-                <ListItem disablePadding>
-                    <FormControlLabel
-                        control={<Switch checked={isHundredPercentCollection} onChange={handleUsePercentage} />}
-                        label="is&nbsp;100%&nbsp;collection"
-                        sx={switchStyleOverrides}
-                    />
-                </ListItem>
-                <Typography
-                    variant="subtitle2"
-                    fontWeight={"bold"}
-                    sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
-                >
-                    Server Load Statistics Chart
-                </Typography>
-                <ListItem disablePadding>
-                    <FormControlLabel
-                        control={<Switch checked={isGridLayout} onChange={handleUseGridLayout} />}
-                        label="is&nbsp;Grid&nbsp;Layout"
-                        sx={switchStyleOverrides}
-                    />
-                </ListItem>
-            </List>
-        </Dialog>
-    );
+                        <label className="sc-switch">
+                            <input
+                                type="checkbox"
+                                checked={isVisibleRangeSynced}
+                                onChange={handleSyncVisibleRangeChange}
+                            />
+                            Sync X-Axis visible range
+                        </label>
+                        <strong className="sc-modal-section-title">URL Statistics Chart</strong>
+                        <label className="sc-switch">
+                            <input
+                                type="checkbox"
+                                checked={isHundredPercentCollection}
+                                onChange={handleUsePercentage}
+                            />
+                            is 100% collection
+                        </label>
+                        <strong className="sc-modal-section-title">Server Load Statistics Chart</strong>
+                        <label className="sc-switch">
+                            <input type="checkbox" checked={isGridLayout} onChange={handleUseGridLayout} />
+                            is Grid Layout
+                        </label>
+                    </div>
+                </section>
+            </div>
+        </BodyPortal>
+    ) : null;
 
     return (
-        <div ref={ref} className={commonClasses.ChartWrapper} style={{ backgroundColor: "#242529" }}>
+        <div ref={ref} className="sc-chart-wrapper" style={{ backgroundColor: "#242529" }}>
             {viewInfo ? ( // checks if container was measured
                 <ChartGroupLoader style={gridStyle} onInit={afterAllChartsInit(axisSyncManager)}>
                     <div style={configButtonWrapperStyle} title="Chart Configurations">
-                        <IconButton
-                            sx={{ color: appTheme.ForegroundColor, pointerEvents: "all", touchAction: "all" }}
+                        <button
+                            className="sc-button sc-button-icon"
+                            aria-label="Chart configurations"
                             onClick={handleClickOpen}
+                            type="button"
                         >
                             <SettingsIcon fontSize="large" />
-                        </IconButton>
+                        </button>
                         {configurationDialog}
                     </div>
 

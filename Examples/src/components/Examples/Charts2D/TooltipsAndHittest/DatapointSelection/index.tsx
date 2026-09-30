@@ -1,5 +1,4 @@
 import { useRef, useState, CSSProperties } from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { SciChartReact } from "scichart-react";
 import { DataPointInfo } from "scichart";
@@ -14,11 +13,7 @@ export default function DatapointSelection() {
     const { isLargeView, isMobileView } = viewInfo ?? {};
 
     return (
-        <div
-            ref={viewRef}
-            className={commonClasses.ChartWrapper}
-            style={{ display: "flex", flexDirection: "row", height: "100%" }}
-        >
+        <div ref={viewRef} className="sc-chart-wrapper flex">
             <SciChartReact
                 style={chartStyle}
                 initChart={(rootElement) => drawExample(rootElement, setSelectedPoints)}

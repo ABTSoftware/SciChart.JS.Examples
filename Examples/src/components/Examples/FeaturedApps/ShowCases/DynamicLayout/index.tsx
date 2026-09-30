@@ -1,8 +1,6 @@
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import * as React from "react";
 import { useContext } from "react";
 import { SciChartReact, SciChartSurfaceContext, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { drawExample } from "./drawExample";
 
@@ -10,7 +8,7 @@ import { drawExample } from "./drawExample";
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function DynamicLayout() {
     return (
-        <SciChartReact className={commonClasses.ChartWithNestedToolbar} initChart={drawExample}>
+        <SciChartReact className="sc-chart-wrapper" initChart={drawExample}>
             <ChartToolbar />
         </SciChartReact>
     );
@@ -25,18 +23,28 @@ const ChartToolbar = () => {
         setIsGrid(value);
     };
     return (
-        <ToggleButtonGroup
-            className={commonClasses.ToolbarRow}
-            style={{ order: 1 }}
-            exclusive
-            value={isGrid}
-            onChange={handleToggleButtonChanged}
-            size="medium"
-            color="primary"
-            aria-label="small outlined button group"
+        <header
+            className="sc-toolbar-row"
+            style={{ order: -1 }} // to show the toolbar above the chart, not below it
         >
-            <ToggleButton value={false}>Single Chart</ToggleButton>
-            <ToggleButton value={true}>Chart Per Series</ToggleButton>
-        </ToggleButtonGroup>
+            <div className="sc-button-group" role="group" aria-label="Chart layout">
+                <button
+                    type="button"
+                    className="sc-button"
+                    aria-pressed={isGrid === false}
+                    onClick={(event) => handleToggleButtonChanged(event, false)}
+                >
+                    Single Chart
+                </button>
+                <button
+                    type="button"
+                    className="sc-button"
+                    aria-pressed={isGrid === true}
+                    onClick={(event) => handleToggleButtonChanged(event, true)}
+                >
+                    Chart Per Series
+                </button>
+            </div>
+        </header>
     );
 };

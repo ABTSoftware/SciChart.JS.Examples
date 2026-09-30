@@ -1,7 +1,5 @@
 import * as React from "react";
-import { Checkbox, FormControlLabel, MenuItem, MenuList } from "@mui/material";
 import { SciChartReact } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import {
     drawMultiSeriesExample,
     drawSingleSeriesExample,
@@ -33,7 +31,7 @@ const modes: { value: TChartMode; label: string; selectionLabel: string }[] = [
     },
     {
         value: "single",
-        label: `Single-Series (${(SINGLE_SERIES_RECORD_COUNT/1000).toLocaleString("en-US")}K records)`,
+        label: `Single-Series (${(SINGLE_SERIES_RECORD_COUNT / 1000).toLocaleString("en-US")}K records)`,
         selectionLabel: "Record selection (click)",
     },
 ];
@@ -79,29 +77,10 @@ type TCheckboxRowProps = {
 };
 
 const CheckboxRow = ({ checked, label, onChange }: TCheckboxRowProps) => (
-    <FormControlLabel
-        control={
-            <Checkbox
-                size="small"
-                checked={checked}
-                onChange={(e) => onChange(e.target.checked)}
-                sx={{
-                    padding: `4px ${checkboxPadding}px`,
-                    color: "rgba(255,255,255,0.55)",
-                    "&.Mui-checked": { color: "#2D7FF9" },
-                }}
-            />
-        }
-        label={label}
-        sx={{
-            margin: 0,
-            borderRadius: 1,
-            paddingRight: 1,
-            transition: "background-color 120ms",
-            "&:hover": { backgroundColor: "rgba(255,255,255,0.07)" },
-        }}
-        slotProps={{ typography: { fontSize: 13, lineHeight: 1.35 } }}
-    />
+    <label className="sc-control">
+        <input className="sc-checkbox" type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} />
+        <span>{label}</span>
+    </label>
 );
 
 export default function ParallelCoordinatesChart() {
@@ -146,7 +125,7 @@ export default function ParallelCoordinatesChart() {
     const currentMode = modes.find((m) => m.value === mode);
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
+        <div className="sc-chart-wrapper">
             <div style={{ display: "flex", flex: 1, minHeight: 0 }}>
                 <div
                     style={{
@@ -160,37 +139,20 @@ export default function ParallelCoordinatesChart() {
                     }}
                 >
                     <div style={headerStyle}>Chart Variant</div>
-                    <MenuList
-                        dense
-                        sx={{
-                            flexShrink: 0,
-                            padding: "4px 0",
-                            "& .MuiMenuItem-root": {
-                                color: "#ffffff",
-                                borderLeft: "3px solid transparent",
-                                transition: "background-color 120ms, border-color 120ms",
-                                whiteSpace: "normal",
-                            },
-                            "& .MuiMenuItem-root.Mui-selected, & .MuiMenuItem-root.Mui-selected:hover, & .MuiMenuItem-root.Mui-selected:focus":
-                                {
-                                    backgroundColor: "#2D7FF9",
-                                    borderLeftColor: "#FFFFFF",
-                                    color: "#FFFFFF",
-                                    fontWeight: 700,
-                                },
-                        }}
-                    >
+                    <div className="sc-menu-list">
                         {modes.map((item) => (
-                            <MenuItem
+                            <button
+                                type="button"
                                 key={item.value}
-                                selected={item.value === mode}
+                                className={`sc-menu-item${item.value === mode ? " is-selected" : ""}`}
+                                aria-pressed={item.value === mode}
                                 onClick={() => setMode(item.value)}
                                 title={item.label}
                             >
                                 {item.label}
-                            </MenuItem>
+                            </button>
                         ))}
-                    </MenuList>
+                    </div>
 
                     <div style={headerStyle}>Interactions</div>
                     <div

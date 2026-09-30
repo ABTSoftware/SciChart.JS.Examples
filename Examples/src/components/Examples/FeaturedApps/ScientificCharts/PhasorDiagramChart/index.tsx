@@ -1,8 +1,7 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
-import { ToggleButton } from "@mui/material";
 import { useState } from "react";
+import { PauseIcon, PlayArrowIcon } from "../../../icons";
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
@@ -11,7 +10,6 @@ export default function ChartComponent() {
         startAnimation: () => void;
         stopAnimation: () => void;
     }>();
-
     const [isChartAnimating, setIsChartAnimating] = useState(true);
 
     function handleToggleAnimation() {
@@ -26,29 +24,22 @@ export default function ChartComponent() {
     }
 
     return (
-        <div className={commonClasses.ChartWrapper}>
-            <header
-                style={{
-                    width: "100%",
-                    position: "absolute",
-                    margin: 12,
-                    zIndex: 1,
-                }}
-            >
-                <ToggleButton
-                    value="start"
+        <div className="sc-chart-wrapper">
+            <header style={{ position: "absolute", inset: "12px 12px auto", zIndex: 1 }}>
+                <button
+                    type="button"
+                    className="sc-button sc-button-icon"
+                    aria-pressed={isChartAnimating}
+                    aria-label={isChartAnimating ? "Stop rotation" : "Start rotation"}
+                    title={isChartAnimating ? "Stop rotation" : "Start rotation"}
                     onClick={handleToggleAnimation}
-                    sx={{
-                        color: "var(--text)",
-                        borderColor: "var(--text)",
-                    }}
                 >
-                    {isChartAnimating ? "Stop Rotation" : "Start Rotation"}
-                </ToggleButton>
+                    {isChartAnimating ? <PauseIcon /> : <PlayArrowIcon />}
+                </button>
             </header>
 
             <SciChartReact
-                style={{ width: "100%", height: "100%" }}
+                className="w-full h-full"
                 initChart={(rootElementId: string | HTMLDivElement) => drawExample(rootElementId)}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     setControls(initResult.controls);

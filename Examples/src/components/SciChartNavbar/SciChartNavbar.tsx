@@ -189,7 +189,11 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
             <nav id="site-navigation" className="container-large px-md-5">
                 <div className="row align-items-center">
                     <div className="col col-7 col-md-3 col-xl-2 header-logo site-logo">
-                        <a href="https://www.scichart.com/" className="text-decoration-none">
+                        <a
+                            href="https://www.scichart.com/"
+                            style={{ overflow: "visible" }}
+                            className="text-decoration-none"
+                        >
                             <img
                                 src="https://www.scichart.com/wp-content/themes/scichartv6/assets/icons/scichart-logo.svg"
                                 alt="SciChart"

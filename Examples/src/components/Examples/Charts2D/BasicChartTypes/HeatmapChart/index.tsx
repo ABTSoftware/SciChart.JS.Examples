@@ -1,10 +1,8 @@
 import { useRef, useState } from "react";
-import { PlayArrow as PlayArrowIcon } from "@mui/icons-material";
-import { Pause as PauseIcon } from "@mui/icons-material";
-import Button from "@mui/material/Button";
+import { PlayArrowIcon, PauseIcon } from "../../../icons";
+
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { appTheme } from "../../../theme";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
 import { ChartGroupLoader } from "scichart-react";
 
@@ -16,9 +14,12 @@ export default function HeatmapChart() {
     const [stats, setStats] = useState({ xSize: 0, ySize: 0, fps: 0 });
 
     return (
-        <ChartGroupLoader className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow}>
-                <Button
+        <ChartGroupLoader className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <button
+                    className="sc-button sc-button-icon"
+                    aria-label={isStarted ? "Pause updates" : "Start updates"}
+                    title={isStarted ? "Pause updates" : "Start updates"}
                     onClick={() => {
                         if (isStarted) {
                             controlsRef.current.stopUpdate();
@@ -27,16 +28,19 @@ export default function HeatmapChart() {
                         }
                         setIsStarted(!isStarted);
                     }}
+                    type="button"
                 >
                     {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
-                </Button>
+                </button>
+
                 <div>
                     # Heatmap Size: {stats.xSize} x {stats.ySize}
                 </div>
-                <div style={{ flex: "none", flexBasis: "5em", textAlign: "left" }}>
-                    FPS: {stats.fps.toFixed(0).padStart(2, "0")}
+
+                <div>
+                    FPS: {stats.fps.toFixed(0).padStart(2, "0")}&nbsp;
                 </div>
-            </div>
+            </header>
             <div style={{ position: "relative" }}>
                 <SciChartReact
                     initChart={drawExample}

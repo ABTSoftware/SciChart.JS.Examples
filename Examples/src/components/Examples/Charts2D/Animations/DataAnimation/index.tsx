@@ -1,5 +1,4 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 
 // React component needed as our examples app is react.
@@ -8,7 +7,7 @@ export default function ChartComponent() {
     return (
         <SciChartReact
             initChart={drawExample}
-            className={commonClasses.ChartWrapper}
+            className="sc-chart-wrapper"
             onDelete={(initResult: TResolvedReturnType<typeof drawExample>) => {
                 initResult.controls.stopUpdate();
             }}

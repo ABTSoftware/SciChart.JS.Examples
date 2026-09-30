@@ -15,16 +15,10 @@ const folderPath = path.join(__dirname, "Examples");
 export let csStyles: IFiles;
 export const loadStyles = async () => {
     if (!csStyles) {
-        const basePath = path.join(folderPath, "styles", "_base.scss");
-        const base = await fs.promises.readFile(basePath, "utf8");
-        const mixinsPath = path.join(folderPath, "styles", "mixins.scss");
-        const mixins = await fs.promises.readFile(mixinsPath, "utf8");
-        const examplesPath = path.join(folderPath, "styles", "Examples.module.scss");
-        const examples = await fs.promises.readFile(examplesPath, "utf8");
+        const stylesPath = path.join(folderPath, "styles");
+        const ui = await fs.promises.readFile(path.join(stylesPath, "sc-ui.css"), "utf8");
         csStyles = {
-            "src/styles/_base.scss": { content: base, isBinary: false },
-            "src/styles/mixins.scss": { content: mixins, isBinary: false },
-            "src/styles/Examples.module.scss": { content: examples, isBinary: false },
+            "src/index.css": { content: ui, isBinary: false },
         };
     }
 };
@@ -175,7 +169,6 @@ export const getSourceFilesForPath = async (folderPath: string, startFile: strin
     let code = await fs.promises.readFile(tsPath, "utf8");
     let files: IFiles = {};
     await includeImportedModules(folderPath, files, code, false, false, baseUrl);
-    code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
     await includeExternalModules(folderPath, folderPath, files, code, false, false);
     files[tsPath] = { content: code, isBinary: false };
     return files;

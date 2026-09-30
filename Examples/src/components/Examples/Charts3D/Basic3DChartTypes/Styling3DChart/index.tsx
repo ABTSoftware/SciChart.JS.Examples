@@ -1,45 +1,14 @@
 import { useRef, useState } from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, TAxis, TSelectedAxisPlane } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import {
-    FormControl,
-    MenuItem,
-    Select,
-    Slider,
-    Typography,
-    Stack,
-    Accordion,
-    AccordionSummary,
-    AccordionDetails,
-    Dialog,
-    DialogTitle,
-    IconButton,
-    FormControlLabel,
-    Switch,
-    SelectChangeEvent,
-} from "@mui/material";
-import SettingsIcon from "@mui/icons-material/Settings";
-import CloseIcon from "@mui/icons-material/Close";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { SettingsIcon, CloseIcon, ExpandMoreIcon } from "../../../icons";
+import { BodyPortal } from "../../../Portal";
 
 import { appTheme } from "../../../theme";
 import { useViewType } from "./containerSizeHooks";
-import { EAxisPlaneDrawLabelsMode, EThemeProviderType, E3DLabelOrientationMode } from "scichart";
+import { EAxisPlaneDrawLabelsMode, E3DLabelOrientationMode } from "scichart";
 
 const PANEL_TEXT_COLOR = "#FFFFFF";
-
-const selectStyle = {
-    margin: "0.5em 0em",
-    color: "inherit",
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
-    borderRadius: "4px",
-    paddingLeft: "10px",
-    "& .MuiSvgIcon-root": { color: "inherit" },
-    "&:before": { display: "none" },
-    "&:after": { display: "none" },
-    "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.1)" },
-};
 
 type AxisDemoConfig = {
     fontSize: number;
@@ -72,7 +41,6 @@ export default function Styling3DChart() {
     const viewInfo = useViewType(sizeRef);
     const { isMobileView } = viewInfo ?? {};
 
-    const [themeName, setThemeName] = useState<EThemeProviderType>(EThemeProviderType.Navy);
     const [selectedAxis, setSelectedAxis] = useState<TAxis>("x");
     const [axisSettings, setAxisSettings] = useState<Record<TAxis, AxisDemoConfig>>({
         x: { ...defaultAxisConfig },
@@ -91,7 +59,7 @@ export default function Styling3DChart() {
     const [planeIsVisible, setPlaneIsVisible] = useState("true");
     const [expanded, setExpanded] = useState<string | false>("panel1");
 
-    // Helper to ensure color strings are valid for <input type="color">
+    // Helper to ensure color strings are valid for <input type="color" className="sc-input">
     const formatHexForInput = (color: string) => {
         if (!color || !color.startsWith("#")) return "#000000";
         return color.substring(0, 7);
@@ -104,30 +72,31 @@ export default function Styling3DChart() {
         }));
     };
 
-    const handleChange = (panel: string) => (_: any, isExpanded: boolean) => {
-        setExpanded(isExpanded ? panel : false);
+    const handlePanelToggle = (panel: string) => (event: React.SyntheticEvent<HTMLDetailsElement>) => {
+        if (event.currentTarget.open) setExpanded(panel);
+        else setExpanded((current) => (current === panel ? false : current));
     };
 
     const handleClickOpen = () => setIsDialogOpen(true);
     const handleClose = () => setIsDialogOpen(false);
 
     // 2. Fixed: Added optional chaining (?.current) to all control calls
-    const handleLabelFontSize = (_: any, newValue: number | number[]) => {
+    const handleLabelFontSize = (_: React.ChangeEvent<HTMLInputElement>, newValue: number) => {
         updateAxisSetting("fontSize", newValue);
         controlsRef.current?.setAxisLabelFontSize(newValue, selectedAxis);
     };
 
-    const handleTitleOffset = (_: any, newValue: number | number[]) => {
+    const handleTitleOffset = (_: React.ChangeEvent<HTMLInputElement>, newValue: number) => {
         updateAxisSetting("titleOffset", newValue);
         controlsRef.current?.setTitleOffset(newValue, selectedAxis);
     };
 
-    const handleTickLabelsOffset = (_: any, newValue: number | number[]) => {
+    const handleTickLabelsOffset = (_: React.ChangeEvent<HTMLInputElement>, newValue: number) => {
         updateAxisSetting("tickLabelsOffset", newValue);
         controlsRef.current?.setTickLabelsOffset(newValue, selectedAxis);
     };
 
-    const handleLabelOrientationModeChange = (e: SelectChangeEvent<E3DLabelOrientationMode>) => {
+    const handleLabelOrientationModeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newMode = e.target.value as E3DLabelOrientationMode;
         updateAxisSetting("labelOrientation", newMode);
         controlsRef.current?.setLabelOrientationMode(newMode, selectedAxis);
@@ -145,7 +114,7 @@ export default function Styling3DChart() {
         controlsRef.current?.enableMinorGridLines(checked, selectedAxis);
     };
 
-    const handleAxisChange = (e: SelectChangeEvent<TAxis>) => {
+    const handleAxisChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newAxis = e.target.value as TAxis;
         setSelectedAxis(newAxis);
         controlsRef.current?.updateAxisTitleColor(newAxis);
@@ -170,289 +139,205 @@ export default function Styling3DChart() {
     };
 
     // Plane handlers
-    const handlePlaneChange = (e: SelectChangeEvent<TSelectedAxisPlane>) => {
+    const handlePlaneChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newValue = e.target.value as TSelectedAxisPlane;
         setSelectedPlane(newValue);
         controlsRef.current?.setPlaneBackground(newValue);
     };
 
-    const handleVisibilityMode = (e: SelectChangeEvent<string>) => {
+    const handleVisibilityMode = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newValue = e.target.value;
         setVisibilityMode(newValue);
         controlsRef.current?.setVisibilityMode(selectedPlane, newValue);
     };
 
-    const handlePlaneDrawTitlesMode = (e: SelectChangeEvent<EAxisPlaneDrawLabelsMode>) => {
+    const handlePlaneDrawTitlesMode = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newValue = e.target.value as EAxisPlaneDrawLabelsMode;
         setPlaneDrawTitlesMode(newValue);
         controlsRef.current?.setDrawTitlesMode(selectedPlane, newValue);
     };
 
-    const handlePlaneDrawLabelsMode = (e: SelectChangeEvent<EAxisPlaneDrawLabelsMode>) => {
+    const handlePlaneDrawLabelsMode = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newValue = e.target.value as EAxisPlaneDrawLabelsMode;
         setPlaneDrawLabelsMode(newValue);
         controlsRef.current?.setDrawLabelsMode(selectedPlane, newValue);
     };
 
-    const handlePlaneIsVisible = (e: SelectChangeEvent<string>) => {
+    const handlePlaneIsVisible = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newValue = e.target.value;
         setPlaneIsVisible(newValue);
         controlsRef.current?.setIsPlaneVisible(selectedPlane, newValue);
-    };
-
-    const handleThemeChange = (e: SelectChangeEvent<EThemeProviderType>) => {
-        const newTheme = e.target.value as EThemeProviderType;
-        setThemeName(newTheme);
-        controlsRef.current?.setTheme(newTheme);
     };
 
     const currentSettings = axisSettings[selectedAxis];
 
     const controlPanel = (
         <>
-            {/* Theme Section */}
-            {/* <Accordion expanded={expanded === "panel0"} onChange={handleChange("panel0")} sx={accordionStyle}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography variant="h6">Surface Config</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <FormControl fullWidth className={commonClasses.formControl}>
-                        <Typography variant="inherit" className={commonClasses.FormControlLabel}>Select Theme</Typography>
-                        <Select variant="standard" sx={selectStyle} value={themeName} onChange={handleThemeChange}>
-                            <MenuItem value={EThemeProviderType.Navy}>Navy</MenuItem>
-                            <MenuItem value={EThemeProviderType.Light}>Light</MenuItem>
-                            <MenuItem value={EThemeProviderType.Dark}>Dark</MenuItem>
-                            <MenuItem value={EThemeProviderType.DarkV2}>DarkV2</MenuItem>
-                        </Select>
-                    </FormControl>
-                </AccordionDetails>
-            </Accordion> */}
-
             {/* Axis Section */}
-            <Accordion expanded={expanded === "panel1"} onChange={handleChange("panel1")} sx={accordionStyle}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography variant="h6">Axis Configuration</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <FormControl fullWidth className={commonClasses.formControl}>
-                        <Typography variant="inherit" className={commonClasses.FormControlLabel}>
-                            Select Axis
-                        </Typography>
-                        <Select variant="standard" sx={selectStyle} value={selectedAxis} onChange={handleAxisChange}>
-                            <MenuItem value="x">X Axis</MenuItem>
-                            <MenuItem value="y">Y Axis</MenuItem>
-                            <MenuItem value="z">Z Axis</MenuItem>
-                        </Select>
+            <details className="sc-accordion" open={expanded === "panel1"} onToggle={handlePanelToggle("panel1")}>
+                <summary className="sc-accordion-summary">
+                    <span>Axis Configuration</span>
+                    <ExpandMoreIcon />
+                </summary>
+                <div className="sc-accordion-details">
+                    <div className="sc-form-control">
+                        <span>Select Axis</span>
+                        <select className="sc-select" value={selectedAxis} onChange={handleAxisChange}>
+                            <option value="x">X Axis</option>
+                            <option value="y">Y Axis</option>
+                            <option value="z">Z Axis</option>
+                        </select>
 
-                        <Typography variant="inherit" sx={{ mt: 2 }}>
-                            Axis Font Size: {currentSettings.fontSize}
-                        </Typography>
-                        <Slider
+                        <span>Axis Font Size: {currentSettings.fontSize}</span>
+                        <input
+                            type="range"
+                            className="sc-range"
                             step={1}
                             min={10}
                             max={30}
                             value={currentSettings.fontSize}
-                            onChange={handleLabelFontSize}
+                            onChange={(event) => handleLabelFontSize(event, event.currentTarget.valueAsNumber)}
                         />
 
-                        <Typography variant="inherit">Axis Title Offset: {currentSettings.titleOffset}</Typography>
-                        <Slider
+                        <span>Axis Title Offset: {currentSettings.titleOffset}</span>
+                        <input
+                            type="range"
+                            className="sc-range"
                             step={1}
                             min={0}
                             max={100}
                             value={currentSettings.titleOffset}
-                            onChange={handleTitleOffset}
+                            onChange={(event) => handleTitleOffset(event, event.currentTarget.valueAsNumber)}
                         />
 
-                        <Typography variant="inherit">
-                            Tick Labels Offset: {currentSettings.tickLabelsOffset}
-                        </Typography>
-                        <Slider
+                        <span>Tick Labels Offset: {currentSettings.tickLabelsOffset}</span>
+                        <input
+                            type="range"
+                            className="sc-range"
                             step={1}
                             min={0}
                             max={100}
                             value={currentSettings.tickLabelsOffset}
-                            onChange={handleTickLabelsOffset}
+                            onChange={(event) => handleTickLabelsOffset(event, event.currentTarget.valueAsNumber)}
                         />
 
-                        <Typography variant="inherit">Label Orientation Mode</Typography>
-                        <Select
-                            variant="standard"
-                            sx={selectStyle}
+                        <span>Label Orientation Mode</span>
+                        <select
+                            className="sc-select"
                             value={currentSettings.labelOrientation}
                             onChange={handleLabelOrientationModeChange}
                         >
-                            <MenuItem value={E3DLabelOrientationMode.Auto}>Auto</MenuItem>
-                            <MenuItem value={E3DLabelOrientationMode.Horizontal}>Horizontal</MenuItem>
-                        </Select>
+                            <option value={E3DLabelOrientationMode.Auto}>Auto</option>
+                            <option value={E3DLabelOrientationMode.Horizontal}>Horizontal</option>
+                        </select>
 
-                        <Stack direction="row" justifyContent="space-between" sx={{ mt: 1 }}>
-                            <FormControlLabel
-                                control={
-                                    <Switch
-                                        checked={currentSettings.majorGridLines}
-                                        onChange={handleEnableMajorGridLines}
-                                    />
-                                }
-                                label="Major Grid"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Switch
-                                        checked={currentSettings.minorGridLines}
-                                        onChange={handleEnableMinorGridLines}
-                                    />
-                                }
-                                label="Minor Grid"
-                            />
-                        </Stack>
+                        <div className="flex items-center gap-3">
+                            <label className="sc-switch">
+                                <input
+                                    type="checkbox"
+                                    checked={currentSettings.majorGridLines}
+                                    onChange={handleEnableMajorGridLines}
+                                />
+                                Major Grid
+                            </label>
+                            <label className="sc-switch">
+                                <input
+                                    type="checkbox"
+                                    checked={currentSettings.minorGridLines}
+                                    onChange={handleEnableMinorGridLines}
+                                />
+                                Minor Grid
+                            </label>
+                        </div>
 
-                        <Typography variant="inherit" sx={{ mt: 2 }}>
-                            Colors (Bands, Major, Minor)
-                        </Typography>
-                        <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+                        <span>Colors (Bands, Major, Minor)</span>
+                        <div className="flex gap-2">
                             <input
                                 type="color"
                                 value={formatHexForInput(currentSettings.bandsFill)}
                                 onChange={handleBandsFillChange}
                                 style={colorInputStyle}
+                                className="sc-input"
                             />
                             <input
                                 type="color"
                                 value={formatHexForInput(currentSettings.majorGridColor)}
                                 onChange={handleMajorGridLineColorChange}
                                 style={colorInputStyle}
+                                className="sc-input"
                             />
                             <input
                                 type="color"
                                 value={formatHexForInput(currentSettings.minorGridColor)}
                                 onChange={handleMinorGridLineColorChange}
                                 style={colorInputStyle}
+                                className="sc-input"
                             />
-                        </Stack>
-                    </FormControl>
-                </AccordionDetails>
-            </Accordion>
+                        </div>
+                    </div>
+                </div>
+            </details>
 
             {/* Plane Section */}
-            <Accordion expanded={expanded === "panel2"} onChange={handleChange("panel2")} sx={accordionStyle}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography variant="h6">Plane Configuration</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography variant="inherit">Select Plane</Typography>
-                    <Select
-                        fullWidth
-                        variant="standard"
-                        sx={selectStyle}
-                        value={selectedPlane}
-                        onChange={handlePlaneChange}
-                    >
-                        <MenuItem value="none">None</MenuItem>
-                        <MenuItem value="xy">XY Plane</MenuItem>
-                        <MenuItem value="zy">ZY Plane</MenuItem>
-                        <MenuItem value="zx">ZX Plane</MenuItem>
-                    </Select>
-                    <Typography variant="inherit">Visibility Mode</Typography>
-                    <FormControl fullWidth className={commonClasses.formControl}>
-                        <Select
-                            labelId="font-label"
-                            id="font"
-                            variant="standard"
-                            inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
-                            sx={{
-                                margin: "0.5em 0em",
-                                color: "inherit",
-                                "& .MuiSvgIcon-root": { color: "inherit" },
-                            }}
-                            value={visibilityMode}
-                            onChange={handleVisibilityMode}
-                        >
-                            <MenuItem value="auto">Auto</MenuItem>
-                            <MenuItem value="negativeSide">Negative Side</MenuItem>
-                            <MenuItem value="positiveSide">Positive Side</MenuItem>
-                        </Select>
-                    </FormControl>
+            <details className="sc-accordion" open={expanded === "panel2"} onToggle={handlePanelToggle("panel2")}>
+                <summary className="sc-accordion-summary">
+                    <span>Plane Configuration</span>
+                    <ExpandMoreIcon />
+                </summary>
+                <div className="sc-accordion-details">
+                    <span>Select Plane</span>
+                    <select className="sc-select" value={selectedPlane} onChange={handlePlaneChange}>
+                        <option value="none">None</option>
+                        <option value="xy">XY Plane</option>
+                        <option value="zy">ZY Plane</option>
+                        <option value="zx">ZX Plane</option>
+                    </select>
+                    <span>Visibility Mode</span>
+                    <div className="sc-form-control">
+                        <select className="sc-select" value={visibilityMode} onChange={handleVisibilityMode}>
+                            <option value="auto">Auto</option>
+                            <option value="negativeSide">Negative Side</option>
+                            <option value="positiveSide">Positive Side</option>
+                        </select>
+                    </div>
 
-                    <Typography variant="inherit" className={commonClasses.FormControlLabel}>
-                        Draw Titles Mode
-                    </Typography>
-                    <FormControl fullWidth className={commonClasses.formControl}>
-                        <Select
-                            labelId="font-label"
-                            id="font"
-                            variant="standard"
-                            inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
-                            sx={{
-                                margin: "0.5em 0em",
-                                color: "inherit",
-                                "& .MuiSvgIcon-root": { color: "inherit" },
-                            }}
-                            value={planeDrawTitlesMode}
-                            onChange={handlePlaneDrawTitlesMode}
-                        >
-                            <MenuItem value={EAxisPlaneDrawLabelsMode.Both}>Both</MenuItem>
-                            <MenuItem value={EAxisPlaneDrawLabelsMode.Hidden}>Hidden</MenuItem>
-                            <MenuItem value={EAxisPlaneDrawLabelsMode.LocalX}>LocalX</MenuItem>
-                            <MenuItem value={EAxisPlaneDrawLabelsMode.LocalY}>LocalY </MenuItem>
-                        </Select>
-                    </FormControl>
+                    <span className="sc-control-label">Draw Titles Mode</span>
+                    <div className="sc-form-control">
+                        <select className="sc-select" value={planeDrawTitlesMode} onChange={handlePlaneDrawTitlesMode}>
+                            <option value={EAxisPlaneDrawLabelsMode.Both}>Both</option>
+                            <option value={EAxisPlaneDrawLabelsMode.Hidden}>Hidden</option>
+                            <option value={EAxisPlaneDrawLabelsMode.LocalX}>LocalX</option>
+                            <option value={EAxisPlaneDrawLabelsMode.LocalY}>LocalY </option>
+                        </select>
+                    </div>
 
-                    <Typography variant="inherit" className={commonClasses.FormControlLabel}>
-                        Draw Labels Mode
-                    </Typography>
-                    <FormControl fullWidth className={commonClasses.formControl}>
-                        <Select
-                            labelId="font-label"
-                            id="font"
-                            variant="standard"
-                            inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
-                            sx={{
-                                margin: "0.5em 0em",
-                                color: "inherit",
-                                "& .MuiSvgIcon-root": { color: "inherit" },
-                            }}
-                            value={planeDrawLabelsMode}
-                            onChange={handlePlaneDrawLabelsMode}
-                        >
-                            <MenuItem value={EAxisPlaneDrawLabelsMode.Both}>Both</MenuItem>
-                            <MenuItem value={EAxisPlaneDrawLabelsMode.Hidden}>Hidden</MenuItem>
-                            <MenuItem value={EAxisPlaneDrawLabelsMode.LocalX}>LocalX</MenuItem>
-                            <MenuItem value={EAxisPlaneDrawLabelsMode.LocalY}>LocalY </MenuItem>
-                        </Select>
-                    </FormControl>
+                    <span className="sc-control-label">Draw Labels Mode</span>
+                    <div className="sc-form-control">
+                        <select className="sc-select" value={planeDrawLabelsMode} onChange={handlePlaneDrawLabelsMode}>
+                            <option value={EAxisPlaneDrawLabelsMode.Both}>Both</option>
+                            <option value={EAxisPlaneDrawLabelsMode.Hidden}>Hidden</option>
+                            <option value={EAxisPlaneDrawLabelsMode.LocalX}>LocalX</option>
+                            <option value={EAxisPlaneDrawLabelsMode.LocalY}>LocalY </option>
+                        </select>
+                    </div>
 
-                    <Typography variant="inherit" className={commonClasses.FormControlLabel}>
-                        Is Visible
-                    </Typography>
-                    <FormControl fullWidth className={commonClasses.formControl}>
-                        <Select
-                            labelId="font-label"
-                            id="font"
-                            variant="standard"
-                            inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
-                            sx={{
-                                margin: "0.5em 0em",
-                                color: "inherit",
-                                "& .MuiSvgIcon-root": { color: "inherit" },
-                            }}
-                            value={planeIsVisible}
-                            onChange={handlePlaneIsVisible}
-                        >
-                            <MenuItem value="true">True</MenuItem>
-                            <MenuItem value="false">False</MenuItem>
-                        </Select>
-                    </FormControl>
-                </AccordionDetails>
-            </Accordion>
+                    <span className="sc-control-label">Is Visible</span>
+                    <div className="sc-form-control">
+                        <select className="sc-select" value={planeIsVisible} onChange={handlePlaneIsVisible}>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </div>
+                </div>
+            </details>
         </>
     );
 
     return (
-        <Stack
+        <div
             ref={sizeRef}
-            sx={{ width: "100%", height: "100%", background: appTheme.DarkIndigo }}
-            direction={isMobileView ? "column" : "row"}
+            className="sc-chart-wrapper flex w-full h-full"
+            style={{ flexDirection: isMobileView ? "column" : "row" }}
         >
             <SciChartReact
                 style={{ flexBasis: 600, flexGrow: 1, flexShrink: 1, display: "flex", flexDirection: "column" }}
@@ -463,56 +348,57 @@ export default function Styling3DChart() {
             />
             <div style={isMobileView ? mobileContainerStyle : desktopContainerStyle}>
                 {isMobileView && (
-                    <IconButton onClick={handleClickOpen} sx={{ color: PANEL_TEXT_COLOR }}>
+                    <button
+                        className="sc-button sc-button-icon"
+                        aria-label="Chart configurations"
+                        title="Chart configurations"
+                        onClick={handleClickOpen}
+                        type="button"
+                    >
                         <SettingsIcon fontSize="large" />
-                    </IconButton>
+                    </button>
                 )}
                 {!isMobileView && controlPanel}
-                {isMobileView && (
-                    <Dialog
-                        open={isDialogOpen}
-                        onClose={handleClose}
-                        sx={{ "& .MuiDialog-paper": { background: appTheme.DarkIndigo, color: PANEL_TEXT_COLOR } }}
-                    >
-                        <DialogTitle
-                            sx={{
-                                color: PANEL_TEXT_COLOR,
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                            }}
+                {isMobileView && isDialogOpen && (
+                    <BodyPortal>
+                        <div
+                            className="sc-modal-backdrop"
+                            onClick={(event) => event.target === event.currentTarget && handleClose()}
+                            onKeyDown={(event) => event.key === "Escape" && handleClose()}
                         >
-                            Configuration
-                            <IconButton onClick={handleClose} sx={{ color: PANEL_TEXT_COLOR }}>
-                                <CloseIcon />
-                            </IconButton>
-                        </DialogTitle>
-                        <div style={{ padding: "10px", color: PANEL_TEXT_COLOR }}>{controlPanel}</div>
-                    </Dialog>
+                            <section
+                                className="sc-modal"
+                                role="dialog"
+                                aria-modal="true"
+                                aria-labelledby="axis-config-title"
+                            >
+                                <header className="sc-modal-header">
+                                    <strong id="axis-config-title">Configuration</strong>
+                                    <button
+                                        className="sc-button sc-button-icon"
+                                        aria-label="Close configuration"
+                                        onClick={handleClose}
+                                        autoFocus
+                                        type="button"
+                                    >
+                                        <CloseIcon />
+                                    </button>
+                                </header>
+                                <div className="sc-modal-body">{controlPanel}</div>
+                            </section>
+                        </div>
+                    </BodyPortal>
                 )}
             </div>
-        </Stack>
+        </div>
     );
 }
-
-const accordionStyle = {
-    backgroundColor: appTheme.DarkIndigo,
-    color: PANEL_TEXT_COLOR,
-    border: `1px solid ${appTheme.Indigo}`,
-    "&:before": { display: "none" },
-    "& .MuiAccordionSummary-root": {
-        backgroundColor: appTheme.Indigo,
-        borderBottom: `1px solid ${appTheme.VividSkyBlue}22`,
-    },
-    "& .MuiAccordionDetails-root": { backgroundColor: appTheme.DarkIndigo },
-    "& .MuiSvgIcon-root": { color: PANEL_TEXT_COLOR },
-};
 
 const colorInputStyle = { flex: 1, height: "30px", border: "none", borderRadius: "4px", cursor: "pointer" };
 const desktopContainerStyle: React.CSSProperties = {
     flex: "none",
     width: "300px",
-    padding: "0 10px",
+    padding: "10px",
     overflowY: "auto",
     color: PANEL_TEXT_COLOR,
     fontSize: "0.8em",

@@ -1,6 +1,4 @@
 import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
-
 import { SciChart3DSurface } from "scichart";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
@@ -9,7 +7,7 @@ import { ChartGroupLoader } from "scichart-react";
 // REACT COMPONENT
 export default function SurfaceMesh3DChart() {
     return (
-        <ChartGroupLoader className={commonClasses.ChartWrapper}>
+        <ChartGroupLoader className="sc-chart-wrapper">
             <SciChartReact initChart={drawExample} style={{ height: "100%", width: "100%" }} />
             <SciChartReact
                 initChart={drawHeatmapLegend}

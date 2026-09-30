@@ -43,8 +43,6 @@ export const getVanillaSrc = async (folderPath: string) => {
 export const getVanillaTsSandBoxConfig = async (folderPath: string, currentExample: TExampleInfo, baseUrl: string) => {
     let code = await getVanillaSrc(folderPath);
 
-    code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
-
     let htmlCode = indexHtmlTemplate();
 
     try {

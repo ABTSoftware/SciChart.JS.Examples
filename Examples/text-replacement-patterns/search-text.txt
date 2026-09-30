@@ -23,5 +23,5 @@ export default function ChartComponent() {
         };
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className="sc-chart-wrapper" />;
 }

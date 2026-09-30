@@ -1,5 +1,4 @@
 import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
@@ -15,10 +14,10 @@ export default function VitalSignsMonitorDemo() {
     const [infoBloodOxygenation, setInfoBloodOxygenation] = React.useState<number>(0);
 
     return (
-        <div className={commonClasses.ChartWrapper}>
+        <div className="sc-chart-wrapper">
             <div style={{ display: "flex", height: "100%" }}>
                 <SciChartReact
-                    className={commonClasses.VitalSigns}
+                    className="sc-vitals"
                     initChart={drawExample}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         initResult.subscribeToDataUpdates((info) => {
@@ -37,17 +36,17 @@ export default function VitalSignsMonitorDemo() {
                         };
                     }}
                 />
-                <div className={commonClasses.InfoBoxContainer}>
+                <div className="sc-vitals-cards">
                     <div
-                        className={commonClasses.InfoBox}
+                        className="sc-vitals-card"
                         style={{ color: appTheme.VividOrange, background: appTheme.Background }}
                     >
-                        <div className={commonClasses.IbRow1}>
-                            <div className={commonClasses.IbRow1Col1}>ECG</div>
-                            <div className={commonClasses.IbRow2Col2}>{infoEcg}</div>
+                        <div className="flex flex-1">
+                            <div className="sc-vitals-title">ECG</div>
+                            <div className="sc-vitals-value">{infoEcg}</div>
                         </div>
-                        <div className={commonClasses.IbRow2}>
-                            <div className={commonClasses.IbRow2Col1}>
+                        <div className="flex items-end">
+                            <div className="sc-vitals-details">
                                 <div>
                                     V1 - 1.4MM
                                     <br />
@@ -57,19 +56,19 @@ export default function VitalSignsMonitorDemo() {
                         </div>
                     </div>
                     <div
-                        className={commonClasses.InfoBox}
+                        className="sc-vitals-card"
                         style={{ color: appTheme.VividSkyBlue, background: appTheme.Background }}
                     >
-                        <div className={commonClasses.IbRow1}>
-                            <div className={commonClasses.IbRow1Col1}>NIBP</div>
-                            <div className={commonClasses.IbRow1Col2}>
+                        <div className="flex flex-1">
+                            <div className="sc-vitals-title">NIBP</div>
+                            <div className="sc-vitals-meta">
                                 AUTO
                                 <br />
                                 145/95
                             </div>
                         </div>
-                        <div className={commonClasses.IbRow2}>
-                            <div className={commonClasses.IbRow2Col2}>
+                        <div className="flex items-end">
+                            <div className="sc-vitals-value">
                                 <div>
                                     {infoBloodPressure1}/{infoBloodPressure2}
                                 </div>
@@ -77,42 +76,42 @@ export default function VitalSignsMonitorDemo() {
                         </div>
                     </div>
                     <div
-                        className={commonClasses.InfoBox}
+                        className="sc-vitals-card"
                         style={{ color: appTheme.VividPink, background: appTheme.Background }}
                     >
-                        <div className={commonClasses.IbRow1}>
-                            <div className={commonClasses.IbRow1Col1}>SV</div>
-                            <div className={commonClasses.IbRow1Col2}>
+                        <div className="flex flex-1">
+                            <div className="sc-vitals-title">SV</div>
+                            <div className="sc-vitals-meta">
                                 ML 100
                                 <br />
                                 %**** 55
                             </div>
                         </div>
-                        <div className={commonClasses.IbRow2}>
-                            <div className={commonClasses.IbRow2Col2}>
+                        <div className="flex items-end">
+                            <div className="sc-vitals-value">
                                 <div>{infoBloodVolume.toFixed(1)}</div>
                             </div>
                         </div>
                     </div>
                     <div
-                        className={commonClasses.InfoBox}
+                        className="sc-vitals-card"
                         style={{ color: appTheme.VividTeal, background: appTheme.Background }}
                     >
-                        <div className={commonClasses.IbRow1}>
-                            <div className={commonClasses.IbRow1Col1}>
+                        <div className="flex flex-1">
+                            <div className="sc-vitals-title">
                                 SPO<span style={{ fontSize: 12 }}>2</span>
                             </div>
-                            <div className={commonClasses.IbRow1Col2}>18:06</div>
+                            <div className="sc-vitals-meta">18:06</div>
                         </div>
-                        <div className={commonClasses.IbRow2}>
-                            <div className={commonClasses.IbRow2Col1}>
+                        <div className="flex items-end">
+                            <div className="sc-vitals-details">
                                 <div>
                                     71-
                                     <br />
                                     RESP
                                 </div>
                             </div>
-                            <div className={commonClasses.IbRow2Col2}>{infoBloodOxygenation}</div>
+                            <div className="sc-vitals-value">{infoBloodOxygenation}</div>
                         </div>
                     </div>
                 </div>

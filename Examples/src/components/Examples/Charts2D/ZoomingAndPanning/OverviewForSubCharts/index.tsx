@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import { SciChartSurface } from "scichart";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, SubChartManager, SubChartConfig } from "./drawExample";
 import { appTheme } from "../../../theme";
 
@@ -72,72 +71,49 @@ export default function OverviewForSubCharts() {
     };
 
     return (
-        <div
-            className={commonClasses.ChartWithNestedToolbar}
-            style={{ display: "flex", flexDirection: "column", height: "100%", position: "relative" }}
-        >
+        <div className="sc-chart-wrapper flex flex-col">
             <div ref={chartRef} style={{ width: "100%", height: "100%" }} />
 
             {/* Compact floating controls positioned at bottom-right */}
             <div
+                className="sc-control-row"
                 style={{
                     position: "absolute",
-                    top: "8px",
-                    left: "8px",
+                    top: 8,
+                    left: 8,
                     padding: "4px 8px",
                     backgroundColor: "rgba(30, 30, 30, 0.95)",
                     border: "1px solid #444",
-                    borderRadius: "4px",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    fontSize: "12px",
+                    borderRadius: 4,
+                    fontSize: 12,
                     boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
                     backdropFilter: "blur(4px)",
                     maxWidth: "calc(100% - 16px)",
-                    flexWrap: "wrap",
                     zIndex: 1000,
-                    pointerEvents: "auto",
                 }}
             >
                 <button
+                    type="button"
                     onClick={addSubChart}
-                    style={{
-                        padding: "3px 8px",
-                        backgroundColor: "#007acc",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "2px",
-                        cursor: "pointer",
-                        fontSize: "11px",
-                        minWidth: "auto",
-                    }}
                     title="Add SubChart"
+                    className="sc-button sc-button-primary"
                 >
                     Add Chart
                 </button>
 
                 <button
+                    type="button"
                     onClick={() => removeSubChart(subCharts[subCharts.length - 1]?.id)}
                     disabled={subCharts.length === 0}
-                    style={{
-                        padding: "3px 8px",
-                        backgroundColor: subCharts.length === 0 ? "#666" : "#dc3545",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "2px",
-                        cursor: subCharts.length === 0 ? "not-allowed" : "pointer",
-                        fontSize: "11px",
-                        minWidth: "auto",
-                    }}
                     title="Remove Last SubChart"
+                    className="sc-button sc-button-danger"
                 >
                     Remove Chart
                 </button>
 
-                <span style={{ color: "#ccc", fontSize: "11px", margin: "0 4px" }}>{subCharts.length}</span>
+                <span>{subCharts.length}</span>
 
-                <div style={{ display: "flex", gap: "3px", alignItems: "center" }}>
+                <div className="sc-control-row">
                     {subCharts.map((config, index) => (
                         <input
                             key={config.id}

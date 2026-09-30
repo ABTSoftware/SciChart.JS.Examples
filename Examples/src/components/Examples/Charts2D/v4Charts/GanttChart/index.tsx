@@ -1,5 +1,4 @@
 import { SciChartReact } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { appTheme } from "../../../theme";
 
@@ -7,7 +6,7 @@ import { appTheme } from "../../../theme";
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     return (
-        <div className={commonClasses.ChartWrapper}>
+        <div className="sc-chart-wrapper">
             <div
                 style={{
                     width: "100%",

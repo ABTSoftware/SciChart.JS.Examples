@@ -1,7 +1,6 @@
 import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { appTheme } from "../../../theme";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 
@@ -29,35 +28,40 @@ export default function HighPerformanceScatterCursor() {
     };
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                <ToggleButtonGroup
-                    exclusive
-                    value={isSvgMode}
-                    onChange={handleModeChange}
-                    size="small"
-                    color="primary"
-                    aria-label="Cursor rendering mode (SVG or Native)"
-                >
-                    <ToggleButton value={true}>SVG</ToggleButton>
-                    <ToggleButton value={false}>Native</ToggleButton>
-                </ToggleButtonGroup>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="Cursor rendering mode (SVG or Native)">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={isSvgMode === true}
+                        onClick={(event) => handleModeChange(event, true)}
+                    >
+                        SVG
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={isSvgMode === false}
+                        onClick={(event) => handleModeChange(event, false)}
+                    >
+                        Native
+                    </button>
+                </div>
 
-                <ToggleButtonGroup
-                    exclusive
-                    value={isCursor}
-                    onChange={handleModifierChange}
-                    size="small"
-                    color="primary"
-                    aria-label="Choose Cursor or Rollover"
-                >
-                    <ToggleButton value={true}>
+                <div className="sc-button-group" role="group" aria-label="Choose Cursor or Rollover">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={isCursor === true}
+                        onClick={(event) => handleModifierChange(event, true)}
+                    >
                         <svg
-                            style={{ width: 32, height: 32 }}
+                            style={{ width: 28, height: 28 }}
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
-                            stroke="#FFF"
+                            stroke="currentColor"
                         >
                             <path fill="#8886" strokeWidth="1" d="M3 3 3 21 L21 21L21 3L2.75 3" />
                             <path strokeWidth="0.5" d="M7 3, v18M3 14h18" />
@@ -68,7 +72,7 @@ export default function HighPerformanceScatterCursor() {
                             </text>
                             <path
                                 transform="translate(-0.9,7) scale(0.7)"
-                                fill="#FFF"
+                                fill="currentColor"
                                 stroke="#000000"
                                 strokeWidth="0.75"
                                 strokeLinecap="round"
@@ -77,14 +81,19 @@ export default function HighPerformanceScatterCursor() {
                             />
                         </svg>
                         &nbsp; Cursor
-                    </ToggleButton>
-                    <ToggleButton value={false}>
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={isCursor === false}
+                        onClick={(event) => handleModifierChange(event, false)}
+                    >
                         <svg
-                            style={{ width: 32, height: 32 }}
+                            style={{ width: 28, height: 28 }}
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
-                            stroke="#FFF"
+                            stroke="currentColor"
                         >
                             <path fill="#8886" strokeWidth="1" d="M3 3 3 21 L21 21L21 3L2.75 3" />
                             <path strokeWidth="0.5" d="M7 3, v18Z" />
@@ -95,7 +104,7 @@ export default function HighPerformanceScatterCursor() {
                             </text>
                             <path
                                 transform="translate(-0.7,7) scale(0.7)"
-                                fill="#FFF"
+                                fill="currentColor"
                                 stroke="#000000"
                                 strokeWidth="0.75"
                                 strokeLinecap="round"
@@ -104,12 +113,12 @@ export default function HighPerformanceScatterCursor() {
                             />
                         </svg>
                         &nbsp; Rollover
-                    </ToggleButton>
-                </ToggleButtonGroup>
-            </div>
+                    </button>
+                </div>
+            </header>
 
             <SciChartReact
-                className={commonClasses.Chart}
+                className="sc-chart-wrapper"
                 initChart={drawExample}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     controlsRef.current = initResult.controls;

@@ -17,6 +17,7 @@ import { getChartsInitializationApi } from "./drawExample";
                         (click)="startUpdate()"
                         [ngStyle]="{ color: appTheme.ForegroundColor }"
                         [disabled]="!controlsRef"
+                        class="sc-button"
                     >
                         Start
                     </button>
@@ -25,6 +26,7 @@ import { getChartsInitializationApi } from "./drawExample";
                         (click)="stopUpdate()"
                         [ngStyle]="{ color: appTheme.ForegroundColor }"
                         [disabled]="!controlsRef"
+                        class="sc-button"
                     >
                         Stop
                     </button>
@@ -33,6 +35,7 @@ import { getChartsInitializationApi } from "./drawExample";
                         (click)="loadBasicExample()"
                         [ngStyle]="{ color: appTheme.ForegroundColor }"
                         [disabled]="!controlsRef"
+                        class="sc-button"
                     >
                         Load basic example
                     </button>
@@ -41,16 +44,32 @@ import { getChartsInitializationApi } from "./drawExample";
                         (click)="loadDoubleSlitExample()"
                         [ngStyle]="{ color: appTheme.ForegroundColor }"
                         [disabled]="!controlsRef"
+                        class="sc-button"
                     >
                         Load double slit example
                     </button>
                     <button
                         mat-button
                         (click)="showHelp()"
+                        aria-label="Show help"
+                        title="Show help"
                         [ngStyle]="{ color: appTheme.ForegroundColor }"
                         [disabled]="!controlsRef"
+                        class="sc-button sc-button-icon"
+                        type="button"
                     >
-                        Show Help
+                        <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" />
+                            <path d="M11 10h2v7h-2zm0-4h2v2h-2z" />
+                        </svg>
                     </button>
                 </div>
                 <div style="display: flex; flex-direction: row;">

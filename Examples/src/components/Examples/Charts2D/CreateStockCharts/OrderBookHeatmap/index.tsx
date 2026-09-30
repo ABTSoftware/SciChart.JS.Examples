@@ -1,17 +1,14 @@
-import commonClasses from "../../../styles/Examples.module.scss";
 // import { sciChartOverview } from "./createCandlestickChart";
 import { SciChartReact, SciChartNestedOverview } from "scichart-react";
 import { drawExample, drawHeatmapLegend, sciChartOverview } from "./drawExample";
 
 export default function OrderBookHeatmap() {
     return (
-        <div
-            className={commonClasses.ChartWrapper}
-            style={{ display: "flex", flexDirection: "column", position: "relative" }}
-        >
+        <div className="sc-chart-wrapper flex flex-col">
             <SciChartReact
+                className="flex flex-col"
                 initChart={drawExample}
-                style={{ display: "flex", flexDirection: "column", width: "100%", flex: "auto" }}
+                style={{ width: "100%", flex: "auto" }}
                 innerContainerProps={{ style: { flexBasis: "90%", flexGrow: 1, flexShrink: 1 } }}
             >
                 <SciChartNestedOverview

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { createPortal } from "react-dom";
 import "./styles.css";
@@ -13,7 +12,7 @@ export default function ChartComponent() {
     return (
         <>
             <SciChartReact
-                className={`${commonClasses.ChartWrapper} htmlAnnotationExampleChart`}
+                className="sc-chart-wrapper htmlAnnotationExampleChart"
                 initChart={drawExample}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     setChartApi(initResult);

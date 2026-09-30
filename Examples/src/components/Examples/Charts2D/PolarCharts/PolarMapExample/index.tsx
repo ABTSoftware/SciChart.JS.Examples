@@ -1,5 +1,4 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { useEffect, useRef, useState } from "react";
 
@@ -47,6 +46,7 @@ export default function ChartComponent() {
                             background: view === false ? "#14233c" : "#163149",
                             cursor: "pointer",
                         }}
+                        className="sc-button"
                     >
                         VIEW FROM NORTH
                     </button>
@@ -62,6 +62,7 @@ export default function ChartComponent() {
                             background: view === true ? "#14233c" : "#163149",
                             cursor: "pointer",
                         }}
+                        className="sc-button"
                     >
                         VIEW FROM SOUTH
                     </button>
@@ -70,7 +71,7 @@ export default function ChartComponent() {
             {mapData ? (
                 <SciChartReact
                     initChart={drawExample}
-                    className={commonClasses.ChartWrapper}
+                    className="sc-chart-wrapper"
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         // get the "setMap" function that is returned by "drawExample"
                         let { setMapJson, setMap, setView } = initResult;
