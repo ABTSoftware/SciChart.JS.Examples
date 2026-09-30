@@ -38,6 +38,9 @@ export default {
     format: "iife",
     name: "app",
     file: "public/bundle.js",
+    // scichart loads its wasm glue via dynamic import, which rollup would
+    // otherwise split into extra chunks - not supported by the iife format
+    inlineDynamicImports: true,
   },
   plugins: [
     copy({
@@ -50,56 +53,24 @@ export default {
       },
     }),
 
-    // inject WASM files from SciChart into the bundle
+    // inject WASM files from SciChart into the bundle. The folder holds the
+    // simd, nosimd, 64-bit and 3D variants - emit them all so whichever the
+    // browser asks for is served.
     {
       name: "wasm",
       generateBundle() {
-        this.emitFile({
-          type: "asset",
-          fileName: "scichart2d.wasm",
-          source: fs.readFileSync(
-            "node_modules/scichart/_wasm/scichart2d.wasm"
-          ),
-        });
+        const wasmDir = "node_modules/scichart/_wasm";
+        for (const file of fs.readdirSync(wasmDir)) {
+          if (!file.endsWith(".wasm")) continue;
+          this.emitFile({
+            type: "asset",
+            fileName: file,
+            source: fs.readFileSync(`${wasmDir}/${file}`),
+          });
+        }
       },
     },
-    {
-      name: "wasm",
-      generateBundle() {
-        this.emitFile({
-          type: "asset",
-          fileName: "scichart2d-nosimd.wasm",
-          source: fs.readFileSync(
-            "node_modules/scichart/_wasm/scichart2d-nosimd.wasm"
-          ),
-        });
-      },
-    },
-    // similar for scichart3d (only if you use 3D charts) >>
-    {
-      name: "wasm",
-      generateBundle() {
-        this.emitFile({
-          type: "asset",
-          fileName: "scichart3d.wasm",
-          source: fs.readFileSync(
-            "node_modules/scichart/_wasm/scichart3d.wasm"
-          ),
-        });
-      },
-    },
-    {
-      name: "wasm",
-      generateBundle() {
-        this.emitFile({
-          type: "asset",
-          fileName: "scichart3d-nosimd.wasm",
-          source: fs.readFileSync(
-            "node_modules/scichart/_wasm/scichart3d-nosimd.wasm"
-          ),
-        });
-      },
-    },
+
     // we'll extract any component CSS out into
     // a separate file - better for performance
     css({ output: "bundle.css" }),

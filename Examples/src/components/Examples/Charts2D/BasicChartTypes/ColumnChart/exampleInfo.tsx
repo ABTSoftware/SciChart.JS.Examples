@@ -13,11 +13,11 @@ const metaData: IExampleMetadata =
         frameworks: {
             javascript: {
                 subtitle:
-                    "This example demonstrates how to create an interactive JavaScript Column Chart using SciChart.js. The chart illustrates key features, such as data labels, rounded corners, gradient palette fills, and startup animations, alongside a high-performance, real-time data visualization.",
+                    "Creates a **JavaScript Column Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "JavaScript Column Chart",
-                pageTitle: "JavaScript Column Chart | Try Now | SciChart",
+                pageTitle: "JavaScript Column Chart",
                 metaDescription:
-                    "The JavaScript Column Chart example by SciChart supports gradient and palette fills, as well as custom coloring options. Try the free demo and code samples.",
+                    "JavaScript Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
                 markdownContent:
                     "## Column Chart Example (JavaScript)\n\n### Overview\nThis example demonstrates how to create an interactive **Column Chart** using SciChart.js in a JavaScript environment. The chart illustrates key features such as data labels, rounded corners, gradient palette fills, and startup animations, providing a high-performance real-time data visualization solution.\n\n### Technical Implementation\nThe chart is initialized by creating a `SciChartSurface` via the asynchronous call to `SciChartSurface.create()`, a method detailed in the [Tutorial 01 - Including SciChart.js in an HTML Page using CDN](https://www.scichart.com/documentation/js/v5/get-started/tutorials-cdn/tutorial-01-using-cdn/). The implementation sets up numeric axes using the `NumericAxis` class and populates the chart with a `FastColumnRenderableSeries`, which uses an `XyDataSeries` to manage the data points. Advanced customizations include setting rounded corners, a gradient fill created with `PaletteFactory`, and a `WaveAnimation` to animate the chart on startup. For more details on these aspects, refer to the [The Column Series Type](https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/fast-column-renderable-series/column-series-type/) and [The Animations API](https://www.scichart.com/documentation/js/v5/2d-charts/animations-api/animations-api-overview/) documentation.\n\n### Features and Capabilities\nKey technical features of this example include interactive modifiers such as `ZoomPanModifier`, `ZoomExtentsModifier`, and `MouseWheelZoomModifier` which enhance user interaction by providing seamless zooming and panning capabilities. The series is further enhanced with data labels that are styled and positioned above each column for improved readability. The use of gradient fills via `PaletteFactory` not only enhances visual appeal but also demonstrates advanced customization options, aligning with best practices for high-performance WebGL rendering. Details on gradient customization can be found in the [The PaletteFactory Helper Class](https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/palette-provider-api/palette-factory/) documentation.\n\n### Integration and Best Practices\nIn a JavaScript integration, the chart is created and managed by directly invoking the `drawExample` function. Resource management is handled by returning a destructor function that calls `sciChartSurface.delete()`, ensuring that resources are properly freed when the chart is no longer needed. This approach aligns with recommended practices for WebAssembly integration and efficient memory management as explained in the [Getting Started with SciChart JS](https://www.scichart.com/getting-started/scichart-javascript/) guide. Additionally, the direct method of instantiating and disposing of the chart ensures optimal performance in high-frequency data scenarios.\n",
             },
@@ -50,7 +50,7 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "column-chart",
-        metaKeywords: "javascript column chart, column chart in javascript",
+        metaKeywords: "column, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/ColumnChart",
         thumbnailImage: "javascript-column-chart.jpg",

@@ -1,1 +1,1 @@
-This demo has moved to [AdvancedLicensing/dotnet-server-licensing](https://github.com/abtsoftware/SciChart.JS.Examples/tree/master/AdvancedLicensing/dotnet-server-licensing)
+This demo has been removed. From SciChart.js v6, server-side licensing uses **Simple Server Validation v2** (HMAC-SHA256, no native library) — see [AdvancedLicensing/dotnet-simple-server-licensing](https://github.com/abtsoftware/SciChart.JS.Examples/tree/master/AdvancedLicensing/dotnet-simple-server-licensing).

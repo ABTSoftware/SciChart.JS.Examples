@@ -13,11 +13,11 @@ const metaData: IExampleMetadata =
         frameworks: {
             javascript: {
                 subtitle:
-                    "This JavaScript Heatmap Chart demo shows you how to use SciChart.js. The implementation focuses on real-time data streaming, and dynamic visual updates. It leverages WebGL-powered rendering for optimal performance.",
+                    "If you want to learn about heatmaps. this demo shows you how to create a **JavaScript Heatmap Chart** using SciChart.js, our 5-star rated JavaScript Chart Component.",
                 title: "JavaScript Heatmap Chart",
-                pageTitle: "JavaScript Heatmap Chart | View the Demo | SciChart",
+                pageTitle: "JavaScript Heatmap Chart",
                 metaDescription:
-                    "Build a high-performance JavaScript Heatmap Chart with real-time color mapping. Render massive matrix datasets smoothly using SciChart's Visual Xccelerator™.",
+                    "Easily create a high performance JavaScript Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
                 markdownContent:
                     "## Heatmap Chart Example - JavaScript\n\n### Overview\nThis example demonstrates a high-performance **Heatmap Chart** implemented using JavaScript with SciChart.js. The implementation focuses on real-time data streaming and dynamic visual updates, leveraging WebGL-powered rendering for optimal performance.\n\n### Technical Implementation\nThe chart is built by creating a `SciChartSurface` instance via the SciChart.js API, and hidden numeric axes are added to simplify the presentation. The example generates a two-dimensional array of data which is fed to a `UniformHeatmapDataSeries`. A `UniformHeatmapRenderableSeries` is then configured with a detailed gradient via `HeatmapColorMap` to accurately represent the data. Real-time updates are managed using JavaScript’s `setTimeout` to continuously update the series, as explained in the [Adding Realtime Updates](https://www.scichart.com/documentation/js/v5/get-started/tutorials-js-npm-webpack/tutorial-04-adding-realtime-updates/) documentation.\n\n### Features and Capabilities\nKey features include real-time chart updates with dynamic data streaming, advanced color mapping techniques, and integrated performance monitoring. The color mapping is finely tuned using gradient stops which you can learn more about in the [Uniform Heatmap Chart documentation](https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/uniform-heatmap-renderable-series/uniform-heatmap-chart-type/) and [Uniform-Heatmap-Colormaps](https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/uniform-heatmap-renderable-series/color-maps-and-legends/) resources. In addition, interactive modifiers such as `ZoomPanModifier` and `MouseWheelZoomModifier` enhance the user experience.\n\n### Integration and Best Practices\nBuilt on JavaScript, this example adheres to best practices by directly interacting with the SciChart.js API without relying on additional frameworks. Developers can monitor performance by subscribing to render events, a technique detailed in the [Performance Tips & Tricks](https://www.scichart.com/documentation/js/v5/2d-charts/performance-tips/performance-tips-and-tricks/) guide. Furthermore, interactive features are implemented using modifiers like the [MouseWheelZoomModifier](https://www.scichart.com/documentation/js/v5/2d-charts/chart-modifier-api/zooming-and-panning/mouse-wheel-zoom-modifier/) to ensure a smooth user experience. This approach provides a clear and maintainable structure for integrating SciChart.js within any JavaScript project.",
             },
@@ -50,7 +50,7 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "heatmap-chart",
-        metaKeywords: "javascript heatmap chart",
+        metaKeywords: "heatmap, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/BasicChartTypes/HeatmapChart",
         thumbnailImage: "javascript-heatmap-chart.jpg",

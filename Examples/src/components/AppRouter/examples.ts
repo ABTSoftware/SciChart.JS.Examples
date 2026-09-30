@@ -92,19 +92,12 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     //     ],
     // },
     {
-        id: "chart2D_v5Charts",
-        title: "Charts added in v5",
+        id: "chart2D_v6Charts",
+        title: "Charts added in v6",
         submenu: [
-            EXAMPLES_PAGES.chart2D_createStockCharts_TradingDrawingTools,
-            EXAMPLES_PAGES.chart2D_createStockCharts_FreehandDrawingTools,
-            EXAMPLES_PAGES.featuredApps_scientificCharts_SmithChart,
-            EXAMPLES_PAGES.featuredApps_performanceDemos_Load1MillionWithSvgCursor,
-            EXAMPLES_PAGES.chart2D_basicCharts_ForceDirectedGraph,
-            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_OverviewForSubCharts,
-            EXAMPLES_PAGES.chart2D_createStockCharts_OrderBookHeatmap,
-            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DiscontinuousDateAxisComparison,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_BaseValueAxes,
+            EXAMPLES_PAGES.chart2D_basicCharts_ParallelCoordinatesChart,
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_ImmediateMesh3DChart,
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_Model3DChart,
         ],
     },
 ];
@@ -156,6 +149,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_v4Charts_TriangleSeriesChart,
             EXAMPLES_PAGES.chart2D_v4Charts_TreemapChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ForceDirectedGraph,
+            EXAMPLES_PAGES.chart2D_basicCharts_ParallelCoordinatesChart,
         ],
     },
     {
@@ -353,6 +347,8 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_Styling3DChart,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_LogarithmicAxis3DChart,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_Interactive3DWaterfallSpectralChart,
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_ImmediateMesh3DChart,
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_Model3DChart,
         ],
     },
 ];

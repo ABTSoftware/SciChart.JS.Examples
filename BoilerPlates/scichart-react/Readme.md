@@ -27,8 +27,9 @@ e.g. with webpack.config.js:
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
+        // copy the whole folder - it holds the 2D, 3D, nosimd and 64-bit builds,
+        // and the runtime picks whichever the browser can run
+        { from: "node_modules/scichart/_wasm/", to: "" },
       ],
     })
   ],
@@ -42,7 +43,7 @@ After that, you can define a config object to create a SciChartSurface like this
 
 ```javascript
 import React from "react";
-import { SciChartReact } from "scichart-react";
+import { SciChartDeclarative } from "scichart-react";
 import {
   SweepAnimation,
   SciChartJsNavyTheme,
@@ -121,7 +122,9 @@ const chartConfig = {
 
 ## Step 4: Create a React Component
 
-Charts can be initialized with the SciChartReact Component using the `config` property.
+Charts can be initialized from a Builder API config with the `SciChartDeclarative` component
+using the `config` property. (For the programmatic style, use `SciChartReact` with an
+`initChart` function instead.)
 
 ```javascript
 function App() {
@@ -131,7 +134,7 @@ function App() {
   // How-to steps at https://www.scichart.com/licensing-scichart-js/
   // SciChartSurface.setRuntimeLicenseKey("YOUR_RUNTIME_KEY");
 
-  // to use WebAssembly and Data files from CDN instead of the same origin
+  // to use WebAssembly files from CDN instead of the same origin
   // SciChartSurface.loadWasmFromCDN();
 
   // Note: for both licensing and WASM configurations - make sure they are set on the client side.
@@ -145,7 +148,10 @@ function App() {
           scichart-react to create a simple chart with one X and Y axis
         </p>
       </header>
-      <SciChartReact config={chartConfig} style={{ maxWidth: 900 }} />
+      <SciChartDeclarative
+        config={chartConfig}
+        style={{ maxWidth: 900, height: 600 }}
+      />
     </div>
   );
 }
@@ -167,5 +173,5 @@ We have a wealth of information on our site showing how to get started with SciC
 Take a look at:
 
 - [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
-- [SciChart.js Documentation](www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
+- [SciChart.js Documentation](https://www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
 - [Official scichart.js demos](https://scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)

@@ -8,28 +8,28 @@ Before implementing, [submit a support request](https://support.scichart.com/sup
 
 ---
 
-## Choose an approach
+## Simple Server Validation
 
-### [Simple Server Validation](SimpleServerSideLicensing/)
+From v6 this is the only server-side licensing approach. Your server computes an HMAC-SHA256 token using a hex key from MyAccount — no native binaries, no FFI, no asymmetric challenge/response. Two modes (inline, or round-trip with a client nonce) are selected per-licence. Requires a license with the `SV:H:V:N` feature flag.
 
-Server computes an HMAC-SHA256 token using a hex key from MyAccount. No native binaries, no FFI, no asymmetric challenge/response. Two modes (inline or round-trip with client nonce) selected per-licence. Requires a license with the `SV:H:V:N` feature flag.
+**Use this if:** you have a web server you control, or are building an Electron or Tauri desktop app.
 
-**Use this if:** you have a web server you control, or are building an Electron or Tauri desktop app, and want the easiest possible integration.
+→ **[SimpleServerSideLicensing-Readme.md](SimpleServerSideLicensing-Readme.md)**
 
-Runnable examples: Node.js · .NET Minimal API · .NET MVC · Spring Boot · Electron · Tauri
+### Runnable examples
 
-Language snippets: Python · Django · Go · Ruby · PHP · Rust
+| Example | Stack |
+| --- | --- |
+| [nodejs-simple-server-licensing](nodejs-simple-server-licensing/) | Node.js + Express |
+| [dotnet-simple-server-licensing](dotnet-simple-server-licensing/) | .NET Minimal API |
+| [dotnet-mvc-simple-server-licensing](dotnet-mvc-simple-server-licensing/) | .NET MVC |
+| [blazor-simple-server-licensing](blazor-simple-server-licensing/) | Blazor |
+| [java-spring-simple-server-licensing](java-spring-simple-server-licensing/) | Spring Boot |
+| [electron-simple-server-licensing](electron-simple-server-licensing/) | Electron |
+| [tauri-simple-server-licensing](tauri-simple-server-licensing/) | Tauri |
 
-→ **[SimpleServerSideLicensing/README.md](SimpleServerSideLicensing/)**
+### Reusable package
 
----
+[SciChart.AspNetCore.SimpleLicensing](SciChart.AspNetCore.SimpleLicensing/) — ASP.NET Core integration for Simple Server Validation v2.
 
-### [Native Server Licensing](NativeServerSideLicensing/)
-
-Server signs a challenge from the client using a native DLL (NaCl asymmetric cryptography). Provides strong domain enforcement beyond CORS.
-
-**Use this if:** you need challenge-based domain binding, or you are distributing a component to customers who run their own servers.
-
-Runnable examples: .NET (NuGet) · Node.js (ffi-rs)
-
-→ **[NativeServerSideLicensing/README.md](NativeServerSideLicensing/)**
+Language snippets for other stacks (Python · Django · Go · Ruby · PHP · Rust) are in [SimpleServerSideLicensing-Readme.md](SimpleServerSideLicensing-Readme.md).

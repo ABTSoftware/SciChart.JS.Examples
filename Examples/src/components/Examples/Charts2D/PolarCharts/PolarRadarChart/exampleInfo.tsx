@@ -15,11 +15,11 @@ const metaData: IExampleMetadata =
         frameworks: {
             javascript: {
                 subtitle:
-                    "This example shows how to build a JavaScript Radar Chart with SciChart.js, comparing attributes like complexity and scalability of Quick Sort and Bubble Sort using polar series representations. Experience the complexity, memory usage, stability, adaptability, scalability, and cache efficiency of two popular sorting algorithms.",
+                    "Creates a **JavaScript Polar Radar Chart**, also known as a **Spider Chart** using SciChart.js, which expresses the complexity, memory usage, stability, adaptability, scalability, and cache efficiency of two popular sorting algorithms",
                 title: "JavaScript Polar Radar Chart",
-                pageTitle: "JavaScript Radar Chart | View the Demo | SciChart",
+                pageTitle: "JavaScript Polar Radar Chart | Spider Radar Chart",
                 metaDescription:
-                    "Build a responsive JavaScript Radar Chart with SciChart. Visualize polar series, multi-axis data, custom styling, and dynamic real-time data updates.",
+                    "View the JavaScript Polar Radar Chart example. Also known as the Spider Radar Chart, view the scalability and stability that SciChart has to offer. Try demo.",
                 markdownContent:
                     "## JavaScript Polar Radar Chart\n\n### Overview\nThis example shows how to build a **Polar Radar Chart** in vanilla JavaScript with SciChart.js, comparing attributes like complexity and scalability of Quick Sort and Bubble Sort using polar series representations.\n\n### Technical Implementation\nThe chart uses async creation of SciChartPolarSurface, setting up PolarNumericAxis and PolarCategoryAxis with custom gridlines and labels. It employs PolarMountainRenderableSeries and PolarLineRenderableSeries backed by XyDataSeries, incorporating optimizations like native text and precise label formatting for efficient rendering, as explained in the [Polar Radar Chart guide](https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/polar-radar-chart/).\n\n### Features and Capabilities\nIt enables real-time data updates through series manipulation and offers custom features including fade animations, ellipse point markers, and modifiers like PolarMouseWheelZoomModifier for interactive zooming and panning.\n\n### Integration and Best Practices\nIn JavaScript, implement async initialization with a destructor for resource cleanup to prevent memory leaks. Adhere to modular configuration for scalable code, leveraging direct API calls for fine-tuned performance.",
             },
@@ -52,7 +52,7 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "polar-radar-chart",
-        metaKeywords: "javascript radar chart, radar chart javascript",
+        metaKeywords: "polar, radar, spider, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/PolarCharts/PolarRadarChart",
         thumbnailImage: "javascript-polar-radar-chart.jpg",

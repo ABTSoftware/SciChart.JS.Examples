@@ -12,6 +12,7 @@ import {
     IndexCoordinateCalculator,
     DpiHelper,
 } from "scichart";
+import { appTheme } from "../../../theme";
 
 export type TFinanceLegendTemplate = (legendAnnotation: FinChartLegendAnnotation) => string;
 
@@ -211,7 +212,10 @@ const defaultFinanceLegendTemplate: TFinanceLegendTemplate = (la: FinChartLegend
     let outputSvgString = "";
     outputStrings.forEach((outputStr, index) => {
         const y = 30 + index * 20;
-        outputSvgString += `<text x="8" y="${y}" font-size="13" font-family="Verdana" fill="lightblue">${outputStr}</text>`;
+        // lightblue reads well over the dark panes, but washes out on the light theme's background,
+        // so that one drops to a deep blue instead
+        const textColor = appTheme.isDark ? "lightblue" : appTheme.VividBlue;
+        outputSvgString += `<text x="8" y="${y}" font-size="13" font-family="Verdana" fill="${textColor}">${outputStr}</text>`;
     });
     return `<svg width="800" height="200">
         <rect width="100%" height="100%" fill="#00000000" stroke="#00000000" stroke-width="2" />

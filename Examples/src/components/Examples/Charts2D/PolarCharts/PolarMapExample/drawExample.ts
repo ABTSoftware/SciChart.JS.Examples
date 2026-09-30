@@ -13,6 +13,7 @@ import {
 } from "scichart";
 
 import constrainedDelaunayTriangulation from "./constrainedDelaunayTriangulation";
+import { appTheme } from "../../../theme";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
@@ -87,7 +88,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             return Math.round(a + (b - a) * t);
         }
 
-        const colorA = hexToRgb("#ffffff");
+        // The low end of the scale has to contrast with the chart background. White reads well on the
+        // dark themes but vanishes into the light one, so start from a pale blue there instead.
+        const colorA = hexToRgb(appTheme.isDark ? "#ffffff" : "#c3cfe8");
         const colorB = hexToRgb("#1e3489");
         const r = lerp(colorA[0], colorB[0], t);
         const g = lerp(colorA[1], colorB[1], t);

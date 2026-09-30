@@ -100,7 +100,7 @@ Finally we added script to load scichart.js from CDN into `App.razor`.
 
 ```html
 <script
-  src="https://cdn.jsdelivr.net/npm/scichart@5.0.0-alpha.135/index.min.js"
+  src="https://cdn.jsdelivr.net/npm/scichart@6.0.0-alpha.196/index.min.js"
   crossorigin="anonymous"
 ></script>
 ```
@@ -112,5 +112,5 @@ We have a wealth of information on our site showing how to get started with SciC
 Take a look at:
 
 - [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
-- [SciChart.js Documentation](www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
+- [SciChart.js Documentation](https://www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
 - [Official scichart.js demos](https://www.scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)

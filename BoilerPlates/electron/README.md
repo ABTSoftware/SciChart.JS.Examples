@@ -28,8 +28,10 @@ e.g. with webpack.config.js:
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
-        { from: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm", to: "" },
+        // copy the whole folder - it holds the 2D, 3D, nosimd and 64-bit builds.
+        // The destination is "main_window", because that is the folder
+        // electron-forge serves the renderer's index.html from.
+        { from: "node_modules/scichart/_wasm/", to: "main_window" },
       ],
     })
   ],

@@ -249,6 +249,7 @@ export const getChartsInitializationAPI = () => {
             new RolloverModifier({
                 modifierGroup: "cursorGroup",
                 showTooltip: false,
+                snapToDataPoint: true,
                 tooltipLegendTemplate: getTooltipLegendTemplate,
             })
         );
@@ -337,6 +338,7 @@ export const getChartsInitializationAPI = () => {
             new RolloverModifier({
                 modifierGroup: "cursorGroup",
                 showTooltip: false,
+                snapToDataPoint: true,
                 tooltipLegendTemplate: getTooltipLegendTemplate,
             })
         );
@@ -418,6 +420,7 @@ export const getChartsInitializationAPI = () => {
             new RolloverModifier({
                 modifierGroup: "cursorGroup",
                 showTooltip: false,
+                snapToDataPoint: true,
                 tooltipLegendTemplate: getTooltipLegendTemplate,
             })
         );

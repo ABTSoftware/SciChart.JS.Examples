@@ -7,18 +7,9 @@ export const plugins = [
   }),
   new CopyPlugin({
     patterns: [
-      // Forge's webpack plugin emits the renderer entry point into a subfolder
-      // named after it, so the wasm has to sit next to index.html to be found.
-      { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "main_window" },
-      {
-        from: "node_modules/scichart/_wasm/scichart2d-nosimd.wasm",
-        to: "main_window",
-      },
-      { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "main_window" },
-      {
-        from: "node_modules/scichart/_wasm/scichart3d-nosimd.wasm",
-        to: "main_window",
-      },
+      // electron-forge serves the renderer from .webpack/renderer/main_window,
+      // so the wasm files have to sit next to that entry point's index.html
+      { from: "node_modules/scichart/_wasm/", to: "main_window" },
     ],
   }),
 ];

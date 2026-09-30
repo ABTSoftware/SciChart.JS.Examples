@@ -6,7 +6,8 @@ import {
     SciChartSurface,
     BasePaletteProvider,
     calcAverageForArray,
-    chartBuilder,
+    build2DChart,
+    registerAllTypes,
     CustomAnnotation,
     EAutoRange,
     EAxisAlignment,
@@ -32,6 +33,10 @@ import {
 import { fetchMultiPaneData } from "../../../ExampleData/ExampleDataProvider";
 import { appTheme } from "../../../theme";
 import { SciChartReact } from "scichart-react";
+
+// The Builder API is lean by default in v6. The definitions below name their types as
+// strings, so register the built-in types before building the chart
+registerAllTypes();
 
 export const mainChartWrapper2 = "cc_chart2";
 export const subChartWrapper1 = "subChartWrapper1";
@@ -118,7 +123,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const downCol = appTheme.MutedRed;
     const opacity = "AA";
 
-    const { sciChartSurface: mainSurface, wasmContext } = await chartBuilder.build2DChart(rootElement, {
+    const { sciChartSurface: mainSurface, wasmContext } = await build2DChart(rootElement, {
         surface: {
             id: "mainSurface",
             theme: appTheme.SciChartJsTheme,

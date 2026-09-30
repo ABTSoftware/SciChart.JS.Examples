@@ -27,6 +27,14 @@ const metaData: IExampleMetadata = {
             markdownContent:
                 "## React Dynamic Trading Annotation Labels\n\nThis example shows hardcoded financial annotations with dynamic multipoint labels. `formatLabel` produces context-aware text and `formatLabelStyle` changes label color, size and weight based on channel width and Fibonacci impulse size.",
         },
+        angular: {
+            subtitle: "Dynamic label text and styling for Angular multipoint trading annotations.",
+            title: "Angular Dynamic Trading Annotation Labels",
+            pageTitle: "Angular Dynamic Trading Annotation Labels",
+            metaDescription:
+                "Create dynamic labels for Angular trading annotations including channels and Fibonacci retracements.",
+            markdownContent: null,
+        },
     },
     documentationLinks: [
         {

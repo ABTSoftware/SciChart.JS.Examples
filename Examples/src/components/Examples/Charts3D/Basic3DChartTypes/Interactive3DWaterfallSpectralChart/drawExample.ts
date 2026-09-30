@@ -147,7 +147,7 @@ export const getChartsInitializationAPI = () => {
             const series = mainChart3DSeries[i];
             series.opacity = isSelected ? 1 : isHovered ? 0.8 : 0.1;
             series.strokeThickness = isSelected ? 6 : isHovered ? 5 : 4;
-            series.stroke = isSelected ? "#FFFFFF" : isHovered ? "#FFBE93" : "#64BAE4";
+            series.stroke = isSelected ? "#ff6600" : isHovered ? "#FFBE93" : "#64BAE4";
         }
     };
 

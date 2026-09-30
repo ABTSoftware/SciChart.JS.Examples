@@ -9,13 +9,17 @@ import {
     EVerticalAnchorPoint,
     ECoordinateMode,
 } from "scichart";
-import { chartBuilder } from "scichart";
+import { build2DChart, registerAllTypes } from "scichart";
 import { appTheme } from "../../theme";
+
+// The Builder API is lean by default in v6. This chart is defined with type-strings only,
+// so register the built-in types before building it
+registerAllTypes();
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a chart using the Builder-API, an api that allows defining a chart
     // with javascript-objects or JSON
-    return await chartBuilder.build2DChart(rootElement, {
+    return await build2DChart(rootElement, {
         // Set theme
         surface: { theme: appTheme.SciChartJsTheme },
         // Add xAxis

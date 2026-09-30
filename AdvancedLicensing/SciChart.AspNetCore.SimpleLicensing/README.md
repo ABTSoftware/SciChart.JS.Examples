@@ -124,14 +124,3 @@ A long-running SPA that stays open past `valid_time` will hit this path; the met
 ## Why a singleton
 
 `ISciChartLicenseTokenService` is registered as a singleton — the secret is hex-decoded to bytes once at first resolution. To rotate the secret, restart the host (the standard ASP.NET Core options pattern would otherwise hot-reload `IOptionsMonitor<T>`, but a token-signing key change is a security-sensitive event that warrants an explicit restart).
-
-## Differences from Advanced Server Licensing
-
-|                             | Simple (this package)                | Advanced (`SciChart.Server.Licensing`) |
-| --------------------------- | ------------------------------------ | -------------------------------------- |
-| Server dependency           | None (stdlib HMAC)                   | Native DLL + FFI                       |
-| Crypto                      | Symmetric HMAC-SHA256                | Asymmetric NaCl box                    |
-| Token validity              | Per-licence (`valid_time`)           | 7 days, daily re-validation            |
-| Cross-origin replay defence | Round-trip shape + client nonce      | Encrypted challenge enforces domain    |
-| Clock-skew tolerance        | Per-licence (`max_skew`, 0 disables) | Anchored on client time                |
-| Required feature flag       | `SV:H:V:N`                           | none                                   |

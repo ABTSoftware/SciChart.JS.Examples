@@ -269,7 +269,7 @@ export default function RealtimeBigDataShowcase() {
             sx={{
                 flex: "auto",
                 backgroundColor: appTheme.Indigo,
-                color: appTheme.ForegroundColor,
+                color: "#FFFFFF",
 
                 "& .MuiAlert-message": {
                     flex: "auto",
@@ -294,7 +294,7 @@ export default function RealtimeBigDataShowcase() {
             sx={{ "& .MuiDialog-paper": { background: appTheme.DarkIndigo } }}
         >
             <DialogTitle flexDirection="row" noWrap>
-                <span style={{ color: appTheme.ForegroundColor }}>Chart Configurations</span>
+                <span style={{ color: "#FFFFFF" }}>Chart Configurations</span>
 
                 <IconButton
                     aria-label="close"
@@ -312,7 +312,7 @@ export default function RealtimeBigDataShowcase() {
                 style={{
                     width: "100%",
                     padding: "0px 10px 0px 10px",
-                    color: appTheme.ForegroundColor,
+                    color: "#FFFFFF",
                     fontSize: "0.8em",
                 }}
             >
@@ -368,7 +368,7 @@ export default function RealtimeBigDataShowcase() {
                         title="Chart Configurations"
                     >
                         <IconButton
-                            sx={{ color: appTheme.ForegroundColor, pointerEvents: "all", touchAction: "all" }}
+                            sx={{ color: "#FFFFFF", pointerEvents: "all", touchAction: "all" }}
                             onClick={handleClickOpen}
                         >
                             <SettingsIcon fontSize="large" />
@@ -382,7 +382,7 @@ export default function RealtimeBigDataShowcase() {
                             flex: "none",
                             width: isLargeView ? "300px" : "200px",
                             padding: "0px 10px 0px 10px",
-                            color: appTheme.ForegroundColor,
+                            color: "#FFFFFF",
                             fontSize: "0.8em",
                         }}
                     >

@@ -65,7 +65,7 @@ const metaData: IExampleMetadata =
         extraDependencies: {
             "scichart-financial-tools": "5.2.11",
         },
-        isNew: true,
+        isNew: false,
     };
 //// End of computer generated metadata
 

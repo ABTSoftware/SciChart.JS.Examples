@@ -8,7 +8,6 @@ import {
     DataPointInfo,
     DataPointSelectionPaletteProvider,
     SplineLineRenderableSeries,
-    EPointMarkerType,
     AUTO_COLOR,
     TextAnnotation,
     EHorizontalAnchorPoint,
@@ -17,6 +16,7 @@ import {
     LineSeriesDataLabelProvider,
     DataLabelState,
     ELegendPlacement,
+    EllipsePointMarker,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -75,10 +75,13 @@ export const drawExample = async (
         new SplineLineRenderableSeries(wasmContext, {
             id: "Series1",
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: "First Series" }),
-            pointMarker: {
-                type: EPointMarkerType.Ellipse,
-                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
-            },
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                fill: AUTO_COLOR,
+                stroke: AUTO_COLOR,
+                strokeThickness: 3,
+                width: 20,
+                height: 20,
+            }),
             strokeThickness: 3,
             // Optional visual feedback for selected points can be provided by the DataPointSelectionPaletteProvider
             // When dataSeries.metadata[i].isSelected, this still is applied
@@ -92,10 +95,13 @@ export const drawExample = async (
         new SplineLineRenderableSeries(wasmContext, {
             id: "Series2",
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values, dataSeriesName: "Second Series" }),
-            pointMarker: {
-                type: EPointMarkerType.Ellipse,
-                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
-            },
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                fill: AUTO_COLOR,
+                stroke: AUTO_COLOR,
+                strokeThickness: 3,
+                width: 20,
+                height: 20,
+            }),
             strokeThickness: 3,
             // Optional visual feedback for selected points
             paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
@@ -108,10 +114,13 @@ export const drawExample = async (
         new SplineLineRenderableSeries(wasmContext, {
             id: "Series3",
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values, dataSeriesName: "Third Series" }),
-            pointMarker: {
-                type: EPointMarkerType.Ellipse,
-                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
-            },
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                fill: AUTO_COLOR,
+                stroke: AUTO_COLOR,
+                strokeThickness: 3,
+                width: 20,
+                height: 20,
+            }),
             strokeThickness: 3,
             // Optional visual feedback for selected points
             paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
@@ -124,10 +133,13 @@ export const drawExample = async (
         new SplineLineRenderableSeries(wasmContext, {
             id: "Series4",
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y3Values, dataSeriesName: "Fourth Series" }),
-            pointMarker: {
-                type: EPointMarkerType.Ellipse,
-                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
-            },
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                fill: AUTO_COLOR,
+                stroke: AUTO_COLOR,
+                strokeThickness: 3,
+                width: 20,
+                height: 20,
+            }),
             strokeThickness: 3,
             // Optional visual feedback for selected points
             paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),

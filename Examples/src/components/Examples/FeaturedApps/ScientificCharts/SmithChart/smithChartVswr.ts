@@ -11,19 +11,18 @@ import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMous
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
 import { EExecuteOn } from "scichart/types/ChartModifiers/ExecuteOn";
-import { EAnnotationType } from "scichart/Charting/Visuals/Annotations/IAnnotation";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import { EAnnotationType } from "scichart/Charting/Visuals/Annotations/types/EAnnotationType";
+import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/types/ECoordinateMode";
 
 // ── Shared helper ─────────────────────────────────────────────────────────────
 // Computes the centre and radius of the VSWR circle in screen pixel space.
 function getVswrCirclePixels(
     xCalc: CoordinateCalculatorBase,
     yCalc: CoordinateCalculatorBase,
-    vpH: number,
     dataRadius: number
 ): { cx: number; cy: number; radius_px: number; aspectRatio: number } {
     const cx = xCalc.getCoordinate(0);
-    const cy = vpH - yCalc.getCoordinate(0);
+    const cy = yCalc.getCoordinate(0);
     const radius_px = Math.abs(xCalc.getCoordWidth(dataRadius));
     const aspectRatio = Math.abs(xCalc.getCoordWidth(1)) / Math.abs(yCalc.getCoordWidth(1));
     return { cx, cy, radius_px, aspectRatio };
@@ -72,7 +71,6 @@ class SmithVswrFillAnnotation extends ArcAnnotationBase {
         const { cx, cy, radius_px, aspectRatio } = getVswrCirclePixels(
             xCalc,
             yCalc,
-            this.getViewportHeight(),
             this._radius
         );
 
@@ -142,7 +140,6 @@ class SmithVswrStrokeAnnotation extends ArcAnnotationBase {
         const { cx, cy, radius_px, aspectRatio } = getVswrCirclePixels(
             xCalc,
             yCalc,
-            this.getViewportHeight(),
             this._radius
         );
 

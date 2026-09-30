@@ -1,7 +1,6 @@
 import * as React from "react";
 import { SciChartSurface, chartReviver, localStorageApi } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { appTheme } from "../../../theme";
 import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { Button, ButtonGroup, MenuItem, Select, TextField } from "@mui/material";
@@ -98,8 +97,17 @@ export default function UserAnnotatedStockChart() {
                     label="Save As"
                     type="text"
                     style={{ backgroundColor: "#00bcd111", marginLeft: "auto", borderRadius: 3 }}
+                    // the toolbar is dark in every theme, so follow its own white text rather than
+                    // the theme foreground, and give the outline a visible edge against it
+                    sx={{
+                        // MuiInputBase-root sets its own dark text.primary, so the typed text has to
+                        // be reset here - inheriting on the inner input alone picks up that dark color
+                        "& .MuiInputBase-root": { color: "inherit" },
+                        "& .MuiInputLabel-root": { color: "inherit" },
+                        "& .MuiOutlinedInput-notchedOutline": { borderColor: "currentColor", opacity: 0.4 },
+                    }}
                     inputProps={{
-                        style: { color: appTheme.ForegroundColor, height: 13 },
+                        style: { color: "inherit", height: 13 },
                         "aria-label": "Without label",
                     }}
                     value={name}
@@ -118,7 +126,8 @@ export default function UserAnnotatedStockChart() {
                     <Select
                         id="select-chart-names"
                         inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
-                        style={{ color: appTheme.ForegroundColor, width: 150, backgroundColor: "#00bcd411" }}
+                        style={{ color: "inherit", width: 150, backgroundColor: "#00bcd411" }}
+                        sx={{ "& .MuiSvgIcon-root": { color: "inherit" } }}
                         value={selectedChart}
                         displayEmpty
                         autoWidth={true}

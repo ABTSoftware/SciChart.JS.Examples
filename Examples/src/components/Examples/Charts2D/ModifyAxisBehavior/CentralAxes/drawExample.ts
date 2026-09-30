@@ -1,7 +1,6 @@
 import { appTheme } from "../../../theme";
 import {
     CentralAxesLayoutManager,
-    EAnimationType,
     EAxisAlignment,
     ECoordinateMode,
     EHorizontalAnchorPoint,
@@ -19,6 +18,7 @@ import {
     XyDataSeries,
     ZoomExtentsModifier,
     ZoomPanModifier,
+    FadeAnimation,
 } from "scichart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -86,7 +86,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             dataSeries: getButterflyCurve(wasmContext, 20000),
             isDigitalLine: false,
             stroke: appTheme.VividTeal,
-            animation: { type: EAnimationType.Fade, options: { duration: 500 } },
+            animation: new FadeAnimation({ duration: 500 }),
         })
     );
 

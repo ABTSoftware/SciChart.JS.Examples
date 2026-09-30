@@ -67,7 +67,8 @@ function App() {
       <h1>SciChart with React + Vite</h1>
 
       <SciChartReact
-        style={{ width: 900 }}
+        // SciChart needs a sized container - give it an explicit height
+        style={{ width: 900, height: 600 }}
         // This is for our useBuilderAPI config (uncomment and comment `initChart` to see)
         // config={{
         //   type: ESciChartSurfaceType.Default2D,

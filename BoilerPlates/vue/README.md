@@ -29,20 +29,28 @@ Vue.js requires and \_.wasm files to be in the /public/js folder. This is done u
   },
   "copyFiles": [
     {
-      "from": "./node_modules/scichart/_wasm/scichart2d.wasm",
-      "to": "./public/scichart2d.wasm"
+      "from": "./node_modules/scichart/_wasm/scichart.wasm",
+      "to": "./public/scichart.wasm"
     },
     {
-      "from": "./node_modules/scichart/_wasm/scichart2d-nosimd.wasm",
-      "to": "./public/scichart2d.wasm"
+      "from": "./node_modules/scichart/_wasm/scichart-64.wasm",
+      "to": "./public/scichart-64.wasm"
     },
     {
-      "from": "./node_modules/scichart/_wasm/scichart3d.wasm",
-      "to": "./public/scichart3d.wasm"
+      "from": "./node_modules/scichart/_wasm/scichart-nosimd.wasm",
+      "to": "./public/scichart-nosimd.wasm"
     },
     {
-      "from": "./node_modules/scichart/_wasm/scichart3d-nosimd.wasm",
-      "to": "./public/scichart3d.wasm"
+      "from": "./node_modules/scichart/_wasm/scichart-charting3d.wasm",
+      "to": "./public/scichart-charting3d.wasm"
+    },
+    {
+      "from": "./node_modules/scichart/_wasm/scichart-charting3d-64.wasm",
+      "to": "./public/scichart-charting3d-64.wasm"
+    },
+    {
+      "from": "./node_modules/scichart/_wasm/scichart-charting3d-nosimd.wasm",
+      "to": "./public/scichart-charting3d-nosimd.wasm"
     }
   ]
 }
@@ -51,16 +59,17 @@ Vue.js requires and \_.wasm files to be in the /public/js folder. This is done u
  {
   // ...
   "scripts": {
-    "copyWasm": "copy-files-from-to --config copy-files-from-to.json",
-    "dev": "npm run copyWasm && vue-cli-service serve",
-    "build": "npm run copyWasm && vue-cli-service build",
+    "copyWasm": "node ./scripts/copy-wasm.mjs",
+    "dev": "npm run copyWasm && vite",
+    "build-only": "npm run copyWasm && vite build",
     // ...
   },
   // ...
-  "devDependencies": {
-    "copy-files-from-to": "^3.2.1",
-  }
+}
 ```
+
+`scripts/copy-wasm.mjs` reads the `copy-files-from-to.json` above and copies each entry, so the
+config stays declarative without needing the `copy-files-from-to` CLI.
 
 ## Rendering the chart
 
@@ -291,5 +300,5 @@ We have a wealth of information on our site showing how to get started with SciC
 Take a look at:
 
 - [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
-- [SciChart.js Documentation](www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
+- [SciChart.js Documentation](https://www.scichart.com/javascript-chart-documentation): user manual, tutorials, API documentation
 - [Official scichart.js demos](https://scichart.com/demo/): view our demos online! Full github source code also available at [github.com/ABTSoftware/SciChart.JS.Examples](https://github.com/ABTSoftware/SciChart.JS.Examples)

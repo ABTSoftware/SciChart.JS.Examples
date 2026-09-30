@@ -21,6 +21,8 @@ import {
     Point,
     SeriesInfo,
     HeatmapColorMap,
+    HeatmapLegend,
+    NumericLabelProvider,
     UniformHeatmapRenderableSeries,
     UniformHeatmapDataSeries,
     EXyDirection,
@@ -209,6 +211,42 @@ async function loadHeatmapData(): Promise<TParsedHeatmapData> {
  * @param rootElement - HTML element ID or element to render the chart into
  * @returns Promise resolving to the chart surface and candlestick series
  */
+/**
+ * Heatmap color gradient: empty cells take the chart background, liquidity ramps through the blues,
+ * and only the heaviest orders turn hot orange.
+ * The two themes run the ramp in opposite directions: on a dark background the blues brighten
+ * towards white as volume builds, on a light one they deepen towards navy instead.
+ * Shared by the heatmap series and the legend, so the two can never drift apart
+ */
+const getGradientStops = () =>
+    appTheme.isDark
+        ? [
+              { offset: 0, color: appTheme.Background },
+              { offset: 0.02, color: appTheme.Indigo },
+              { offset: 0.12, color: appTheme.VividSkyBlue },
+              { offset: 0.34, color: appTheme.PaleSkyBlue },
+              { offset: 0.4, color: appTheme.VividOrange },
+          ]
+        : [
+              { offset: 0, color: appTheme.Background },
+              { offset: 0.02, color: appTheme.MutedSkyBlue },
+              { offset: 0.12, color: appTheme.VividSkyBlue },
+              { offset: 0.34, color: appTheme.VividBlue },
+              { offset: 0.4, color: appTheme.VividOrange },
+          ];
+
+/**
+ * The legend needs the same min/max as the heatmap, and both mount independently, so the parsed
+ * CSV is cached and shared rather than fetched and parsed twice
+ */
+let heatmapDataPromise: Promise<TParsedHeatmapData> | undefined;
+const getHeatmapData = (): Promise<TParsedHeatmapData> => {
+    if (!heatmapDataPromise) {
+        heatmapDataPromise = loadHeatmapData();
+    }
+    return heatmapDataPromise;
+};
+
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: new SciChartJsNavyTheme(),
@@ -231,14 +269,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Load data from CSV files
     const { xValues, openValues, highValues, lowValues, closeValues, volumeValues } = await loadCandleData();
-    const { zValues, xCellOffsets, yCellOffsets, minValue, maxValue } = await loadHeatmapData();
+    const { zValues, xCellOffsets, yCellOffsets, minValue, maxValue } = await getHeatmapData();
 
-    // Heatmap color gradient: dark background -> white (low values) -> red (high values)
-    const gradientStops = [
-        { offset: 0, color: appTheme.DarkIndigo },
-        { offset: 0.03, color: appTheme.ForegroundColor },
-        { offset: 0.4, color: appTheme.VividRed },
-    ];
+    const gradientStops = getGradientStops();
 
     // Color map scales Z-values to gradient colors
     const colorMap = new HeatmapColorMap({
@@ -281,7 +314,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Create heatmap series with semi-transparency to show candlesticks through it
     const heatmapSeries = new UniformHeatmapRenderableSeries(wasmContext, {
-        opacity: 0.4,
+        opacity: 0.85,
         dataSeries: heatmapDataSeries,
         colorMap,
         stroke: appTheme.PaleSkyBlue,
@@ -343,13 +376,62 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
         new CursorModifier({
-            crosshairStroke: appTheme.PaleOrange + 55,
-            axisLabelFill: appTheme.PaleOrange + 55,
+            crosshairStroke: appTheme.PaleOrange + "EE",
+            axisLabelFill: appTheme.PaleOrange + "EE",
+            axisLabelStroke: appTheme.DarkIndigo,
             tooltipLegendTemplate: getTooltipLegendTemplate,
         })
     );
 
     return { sciChartSurface, candlestickSeries };
+};
+
+/**
+ * Draws the heatmap legend, which maps the gradient onto real order values so it is obvious
+ * which colors mean a small resting order and which mean a heavy one
+ */
+export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) => {
+    const { minValue, maxValue } = await getHeatmapData();
+
+    const { heatmapLegend } = await HeatmapLegend.create(rootElement, {
+        theme: {
+            ...appTheme.SciChartJsTheme,
+            sciChartBackground: (appTheme.isDark ? appTheme.DarkIndigo : appTheme.PaleSkyBlue) + "BB",
+            loadingAnimationBackground: (appTheme.isDark ? appTheme.DarkIndigo : appTheme.PaleSkyBlue) + "BB",
+        },
+        yAxisOptions: {
+            isInnerAxis: true,
+            labelProvider: new NumericLabelProvider({
+                labelFormat: ENumericFormat.Decimal,
+                labelPrecision: 0, // order values are whole numbers, so drop the decimals
+            }),
+            labelStyle: {
+                fontSize: 12,
+                color: appTheme.ForegroundColor,
+            },
+            axisBorder: {
+                borderRight: 1,
+                color: appTheme.ForegroundColor + "77",
+            },
+            majorTickLineStyle: {
+                color: appTheme.ForegroundColor,
+                tickSize: 6,
+                strokeThickness: 1,
+            },
+            minorTickLineStyle: {
+                color: appTheme.ForegroundColor,
+                tickSize: 3,
+                strokeThickness: 1,
+            },
+        },
+        colorMap: {
+            minimum: minValue,
+            maximum: maxValue,
+            gradientStops: getGradientStops(),
+        },
+    });
+
+    return { sciChartSurface: heatmapLegend.innerSciChartSurface.sciChartSurface };
 };
 
 /**

@@ -4,12 +4,28 @@
     },
     "copyFiles": [
         {
-            "from": "./node_modules/scichart/_wasm/scichart2d.wasm",
-            "to": "./src/scichart2d.wasm"
+            "from": "./node_modules/scichart/_wasm/scichart.wasm",
+            "to": "./src/scichart.wasm"
         },
         {
-            "from": "./node_modules/scichart/_wasm/scichart3d.wasm",
-            "to": "./src/scichart3d.wasm"
+            "from": "./node_modules/scichart/_wasm/scichart-64.wasm",
+            "to": "./src/scichart-64.wasm"
+        },
+        {
+            "from": "./node_modules/scichart/_wasm/scichart-nosimd.wasm",
+            "to": "./src/scichart-nosimd.wasm"
+        },
+        {
+            "from": "./node_modules/scichart/_wasm/scichart-charting3d.wasm",
+            "to": "./src/scichart-charting3d.wasm"
+        },
+        {
+            "from": "./node_modules/scichart/_wasm/scichart-charting3d-64.wasm",
+            "to": "./src/scichart-charting3d-64.wasm"
+        },
+        {
+            "from": "./node_modules/scichart/_wasm/scichart-charting3d-nosimd.wasm",
+            "to": "./src/scichart-charting3d-nosimd.wasm"
         }
     ]
 }

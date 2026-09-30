@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {
-    SciChartSurface,
-    SciChart3DSurface,
-    MemoryUsageHelper,
-} from 'scichart';
+import { SciChartSurface, SciChart3DSurface, MemoryUsageHelper } from 'scichart';
 import { drawExample2D } from './drawExample2D';
 import { drawExample3D } from './drawExample3D';
 
@@ -23,12 +19,9 @@ SciChartSurface.UseCommunityLicense();
 // SciChart3DSurface.loadWasmFromCDN();
 
 // or from a custom/self-hosted location
+// v6 ships a single wasm binary that covers both 2D and 3D, so one url is enough
 SciChartSurface.configure({
-    wasmUrl: '/scichart2d.wasm',
-});
-
-SciChart3DSurface.configure({
-    wasmUrl: '/scichart3d.wasm',
+    wasmUrl: '/scichart.wasm',
 });
 ///
 
@@ -41,6 +34,7 @@ SciChart3DSurface.autoDisposeWasmContext = true;
 
 @Component({
     selector: 'app-root',
+    standalone: false,
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
 })
@@ -52,27 +46,19 @@ export class AppComponent {
     public drawChart2D = drawExample2D;
     public drawChart3D = drawExample3D;
 
-    onInit2DHandler = (
-        initResult: Awaited<ReturnType<typeof drawExample2D>>
-    ) => {
+    onInit2DHandler = (initResult: Awaited<ReturnType<typeof drawExample2D>>) => {
         console.log('onInit2DHandler', initResult);
     };
 
-    onDelete2DHandler = (
-        initResult: Awaited<ReturnType<typeof drawExample2D>>
-    ) => {
+    onDelete2DHandler = (initResult: Awaited<ReturnType<typeof drawExample2D>>) => {
         console.log('onDelete2DHandler', initResult);
     };
 
-    onInit3DHandler = (
-        initResult: Awaited<ReturnType<typeof drawExample3D>>
-    ) => {
+    onInit3DHandler = (initResult: Awaited<ReturnType<typeof drawExample3D>>) => {
         console.log('onInit3DHandler', initResult);
     };
 
-    onDelete3DHandler = (
-        initResult: Awaited<ReturnType<typeof drawExample3D>>
-    ) => {
+    onDelete3DHandler = (initResult: Awaited<ReturnType<typeof drawExample3D>>) => {
         console.log('onDelete3DHandler', initResult);
     };
 

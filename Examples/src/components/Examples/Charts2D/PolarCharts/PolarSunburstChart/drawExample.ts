@@ -70,6 +70,10 @@ const drawSeriesFn = (
         for (let i = 0; i < levelData.length; i++) {
             const rs$ = new PolarColumnRenderableSeries(wasmContext, {
                 stroke: "black",
+                // Without an explicit fill the series inherits the theme's fillPalette entry, whose alpha
+                // (0x77 in the light theme) scales the colours the SunburstPaletteProvider returns and
+                // washes the sectors out. Any opaque fill works - the palette provider replaces it per point.
+                fill: "#FFFFFFFF",
                 columnXMode: polarColumnMode,
                 dataLabels: {
                     style: {

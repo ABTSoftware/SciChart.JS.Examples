@@ -1,6 +1,9 @@
 import {
     SciChartSurface,
-    chartBuilder,
+    build2DChart,
+    buildSeries,
+    registerType,
+    registerAllTypes,
     ESeriesType,
     EAxisType,
     ELineDrawMode,
@@ -23,9 +26,13 @@ import {
 } from "scichart";
 import { appTheme } from "../../theme";
 
+// The Builder API is lean by default in v6. This chart is defined with type-strings only,
+// so register the built-in types before building it
+registerAllTypes();
+
 // Define a custom PaletteProvider
 export class ExampleMountainPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
-    public static Name: "ExampleMountain";
+    public static Name = "ExampleMountain";
     public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
     public readonly fillPaletteMode = EFillPaletteMode.SOLID;
     private readonly palettedStroke: number;
@@ -72,7 +79,7 @@ export class ExampleMountainPaletteProvider implements IStrokePaletteProvider, I
 }
 
 // Register it for use by the builder api
-chartBuilder.registerType(
+registerType(
     EBaseType.PaletteProvider,
     ExampleMountainPaletteProvider.Name,
     (options: { stroke: string; fill: string }) => new ExampleMountainPaletteProvider(options)
@@ -80,7 +87,7 @@ chartBuilder.registerType(
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Build the surface
-    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(rootElement, {
+    const { sciChartSurface, wasmContext } = await build2DChart(rootElement, {
         surface: { theme: appTheme.SciChartJsTheme },
         yAxes: {
             type: EAxisType.NumericAxis,
@@ -124,7 +131,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     // Build the series.
     // By doing this separately we can easily get the reference to the series so we can add generated data to it
-    const [mountainSeries] = chartBuilder.buildSeries(wasmContext, {
+    const [mountainSeries] = buildSeries(wasmContext, {
         type: ESeriesType.MountainSeries,
         options: {
             paletteProvider: {

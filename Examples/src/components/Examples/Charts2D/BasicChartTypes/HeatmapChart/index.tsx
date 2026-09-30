@@ -33,7 +33,7 @@ export default function HeatmapChart() {
                 <div>
                     # Heatmap Size: {stats.xSize} x {stats.ySize}
                 </div>
-                <div style={{ flex: "none", flexBasis: "4em", textAlign: "left" }}>
+                <div style={{ flex: "none", flexBasis: "5em", textAlign: "left" }}>
                     FPS: {stats.fps.toFixed(0).padStart(2, "0")}
                 </div>
             </div>
