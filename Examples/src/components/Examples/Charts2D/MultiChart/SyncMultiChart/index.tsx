@@ -1,5 +1,4 @@
 import * as React from "react";
-import { appTheme } from "../../../theme";
 
 import { NumberRange, SciChartSurface, SciChartVerticalGroup } from "scichart";
 import { AxisSynchroniser } from "./AxisSynchroniser";
@@ -26,7 +25,7 @@ const styles: Record<string, React.CSSProperties> = {
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo,
+        background: "var(--sc-background)",
     },
     chartRow: {
         display: "flex",
@@ -34,21 +33,21 @@ const styles: Record<string, React.CSSProperties> = {
         flexDirection: "row",
         padding: 0,
         width: "100%",
-        color: "#FFFFFF",
+        color: "var(--sc-text)",
     },
     emptyRow: {
         display: "flex",
         flexBasis: 0,
         padding: 0,
         width: "100%",
-        color: "#FFFFFF",
+        color: "var(--sc-text)",
     },
     toolCol: {
         display: "flex",
         flex: "none",
         width: "130px",
-        padding: "10 10 5 0",
-        color: "#FFFFFF",
+        padding: "8px",
+        color: "var(--sc-text)",
     },
     chartArea: {
         flex: "auto",
@@ -158,19 +157,14 @@ export default function SyncMultiChart() {
                             flex: "none",
                         }}
                     >
-                        <span style={{ color: "#FFFFFF", marginLeft: "20px" }}>
+                        <span style={{ color: "var(--sc-text)", marginLeft: "20px" }}>
                             Click and drag or mousewheel to zoom/pan the charts.
                         </span>
                         <button
                             type="button"
-                            className="sc-button sc-button-secondary"
+                            className="sc-button sc-button-outline"
                             onClick={() => addChart(firstFreePane.id)}
-                            style={{
-                                width: "120px",
-                                flex: "none",
-                                color: "#FFFFFF",
-                                marginRight: "10px",
-                            }}
+                            style={{ width: "120px", flex: "none", marginRight: "10px" }}
                         >
                             Add Chart
                         </button>
@@ -191,7 +185,7 @@ export default function SyncMultiChart() {
                                     <div>
                                         <button
                                             type="button"
-                                            className="sc-button sc-button-secondary"
+                                            className="sc-button sc-button-destructive"
                                             onClick={() => removeChart(pane.id)}
                                         >
                                             Remove Chart

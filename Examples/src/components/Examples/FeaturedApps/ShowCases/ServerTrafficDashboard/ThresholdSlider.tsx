@@ -50,22 +50,7 @@ const ThresholdSlider = () => {
         >
             Duration Threshold
             <br />
-            <input
-                type="range"
-                min="0"
-                max="2000"
-                value={width}
-                onChange={changeWidth}
-                style={{
-                    color: "red",
-                    appearance: "none",
-                    WebkitAppearance: "none",
-                    borderRadius: 15,
-                    height: 10,
-                    background: "#0bdef4",
-                }}
-                className="sc-range"
-            ></input>
+            <input type="range" min="0" max="2000" value={width} onChange={changeWidth} className="sc-range"></input>
         </div>
     );
 };

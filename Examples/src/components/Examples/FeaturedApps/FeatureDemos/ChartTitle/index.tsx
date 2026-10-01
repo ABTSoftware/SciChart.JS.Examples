@@ -135,64 +135,62 @@ export default function FeatureChartTitle() {
 
     return (
         <div className="sc-chart-wrapper" style={{ background: appTheme.DarkIndigo }}>
-            <header className="sc-toolbar-row">
-                <label className="sc-control">
-                    <span>Title text</span>
-                    <textarea
-                        value={titleText}
-                        onChange={handleChangeTitleText}
-                        className="sc-input sc-textarea"
-                    />
-                </label>
+            <header className="sc-toolbar-row flex-col">
+                <div className="flex items-center gap-2 w-full">
+                    <label className="sc-control flex-1" style={{ minWidth: 0 }}>
+                        <span>Title text</span>
+                        <textarea
+                            value={titleText}
+                            onChange={handleChangeTitleText}
+                            className="sc-input flex-1"
+                            style={{ minWidth: 0 }}
+                        />
+                    </label>
 
-                <label className="sc-control">
-                    <span>Title Alignment</span>
-                    <select
-                        className="sc-select"
-                        value={titleAlignment}
-                        onChange={selectTitleTextAlignment}
-                    >
-                        {Object.values(ETextAlignment).map((value) => (
-                            <option key={value} value={value}>
-                                {value}
-                            </option>
-                        ))}
-                    </select>
-                </label>
+                    <label className="sc-switch flex-none">
+                        <input type="checkbox" checked={placeWithinChart} onChange={handleChangePlaceWithinChart} />
+                        Place Title within chart?
+                    </label>
+                </div>
 
-                <label className="sc-control">
-                    <span>Title Position</span>
-                    <select
-                        className="sc-select"
-                        value={titlePosition}
-                        onChange={selectTitleTextPosition}
-                    >
-                        {Object.values(ETitlePosition).map((value) => (
-                            <option key={value} value={value}>
-                                {value}
-                            </option>
-                        ))}
-                    </select>
-                </label>
+                <div className="flex flex-wrap items-center gap-2 w-full">
+                    <label className="sc-control">
+                        <span>Title Alignment</span>
+                        <select className="sc-select" value={titleAlignment} onChange={selectTitleTextAlignment}>
+                            {Object.values(ETextAlignment).map((value) => (
+                                <option key={value} value={value}>
+                                    {value}
+                                </option>
+                            ))}
+                        </select>
+                    </label>
 
-                <label className="sc-control">
-                    <span>Multiline Text Alignment</span>
-                    <select
-                        className="sc-select"
-                        value={multilineAlignment}
-                        onChange={selectTitleTextMultilineAlignment}
-                    >
-                        {Object.values(EMultiLineAlignment).map((value) => (
-                            <option key={value} value={value}>
-                                {value}
-                            </option>
-                        ))}
-                    </select>
-                </label>
-                <label className="sc-switch">
-                    <input type="checkbox" checked={placeWithinChart} onChange={handleChangePlaceWithinChart} />
-                    Place Title within chart?
-                </label>
+                    <label className="sc-control">
+                        <span>Title Position</span>
+                        <select className="sc-select" value={titlePosition} onChange={selectTitleTextPosition}>
+                            {Object.values(ETitlePosition).map((value) => (
+                                <option key={value} value={value}>
+                                    {value}
+                                </option>
+                            ))}
+                        </select>
+                    </label>
+
+                    <label className="sc-control">
+                        <span>Multiline Text Alignment</span>
+                        <select
+                            className="sc-select"
+                            value={multilineAlignment}
+                            onChange={selectTitleTextMultilineAlignment}
+                        >
+                            {Object.values(EMultiLineAlignment).map((value) => (
+                                <option key={value} value={value}>
+                                    {value}
+                                </option>
+                            ))}
+                        </select>
+                    </label>
+                </div>
             </header>
 
             <SciChartReact

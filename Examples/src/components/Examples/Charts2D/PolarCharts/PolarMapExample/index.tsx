@@ -32,42 +32,17 @@ export default function ChartComponent() {
     }, [view]);
 
     return (
-        <div className="" style={{ width: "100%", height: "100%", position: "relative" }}>
-            <div className="" style={{ position: "absolute", zIndex: "100" }}>
-                <div className="">
-                    <button
-                        onClick={() => {
-                            setView(false);
-                        }}
-                        style={{
-                            color: view === false ? "white" : "rgb(0, 188, 212)",
-                            display: "inline-block",
-                            padding: "10px 24px",
-                            background: view === false ? "#14233c" : "#163149",
-                            cursor: "pointer",
-                        }}
-                        className="sc-button"
-                    >
-                        VIEW FROM NORTH
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="Map viewpoint">
+                    <button type="button" className="sc-button" aria-pressed={!view} onClick={() => setView(false)}>
+                        View from north
                     </button>
-                    <button
-                        onClick={() => {
-                            setView(true);
-                            // setViewFunc.current(true);
-                        }}
-                        style={{
-                            color: view === true ? "white" : "rgb(0, 188, 212)",
-                            display: "inline-block",
-                            padding: "10px 24px",
-                            background: view === true ? "#14233c" : "#163149",
-                            cursor: "pointer",
-                        }}
-                        className="sc-button"
-                    >
-                        VIEW FROM SOUTH
+                    <button type="button" className="sc-button" aria-pressed={view} onClick={() => setView(true)}>
+                        View from south
                     </button>
                 </div>
-            </div>
+            </header>
             {mapData ? (
                 <SciChartReact
                     initChart={drawExample}

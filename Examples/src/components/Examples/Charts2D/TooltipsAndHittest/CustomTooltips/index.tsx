@@ -87,51 +87,35 @@ export default function ChartComponent() {
     }, [type]);
 
     return (
-        <div className="wrapperDiv" style={{ width: "100%", height: "100%", position: "relative" }}>
-            <div className="" style={{ position: "absolute", zIndex: "900", pointerEvents: "none" }}>
-                <div style={{ pointerEvents: "all" }}>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="Tooltip mode">
                     <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={type === "cursor"}
                         onClick={() => setType("cursor")}
-                        style={{
-                            color: type === "cursor" ? "#FFFFFF" : "rgb(0, 188, 212)",
-                            display: "inline-block",
-                            padding: "10px 24px",
-                            background: type === "cursor" ? "#14233c" : "#163149",
-                            cursor: "pointer",
-                        }}
-                        className="sc-button"
                     >
-                        CURSOR
+                        Cursor
                     </button>
-
                     <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={type === "rollover"}
                         onClick={() => setType("rollover")}
-                        style={{
-                            color: type === "rollover" ? "#FFFFFF" : "rgb(0, 188, 212)",
-                            display: "inline-block",
-                            padding: "10px 24px",
-                            background: type === "rollover" ? "#14233c" : "#163149",
-                            cursor: "pointer",
-                        }}
-                        className="sc-button"
                     >
-                        ROLLOVER
+                        Rollover
                     </button>
                     <button
-                        onClick={() => setType("verticalSlice")}
-                        style={{
-                            color: type === "verticalSlice" ? "#FFFFFF" : "rgb(0, 188, 212)",
-                            display: "inline-block",
-                            padding: "10px 24px",
-                            background: type === "verticalSlice" ? "#14233c" : "#163149",
-                            cursor: "pointer",
-                        }}
+                        type="button"
                         className="sc-button"
+                        aria-pressed={type === "verticalSlice"}
+                        onClick={() => setType("verticalSlice")}
                     >
-                        VERTICAL SLICE
+                        Vertical slice
                     </button>
                 </div>
-            </div>
+            </header>
             {type === "verticalSlice" && showClickData && clickInfo ? (
                 <div
                     className="verticalSliceInfo"

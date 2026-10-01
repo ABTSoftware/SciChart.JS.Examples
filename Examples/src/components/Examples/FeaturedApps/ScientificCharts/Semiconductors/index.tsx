@@ -108,15 +108,19 @@ export default function Overview() {
                 <div className="charts-row">
                     <div className="column-chart-container">
                         <div className="chart-header">
-                            <div className="chart-toggle-group">
+                            <div className="sc-button-group" role="group" aria-label="Batch chart type">
                                 <button
-                                    className={`sc-button ${`chart-toggle-button ${!showColumnChart ? "active" : ""}`}`}
+                                    type="button"
+                                    className="sc-button"
+                                    aria-pressed={!showColumnChart}
                                     onClick={() => setShowColumnChart(false)}
                                 >
                                     Pareto Chart
                                 </button>
                                 <button
-                                    className={`sc-button ${`chart-toggle-button ${showColumnChart ? "active" : ""}`}`}
+                                    type="button"
+                                    className="sc-button"
+                                    aria-pressed={showColumnChart}
                                     onClick={() => setShowColumnChart(true)}
                                 >
                                     Column Chart

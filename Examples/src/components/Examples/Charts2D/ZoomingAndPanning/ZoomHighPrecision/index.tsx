@@ -36,7 +36,7 @@ const ChartHeader = () => {
     };
 
     return (
-        <header className="sc-toolbar-row">
+        <header className="sc-toolbar-row px-4">
             <label className="sc-control" htmlFor="precision-dataset">
                 Dataset
                 <select

@@ -1,7 +1,6 @@
 import * as path from "path";
 import * as fs from "fs";
-
-import { Logger } from "../logging";
+import * as ts from "typescript";
 
 export interface IFiles {
     [key: string]: {
@@ -29,71 +28,82 @@ export const handleInvalidFrameworkValue = (value: never): never => {
     throw new Error(`Invalid framework value=${value}!`);
 };
 
-// Candidates for an extension-less import, in the order a bundler would try them.
-// The /index variants matter for folder modules such as ./FloatingPanel,
-// which lives at FloatingPanel/index.tsx.
-const resolveSuffixes = [".ts", ".tsx", "/index.ts", "/index.tsx"];
+const resolveSuffixes = ["", ".ts", ".tsx", ".js", ".jsx", "/index.ts", "/index.tsx"];
 
-/** Resolve an extension-less module path to a file on disk, or undefined if none of the candidates exist. */
 const resolveModuleFile = async (basePath: string) => {
     for (const suffix of resolveSuffixes) {
+        const filepath = path.normalize(basePath + suffix);
         try {
-            const filepath = path.normalize(basePath + suffix);
-            const content = await fs.promises.readFile(filepath, "utf8");
-            return { filepath, suffix, content };
-        } catch {
-            // try the next candidate
+            return { filepath, content: await fs.promises.readFile(filepath, "utf8") };
+        } catch (error) {
+            if (!["ENOENT", "EISDIR", "ENOTDIR"].includes((error as NodeJS.ErrnoException).code)) throw error;
         }
     }
-    return undefined;
+    throw new Error(`Example import not found: ${basePath}`);
 };
 
+/** Copy the complete relative import graph, preserving directories to avoid CSS/name collisions. */
 export const includeExternalModules = async (
-    examplefolderPath: string,
+    exampleFolderPath: string,
     folderPath: string,
     files: IFiles,
     content: string,
     includeImages: boolean,
-    updateImports: boolean
+    updateImports: boolean,
+    baseUrl = "https://www.scichart.com/demo/images/"
 ) => {
-    // Pull files outside the local folder into it and rewrite the import
-    const externalImports = Array.from(content.matchAll(/from "([\.\/]+)(.*)";/g));
-    if (externalImports.length > 0) {
-        for (const externalImport of externalImports) {
-            if (externalImport.length > 1) {
-                if (externalImport[2].endsWith(".scss")) continue;
-                if (externalImport[2].endsWith(".png") || externalImport[2].endsWith(".jpg")) {
-                    if (includeImages) {
-                        // handle images
-                        const csPath = "src/" + externalImport[2];
-                        const filename = externalImport[2].substring(externalImport[2].lastIndexOf("/") + 1);
-                        files[csPath] = { content: "https://www.scichart.com/demo/images/" + filename, isBinary: true };
-                    }
-                } else {
-                    const basePath = path.join(folderPath, externalImport[1] + externalImport[2]);
-                    const filename = externalImport[2].substring(externalImport[2].lastIndexOf("/") + 1);
-                    let csPathBase = basePath.replace(examplefolderPath, "src").replace(/\\/g, "/");
-                    if (updateImports) {
-                        if (!basePath.includes(examplefolderPath)) {
-                            csPathBase = "src/" + filename;
-                            content = content.replace(externalImport[1] + externalImport[2], "./" + filename);
-                        }
-                    }
-                    if (!resolveSuffixes.some((suffix) => files[csPathBase + suffix])) {
-                        const resolved = await resolveModuleFile(basePath);
-                        if (resolved) {
-                            const ext = resolved.suffix.endsWith(".tsx") ? ".tsx" : ".ts";
-                            files[csPathBase + ext] = { content: resolved.content, isBinary: false };
-                        } else {
-                            Logger.debug(`${externalImport[2]} not found at ${basePath} from ${folderPath}`);
-                            files[csPathBase + ".ts"] = { content: "Could not load source", isBinary: false };
-                        }
-                    }
+    const outputPath = (filepath: string) =>
+        "src/" +
+        path
+            .relative(exampleFolderPath, filepath)
+            .replace(/\\/g, "/")
+            .replace(/^(?:\.\.\/)+/, "_shared/");
+
+    const visit = async (source: string, directory: string, ownerPath: string): Promise<string> => {
+        const imports = ts
+            .createSourceFile(ownerPath, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX)
+            .statements.flatMap((statement) => {
+                if (!ts.isImportDeclaration(statement) && !ts.isExportDeclaration(statement)) return [];
+                const specifier = statement.moduleSpecifier;
+                return specifier && ts.isStringLiteral(specifier) && specifier.text.startsWith(".") ? [specifier] : [];
+            });
+        // Rewrite from the end so earlier match positions remain valid.
+        for (const match of imports.reverse()) {
+            const specifier = match.text;
+            const basePath = path.resolve(directory, specifier);
+            if (/\.scss$/.test(specifier)) continue;
+            const isImage = /\.(?:png|jpe?g|gif|svg)$/i.test(specifier);
+            if (isImage && !includeImages) continue;
+            const resolved = isImage ? { filepath: basePath, content: "" } : await resolveModuleFile(basePath);
+            const targetPath = outputPath(resolved.filepath);
+            if (!files[targetPath]) {
+                // Store before recursing so circular imports terminate.
+                files[targetPath] = {
+                    content: isImage
+                        ? new URL("/demo/images/" + path.basename(basePath), baseUrl || "https://www.scichart.com").href
+                        : resolved.content,
+                    isBinary: isImage,
+                };
+                if (/\.[jt]sx?$/.test(resolved.filepath)) {
+                    files[targetPath].content = await visit(
+                        resolved.content,
+                        path.dirname(resolved.filepath),
+                        targetPath
+                    );
                 }
             }
+            if (updateImports) {
+                let relative = path.posix.relative(path.posix.dirname(ownerPath), targetPath);
+                if (/\.[jt]sx?$/.test(relative)) relative = relative.replace(/\.[jt]sx?$/, "");
+                if (!relative.startsWith(".")) relative = "./" + relative;
+                const start = match.getStart() + 1;
+                source = source.slice(0, start) + relative + source.slice(start + specifier.length);
+            }
         }
-    }
-    return content;
+        return source;
+    };
+
+    return visit(content, folderPath, "src/__entry.ts");
 };
 
 export const includeImportedModules = async (
@@ -104,73 +114,14 @@ export const includeImportedModules = async (
     updateImports: boolean,
     baseUrl: string
 ) => {
-    //console.log(folderPath);
-    const localImports = Array.from(code.matchAll(/from ["']\.\/(.*)["'];/g));
-    for (const localImport of localImports) {
-        if (localImport.length > 1) {
-            let content: string = "";
-            let csPath: string = "";
-            let dirname: string = "";
-            //console.log(localImport[1]);
-            if (localImport[1].endsWith(".png") || localImport[1].endsWith(".jpg")) {
-                if (includeImages) {
-                    // handle images
-                    csPath = "src/" + localImport[1];
-                    const filename = localImport[1].substring(localImport[1].lastIndexOf("/") + 1);
-                    files[csPath] = { content: baseUrl + filename, isBinary: true };
-                }
-            } else {
-                csPath = "src/" + localImport[1] + ".ts";
-                if (!resolveSuffixes.some((suffix) => files["src/" + localImport[1] + suffix])) {
-                    const resolved = await resolveModuleFile(path.join(folderPath, localImport[1]));
-                    if (resolved) {
-                        csPath = "src/" + localImport[1] + resolved.suffix;
-                        content = resolved.content;
-                        dirname = path.dirname(resolved.filepath);
-                    } else {
-                        Logger.debug(`${localImport[1]} not loaded for ${folderPath}`);
-                        content = "could not load source";
-                    }
-                    if (!localImport[1].includes("/")) {
-                        // this only works if the import is in the base folder
-                        const nestedImports = Array.from(content.matchAll(/from "\.\/(.*)";/g));
-                        if (nestedImports.length > 0) {
-                            localImports.push(...nestedImports);
-                        }
-                    }
-                    //console.log("processing externals for", localImport[1]);
-                    content = await includeExternalModules(
-                        folderPath,
-                        dirname,
-                        files,
-                        content,
-                        includeImages,
-                        updateImports
-                    );
-                    files[csPath] = { content, isBinary: false };
-                }
-            }
-        }
-    }
-    // stylesheets
-    const cssImports = Array.from(code.matchAll(/import ["']\.\/(.*\.css)["'];/g));
-    for (const cssImport of cssImports) {
-        if (cssImport.length > 1) {
-            const csPath = "src/" + cssImport[1];
-            const filepath = path.join(folderPath, cssImport[1]);
-            const content = await fs.promises.readFile(filepath, "utf8");
-            files[csPath] = { content, isBinary: false };
-        }
-    }
+    await includeExternalModules(folderPath, folderPath, files, code, includeImages, updateImports, baseUrl);
 };
 
 export const getSourceFilesForPath = async (folderPath: string, startFile: string, baseUrl: string) => {
     const tsPath = path.join(folderPath, startFile);
-    let code = await fs.promises.readFile(tsPath, "utf8");
-    let files: IFiles = {};
+    const code = await fs.promises.readFile(tsPath, "utf8");
+    const files: IFiles = { [tsPath]: { content: code, isBinary: false } };
     await includeImportedModules(folderPath, files, code, false, false, baseUrl);
-    await includeExternalModules(folderPath, folderPath, files, code, false, false);
-    files[tsPath] = { content: code, isBinary: false };
     return files;
 };
 

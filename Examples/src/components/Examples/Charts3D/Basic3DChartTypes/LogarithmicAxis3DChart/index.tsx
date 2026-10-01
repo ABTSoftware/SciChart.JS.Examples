@@ -35,6 +35,16 @@ export default function LogarithmicAxis3DChart() {
 
     return (
         <div className="sc-chart-wrapper">
+            <div className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="Axis scale">
+                    <button type="button" className="sc-button" aria-pressed={xIsLog} onClick={toggleXAxis}>
+                        X: {xIsLog ? "Log" : "Linear"}
+                    </button>
+                    <button type="button" className="sc-button" aria-pressed={yIsLog} onClick={toggleYAxis}>
+                        Y: {yIsLog ? "Log" : "Linear"}
+                    </button>
+                </div>
+            </div>
             <SciChartReact
                 initChart={drawExample}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
@@ -42,24 +52,6 @@ export default function LogarithmicAxis3DChart() {
                 }}
                 style={{ height: "100%", width: "100%" }}
             />
-            <div className="sc-button-group" role="group" style={{ position: "absolute", top: 8, left: 8 }}>
-                <button
-                    type="button"
-                    className={`sc-button ${xIsLog ? "sc-button-primary" : "sc-button-secondary"}`}
-                    aria-pressed={xIsLog}
-                    onClick={toggleXAxis}
-                >
-                    X: {xIsLog ? "Log" : "Linear"}
-                </button>
-                <button
-                    type="button"
-                    className={`sc-button ${yIsLog ? "sc-button-primary" : "sc-button-secondary"}`}
-                    aria-pressed={yIsLog}
-                    onClick={toggleYAxis}
-                >
-                    Y: {yIsLog ? "Log" : "Linear"}
-                </button>
-            </div>
         </div>
     );
 }

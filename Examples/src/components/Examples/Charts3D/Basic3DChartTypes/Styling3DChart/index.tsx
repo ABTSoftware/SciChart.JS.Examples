@@ -1,3 +1,4 @@
+import "./styles.css";
 import { useRef, useState } from "react";
 import { drawExample, TAxis, TSelectedAxisPlane } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
@@ -8,7 +9,7 @@ import { appTheme } from "../../../theme";
 import { useViewType } from "./containerSizeHooks";
 import { EAxisPlaneDrawLabelsMode, E3DLabelOrientationMode } from "scichart";
 
-const PANEL_TEXT_COLOR = "#FFFFFF";
+const PANEL_TEXT_COLOR = "var(--sc-text)";
 
 type AxisDemoConfig = {
     fontSize: number;
@@ -180,7 +181,7 @@ export default function Styling3DChart() {
                     <ExpandMoreIcon />
                 </summary>
                 <div className="sc-accordion-details">
-                    <div className="sc-form-control">
+                    <div className="flex flex-col gap-2">
                         <span>Select Axis</span>
                         <select className="sc-select" value={selectedAxis} onChange={handleAxisChange}>
                             <option value="x">X Axis</option>
@@ -231,7 +232,7 @@ export default function Styling3DChart() {
                             <option value={E3DLabelOrientationMode.Horizontal}>Horizontal</option>
                         </select>
 
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2">
                             <label className="sc-switch">
                                 <input
                                     type="checkbox"
@@ -293,7 +294,7 @@ export default function Styling3DChart() {
                         <option value="zx">ZX Plane</option>
                     </select>
                     <span>Visibility Mode</span>
-                    <div className="sc-form-control">
+                    <div className="flex flex-col gap-2">
                         <select className="sc-select" value={visibilityMode} onChange={handleVisibilityMode}>
                             <option value="auto">Auto</option>
                             <option value="negativeSide">Negative Side</option>
@@ -301,8 +302,8 @@ export default function Styling3DChart() {
                         </select>
                     </div>
 
-                    <span className="sc-control-label">Draw Titles Mode</span>
-                    <div className="sc-form-control">
+                    <span className="flex flex-col">Draw Titles Mode</span>
+                    <div className="flex flex-col gap-2">
                         <select className="sc-select" value={planeDrawTitlesMode} onChange={handlePlaneDrawTitlesMode}>
                             <option value={EAxisPlaneDrawLabelsMode.Both}>Both</option>
                             <option value={EAxisPlaneDrawLabelsMode.Hidden}>Hidden</option>
@@ -311,8 +312,8 @@ export default function Styling3DChart() {
                         </select>
                     </div>
 
-                    <span className="sc-control-label">Draw Labels Mode</span>
-                    <div className="sc-form-control">
+                    <span className="flex flex-col">Draw Labels Mode</span>
+                    <div className="flex flex-col gap-2">
                         <select className="sc-select" value={planeDrawLabelsMode} onChange={handlePlaneDrawLabelsMode}>
                             <option value={EAxisPlaneDrawLabelsMode.Both}>Both</option>
                             <option value={EAxisPlaneDrawLabelsMode.Hidden}>Hidden</option>
@@ -321,8 +322,8 @@ export default function Styling3DChart() {
                         </select>
                     </div>
 
-                    <span className="sc-control-label">Is Visible</span>
-                    <div className="sc-form-control">
+                    <span className="flex flex-col">Is Visible</span>
+                    <div className="flex flex-col gap-2">
                         <select className="sc-select" value={planeIsVisible} onChange={handlePlaneIsVisible}>
                             <option value="true">True</option>
                             <option value="false">False</option>
@@ -394,7 +395,7 @@ export default function Styling3DChart() {
     );
 }
 
-const colorInputStyle = { flex: 1, height: "30px", border: "none", borderRadius: "4px", cursor: "pointer" };
+const colorInputStyle = { flex: 1 };
 const desktopContainerStyle: React.CSSProperties = {
     flex: "none",
     width: "300px",

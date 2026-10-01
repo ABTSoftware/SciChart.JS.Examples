@@ -45,7 +45,7 @@ export default function StackedColumnChart() {
                     <span>100% Mode</span>
                 </label>
 
-                <>
+                <label className="sc-control">
                     <span>Label position</span>
                     <select className="sc-select" value={dataLabelPosition} onChange={handleDataLabelPositionChange}>
                         {Object.values(EColumnDataLabelPosition)
@@ -56,7 +56,7 @@ export default function StackedColumnChart() {
                                 </option>
                             ))}
                     </select>
-                </>
+                </label>
 
                 <label className="sc-switch">
                     <input type="checkbox" checked={areDataLabelsVisible} onChange={handleToggleDataLabels} />

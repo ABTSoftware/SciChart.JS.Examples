@@ -67,49 +67,57 @@ export default function ChartLegendsAPI() {
 
     return (
         <div className="sc-chart-wrapper">
-            <header className="sc-toolbar-row">
-                <label className="sc-switch">
-                    <input type="checkbox" checked={showLegendValue} onChange={handleChangeShowLegend} />
-                    Show Legend?
-                </label>
-                <label className="sc-switch">
-                    <input type="checkbox" checked={showCheckboxesValue} onChange={handleChangeShowCheckboxes} />
-                    Show Visibility Checkboxes?
-                </label>
-                <label className="sc-switch">
-                    <input type="checkbox" checked={showSeriesMarkersValue} onChange={handleChangeShowSeriesMarkers} />
-                    Show Series Markers?
-                </label>
-                <label className="sc-control" htmlFor="sciChartPlacement">
-                    Legend Placement
-                    <select
-                        id="sciChartPlacement"
-                        value={placementValue}
-                        onChange={handleChangePlacement}
-                        className="sc-select"
-                    >
-                        {placementSelect.map((el) => (
-                            <option key={el.value} value={el.value}>
-                                {el.text}
-                            </option>
-                        ))}
-                    </select>
-                </label>
-                <label className="sc-control" htmlFor="sciChartOrientation">
-                    Legend Orientation
-                    <select
-                        id="sciChartOrientation"
-                        value={orientationValue}
-                        onChange={handleChangeOrientation}
-                        className="sc-select"
-                    >
-                        {orientationSelect.map((el) => (
-                            <option key={el.value} value={el.value}>
-                                {el.text}
-                            </option>
-                        ))}
-                    </select>
-                </label>
+            <header className="sc-toolbar-row flex-col gap-2">
+                <div className="flex items-center gap-2 w-full">
+                    <label className="sc-switch">
+                        <input type="checkbox" checked={showLegendValue} onChange={handleChangeShowLegend} />
+                        Show legend
+                    </label>
+                    <label className="sc-switch">
+                        <input type="checkbox" checked={showCheckboxesValue} onChange={handleChangeShowCheckboxes} />
+                        Visibility checkboxes
+                    </label>
+                    <label className="sc-switch">
+                        <input
+                            type="checkbox"
+                            checked={showSeriesMarkersValue}
+                            onChange={handleChangeShowSeriesMarkers}
+                        />
+                        Series markers
+                    </label>
+                </div>
+                <div className="flex items-center gap-2 w-full">
+                    <label className="sc-control" htmlFor="sciChartPlacement">
+                        Placement
+                        <select
+                            id="sciChartPlacement"
+                            value={placementValue}
+                            onChange={handleChangePlacement}
+                            className="sc-select"
+                        >
+                            {placementSelect.map((el) => (
+                                <option key={el.value} value={el.value}>
+                                    {el.text}
+                                </option>
+                            ))}
+                        </select>
+                    </label>
+                    <label className="sc-control" htmlFor="sciChartOrientation">
+                        Orientation
+                        <select
+                            id="sciChartOrientation"
+                            value={orientationValue}
+                            onChange={handleChangeOrientation}
+                            className="sc-select"
+                        >
+                            {orientationSelect.map((el) => (
+                                <option key={el.value} value={el.value}>
+                                    {el.text}
+                                </option>
+                            ))}
+                        </select>
+                    </label>
+                </div>
             </header>
             <SciChartReact
                 initChart={drawExample}

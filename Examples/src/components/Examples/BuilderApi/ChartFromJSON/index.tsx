@@ -1,3 +1,4 @@
+import "./styles.css";
 import * as React from "react";
 import { SciChartReact } from "scichart-react";
 import { centralLayoutJsonDefinition, defaultJsonDefinition, detailedJsonDefinition, drawExample } from "./drawExample";
@@ -53,29 +54,29 @@ export default function ChartFromJSON() {
                 <Chart chartConfig={currentChartConfig} />
                 <div style={{ position: "absolute", left: 20, top: 20 }}>
                     {errors && (
-                        <div key="0" className="sc-alert sc-alert-error" role="alert">
+                        <div key="0" className="sc-alert" role="alert">
                             <strong className="sc-alert-title">Errors</strong>
                             {errors}
                         </div>
                     )}
                 </div>
                 <div>
-                    <div className="sc-form-control">
-                        <div className="sc-button-group" role="group" aria-label="small outlined button group">
+                    <div className="flex flex-col gap-2">
+                        <div className="sc-button-group" role="group" aria-label="Chart definition presets">
                             <button
                                 type="button"
-                                className="sc-button sc-button-secondary"
+                                className="sc-button sc-button-outline"
                                 id="eg1"
                                 onClick={loadMinimal}
                             >
                                 Simple example
                             </button>
-                            <button type="button" className="sc-button sc-button-secondary" id="eg2" onClick={loadFull}>
+                            <button type="button" className="sc-button sc-button-outline" id="eg2" onClick={loadFull}>
                                 Full example
                             </button>
                             <button
                                 type="button"
-                                className="sc-button sc-button-secondary"
+                                className="sc-button sc-button-outline"
                                 id="eg3"
                                 onClick={loadCentral}
                             >
@@ -86,24 +87,18 @@ export default function ChartFromJSON() {
                 </div>
                 <div>
                     <textarea
-                        className="sc-input sc-textarea"
+                        className="sc-input"
+                        aria-label="Chart JSON definition"
                         id="chartDef"
                         rows={8}
                         value={json}
                         onChange={handleChangeJSON}
                     />
                 </div>
-                <div className="sc-form-control sc-align-right">
-                    <div className="sc-button-group" role="group" aria-label="small outlined button group">
-                        <button
-                            type="button"
-                            className="sc-button sc-button-primary"
-                            id="buildChart"
-                            onClick={handleBuild}
-                        >
-                            Apply
-                        </button>
-                    </div>
+                <div className="flex justify-end">
+                    <button type="button" className="sc-button" id="buildChart" onClick={handleBuild}>
+                        Apply
+                    </button>
                 </div>
             </div>
         </div>

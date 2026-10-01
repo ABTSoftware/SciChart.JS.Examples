@@ -1,0 +1,48 @@
+.sc-accordion {
+    display: block;
+    margin-bottom: 6px;
+    border: 1px solid var(--sc-outline);
+    border-radius: var(--radius);
+    background: var(--sc-background);
+    color: var(--sc-text);
+
+    .sc-accordion-summary {
+        display: flex;
+        min-height: 40px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        border-radius: var(--radius);
+        padding: 6px 12px;
+        background: var(--sc-background);
+        cursor: pointer;
+        list-style: none;
+
+        > span:first-child {
+            font-weight: 600;
+        }
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--sc-primary);
+            outline-offset: -2px;
+        }
+    }
+
+    .sc-accordion-chevron {
+        margin-left: auto;
+        transition: transform 150ms ease;
+    }
+
+    &[open] .sc-accordion-chevron {
+        transform: rotate(180deg);
+    }
+
+    .sc-accordion-details {
+        padding: 12px;
+        border-top: 1px solid var(--sc-outline);
+    }
+}

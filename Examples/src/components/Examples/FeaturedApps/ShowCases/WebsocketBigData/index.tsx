@@ -1,24 +1,15 @@
-import { CloseIcon, PlayArrowIcon, SettingsIcon, StopIcon } from "../../../icons";
-import { BodyPortal } from "../../../Portal";
+import { PlayArrowIcon, StopIcon } from "../../../icons";
 
 import * as React from "react";
-import { useRef } from "react";
-import { ESeriesType, SciChartSurface } from "scichart";
-import { appTheme } from "../../../theme";
+import { ESeriesType } from "scichart";
 import { drawExample, ISettings, TMessage } from "./drawExample";
-import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import { useViewType } from "../../../containerSizeHooks";
-import { ChartGroupLoader } from "scichart-react";
+import { ChartGroupLoader, SciChartReact, TResolvedReturnType } from "scichart-react";
 
 export default function RealtimeBigDataShowcase() {
-    const viewRef = useRef<HTMLDivElement>(undefined);
-    const viewInfo = useViewType(viewRef);
-    const { isLargeView, isMobileView } = viewInfo ?? {};
-
     const controlsRef = React.useRef<TResolvedReturnType<typeof chartInitFunction>["controls"]>(undefined);
 
     const [seriesType, setSeriesType] = React.useState<ESeriesType>(ESeriesType.LineSeries);
-    const [isDirty, setIsDirty] = React.useState<boolean>(false);
+    const [isRunning, setIsRunning] = React.useState(false);
     const [settings, setSettings] = React.useState<ISettings>({
         seriesCount: 10,
         pointsOnChart: 4, // 10000
@@ -54,7 +45,9 @@ export default function RealtimeBigDataShowcase() {
     ]);
 
     const changeChart = (e: any) => {
-        controlsRef.current.stopUpdate();
+        controlsRef.current?.stopUpdate();
+        controlsRef.current = undefined;
+        setIsRunning(false);
         setSeriesType(e.target.value);
     };
 
@@ -71,7 +64,6 @@ export default function RealtimeBigDataShowcase() {
                 pointsOnChart: logScale(pointsOnChart),
                 initialPoints: logScale(initialPoints),
             });
-            setIsDirty(true);
         }
     };
     const handleInitialPoints = (event: any, newValue: any) => {
@@ -79,21 +71,18 @@ export default function RealtimeBigDataShowcase() {
             const initialPoints = Math.min(Number(newValue), settings.pointsOnChart);
             controlsRef.current.updateSettings({ initialPoints: logScale(initialPoints) });
             setSettings({ ...settings, initialPoints });
-            setIsDirty(true);
         }
     };
     const handlePointsPerUpdate = (event: any, newValue: any) => {
         if (controlsRef.current) {
             controlsRef.current.updateSettings({ pointsPerUpdate: logScale(Number(newValue)) });
             setSettings({ ...settings, pointsPerUpdate: Number(newValue) });
-            setIsDirty(true);
         }
     };
     const handleSendEvery = (event: any, newValue: any) => {
         if (controlsRef.current) {
             setSettings({ ...settings, sendEvery: Number(newValue) });
             controlsRef.current.updateSettings({ sendEvery: Number(newValue) });
-            setIsDirty(true);
         }
     };
     const handlePointsOnChart = (event: any, newValue: any) => {
@@ -109,21 +98,21 @@ export default function RealtimeBigDataShowcase() {
                 pointsOnChart: logScale(pointsOnChart),
                 initialPoints: logScale(initialPoints),
             });
-            setIsDirty(true);
         }
     };
 
     const handleStartStreaming = () => {
         if (controlsRef.current) {
-            setIsDirty(false);
+            if (isRunning) controlsRef.current.stopUpdate();
             controlsRef.current.startUpdate();
+            setIsRunning(true);
         }
     };
 
     const handleStopStreaming = () => {
         if (controlsRef.current) {
-            setIsDirty(false);
-            controlsRef.current.stopUpdate();
+            controlsRef.current?.stopUpdate();
+            setIsRunning(false);
         }
     };
 
@@ -135,262 +124,162 @@ export default function RealtimeBigDataShowcase() {
         setMessages([...newMessages]);
     }, seriesType);
 
-    const [isDialogOpen, setIsDialogOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setIsDialogOpen(true);
-    };
-
-    const handleClose = () => {
-        setIsDialogOpen(false);
-    };
-
-    const controlButtons = (
-        <div
-            className="flex flex-col gap-2"
-            role="group"
-            aria-label="Streaming controls"
-        >
-            <button
-                className="sc-button sc-button-icon"
-                type="button"
-                aria-label={isDirty ? "Restart streaming" : "Start streaming"}
-                title={isDirty ? "Restart streaming" : "Start streaming"}
-                onClick={handleStartStreaming}
-            >
-                <PlayArrowIcon />
-            </button>
-
-            <button
-                className="sc-button sc-button-icon"
-                type="button"
-                aria-label="Stop streaming"
-                title="Stop streaming"
-                onClick={handleStopStreaming}
-            >
-                <StopIcon />
-            </button>
-        </div>
-    );
-
-    const controlPanel = (
-        <>
-            <select
-                id="chart-type-select"
-                className="sc-select sc-select-standard w-full"
-                aria-label="Chart type"
-                value={seriesType}
-                onChange={changeChart}
-            >
-                <option value={ESeriesType.LineSeries}>Line Chart</option>
-                <option value={ESeriesType.ColumnSeries}>Column Chart</option>
-                <option value={ESeriesType.StackedMountainSeries}>Mountain Chart</option>
-                <option value={ESeriesType.BandSeries}>Band Chart</option>
-                <option value={ESeriesType.ScatterSeries}>Scatter Chart</option>
-                <option value={ESeriesType.CandlestickSeries}>Candlestick Chart</option>
-            </select>
-
-            <span className="sc-control-label">Number of Series {settings.seriesCount}</span>
-            <input
-                className="sc-range"
-                type="range"
-                id="seriesCount"
-                onChange={(event) => handleSeriesCount(event, event.currentTarget.valueAsNumber)}
-                step={1}
-                min={1}
-                max={maxSettings.seriesCount}
-                value={settings.seriesCount}
-            />
-            <span>Initial Points {logScale(settings.initialPoints)}</span>
-            <input
-                className="sc-range"
-                type="range"
-                id="InitialPoints"
-                list="log-slider-marks"
-                onChange={(event) =>
-                    handleInitialPoints(
-                        event,
-                        snapLogSliderValue(event.currentTarget.valueAsNumber, maxSettings.initialPoints)
-                    )
-                }
-                step="any"
-                min={0.1}
-                max={maxSettings.initialPoints}
-                value={settings.initialPoints}
-            />
-            <span>Max Points On Chart {logScale(settings.pointsOnChart)}</span>
-            <input
-                className="sc-range"
-                type="range"
-                id="pointsOnChart"
-                list="log-slider-marks"
-                onChange={(event) =>
-                    handlePointsOnChart(
-                        event,
-                        snapLogSliderValue(event.currentTarget.valueAsNumber, maxSettings.pointsOnChart)
-                    )
-                }
-                step="any"
-                min={0.1}
-                max={maxSettings.pointsOnChart}
-                value={settings.pointsOnChart}
-            />
-            <span>Points Per Update {logScale(settings.pointsPerUpdate)}</span>
-            <input
-                className="sc-range"
-                type="range"
-                id="pointsPerUpdate"
-                list="log-slider-marks"
-                onChange={(event) =>
-                    handlePointsPerUpdate(
-                        event,
-                        snapLogSliderValue(event.currentTarget.valueAsNumber, maxSettings.pointsPerUpdate)
-                    )
-                }
-                step="any"
-                min={0.1}
-                max={maxSettings.pointsPerUpdate}
-                value={settings.pointsPerUpdate}
-            />
-            <span>Send Data Interval {settings.sendEvery} ms</span>
-            <input
-                className="sc-range"
-                type="range"
-                id="sendEvery"
-                onChange={(event) => handleSendEvery(event, event.currentTarget.valueAsNumber)}
-                step={1}
-                min={maxSettings.sendEvery}
-                max={500}
-                value={settings.sendEvery}
-            />
-            <datalist id="log-slider-marks">
-                {logSliderMarks.map((value) => (
-                    <option key={value} value={Math.log10(value)} />
-                ))}
-            </datalist>
-        </>
-    );
-
-    const performanceResultBox = (
-        <div className="flex-1">
-            <h4>Performance Results</h4>
-            {messages.map((ms, index) => (
-                <div key={index}>
-                    {ms.title}: {ms.detail}
-                </div>
-            ))}
-        </div>
-    );
-
-    const configurationDialog =
-        isMobileView && isDialogOpen ? (
-            <BodyPortal>
-                <div
-                    className="sc-modal-backdrop"
-                    onClick={(event) => event.target === event.currentTarget && handleClose()}
-                    onKeyDown={(event) => event.key === "Escape" && handleClose()}
-                >
-                    <section
-                        className="sc-modal"
-                        role="dialog"
-                        aria-modal="true"
-                        aria-labelledby="websocket-config-title"
-                    >
-                        <header className="sc-modal-header">
-                            <strong id="websocket-config-title">Chart Configurations</strong>
-                            <button
-                                className="sc-button sc-button-icon"
-                                aria-label="Close chart configurations"
-                                onClick={handleClose}
-                                autoFocus
-                                type="button"
-                            >
-                                <CloseIcon />
-                            </button>
-                        </header>
-                        <div className="sc-modal-body">{controlPanel}</div>
-                        <button
-                            className="sc-button sc-button-primary sc-modal-action"
-                            disabled={!isDirty}
-                            onClick={handleStartStreaming}
-                            autoFocus
-                            type="button"
-                        >
-                            Apply
-                        </button>
-                    </section>
-                </div>
-            </BodyPortal>
-        ) : null;
-
     return (
-        <ChartGroupLoader className="sc-chart-wrapper">
-            <div
-                ref={viewRef}
-                className="flex w-full h-full"
-                style={{ flexDirection: isMobileView ? "column" : "row" }}
+        <ChartGroupLoader className="sc-chart-wrapper flex">
+            <SciChartReact
+                key={seriesType}
+                className="sc-chart-wrapper flex-1"
+                initChart={chartInitFunction}
+                onInit={(initResult: TResolvedReturnType<typeof chartInitFunction>) => {
+                    controlsRef.current = initResult.controls;
+                    initResult.controls.updateSettings({
+                        ...settings,
+                        initialPoints: logScale(settings.initialPoints),
+                        pointsOnChart: logScale(settings.pointsOnChart),
+                        pointsPerUpdate: logScale(settings.pointsPerUpdate),
+                    });
+                    initResult.controls.startUpdate();
+                    setIsRunning(true);
+
+                    return () => {
+                        initResult.controls.stopUpdate();
+                        if (controlsRef.current === initResult.controls) controlsRef.current = undefined;
+                    };
+                }}
+            />
+
+            <aside
+                className="flex flex-col"
+                aria-label="Chart controls"
+                style={{ width: "min(240px, 50vw)", flexShrink: 0, padding: 10, overflowY: "auto", gap: 3 }}
             >
-                <SciChartReact
-                    key={seriesType}
-                    className="sc-chart-wrapper"
-                    style={{ flexBasis: 600, flexGrow: 1, flexShrink: 1, display: "flex", flexDirection: "column" }}
-                    innerContainerProps={{ style: { flex: "auto" } }}
-                    initChart={chartInitFunction}
-                    onInit={(initResult: TResolvedReturnType<typeof chartInitFunction>) => {
-                        controlsRef.current = initResult.controls;
-                        initResult.controls.updateSettings({
-                            ...settings,
-                            initialPoints: logScale(settings.initialPoints),
-                            pointsOnChart: logScale(settings.pointsOnChart),
-                            pointsPerUpdate: logScale(settings.pointsPerUpdate),
-                        });
+                <div className="flex gap-2" style={{ marginBottom: 8 }}>
+                    <button
+                        className="sc-button sc-button-icon"
+                        type="button"
+                        disabled={!controlsRef.current}
+                        aria-label={isRunning ? "Stop streaming" : "Start streaming"}
+                        title={isRunning ? "Stop streaming" : "Start streaming"}
+                        onClick={isRunning ? handleStopStreaming : handleStartStreaming}
+                    >
+                        {isRunning ? <StopIcon /> : <PlayArrowIcon />}
+                    </button>
 
-                        return () => {
-                            initResult.controls.stopUpdate();
-                        };
-                    }}
+                    <select
+                        id="chart-type-select"
+                        className="sc-select w-full"
+                        aria-label="Chart type"
+                        value={seriesType}
+                        onChange={changeChart}
+                    >
+                        <option value={ESeriesType.LineSeries}>Line Chart</option>
+                        <option value={ESeriesType.ColumnSeries}>Column Chart</option>
+                        <option value={ESeriesType.StackedMountainSeries}>Mountain Chart</option>
+                        <option value={ESeriesType.BandSeries}>Band Chart</option>
+                        <option value={ESeriesType.ScatterSeries}>Scatter Chart</option>
+                        <option value={ESeriesType.CandlestickSeries}>Candlestick Chart</option>
+                    </select>
+                </div>
+
+                <span>Number of Series {settings.seriesCount}</span>
+                <input
+                    className="sc-range"
+                    type="range"
+                    id="seriesCount"
+                    onChange={(event) => handleSeriesCount(event, event.currentTarget.valueAsNumber)}
+                    step={1}
+                    min={1}
+                    max={maxSettings.seriesCount}
+                    value={settings.seriesCount}
+                />
+
+                <span>Initial Points {logScale(settings.initialPoints)}</span>
+                <input
+                    className="sc-range"
+                    type="range"
+                    id="InitialPoints"
+                    list="log-slider-marks"
+                    onChange={(event) =>
+                        handleInitialPoints(
+                            event,
+                            snapLogSliderValue(event.currentTarget.valueAsNumber, maxSettings.initialPoints)
+                        )
+                    }
+                    step="any"
+                    min={0.1}
+                    max={maxSettings.initialPoints}
+                    value={settings.initialPoints}
+                />
+
+                <span>Max Points On Chart {logScale(settings.pointsOnChart)}</span>
+                <input
+                    className="sc-range"
+                    type="range"
+                    id="pointsOnChart"
+                    list="log-slider-marks"
+                    onChange={(event) =>
+                        handlePointsOnChart(
+                            event,
+                            snapLogSliderValue(event.currentTarget.valueAsNumber, maxSettings.pointsOnChart)
+                        )
+                    }
+                    step="any"
+                    min={0.1}
+                    max={maxSettings.pointsOnChart}
+                    value={settings.pointsOnChart}
+                />
+
+                <span>Points Per Update {logScale(settings.pointsPerUpdate)}</span>
+                <input
+                    className="sc-range"
+                    type="range"
+                    id="pointsPerUpdate"
+                    list="log-slider-marks"
+                    onChange={(event) =>
+                        handlePointsPerUpdate(
+                            event,
+                            snapLogSliderValue(event.currentTarget.valueAsNumber, maxSettings.pointsPerUpdate)
+                        )
+                    }
+                    step="any"
+                    min={0.1}
+                    max={maxSettings.pointsPerUpdate}
+                    value={settings.pointsPerUpdate}
+                />
+
+                <span>Send Data Interval {settings.sendEvery} ms</span>
+                <input
+                    className="sc-range"
+                    type="range"
+                    id="sendEvery"
+                    onChange={(event) => handleSendEvery(event, event.currentTarget.valueAsNumber)}
+                    step={1}
+                    min={maxSettings.sendEvery}
+                    max={500}
+                    value={settings.sendEvery}
+                />
+
+                <datalist id="log-slider-marks">
+                    {logSliderMarks.map((value) => (
+                        <option key={value} value={Math.log10(value)} />
+                    ))}
+                </datalist>
+
+                <section 
+                    className="mt-auto monospace"
+                    aria-label="Performance results"
                 >
-                    {!isLargeView ? (
-                        <header className="sc-toolbar-row">
-                            {controlButtons}
-                            {performanceResultBox}
-                        </header>
-                    ) : null}
-                </SciChartReact>
-
-                {isMobileView ? (
-                    <div
-                        style={{ position: "absolute", pointerEvents: "none", touchAction: "none", zIndex: 2 }}
-                        title="Chart Configurations"
-                    >
-                        <button
-                            className="sc-button sc-button-icon"
-                            aria-label="Chart configurations"
-                            title="Chart configurations"
-                            onClick={handleClickOpen}
-                            type="button"
-                        >
-                            <SettingsIcon fontSize="large" />
-                        </button>
-
-                        {configurationDialog}
-                    </div>
-                ) : (
-                    <div
-                        style={{
-                            flex: "none",
-                            width: isLargeView ? "300px" : "200px",
-                            padding: "0px 10px 0px 10px",
-                            color: "#FFFFFF",
-                            fontSize: "0.8em",
-                        }}
-                    >
-                        {isLargeView ? controlButtons : null}
-                        {controlPanel}
-                        {isLargeView ? performanceResultBox : null}
-                    </div>
-                )}
-            </div>
+                    <h4>Performance Results</h4>
+                    <dl>
+                        {messages.map(({ title, detail }) => (
+                            <div key={title} className="flex gap-2 justify-between w-full">
+                                <dt>{title}:</dt>
+                                <dd style={{ margin: 0 }}>{detail}</dd>
+                            </div>
+                        ))}
+                    </dl>
+                </section>
+            </aside>
         </ChartGroupLoader>
     );
 }

@@ -57,7 +57,7 @@ export default function UserAnnotatedStockChart() {
     return (
         <div className="sc-chart-wrapper">
             <header className="sc-toolbar-row">
-                <div className="sc-button-group" role="group" aria-label="small outlined button group">
+                <div className="sc-button-group" role="group" aria-label="Chart mode">
                     <button
                         type="button"
                         className="sc-button"
@@ -89,13 +89,11 @@ export default function UserAnnotatedStockChart() {
                     <input className="sc-input" id="chartName" type="text" value={name} onChange={handleNameChanged} />
                 </label>
 
-                <div className="sc-button-group" role="group" aria-label="Save chart">
-                    <button className="sc-button" type="button" id="btnSave" onClick={saveChart}>
-                        Save
-                    </button>
-                </div>
+                <button className="sc-button" type="button" id="btnSave" onClick={saveChart}>
+                    Save
+                </button>
 
-                <div className="sc-button-group" role="group" aria-label="Load or reset chart">
+                <div className="flex items-center gap-2" role="group" aria-label="Load or reset chart">
                     <select
                         className="sc-select"
                         id="select-chart-names"
@@ -112,10 +110,15 @@ export default function UserAnnotatedStockChart() {
                             </option>
                         ))}
                     </select>
-                    <button className="sc-button" type="button" id="btnLoad" onClick={loadChart}>
+                    <button className="sc-button sc-button-outline" type="button" id="btnLoad" onClick={loadChart}>
                         Load
                     </button>
-                    <button className="sc-button" type="button" id="btnReset" onClick={resetChart}>
+                    <button
+                        className="sc-button sc-button-destructive"
+                        type="button"
+                        id="btnReset"
+                        onClick={resetChart}
+                    >
                         Reset
                     </button>
                 </div>

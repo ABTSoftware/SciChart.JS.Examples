@@ -45,11 +45,6 @@ const leftDragTools: { value: Exclude<TLeftDragTool, "none">; label: string }[] 
 
 const sidebarWidth = 240;
 
-// A dense MenuItem indents its content by 16px, plus the 3px selection bar, so the menu labels start 19px in.
-// The checkboxes below carry 9px of their own padding, which the list padding makes up the difference for.
-const contentIndent = 19;
-const checkboxPadding = 9;
-
 const headerStyle: React.CSSProperties = {
     flexShrink: 0,
     padding: "10px 16px",
@@ -58,16 +53,16 @@ const headerStyle: React.CSSProperties = {
     letterSpacing: 0.3,
     textTransform: "uppercase",
     borderBottom: "1px solid rgba(255,255,255,0.15)",
-    background: "var(--bg-toolbars)",
+    background: "var(--sc-background)",
 };
 
 const captionStyle: React.CSSProperties = {
     // Sits inside the checkbox list, so it only needs to make up the checkbox's own padding to line up.
-    padding: `12px 8px 2px ${checkboxPadding}px`,
+    padding: "12px 0 2px",
     fontSize: 11,
     letterSpacing: 0.4,
     textTransform: "uppercase",
-    color: "rgba(255,255,255,0.5)",
+    color: "var(--sc-text)",
 };
 
 type TCheckboxRowProps = {
@@ -134,17 +129,17 @@ export default function ParallelCoordinatesChart() {
                         display: "flex",
                         flexDirection: "column",
                         overflowY: "auto",
-                        background: "var(--bg-toolbars)",
-                        color: "#ffffff",
+                        background: "var(--sc-background)",
+                        color: "var(--sc-text)",
                     }}
                 >
                     <div style={headerStyle}>Chart Variant</div>
-                    <div className="sc-menu-list">
+                    <div className="sc-button-group flex-col">
                         {modes.map((item) => (
                             <button
                                 type="button"
                                 key={item.value}
-                                className={`sc-menu-item${item.value === mode ? " is-selected" : ""}`}
+                                className="sc-button sc-button-outline justify-start"
                                 aria-pressed={item.value === mode}
                                 onClick={() => setMode(item.value)}
                                 title={item.label}
@@ -159,7 +154,8 @@ export default function ParallelCoordinatesChart() {
                         style={{
                             display: "flex",
                             flexDirection: "column",
-                            padding: `6px ${contentIndent - checkboxPadding}px 14px`,
+                            gap: 8,
+                            padding: "8px",
                         }}
                     >
                         <CheckboxRow checked={interpolate} onChange={setInterpolate} label="Spline interpolation" />

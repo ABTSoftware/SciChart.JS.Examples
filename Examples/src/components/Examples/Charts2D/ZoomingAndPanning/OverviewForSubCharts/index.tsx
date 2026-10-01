@@ -72,32 +72,8 @@ export default function OverviewForSubCharts() {
 
     return (
         <div className="sc-chart-wrapper flex flex-col">
-            <div ref={chartRef} style={{ width: "100%", height: "100%" }} />
-
-            {/* Compact floating controls positioned at bottom-right */}
-            <div
-                className="sc-control-row"
-                style={{
-                    position: "absolute",
-                    top: 8,
-                    left: 8,
-                    padding: "4px 8px",
-                    backgroundColor: "rgba(30, 30, 30, 0.95)",
-                    border: "1px solid #444",
-                    borderRadius: 4,
-                    fontSize: 12,
-                    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
-                    backdropFilter: "blur(4px)",
-                    maxWidth: "calc(100% - 16px)",
-                    zIndex: 1000,
-                }}
-            >
-                <button
-                    type="button"
-                    onClick={addSubChart}
-                    title="Add SubChart"
-                    className="sc-button sc-button-primary"
-                >
+            <header className="sc-toolbar-row">
+                <button type="button" onClick={addSubChart} title="Add SubChart" className="sc-button">
                     Add Chart
                 </button>
 
@@ -106,33 +82,28 @@ export default function OverviewForSubCharts() {
                     onClick={() => removeSubChart(subCharts[subCharts.length - 1]?.id)}
                     disabled={subCharts.length === 0}
                     title="Remove Last SubChart"
-                    className="sc-button sc-button-danger"
+                    className="sc-button sc-button-destructive"
                 >
                     Remove Chart
                 </button>
 
                 <span>{subCharts.length}</span>
 
-                <div className="sc-control-row">
+                <div className="flex flex-wrap items-center gap-2">
                     {subCharts.map((config, index) => (
                         <input
                             key={config.id}
                             type="color"
                             value={config.color}
                             onChange={(e) => updateSubChart(config.id, { color: e.target.value })}
-                            style={{
-                                width: "14px",
-                                height: "14px",
-                                border: "1px solid #555",
-                                borderRadius: "2px",
-                                cursor: "pointer",
-                                padding: "0",
-                            }}
+                            className="sc-input"
+                            aria-label={`Change color for ${config.title}`}
                             title={`Change color for ${config.title}`}
                         />
                     ))}
                 </div>
-            </div>
+            </header>
+            <div ref={chartRef} className="w-full h-full" />
         </div>
     );
 }

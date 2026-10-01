@@ -191,7 +191,9 @@ export const cacheSourceFiles = async (exampleKey: string, folderPath: string, f
     );
     memoryCache[exampleKey] = Object.fromEntries(
         Object.entries(files).map(([filePath, file]) => {
-            const fileName = path.basename(filePath);
+            const fileName = path.isAbsolute(filePath)
+                ? path.relative(folderPath, filePath).replace(/\\/g, "/")
+                : filePath.replace(/^src\//, "");
             return [fileName, file.content];
         })
     );
@@ -813,8 +815,9 @@ export const readSourceFiles = async (framework: EPageFramework, folderPath: str
     const sourceFiles = useSingleExampleStylesheet({ ...csStyles, ...files }, uiCss, entryFilePath, "./index.css");
     const result: ExampleSourceFile[] = [];
     for (const key in sourceFiles) {
-        const sep = key.indexOf("/") > 0 ? "/" : "\\";
-        const name = key.substring(key.lastIndexOf(sep) + 1);
+        const name = path.isAbsolute(key)
+            ? path.relative(folderPath, key).replace(/\\/g, "/")
+            : key.replace(/^src\//, "");
         result.push({ name, content: sourceFiles[key].content });
     }
     return { files: result, framework: actualFramework };

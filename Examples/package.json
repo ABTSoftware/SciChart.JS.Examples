@@ -34,7 +34,8 @@
     "pretty-quick": "pretty-quick --staged",
     "updateMarkdown": "node updateMarkdown.js",
     "enforceTrailingSlashes": "node scripts/enforce-trailing-slashes.js",
-    "linkcheck": "node scripts/linkcheck.js"
+    "linkcheck": "node scripts/linkcheck.js",
+    "checkExampleUi": "ts-node -P tsconfig.node.json -O '{\"module\":\"commonjs\",\"moduleResolution\":\"node\"}' scripts/checkExampleUi.ts"
   },
   "author": "",
   "license": "ISC",

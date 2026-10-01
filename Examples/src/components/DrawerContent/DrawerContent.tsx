@@ -86,7 +86,7 @@ const DrawerContent: FC<TProps> = (props) => {
                     ))}
                 </div>
             </div>
-            {(isMedium || true) && <Divider />}
+            {(isMedium || true) && <Divider sx={{ borderColor: "var(--border-color)" }} />}
             {(isMedium || true) && <Search />}
             <Navigation
                 testIsOpened={testIsOpened}

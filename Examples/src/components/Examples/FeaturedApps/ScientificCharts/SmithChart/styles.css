@@ -1,0 +1,97 @@
+.sc-menu-popup {
+    position: fixed;
+    z-index: 1400;
+    min-width: 180px;
+    max-height: min(70vh, 480px);
+    overflow: auto;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border: 1px solid var(--sc-outline);
+    border-radius: var(--radius);
+    background: var(--sc-background);
+    color: var(--sc-text);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+}
+
+.sc-divider {
+    width: 100%;
+    margin: 8px 0;
+    border: 0;
+    border-top: 1px solid var(--sc-outline);
+}
+
+.sc-accordion {
+    display: block;
+    margin-bottom: 6px;
+    border: 1px solid var(--sc-outline);
+    border-radius: var(--radius);
+    background: var(--sc-background);
+    color: var(--sc-text);
+
+    .sc-accordion-summary {
+        display: flex;
+        min-height: 40px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        border-radius: var(--radius);
+        padding: 6px 12px;
+        background: var(--sc-background);
+        cursor: pointer;
+        list-style: none;
+
+        > span:first-child {
+            font-weight: 600;
+        }
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--sc-primary);
+            outline-offset: -2px;
+        }
+    }
+
+    .sc-accordion-chevron {
+        margin-left: auto;
+        transition: transform 150ms ease;
+    }
+
+    &[open] .sc-accordion-chevron {
+        transform: rotate(180deg);
+    }
+
+    .sc-accordion-details {
+        padding: 12px;
+        border-top: 1px solid var(--sc-outline);
+    }
+
+    &.sc-marker-accordion {
+        .sc-marker-summary {
+            min-height: 32px;
+            padding: 4px 8px;
+
+            .sc-chip {
+                margin-right: 4px;
+            }
+        }
+
+        .sc-marker-details {
+            padding: 8px;
+        }
+    }
+}
+
+.sc-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: var(--radius);
+    color: #fff;
+    font-size: 11px;
+    white-space: nowrap;
+}

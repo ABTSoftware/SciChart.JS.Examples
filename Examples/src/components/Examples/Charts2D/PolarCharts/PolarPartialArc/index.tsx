@@ -5,16 +5,12 @@ import { PlayArrowIcon, StopIcon } from "../../../icons";
 import { appTheme } from "../../../theme";
 export default function ChartComponent() {
     const [totalAngle, setTotalAngle] = useState<number>(0.004);
+    const [isAnimating, setIsAnimating] = useState(false);
     const [innerRadius, setInnerRadius] = useState<number>(0.9977);
 
     const isUpdatingFromAnimation = useRef<boolean>(false);
 
-    const [controls, setControls] = useState({
-        startAnimation: () => {},
-        endAnimation: () => {},
-        changeInnerRadiusInternal: (value: number) => {},
-        changeTotalAngleInternal: (value: number) => {},
-    });
+    const [controls, setControls] = useState<TResolvedReturnType<typeof drawExample>["controls"]>();
 
     const handleAnimationUpdate = useCallback((values: { innerRadius: number; totalAngle: number }) => {
         isUpdatingFromAnimation.current = true;
@@ -29,47 +25,41 @@ export default function ChartComponent() {
     function changeInnerRadius(value: number) {
         if (!isUpdatingFromAnimation.current) {
             setInnerRadius(value);
-            controls.changeInnerRadiusInternal(value);
+            controls?.changeInnerRadiusInternal(value);
         }
     }
 
     function changeTotalAngle(value: number) {
         if (!isUpdatingFromAnimation.current) {
             setTotalAngle(value);
-            controls.changeTotalAngleInternal(value);
+            controls?.changeTotalAngleInternal(value);
         }
     }
 
     return (
         <div className="sc-chart-wrapper" style={{ background: appTheme.DarkIndigo }}>
             <header className="sc-toolbar-row">
-                <div className="sc-button-group" role="group" aria-label="button group">
-                    <button
-                        type="button"
-                        className="sc-button sc-button-icon"
-                        aria-label="Start animation"
-                        onClick={() => controls.startAnimation()}
-                    >
-                        <PlayArrowIcon />
-                    </button>
+                <button
+                    type="button"
+                    className="sc-button sc-button-icon"
+                    aria-label={isAnimating ? "Stop animation" : "Start animation"}
+                    title={isAnimating ? "Stop animation" : "Start animation"}
+                    disabled={!controls}
+                    onClick={() => {
+                        if (isAnimating) controls.endAnimation();
+                        else controls.startAnimation();
+                        setIsAnimating(!isAnimating);
+                    }}
+                >
+                    {isAnimating ? <StopIcon /> : <PlayArrowIcon />}
+                </button>
 
-                    <button
-                        type="button"
-                        className="sc-button sc-button-icon"
-                        aria-label="Stop animation"
-                        onClick={() => controls.endAnimation()}
-                    >
-                        <StopIcon />
-                    </button>
-                </div>
-
-                <div style={{ flex: 1, paddingInline: 20 }}>
+                <label className="sc-control flex-col flex-1" style={{ gap: 0 }}>
                     <span>
                         Inner Radius: <strong>{innerRadius.toFixed(3)}</strong>
                     </span>
 
                     <input
-                        style={{ width: "100%" }}
                         type="range"
                         min={0.001}
                         max={0.999}
@@ -78,16 +68,15 @@ export default function ChartComponent() {
                         onChange={(e) => changeInnerRadius(parseFloat(e.target.value))}
                         className="sc-range"
                     />
-                </div>
+                </label>
 
-                <div style={{ flex: 1, paddingInline: 20 }}>
+                <label className="sc-control flex-col flex-1" style={{ gap: 0 }}>
                     <span>
                         Total Angle: <strong>{(totalAngle / Math.PI).toFixed(3)} * π</strong> or{" "}
                         <strong>{totalAngle.toFixed(3)}</strong>
                     </span>
 
                     <input
-                        style={{ width: "100%" }}
                         type="range"
                         min={0}
                         max={Math.PI * 2}
@@ -96,7 +85,7 @@ export default function ChartComponent() {
                         onChange={(e) => changeTotalAngle(parseFloat(e.target.value))}
                         className="sc-range"
                     />
-                </div>
+                </label>
             </header>
 
             <SciChartReact

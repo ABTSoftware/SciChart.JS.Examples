@@ -1,11 +1,11 @@
 import {
     AnnotationHoverModifier,
     ECursorStyle,
-    EObservableArrayChangedAction,
     EXyDirection,
     MouseWheelZoomModifier,
     NumberRange,
     ZoomExtentsModifier,
+    ZoomPanModifier
 } from "scichart";
 import {
     EAnnotationVisibilityMode,
@@ -264,6 +264,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     sciChartSurface.chartModifiers.add(
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
+        new ZoomPanModifier(),
         new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }),
         new AnnotationHoverModifier({
             enableHover: true,

@@ -1,0 +1,12 @@
+.sc-alert {
+    padding: 8px 12px;
+    border: 1px solid var(--sc-error);
+    border-radius: var(--radius);
+    background: var(--sc-background);
+    color: var(--sc-error);
+
+    .sc-alert-title {
+        display: block;
+        margin-bottom: 4px;
+    }
+}

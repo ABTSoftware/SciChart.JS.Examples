@@ -1,3 +1,4 @@
+import "./styles.css";
 import * as React from "react";
 
 import { CloseIcon, ExpandMoreIcon } from "../../../icons";
@@ -189,27 +190,16 @@ export default function SmithChartComponent() {
                         }}
                     >
                         <button
-                            className="sc-button sc-button-secondary"
+                            className="sc-button sc-button-outline"
                             onClick={(e) => setExamplesAnchor(e.currentTarget)}
-                            style={{ fontSize: 10, padding: "2px 8px", minWidth: 0 }}
                             type="button"
                         >
                             Examples
                         </button>
-                        <button
-                            className="sc-button"
-                            onClick={() => setChainOpen((v) => !v)}
-                            style={{ fontSize: 10, padding: "2px 8px", minWidth: 0 }}
-                            type="button"
-                        >
+                        <button className="sc-button" onClick={() => setChainOpen((v) => !v)} type="button">
                             Chain
                         </button>
-                        <button
-                            className="sc-button"
-                            onClick={() => setGridOpen((v) => !v)}
-                            style={{ fontSize: 10, padding: "2px 8px", minWidth: 0 }}
-                            type="button"
-                        >
+                        <button className="sc-button" onClick={() => setGridOpen((v) => !v)} type="button">
                             Grid
                         </button>
                     </div>
@@ -229,9 +219,7 @@ export default function SmithChartComponent() {
                                 <button
                                     type="button"
                                     key={scenario.id}
-                                    className={`sc-menu-item${
-                                        state.activeScenarioId === scenario.id ? " is-selected" : ""
-                                    }`}
+                                    className="sc-button sc-button-outline justify-start"
                                     role="menuitemradio"
                                     aria-checked={state.activeScenarioId === scenario.id}
                                     onClick={() => {
@@ -245,7 +233,7 @@ export default function SmithChartComponent() {
                             <hr className="sc-divider" />
                             <button
                                 type="button"
-                                className="sc-menu-item"
+                                className="sc-button sc-button-outline justify-start"
                                 role="menuitem"
                                 onClick={() => {
                                     dispatch({ type: "CLEAR" });
@@ -268,7 +256,7 @@ export default function SmithChartComponent() {
                             {/* VSWR */}
                             <div style={ROW}>
                                 <span
-                                    className="sc-tooltip"
+                                    className="contents"
                                     title="VSWR = (1+|Γ|)/(1−|Γ|) — drag the orange handle on the real axis to resize the circle"
                                 >
                                     <span style={{ cursor: "default" }}>VSWR:</span>
@@ -280,14 +268,14 @@ export default function SmithChartComponent() {
                                     min={1.01}
                                     max={100}
                                     step={0.1}
-                                    style={{ width: 76, fontSize: 12 }}
+                                    style={{ width: 76 }}
                                     onChange={(e) => {
                                         const v = parseFloat(e.target.value);
                                         if (v > 1) dispatch({ type: "SET_VSWR", vswr: v });
                                     }}
                                 />
                                 <span
-                                    className="sc-tooltip"
+                                    className="contents"
                                     title="Fill the VSWR circle interior to mark the acceptable match region"
                                 >
                                     <label className="sc-control">
@@ -302,7 +290,7 @@ export default function SmithChartComponent() {
                                         <span>Shade</span>
                                     </label>
                                 </span>
-                                <span className="sc-tooltip" title="Show or hide the dashed VSWR circle outline">
+                                <span className="contents" title="Show or hide the dashed VSWR circle outline">
                                     <label className="sc-control">
                                         <input
                                             className="sc-checkbox"
@@ -322,7 +310,7 @@ export default function SmithChartComponent() {
                             {/* Chain builder */}
                             <div style={WRAP_ROW}>
                                 <span
-                                    className="sc-tooltip"
+                                    className="contents"
                                     title="Operating frequency for reactive components (L, C) and transmission lines"
                                 >
                                     <span style={{ cursor: "default" }}>Freq:</span>
@@ -334,7 +322,7 @@ export default function SmithChartComponent() {
                                     min={0.001}
                                     max={100}
                                     step={0.1}
-                                    style={{ width: 76, fontSize: 12 }}
+                                    style={{ width: 76 }}
                                     onChange={(e) => {
                                         const v = parseFloat(e.target.value);
                                         if (v > 0) dispatch({ type: "SET_FREQUENCY", frequency: v * 1e9 });
@@ -342,14 +330,13 @@ export default function SmithChartComponent() {
                                 />
                                 <span>GHz</span>
                                 <span
-                                    className="sc-tooltip"
+                                    className="contents"
                                     title="Component type: series elements move along constant-R or constant-X curves; shunt elements move along constant-G or constant-B curves; TL rotates clockwise at constant |Γ|"
                                 >
                                     <select
                                         className="sc-select"
                                         value={chainType}
                                         onChange={(e) => setChainType(e.target.value as ComponentType)}
-                                        style={{ fontSize: 12, minWidth: 100 }}
                                     >
                                         {(
                                             [
@@ -369,7 +356,7 @@ export default function SmithChartComponent() {
                                     </select>
                                 </span>
                                 <span
-                                    className="sc-tooltip"
+                                    className="contents"
                                     title={
                                         chainType === "TL"
                                             ? "Transmission line length in wavelengths (e.g. 0.25 = quarter-wave)"
@@ -380,49 +367,35 @@ export default function SmithChartComponent() {
                                         className="sc-input"
                                         type="number"
                                         value={chainValue}
-                                        style={{ width: 84, fontSize: 12 }}
+                                        style={{ width: 84 }}
                                         onChange={(e) => setChainValue(e.target.value)}
                                         placeholder={chainType === "TL" ? "λ" : "SI"}
                                     />
                                 </span>
-                                <span
-                                    className="sc-tooltip"
+                                <button
                                     title="Append this component step from the current chain tip"
+                                    className="sc-button sc-button-outline"
+                                    onClick={() => {
+                                        const tip = chartApiRef.current?.getChainTip(state);
+                                        if (!tip) return;
+                                        const parsed = parseFloat(chainValue);
+                                        if (isNaN(parsed)) return;
+                                        chartApiRef.current?.addChainStep(tip, chainType, parsed, state.frequency);
+                                    }}
+                                    disabled={!chartApiRef.current?.getChainTip(state)}
+                                    type="button"
                                 >
-                                    <span>
-                                        <button
-                                            className="sc-button sc-button-secondary"
-                                            onClick={() => {
-                                                const tip = chartApiRef.current?.getChainTip(state);
-                                                if (!tip) return;
-                                                const parsed = parseFloat(chainValue);
-                                                if (isNaN(parsed)) return;
-                                                chartApiRef.current?.addChainStep(
-                                                    tip,
-                                                    chainType,
-                                                    parsed,
-                                                    state.frequency
-                                                );
-                                            }}
-                                            disabled={!chartApiRef.current?.getChainTip(state)}
-                                            type="button"
-                                        >
-                                            Add
-                                        </button>
-                                    </span>
-                                </span>
-                                <span className="sc-tooltip" title="Remove the last chain step">
-                                    <span>
-                                        <button
-                                            className="sc-button sc-button-secondary"
-                                            onClick={() => dispatch({ type: "UNDO_CHAIN_STEP" })}
-                                            disabled={state.chain.length === 0}
-                                            type="button"
-                                        >
-                                            Undo
-                                        </button>
-                                    </span>
-                                </span>
+                                    Add
+                                </button>
+                                <button
+                                    title="Remove the last chain step"
+                                    className="sc-button sc-button-outline"
+                                    onClick={() => dispatch({ type: "UNDO_CHAIN_STEP" })}
+                                    disabled={state.chain.length === 0}
+                                    type="button"
+                                >
+                                    Undo
+                                </button>
                             </div>
                         </div>
                     </FloatingPanel>
@@ -439,48 +412,39 @@ export default function SmithChartComponent() {
                             <div style={ROW}>
                                 <span>Grid:</span>
                                 <div className="sc-button-group" role="group">
-                                    <span
-                                        className="sc-tooltip"
+                                    <button
                                         title="Impedance grid — constant-R circles and constant-X arcs"
+                                        type="button"
+                                        className="sc-button"
+                                        aria-pressed={state.gridMode === "Z"}
+                                        onClick={() => dispatch({ type: "SET_GRID_MODE", mode: "Z" })}
                                     >
-                                        <button
-                                            type="button"
-                                            className="sc-button"
-                                            aria-pressed={state.gridMode === "Z"}
-                                            onClick={() => dispatch({ type: "SET_GRID_MODE", mode: "Z" })}
-                                        >
-                                            Z
-                                        </button>
-                                    </span>
-                                    <span
-                                        className="sc-tooltip"
+                                        Z
+                                    </button>
+                                    <button
                                         title="Admittance grid — constant-G circles and constant-B arcs"
+                                        type="button"
+                                        className="sc-button"
+                                        aria-pressed={state.gridMode === "Y"}
+                                        onClick={() => dispatch({ type: "SET_GRID_MODE", mode: "Y" })}
                                     >
-                                        <button
-                                            type="button"
-                                            className="sc-button"
-                                            aria-pressed={state.gridMode === "Y"}
-                                            onClick={() => dispatch({ type: "SET_GRID_MODE", mode: "Y" })}
-                                        >
-                                            Y
-                                        </button>
-                                    </span>
-                                    <span className="sc-tooltip" title="Both impedance and admittance grids overlaid">
-                                        <button
-                                            type="button"
-                                            className="sc-button"
-                                            aria-pressed={state.gridMode === "ZY"}
-                                            onClick={() => dispatch({ type: "SET_GRID_MODE", mode: "ZY" })}
-                                        >
-                                            ZY
-                                        </button>
-                                    </span>
+                                        Y
+                                    </button>
+                                    <button
+                                        title="Both impedance and admittance grids overlaid"
+                                        type="button"
+                                        className="sc-button"
+                                        aria-pressed={state.gridMode === "ZY"}
+                                        onClick={() => dispatch({ type: "SET_GRID_MODE", mode: "ZY" })}
+                                    >
+                                        ZY
+                                    </button>
                                 </div>
                             </div>
 
                             {/* Z opacity */}
                             {(state.gridMode === "Z" || state.gridMode === "ZY") && (
-                                <span className="sc-tooltip" title="Impedance grid opacity">
+                                <span className="contents" title="Impedance grid opacity">
                                     <div style={{ ...ROW, minWidth: 200 }}>
                                         <span>Z α:</span>
                                         <input
@@ -503,7 +467,7 @@ export default function SmithChartComponent() {
 
                             {/* Y opacity */}
                             {(state.gridMode === "Y" || state.gridMode === "ZY") && (
-                                <span className="sc-tooltip" title="Admittance grid opacity">
+                                <span className="contents" title="Admittance grid opacity">
                                     <div style={{ ...ROW, minWidth: 200 }}>
                                         <span>Y α:</span>
                                         <input
@@ -572,7 +536,7 @@ export default function SmithChartComponent() {
                                 onChange={(v) => applyGridCfg({ minGapPx: v })}
                             />
                             <span
-                                className="sc-tooltip"
+                                className="contents"
                                 title="When enabled, suppresses minor-tick subdivision in the large-arc sweep region (circles whose centres lie outside the viewport). Reduces clutter on the left side when zoomed into the right half of the chart."
                             >
                                 <label className="sc-control" style={{ margin: 0 }}>
@@ -716,7 +680,6 @@ export default function SmithChartComponent() {
                                                     className="sc-button"
                                                     aria-pressed={marker.dragMode === m}
                                                     key={m}
-                                                    style={{ padding: "1px 5px", fontSize: 10, lineHeight: 1.4 }}
                                                     onClick={() =>
                                                         dispatch({ type: "SET_DRAG_MODE", id: marker.id, mode: m })
                                                     }
@@ -811,7 +774,7 @@ function GridSlider({
         </div>
     );
     return tooltip ? (
-        <span className="sc-tooltip" title={tooltip}>
+        <span className="contents" title={tooltip}>
             {inner}
         </span>
     ) : (

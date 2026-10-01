@@ -98,7 +98,7 @@ export default function RealtimeTickingStockCharts() {
     return (
         <div className="sc-chart-wrapper">
             <header className="sc-toolbar-row">
-                <div className="sc-button-group" role="group" aria-label="small outlined button group">
+                <div className="sc-button-group" role="group" aria-label="Playback">
                     <button
                         type="button"
                         className="sc-button"
@@ -142,14 +142,11 @@ export default function RealtimeTickingStockCharts() {
                         subscription.unsubscribe();
                     };
                 }}
-                innerContainerProps={{ 
-                    style: { flexBasis: "80%" } 
+                innerContainerProps={{
+                    style: { flexBasis: "80%" },
                 }}
             >
-                <SciChartNestedOverview
-                    style={{ flexBasis: "20%", width: "100%" }}
-                    options={sciChartOverview}
-                />
+                <SciChartNestedOverview style={{ flexBasis: "20%", width: "100%" }} options={sciChartOverview} />
             </SciChartReact>
         </div>
     );

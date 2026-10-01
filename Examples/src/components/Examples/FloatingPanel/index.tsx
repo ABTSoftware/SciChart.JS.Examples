@@ -1,3 +1,4 @@
+import "./styles.css";
 import * as React from "react";
 import Draggable from "react-draggable";
 
@@ -100,7 +101,7 @@ export function FloatingPanel({
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "space-between",
-                            background: "var(--bg-toolbars)",
+                            background: "var(--sc-background)",
                             userSelect: "none",
                         }}
                     >

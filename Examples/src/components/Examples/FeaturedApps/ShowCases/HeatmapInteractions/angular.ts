@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ScichartAngularComponent } from "scichart-angular";
-import { appTheme } from "../../../theme";
 import { getChartsInitializationApi } from "./drawExample";
 
 @Component({
@@ -9,126 +8,79 @@ import { getChartsInitializationApi } from "./drawExample";
     imports: [CommonModule, ScichartAngularComponent],
     selector: "app-heatmap-interactions",
     template: `
-        <div class="chart-wrapper">
-            <div [ngStyle]="localStyles.flexOuterContainer">
-                <div [ngStyle]="localStyles.toolbarRow">
+        <div class="sc-chart-wrapper">
+            <div class="sc-toolbar-row">
+                <button type="button" (click)="togglePlayback()" [disabled]="!controlsRef" class="sc-button">
+                    {{ isRunning ? "Stop" : "Start" }}
+                </button>
+                <div class="sc-button-group" role="group" aria-label="Simulation">
                     <button
-                        mat-button
-                        (click)="startUpdate()"
-                        [ngStyle]="{ color: appTheme.ForegroundColor }"
-                        [disabled]="!controlsRef"
-                        class="sc-button"
-                    >
-                        Start
-                    </button>
-                    <button
-                        mat-button
-                        (click)="stopUpdate()"
-                        [ngStyle]="{ color: appTheme.ForegroundColor }"
-                        [disabled]="!controlsRef"
-                        class="sc-button"
-                    >
-                        Stop
-                    </button>
-                    <button
-                        mat-button
-                        (click)="loadBasicExample()"
-                        [ngStyle]="{ color: appTheme.ForegroundColor }"
-                        [disabled]="!controlsRef"
-                        class="sc-button"
-                    >
-                        Load basic example
-                    </button>
-                    <button
-                        mat-button
-                        (click)="loadDoubleSlitExample()"
-                        [ngStyle]="{ color: appTheme.ForegroundColor }"
-                        [disabled]="!controlsRef"
-                        class="sc-button"
-                    >
-                        Load double slit example
-                    </button>
-                    <button
-                        mat-button
-                        (click)="showHelp()"
-                        aria-label="Show help"
-                        title="Show help"
-                        [ngStyle]="{ color: appTheme.ForegroundColor }"
-                        [disabled]="!controlsRef"
-                        class="sc-button sc-button-icon"
                         type="button"
+                        (click)="loadBasicExample()"
+                        [disabled]="!controlsRef"
+                        [attr.aria-pressed]="simulation === 'basic'"
+                        class="sc-button"
                     >
-                        <svg
-                            aria-hidden="true"
-                            focusable="false"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" />
-                            <path d="M11 10h2v7h-2zm0-4h2v2h-2z" />
-                        </svg>
+                        Basic
+                    </button>
+                    <button
+                        type="button"
+                        (click)="loadDoubleSlitExample()"
+                        [disabled]="!controlsRef"
+                        [attr.aria-pressed]="simulation === 'doubleSlit'"
+                        class="sc-button"
+                    >
+                        Double slit
                     </button>
                 </div>
-                <div style="display: flex; flex-direction: row;">
-                    <scichart-angular
-                        [initChart]="chartsInitializationAPI.initMainChart"
-                        (onInit)="onChartInit($event, 'main')"
-                        style="flex: 1; flex-basis: 50%;"
-                    >
-                    </scichart-angular>
-                    <scichart-angular
-                        [initChart]="chartsInitializationAPI.initCrossSectionChart"
-                        (onInit)="onChartInit($event, 'crossSection')"
-                        style="flex-basis: 500px; flex-grow: 1; flex-shrink: 1;"
-                    >
-                    </scichart-angular>
-                </div>
-                <div style="display: flex; flex-direction: row;">
-                    <scichart-angular
-                        [initChart]="chartsInitializationAPI.inputChart"
-                        (onInit)="onChartInit($event, 'input')"
-                        style="flex-basis: 500px; flex-grow: 1; flex-shrink: 1;"
-                    >
-                    </scichart-angular>
-                    <scichart-angular
-                        [initChart]="chartsInitializationAPI.initHistoryChart"
-                        (onInit)="onChartInit($event, 'history')"
-                        style="flex-basis: 500px; flex-grow: 1; flex-shrink: 1;"
-                    >
-                    </scichart-angular>
-                </div>
+                <button
+                    type="button"
+                    (click)="showHelp()"
+                    [disabled]="!controlsRef"
+                    class="sc-button sc-button-icon"
+                    aria-label="Show help"
+                    title="Show help"
+                >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" />
+                        <path d="M11 10h2v7h-2zm0-4h2v2h-2z" />
+                    </svg>
+                </button>
+            </div>
+            <div style="display: flex; flex-direction: row;">
+                <scichart-angular
+                    [initChart]="chartsInitializationAPI.initMainChart"
+                    (onInit)="onChartInit($event, 'main')"
+                    style="flex: 1; flex-basis: 50%;"
+                >
+                </scichart-angular>
+                <scichart-angular
+                    [initChart]="chartsInitializationAPI.initCrossSectionChart"
+                    (onInit)="onChartInit($event, 'crossSection')"
+                    style="flex-basis: 500px; flex-grow: 1; flex-shrink: 1;"
+                >
+                </scichart-angular>
+            </div>
+            <div style="display: flex; flex-direction: row;">
+                <scichart-angular
+                    [initChart]="chartsInitializationAPI.inputChart"
+                    (onInit)="onChartInit($event, 'input')"
+                    style="flex-basis: 500px; flex-grow: 1; flex-shrink: 1;"
+                >
+                </scichart-angular>
+                <scichart-angular
+                    [initChart]="chartsInitializationAPI.initHistoryChart"
+                    (onInit)="onChartInit($event, 'history')"
+                    style="flex-basis: 500px; flex-grow: 1; flex-shrink: 1;"
+                >
+                </scichart-angular>
             </div>
         </div>
     `,
-    styles: [
-        `
-            .chart-wrapper {
-                height: 100%;
-                width: 100%;
-            }
-        `,
-    ],
 })
 export class AppComponent {
-    localStyles = {
-        flexOuterContainer: {
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            background: appTheme.DarkIndigo,
-        },
-        toolbarRow: {
-            display: "flex",
-            flexBasis: "70px",
-            padding: 10,
-            width: "100%",
-            color: appTheme.ForegroundColor,
-        },
-    };
+    isRunning = false;
+    simulation = "basic";
 
     chartsInitializationAPI = getChartsInitializationApi();
     mainChart?: Awaited<ReturnType<typeof this.chartsInitializationAPI.initMainChart>>;
@@ -136,7 +88,6 @@ export class AppComponent {
     inputChart?: Awaited<ReturnType<typeof this.chartsInitializationAPI.inputChart>>;
     historyChart?: Awaited<ReturnType<typeof this.chartsInitializationAPI.initHistoryChart>>;
     controlsRef?: Awaited<ReturnType<typeof this.chartsInitializationAPI.onAllChartsInit>>;
-    appTheme = appTheme;
 
     async onChartInit(event: any, chartType: "main" | "crossSection" | "input" | "history") {
         if (event?.sciChartSurface) {
@@ -165,22 +116,26 @@ export class AppComponent {
 
     private configureCharts() {
         this.controlsRef = this.chartsInitializationAPI.onAllChartsInit();
+        this.isRunning = true;
     }
 
-    startUpdate(): void {
-        this.controlsRef?.startUpdate();
-    }
-
-    stopUpdate(): void {
-        this.controlsRef?.stopUpdate();
+    togglePlayback(): void {
+        if (!this.controlsRef) return;
+        if (this.isRunning) this.controlsRef.stopUpdate();
+        else this.controlsRef.startUpdate();
+        this.isRunning = !this.isRunning;
     }
 
     loadBasicExample(): void {
+        this.simulation = "basic";
         this.controlsRef?.twoPoint();
+        this.isRunning = true;
     }
 
     loadDoubleSlitExample(): void {
+        this.simulation = "doubleSlit";
         this.controlsRef?.interference();
+        this.isRunning = true;
     }
 
     showHelp(): void {

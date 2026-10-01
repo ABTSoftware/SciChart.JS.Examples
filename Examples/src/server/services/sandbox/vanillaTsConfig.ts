@@ -2,7 +2,7 @@ import * as path from "path";
 import * as fs from "fs";
 import { NotFoundError } from "../../Errors";
 import { TExampleInfo } from "../../../components/AppRouter/examplePages";
-import { IFiles, csStyles, includeImportedModules } from "./sandboxDependencyUtils";
+import { IFiles, csStyles, includeExternalModules } from "./sandboxDependencyUtils";
 
 const pj = require("../../../../package.json");
 
@@ -161,6 +161,14 @@ export const getVanillaTsSandBoxConfig = async (folderPath: string, currentExamp
     }
     files = { ...files, ...csStyles };
 
-    await includeImportedModules(folderPath, files, code, true, true, baseUrl);
+    files["src/app.ts"].content = await includeExternalModules(
+        folderPath,
+        folderPath,
+        files,
+        code,
+        true,
+        true,
+        baseUrl
+    );
     return { files };
 };

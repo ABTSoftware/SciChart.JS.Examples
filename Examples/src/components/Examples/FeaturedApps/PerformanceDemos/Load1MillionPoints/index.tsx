@@ -7,7 +7,7 @@ export default function Load1MillionPointsChart() {
     const [timeSpans, setTimeSpans] = useState<TTimeSpan[]>([
         { title: "Generate 1M Data Points", durationMs: 0 },
         { title: "Append 1M Data Points", durationMs: 0 },
-        { title: "Render the frame", durationMs: 0 }
+        { title: "Render the frame", durationMs: 0 },
     ]);
     const [isStarted, setIsStarted] = useState(false);
     const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(null);
@@ -30,11 +30,7 @@ export default function Load1MillionPointsChart() {
                 }}
             />
             <header className="sc-toolbar-row">
-                <div 
-                    className="flex flex-col gap-2"
-                    role="group" 
-                    aria-label="Data reload controls"
-                >
+                <div className="flex flex-col gap-2" role="group" aria-label="Data reload controls">
                     <button
                         className="sc-button sc-button-icon"
                         aria-label={isStarted ? "Pause updates" : "Start updates"}
@@ -57,6 +53,7 @@ export default function Load1MillionPointsChart() {
                         onClick={() => {
                             controlsRef.current.reloadOnce();
                         }}
+                        disabled={isStarted}
                         title="Reload Test"
                         type="button"
                     >

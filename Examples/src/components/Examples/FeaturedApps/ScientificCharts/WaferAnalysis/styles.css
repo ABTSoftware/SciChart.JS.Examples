@@ -25,24 +25,14 @@
 .variable-selection {
     padding: 5px 5px 0px;
     background-color: inherit;
-    color: #6495ed; /* appTheme.MutedSkyBlue */
-    font-size: 12px;
+    color: var(--sc-text);
+    font-size: 14px;
 }
 
 .variable-selection-content {
     display: flex;
     align-items: center;
     gap: 8px;
-}
-
-.variable-select {
-    background-color: inherit;
-    color: #6495ed;
-    border: 1px solid gray;
-    border-radius: 4px;
-    padding: 4px 8px;
-    font-size: 12px;
-    cursor: pointer;
 }
 
 /* Right panel with charts */
@@ -83,7 +73,7 @@
 
 /* Chart title */
 .chart-title {
-    color: #6495ed; /* appTheme.MutedSkyBlue */
+    color: var(--sc-text);
     padding-left: 10px;
     margin: 0;
     font-size: 14px;

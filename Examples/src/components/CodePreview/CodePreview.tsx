@@ -7,7 +7,6 @@ import json from "react-syntax-highlighter/dist/esm/languages/hljs/json";
 import { EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { Dialog } from "../Dialog/Dialog";
 import classes from "./index.module.scss";
-import { getFileName } from "../AppDetailsRouters/utils";
 import { ETheme } from "../../helpers/types/types";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 import "react-syntax-highlighter/dist/esm/styles/hljs/dark";
@@ -460,7 +459,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
                             onClick={() => handleFileClick(file.name)}
                         >
                             {ICONS[file.name.split(".").pop() as keyof typeof ICONS]}
-                            <p>{getFileName(file.name)}</p>
+                            <p>{file.name}</p>
                         </div>
                     ))}
             </div>
@@ -480,7 +479,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
                                 strokeLinejoin="round"
                             >
                                 <rect x="5" y="9" width="10" height="10" rx="2" />
-                                <path  d="M9 9V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2" />
+                                <path d="M9 9V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2" />
                             </svg>
                         ) : (
                             <svg

@@ -8,17 +8,14 @@ const POINT_OPTIONS = [3, 5, 7, 9];
 export default function PairedDashedPolylineAnnotation() {
     const controlsRef = useRef<TResolvedReturnType<typeof drawExample> | undefined>(undefined);
     const [pointCount, setPointCount] = useState(0);
-    const [isConnectorLineVisible, setIsConnectorLineVisible] = useState(true)
+    const [isConnectorLineVisible, setIsConnectorLineVisible] = useState(true);
 
-    const handlePointCountChange = useCallback(
-        (_event: MouseEvent<HTMLElement>, nextPointCount: number | null) => {
-            if (!nextPointCount) return;
+    const handlePointCountChange = useCallback((_event: MouseEvent<HTMLElement>, nextPointCount: number | null) => {
+        if (!nextPointCount) return;
 
-            setPointCount(nextPointCount);
-            controlsRef.current?.startPlacement(nextPointCount);
-        },
-        []
-    );
+        setPointCount(nextPointCount);
+        controlsRef.current?.startPlacement(nextPointCount);
+    }, []);
 
     return (
         <div
@@ -28,7 +25,6 @@ export default function PairedDashedPolylineAnnotation() {
             }}
         >
             <header className="sc-toolbar-row">
-
                 <label className="sc-switch">
                     <input
                         type="checkbox"
@@ -44,11 +40,7 @@ export default function PairedDashedPolylineAnnotation() {
                 <div className="flex gap-2 items-center">
                     <span>&nbsp;Place polyline with N points:</span>
 
-                    <div
-                        className="sc-button-group"
-                        role="group"
-                        aria-label="Polyline point count"
-                    >
+                    <div className="sc-button-group" role="group" aria-label="Polyline point count">
                         {POINT_OPTIONS.map((count) => (
                             <button
                                 type="button"
@@ -65,7 +57,7 @@ export default function PairedDashedPolylineAnnotation() {
                 </div>
 
                 <button
-                    className="sc-button sc-button-danger"
+                    className="sc-button sc-button-icon sc-button-destructive"
                     title="Delete all annotations"
                     aria-label="Delete all annotations"
                     onClick={() => controlsRef.current?.deleteAllAnnotations()}

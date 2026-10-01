@@ -17,13 +17,11 @@ export default function ChartComponent() {
 
     return (
         <div className="sc-chart-wrapper">
-            <button
-                onClick={changeOrder}
-                style={{ position: "absolute", zIndex: 1 }}
-                className="sc-button sc-button-primary"
-            >
-                REVERSE ORDER OF BAND SERIES
-            </button>
+            <div className="sc-toolbar-row">
+                <button type="button" onClick={changeOrder} className="sc-button">
+                    Reverse band series order
+                </button>
+            </div>
             <SciChartReact
                 initChart={drawExample}
                 className="w-full h-full"

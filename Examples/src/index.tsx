@@ -12,10 +12,6 @@ import {
 } from "./components/AppDetailsRouters/SourceFilesLoading/SourceFilesContext";
 import { baseAppPath } from "./constants";
 import "./components/Examples/styles/sc-ui.css";
-import "./components/Examples/styles/sc-ui-ripple.css";
-import { installPointerRipples } from "./components/Examples/styles/sc-ripple";
-
-installPointerRipples();
 
 const cache = createEmotionCache();
 

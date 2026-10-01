@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { drawExample } from "./drawExample";
-import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
@@ -13,8 +12,11 @@ export default function ChartComponent() {
     return (
         <div className="sc-chart-wrapper">
             <header className="sc-toolbar-row">
-                <span style={{ color: appTheme.ForegroundColor, alignSelf: "center" }}>Primary Axis: </span>
-                <div className="sc-button-group" role="group" aria-label="small outlined button group">
+                <div 
+                    className="sc-button-group" 
+                    role="group" 
+                    aria-label="Primary X Axis mode"
+                >
                     <button
                         type="button"
                         className="sc-button"
@@ -24,7 +26,7 @@ export default function ChartComponent() {
                             setIsStaticAxis(true);
                         }}
                     >
-                        Normal Axis
+                        Normal Primary X Axis
                     </button>
                     <button
                         type="button"
@@ -35,7 +37,7 @@ export default function ChartComponent() {
                             setIsStaticAxis(false);
                         }}
                     >
-                        Static Axis
+                        Static Primary X Axis
                     </button>
                 </div>
             </header>

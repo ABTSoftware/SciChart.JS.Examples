@@ -10,64 +10,56 @@ import { drawExample } from "./drawExample";
     imports: [CommonModule, FormsModule, ScichartAngularComponent],
     selector: "app-user-annotated-stock-chart",
     template: `
-        <div class="chart-wrapper">
-            <div class="flex-outer-container">
-                <div class="toolbar-row">
-                    <div class="sc-button-group" role="group" aria-label="Chart mode">
-                        <button
-                            type="button"
-                            class="sc-button"
-                            [attr.aria-pressed]="chartMode === 'pan'"
-                            (click)="onChartModeChange('pan')"
-                        >
-                            Pan
-                        </button>
-                        <button
-                            type="button"
-                            class="sc-button"
-                            [attr.aria-pressed]="chartMode === 'line'"
-                            (click)="onChartModeChange('line')"
-                        >
-                            Lines
-                        </button>
-                        <button
-                            type="button"
-                            class="sc-button"
-                            [attr.aria-pressed]="chartMode === 'marker'"
-                            (click)="onChartModeChange('marker')"
-                        >
-                            Markers
-                        </button>
-                    </div>
-                    <input
-                        class="sc-input"
-                        type="text"
-                        placeholder="Save As"
-                        [(ngModel)]="name"
-                        (ngModelChange)="onNameChanged($event)"
-                    />
-                    <button type="button" (click)="saveChart()" class="sc-button sc-button-primary">Save</button>
-                    <select
-                        class="sc-select"
-                        aria-label="Load From"
-                        [(ngModel)]="selectedChart"
-                        (ngModelChange)="onSelectionChanged($event)"
+        <div class="sc-chart-wrapper">
+            <div class="sc-toolbar-row">
+                <div class="sc-button-group" role="group" aria-label="Chart mode">
+                    <button
+                        type="button"
+                        class="sc-button"
+                        [attr.aria-pressed]="chartMode === 'pan'"
+                        (click)="onChartModeChange('pan')"
                     >
-                        <option value="" disabled>Load From</option>
-                        <option *ngFor="let chartName of getChartNames()" [value]="chartName">{{ chartName }}</option>
-                    </select>
-                    <button type="button" (click)="loadChart()" class="sc-button sc-button-secondary">Load</button>
-                    <button type="button" (click)="resetChart()" class="sc-button sc-button-secondary">Reset</button>
-                </div>
-                <div>
-                    <scichart-angular
-                        [initChart]="drawExample"
-                        (onInit)="onInit($event)"
-                        style="flex: 1; flex-basis: 50%;"
+                        Pan
+                    </button>
+                    <button
+                        type="button"
+                        class="sc-button"
+                        [attr.aria-pressed]="chartMode === 'line'"
+                        (click)="onChartModeChange('line')"
                     >
-                    </scichart-angular>
+                        Lines
+                    </button>
+                    <button
+                        type="button"
+                        class="sc-button"
+                        [attr.aria-pressed]="chartMode === 'marker'"
+                        (click)="onChartModeChange('marker')"
+                    >
+                        Markers
+                    </button>
                 </div>
+                <input
+                    class="sc-input"
+                    type="text"
+                    placeholder="Save as"
+                    aria-label="Chart name"
+                    [(ngModel)]="name"
+                    (ngModelChange)="onNameChanged($event)"
+                />
+                <button type="button" (click)="saveChart()" class="sc-button">Save</button>
+                <select
+                    class="sc-select"
+                    aria-label="Load From"
+                    [(ngModel)]="selectedChart"
+                    (ngModelChange)="onSelectionChanged($event)"
+                >
+                    <option value="" disabled>Load From</option>
+                    <option *ngFor="let chartName of getChartNames()" [value]="chartName">{{ chartName }}</option>
+                </select>
+                <button type="button" (click)="loadChart()" class="sc-button sc-button-outline">Load</button>
+                <button type="button" (click)="resetChart()" class="sc-button sc-button-destructive">Reset</button>
             </div>
+            <scichart-angular [initChart]="drawExample" (onInit)="onInit($event)"></scichart-angular>
         </div>
     `,
 })

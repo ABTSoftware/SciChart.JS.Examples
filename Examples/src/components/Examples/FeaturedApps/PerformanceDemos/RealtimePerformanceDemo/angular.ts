@@ -7,72 +7,28 @@ import { drawExample } from "./drawExample";
     imports: [ScichartAngularComponent],
     selector: "app-realtime-performance",
     template: `
-        <div class="chart-wrapper">
-            <div class="flex-outer-container">
-                <div class="toolbar-row">
-                    <button (click)="startUpdate()" class="sc-button">Start</button>
-                    <button (click)="stopUpdate()" class="sc-button">Stop</button>
-                    <span class="data-points"># DataPoints: {{ stats.numberPoints.toLocaleString() }}</span>
-                    <span class="fps">FPS: {{ stats.fps.toFixed(0) }}</span>
-                </div>
-                <scichart-angular
-                    [initChart]="drawExample"
-                    (onInit)="onInit($event)"
-                    (onDelete)="onDelete()"
-                    style="flex: 1; flex-basis: 50%;"
-                >
-                </scichart-angular>
+        <div class="sc-chart-wrapper">
+            <div class="sc-toolbar-row">
+                <button type="button" (click)="togglePlayback()" [disabled]="!initResult" class="sc-button">
+                    {{ isRunning ? "Pause" : "Start" }}
+                </button>
+                <span class="monospace">Data points: {{ stats.numberPoints.toLocaleString() }}</span>
+                <span class="monospace">FPS: {{ stats.fps.toFixed(0) }}</span>
             </div>
+            <scichart-angular
+                [initChart]="drawExample"
+                (onInit)="onInit($event)"
+                (onDelete)="onDelete()"
+            ></scichart-angular>
         </div>
     `,
-    styles: [
-        `
-            .chart-wrapper {
-                width: 100%;
-                height: 100%;
-            }
-
-            .flex-outer-container {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                background: #1f0954;
-            }
-
-            .toolbar-row {
-                display: flex;
-                flex-basis: 70px;
-                padding: 10px;
-                width: 100%;
-                color: white;
-            }
-
-            button {
-                margin-right: 10px;
-                padding: 5px 10px;
-                font-size: 16px;
-                border: none;
-                border-radius: 4px;
-                background-color: black;
-                color: white;
-                cursor: pointer;
-            }
-
-            button:hover {
-                background-color: black;
-            }
-            .chart-area {
-                flex: 1;
-            }
-        `,
-    ],
 })
 export class AppComponent {
+    isRunning = false;
     stats = { numberPoints: 0, fps: 0 };
 
     constructor() {}
-    private initResult?: Awaited<ReturnType<typeof drawExample>>;
+    protected initResult?: Awaited<ReturnType<typeof drawExample>>;
 
     drawExample = drawExample;
 
@@ -82,15 +38,22 @@ export class AppComponent {
         this.startUpdate();
     }
 
+    togglePlayback() {
+        if (this.isRunning) this.stopUpdate();
+        else this.startUpdate();
+    }
+
     startUpdate() {
         if (this.initResult && this.initResult.controls) {
             this.initResult.controls.startUpdate();
+            this.isRunning = true;
         }
     }
 
     stopUpdate() {
         if (this.initResult && this.initResult.controls) {
             this.initResult.controls.stopUpdate();
+            this.isRunning = false;
         }
     }
 

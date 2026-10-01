@@ -138,7 +138,7 @@ function ServerTrafficDashboard() {
                         </button>
                     </header>
                     <div className="sc-modal-body">
-                        <strong className="sc-modal-section-title">Main Chart</strong>
+                        <strong>Main Chart</strong>
 
                         <label className="sc-switch">
                             <input
@@ -148,7 +148,7 @@ function ServerTrafficDashboard() {
                             />
                             Sync X-Axis visible range
                         </label>
-                        <strong className="sc-modal-section-title">URL Statistics Chart</strong>
+                        <strong>URL Statistics Chart</strong>
                         <label className="sc-switch">
                             <input
                                 type="checkbox"
@@ -157,7 +157,7 @@ function ServerTrafficDashboard() {
                             />
                             is 100% collection
                         </label>
-                        <strong className="sc-modal-section-title">Server Load Statistics Chart</strong>
+                        <strong>Server Load Statistics Chart</strong>
                         <label className="sc-switch">
                             <input type="checkbox" checked={isGridLayout} onChange={handleUseGridLayout} />
                             is Grid Layout

@@ -46,14 +46,14 @@ const panelStyle: CSSProperties = {
     width: "min(420px, 70%)",
     textAlign: "center",
     padding: "16px 20px",
-    borderRadius: 8,
+    borderRadius: "var(--radius)",
     background: appTheme.Background,
     boxShadow: "0 2px 12px rgba(0, 0, 0, 0.25)",
 };
 
 const trackStyle: CSSProperties = {
     height: 6,
-    borderRadius: 3,
+    borderRadius: "var(--radius)",
     overflow: "hidden",
     background: "rgba(255, 255, 255, 0.15)",
 };

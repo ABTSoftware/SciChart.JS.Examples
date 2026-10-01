@@ -44,11 +44,7 @@ export default function Load500By500() {
                     />
 
                     <header className="sc-toolbar-row">
-                        <div 
-                            className="flex flex-col gap-2" 
-                            role="group" 
-                            aria-label="Data reload controls"
-                        >
+                        <div className="flex flex-col gap-2">
                             <button
                                 className="sc-button sc-button-icon"
                                 aria-label={isStarted ? "Pause updates" : "Start updates"}
@@ -65,12 +61,14 @@ export default function Load500By500() {
                             >
                                 {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
                             </button>
+
                             <button
                                 className="sc-button sc-button-icon"
                                 aria-label="Reload once"
                                 onClick={() => {
                                     controlsRef.current.reloadOnce();
                                 }}
+                                disabled={isStarted}
                                 title="Reload Test"
                                 type="button"
                             >

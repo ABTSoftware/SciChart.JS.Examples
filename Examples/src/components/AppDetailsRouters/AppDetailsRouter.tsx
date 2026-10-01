@@ -120,7 +120,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
     }, []);
 
     const handleFileClick = (fileName: string) => {
-        const file = sourceFiles.find((f) => f.name.includes(fileName));
+        const file = sourceFiles.find((f) => f.name === fileName);
         setSelectedFile({ name: file.name, content: file.content });
     };
 

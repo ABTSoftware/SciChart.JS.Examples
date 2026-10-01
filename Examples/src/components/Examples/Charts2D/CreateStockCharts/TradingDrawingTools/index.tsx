@@ -307,8 +307,8 @@ export default function TradingDrawingTools() {
                         flexShrink: 0,
                         display: "flex",
                         flexDirection: "column",
-                        background: "var(--bg-toolbars)",
-                        color: "#ffffff",
+                        background: "var(--sc-background)",
+                        color: "var(--sc-text)",
                     }}
                 >
                     <div
@@ -320,12 +320,12 @@ export default function TradingDrawingTools() {
                             letterSpacing: 0.3,
                             textTransform: "uppercase",
                             borderBottom: "1px solid rgba(255,255,255,0.15)",
-                            background: "var(--bg-toolbars)",
+                            background: "var(--sc-background)",
                         }}
                     >
                         Select Annotation
                     </div>
-                    <div className="sc-menu-list sc-menu-list-grow">
+                    <div className="flex flex-col flex-1 gap-2">
                         {tools.map((tool, index) => {
                             if (!isToolItemDefinition(tool)) {
                                 return (
@@ -339,7 +339,7 @@ export default function TradingDrawingTools() {
                                 <button
                                     type="button"
                                     key={tool.value}
-                                    className={`sc-menu-item${tool.value === selectedTool ? " is-selected" : ""}`}
+                                    className="sc-button sc-button-outline justify-start"
                                     aria-pressed={tool.value === selectedTool}
                                     onClick={() => {
                                         setSelectedTool(tool.value);
@@ -387,7 +387,7 @@ export default function TradingDrawingTools() {
                         }}
                     />
                     <button
-                        className="sc-button sc-button-icon"
+                        className="sc-button sc-button-icon sc-button-destructive"
                         aria-label="Delete all annotations"
                         title="Delete all annotations"
                         onClick={() => controlsRef.current?.deleteAllAnnotations()}

@@ -10,95 +10,50 @@ import { ESeriesType } from "scichart";
     imports: [ScichartAngularComponent, FormsModule],
     selector: "app-realtime-big-data-showcase",
     template: `
-        <div style="display: flex; height: 100vh;">
+        <div class="sc-chart-wrapper flex">
             <scichart-angular
                 [initChart]="initChartFunction"
                 (onInit)="onChartInit($event)"
                 style="flex: 1; height: 100%;"
             ></scichart-angular>
             <div style="width: 300px; padding: 10px;">
-                <form #form="ngForm">
-                    <fieldset class="sc-control-row">
-                        <legend>Series Type</legend>
-                        <label class="sc-control"
-                            ><input
-                                class="sc-radio"
-                                type="radio"
-                                name="seriesType"
-                                value="LineSeries"
-                                [(ngModel)]="seriesType"
-                                (ngModelChange)="changeChart($event)"
-                            />Line Chart</label
+                <form class="flex flex-col gap-2" #form="ngForm">
+                    <label class="sc-control flex-col w-full">
+                        Chart type
+                        <select
+                            class="sc-select w-full"
+                            name="seriesType"
+                            [(ngModel)]="seriesType"
+                            (ngModelChange)="changeChart($event)"
                         >
-                        <label class="sc-control"
-                            ><input
-                                class="sc-radio"
-                                type="radio"
-                                name="seriesType"
-                                value="ColumnSeries"
-                                [(ngModel)]="seriesType"
-                                (ngModelChange)="changeChart($event)"
-                            />Column Chart with Stacked Axes</label
-                        >
-                        <label class="sc-control"
-                            ><input
-                                class="sc-radio"
-                                type="radio"
-                                name="seriesType"
-                                value="StackedMountainSeries"
-                                [(ngModel)]="seriesType"
-                                (ngModelChange)="changeChart($event)"
-                            />Stacked Mountain Chart</label
-                        >
-                        <label class="sc-control"
-                            ><input
-                                class="sc-radio"
-                                type="radio"
-                                name="seriesType"
-                                value="BandSeries"
-                                [(ngModel)]="seriesType"
-                                (ngModelChange)="changeChart($event)"
-                            />Band Chart</label
-                        >
-                        <label class="sc-control"
-                            ><input
-                                class="sc-radio"
-                                type="radio"
-                                name="seriesType"
-                                value="ScatterSeries"
-                                [(ngModel)]="seriesType"
-                                (ngModelChange)="changeChart($event)"
-                            />Scatter Chart</label
-                        >
-                        <label class="sc-control"
-                            ><input
-                                class="sc-radio"
-                                type="radio"
-                                name="seriesType"
-                                value="CandlestickSeries"
-                                [(ngModel)]="seriesType"
-                                (ngModelChange)="changeChart($event)"
-                            />Candlestick Chart</label
-                        >
-                    </fieldset>
+                            <option value="LineSeries">Line</option>
+                            <option value="ColumnSeries">Column with stacked axes</option>
+                            <option value="StackedMountainSeries">Stacked mountain</option>
+                            <option value="BandSeries">Band</option>
+                            <option value="ScatterSeries">Scatter</option>
+                            <option value="CandlestickSeries">Candlestick</option>
+                        </select>
+                    </label>
                     <input
                         class="sc-range"
                         type="range"
                         name="seriesCount"
+                        aria-label="Number of series"
                         min="1"
                         [max]="maxSettings.seriesCount"
                         [(ngModel)]="settings.seriesCount"
-                        (change)="handleFormChange(form)"
+                        (change)="handleFormChange()"
                     />
                     <div>Number of Series: {{ settings.seriesCount }}</div>
                     <input
                         class="sc-range"
                         type="range"
                         name="initialPoints"
+                        aria-label="Initial points"
                         min="0.1"
                         [max]="maxSettings.initialPoints"
                         [(ngModel)]="settings.initialPoints"
-                        (change)="handleFormChange(form)"
+                        (change)="handleFormChange()"
                         step="0.1"
                     />
                     <div>Initial Points: {{ settings.initialPoints }}</div>
@@ -106,10 +61,11 @@ import { ESeriesType } from "scichart";
                         class="sc-range"
                         type="range"
                         name="pointsOnChart"
+                        aria-label="Max points on chart"
                         min="0.1"
                         [max]="maxSettings.pointsOnChart"
                         [(ngModel)]="settings.pointsOnChart"
-                        (change)="handleFormChange(form)"
+                        (change)="handleFormChange()"
                         step="0.1"
                     />
                     <div>Max Points On Chart: {{ settings.pointsOnChart }}</div>
@@ -117,10 +73,11 @@ import { ESeriesType } from "scichart";
                         class="sc-range"
                         type="range"
                         name="pointsPerUpdate"
+                        aria-label="Points per update"
                         min="0.1"
                         [max]="maxSettings.pointsPerUpdate"
                         [(ngModel)]="settings.pointsPerUpdate"
-                        (change)="handleFormChange(form)"
+                        (change)="handleFormChange()"
                         step="0.1"
                     />
                     <div>Points Per Update: {{ settings.pointsPerUpdate }}</div>
@@ -128,21 +85,24 @@ import { ESeriesType } from "scichart";
                         class="sc-range"
                         type="range"
                         name="sendEvery"
+                        aria-label="Send interval (ms)"
                         min="{{ maxSettings.sendEvery }}"
                         max="500"
                         [(ngModel)]="settings.sendEvery"
-                        (change)="handleFormChange(form)"
+                        (change)="handleFormChange()"
                     />
                     <div>Send Data Interval (ms): {{ settings.sendEvery }}</div>
-                    <button type="button" (click)="startUpdate()" class="sc-button sc-button-primary">Start</button>
-                    <button type="button" (click)="stopUpdate()" class="sc-button sc-button-danger">Stop</button>
+                    <button type="button" (click)="toggleStreaming()" [disabled]="!controls" class="sc-button">
+                        {{ isRunning ? "Stop" : "Start" }}
+                    </button>
                 </form>
             </div>
         </div>
     `,
 })
 export class RealtimeBigDataShowcaseComponent {
-    private controls: any;
+    protected controls: any;
+    isRunning = false;
     seriesType = ESeriesType.LineSeries;
     isDirty = false;
     settings: ISettings = {
@@ -183,6 +143,11 @@ export class RealtimeBigDataShowcaseComponent {
         this.updateChartSettings();
     }
 
+    handleFormChange() {
+        this.isDirty = true;
+        this.updateChartSettings();
+    }
+
     private updateChartSettings() {
         if (this.controls) {
             this.controls.updateSettings({
@@ -198,6 +163,8 @@ export class RealtimeBigDataShowcaseComponent {
         if (this.controls) {
             this.controls.stopUpdate();
         }
+        this.isRunning = false;
+        this.controls = undefined;
         this.seriesType = newSeriesType;
         this.initChartFunction = drawExample((newMessages: TMessage[]) => {
             this.messages = [...newMessages];
@@ -205,10 +172,16 @@ export class RealtimeBigDataShowcaseComponent {
         this.updateChartSettings();
     }
 
+    toggleStreaming() {
+        if (this.isRunning) this.stopUpdate();
+        else this.startUpdate();
+    }
+
     startUpdate() {
         if (this.controls) {
             this.isDirty = false;
             this.controls.startUpdate();
+            this.isRunning = true;
         }
     }
 
@@ -216,6 +189,7 @@ export class RealtimeBigDataShowcaseComponent {
         if (this.controls) {
             this.isDirty = false;
             this.controls.stopUpdate();
+            this.isRunning = false;
         }
     }
 

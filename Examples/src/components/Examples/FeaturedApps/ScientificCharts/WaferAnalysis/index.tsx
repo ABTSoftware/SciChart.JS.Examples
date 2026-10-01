@@ -82,7 +82,7 @@ export default function WaferAnalysis() {
             HDIsX: HDIs?.all().map((d) => d.key) || [],
             HDIsY: HDIs?.all().map((d) => Math.abs(d.value as number)) || [],
         }),
-        [MRs, HRs, MR2s, HDIs],
+        [MRs, HRs, MR2s, HDIs]
     );
 
     // Calculate ranges for each variable - memoized to avoid unnecessary recalculations
@@ -119,29 +119,29 @@ export default function WaferAnalysis() {
     // Create init functions with current data - memoized to prevent unnecessary re-creation
     const initWaferChart = useMemo(
         () => createInitWaferChart(setRowsFilter, setColsFilter, selectedVariable, variableRanges[selectedVariable]),
-        [setRowsFilter, setColsFilter, selectedVariable, variableRanges],
+        [setRowsFilter, setColsFilter, selectedVariable, variableRanges]
     );
 
     const initScatterPlot = useMemo(() => createInitScatterPlot(), []);
 
     const initMRChart = useMemo(
         () => createInitMeasureChart(MRsX, MRsY, setMRsFilter, appTheme.MutedTeal),
-        [MRsX, MRsY, setMRsFilter],
+        [MRsX, MRsY, setMRsFilter]
     );
 
     const initHRChart = useMemo(
         () => createInitMeasureChart(HRsX, HRsY, setHRsFilter, appTheme.PaleOrange),
-        [HRsX, HRsY, setHRsFilter],
+        [HRsX, HRsY, setHRsFilter]
     );
 
     const initMR2Chart = useMemo(
         () => createInitMeasureChart(MR2sX, MR2sY, setMR2sFilter, appTheme.MutedPurple),
-        [MR2sX, MR2sY, setMR2sFilter],
+        [MR2sX, MR2sY, setMR2sFilter]
     );
 
     const initHDIChart = useMemo(
         () => createInitMeasureChart(HDIsX, HDIsY, setHDIsFilter, appTheme.MutedSkyBlue),
-        [HDIsX, HDIsY, setHDIsFilter],
+        [HDIsX, HDIsY, setHDIsFilter]
     );
 
     // Chart init handlers - useCallback to prevent unnecessary re-renders
@@ -149,42 +149,42 @@ export default function WaferAnalysis() {
         (chartInstance: TResolvedReturnType<ReturnType<typeof createInitWaferChart>>) => {
             waferChartRef.current = chartInstance;
         },
-        [],
+        []
     );
 
     const handleScatterPlotInit = useCallback(
         (chartInstance: TResolvedReturnType<ReturnType<typeof createInitScatterPlot>>) => {
             scatterPlotRef.current = chartInstance;
         },
-        [],
+        []
     );
 
     const handleMRChartInit = useCallback(
         (chartInstance: TResolvedReturnType<ReturnType<typeof createInitMeasureChart>>) => {
             mrChartRef.current = chartInstance;
         },
-        [],
+        []
     );
 
     const handleHRChartInit = useCallback(
         (chartInstance: TResolvedReturnType<ReturnType<typeof createInitMeasureChart>>) => {
             hrChartRef.current = chartInstance;
         },
-        [],
+        []
     );
 
     const handleMR2ChartInit = useCallback(
         (chartInstance: TResolvedReturnType<ReturnType<typeof createInitMeasureChart>>) => {
             mr2ChartRef.current = chartInstance;
         },
-        [],
+        []
     );
 
     const handleHDIChartInit = useCallback(
         (chartInstance: TResolvedReturnType<ReturnType<typeof createInitMeasureChart>>) => {
             hdiChartRef.current = chartInstance;
         },
-        [],
+        []
     );
 
     // Memoize filtered data to avoid unnecessary recalculations
@@ -274,7 +274,8 @@ export default function WaferAnalysis() {
                         <select
                             value={selectedVariable}
                             onChange={(e) => setSelectedVariable(e.target.value)}
-                            className="variable-select sc-select"
+                            className="sc-select"
+                            aria-label="Color wafer by"
                         >
                             {["DEFECT", "MR", "HR", "MR2", "HDI"].map((variable) => (
                                 <option key={variable} value={variable}>

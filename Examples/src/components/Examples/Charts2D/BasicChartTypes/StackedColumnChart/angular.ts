@@ -7,39 +7,21 @@ import { drawExample } from "./drawExample";
     imports: [ScichartAngularComponent],
     selector: "app-stack-chart",
     template: `
-        <style>
-            .toolbar-row {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-        </style>
-        <div class="chart-wrapper">
-            <div class="toolbar-row">
-                <div class="sc-button-group" role="group" aria-label="Stack mode">
-                    <button
-                        type="button"
-                        class="sc-button"
-                        [attr.aria-pressed]="!use100PercentStackedMode"
-                        (click)="togglePercentageMode(false)"
-                    >
-                        Stacked mode
-                    </button>
-                    <button
-                        type="button"
-                        class="sc-button"
-                        [attr.aria-pressed]="use100PercentStackedMode"
-                        (click)="togglePercentageMode(true)"
-                    >
-                        100% Stacked mode
-                    </button>
-                </div>
-                <button type="button" class="sc-button" (click)="toggleDataLabels()">
-                    {{ areDataLabelsVisible ? "Show Data Labels" : "Hide Data Labels" }}
-                </button>
+        <div class="sc-chart-wrapper">
+            <div class="sc-toolbar-row">
+                <label class="sc-switch">
+                    <input
+                        type="checkbox"
+                        [checked]="use100PercentStackedMode"
+                        (change)="togglePercentageMode($any($event.target).checked)"
+                    />100% mode
+                </label>
+                <label class="sc-switch">
+                    <input type="checkbox" [checked]="areDataLabelsVisible" (change)="toggleDataLabels()" />Show data
+                    labels
+                </label>
             </div>
-            <scichart-angular [initChart]="drawExample" (onInit)="onInit($event)" style="flex: 1; flex-basis: 50%;">
-            </scichart-angular>
+            <scichart-angular [initChart]="drawExample" (onInit)="onInit($event)"></scichart-angular>
         </div>
     `,
 })

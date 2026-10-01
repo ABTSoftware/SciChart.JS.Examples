@@ -3,14 +3,7 @@ import fs from "fs";
 
 import { TExampleInfo } from "../../../components/AppRouter/examplePages";
 import { NotFoundError } from "../../Errors";
-import {
-    IFiles,
-    includeImportedModules,
-    includeExternalModules,
-    commonFiles,
-    csStyles,
-    SandboxConfig,
-} from "./sandboxDependencyUtils";
+import { IFiles, includeExternalModules, commonFiles, csStyles, SandboxConfig } from "./sandboxDependencyUtils";
 import { SCICHART_ANCHOR, SCICHART_VERSION } from "./constants";
 
 const pj = require("../../../../package.json");
@@ -35,9 +28,8 @@ export const getAngularSandBoxConfig = async (
     let code = await getAngularSrc(folderPath);
 
     let files: IFiles = {};
-    await includeImportedModules(folderPath, files, code, true, true, baseUrl);
 
-    code = await includeExternalModules(folderPath, folderPath, files, code, true, true);
+    code = await includeExternalModules(folderPath, folderPath, files, code, true, true, baseUrl);
     code = code.replace(/(\.\/)/g, "../");
     files = {
         ...commonFiles,

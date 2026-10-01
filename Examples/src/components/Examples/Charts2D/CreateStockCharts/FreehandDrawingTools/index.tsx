@@ -1,3 +1,4 @@
+import "./styles.css";
 import * as React from "react";
 import { DeleteSweepIcon, GestureIcon, SaveAltIcon } from "../../../icons";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
@@ -64,25 +65,16 @@ export default function FreehandDrawingTools() {
 
     return (
         <div className="sc-chart-wrapper">
-            <div style={{ flex: 1, minWidth: 0, display: "flex", position: "relative" }}>
-                <SciChartReact
-                    style={{ flex: 1 }}
-                    initChart={drawExample}
-                    onInit={(result: TResolvedReturnType<typeof drawExample>) => {
-                        controlsRef.current = result;
-                        result.startDrawing("editableOutline", color);
-                    }}
-                />
+            <header className="sc-toolbar-row">
                 <button
-                    className="sc-button sc-button-icon sc-overlay-button"
+                    className="sc-button sc-button-icon"
                     aria-label="Drawing color"
                     title="Drawing color"
+                    aria-expanded={!!colorAnchor}
                     onClick={(e) => setColorAnchor(colorAnchor ? null : e.currentTarget)}
                     type="button"
                 >
-                    <span
-                        style={{ display: "block", width: 20, height: 20, backgroundColor: color, borderRadius: "50%" }}
-                    />
+                    <span style={{ width: 16, height: 16, backgroundColor: color, borderRadius: "var(--radius)" }} />
                 </button>
                 {colorAnchor && (
                     <div
@@ -91,62 +83,59 @@ export default function FreehandDrawingTools() {
                         role="group"
                         aria-label="Drawing colors"
                         style={{
-                            left: colorAnchor.getBoundingClientRect().right + 8,
-                            top: colorAnchor.getBoundingClientRect().top + colorAnchor.offsetHeight / 2,
+                            left: colorAnchor.getBoundingClientRect().left,
+                            top: colorAnchor.getBoundingClientRect().bottom + 4,
                         }}
                     >
                         {COLOR_PALETTE.map((c) => (
                             <button
                                 key={c}
                                 type="button"
+                                className="sc-button sc-button-icon"
                                 aria-label={`Choose color ${c}`}
+                                aria-pressed={c === color}
                                 onClick={() => handleSelectColor(c)}
-                                style={{
-                                    width: 20,
-                                    height: 20,
-                                    borderRadius: "50%",
-                                    backgroundColor: c,
-                                    border: c === color ? "2px solid #ffffff" : "2px solid transparent",
-                                    cursor: "pointer",
-                                    padding: 0,
-                                }}
-                                className="sc-button sc-color-swatch"
+                                style={{ backgroundColor: c }}
                             />
                         ))}
                     </div>
                 )}
                 <button
-                    className="sc-button sc-button-icon sc-overlay-button"
+                    className="sc-button sc-button-icon"
                     aria-label="Draw freehand"
                     title="Toggle draw / select"
+                    aria-pressed={isDrawing}
                     onClick={toggleDrawing}
                     type="button"
                 >
-                    <GestureIcon fontSize="small" />
+                    <GestureIcon />
                 </button>
                 <button
-                    className="sc-button sc-button-icon sc-overlay-button"
+                    className="sc-button sc-button-icon sc-button-destructive"
                     aria-label="Delete all annotations"
                     title="Delete all annotations"
                     onClick={() => controlsRef.current?.clear()}
                     type="button"
                 >
-                    <DeleteSweepIcon fontSize="small" />
+                    <DeleteSweepIcon />
                 </button>
                 <button
-                    className="sc-button sc-button-icon sc-overlay-button"
+                    className="sc-button sc-button-icon"
                     aria-label="Log annotation points JSON to console"
                     title="Log annotation points JSON to console"
-                    onClick={() => {
-                        const data = controlsRef.current?.exportAnnotations() ?? [];
-                        // eslint-disable-next-line no-console
-                        console.log(JSON.stringify(data, null, 2));
-                    }}
+                    onClick={() => console.log(JSON.stringify(controlsRef.current?.exportAnnotations() ?? [], null, 2))}
                     type="button"
                 >
-                    <SaveAltIcon fontSize="small" />
+                    <SaveAltIcon />
                 </button>
-            </div>
+            </header>
+            <SciChartReact
+                initChart={drawExample}
+                onInit={(result: TResolvedReturnType<typeof drawExample>) => {
+                    controlsRef.current = result;
+                    result.startDrawing("editableOutline", color);
+                }}
+            />
         </div>
     );
 }

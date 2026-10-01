@@ -1,53 +1,37 @@
 # Example UI and layout contract
 
-## Goal
+The 181 demos use native HTML controls and a small shared stylesheet. Controls follow shadcn's neutral appearance without adding Tailwind, a component library, or a runtime. Chart setup stays in `drawExample.ts`.
 
-Keep example controls and chart layout framework-neutral. A demo should use ordinary HTML with shared CSS classes so its markup can move between React, vanilla JavaScript, and Angular without changing `drawExample.ts`.
+## Layout
 
-## Inventory
+-   `.sc-chart-wrapper` owns chart sizing, positioning and overflow.
+-   A direct `.sc-toolbar-row` child creates a column layout: toolbar first, chart content filling the remaining space. The toolbar uses consistent padding, left alignment and horizontal scrolling on narrow screens.
+-   Join related actions or mutually exclusive choices with `.sc-button-group`, `role="group"` and an accessible name. Use `aria-pressed` for selection; independent on/off settings use switches.
+-   Keep the small Tailwind-like utilities (`flex`, `flex-col`, `gap-2`, `w-full`, `ml-auto`, etc.) for composition. Chart-specific grids and overlays stay local.
 
-The current examples tree has 181 demo `index.tsx` files and one shared `FloatingPanel` component. Each demo now uses `sc-chart-wrapper` as its chart container. The examples use native buttons, button groups, checkboxes, switches, selects, text and number inputs, color inputs, and range inputs; chart-specific editors and dialogs remain local to the demo.
+## Controls
 
-## Layout contract
+| Control                                | Classes                                                |
+| -------------------------------------- | ------------------------------------------------------ |
+| Default button                         | `sc-button`                                            |
+| Outline button                         | `sc-button sc-button-outline`                          |
+| Destructive action                     | `sc-button sc-button-destructive`                      |
+| Icon button                            | `sc-button sc-button-icon`, with an accessible name    |
+| Horizontal group                       | `sc-button-group` containing buttons directly          |
+| Vertical group                         | `sc-button-group flex-col` containing buttons directly |
+| Checkbox                               | Native checkbox with `sc-checkbox`, inside a label     |
+| Switch                                 | `sc-switch` label containing a native checkbox         |
+| Select                                 | Native select with `sc-select`                         |
+| Text, number, color or multiline input | Native input or textarea with `sc-input`               |
+| Slider                                 | Native range input with `sc-range`                     |
+| Label and control                      | `sc-control`                                           |
 
-- `.sc-chart-wrapper` is the only shared chart container class. It owns the chart area's size, positioning, overflow, and chart touch behavior.
-- A direct `.sc-toolbar-row` child opts the wrapper into the standard toolbar layout. CSS places that row first and lets the other direct children fill the remaining height. The markup does not need a toolbar modifier on the wrapper.
-- `.sc-toolbar-row` uses shared padding and gap, stays at a consistent minimum height, and scrolls horizontally when controls do not fit. One child stays left-aligned; two or more direct children are distributed across the row by CSS, so markup does not need a spacing utility.
-- Use `.sc-button-group` inside the row to join related buttons. Keep chart-specific grids and overlays explicit; do not add wrapper variants to support isolated layouts.
-- Use small unprefixed utilities from `sc-ui.css` for common composition (`flex`, `flex-col`, `flex-wrap`, `flex-1`, `w-full`, `h-full`). Component classes keep the `sc-` prefix.
+Buttons have a 40px minimum height; icon buttons are 40×40px. Text inputs and selects use a 36px height. All configurable corner radii derive from `--radius`; circular thumbs retain their circular shape. Keep labels, native validation, values, keyboard behavior and disabled states in markup. Use inline styles for dynamic chart colors and chart-specific geometry only. Native sliders need only `sc-range`; keep their styling in CSS, without per-input styling helpers.
 
-## Control contract
+## Styles and export
 
-| Control                      | Markup classes                                                                               |
-| ---------------------------- | -------------------------------------------------------------------------------------------- |
-| Button                       | `.sc-button` plus an optional variant such as `.sc-button-primary` or `.sc-button-secondary` |
-| Joined buttons               | `.sc-button-group` around `.sc-button` elements; use `aria-pressed` for selected state       |
-| Checkbox or radio            | Native input with `.sc-checkbox` or `.sc-radio`                                              |
-| Switch                       | Native checkbox styled with `.sc-switch`                                                     |
-| Select                       | Native `<select class="sc-select">`                                                          |
-| Text, number, or color input | Native input with `.sc-input`                                                                |
-| Range                        | Native `<input type="range" class="sc-range">`                                               |
-| Related controls             | `.sc-control` and `.sc-control-row` where they describe the markup clearly                   |
+`styles/sc-ui.css` contains recurring controls, layout utilities and theme tokens. It reads the gallery's `--text` and `--bg` values, with standalone light/dark fallbacks. Dialogs shared by four demos remain here; specialized menus, accordions, floating panels and medical cards have local CSS imported by their owners. There is no ripple script or MUI/SCSS dependency in exported example UI.
 
-Keep labels, `id`/`htmlFor`, native values, constraints, and accessibility attributes in the HTML. Use native state and framework bindings for behavior; CSS supplies presentation only.
+The exporter follows relative imports and re-exports recursively, preserves helper directories and copies local CSS. The CSS postprocessor scans every exported TS/JS/HTML file, retains used selector alternatives and native states, and keeps transitive custom-property dependencies, including those referenced by local CSS. Source-viewer tabs preserve relative paths so matching filenames remain distinct.
 
-## Stylesheet responsibilities
-
-- `sc-ui.css` contains reusable controls, small unprefixed layout utilities, theme tokens, and a centered CSS-only ripple for copied demos.
-- The shared chart wrapper and toolbar layout now live in `sc-ui.css`; the unused example stylesheet was removed.
-- `sc-ui-ripple.css` and the app-level `sc-ripple.ts` provide pointer-origin ripple placement in the live site. The CSS-only fallback stays centered so an exported demo needs no event listener.
-- Theme-aware controls read the existing `--bg`, `--text`, `--bg-toolbars`, and related theme variables. Fallbacks are defined once in the stylesheet root.
-- Use native CSS nesting. Do not add SASS-only syntax, MUI selectors, or double-dash component modifiers to these CSS files.
-
-## Migration rule
-
-When updating an example, prefer the shared classes over inline control styles or per-demo wrappers. Keep inline styles only for values that are genuinely data-driven or chart-specific, such as a generated color, a plot overlay position, or grid sizing unique to that demo. Do not change chart setup or `drawExample.ts` to fit the UI contract.
-
-## Review checklist
-
-- Every example chart container uses `.sc-chart-wrapper`.
-- A toolbar is a direct `.sc-toolbar-row` child of that wrapper; the wrapper needs no toolbar modifier.
-- Toolbar controls remain left-aligned with the standard padding, gap, and fixed height.
-- Component selectors use `sc-` names; utility classes stay short and unprefixed.
-- Dark, light, and standalone theme modes keep controls readable.
-- Exported markup needs only HTML, CSS, and the chosen framework's ordinary event bindings.
+Run `npm run checkExampleUi` in `Examples` to check all 181 demos and their available framework variants, copied import paths, class coverage, selector pruning and stylesheet idempotence. Run `npx tsc --noEmit` for the application typecheck. The checker reports shared CSS size and the median and largest exported subsets.

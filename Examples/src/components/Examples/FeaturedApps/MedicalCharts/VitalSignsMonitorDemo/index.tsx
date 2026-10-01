@@ -3,6 +3,8 @@ import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 
+import "./styles.css";
+
 // REACT COMPONENT
 export default function VitalSignsMonitorDemo() {
     const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
@@ -15,7 +17,7 @@ export default function VitalSignsMonitorDemo() {
 
     return (
         <div className="sc-chart-wrapper">
-            <div style={{ display: "flex", height: "100%" }}>
+            <div className="flex h-full">
                 <SciChartReact
                     className="sc-vitals"
                     initChart={drawExample}

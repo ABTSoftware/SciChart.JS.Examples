@@ -1,14 +1,7 @@
 import path from "path";
 import fs from "fs";
 import { TExampleInfo } from "../../../components/AppRouter/examplePages";
-import {
-    SandboxConfig,
-    IFiles,
-    includeImportedModules,
-    includeExternalModules,
-    commonFiles,
-    csStyles,
-} from "./sandboxDependencyUtils";
+import { SandboxConfig, IFiles, includeExternalModules, commonFiles, csStyles } from "./sandboxDependencyUtils";
 import { SCICHART_ANCHOR, SCICHART_VERSION } from "./constants";
 
 const pj = require("../../../../package.json");
@@ -21,8 +14,7 @@ export const getReactSandBoxConfig = async (
     const tsPath = path.join(folderPath, "index.tsx");
     let code = await fs.promises.readFile(tsPath, "utf8");
     let files: IFiles = {};
-    await includeImportedModules(folderPath, files, code, true, true, baseUrl);
-    code = await includeExternalModules(folderPath, folderPath, files, code, true, true);
+    code = await includeExternalModules(folderPath, folderPath, files, code, true, true, baseUrl);
     // console.log("creating sandbox", currentExample.title, currentExample.path.replace("/", ""));
     // for (const f in files) {
     //    console.log(f);

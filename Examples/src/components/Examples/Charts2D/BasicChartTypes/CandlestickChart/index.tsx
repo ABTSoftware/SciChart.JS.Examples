@@ -30,7 +30,7 @@ export default function CandlestickChart() {
     return (
         <div className="sc-chart-wrapper">
             <header className="sc-toolbar-row">
-                <div className="sc-button-group" role="group" aria-label="small outlined button group">
+                <div className="sc-button-group" role="group" aria-label="Series type">
                     <button
                         type="button"
                         className="sc-button"

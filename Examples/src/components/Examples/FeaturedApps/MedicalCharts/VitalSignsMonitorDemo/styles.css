@@ -1,0 +1,31 @@
+.sc-vitals {
+    flex: 1;
+    min-width: 0;
+}
+.sc-vitals-cards {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 4px;
+}
+.sc-vitals-card {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 8px;
+    border-radius: var(--radius);
+}
+.sc-vitals-title {
+    flex: 1;
+    font-size: clamp(12px, 2vw, 20px);
+    font-weight: 600;
+}
+.sc-vitals-value {
+    margin-left: auto;
+    font-size: clamp(20px, 3vw, 40px);
+    font-variant-numeric: tabular-nums;
+}
+.sc-vitals-details,
+.sc-vitals-meta {
+    font-size: clamp(10px, 1.5vw, 14px);
+}

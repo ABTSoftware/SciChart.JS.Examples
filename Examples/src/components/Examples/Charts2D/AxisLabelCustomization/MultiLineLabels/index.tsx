@@ -36,7 +36,7 @@ export default function MultiLineLabels() {
     return (
         <div className="sc-chart-wrapper">
             <header className="sc-toolbar-row">
-                <div className="sc-button-group" role="group" aria-label="small outlined button group">
+                <div className="sc-button-group" role="group" aria-label="Label layout">
                     <button
                         type="button"
                         className="sc-button"

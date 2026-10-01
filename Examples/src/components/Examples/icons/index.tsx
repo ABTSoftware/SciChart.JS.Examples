@@ -30,11 +30,7 @@ export const PauseIcon = (props: IconProps) => (
         <path d="M6 5h4v14H6zm8 0h4v14h-4z" />
     </Icon>
 );
-export const StopIcon = (props: IconProps) => (
-    <Icon {...props}>
-        <path d="M6 6h12v12H6z" />
-    </Icon>
-);
+export const StopIcon = PauseIcon;
 export const RefreshIcon = (props: IconProps) => (
     <Icon {...props}>
         <path d="M17.65 6.35A7.95 7.95 0 0 0 12 4a8 8 0 1 0 7.93 9h-2.02A6 6 0 1 1 12 6c1.66 0 3.14.69 4.22 1.78L13 11h7V4z" />

@@ -3,8 +3,6 @@ import { drawExample } from "./drawExample";
 import { useState } from "react";
 import { EPolarLabelMode } from "scichart";
 
-import { appTheme } from "../../../theme";
-
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
@@ -28,9 +26,9 @@ export default function ChartComponent() {
     };
 
     return (
-        <div className="sc-chart-wrapper" style={{ background: appTheme.DarkIndigo }}>
+        <div className="sc-chart-wrapper">
             <header className="sc-toolbar-row">
-                <div className="sc-button-group" role="group" aria-label="small outlined button group">
+                <div className="sc-button-group" role="group" aria-label="Polar label mode">
                     {Object.keys(EPolarLabelMode).map((key) => (
                         <button
                             type="button"
@@ -44,9 +42,10 @@ export default function ChartComponent() {
                     ))}
                 </div>
 
-                <button className="sc-button" onClick={() => handleToggleIsInnerAxis()} type="button">
-                    <strong>isInnerAxis</strong>: {isInnerAxis ? "true" : "false"}
-                </button>
+                <label className="sc-switch">
+                    <input type="checkbox" role="switch" checked={isInnerAxis} onChange={handleToggleIsInnerAxis} />
+                    Inner axis
+                </label>
             </header>
             <SciChartReact
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {

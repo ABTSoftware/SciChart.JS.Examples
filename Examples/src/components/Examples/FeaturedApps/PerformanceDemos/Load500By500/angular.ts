@@ -16,8 +16,8 @@ import { drawExample, TTimeSpan } from "./drawExample";
             ></scichart-angular>
             <header class="sc-toolbar-row">
                 <button (click)="reloadPoints()" class="sc-button">Reload Test</button>
-                <div *ngIf="timeSpans.length > 0" class="sc-toolbar-status sc-alert sc-notification">
-                    <strong class="sc-notification-title">Performance Results</strong>
+                <div *ngIf="timeSpans.length > 0" class="flex-1">
+                    <strong>Performance Results</strong>
                     <div *ngFor="let ts of timeSpans">{{ ts.title }}: {{ ts.durationMs.toFixed(0) }} ms</div>
                 </div>
             </header>

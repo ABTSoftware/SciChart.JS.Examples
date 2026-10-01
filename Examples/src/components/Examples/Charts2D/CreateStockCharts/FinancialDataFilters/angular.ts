@@ -11,15 +11,44 @@ type TChartApi = Awaited<ReturnType<typeof drawExample>>;
     imports: [ScichartAngularComponent],
     selector: "app-financial-data-filters",
     template: `
-        <div style="position: relative; width: 100%; height: 100%;">
-            <div style="position: absolute; z-index: 1; top: 10px; left: 12px;">
-                <button (click)="setFilterMode('source')" class="sc-button">No Filter</button>
-                <button (click)="setFilterMode('heikinAshi')" class="sc-button">Heikin-Ashi</button>
-                <button (click)="setFilterMode('renko')" class="sc-button">Renko</button>
-                <button (click)="setFilterMode('pointAndFigure')" class="sc-button">Point & Figure</button>
+        <div class="sc-chart-wrapper">
+            <div class="sc-toolbar-row">
+                <div class="sc-button-group" role="group" aria-label="Data filter">
+                    <button
+                        type="button"
+                        (click)="setFilterMode('source')"
+                        [attr.aria-pressed]="filterMode === 'source'"
+                        class="sc-button"
+                    >
+                        No filter
+                    </button>
+                    <button
+                        type="button"
+                        (click)="setFilterMode('heikinAshi')"
+                        [attr.aria-pressed]="filterMode === 'heikinAshi'"
+                        class="sc-button"
+                    >
+                        Heikin-Ashi
+                    </button>
+                    <button
+                        type="button"
+                        (click)="setFilterMode('renko')"
+                        [attr.aria-pressed]="filterMode === 'renko'"
+                        class="sc-button"
+                    >
+                        Renko
+                    </button>
+                    <button
+                        type="button"
+                        (click)="setFilterMode('pointAndFigure')"
+                        [attr.aria-pressed]="filterMode === 'pointAndFigure'"
+                        class="sc-button"
+                    >
+                        Point &amp; figure
+                    </button>
+                </div>
             </div>
-            <scichart-angular [initChart]="drawExample" (onInit)="onInit($event)" style="width: 100%; height: 100%;">
-            </scichart-angular>
+            <scichart-angular [initChart]="drawExample" (onInit)="onInit($event)"></scichart-angular>
         </div>
     `,
 })
