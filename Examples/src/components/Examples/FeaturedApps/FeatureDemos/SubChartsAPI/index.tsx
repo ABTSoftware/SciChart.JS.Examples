@@ -1,32 +1,8 @@
-import { CSSProperties, useRef, useState } from "react";
-import { PlayArrowIcon, PauseIcon, SettingsIcon, CloseIcon } from "../../../icons";
+import { useRef, useState } from "react";
+import { PlayArrowIcon, StopIcon, SettingsIcon, CloseIcon } from "../../../icons";
 import { BodyPortal } from "../../../Portal";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawGridExample, TMessage } from "./drawExample";
-
-const styles: Record<string, CSSProperties> = {
-    infoBlock: {
-        display: "flex",
-        flex: "auto",
-        flexBasis: "20%",
-        gap: "8px",
-        marginRight: "8px",
-    },
-    infoItem: {
-        padding: "0.4em",
-        textAlign: "end",
-        flex: "none",
-        width: "16%",
-        fontSize: "0.8em",
-        textWrap: "nowrap",
-    },
-    configButtonWrapperStyle: {
-        gridArea: "1 / 1 / 2 / 2",
-        pointerEvents: "none",
-        touchAction: "none",
-        zIndex: 2,
-    },
-};
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
@@ -105,10 +81,18 @@ export default function SubchartsGrid() {
                     }}
                     type="button"
                 >
-                    {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
+                    {isStarted ? <StopIcon /> : <PlayArrowIcon />}
                 </button>
 
-                <div style={styles.configButtonWrapperStyle} title="Chart Configurations">
+                <div
+                    style={{
+                        gridArea: "1 / 1 / 2 / 2",
+                        pointerEvents: "none",
+                        touchAction: "none",
+                        zIndex: 2,
+                    }}
+                    title="Chart Configurations"
+                >
                     <button
                         className="sc-button sc-button-icon"
                         aria-label="Chart configurations"
@@ -120,9 +104,27 @@ export default function SubchartsGrid() {
                     {configurationDialog}
                 </div>
 
-                <div style={styles.infoBlock}>
+                <div
+                    style={{
+                        display: "flex",
+                        flex: "auto",
+                        flexBasis: "20%",
+                        gap: "8px",
+                        marginRight: "8px",
+                    }}
+                >
                     {messages.map((msg, index) => (
-                        <div key={index} style={styles.infoItem}>
+                        <div
+                            key={index}
+                            style={{
+                                padding: "0.4em",
+                                textAlign: "end",
+                                flex: "none",
+                                width: "16%",
+                                fontSize: "0.8em",
+                                textWrap: "nowrap",
+                            }}
+                        >
                             <div>{msg.title}</div>
                             <div>{msg.detail}</div>
                         </div>

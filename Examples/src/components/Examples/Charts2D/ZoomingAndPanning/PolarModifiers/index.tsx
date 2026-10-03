@@ -60,38 +60,20 @@ export default function ChartComponent() {
 
     return (
         <div className="sc-chart-wrapper">
-            <div
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                }}
-            >
+            <div className="flex w-full h-full">
                 <div
+                    className="flex flex-col h-full gap-3 p-2 relative"
                     style={{
-                        height: "100%",
                         maxWidth: "40%",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        gap: 10,
-                        padding: 10,
-                        position: "relative",
                         overflowY: "auto",
                     }}
                 >
-                    <h3>Polar Modifiers:</h3>
+                    <h2>&nbsp;Polar Modifiers:</h2>
 
                     {Object.values(ALL_POLAR_MODIFIER_TYPES).map((type) => (
                         <div
                             key={type}
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                width: "100%",
-                                gap: 10,
-                                paddingRight: 10,
-                            }}
+                            className="flex items-center w-full gap-2"
                         >
                             <input
                                 type="checkbox"

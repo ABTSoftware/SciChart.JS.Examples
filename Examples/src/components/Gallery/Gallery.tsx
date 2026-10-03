@@ -1,6 +1,7 @@
 import * as React from "react";
 import GalleryList from "./GalleryList/GalleryList";
-import { useMediaQuery, useTheme } from "@mui/material"; // Use MUI's responsive hooks
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles"; // Use MUI's responsive hooks
 import classes from "./Gallery.module.scss";
 import { GalleryItem } from "../../helpers/types/types";
 

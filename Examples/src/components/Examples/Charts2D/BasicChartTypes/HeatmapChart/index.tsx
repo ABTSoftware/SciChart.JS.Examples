@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { PlayArrowIcon, PauseIcon } from "../../../icons";
+import { PlayArrowIcon, StopIcon } from "../../../icons";
 
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { appTheme } from "../../../theme";
@@ -15,7 +15,7 @@ export default function HeatmapChart() {
 
     return (
         <ChartGroupLoader className="sc-chart-wrapper">
-            <header className="sc-toolbar-row">
+            <header className="sc-toolbar-row monospace">
                 <button
                     className="sc-button sc-button-icon"
                     aria-label={isStarted ? "Pause updates" : "Start updates"}
@@ -30,16 +30,12 @@ export default function HeatmapChart() {
                     }}
                     type="button"
                 >
-                    {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
+                    {isStarted ? <StopIcon /> : <PlayArrowIcon />}
                 </button>
 
-                <div>
-                    # Heatmap Size: {stats.xSize} x {stats.ySize}
-                </div>
+                <div># Heatmap Size: {stats.xSize} x {stats.ySize}</div>
 
-                <div>
-                    FPS: {stats.fps.toFixed(0).padStart(2, "0")}&nbsp;
-                </div>
+                <div>FPS: {stats.fps.toFixed(0).padStart(2, "0")}&nbsp;</div>
             </header>
             <div style={{ position: "relative" }}>
                 <SciChartReact

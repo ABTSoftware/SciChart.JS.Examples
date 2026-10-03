@@ -41,7 +41,7 @@ export const getReactSandBoxConfig = async (
                     "react-scripts": "5.0.1",
                     scichart: pj.dependencies.scichart,
                     "scichart-react": pj.dependencies["scichart-react"],
-                    typescript: pj.devDependencies.typescript,
+                    typescript: pj.dependencies.typescript,
                     ...currentExample.extraDependencies,
                     "@types/react": pj.dependencies["@types/react"],
                     "@types/react-dom": pj.dependencies["@types/react-dom"],

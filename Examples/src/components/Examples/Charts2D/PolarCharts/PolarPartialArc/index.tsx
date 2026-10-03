@@ -54,7 +54,7 @@ export default function ChartComponent() {
                     {isAnimating ? <StopIcon /> : <PlayArrowIcon />}
                 </button>
 
-                <label className="sc-control flex-col flex-1" style={{ gap: 0 }}>
+                <label className="sc-control flex-col flex-1 gap-0">
                     <span>
                         Inner Radius: <strong>{innerRadius.toFixed(3)}</strong>
                     </span>
@@ -66,11 +66,11 @@ export default function ChartComponent() {
                         step={0.001}
                         value={innerRadius}
                         onChange={(e) => changeInnerRadius(parseFloat(e.target.value))}
-                        className="sc-range"
+                        className="sc-range -mt-1"
                     />
                 </label>
 
-                <label className="sc-control flex-col flex-1" style={{ gap: 0 }}>
+                <label className="sc-control flex-col flex-1 gap-0">
                     <span>
                         Total Angle: <strong>{(totalAngle / Math.PI).toFixed(3)} * π</strong> or{" "}
                         <strong>{totalAngle.toFixed(3)}</strong>
@@ -83,7 +83,7 @@ export default function ChartComponent() {
                         step={0.001}
                         value={totalAngle}
                         onChange={(e) => changeTotalAngle(parseFloat(e.target.value))}
-                        className="sc-range"
+                        className="sc-range -mt-1"
                     />
                 </label>
             </header>

@@ -12,9 +12,8 @@ export interface IFiles {
 const folderPath = path.join(__dirname, "Examples");
 
 export let csStyles: IFiles;
-export const loadStyles = async () => {
+export const loadStyles = async (stylesPath = path.join(folderPath, "styles")) => {
     if (!csStyles) {
-        const stylesPath = path.join(folderPath, "styles");
         const ui = await fs.promises.readFile(path.join(stylesPath, "sc-ui.css"), "utf8");
         csStyles = {
             "src/index.css": { content: ui, isBinary: false },

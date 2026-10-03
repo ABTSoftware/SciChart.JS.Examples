@@ -1,3 +1,4 @@
+import { baseAppPath } from "../../constants";
 import { FC, useContext, useEffect, useState } from "react";
 import {
     EPageFramework,
@@ -22,7 +23,7 @@ import { ExamplesSubtitle } from "./ExamplesSubtitle";
 import { SourceFilesContext } from "./SourceFilesLoading/SourceFilesContext";
 import type { StackBlitzResponse } from "../../helpers/types/types";
 import { ToolbarGroup } from "../buttons/Toolbar";
-import { Tooltip } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
@@ -85,7 +86,10 @@ const AppDetailsRouter: FC<TProps> = (props) => {
         setProjectFiles(null);
         setSandboxFramework(null);
 
-        fetch("source/" + currentExample.path + "?framework=" + selectedFramework)
+        const controller = new AbortController();
+        fetch(`${baseAppPath}/source/${currentExample.path}?framework=${selectedFramework}`, {
+            signal: controller.signal,
+        })
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
@@ -100,7 +104,11 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                 setSelectedFile({ name: defaultFile.name, content: defaultFile.content });
                 setSourceFiles(json.files);
                 setSourceFramework(json.framework);
+            })
+            .catch((error) => {
+                if (error.name !== "AbortError") console.error("Unable to load example source", error);
             });
+        return () => controller.abort();
     }, [currentExample, selectedFramework]);
 
     useEffect(() => {

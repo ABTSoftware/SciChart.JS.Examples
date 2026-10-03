@@ -25,7 +25,7 @@ const ChartHeader = () => {
         <header className="sc-toolbar-row">
             <label className="sc-switch">
                 <input type="checkbox" checked={useDateFns} onChange={handleToggle} />
-                Use "date-fns" for X-Axis format
+                Use "date-fns" formatting for X-Axis
             </label>
         </header>
     );

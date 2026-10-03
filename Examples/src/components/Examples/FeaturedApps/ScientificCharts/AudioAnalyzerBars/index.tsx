@@ -8,7 +8,7 @@ export default function AudioAnalyzer() {
     const controlsRef = React.useRef<ReturnType<typeof chartsInitializationAPI.onAllChartsInit>>(undefined);
 
     return (
-        <div style={{ background: appTheme.Background }} className="sc-chart-wrapper">
+        <div className="sc-chart-wrapper">
             <div
                 style={{
                     width: "100%",

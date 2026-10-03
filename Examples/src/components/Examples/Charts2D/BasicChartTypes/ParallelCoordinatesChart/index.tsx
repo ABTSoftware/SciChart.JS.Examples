@@ -36,7 +36,10 @@ const modes: { value: TChartMode; label: string; selectionLabel: string }[] = [
     },
 ];
 
-const leftDragTools: { value: Exclude<TLeftDragTool, "none">; label: string }[] = [
+const leftDragTools: {
+    value: Exclude<TLeftDragTool, "none">;
+    label: string;
+}[] = [
     { value: "pan", label: "Pan" },
     { value: "zoom", label: "Rubber-band zoom" },
     { value: "reorder", label: "Reorder axes" },
@@ -44,26 +47,6 @@ const leftDragTools: { value: Exclude<TLeftDragTool, "none">; label: string }[] 
 ];
 
 const sidebarWidth = 240;
-
-const headerStyle: React.CSSProperties = {
-    flexShrink: 0,
-    padding: "10px 16px",
-    fontWeight: 600,
-    fontSize: 14,
-    letterSpacing: 0.3,
-    textTransform: "uppercase",
-    borderBottom: "1px solid rgba(255,255,255,0.15)",
-    background: "var(--sc-background)",
-};
-
-const captionStyle: React.CSSProperties = {
-    // Sits inside the checkbox list, so it only needs to make up the checkbox's own padding to line up.
-    padding: "12px 0 2px",
-    fontSize: 11,
-    letterSpacing: 0.4,
-    textTransform: "uppercase",
-    color: "var(--sc-text)",
-};
 
 type TCheckboxRowProps = {
     checked: boolean;
@@ -107,11 +90,17 @@ export default function ParallelCoordinatesChart() {
             controlsRef.current = undefined;
             if (mode === "single") {
                 const result = await drawSingleSeriesExample(rootElement, interpolate);
-                controlsRef.current = { ...result, selectionModifier: result.recordSelectionModifier };
+                controlsRef.current = {
+                    ...result,
+                    selectionModifier: result.recordSelectionModifier,
+                };
                 return result;
             }
             const result = await drawMultiSeriesExample(rootElement, interpolate);
-            controlsRef.current = { ...result, selectionModifier: result.seriesSelectionModifier };
+            controlsRef.current = {
+                ...result,
+                selectionModifier: result.seriesSelectionModifier,
+            };
             return result;
         },
         [mode, interpolate]
@@ -133,7 +122,20 @@ export default function ParallelCoordinatesChart() {
                         color: "var(--sc-text)",
                     }}
                 >
-                    <div style={headerStyle}>Chart Variant</div>
+                    <div
+                        style={{
+                            flexShrink: 0,
+                            padding: "10px 16px",
+                            fontWeight: 600,
+                            fontSize: 14,
+                            letterSpacing: 0.3,
+                            textTransform: "uppercase",
+                            borderBottom: "1px solid rgba(255,255,255,0.15)",
+                            background: "var(--sc-background)",
+                        }}
+                    >
+                        Chart Variant
+                    </div>
                     <div className="sc-button-group flex-col">
                         {modes.map((item) => (
                             <button
@@ -149,7 +151,20 @@ export default function ParallelCoordinatesChart() {
                         ))}
                     </div>
 
-                    <div style={headerStyle}>Interactions</div>
+                    <div
+                        style={{
+                            flexShrink: 0,
+                            padding: "10px 16px",
+                            fontWeight: 600,
+                            fontSize: 14,
+                            letterSpacing: 0.3,
+                            textTransform: "uppercase",
+                            borderBottom: "1px solid rgba(255,255,255,0.15)",
+                            background: "var(--sc-background)",
+                        }}
+                    >
+                        Interactions
+                    </div>
                     <div
                         style={{
                             display: "flex",
@@ -166,7 +181,18 @@ export default function ParallelCoordinatesChart() {
                         />
                         <CheckboxRow checked={cursorEnabled} onChange={setCursorEnabled} label="Cursor tooltip" />
 
-                        <div style={captionStyle}>Left-drag &mdash; one at a time</div>
+                        <div
+                            style={{
+                                // Sits inside the checkbox list, so it only needs to make up the checkbox's own padding to line up.
+                                padding: "12px 0 2px",
+                                fontSize: 11,
+                                letterSpacing: 0.4,
+                                textTransform: "uppercase",
+                                color: "var(--sc-text)",
+                            }}
+                        >
+                            Left-drag &mdash; one at a time
+                        </div>
                         {leftDragTools.map((tool) => (
                             <CheckboxRow
                                 key={tool.value}

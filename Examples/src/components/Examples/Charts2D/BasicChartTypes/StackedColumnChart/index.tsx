@@ -47,7 +47,12 @@ export default function StackedColumnChart() {
 
                 <label className="sc-control">
                     <span>Label position</span>
-                    <select className="sc-select" value={dataLabelPosition} onChange={handleDataLabelPositionChange}>
+                    <select
+                        className="sc-select"
+                        value={dataLabelPosition}
+                        disabled={!areDataLabelsVisible}
+                        onChange={handleDataLabelPositionChange}
+                    >
                         {Object.values(EColumnDataLabelPosition)
                             .filter((p) => p !== EColumnDataLabelPosition.Position)
                             .map((position) => (
@@ -60,9 +65,10 @@ export default function StackedColumnChart() {
 
                 <label className="sc-switch">
                     <input type="checkbox" checked={areDataLabelsVisible} onChange={handleToggleDataLabels} />
-                    Show Data Labels
+                    Show Labels
                 </label>
             </header>
+
             <SciChartReact
                 initChart={drawExample}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {

@@ -35,12 +35,12 @@ $drawerWidthDesktop: min(350px, 25vw);
 
 .DrawerDesktop {
     position: sticky;
-    top: 110px;
+    top: 102px;
     order: -1;
     background-color: var(--bg);
     width: $drawerWidthDesktop;
-    max-height: calc(100vh - 128px);
-    margin-right: 15px;
+    max-height: calc(100vh - 116px);
+    margin-right: 10px;
     flex-shrink: 0;
     overflow-x: hidden;
     border: 1px solid var(--border-color);
@@ -104,7 +104,7 @@ $drawerWidthDesktop: min(350px, 25vw);
 
 .mainWrapper {
     display: flex;
-    padding: 20px;
+    padding: 10px;
     background: var(--bg-darker);
     @media only screen and (max-width: 768px) {
         padding: 0;

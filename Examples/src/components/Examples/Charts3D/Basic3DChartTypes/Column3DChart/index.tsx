@@ -67,11 +67,11 @@ export default function Column3DChart() {
                     </select>
                 </label>
 
-                <label className="sc-control flex flex-col">
-                    <span>Data-point width {dataPointWidth}</span>
+                <label className="sc-control flex flex-col gap-0">
+                    <span>Data-point width: {dataPointWidth.toFixed(2)}</span>
                     <input
                         type="range"
-                        className="sc-range"
+                        className="sc-range -mt-1"
                         id="seriesCount"
                         onChange={(event) => handleDataPointWidthChange(event, event.currentTarget.valueAsNumber)}
                         step={0.05}

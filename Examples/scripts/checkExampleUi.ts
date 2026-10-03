@@ -135,6 +135,41 @@ const main = async () => {
 
     const root = path.resolve(__dirname, "../src/components/Examples");
     const uiCss = await fs.readFile(path.join(root, "styles/sc-ui.css"), "utf8");
+    // Exercise the example's actual label-position callback at both plot edges.
+    {
+        const source = await fs.readFile(path.join(root, "Charts2D/TooltipsAndHittest/DatapointSelection/drawExample.ts"), "utf8");
+        const ast = ts.createSourceFile("drawExample.ts", source, ts.ScriptTarget.Latest, true);
+        let factory: ts.Expression | undefined;
+        const findFactory = (node: ts.Node) => {
+            if (ts.isVariableDeclaration(node) && node.name.getText(ast) === "getDataLabelProvider") factory = node.initializer;
+            ts.forEachChild(node, findFactory);
+        };
+        findFactory(ast);
+        assert(factory, "Selected-point label factory exists");
+        const exports: Record<string, any> = {};
+        vm.runInNewContext(ts.transpileModule(`exports.create = ${factory.getText(ast)}`, {}).outputText, {
+            exports,
+            appTheme: { ForegroundColor: "white" },
+            Point: class { constructor(public x: number, public y: number) {} },
+            EVerticalTextPosition: { Center: "Center" },
+            LineSeriesDataLabelProvider: class {
+                constructor(options: object) { Object.assign(this, options); }
+                getPosition(state: any) { return { position: { x: state.xCoord(), y: 40 } }; }
+            },
+        });
+        const provider = exports.create();
+        const position = (x: number, width = 100, plotWidth = 500) => provider.getPosition({
+            xCoord: () => x,
+            parentSeries: { pointMarker: { width: 14 }, parentSurface: { seriesViewRect: { width: plotWidth } } },
+        }, { m_fWidth: width }).position;
+        assert.equal(position(200).x, 213, "Normal labels clear the marker by 6px");
+        assert.equal(position(480).x, 367, "Right-edge labels move left with the same gap");
+        assert.equal(position(387).x, 400, "Labels fitting exactly remain on the right");
+        assert.equal(position(80, 100, 180).x, 0, "A tight plot keeps labels within the left edge");
+        assert.equal(position(480).y, 40, "Centered vertical placement is preserved");
+        assert.equal(provider.aboveBelow, false, "Slope must not move the label above or below the point");
+        assert.equal(provider.verticalTextPosition, "Center", "Labels are centered on the point vertically");
+    }
     // Check automatic streaming at the React chart's initialization/cleanup seam.
     {
         const source = await fs.readFile(path.join(root, "FeaturedApps/ShowCases/WebsocketBigData/index.tsx"), "utf8");

@@ -89,7 +89,7 @@ export class AscReader {
 
     private readInt(prefix: string): number {
         const line: string = this.dataLines[this.curParseIndex++];
-        const numberStr: string = line.replace(prefix, "").trim();
+        const numberStr: string = line?.replace(prefix, "").trim();
         return parseInt(numberStr);
     }
 

@@ -3,7 +3,7 @@
     --sc-text: var(--text, #fafafa);
     --sc-background: var(--bg, #09090b);
     --sc-primary: var(--sc-text);
-    --sc-error: #dc2626;
+    --sc-error: #ee6e6c;
     --sc-outline: color-mix(in srgb, var(--sc-text) 18%, var(--sc-background));
     --sc-muted: color-mix(in srgb, var(--sc-text) 8%, var(--sc-background));
     color-scheme: dark;
@@ -55,6 +55,31 @@
     }
 }
 
+.sc-responsive-chart-wrapper {
+    display: flex;
+
+    > :first-child {
+        flex: 7 1 70%;
+        min-width: 0;
+        min-height: 0;
+        box-sizing: border-box;
+    }
+    > :last-child {
+        flex: 3 1 30%;
+        min-width: 16rem;
+        min-height: 0;
+        box-sizing: border-box;
+    }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+
+        > :last-child {
+            min-width: 0;
+        }
+    }
+}
+
 .sc-toolbar-row {
     box-sizing: border-box;
     display: flex;
@@ -64,7 +89,7 @@
     flex: none;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 8px;
     overflow-x: auto;
     padding: 8px;
     border-bottom: 1px solid var(--sc-outline);
@@ -76,6 +101,8 @@
     touch-action: auto;
 
     > * { flex-shrink: 0; }
+    > :is(.sc-switch, .sc-control):first-child { margin-left: 0.5rem; }
+    > :is(.sc-switch, .sc-control):last-child { margin-right: 0.5rem; }
 }
 
 /* Small Tailwind-like utility classes shared by example layouts. */
@@ -98,12 +125,25 @@
 .monospace { font-family: monospace !important; }
 .flex-nowrap { flex-wrap: nowrap !important; }
 .gap-2 { gap: 0.5rem !important; }
+.gap-3 { gap: 0.75rem !important; }
+.p-1 { padding: 0.25rem !important; }
+.p-2 { padding: 0.5rem !important; }
+.px-2 { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
+.gap-0 { gap: 0 !important; }
 .ml-auto { margin-left: auto !important; }
 .mt-auto { margin-top: auto !important; }
 .mb-auto { margin-bottom: auto !important; }
 .mr-auto { margin-right: auto !important; }
+.-mt-1 { margin-top: -0.25rem !important; }
 .pl-4, .px-4 { padding-left: 1rem !important; }
 .pr-4, .px-4 { padding-right: 1rem !important; }
+.relative { position: relative !important; }
+.absolute { position: absolute !important; }
+.text-center { text-align: center !important; }
+.border-r { border-right: 1px solid var(--sc-outline) !important; }
+.border-b { border-bottom: 1px solid var(--sc-outline) !important; }
+.border-t { border-top: 1px solid var(--sc-outline) !important; }
+.border-l { border-left: 1px solid var(--sc-outline) !important; }
 
 
 /* Default, outline, destructive and square icon buttons share one 40px size. */
@@ -140,10 +180,10 @@
     }
 
     &.sc-button-destructive {
-        background: var(--sc-error);
-        color: #fff;
+        background: color-mix(in srgb, var(--sc-error) 20%, black);
+        color: var(--sc-error);
 
-        &:hover:not(:disabled) { background: color-mix(in srgb, var(--sc-error) 85%, black); }
+        &:hover:not(:disabled) { background: color-mix(in srgb, var(--sc-error) 25%, black); }
     }
 
     &.sc-button-icon {

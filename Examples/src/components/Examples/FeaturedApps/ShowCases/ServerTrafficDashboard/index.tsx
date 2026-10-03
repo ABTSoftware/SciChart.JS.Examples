@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SettingsIcon, CloseIcon } from "../../../icons";
 import { BodyPortal } from "../../../Portal";
-import { CSSProperties, ChangeEventHandler, useEffect, useRef, useState } from "react";
+import { ChangeEventHandler, useEffect, useRef, useState } from "react";
 import { ChartModifierBase2D, ISciChartSubSurface } from "scichart";
 import { GridLayoutModifier } from "./GridLayoutModifier";
 import { ModifierGroup } from "./ModifierGroup";
@@ -171,8 +171,27 @@ function ServerTrafficDashboard() {
     return (
         <div ref={ref} className="sc-chart-wrapper" style={{ backgroundColor: "#242529" }}>
             {viewInfo ? ( // checks if container was measured
-                <ChartGroupLoader style={gridStyle} onInit={afterAllChartsInit(axisSyncManager)}>
-                    <div style={configButtonWrapperStyle} title="Chart Configurations">
+                <ChartGroupLoader
+                    style={{
+                        boxSizing: "border-box",
+                        // padding: "0.5em",
+                        height: "100%",
+                        display: "grid",
+                        gridTemplateColumns: "repeat(4, 1fr)",
+                        gap: "0.2em",
+                        gridTemplateRows: "repeat(8, 1fr)",
+                    }}
+                    onInit={afterAllChartsInit(axisSyncManager)}
+                >
+                    <div
+                        style={{
+                            gridArea: "1 / 1 / 2 / 2",
+                            pointerEvents: "none",
+                            touchAction: "none",
+                            zIndex: 2,
+                        }}
+                        title="Chart Configurations"
+                    >
                         <button
                             className="sc-button sc-button-icon"
                             aria-label="Chart configurations"
@@ -187,84 +206,63 @@ function ServerTrafficDashboard() {
                     <SciChart
                         initChart={getMainChartConfig(viewInfo)}
                         onInit={onMainChartInit}
-                        style={mainChartStyle}
-                        innerContainerProps={innerContainerProps}
+                        style={{
+                            gridRow: "1 / 4",
+                            gridColumn: "1/-1",
+                            position: "relative",
+                        }}
+                        innerContainerProps={{
+                            style: {
+                                height: "80%",
+                            },
+                        }}
                     >
                         {!isMobileView ? <ThresholdSlider /> : null}
-                        <SciChartNestedOverview style={overviewStyle} options={overviewOptions} />
+                        <SciChartNestedOverview
+                            style={{
+                                height: "20%",
+                            }}
+                            options={overviewOptions}
+                        />
                     </SciChart>
 
                     <SciChart
                         initChart={getPageStatisticsChartConfig(viewInfo)}
                         onInit={onPageStatisticsChartInit}
-                        style={pageChartStyle}
+                        style={{
+                            gridRow: "4 / 7",
+                            gridColumn: "1 / 3",
+                        }}
                     />
 
                     <SciChart
                         initChart={getServerLoadChartConfig(viewInfo)}
                         onInit={onServerLoadChartInit}
-                        style={serverChartStyle}
+                        style={{
+                            gridRow: "4 / 7",
+                            gridColumn: "3 / -1",
+                        }}
                     />
 
-                    <SciChart initChart={getRegionStatisticsColumnChartConfig(viewInfo)} style={columnChartStyle} />
+                    <SciChart
+                        initChart={getRegionStatisticsColumnChartConfig(viewInfo)}
+                        style={{
+                            gridRow: "7 / -1",
+                            gridColumn: "span 3",
+                        }}
+                    />
 
-                    <SciChart initChart={createRegionStatisticsPieChart} style={pieChartStyle} />
+                    <SciChart
+                        initChart={createRegionStatisticsPieChart}
+                        style={{
+                            gridRow: "7 / -1",
+                            gridColumn: "span 1",
+                        }}
+                    />
                 </ChartGroupLoader>
             ) : null}
         </div>
     );
 }
-
-const gridStyle: React.CSSProperties = {
-    boxSizing: "border-box",
-    // padding: "0.5em",
-    height: "100%",
-    display: "grid",
-    gridTemplateColumns: "repeat(4, 1fr)",
-    gap: "0.2em",
-    gridTemplateRows: "repeat(8, 1fr)",
-};
-
-const mainChartStyle: CSSProperties = {
-    gridRow: "1 / 4",
-    gridColumn: "1/-1",
-    position: "relative",
-};
-
-const innerContainerProps = {
-    style: {
-        height: "80%",
-    },
-};
-
-const overviewStyle = {
-    height: "20%",
-};
-
-const pageChartStyle = {
-    gridRow: "4 / 7",
-    gridColumn: "1 / 3",
-};
-
-const serverChartStyle = {
-    gridRow: "4 / 7",
-    gridColumn: "3 / -1",
-};
-
-const columnChartStyle = {
-    gridRow: "7 / -1",
-    gridColumn: "span 3",
-};
-const pieChartStyle = {
-    gridRow: "7 / -1",
-    gridColumn: "span 1",
-};
-
-const configButtonWrapperStyle: CSSProperties = {
-    gridArea: "1 / 1 / 2 / 2",
-    pointerEvents: "none",
-    touchAction: "none",
-    zIndex: 2,
-};
 
 export default ServerTrafficDashboard;

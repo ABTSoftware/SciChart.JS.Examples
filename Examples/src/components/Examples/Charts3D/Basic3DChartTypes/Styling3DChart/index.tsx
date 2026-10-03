@@ -257,21 +257,21 @@ export default function Styling3DChart() {
                                 type="color"
                                 value={formatHexForInput(currentSettings.bandsFill)}
                                 onChange={handleBandsFillChange}
-                                style={colorInputStyle}
+                                style={{ flex: 1 }}
                                 className="sc-input"
                             />
                             <input
                                 type="color"
                                 value={formatHexForInput(currentSettings.majorGridColor)}
                                 onChange={handleMajorGridLineColorChange}
-                                style={colorInputStyle}
+                                style={{ flex: 1 }}
                                 className="sc-input"
                             />
                             <input
                                 type="color"
                                 value={formatHexForInput(currentSettings.minorGridColor)}
                                 onChange={handleMinorGridLineColorChange}
-                                style={colorInputStyle}
+                                style={{ flex: 1 }}
                                 className="sc-input"
                             />
                         </div>
@@ -341,13 +341,32 @@ export default function Styling3DChart() {
             style={{ flexDirection: isMobileView ? "column" : "row" }}
         >
             <SciChartReact
-                style={{ flexBasis: 600, flexGrow: 1, flexShrink: 1, display: "flex", flexDirection: "column" }}
+                style={{
+                    flexBasis: 600,
+                    flexGrow: 1,
+                    flexShrink: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                }}
                 initChart={drawExample}
                 onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
                     controlsRef.current = controls;
                 }}
             />
-            <div style={isMobileView ? mobileContainerStyle : desktopContainerStyle}>
+            <div
+                style={
+                    isMobileView
+                        ? { position: "absolute", zIndex: 2 }
+                        : {
+                              flex: "none",
+                              width: "300px",
+                              padding: "10px",
+                              overflowY: "auto",
+                              color: PANEL_TEXT_COLOR,
+                              fontSize: "0.8em",
+                          }
+                }
+            >
                 {isMobileView && (
                     <button
                         className="sc-button sc-button-icon"
@@ -394,14 +413,3 @@ export default function Styling3DChart() {
         </div>
     );
 }
-
-const colorInputStyle = { flex: 1 };
-const desktopContainerStyle: React.CSSProperties = {
-    flex: "none",
-    width: "300px",
-    padding: "10px",
-    overflowY: "auto",
-    color: PANEL_TEXT_COLOR,
-    fontSize: "0.8em",
-};
-const mobileContainerStyle: React.CSSProperties = { position: "absolute", zIndex: 2 };

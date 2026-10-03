@@ -26,7 +26,7 @@ export default function StyleAnimation() {
                         aria-pressed={preset === 0}
                         onClick={(event) => handleToggleButtonChanged(event, 0)}
                     >
-                        Animate Styles 1
+                        Animation Style 1
                     </button>
                     <button
                         type="button"
@@ -34,7 +34,7 @@ export default function StyleAnimation() {
                         aria-pressed={preset === 1}
                         onClick={(event) => handleToggleButtonChanged(event, 1)}
                     >
-                        Animate Styles 2
+                        Animation Style 2
                     </button>
                 </div>
             </header>

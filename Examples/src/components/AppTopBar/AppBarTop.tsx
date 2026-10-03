@@ -16,7 +16,7 @@ import npm from "./npm.svg";
 import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { libraryVersion } from "scichart";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { Theme } from "@mui/material";
+import type { Theme } from "@mui/material/styles";
 import { ETheme } from "../../helpers/types/types";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 

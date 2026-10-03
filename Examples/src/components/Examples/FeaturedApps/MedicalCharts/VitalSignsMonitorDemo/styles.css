@@ -1,19 +1,15 @@
-.sc-vitals {
-    flex: 1;
-    min-width: 0;
-}
 .sc-vitals-cards {
     display: flex;
     flex-direction: column;
     width: 30%;
-    gap: 4px;
+    border-left: 1px solid var(--border-color);
 }
 .sc-vitals-card {
     display: flex;
     flex: 1;
     flex-direction: column;
     padding: 8px;
-    border-radius: var(--radius);
+    border-bottom: 1px solid var(--border-color);
 }
 .sc-vitals-title {
     flex: 1;

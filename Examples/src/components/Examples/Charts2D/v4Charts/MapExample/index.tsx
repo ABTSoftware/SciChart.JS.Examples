@@ -47,7 +47,7 @@ export default function ChartComponent() {
                         aria-pressed={key === "area_km2"}
                         onClick={(event) => handleToggleButtonChanged(event, "area_km2")}
                     >
-                        Area (km<sup>2</sup>)
+                        <span>Area (km<sup>2</sup>)</span>
                     </button>
                     <button
                         type="button"

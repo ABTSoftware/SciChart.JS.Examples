@@ -38,8 +38,11 @@ function shouldCompress(req: Request, res: Response) {
 }
 
 // Prerendered pages cache structure of URL/HTML pairs
-populateSourceFilesCache()
-    .then(populatePrerenderedPageCache)
+// Development already has on-demand source/SSR handlers; don't prepare every example before listening.
+const initialize = process.env.NODE_ENV === "production"
+    ? populateSourceFilesCache().then(populatePrerenderedPageCache)
+    : Promise.resolve();
+initialize
     .then(() => loadStyles())
     .then(() => {
         server.listen(port, () => {

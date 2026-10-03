@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { PlayArrowIcon, PauseIcon } from "../../../icons";
+import { PlayArrowIcon, StopIcon } from "../../../icons";
 
 import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
@@ -28,7 +28,7 @@ export default function RealtimeGhostedTraces() {
                     }}
                     type="button"
                 >
-                    {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
+                    {isStarted ? <StopIcon /> : <PlayArrowIcon />}
                 </button>
                 <div># DataPoints: {stats.numberPoints.toLocaleString()}</div>
                 <div>FPS: {stats.fps.toFixed(0).padStart(2, "0")}</div>

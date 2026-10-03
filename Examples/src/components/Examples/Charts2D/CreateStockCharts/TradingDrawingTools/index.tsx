@@ -18,15 +18,19 @@ type TToolDefinition = TToolItemDefinition | "separator";
 
 const isToolItemDefinition = (tool: TToolDefinition): tool is TToolItemDefinition => tool !== "separator";
 
-const iconStyle: React.CSSProperties = {
-    width: 18,
-    height: 18,
-    display: "block",
-    marginRight: 6,
-};
-
 const icon = (children: React.ReactNode) => (
-    <svg viewBox="0 0 24 24" style={iconStyle} fill="none" stroke="currentColor" strokeWidth="1.8">
+    <svg
+        viewBox="0 0 24 24"
+        style={{
+            width: 18,
+            height: 18,
+            display: "block",
+            marginRight: 6,
+        }}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+    >
         {children}
     </svg>
 );
@@ -245,7 +249,16 @@ const tools: TToolDefinition[] = [
         annotationType: ETradingAnnotationType.StopLossTakeProfitAnnotation,
         label: "Stop Loss / Take Profit",
         icon: (
-            <svg viewBox="0 0 24 24" style={iconStyle} fill="currentColor">
+            <svg
+                viewBox="0 0 24 24"
+                style={{
+                    width: 18,
+                    height: 18,
+                    display: "block",
+                    marginRight: 6,
+                }}
+                fill="currentColor"
+            >
                 <path d="M6 5h12v5H6z" />
                 <path d="M6 14h12v5H6z" opacity="0.65" />
             </svg>
@@ -331,7 +344,10 @@ export default function TradingDrawingTools() {
                                 return (
                                     <hr
                                         key={`separator-${index}`}
-                                        style={{ margin: "5px 8px", borderColor: "rgba(255,255,255,0.2)" }}
+                                        style={{
+                                            margin: "5px 8px",
+                                            borderColor: "rgba(255,255,255,0.2)",
+                                        }}
                                     />
                                 );
                             }
@@ -376,7 +392,15 @@ export default function TradingDrawingTools() {
                     </div>
                 </div>
 
-                <div ref={chartWrapperRef} style={{ flex: 1, minWidth: 0, display: "flex", position: "relative" }}>
+                <div
+                    ref={chartWrapperRef}
+                    style={{
+                        flex: 1,
+                        minWidth: 0,
+                        display: "flex",
+                        position: "relative",
+                    }}
+                >
                     <SciChartReact
                         style={{ flex: 1 }}
                         initChart={drawExample}

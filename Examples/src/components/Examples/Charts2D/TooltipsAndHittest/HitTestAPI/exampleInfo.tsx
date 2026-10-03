@@ -1,4 +1,3 @@
-import { defer } from "rxjs";
 import { createExampleInfo } from "../../../exampleInfoUtils";
 import { IExampleMetadata } from "../../../IExampleMetadata";
 

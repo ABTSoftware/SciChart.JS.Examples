@@ -14,12 +14,14 @@ import { baseAppPath } from "./constants";
 import "./components/Examples/styles/sc-ui.css";
 
 const cache = createEmotionCache();
+const sourceState = document.getElementById("example-source-state");
+const initialSourceFilesVariant = sourceState ? JSON.parse(sourceState.textContent) : defaultSourceFilesVariant;
 
 function Main() {
     return (
         <CacheProvider value={cache}>
             <ThemeProvider theme={customTheme}>
-                <SourceFilesContext.Provider value={defaultSourceFilesVariant}>
+                <SourceFilesContext.Provider value={initialSourceFilesVariant}>
                     <BrowserRouter basename={baseAppPath}>
                         <App />
                     </BrowserRouter>

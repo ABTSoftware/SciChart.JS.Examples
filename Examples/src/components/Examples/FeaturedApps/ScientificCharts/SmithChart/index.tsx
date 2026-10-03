@@ -14,9 +14,6 @@ import { smithGridConfig, updateSmithGridConfig } from "./smithChartGridCalculat
 
 const COLOURS = ["#FF4444", "#44AAFF", "#FFAA00", "#44FF88", "#FF44CC", "#88FF44"];
 
-const ROW: React.CSSProperties = { display: "flex", flexDirection: "row", alignItems: "center", gap: 8 };
-const WRAP_ROW: React.CSSProperties = { ...ROW, flexWrap: "wrap" };
-
 export default function SmithChartComponent() {
     const [isMobile, setIsMobile] = React.useState(
         () => typeof window !== "undefined" && window.matchMedia("(max-width: 600px)").matches
@@ -154,7 +151,12 @@ export default function SmithChartComponent() {
                 <div
                     style={
                         isMobile
-                            ? { position: "relative", width: "100%", aspectRatio: "1 / 1", flexShrink: 0 }
+                            ? {
+                                  position: "relative",
+                                  width: "100%",
+                                  aspectRatio: "1 / 1",
+                                  flexShrink: 0,
+                              }
                             : {
                                   position: "relative",
                                   aspectRatio: "1 / 1",
@@ -254,7 +256,14 @@ export default function SmithChartComponent() {
                     >
                         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                             {/* VSWR */}
-                            <div style={ROW}>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    alignItems: "center",
+                                    gap: 8,
+                                }}
+                            >
                                 <span
                                     className="contents"
                                     title="VSWR = (1+|Γ|)/(1−|Γ|) — drag the orange handle on the real axis to resize the circle"
@@ -284,7 +293,10 @@ export default function SmithChartComponent() {
                                             type="checkbox"
                                             checked={state.vswrShaded}
                                             onChange={(e) =>
-                                                dispatch({ type: "SET_VSWR_SHADED", shaded: e.target.checked })
+                                                dispatch({
+                                                    type: "SET_VSWR_SHADED",
+                                                    shaded: e.target.checked,
+                                                })
                                             }
                                         />
                                         <span>Shade</span>
@@ -297,7 +309,10 @@ export default function SmithChartComponent() {
                                             type="checkbox"
                                             checked={state.vswrOutline}
                                             onChange={(e) =>
-                                                dispatch({ type: "SET_VSWR_OUTLINE", outline: e.target.checked })
+                                                dispatch({
+                                                    type: "SET_VSWR_OUTLINE",
+                                                    outline: e.target.checked,
+                                                })
                                             }
                                         />
                                         <span>Outline</span>
@@ -308,7 +323,15 @@ export default function SmithChartComponent() {
                             <hr className="sc-divider" />
 
                             {/* Chain builder */}
-                            <div style={WRAP_ROW}>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    alignItems: "center",
+                                    gap: 8,
+                                    flexWrap: "wrap",
+                                }}
+                            >
                                 <span
                                     className="contents"
                                     title="Operating frequency for reactive components (L, C) and transmission lines"
@@ -409,7 +432,14 @@ export default function SmithChartComponent() {
                     >
                         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                             {/* Z/Y/ZY grid mode */}
-                            <div style={ROW}>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    alignItems: "center",
+                                    gap: 8,
+                                }}
+                            >
                                 <span>Grid:</span>
                                 <div className="sc-button-group" role="group">
                                     <button
@@ -445,7 +475,15 @@ export default function SmithChartComponent() {
                             {/* Z opacity */}
                             {(state.gridMode === "Z" || state.gridMode === "ZY") && (
                                 <span className="contents" title="Impedance grid opacity">
-                                    <div style={{ ...ROW, minWidth: 200 }}>
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            flexDirection: "row",
+                                            alignItems: "center",
+                                            gap: 8,
+                                            minWidth: 200,
+                                        }}
+                                    >
                                         <span>Z α:</span>
                                         <input
                                             className="sc-range flex-1"
@@ -468,7 +506,15 @@ export default function SmithChartComponent() {
                             {/* Y opacity */}
                             {(state.gridMode === "Y" || state.gridMode === "ZY") && (
                                 <span className="contents" title="Admittance grid opacity">
-                                    <div style={{ ...ROW, minWidth: 200 }}>
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            flexDirection: "row",
+                                            alignItems: "center",
+                                            gap: 8,
+                                            minWidth: 200,
+                                        }}
+                                    >
                                         <span>Y α:</span>
                                         <input
                                             className="sc-range flex-1"
@@ -551,7 +597,10 @@ export default function SmithChartComponent() {
                             </span>
                             <hr className="sc-divider" style={{ margin: "4px 0" }} />
                             <span
-                                style={{ fontWeight: 700, color: "color-mix(in srgb, var(--text) 55%, transparent)" }}
+                                style={{
+                                    fontWeight: 700,
+                                    color: "color-mix(in srgb, var(--text) 55%, transparent)",
+                                }}
                             >
                                 RIM
                             </span>
@@ -619,7 +668,11 @@ export default function SmithChartComponent() {
                     )}
                     <span style={{ fontWeight: 700, marginBottom: 4 }}>MARKERS</span>
                     {state.markers.length === 0 && (
-                        <span style={{ color: "color-mix(in srgb, var(--text) 55%, transparent)" }}>
+                        <span
+                            style={{
+                                color: "color-mix(in srgb, var(--text) 55%, transparent)",
+                            }}
+                        >
                             Click chart to place a marker
                         </span>
                     )}
@@ -664,7 +717,15 @@ export default function SmithChartComponent() {
                                     <ExpandMoreIcon className="sc-accordion-chevron" />
                                 </summary>
                                 <div className="sc-accordion-details sc-marker-details">
-                                    <div style={{ ...ROW, marginBottom: 6 }}>
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            flexDirection: "row",
+                                            alignItems: "center",
+                                            gap: 8,
+                                            marginBottom: 6,
+                                        }}
+                                    >
                                         <span
                                             style={{
                                                 color: "color-mix(in srgb, var(--text) 55%, transparent)",
@@ -681,7 +742,11 @@ export default function SmithChartComponent() {
                                                     aria-pressed={marker.dragMode === m}
                                                     key={m}
                                                     onClick={() =>
-                                                        dispatch({ type: "SET_DRAG_MODE", id: marker.id, mode: m })
+                                                        dispatch({
+                                                            type: "SET_DRAG_MODE",
+                                                            id: marker.id,
+                                                            mode: m,
+                                                        })
                                                     }
                                                 >
                                                     {m === "free" ? "Free" : m === "gamma" ? "|Γ|" : m}
@@ -701,7 +766,15 @@ export default function SmithChartComponent() {
                             <hr className="sc-divider" style={{ margin: "4px 0" }} />
                             <span style={{ fontWeight: 700 }}>CHAIN ({state.chain.length} steps)</span>
                             {state.chain.map((step, i) => (
-                                <div key={step.id} style={ROW}>
+                                <div
+                                    key={step.id}
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        alignItems: "center",
+                                        gap: 8,
+                                    }}
+                                >
                                     <div
                                         style={{
                                             width: 8,
@@ -719,7 +792,11 @@ export default function SmithChartComponent() {
                                 </div>
                             ))}
                             {(state.markers.find((m) => m.isChainStart) || state.chainStartGamma) && (
-                                <span style={{ color: "color-mix(in srgb, var(--text) 55%, transparent)" }}>
+                                <span
+                                    style={{
+                                        color: "color-mix(in srgb, var(--text) 55%, transparent)",
+                                    }}
+                                >
                                     Start:{" "}
                                     {(() => {
                                         const m = state.markers.find((m) => m.isChainStart);
@@ -796,7 +873,14 @@ function ReadoutTable({ ro }: { ro: ReturnType<typeof computeReadouts> }) {
         ["WTL", ro.wtl.toFixed(4) + " λ"],
     ];
     return (
-        <table style={{ width: "100%", fontSize: 11, fontFamily: "monospace", borderCollapse: "collapse" }}>
+        <table
+            style={{
+                width: "100%",
+                fontSize: 11,
+                fontFamily: "monospace",
+                borderCollapse: "collapse",
+            }}
+        >
             <tbody>
                 {rows.map(([label, value]) => (
                     <tr key={label}>

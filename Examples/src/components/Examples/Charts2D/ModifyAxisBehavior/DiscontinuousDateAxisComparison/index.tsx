@@ -41,7 +41,7 @@ export default function DiscontinuousDateAxisComparisonExample() {
                         aria-pressed={customSettings === true}
                         onClick={(event) => handleToggleButtonChanged(event, true)}
                     >
-                        Custom LabelProvider and explicit tick delta
+                        Custom LabelProvider & explicit tick delta
                     </button>
                 </div>
             </header>

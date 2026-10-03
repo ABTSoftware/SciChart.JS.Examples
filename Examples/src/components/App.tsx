@@ -1,4 +1,5 @@
 import * as React from "react";
+import "scichart-react/configureDefaults";
 import { Theme } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -54,6 +55,8 @@ const NotFound = () => (
 
 const ChatbotScript = (): React.ReactElement | null => {
     React.useEffect(() => {
+        const hostname = window.location.hostname;
+        if (hostname !== "scichart.com" && !hostname.endsWith(".scichart.com")) return undefined;
         const script = document.createElement("script");
         script.src = "https://chat.scichart.com/chatbot.js";
         script.type = "text/javascript";
@@ -68,6 +71,7 @@ const ChatbotScript = (): React.ReactElement | null => {
     return null;
 };
 
+// Override the wrapper's import-time defaults with the application's WASM base path.
 SciChartSurface.configure({
     wasmUrl: `${baseAppPath}/scichart.wasm`,
 });

@@ -40,7 +40,11 @@ export default function PairedDashedPolylineAnnotation() {
                 <div className="flex gap-2 items-center">
                     <span>&nbsp;Place polyline with N points:</span>
 
-                    <div className="sc-button-group" role="group" aria-label="Polyline point count">
+                    <div 
+                        className="sc-button-group" 
+                        role="group" 
+                        aria-label="Polyline point count"
+                    >
                         {POINT_OPTIONS.map((count) => (
                             <button
                                 type="button"

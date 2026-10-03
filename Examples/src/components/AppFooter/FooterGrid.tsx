@@ -1,7 +1,7 @@
 import * as React from "react";
 import List from "@mui/material/List";
 import { TMenuItem } from "../AppRouter/examples";
-import { Grid } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import Box from "../../helpers/shared/Helpers/Box/Box";
 import classes from "./FooterGrid.module.scss";
 import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";

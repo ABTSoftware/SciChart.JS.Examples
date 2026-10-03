@@ -21,7 +21,7 @@ export default function DrawBehindAxes() {
     };
 
     return (
-        <div className="sc-chart-wrapper" style={{ background: appTheme.Background }}>
+        <div className="sc-chart-wrapper">
             <header className="sc-toolbar-row">
                 <div className="sc-button-group" role="group" aria-label="Series rendering mode">
                     <button
@@ -42,9 +42,9 @@ export default function DrawBehindAxes() {
                     </button>
                 </div>
             </header>
+
             <SciChartReact
                 initChart={drawExample}
-                className="sc-chart-wrapper"
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     const { sciChartSurface } = initResult;
                     sciChartSurfaceRef.current = sciChartSurface;

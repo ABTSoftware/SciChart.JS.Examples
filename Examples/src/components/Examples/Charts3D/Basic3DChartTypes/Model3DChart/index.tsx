@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { CSSProperties } from "react";
+
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { appTheme } from "../../../theme";
 import { drawExample } from "./drawExample";
@@ -11,58 +11,6 @@ const PROGRESS_TICK_MS = 100;
 
 /** Roughly the transfer size of the asset package, so the wait is explicable. */
 const PACKAGE_SIZE_LABEL = "~27 MB";
-
-// The overlay is opaque: it hides the empty 3D scene until the model is actually in it,
-// so the chart appears complete rather than materialising piece by piece.
-const overlayStyle: CSSProperties = {
-    position: "absolute",
-    inset: 0,
-    zIndex: 12,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    // Sat low rather than centred, so the panel does not cover the car behind it.
-    justifyContent: "flex-end",
-    paddingBottom: "12%",
-    background: appTheme.Background,
-    fontFamily: "Arial, Helvetica, sans-serif",
-};
-
-// Near-opaque: this is the subject of the loading screen, not a texture behind it. The
-// caption gets its own panel below rather than being laid over the car.
-const carImageStyle: CSSProperties = {
-    position: "absolute",
-    inset: 0,
-    width: "100%",
-    height: "100%",
-    objectFit: "contain",
-    opacity: 0.9,
-};
-
-// Painted in the theme's own background colour so the caption keeps its designed contrast
-// against it in both the light and dark app themes, whatever the image behind it is doing.
-const panelStyle: CSSProperties = {
-    position: "relative",
-    width: "min(420px, 70%)",
-    textAlign: "center",
-    padding: "16px 20px",
-    borderRadius: "var(--radius)",
-    background: appTheme.Background,
-    boxShadow: "0 2px 12px rgba(0, 0, 0, 0.25)",
-};
-
-const trackStyle: CSSProperties = {
-    height: 6,
-    borderRadius: "var(--radius)",
-    overflow: "hidden",
-    background: "rgba(255, 255, 255, 0.15)",
-};
-
-const captionStyle: CSSProperties = {
-    marginTop: 10,
-    fontSize: 14,
-    color: appTheme.ForegroundColor,
-};
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
@@ -101,10 +49,52 @@ export default function Model3DChart() {
         <div className="sc-chart-wrapper">
             <SciChartReact initChart={drawExample} style={{ width: "100%", height: "100%" }} onInit={handleInit} />
             {isModelLoading && (
-                <div style={overlayStyle}>
-                    <img src={carImage} alt="" style={carImageStyle} />
-                    <div style={panelStyle}>
-                        <div style={trackStyle}>
+                <div
+                    style={{
+                        position: "absolute",
+                        inset: 0,
+                        zIndex: 12,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        // Sat low rather than centred, so the panel does not cover the car behind it.
+                        justifyContent: "flex-end",
+                        paddingBottom: "12%",
+                        background: "var(--bg-chart)",
+                        fontFamily: "Arial, Helvetica, sans-serif",
+                    }}
+                >
+                    <img
+                        src={carImage}
+                        alt=""
+                        style={{
+                            position: "absolute",
+                            inset: 0,
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "contain",
+                            opacity: 0.9,
+                        }}
+                    />
+                    <div
+                        style={{
+                            position: "relative",
+                            width: "min(420px, 70%)",
+                            textAlign: "center",
+                            padding: "16px 20px",
+                            borderRadius: "var(--radius)",
+                            background: "var(--bg-chart)",
+                            boxShadow: "0 2px 12px rgba(0, 0, 0, 0.25)",
+                        }}
+                    >
+                        <div
+                            style={{
+                                height: 6,
+                                borderRadius: "var(--radius)",
+                                overflow: "hidden",
+                                background: "rgba(255, 255, 255, 0.15)",
+                            }}
+                        >
                             <div
                                 style={{
                                     width: `${Math.min(progress, 1) * 100}%`,
@@ -114,7 +104,13 @@ export default function Model3DChart() {
                                 }}
                             />
                         </div>
-                        <div style={captionStyle}>
+                        <div
+                            style={{
+                                marginTop: 10,
+                                fontSize: 14,
+                                color: appTheme.ForegroundColor,
+                            }}
+                        >
                             Downloading the 3D model ({PACKAGE_SIZE_LABEL})… {formatProgressPercent(progress)}
                         </div>
                     </div>

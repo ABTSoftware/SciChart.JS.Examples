@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useRef } from "react";
-import { RefreshIcon, PlayArrowIcon, PauseIcon } from "../../../icons";
+import { RefreshIcon, PlayArrowIcon, StopIcon } from "../../../icons";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample, TTimeSpan } from "./drawExample";
 import { useViewType } from "../../../containerSizeHooks";
@@ -59,7 +59,7 @@ export default function Load500By500() {
                                 title="Toggle reload every 200 milliseconds"
                                 type="button"
                             >
-                                {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
+                                {isStarted ? <StopIcon /> : <PlayArrowIcon />}
                             </button>
 
                             <button

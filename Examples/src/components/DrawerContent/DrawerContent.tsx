@@ -7,7 +7,7 @@ import { Link } from "react-router";
 import classes from "./DrawerContent.module.scss";
 import Search from "../Search/Search";
 import { EPageFramework } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { useMediaQuery } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { Theme } from "@mui/material/styles";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { _useContext } from "../../helpers/shared/Helpers/Context";

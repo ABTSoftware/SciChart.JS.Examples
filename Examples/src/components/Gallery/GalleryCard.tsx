@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router";
 import classes from "./Gallery.module.scss";
-import { Tooltip } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {

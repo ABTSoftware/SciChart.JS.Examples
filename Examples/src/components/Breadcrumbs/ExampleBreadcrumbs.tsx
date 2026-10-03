@@ -1,5 +1,6 @@
 import { ReactNode, useMemo } from "react";
-import { Button, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import { getExampleCategoryPath, MENU_ITEMS_HIERARCHY } from "../AppRouter/examples";
 import { BreadcrumbsWithMenu, TBreadcrumbItem, TBreadcrumbPath } from "./GenericBreadcrumbs";

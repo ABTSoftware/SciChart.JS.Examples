@@ -1,7 +1,7 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 import { useState } from "react";
-import { PauseIcon, PlayArrowIcon } from "../../../icons";
+import { StopIcon, PlayArrowIcon } from "../../../icons";
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
@@ -34,7 +34,7 @@ export default function ChartComponent() {
                     title={isChartAnimating ? "Stop rotation" : "Start rotation"}
                     onClick={handleToggleAnimation}
                 >
-                    {isChartAnimating ? <PauseIcon /> : <PlayArrowIcon />}
+                    {isChartAnimating ? <StopIcon /> : <PlayArrowIcon />}
                 </button>
             </header>
 

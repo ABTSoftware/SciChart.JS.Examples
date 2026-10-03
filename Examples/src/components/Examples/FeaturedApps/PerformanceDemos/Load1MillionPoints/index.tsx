@@ -1,4 +1,4 @@
-import { RefreshIcon, PlayArrowIcon, PauseIcon } from "../../../icons";
+import { RefreshIcon, PlayArrowIcon, StopIcon } from "../../../icons";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample, TTimeSpan } from "./drawExample";
 import { useRef, useState } from "react";
@@ -45,7 +45,7 @@ export default function Load1MillionPointsChart() {
                         title="Toggle reload every 200 milliseconds"
                         type="button"
                     >
-                        {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
+                        {isStarted ? <StopIcon /> : <PlayArrowIcon />}
                     </button>
                     <button
                         className="sc-button sc-button-icon"

@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useNavigate } from "react-router";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { Search as SearchIcon } from "@mui/icons-material";
+import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 import { generateSearchItems, TSearchItem } from "./searchItems";
 import classes from "./Search.module.scss";

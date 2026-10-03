@@ -34,7 +34,16 @@ import {
     DataPointSelectionChangedArgs,
     IPieSegment,
 } from "scichart";
-import { CN, IN, US, JP, DE, GB, FR, BR, CA, AU } from "country-flag-icons/string/3x2";
+import CN from "country-flag-icons/string/3x2/CN";
+import IN from "country-flag-icons/string/3x2/IN";
+import US from "country-flag-icons/string/3x2/US";
+import JP from "country-flag-icons/string/3x2/JP";
+import DE from "country-flag-icons/string/3x2/DE";
+import GB from "country-flag-icons/string/3x2/GB";
+import FR from "country-flag-icons/string/3x2/FR";
+import BR from "country-flag-icons/string/3x2/BR";
+import CA from "country-flag-icons/string/3x2/CA";
+import AU from "country-flag-icons/string/3x2/AU";
 import { appTheme } from "../../../theme";
 import { TDataEntry, availableLocations, getData, getRequestsNumberPerLocation } from "./data-generation";
 import { TTextureObject } from "scichart/Charting/Visuals/TextureManager/TextureManager";

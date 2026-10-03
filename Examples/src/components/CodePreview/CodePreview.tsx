@@ -1,5 +1,5 @@
 import { FC, useEffect, useState, type JSX } from "react";
-import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
+import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/light";
 import ts from "react-syntax-highlighter/dist/esm/languages/hljs/typescript";
 import js from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
 import css from "react-syntax-highlighter/dist/esm/languages/hljs/css";
@@ -434,21 +434,10 @@ export const CodePreview: FC<CodeEditorProps> = ({
         >
             <div className={classes.horizontalScroller} suppressHydrationWarning={true}>
                 {/* VSCode-like horizontal scrollable tabs */}
-                {files
+                {[...files]
                     .sort((a, b) => {
-                        if (a.name.includes("drawExample")) {
-                            return -1;
-                        }
-                        if (b.name.includes("drawExample")) {
-                            return 1;
-                        }
-                        if (a.name.includes("index")) {
-                            return -1;
-                        }
-                        if (b.name.includes("index")) {
-                            return 1;
-                        }
-                        return a.name.localeCompare(b.name);
+                        const rank = (name: string) => name.includes("drawExample") ? 0 : name.includes("index") ? 1 : 2;
+                        return rank(a.name) - rank(b.name) || (rank(a.name) === 2 ? a.name.localeCompare(b.name) : 0);
                     })
                     .map((file) => (
                         <div

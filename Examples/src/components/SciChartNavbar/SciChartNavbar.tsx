@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./styles.css";
 import { useEffect, useRef, useState } from "react";

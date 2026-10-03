@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { PlayArrowIcon, PauseIcon } from "../../../icons";
+import { PlayArrowIcon, StopIcon } from "../../../icons";
 
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
@@ -27,7 +27,7 @@ export default function RealtimePerformanceDemo() {
                     }}
                     type="button"
                 >
-                    {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
+                    {isStarted ? <StopIcon /> : <PlayArrowIcon />}
                 </button>
 
                 <span className="monospace"># DataPoints: {stats.numberPoints.toLocaleString()}</span>

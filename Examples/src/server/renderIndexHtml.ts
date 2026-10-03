@@ -1,7 +1,8 @@
 import { HelmetData } from "react-helmet";
 import { baseAppPath } from "../constants";
+import type { SourceFilesVariant } from "../helpers/types/types";
 
-export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
+export function renderIndexHtml(html: string, css: string, helmet: HelmetData, sourceFilesInfo: SourceFilesVariant) {
     return `
     <!DOCTYPE html>
     <html lang="en-us" ${helmet.htmlAttributes.toString()}>
@@ -41,7 +42,7 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
             <meta name="emotion-insertion-point" content="" />
             ${css}
 
-            <script async fetchpriority="high" type="text/javascript" src="bundle.js"></script>
+            <script defer fetchpriority="high" type="text/javascript" src="bundle.js"></script>
             <link rel="preload" href="scichart.wasm" as="fetch" crossorigin="anonymous" />
         </head>
         <body ${helmet.bodyAttributes.toString()} style="margin: 0;">
@@ -57,6 +58,7 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
 
             <!-- App -->
             <div id="react-root">${html}</div>
+            <script id="example-source-state" type="application/json">${JSON.stringify(sourceFilesInfo).replace(/</g, "\\u003c")}</script>
 
             <!-- 
             <script>

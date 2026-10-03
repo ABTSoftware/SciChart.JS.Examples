@@ -18,44 +18,6 @@ type ChartPane = {
     sciChartSurface: SciChartSurface;
 };
 
-// Styles for the 3x3 grid
-const styles: Record<string, React.CSSProperties> = {
-    flexOuterContainer: {
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        background: "var(--sc-background)",
-    },
-    chartRow: {
-        display: "flex",
-        flex: "auto",
-        flexDirection: "row",
-        padding: 0,
-        width: "100%",
-        color: "var(--sc-text)",
-    },
-    emptyRow: {
-        display: "flex",
-        flexBasis: 0,
-        padding: 0,
-        width: "100%",
-        color: "var(--sc-text)",
-    },
-    toolCol: {
-        display: "flex",
-        flex: "none",
-        width: "130px",
-        padding: "8px",
-        color: "var(--sc-text)",
-    },
-    chartArea: {
-        flex: "auto",
-        padding: "0",
-        height: "100%",
-    },
-};
-
 export default function SyncMultiChart() {
     // We are using a fixed set of divs here as it simplifies the html handling, but this could with dynamic html and an arbitrary number of charts
     const [chartPanes, setChartPanes] = React.useState<ChartPane[]>([
@@ -142,9 +104,24 @@ export default function SyncMultiChart() {
     const firstFreePane = chartPanes.find((pane) => !pane.sciChartSurface);
     return (
         <div className="sc-chart-wrapper">
-            <div style={styles.flexOuterContainer}>
+            <div
+                style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    background: "var(--sc-background)",
+                }}
+            >
                 <div style={{ width: "100%", height: "100px", flex: "none" }}>
-                    <div style={styles.chartArea} id={chartPanes[0].divId}></div>
+                    <div
+                        style={{
+                            flex: "auto",
+                            padding: "0",
+                            height: "100%",
+                        }}
+                        id={chartPanes[0].divId}
+                    ></div>
                 </div>
                 {firstFreePane ? (
                     <div
@@ -175,13 +152,55 @@ export default function SyncMultiChart() {
                 {chartPanes
                     .filter((pane) => pane.id > 0)
                     .map((pane) => (
-                        <div style={pane.sciChartSurface ? styles.chartRow : styles.emptyRow} key={pane.id}>
+                        <div
+                            style={
+                                pane.sciChartSurface
+                                    ? {
+                                          display: "flex",
+                                          flex: "auto",
+                                          flexDirection: "row",
+                                          padding: 0,
+                                          width: "100%",
+                                          color: "var(--sc-text)",
+                                      }
+                                    : {
+                                          display: "flex",
+                                          flexBasis: 0,
+                                          padding: 0,
+                                          width: "100%",
+                                          color: "var(--sc-text)",
+                                      }
+                            }
+                            key={pane.id}
+                        >
                             <div
-                                style={pane.sciChartSurface ? styles.chartArea : styles.emptyRow}
+                                style={
+                                    pane.sciChartSurface
+                                        ? {
+                                              flex: "auto",
+                                              padding: "0",
+                                              height: "100%",
+                                          }
+                                        : {
+                                              display: "flex",
+                                              flexBasis: 0,
+                                              padding: 0,
+                                              width: "100%",
+                                              color: "var(--sc-text)",
+                                          }
+                                }
                                 id={pane.divId}
                             ></div>
                             {pane.sciChartSurface ? (
-                                <div style={styles.toolCol}>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        flex: "none",
+                                        width: "130px",
+                                        padding: "8px",
+                                        color: "var(--sc-text)",
+                                    }}
+                                >
                                     <div>
                                         <button
                                             type="button"
