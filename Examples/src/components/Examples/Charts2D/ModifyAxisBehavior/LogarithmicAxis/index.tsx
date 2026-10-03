@@ -1,5 +1,4 @@
 import * as React from "react";
-import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { AxisBase2D, LogarithmicAxis, NumericAxis, SciChartSurface } from "scichart";
 import { drawExample } from "./drawExample";

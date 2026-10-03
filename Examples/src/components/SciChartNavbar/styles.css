@@ -22,7 +22,7 @@
         img {
             width: auto;
             height: calc(var(--height) - 44px);
-            margin-top: 4px;
+            margin-top: 5px;
             margin-left: -3px;
         }
     }
