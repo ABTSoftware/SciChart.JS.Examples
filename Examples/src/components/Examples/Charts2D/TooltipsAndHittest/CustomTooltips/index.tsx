@@ -4,8 +4,8 @@ import { useState, useRef, useEffect } from "react";
 
 type TooltipType = "cursor" | "rollover" | "verticalSlice";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+const stateInfoStyle = { zIndex: 900, left: 10, bottom: 30, fontSize: 12 };
+
 export default function ChartComponent() {
     const [type, setType] = useState<TooltipType>("cursor");
     const setTypeFunc = useRef(null);
@@ -117,32 +117,13 @@ export default function ChartComponent() {
                 </div>
             </header>
             {type === "verticalSlice" && showClickData && clickInfo ? (
-                <div
-                    className="verticalSliceInfo"
-                    style={{
-                        zIndex: 900,
-                        position: "absolute",
-                        color: "var(--text)",
-                        left: "10px",
-                        bottom: "30px",
-                        fontSize: "12px",
-                    }}
-                >
+                <div className="absolute" style={stateInfoStyle}>
                     <div className="">Currently in React state:</div>
                     <div className="">{clickInfo}</div>
                 </div>
             ) : null}
             {type === "cursor" && showData && seriesInfos?.length ? (
-                <div
-                    style={{
-                        zIndex: 900,
-                        position: "absolute",
-                        color: "var(--text)",
-                        left: "10px",
-                        bottom: "30px",
-                        fontSize: "12px",
-                    }}
-                >
+                <div className="absolute" style={stateInfoStyle}>
                     <div className="">Currently in React state:</div>
                     <div className="">
                         {" "}
@@ -153,16 +134,7 @@ export default function ChartComponent() {
             ) : null}
 
             {type === "rollover" && showRolloverData && rolloverInfo ? (
-                <div
-                    style={{
-                        zIndex: 900,
-                        position: "absolute",
-                        color: "var(--text)",
-                        left: "10px",
-                        bottom: "30px",
-                        fontSize: "12px",
-                    }}
-                >
+                <div className="absolute" style={stateInfoStyle}>
                     <div className="">Currently in React state:</div>
                     <div className="">
                         {" "}

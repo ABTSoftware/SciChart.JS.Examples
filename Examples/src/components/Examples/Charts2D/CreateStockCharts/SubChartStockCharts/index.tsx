@@ -1,8 +1,7 @@
-import * as React from "react";
+import "./styles.css";
 import { FinChartLegendModifier, IFinanceLegendModifierOptions } from "./FinChartLegendModifier";
 
 import {
-    SciChartSurface,
     BasePaletteProvider,
     calcAverageForArray,
     build2DChart,
@@ -258,7 +257,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                                 openValues,
                                 closeValues,
                                 upCol + opacity,
-                                downCol + opacity,
+                                downCol + opacity
                             ),
                         },
                     },
@@ -438,7 +437,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             0,
             newPosition,
             1,
-            (subSurface3.subPosition as TXywhCoordinates).y - newPosition,
+            (subSurface3.subPosition as TXywhCoordinates).y - newPosition
         );
     };
 
@@ -457,7 +456,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             0,
             (subSurface1.subPosition as TXywhCoordinates).height,
             1,
-            newPosition - (subSurface1.subPosition as TXywhCoordinates).height,
+            newPosition - (subSurface1.subPosition as TXywhCoordinates).height
         );
         subSurface3.subPosition = new Rect(0, newPosition, 1, 1 - newPosition);
     };
@@ -610,60 +609,19 @@ const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
 export default function SubChartStockCharts() {
     return (
         <div className="sc-chart-wrapper" id={containerId2}>
-            <div
-                id={subChartWrapper1}
-                style={{
-                    position: "absolute", // important
-                }}
-            />
-            <div
-                id={dividerId1}
-                style={{
-                    width: "100%",
-                    height: "2px",
-                    backgroundColor: "var(--border-color)",
-                    cursor: "row-resize",
-                    position: "absolute",
-                    zIndex: 1,
-                }}
-            >
-                <div style={{ height: "4px", width: "100%", borderBottom: "2px dashed" }}></div>
+            <div id={subChartWrapper1} className="absolute" />
+            <div id={dividerId1} className="w-full absolute sc-stock-pane-divider">
+                <div className="w-full sc-stock-divider-handle"></div>
             </div>
-            <div
-                id={subChartWrapper2}
-                style={{
-                    position: "absolute", // important
-                }}
-            />
-            <div
-                id={dividerId2}
-                style={{
-                    width: "100%",
-                    height: "2px",
-                    backgroundColor: "var(--border-color)",
-                    cursor: "row-resize",
-                    position: "absolute",
-                    zIndex: 1,
-                }}
-            >
-                <div style={{ height: "4px", width: "100%", borderBottom: "2px dashed" }}></div>
+            <div id={subChartWrapper2} className="absolute" />
+            <div id={dividerId2} className="w-full absolute sc-stock-pane-divider">
+                <div className="w-full sc-stock-divider-handle"></div>
             </div>
-            <div
-                id={subChartWrapper3}
-                style={{
-                    position: "absolute", // important
-                }}
-            />
+            <div id={subChartWrapper3} className="absolute" />
             <SciChartReact
                 initChart={drawExample}
-                style={{
-                    minWidth: "100%",
-                    maxWidth: "100%",
-                    width: "100%",
-                    minHeight: "100%",
-                    maxHeight: "100%",
-                    height: "100%",
-                }}
+                className="w-full h-full"
+                style={{ minWidth: "100%", maxWidth: "100%", minHeight: "100%", maxHeight: "100%" }}
             />
         </div>
     );

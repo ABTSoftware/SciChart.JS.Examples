@@ -1,5 +1,5 @@
 import "./styles.css";
-import * as React from "react";
+import { useRef, useCallback, useState, useEffect } from "react";
 
 import { CloseIcon, ExpandMoreIcon } from "../../../icons";
 import { FloatingPanel } from "../../../FloatingPanel";
@@ -15,22 +15,19 @@ import { smithGridConfig, updateSmithGridConfig } from "./smithChartGridCalculat
 const COLOURS = ["#FF4444", "#44AAFF", "#FFAA00", "#44FF88", "#FF44CC", "#88FF44"];
 
 export default function SmithChartComponent() {
-    const [isMobile, setIsMobile] = React.useState(
-        () => typeof window !== "undefined" && window.matchMedia("(max-width: 600px)").matches
-    );
     const [state, dispatch] = useSmithChart();
-    const chartRef = React.useRef<HTMLDivElement>(null);
-    const chartApiRef = React.useRef<{
+    const chartRef = useRef<HTMLDivElement>(null);
+    const chartApiRef = useRef<{
         update: (s: SmithState) => void;
         getChainTip: (s: SmithState) => GammaPoint | null;
         addChainStep: (from: GammaPoint, type: ComponentType, value: number, freq: number) => void;
         setDispatch: (d: any) => void;
         sciChartSurface: SciChartSurface;
     } | null>(null);
-    const stateRef = React.useRef(state);
+    const stateRef = useRef(state);
     stateRef.current = state;
 
-    const loadScenario = React.useCallback((scenario: Scenario) => {
+    const loadScenario = useCallback((scenario: Scenario) => {
         const api = chartApiRef.current;
         if (!api) return;
         dispatch({ type: "CLEAR" });
@@ -44,22 +41,15 @@ export default function SmithChartComponent() {
         });
     }, []);
 
-    const [chainType, setChainType] = React.useState<ComponentType>("seriesL");
-    const [chainValue, setChainValue] = React.useState("1e-9");
+    const [chainType, setChainType] = useState<ComponentType>("seriesL");
+    const [chainValue, setChainValue] = useState("1e-9");
 
-    const [chainOpen, setChainOpen] = React.useState(false);
-    const [gridOpen, setGridOpen] = React.useState(false);
-    const [examplesAnchor, setExamplesAnchor] = React.useState<null | HTMLElement>(null);
-    const examplesMenuRef = React.useRef<HTMLDivElement>(null);
+    const [chainOpen, setChainOpen] = useState(false);
+    const [gridOpen, setGridOpen] = useState(false);
+    const [examplesAnchor, setExamplesAnchor] = useState<null | HTMLElement>(null);
+    const examplesMenuRef = useRef<HTMLDivElement>(null);
 
-    React.useEffect(() => {
-        const query = window.matchMedia("(max-width: 600px)");
-        const update = () => setIsMobile(query.matches);
-        query.addEventListener("change", update);
-        return () => query.removeEventListener("change", update);
-    }, []);
-
-    React.useEffect(() => {
+    useEffect(() => {
         if (!examplesAnchor) return undefined;
         const closeOnOutsideClick = (event: PointerEvent) => {
             const target = event.target as Node;
@@ -79,7 +69,7 @@ export default function SmithChartComponent() {
     }, [examplesAnchor]);
 
     // Grid config — mirrors smithGridConfig for controlled inputs
-    const [gridCfg, setGridCfg] = React.useState({
+    const [gridCfg, setGridCfg] = useState({
         majorPxThreshold: smithGridConfig.majorPxThreshold,
         minorPxThreshold: smithGridConfig.minorPxThreshold,
         targetTicks: smithGridConfig.targetTicks,
@@ -87,7 +77,7 @@ export default function SmithChartComponent() {
         maxTiers: smithGridConfig.maxTiers,
         minGapPx: smithGridConfig.minGapPx,
     });
-    const applyGridCfg = React.useCallback(
+    const applyGridCfg = useCallback(
         (patch: Partial<typeof gridCfg>) => {
             const next = { ...gridCfg, ...patch };
             setGridCfg(next);
@@ -98,12 +88,12 @@ export default function SmithChartComponent() {
     );
 
     // Rim config — angular spacing and label gap for the angle-of-Γ ring
-    const [rimCfg, setRimCfg] = React.useState({
+    const [rimCfg, setRimCfg] = useState({
         majorTickStep: 30,
         minorTickStep: 10,
         labelOffset: 2,
     });
-    const applyRimCfg = React.useCallback(
+    const applyRimCfg = useCallback(
         (patch: Partial<typeof rimCfg>) => {
             const next = { ...rimCfg, ...patch };
             setRimCfg(next);
@@ -117,7 +107,7 @@ export default function SmithChartComponent() {
     );
 
     // Init chart once on mount
-    React.useEffect(() => {
+    useEffect(() => {
         let surface: SciChartSurface | undefined;
         drawExample(chartRef.current!).then((result) => {
             result.setDispatch(dispatch);
@@ -131,66 +121,21 @@ export default function SmithChartComponent() {
     }, []);
 
     // Sync state changes to SciChart
-    React.useEffect(() => {
+    useEffect(() => {
         chartApiRef.current?.update(state);
     }, [state]);
 
     return (
         <div className="sc-chart-wrapper flex flex-col">
-            {/* On desktop: row layout with container query sizing. On mobile: column layout. */}
-            <div
-                style={{
-                    display: "flex",
-                    flex: 1,
-                    overflow: "hidden",
-                    flexDirection: isMobile ? "column" : "row",
-                    ...(isMobile ? {} : ({ containerType: "size" } as React.CSSProperties)),
-                }}
-            >
+            {/* Keep the plot square; CSS places the readouts beside it or underneath. */}
+            <div className="sc-smith-layout">
                 {/* Wrapper: positions the chart canvas + overlay buttons + floating panels */}
-                <div
-                    style={
-                        isMobile
-                            ? {
-                                  position: "relative",
-                                  width: "100%",
-                                  aspectRatio: "1 / 1",
-                                  flexShrink: 0,
-                              }
-                            : {
-                                  position: "relative",
-                                  aspectRatio: "1 / 1",
-                                  width: "min(calc(100cqw - 260px), 100cqh)",
-                                  height: "auto",
-                                  flexShrink: 0,
-                                  alignSelf: "flex-start",
-                              }
-                    }
-                >
+                <div className="sc-smith-canvas">
                     {/* Chart canvas */}
-                    <div
-                        ref={chartRef}
-                        style={{
-                            width: "100%",
-                            height: "100%",
-                            position: "relative",
-                            overflow: "hidden",
-                            touchAction: "none",
-                        }}
-                    />
+                    <div ref={chartRef} className="w-full h-full relative overflow-hidden sc-smith-plot" />
 
                     {/* Overlay buttons — top-left of chart */}
-                    <div
-                        style={{
-                            position: "absolute",
-                            top: 8,
-                            left: 8,
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: 4,
-                            zIndex: 10,
-                        }}
-                    >
+                    <div className="absolute flex flex-col gap-1" style={{ top: 8, left: 8, zIndex: 10 }}>
                         <button
                             className="sc-button sc-button-outline"
                             onClick={(e) => setExamplesAnchor(e.currentTarget)}
@@ -210,7 +155,7 @@ export default function SmithChartComponent() {
                     {examplesAnchor && (
                         <div
                             ref={examplesMenuRef}
-                            className="sc-menu-popup"
+                            className="sc-smith-menu"
                             role="menu"
                             style={{
                                 left: examplesAnchor.getBoundingClientRect().left,
@@ -232,7 +177,7 @@ export default function SmithChartComponent() {
                                     {scenario.title}
                                 </button>
                             ))}
-                            <hr className="sc-divider" />
+                            <hr className="sc-smith-divider" />
                             <button
                                 type="button"
                                 className="sc-button sc-button-outline justify-start"
@@ -254,30 +199,22 @@ export default function SmithChartComponent() {
                         onClose={() => setChainOpen(false)}
                         defaultPosition={{ x: 8, y: 110 }}
                     >
-                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <div className="flex flex-col gap-2">
                             {/* VSWR */}
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    alignItems: "center",
-                                    gap: 8,
-                                }}
-                            >
+                            <div className="flex items-center gap-2">
                                 <span
                                     className="contents"
                                     title="VSWR = (1+|Γ|)/(1−|Γ|) — drag the orange handle on the real axis to resize the circle"
                                 >
-                                    <span style={{ cursor: "default" }}>VSWR:</span>
+                                    <span>VSWR:</span>
                                 </span>
                                 <input
-                                    className="sc-input"
+                                    className="sc-input sc-smith-number-input"
                                     type="number"
                                     value={state.vswr.toFixed(2)}
                                     min={1.01}
                                     max={100}
                                     step={0.1}
-                                    style={{ width: 76 }}
                                     onChange={(e) => {
                                         const v = parseFloat(e.target.value);
                                         if (v > 1) dispatch({ type: "SET_VSWR", vswr: v });
@@ -320,32 +257,23 @@ export default function SmithChartComponent() {
                                 </span>
                             </div>
 
-                            <hr className="sc-divider" />
+                            <hr className="sc-smith-divider" />
 
                             {/* Chain builder */}
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    alignItems: "center",
-                                    gap: 8,
-                                    flexWrap: "wrap",
-                                }}
-                            >
+                            <div className="flex items-center gap-2 flex-wrap">
                                 <span
                                     className="contents"
                                     title="Operating frequency for reactive components (L, C) and transmission lines"
                                 >
-                                    <span style={{ cursor: "default" }}>Freq:</span>
+                                    <span>Freq:</span>
                                 </span>
                                 <input
-                                    className="sc-input"
+                                    className="sc-input sc-smith-number-input"
                                     type="number"
                                     value={(state.frequency / 1e9).toFixed(3)}
                                     min={0.001}
                                     max={100}
                                     step={0.1}
-                                    style={{ width: 76 }}
                                     onChange={(e) => {
                                         const v = parseFloat(e.target.value);
                                         if (v > 0) dispatch({ type: "SET_FREQUENCY", frequency: v * 1e9 });
@@ -388,9 +316,9 @@ export default function SmithChartComponent() {
                                 >
                                     <input
                                         className="sc-input"
+                                        style={{ width: 84 }}
                                         type="number"
                                         value={chainValue}
-                                        style={{ width: 84 }}
                                         onChange={(e) => setChainValue(e.target.value)}
                                         placeholder={chainType === "TL" ? "λ" : "SI"}
                                     />
@@ -430,16 +358,9 @@ export default function SmithChartComponent() {
                         onClose={() => setGridOpen(false)}
                         defaultPosition={{ x: 280, y: 110 }}
                     >
-                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <div className="flex flex-col gap-2">
                             {/* Z/Y/ZY grid mode */}
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    alignItems: "center",
-                                    gap: 8,
-                                }}
-                            >
+                            <div className="flex items-center gap-2">
                                 <span>Grid:</span>
                                 <div className="sc-button-group" role="group">
                                     <button
@@ -475,15 +396,7 @@ export default function SmithChartComponent() {
                             {/* Z opacity */}
                             {(state.gridMode === "Z" || state.gridMode === "ZY") && (
                                 <span className="contents" title="Impedance grid opacity">
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            flexDirection: "row",
-                                            alignItems: "center",
-                                            gap: 8,
-                                            minWidth: 200,
-                                        }}
-                                    >
+                                    <div className="flex items-center gap-2 sc-smith-opacity-control">
                                         <span>Z α:</span>
                                         <input
                                             className="sc-range flex-1"
@@ -506,15 +419,7 @@ export default function SmithChartComponent() {
                             {/* Y opacity */}
                             {(state.gridMode === "Y" || state.gridMode === "ZY") && (
                                 <span className="contents" title="Admittance grid opacity">
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            flexDirection: "row",
-                                            alignItems: "center",
-                                            gap: 8,
-                                            minWidth: 200,
-                                        }}
-                                    >
+                                    <div className="flex items-center gap-2 sc-smith-opacity-control">
                                         <span>Y α:</span>
                                         <input
                                             className="sc-range flex-1"
@@ -534,7 +439,7 @@ export default function SmithChartComponent() {
                                 </span>
                             )}
 
-                            <hr className="sc-divider" style={{ margin: "4px 0" }} />
+                            <hr className="sc-smith-divider sc-smith-readout-divider" />
 
                             <GridSlider
                                 label="Major px"
@@ -585,7 +490,7 @@ export default function SmithChartComponent() {
                                 className="contents"
                                 title="When enabled, suppresses minor-tick subdivision in the large-arc sweep region (circles whose centres lie outside the viewport). Reduces clutter on the left side when zoomed into the right half of the chart."
                             >
-                                <label className="sc-control" style={{ margin: 0 }}>
+                                <label className="sc-control m-0">
                                     <input
                                         className="sc-checkbox"
                                         type="checkbox"
@@ -595,15 +500,10 @@ export default function SmithChartComponent() {
                                     <span>Compact range</span>
                                 </label>
                             </span>
-                            <hr className="sc-divider" style={{ margin: "4px 0" }} />
+                            <hr className="sc-smith-divider sc-smith-readout-divider" />
                             <span
-                                style={{
-                                    fontWeight: 700,
-                                    color: "color-mix(in srgb, var(--text) 55%, transparent)",
-                                }}
-                            >
-                                RIM
-                            </span>
+                                style={{ fontWeight: 700, color: "color-mix(in srgb, var(--text) 55%, transparent)" }}
+                            >RIM</span>
                             <GridSlider
                                 label="Label gap"
                                 min={1}
@@ -636,45 +536,28 @@ export default function SmithChartComponent() {
                 </div>
 
                 {/* Readout sidebar */}
-                <div
-                    style={{
-                        width: isMobile ? "100%" : 260,
-                        overflowY: "auto",
-                        padding: 8,
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: 4,
-                    }}
-                >
+                <div className="sc-smith-readouts">
                     {state.scenarioSteps.length > 0 && (
                         <>
-                            <span style={{ fontWeight: 700, marginBottom: 4 }}>HOW IT WORKS</span>
+                            <span className="sc-smith-explanation-heading">HOW IT WORKS</span>
                             {state.scenarioSteps.map((step, i) => (
-                                <div key={i} style={{ display: "flex", gap: 6, marginBottom: 6 }}>
+                                <div key={i} className="flex" style={{ gap: 6, marginBottom: 6 }}>
                                     <span
+                                        className="shrink-0"
                                         style={{
                                             color: "color-mix(in srgb, var(--text) 55%, transparent)",
-                                            flexShrink: 0,
                                             minWidth: 14,
                                         }}
-                                    >
-                                        {i + 1}.
-                                    </span>
+                                    >{i + 1}.</span>
                                     <span style={{ lineHeight: 1.4 }}>{step}</span>
                                 </div>
                             ))}
-                            <hr className="sc-divider" style={{ margin: "6px 0" }} />
+                            <hr className="sc-smith-divider" style={{ margin: "6px 0" }} />
                         </>
                     )}
-                    <span style={{ fontWeight: 700, marginBottom: 4 }}>MARKERS</span>
+                    <span className="sc-smith-explanation-heading">MARKERS</span>
                     {state.markers.length === 0 && (
-                        <span
-                            style={{
-                                color: "color-mix(in srgb, var(--text) 55%, transparent)",
-                            }}
-                        >
-                            Click chart to place a marker
-                        </span>
+                        <span className="sc-smith-placement-hint">Click chart to place a marker</span>
                     )}
                     {state.markers.map((marker, i) => {
                         const ro = computeReadouts(marker.gamma);
@@ -707,33 +590,23 @@ export default function SmithChartComponent() {
                                     >
                                         <CloseIcon fontSize="small" />
                                     </button>
-                                    <span className="sc-chip" style={{ backgroundColor: colour }}>
+                                    <span className="sc-smith-chip" style={{ backgroundColor: colour }}>
                                         {marker.label}
                                     </span>
-                                    <span style={{ fontFamily: "monospace", lineHeight: 2 }}>
+                                    <span className="monospace" style={{ lineHeight: 2 }}>
                                         Γ={marker.gamma.re.toFixed(3)}
                                         {marker.gamma.im >= 0 ? "+" : ""}j{marker.gamma.im.toFixed(3)}
                                     </span>
                                     <ExpandMoreIcon className="sc-accordion-chevron" />
                                 </summary>
                                 <div className="sc-accordion-details sc-marker-details">
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            flexDirection: "row",
-                                            alignItems: "center",
-                                            gap: 8,
-                                            marginBottom: 6,
-                                        }}
-                                    >
+                                    <div className="flex items-center gap-2" style={{ marginBottom: 6 }}>
                                         <span
                                             style={{
                                                 color: "color-mix(in srgb, var(--text) 55%, transparent)",
                                                 minWidth: 36,
                                             }}
-                                        >
-                                            Drag:
-                                        </span>
+                                        >Drag:</span>
                                         <div className="sc-button-group" role="group">
                                             {(["free", "gamma", "R", "X", "G", "B"] as DragMode[]).map((m) => (
                                                 <button
@@ -763,28 +636,20 @@ export default function SmithChartComponent() {
                     {/* Chain step list */}
                     {state.chain.length > 0 && (
                         <>
-                            <hr className="sc-divider" style={{ margin: "4px 0" }} />
+                            <hr className="sc-smith-divider sc-smith-readout-divider" />
                             <span style={{ fontWeight: 700 }}>CHAIN ({state.chain.length} steps)</span>
                             {state.chain.map((step, i) => (
-                                <div
-                                    key={step.id}
-                                    style={{
-                                        display: "flex",
-                                        flexDirection: "row",
-                                        alignItems: "center",
-                                        gap: 8,
-                                    }}
-                                >
+                                <div key={step.id} className="flex items-center gap-2">
                                     <div
+                                        className="shrink-0"
                                         style={{
                                             width: 8,
                                             height: 8,
                                             borderRadius: "50%",
                                             backgroundColor: CHAIN_COLOURS[i % CHAIN_COLOURS.length],
-                                            flexShrink: 0,
                                         }}
                                     />
-                                    <span style={{ fontFamily: "monospace" }}>
+                                    <span className="monospace">
                                         {step.type} {step.value.toExponential(2)}
                                         {" → "}Γ={step.toGamma.re.toFixed(3)}
                                         {step.toGamma.im >= 0 ? "+" : ""}j{step.toGamma.im.toFixed(3)}
@@ -792,11 +657,7 @@ export default function SmithChartComponent() {
                                 </div>
                             ))}
                             {(state.markers.find((m) => m.isChainStart) || state.chainStartGamma) && (
-                                <span
-                                    style={{
-                                        color: "color-mix(in srgb, var(--text) 55%, transparent)",
-                                    }}
-                                >
+                                <span className="sc-smith-placement-hint">
                                     Start:{" "}
                                     {(() => {
                                         const m = state.markers.find((m) => m.isChainStart);
@@ -834,8 +695,8 @@ function GridSlider({
     format?: (v: number) => string;
 }) {
     const inner = (
-        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span style={{ minWidth: 76, flexShrink: 0 }}>{label}:</span>
+        <div className="flex items-center sc-smith-grid-slider">
+            <span className="shrink-0 sc-smith-slider-label">{label}:</span>
             <input
                 className="sc-range flex-1"
                 type="range"
@@ -845,9 +706,7 @@ function GridSlider({
                 step={step}
                 onChange={(event) => onChange(event.currentTarget.valueAsNumber)}
             />
-            <span style={{ minWidth: 36, textAlign: "right", fontFamily: "monospace" }}>
-                {format ? format(value) : value}
-            </span>
+            <span className="monospace sc-smith-slider-value">{format ? format(value) : value}</span>
         </div>
     );
     return tooltip ? (
@@ -873,27 +732,12 @@ function ReadoutTable({ ro }: { ro: ReturnType<typeof computeReadouts> }) {
         ["WTL", ro.wtl.toFixed(4) + " λ"],
     ];
     return (
-        <table
-            style={{
-                width: "100%",
-                fontSize: 11,
-                fontFamily: "monospace",
-                borderCollapse: "collapse",
-            }}
-        >
+        <table className="w-full monospace sc-smith-readout-table">
             <tbody>
                 {rows.map(([label, value]) => (
                     <tr key={label}>
-                        <td
-                            style={{
-                                color: "color-mix(in srgb, var(--text) 55%, transparent)",
-                                paddingRight: 8,
-                                whiteSpace: "nowrap",
-                            }}
-                        >
-                            {label}
-                        </td>
-                        <td style={{ textAlign: "right" }}>{value}</td>
+                        <td className="sc-smith-readout-label">{label}</td>
+                        <td className="sc-smith-readout-value">{value}</td>
                     </tr>
                 ))}
             </tbody>

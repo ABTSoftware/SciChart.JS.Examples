@@ -1,5 +1,4 @@
-import * as React from "react";
-import { useContext } from "react";
+import { useContext, useState, ChangeEvent } from "react";
 import { SciChartReact, SciChartSurfaceContext, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 import type { TDatasetId } from "./createDatasets";
@@ -14,17 +13,17 @@ export default function HighPrecisionDatasets() {
 
 const ChartHeader = () => {
     const initResult = useContext(SciChartSurfaceContext) as TResolvedReturnType<typeof drawExample>;
-    const [dataset, setDataset] = React.useState("nanosecondPrecision");
-    const [isZoomInActive, setIsZoomInActive] = React.useState(false);
+    const [dataset, setDataset] = useState("nanosecondPrecision");
+    const [isZoomInActive, setIsZoomInActive] = useState(false);
 
-    const handleDatasetChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleDatasetChange = (event: ChangeEvent<HTMLSelectElement>) => {
         const value = event.target.value as TDatasetId;
         setDataset(value);
         initResult?.controls.useDataset(value);
         setIsZoomInActive(false);
     };
 
-    const handleZoomToggle = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleZoomToggle = (event: ChangeEvent<HTMLInputElement>) => {
         const isChecked = event.target.checked;
         setIsZoomInActive(isChecked);
 

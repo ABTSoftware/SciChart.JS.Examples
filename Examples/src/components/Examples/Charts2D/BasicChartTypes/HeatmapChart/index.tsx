@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { PlayArrowIcon, StopIcon } from "../../../icons";
 
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import { appTheme } from "../../../theme";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
 import { ChartGroupLoader } from "scichart-react";
 
@@ -37,10 +36,10 @@ export default function HeatmapChart() {
 
                 <div>FPS: {stats.fps.toFixed(0).padStart(2, "0")}&nbsp;</div>
             </header>
-            <div style={{ position: "relative" }}>
+            <div className="relative">
                 <SciChartReact
                     initChart={drawExample}
-                    style={{ width: "100%", height: "100%" }}
+                    className="w-full h-full"
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         const { subscribeToRenderStats, controls } = initResult;
                         controlsRef.current = controls;
@@ -59,13 +58,7 @@ export default function HeatmapChart() {
                 />
                 <SciChartReact
                     initChart={drawHeatmapLegend}
-                    style={{
-                        position: "absolute",
-                        height: "100%",
-                        width: "65px",
-                        top: "0px",
-                        right: "0px",
-                    }}
+                    className="sc-color-legend"
                 />
             </div>
         </ChartGroupLoader>

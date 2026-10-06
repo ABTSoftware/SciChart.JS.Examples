@@ -1,15 +1,12 @@
-import * as React from "react";
-import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import { SciChartSurface } from "scichart";
-import { appTheme } from "../../../theme";
+import { useState } from "react";
+import { SciChartReact } from "scichart-react";
 import { drawExample } from "./drawExample";
 
 export default function PercentageChange() {
-    const [usePercentage, setUsePercentage] = React.useState(true);
-    const [chartKey, setChartKey] = React.useState(0);
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
+    const [usePercentage, setUsePercentage] = useState(true);
+    const [chartKey, setChartKey] = useState(0);
 
-    const handleUsePercentage = (event: React.MouseEvent<HTMLElement>, newValue: boolean) => {
+    const handleUsePercentage = (newValue: boolean) => {
         if (newValue !== null) {
             setUsePercentage(newValue);
             // Force reinitialization of the chart by updating the key
@@ -25,7 +22,7 @@ export default function PercentageChange() {
                         type="button"
                         className="sc-button"
                         aria-pressed={usePercentage === true}
-                        onClick={(event) => handleUsePercentage(event, true)}
+                        onClick={() => handleUsePercentage(true)}
                     >
                         Percentage Change
                     </button>
@@ -33,13 +30,12 @@ export default function PercentageChange() {
                         type="button"
                         className="sc-button"
                         aria-pressed={usePercentage === false}
-                        onClick={(event) => handleUsePercentage(event, false)}
+                        onClick={() => handleUsePercentage(false)}
                     >
                         Original Data
                     </button>
                 </div>
             </header>
-            {/* // Usage in SciChartReact */}
             <SciChartReact
                 key={chartKey} // Change the key to force re-render
                 initChart={(rootElement) => drawExample(rootElement, usePercentage)}

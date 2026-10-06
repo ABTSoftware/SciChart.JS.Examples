@@ -3,8 +3,6 @@ import { drawExample } from "./drawExample";
 import { useState } from "react";
 import { EPolarLabelMode } from "scichart";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     const [preset, setPreset] = useState<EPolarLabelMode>(EPolarLabelMode.Horizontal);
     const [isInnerAxis, setIsInnerAxis] = useState<boolean>(false);
@@ -14,7 +12,7 @@ export default function ChartComponent() {
         toggleIsInnerAxis: (isInnerAxis: boolean) => {},
     });
 
-    const handleToggleButtonChanged = (event: any, value: EPolarLabelMode) => {
+    const handleToggleButtonChanged = (value: EPolarLabelMode) => {
         if (value === null) return;
         setPreset(value);
         controls.changePolarLabelMode(value);
@@ -35,7 +33,7 @@ export default function ChartComponent() {
                             className="sc-button"
                             aria-pressed={preset === key}
                             key={key}
-                            onClick={(event) => handleToggleButtonChanged(event, key as EPolarLabelMode)}
+                            onClick={() => handleToggleButtonChanged(key as EPolarLabelMode)}
                         >
                             {key}
                         </button>

@@ -9,10 +9,9 @@ export default function LogarithmicAxis3DChart() {
     const [xIsLog, setXIsLog] = useState(true);
     const [yIsLog, setYIsLog] = useState(true);
 
-    const toggleXAxis = () => {
-        if (!chartRef.current) return;
+    const setXAxisScale = (useLog: boolean) => {
+        if (!chartRef.current || useLog === xIsLog) return;
         const { sciChartSurface, wasmContext } = chartRef.current;
-        const useLog = !xIsLog;
         sciChartSurface.xAxis = useLog
             ? new LogarithmicAxis3D(wasmContext, {
                   axisTitle: "Frequency (Hz)",
@@ -23,10 +22,9 @@ export default function LogarithmicAxis3DChart() {
         setXIsLog(useLog);
     };
 
-    const toggleYAxis = () => {
-        if (!chartRef.current) return;
+    const setYAxisScale = (useLog: boolean) => {
+        if (!chartRef.current || useLog === yIsLog) return;
         const { sciChartSurface, wasmContext } = chartRef.current;
-        const useLog = !yIsLog;
         sciChartSurface.yAxis = useLog
             ? new LogarithmicAxis3D(wasmContext, { axisTitle: "PSD (V²/Hz)", logBase: 10, visibleRange: Y_RANGE_LOG })
             : new NumericAxis3D(wasmContext, { axisTitle: "PSD (V²/Hz)", visibleRange: Y_RANGE_LINEAR });
@@ -36,13 +34,47 @@ export default function LogarithmicAxis3DChart() {
     return (
         <div className="sc-chart-wrapper">
             <div className="sc-toolbar-row">
-                <div className="sc-button-group" role="group" aria-label="Axis scale">
-                    <button type="button" className="sc-button" aria-pressed={xIsLog} onClick={toggleXAxis}>
-                        X: {xIsLog ? "Log" : "Linear"}
-                    </button>
-                    <button type="button" className="sc-button" aria-pressed={yIsLog} onClick={toggleYAxis}>
-                        Y: {yIsLog ? "Log" : "Linear"}
-                    </button>
+                <div className="flex items-center gap-2">
+                    <strong>X axis:</strong>
+                    <div className="sc-button-group" role="group" aria-label="X axis scale">
+                        <button
+                            type="button"
+                            className="sc-button"
+                            aria-pressed={xIsLog}
+                            onClick={() => setXAxisScale(true)}
+                        >
+                            Log
+                        </button>
+                        <button
+                            type="button"
+                            className="sc-button"
+                            aria-pressed={!xIsLog}
+                            onClick={() => setXAxisScale(false)}
+                        >
+                            Linear
+                        </button>
+                    </div>
+                </div>
+                <div className="flex items-center gap-2">
+                    <strong>Y axis:</strong>
+                    <div className="sc-button-group" role="group" aria-label="Y axis scale">
+                        <button
+                            type="button"
+                            className="sc-button"
+                            aria-pressed={yIsLog}
+                            onClick={() => setYAxisScale(true)}
+                        >
+                            Log
+                        </button>
+                        <button
+                            type="button"
+                            className="sc-button"
+                            aria-pressed={!yIsLog}
+                            onClick={() => setYAxisScale(false)}
+                        >
+                            Linear
+                        </button>
+                    </div>
                 </div>
             </div>
             <SciChartReact
@@ -50,7 +82,7 @@ export default function LogarithmicAxis3DChart() {
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     chartRef.current = initResult;
                 }}
-                style={{ height: "100%", width: "100%" }}
+                className="w-full h-full"
             />
         </div>
     );

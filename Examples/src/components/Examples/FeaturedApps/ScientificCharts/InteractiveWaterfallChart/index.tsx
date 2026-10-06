@@ -1,32 +1,22 @@
-import * as React from "react";
-import { appTheme } from "../../../theme";
+import { useState } from "react";
 import { SciChartReact } from "scichart-react";
 import { getChartsInitializationAPI } from "./drawExample";
 import { ChartGroupLoader } from "scichart-react";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function InteractiveWaterfallChart() {
-    const [chartsInitializationAPI] = React.useState(getChartsInitializationAPI);
+    const [chartsInitializationAPI] = useState(getChartsInitializationAPI);
 
     return (
         <ChartGroupLoader
-            className="sc-chart-wrapper"
-            style={{
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                background: appTheme.DarkIndigo,
-            }}
+            className="sc-chart-wrapper w-full h-full flex flex-col"
             onInit={() => {
                 chartsInitializationAPI.configureAfterInit();
             }} // callback executed when all charts within the group are initialized
         >
-            <SciChartReact style={{ flex: 1, flexBasis: "60%" }} initChart={chartsInitializationAPI.initMainChart} />
-            <div style={{ display: "flex", flex: 1, flexBasis: "40%" }}>
-                <SciChartReact style={{ flex: 1 }} initChart={chartsInitializationAPI.initCrossSectionLeft} />
-                <SciChartReact style={{ flex: 1 }} initChart={chartsInitializationAPI.initCrossSectionRight} />
+            <SciChartReact style={{ flex: "1 1 60%" }} initChart={chartsInitializationAPI.initMainChart} />
+            <div className="flex" style={{ flex: "1 1 40%" }}>
+                <SciChartReact className="flex-1" initChart={chartsInitializationAPI.initCrossSectionLeft} />
+                <SciChartReact className="flex-1" initChart={chartsInitializationAPI.initCrossSectionRight} />
             </div>
         </ChartGroupLoader>
     );

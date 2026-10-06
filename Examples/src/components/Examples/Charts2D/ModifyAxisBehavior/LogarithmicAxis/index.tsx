@@ -1,20 +1,18 @@
-import * as React from "react";
+import { useRef, useState } from "react";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { AxisBase2D, LogarithmicAxis, NumericAxis, SciChartSurface } from "scichart";
 import { drawExample } from "./drawExample";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function LogarithmicAxisExample() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
+    const sciChartSurfaceRef = useRef<SciChartSurface>(undefined);
 
-    const [linearXAxis, setLinearXAxis] = React.useState<NumericAxis>();
-    const [logXAxis, setLogXAxis] = React.useState<LogarithmicAxis>();
-    const [linearYAxis, setLinearYAxis] = React.useState<NumericAxis>();
-    const [logYAxis, setLogYAxis] = React.useState<LogarithmicAxis>();
-    const [preset, setPreset] = React.useState<number>(0);
+    const [linearXAxis, setLinearXAxis] = useState<NumericAxis>();
+    const [logXAxis, setLogXAxis] = useState<LogarithmicAxis>();
+    const [linearYAxis, setLinearYAxis] = useState<NumericAxis>();
+    const [logYAxis, setLogYAxis] = useState<LogarithmicAxis>();
+    const [preset, setPreset] = useState<number>(0);
 
-    const handleToggleButtonChanged = (event: any, state: number) => {
+    const handleToggleButtonChanged = (state: number) => {
         const sciChartSurface = sciChartSurfaceRef.current;
         const toggleAxis = (axis: AxisBase2D, isEnabled: boolean) => {
             axis.isVisible = isEnabled; // toggle this axis as visible/invisible
@@ -68,7 +66,7 @@ export default function LogarithmicAxisExample() {
                         type="button"
                         className="sc-button"
                         aria-pressed={preset === 0}
-                        onClick={(event) => handleToggleButtonChanged(event, 0)}
+                        onClick={() => handleToggleButtonChanged(0)}
                     >
                         Logarithmic X &amp; Y Axis
                     </button>
@@ -76,7 +74,7 @@ export default function LogarithmicAxisExample() {
                         type="button"
                         className="sc-button"
                         aria-pressed={preset === 1}
-                        onClick={(event) => handleToggleButtonChanged(event, 1)}
+                        onClick={() => handleToggleButtonChanged(1)}
                     >
                         Log X Axis, Linear Y Axis
                     </button>
@@ -84,7 +82,7 @@ export default function LogarithmicAxisExample() {
                         type="button"
                         className="sc-button"
                         aria-pressed={preset === 2}
-                        onClick={(event) => handleToggleButtonChanged(event, 2)}
+                        onClick={() => handleToggleButtonChanged(2)}
                     >
                         Linear X &amp; Y Axis
                     </button>

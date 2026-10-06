@@ -50,6 +50,28 @@ export const GestureIcon = (props: IconProps) => (
         <path d="M2 12a2 2 0 0 1 4 0v2h1V6a2 2 0 0 1 4 0v6h1V4a2 2 0 0 1 4 0v8h1V7a2 2 0 0 1 4 0v8a7 7 0 0 1-7 7h-2a7 7 0 0 1-6.3-4L2.4 14.2A2 2 0 0 1 2 12" />
     </Icon>
 );
+export const LinkIcon = (props: IconProps) => (
+    <Icon {...props}>
+        <path
+            d="M10 8H7a4 4 0 0 0 0 8h3m4-8h3a4 4 0 0 1 0 8h-3M8 12h8"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+        />
+    </Icon>
+);
+export const LinkOffIcon = (props: IconProps) => (
+    <Icon {...props}>
+        <path
+            d="M7 8a4 4 0 0 0 0 8h3m4-8h3a4 4 0 0 1 0 8M8 12h2m4 0h2M3 3l18 18"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+        />
+    </Icon>
+);
 export const SaveAltIcon = (props: IconProps) => (
     <Icon {...props}>
         <path d="M5 20h14v-2H5zm7-3 5-5h-3V4h-4v8H7z" />

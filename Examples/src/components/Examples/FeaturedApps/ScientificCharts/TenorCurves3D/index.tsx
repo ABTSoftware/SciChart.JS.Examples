@@ -1,26 +1,16 @@
-import * as React from "react";
 import { draw3DChart, drawLineChart1, drawLineChart2, drawHeatmapLegend } from "./drawExample";
 import { SciChartReact, ChartGroupLoader } from "scichart-react";
 
 export default function TenorCurves3DChart() {
     return (
         <ChartGroupLoader className="sc-chart-wrapper flex flex-wrap">
-            <div style={{ flex: "auto", flexBasis: "50%", position: "relative", minWidth: "200px" }}>
-                <SciChartReact initChart={draw3DChart} style={{ width: "100%", height: "100%" }} />
-                <SciChartReact
-                    initChart={drawHeatmapLegend}
-                    style={{
-                        position: "absolute",
-                        top: 0,
-                        height: "100%",
-                        width: "65px",
-                        right: "0",
-                    }}
-                />
+            <div className="relative" style={{ minWidth: 200, flex: "1 1 50%" }}>
+                <SciChartReact initChart={draw3DChart} className="w-full h-full" />
+                <SciChartReact initChart={drawHeatmapLegend} className="sc-color-legend" />
             </div>
 
-            <div style={{ flex: "auto", position: "relative", flexBasis: "50%" }}>
-                <SciChartReact initChart={drawLineChart1} style={{ position: "relative", height: "50%" }} />
+            <div className="relative" style={{ flex: "1 1 50%" }}>
+                <SciChartReact initChart={drawLineChart1} className="relative" style={{ height: "50%" }} />
                 <SciChartReact initChart={drawLineChart2} style={{ height: "50%" }} />
             </div>
         </ChartGroupLoader>

@@ -1,25 +1,24 @@
-import * as React from "react";
-import { SciChart3DSurface, TSciChart3D, ColumnRenderableSeries3D } from "scichart";
-import { drawExample, EColumn3DType, createPointMarker3D, EColumnColorMode } from "./drawExample";
+import { useRef, useState, ChangeEvent } from "react";
+import { SciChart3DSurface, ColumnRenderableSeries3D } from "scichart";
+import { drawExample, EColumn3DType, EColumnColorMode } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 const column3DTypeSelect = Object.values(EColumn3DType);
 const colorModeSelect = Object.values(EColumnColorMode);
 
-// REACT COMPONENT
 export default function Column3DChart() {
-    const sciChartSurfaceRef = React.useRef<SciChart3DSurface>(undefined);
-    const controlsRef = React.useRef<{
+    const sciChartSurfaceRef = useRef<SciChart3DSurface>(undefined);
+    const controlsRef = useRef<{
         updateColors: (colorMode: EColumnColorMode) => void;
         updatePointMarker: (type: EColumn3DType) => void;
     }>(undefined);
 
-    const [column3DType, setColumn3DType] = React.useState<EColumn3DType>(EColumn3DType.CylinderPointMarker3D);
-    const [renderableSeries, setRenderableSeries] = React.useState<ColumnRenderableSeries3D>();
-    const [dataPointWidth, setDataPointWidth] = React.useState<number>(1);
-    const [colorMode, setColorMode] = React.useState<EColumnColorMode>(EColumnColorMode.X);
+    const [column3DType, setColumn3DType] = useState<EColumn3DType>(EColumn3DType.CylinderPointMarker3D);
+    const [renderableSeries, setRenderableSeries] = useState<ColumnRenderableSeries3D>();
+    const [dataPointWidth, setDataPointWidth] = useState<number>(1);
+    const [colorMode, setColorMode] = useState<EColumnColorMode>(EColumnColorMode.X);
 
-    const handleColumn3DTypeChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+    const handleColumn3DTypeChange = (e: ChangeEvent<{ value: unknown }>) => {
         const newValue = e.target.value as EColumn3DType;
         if (newValue !== column3DType) {
             setColumn3DType(newValue);
@@ -27,7 +26,7 @@ export default function Column3DChart() {
         }
     };
 
-    const handleColorChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+    const handleColorChange = (e: ChangeEvent<{ value: unknown }>) => {
         const newValue = e.target.value as EColumnColorMode;
         if (newValue !== colorMode) {
             setColorMode(newValue);
@@ -35,7 +34,7 @@ export default function Column3DChart() {
         }
     };
 
-    const handleDataPointWidthChange = (_: React.ChangeEvent<HTMLInputElement>, newValue: number) => {
+    const handleDataPointWidthChange = (_: ChangeEvent<HTMLInputElement>, newValue: number) => {
         const newDataPointWidth = Number(newValue);
         setDataPointWidth(newDataPointWidth);
         renderableSeries.dataPointWidthX = newDataPointWidth;

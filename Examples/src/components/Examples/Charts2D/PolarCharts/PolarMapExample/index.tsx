@@ -2,14 +2,11 @@ import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 import { useEffect, useRef, useState } from "react";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     const [view, setView] = useState(false);
     const [mapData, setMapData] = useState();
     const setMapFunc = useRef(null);
     const setMapJsonFunc = useRef(null);
-    const clearMapFunc = useRef(null);
     const setViewFunc = useRef(null);
 
     useEffect(() => {
@@ -26,9 +23,6 @@ export default function ChartComponent() {
             })
             .catch((error) => console.error(error));
 
-        return () => {
-            // clearMapFunc.current();
-        };
     }, [view]);
 
     return (
@@ -49,9 +43,9 @@ export default function ChartComponent() {
                     className="sc-chart-wrapper"
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         // get the "setMap" function that is returned by "drawExample"
-                        let { setMapJson, setMap, setView } = initResult;
+                        const { setMapJson, setMap, setView } = initResult;
 
-                        // set fiew point
+                        // Choose the initial viewpoint
                         setView(false);
 
                         // set geojson
@@ -60,7 +54,7 @@ export default function ChartComponent() {
                         // set the initial map
                         setMap();
 
-                        // // assign function to ref so we can call it later
+                        // Keep the controls for subsequent viewpoint changes
                         setMapFunc.current = setMap;
                         setViewFunc.current = setView;
                         setMapJsonFunc.current = setMapJson;

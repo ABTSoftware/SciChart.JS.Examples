@@ -19,7 +19,7 @@ import {
     ESegmentLabelRotationMode,
     PolyLineAnnotation,
     IPolyLineAnnotationOptions,
-    IMultiPointLabelStyleFormatParams
+    IMultiPointLabelStyleFormatParams,
 } from "scichart-financial-tools";
 import {
     addDefaultFinancialModifiers,

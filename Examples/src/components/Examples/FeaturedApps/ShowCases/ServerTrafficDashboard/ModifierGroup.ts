@@ -1,12 +1,9 @@
 import {
-    AxisBase2D,
     ChartModifierBase2D,
-    IChartModifierBase,
     ModifierMouseArgs,
     ObservableArray,
     Point,
     SciChartSurface,
-    SciChartSurfaceBase,
     generateGuid,
     translateFromCanvasToSeriesViewRect,
     translateFromSeriesViewRectToCanvas,

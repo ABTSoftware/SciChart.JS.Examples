@@ -170,12 +170,6 @@ export const getChartsInitializationAPI = () => {
             // Rose Curve
             const roseCurve = normalizeY(theta.map((t) => Math.cos(12 * t)));
 
-            // Deltoid Curve
-            const deltoid = normalizeY(theta.map((t) => 2 * (1 - Math.cos(2 * t))));
-
-            // Archimedean Spiral
-            const archimedeanSprial = normalizeY(theta.map((t) => t / (2 * Math.PI)));
-
             return {
                 xValues: theta,
                 data: [
@@ -189,16 +183,6 @@ export const getChartsInitializationAPI = () => {
                         yValues: butterfly,
                         color: appTheme.VividOrange,
                     },
-                    // {
-                    //     name: "Deltoid",
-                    //     yValues: deltoid,
-                    //     color: appTheme.VividPink,
-                    // },
-                    // {
-                    //     name: "Archimedean Spiral",
-                    //     yValues: archimedeanSprial,
-                    //     color: appTheme.VividBlue,
-                    // },
                 ],
             };
         }

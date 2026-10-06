@@ -9,19 +9,14 @@ import {
 
 import {
     BaseDataSeries,
-    EAnnotationLayer,
     ESubSurfacePositionCoordinateMode,
     EDataSeriesType,
     EAutoRange,
     ENumericFormat,
-    EHorizontalAnchorPoint,
-    EMultiLineAlignment,
     ESeriesType,
     IRenderableSeries,
     INumericAxisOptions,
     I2DSubSurfaceOptions,
-    MouseWheelZoomModifier,
-    NativeTextAnnotation,
     NumericAxis,
     NumberRange,
     Rect,
@@ -34,8 +29,6 @@ import {
     StackedMountainRenderableSeries,
     Thickness,
     TSciChart,
-    ZoomExtentsModifier,
-    ZoomPanModifier,
 } from "scichart";
 import { appTheme } from "../../../theme";
 

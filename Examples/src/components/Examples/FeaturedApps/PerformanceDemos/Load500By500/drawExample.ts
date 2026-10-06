@@ -14,6 +14,7 @@ import {
     ZoomPanModifier,
     MouseWheelZoomModifier,
     EAxisAlignment,
+    Thickness
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -33,6 +34,7 @@ export const drawExample = async (
     // Create the SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
         // theme: appTheme.SciChartJsTheme,
+        padding: new Thickness(0)
     });
 
     // Create an X,Y Axis
@@ -171,7 +173,6 @@ export const drawExample = async (
         // the first frame after it
         const firstFrameTimestamp = Date.now();
         let frameIndex: number = 0;
-        let nextFramesTimestamp: number;
         const handler = () => {
             if (frameIndex === 0) {
                 // Add the third time span: Render the first frame
@@ -179,7 +180,6 @@ export const drawExample = async (
                     title: "Render the frame",
                     durationMs: Date.now() - firstFrameTimestamp,
                 });
-                nextFramesTimestamp = Date.now();
             } else {
                 // Unsubscribe from sciChartSurface.rendered
                 updateTimeSpans(newTimeSpans);

@@ -41,3 +41,25 @@
         margin-bottom: 12px;
     }
 }
+
+.fp-floating {
+    position: fixed;
+    min-width: 260px;
+    top: 0;
+    left: 0;
+}
+.fp-drawer-heading,
+.fp-floating-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.fp-drawer-heading {
+    margin-bottom: 8px;
+}
+.fp-floating-heading {
+    padding: 6px 8px;
+    cursor: move;
+    background: var(--sc-background);
+    user-select: none;
+}

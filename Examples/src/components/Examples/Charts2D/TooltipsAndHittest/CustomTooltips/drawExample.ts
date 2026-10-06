@@ -76,14 +76,13 @@ function interpolateColor(
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     let setStuff: undefined | React.Dispatch<any>;
-    let setClickStuff: undefined | React.Dispatch<any>;
 
     // Create a SciChartSurface with X,Y Axis
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
 
-    const xAxis = sciChartSurface.xAxes.add(
+    sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             growBy: new NumberRange(0.05, 0.05),
             labelFormat: ENumericFormat.Decimal,
@@ -91,7 +90,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
-    const yAxis = sciChartSurface.yAxes.add(
+    sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             growBy: new NumberRange(0.1, 0.1),
             labelFormat: ENumericFormat.Decimal,
@@ -177,8 +176,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     sciChartSurface.renderableSeries.add(lineSeries1, lineSeries2, lineSeries3);
 
-    let sInfos: any;
-
     const cursorSvgTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: CursorTooltipSvgAnnotation) => {
         const width = 160;
         const height = 140;
@@ -186,8 +183,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         if (!seriesInfos.length) {
             return `<svg/>`;
         }
-
-        // sInfos = seriesInfos;
 
         if (setStuff) {
             setStuff(seriesInfos);
@@ -215,7 +210,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     <rect  y="0" rx="${5}" ry="${5}" width="${width}" height="${20}" fill="${
                 si.stroke
             }" stroke="white" stroke-width="2"/>
-          
+
                     <text y="12" font-family="Verdana" font-size="12" fill="${"white"}" text-anchor="middle" >
                         <tspan fill="${"white"}"  x="50%" font-size="14" dy="0.2em">${si.seriesName}</tspan>
                         <tspan fill="${interpolateColor(
@@ -239,7 +234,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             2
         )}, index: ${seriesInfos[0].dataSeriesIndex}</text>
                 <g transform="translate(0,20)">${svgArray}</g>
-                
+
             </svg>`;
     };
 
@@ -316,7 +311,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             seriesInfo.stroke
         }" stroke="white" stroke-width="2" />
                 <rect x="0" y="40" rx="${0}" ry="${0}" width="${width}" height="${16}" fill="${"white"}" stroke="white" stroke-width="2"/>
-           
+
                 ${xButton}
 
                 <text y="12" font-family="Verdana" font-size="12" fill="${"white"}" text-anchor="start" >

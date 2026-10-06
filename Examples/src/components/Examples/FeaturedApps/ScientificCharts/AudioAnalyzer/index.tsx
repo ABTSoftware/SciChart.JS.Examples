@@ -1,23 +1,14 @@
-import * as React from "react";
+import { useState, useRef } from "react";
 import { SciChartGroup, SciChartReact } from "scichart-react";
 import { getChartsInitializationApi } from "./drawExample";
-import { appTheme } from "../../../theme";
 
 export default function AudioAnalyzer() {
-    const [chartsInitializationAPI] = React.useState(getChartsInitializationApi);
-    const controlsRef = React.useRef<ReturnType<typeof chartsInitializationAPI.onAllChartsInit>>(undefined);
+    const [chartsInitializationAPI] = useState(getChartsInitializationApi);
+    const controlsRef = useRef<ReturnType<typeof chartsInitializationAPI.onAllChartsInit>>(undefined);
 
     return (
         <div className="sc-chart-wrapper">
-            <div
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    background: appTheme.DarkIndigo,
-                }}
-            >
+            <div className="w-full h-full flex flex-col">
                 <SciChartGroup
                     onInit={() => {
                         controlsRef.current = chartsInitializationAPI.onAllChartsInit();
@@ -29,9 +20,9 @@ export default function AudioAnalyzer() {
                     }}
                 >
                     <SciChartReact style={{ flexBasis: "50%" }} initChart={chartsInitializationAPI.initAudioChart} />
-                    <div style={{ display: "flex", flex: 1 }}>
-                        <SciChartReact style={{ flex: 1 }} initChart={chartsInitializationAPI.initFftChart} />
-                        <SciChartReact style={{ flex: 1 }} initChart={chartsInitializationAPI.initSpectogramChart} />
+                    <div className="flex flex-1">
+                        <SciChartReact className="flex-1" initChart={chartsInitializationAPI.initFftChart} />
+                        <SciChartReact className="flex-1" initChart={chartsInitializationAPI.initSpectogramChart} />
                     </div>
                 </SciChartGroup>
             </div>

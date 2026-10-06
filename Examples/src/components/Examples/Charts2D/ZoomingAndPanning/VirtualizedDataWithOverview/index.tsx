@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useState } from "react";
 import { SciChartReact } from "scichart-react";
 import { getChartsInitializationApi } from "./drawExample";
@@ -9,15 +8,15 @@ export default function VirtualizedDataOverview() {
 
     return (
         <div className="sc-chart-wrapper">
-            <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+            <div className="flex flex-col h-full">
                 <SciChartReact
-                    style={{ flexBasis: 600, flexGrow: 1, flexShrink: 1 }}
+                    style={{ flex: "1 1 600px" }}
                     initChart={chartInitializationApi.createMainChart}
                     onInit={() => setIsMainChartInitialized(true)}
                 />
                 {isMainChartInitialized ? (
                     <SciChartReact
-                        style={{ flexBasis: 100, flexGrow: 1, flexShrink: 1 }}
+                        style={{ flex: "1 1 100px" }}
                         initChart={chartInitializationApi.createOverview}
                         onInit={chartInitializationApi.afterOverviewInit}
                     />

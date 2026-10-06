@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { SciChartReact, SciChartSurfaceContext, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
-import { appTheme } from "../../../theme";
 
 export default function Overview() {
     return (

@@ -67,33 +67,22 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         precision: 0,
     };
 
-    // Create some RenderableSeries - for each part of the stacked column
-    // Notice the stackedGroupId. This defines if series are stacked (same), or grouped side by side (different)
-    const rendSeries1 = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: tomatoesData, dataSeriesName: "Tomato" }),
-        fill: appTheme.VividPink,
-        stackedGroupId: "Group0",
-        dataLabels,
+    // Different stackedGroupIds place the columns side by side.
+    const stackedColumnCollection = new StackedColumnCollection(wasmContext, { dataPointWidth: 0.5 });
+    [
+        { yValues: tomatoesData, dataSeriesName: "Tomato", fill: appTheme.VividPink },
+        { yValues: pepperData, dataSeriesName: "Pepper", fill: appTheme.VividOrange },
+        { yValues: cucumberData, dataSeriesName: "Cucumber", fill: appTheme.VividSkyBlue },
+    ].forEach(({ yValues, dataSeriesName, fill }, index) => {
+        stackedColumnCollection.add(
+            new StackedColumnRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName }),
+                fill,
+                stackedGroupId: `Group${index}`,
+                dataLabels,
+            })
+        );
     });
-
-    const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: pepperData, dataSeriesName: "Pepper" }),
-        fill: appTheme.VividOrange,
-        stackedGroupId: "Group1",
-        dataLabels,
-    });
-
-    const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: cucumberData, dataSeriesName: "Cucumber" }),
-        fill: appTheme.VividSkyBlue,
-        stackedGroupId: "Group2",
-        dataLabels,
-    });
-
-    // To add the series to the chart, put them in a StackedColumnCollection
-    const stackedColumnCollection = new StackedColumnCollection(wasmContext);
-    stackedColumnCollection.dataPointWidth = 0.5;
-    stackedColumnCollection.add(rendSeries1, rendSeries2, rendSeries3);
     stackedColumnCollection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
 
     // Add the Stacked Column collection to the chart

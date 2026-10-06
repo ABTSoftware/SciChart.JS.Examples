@@ -61,7 +61,7 @@ export default function PairedDashedPolylineAnnotation() {
                 </div>
 
                 <button
-                    className="sc-button sc-button-icon sc-button-destructive"
+                    className="sc-button sc-button-icon sc-button-danger"
                     title="Delete all annotations"
                     aria-label="Delete all annotations"
                     onClick={() => controlsRef.current?.deleteAllAnnotations()}

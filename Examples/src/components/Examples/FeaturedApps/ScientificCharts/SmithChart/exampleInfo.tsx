@@ -103,7 +103,7 @@ All chart state lives in a single \`useReducer\` hook (\`useSmithChart\`). Every
 
 The chart API reference itself is stored in a \`useRef\` rather than \`useState\` so that the surface initialising asynchronously on mount doesn't trigger a re-render of the whole component.
 
-Layout responsiveness uses the browser's native \`matchMedia\` API: below the 600px breakpoint the flex direction switches from row to column so the chart fills the full screen width with the sidebar stacked below. The **FloatingPanel** renders as a draggable \`react-draggable\` window on desktop and as a bottom sheet on mobile.`,
+Layout responsiveness uses a CSS media query: below the 600px breakpoint the flex direction switches from row to column so the chart fills the full screen width with the sidebar stacked below. The **FloatingPanel** renders as a draggable \`react-draggable\` window on desktop and as a bottom sheet on mobile.`,
             },
             angular: {
                 subtitle:

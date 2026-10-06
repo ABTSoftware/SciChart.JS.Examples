@@ -121,9 +121,7 @@ export default function OilAndGasDashboardShowcase() {
                         <div
                             id="shale-chart-background"
                             className="chart-root"
-                            style={{
-                                background: appTheme.ShaleBackgroundColor,
-                            }}
+                            style={{ background: appTheme.ShaleBackgroundColor }}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                                 <defs>

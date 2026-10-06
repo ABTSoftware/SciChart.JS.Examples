@@ -1,17 +1,13 @@
-import * as React from "react";
+import { useRef, useState } from "react";
 import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import { TextLabelProvider, SciChartSurface } from "scichart";
-import { appTheme } from "../../../theme";
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+import { TextLabelProvider } from "scichart";
 export default function MultiLineLabels() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
-    const labelProviderRef = React.useRef<TextLabelProvider>(undefined);
+    const labelProviderRef = useRef<TextLabelProvider>(undefined);
 
-    const [preset, setPreset] = React.useState<number>(2);
+    const [preset, setPreset] = useState<number>(2);
 
-    const handlePreset = (event: any, value: number) => {
+    const handlePreset = (value: number) => {
         setPreset(value);
         switch (value) {
             case 0:
@@ -41,7 +37,7 @@ export default function MultiLineLabels() {
                         type="button"
                         className="sc-button"
                         aria-pressed={preset === 0}
-                        onClick={(event) => handlePreset(event, 0)}
+                        onClick={() => handlePreset(0)}
                     >
                         Multi-Line
                     </button>
@@ -49,7 +45,7 @@ export default function MultiLineLabels() {
                         type="button"
                         className="sc-button"
                         aria-pressed={preset === 1}
-                        onClick={(event) => handlePreset(event, 1)}
+                        onClick={() => handlePreset(1)}
                     >
                         Single Line Rotated
                     </button>
@@ -57,7 +53,7 @@ export default function MultiLineLabels() {
                         type="button"
                         className="sc-button"
                         aria-pressed={preset === 2}
-                        onClick={(event) => handlePreset(event, 2)}
+                        onClick={() => handlePreset(2)}
                     >
                         Multi-Line Rotated
                     </button>
@@ -66,9 +62,8 @@ export default function MultiLineLabels() {
             <SciChartReact
                 initChart={drawExample}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                    const { sciChartSurface, labelProvider } = initResult;
+                    const { labelProvider } = initResult;
                     labelProviderRef.current = labelProvider;
-                    sciChartSurfaceRef.current = sciChartSurface;
                 }}
             />
         </div>

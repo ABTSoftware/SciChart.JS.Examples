@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { SciChartReact } from "scichart-react";
 import { drawExample, TFilterMode } from "./drawExample";
@@ -11,10 +11,10 @@ const FILTER_LABELS: Array<{ mode: TFilterMode; label: string }> = [
 ];
 
 export default function FinancialDataFilters() {
-    const [filterMode, setFilterMode] = React.useState<TFilterMode>("source");
-    const chartApiRef = React.useRef<Awaited<ReturnType<typeof drawExample>> | undefined>(undefined);
+    const [filterMode, setFilterMode] = useState<TFilterMode>("source");
+    const chartApiRef = useRef<Awaited<ReturnType<typeof drawExample>> | undefined>(undefined);
 
-    React.useEffect(() => {
+    useEffect(() => {
         chartApiRef.current?.setFilterMode(filterMode);
     }, [filterMode]);
 
@@ -37,7 +37,7 @@ export default function FinancialDataFilters() {
             </header>
 
             <SciChartReact
-                style={{ width: "100%", height: "100%" }}
+                className="w-full h-full"
                 initChart={async (rootElement) => {
                     const chartApi = await drawExample(rootElement);
                     chartApiRef.current = chartApi;

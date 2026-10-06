@@ -4,17 +4,11 @@ import { drawExample, drawHeatmapLegend } from "./drawExample";
 export default function ContourChart() {
     return (
         <ChartGroupLoader className="sc-chart-wrapper">
-            <SciChartReact initChart={drawExample} style={{ width: "calc(100% - 60px)", height: "100%" }} />
+            <SciChartReact initChart={drawExample} className="h-full" style={{ width: "calc(100% - 60px)" }} />
             <SciChartReact
                 initChart={drawHeatmapLegend}
-                style={{
-                    position: "absolute",
-                    height: "100%",
-                    width: "65px",
-                    top: 0,
-                    right: 0,
-                    backgroundColor: "#000000DD",
-                }}
+                className="absolute h-full"
+                style={{ width: 65, top: 0, right: 0, backgroundColor: "#000000dd" }}
             />
         </ChartGroupLoader>
     );

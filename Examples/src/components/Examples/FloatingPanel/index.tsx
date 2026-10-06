@@ -1,5 +1,5 @@
 import "./styles.css";
-import * as React from "react";
+import { ReactNode, useState, useRef, useCallback, useEffect } from "react";
 import Draggable from "react-draggable";
 
 import { CloseIcon } from "../icons";
@@ -12,7 +12,7 @@ export interface FloatingPanelProps {
     open: boolean;
     onClose: () => void;
     defaultPosition?: { x: number; y: number };
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export function FloatingPanel({
@@ -22,24 +22,23 @@ export function FloatingPanel({
     defaultPosition = { x: 60, y: 60 },
     children,
 }: FloatingPanelProps) {
-    const [isMobile, setIsMobile] = React.useState(
+    const [isMobile, setIsMobile] = useState(
         () => typeof window !== "undefined" && window.matchMedia("(max-width: 600px)").matches
     );
-    const [zIndex, setZIndex] = React.useState(zTop);
-    const nodeRef = React.useRef<HTMLDivElement>(null);
+    const [zIndex, setZIndex] = useState(zTop);
+    const nodeRef = useRef<HTMLDivElement>(null);
 
-    const bringToFront = React.useCallback(() => {
+    const bringToFront = useCallback(() => {
         zTop += 1;
         setZIndex(zTop);
     }, []);
 
-    // Bring this panel to front whenever it mounts (open→true causes remount).
-    // bringToFront has a stable identity (useCallback []), so this fires exactly once per mount.
-    React.useEffect(() => {
+    // Each panel starts above previously opened panels; clicking it brings it forward.
+    useEffect(() => {
         bringToFront();
     }, [bringToFront]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const query = window.matchMedia("(max-width: 600px)");
         const update = () => setIsMobile(query.matches);
         query.addEventListener("change", update);
@@ -57,15 +56,7 @@ export function FloatingPanel({
                     onKeyDown={(event) => event.key === "Escape" && onClose()}
                 >
                     <section className="fp-drawer" role="dialog" aria-modal="true" aria-label={title}>
-                        <div
-                            className="fp-handle"
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between",
-                                marginBottom: 8,
-                            }}
-                        >
+                        <div className="fp-handle fp-drawer-heading">
                             <strong>{title}</strong>
                             <button
                                 className="sc-button sc-button-icon"
@@ -87,24 +78,9 @@ export function FloatingPanel({
 
     return (
         <Draggable handle=".fp-handle" nodeRef={nodeRef} defaultPosition={defaultPosition} bounds="body">
-            <div
-                ref={nodeRef}
-                style={{ position: "fixed", zIndex, minWidth: 260, top: 0, left: 0 }}
-                onMouseDown={bringToFront}
-            >
+            <div ref={nodeRef} className="fp-floating" style={{ zIndex }} onMouseDown={bringToFront}>
                 <div className="fp-paper">
-                    <div
-                        className="fp-handle"
-                        style={{
-                            padding: "6px 8px",
-                            cursor: "move",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            background: "var(--sc-background)",
-                            userSelect: "none",
-                        }}
-                    >
+                    <div className="fp-handle fp-floating-heading">
                         <strong>{title}</strong>
                         <button
                             className="sc-button sc-button-icon"

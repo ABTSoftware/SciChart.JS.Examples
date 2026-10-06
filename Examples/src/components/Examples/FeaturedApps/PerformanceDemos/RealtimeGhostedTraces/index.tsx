@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import { PlayArrowIcon, StopIcon } from "../../../icons";
 
-import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 

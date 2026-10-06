@@ -1,7 +1,7 @@
-import * as React from "react";
+import "./styles.css";
+import { ChangeEventHandler, useEffect, useRef, useState } from "react";
 import { SettingsIcon, CloseIcon } from "../../../icons";
 import { BodyPortal } from "../../../Portal";
-import { ChangeEventHandler, useEffect, useRef, useState } from "react";
 import { ChartModifierBase2D, ISciChartSubSurface } from "scichart";
 import { GridLayoutModifier } from "./GridLayoutModifier";
 import { ModifierGroup } from "./ModifierGroup";
@@ -27,7 +27,6 @@ import { useViewType } from "../../../containerSizeHooks";
 function ServerTrafficDashboard() {
     const ref = useRef<HTMLDivElement>(null);
     const viewInfo = useViewType(ref);
-    const { isLargeView, isMobileView } = viewInfo ?? {};
 
     const [isVisibleRangeSynced, setIsVisibleRangeSynced] = useState(true);
     const [isHundredPercentCollection, setIsHundredPercentCollection] = useState(false);
@@ -107,7 +106,7 @@ function ServerTrafficDashboard() {
         setIsGridLayout(!isGridLayout);
     };
 
-    const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     const handleClickOpen = () => {
         setIsDialogOpen(true);
@@ -169,29 +168,13 @@ function ServerTrafficDashboard() {
     ) : null;
 
     return (
-        <div ref={ref} className="sc-chart-wrapper" style={{ backgroundColor: "#242529" }}>
+        <div ref={ref} className="sc-chart-wrapper sc-server-traffic">
             {viewInfo ? ( // checks if container was measured
                 <ChartGroupLoader
-                    style={{
-                        boxSizing: "border-box",
-                        // padding: "0.5em",
-                        height: "100%",
-                        display: "grid",
-                        gridTemplateColumns: "repeat(4, 1fr)",
-                        gap: "0.2em",
-                        gridTemplateRows: "repeat(8, 1fr)",
-                    }}
+                    className="h-full sc-server-traffic-grid"
                     onInit={afterAllChartsInit(axisSyncManager)}
                 >
-                    <div
-                        style={{
-                            gridArea: "1 / 1 / 2 / 2",
-                            pointerEvents: "none",
-                            touchAction: "none",
-                            zIndex: 2,
-                        }}
-                        title="Chart Configurations"
-                    >
+                    <div className="sc-server-traffic-settings m-1" title="Chart Configurations">
                         <button
                             className="sc-button sc-button-icon"
                             aria-label="Chart configurations"
@@ -206,59 +189,31 @@ function ServerTrafficDashboard() {
                     <SciChart
                         initChart={getMainChartConfig(viewInfo)}
                         onInit={onMainChartInit}
-                        style={{
-                            gridRow: "1 / 4",
-                            gridColumn: "1/-1",
-                            position: "relative",
-                        }}
-                        innerContainerProps={{
-                            style: {
-                                height: "80%",
-                            },
-                        }}
+                        className="relative sc-server-main-chart"
+                        innerContainerProps={{ style: { height: "80%" } }}
                     >
-                        {!isMobileView ? <ThresholdSlider /> : null}
-                        <SciChartNestedOverview
-                            style={{
-                                height: "20%",
-                            }}
-                            options={overviewOptions}
-                        />
+                        <ThresholdSlider />
+                        <SciChartNestedOverview style={{ height: "20%" }} options={overviewOptions} />
                     </SciChart>
 
                     <SciChart
                         initChart={getPageStatisticsChartConfig(viewInfo)}
                         onInit={onPageStatisticsChartInit}
-                        style={{
-                            gridRow: "4 / 7",
-                            gridColumn: "1 / 3",
-                        }}
+                        className="sc-server-page-chart"
                     />
 
                     <SciChart
                         initChart={getServerLoadChartConfig(viewInfo)}
                         onInit={onServerLoadChartInit}
-                        style={{
-                            gridRow: "4 / 7",
-                            gridColumn: "3 / -1",
-                        }}
+                        className="sc-server-load-chart"
                     />
 
                     <SciChart
                         initChart={getRegionStatisticsColumnChartConfig(viewInfo)}
-                        style={{
-                            gridRow: "7 / -1",
-                            gridColumn: "span 3",
-                        }}
+                        className="sc-server-region-chart"
                     />
 
-                    <SciChart
-                        initChart={createRegionStatisticsPieChart}
-                        style={{
-                            gridRow: "7 / -1",
-                            gridColumn: "span 1",
-                        }}
-                    />
+                    <SciChart initChart={createRegionStatisticsPieChart} className="sc-server-region-pie" />
                 </ChartGroupLoader>
             ) : null}
         </div>

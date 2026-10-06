@@ -3,8 +3,6 @@ import { drawExample } from "./drawExample";
 import { MouseEvent, useEffect, useRef, useState } from "react";
 import { getMinMax, australiaData, Keytype, interpolateColor, keyData } from "./helpers";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     const [key, setKey] = useState<Keytype>("population");
     const [mapData, setMapData] = useState<any>();
@@ -47,7 +45,9 @@ export default function ChartComponent() {
                         aria-pressed={key === "area_km2"}
                         onClick={(event) => handleToggleButtonChanged(event, "area_km2")}
                     >
-                        <span>Area (km<sup>2</sup>)</span>
+                        <span>
+                            Area (km<sup>2</sup>)
+                        </span>
                     </button>
                     <button
                         type="button"
@@ -61,30 +61,21 @@ export default function ChartComponent() {
             </header>
             <div className="sc-chart-wrapper flex-auto">
                 <span
-                    style={{
-                        position: "absolute",
-                        top: "8px",
-                        left: "10px",
-                        zIndex: 1,
-                        display: "flex",
-                        flexDirection: "column",
-                        color: "var(--text)",
-                        fontSize: "11px",
-                        pointerEvents: "none",
-                    }}
+                    className="absolute flex flex-col"
+                    style={{ top: 8, left: 10, zIndex: 1, fontSize: 11, pointerEvents: "none" }}
                 >
                     {australiaData.map((d) => {
                         const [minValue, maxValue] = getMinMax(key, australiaData);
                         const color = interpolateColor(minValue, maxValue, keyData[d.state][key]);
                         return (
-                            <span key={d.state} style={{ color: "var(--text)" }}>
+                            <span key={d.state}>
                                 <span
                                     style={{
                                         width: 10,
                                         height: 10,
-                                        backgroundColor: color,
                                         display: "inline-block",
-                                        marginRight: "6px",
+                                        marginRight: 6,
+                                        backgroundColor: color,
                                     }}
                                 />
                                 {d.state} - {new Intl.NumberFormat().format(keyData[d.state][key])}

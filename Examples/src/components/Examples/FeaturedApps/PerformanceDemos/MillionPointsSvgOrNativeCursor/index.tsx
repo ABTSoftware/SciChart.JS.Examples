@@ -1,15 +1,14 @@
-import * as React from "react";
-import { appTheme } from "../../../theme";
+import { useState, useRef } from "react";
 
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 
 export default function HighPerformanceScatterCursor() {
-    const [isSvgMode, setIsSvgMode] = React.useState(true);
-    const [isCursor, setIsCursor] = React.useState(true);
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
+    const [isSvgMode, setIsSvgMode] = useState(true);
+    const [isCursor, setIsCursor] = useState(true);
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
-    const handleModeChange = (event: React.MouseEvent<HTMLElement>, value: boolean) => {
+    const handleModeChange = (value: boolean) => {
         if (value !== null) {
             setIsSvgMode(value);
             if (controlsRef.current) {
@@ -18,7 +17,7 @@ export default function HighPerformanceScatterCursor() {
         }
     };
 
-    const handleModifierChange = (event: React.MouseEvent<HTMLElement>, value: boolean) => {
+    const handleModifierChange = (value: boolean) => {
         if (value !== null) {
             setIsCursor(value);
             if (controlsRef.current) {
@@ -35,7 +34,7 @@ export default function HighPerformanceScatterCursor() {
                         type="button"
                         className="sc-button"
                         aria-pressed={isSvgMode === true}
-                        onClick={(event) => handleModeChange(event, true)}
+                        onClick={() => handleModeChange(true)}
                     >
                         SVG
                     </button>
@@ -43,7 +42,7 @@ export default function HighPerformanceScatterCursor() {
                         type="button"
                         className="sc-button"
                         aria-pressed={isSvgMode === false}
-                        onClick={(event) => handleModeChange(event, false)}
+                        onClick={() => handleModeChange(false)}
                     >
                         Native
                     </button>
@@ -54,7 +53,7 @@ export default function HighPerformanceScatterCursor() {
                         type="button"
                         className="sc-button"
                         aria-pressed={isCursor === true}
-                        onClick={(event) => handleModifierChange(event, true)}
+                        onClick={() => handleModifierChange(true)}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path fill="#8886" strokeWidth="1" d="M3 3 3 21 L21 21L21 3L2.75 3" />
@@ -80,7 +79,7 @@ export default function HighPerformanceScatterCursor() {
                         type="button"
                         className="sc-button"
                         aria-pressed={isCursor === false}
-                        onClick={(event) => handleModifierChange(event, false)}
+                        onClick={() => handleModifierChange(false)}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path fill="#8886" strokeWidth="1" d="M3 3 3 21 L21 21L21 3L2.75 3" />

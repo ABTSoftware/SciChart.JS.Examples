@@ -1,16 +1,14 @@
-import * as React from "react";
+import { useRef, useState } from "react";
 import { SciChartSurface, StackedMountainCollection } from "scichart";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function StackedMountainChart() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
-    const stackedMountainCollectionRef = React.useRef<StackedMountainCollection>(undefined);
-    const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
+    const sciChartSurfaceRef = useRef<SciChartSurface>(undefined);
+    const stackedMountainCollectionRef = useRef<StackedMountainCollection>(undefined);
+    const [use100PercentStackedMode, setUse100PercentStackedMode] = useState(false);
 
-    const handleUsePercentage = (event: any, value: boolean) => {
+    const handleUsePercentage = (value: boolean) => {
         if (value !== null) {
             console.log(`100% stacked? ${value}`);
             setUse100PercentStackedMode(value);
@@ -27,7 +25,7 @@ export default function StackedMountainChart() {
                     <input
                         type="checkbox"
                         checked={use100PercentStackedMode}
-                        onChange={(event) => handleUsePercentage(event, event.currentTarget.checked)}
+                        onChange={(event) => handleUsePercentage(event.currentTarget.checked)}
                     />
                     100% Mode
                 </label>

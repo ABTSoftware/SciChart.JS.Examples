@@ -1,133 +1,160 @@
-import * as React from "react";
-import { SciChartSurface, chartReviver, localStorageApi } from "scichart";
+import { useRef, useState, useEffect } from "react";
+import { chartReviver, localStorageApi } from "scichart";
 
+import { RefreshIcon } from "../../../icons";
 import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 const STORAGE_KEY = "Annotated-Charts";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function UserAnnotatedStockChart() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
-    const [name, setName] = React.useState<string>("");
-    const [chartMode, setChartMode] = React.useState<"line" | "marker" | "pan">("line");
-    const [savedCharts, setSavedCharts] = React.useState<Record<string, object>>({});
-    const [selectedChart, setSelectedChart] = React.useState<string>("");
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
+    const [isReady, setIsReady] = useState(false);
+    const [name, setName] = useState<string>("");
+    const [chartMode, setChartMode] = useState<"line" | "marker" | "pan">("line");
+    const [savedCharts, setSavedCharts] = useState<Record<string, object>>({});
+    const [selectedChart, setSelectedChart] = useState<string>("");
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (localStorageApi.storageAvailable()) {
             setSavedCharts(JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{}", chartReviver));
         }
     }, []);
 
-    const handleToggleButtonChanged = (event: any, state: "pan" | "line" | "marker") => {
-        if (state === null) return;
-        setChartMode(state);
-        controlsRef.current.setChartMode(state);
+    const setMode = (mode: "pan" | "line" | "marker") => {
+        controlsRef.current?.setChartMode(mode);
+        setChartMode(mode);
     };
 
-    const handleNameChanged = (event: any) => {
-        setName(event.target.value);
-    };
-
-    const handleSelectionChanged = (event: any) => {
-        setSelectedChart(event.target.value);
-    };
-
-    const saveChart = (event: any) => {
-        savedCharts[name] = controlsRef.current.getDefinition();
+    const saveChart = () => {
+        const chartName = name.trim();
+        if (!controlsRef.current || !chartName) return;
+        const nextSavedCharts = { ...savedCharts, [chartName]: controlsRef.current.getDefinition() };
         if (localStorageApi.storageAvailable()) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(savedCharts));
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(nextSavedCharts));
         }
-        setSavedCharts(savedCharts);
-        setSelectedChart(name);
+        setSavedCharts(nextSavedCharts);
+        setName(chartName);
+        setSelectedChart(chartName);
     };
-    const loadChart = (event: any) => {
+
+    const loadChart = () => {
         const definition = savedCharts[selectedChart];
+        if (!controlsRef.current || !definition) return;
         setName(selectedChart);
         controlsRef.current.resetChart();
         controlsRef.current.applyDefinition(definition);
     };
-    const resetChart = (event: any) => {
-        controlsRef.current.resetChart();
-    };
+
+    const savedChartNames = Object.keys(savedCharts);
 
     return (
         <div className="sc-chart-wrapper">
-            <header className="sc-toolbar-row">
+            <header className="sc-toolbar-row justify-start">
                 <div className="sc-button-group" role="group" aria-label="Chart mode">
                     <button
                         type="button"
                         className="sc-button"
+                        disabled={!isReady}
                         aria-pressed={chartMode === "pan"}
-                        onClick={(event) => handleToggleButtonChanged(event, "pan")}
+                        onClick={() => setMode("pan")}
                     >
                         Pan
                     </button>
                     <button
                         type="button"
                         className="sc-button"
+                        disabled={!isReady}
                         aria-pressed={chartMode === "line"}
-                        onClick={(event) => handleToggleButtonChanged(event, "line")}
+                        onClick={() => setMode("line")}
                     >
                         Lines
                     </button>
                     <button
                         type="button"
                         className="sc-button"
+                        disabled={!isReady}
                         aria-pressed={chartMode === "marker"}
-                        onClick={(event) => handleToggleButtonChanged(event, "marker")}
+                        onClick={() => setMode("marker")}
                     >
                         Markers
                     </button>
                 </div>
 
-                <label className="sc-control" htmlFor="chartName">
-                    Save As
-                    <input className="sc-input" id="chartName" type="text" value={name} onChange={handleNameChanged} />
-                </label>
+                <div className="flex items-center gap-2 ml-auto" role="group" aria-label="Save chart">
+                    <input
+                        className="sc-input"
+                        id="chartName"
+                        type="text"
+                        aria-label="Chart name"
+                        placeholder="Chart name"
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
+                        onKeyDown={(event) => {
+                            if (event.key === "Enter") saveChart();
+                        }}
+                        disabled={!isReady}
+                        style={{ width: 110 }}
+                    />
+                    <button
+                        className="sc-button sc-button-outline"
+                        type="button"
+                        id="btnSave"
+                        onClick={saveChart}
+                        disabled={!isReady || !name.trim()}
+                        title={name.trim() ? "Save chart with this name" : "Enter a chart name to save"}
+                    >
+                        Save
+                    </button>
+                </div>
 
-                <button className="sc-button" type="button" id="btnSave" onClick={saveChart}>
-                    Save
-                </button>
-
-                <div className="flex items-center gap-2" role="group" aria-label="Load or reset chart">
+                <div className="flex items-center gap-2" role="group" aria-label="Load chart">
                     <select
                         className="sc-select"
                         id="select-chart-names"
                         aria-label="Select saved chart"
                         value={selectedChart}
-                        onChange={handleSelectionChanged}
+                        onChange={(event) => setSelectedChart(event.target.value)}
+                        disabled={!isReady || savedChartNames.length === 0}
+                        style={{ width: 130 }}
                     >
                         <option value="" disabled>
-                            {Object.keys(savedCharts).length > 0 ? "Load from" : "No saved charts"}
+                            {savedChartNames.length > 0 ? "Saved charts" : "No saved charts"}
                         </option>
-                        {Object.keys(savedCharts).map((name: string, i: number) => (
-                            <option value={name} key={i}>
-                                {name}
+                        {savedChartNames.map((chartName) => (
+                            <option value={chartName} key={chartName}>
+                                {chartName}
                             </option>
                         ))}
                     </select>
-                    <button className="sc-button sc-button-outline" type="button" id="btnLoad" onClick={loadChart}>
+                    <button
+                        className="sc-button sc-button-outline"
+                        type="button"
+                        id="btnLoad"
+                        onClick={loadChart}
+                        disabled={!isReady || !savedCharts[selectedChart]}
+                        title={savedCharts[selectedChart] ? "Load selected chart" : "Select a saved chart to load"}
+                    >
                         Load
                     </button>
-                    <button
-                        className="sc-button sc-button-destructive"
-                        type="button"
-                        id="btnReset"
-                        onClick={resetChart}
-                    >
-                        Reset
-                    </button>
                 </div>
+                <button
+                    className="sc-button sc-button-icon sc-button-danger"
+                    type="button"
+                    id="btnReset"
+                    aria-label="Refresh chart"
+                    title="Clear annotations and reset zoom"
+                    disabled={!isReady}
+                    onClick={() => controlsRef.current?.resetChart()}
+                >
+                    <RefreshIcon />
+                </button>
             </header>
             <SciChartReact
                 initChart={drawExample}
-                onInit={({ sciChartSurface, controls }: TResolvedReturnType<typeof drawExample>) => {
-                    sciChartSurfaceRef.current = sciChartSurface;
+                onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
                     controlsRef.current = controls;
+                    setIsReady(true);
                 }}
             />
         </div>

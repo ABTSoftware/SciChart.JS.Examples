@@ -1,18 +1,15 @@
-import * as React from "react";
+import { useState, ChangeEvent } from "react";
 import { FastCandlestickRenderableSeries, FastOhlcRenderableSeries } from "scichart";
-import { appTheme } from "../../../theme";
 import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
 import { drawExample, overviewOptions } from "./drawExample";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function CandlestickChart() {
-    const [preset, setPreset] = React.useState<number>(0);
-    const [candlestickChartSeries, setCandlestickChartSeries] = React.useState<FastCandlestickRenderableSeries>();
-    const [ohlcChartSeries, setOhlcChartSeries] = React.useState<FastOhlcRenderableSeries>();
-    const [dataSource, setDataSource] = React.useState<string>("Random");
+    const [preset, setPreset] = useState<number>(0);
+    const [candlestickChartSeries, setCandlestickChartSeries] = useState<FastCandlestickRenderableSeries>();
+    const [ohlcChartSeries, setOhlcChartSeries] = useState<FastOhlcRenderableSeries>();
+    const [dataSource, setDataSource] = useState<string>("Random");
 
-    const handleToggleButtonChanged = (event: any, state: number) => {
+    const handleToggleButtonChanged = (state: number) => {
         if (state === null) return;
         setPreset(state);
         console.log(`Toggling Candle/Ohlc state: ${state}`);
@@ -21,7 +18,7 @@ export default function CandlestickChart() {
         ohlcChartSeries.isVisible = state === 1;
     };
 
-    const handleDataSourceChanged = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleDataSourceChanged = (event: ChangeEvent<HTMLSelectElement>) => {
         setDataSource(event.target.value);
     };
 
@@ -35,7 +32,7 @@ export default function CandlestickChart() {
                         type="button"
                         className="sc-button"
                         aria-pressed={preset === 0}
-                        onClick={(event) => handleToggleButtonChanged(event, 0)}
+                        onClick={() => handleToggleButtonChanged(0)}
                     >
                         Candlestick Series
                     </button>
@@ -43,7 +40,7 @@ export default function CandlestickChart() {
                         type="button"
                         className="sc-button"
                         aria-pressed={preset === 1}
-                        onClick={(event) => handleToggleButtonChanged(event, 1)}
+                        onClick={() => handleToggleButtonChanged(1)}
                     >
                         OHLC Series
                     </button>
@@ -65,20 +62,16 @@ export default function CandlestickChart() {
 
             <SciChartReact
                 key={dataSource}
-                className="flex flex-col"
+                className="sc-overview-chart"
                 initChart={initFunc}
                 onInit={(initResult: TResolvedReturnType<typeof initFunc>) => {
                     const { ohlcSeries, candlestickSeries } = initResult;
                     setCandlestickChartSeries(candlestickSeries);
                     setOhlcChartSeries(ohlcSeries);
                 }}
-                style={{ flex: "auto" }}
-                innerContainerProps={{ style: { flexBasis: "80%", flexGrow: 1, flexShrink: 1 } }}
+                innerContainerProps={{ className: "sc-main-chart" }}
             >
-                <SciChartNestedOverview
-                    style={{ flexBasis: "20%", flexGrow: 1, flexShrink: 1 }}
-                    options={overviewOptions}
-                />
+                <SciChartNestedOverview className="sc-overview" options={overviewOptions} />
             </SciChartReact>
         </div>
     );

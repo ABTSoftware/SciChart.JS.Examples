@@ -4,8 +4,6 @@ import { drawExample } from "./drawExample";
 import { createPortal } from "react-dom";
 import "./styles.css";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     const [chartApi, setChartApi] = useState<TResolvedReturnType<typeof drawExample>>();
 

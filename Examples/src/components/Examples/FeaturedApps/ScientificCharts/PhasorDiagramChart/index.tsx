@@ -3,8 +3,6 @@ import { drawExample } from "./drawExample";
 import { useState } from "react";
 import { StopIcon, PlayArrowIcon } from "../../../icons";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     const [controls, setControls] = useState<{
         startAnimation: () => void;
@@ -25,7 +23,7 @@ export default function ChartComponent() {
 
     return (
         <div className="sc-chart-wrapper">
-            <header style={{ position: "absolute", inset: "12px 12px auto", zIndex: 1 }}>
+            <header className="absolute" style={{ inset: "12px 12px auto", zIndex: 1 }}>
                 <button
                     type="button"
                     className="sc-button sc-button-icon"

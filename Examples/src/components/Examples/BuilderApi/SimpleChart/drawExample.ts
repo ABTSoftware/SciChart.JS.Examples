@@ -1,5 +1,4 @@
 import {
-    SciChartSurface,
     ESeriesType,
     EAxisType,
     EAnimationType,

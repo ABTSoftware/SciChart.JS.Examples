@@ -57,7 +57,7 @@ import { drawExample } from "./drawExample";
                     <option *ngFor="let chartName of getChartNames()" [value]="chartName">{{ chartName }}</option>
                 </select>
                 <button type="button" (click)="loadChart()" class="sc-button sc-button-outline">Load</button>
-                <button type="button" (click)="resetChart()" class="sc-button sc-button-destructive">Reset</button>
+                <button type="button" (click)="resetChart()" class="sc-button sc-button-danger">Reset</button>
             </div>
             <scichart-angular [initChart]="drawExample" (onInit)="onInit($event)"></scichart-angular>
         </div>

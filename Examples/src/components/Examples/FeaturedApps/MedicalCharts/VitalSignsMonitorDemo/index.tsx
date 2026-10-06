@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useRef, useState } from "react";
 import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
@@ -6,13 +6,13 @@ import { drawExample } from "./drawExample";
 import "./styles.css";
 
 export default function VitalSignsMonitorDemo() {
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
-    const [infoEcg, setInfoEcg] = React.useState<number>(0);
-    const [infoBloodPressure1, setInfoBloodPressure1] = React.useState<number>(0);
-    const [infoBloodPressure2, setInfoBloodPressure2] = React.useState<number>(0);
-    const [infoBloodVolume, setInfoBloodVolume] = React.useState<number>(0);
-    const [infoBloodOxygenation, setInfoBloodOxygenation] = React.useState<number>(0);
+    const [infoEcg, setInfoEcg] = useState<number>(0);
+    const [infoBloodPressure1, setInfoBloodPressure1] = useState<number>(0);
+    const [infoBloodPressure2, setInfoBloodPressure2] = useState<number>(0);
+    const [infoBloodVolume, setInfoBloodVolume] = useState<number>(0);
+    const [infoBloodOxygenation, setInfoBloodOxygenation] = useState<number>(0);
 
     return (
         <div className="sc-chart-wrapper flex">

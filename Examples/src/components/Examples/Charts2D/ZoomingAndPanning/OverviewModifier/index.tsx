@@ -1,18 +1,17 @@
-import * as React from "react";
-import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
+import { SciChartReact, SciChartNestedOverview } from "scichart-react";
 import { drawExample, overviewOptions } from "./drawExample";
 
 export default function Overview() {
     return (
         <div className="sc-chart-wrapper">
-            <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+            <div className="flex flex-col h-full">
                 <SciChartReact
                     initChart={drawExample}
-                    style={{ display: "flex", flexDirection: "column", height: "100%", width: "100%" }}
-                    innerContainerProps={{ style: { flexBasis: "80%", flexGrow: 1, flexShrink: 1 } }}
+                    className="sc-overview-chart"
+                    innerContainerProps={{ className: "sc-main-chart" }}
                 >
                     <SciChartNestedOverview
-                        style={{ flexBasis: "20%", flexGrow: 1, flexShrink: 1 }}
+                        className="sc-overview"
                         options={overviewOptions}
                     />
                 </SciChartReact>

@@ -1,24 +1,14 @@
-import * as React from "react";
-import { appTheme } from "../../../theme";
+import { useState } from "react";
 import { SciChartReact } from "scichart-react";
 import { getChartsInitializationAPI } from "./drawExample";
 import { ChartGroupLoader } from "scichart-react";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function LineChart() {
-    const [chartsInitializationAPI] = React.useState(getChartsInitializationAPI);
+    const [chartsInitializationAPI] = useState(getChartsInitializationAPI);
 
     return (
         <ChartGroupLoader
-            className="sc-chart-wrapper"
-            style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gridTemplateRows: "repeat(2, 1fr)",
-                gap: "5px",
-                padding: "5px",
-            }}
+            className="sc-chart-wrapper sc-grid-2x3"
         >
             <SciChartReact initChart={chartsInitializationAPI.line1} />
             <SciChartReact initChart={chartsInitializationAPI.line2} />

@@ -1,13 +1,11 @@
-import * as React from "react";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 import { SciChart3DSurface } from "scichart";
 
-// REACT COMPONENT
 export default function RealtimeSurfaceMesh3DChart() {
     return (
         <div className="sc-chart-wrapper">
-            <div style={{ position: "relative", height: "100%", width: "100%" }}>
+            <div className="relative w-full h-full">
                 <SciChartReact<SciChart3DSurface, TResolvedReturnType<typeof drawExample>>
                     initChart={drawExample}
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
@@ -19,7 +17,7 @@ export default function RealtimeSurfaceMesh3DChart() {
                             controls.stopUpdate();
                         };
                     }}
-                    style={{ position: "absolute", height: "100%", width: "100%" }}
+                    className="absolute w-full h-full"
                 />
             </div>
         </div>

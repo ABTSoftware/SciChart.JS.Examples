@@ -9,8 +9,6 @@ import {
     FastLineRenderableSeries,
     ETriangleSeriesDrawMode,
     FastTriangleRenderableSeries,
-    SeriesSelectionModifier,
-    ESeriesType,
 } from "scichart";
 
 import { appTheme } from "../../../theme";
@@ -44,10 +42,6 @@ function preserveAspectRatio(
     // Calculate aspect ratios
     const containerAspectRatio = width / height;
     const visibleAspectRatio = visibleWidth / visibleHeight;
-
-    // Calculate center points for maintaining position
-    const centerX = (minVisibleX + maxVisibleX) / 2;
-    const centerY = (minVisibleY + maxVisibleY) / 2;
 
     let newMinX, newMaxX, newMinY, newMaxY;
 

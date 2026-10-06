@@ -6,17 +6,14 @@ import {
     ZoomPanModifier,
     BoxAnnotation,
     TextAnnotation,
-    ECoordinateMode,
     EAnnotationLayer,
     NativeTextAnnotation,
     MouseWheelZoomModifier,
-    PinchZoomModifier,
     Thickness,
     XyDataSeries,
     ZoomExtentsModifier,
     FastLineRenderableSeries,
     EllipsePointMarker,
-    EVerticalAnchorPoint,
 } from "scichart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {

@@ -1,15 +1,14 @@
-import * as React from "react";
-import { appTheme } from "../../../theme";
+import { useRef, useState } from "react";
 
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { HIT_TEST, HIT_TEST_DATAPOINT, HIT_TEST_X_SLICE, drawExample } from "./drawExample";
 
 export default function ChartComponent() {
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
-    const [preset, setPreset] = React.useState<string>(HIT_TEST_DATAPOINT);
+    const [preset, setPreset] = useState<string>(HIT_TEST_DATAPOINT);
 
-    const handlePreset = (event: any, value: string) => {
+    const handlePreset = (value: string) => {
         // When user clicks a togglebutton, update state
         if (value) {
             console.log("ToggleButton changed " + value);
@@ -26,7 +25,7 @@ export default function ChartComponent() {
                         type="button"
                         className="sc-button"
                         aria-pressed={preset === HIT_TEST_DATAPOINT}
-                        onClick={(event) => handlePreset(event, HIT_TEST_DATAPOINT)}
+                        onClick={() => handlePreset(HIT_TEST_DATAPOINT)}
                     >
                         Hit-Test Datapoint
                     </button>
@@ -34,7 +33,7 @@ export default function ChartComponent() {
                         type="button"
                         className="sc-button"
                         aria-pressed={preset === HIT_TEST_X_SLICE}
-                        onClick={(event) => handlePreset(event, HIT_TEST_X_SLICE)}
+                        onClick={() => handlePreset(HIT_TEST_X_SLICE)}
                     >
                         Hit-Test X-Slice
                     </button>
@@ -42,7 +41,7 @@ export default function ChartComponent() {
                         type="button"
                         className="sc-button"
                         aria-pressed={preset === HIT_TEST}
-                        onClick={(event) => handlePreset(event, HIT_TEST)}
+                        onClick={() => handlePreset(HIT_TEST)}
                     >
                         Hit-Test Series Body
                     </button>

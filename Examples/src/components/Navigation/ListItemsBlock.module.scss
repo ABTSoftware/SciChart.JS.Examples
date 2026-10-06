@@ -37,14 +37,14 @@
     }
 
     .CollapseArrowButton {
-        background-color: var(--bg-darker);
         color: var(--text);
-        border-radius: 50%;
         height: 24px;
         width: 24px;
+        flex-shrink: 0;
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-right: -6px;
     }
 }
 

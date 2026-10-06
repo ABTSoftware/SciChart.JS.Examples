@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { SciChartSurface } from "scichart";
 import { drawExample, SubChartManager, SubChartConfig } from "./drawExample";
 import { appTheme } from "../../../theme";
@@ -73,21 +73,7 @@ export default function OverviewForSubCharts() {
     return (
         <div className="sc-chart-wrapper flex flex-col">
             <header className="sc-toolbar-row">
-                <button type="button" onClick={addSubChart} title="Add SubChart" className="sc-button">
-                    Add Chart
-                </button>
-
-                <button
-                    type="button"
-                    onClick={() => removeSubChart(subCharts[subCharts.length - 1]?.id)}
-                    disabled={subCharts.length === 0}
-                    title="Remove Last SubChart"
-                    className="sc-button sc-button-destructive"
-                >
-                    Remove Chart
-                </button>
-
-                <span>{subCharts.length}</span>
+                {/* <span>{subCharts.length}</span> */}
 
                 <div className="flex flex-wrap items-center gap-2">
                     {subCharts.map((config, index) => (
@@ -102,6 +88,27 @@ export default function OverviewForSubCharts() {
                         />
                     ))}
                 </div>
+
+                {/* <div className="sc-button-group" role="group"> */}
+                    <button 
+                        className="sc-button ml-auto"
+                        type="button" 
+                        onClick={addSubChart} 
+                        title="Add SubChart" 
+                    >
+                        Add Chart
+                    </button>
+
+                    <button
+                        className="sc-button sc-button-danger"
+                        type="button"
+                        onClick={() => removeSubChart(subCharts[subCharts.length - 1]?.id)}
+                        disabled={subCharts.length === 0}
+                        title="Remove Last SubChart"
+                    >
+                        Remove Chart
+                    </button>
+                {/* </div> */}
             </header>
             <div ref={chartRef} className="w-full h-full" />
         </div>

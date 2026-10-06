@@ -24,12 +24,11 @@ import {
 
 import { appTheme } from "../../../theme";
 
-const lineStartColor = appTheme.VividBlue; //"red";
-const lineEndColor = appTheme.VividOrange; //"blue";
+const lineEndColor = appTheme.VividOrange;
 
 class LineSegmentPaletteProvider implements IStrokePaletteProvider {
     public readonly strokePaletteMode = EStrokePaletteMode.GRADIENT;
-    private readonly palettedStart = parseColorToUIntArgb(lineStartColor);
+    private readonly palettedStart = parseColorToUIntArgb(appTheme.VividBlue);
     private readonly palettedEnd = parseColorToUIntArgb(lineEndColor);
 
     public onAttached(parentSeries: IRenderableSeries): void {}
@@ -67,10 +66,6 @@ const tooltipDataTemplate: TCursorTooltipDataTemplate = (seriesInfos: SeriesInfo
 };
 
 function addArrowheads(xValues: number[], yValues: number[], arrowLength = 0.36, arrowAngle = Math.PI / 12) {
-    function distance(x1: number, y1: number, x2: number, y2: number) {
-        return Math.hypot(x2 - x1, y2 - y1);
-    }
-
     const arrows = [];
     for (let i = 0; i < xValues.length; i += 2) {
         // Line start and end
@@ -146,7 +141,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     for (let x = xMin; x <= xMax; x++) {
         for (let y = yMin; y <= yMax; y++) {
             // start point
-            // dataSeries.append(x, y);
             linesXValues.push(x);
             linesYValues.push(y);
             // end point
@@ -168,8 +162,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     const arrowheads = addArrowheads(linesXValues, linesYValues);
-
-    //console.log(arrowheads.flat());
 
     const arrowheadsXvalues = arrowheads.flat().map((d) => d[0]);
     const arrowheadsYvalues = arrowheads.flat().map((d) => d[1]);

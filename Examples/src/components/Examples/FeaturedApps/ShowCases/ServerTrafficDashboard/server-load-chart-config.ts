@@ -3,7 +3,6 @@ import {
     NumericAxis,
     ENumericFormat,
     NumberRange,
-    StackedColumnCollection,
     XyDataSeries,
     FastMountainRenderableSeries,
     WaveAnimation,
@@ -24,8 +23,6 @@ import {
     registerFunction,
     ELegendOrientation,
     TCheckedChangedArgs,
-    GradientParams,
-    Point,
 } from "scichart";
 import { appTheme } from "../../../theme";
 import { GridLayoutModifier } from "./GridLayoutModifier";

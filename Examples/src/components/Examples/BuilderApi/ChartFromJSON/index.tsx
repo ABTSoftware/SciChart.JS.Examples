@@ -1,18 +1,16 @@
-import "./styles.css";
-import * as React from "react";
+import { useState, useMemo, memo, ChangeEvent } from "react";
 import { SciChartReact } from "scichart-react";
 import { centralLayoutJsonDefinition, defaultJsonDefinition, detailedJsonDefinition, drawExample } from "./drawExample";
+import "./styles.css";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartFromJSON() {
-    const [errors, setErrors] = React.useState<string>();
-    const [json, setJSON] = React.useState<string>(defaultJsonDefinition);
-    const [currentChartConfig, setCurrentChartConfig] = React.useState<string>(defaultJsonDefinition);
-    const [isCustom, setIsCustom] = React.useState<boolean>(false);
+    const [errors, setErrors] = useState<string>();
+    const [json, setJSON] = useState<string>(defaultJsonDefinition);
+    const [currentChartConfig, setCurrentChartConfig] = useState<string>(defaultJsonDefinition);
+    const [isCustom, setIsCustom] = useState<boolean>(false);
 
-    const Chart = React.useMemo(() =>
-        React.memo((props: { chartConfig: string }) => {
+    const Chart = useMemo(() =>
+        memo((props: { chartConfig: string }) => {
             return (
                 <SciChartReact
                     initChart={(rootElementId: string | HTMLDivElement) =>
@@ -24,7 +22,7 @@ export default function ChartFromJSON() {
         }), [currentChartConfig]
     );
 
-    const handleChangeJSON = (event: React.ChangeEvent<{ value: string }>) => {
+    const handleChangeJSON = (event: ChangeEvent<{ value: string }>) => {
         const newValue = event.target.value;
         setJSON(newValue);
         setIsCustom(true);
@@ -45,7 +43,10 @@ export default function ChartFromJSON() {
         <div className="sc-chart-wrapper flex flex-col w-full h-full">
             <Chart chartConfig={currentChartConfig} />
 
-            <div style={{ position: "absolute", left: 20, top: 20 }}>
+            <div 
+                className="absolute" 
+                style={{ left: 20, top: 20 }}
+            >
                 {errors && (
                     <div key="0" className="sc-alert" role="alert">
                         <strong className="sc-alert-title">Errors</strong>
@@ -53,12 +54,9 @@ export default function ChartFromJSON() {
                     </div>
                 )}
             </div>
-            
+
             <div className="flex justify-between p-2">
-                <div className="sc-button-group" 
-                    role="group" 
-                    aria-label="Chart definition presets"
-                >
+                <div className="sc-button-group" role="group" aria-label="Chart definition presets">
                     <button
                         type="button"
                         className="sc-button sc-button-outline"
@@ -68,11 +66,11 @@ export default function ChartFromJSON() {
                     >
                         Simple example
                     </button>
-                    <button 
-                        type="button" 
-                        className="sc-button sc-button-outline" 
+                    <button
+                        type="button"
+                        className="sc-button sc-button-outline"
                         id="eg2"
-                        onClick={() => setJSONAndBuild(detailedJsonDefinition)} 
+                        onClick={() => setJSONAndBuild(detailedJsonDefinition)}
                         aria-checked={currentChartConfig === detailedJsonDefinition && !isCustom}
                     >
                         Full example
@@ -89,9 +87,8 @@ export default function ChartFromJSON() {
                 </div>
 
                 <button 
-                    type="button" 
                     className="sc-button" 
-                    id="buildChart" 
+                    type="button" 
                     onClick={handleBuild}
                     disabled={!isCustom}
                 >
@@ -102,7 +99,6 @@ export default function ChartFromJSON() {
             <textarea
                 className="sc-input"
                 aria-label="Chart JSON definition"
-                id="chartDef"
                 rows={8}
                 value={json}
                 onChange={handleChangeJSON}

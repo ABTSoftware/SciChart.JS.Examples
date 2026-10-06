@@ -1,18 +1,15 @@
-import * as React from "react";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { EColumnDataLabelPosition } from "scichart";
 import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function StackedColumnChart() {
-    const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
+    const [use100PercentStackedMode, setUse100PercentStackedMode] = useState(false);
     const [controls, setControls] = useState<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
-    const [areDataLabelsVisible, setAreDataLabelsVisible] = React.useState(true);
-    const [dataLabelPosition, setDataLabelPosition] = React.useState(EColumnDataLabelPosition.Center);
+    const [areDataLabelsVisible, setAreDataLabelsVisible] = useState(true);
+    const [dataLabelPosition, setDataLabelPosition] = useState(EColumnDataLabelPosition.Center);
 
-    const handleUsePercentage = (event: any, value: boolean) => {
+    const handleUsePercentage = (value: boolean) => {
         if (value !== null && controls) {
             console.log(`100% stacked? ${value}`);
             setUse100PercentStackedMode(value);
@@ -27,7 +24,7 @@ export default function StackedColumnChart() {
         controls?.toggleDataLabels(visible);
     };
 
-    const handleDataLabelPositionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleDataLabelPositionChange = (event: ChangeEvent<HTMLSelectElement>) => {
         const position = event.currentTarget.value as EColumnDataLabelPosition;
         setDataLabelPosition(position);
         controls?.setDataLabelPosition(position);
@@ -40,7 +37,7 @@ export default function StackedColumnChart() {
                     <input
                         type="checkbox"
                         checked={use100PercentStackedMode}
-                        onChange={(event) => handleUsePercentage(event, event.currentTarget.checked)}
+                        onChange={(event) => handleUsePercentage(event.currentTarget.checked)}
                     />
                     <span>100% Mode</span>
                 </label>

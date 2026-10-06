@@ -10,7 +10,7 @@
     align-items: center;
     border: 0;
     background-position: center;
-    transition: background 0.8s;
+    transition: background-color 0.2s ease;
     background: transparent radial-gradient(circle, transparent 1%, #0000000f 1%) center/15000%;
     color: var(--text);
     -webkit-tap-highlight-color: transparent;
@@ -21,7 +21,7 @@
     // prevent simulation of hover on touch devices
     @media (hover: hover) {
         &:hover {
-            background-color: rgba(0, 0, 0, 0.05);
+            background-color: color-mix(in srgb, var(--text) 12%, transparent);
 
             a {
                 color: var(--primary-purple);

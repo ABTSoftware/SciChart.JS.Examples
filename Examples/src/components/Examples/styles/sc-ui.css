@@ -5,7 +5,7 @@
     --sc-primary: var(--sc-text);
     --sc-error: #ee6e6c;
     --sc-outline: color-mix(in srgb, var(--sc-text) 18%, var(--sc-background));
-    --sc-muted: color-mix(in srgb, var(--sc-text) 8%, var(--sc-background));
+    --sc-muted: color-mix(in srgb, var(--sc-text) 8%, transparent);
     color-scheme: dark;
 
     @media (prefers-color-scheme: light) {
@@ -19,11 +19,11 @@
 
 /* Match the outer stops of SciChart theme gradients (Light uses a solid fill). */
 [data-theme="light"] {
-    --sc-text: var(--text, #18181b);
+    --sc-text: #050a30;
     --sc-background: var(--bg, #fff);
     color-scheme: light;
 }
-[data-theme="dark"], 
+[data-theme="dark"],
 [data-theme="navy"] { 
     color-scheme: dark; 
 }
@@ -42,6 +42,12 @@
     font-family: ui-sans-serif, system-ui, sans-serif;
 
     img { display: block; }
+    hr {
+        width: 100%;
+        margin: 0.25rem 0;
+        border: 0;
+        border-top: 1px solid var(--sc-outline);
+    }
 
     &:has(> .sc-toolbar-row) {
         display: flex;
@@ -64,18 +70,33 @@
         min-height: 0;
         box-sizing: border-box;
     }
-    > :last-child {
+    .sc-responsive-controls {
         flex: 3 1 30%;
         min-width: 16rem;
         min-height: 0;
         box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+        overflow-y: auto;
+        border-top: none;
+        border-left: 1px solid var(--sc-outline);
     }
 
     @media (max-width: 600px) {
         flex-direction: column;
 
-        > :last-child {
+        > :first-child {
+            flex: 5 1 50%;
+        }
+
+        .sc-responsive-controls {
+            flex: 5 1 50%;
             min-width: 0;
+            border-left: none;
+            border-top: 1px solid var(--sc-outline);
+            padding: 0.5rem;
         }
     }
 }
@@ -124,29 +145,108 @@
 .w-max { width: max-content !important; }
 .monospace { font-family: monospace !important; }
 .flex-nowrap { flex-wrap: nowrap !important; }
+.gap-1 { gap: 0.25rem !important; }
 .gap-2 { gap: 0.5rem !important; }
 .gap-3 { gap: 0.75rem !important; }
+.p-0 { padding: 0 !important; }
 .p-1 { padding: 0.25rem !important; }
 .p-2 { padding: 0.5rem !important; }
+.m-0 { margin: 0 !important; }
+.m-1 { margin: 0.25rem !important; }
+.m-2 { margin: 0.5rem !important; }
+.cursor-default { cursor: default !important; }
 .px-2 { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
 .gap-0 { gap: 0 !important; }
 .ml-auto { margin-left: auto !important; }
 .mt-auto { margin-top: auto !important; }
 .mb-auto { margin-bottom: auto !important; }
 .mr-auto { margin-right: auto !important; }
+.mx-auto { margin-left: auto !important; margin-right: auto !important; }
 .-mt-1 { margin-top: -0.25rem !important; }
 .pl-4, .px-4 { padding-left: 1rem !important; }
 .pr-4, .px-4 { padding-right: 1rem !important; }
 .relative { position: relative !important; }
 .absolute { position: absolute !important; }
+.min-w-0 { min-width: 0 !important; }
+.min-h-0 { min-height: 0 !important; }
+.overflow-y-auto { overflow-y: auto !important; }
+.overflow-hidden { overflow: hidden !important; }
+.justify-center { justify-content: center !important; }
+.items-start { align-items: flex-start !important; }
+.shrink-0 { flex-shrink: 0 !important; }
+.h-auto { height: auto !important; }
 .text-center { text-align: center !important; }
 .border-r { border-right: 1px solid var(--sc-outline) !important; }
 .border-b { border-bottom: 1px solid var(--sc-outline) !important; }
 .border-t { border-top: 1px solid var(--sc-outline) !important; }
 .border-l { border-left: 1px solid var(--sc-outline) !important; }
+.top-0 { top: 0 !important; }
+.left-0 { left: 0 !important; }
+.bottom-0 { bottom: 0 !important; }
+.right-0 { right: 0 !important; }
 
+/* Repeated chart grids, colour legends and nested overview layouts. */
+.sc-chart-grid {
+    display: flex;
+    flex-wrap: wrap;
 
-/* Default, outline, destructive and square icon buttons share one 40px size. */
+    > * {
+        flex: 1 1 33%;
+        min-width: min(200px, 100%);
+        min-height: 0;
+        height: auto;
+    }
+
+    &.sc-chart-grid-two > * { flex-basis: 50%; }
+}
+
+.sc-grid-2x3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+
+    @media (max-width: 600px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.sc-color-legend {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 65px;
+    height: 100%;
+}
+
+.sc-chart-title {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    max-width: 90%;
+    margin: 0;
+    transform: translateX(-50%);
+    color: var(--sc-text);
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.sc-overview-chart {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+
+    > .sc-main-chart { flex: 1 1 80%; min-height: 0; }
+    > .sc-overview { flex: 1 1 20%; min-height: 0; }
+}
+
+/* Default, outline, danger and square icon buttons share one 40px size. */
 .sc-button {
     box-sizing: border-box;
     display: inline-flex;
@@ -168,7 +268,9 @@
     cursor: pointer;
     transition: background-color 150ms, border-color 150ms;
 
-    &:hover:not(:disabled) { background: color-mix(in srgb, var(--sc-primary) 85%, var(--sc-background)); }
+    &:hover:not(:disabled) {
+        background: color-mix(in srgb, var(--sc-primary) 85%, var(--sc-background));
+    }
 
     &.sc-button-outline,
     &.sc-button-icon {
@@ -176,14 +278,18 @@
         background: var(--sc-background);
         color: var(--sc-text);
 
-        &:hover:not(:disabled) { background: var(--sc-muted); }
+        &:hover:not(:disabled) {
+            background: var(--sc-muted);
+        }
     }
-
-    &.sc-button-destructive {
-        background: color-mix(in srgb, var(--sc-error) 20%, black);
+    &.sc-button-danger {
+        background: var(--sc-background);
         color: var(--sc-error);
+        border-color: color-mix(in srgb, var(--sc-error) 25%, transparent);
 
-        &:hover:not(:disabled) { background: color-mix(in srgb, var(--sc-error) 25%, black); }
+        &:hover:not(:disabled) {
+            background: color-mix(in srgb, var(--sc-error) 25%, var(--sc-background));
+        }
     }
 
     &.sc-button-icon {
@@ -197,6 +303,10 @@
         border-color: var(--sc-primary);
         background: var(--sc-primary);
         color: var(--sc-background);
+
+        &:hover:not(:disabled) {
+            background: color-mix(in srgb, var(--sc-primary) 85%, var(--sc-background));
+        }
     }
 
     svg {
@@ -273,9 +383,22 @@
 }
 
 .sc-input {
+    &[type="number"] {
+        appearance: auto;
+        padding-right: 4px;
+
+        /* Restore native steppers hidden by the application-wide input reset. */
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            -webkit-appearance: auto;
+            opacity: 1;
+            margin: 0;
+        }
+    }
+
     &[type="color"] {
         width: 40px;
-        padding: 4px;
+        padding: 2px 4px;
         cursor: pointer;
     }
 
@@ -387,6 +510,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    margin: 4px 0;
     color: var(--sc-text);
     font-size: 0.875rem;
     cursor: pointer;
@@ -395,8 +519,8 @@
         appearance: none;
         position: relative;
         box-sizing: border-box;
-        width: 32px;
-        height: 18px;
+        width: 36px;
+        height: 20px;
         flex-shrink: 0;
         margin: 0;
         border: 1px solid transparent;
@@ -410,8 +534,8 @@
             position: absolute;
             top: 1px;
             left: 1px;
-            width: 14px;
-            height: 14px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: var(--sc-background);
             transition: transform 150ms;
@@ -420,7 +544,7 @@
         &:checked {
             background: var(--sc-primary);
 
-            &::after { transform: translateX(14px); }
+            &::after { transform: translateX(16px); }
         }
     }
 
@@ -434,7 +558,7 @@
     appearance: none;
     width: 100%;
     height: 20px;
-    margin: 0;
+    margin: 4px 0;
     background: transparent;
     accent-color: var(--sc-primary);
     cursor: pointer;
@@ -541,5 +665,53 @@
         flex-direction: column;
         gap: 8px;
         padding: 16px;
+    }
+}
+
+.sc-accordion {
+    display: block;
+    border: 1px solid var(--sc-outline);
+    border-radius: var(--radius);
+    background: var(--sc-background);
+    color: var(--sc-text);
+
+    .sc-accordion-summary {
+        display: flex;
+        min-height: 38px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        border-radius: var(--radius);
+        padding: 4px 12px;
+        background: color-mix(in srgb, var(--sc-primary) 4%, var(--sc-background));
+        cursor: pointer;
+        list-style: none;
+
+        > span:first-child {
+            font-weight: 600;
+        }
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--sc-primary);
+            outline-offset: -2px;
+        }
+    }
+
+    .sc-accordion-chevron {
+        margin-left: auto;
+        transition: transform 150ms ease;
+    }
+
+    &[open] .sc-accordion-chevron {
+        transform: rotate(180deg);
+    }
+
+    .sc-accordion-details {
+        padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+        border-top: 1px solid var(--sc-outline);
     }
 }

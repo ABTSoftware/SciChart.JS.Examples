@@ -1,4 +1,3 @@
-import * as React from "react";
 import { SciChartReact } from "scichart-react";
 import { drawExample } from "./drawExample";
 

@@ -1,5 +1,4 @@
-import * as React from "react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { RefreshIcon, PlayArrowIcon, StopIcon } from "../../../icons";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample, TTimeSpan } from "./drawExample";
@@ -7,12 +6,12 @@ import { useViewType } from "../../../containerSizeHooks";
 
 export default function Load500By500() {
     const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(null);
-    const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([
+    const [timeSpans, setTimeSpans] = useState<TTimeSpan[]>([
         { title: "Generate Data Points", durationMs: 0 },
         { title: "Append Data Points", durationMs: 0 },
         { title: "Render the frame", durationMs: 0 },
     ]);
-    const [isStarted, setIsStarted] = React.useState(false);
+    const [isStarted, setIsStarted] = useState(false);
 
     const viewRef = useRef<HTMLDivElement>(null);
     const viewInfo = useViewType(viewRef);
@@ -23,7 +22,7 @@ export default function Load500By500() {
             {viewInfo ? (
                 <>
                     <SciChartReact
-                        style={{ flex: 1 }}
+                        className="flex-1"
                         initChart={(rootElement: string | HTMLDivElement) =>
                             drawExample(
                                 rootElement,

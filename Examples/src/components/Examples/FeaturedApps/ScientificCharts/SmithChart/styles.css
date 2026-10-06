@@ -1,4 +1,4 @@
-.sc-menu-popup {
+.sc-smith-menu {
     position: fixed;
     z-index: 1400;
     min-width: 180px;
@@ -15,78 +15,28 @@
     box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
 }
 
-.sc-divider {
+.sc-smith-divider {
     width: 100%;
     margin: 8px 0;
     border: 0;
     border-top: 1px solid var(--sc-outline);
 }
 
-.sc-accordion {
-    display: block;
-    margin-bottom: 6px;
-    border: 1px solid var(--sc-outline);
-    border-radius: var(--radius);
-    background: var(--sc-background);
-    color: var(--sc-text);
-
-    .sc-accordion-summary {
-        display: flex;
-        min-height: 40px;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        border-radius: var(--radius);
-        padding: 6px 12px;
-        background: var(--sc-background);
-        cursor: pointer;
-        list-style: none;
-
-        > span:first-child {
-            font-weight: 600;
-        }
-
-        &::-webkit-details-marker {
-            display: none;
-        }
-
-        &:focus-visible {
-            outline: 2px solid var(--sc-primary);
-            outline-offset: -2px;
+/* Marker readouts use a denser version of the shared accordion. */
+.sc-smith-readouts .sc-marker-accordion {
+    .sc-marker-summary {
+        min-height: 32px;
+        padding: 4px 8px;
+        .sc-smith-chip {
+            margin-right: 4px;
         }
     }
-
-    .sc-accordion-chevron {
-        margin-left: auto;
-        transition: transform 150ms ease;
-    }
-
-    &[open] .sc-accordion-chevron {
-        transform: rotate(180deg);
-    }
-
-    .sc-accordion-details {
-        padding: 12px;
-        border-top: 1px solid var(--sc-outline);
-    }
-
-    &.sc-marker-accordion {
-        .sc-marker-summary {
-            min-height: 32px;
-            padding: 4px 8px;
-
-            .sc-chip {
-                margin-right: 4px;
-            }
-        }
-
-        .sc-marker-details {
-            padding: 8px;
-        }
+    .sc-marker-details {
+        padding: 8px;
     }
 }
 
-.sc-chip {
+.sc-smith-chip {
     display: inline-flex;
     align-items: center;
     padding: 2px 8px;
@@ -94,4 +44,97 @@
     color: #fff;
     font-size: 11px;
     white-space: nowrap;
+}
+
+.sc-smith-layout {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    container-type: size;
+}
+.sc-smith-canvas {
+    position: relative;
+    aspect-ratio: 1;
+    width: min(calc(100cqw - 260px), 100cqh);
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+.sc-smith-readouts {
+    box-sizing: border-box;
+    width: 260px;
+    overflow-y: auto;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    touch-action: auto;
+}
+@media (max-width: 600px) {
+    .sc-smith-layout {
+        flex-direction: column;
+        container-type: normal;
+        overflow-y: auto;
+        touch-action: auto;
+    }
+    .sc-smith-canvas {
+        width: 100%;
+    }
+    .sc-smith-readouts {
+        width: 100%;
+        overflow-y: visible;
+    }
+}
+
+.sc-smith-plot {
+    touch-action: none;
+}
+
+.sc-smith-number-input {
+    width: 76px;
+}
+
+.sc-smith-opacity-control {
+    min-width: 200px;
+}
+
+.sc-smith-readout-divider {
+    margin: 4px 0;
+}
+
+.sc-smith-explanation-heading {
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.sc-smith-placement-hint {
+    color: color-mix(in srgb, var(--text) 55%, transparent);
+}
+
+.sc-smith-grid-slider {
+    gap: 6px;
+}
+
+.sc-smith-slider-label {
+    min-width: 76px;
+}
+
+.sc-smith-slider-value {
+    min-width: 36px;
+    text-align: right;
+}
+
+.sc-smith-readout-table {
+    font-size: 11px;
+    border-collapse: collapse;
+}
+
+.sc-smith-readout-label {
+    color: color-mix(in srgb, var(--text) 55%, transparent);
+    padding-right: 8px;
+    white-space: nowrap;
+}
+
+.sc-smith-readout-value {
+    text-align: right;
 }

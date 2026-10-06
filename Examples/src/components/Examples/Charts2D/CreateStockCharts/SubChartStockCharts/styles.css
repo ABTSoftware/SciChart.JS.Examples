@@ -1,0 +1,11 @@
+.sc-stock-pane-divider {
+    height: 2px;
+    background-color: var(--border-color);
+    cursor: row-resize;
+    z-index: 1;
+}
+
+.sc-stock-divider-handle {
+    height: 4px;
+    border-bottom: 2px dashed;
+}

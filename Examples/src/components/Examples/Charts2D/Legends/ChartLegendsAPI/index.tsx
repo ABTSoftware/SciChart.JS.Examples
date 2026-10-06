@@ -1,6 +1,7 @@
-import * as React from "react";
-import { ELegendOrientation, ELegendPlacement, LegendModifier, SciChartSurface } from "scichart";
+import { useRef, useState, ChangeEvent } from "react";
+import { ELegendOrientation, ELegendPlacement, LegendModifier } from "scichart";
 import { drawExample } from "./drawExample";
+import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 const placementSelect = [
@@ -16,16 +17,18 @@ const orientationSelect = [
 ];
 
 export default function ChartLegendsAPI() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
-    const legendModifierRef = React.useRef<LegendModifier>(undefined);
+    const legendModifierRef = useRef<LegendModifier>(undefined);
 
-    const [placementValue, setPlacementValue] = React.useState<ELegendPlacement>(ELegendPlacement.TopLeft);
-    const [orientationValue, setOrientationValue] = React.useState<ELegendOrientation>(ELegendOrientation.Vertical);
-    const [showLegendValue, setShowLegendValue] = React.useState(true);
-    const [showCheckboxesValue, setShowCheckboxesValue] = React.useState(true);
-    const [showSeriesMarkersValue, setShowSeriesMarkersValue] = React.useState(true);
+    const [placementValue, setPlacementValue] = useState<ELegendPlacement>(ELegendPlacement.TopLeft);
+    const [orientationValue, setOrientationValue] = useState<ELegendOrientation>(ELegendOrientation.Vertical);
+    const [showLegendValue, setShowLegendValue] = useState(true);
+    const [showCheckboxesValue, setShowCheckboxesValue] = useState(true);
+    const [showSeriesMarkersValue, setShowSeriesMarkersValue] = useState(true);
+    const [backgroundColor, setBackgroundColor] = useState(appTheme.SciChartJsTheme.legendBackgroundBrush.slice(0, 7));
+    const [textColor, setTextColor] = useState(appTheme.SciChartJsTheme.labelForegroundBrush.slice(0, 7));
+    const [margin, setMargin] = useState(10);
 
-    const handleChangePlacement = (event: React.ChangeEvent<{ value: unknown }>) => {
+    const handleChangePlacement = (event: ChangeEvent<{ value: unknown }>) => {
         if (legendModifierRef.current) {
             const newValue = event.target.value as ELegendPlacement;
             setPlacementValue(newValue);
@@ -33,7 +36,7 @@ export default function ChartLegendsAPI() {
         }
     };
 
-    const handleChangeOrientation = (event: React.ChangeEvent<{ value: unknown }>) => {
+    const handleChangeOrientation = (event: ChangeEvent<{ value: unknown }>) => {
         if (legendModifierRef.current) {
             const newValue = event.target.value as ELegendOrientation;
             setOrientationValue(newValue);
@@ -41,7 +44,7 @@ export default function ChartLegendsAPI() {
         }
     };
 
-    const handleChangeShowLegend = (event: React.ChangeEvent<{ checked: boolean }>) => {
+    const handleChangeShowLegend = (event: ChangeEvent<{ checked: boolean }>) => {
         if (legendModifierRef.current) {
             const newValue = event.target.checked;
             setShowLegendValue(newValue);
@@ -49,7 +52,7 @@ export default function ChartLegendsAPI() {
         }
     };
 
-    const handleChangeShowCheckboxes = (event: React.ChangeEvent<{ checked: boolean }>) => {
+    const handleChangeShowCheckboxes = (event: ChangeEvent<{ checked: boolean }>) => {
         if (legendModifierRef.current) {
             const newValue = event.target.checked;
             setShowCheckboxesValue(newValue);
@@ -57,7 +60,7 @@ export default function ChartLegendsAPI() {
         }
     };
 
-    const handleChangeShowSeriesMarkers = (event: React.ChangeEvent<{ checked: boolean }>) => {
+    const handleChangeShowSeriesMarkers = (event: ChangeEvent<{ checked: boolean }>) => {
         if (legendModifierRef.current) {
             const newValue = event.target.checked;
             setShowSeriesMarkersValue(newValue);
@@ -66,68 +69,122 @@ export default function ChartLegendsAPI() {
     };
 
     return (
-        <div className="sc-chart-wrapper">
-            <header className="sc-toolbar-row flex-col gap-2">
-                <div className="flex items-center gap-2 w-full">
-                    <label className="sc-switch">
-                        <input type="checkbox" checked={showLegendValue} onChange={handleChangeShowLegend} />
-                        Show legend
-                    </label>
-                    <label className="sc-switch">
-                        <input type="checkbox" checked={showCheckboxesValue} onChange={handleChangeShowCheckboxes} />
-                        Visibility checkboxes
-                    </label>
-                    <label className="sc-switch">
-                        <input
-                            type="checkbox"
-                            checked={showSeriesMarkersValue}
-                            onChange={handleChangeShowSeriesMarkers}
-                        />
-                        Series markers
-                    </label>
-                </div>
-                <div className="flex items-center gap-2 w-full">
-                    <label className="sc-control" htmlFor="sciChartPlacement">
-                        Placement
-                        <select
-                            id="sciChartPlacement"
-                            value={placementValue}
-                            onChange={handleChangePlacement}
-                            className="sc-select"
-                        >
-                            {placementSelect.map((el) => (
-                                <option key={el.value} value={el.value}>
-                                    {el.text}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-                    <label className="sc-control" htmlFor="sciChartOrientation">
-                        Orientation
-                        <select
-                            id="sciChartOrientation"
-                            value={orientationValue}
-                            onChange={handleChangeOrientation}
-                            className="sc-select"
-                        >
-                            {orientationSelect.map((el) => (
-                                <option key={el.value} value={el.value}>
-                                    {el.text}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-                </div>
-            </header>
+        <div className="sc-chart-wrapper sc-responsive-chart-wrapper">
             <SciChartReact
                 initChart={drawExample}
-                className="sc-chart-wrapper"
-                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                    const { sciChartSurface, legendModifier } = initResult;
+                onInit={({ legendModifier }: TResolvedReturnType<typeof drawExample>) => {
                     legendModifierRef.current = legendModifier;
-                    sciChartSurfaceRef.current = sciChartSurface;
+                    const legend = legendModifier.sciChartLegend;
+                    setBackgroundColor(
+                        (legend.backgroundColor ?? appTheme.SciChartJsTheme.legendBackgroundBrush).slice(0, 7)
+                    );
+                    setTextColor((legend.textColor ?? appTheme.SciChartJsTheme.labelForegroundBrush).slice(0, 7));
+                    setMargin(legend.margin);
                 }}
             />
+
+            <aside className="sc-responsive-controls" aria-label="Legend settings">
+                <h2>Legend settings</h2>
+
+                <label className="sc-switch">
+                    <input type="checkbox" checked={showLegendValue} onChange={handleChangeShowLegend} />
+                    Show legend
+                </label>
+                <label className="sc-switch">
+                    <input type="checkbox" checked={showCheckboxesValue} onChange={handleChangeShowCheckboxes} />
+                    Visibility checkboxes
+                </label>
+                <label className="sc-switch">
+                    <input type="checkbox" checked={showSeriesMarkersValue} onChange={handleChangeShowSeriesMarkers} />
+                    Series markers
+                </label>
+
+                <hr />
+
+                <label className="sc-control justify-between" htmlFor="sciChartPlacement">
+                    <span className="flex-none">Placement</span>
+                    <select
+                        id="sciChartPlacement"
+                        value={placementValue}
+                        onChange={handleChangePlacement}
+                        className="sc-select"
+                    >
+                        {placementSelect.map((el) => (
+                            <option key={el.value} value={el.value}>
+                                {el.text}
+                            </option>
+                        ))}
+                    </select>
+                </label>
+
+                <label className="sc-control justify-between" htmlFor="sciChartOrientation">
+                    <span className="flex-none">Orientation</span>
+                    <select
+                        id="sciChartOrientation"
+                        value={orientationValue}
+                        onChange={handleChangeOrientation}
+                        className="sc-select"
+                    >
+                        {orientationSelect.map((el) => (
+                            <option key={el.value} value={el.value}>
+                                {el.text}
+                            </option>
+                        ))}
+                    </select>
+                </label>
+
+                <hr />
+
+                <label className="sc-control justify-between">
+                    Background color
+                    <input
+                        type="color"
+                        className="sc-input"
+                        value={backgroundColor}
+                        onChange={(event) => {
+                            const legend = legendModifierRef.current?.sciChartLegend;
+                            if (legend) {
+                                setBackgroundColor(event.target.value);
+                                legend.backgroundColor = event.target.value;
+                            }
+                        }}
+                    />
+                </label>
+                <label className="sc-control justify-between">
+                    Text color
+                    <input
+                        type="color"
+                        className="sc-input"
+                        value={textColor}
+                        onChange={(event) => {
+                            const legend = legendModifierRef.current?.sciChartLegend;
+                            if (legend) {
+                                setTextColor(event.target.value);
+                                legend.textColor = event.target.value;
+                            }
+                        }}
+                    />
+                </label>
+                <label className="sc-control">
+                    <span className="flex-none">Margin: {margin}px</span>
+                    <input
+                        type="range"
+                        className="sc-range flex-1"
+                        min={0}
+                        max={50}
+                        step={1}
+                        value={margin}
+                        onChange={(event) => {
+                            const legend = legendModifierRef.current?.sciChartLegend;
+                            if (legend) {
+                                const value = event.target.valueAsNumber;
+                                setMargin(value);
+                                legend.margin = value;
+                            }
+                        }}
+                    />
+                </label>
+            </aside>
         </div>
     );
 }

@@ -35,11 +35,8 @@
     "updateMarkdown": "node updateMarkdown.js",
     "enforceTrailingSlashes": "node scripts/enforce-trailing-slashes.js",
     "linkcheck": "node scripts/linkcheck.js",
-    "checkExampleUi": "ts-node -P tsconfig.node.json -O '{\"module\":\"commonjs\",\"moduleResolution\":\"node\"}' scripts/checkExampleUi.ts",
     "typecheck": "tsc --noEmit -p tsconfig.browser.json && tsc --noEmit -p tsconfig.server.json",
-    "typecheck:watch": "tsc --noEmit -p tsconfig.browser.json --watch",
-    "checkDevSetup": "node scripts/checkDevSetup.cjs",
-    "dev:profile": "NODE_OPTIONS='--max-old-space-size=2048' node scripts/profileDev.cjs"
+    "typecheck:watch": "tsc --noEmit -p tsconfig.browser.json --watch"
   },
   "author": "",
   "license": "ISC",

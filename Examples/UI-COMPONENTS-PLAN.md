@@ -15,7 +15,7 @@ The 181 demos use native HTML controls and a small shared stylesheet. Controls f
 | -------------------------------------- | ------------------------------------------------------ |
 | Default button                         | `sc-button`                                            |
 | Outline button                         | `sc-button sc-button-outline`                          |
-| Destructive action                     | `sc-button sc-button-destructive`                      |
+| danger action                     | `sc-button sc-button-danger`                      |
 | Icon button                            | `sc-button sc-button-icon`, with an accessible name    |
 | Horizontal group                       | `sc-button-group` containing buttons directly          |
 | Vertical group                         | `sc-button-group flex-col` containing buttons directly |

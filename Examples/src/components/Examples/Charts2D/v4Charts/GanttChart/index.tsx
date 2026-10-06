@@ -1,22 +1,13 @@
 import { SciChartReact } from "scichart-react";
 import { drawExample } from "./drawExample";
-import { appTheme } from "../../../theme";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     return (
         <div className="sc-chart-wrapper">
             <div
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    background: appTheme.DarkIndigo,
-                }}
+                className="w-full h-full flex flex-col"
             >
-                <SciChartReact initChart={drawExample} style={{ flex: 1 }} />
+                <SciChartReact initChart={drawExample} className="flex-1" />
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 import { GitHubIcon, SubdirectoryArrowRight } from "./icons";
 import { FC, useEffect } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router";
+import { Link } from "react-router";
 import { baseGithubPath } from "../../constants";
 import { FRAMEWORK_NAME, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { GalleryItem } from "../../helpers/types/types";
@@ -11,24 +11,20 @@ import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";
 import GalleryItems from "../GalleryItems";
 import SeoTags from "../SeoTags/SeoTags";
 import { ExampleStrings } from "./ExampleStrings";
-import commonClasses from "./styles/Examples.module.scss";
+import "./styles/examples-shell.css";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
-    // example: () => JSX.Element;
     examplePage: TExamplePage;
     seeAlso: GalleryItem[];
 };
 
 const ExamplesRoot: FC<TProps> = (props) => {
     const { examplePage, seeAlso } = props;
-    const navigate = useNavigate();
-    const [searchParams, setSearchParams] = useSearchParams();
     const { state } = _useContext();
     const framework = state.framework;
     const frameworkName = FRAMEWORK_NAME[framework];
     const ExampleComponent = getExampleComponent(examplePage.id);
-    // const ChartComponent = getExampleComponent(examplePage.id);
 
     const titleText = examplePage
         ? getFrameworkContent(examplePage.title, framework)
@@ -37,35 +33,20 @@ const ExamplesRoot: FC<TProps> = (props) => {
     const seoPrefixTitle = getFrameworkContent(examplePage.pageTitle, framework);
     const seoTitleText = seoPrefixTitle + ExampleStrings.exampleGenericTitleSuffix(framework, seoPrefixTitle.length);
 
-    const subtitleText = examplePage ? examplePage.subtitle(frameworkName) : undefined;
-
-    const documentationLinks = examplePage ? examplePage.documentationLinks : undefined;
-
     const githubUrl = examplePage ? "/components/Examples/" + examplePage.filepath : "";
     const seoDescription = examplePage ? getFrameworkContent(examplePage.metaDescription, framework) : "";
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
-    const basePath = "https://www.scichart.com/demo";
     const exampleImage = examplePage ? examplePage.thumbnailImage : undefined;
     const exampleUrl = examplePage ? examplePage.path : "";
 
     useEffect(() => {
         updateGoogleTagManagerPage();
         window.scrollTo(0, 0);
-        // window.Prism?.highlightAll();
     }, []);
     const fullGithubUrl = baseGithubPath + githubUrl;
 
-    // const ExampleComponent = () => {
-    //     return (
-    //         <div style={{ position: "relative" }}>
-    //             <InfoToolbar examplePage={examplePage}></InfoToolbar>
-    //             <ChartComponent></ChartComponent>
-    //         </div>
-    //     );
-    // };
-
     return (
-        <div className={commonClasses.ExamplesRoot}>
+        <div className="sc-examples-root">
             <SeoTags
                 title={seoTitleText}
                 keywords={seoKeywords}
@@ -74,71 +55,34 @@ const ExamplesRoot: FC<TProps> = (props) => {
                 url={exampleUrl}
                 framework={framework}
             />
-            <div className={commonClasses.Body}>
-                <div className={commonClasses.ColMain}>
-                    {/* <ComponentWrapper>
-                        <div className={classes.ExampleRootDescription}>
-                            <h5>SciChart.js Demo</h5>
-
-                            <p className={commonClasses.ExampleDescriptionText}>
-                                {" "}
-                                <a
-                                    className={commonClasses.ExampleRootDescriptionLink}
-                                    target="_blank"
-                                    href={`https://www.scichart.com/example/javascript-chart/javascript-${exampleUrl}/`}
-                                    title={titleText}
-                                >
-                                    {titleText}
-                                </a>{" "}
-                                is part of the SciChart.js demo app. To clone the repo for this demo, visit{" "}
-                                <a
-                                    className={commonClasses.ExampleRootDescriptionLink}
-                                    target="_blank"
-                                    rel="external"
-                                    href="https://github.com/abtsoftware/scichart.js.examples"
-                                    title={titleText}
-                                >
-                                    SciChart's Github
-                                </a>
-                                . For getting-started &amp; docs, see above!{" "}
-                                <a
-                                    className={commonClasses.ExampleRootDescriptionLink}
-                                    target="_blank"
-                                    rel="nofollow external"
-                                    href={`/codesandbox/${exampleUrl}?codesandbox=1&framework=${framework}`}
-                                >
-                                    Open in CodeSandBox
-                                </a>
-                            </p>
-                        </div>
-                    </ComponentWrapper> */}
-
+            <div className="sc-body">
+                <div className="sc-col-main">
                     <ComponentWrapper>
-                        <h1 className={commonClasses.Title}>{titleText} </h1>
+                        <h1 className="sc-title">{titleText} </h1>
 
-                        <div className={commonClasses.ExampleWrapper}>
-                            <div className={commonClasses.Example}>
+                        <div className="sc-example-wrapper">
+                            <div className="sc-example">
                                 <ExampleComponent />
-                                <div className={commonClasses.ButtonsWrapper}>
+                                <div className="sc-buttons-wrapper">
                                     <a
-                                        className={commonClasses.GitHubLink}
+                                        className="sc-git-hub-link"
                                         href={fullGithubUrl}
                                         title={fullGithubUrl}
                                         target="_blank"
                                         rel="noreferrer"
                                     >
                                         <GitHubIcon />
-                                        <span className={commonClasses.ButtonsText}>VIEW SOURCE IN GITHUB</span>
+                                        <span className="sc-buttons-text">VIEW SOURCE IN GITHUB</span>
                                     </a>
                                     <Link
-                                        className={commonClasses.GitHubLink}
+                                        className="sc-git-hub-link"
                                         to={`/iframe/${examplePage.path}`}
                                         title="View this example in Full Screen"
                                         target="_blank"
                                         rel="nofollow"
                                     >
                                         <SubdirectoryArrowRight />
-                                        <span className={commonClasses.ButtonsText}>VIEW Full Screen</span>
+                                        <span className="sc-buttons-text">VIEW Full Screen</span>
                                     </Link>
                                 </div>
                             </div>

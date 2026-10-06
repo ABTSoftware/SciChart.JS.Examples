@@ -1,20 +1,18 @@
-import * as React from "react";
+import { useState, useRef } from "react";
 
 import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
-    const [isStaticAxis, setIsStaticAxis] = React.useState(false);
+    const [isStaticAxis, setIsStaticAxis] = useState(false);
 
-    const controlsRef = React.useRef<{ toggleStaticAxis: () => void }>(undefined);
+    const controlsRef = useRef<{ toggleStaticAxis: () => void }>(undefined);
 
     return (
         <div className="sc-chart-wrapper">
             <header className="sc-toolbar-row">
-                <div 
-                    className="sc-button-group" 
-                    role="group" 
+                <div
+                    className="sc-button-group"
+                    role="group"
                     aria-label="Primary X Axis mode"
                 >
                     <button

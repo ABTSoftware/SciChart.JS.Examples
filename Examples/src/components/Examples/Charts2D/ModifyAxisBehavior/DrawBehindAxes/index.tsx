@@ -1,15 +1,14 @@
-import * as React from "react";
+import { useRef, useState } from "react";
 import { SciChartSurface } from "scichart";
-import { appTheme } from "../../../theme";
 import { drawExample } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 export default function DrawBehindAxes() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
+    const sciChartSurfaceRef = useRef<SciChartSurface>(undefined);
 
-    const [preset, setPreset] = React.useState<number>(0);
+    const [preset, setPreset] = useState<number>(0);
 
-    const handleToggleButtonChanged = (event: any, value: number) => {
+    const handleToggleButtonChanged = (value: number) => {
         setPreset(value);
         sciChartSurfaceRef.current.drawSeriesBehindAxis = value === 0;
         sciChartSurfaceRef.current.title =
@@ -28,7 +27,7 @@ export default function DrawBehindAxes() {
                         type="button"
                         className="sc-button"
                         aria-pressed={preset === 0}
-                        onClick={(event) => handleToggleButtonChanged(event, 0)}
+                        onClick={() => handleToggleButtonChanged(0)}
                     >
                         Draw Series behind Axis
                     </button>
@@ -36,7 +35,7 @@ export default function DrawBehindAxes() {
                         type="button"
                         className="sc-button"
                         aria-pressed={preset === 1}
-                        onClick={(event) => handleToggleButtonChanged(event, 1)}
+                        onClick={() => handleToggleButtonChanged(1)}
                     >
                         Clip series at Viewport Edge
                     </button>

@@ -4,8 +4,6 @@ import { BodyPortal } from "../../../Portal";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawGridExample, TMessage } from "./drawExample";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function SubchartsGrid() {
     const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
     const [isStarted, setIsStarted] = useState(false);
@@ -22,7 +20,7 @@ export default function SubchartsGrid() {
         setIsDialogOpen(false);
     };
 
-    const handleLabelsChange = (ev: any, checked: boolean) => {
+    const handleLabelsChange = (checked: boolean) => {
         controlsRef.current.setLabels(checked);
     };
 
@@ -54,7 +52,7 @@ export default function SubchartsGrid() {
                         <label className="sc-switch">
                             <input
                                 type="checkbox"
-                                onChange={(event) => handleLabelsChange(event, event.currentTarget.checked)}
+                                onChange={(event) => handleLabelsChange(event.currentTarget.checked)}
                             />
                             Axis Labels
                         </label>
@@ -85,12 +83,7 @@ export default function SubchartsGrid() {
                 </button>
 
                 <div
-                    style={{
-                        gridArea: "1 / 1 / 2 / 2",
-                        pointerEvents: "none",
-                        touchAction: "none",
-                        zIndex: 2,
-                    }}
+                    style={{ gridArea: "1 / 1 / 2 / 2", pointerEvents: "none", touchAction: "none", zIndex: 2 }}
                     title="Chart Configurations"
                 >
                     <button
@@ -104,22 +97,14 @@ export default function SubchartsGrid() {
                     {configurationDialog}
                 </div>
 
-                <div
-                    style={{
-                        display: "flex",
-                        flex: "auto",
-                        flexBasis: "20%",
-                        gap: "8px",
-                        marginRight: "8px",
-                    }}
-                >
+                <div className="flex gap-2" style={{ marginRight: 8, flex: "1 1 20%" }}>
                     {messages.map((msg, index) => (
                         <div
                             key={index}
+                            className="flex-none"
                             style={{
                                 padding: "0.4em",
                                 textAlign: "end",
-                                flex: "none",
                                 width: "16%",
                                 fontSize: "0.8em",
                                 textWrap: "nowrap",

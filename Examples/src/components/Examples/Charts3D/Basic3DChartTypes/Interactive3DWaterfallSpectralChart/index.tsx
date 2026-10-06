@@ -1,29 +1,29 @@
-import * as React from "react";
+import { useState } from "react";
 import { SciChartReact, ChartGroupLoader } from "scichart-react";
-import { appTheme } from "../../../theme";
 import { getChartsInitializationAPI } from "./drawExample";
 
 export default function Interactive3DWaterfallSpectralChart() {
-    const [chartsInitializationAPI] = React.useState(getChartsInitializationAPI);
+    const [chartsInitializationAPI] = useState(getChartsInitializationAPI);
 
     return (
-        <div className="sc-chart-wrapper flex flex-col" style={{ background: appTheme.DarkIndigo }}>
+        <div className="sc-chart-wrapper flex flex-col" >
             <ChartGroupLoader
-                className="flex flex-col flex-1"
-                style={{ minHeight: 0 }}
+                className="flex flex-col flex-1 min-h-0"
+
                 onInit={chartsInitializationAPI.configureAfterInit}
             >
                 <SciChartReact
-                    style={{ flex: 1, flexBasis: "60%", minHeight: 0 }}
+                    className="min-h-0"
+                    style={{ flex: "1 1 60%" }}
                     initChart={chartsInitializationAPI.initMainChart3D}
                 />
-                <div style={{ display: "flex", flex: 1, flexBasis: "40%", minHeight: 0 }}>
+                <div className="flex min-h-0" style={{ flex: "1 1 40%" }}>
                     <SciChartReact
-                        style={{ flex: 1, minWidth: 0 }}
+                        className="flex-1 min-w-0"
                         initChart={chartsInitializationAPI.initCrossSectionLeft}
                     />
                     <SciChartReact
-                        style={{ flex: 1, minWidth: 0 }}
+                        className="flex-1 min-w-0"
                         initChart={chartsInitializationAPI.initCrossSectionRight}
                     />
                 </div>

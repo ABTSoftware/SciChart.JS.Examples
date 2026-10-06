@@ -1,23 +1,23 @@
 import { PlayArrowIcon, StopIcon } from "../../../icons";
 
-import * as React from "react";
+import { useRef, useState } from "react";
 import { ESeriesType } from "scichart";
 import { drawExample, ISettings, TMessage } from "./drawExample";
 import { ChartGroupLoader, SciChartReact, TResolvedReturnType } from "scichart-react";
 
 export default function RealtimeBigDataShowcase() {
-    const controlsRef = React.useRef<TResolvedReturnType<typeof chartInitFunction>["controls"]>(undefined);
+    const controlsRef = useRef<TResolvedReturnType<typeof chartInitFunction>["controls"]>(undefined);
 
-    const [seriesType, setSeriesType] = React.useState<ESeriesType>(ESeriesType.LineSeries);
-    const [isRunning, setIsRunning] = React.useState(false);
-    const [settings, setSettings] = React.useState<ISettings>({
+    const [seriesType, setSeriesType] = useState<ESeriesType>(ESeriesType.LineSeries);
+    const [isRunning, setIsRunning] = useState(false);
+    const [settings, setSettings] = useState<ISettings>({
         seriesCount: 10,
         pointsOnChart: 4, // 10000
         pointsPerUpdate: 1, // 10
         sendEvery: 100,
         initialPoints: 4, // 10000
     });
-    const [maxSettings, setMaxSettings] = React.useState<ISettings>({
+    const [maxSettings, setMaxSettings] = useState<ISettings>({
         seriesCount: 100,
         pointsOnChart: 6, // 1000000
         pointsPerUpdate: 4, // 10000
@@ -38,7 +38,7 @@ export default function RealtimeBigDataShowcase() {
         );
     };
 
-    const [messages, setMessages] = React.useState<TMessage[]>([
+    const [messages, setMessages] = useState<TMessage[]>([
         { title: "Avg Load Time", detail: "0" },
         { title: "Avg Render Time", detail: "0" },
         { title: "Max FPS", detail: "0" },
@@ -51,9 +51,9 @@ export default function RealtimeBigDataShowcase() {
         setSeriesType(e.target.value);
     };
 
-    const handleSeriesCount = (event: any, newValue: any) => {
+    const handleSeriesCount = (newValue: number) => {
         if (controlsRef.current) {
-            const seriesCount = Number(newValue);
+            const seriesCount = newValue;
             const newMax = Math.log10(Math.min(1000000, maxPoints / seriesCount));
             setMaxSettings({ ...maxSettings, pointsOnChart: newMax, initialPoints: newMax });
             const pointsOnChart = Math.min(settings.pointsOnChart, newMax);
@@ -66,28 +66,28 @@ export default function RealtimeBigDataShowcase() {
             });
         }
     };
-    const handleInitialPoints = (event: any, newValue: any) => {
+    const handleInitialPoints = (newValue: number) => {
         if (controlsRef.current) {
-            const initialPoints = Math.min(Number(newValue), settings.pointsOnChart);
+            const initialPoints = Math.min(newValue, settings.pointsOnChart);
             controlsRef.current.updateSettings({ initialPoints: logScale(initialPoints) });
             setSettings({ ...settings, initialPoints });
         }
     };
-    const handlePointsPerUpdate = (event: any, newValue: any) => {
+    const handlePointsPerUpdate = (newValue: number) => {
         if (controlsRef.current) {
-            controlsRef.current.updateSettings({ pointsPerUpdate: logScale(Number(newValue)) });
-            setSettings({ ...settings, pointsPerUpdate: Number(newValue) });
+            controlsRef.current.updateSettings({ pointsPerUpdate: logScale(newValue) });
+            setSettings({ ...settings, pointsPerUpdate: newValue });
         }
     };
-    const handleSendEvery = (event: any, newValue: any) => {
+    const handleSendEvery = (newValue: number) => {
         if (controlsRef.current) {
-            setSettings({ ...settings, sendEvery: Number(newValue) });
-            controlsRef.current.updateSettings({ sendEvery: Number(newValue) });
+            setSettings({ ...settings, sendEvery: newValue });
+            controlsRef.current.updateSettings({ sendEvery: newValue });
         }
     };
-    const handlePointsOnChart = (event: any, newValue: any) => {
+    const handlePointsOnChart = (newValue: number) => {
         if (controlsRef.current) {
-            const pointsOnChart = Number(newValue);
+            const pointsOnChart = newValue;
             const initialPoints = Math.min(settings.initialPoints, pointsOnChart);
             const newMaxSeries = Math.min(100, Math.floor(maxPoints / logScale(pointsOnChart)));
             setMaxSettings({ ...maxSettings, seriesCount: newMaxSeries });
@@ -125,10 +125,10 @@ export default function RealtimeBigDataShowcase() {
     }, seriesType);
 
     return (
-        <ChartGroupLoader className="sc-chart-wrapper flex">
+        <ChartGroupLoader className="sc-chart-wrapper sc-responsive-chart-wrapper">
             <SciChartReact
                 key={seriesType}
-                className="sc-chart-wrapper flex-1"
+                className="sc-chart-wrapper"
                 initChart={chartInitFunction}
                 onInit={(initResult: TResolvedReturnType<typeof chartInitFunction>) => {
                     controlsRef.current = initResult.controls;
@@ -148,11 +148,7 @@ export default function RealtimeBigDataShowcase() {
                 }}
             />
 
-            <aside
-                className="flex flex-col"
-                aria-label="Chart controls"
-                style={{ width: "min(240px, 50vw)", flexShrink: 0, padding: 10, overflowY: "auto", gap: 3 }}
-            >
+            <aside className="sc-responsive-controls">
                 <div className="flex gap-2" style={{ marginBottom: 8 }}>
                     <button
                         className="sc-button sc-button-icon"
@@ -181,19 +177,19 @@ export default function RealtimeBigDataShowcase() {
                     </select>
                 </div>
 
-                <span>Number of Series {settings.seriesCount}</span>
+                <label htmlFor="seriesCount">Number of Series {settings.seriesCount}</label>
                 <input
                     className="sc-range"
                     type="range"
                     id="seriesCount"
-                    onChange={(event) => handleSeriesCount(event, event.currentTarget.valueAsNumber)}
+                    onChange={(event) => handleSeriesCount(event.currentTarget.valueAsNumber)}
                     step={1}
                     min={1}
                     max={maxSettings.seriesCount}
                     value={settings.seriesCount}
                 />
 
-                <span>Initial Points {logScale(settings.initialPoints)}</span>
+                <label htmlFor="InitialPoints">Initial Points {logScale(settings.initialPoints)}</label>
                 <input
                     className="sc-range"
                     type="range"
@@ -201,7 +197,6 @@ export default function RealtimeBigDataShowcase() {
                     list="log-slider-marks"
                     onChange={(event) =>
                         handleInitialPoints(
-                            event,
                             snapLogSliderValue(event.currentTarget.valueAsNumber, maxSettings.initialPoints)
                         )
                     }
@@ -209,9 +204,10 @@ export default function RealtimeBigDataShowcase() {
                     min={0.1}
                     max={maxSettings.initialPoints}
                     value={settings.initialPoints}
+                    aria-valuetext={`${logScale(settings.initialPoints)} points`}
                 />
 
-                <span>Max Points On Chart {logScale(settings.pointsOnChart)}</span>
+                <label htmlFor="pointsOnChart">Max Points On Chart {logScale(settings.pointsOnChart)}</label>
                 <input
                     className="sc-range"
                     type="range"
@@ -219,7 +215,6 @@ export default function RealtimeBigDataShowcase() {
                     list="log-slider-marks"
                     onChange={(event) =>
                         handlePointsOnChart(
-                            event,
                             snapLogSliderValue(event.currentTarget.valueAsNumber, maxSettings.pointsOnChart)
                         )
                     }
@@ -227,9 +222,10 @@ export default function RealtimeBigDataShowcase() {
                     min={0.1}
                     max={maxSettings.pointsOnChart}
                     value={settings.pointsOnChart}
+                    aria-valuetext={`${logScale(settings.pointsOnChart)} points`}
                 />
 
-                <span>Points Per Update {logScale(settings.pointsPerUpdate)}</span>
+                <label htmlFor="pointsPerUpdate">Points Per Update {logScale(settings.pointsPerUpdate)}</label>
                 <input
                     className="sc-range"
                     type="range"
@@ -237,7 +233,6 @@ export default function RealtimeBigDataShowcase() {
                     list="log-slider-marks"
                     onChange={(event) =>
                         handlePointsPerUpdate(
-                            event,
                             snapLogSliderValue(event.currentTarget.valueAsNumber, maxSettings.pointsPerUpdate)
                         )
                     }
@@ -245,18 +240,20 @@ export default function RealtimeBigDataShowcase() {
                     min={0.1}
                     max={maxSettings.pointsPerUpdate}
                     value={settings.pointsPerUpdate}
+                    aria-valuetext={`${logScale(settings.pointsPerUpdate)} points`}
                 />
 
-                <span>Send Data Interval {settings.sendEvery} ms</span>
+                <label htmlFor="sendEvery">Send Data Interval {settings.sendEvery} ms</label>
                 <input
                     className="sc-range"
                     type="range"
                     id="sendEvery"
-                    onChange={(event) => handleSendEvery(event, event.currentTarget.valueAsNumber)}
+                    onChange={(event) => handleSendEvery(event.currentTarget.valueAsNumber)}
                     step={1}
                     min={maxSettings.sendEvery}
                     max={500}
                     value={settings.sendEvery}
+                    aria-valuetext={`${settings.sendEvery} ms`}
                 />
 
                 <datalist id="log-slider-marks">
@@ -265,16 +262,13 @@ export default function RealtimeBigDataShowcase() {
                     ))}
                 </datalist>
 
-                <section 
-                    className="mt-auto monospace"
-                    aria-label="Performance results"
-                >
+                <section className="mt-auto monospace" aria-label="Performance results">
                     <h4>Performance Results</h4>
                     <dl>
                         {messages.map(({ title, detail }) => (
                             <div key={title} className="flex gap-2 justify-between w-full">
                                 <dt>{title}:</dt>
-                                <dd style={{ margin: 0 }}>{detail}</dd>
+                                <dd className="m-0">{detail}</dd>
                             </div>
                         ))}
                     </dl>

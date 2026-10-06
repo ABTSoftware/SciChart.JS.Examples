@@ -1,25 +1,13 @@
-import * as React from "react";
-import { appTheme } from "../../../theme";
 import { SciChartReact } from "scichart-react";
 import { drawExample } from "./drawExample";
 
 export default function ChartComponent() {
     return (
         <div className="sc-chart-wrapper">
-            <SciChartReact style={{ width: "100%", height: "100%", float: "left" }} initChart={drawExample} />
-            {/*Placeholder until we have a proper chart title (soon!)*/}
-            <span
-                style={{
-                    color: appTheme.ForegroundColor,
-                    fontSize: 20,
-                    position: "absolute",
-                    left: "50%",
-                    top: "20px",
-                    transform: "translate(-50%)",
-                }}
-            >
+            <SciChartReact className="w-full h-full" initChart={drawExample} />
+            <h2 className="sc-chart-title">
                 Market share of Mobile Phone Manufacturers (2022)
-            </span>
+            </h2>
         </div>
     );
 }

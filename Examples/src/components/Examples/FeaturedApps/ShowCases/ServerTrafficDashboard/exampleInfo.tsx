@@ -1,6 +1,5 @@
 import { createExampleInfo } from "../../../exampleInfoUtils";
 import { IExampleMetadata } from "../../../IExampleMetadata";
-import { EPageLayout } from "../../../../../helpers/types/types";
 
 const metaData: IExampleMetadata =
     //// This metadata is computer generated - do not edit!

@@ -1,426 +1,200 @@
-import * as React from "react";
-import { DeleteSweepIcon } from "../../../icons";
-import { ETradingAnnotationType } from "scichart-financial-tools";
+import "./styles.css";
+import { useRef, useState } from "react";
+import { CloseIcon, DeleteSweepIcon, RefreshIcon } from "../../../icons";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
+import { DrawingTool, toolGroups } from "./tools";
+import { toolIcons } from "./toolIcons";
 
-type TStartToolOptions = Parameters<TResolvedReturnType<typeof drawExample>["startTool"]>[1];
-
-type TToolItemDefinition = {
-    value: string;
-    annotationType: ETradingAnnotationType;
-    options?: TStartToolOptions;
-    label: string;
-    icon: React.ReactNode;
-};
-
-type TToolDefinition = TToolItemDefinition | "separator";
-
-const isToolItemDefinition = (tool: TToolDefinition): tool is TToolItemDefinition => tool !== "separator";
-
-const icon = (children: React.ReactNode) => (
-    <svg
-        viewBox="0 0 24 24"
-        style={{
-            width: 18,
-            height: 18,
-            display: "block",
-            marginRight: 6,
-        }}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-    >
-        {children}
-    </svg>
+const ToolIcon = ({ name }: { name: string }) => (
+    <span className="sc-trading-tool-icon" aria-hidden="true" dangerouslySetInnerHTML={{ __html: toolIcons[name] }} />
 );
 
-const tools: TToolDefinition[] = [
-    {
-        value: "polyline",
-        annotationType: ETradingAnnotationType.PolyLineAnnotation,
-        label: "Polyline",
-        icon: icon(<polyline points="4,18 9,7 14,14 20,6" />),
-    },
-    {
-        value: "snappedPolyline",
-        annotationType: ETradingAnnotationType.PolyLineAnnotation,
-        options: { snapToCandle: true },
-        label: "Snapped Polyline",
-        icon: icon(
-            <>
-                <polyline points="4,18 9,7 14,14 20,6" />
-                <circle cx="14" cy="14" r="1.7" fill="currentColor" />
-            </>
-        ),
-    },
-    "separator",
-    {
-        value: "extendedLine",
-        annotationType: ETradingAnnotationType.ExtendedLineAnnotation,
-        label: "Extended Line",
-        icon: icon(<line x1="4" y1="18" x2="20" y2="6" />),
-    },
-    {
-        value: "leftRay",
-        annotationType: ETradingAnnotationType.ExtendedLineAnnotation,
-        options: { extendEnd: false },
-        label: "Left Ray",
-        icon: icon(
-            <>
-                <line x1="6" y1="16" x2="20" y2="6" />
-                <polyline points="9,16 5,16 5,12" />
-            </>
-        ),
-    },
-    {
-        value: "rightRay",
-        annotationType: ETradingAnnotationType.ExtendedLineAnnotation,
-        options: { extendStart: false },
-        label: "Right Ray",
-        icon: icon(
-            <>
-                <line x1="4" y1="18" x2="18" y2="8" />
-                <polyline points="15,8 19,8 19,12" />
-            </>
-        ),
-    },
-    "separator",
-    {
-        value: "channel",
-        annotationType: ETradingAnnotationType.ChannelAnnotation,
-        label: "Channel",
-        icon: icon(
-            <>
-                <line x1="4" y1="7" x2="20" y2="3" />
-                <line x1="4" y1="12.5" x2="20" y2="8.5" strokeDasharray="2 2" />
-                <line x1="4" y1="18" x2="20" y2="14" />
-            </>
-        ),
-    },
-    {
-        value: "flatBottomChannel",
-        annotationType: ETradingAnnotationType.FlatBottomChannelAnnotation,
-        label: "Flat Bottom Channel",
-        icon: icon(
-            <>
-                <line x1="4" y1="20" x2="20" y2="8" />
-                <line x1="4" y1="17" x2="20" y2="17" />
-            </>
-        ),
-    },
-    {
-        value: "disjointChannel",
-        annotationType: ETradingAnnotationType.DisjointChannelAnnotation,
-        label: "Disjoint Channel",
-        icon: icon(
-            <>
-                <line x1="4" y1="20" x2="20" y2="8" />
-                <line x1="4" y1="4" x2="20" y2="16" />
-                <line x1="4" y1="12" x2="20" y2="12" strokeDasharray="2 2" />
-            </>
-        ),
-    },
-    "separator",
-    {
-        value: "pitchfork",
-        annotationType: ETradingAnnotationType.PitchforkAnnotation,
-        label: "Pitchfork",
-        icon: icon(
-            <>
-                <line x1="12" y1="4" x2="12" y2="20" />
-                <line x1="6" y1="12" x2="18" y2="12" />
-                <line x1="6" y1="12" x2="6" y2="20" />
-                <line x1="18" y1="12" x2="18" y2="20" />
-            </>
-        ),
-    },
-    {
-        value: "pitchfan",
-        annotationType: ETradingAnnotationType.PitchfanAnnotation,
-        label: "Pitchfan",
-        icon: icon(
-            <>
-                <line x1="12" y1="4" x2="4" y2="20" />
-                <line x1="12" y1="4" x2="12" y2="20" />
-                <line x1="12" y1="4" x2="20" y2="20" />
-            </>
-        ),
-    },
-    "separator",
-    // {
-    //     value: "fibonacci",
-    //     annotationType: ETradingAnnotationType.FibonacciRetracementAnnotation,
-    //     label: "Fibonacci Retracement",
-    //     icon: icon(
-    //         <>
-    //             <line x1="4" y2="4" x2="16" y1="6" />
-    //             <line x1="6" y2="9" x2="18" y1="11" />
-    //             <line x1="8" y2="14" x2="20" y1="16" />
-    //             <line x1="10" y2="19" x2="22" y1="21" />
-    //         </>
-    //     ),
-    // },
-    {
-        value: "verticalFibonacci",
-        annotationType: ETradingAnnotationType.FibonacciRetracementAnnotation,
-        options: { verticalOnly: true },
-        label: "Fibonacci Retracement",
-        icon: icon(
-            <>
-                <line x1="4" y1="5" x2="20" y2="5" />
-                <line x1="4" y1="10" x2="20" y2="10" />
-                <line x1="4" y1="15" x2="20" y2="15" />
-                <line x1="4" y1="20" x2="20" y2="20" />
-            </>
-        ),
-    },
-    {
-        value: "fibonacciExtension",
-        annotationType: ETradingAnnotationType.FibonacciExtensionAnnotation,
-        label: "Fibonacci Extension",
-        icon: icon(
-            <>
-                <line x1="4" y1="20" x2="20" y2="6" />
-                <line x1="4" y1="6" x2="20" y2="20" />
-                <line x1="4" y1="13" x2="22" y2="13" strokeDasharray="2 2" />
-                <line x1="14" y1="4" x2="22" y2="4" />
-                <line x1="14" y1="9" x2="22" y2="9" />
-                <line x1="14" y1="17" x2="22" y2="17" />
-                <line x1="14" y1="22" x2="22" y2="22" />
-            </>
-        ),
-    },
-    {
-        value: "fibonacciCircles",
-        annotationType: ETradingAnnotationType.FibonacciCirclesAnnotation,
-        label: "Fibonacci Circles",
-        icon: icon(
-            <>
-                <ellipse cx="12" cy="12" rx="3" ry="3" />
-                <ellipse cx="12" cy="12" rx="6" ry="6" />
-                <ellipse cx="12" cy="12" rx="9" ry="9" />
-            </>
-        ),
-    },
-    {
-        value: "fibonacciSpeedResistanceArcs",
-        annotationType: ETradingAnnotationType.FibonacciSpeedResistanceArcsAnnotation,
-        label: "Fibonacci Speed Resistance Arcs",
-        icon: icon(
-            <>
-                <path d="M4 20 A 4 4 0 0 1 12 20" />
-                <path d="M4 20 A 8 8 0 0 1 20 20" />
-                <path d="M4 20 A 12 12 0 0 1 28 20" />
-                <line x1="4" y1="20" x2="22" y2="6" strokeDasharray="2 2" />
-            </>
-        ),
-    },
-    {
-        value: "fibonacciWedge",
-        annotationType: ETradingAnnotationType.FibonacciWedgeAnnotation,
-        label: "Fibonacci Wedge",
-        icon: icon(
-            <>
-                <line x1="4" y1="20" x2="20" y2="4" />
-                <line x1="4" y1="20" x2="22" y2="14" />
-                <path d="M9 17 A 5 5 0 0 0 8.4 13" />
-                <path d="M13 13 A 10 10 0 0 0 12 4.8" />
-                <path d="M17 9 A 15 15 0 0 0 15.5 -3" />
-            </>
-        ),
-    },
-    "separator",
-    {
-        value: "measure",
-        annotationType: ETradingAnnotationType.MeasureAnnotation,
-        label: "Measure",
-        icon: icon(
-            <>
-                <rect x="4" y="4" width="16" height="16" rx="1.5" />
-                <line x1="6" y1="12" x2="18" y2="12" />
-                <line x1="12" y1="6" x2="12" y2="18" />
-            </>
-        ),
-    },
-    "separator",
-    {
-        value: "stopLossTakeProfit",
-        annotationType: ETradingAnnotationType.StopLossTakeProfitAnnotation,
-        label: "Stop Loss / Take Profit",
-        icon: (
-            <svg
-                viewBox="0 0 24 24"
-                style={{
-                    width: 18,
-                    height: 18,
-                    display: "block",
-                    marginRight: 6,
-                }}
-                fill="currentColor"
-            >
-                <path d="M6 5h12v5H6z" />
-                <path d="M6 14h12v5H6z" opacity="0.65" />
-            </svg>
-        ),
-    },
-    "separator",
-    {
-        value: "freehand",
-        annotationType: ETradingAnnotationType.FreehandDrawingAnnotation,
-        label: "Freehand",
-        icon: icon(
-            <>
-                <path d="M4 16c2-4 4-4 6 0s4 4 6 0 3-4 4-1" />
-                <path d="M17 5l2-2 2 2-2 2z" />
-            </>
-        ),
-    },
-    {
-        value: "lockedFreehand",
-        annotationType: ETradingAnnotationType.FreehandDrawingAnnotation,
-        options: { lockedAspect: true },
-        label: "Freehand 1:1",
-        icon: icon(
-            <>
-                <path d="M4 16c2-4 4-4 6 0s4 4 6 0 3-4 4-1" />
-                <rect x="7" y="3" width="10" height="7" rx="1" />
-            </>
-        ),
-    },
-];
-
 export default function TradingDrawingTools() {
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample> | undefined>(undefined);
-    const chartWrapperRef = React.useRef<HTMLDivElement>(null);
-    const [selectedTool, setSelectedTool] = React.useState("");
-    const [isReady, setIsReady] = React.useState(false);
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>>(undefined);
+    const dialogRef = useRef<HTMLDialogElement>(null);
+    const searchRef = useRef<HTMLInputElement>(null);
+    const [selectedTool, setSelectedTool] = useState<DrawingTool | undefined>();
+    const [search, setSearch] = useState("");
+    const [isReady, setIsReady] = useState(false);
 
-    React.useEffect(
-        () => () => {
-            controlsRef.current?.dispose();
-        },
-        []
-    );
-
-    React.useEffect(() => {
-        const wrapper = chartWrapperRef.current;
-        if (!selectedTool || !wrapper) return undefined;
-        const clear = () => setSelectedTool("");
-        wrapper.addEventListener("mousedown", clear);
-        return () => wrapper.removeEventListener("mousedown", clear);
-    }, [selectedTool]);
+    const stopTool = () => {
+        controlsRef.current?.stopActiveTools();
+        setSelectedTool(undefined);
+    };
+    const selectTool = (tool: DrawingTool) => {
+        const controls = controlsRef.current;
+        if (!controls) return;
+        if (tool.gesture === "erase") controls.startEraser();
+        else controls.startTool(tool.annotationType, tool.options);
+        setSelectedTool(tool);
+        dialogRef.current?.close();
+    };
+    const checkToolComplete = () => {
+        if (!controlsRef.current?.isToolActive()) setSelectedTool(undefined);
+    };
+    const query = search.trim().toLowerCase();
+    const groups = toolGroups
+        .map((group) => ({
+            ...group,
+            tools: group.tools.filter((tool) => `${group.label} ${tool.label}`.toLowerCase().includes(query)),
+        }))
+        .filter((group) => group.tools.length);
 
     return (
         <div className="sc-chart-wrapper">
-            <div style={{ display: "flex", flex: 1, minHeight: 0 }}>
-                <div
-                    style={{
-                        width: 200,
-                        flexShrink: 0,
-                        display: "flex",
-                        flexDirection: "column",
-                        background: "var(--sc-background)",
-                        color: "var(--sc-text)",
+            <header className="sc-toolbar-row flex-wrap">
+                <button
+                    type="button"
+                    className="sc-button sc-button-outline"
+                    disabled={!isReady}
+                    aria-haspopup="dialog"
+                    onClick={() => {
+                        stopTool();
+                        setSearch("");
+                        dialogRef.current?.showModal();
+                        searchRef.current?.focus();
                     }}
                 >
-                    <div
-                        style={{
-                            flexShrink: 0,
-                            padding: "10px 16px",
-                            fontWeight: 600,
-                            fontSize: 14,
-                            letterSpacing: 0.3,
-                            textTransform: "uppercase",
-                            borderBottom: "1px solid rgba(255,255,255,0.15)",
-                            background: "var(--sc-background)",
+                    <ToolIcon name="Pen" /> Drawing tools
+                </button>
+                {selectedTool && (
+                    <>
+                        <span className="sc-trading-active-tool" role="status">
+                            <ToolIcon name={selectedTool.icon} />
+                            <span>
+                                {selectedTool.label} ·{" "}
+                                {selectedTool.gesture === "erase"
+                                    ? "Click or drag to erase"
+                                    : selectedTool.gesture === "drag"
+                                    ? "Drag to draw"
+                                    : "Click to place points"}
+                            </span>
+                        </span>
+                        <button
+                            type="button"
+                            className="sc-button sc-button-icon"
+                            title="Cancel drawing (Esc)"
+                            aria-label="Cancel drawing"
+                            onClick={stopTool}
+                        >
+                            <CloseIcon />
+                        </button>
+                    </>
+                )}
+                <div className="flex gap-2 ml-auto">
+                    <button
+                        type="button"
+                        className="sc-button sc-button-outline"
+                        disabled={!isReady}
+                        onClick={() => controlsRef.current?.duplicateSelectedAnnotation()}
+                        title="Duplicate selected annotation (Ctrl/Cmd+D)"
+                    >
+                        Duplicate
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button sc-button-outline"
+                        disabled={!isReady}
+                        onClick={() => controlsRef.current?.removeSelectedAnnotations()}
+                        title="Delete selected annotations (Delete/Backspace)"
+                    >
+                        Delete selected
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button sc-button-icon"
+                        disabled={!isReady}
+                        aria-label="Restore example annotations"
+                        title="Restore example annotations"
+                        onClick={() => {
+                            stopTool();
+                            controlsRef.current?.resetAnnotations();
                         }}
                     >
-                        Select Annotation
-                    </div>
-                    <div className="flex flex-col flex-1 gap-2">
-                        {tools.map((tool, index) => {
-                            if (!isToolItemDefinition(tool)) {
-                                return (
-                                    <hr
-                                        key={`separator-${index}`}
-                                        style={{
-                                            margin: "5px 8px",
-                                            borderColor: "rgba(255,255,255,0.2)",
-                                        }}
-                                    />
-                                );
-                            }
-                            return (
-                                <button
-                                    type="button"
-                                    key={tool.value}
-                                    className="sc-button sc-button-outline justify-start"
-                                    aria-pressed={tool.value === selectedTool}
-                                    onClick={() => {
-                                        setSelectedTool(tool.value);
-                                        if (isReady) {
-                                            controlsRef.current?.startTool(tool.annotationType, tool.options);
-                                        }
-                                    }}
-                                    title={tool.label}
-                                >
-                                    <span
-                                        style={{
-                                            display: "flex",
-                                            alignItems: "center",
-                                            minWidth: 0,
-                                            width: "100%",
-                                        }}
-                                    >
-                                        {tool.icon}
-                                        <span
-                                            style={{
-                                                overflow: "hidden",
-                                                textOverflow: "ellipsis",
-                                                whiteSpace: "nowrap",
-                                                minWidth: 0,
-                                                flex: 1,
-                                            }}
-                                        >
-                                            {tool.label}
-                                        </span>
-                                    </span>
-                                </button>
-                            );
-                        })}
-                    </div>
-                </div>
-
-                <div
-                    ref={chartWrapperRef}
-                    style={{
-                        flex: 1,
-                        minWidth: 0,
-                        display: "flex",
-                        position: "relative",
-                    }}
-                >
-                    <SciChartReact
-                        style={{ flex: 1 }}
-                        initChart={drawExample}
-                        onInit={(result: TResolvedReturnType<typeof drawExample>) => {
-                            controlsRef.current = result;
-                            result.setKeepPlacingAfterComplete(false);
-                            setIsReady(true);
-                        }}
-                    />
+                        <RefreshIcon />
+                    </button>
                     <button
-                        className="sc-button sc-button-icon sc-button-destructive"
+                        type="button"
+                        className="sc-button sc-button-icon sc-button-danger"
+                        disabled={!isReady}
                         aria-label="Delete all annotations"
                         title="Delete all annotations"
-                        onClick={() => controlsRef.current?.deleteAllAnnotations()}
-                        type="button"
+                        onClick={() => {
+                            stopTool();
+                            controlsRef.current?.deleteAllAnnotations();
+                        }}
                     >
-                        <DeleteSweepIcon fontSize="small" />
+                        <DeleteSweepIcon />
                     </button>
                 </div>
-            </div>
+            </header>
+            <SciChartReact
+                className="flex-1"
+                initChart={drawExample}
+                onInit={(result: TResolvedReturnType<typeof drawExample>) => {
+                    controlsRef.current = result;
+                    result.sciChartSurface.rendered.subscribe(checkToolComplete);
+                    setIsReady(true);
+                }}
+                onDelete={(result: TResolvedReturnType<typeof drawExample>) => {
+                    result.sciChartSurface.rendered.unsubscribe(checkToolComplete);
+                    result.dispose();
+                    controlsRef.current = undefined;
+                }}
+            />
+            <dialog
+                ref={dialogRef}
+                className="sc-modal sc-trading-tools-modal"
+                aria-labelledby="trading-tools-title"
+                onClick={(event) => event.target === event.currentTarget && dialogRef.current?.close()}
+            >
+                <header className="sc-modal-header">
+                    <strong id="trading-tools-title">Drawing tools</strong>
+                    <button
+                        type="button"
+                        className="sc-button sc-button-icon"
+                        aria-label="Close drawing tools"
+                        onClick={() => dialogRef.current?.close()}
+                    >
+                        <CloseIcon />
+                    </button>
+                </header>
+                <div className="sc-modal-body">
+                    <input
+                        ref={searchRef}
+                        type="search"
+                        className="sc-input"
+                        aria-label="Search drawing tools"
+                        placeholder="Search drawing tools…"
+                        value={search}
+                        onChange={(event) => setSearch(event.target.value)}
+                        autoFocus
+                    />
+                    <p className="sc-trading-tools-help">
+                        Choose a tool, then draw on the chart. Press Esc to cancel. Select a drawing to move or edit it.
+                    </p>
+                    {groups.map((group) => (
+                        <section key={group.label}>
+                            <h3 className="sc-trading-tools-group-title">{group.label}</h3>
+                            <div className="sc-trading-tools-grid">
+                                {group.tools.map((tool) => (
+                                    <button
+                                        type="button"
+                                        key={tool.label}
+                                        className="sc-button sc-button-outline justify-start"
+                                        onClick={() => selectTool(tool)}
+                                    >
+                                        <ToolIcon name={tool.icon} />
+                                        <span>{tool.label}</span>
+                                    </button>
+                                ))}
+                            </div>
+                        </section>
+                    ))}
+                    {!groups.length && <p role="status">No tools match “{search}”.</p>}
+                </div>
+            </dialog>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { generateWaferLotData, WaferLotData, WaferDayData } from "./waferData";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawLineChart } from "./lineChart";
@@ -7,12 +7,11 @@ import { drawWaferGrid } from "./waferGrid";
 import { drawParetoChart } from "./paretoChart";
 
 import "./styles.css";
-import { DataPointSelectionModifier, SciChartSurface, DataPointInfo } from "scichart";
+import { SciChartSurface } from "scichart";
 
 export default function Overview() {
     const [data, setData] = useState<WaferDayData[]>([]);
     const [selectedDay, setSelectedDay] = useState<WaferDayData | null>(null);
-    const [selectedBatch, setSelectedBatch] = useState<WaferLotData | null>(null);
     const [showColumnChart, setShowColumnChart] = useState<boolean>(false);
     const lineChartRef = useRef<{ sciChartSurface: SciChartSurface; wasmContext: any } | null>(null);
     const columnChartRef = useRef<{
@@ -67,7 +66,6 @@ export default function Overview() {
 
     // Handler for when a point is selected in the column or pareto chart chart
     const handleBatchSelected = (point: WaferLotData, isColumnChart: boolean) => {
-        setSelectedBatch(point);
         if (isColumnChart) {
             paretoChartRef.current?.updateSelection(point);
         } else {
@@ -98,16 +96,20 @@ export default function Overview() {
     };
 
     return data.length ? (
-        <div className="sc-chart-wrapper dashboard-container">
-            <div className="dashboard-layout">
-                <div className="line-chart-container">
-                    <SciChartReact initChart={initLineChart} className="sci-chart" onInit={handleLineChartInit} />
+        <div className="sc-chart-wrapper sc-semiconductors-dashboard-container">
+            <div className="sc-semiconductors-dashboard-layout">
+                <div className="sc-semiconductors-line-chart-container">
+                    <SciChartReact
+                        initChart={initLineChart}
+                        className="sc-semiconductors-sci-chart"
+                        onInit={handleLineChartInit}
+                    />
                 </div>
 
                 {/* Row for Column and Scatter Charts side by side */}
-                <div className="charts-row">
-                    <div className="column-chart-container">
-                        <div className="chart-header">
+                <div className="sc-semiconductors-charts-row">
+                    <div className="sc-semiconductors-column-chart-container">
+                        <div className="sc-semiconductors-chart-header">
                             <div className="sc-button-group" role="group" aria-label="Batch chart type">
                                 <button
                                     type="button"
@@ -127,31 +129,31 @@ export default function Overview() {
                                 </button>
                             </div>
                         </div>
-                        <div className="chart-wrapper">
+                        <div className="sc-semiconductors-chart-wrapper">
                             <SciChartReact
                                 key="columnChart"
                                 initChart={initColumnChart}
-                                className="sci-chart"
+                                className="sc-semiconductors-sci-chart"
                                 onInit={handleColumnChartInit}
-                                style={{ display: showColumnChart ? "block" : "none" }}
+                                hidden={!showColumnChart}
                             />
                             <SciChartReact
                                 key="paretoChart"
                                 initChart={initParetoChart}
-                                className="sci-chart"
+                                className="sc-semiconductors-sci-chart"
                                 onInit={handleParetoChartInit}
-                                style={{ display: showColumnChart ? "none" : "block" }}
+                                hidden={showColumnChart}
                             />
                         </div>
                     </div>
 
                     {/* Scatter Chart or Wafer Chart based on selection */}
-                    <div className="scatter-wafer-container">
+                    <div className="sc-semiconductors-scatter-wafer-container">
                         <SciChartReact
-                            style={{ cursor: "pointer" }}
                             key="plotChart"
                             initChart={initWaferChart}
-                            className="sci-chart"
+                            className="sc-semiconductors-sci-chart"
+                            style={{ cursor: "pointer" }}
                             onInit={handleWaferChartInit}
                         />
                     </div>

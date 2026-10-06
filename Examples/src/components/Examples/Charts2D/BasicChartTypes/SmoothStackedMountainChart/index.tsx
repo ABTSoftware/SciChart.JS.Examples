@@ -1,15 +1,12 @@
-import * as React from "react";
-import { appTheme } from "../../../theme";
-import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
+import { useState, useRef } from "react";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function SmoothStackedMountainChart() {
-    const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
+    const [use100PercentStackedMode, setUse100PercentStackedMode] = useState(false);
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
-    const handleUsePercentage = (event: any, value: boolean) => {
+    const handleUsePercentage = (value: boolean) => {
         if (value !== null) {
             console.log(`100% stacked? ${value}`);
             setUse100PercentStackedMode(value);
@@ -25,7 +22,7 @@ export default function SmoothStackedMountainChart() {
                         type="button"
                         className="sc-button"
                         aria-pressed={!use100PercentStackedMode}
-                        onClick={(event) => handleUsePercentage(event, false)}
+                        onClick={() => handleUsePercentage(false)}
                     >
                         Stacked mode
                     </button>
@@ -33,7 +30,7 @@ export default function SmoothStackedMountainChart() {
                         type="button"
                         className="sc-button"
                         aria-pressed={use100PercentStackedMode}
-                        onClick={(event) => handleUsePercentage(event, true)}
+                        onClick={() => handleUsePercentage(true)}
                     >
                         100% Stacked mode
                     </button>

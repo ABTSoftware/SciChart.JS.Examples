@@ -5,8 +5,6 @@ import { fetchGeoJson } from "../../../ExampleData/ExampleDataProvider";
 
 type MapName = "worldConverted" | "europeConverted" | "australiaConverted" | "africaConverted";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     const [mapName, setMapName] = useState<MapName>("worldConverted");
     const [mapData, setMapData] = useState<any>();

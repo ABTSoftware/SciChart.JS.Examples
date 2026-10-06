@@ -1,10 +1,9 @@
-import * as React from "react";
+import { useState, useRef, ChangeEvent } from "react";
 import { createCandlestickChart, sciChartOverview } from "./createCandlestickChart";
 import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
 import { binanceSocketClient, TRealtimePriceBar } from "./binanceSocketClient";
-import { Observable, Subscription } from "rxjs";
+import { Observable } from "rxjs";
 import { simpleBinanceRestClient, TPriceBar } from "../../../ExampleData/binanceRestClient";
-import { appTheme } from "../../../theme";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
 // SCICHART EXAMPLE
@@ -71,17 +70,17 @@ export const drawExample = (dataSource: string) => async (rootElement: string | 
 };
 
 export default function RealtimeTickingStockCharts() {
-    const [preset, setPreset] = React.useState<number>(0);
-    const chartControlsRef = React.useRef<{
+    const [preset, setPreset] = useState<number>(0);
+    const chartControlsRef = useRef<{
         setData: (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => void;
         onNewTrade: (priceBar: TPriceBar, tradeSize: number, lastTradeBuyOrSell: boolean) => void;
         setXRange: (startDate: Date, endDate: Date) => void;
         enableCandlestick: () => void;
         enableOhlc: () => void;
     }>(undefined);
-    const [dataSource, setDataSource] = React.useState<string>("Random");
+    const [dataSource, setDataSource] = useState<string>("Random");
 
-    const handleToggleButtonChanged = (event: any, state: number) => {
+    const handleToggleButtonChanged = (state: number) => {
         if (state === null || chartControlsRef.current === undefined) return;
         setPreset(state);
         console.log(`Toggling Candle/Ohlc state: ${state}`);
@@ -89,7 +88,7 @@ export default function RealtimeTickingStockCharts() {
         if (state === 1) chartControlsRef.current.enableOhlc();
     };
 
-    const handleDataSourceChanged = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleDataSourceChanged = (event: ChangeEvent<HTMLSelectElement>) => {
         setDataSource(event.target.value);
     };
 
@@ -103,7 +102,7 @@ export default function RealtimeTickingStockCharts() {
                         type="button"
                         className="sc-button"
                         aria-pressed={preset === 0}
-                        onClick={(event) => handleToggleButtonChanged(event, 0)}
+                        onClick={() => handleToggleButtonChanged(0)}
                     >
                         Candlestick Series
                     </button>
@@ -111,7 +110,7 @@ export default function RealtimeTickingStockCharts() {
                         type="button"
                         className="sc-button"
                         aria-pressed={preset === 1}
-                        onClick={(event) => handleToggleButtonChanged(event, 1)}
+                        onClick={() => handleToggleButtonChanged(1)}
                     >
                         OHLC Series
                     </button>
@@ -132,7 +131,7 @@ export default function RealtimeTickingStockCharts() {
             </header>
             <SciChartReact
                 key={dataSource}
-                className="flex flex-col"
+                className="sc-overview-chart"
                 initChart={initFunc}
                 onInit={(initResult: TResolvedReturnType<typeof initFunc>) => {
                     const { subscription, controls } = initResult;
@@ -143,10 +142,10 @@ export default function RealtimeTickingStockCharts() {
                     };
                 }}
                 innerContainerProps={{
-                    style: { flexBasis: "80%" },
+                    className: "sc-main-chart",
                 }}
             >
-                <SciChartNestedOverview style={{ flexBasis: "20%", width: "100%" }} options={sciChartOverview} />
+                <SciChartNestedOverview className="sc-overview" options={sciChartOverview} />
             </SciChartReact>
         </div>
     );

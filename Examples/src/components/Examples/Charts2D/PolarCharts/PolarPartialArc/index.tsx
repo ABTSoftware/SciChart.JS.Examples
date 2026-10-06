@@ -2,7 +2,6 @@ import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 import { useCallback, useRef, useState } from "react";
 import { PlayArrowIcon, StopIcon } from "../../../icons";
-import { appTheme } from "../../../theme";
 export default function ChartComponent() {
     const [totalAngle, setTotalAngle] = useState<number>(0.004);
     const [isAnimating, setIsAnimating] = useState(false);
@@ -37,7 +36,7 @@ export default function ChartComponent() {
     }
 
     return (
-        <div className="sc-chart-wrapper" style={{ background: appTheme.DarkIndigo }}>
+        <div className="sc-chart-wrapper" >
             <header className="sc-toolbar-row">
                 <button
                     type="button"
