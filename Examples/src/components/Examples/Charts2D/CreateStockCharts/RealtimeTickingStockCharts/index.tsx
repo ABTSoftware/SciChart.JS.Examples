@@ -7,8 +7,6 @@ import { simpleBinanceRestClient, TPriceBar } from "../../../ExampleData/binance
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
 // SCICHART EXAMPLE
-// const drawExample = async (rootElement: string | HTMLDivElement) => {
-//     const { sciChartSurface, sciChartOverview, controls } = await createCandlestickChart(rootElement);
 export const drawExample = (dataSource: string) => async (rootElement: string | HTMLDivElement) => {
     // Create the candlestick chart example. Contains Candlestick series, tooltips, volume, zooming panning behaviour and more
     const { sciChartSurface, controls } = await createCandlestickChart(rootElement);
@@ -81,7 +79,7 @@ export default function RealtimeTickingStockCharts() {
     const [dataSource, setDataSource] = useState<string>("Random");
 
     const handleToggleButtonChanged = (state: number) => {
-        if (state === null || chartControlsRef.current === undefined) return;
+        if (chartControlsRef.current === undefined) return;
         setPreset(state);
         console.log(`Toggling Candle/Ohlc state: ${state}`);
         if (state === 0) chartControlsRef.current.enableCandlestick();
@@ -137,12 +135,7 @@ export default function RealtimeTickingStockCharts() {
                     const { subscription, controls } = initResult;
                     chartControlsRef.current = controls;
 
-                    return () => {
-                        subscription.unsubscribe();
-                    };
-                }}
-                innerContainerProps={{
-                    className: "sc-main-chart",
+                    return () => subscription.unsubscribe();
                 }}
             >
                 <SciChartNestedOverview className="sc-overview" options={sciChartOverview} />

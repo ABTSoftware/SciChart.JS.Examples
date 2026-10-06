@@ -4,10 +4,9 @@ import { drawExample } from "./drawExample";
 
 export default function StyleAnimation() {
     const [preset, setPreset] = useState<number>(0);
-    const [controls, setControls] = useState({ animateChartStyle: (state: boolean) => {} });
+    const [controls, setControls] = useState({ animateChartStyle: (_state: boolean) => {} });
 
     const handleToggleButtonChanged = (value: number) => {
-        if (value === null) return;
         setPreset(value);
         const isStyle1 = value === 0;
         controls.animateChartStyle(isStyle1);

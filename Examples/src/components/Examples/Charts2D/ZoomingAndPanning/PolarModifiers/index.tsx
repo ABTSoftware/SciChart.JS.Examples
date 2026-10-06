@@ -3,7 +3,7 @@ import { drawExample, POLAR_MODIFIER_INFO } from "./drawExample";
 import { useState } from "react";
 import { EChart2DModifierType } from "scichart";
 
-const ALL_POLAR_MODIFIER_TYPES = Array.from(Object.keys(POLAR_MODIFIER_INFO));
+const ALL_POLAR_MODIFIER_TYPES = Object.keys(POLAR_MODIFIER_INFO);
 
 const CONFLICTING_MODIFIER_TYPES = [
     [EChart2DModifierType.PolarPan, EChart2DModifierType.PolarArcZoom],
@@ -20,11 +20,10 @@ export default function ChartComponent() {
     const [conflictWarning, setConflictWarning] = useState<string | null>(null);
 
     const [controls, setControls] = useState({
-        toggleModifier: (modifier: EChart2DModifierType) => {},
+        toggleModifier: (_modifier: EChart2DModifierType) => {},
     });
 
     const handleToggleButtonChanged = (value: EChart2DModifierType) => {
-        if (value === null) return;
 
         controls.toggleModifier(value);
 

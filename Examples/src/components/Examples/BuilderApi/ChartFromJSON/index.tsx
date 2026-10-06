@@ -1,4 +1,4 @@
-import { useState, useMemo, memo, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { SciChartReact } from "scichart-react";
 import { centralLayoutJsonDefinition, defaultJsonDefinition, detailedJsonDefinition, drawExample } from "./drawExample";
 import "./styles.css";
@@ -8,19 +8,6 @@ export default function ChartFromJSON() {
     const [json, setJSON] = useState<string>(defaultJsonDefinition);
     const [currentChartConfig, setCurrentChartConfig] = useState<string>(defaultJsonDefinition);
     const [isCustom, setIsCustom] = useState<boolean>(false);
-
-    const Chart = useMemo(() =>
-        memo((props: { chartConfig: string }) => {
-            return (
-                <SciChartReact
-                    initChart={(rootElementId: string | HTMLDivElement) =>
-                        drawExample(rootElementId, props.chartConfig, setErrors)
-                    }
-                    style={{ flexBasis: 400, flexGrow: 1 }}
-                />
-            );
-        }), [currentChartConfig]
-    );
 
     const handleChangeJSON = (event: ChangeEvent<{ value: string }>) => {
         const newValue = event.target.value;
@@ -41,12 +28,13 @@ export default function ChartFromJSON() {
 
     return (
         <div className="sc-chart-wrapper flex flex-col w-full h-full">
-            <Chart chartConfig={currentChartConfig} />
+            <SciChartReact
+                key={currentChartConfig}
+                initChart={(rootElement) => drawExample(rootElement, currentChartConfig, setErrors)}
+                style={{ flexBasis: 400, flexGrow: 1 }}
+            />
 
-            <div 
-                className="absolute" 
-                style={{ left: 20, top: 20 }}
-            >
+            <div className="absolute" style={{ left: 20, top: 20 }}>
                 {errors && (
                     <div key="0" className="sc-alert" role="alert">
                         <strong className="sc-alert-title">Errors</strong>

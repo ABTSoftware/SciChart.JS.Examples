@@ -1,5 +1,5 @@
 import { useRef, useState, ChangeEvent } from "react";
-import { SciChart3DSurface, ColumnRenderableSeries3D } from "scichart";
+import { ColumnRenderableSeries3D } from "scichart";
 import { drawExample, EColumn3DType, EColumnColorMode } from "./drawExample";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
@@ -7,11 +7,7 @@ const column3DTypeSelect = Object.values(EColumn3DType);
 const colorModeSelect = Object.values(EColumnColorMode);
 
 export default function Column3DChart() {
-    const sciChartSurfaceRef = useRef<SciChart3DSurface>(undefined);
-    const controlsRef = useRef<{
-        updateColors: (colorMode: EColumnColorMode) => void;
-        updatePointMarker: (type: EColumn3DType) => void;
-    }>(undefined);
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
     const [column3DType, setColumn3DType] = useState<EColumn3DType>(EColumn3DType.CylinderPointMarker3D);
     const [renderableSeries, setRenderableSeries] = useState<ColumnRenderableSeries3D>();
@@ -34,8 +30,7 @@ export default function Column3DChart() {
         }
     };
 
-    const handleDataPointWidthChange = (_: ChangeEvent<HTMLInputElement>, newValue: number) => {
-        const newDataPointWidth = Number(newValue);
+    const handleDataPointWidthChange = (newDataPointWidth: number) => {
         setDataPointWidth(newDataPointWidth);
         renderableSeries.dataPointWidthX = newDataPointWidth;
         renderableSeries.dataPointWidthZ = newDataPointWidth;
@@ -72,7 +67,7 @@ export default function Column3DChart() {
                         type="range"
                         className="sc-range -mt-1"
                         id="seriesCount"
-                        onChange={(event) => handleDataPointWidthChange(event, event.currentTarget.valueAsNumber)}
+                        onChange={(event) => handleDataPointWidthChange(event.currentTarget.valueAsNumber)}
                         step={0.05}
                         min={0}
                         max={1}
@@ -83,7 +78,6 @@ export default function Column3DChart() {
             <SciChartReact
                 initChart={drawExample}
                 onInit={({ sciChartSurface, controls }: TResolvedReturnType<typeof drawExample>) => {
-                    sciChartSurfaceRef.current = sciChartSurface;
                     controlsRef.current = controls;
                     setRenderableSeries(sciChartSurface.renderableSeries.get(0) as ColumnRenderableSeries3D);
                 }}

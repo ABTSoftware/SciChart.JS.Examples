@@ -10,7 +10,7 @@ export default function StackedColumnChart() {
     const [dataLabelPosition, setDataLabelPosition] = useState(EColumnDataLabelPosition.Center);
 
     const handleUsePercentage = (value: boolean) => {
-        if (value !== null && controls) {
+        if (controls) {
             console.log(`100% stacked? ${value}`);
             setUse100PercentStackedMode(value);
             // Toggle 100% mode on click

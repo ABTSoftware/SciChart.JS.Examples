@@ -1,6 +1,6 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
-import { MouseEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getMinMax, australiaData, Keytype, interpolateColor, keyData } from "./helpers";
 
 export default function ChartComponent() {
@@ -11,11 +11,6 @@ export default function ChartComponent() {
     const setMap = (nextKey: Keytype) => {
         setMapFunc.current?.(nextKey);
         setKey(nextKey);
-    };
-
-    const handleToggleButtonChanged = (_event: MouseEvent<HTMLElement>, value: Keytype | null) => {
-        if (!value) return;
-        setMap(value);
     };
 
     useEffect(() => {
@@ -35,7 +30,7 @@ export default function ChartComponent() {
                         type="button"
                         className="sc-button"
                         aria-pressed={key === "population"}
-                        onClick={(event) => handleToggleButtonChanged(event, "population")}
+                        onClick={() => setMap("population")}
                     >
                         Population
                     </button>
@@ -43,7 +38,7 @@ export default function ChartComponent() {
                         type="button"
                         className="sc-button"
                         aria-pressed={key === "area_km2"}
-                        onClick={(event) => handleToggleButtonChanged(event, "area_km2")}
+                        onClick={() => setMap("area_km2")}
                     >
                         <span>
                             Area (km<sup>2</sup>)
@@ -53,7 +48,7 @@ export default function ChartComponent() {
                         type="button"
                         className="sc-button"
                         aria-pressed={key === "population_density"}
-                        onClick={(event) => handleToggleButtonChanged(event, "population_density")}
+                        onClick={() => setMap("population_density")}
                     >
                         Population Density
                     </button>

@@ -9,13 +9,11 @@ export default function StackedMountainChart() {
     const [use100PercentStackedMode, setUse100PercentStackedMode] = useState(false);
 
     const handleUsePercentage = (value: boolean) => {
-        if (value !== null) {
-            console.log(`100% stacked? ${value}`);
-            setUse100PercentStackedMode(value);
-            // Toggle 100% mode on click
-            stackedMountainCollectionRef.current.isOneHundredPercent = value;
-            sciChartSurfaceRef.current.zoomExtents(200);
-        }
+        console.log(`100% stacked? ${value}`);
+        setUse100PercentStackedMode(value);
+        // Toggle 100% mode on click
+        stackedMountainCollectionRef.current.isOneHundredPercent = value;
+        sciChartSurfaceRef.current.zoomExtents(200);
     };
 
     return (

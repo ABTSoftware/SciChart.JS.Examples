@@ -7,11 +7,9 @@ export default function SmoothStackedMountainChart() {
     const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
     const handleUsePercentage = (value: boolean) => {
-        if (value !== null) {
-            console.log(`100% stacked? ${value}`);
-            setUse100PercentStackedMode(value);
-            controlsRef.current.toggleHundredPercentMode(value);
-        }
+        console.log(`100% stacked? ${value}`);
+        setUse100PercentStackedMode(value);
+        controlsRef.current.toggleHundredPercentMode(value);
     };
 
     return (

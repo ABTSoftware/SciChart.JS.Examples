@@ -10,11 +10,11 @@ import { getMainChartConfig } from "./main-chart-config";
 
 import { overviewOptions } from "./Overview";
 import ThresholdSlider from "./ThresholdSlider";
-import { SciChartReact as SciChart, SciChartNestedOverview } from "scichart-react";
+import { SciChartReact as SciChart, SciChartNestedOverview, ChartGroupLoader } from "scichart-react";
 import { appTheme } from "../../../theme";
 import { getPageStatisticsChartConfig } from "./page-statistics-chart-config";
 import { getServerLoadChartConfig } from "./server-load-chart-config";
-import { ChartGroupLoader } from "scichart-react";
+
 import type {
     TPageStatsConfigFuncResult,
     TServerStatsChartConfigFuncResult,

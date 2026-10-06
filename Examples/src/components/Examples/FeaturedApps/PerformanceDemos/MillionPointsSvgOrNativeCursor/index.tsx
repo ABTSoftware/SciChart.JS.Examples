@@ -9,20 +9,16 @@ export default function HighPerformanceScatterCursor() {
     const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
     const handleModeChange = (value: boolean) => {
-        if (value !== null) {
-            setIsSvgMode(value);
-            if (controlsRef.current) {
-                controlsRef.current.setSvgMode(value);
-            }
+        setIsSvgMode(value);
+        if (controlsRef.current) {
+            controlsRef.current.setSvgMode(value);
         }
     };
 
     const handleModifierChange = (value: boolean) => {
-        if (value !== null) {
-            setIsCursor(value);
-            if (controlsRef.current) {
-                controlsRef.current.toggleUseCursorOrRollover(value);
-            }
+        setIsCursor(value);
+        if (controlsRef.current) {
+            controlsRef.current.toggleUseCursorOrRollover(value);
         }
     };
 

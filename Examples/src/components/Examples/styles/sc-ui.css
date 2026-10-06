@@ -123,7 +123,7 @@
 
     > * { flex-shrink: 0; }
     > :is(.sc-switch, .sc-control):first-child { margin-left: 0.5rem; }
-    > :is(.sc-switch, .sc-control):last-child { margin-right: 0.5rem; }
+    > :is(.sc-switch):last-child { margin-right: 0.5rem; }
 }
 
 /* Small Tailwind-like utility classes shared by example layouts. */
@@ -242,7 +242,6 @@
     height: 100%;
     min-height: 0;
 
-    > .sc-main-chart { flex: 1 1 80%; min-height: 0; }
     > .sc-overview { flex: 1 1 20%; min-height: 0; }
 }
 

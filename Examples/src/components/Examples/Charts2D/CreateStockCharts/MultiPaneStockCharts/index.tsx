@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { SciChartReact } from "scichart-react";
+import { SciChartReact, ChartGroupLoader } from "scichart-react";
 import { getChartsInitializationAPI } from "./drawExample";
 import { SciChartSurface } from "scichart";
-import { ChartGroupLoader } from "scichart-react";
 
 export default function MultiPaneStockCharts() {
     const [chartsInitializationAPI] = useState(getChartsInitializationAPI);

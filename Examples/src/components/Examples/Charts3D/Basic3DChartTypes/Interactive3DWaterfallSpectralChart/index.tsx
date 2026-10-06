@@ -6,28 +6,25 @@ export default function Interactive3DWaterfallSpectralChart() {
     const [chartsInitializationAPI] = useState(getChartsInitializationAPI);
 
     return (
-        <div className="sc-chart-wrapper flex flex-col" >
-            <ChartGroupLoader
-                className="flex flex-col flex-1 min-h-0"
-
-                onInit={chartsInitializationAPI.configureAfterInit}
-            >
+        <ChartGroupLoader
+            className="sc-chart-wrapper flex flex-col"
+            onInit={chartsInitializationAPI.configureAfterInit}
+        >
+            <SciChartReact
+                className="min-h-0"
+                style={{ flex: "1 1 60%" }}
+                initChart={chartsInitializationAPI.initMainChart3D}
+            />
+            <div className="flex min-h-0 w-full" style={{ flex: "1 1 40%" }}>
                 <SciChartReact
-                    className="min-h-0"
-                    style={{ flex: "1 1 60%" }}
-                    initChart={chartsInitializationAPI.initMainChart3D}
+                    className="w-full h-full"
+                    initChart={chartsInitializationAPI.initCrossSectionLeft}
                 />
-                <div className="flex min-h-0" style={{ flex: "1 1 40%" }}>
-                    <SciChartReact
-                        className="flex-1 min-w-0"
-                        initChart={chartsInitializationAPI.initCrossSectionLeft}
-                    />
-                    <SciChartReact
-                        className="flex-1 min-w-0"
-                        initChart={chartsInitializationAPI.initCrossSectionRight}
-                    />
-                </div>
-            </ChartGroupLoader>
-        </div>
+                <SciChartReact
+                    className="w-full h-full"
+                    initChart={chartsInitializationAPI.initCrossSectionRight}
+                />
+            </div>
+        </ChartGroupLoader>
     );
 }

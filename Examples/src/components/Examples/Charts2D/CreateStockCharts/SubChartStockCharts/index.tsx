@@ -415,7 +415,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const secondDividerElement = document.getElementById(dividerId2);
     let isDraggingFirst = false;
     let isDraggingSecond = false;
-    let dragStartPosition: number;
     const container = document.getElementById(containerId2);
 
     const baseHeight = container.offsetHeight;
@@ -461,14 +460,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         subSurface3.subPosition = new Rect(0, newPosition, 1, 1 - newPosition);
     };
 
-    const mouseDownHandlerFirst = (event: MouseEvent) => {
+    const mouseDownHandlerFirst = () => {
         isDraggingFirst = true;
-        dragStartPosition = event.clientY;
     };
 
-    const mouseDownHandlerSecond = (event: MouseEvent) => {
+    const mouseDownHandlerSecond = () => {
         isDraggingSecond = true;
-        dragStartPosition = event.clientY;
     };
 
     const mouseUpHandler = () => {
@@ -533,7 +530,7 @@ class VolumePaletteProvider extends BasePaletteProvider implements IStrokePalett
         this.volumnDownArgb = parseColorToUIntArgb(volumeDownColor);
     }
 
-    overrideFillArgb(xValue: number, yValue: number, index: number): number {
+    overrideFillArgb(_xValue: number, _yValue: number, index: number): number {
         const open = this.openValues[index];
         const close = this.closeValues[index];
 
@@ -559,7 +556,7 @@ class MacdHistogramPaletteProvider extends BasePaletteProvider implements IStrok
         this.belowZeroArgb = parseColorToUIntArgb(belowZeroColor);
     }
 
-    overrideFillArgb(xValue: number, yValue: number, index: number): number {
+    overrideFillArgb(_xValue: number, yValue: number, _index: number): number {
         return yValue >= 0 ? this.aboveZeroArgb : this.belowZeroArgb;
     }
 

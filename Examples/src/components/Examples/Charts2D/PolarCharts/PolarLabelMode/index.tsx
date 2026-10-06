@@ -8,12 +8,11 @@ export default function ChartComponent() {
     const [isInnerAxis, setIsInnerAxis] = useState<boolean>(false);
 
     const [controls, setControls] = useState({
-        changePolarLabelMode: (newMode: EPolarLabelMode) => {},
-        toggleIsInnerAxis: (isInnerAxis: boolean) => {},
+        changePolarLabelMode: (_newMode: EPolarLabelMode) => {},
+        toggleIsInnerAxis: (_isInnerAxis: boolean) => {},
     });
 
     const handleToggleButtonChanged = (value: EPolarLabelMode) => {
-        if (value === null) return;
         setPreset(value);
         controls.changePolarLabelMode(value);
     };

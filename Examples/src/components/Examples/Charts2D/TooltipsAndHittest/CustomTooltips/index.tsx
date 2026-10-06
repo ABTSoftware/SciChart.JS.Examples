@@ -9,7 +9,6 @@ const stateInfoStyle = { zIndex: 900, left: 10, bottom: 30, fontSize: 12 };
 export default function ChartComponent() {
     const [type, setType] = useState<TooltipType>("cursor");
     const setTypeFunc = useRef(null);
-    const setDataFunc = useRef(null);
     const cb = useRef(null);
     const [showData, setShowData] = useState(true);
     const [showRolloverData, setShowRolloverData] = useState(false);
@@ -118,14 +117,14 @@ export default function ChartComponent() {
             </header>
             {type === "verticalSlice" && showClickData && clickInfo ? (
                 <div className="absolute" style={stateInfoStyle}>
-                    <div className="">Currently in React state:</div>
-                    <div className="">{clickInfo}</div>
+                    <div>Currently in React state:</div>
+                    <div>{clickInfo}</div>
                 </div>
             ) : null}
             {type === "cursor" && showData && seriesInfos?.length ? (
                 <div className="absolute" style={stateInfoStyle}>
-                    <div className="">Currently in React state:</div>
-                    <div className="">
+                    <div>Currently in React state:</div>
+                    <div>
                         {" "}
                         index: {seriesInfos[0].dataSeriesIndex}, xValue: {seriesInfos[0].xValue.toFixed(2)}, yValue[0]:
                         {seriesInfos[0].yValue.toFixed(2)}
@@ -135,8 +134,8 @@ export default function ChartComponent() {
 
             {type === "rollover" && showRolloverData && rolloverInfo ? (
                 <div className="absolute" style={stateInfoStyle}>
-                    <div className="">Currently in React state:</div>
-                    <div className="">
+                    <div>Currently in React state:</div>
+                    <div>
                         {" "}
                         index: {rolloverInfo.dataSeriesIndex}, xValue: {rolloverInfo.xValue.toFixed(2)}, yValue:
                         {rolloverInfo.yValue.toFixed(2)}
@@ -149,13 +148,10 @@ export default function ChartComponent() {
                 className="sc-chart-wrapper"
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     // get the "setMap" function that is returned by "drawExample"
-                    let { setType, setData, callBack } = initResult;
+                    const { setType, callBack } = initResult;
 
                     // assign function to ref so we can call it later
                     setTypeFunc.current = setType;
-
-                    // reset data
-                    setDataFunc.current = setData;
 
                     // set callback
                     cb.current = callBack;

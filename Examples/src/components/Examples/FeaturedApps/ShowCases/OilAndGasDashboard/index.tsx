@@ -19,8 +19,8 @@ import { drawResistivityChart } from "./charts/VerticalCharts/ResistivityChart";
 import { drawShaleChart } from "./charts/VerticalCharts/ShaleChart";
 import { drawSonicChart } from "./charts/VerticalCharts/SonicChart";
 import { drawTextureChart } from "./charts/VerticalCharts/TextureChart";
-import { IInitResult, SciChartReact } from "scichart-react";
-import { ChartGroupLoader } from "scichart-react";
+import { IInitResult, SciChartReact, ChartGroupLoader } from "scichart-react";
+
 import { useEffect, useState } from "react";
 
 const onInitAllCharts = (initResults: IInitResult[]) => {

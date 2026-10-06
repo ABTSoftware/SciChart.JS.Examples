@@ -1,9 +1,8 @@
 import { useRef, useState } from "react";
 import { PlayArrowIcon, StopIcon } from "../../../icons";
 
-import { SciChartReact, TResolvedReturnType } from "scichart-react";
+import { SciChartReact, TResolvedReturnType, ChartGroupLoader } from "scichart-react";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
-import { ChartGroupLoader } from "scichart-react";
 
 // Styles for layout of the toolbar / chart area
 
@@ -56,6 +55,7 @@ export default function HeatmapChart() {
                         };
                     }}
                 />
+
                 <SciChartReact
                     initChart={drawHeatmapLegend}
                     className="sc-color-legend"

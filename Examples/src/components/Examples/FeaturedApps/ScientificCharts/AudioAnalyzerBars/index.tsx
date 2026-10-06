@@ -7,24 +7,29 @@ export default function AudioAnalyzer() {
     const controlsRef = useRef<ReturnType<typeof chartsInitializationAPI.onAllChartsInit>>(undefined);
 
     return (
-        <div className="sc-chart-wrapper">
-            <div className="w-full h-full flex flex-col">
-                <SciChartGroup
-                    onInit={() => {
-                        controlsRef.current = chartsInitializationAPI.onAllChartsInit();
-                        controlsRef.current.startUpdate();
-                    }}
-                    onDelete={() => {
-                        controlsRef.current.stopUpdate();
-                        controlsRef.current.cleanup();
-                    }}
-                >
-                    <SciChartReact style={{ flexBasis: "15%" }} initChart={chartsInitializationAPI.initAudioChart} />
-                    <div className="flex flex-1">
-                        <SciChartReact className="flex-1" initChart={chartsInitializationAPI.initFftChart} />
-                    </div>
-                </SciChartGroup>
-            </div>
+        <div className="sc-chart-wrapper flex flex-col">
+            <SciChartGroup
+                onInit={() => {
+                    controlsRef.current = chartsInitializationAPI.onAllChartsInit();
+                    controlsRef.current.startUpdate();
+                }}
+                onDelete={() => {
+                    controlsRef.current.stopUpdate();
+                    controlsRef.current.cleanup();
+                }}
+            >
+                <SciChartReact
+                    style={{ flexBasis: "15%" }}
+                    initChart={chartsInitializationAPI.initAudioChart}
+                />
+
+                <div className="flex flex-1">
+                    <SciChartReact
+                        className="flex-1"
+                        initChart={chartsInitializationAPI.initFftChart}
+                    />
+                </div>
+            </SciChartGroup>
         </div>
     );
 }

@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect } from "react";
-import { DeleteSweepIcon } from "../../../icons";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 

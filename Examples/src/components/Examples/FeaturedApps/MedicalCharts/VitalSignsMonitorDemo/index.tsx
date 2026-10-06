@@ -1,13 +1,10 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
-
 import "./styles.css";
 
 export default function VitalSignsMonitorDemo() {
-    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
-
     const [infoEcg, setInfoEcg] = useState<number>(0);
     const [infoBloodPressure1, setInfoBloodPressure1] = useState<number>(0);
     const [infoBloodPressure2, setInfoBloodPressure2] = useState<number>(0);
@@ -28,7 +25,6 @@ export default function VitalSignsMonitorDemo() {
                         setInfoBloodOxygenation(info.bloodOxygenation);
                     });
 
-                    controlsRef.current = initResult.controls;
                     initResult.controls.startUpdate();
 
                     return () => {

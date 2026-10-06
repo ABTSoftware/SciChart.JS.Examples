@@ -15,10 +15,8 @@ export default function DiscontinuousDateAxisComparisonExample() {
     };
 
     const handleToggleButtonChanged = (value: boolean) => {
-        if (value !== null) {
-            axisSynchroniserRef.current.clear();
-            setCustomSettings(value);
-        }
+        axisSynchroniserRef.current.clear();
+        setCustomSettings(value);
     };
 
     return (

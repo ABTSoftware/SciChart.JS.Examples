@@ -1,6 +1,5 @@
 import { drawExample, drawHeatmapLegend } from "./drawExample";
-import { SciChartReact } from "scichart-react";
-import { ChartGroupLoader } from "scichart-react";
+import { SciChartReact, ChartGroupLoader } from "scichart-react";
 
 export default function SurfaceMesh3DChart() {
     return (

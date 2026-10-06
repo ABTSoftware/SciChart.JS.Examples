@@ -13,7 +13,6 @@ export default function Overview() {
     const [data, setData] = useState<WaferDayData[]>([]);
     const [selectedDay, setSelectedDay] = useState<WaferDayData | null>(null);
     const [showColumnChart, setShowColumnChart] = useState<boolean>(false);
-    const lineChartRef = useRef<{ sciChartSurface: SciChartSurface; wasmContext: any } | null>(null);
     const columnChartRef = useRef<{
         sciChartSurface: SciChartSurface;
         updateData: (batchData: WaferLotData[], fireSelectionChanged: boolean) => void;
@@ -30,19 +29,10 @@ export default function Overview() {
     } | null>(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            // Generate data
-            let data = generateWaferLotData(15, 15, new Date(2023, 0, 1));
-            setData(data);
-            setSelectedDay(data[0]);
-        };
-
-        fetchData();
+        const data = generateWaferLotData(15, 15, new Date(2023, 0, 1));
+        setData(data);
+        setSelectedDay(data[0]);
     }, []);
-
-    const handleLineChartInit = (chartInstance: any) => {
-        lineChartRef.current = chartInstance;
-    };
 
     const handleColumnChartInit = (chartInstance: TResolvedReturnType<typeof drawColumnChart>) => {
         columnChartRef.current = chartInstance;
@@ -57,7 +47,7 @@ export default function Overview() {
     };
 
     // Handler for when a point is selected in the line chart
-    const handlePointSelected = (point: WaferDayData, index: number) => {
+    const handlePointSelected = (point: WaferDayData) => {
         point.Batches[0].isSelected = true;
         // Update both charts since they are both always rendered
         columnChartRef.current?.updateData(point.Batches, showColumnChart);
@@ -102,7 +92,6 @@ export default function Overview() {
                     <SciChartReact
                         initChart={initLineChart}
                         className="sc-semiconductors-sci-chart"
-                        onInit={handleLineChartInit}
                     />
                 </div>
 

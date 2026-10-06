@@ -1,6 +1,6 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
-import { MouseEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchGeoJson } from "../../../ExampleData/ExampleDataProvider";
 
 type MapName = "worldConverted" | "europeConverted" | "australiaConverted" | "africaConverted";
@@ -9,11 +9,6 @@ export default function ChartComponent() {
     const [mapName, setMapName] = useState<MapName>("worldConverted");
     const [mapData, setMapData] = useState<any>();
     const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
-
-    const handleToggleButtonChanged = (_event: MouseEvent<HTMLElement>, value: MapName | null) => {
-        if (!value) return;
-        setMapName(value);
-    };
 
     useEffect(() => {
         fetchGeoJson(mapName)
@@ -40,7 +35,7 @@ export default function ChartComponent() {
                         type="button"
                         className="sc-button"
                         aria-pressed={mapName === "worldConverted"}
-                        onClick={(event) => handleToggleButtonChanged(event, "worldConverted")}
+                        onClick={() => setMapName("worldConverted")}
                     >
                         World
                     </button>
@@ -48,7 +43,7 @@ export default function ChartComponent() {
                         type="button"
                         className="sc-button"
                         aria-pressed={mapName === "europeConverted"}
-                        onClick={(event) => handleToggleButtonChanged(event, "europeConverted")}
+                        onClick={() => setMapName("europeConverted")}
                     >
                         Europe
                     </button>
@@ -56,7 +51,7 @@ export default function ChartComponent() {
                         type="button"
                         className="sc-button"
                         aria-pressed={mapName === "australiaConverted"}
-                        onClick={(event) => handleToggleButtonChanged(event, "australiaConverted")}
+                        onClick={() => setMapName("australiaConverted")}
                     >
                         Australia
                     </button>
@@ -64,7 +59,7 @@ export default function ChartComponent() {
                         type="button"
                         className="sc-button"
                         aria-pressed={mapName === "africaConverted"}
-                        onClick={(event) => handleToggleButtonChanged(event, "africaConverted")}
+                        onClick={() => setMapName("africaConverted")}
                     >
                         Africa
                     </button>

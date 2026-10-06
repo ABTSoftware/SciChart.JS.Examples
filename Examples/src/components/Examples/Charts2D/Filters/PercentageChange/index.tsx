@@ -7,11 +7,9 @@ export default function PercentageChange() {
     const [chartKey, setChartKey] = useState(0);
 
     const handleUsePercentage = (newValue: boolean) => {
-        if (newValue !== null) {
-            setUsePercentage(newValue);
-            // Force reinitialization of the chart by updating the key
-            setChartKey((prevKey) => prevKey + 1);
-        }
+        setUsePercentage(newValue);
+        // Force reinitialization of the chart by updating the key
+        setChartKey((prevKey) => prevKey + 1);
     };
 
     return (

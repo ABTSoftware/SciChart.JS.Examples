@@ -19,9 +19,6 @@ export default function MultiLineLabels() {
                 labelProviderRef.current.maxLength = 0;
                 break;
             case 2:
-                labelProviderRef.current.rotation = 30;
-                labelProviderRef.current.maxLength = 15;
-                break;
             default:
                 labelProviderRef.current.rotation = 30;
                 labelProviderRef.current.maxLength = 15;

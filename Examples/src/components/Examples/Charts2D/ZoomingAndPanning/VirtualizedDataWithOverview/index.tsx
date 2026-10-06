@@ -7,21 +7,19 @@ export default function VirtualizedDataOverview() {
     const [isMainChartInitialized, setIsMainChartInitialized] = useState(false);
 
     return (
-        <div className="sc-chart-wrapper">
-            <div className="flex flex-col h-full">
+        <div className="sc-chart-wrapper flex flex-col">
+            <SciChartReact
+                style={{ flex: "1 1 600px" }}
+                initChart={chartInitializationApi.createMainChart}
+                onInit={() => setIsMainChartInitialized(true)}
+            />
+            {isMainChartInitialized ? (
                 <SciChartReact
-                    style={{ flex: "1 1 600px" }}
-                    initChart={chartInitializationApi.createMainChart}
-                    onInit={() => setIsMainChartInitialized(true)}
+                    style={{ flex: "1 1 100px" }}
+                    initChart={chartInitializationApi.createOverview}
+                    onInit={chartInitializationApi.afterOverviewInit}
                 />
-                {isMainChartInitialized ? (
-                    <SciChartReact
-                        style={{ flex: "1 1 100px" }}
-                        initChart={chartInitializationApi.createOverview}
-                        onInit={chartInitializationApi.afterOverviewInit}
-                    />
-                ) : null}
-            </div>
+            ) : null}
         </div>
     );
 }

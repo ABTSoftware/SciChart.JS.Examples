@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { SciChartReact } from "scichart-react";
+import { SciChartReact, ChartGroupLoader } from "scichart-react";
 import { getChartsInitializationAPI } from "./drawExample";
-import { ChartGroupLoader } from "scichart-react";
 
 export default function LineChart() {
     const [chartsInitializationAPI] = useState(getChartsInitializationAPI);

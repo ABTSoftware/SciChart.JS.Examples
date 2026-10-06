@@ -73,10 +73,8 @@ export default function OverviewForSubCharts() {
     return (
         <div className="sc-chart-wrapper flex flex-col">
             <header className="sc-toolbar-row">
-                {/* <span>{subCharts.length}</span> */}
-
                 <div className="flex flex-wrap items-center gap-2">
-                    {subCharts.map((config, index) => (
+                    {subCharts.map((config) => (
                         <input
                             key={config.id}
                             type="color"
@@ -89,26 +87,19 @@ export default function OverviewForSubCharts() {
                     ))}
                 </div>
 
-                {/* <div className="sc-button-group" role="group"> */}
-                    <button 
-                        className="sc-button ml-auto"
-                        type="button" 
-                        onClick={addSubChart} 
-                        title="Add SubChart" 
-                    >
-                        Add Chart
-                    </button>
+                <button className="sc-button ml-auto" type="button" onClick={addSubChart} title="Add SubChart">
+                    Add Chart
+                </button>
 
-                    <button
-                        className="sc-button sc-button-danger"
-                        type="button"
-                        onClick={() => removeSubChart(subCharts[subCharts.length - 1]?.id)}
-                        disabled={subCharts.length === 0}
-                        title="Remove Last SubChart"
-                    >
-                        Remove Chart
-                    </button>
-                {/* </div> */}
+                <button
+                    className="sc-button sc-button-danger"
+                    type="button"
+                    onClick={() => removeSubChart(subCharts[subCharts.length - 1]?.id)}
+                    disabled={subCharts.length === 0}
+                    title="Remove Last SubChart"
+                >
+                    Remove Chart
+                </button>
             </header>
             <div ref={chartRef} className="w-full h-full" />
         </div>

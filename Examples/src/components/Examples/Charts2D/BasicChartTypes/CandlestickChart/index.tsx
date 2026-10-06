@@ -10,7 +10,6 @@ export default function CandlestickChart() {
     const [dataSource, setDataSource] = useState<string>("Random");
 
     const handleToggleButtonChanged = (state: number) => {
-        if (state === null) return;
         setPreset(state);
         console.log(`Toggling Candle/Ohlc state: ${state}`);
         // Toggle visibility of candlestick or OHLC series
@@ -69,7 +68,6 @@ export default function CandlestickChart() {
                     setCandlestickChartSeries(candlestickSeries);
                     setOhlcChartSeries(ohlcSeries);
                 }}
-                innerContainerProps={{ className: "sc-main-chart" }}
             >
                 <SciChartNestedOverview className="sc-overview" options={overviewOptions} />
             </SciChartReact>
