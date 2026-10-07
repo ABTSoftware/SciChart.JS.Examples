@@ -7,7 +7,7 @@ export default function LineChart() {
 
     return (
         <ChartGroupLoader
-            className="sc-chart-wrapper sc-grid-2x3"
+            className="sc-chart-wrapper sc-chart-grid"
         >
             <SciChartReact initChart={chartsInitializationAPI.line1} />
             <SciChartReact initChart={chartsInitializationAPI.line2} />

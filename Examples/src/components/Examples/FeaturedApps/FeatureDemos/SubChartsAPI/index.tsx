@@ -6,15 +6,9 @@ import { drawGridExample, TMessage } from "./drawExample";
 
 export default function SubchartsGrid() {
     const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
-    const [isStarted, setIsStarted] = useState(false);
-
     const [messages, setMessages] = useState<TMessage[]>([]);
-
+    const [isStarted, setIsStarted] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-    const handleClickOpen = () => {
-        setIsDialogOpen(true);
-    };
 
     const handleClose = () => {
         setIsDialogOpen(false);
@@ -28,39 +22,6 @@ export default function SubchartsGrid() {
         drawGridExample(rootElement, (newMessages: TMessage[]) => {
             setMessages([...newMessages]);
         });
-    const configurationDialog = isDialogOpen ? (
-        <BodyPortal>
-            <div
-                className="sc-modal-backdrop"
-                onClick={(event) => event.target === event.currentTarget && handleClose()}
-                onKeyDown={(event) => event.key === "Escape" && handleClose()}
-            >
-                <section className="sc-modal" role="dialog" aria-modal="true" aria-labelledby="subcharts-config-title">
-                    <header className="sc-modal-header">
-                        <strong id="subcharts-config-title">Chart Configurations</strong>
-                        <button
-                            className="sc-button sc-button-icon"
-                            aria-label="Close chart configurations"
-                            onClick={handleClose}
-                            autoFocus
-                            type="button"
-                        >
-                            <CloseIcon />
-                        </button>
-                    </header>
-                    <div className="sc-modal-body">
-                        <label className="sc-switch">
-                            <input
-                                type="checkbox"
-                                onChange={(event) => handleLabelsChange(event.currentTarget.checked)}
-                            />
-                            Axis Labels
-                        </label>
-                    </div>
-                </section>
-            </div>
-        </BodyPortal>
-    ) : null;
 
     return (
         <div className="sc-chart-wrapper">
@@ -82,29 +43,60 @@ export default function SubchartsGrid() {
                     {isStarted ? <StopIcon /> : <PlayArrowIcon />}
                 </button>
 
-                <div
-                    style={{ gridArea: "1 / 1 / 2 / 2", pointerEvents: "none", touchAction: "none", zIndex: 2 }}
+                <button
+                    className="sc-button sc-button-icon"
+                    aria-label="Chart configurations"
                     title="Chart Configurations"
+                    onClick={() => setIsDialogOpen(true)}
+                    type="button"
                 >
-                    <button
-                        className="sc-button sc-button-icon"
-                        aria-label="Chart configurations"
-                        onClick={handleClickOpen}
-                        type="button"
-                    >
-                        <SettingsIcon fontSize="medium" />
-                    </button>
-                    {configurationDialog}
-                </div>
+                    <SettingsIcon fontSize="medium" />
+                </button>
 
-                <div className="flex gap-2" style={{ marginRight: 8, flex: "1 1 20%" }}>
+                {isDialogOpen ? (
+                    <BodyPortal>
+                        <div
+                            className="sc-modal-backdrop"
+                            onClick={(event) => event.target === event.currentTarget && handleClose()}
+                            onKeyDown={(event) => event.key === "Escape" && handleClose()}
+                        >
+                            <section
+                                className="sc-modal"
+                                role="dialog"
+                                aria-modal="true"
+                                aria-labelledby="subcharts-config-title"
+                            >
+                                <header className="sc-modal-header">
+                                    <strong id="subcharts-config-title">Chart Configurations</strong>
+                                    <button
+                                        className="sc-button sc-button-icon"
+                                        aria-label="Close chart configurations"
+                                        onClick={handleClose}
+                                        autoFocus
+                                        type="button"
+                                    >
+                                        <CloseIcon />
+                                    </button>
+                                </header>
+                                <div className="sc-modal-body">
+                                    <label className="sc-switch">
+                                        <input
+                                            type="checkbox"
+                                            onChange={(event) => handleLabelsChange(event.currentTarget.checked)}
+                                        />
+                                        Axis Labels
+                                    </label>
+                                </div>
+                            </section>
+                        </div>
+                    </BodyPortal>
+                ) : null}
+                <div className="flex gap-2 mr-2" style={{ flex: "1 1 20%" }}>
                     {messages.map((msg, index) => (
                         <div
                             key={index}
-                            className="flex-none"
+                            className="flex-none text-end p-1"
                             style={{
-                                padding: "0.4em",
-                                textAlign: "end",
                                 width: "16%",
                                 fontSize: "0.8em",
                                 textWrap: "nowrap",

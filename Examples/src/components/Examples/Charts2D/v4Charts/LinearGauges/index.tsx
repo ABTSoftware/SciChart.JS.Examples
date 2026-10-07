@@ -7,7 +7,7 @@ export default function GaugeChart() {
 
     return (
         <ChartGroupLoader
-            className="sc-chart-wrapper sc-grid-2x3"
+            className="sc-chart-wrapper sc-chart-grid"
         >
             <SciChartReact initChart={chartsInitializationAPI.gauge1} />
             <SciChartReact initChart={chartsInitializationAPI.gauge2} />

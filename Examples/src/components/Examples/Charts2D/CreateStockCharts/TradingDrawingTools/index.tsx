@@ -1,13 +1,17 @@
-import "./styles.css";
 import { useRef, useState } from "react";
-import { CloseIcon, DeleteSweepIcon, RefreshIcon } from "../../../icons";
+import { CloseIcon, CopyIcon, DeleteSweepIcon } from "../../../icons";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 import { DrawingTool, toolGroups } from "./tools";
 import { toolIcons } from "./toolIcons";
 
 const ToolIcon = ({ name }: { name: string }) => (
-    <span className="sc-trading-tool-icon" aria-hidden="true" dangerouslySetInnerHTML={{ __html: toolIcons[name] }} />
+    <span
+        className="inline-flex flex-none"
+        style={{ width: 28, height: 28 }}
+        aria-hidden="true"
+        dangerouslySetInnerHTML={{ __html: toolIcons[name].replace("<svg ", '<svg style="width:100%;height:100%" ') }}
+    />
 );
 
 export default function TradingDrawingTools() {
@@ -17,6 +21,7 @@ export default function TradingDrawingTools() {
     const [selectedTool, setSelectedTool] = useState<DrawingTool | undefined>();
     const [search, setSearch] = useState("");
     const [isReady, setIsReady] = useState(false);
+    const [hasSelectedAnnotation, setHasSelectedAnnotation] = useState(false);
 
     const stopTool = () => {
         controlsRef.current?.stopActiveTools();
@@ -30,8 +35,12 @@ export default function TradingDrawingTools() {
         setSelectedTool(tool);
         dialogRef.current?.close();
     };
-    const checkToolComplete = () => {
+    const syncChartState = () => {
         if (!controlsRef.current?.isToolActive()) setSelectedTool(undefined);
+        setHasSelectedAnnotation(
+            controlsRef.current?.sciChartSurface.annotations.asArray().some((annotation) => annotation.isSelected) ??
+                false
+        );
     };
     const query = search.trim().toLowerCase();
     const groups = toolGroups
@@ -60,7 +69,7 @@ export default function TradingDrawingTools() {
                 </button>
                 {selectedTool && (
                     <>
-                        <span className="sc-trading-active-tool" role="status">
+                        <span className="flex items-center gap-2" style={{ fontSize: 13 }} role="status">
                             <ToolIcon name={selectedTool.icon} />
                             <span>
                                 {selectedTool.label} ·{" "}
@@ -85,34 +94,13 @@ export default function TradingDrawingTools() {
                 <div className="flex gap-2 ml-auto">
                     <button
                         type="button"
-                        className="sc-button sc-button-outline"
-                        disabled={!isReady}
+                        className="sc-button sc-button-icon"
+                        disabled={!isReady || !hasSelectedAnnotation}
                         onClick={() => controlsRef.current?.duplicateSelectedAnnotation()}
+                        aria-label="Copy selected annotation"
                         title="Duplicate selected annotation (Ctrl/Cmd+D)"
                     >
-                        Duplicate
-                    </button>
-                    <button
-                        type="button"
-                        className="sc-button sc-button-outline"
-                        disabled={!isReady}
-                        onClick={() => controlsRef.current?.removeSelectedAnnotations()}
-                        title="Delete selected annotations (Delete/Backspace)"
-                    >
-                        Delete selected
-                    </button>
-                    <button
-                        type="button"
-                        className="sc-button sc-button-icon"
-                        disabled={!isReady}
-                        aria-label="Restore example annotations"
-                        title="Restore example annotations"
-                        onClick={() => {
-                            stopTool();
-                            controlsRef.current?.resetAnnotations();
-                        }}
-                    >
-                        <RefreshIcon />
+                        <CopyIcon />
                     </button>
                     <button
                         type="button"
@@ -134,22 +122,27 @@ export default function TradingDrawingTools() {
                 initChart={drawExample}
                 onInit={(result: TResolvedReturnType<typeof drawExample>) => {
                     controlsRef.current = result;
-                    result.sciChartSurface.rendered.subscribe(checkToolComplete);
+                    result.sciChartSurface.rendered.subscribe(syncChartState);
+                    syncChartState();
                     setIsReady(true);
                 }}
                 onDelete={(result: TResolvedReturnType<typeof drawExample>) => {
-                    result.sciChartSurface.rendered.unsubscribe(checkToolComplete);
+                    result.sciChartSurface.rendered.unsubscribe(syncChartState);
                     result.dispose();
                     controlsRef.current = undefined;
                 }}
             />
             <dialog
                 ref={dialogRef}
-                className="sc-modal sc-trading-tools-modal"
+                className="sc-modal p-0"
+                style={{ width: "min(860px, calc(100% - 32px))", margin: "auto", touchAction: "auto" }}
                 aria-labelledby="trading-tools-title"
                 onClick={(event) => event.target === event.currentTarget && dialogRef.current?.close()}
             >
-                <header className="sc-modal-header">
+                <header
+                    className="sc-modal-header top-0 sticky pl-4"
+                    style={{ background: "var(--sc-background)" }}
+                >
                     <strong id="trading-tools-title">Drawing tools</strong>
                     <button
                         type="button"
@@ -171,13 +164,19 @@ export default function TradingDrawingTools() {
                         onChange={(event) => setSearch(event.target.value)}
                         autoFocus
                     />
-                    <p className="sc-trading-tools-help">
+                    <p className="text-xs">
                         Choose a tool, then draw on the chart. Press Esc to cancel. Select a drawing to move or edit it.
                     </p>
                     {groups.map((group) => (
                         <section key={group.label}>
-                            <h3 className="sc-trading-tools-group-title">{group.label}</h3>
-                            <div className="sc-trading-tools-grid">
+                            <h3 style={{ margin: "5px 3px", fontSize: 14, fontWeight: 600 }}>{group.label}</h3>
+                            <div
+                                className="gap-2"
+                                style={{
+                                    display: "grid",
+                                    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 230px), 1fr))",
+                                }}
+                            >
                                 {group.tools.map((tool) => (
                                     <button
                                         type="button"

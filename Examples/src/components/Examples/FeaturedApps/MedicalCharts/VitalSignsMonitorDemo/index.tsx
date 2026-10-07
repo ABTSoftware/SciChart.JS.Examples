@@ -83,7 +83,7 @@ export default function VitalSignsMonitorDemo() {
                 <div className="sc-vitals-card" style={{ color: appTheme.VividTeal }}>
                     <div className="flex flex-1">
                         <div className="sc-vitals-title">
-                            SPO<span style={{ fontSize: 12 }}>2</span>
+                            SPO<span>2</span>
                         </div>
                         <div className="sc-vitals-meta">18:06</div>
                     </div>

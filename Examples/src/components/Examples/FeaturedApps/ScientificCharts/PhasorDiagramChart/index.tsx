@@ -23,7 +23,15 @@ export default function ChartComponent() {
 
     return (
         <div className="sc-chart-wrapper">
-            <header className="absolute" style={{ inset: "12px 12px auto", zIndex: 1 }}>
+            <SciChartReact
+                className="w-full h-full"
+                initChart={(rootElementId: string | HTMLDivElement) => drawExample(rootElementId)}
+                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                    setControls(initResult.controls);
+                }}
+            />
+
+            <header className="absolute top-2 left-2">
                 <button
                     type="button"
                     className="sc-button sc-button-icon"
@@ -35,14 +43,6 @@ export default function ChartComponent() {
                     {isChartAnimating ? <StopIcon /> : <PlayArrowIcon />}
                 </button>
             </header>
-
-            <SciChartReact
-                className="w-full h-full"
-                initChart={(rootElementId: string | HTMLDivElement) => drawExample(rootElementId)}
-                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                    setControls(initResult.controls);
-                }}
-            />
         </div>
     );
 }

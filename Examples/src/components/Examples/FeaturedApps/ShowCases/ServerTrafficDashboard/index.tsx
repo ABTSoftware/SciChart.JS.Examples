@@ -189,8 +189,7 @@ function ServerTrafficDashboard() {
                     <SciChart
                         initChart={getMainChartConfig(viewInfo)}
                         onInit={onMainChartInit}
-                        className="relative sc-server-main-chart"
-                        innerContainerProps={{ style: { height: "80%" } }}
+                        className="relative sc-server-main-chart h-full"
                     >
                         <ThresholdSlider />
                         <SciChartNestedOverview style={{ height: "20%" }} options={overviewOptions} />

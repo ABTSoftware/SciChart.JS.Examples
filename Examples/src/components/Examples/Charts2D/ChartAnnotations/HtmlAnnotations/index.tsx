@@ -18,19 +18,18 @@ export default function ChartComponent() {
             />
             {chartApi
                 ? // using a portal to render a React component within a chart
-                  createPortal(
-                      <div
-                          style={{
-                              fontSize: "0.8em",
-                              fontWeight: "bold",
-                              textWrap: "nowrap",
-                              background: "linear-gradient(135deg, #ff6a00, #ee0979)",
-                          }}
-                      >
-                          This annotation is rendered using React.
-                      </div>,
-                      chartApi.containerAnnotation.htmlElement
-                  )
+                createPortal(
+                    <div
+                        style={{
+                            fontSize: "0.8em",
+                            background: "linear-gradient(135deg, #ff6a00, #ee0979)",
+                            textWrap: "nowrap",
+                        }}
+                    >
+                        This annotation is rendered using React.
+                    </div>,
+                    chartApi.containerAnnotation.htmlElement
+                )
                 : null}
         </>
     );

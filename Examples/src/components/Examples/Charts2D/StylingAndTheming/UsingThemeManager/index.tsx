@@ -6,7 +6,7 @@ export default function ChartComponent() {
     const [chartsInitializationAPI] = useState(getChartsInitializationAPI);
 
     return (
-        <ChartGroupLoader className="sc-chart-wrapper sc-chart-grid sc-chart-grid-two">
+        <ChartGroupLoader className="sc-chart-wrapper sc-chart-grid">
             <SciChartReact initChart={chartsInitializationAPI.createNavyThemeChart} />
             <SciChartReact initChart={chartsInitializationAPI.createLightThemeChart} />
             <SciChartReact initChart={chartsInitializationAPI.createDarkThemeChart} />

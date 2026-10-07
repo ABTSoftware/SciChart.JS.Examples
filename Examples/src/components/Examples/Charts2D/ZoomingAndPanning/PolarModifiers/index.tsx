@@ -78,7 +78,7 @@ export default function ChartComponent() {
                 ))}
 
                 {conflictWarning && (
-                    <p role="alert" style={{ color: "var(--sc-error)" }}>
+                    <p role="alert" className="text-error">
                         {conflictWarning}
                     </p>
                 )}

@@ -7,8 +7,8 @@ export default function ContourChart() {
             <SciChartReact initChart={drawExample} className="h-full" style={{ width: "calc(100% - 60px)" }} />
             <SciChartReact
                 initChart={drawHeatmapLegend}
-                className="absolute h-full"
-                style={{ width: 65, top: 0, right: 0, backgroundColor: "#000000dd" }}
+                className="absolute h-full top-0 right-0"
+                style={{ width: 65, backgroundColor: "#000000dd" }}
             />
         </ChartGroupLoader>
     );

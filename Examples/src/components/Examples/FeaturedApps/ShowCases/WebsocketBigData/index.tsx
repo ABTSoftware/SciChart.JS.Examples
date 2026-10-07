@@ -149,7 +149,7 @@ export default function RealtimeBigDataShowcase() {
             />
 
             <aside className="sc-responsive-controls">
-                <div className="flex gap-2" style={{ marginBottom: 8 }}>
+                <div className="flex gap-2 mb-2">
                     <button
                         className="sc-button sc-button-icon"
                         type="button"

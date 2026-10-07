@@ -55,9 +55,23 @@ export default function ChartComponent() {
                 </div>
             </header>
             <div className="sc-chart-wrapper flex-auto">
-                <span
-                    className="absolute flex flex-col"
-                    style={{ top: 8, left: 10, zIndex: 1, fontSize: 11, pointerEvents: "none" }}
+                {mapData ? (
+                    <SciChartReact
+                        initChart={drawExample}
+                        className="sc-chart-wrapper"
+                        onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                            const { setMap, setMapJson } = initResult;
+
+                            setMapJson(mapData);
+                            setMap(key);
+                            setMapFunc.current = setMap;
+                        }}
+                    />
+                ) : null}
+
+                <div
+                    className="absolute flex flex-col top-2 left-2 pointer-events-none"
+                    style={{ fontSize: 11 }}
                 >
                     {australiaData.map((d) => {
                         const [minValue, maxValue] = getMinMax(key, australiaData);
@@ -77,20 +91,7 @@ export default function ChartComponent() {
                             </span>
                         );
                     })}
-                </span>
-                {mapData ? (
-                    <SciChartReact
-                        initChart={drawExample}
-                        className="sc-chart-wrapper"
-                        onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                            const { setMap, setMapJson } = initResult;
-
-                            setMapJson(mapData);
-                            setMap(key);
-                            setMapFunc.current = setMap;
-                        }}
-                    />
-                ) : null}
+                </div>
             </div>
         </div>
     );

@@ -141,8 +141,7 @@ export default function Overview() {
                         <SciChartReact
                             key="plotChart"
                             initChart={initWaferChart}
-                            className="sc-semiconductors-sci-chart"
-                            style={{ cursor: "pointer" }}
+                            className="sc-semiconductors-sci-chart cursor-pointer"
                             onInit={handleWaferChartInit}
                         />
                     </div>

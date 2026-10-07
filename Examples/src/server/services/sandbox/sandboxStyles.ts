@@ -13,13 +13,18 @@ const classNamesInSelector = (selector: string) => {
     return classes;
 };
 
-/* :not() excludes matches; its classes must never be prerequisites for keeping a rule. */
+/* Negated classes are not prerequisites; nth-* arguments are positions, not element names. */
 const usedSelector = (selector: string, classes: Set<string>, elements: Set<string>) => {
     const root = selectorParser().astSync(selector);
     const prune = (node: any): boolean => {
         if (node.type === "class") return classes.has(node.value);
         if (node.type === "tag") return elements.has(node.value.toLowerCase());
-        if (node.type === "pseudo" && node.value === ":not") return true;
+        if (
+            node.type === "pseudo" &&
+            [":not", ":nth-child", ":nth-last-child", ":nth-of-type", ":nth-last-of-type"].includes(node.value)
+        ) {
+            return true;
+        }
         if (node.type === "pseudo" && [":is", ":where", ":has"].includes(node.value)) {
             for (const child of [...node.nodes]) {
                 if (!prune(child)) child.remove();

@@ -4,8 +4,6 @@ import { useState, useRef, useEffect } from "react";
 
 type TooltipType = "cursor" | "rollover" | "verticalSlice";
 
-const stateInfoStyle = { zIndex: 900, left: 10, bottom: 30, fontSize: 12 };
-
 export default function ChartComponent() {
     const [type, setType] = useState<TooltipType>("cursor");
     const setTypeFunc = useRef(null);
@@ -85,6 +83,19 @@ export default function ChartComponent() {
         }
     }, [type]);
 
+    const stateInfo =
+        type === "verticalSlice" && showClickData && clickInfo
+            ? clickInfo
+            : type === "cursor" && showData && seriesInfos?.length
+            ? `index: ${seriesInfos[0].dataSeriesIndex}, xValue: ${seriesInfos[0].xValue.toFixed(
+                  2
+              )}, yValue[0]: ${seriesInfos[0].yValue.toFixed(2)}`
+            : type === "rollover" && showRolloverData && rolloverInfo
+            ? `index: ${rolloverInfo.dataSeriesIndex}, xValue: ${rolloverInfo.xValue.toFixed(
+                  2
+              )}, yValue: ${rolloverInfo.yValue.toFixed(2)}`
+            : null;
+
     return (
         <div className="sc-chart-wrapper">
             <header className="sc-toolbar-row">
@@ -115,31 +126,10 @@ export default function ChartComponent() {
                     </button>
                 </div>
             </header>
-            {type === "verticalSlice" && showClickData && clickInfo ? (
-                <div className="absolute" style={stateInfoStyle}>
+            {stateInfo ? (
+                <div className="absolute" style={{ left: 10, bottom: 30, zIndex: 900 }}>
                     <div>Currently in React state:</div>
-                    <div>{clickInfo}</div>
-                </div>
-            ) : null}
-            {type === "cursor" && showData && seriesInfos?.length ? (
-                <div className="absolute" style={stateInfoStyle}>
-                    <div>Currently in React state:</div>
-                    <div>
-                        {" "}
-                        index: {seriesInfos[0].dataSeriesIndex}, xValue: {seriesInfos[0].xValue.toFixed(2)}, yValue[0]:
-                        {seriesInfos[0].yValue.toFixed(2)}
-                    </div>
-                </div>
-            ) : null}
-
-            {type === "rollover" && showRolloverData && rolloverInfo ? (
-                <div className="absolute" style={stateInfoStyle}>
-                    <div>Currently in React state:</div>
-                    <div>
-                        {" "}
-                        index: {rolloverInfo.dataSeriesIndex}, xValue: {rolloverInfo.xValue.toFixed(2)}, yValue:
-                        {rolloverInfo.yValue.toFixed(2)}
-                    </div>
+                    <div>{stateInfo}</div>
                 </div>
             ) : null}
 

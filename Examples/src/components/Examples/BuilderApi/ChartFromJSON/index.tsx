@@ -34,7 +34,7 @@ export default function ChartFromJSON() {
                 style={{ flexBasis: 400, flexGrow: 1 }}
             />
 
-            <div className="absolute" style={{ left: 20, top: 20 }}>
+            <div className="absolute left-4 top-4">
                 {errors && (
                     <div key="0" className="sc-alert" role="alert">
                         <strong className="sc-alert-title">Errors</strong>

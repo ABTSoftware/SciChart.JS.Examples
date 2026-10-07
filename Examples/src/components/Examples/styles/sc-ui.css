@@ -144,7 +144,6 @@
 .h-full { height: 100% !important; }
 .w-max { width: max-content !important; }
 .monospace { font-family: monospace !important; }
-.flex-nowrap { flex-wrap: nowrap !important; }
 .gap-1 { gap: 0.25rem !important; }
 .gap-2 { gap: 0.5rem !important; }
 .gap-3 { gap: 0.75rem !important; }
@@ -167,6 +166,7 @@
 .pr-4, .px-4 { padding-right: 1rem !important; }
 .relative { position: relative !important; }
 .absolute { position: absolute !important; }
+.sticky { position: sticky !important; }
 .min-w-0 { min-width: 0 !important; }
 .min-h-0 { min-height: 0 !important; }
 .overflow-y-auto { overflow-y: auto !important; }
@@ -174,16 +174,29 @@
 .justify-center { justify-content: center !important; }
 .items-start { align-items: flex-start !important; }
 .shrink-0 { flex-shrink: 0 !important; }
-.h-auto { height: auto !important; }
 .text-center { text-align: center !important; }
 .border-r { border-right: 1px solid var(--sc-outline) !important; }
 .border-b { border-bottom: 1px solid var(--sc-outline) !important; }
 .border-t { border-top: 1px solid var(--sc-outline) !important; }
 .border-l { border-left: 1px solid var(--sc-outline) !important; }
+
 .top-0 { top: 0 !important; }
+.top-2 { top: 0.5rem !important; }
 .left-0 { left: 0 !important; }
+.left-2 { left: 0.5rem !important; }
 .bottom-0 { bottom: 0 !important; }
 .right-0 { right: 0 !important; }
+
+.pointer-events-none { pointer-events: none !important; }
+.touch-none { touch-action: none !important; }
+.cursor-pointer { cursor: pointer !important; }
+.font-bold { font-weight: 700 !important; }
+.text-error { color: var(--sc-error) !important; }
+.text-end { text-align: end !important; }
+.text-xs { font-size: 0.75rem !important; }
+.text-sm { font-size: 0.875rem !important; }
+.mb-2 { margin-bottom: 0.5rem !important; }
+.mr-2 { margin-right: 0.5rem !important; }
 
 /* Repeated chart grids, colour legends and nested overview layouts. */
 .sc-chart-grid {
@@ -197,20 +210,24 @@
         height: auto;
     }
 
-    &.sc-chart-grid-two > * { flex-basis: 50%; }
-}
+    /* Four charts use two columns; the absolute loading overlay adds one child. */
+    &:not(:has(> :nth-child(6))) > * { flex-basis: 50%; }
 
-.sc-grid-2x3 {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 5px;
-    padding: 5px;
-    box-sizing: border-box;
+    /* Six charts retain their padded grid, including while the loader is visible. */
+    &:has(> :nth-child(6)):not(:has(> :nth-child(8))) {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        gap: 5px;
+        padding: 5px;
+        box-sizing: border-box;
 
-    @media (max-width: 600px) {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-template-rows: repeat(3, minmax(0, 1fr));
+        > * { min-width: 0; }
+
+        @media (max-width: 600px) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-rows: repeat(3, minmax(0, 1fr));
+        }
     }
 }
 
@@ -649,13 +666,15 @@
     color: var(--sc-text);
     box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
 
+    &::backdrop { background: rgb(0 0 0 / 55%); }
+
     .sc-modal-header {
         display: flex;
         min-height: 52px;
         align-items: center;
         justify-content: space-between;
-        gap: 16px;
-        padding: 8px 16px;
+        gap: 0.5rem;
+        padding: 0.5rem;
         border-bottom: 1px solid var(--sc-outline);
     }
 
@@ -663,7 +682,7 @@
         display: flex;
         flex-direction: column;
         gap: 8px;
-        padding: 16px;
+        padding: 0.5rem;
     }
 }
 

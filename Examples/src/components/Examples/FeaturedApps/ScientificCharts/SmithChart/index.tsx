@@ -134,23 +134,6 @@ export default function SmithChartComponent() {
                     {/* Chart canvas */}
                     <div ref={chartRef} className="w-full h-full relative overflow-hidden sc-smith-plot" />
 
-                    {/* Overlay buttons — top-left of chart */}
-                    <div className="absolute flex flex-col gap-1" style={{ top: 8, left: 8, zIndex: 10 }}>
-                        <button
-                            className="sc-button sc-button-outline"
-                            onClick={(e) => setExamplesAnchor(e.currentTarget)}
-                            type="button"
-                        >
-                            Examples
-                        </button>
-                        <button className="sc-button" onClick={() => setChainOpen((v) => !v)} type="button">
-                            Chain
-                        </button>
-                        <button className="sc-button" onClick={() => setGridOpen((v) => !v)} type="button">
-                            Grid
-                        </button>
-                    </div>
-
                     {/* Examples dropdown menu */}
                     {examplesAnchor && (
                         <div
@@ -502,7 +485,8 @@ export default function SmithChartComponent() {
                             </span>
                             <hr className="sc-smith-divider sc-smith-readout-divider" />
                             <span
-                                style={{ fontWeight: 700, color: "color-mix(in srgb, var(--text) 55%, transparent)" }}
+                                className="font-bold"
+                                style={{ color: "color-mix(in srgb, var(--text) 55%, transparent)" }}
                             >RIM</span>
                             <GridSlider
                                 label="Label gap"
@@ -533,6 +517,24 @@ export default function SmithChartComponent() {
                             />
                         </div>
                     </FloatingPanel>
+                    
+                    {/* Overlay buttons — top-left of chart */}
+                    <div className="absolute flex flex-col gap-1 top-2 left-2 z-10">
+                        <button
+                            className="sc-button sc-button-outline"
+                            onClick={(e) => setExamplesAnchor(e.currentTarget)}
+                            type="button"
+                        >
+                            Examples
+                        </button>
+                        <button className="sc-button" onClick={() => setChainOpen((v) => !v)} type="button">
+                            Chain
+                        </button>
+                        <button className="sc-button" onClick={() => setGridOpen((v) => !v)} type="button">
+                            Grid
+                        </button>
+                    </div>
+
                 </div>
 
                 {/* Readout sidebar */}
@@ -637,7 +639,7 @@ export default function SmithChartComponent() {
                     {state.chain.length > 0 && (
                         <>
                             <hr className="sc-smith-divider sc-smith-readout-divider" />
-                            <span style={{ fontWeight: 700 }}>CHAIN ({state.chain.length} steps)</span>
+                            <span className="font-bold">CHAIN ({state.chain.length} steps)</span>
                             {state.chain.map((step, i) => (
                                 <div key={step.id} className="flex items-center gap-2">
                                     <div
