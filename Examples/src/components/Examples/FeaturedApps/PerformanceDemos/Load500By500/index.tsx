@@ -42,7 +42,7 @@ export default function Load500By500() {
                         }}
                     />
 
-                    <header className="sc-toolbar-row">
+                    <header className="sc-toolbar-row" style={{ order: 1 }}>
                         <div className="flex flex-col gap-2">
                             <button
                                 className="sc-button sc-button-icon"

@@ -4,7 +4,7 @@ import { drawExample } from "./drawExample";
 
 export default function DynamicLayout() {
     const [initResult, setInitResult] = useState<TResolvedReturnType<typeof drawExample>>();
-    const [isGrid, setIsGrid] = useState<boolean>(false);
+    const [isGrid, setIsGrid] = useState<boolean>(true);
 
     const handleToggleButtonChanged = (value: boolean) => {
         initResult.setIsGridLayoutMode(value);
@@ -17,20 +17,20 @@ export default function DynamicLayout() {
                     <button
                         type="button"
                         className="sc-button"
-                        aria-pressed={isGrid === false}
-                        disabled={!initResult}
-                        onClick={() => handleToggleButtonChanged(false)}
-                    >
-                        Single Chart
-                    </button>
-                    <button
-                        type="button"
-                        className="sc-button"
                         aria-pressed={isGrid === true}
                         disabled={!initResult}
                         onClick={() => handleToggleButtonChanged(true)}
                     >
                         Chart Per Series
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={isGrid === false}
+                        disabled={!initResult}
+                        onClick={() => handleToggleButtonChanged(false)}
+                    >
+                        Single Chart
                     </button>
                 </div>
             </header>

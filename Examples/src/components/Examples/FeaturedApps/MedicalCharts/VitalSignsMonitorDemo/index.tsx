@@ -32,11 +32,11 @@ export default function VitalSignsMonitorDemo() {
                     };
                 }}
             />
-            <div className="sc-vitals-cards">
-                <div className="sc-vitals-card" style={{ color: appTheme.VividOrange }}>
+            <div className="sc-vitals-cards flex flex-col">
+                <div className="sc-vitals-card flex flex-1 flex-col p-2" style={{ color: appTheme.VividOrange }}>
                     <div className="flex flex-1">
-                        <div className="sc-vitals-title">ECG</div>
-                        <div className="sc-vitals-value">{infoEcg}</div>
+                        <div className="sc-vitals-title flex-1">ECG</div>
+                        <div className="sc-vitals-value ml-auto">{infoEcg}</div>
                     </div>
                     <div className="flex items-end">
                         <div className="sc-vitals-details">
@@ -48,9 +48,9 @@ export default function VitalSignsMonitorDemo() {
                         </div>
                     </div>
                 </div>
-                <div className="sc-vitals-card" style={{ color: appTheme.VividSkyBlue }}>
+                <div className="sc-vitals-card flex flex-1 flex-col p-2" style={{ color: appTheme.VividSkyBlue }}>
                     <div className="flex flex-1">
-                        <div className="sc-vitals-title">NIBP</div>
+                        <div className="sc-vitals-title flex-1">NIBP</div>
                         <div className="sc-vitals-meta">
                             AUTO
                             <br />
@@ -58,16 +58,16 @@ export default function VitalSignsMonitorDemo() {
                         </div>
                     </div>
                     <div className="flex items-end">
-                        <div className="sc-vitals-value">
+                        <div className="sc-vitals-value ml-auto">
                             <div>
                                 {infoBloodPressure1}/{infoBloodPressure2}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="sc-vitals-card" style={{ color: appTheme.VividPink }}>
+                <div className="sc-vitals-card flex flex-1 flex-col p-2" style={{ color: appTheme.VividPink }}>
                     <div className="flex flex-1">
-                        <div className="sc-vitals-title">SV</div>
+                        <div className="sc-vitals-title flex-1">SV</div>
                         <div className="sc-vitals-meta">
                             ML 100
                             <br />
@@ -75,14 +75,14 @@ export default function VitalSignsMonitorDemo() {
                         </div>
                     </div>
                     <div className="flex items-end">
-                        <div className="sc-vitals-value">
+                        <div className="sc-vitals-value ml-auto">
                             <div>{infoBloodVolume.toFixed(1)}</div>
                         </div>
                     </div>
                 </div>
-                <div className="sc-vitals-card" style={{ color: appTheme.VividTeal }}>
+                <div className="sc-vitals-card flex flex-1 flex-col p-2" style={{ color: appTheme.VividTeal }}>
                     <div className="flex flex-1">
-                        <div className="sc-vitals-title">
+                        <div className="sc-vitals-title flex-1">
                             SPO<span>2</span>
                         </div>
                         <div className="sc-vitals-meta">18:06</div>
@@ -95,7 +95,7 @@ export default function VitalSignsMonitorDemo() {
                                 RESP
                             </div>
                         </div>
-                        <div className="sc-vitals-value">{infoBloodOxygenation}</div>
+                        <div className="sc-vitals-value ml-auto">{infoBloodOxygenation}</div>
                     </div>
                 </div>
             </div>

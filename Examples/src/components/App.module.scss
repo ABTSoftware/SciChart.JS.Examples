@@ -33,12 +33,12 @@ $drawerWidthMobile: 100%;
 }
 .DrawerDesktop {
     position: sticky;
-    top: 110px;
+    top: 100px;
     order: -1;
     background-color: var(--bg);
     width: $drawerWidthDesktop;
     max-height: calc(100vh - base.$app-bar-height - 40px); // subtract navHeight and 2 * padding
-    margin-right: 15px;
+    margin-right: 10px;
     flex-shrink: 0;
     overflow-x: hidden;
     border: 1px solid var(--border-color);
@@ -71,7 +71,7 @@ $drawerWidthMobile: 100%;
     @extend %Container;
     display: flex;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
 
     justify-content: center;
     width: 100%;

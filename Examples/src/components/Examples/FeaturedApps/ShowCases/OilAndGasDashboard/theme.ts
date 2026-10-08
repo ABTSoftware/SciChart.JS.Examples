@@ -88,7 +88,8 @@ export class App2022BrandTheme implements AppThemeBase {
 
     // general colours
     get LegendTextColor() {
-        return getCssColor("--text", "LightGray");
+        // Legends are generated once; keep the CSS variable live when the gallery theme changes.
+        return "var(--text, LightGray)";
     }
     get SidebarBackground() {
         return getCssColor("--bg-darker", this.SciChartJsTheme.sciChartBackground);
@@ -167,7 +168,7 @@ export class AppDarkTheme implements AppThemeBase {
 
     // general colours
     get LegendTextColor() {
-        return getCssColor("--text", "LightGray");
+        return "var(--text, LightGray)";
     }
     get SidebarBackground() {
         return getCssColor("--bg-darker", this.SciChartJsTheme.sciChartBackground);
@@ -246,7 +247,7 @@ export class AppLightTheme implements AppThemeBase {
 
     // general colours
     get LegendTextColor() {
-        return getCssColor("--text", "#222");
+        return "var(--text, #222)";
     }
     get SidebarBackground() {
         return getCssColor("--bg-darker", this.SciChartJsTheme.sciChartBackground);

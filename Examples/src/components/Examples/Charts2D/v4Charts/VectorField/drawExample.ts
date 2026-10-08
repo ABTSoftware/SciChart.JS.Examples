@@ -112,8 +112,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const yMin = -10;
     const yMax = 10;
 
-    // Negative growBy shrinks the autorange, cropping the sparse outer arrows so the field fills the viewport
-    const growBy = new NumberRange(-0.12, -0.12);
+    // Slightly crop the sparse outer arrows while leaving more of the field visible.
+    const growBy = new NumberRange(-0.05, -0.05);
 
     const xAxis = new NumericAxis(wasmContext, {
         axisBorder: { color: "white", borderBottom: 1 },

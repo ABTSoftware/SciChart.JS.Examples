@@ -34,6 +34,7 @@ export default function StyleAnimation() {
                     </button>
                 </div>
             </header>
+
             <SciChartReact
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     setControls(initResult.controls);

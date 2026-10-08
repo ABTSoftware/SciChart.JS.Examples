@@ -1,4 +1,3 @@
-import "./styles.css";
 import { FinChartLegendModifier, IFinanceLegendModifierOptions } from "./FinChartLegendModifier";
 
 import {
@@ -607,12 +606,20 @@ export default function SubChartStockCharts() {
     return (
         <div className="sc-chart-wrapper" id={containerId2}>
             <div id={subChartWrapper1} className="absolute" />
-            <div id={dividerId1} className="w-full absolute sc-stock-pane-divider">
-                <div className="w-full sc-stock-divider-handle"></div>
+            <div
+                id={dividerId1}
+                className="w-full absolute"
+                style={{ height: 2, backgroundColor: "var(--border-color)", cursor: "row-resize", zIndex: 1 }}
+            >
+                <div className="w-full" style={{ height: 4, borderBottom: "2px dashed" }}></div>
             </div>
             <div id={subChartWrapper2} className="absolute" />
-            <div id={dividerId2} className="w-full absolute sc-stock-pane-divider">
-                <div className="w-full sc-stock-divider-handle"></div>
+            <div
+                id={dividerId2}
+                className="w-full absolute"
+                style={{ height: 2, backgroundColor: "var(--border-color)", cursor: "row-resize", zIndex: 1 }}
+            >
+                <div className="w-full" style={{ height: 4, borderBottom: "2px dashed" }}></div>
             </div>
             <div id={subChartWrapper3} className="absolute" />
             <SciChartReact

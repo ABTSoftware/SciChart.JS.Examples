@@ -29,7 +29,7 @@ export default function Load1MillionPointsChart() {
                     return controls.stopUpdate;
                 }}
             />
-            <header className="sc-toolbar-row">
+            <header className="sc-toolbar-row" style={{ order: 1 }}>
                 <div className="flex flex-col gap-2" role="group" aria-label="Data reload controls">
                     <button
                         className="sc-button sc-button-icon"

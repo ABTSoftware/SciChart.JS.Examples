@@ -1,4 +1,3 @@
-import "./styles.css";
 import { useState, useRef } from "react";
 import { getChartsInitializationApi } from "./drawExample";
 import { SciChartGroup, SciChartReact, TResolvedReturnType } from "scichart-react";
@@ -30,11 +29,7 @@ export default function HeatmapInteractions() {
                     {isRunning ? <StopIcon /> : <PlayArrowIcon />}
                 </button>
 
-                <div
-                    className="sc-button-group"
-                    role="radiogroup"
-                    aria-label="Load example"
-                >
+                <div className="sc-button-group" role="radiogroup" aria-label="Load example">
                     <button
                         className="sc-button"
                         role="radio"
@@ -80,25 +75,16 @@ export default function HeatmapInteractions() {
                     controlsRef.current = chartsInitializationAPI.onAllChartsInit();
                 }}
             >
-                <div className="flex sc-heatmap-interaction-row" >
-                    <SciChartReact
-                        initChart={chartsInitializationAPI.initMainChart}
-                        className="sc-heatmap-interaction-pane"
-                    />
+                <div className="flex" style={{ flexBasis: 500 }}>
+                    <SciChartReact initChart={chartsInitializationAPI.initMainChart} style={{ flex: "1 1 500px" }} />
                     <SciChartReact
                         initChart={chartsInitializationAPI.initCrossSectionChart}
-                        className="sc-heatmap-interaction-pane"
+                        style={{ flex: "1 1 500px" }}
                     />
                 </div>
-                <div className="flex sc-heatmap-interaction-row" >
-                    <SciChartReact
-                        initChart={chartsInitializationAPI.inputChart}
-                        className="sc-heatmap-interaction-pane"
-                    />
-                    <SciChartReact
-                        initChart={chartsInitializationAPI.initHistoryChart}
-                        className="sc-heatmap-interaction-pane"
-                    />
+                <div className="flex" style={{ flexBasis: 500 }}>
+                    <SciChartReact initChart={chartsInitializationAPI.inputChart} style={{ flex: "1 1 500px" }} />
+                    <SciChartReact initChart={chartsInitializationAPI.initHistoryChart} style={{ flex: "1 1 500px" }} />
                 </div>
             </SciChartGroup>
         </div>

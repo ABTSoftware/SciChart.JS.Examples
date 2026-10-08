@@ -6,26 +6,34 @@
     --sc-error: #ee6e6c;
     --sc-outline: color-mix(in srgb, var(--sc-text) 18%, var(--sc-background));
     --sc-muted: color-mix(in srgb, var(--sc-text) 8%, transparent);
+    --sc-theme-bg: radial-gradient(circle, #22365B 0%, #17243d 100%);
     color-scheme: dark;
 
     @media (prefers-color-scheme: light) {
         &:not([data-theme]) {
             --sc-text: var(--text, #18181b);
             --sc-background: var(--bg, #fff);
+            --sc-theme-bg: #F9F9F9FF;
             color-scheme: light;
         }
     }
 }
 
-/* Match the outer stops of SciChart theme gradients (Light uses a solid fill). */
+/* Match SciChart's theme backgrounds (Light uses a solid fill). */
 [data-theme="light"] {
     --sc-text: #050a30;
     --sc-background: var(--bg, #fff);
+    --sc-theme-bg: #F9F9F9FF;
     color-scheme: light;
 }
-[data-theme="dark"],
-[data-theme="navy"] { 
-    color-scheme: dark; 
+[data-theme="dark"] {
+    --sc-theme-bg: radial-gradient(circle, #3C3C3FFF 0%, #1C1C1EFF 100%);
+    color-scheme: dark;
+}
+[data-theme="navy"] {
+    --sc-theme-bg: radial-gradient(circle, #22365B 0%, #17243d 100%);
+    --sc-background: #0b162a;
+    color-scheme: dark;
 }
 
 /* Chart layout is shared by every example, including standalone exports. */
@@ -38,7 +46,7 @@
     overflow: hidden;
     touch-action: none;
     color: var(--sc-text);
-    background: var(--sc-background);
+    background: var(--sc-theme-bg);
     font-family: ui-sans-serif, system-ui, sans-serif;
 
     img { display: block; }
@@ -232,7 +240,8 @@
 }
 
 .sc-color-legend {
-    position: absolute;
+    /* Override SciChartReact's inline relative positioning to overlay the chart. */
+    position: absolute !important;
     top: 0;
     right: 0;
     width: 65px;

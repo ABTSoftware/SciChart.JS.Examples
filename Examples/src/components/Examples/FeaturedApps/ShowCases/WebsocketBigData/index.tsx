@@ -177,7 +177,7 @@ export default function RealtimeBigDataShowcase() {
                     </select>
                 </div>
 
-                <label htmlFor="seriesCount">Number of Series {settings.seriesCount}</label>
+                <label htmlFor="seriesCount">Number of Series: {settings.seriesCount}</label>
                 <input
                     className="sc-range"
                     type="range"
@@ -189,12 +189,11 @@ export default function RealtimeBigDataShowcase() {
                     value={settings.seriesCount}
                 />
 
-                <label htmlFor="InitialPoints">Initial Points {logScale(settings.initialPoints)}</label>
+                <label htmlFor="InitialPoints">Initial Points: {logScale(settings.initialPoints)}</label>
                 <input
                     className="sc-range"
                     type="range"
                     id="InitialPoints"
-                    list="log-slider-marks"
                     onChange={(event) =>
                         handleInitialPoints(
                             snapLogSliderValue(event.currentTarget.valueAsNumber, maxSettings.initialPoints)
@@ -207,12 +206,11 @@ export default function RealtimeBigDataShowcase() {
                     aria-valuetext={`${logScale(settings.initialPoints)} points`}
                 />
 
-                <label htmlFor="pointsOnChart">Max Points On Chart {logScale(settings.pointsOnChart)}</label>
+                <label htmlFor="pointsOnChart">Max Points On Chart: {logScale(settings.pointsOnChart)}</label>
                 <input
                     className="sc-range"
                     type="range"
                     id="pointsOnChart"
-                    list="log-slider-marks"
                     onChange={(event) =>
                         handlePointsOnChart(
                             snapLogSliderValue(event.currentTarget.valueAsNumber, maxSettings.pointsOnChart)
@@ -225,12 +223,11 @@ export default function RealtimeBigDataShowcase() {
                     aria-valuetext={`${logScale(settings.pointsOnChart)} points`}
                 />
 
-                <label htmlFor="pointsPerUpdate">Points Per Update {logScale(settings.pointsPerUpdate)}</label>
+                <label htmlFor="pointsPerUpdate">Points Per Update: {logScale(settings.pointsPerUpdate)}</label>
                 <input
                     className="sc-range"
                     type="range"
                     id="pointsPerUpdate"
-                    list="log-slider-marks"
                     onChange={(event) =>
                         handlePointsPerUpdate(
                             snapLogSliderValue(event.currentTarget.valueAsNumber, maxSettings.pointsPerUpdate)
@@ -243,7 +240,7 @@ export default function RealtimeBigDataShowcase() {
                     aria-valuetext={`${logScale(settings.pointsPerUpdate)} points`}
                 />
 
-                <label htmlFor="sendEvery">Send Data Interval {settings.sendEvery} ms</label>
+                <label htmlFor="sendEvery">Send Data Interval: {settings.sendEvery} ms</label>
                 <input
                     className="sc-range"
                     type="range"
@@ -255,12 +252,6 @@ export default function RealtimeBigDataShowcase() {
                     value={settings.sendEvery}
                     aria-valuetext={`${settings.sendEvery} ms`}
                 />
-
-                <datalist id="log-slider-marks">
-                    {logSliderMarks.map((value) => (
-                        <option key={value} value={Math.log10(value)} />
-                    ))}
-                </datalist>
 
                 <section className="mt-auto monospace" aria-label="Performance results">
                     <h4>Performance Results</h4>

@@ -1,7 +1,6 @@
 import { useState, ChangeEvent } from "react";
 import { SciChartReact } from "scichart-react";
 import { centralLayoutJsonDefinition, defaultJsonDefinition, detailedJsonDefinition, drawExample } from "./drawExample";
-import "./styles.css";
 
 export default function ChartFromJSON() {
     const [errors, setErrors] = useState<string>();
@@ -36,8 +35,17 @@ export default function ChartFromJSON() {
 
             <div className="absolute left-4 top-4">
                 {errors && (
-                    <div key="0" className="sc-alert" role="alert">
-                        <strong className="sc-alert-title">Errors</strong>
+                    <div
+                        key="0"
+                        className="text-error p-2"
+                        style={{
+                            border: "1px solid var(--sc-error)",
+                            borderRadius: "var(--radius)",
+                            background: "var(--sc-background)",
+                        }}
+                        role="alert"
+                    >
+                        <strong style={{ display: "block", marginBottom: 4 }}>Errors</strong>
                         {errors}
                     </div>
                 )}
