@@ -5,7 +5,6 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 import { generateSearchItems, TSearchItem } from "./searchItems";
-import classes from "./Search.module.scss";
 import { ALL_MENU_ITEMS } from "../AppRouter/examples";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 
@@ -23,7 +22,7 @@ export default function Search() {
     };
 
     return (
-        <div className={classes.Search}>
+        <div className="sc-app-search">
             <Autocomplete
                 id="someElement1"
                 freeSolo
@@ -52,7 +51,7 @@ export default function Search() {
                         margin="none"
                         variant="outlined"
                         placeholder="Search for example names and chart types"
-                        className={classes.SearchField}
+                        className="sc-app-search-field"
                         InputProps={{
                             ...params.InputProps,
                             autoComplete: "new-password",

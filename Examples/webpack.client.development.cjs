@@ -45,7 +45,7 @@ module.exports = {
                             },
                         },
                     };
-                if (String(rule.test) === String(/\.css$/) || String(rule.test) === String(/\.scss$/))
+                if (String(rule.test) === String(/\.css$/))
                     return {
                         ...rule,
                         use: rule.use.map((loader, i) => (i === 0 ? "style-loader" : loader)),

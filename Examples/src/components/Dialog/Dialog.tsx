@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import classes from "./Dialog.module.scss";
 
 interface DialogProps {
     isOpen: boolean;
@@ -36,12 +35,12 @@ export const Dialog: React.FC<DialogProps> = ({ isOpen: initialIsOpen, onClose, 
     }, [isOpen, autoCloseTime]);
 
     return isOpen ? (
-        <div className={classes.overlay} onClick={handleOverlayClick}>
-            <div className={classes.dialog}>
-                <button className={classes.closeButton} onClick={handleClose}>
+        <div className="sc-editor-info-overlay" onClick={handleOverlayClick}>
+            <div className="sc-editor-info-dialog">
+                <button className="sc-editor-info-close-button" onClick={handleClose}>
                     ×
                 </button>
-                <div className={classes.content}>{text}</div>
+                <div className="sc-editor-info-content">{text}</div>
             </div>
         </div>
     ) : (

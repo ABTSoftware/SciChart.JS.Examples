@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "../CodeSandbox.module.scss";
 import { DisplayMode } from "../DisplayMode";
 import { IconButton } from "../../buttons/IconButton";
 import { IconRadioGroup } from "../../buttons/IconRadioGroup";
@@ -41,19 +40,19 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
     const defaultTitle = platform === SandboxPlatform.CodeSandbox ? "CodeSandbox" : "StackBlitz";
 
     return (
-        <Toolbar className={styles.toolbar}>
+        <Toolbar>
             <ToolbarGroup>
                 <Tooltip content={platformTooltip}>
-                    <div className={styles.platformIcon}>
+                    <div className="sc-editor-frame-platform-icon">
                         <Icon name={platformIcons[platform]} />
                     </div>
                 </Tooltip>
-                <div className={styles.titleGroup}>
+                <div className="sc-editor-frame-title-group">
                     <ToolbarText>{title || defaultTitle}</ToolbarText>
-                    {exampleName && <div className={styles.exampleName}>{exampleName}</div>}
+                    {exampleName && <div className="sc-editor-frame-example-name">{exampleName}</div>}
                 </div>
             </ToolbarGroup>
-            <div className={styles.spacer} />
+            <div className="sc-editor-frame-spacer" />
             <ToolbarGroup>
                 <IconRadioGroup
                     value={displayMode}

@@ -4,7 +4,6 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Navigation from "../Navigation/Navigation";
 import { Link } from "react-router";
-import classes from "./DrawerContent.module.scss";
 import Search from "../Search/Search";
 import { EPageFramework } from "../../helpers/shared/Helpers/frameworkParametrization";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -68,16 +67,22 @@ const DrawerContent: FC<TProps> = (props) => {
     const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
     return (
-        <div className={classes.DrawerContent}>
-            <div className={classes.DrawerTopSection}>
-                <IconButton onClick={toggleDrawer} className={classes.CloseButton} aria-label="close-drawer-button">
+        <div className="sc-app-drawer-content">
+            <div className="sc-app-drawer-top">
+                <IconButton
+                    onClick={toggleDrawer}
+                    className="sc-app-drawer-close-button"
+                    aria-label="close-drawer-button"
+                >
                     <CloseIcon />
                 </IconButton>
-                <div className={classes.FrameworkSelect}>
+                <div className="sc-app-drawer-framework-select">
                     {Object.values(EPageFramework).map((fw) => (
                         <Link
                             key={fw}
-                            className={framework === fw ? classes.SelectedFramework : classes.Framework}
+                            className={
+                                framework === fw ? "sc-app-drawer-selected-framework" : "sc-app-drawer-framework"
+                            }
                             to={currentExample ? `${fw}/${currentExample.path}` : `/${fw}`}
                         >
                             {FrameworkSVG[fw]}

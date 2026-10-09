@@ -6,7 +6,6 @@ import css from "react-syntax-highlighter/dist/esm/languages/hljs/css";
 import json from "react-syntax-highlighter/dist/esm/languages/hljs/json";
 import { EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { Dialog } from "../Dialog/Dialog";
-import classes from "./index.module.scss";
 import { ETheme } from "../../helpers/types/types";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 import "react-syntax-highlighter/dist/esm/styles/hljs/dark";
@@ -426,24 +425,25 @@ export const CodePreview: FC<CodeEditorProps> = ({
 
     return (
         <div
-            className={`${classes.editorWrapper} ${isFullscreen && !isMaxWidth ? classes.fullscreenEditor : ""}`}
+            className={`sc-editor-code ${isFullscreen && !isMaxWidth ? "sc-editor-code-fullscreen-editor" : ""}`}
             onMouseEnter={handleMouseEnter}
             style={{
                 maxHeight: !isFullscreen && isMaxWidth ? 60 : "100%",
             }}
         >
-            <div className={classes.horizontalScroller} suppressHydrationWarning={true}>
+            <div className="sc-editor-code-horizontal-scroller" suppressHydrationWarning={true}>
                 {/* VSCode-like horizontal scrollable tabs */}
                 {[...files]
                     .sort((a, b) => {
-                        const rank = (name: string) => name.includes("drawExample") ? 0 : name.includes("index") ? 1 : 2;
+                        const rank = (name: string) =>
+                            name.includes("drawExample") ? 0 : name.includes("index") ? 1 : 2;
                         return rank(a.name) - rank(b.name) || (rank(a.name) === 2 ? a.name.localeCompare(b.name) : 0);
                     })
                     .map((file) => (
                         <div
                             key={file.name}
-                            className={`${classes.selectTab} ${
-                                selectedFile.name === file.name ? classes.activeTab : ""
+                            className={`sc-editor-code-select-tab ${
+                                selectedFile.name === file.name ? "sc-editor-code-active-tab" : ""
                             }`}
                             onClick={() => handleFileClick(file.name)}
                         >
@@ -453,7 +453,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
                     ))}
             </div>
 
-            <div className={classes.rightButtonGroup}>
+            <div className="sc-editor-code-right-button-group">
                 {/* Copy to clipboard */}
                 <IconButton
                     icon={
@@ -521,7 +521,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
             {/* Code */}
             <section
                 id="EXAMPLE_CODE"
-                className={classes.code}
+                className="sc-editor-code-body"
                 style={{
                     maxHeight: !isFullscreen && isMaxWidth ? 0 : "100%",
                     maxWidth: "100%",

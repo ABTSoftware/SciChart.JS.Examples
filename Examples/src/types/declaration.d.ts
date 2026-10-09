@@ -1,8 +1,3 @@
-declare module "*.scss" {
-    const content: Record<string, string>;
-    export default content;
-}
-
 // The package exposes these runtime subpaths without per-country declarations.
 declare module "country-flag-icons/string/3x2/*" {
     const svg: string;

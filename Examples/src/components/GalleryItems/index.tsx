@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import classes from "./index.scss";
 import { Link } from "react-router";
 import { GalleryItem } from "../../helpers/types/types";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
@@ -27,10 +26,10 @@ const GridSelection: React.FC<{
     setGridType: React.Dispatch<React.SetStateAction<EGridType>>;
 }> = ({ gridType, setGridType }) => {
     return (
-        <ul className={classes.gridSelection}>
+        <ul className="sc-gallery-view-options">
             <li
                 onClick={() => setGridType(EGridType.Cardview)}
-                className={gridType === EGridType.Cardview ? classes.activeGrid : ""}
+                className={gridType === EGridType.Cardview ? "sc-gallery-selected-view" : ""}
             >
                 <svg width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M3.80208 6.66667C5.64303 6.66667 7.13542 5.17428 7.13542 3.33333C7.13542 1.49238 5.64303 0 3.80208 0C1.96113 0 0.46875 1.49238 0.46875 3.33333C0.46875 5.17428 1.96113 6.66667 3.80208 6.66667Z" />
@@ -44,7 +43,7 @@ const GridSelection: React.FC<{
 
             <li
                 onClick={() => setGridType(EGridType.Grid2or3)}
-                className={gridType === EGridType.Grid2or3 ? classes.activeGrid : ""}
+                className={gridType === EGridType.Grid2or3 ? "sc-gallery-selected-view" : ""}
             >
                 <svg width="32" height="30" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -60,7 +59,7 @@ const GridSelection: React.FC<{
 
             <li
                 onClick={() => setGridType(EGridType.Grid5or6)}
-                className={gridType === EGridType.Grid5or6 ? classes.activeGrid : ""}
+                className={gridType === EGridType.Grid5or6 ? "sc-gallery-selected-view" : ""}
             >
                 <svg width="32" height="30" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -105,7 +104,7 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(
         return (
             <div>
                 {index === 0 && (
-                    <div className={classes.showcaseheadingwrap}>
+                    <div className="sc-gallery-heading">
                         {needsH1 ? (
                             <h1 style={{ textTransform: "capitalize" }}>{framework} Chart Examples & Demos</h1>
                         ) : (
@@ -115,7 +114,7 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(
                     </div>
                 )}
 
-                <div className={classes.showcaseheadingwrap}>
+                <div className="sc-gallery-heading">
                     <h3
                         ref={ref}
                         id={example.id}
@@ -133,13 +132,13 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(
                 {"items" in example && example.items.length > 0 ? (
                     <section
                         className={`
-                            ${classes.gridWrap}
+                            sc-gallery-grid
                             ${
                                 gridType === EGridType.Cardview
-                                    ? classes.cardView
+                                    ? "sc-gallery-list-view"
                                     : gridType === EGridType.Grid2or3
-                                    ? classes.gridView2or3
-                                    : classes.gridView5or6
+                                    ? "sc-gallery-medium-grid"
+                                    : "sc-gallery-dense-grid"
                             }
                         `}
                     >
@@ -147,18 +146,18 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(
                             <Link
                                 to={`/${framework}/${item.examplePath}`}
                                 title={item.seoTitle}
-                                className={classes.card}
+                                className="sc-gallery-card"
                                 key={index}
                             >
-                                <div className={classes.imgWrapper}>
+                                <div className="sc-gallery-image">
                                     {item?.isNew && (
-                                        <div className={classes.newBanner}>
+                                        <div className="sc-gallery-new">
                                             <span>NEW!</span>
                                         </div>
                                     )}
                                     <img src={item.imgPath} alt={item.seoTitle} title={item.title} />
                                 </div>
-                                <div className={classes.content}>
+                                <div className="sc-gallery-card-content">
                                     <h3>{item.title}</h3>
                                     <p>
                                         {item.metaDescription ??
@@ -166,15 +165,18 @@ const Example = React.forwardRef<HTMLHeadingElement, ExampleProps>(
                                             "No description available for this example yet"}
                                     </p>
                                     {gridType === EGridType.Cardview && (
-                                        <div className={classes.contentButtons}>
-                                            <Link to={`/${framework}/${item.examplePath}`} className={classes.button}>
+                                        <div className="sc-gallery-card-actions">
+                                            <Link
+                                                to={`/${framework}/${item.examplePath}`}
+                                                className="sc-gallery-card-button"
+                                            >
                                                 View Example
                                             </Link>
                                             <a
                                                 target="_blank"
                                                 href={`https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Examples/src/components/Examples/${item.examplePath}`} // todo
                                                 style={{ background: "rgb(42, 99, 151)" }}
-                                                className={classes.button}
+                                                className="sc-gallery-card-button"
                                             >
                                                 <svg
                                                     style={{ height: 30, width: 30 }}
@@ -263,7 +265,7 @@ const GalleryItems: React.FC<TProps> = ({ examples, setMostVisibleCategory, need
     }, [examples, setMostVisibleCategory]);
 
     return (
-        <div className={classes.showcaseWrap}>
+        <div className="sc-gallery">
             {examples.map((ex, index) => (
                 <Example
                     key={ex.id}

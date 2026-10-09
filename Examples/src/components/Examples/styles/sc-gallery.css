@@ -1,0 +1,214 @@
+/* Gallery cards and view modes. Demo controls belong to sc-ui.css. */
+
+.sc-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 16px;
+    background-color: var(--bg);
+    color: var(--text);
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    --small-h3: calc(0.65rem + 0.3vw);
+    --medium-h3: calc(0.8rem + 0.4vw);
+    --large-h3: calc(1rem + 0.4vw);
+}
+
+.sc-gallery-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.sc-gallery-view-options {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+.sc-gallery-view-options li {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.sc-gallery-view-options li svg path {
+    fill: var(--light-blue);
+    opacity: 0.6;
+}
+.sc-gallery-view-options li.sc-gallery-selected-view svg path {
+    opacity: 1;
+}
+@media only screen and (max-width: 768px) {
+    .sc-gallery-view-options {
+        display: none;
+    }
+}
+
+.sc-gallery-grid {
+    width: 100%;
+    display: grid;
+    place-items: start;
+    gap: 15px;
+    overflow: hidden;
+}
+.sc-gallery-grid .sc-gallery-card {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.sc-gallery-grid .sc-gallery-card .sc-gallery-image {
+    width: 100%;
+    aspect-ratio: 3/2;
+    overflow: hidden;
+}
+.sc-gallery-grid .sc-gallery-card .sc-gallery-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 12px;
+}
+.sc-gallery-grid .sc-gallery-card .sc-gallery-card-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.sc-gallery-grid .sc-gallery-card .sc-gallery-card-content h3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    line-height: 1.5;
+}
+.sc-gallery-grid .sc-gallery-card .sc-gallery-card-content p {
+    display: none;
+}
+
+.sc-gallery-image {
+    position: relative;
+}
+.sc-gallery-image .sc-gallery-new {
+    position: absolute;
+    top: -28px;
+    left: -28px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+.sc-gallery-image .sc-gallery-new span {
+    width: 100%;
+    transform: rotate(-45deg);
+    transform-origin: center center;
+    background-color: var(--new-badge-color);
+    color: white;
+    padding: 2px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 4px;
+    z-index: 1;
+    border: 0.8px solid white;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.sc-gallery-list-view {
+    grid-template-columns: 1fr;
+}
+.sc-gallery-list-view .sc-gallery-card {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+    height: min(25vh, 20vw);
+}
+.sc-gallery-list-view .sc-gallery-card .sc-gallery-image {
+    height: 100%;
+    width: auto;
+    aspect-ratio: 3/2 !important;
+}
+.sc-gallery-list-view .sc-gallery-card .sc-gallery-card-content {
+    padding: 10px;
+    height: 100%;
+    flex: 1;
+    gap: 10px;
+    flex-direction: column;
+    text-align: left;
+}
+.sc-gallery-list-view .sc-gallery-card .sc-gallery-card-content h3 {
+    font-size: var(--large-h3);
+}
+.sc-gallery-list-view .sc-gallery-card .sc-gallery-card-content .sc-gallery-card-actions {
+    display: flex;
+    width: 100%;
+    margin-top: auto;
+    margin-left: auto;
+    height: 50px;
+    gap: 10px;
+}
+.sc-gallery-list-view .sc-gallery-card .sc-gallery-card-content .sc-gallery-card-actions .sc-gallery-card-button {
+    background: linear-gradient(90deg, #1aa2d5 15.5%, #35bfb7 100%);
+    border-radius: 6px;
+    font-family: "Arial";
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px 14px;
+}
+.sc-gallery-list-view .sc-gallery-card .sc-gallery-card-content .sc-gallery-card-actions .sc-gallery-card-button:hover {
+    text-decoration: underline;
+}
+.sc-gallery-list-view .sc-gallery-card p {
+    display: block !important;
+}
+
+.sc-gallery-medium-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 1200px) {
+    .sc-gallery-medium-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .sc-gallery-medium-grid h3 {
+        font-size: var(--medium-h3);
+    }
+}
+
+.sc-gallery-dense-grid {
+    grid-template-columns: repeat(2, 1fr);
+    font-size: var(--medium-h3);
+}
+@media (min-width: 824px) {
+    .sc-gallery-dense-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (min-width: 1200px) {
+    .sc-gallery-dense-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .sc-gallery-dense-grid h3 {
+        font-size: var(--small-h3);
+    }
+}
+@media (min-width: 1600px) {
+    .sc-gallery-dense-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    .sc-gallery-dense-grid h3 {
+        font-size: var(--small-h3);
+    }
+}
+.sc-gallery-dense-grid .sc-gallery-card {
+    width: 100%;
+}

@@ -4,7 +4,6 @@ const webpack = require("webpack");
 const config = require("./config/default");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-
 module.exports = {
     mode: "production",
     //devtool: "source-map",
@@ -14,25 +13,6 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [{ loader: MiniCssExtractPlugin.loader }, "css-loader", "postcss-loader"],
-                exclude: /node_modules/,
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    { loader: MiniCssExtractPlugin.loader },
-                    {
-                        loader: "css-loader",
-                        options: {
-                            modules: {
-                                localIdentName: "[hash:base64:5]",
-                            },
-                        },
-                    },
-                    {
-                        loader: "postcss-loader",
-                    },
-                    { loader: "sass-loader" },
-                ],
                 exclude: /node_modules/,
             },
             {

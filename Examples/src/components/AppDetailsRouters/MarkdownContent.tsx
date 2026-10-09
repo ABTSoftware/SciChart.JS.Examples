@@ -3,7 +3,6 @@ import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { EPageFramework, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { TExamplePage } from "../AppRouter/examplePages";
-import classes from "../../assets/main.scss";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -41,7 +40,7 @@ const Description: FC<TProps> = (props) => {
                 gap: "5px",
                 color: "var(--text)",
             }}
-            className={classes.MARKDOWN_CONTENT}
+            className="sc-content-markdown"
         >
             <ReactMarkdown rehypePlugins={plugins}>
                 {getFrameworkContent(currentExample.markdownContent, selectedFramework)}

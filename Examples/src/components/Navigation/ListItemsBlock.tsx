@@ -3,7 +3,6 @@ import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
 import { TMenuItem } from "../AppRouter/examples";
 import MenuListItemText from "../../helpers/shared/MenuListItemText/MenuListItemText";
-import classes from "./ListItemsBlock.module.scss";
 import ListItemCollapseArrowIcon from "./ListItemCollapseArrowIcon";
 import { getFrameworkContent, useExampleRouteParams } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
@@ -93,9 +92,9 @@ const ListItemsBlock: FC<TProps> = (props) => {
     };
 
     return (
-        <div className={classes.ListItemBlock} ref={containerRef}>
-            <div onClick={() => onExpandClick(menuItemsId)} className={classes.CollapsibleMenuListItem}>
-                <MenuListItemText text={title} className={classes.MenuListItemText} />
+        <div className="sc-app-menu-list-item-block" ref={containerRef}>
+            <div onClick={() => onExpandClick(menuItemsId)} className="sc-app-menu-collapsible-menu-list-item">
+                <MenuListItemText text={title} className="sc-app-menu-menu-list-item-text" />
             </div>
             <Collapse in={true} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
@@ -110,15 +109,18 @@ const ListItemsBlock: FC<TProps> = (props) => {
                                 {/* Parent category element */}
                                 <div
                                     ref={(elem) => registerCategoryElement(el.id, elem)}
-                                    className={`${classes.CollapsibleMenuListItem} ${
-                                        el.id === mostVisibleCategory ? classes.ActiveParentCategory : ""
+                                    className={`sc-app-menu-collapsible-menu-list-item ${
+                                        el.id === mostVisibleCategory ? "sc-app-menu-active-parent-category" : ""
                                     }`}
                                     onClick={() => handleCategoryClick(el.id)}
                                     data-category-id={el.id}
                                 >
-                                    <MenuListItemText text={el.title} className={classes.SecondLevelMenuListItemText} />
+                                    <MenuListItemText
+                                        text={el.title}
+                                        className="sc-app-menu-second-level-menu-list-item-text"
+                                    />
                                     <ListItemCollapseArrowIcon
-                                        className={classes.CollapseArrowButton}
+                                        className="sc-app-menu-collapse-arrow-button"
                                         isCollapseOpened={shouldExpand}
                                     />
                                 </div>
@@ -130,14 +132,14 @@ const ListItemsBlock: FC<TProps> = (props) => {
                                                 ref={(elem) => registerCategoryElement(subEl.id, elem)}
                                                 className={`${
                                                     isItemActive(subEl.id)
-                                                        ? classes.SelectedBottomLevelListItem
-                                                        : classes.BottomLevelListItem
-                                                } ${subEl.id === mostVisibleCategory ? classes.MostVisible : ""}`}
+                                                        ? "sc-app-menu-selected-bottom-level-list-item"
+                                                        : "sc-app-menu-bottom-level-list-item"
+                                                }`}
                                                 onClick={() => historyPushPath(`${selectedFramework}/${subEl.path}`)}
                                                 data-category-id={subEl.id}
                                             >
                                                 <a
-                                                    className={classes.ExampleLink}
+                                                    className="sc-app-menu-example-link"
                                                     href={`${selectedFramework}/${subEl.path}`}
                                                     title={getFrameworkContent(subEl.title, selectedFramework)}
                                                 >

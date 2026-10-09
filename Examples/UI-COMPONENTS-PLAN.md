@@ -15,7 +15,7 @@ The 181 demos use native HTML controls and a small shared stylesheet. Controls f
 | -------------------------------------- | ------------------------------------------------------ |
 | Default button                         | `sc-button`                                            |
 | Outline button                         | `sc-button sc-button-outline`                          |
-| danger action                     | `sc-button sc-button-danger`                      |
+| danger action                          | `sc-button sc-button-danger`                           |
 | Icon button                            | `sc-button sc-button-icon`, with an accessible name    |
 | Horizontal group                       | `sc-button-group` containing buttons directly          |
 | Vertical group                         | `sc-button-group flex-col` containing buttons directly |
@@ -29,6 +29,8 @@ The 181 demos use native HTML controls and a small shared stylesheet. Controls f
 Buttons have a 40px minimum height; icon buttons are 40×40px. Text inputs and selects use a 36px height. All configurable corner radii derive from `--radius`; circular thumbs retain their circular shape. Keep labels, native validation, values, keyboard behavior and disabled states in markup. Use inline styles for dynamic chart colors and chart-specific geometry only. Native sliders need only `sc-range`; keep their styling in CSS, without per-input styling helpers.
 
 ## Styles and export
+
+Application chrome uses `sc-main.css`, `sc-app.css`, `sc-gallery.css`, `sc-content.css` and `sc-editor.css`, imported once by `App.tsx`. Keep its `sc-app-*`, `sc-gallery-*`, `sc-content-*` and `sc-editor-*` classes separate from demo utilities. See [the CSS ownership and migration record](SCSS-AUDIT.md).
 
 `styles/sc-ui.css` contains recurring controls, layout utilities and theme tokens. It reads the gallery's `--text` and `--bg` values, with standalone light/dark fallbacks. Dialogs shared by four demos remain here; specialized menus, accordions, floating panels and medical cards have local CSS imported by their owners. There is no ripple script or MUI/SCSS dependency in exported example UI.
 

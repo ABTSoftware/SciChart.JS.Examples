@@ -33,27 +33,6 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.scss$/,
-                use: [
-                    { loader: MiniCssExtractPlugin.loader },
-                    {
-                        loader: "css-loader",
-                        options: {
-                            modules: {
-                                localIdentName: "[hash:base64:5]",
-                            },
-                        },
-                    },
-                    {
-                        loader: "postcss-loader",
-                    },
-                    {
-                        loader: "sass-loader",
-                    },
-                ],
-                exclude: /node_modules/,
-            },
-            {
                 test: /\.tsx?$/,
                 use: { loader: "ts-loader", options: { configFile: "tsconfig.server.json" } },
                 exclude: /node_modules/,
@@ -108,13 +87,7 @@ module.exports = {
                     globOptions: {
                         dot: true,
                         gitignore: false,
-                        ignore: [
-                            "**/exampleInfo.*",
-                            "**/*.jpg",
-                            "**/*.png",
-                            "**/ExamplesRoot.tsx",
-                            "**/ExampleStrings.ts",
-                        ],
+                        ignore: ["**/exampleInfo.*", "**/*.jpg", "**/*.png", "**/ExampleStrings.ts"],
                     },
                 },
             ],

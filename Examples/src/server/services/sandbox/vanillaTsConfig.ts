@@ -118,13 +118,6 @@ export const getVanillaTsSandBoxConfig = async (folderPath: string, currentExamp
 }`,
             isBinary: false,
         },
-        "src/types/declaration.d.ts": {
-            content: `declare module "*.scss" {
-            const content: Record<string, string>;
-            export default content;
-        }`,
-            isBinary: false,
-        },
         "src/types/jpg.d.ts": {
             content: `declare module "*.jpg" {
             const value: any;

@@ -70,7 +70,6 @@ export const includeExternalModules = async (
         for (const match of imports.reverse()) {
             const specifier = match.text;
             const basePath = path.resolve(directory, specifier);
-            if (/\.scss$/.test(specifier)) continue;
             const isImage = /\.(?:png|jpe?g|gif|svg)$/i.test(specifier);
             if (isImage && !includeImages) continue;
             const resolved = isImage ? { filepath: basePath, content: "" } : await resolveModuleFile(basePath);
@@ -152,13 +151,6 @@ export const commonFiles: IFiles = {
 "hardReloadOnChange": false,
 "view": "browser"
 }`,
-        isBinary: false,
-    },
-    "src/types/declaration.d.ts": {
-        content: `declare module "*.scss" {
-        const content: Record<string, string>;
-        export default content;
-    }`,
         isBinary: false,
     },
     "src/types/jpg.d.ts": {

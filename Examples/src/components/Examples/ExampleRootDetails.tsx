@@ -4,7 +4,6 @@ import { TExamplePage } from "../AppRouter/examplePages";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import { getExampleComponent } from "../AppRouter/getExampleComponent";
 import { ExampleStrings } from "./ExampleStrings";
-import "./styles/examples-shell.css";
 import { GalleryItem } from "../../helpers/types/types";
 import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
@@ -35,7 +34,7 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
         window.scrollTo(0, 0);
     }, []);
     return (
-        <div className="sc-examples-root">
+        <div className="sc-app-example-root">
             <SeoTags
                 title={seoTitleText}
                 keywords={seoKeywords}
@@ -44,7 +43,7 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
                 url={exampleUrl}
                 framework={framework}
             />
-            <div className="sc-example AnExampleContainer h-full">
+            <div className="sc-app-example">
                 <ExampleComponent />
             </div>
         </div>
