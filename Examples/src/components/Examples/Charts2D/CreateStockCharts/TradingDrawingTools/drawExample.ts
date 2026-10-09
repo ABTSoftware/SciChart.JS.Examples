@@ -1,12 +1,13 @@
-import { buildAnnotations, ERenderLayer, Thickness, IAnnotation } from "scichart";
+import { buildAnnotations, ERenderLayer, Thickness, IAnnotation, EVerticalTextPosition, NumberRange } from "scichart";
 import {
+    AnnotationEraserModifier,
+    ESnapMode,
     EAnnotationVisibilityMode,
     EFibonacciLabelColorMode,
     EFibonacciLabelPlacement,
     ETradingAnnotationType,
-    ChannelAnnotation,
-    FibonacciRetracementAnnotation,
-    ExtendedLineAnnotation,
+    FibonacciExtensionAnnotation,
+    PolyLineAnnotation,
     MultiPointAnnotationPlacementModifier,
     TFibonacciLevelLabelFormatParams,
     FreehandDrawingAnnotation,
@@ -14,22 +15,32 @@ import {
     IMultiPointAnnotationBaseOptions,
     EMultiPointLabelAnchorMode,
     EAxisLabelDrawMode,
+    MultiPointAnnotationBase,
+    FibonacciAnnotationBase,
+    MeasureAnnotation,
+    AngleLineAnnotation,
+    FibonacciTimeZoneAnnotation,
 } from "scichart-financial-tools";
 import {
     addDefaultFinancialModifiers,
     createFinancialChart,
-    createTradingAnnotationOptions,
+    createTradingAnnotationOptions as createDefaultTradingAnnotationOptions,
     defaultSnapToCandleOptions,
     FIB_REGION_COLORS,
     TRADING_ANNOTATION_COLORS,
 } from "../_shared/tradingAnnotationExampleUtils";
+import { appTheme } from "../../../theme";
 
-type TStartToolOptions = {
+export type TStartToolOptions = {
     snapToCandle?: boolean;
     extendStart?: boolean;
     extendEnd?: boolean;
     verticalOnly?: boolean;
     lockedAspect?: boolean;
+    highlighter?: boolean;
+    isEditable?: boolean;
+    labels?: string[];
+    basicPitchfork?: boolean;
 };
 
 const CHANNEL_LABEL_PAIRS = [
@@ -46,7 +57,22 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         startDate: new Date("2024-01-01T00:00:00Z"),
         dataSeed: 133337,
     });
-    const { sciChartSurface, candlestickSeries, xAt, yAt } = ctx;
+    const { sciChartSurface, candlestickSeries } = ctx;
+    const candleInterval = ctx.xValues[1] - ctx.xValues[0];
+    ctx.xAxis.visibleRange = new NumberRange(
+        ctx.xValues[ctx.xValues.length - 200],
+        ctx.xValues[ctx.xValues.length - 1] + 16 * candleInterval
+    );
+    let labelTextColor = appTheme.ForegroundColor;
+
+    const createTradingAnnotationOptions = (...args: Parameters<typeof createDefaultTradingAnnotationOptions>) => ({
+        ...createDefaultTradingAnnotationOptions(...args),
+        axisLabelStroke: labelTextColor,
+        formatLabelStyle: () => ({ color: labelTextColor }),
+        fibonacciLabelColorMode: EFibonacciLabelColorMode.SingleColor,
+        fibonacciLabelColor: labelTextColor,
+        labelTextColor,
+    });
 
     const placementModifier = new MultiPointAnnotationPlacementModifier({
         isPlacing: false,
@@ -54,32 +80,42 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     const freehandDrawingModifier = new FreehandDrawingModifier({
         isDrawing: false,
-        keepDrawingAfterComplete: true,
+        keepDrawingAfterComplete: false,
         pointSamplingDistancePx: 0.5,
         simplifyTolerancePx: 1,
         maxPoints: 5000,
     });
 
+    const eraserModifier = new AnnotationEraserModifier({ keepErasingAfterComplete: true });
+
     addDefaultFinancialModifiers(sciChartSurface);
-    sciChartSurface.chartModifiers.add(freehandDrawingModifier, placementModifier);
+    sciChartSurface.chartModifiers.add(freehandDrawingModifier, placementModifier, eraserModifier);
 
     const preparePlacementOptions = <T extends IMultiPointAnnotationBaseOptions>(options: T): T => options;
 
     const stopActiveTools = () => {
-        console.log('stop active tools');
         placementModifier.stopPlacement(true);
         freehandDrawingModifier.stopDrawing(true);
+        eraserModifier.stopErasing(true);
+        sciChartSurface.invalidateElement();
     };
 
-    const startFreehand = (lockedAspect = false) => {
+    const startFreehand = (options: TStartToolOptions) => {
+        const { lockedAspect = false, highlighter = false, isEditable = true } = options;
         placementModifier.stopPlacement(true);
         freehandDrawingModifier.startDrawing({
-            isEditable: true,
-            stroke: lockedAspect ? TRADING_ANNOTATION_COLORS.lockedFreehand : TRADING_ANNOTATION_COLORS.freehand,
-            strokeThickness: 2,
+            isEditable,
+            opacity: highlighter ? 0.3 : 1,
+            stroke: highlighter
+                ? "#FACC15"
+                : lockedAspect
+                ? TRADING_ANNOTATION_COLORS.lockedFreehand
+                : TRADING_ANNOTATION_COLORS.freehand,
+            strokeThickness: highlighter ? 18 : 2,
             showBoxOutline: true,
             showBoxOutlineOnlyWhenSelected: true,
             boxOutlineStrokeDashArray: [6, 4],
+            selectionBoxThickness: 1,
             keepAspectRatioOnResize: lockedAspect,
             forcedAspectRatio: lockedAspect ? 1 : undefined,
             allowMove: true,
@@ -89,7 +125,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 : TRADING_ANNOTATION_COLORS.freehand,
             gripSvgTemplate: (annotation: any, x: number, y: number) => {
                 const ann = annotation as FreehandDrawingAnnotation;
-                return `<circle cx="${x}" cy="${y}" r="${ann.annotationsGripsRadius}" fill="${ann.parentSurface.background}" stroke="${ann.annotationsGripsStroke}" stroke-width="${ann.strokeThickness}" />`;
+                return `<circle cx="${x}" cy="${y}" r="${ann.annotationsGripsRadius}" fill="${ann.parentSurface.background}" stroke="${ann.annotationsGripsStroke}" stroke-width="1.5" />`;
             },
         });
     };
@@ -106,13 +142,28 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 placementModifier.startPlacement({
                     type: ETradingAnnotationType.PolyLineAnnotation,
                     options: {
-                        ...createTradingAnnotationOptions(options.snapToCandle ? "SNP" : "PLY", 5),
+                        ...createTradingAnnotationOptions(
+                            options.snapToCandle ? "SNP" : "PLY",
+                            options.labels?.length ?? 5
+                        ),
+                        ...(options.labels
+                            ? {
+                                  pointLabelVisibility: EAnnotationVisibilityMode.Always,
+                                  labels: options.labels.map((text, pointIndex) => ({
+                                      anchorMode: EMultiPointLabelAnchorMode.Point,
+                                      pointIndex,
+                                      text,
+                                      yOffset: 10,
+                                      verticalTextPosition: EVerticalTextPosition.Below,
+                                  })),
+                              }
+                            : {}),
                         ...(options.snapToCandle ? defaultSnapToCandleOptions(candlestickSeries.id) : {}),
                         isEditable: true,
                         stroke: color,
                         strokeThickness: 2,
                         fill: `${color}33`,
-                        placementPointCount: 5,
+                        placementPointCount: options.labels?.length ?? 5,
                     } as any,
                 });
                 return;
@@ -149,10 +200,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                         midLineStrokeDashArray: [4, 3],
                         showMidLine: true,
                         showMidPointGrips: true,
-                        
                     } as any),
                 });
-                console.log('placing channel');
                 return;
             case ETradingAnnotationType.FlatBottomChannelAnnotation:
                 placementModifier.startPlacement({
@@ -190,10 +239,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                         isEditable: true,
                         stroke: TRADING_ANNOTATION_COLORS.pitchfork,
                         strokeThickness: 2,
-                        showFullWidthZone: true,
+                        showFullWidthZone: !options.basicPitchfork,
                         fullWidthZoneFill: `${TRADING_ANNOTATION_COLORS.pitchZone}66`,
                         fullWidthZoneStroke: TRADING_ANNOTATION_COLORS.pitchZone,
-                        showHalfWidthZone: true,
+                        showHalfWidthZone: !options.basicPitchfork,
                         halfWidthZoneFill: "#33ff3366",
                         halfWidthZoneStroke: "#33ff33",
                         renderLayer: ERenderLayer.First,
@@ -228,35 +277,35 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                             includeSegmentLabels: false,
                             extraLabels: options.verticalOnly // note that "extraLabels" is not a library prop, these are just additional utils
                                 ? [
-                                    // extra axis labels to show extended Fibonacci using "segmentRatio"
-                                    // for labels at thresholds "-0.618" and "2.618"
-                                    {
-                                        id: `FIB-pt-extended-1`,
-                                        anchorMode: EMultiPointLabelAnchorMode.Axis,
-                                        axisLabelDrawMode: EAxisLabelDrawMode.Y,
-                                        segmentStartIndex: 1,
-                                        segmentEndIndex: 2,
-                                        segmentRatio: 2.618,
-                                    },
-                                    {
-                                        id: `FIB-pt-extended-2`,
-                                        anchorMode: EMultiPointLabelAnchorMode.Axis,
-                                        axisLabelDrawMode: EAxisLabelDrawMode.Y,
-                                        segmentStartIndex: 1,
-                                        segmentEndIndex: 2,
-                                        segmentRatio: -0.618,
-                                    },
-                                ]
+                                      // extra axis labels to show extended Fibonacci using "segmentRatio"
+                                      // for labels at thresholds "-0.618" and "2.618"
+                                      {
+                                          id: `FIB-pt-extended-1`,
+                                          anchorMode: EMultiPointLabelAnchorMode.Axis,
+                                          axisLabelDrawMode: EAxisLabelDrawMode.Y,
+                                          segmentStartIndex: 1,
+                                          segmentEndIndex: 2,
+                                          segmentRatio: 2.618,
+                                      },
+                                      {
+                                          id: `FIB-pt-extended-2`,
+                                          anchorMode: EMultiPointLabelAnchorMode.Axis,
+                                          axisLabelDrawMode: EAxisLabelDrawMode.Y,
+                                          segmentStartIndex: 1,
+                                          segmentEndIndex: 2,
+                                          segmentRatio: -0.618,
+                                      },
+                                  ]
                                 : [
-                                    {
-                                        id: `FIB-pt-extended-1`,
-                                        anchorMode: EMultiPointLabelAnchorMode.Axis,
-                                        axisLabelDrawMode: EAxisLabelDrawMode.Y,
-                                        segmentStartIndex: 1,
-                                        segmentEndIndex: 2,
-                                        segmentRatio: 4.236,
-                                    },
-                                ],
+                                      {
+                                          id: `FIB-pt-extended-1`,
+                                          anchorMode: EMultiPointLabelAnchorMode.Axis,
+                                          axisLabelDrawMode: EAxisLabelDrawMode.Y,
+                                          segmentStartIndex: 1,
+                                          segmentEndIndex: 2,
+                                          segmentRatio: 4.236,
+                                      },
+                                  ],
                         }),
                         isEditable: true,
                         strokeThickness: 2,
@@ -272,8 +321,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                         // fibonacciLabelPlacement: EFibonacciLabelPlacement.Top,
                         // fibonacciLabelColorMode: EFibonacciLabelColorMode.MultiColor,
                         // formatFibonacciLabel: (params: TFibonacciLevelLabelFormatParams) => {
-                            // const percentage = `${(params.threshold * 100).toFixed(1)}%`;
-                            // return `${percentage}\n${params.valueLabel}`;
+                        // const percentage = `${(params.threshold * 100).toFixed(1)}%`;
+                        // return `${percentage}\n${params.valueLabel}`;
                         // },
                     } as any),
                 });
@@ -343,7 +392,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     type: ETradingAnnotationType.MeasureAnnotation,
                     options: preparePlacementOptions({
                         ...createTradingAnnotationOptions("MSR", 2, undefined, { includeSegmentLabels: false }),
-                        ...defaultSnapToCandleOptions(candlestickSeries.id),
+                        ...(options.snapToCandle
+                            ? defaultSnapToCandleOptions(candlestickSeries.id)
+                            : { snapMode: ESnapMode.None }),
                         isEditable: true,
                         strokeThickness: 2,
                         growingColor: TRADING_ANNOTATION_COLORS.measureUp,
@@ -369,87 +420,173 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                         fillOpacity: 0.18,
                         axisSpanFillOpacity: 0.2,
                         axisLabelVisibility: EAnnotationVisibilityMode.Always,
-                        axisLabelStroke: "#FFFFFF",
+                        axisLabelStroke: labelTextColor,
                         annotationsGripsRadius: 4,
                         annotationsGripsStroke: TRADING_ANNOTATION_COLORS.foreground,
                     } as any),
                 });
                 return;
+            case ETradingAnnotationType.HorizontalTrendLineAnnotation:
+            case ETradingAnnotationType.VerticalTrendLineAnnotation:
+            case ETradingAnnotationType.CrossLineAnnotation:
+                placementModifier.startPlacement({
+                    type: tool,
+                    options: {
+                        isEditable: true,
+                        stroke: "#FBA55A",
+                        strokeThickness: 2,
+                        axisLabelStroke: labelTextColor,
+                    },
+                });
+                return;
+            case ETradingAnnotationType.AngleLineAnnotation:
+                placementModifier.startPlacement({
+                    type: tool,
+                    options: {
+                        isEditable: true,
+                        stroke: "#F472B6",
+                        strokeThickness: 2,
+                        guideDashArray: [2, 4],
+                        angleGuideLength: 100,
+                        labelColor: labelTextColor,
+                        formatAngleLabel: ({ angle }) => `${angle.toFixed(1)}°`,
+                    },
+                });
+                return;
+            case ETradingAnnotationType.InsidePitchforkAnnotation:
+            case ETradingAnnotationType.SchiffPitchforkAnnotation:
+            case ETradingAnnotationType.ModifiedSchiffPitchforkAnnotation:
+                placementModifier.startPlacement({
+                    type: tool,
+                    options: {
+                        ...createTradingAnnotationOptions("", 3, undefined, { includeSegmentLabels: false }),
+                        isEditable: true,
+                        stroke: TRADING_ANNOTATION_COLORS.pitchfork,
+                        strokeThickness: 2,
+                        showFullWidthZone: true,
+                        fullWidthZoneFill: "#3B82F633",
+                        showHalfWidthZone: true,
+                        halfWidthZoneFill: "#22C55E33",
+                    },
+                });
+                return;
+            case ETradingAnnotationType.FibonacciTimeZoneAnnotation:
+                placementModifier.startPlacement({
+                    type: tool,
+                    options: {
+                        isEditable: true,
+                        stroke: "#60A5FA",
+                        strokeThickness: 2,
+                        labelColor: labelTextColor,
+                        axisLabelStroke: labelTextColor,
+                    },
+                });
+                return;
+            case ETradingAnnotationType.CyclicLineAnnotation:
+                placementModifier.startPlacement({
+                    type: tool,
+                    options: {
+                        isEditable: true,
+                        stroke: "#34D399",
+                        strokeThickness: 2,
+                        showConnectorLine: true,
+                        connectorLineStrokeDashArray: [6, 4],
+                    },
+                });
+                return;
+            case ETradingAnnotationType.CyclicArcAnnotation:
+                placementModifier.startPlacement({
+                    type: tool,
+                    options: { isEditable: true, stroke: "#34D399", strokeThickness: 2, fill: "#34D39933" },
+                });
+                return;
+            case ETradingAnnotationType.SectorAnnotation:
+                placementModifier.startPlacement({
+                    type: tool,
+                    options: {
+                        isEditable: true,
+                        strokeThickness: 2,
+                        fillOpacity: 0.18,
+                        regionColors: FIB_REGION_COLORS,
+                    },
+                });
+                return;
             case ETradingAnnotationType.FreehandDrawingAnnotation:
-                startFreehand(options.lockedAspect);
+                startFreehand(options);
                 return;
         }
     };
 
     const addSeedAnnotations = () => {
-        sciChartSurface.annotations.clear(true);
+        // Keep the initial drawings in the same proportions as the reference layout.
+        const { min, max } = ctx.xAxis.visibleRange;
+        const x = (position: number) => min + (max - min) * position;
         sciChartSurface.annotations.add(
-            new ChannelAnnotation({
-                ...createTradingAnnotationOptions("", 4, undefined, { includeSegmentLabels: false }),
-                isEditable: true,
-                stroke: TRADING_ANNOTATION_COLORS.channel,
-                fill: `${TRADING_ANNOTATION_COLORS.channel}26`,
-                strokeThickness: 2,
-                midLineStrokeDashArray: [4, 3],
-                showMidLine: true,
-                showMidPointGrips: true,
-                points: [
-                    { x: 1705049596, y: 62895 },
-                    { x: 1705259865, y: 64864 },
-                    { x: 1705049596, y: 61731 },
-                    { x: 1705259865, y: 63699 },
-                ],
-            } as any),
-            new FibonacciRetracementAnnotation({
-                ...createTradingAnnotationOptions("Fib", 3, undefined, {
+            new FibonacciExtensionAnnotation({
+                ...createTradingAnnotationOptions("FBE", 3, undefined, {
+                    includePointLabels: false, // Set to true to show FBE point names and prices.
                     includeSegmentLabels: false,
-                    extraLabels: [
-                        {
-                            id: "Fib-extended-1",
-                            anchorMode: EMultiPointLabelAnchorMode.Axis,
-                            axisLabelDrawMode: EAxisLabelDrawMode.Y,
-                            segmentStartIndex: 1,
-                            segmentEndIndex: 2,
-                            segmentRatio: 2.618,
-                        },
-                        {
-                            id: "Fib-extended-2",
-                            anchorMode: EMultiPointLabelAnchorMode.Axis,
-                            axisLabelDrawMode: EAxisLabelDrawMode.Y,
-                            segmentStartIndex: 1,
-                            segmentEndIndex: 2,
-                            segmentRatio: -0.618,
-                        },
-                    ],
                 }),
                 isEditable: true,
                 strokeThickness: 2,
-                regionColors: ["#F85161", "#FB8B62", "#D2E26F", "#70CEA5", "#7FAECE"],
+                thresholds: [0, 0.382, 0.618, 1, 1.618, 2.618, 3.618],
+                regionColors: [0, 2, 4, 6, 7, 8].map((index) => FIB_REGION_COLORS[index]),
                 fillOpacity: 0.25,
-                opacity: 1,
-                fibonacciLabelPlacement: EFibonacciLabelPlacement.Top,
-                fibonacciLabelColorMode: EFibonacciLabelColorMode.MultiColor,
+                fibonacciLabelPlacement: EFibonacciLabelPlacement.Left,
+                formatFibonacciLabel: ({ threshold, valueLabel }) => `${threshold} (${valueLabel})`,
                 showConnectorLine: true,
-                connectorLineStrokeDashArray: [16, 4],
-                // thresholds: [-0.618, -0.236, 0, 0.618, 1, 2.618],
-                verticalOnly: true,
-                formatFibonacciLabel: (params: TFibonacciLevelLabelFormatParams) => {
-                    const percentage = `${(params.threshold * 100).toFixed(1)}%`;
-                    return `${percentage}\n${params.valueLabel}`;
-                },
+                connectorLineStroke: "#F87171",
+                connectorLineStrokeDashArray: [6, 4],
                 points: [
-                    {x: 1705587439, y: 63110},
-                    {x: 1705822618, y: 65283}
+                    { x: x(0.19), y: 61740 },
+                    { x: x(0.253), y: 62540 },
+                    { x: x(0.383), y: 62940 },
                 ],
             }),
-            new ExtendedLineAnnotation({
-                ...createTradingAnnotationOptions("", 2, undefined),
+            new FibonacciTimeZoneAnnotation({
+                ...createTradingAnnotationOptions("", 2, undefined, {
+                    includePointLabels: false,
+                    includeSegmentLabels: false,
+                    includeAxisLabels: false,
+                }),
                 isEditable: true,
+                stroke: "#60A5FA",
                 strokeThickness: 2,
-                stroke: TRADING_ANNOTATION_COLORS.ray,
+                labelColor: labelTextColor,
+                labelFontSize: 14,
+                extendStart: false,
+                extendEnd: true,
+                connectorLineStroke: "#F87171",
+                connectorLineStrokeDashArray: [6, 4],
                 points: [
-                    {x: 1705291231, y: 62131},
-                    {x: 1705459018, y: 63495}
+                    { x: x(0.469), y: 64580 },
+                    { x: x(0.496), y: 64580 },
+                ],
+            }),
+            new PolyLineAnnotation({
+                ...createTradingAnnotationOptions("", 5, undefined, {
+                    includePointLabels: false,
+                    includeSegmentLabels: false,
+                    includeAxisLabels: false,
+                }),
+                isEditable: true,
+                stroke: TRADING_ANNOTATION_COLORS.freePolyline,
+                fill: `${TRADING_ANNOTATION_COLORS.freePolyline}33`,
+                strokeThickness: 2,
+                labels: ["X", "A", "B", "C", "D"].map((text, pointIndex) => ({
+                    anchorMode: EMultiPointLabelAnchorMode.Point,
+                    pointIndex,
+                    text,
+                    fontSize: 14,
+                    yOffset: 10,
+                    verticalTextPosition: EVerticalTextPosition.Below,
+                })),
+                points: [
+                    { x: x(0.63), y: 63600 },
+                    { x: x(0.704), y: 65330 },
+                    { x: x(0.754), y: 64280 },
+                    { x: x(0.835), y: 65720 },
+                    { x: x(0.917), y: 64800 },
                 ],
             })
         );
@@ -485,9 +622,30 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     };
     addSeedAnnotations();
 
-    const disposeKeyboard = addKeyboardShortcuts(removeSelectedAnnotations, duplicateSelectedAnnotation);
+    const disposeKeyboard = addKeyboardShortcuts(
+        removeSelectedAnnotations,
+        duplicateSelectedAnnotation,
+        stopActiveTools
+    );
+
+    const syncLabelTextColor = () => {
+        const color = appTheme.ForegroundColor;
+        if (color === labelTextColor) return;
+        labelTextColor = color;
+        sciChartSurface.annotations.asArray().forEach((annotation) => {
+            if (annotation instanceof MultiPointAnnotationBase) annotation.axisLabelStroke = labelTextColor;
+            if (annotation instanceof FibonacciAnnotationBase) annotation.fibonacciLabelColor = labelTextColor;
+            if (annotation instanceof MeasureAnnotation) annotation.labelTextColor = labelTextColor;
+            if (annotation instanceof AngleLineAnnotation || annotation instanceof FibonacciTimeZoneAnnotation) {
+                annotation.labelColor = labelTextColor;
+            }
+        });
+        sciChartSurface.invalidateElement();
+    };
+    sciChartSurface.rendered.subscribe(syncLabelTextColor);
 
     const deleteAllAnnotations = () => {
+        stopActiveTools();
         sciChartSurface.annotations.clear(true);
     };
 
@@ -495,26 +653,35 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChartSurface,
         startTool,
         stopActiveTools,
-        resetAnnotations: addSeedAnnotations,
         deleteAllAnnotations,
         removeSelectedAnnotations,
         duplicateSelectedAnnotation,
-        setKeepPlacingAfterComplete: (enabled: boolean) => {
-            (placementModifier as any).keepPlacingAfterCompleteProperty = enabled;
-            (freehandDrawingModifier as any).keepDrawingAfterCompleteProperty = enabled;
+        startEraser: () => {
+            stopActiveTools();
+            eraserModifier.startErasing();
         },
-        dispose: disposeKeyboard,
+        isToolActive: () =>
+            placementModifier.isPlacing || freehandDrawingModifier.isDrawing || eraserModifier.isErasing,
+        dispose: () => {
+            sciChartSurface.rendered.unsubscribe(syncLabelTextColor);
+            disposeKeyboard();
+        },
     };
 };
 
-const addKeyboardShortcuts = (removeSelected: () => void, duplicateSelected: () => void) => {
+const addKeyboardShortcuts = (removeSelected: () => void, duplicateSelected: () => void, stopTools: () => void) => {
     const isTypingTarget = (target: EventTarget | null) => {
         if (!(target instanceof HTMLElement)) return false;
-        return target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName);
+        return (
+            target.isContentEditable ||
+            !!target.closest("dialog") ||
+            ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)
+        );
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
         if (isTypingTarget(event.target)) return;
+        if (event.key === "Escape") stopTools();
         if (event.key === "Backspace" || event.key === "Delete") {
             removeSelected();
             event.preventDefault();

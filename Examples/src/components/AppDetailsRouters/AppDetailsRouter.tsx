@@ -1,9 +1,6 @@
+import { baseAppPath } from "../../constants";
 import { FC, useContext, useEffect, useState } from "react";
-import {
-    EPageFramework,
-    FRAMEWORK_NAME,
-    getFrameworkContent,
-} from "../../helpers/shared/Helpers/frameworkParametrization";
+import { EPageFramework, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { EPageLayout, ExampleSourceFile, GalleryItem } from "../../helpers/types/types";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
@@ -11,7 +8,6 @@ import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
 import DrawerContent from "../DrawerContent/DrawerContent";
 import ExamplesRoot from "../Examples/ExampleRootDetails";
 import GalleryItems from "../GalleryItems";
-import classes from "./AppDetailsRouter.scss";
 import MarkdownContent from "./MarkdownContent";
 import { CodeSandbox } from "../CodeSandbox";
 import { StackblitzEditor } from "../CodeSandbox/StackblitzEditor";
@@ -21,8 +17,6 @@ import { CodePreview } from "../CodePreview/CodePreview";
 import { ExamplesSubtitle } from "./ExamplesSubtitle";
 import { SourceFilesContext } from "./SourceFilesLoading/SourceFilesContext";
 import type { StackBlitzResponse } from "../../helpers/types/types";
-import { ToolbarGroup } from "../buttons/Toolbar";
-import { Tooltip } from "@mui/material";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
@@ -85,7 +79,10 @@ const AppDetailsRouter: FC<TProps> = (props) => {
         setProjectFiles(null);
         setSandboxFramework(null);
 
-        fetch("source/" + currentExample.path + "?framework=" + selectedFramework)
+        const controller = new AbortController();
+        fetch(`${baseAppPath}/source/${currentExample.path}?framework=${selectedFramework}`, {
+            signal: controller.signal,
+        })
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
@@ -100,7 +97,11 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                 setSelectedFile({ name: defaultFile.name, content: defaultFile.content });
                 setSourceFiles(json.files);
                 setSourceFramework(json.framework);
+            })
+            .catch((error) => {
+                if (error.name !== "AbortError") console.error("Unable to load example source", error);
             });
+        return () => controller.abort();
     }, [currentExample, selectedFramework]);
 
     useEffect(() => {
@@ -120,7 +121,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
     }, []);
 
     const handleFileClick = (fileName: string) => {
-        const file = sourceFiles.find((f) => f.name.includes(fileName));
+        const file = sourceFiles.find((f) => f.name === fileName);
         setSelectedFile({ name: file.name, content: file.content });
     };
 
@@ -167,10 +168,10 @@ const AppDetailsRouter: FC<TProps> = (props) => {
 
     const LayoutButtons = () => {
         return (
-            <ul className={classes.layoutButtons}>
+            <ul className="sc-app-layout-buttons">
                 <li
                     onClick={() => setPageLayout(EPageLayout.Default)}
-                    className={pageLayout === EPageLayout.Default ? classes.active : ""}
+                    className={pageLayout === EPageLayout.Default ? "sc-app-layout-selected" : ""}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <rect x="1.3" y="1.3" width="10" height="21.4" stroke="none" rx="2" />
@@ -180,7 +181,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
 
                 <li
                     onClick={() => setPageLayout(EPageLayout.MaxWidth)}
-                    className={pageLayout === EPageLayout.MaxWidth ? classes.active : ""}
+                    className={pageLayout === EPageLayout.MaxWidth ? "sc-app-layout-selected" : ""}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <rect x="1.3" y="1.3" width="21.4" height="10" stroke="none" rx="2" />
@@ -196,8 +197,8 @@ const AppDetailsRouter: FC<TProps> = (props) => {
 
     return (
         <div>
-            <div className={classes.mainWrapper}>
-                <div className={classes.DrawerDesktop}>
+            <div className="sc-app-details-layout">
+                <div className="sc-app-details-drawer">
                     <DrawerContent
                         testIsOpened={testIsOpened}
                         toggleOpenedMenuItem={toggleOpenedMenuItem}
@@ -206,7 +207,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                     />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 15, width: "100%" }}>
-                    <div id="EXAMPLE_CONTENT_WRAPPER" className={classes.contentwrapper}>
+                    <div id="EXAMPLE_CONTENT_WRAPPER" className="sc-app-details-content">
                         <div style={{ display: "flex" }}>
                             <ExampleBreadcrumbs />
 
@@ -216,7 +217,6 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                         <div style={{ display: "flex", justifyContent: "center" }}>
                             <h1
                                 id="EXAMPLE_TITLE"
-                                className={classes.headingtxt}
                                 style={{
                                     margin: isMaxWidth ? "-10px 0" : 0,
                                     marginInline: isMaxWidth ? "auto" : 0,
@@ -229,7 +229,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                             {/* Github, stackblitz buttons visible on maxwidth layout */}
                             {!isMaxWidth ? (
                                 <CodeActionButtons
-                                    className={`${classes.tabbtnwrap} ${classes.hiddenSmall}`}
+                                    className={`sc-editor-actions sc-editor-actions-wide`}
                                     {...{ currentExample, selectedFramework, selectedFile }}
                                     onSandboxOpen={handleSandboxOpen}
                                     style={{ marginLeft: "auto" }}
@@ -249,13 +249,13 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                             renderEditor()
                         ) : (
                             <div // Chart + Code section
-                                className={`${classes.dynamicFlexWrapper} ${isMaxWidth ? classes.maxWidth : ""}`}
+                                className={`sc-app-chart-code ${isMaxWidth ? "sc-app-chart-code-stacked" : ""}`}
                             >
                                 <ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />
                                 <CodeActionButtons
                                     {...{ currentExample, selectedFramework, selectedFile }}
                                     onSandboxOpen={handleSandboxOpen}
-                                    className={`${classes.tabbtnwrap} ${isMaxWidth ? "" : classes.hiddenLarge}`}
+                                    className={`sc-editor-actions ${isMaxWidth ? "" : "sc-editor-actions-narrow"}`}
                                     style={{ minHeight: 35, height: 35, padding: 0, width: "100%" }}
                                 />
                                 <CodePreview

@@ -1,0 +1,48 @@
+.sc-server-traffic {
+    background-color: #242529;
+}
+
+.sc-server-traffic-grid {
+    position: relative;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.2em;
+    grid-template-rows: repeat(8, 1fr);
+}
+
+.sc-server-traffic-settings {
+    position: absolute;
+    top: 0;
+    right: 0;
+    pointer-events: none;
+    touch-action: none;
+    z-index: 2;
+
+    > button { pointer-events: auto; }
+}
+
+.sc-server-main-chart {
+    grid-row: 1 / 4;
+    grid-column: 1/-1;
+}
+
+.sc-server-page-chart {
+    grid-row: 4 / 7;
+    grid-column: 1 / 3;
+}
+
+.sc-server-load-chart {
+    grid-row: 4 / 7;
+    grid-column: 3 / -1;
+}
+
+.sc-server-region-chart {
+    grid-row: 7 / -1;
+    grid-column: span 3;
+}
+
+.sc-server-region-pie {
+    grid-row: 7 / -1;
+    grid-column: span 1;
+}

@@ -14,13 +14,9 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
     SeriesInfo,
-    TWebAssemblyChart,
     ECoordinateMode,
     NativeTextAnnotation,
-    EWrapTo,
     EHorizontalAnchorPoint,
-    TextAnnotation,
-    Logger,
 } from "scichart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {

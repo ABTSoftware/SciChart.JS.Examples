@@ -1,12 +1,9 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, POLAR_MODIFIER_INFO } from "./drawExample";
 import { useState } from "react";
 import { EChart2DModifierType } from "scichart";
-import { Checkbox } from "@mui/material";
-import { appTheme } from "../../../theme";
 
-const ALL_POLAR_MODIFIER_TYPES = Array.from(Object.keys(POLAR_MODIFIER_INFO));
+const ALL_POLAR_MODIFIER_TYPES = Object.keys(POLAR_MODIFIER_INFO);
 
 const CONFLICTING_MODIFIER_TYPES = [
     [EChart2DModifierType.PolarPan, EChart2DModifierType.PolarArcZoom],
@@ -14,8 +11,6 @@ const CONFLICTING_MODIFIER_TYPES = [
     [EChart2DModifierType.PolarPan + " [Cartesian]", EChart2DModifierType.PolarPan + " [Polar]"],
 ];
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     const [modifiersActive, setModifiersActive] = useState<{ [key: string]: boolean }>({
         [EChart2DModifierType.PolarZoomExtents]: true,
@@ -25,11 +20,10 @@ export default function ChartComponent() {
     const [conflictWarning, setConflictWarning] = useState<string | null>(null);
 
     const [controls, setControls] = useState({
-        toggleModifier: (modifier: EChart2DModifierType) => {},
+        toggleModifier: (_modifier: EChart2DModifierType) => {},
     });
 
-    const handleToggleButtonChanged = (e: any, value: EChart2DModifierType) => {
-        if (value === null) return;
+    const handleToggleButtonChanged = (value: EChart2DModifierType) => {
 
         controls.toggleModifier(value);
 
@@ -61,85 +55,34 @@ export default function ChartComponent() {
     };
 
     return (
-        <div className={commonClasses.ChartWrapper}>
-            <div
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
+        <div className="sc-chart-wrapper sc-responsive-chart-wrapper">
+            <SciChartReact
+                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                    setControls(initResult.controls);
                 }}
-            >
-                <div
-                    style={{
-                        height: "100%",
-                        maxWidth: "40%",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        gap: 10,
-                        padding: 10,
-                        position: "relative",
-                        overflowY: "auto",
-                    }}
-                >
-                    <h3>Polar Modifiers:</h3>
+                initChart={drawExample}
+            />
 
-                    {Object.values(ALL_POLAR_MODIFIER_TYPES).map((type) => (
-                        <div
-                            key={type}
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                width: "100%",
-                                gap: 10,
-                                paddingRight: 10,
-                            }}
-                        >
-                            <Checkbox
-                                checked={modifiersActive[type]}
-                                onChange={(event) => handleToggleButtonChanged(event, type as EChart2DModifierType)}
-                                inputProps={{ "aria-label": "controlled" }}
-                                style={{
-                                    color: appTheme.Indigo,
-                                }}
-                            />
+            <aside className="sc-responsive-controls" aria-label="Polar modifiers">
+                <h2>Polar modifiers</h2>
+                {ALL_POLAR_MODIFIER_TYPES.map((type) => (
+                    <label key={type} className="sc-switch">
+                        <input
+                            type="checkbox"
+                            aria-label={`Enable ${type}`}
+                            checked={!!modifiersActive[type]}
+                            onChange={() => handleToggleButtonChanged(type as EChart2DModifierType)}
+                        />
+                        {type}
+                    </label>
+                ))}
 
-                            <p
-                                style={{
-                                    color: "var(--text)",
-                                    opacity: modifiersActive[type] ? 1 : 0.5,
-                                    fontSize: 16,
-                                    fontWeight: modifiersActive[type] ? "semibold" : "normal",
-                                }}
-                            >
-                                {type}
-                            </p>
-                        </div>
-                    ))}
-
-                    {/* conflict handling */}
-                    {conflictWarning && (
-                        <div
-                            style={{
-                                position: "absolute",
-                                color: "red",
-                                fontSize: 14,
-                                bottom: 0,
-                                margin: 14,
-                            }}
-                        >
-                            <span>{conflictWarning}</span>
-                        </div>
-                    )}
-                </div>
-                <SciChartReact
-                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                        setControls(initResult.controls);
-                    }}
-                    initChart={drawExample}
-                    style={{ flex: 1 }}
-                />
-            </div>
+                {conflictWarning && (
+                    <p role="alert" className="text-error">
+                        {conflictWarning}
+                    </p>
+                )}
+            </aside>
         </div>
     );
 }

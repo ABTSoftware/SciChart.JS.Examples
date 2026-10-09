@@ -103,7 +103,7 @@ All chart state lives in a single \`useReducer\` hook (\`useSmithChart\`). Every
 
 The chart API reference itself is stored in a \`useRef\` rather than \`useState\` so that the surface initialising asynchronously on mount doesn't trigger a re-render of the whole component.
 
-Layout responsiveness is handled with MUI's \`useMediaQuery\`: below the \`sm\` breakpoint the flex direction switches from row to column so the chart fills the full screen width with the sidebar stacked below. The **FloatingPanel** component used for the Chain and Grid Config panels is itself responsive — it renders as a draggable \`react-draggable\` window on desktop and as an MUI \`SwipeableDrawer\` bottom sheet on mobile.`,
+Layout responsiveness uses a CSS media query: below the 600px breakpoint the flex direction switches from row to column so the chart fills the full screen width with the sidebar stacked below. The **FloatingPanel** renders as a draggable \`react-draggable\` window on desktop and as a bottom sheet on mobile.`,
             },
             angular: {
                 subtitle:

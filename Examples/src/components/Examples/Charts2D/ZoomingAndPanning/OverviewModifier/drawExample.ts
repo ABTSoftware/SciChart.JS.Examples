@@ -15,7 +15,6 @@ import {
     RubberBandXyZoomModifier,
     SciChartOverview,
     SciChartSurface,
-    TextAnnotation,
     XyDataSeries,
     XyScatterRenderableSeries,
     ZoomExtentsModifier,

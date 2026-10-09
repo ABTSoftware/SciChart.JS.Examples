@@ -10,27 +10,8 @@ export const getFileName = (path: string): string => {
     return path.split(/[/\\]/).pop() || "";
 };
 
-/**
- * Processes an array of files to:
- * 1. Extract just the filename from any path
- * 2. Sort files so that "drawExample" files appears first, followed by "index" files and then the rest
- */
+/** Preserve relative paths so helper files with matching basenames remain distinct. */
 export const processFiles = <T extends { name: string }>(files: T[]): T[] => {
-    return files
-        .map((file) => ({ ...file, name: getFileName(file.name) }))
-        .sort((a, b) => {
-            if (a.name.includes("drawExample")) {
-                return -1;
-            }
-            if (b.name.includes("drawExample")) {
-                return 1;
-            }
-            if (a.name.includes("index")) {
-                return -1;
-            }
-            if (b.name.includes("index")) {
-                return 1;
-            }
-            return a.name.localeCompare(b.name);
-        });
+    const rank = (name: string) => (name.startsWith("drawExample") ? 0 : name.startsWith("index.") ? 1 : 2);
+    return [...files].sort((a, b) => rank(a.name) - rank(b.name) || a.name.localeCompare(b.name));
 };

@@ -1,7 +1,5 @@
-import * as React from "react";
-import { Checkbox, FormControlLabel, MenuItem, MenuList } from "@mui/material";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { SciChartReact } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import {
     drawMultiSeriesExample,
     drawSingleSeriesExample,
@@ -33,44 +31,10 @@ const modes: { value: TChartMode; label: string; selectionLabel: string }[] = [
     },
     {
         value: "single",
-        label: `Single-Series (${(SINGLE_SERIES_RECORD_COUNT/1000).toLocaleString("en-US")}K records)`,
+        label: `Single-Series (${(SINGLE_SERIES_RECORD_COUNT / 1000).toLocaleString("en-US")}K records)`,
         selectionLabel: "Record selection (click)",
     },
 ];
-
-const leftDragTools: { value: Exclude<TLeftDragTool, "none">; label: string }[] = [
-    { value: "pan", label: "Pan" },
-    { value: "zoom", label: "Rubber-band zoom" },
-    { value: "reorder", label: "Reorder axes" },
-    { value: "highlight", label: "Range highlight (over a Y axis)" },
-];
-
-const sidebarWidth = 240;
-
-// A dense MenuItem indents its content by 16px, plus the 3px selection bar, so the menu labels start 19px in.
-// The checkboxes below carry 9px of their own padding, which the list padding makes up the difference for.
-const contentIndent = 19;
-const checkboxPadding = 9;
-
-const headerStyle: React.CSSProperties = {
-    flexShrink: 0,
-    padding: "10px 16px",
-    fontWeight: 600,
-    fontSize: 14,
-    letterSpacing: 0.3,
-    textTransform: "uppercase",
-    borderBottom: "1px solid rgba(255,255,255,0.15)",
-    background: "var(--bg-toolbars)",
-};
-
-const captionStyle: React.CSSProperties = {
-    // Sits inside the checkbox list, so it only needs to make up the checkbox's own padding to line up.
-    padding: `12px 8px 2px ${checkboxPadding}px`,
-    fontSize: 11,
-    letterSpacing: 0.4,
-    textTransform: "uppercase",
-    color: "rgba(255,255,255,0.5)",
-};
 
 type TCheckboxRowProps = {
     checked: boolean;
@@ -79,42 +43,23 @@ type TCheckboxRowProps = {
 };
 
 const CheckboxRow = ({ checked, label, onChange }: TCheckboxRowProps) => (
-    <FormControlLabel
-        control={
-            <Checkbox
-                size="small"
-                checked={checked}
-                onChange={(e) => onChange(e.target.checked)}
-                sx={{
-                    padding: `4px ${checkboxPadding}px`,
-                    color: "rgba(255,255,255,0.55)",
-                    "&.Mui-checked": { color: "#2D7FF9" },
-                }}
-            />
-        }
-        label={label}
-        sx={{
-            margin: 0,
-            borderRadius: 1,
-            paddingRight: 1,
-            transition: "background-color 120ms",
-            "&:hover": { backgroundColor: "rgba(255,255,255,0.07)" },
-        }}
-        slotProps={{ typography: { fontSize: 13, lineHeight: 1.35 } }}
-    />
+    <label className="sc-control">
+        <input className="sc-checkbox" type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} />
+        <span>{label}</span>
+    </label>
 );
 
 export default function ParallelCoordinatesChart() {
-    const [mode, setMode] = React.useState<TChartMode>("multi");
-    const [interpolate, setInterpolate] = React.useState(false);
-    const [selectionEnabled, setSelectionEnabled] = React.useState(false);
-    const [cursorEnabled, setCursorEnabled] = React.useState(false);
-    const [leftDragTool, setLeftDragTool] = React.useState<TLeftDragTool>("none");
+    const [mode, setMode] = useState<TChartMode>("multi");
+    const [interpolate, setInterpolate] = useState(false);
+    const [selectionEnabled, setSelectionEnabled] = useState(false);
+    const [cursorEnabled, setCursorEnabled] = useState(false);
+    const [leftDragTool, setLeftDragTool] = useState<TLeftDragTool>("none");
 
-    const controlsRef = React.useRef<TControls | undefined>(undefined);
+    const controlsRef = useRef<TControls | undefined>(undefined);
 
     // Applies every toggle to the live surface. Called on init and whenever a toggle changes.
-    const applyControls = React.useCallback(() => {
+    const applyControls = useCallback(() => {
         const controls = controlsRef.current;
         if (!controls) return;
         controls.selectionModifier.isEnabled = selectionEnabled;
@@ -125,19 +70,25 @@ export default function ParallelCoordinatesChart() {
         controls.highlightModifier.isEnabled = leftDragTool === "highlight";
     }, [selectionEnabled, cursorEnabled, leftDragTool]);
 
-    React.useEffect(applyControls, [applyControls]);
+    useEffect(applyControls, [applyControls]);
 
     // Both mode and interpolation swap the renderable-series setup, so the surface is recreated (see the key below).
-    const initChart = React.useCallback(
+    const initChart = useCallback(
         async (rootElement: string | HTMLDivElement) => {
             controlsRef.current = undefined;
             if (mode === "single") {
                 const result = await drawSingleSeriesExample(rootElement, interpolate);
-                controlsRef.current = { ...result, selectionModifier: result.recordSelectionModifier };
+                controlsRef.current = {
+                    ...result,
+                    selectionModifier: result.recordSelectionModifier,
+                };
                 return result;
             }
             const result = await drawMultiSeriesExample(rootElement, interpolate);
-            controlsRef.current = { ...result, selectionModifier: result.seriesSelectionModifier };
+            controlsRef.current = {
+                ...result,
+                selectionModifier: result.seriesSelectionModifier,
+            };
             return result;
         },
         [mode, interpolate]
@@ -146,87 +97,77 @@ export default function ParallelCoordinatesChart() {
     const currentMode = modes.find((m) => m.value === mode);
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div style={{ display: "flex", flex: 1, minHeight: 0 }}>
-                <div
-                    style={{
-                        width: sidebarWidth,
-                        flexShrink: 0,
-                        display: "flex",
-                        flexDirection: "column",
-                        overflowY: "auto",
-                        background: "var(--bg-toolbars)",
-                        color: "#ffffff",
-                    }}
-                >
-                    <div style={headerStyle}>Chart Variant</div>
-                    <MenuList
-                        dense
-                        sx={{
-                            flexShrink: 0,
-                            padding: "4px 0",
-                            "& .MuiMenuItem-root": {
-                                color: "#ffffff",
-                                borderLeft: "3px solid transparent",
-                                transition: "background-color 120ms, border-color 120ms",
-                                whiteSpace: "normal",
-                            },
-                            "& .MuiMenuItem-root.Mui-selected, & .MuiMenuItem-root.Mui-selected:hover, & .MuiMenuItem-root.Mui-selected:focus":
-                                {
-                                    backgroundColor: "#2D7FF9",
-                                    borderLeftColor: "#FFFFFF",
-                                    color: "#FFFFFF",
-                                    fontWeight: 700,
-                                },
-                        }}
-                    >
-                        {modes.map((item) => (
-                            <MenuItem
-                                key={item.value}
-                                selected={item.value === mode}
-                                onClick={() => setMode(item.value)}
-                                title={item.label}
-                            >
-                                {item.label}
-                            </MenuItem>
-                        ))}
-                    </MenuList>
+        <div className="sc-chart-wrapper sc-responsive-chart-wrapper">
+            <SciChartReact
+                key={`${mode}-${interpolate}`}
+                initChart={initChart}
+                onInit={applyControls}
+            />
 
-                    <div style={headerStyle}>Interactions</div>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            padding: `6px ${contentIndent - checkboxPadding}px 14px`,
-                        }}
-                    >
-                        <CheckboxRow checked={interpolate} onChange={setInterpolate} label="Spline interpolation" />
-                        <CheckboxRow
-                            checked={selectionEnabled}
-                            onChange={setSelectionEnabled}
-                            label={currentMode.selectionLabel}
-                        />
-                        <CheckboxRow checked={cursorEnabled} onChange={setCursorEnabled} label="Cursor tooltip" />
-
-                        <div style={captionStyle}>Left-drag &mdash; one at a time</div>
-                        {leftDragTools.map((tool) => (
-                            <CheckboxRow
-                                key={tool.value}
-                                checked={leftDragTool === tool.value}
-                                onChange={(checked) => setLeftDragTool(checked ? tool.value : "none")}
-                                label={tool.label}
-                            />
-                        ))}
-                    </div>
+            <aside className="sc-responsive-controls">
+                <h2 className="px-2">Variant:</h2>
+                <div className="sc-button-group flex-col">
+                    {modes.map((item) => (
+                        <button
+                            type="button"
+                            key={item.value}
+                            className="sc-button sc-button-outline justify-start"
+                            aria-pressed={item.value === mode}
+                            onClick={() => setMode(item.value)}
+                            title={item.label}
+                        >
+                            {item.label}
+                        </button>
+                    ))}
                 </div>
 
-                <SciChartReact
-                    key={`${mode}-${interpolate}`}
-                    style={{ flex: 1, minWidth: 0 }}
-                    initChart={initChart}
-                    onInit={applyControls}
-                />
-            </div>
+                <hr />
+
+                <h2 className="px-2">Interactions:</h2>
+                <div className="flex flex-col gap-1 px-2">
+                    <h4>General</h4>
+
+                    <CheckboxRow 
+                        checked={interpolate} 
+                        onChange={setInterpolate} 
+                        label="Spline interpolation" 
+                    />
+                    <CheckboxRow
+                        checked={selectionEnabled}
+                        onChange={setSelectionEnabled}
+                        label={currentMode.selectionLabel}
+                    />
+                    <CheckboxRow 
+                        checked={cursorEnabled} 
+                        onChange={setCursorEnabled} 
+                        label="Cursor tooltip" 
+                    />
+
+                    <hr />
+                    <h4>Left drag tool</h4>
+
+                    <CheckboxRow
+                        checked={leftDragTool === "pan"}
+                        onChange={(checked) => setLeftDragTool(checked ? "pan" : "none")}
+                        label="Pan"
+                    />
+                    <CheckboxRow
+                        checked={leftDragTool === "zoom"}
+                        onChange={(checked) => setLeftDragTool(checked ? "zoom" : "none")}
+                        label="Rubber-band zoom"
+                    />
+                    <CheckboxRow
+                        checked={leftDragTool === "reorder"}
+                        onChange={(checked) => setLeftDragTool(checked ? "reorder" : "none")}
+                        label="Reorder axes (drag 1 at a time)"
+                    />
+                    <CheckboxRow
+                        checked={leftDragTool === "highlight"}
+                        onChange={(checked) => setLeftDragTool(checked ? "highlight" : "none")}
+                        label="Range highlight (over a Y axis)"
+                    />
+                </div>
+            </aside>
         </div>
     );
 }

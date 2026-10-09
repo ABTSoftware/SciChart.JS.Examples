@@ -10,7 +10,6 @@ import {
     MENU_ITEMS_FEATURED_APPS_ID,
 } from "../AppRouter/examples";
 import ListItemsBlock from "./ListItemsBlock";
-import classes from "./Navigation.module.scss";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
@@ -38,10 +37,12 @@ const Navigation: FC<TProps> = (props) => {
     };
 
     return (
-        <List className={classes.NavigationList} component="nav" aria-labelledby="nested-list-subheader">
+        <List className="sc-app-navigation" component="nav" aria-labelledby="nested-list-subheader">
             <div
                 className={
-                    location.pathname === `/${framework}` ? classes.SelectedHomepageListItem : classes.HomepageListItem
+                    location.pathname === `/${framework}`
+                        ? "sc-app-navigation-selected-homepage-list-item"
+                        : "sc-app-navigation-homepage-list-item"
                 }
                 onClick={historyPushHomepage}
             >

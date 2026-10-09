@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import styles from "./Toolbar.module.scss";
 
 export interface ToolbarProps {
     children: ReactNode;
@@ -7,7 +6,7 @@ export interface ToolbarProps {
 }
 
 export const Toolbar: React.FC<ToolbarProps> = ({ children, className }) => {
-    return <div className={`${styles.toolbar} ${className || ""}`}>{children}</div>;
+    return <div className={`sc-editor-toolbar ${className || ""}`}>{children}</div>;
 };
 
 export interface ToolbarGroupProps {
@@ -16,7 +15,7 @@ export interface ToolbarGroupProps {
 }
 
 export const ToolbarGroup: React.FC<ToolbarGroupProps> = ({ children, className }) => {
-    return <div className={`${styles.toolbarGroup} ${className || ""}`}>{children}</div>;
+    return <div className={`sc-editor-toolbar-group ${className || ""}`}>{children}</div>;
 };
 
 export interface ToolbarTextProps {
@@ -25,5 +24,5 @@ export interface ToolbarTextProps {
 }
 
 export const ToolbarText: React.FC<ToolbarTextProps> = ({ children, className }) => {
-    return <span className={`${styles.toolbarText} ${className || ""}`}>{children}</span>;
+    return <span className={`sc-editor-toolbar-text ${className || ""}`}>{children}</span>;
 };

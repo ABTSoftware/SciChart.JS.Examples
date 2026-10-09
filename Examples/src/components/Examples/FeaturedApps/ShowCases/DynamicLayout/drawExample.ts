@@ -6,7 +6,6 @@ import {
     FastLineRenderableSeries,
     XyDataSeries,
     AUTO_COLOR,
-    SweepAnimation,
     ZoomExtentsModifier,
     MouseWheelZoomModifier,
     ZoomPanModifier,
@@ -39,7 +38,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: `Series ${i + 1}` }),
                 stroke: AUTO_COLOR,
                 strokeThickness: 3,
-                animation: new SweepAnimation({ duration: 500, fadeEffect: true }),
             })
         );
     }
@@ -56,6 +54,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.chartModifiers.add(glm);
 
     sciChartSurface.zoomExtents();
+    sciChartSurface.resolveAutoColors();
+    glm.isGrid = true;
 
     const setIsGridLayoutMode = (value: boolean) => {
         glm.isGrid = value;

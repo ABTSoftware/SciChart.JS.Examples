@@ -10,7 +10,6 @@ import {
     EPolarLabelMode,
     PolarLegendModifier,
     PolarLineRenderableSeries,
-    BezierRenderDataTransform,
     XyDataSeries,
     SplineRenderDataTransform,
     WaveAnimation,

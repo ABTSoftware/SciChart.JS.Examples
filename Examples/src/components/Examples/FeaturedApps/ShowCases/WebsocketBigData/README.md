@@ -8,9 +8,9 @@ This example demonstrates a high-performance, real-time chart that streams large
 
 -   **SciChart.JS**: High-performance charting library for rendering financial and scientific data.
 -   **Socket.IO**: For establishing real-time WebSocket connections to stream data.
--   **Angular**: The Angular implementation uses the standalone component approach and Angular Material for UI controls.
+-   **Angular**: The Angular implementation uses the standalone component approach and shared CSS classes for UI controls.
 -   **React**: The React version makes use of React hooks and the SciChartReact component for rendering the chart.
--   **Material UI / Angular Material**: For user interface elements such as sliders, radio buttons, and buttons to control chart settings.
+-   **UI controls**: For user interface elements such as sliders, radio buttons, and buttons to control chart settings.
 
 ## Code Explanation
 
@@ -18,7 +18,7 @@ This example demonstrates a high-performance, real-time chart that streams large
 
 -   **Chart Drawing Logic (drawExample.js/drawExample.ts)**: These files contain the shared logic for creating and updating the chart. The functions in these files are responsible for setting up the chart (axes, renderable series, and data series), pre-populating initial data, and appending new data as it is streamed from the WebSocket. They also handle performance measurement by computing average load and render times, and updating messages that inform the user about the current performance metrics.
 
--   **React Component (index.tsx)**: This file implements the React version of the example using functional components and React hooks. It sets up the SciChartReact component, manages state for chart settings and performance messages, and provides a control panel using Material UI components. The React version also supports dynamic reconfiguration and uses a similar chart initialization function as the Angular implementation.
+-   **React Component (index.tsx)**: This file implements the React version of the example using functional components and React hooks. It sets up the SciChartReact component, manages state for chart settings and performance messages, and provides a control panel using shared CSS controls. The React version also supports dynamic reconfiguration and uses a similar chart initialization function as the Angular implementation.
 
 -   **Supporting Asset (javascript-streaming-data.jpg)**: An image asset is included which may be used for documentation or visual representation of the streaming data process.
 

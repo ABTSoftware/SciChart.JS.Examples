@@ -1,5 +1,4 @@
 import { FC, useState, useRef } from "react";
-import styles from "./CodeSandbox.module.scss";
 import { SandboxPlatform, getEmbedUrl } from "./SandboxPlatform";
 import { EditorFrame } from "./EditorFrame";
 import { Dialog } from "../Dialog/Dialog";
@@ -37,7 +36,7 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
     const dialogText = `This example will be shown in ${FRAMEWORK_NAME[actualFramework]} instead of ${FRAMEWORK_NAME[desiredFramework]}.`;
 
     return (
-        <div className={styles.container}>
+        <div className="sc-editor-frame-container">
             <EditorFrame
                 platform={platform}
                 title={title}
@@ -51,7 +50,7 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
                     key={url}
                     src={url}
                     title={platform === SandboxPlatform.CodeSandbox ? "CodeSandbox" : "StackBlitz"}
-                    className={styles.frame}
+                    className="sc-editor-frame-embed"
                     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
                     onLoad={handleLoad}
                 />

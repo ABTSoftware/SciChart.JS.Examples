@@ -1,0 +1,38 @@
+/* Keep the loading panel low so the model preview remains visible. */
+.sc-model-loading-overlay {
+    inset: 0;
+    z-index: 12;
+    padding-bottom: 12%;
+    background: var(--bg-chart);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.sc-model-preview {
+    inset: 0;
+    object-fit: contain;
+    opacity: 0.9;
+}
+
+.sc-model-download-panel {
+    width: min(420px, 70%);
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    background: var(--bg-chart);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.sc-model-progress-track {
+    height: 6px;
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.sc-model-progress-label {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.sc-model-progress-fill {
+    background: #50c7e0;
+    transition: width 100ms linear;
+}

@@ -20,11 +20,9 @@ import {
     NativeTextAnnotation,
     EMultiLineAlignment,
     PolarXyScatterRenderableSeries,
-    EPointMarkerType,
     EActionType,
     EPolarPanModifierPanMode,
     DataPointSelectionPaletteProvider,
-    EllipsePointMarker,
     TrianglePointMarker,
 } from "scichart";
 import { appTheme } from "../../../theme";

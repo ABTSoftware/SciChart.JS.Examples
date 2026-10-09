@@ -10,7 +10,7 @@ This example demonstrates a real-time ghosted traces oscilloscope chart using Sc
 -   SciChartSurface, NumericAxis, FastLineRenderableSeries, GlowEffect, XyDataSeries, CentralAxesLayoutManager
 -   Angular (for the Angular implementation)
 -   React (for the React implementation using scichart-react)
--   Material-UI (for React toolbar icons)
+-   shared CSS controls (for React toolbar icons)
 
 ## Code Explanation
 

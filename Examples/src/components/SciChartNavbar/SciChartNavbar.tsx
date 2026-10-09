@@ -1,6 +1,6 @@
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
-import "./styles.css";
+
 import { useEffect, useRef, useState } from "react";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 import { ETheme } from "../../helpers/types/types";
@@ -185,11 +185,11 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
     }, []);
 
     return (
-        <header id="masthead" className="site-header">
-            <nav id="site-navigation" className="container-large px-md-5">
-                <div className="row align-items-center">
-                    <div className="col col-7 col-md-3 col-xl-2 header-logo site-logo">
-                        <a href="https://www.scichart.com/" className="text-decoration-none">
+        <header id="masthead" className="sc-app-nav-site-header">
+            <nav id="site-navigation">
+                <div className="sc-app-nav-row">
+                    <div className="sc-app-nav-site-logo">
+                        <a href="https://www.scichart.com/" style={{ overflow: "visible" }}>
                             <img
                                 src="https://www.scichart.com/wp-content/themes/scichartv6/assets/icons/scichart-logo.svg"
                                 alt="SciChart"
@@ -198,42 +198,24 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                             />
                         </a>
                     </div>
-                    <div className="col col-5 col-md-9 col-xl-10 header-nav">
-                        <a
-                            href="#site-navigation"
-                            data-target="body"
-                            className="className-toggler d-block d-xl-none position-relative overflow-hidden main-menu-button ms-auto"
-                        >
-                            <i className="d-block start-0 top-0 position-absolute w-100 bg-white"></i>{" "}
-                            <i className="d-block start-0 bottom-0 position-absolute w-100 bg-white"></i>{" "}
-                            <span>Menu</span>{" "}
+                    <div className="sc-app-nav-header-nav">
+                        <a href="#site-navigation" data-target="body" className="sc-app-nav-main-menu-button">
+                            <i></i> <i></i> <span>Menu</span>{" "}
                         </a>
-                        <div
-                            className="className-toggler main-menu-shadow d-block d-xl-none position-fixed top-0 start-0 w-100 h-100"
-                            data-target="body"
-                        ></div>
-                        <div className="main-menu">
-                            <div className="menu-main-nav-container">
-                                <ul id="primary-menu" className="menu">
-                                    <li
-                                        id="menu-item-545"
-                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-545"
-                                    >
+                        <div data-target="body"></div>
+                        <div>
+                            <div>
+                                <ul id="primary-menu">
+                                    <li id="menu-item-545" className="sc-app-nav-menu-item">
                                         <a href="#">Why SciChart</a>
-                                        <ul className="sub-menu">
-                                            <li
-                                                id="menu-item-4509"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-4509"
-                                            >
+                                        <ul className="sc-app-nav-sub-menu">
+                                            <li id="menu-item-4509" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/why-scichart-for-developers/">
                                                     Why SciChart for Developers
                                                 </a>
                                             </li>
                                             <hr />
-                                            <li
-                                                id="menu-item-4948"
-                                                className="line menu-item menu-item-type-post_type menu-item-object-page menu-item-4948"
-                                            >
+                                            <li id="menu-item-4948" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/why-scichart-high-performance-realtime-big-data-charts/"
                                                     title="Big Data Visualization and High Performance Charts"
@@ -241,10 +223,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                     Big Data High Performance
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-5033"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-5033"
-                                            >
+                                            <li id="menu-item-5033" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/comparison-of-scichart-vs-open-source-chart-controls/"
                                                     title="Should you use Open Source Charts?"
@@ -253,28 +232,19 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                 </a>
                                             </li>
                                             <hr />
-                                            <li
-                                                id="menu-item-7923"
-                                                className="line menu-item menu-item-type-custom menu-item-object-custom menu-item-7923"
-                                            >
+                                            <li id="menu-item-7923" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/why-scichart-the-best-wpf-chart/">
                                                     Best WPF Charts
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-7924"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-7924"
-                                            >
+                                            <li id="menu-item-7924" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/blog/the-best-javascript-chart-10-reasons/">
                                                     Best JavaScript Charts
                                                 </a>
                                             </li>
                                             <hr />
 
-                                            <li
-                                                id="menu-item-4956"
-                                                className="line menu-item menu-item-type-post_type menu-item-object-page menu-item-4956"
-                                            >
+                                            <li id="menu-item-4956" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/about-us/"
                                                     title="About SciChart – Our Company"
@@ -282,10 +252,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                     Our Company
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-7589"
-                                                className="menu-item menu-item-type-post_type menu-item-object-blog_scichart menu-item-7589"
-                                            >
+                                            <li id="menu-item-7589" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/blog/from-small-beginnings-to-global-impact/"
                                                     title="About SciChart – Our Story"
@@ -294,10 +261,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                 </a>
                                             </li>
                                             <hr />
-                                            <li
-                                                id="menu-item-598"
-                                                className="line menu-item menu-item-type-post_type menu-item-object-page menu-item-598"
-                                            >
+                                            <li id="menu-item-598" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/why-scichart-world-class-tech-support/"
                                                     title="SciChart Testomianals about Tech Support "
@@ -305,26 +269,17 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                     World Class Tech Support
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-596"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-596"
-                                            >
+                                            <li id="menu-item-596" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/read-testimonials/">
                                                     Testimonial &amp; Reviews
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li
-                                        id="menu-item-3350"
-                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3350"
-                                    >
+                                    <li id="menu-item-3350" className="sc-app-nav-menu-item">
                                         <a href="#">Products</a>
-                                        <ul className="sub-menu">
-                                            <li
-                                                id="menu-item-7873"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-7873"
-                                            >
+                                        <ul className="sc-app-nav-sub-menu">
+                                            <li id="menu-item-7873" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/javascript-chart-features/"
                                                     title="Javascript Chart Library"
@@ -332,30 +287,18 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                     JavaScript Charts
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-8501"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-8501"
-                                            >
+                                            <li id="menu-item-8501" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/react-charts/">React Charts</a>
                                             </li>
-                                            <li
-                                                id="menu-item-547"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-547"
-                                            >
+                                            <li id="menu-item-547" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/wpf-chart-features/">WPF Charts</a>
                                             </li>
-                                            <li
-                                                id="menu-item-548"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-548"
-                                            >
+                                            <li id="menu-item-548" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/wpf-3d-chart-features/">
                                                     WPF 3D Charts
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-549"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-549"
-                                            >
+                                            <li id="menu-item-549" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/ios-chart-features/"
                                                     title="iOS Charts Swift Library"
@@ -363,10 +306,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                     iOS &amp; macOS Charts
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-550"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-550"
-                                            >
+                                            <li id="menu-item-550" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/android-chart-features/"
                                                     title="Android Charts Library"
@@ -374,20 +314,14 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                     Android Charts
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-3351"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-3351"
-                                            >
+                                            <li id="menu-item-3351" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/examples/xamarin-chart/">
                                                     Xamarin Charts
                                                 </a>
                                             </li>
                                             <hr />
 
-                                            <li
-                                                id="menu-item-5114"
-                                                className="line menu-item menu-item-type-custom menu-item-object-custom menu-item-5114"
-                                            >
+                                            <li id="menu-item-5114" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/consultancy/"
                                                     title="Expert DataVisualization Consultancy Services"
@@ -397,28 +331,19 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                             </li>
                                             <hr />
 
-                                            <li
-                                                id="menu-item-4949"
-                                                className="line menu-item menu-item-type-custom menu-item-object-custom menu-item-4949"
-                                            >
+                                            <li id="menu-item-4949" className="sc-app-nav-menu-item">
                                                 <a href="https://store.scichart.com" title="SciChart Store">
                                                     Pricing
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li
-                                        id="menu-item-566"
-                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-566"
-                                    >
+                                    <li id="menu-item-566" className="sc-app-nav-menu-item">
                                         <a href="#" title="SciChart Developer Zone">
                                             Developers
                                         </a>
-                                        <ul className="sub-menu">
-                                            <li
-                                                id="menu-item-4953"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-4953"
-                                            >
+                                        <ul className="sc-app-nav-sub-menu">
+                                            <li id="menu-item-4953" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/getting-started/"
                                                     title="Get Started with SciChart"
@@ -427,10 +352,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                 </a>
                                             </li>
                                             <hr />
-                                            <li
-                                                id="menu-item-579"
-                                                className="line menu-item menu-item-type-post_type menu-item-object-page menu-item-579"
-                                            >
+                                            <li id="menu-item-579" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/demo"
                                                     title="Chart Library Examples and Demos"
@@ -438,10 +360,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                     Examples
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-577"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-577"
-                                            >
+                                            <li id="menu-item-577" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/read-tutorials/"
                                                     title="Chart Library Tutorials"
@@ -449,10 +368,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                     Tutorials
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-8028"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-8028"
-                                            >
+                                            <li id="menu-item-8028" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/documentation/js/v5/intro/"
                                                     title="JS Chart Documentation"
@@ -460,10 +376,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                     JS Documentation
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-8109"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-8109"
-                                            >
+                                            <li id="menu-item-8109" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/changelog/scichart-js/"
                                                     title="JS Chart Library Changelog"
@@ -471,10 +384,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                     SciChart.js Changelog
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-6972"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-6972"
-                                            >
+                                            <li id="menu-item-6972" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/questions/categories/js"
                                                     title="JavaScript Chart Library Forums"
@@ -482,10 +392,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                     JS Forums
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-7054"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-7054"
-                                            >
+                                            <li id="menu-item-7054" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://stackoverflow.com/questions/tagged/scichart.js"
                                                     title="SciChart.js Tag on StackOverflow"
@@ -495,10 +402,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                             </li>
                                             <hr />
 
-                                            <li
-                                                id="menu-item-581"
-                                                className="line menu-item menu-item-type-custom menu-item-object-custom menu-item-581"
-                                            >
+                                            <li id="menu-item-581" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/contact-us/#tech-support"
                                                     title="Chart Library Technical Support"
@@ -506,10 +410,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                     Support
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-7080"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-7080"
-                                            >
+                                            <li id="menu-item-7080" className="sc-app-nav-menu-item">
                                                 <a
                                                     href="https://www.scichart.com/licensing-scichart/"
                                                     title="Chart Library Licensing"
@@ -517,10 +418,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                     Licensing
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-4952"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-4952"
-                                            >
+                                            <li id="menu-item-4952" className="sc-app-nav-menu-item">
                                                 <a
                                                     target="_blank"
                                                     href="https://www.scichart.com/downloads/"
@@ -531,179 +429,113 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                             </li>
                                         </ul>
                                     </li>
-                                    <li
-                                        id="menu-item-3835"
-                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3835"
-                                    >
+                                    <li id="menu-item-3835" className="sc-app-nav-menu-item">
                                         <a href="#">Showcase</a>
-                                        <ul className="sub-menu">
-                                            <li
-                                                id="menu-item-4193"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-4193"
-                                            >
+                                        <ul className="sc-app-nav-sub-menu">
+                                            <li id="menu-item-4193" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/demo">JavaScript Examples</a>
                                             </li>
-                                            <li
-                                                id="menu-item-3836"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-3836"
-                                            >
+                                            <li id="menu-item-3836" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/examples/wpf-chart/">WPF Examples</a>
                                             </li>
-                                            <li
-                                                id="menu-item-4954"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-4954"
-                                            >
+                                            <li id="menu-item-4954" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/examples/3d-charts-wpf-chart/">
                                                     WPF 3D Examples
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-3837"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-3837"
-                                            >
+                                            <li id="menu-item-3837" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/examples/ios-chart/">
                                                     iOS &amp; macOS Examples
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-3838"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-3838"
-                                            >
+                                            <li id="menu-item-3838" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/examples/android-chart/">
                                                     Android Examples
                                                 </a>
                                             </li>
                                             <hr />
 
-                                            <li
-                                                id="menu-item-5069"
-                                                className="line menu-item menu-item-type-custom menu-item-object-custom menu-item-5069"
-                                            >
+                                            <li id="menu-item-5069" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/case-studies/">Case Studies</a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li
-                                        id="menu-item-3358"
-                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3358"
-                                    >
+                                    <li id="menu-item-3358" className="sc-app-nav-menu-item">
                                         <a href="#" title="DataVisualization Industries and Applications">
                                             Industries
                                         </a>
-                                        <ul className="sub-menu">
-                                            <li
-                                                id="menu-item-3359"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-3359"
-                                            >
+                                        <ul className="sc-app-nav-sub-menu">
+                                            <li id="menu-item-3359" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/why-scichart-best-for-financial-stock-trading-applications/">
                                                     Financial &amp; Trading
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-7424"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-7424"
-                                            >
+                                            <li id="menu-item-7424" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/why-scichart-medical-charts-dashboarding-for-research-and-healthcare/">
                                                     Medical &amp; Research
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-8025"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-8025"
-                                            >
+                                            <li id="menu-item-8025" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/why-scichart-diagnostics-lifesciences/">
                                                     Diagnostics &amp; Lifesciences
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-7320"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-7320"
-                                            >
+                                            <li id="menu-item-7320" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/why-scichart-best-for-motosport-and-automotive/">
                                                     Motorsport &amp; Automotive
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-7331"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-7331"
-                                            >
+                                            <li id="menu-item-7331" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/why-scichart-perfect-for-datavisualization-in-the-oil-gas-industry-using-scichart/">
                                                     Oil &amp; Gas
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-7496"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-7496"
-                                            >
+                                            <li id="menu-item-7496" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/why-scichart-aerospace-defence/">
                                                     Aerospace &amp; Defence
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-9663"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-9663"
-                                            >
+                                            <li id="menu-item-9663" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/design-emulation-test/">
                                                     Design, Emulation &amp; Test
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-9985"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-9985"
-                                            >
+                                            <li id="menu-item-9985" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/blog/telehealth-transforming-healthcare-analytics-with-advanced-charting-dashboards/">
                                                     Telehealth
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li
-                                        id="menu-item-4955"
-                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4955"
-                                    >
+                                    <li id="menu-item-4955" className="sc-app-nav-menu-item">
                                         <a href="#">News</a>
-                                        <ul className="sub-menu">
-                                            <li
-                                                id="menu-item-3305"
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-3305"
-                                            >
+                                        <ul className="sc-app-nav-sub-menu">
+                                            <li id="menu-item-3305" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/blog/" title="Chart Library Blog">
                                                     Blogs
                                                 </a>
                                             </li>
-                                            <li
-                                                id="menu-item-561"
-                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-561"
-                                            >
+                                            <li id="menu-item-561" className="sc-app-nav-menu-item">
                                                 <a href="https://www.scichart.com/news/">Releases &amp; News</a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li
-                                        id="menu-item-7783"
-                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-7783"
-                                    >
+                                    <li id="menu-item-7783" className="sc-app-nav-menu-item">
                                         <a href="https://www.scichart.com/contact-us/">Contact Us</a>
                                     </li>
 
-                                    <li
-                                        id="menu-item-theme-select"
-                                        className="menu-item menu-item-type-custom menu-item-object-custom"
-                                    >
+                                    <li id="menu-item-theme-select" className="sc-app-nav-menu-item">
                                         <ThemeSelectComponent />
                                     </li>
 
-                                    <li
-                                        id="menu-item-5373"
-                                        className="button menu-item menu-item-type-custom menu-item-object-custom menu-item-5373"
-                                    >
+                                    <li id="menu-item-5373" className="sc-app-nav-button sc-app-nav-menu-item">
                                         <a href="https://www.scichart.com/shop/" rel="nofollow" role="button">
                                             Buy Now
                                         </a>
                                     </li>
                                     <li
                                         id="menu-item-cta-alt"
-                                        className="button dark menu-item menu-item-type-custom menu-item-object-custom menu-item-cta"
+                                        className="sc-app-nav-button sc-app-nav-dark sc-app-nav-menu-item"
                                     >
                                         <a
                                             href="https://www.scichart.com/getting-started/scichart-javascript/"
@@ -716,19 +548,19 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                     </li>
 
                                     {isLoggedIn ? (
-                                        <li className="menu-item-has-children children-end menu-item button-icon login scichart-profile-nav">
+                                        <li className="sc-app-nav-menu-item sc-app-nav-button-icon sc-app-nav-login">
                                             <a href="#!">Account</a>
-                                            <ul className="sub-menu">
-                                                <li className="menu-item">
+                                            <ul className="sc-app-nav-sub-menu">
+                                                <li className="sc-app-nav-menu-item">
                                                     <a href="https://www.scichart.com/my-account/">My Account</a>
                                                 </li>
-                                                <li className="menu-item">
+                                                <li className="sc-app-nav-menu-item">
                                                     <a href="https://www.scichart.com/downloads/?nocache=1">
                                                         Downloads
                                                     </a>
                                                 </li>
                                                 <hr />
-                                                <li className="menu-item line">
+                                                <li className="sc-app-nav-menu-item">
                                                     <a href="https://www.scichart.com/wp-login.php?action=logout&amp;redirect_to=%2Flogin%2F%3Fmessage%3Dlogged-out&amp;_wpnonce=b22d2ac2bb">
                                                         Logout
                                                     </a>
@@ -736,13 +568,13 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                             </ul>
                                         </li>
                                     ) : (
-                                        <li className="menu-item-has-children children-end menu-item scichart-login-link button-icon login">
+                                        <li className="sc-app-nav-menu-item sc-app-nav-button-icon sc-app-nav-login">
                                             <a href="#login">Log In</a>
-                                            <ul className="sub-menu">
-                                                <li className="menu-item">
+                                            <ul className="sc-app-nav-sub-menu">
+                                                <li className="sc-app-nav-menu-item">
                                                     <a href="https://www.scichart.com/login/">Login</a>
                                                 </li>
-                                                <li className="menu-item">
+                                                <li className="sc-app-nav-menu-item">
                                                     <a href="https://www.scichart.com/register/">Register</a>
                                                 </li>
                                             </ul>
@@ -755,11 +587,11 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                 </div>
 
                 {/* Mobile only */}
-                <div className="mobile-buttons">
-                    <div className="icon">
+                <div className="sc-app-nav-mobile-buttons">
+                    <div>
                         <ThemeSelectComponent />
                     </div>
-                    <div className="icon menu-burger">
+                    <div className="sc-app-nav-menu-burger">
                         <Button onClick={toggleDrawer} aria-label="menu" sx={{ minWidth: 36 }}>
                             <MenuIcon sx={{ color: "#fff" }} />
                         </Button>

@@ -2,7 +2,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const path = require("path");
 const config = require("./config/default");
-const nodeExternals = require("webpack-node-externals");
+const webpack = require("webpack");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
@@ -14,6 +14,8 @@ module.exports = {
     externals: {
         express: "commonjs2 express",
         ws: "commonjs2 ws",
+        // Source/export APIs use the installed compiler; don't bundle/minify it into both server entries.
+        typescript: "commonjs2 typescript",
     },
     entry: {
         server: "./src/server/server.tsx",
@@ -31,29 +33,8 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.scss$/,
-                use: [
-                    { loader: MiniCssExtractPlugin.loader },
-                    {
-                        loader: "css-loader",
-                        options: {
-                            modules: {
-                                localIdentName: "[hash:base64:5]",
-                            },
-                        },
-                    },
-                    {
-                        loader: "postcss-loader",
-                    },
-                    {
-                        loader: "sass-loader",
-                    },
-                ],
-                exclude: /node_modules/,
-            },
-            {
                 test: /\.tsx?$/,
-                use: "ts-loader",
+                use: { loader: "ts-loader", options: { configFile: "tsconfig.server.json" } },
                 exclude: /node_modules/,
             },
             {
@@ -97,6 +78,7 @@ module.exports = {
     //     maxEntrypointSize: 2000000, // Sets the maximum entry point size to 2MB (in bytes)
     // },
     plugins: [
+        new webpack.DefinePlugin({ __SCICHART_LAZY_EXAMPLES__: false }),
         new CopyPlugin({
             patterns: [
                 {
@@ -105,13 +87,7 @@ module.exports = {
                     globOptions: {
                         dot: true,
                         gitignore: false,
-                        ignore: [
-                            "**/exampleInfo.*",
-                            "**/*.jpg",
-                            "**/*.png",
-                            "**/ExamplesRoot.tsx",
-                            "**/ExampleStrings.ts",
-                        ],
+                        ignore: ["**/exampleInfo.*", "**/*.jpg", "**/*.png", "**/ExampleStrings.ts"],
                     },
                 },
             ],

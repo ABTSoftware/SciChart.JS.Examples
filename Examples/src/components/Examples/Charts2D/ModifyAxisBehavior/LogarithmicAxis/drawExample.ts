@@ -33,7 +33,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             fontWeight: "bold",
             placeWithinChart: true,
             color: appTheme.ForegroundColor + "C4",
-            padding: Thickness.fromString("10 0 4 0"),
+            padding: new Thickness(10, 0, 4),
         },
     });
 
@@ -85,7 +85,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: data0.xValues,
                 yValues: data0.yValues,
-                dataSeriesName: "y = x ^ 2",
+                dataSeriesName: "y = x<sup>2</sup>",
             }),
             stroke: appTheme.VividSkyBlue,
             strokeThickness: 3,
@@ -104,7 +104,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: data1.xValues,
                 yValues: data1.yValues,
-                dataSeriesName: "y = x ^ 2.2",
+                dataSeriesName: "y = x<sup>2.2</sup>",
             }),
             stroke: appTheme.VividPink,
             strokeThickness: 3,
@@ -123,7 +123,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: data2.xValues,
                 yValues: data2.yValues,
-                dataSeriesName: "y = x ^ 2.4",
+                dataSeriesName: "y = x<sup>2.4</sup>",
             }),
             stroke: appTheme.VividOrange,
             strokeThickness: 3,

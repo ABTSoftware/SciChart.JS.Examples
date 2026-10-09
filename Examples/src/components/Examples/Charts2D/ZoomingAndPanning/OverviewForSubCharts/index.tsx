@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { SciChartSurface } from "scichart";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, SubChartManager, SubChartConfig } from "./drawExample";
 import { appTheme } from "../../../theme";
 
@@ -72,91 +71,37 @@ export default function OverviewForSubCharts() {
     };
 
     return (
-        <div
-            className={commonClasses.ChartWithNestedToolbar}
-            style={{ display: "flex", flexDirection: "column", height: "100%", position: "relative" }}
-        >
-            <div ref={chartRef} style={{ width: "100%", height: "100%" }} />
-
-            {/* Compact floating controls positioned at bottom-right */}
-            <div
-                style={{
-                    position: "absolute",
-                    top: "8px",
-                    left: "8px",
-                    padding: "4px 8px",
-                    backgroundColor: "rgba(30, 30, 30, 0.95)",
-                    border: "1px solid #444",
-                    borderRadius: "4px",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    fontSize: "12px",
-                    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
-                    backdropFilter: "blur(4px)",
-                    maxWidth: "calc(100% - 16px)",
-                    flexWrap: "wrap",
-                    zIndex: 1000,
-                    pointerEvents: "auto",
-                }}
-            >
-                <button
-                    onClick={addSubChart}
-                    style={{
-                        padding: "3px 8px",
-                        backgroundColor: "#007acc",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "2px",
-                        cursor: "pointer",
-                        fontSize: "11px",
-                        minWidth: "auto",
-                    }}
-                    title="Add SubChart"
-                >
-                    Add Chart
-                </button>
-
-                <button
-                    onClick={() => removeSubChart(subCharts[subCharts.length - 1]?.id)}
-                    disabled={subCharts.length === 0}
-                    style={{
-                        padding: "3px 8px",
-                        backgroundColor: subCharts.length === 0 ? "#666" : "#dc3545",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "2px",
-                        cursor: subCharts.length === 0 ? "not-allowed" : "pointer",
-                        fontSize: "11px",
-                        minWidth: "auto",
-                    }}
-                    title="Remove Last SubChart"
-                >
-                    Remove Chart
-                </button>
-
-                <span style={{ color: "#ccc", fontSize: "11px", margin: "0 4px" }}>{subCharts.length}</span>
-
-                <div style={{ display: "flex", gap: "3px", alignItems: "center" }}>
-                    {subCharts.map((config, index) => (
+        <div className="sc-chart-wrapper flex flex-col">
+            <header className="sc-toolbar-row">
+                <div className="flex flex-wrap items-center gap-2">
+                    {subCharts.map((config) => (
                         <input
                             key={config.id}
                             type="color"
                             value={config.color}
                             onChange={(e) => updateSubChart(config.id, { color: e.target.value })}
-                            style={{
-                                width: "14px",
-                                height: "14px",
-                                border: "1px solid #555",
-                                borderRadius: "2px",
-                                cursor: "pointer",
-                                padding: "0",
-                            }}
+                            className="sc-input"
+                            aria-label={`Change color for ${config.title}`}
                             title={`Change color for ${config.title}`}
                         />
                     ))}
                 </div>
-            </div>
+
+                <button className="sc-button ml-auto" type="button" onClick={addSubChart} title="Add SubChart">
+                    Add Chart
+                </button>
+
+                <button
+                    className="sc-button sc-button-danger"
+                    type="button"
+                    onClick={() => removeSubChart(subCharts[subCharts.length - 1]?.id)}
+                    disabled={subCharts.length === 0}
+                    title="Remove Last SubChart"
+                >
+                    Remove Chart
+                </button>
+            </header>
+            <div ref={chartRef} className="w-full h-full" />
         </div>
     );
 }

@@ -7,14 +7,14 @@ This example demonstrates a fully interactive stock chart using SciChart.JS. It 
 ## Technologies Used
 
 -   **SciChart.JS** – High-performance charting library used for rendering financial charts.
--   **Angular** – Implementation using Angular components and Angular Material for the UI toolbar.
--   **React** – Implementation using TSX with SciChartReact and Material-UI components.
+-   **Angular** – Implementation using Angular components and shared CSS classes for the UI toolbar.
+-   **React** – Implementation using TSX with SciChartReact and shared CSS controls.
 -   **Vanilla JavaScript** – Example files written in plain JavaScript (ES Modules) for chart configuration and interactivity.
 
 ## Code Explanation
 
 -   **Angular Component (angular.ts):** Implements a standalone Angular component that initializes the SciChartSurface using the provided `drawExample` function. It includes a toolbar with toggle buttons to switch between pan, line, and marker modes. It also provides functionality to save, load, and reset the chart state using local storage.
--   **React Component (index.tsx):** Provides a React implementation of the example. It utilizes SciChartReact to initialize the chart and Material-UI components for the interactive toolbar allowing users to switch chart modes and save/load chart definitions.
+-   **React Component (index.tsx):** Provides a React implementation of the example. It utilizes SciChartReact to initialize the chart and shared CSS controls for the interactive toolbar allowing users to switch chart modes and save/load chart definitions.
 -   **Chart Initialization (drawExample.js/ts):** These files set up the SciChartSurface, add a candlestick series for displaying OHLC data along with moving average lines. They also add interactivity modifiers: Zoom Extents, Mouse Wheel Zoom, Zoom Pan, and the custom modifiers for creating trade markers and line annotations. The function returns a set of control methods (getDefinition, applyDefinition, resetChart, setChartMode) that are used by the UI to manage chart state.
 -   **Custom Annotation Modifiers:**
     -   _CreateLineAnnotationModifier.js/ts_: Handles the drawing of editable line annotations. It listens for mouse events to begin, update, and complete drawing a line annotation, which can be deleted via Ctrl+click.

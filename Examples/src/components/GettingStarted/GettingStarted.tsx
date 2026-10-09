@@ -1,5 +1,6 @@
 import React from "react";
-import { Typography, Box } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import { styled } from "@mui/system"; // or '@mui/material/styles' if using styled
 
 const Root = styled(Box)(({ theme }) => ({

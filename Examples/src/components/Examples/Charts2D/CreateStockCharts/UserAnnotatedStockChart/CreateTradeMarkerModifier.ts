@@ -1,17 +1,12 @@
 import { ChartModifierBase2D } from "scichart/Charting/ChartModifiers/ChartModifierBase2D";
 import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMouseArgs";
 import { Point } from "scichart/Core/Point";
-import { LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
 import { IAnnotation } from "scichart/Charting/Visuals/Annotations/IAnnotation";
 import {
     CustomAnnotation,
     EVerticalAnchorPoint,
     EHorizontalAnchorPoint,
     EExecuteOn,
-    translateFromCanvasToSeriesViewRect,
-    AnnotationClickEventArgs,
-    registerFunction,
-    EBaseType,
     OhlcSeriesInfo,
 } from "scichart";
 import { appTheme } from "../../../theme";

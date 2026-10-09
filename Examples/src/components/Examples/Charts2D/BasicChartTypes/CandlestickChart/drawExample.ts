@@ -2,7 +2,6 @@
 import {
     CursorModifier,
     CursorTooltipSvgAnnotation,
-    DateTimeNumericAxis,
     DiscontinuousDateAxis,
     EAutoRange,
     EDataSeriesType,
@@ -25,7 +24,6 @@ import {
     OhlcSeriesInfo,
     parseColorToUIntArgb,
     Point,
-    SciChartOverview,
     SciChartSurface,
     SeriesInfo,
     XyDataSeries,
@@ -37,7 +35,6 @@ import { appTheme } from "../../../theme";
 import { simpleBinanceRestClient } from "../../../ExampleData/binanceRestClient";
 import { ExampleDataProvider, TPriceBar } from "../../../ExampleData/ExampleDataProvider";
 import {
-    DEFAULT_LABEL_THRESHOLDS,
     ETradeChartLabelFormat,
 } from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
 

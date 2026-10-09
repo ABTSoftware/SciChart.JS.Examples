@@ -11,6 +11,7 @@ import {
     ZoomPanModifier,
     EColumnDataLabelPosition,
     IStackedColumnSeriesDataLabelProviderOptions,
+    StackedColumnSeriesDataLabelProvider,
     EVerticalTextPosition,
     NumberRange,
     Thickness,
@@ -40,7 +41,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             labelPrecision: 0,
-            growBy: new NumberRange(0, 0.05),
+            growBy: new NumberRange(0, 0.03),
             axisTitle: "Sales $USD (Billion)",
             drawMinorGridLines: false,
         })
@@ -58,58 +59,29 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         color: appTheme.TextColor,
         style: { fontSize: 12, fontFamily: "Arial", padding: new Thickness(0, 0, 2, 0) },
         precision: 0,
-        positionMode: EColumnDataLabelPosition.Outside,
+        positionMode: EColumnDataLabelPosition.Center,
         verticalTextPosition: EVerticalTextPosition.Center,
     };
 
-    // Create some RenderableSeries - for each part of the stacked column
-    // Notice the stackedGroupId. This defines if series are stacked (same), or grouped side by side (different)
-    const rendSeries1 = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues1, dataSeriesName: "EU" }),
-        fill: appTheme.VividPurple,
-        opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
-        dataLabels,
-    });
-
-    const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues2, dataSeriesName: "Asia" }),
-        fill: appTheme.VividPink,
-        opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
-        dataLabels,
-    });
-
-    const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues3, dataSeriesName: "USA" }),
-        fill: appTheme.VividOrange,
-        opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
-        dataLabels,
-    });
-
-    const rendSeries4 = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues4, dataSeriesName: "UK" }),
-        fill: appTheme.VividSkyBlue,
-        opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
-        dataLabels,
-    });
-
-    const rendSeries5 = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues5, dataSeriesName: "Latam" }),
-        fill: appTheme.VividTeal,
-        opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
-        dataLabels,
-    });
-
-    // To add the series to the chart, put them in a StackedColumnCollection
-    const stackedColumnCollection = new StackedColumnCollection(wasmContext, {
-        dataPointWidth: 0.6,
-    });
-
-    stackedColumnCollection.add(rendSeries1, rendSeries2, rendSeries3, rendSeries4, rendSeries5);
+    // One shared group ID stacks the regions into a single column per year.
+    const stackedColumnCollection = new StackedColumnCollection(wasmContext, { dataPointWidth: 0.6 });
+    for (const { yValues, dataSeriesName, fill } of [
+        { yValues: yValues1, dataSeriesName: "EU", fill: appTheme.VividPurple },
+        { yValues: yValues2, dataSeriesName: "Asia", fill: appTheme.VividPink },
+        { yValues: yValues3, dataSeriesName: "USA", fill: appTheme.VividOrange },
+        { yValues: yValues4, dataSeriesName: "UK", fill: appTheme.VividSkyBlue },
+        { yValues: yValues5, dataSeriesName: "Latam", fill: appTheme.VividTeal },
+    ]) {
+        stackedColumnCollection.add(
+            new StackedColumnRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName }),
+                fill,
+                opacity: 0.8,
+                stackedGroupId: "StackedGroupId",
+                dataLabels,
+            })
+        );
+    }
     stackedColumnCollection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
 
     sciChartSurface.renderableSeries.add(stackedColumnCollection);
@@ -120,7 +92,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new ZoomPanModifier({ enableZoom: true }),
         new MouseWheelZoomModifier()
     );
-
     sciChartSurface.zoomExtents();
 
     const toggleHundredPercentMode = (value: boolean) => {
@@ -128,13 +99,19 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         sciChartSurface.zoomExtents(200);
     };
 
-    const toggleDataLabels = (areDataLabelsVisible: boolean) => {
-        for (let i = 0; i < 5; i++) {
-            const columnSeries = stackedColumnCollection.get(i);
-            columnSeries.dataLabelProvider.style.fontSize = areDataLabelsVisible ? 0 : 12;
+    const toggleDataLabels = (visible: boolean) => {
+        for (const columnSeries of stackedColumnCollection.asArray()) {
+            columnSeries.dataLabelProvider.style.fontSize = visible ? 12 : 0;
         }
         sciChartSurface.invalidateElement();
     };
 
-    return { sciChartSurface, controls: { toggleHundredPercentMode, toggleDataLabels } };
+    const setDataLabelPosition = (positionMode: EColumnDataLabelPosition) => {
+        for (const columnSeries of stackedColumnCollection.asArray()) {
+            (columnSeries.dataLabelProvider as StackedColumnSeriesDataLabelProvider).positionMode = positionMode;
+        }
+        sciChartSurface.invalidateElement();
+    };
+
+    return { sciChartSurface, controls: { toggleHundredPercentMode, toggleDataLabels, setDataLabelPosition } };
 };

@@ -1,5 +1,4 @@
 import React, { ReactNode, useState, useCallback, useRef, useEffect } from "react";
-import styles from "./Tooltip.module.scss";
 import { calculateTooltipPosition, TooltipPosition } from "./tooltipUtils";
 
 interface TooltipProps {
@@ -69,14 +68,16 @@ export const Tooltip: React.FC<TooltipProps> = ({
     return (
         <div
             ref={containerRef}
-            className={`${styles.tooltipContainer} ${className}`.trim()}
+            className={`sc-editor-tooltip-container ${className}`.trim()}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
             {children}
             <div
                 ref={tooltipRef}
-                className={`${styles.tooltip} ${isVisible ? styles.visible : ""} ${styles[position]}`}
+                className={`sc-editor-tooltip ${
+                    isVisible ? "sc-editor-tooltip-visible" : ""
+                } sc-editor-tooltip-${position}`}
             >
                 {content}
             </div>

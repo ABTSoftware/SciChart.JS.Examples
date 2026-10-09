@@ -1,70 +1,20 @@
-import { CSSProperties, useRef, useState } from "react";
-import { FormControlLabel } from "@mui/material";
-import { PlayArrow as PlayArrowIcon } from "@mui/icons-material";
-import { Pause as PauseIcon } from "@mui/icons-material";
-import { Settings as SettingsIcon } from "@mui/icons-material";
-import CloseIcon from "@mui/icons-material/Close";
-import Switch from "@mui/material/Switch";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import Button from "@mui/material/Button";
-import { Dialog, DialogTitle, IconButton } from "@mui/material";
+import { useRef, useState } from "react";
+import { PlayArrowIcon, StopIcon, SettingsIcon, CloseIcon } from "../../../icons";
+import { BodyPortal } from "../../../Portal";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import { appTheme } from "../../../theme";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawGridExample, TMessage } from "./drawExample";
 
-const styles: Record<string, CSSProperties> = {
-    infoBlock: {
-        display: "flex",
-        flex: "auto",
-        flexBasis: "20%",
-        justifyContent: "space-between",
-        justifyItems: "space-between",
-        marginRight: "8px",
-    },
-    infoItem: {
-        padding: "0.4em",
-        textAlign: "end",
-        flex: "none",
-        width: "16%",
-        fontSize: "0.8em",
-        textWrap: "nowrap",
-    },
-    configButtonWrapperStyle: {
-        gridArea: "1 / 1 / 2 / 2",
-        pointerEvents: "none",
-        touchAction: "none",
-        zIndex: 2,
-    },
-};
-
-const configButtonWrapperStyle: CSSProperties = {
-    gridArea: "1 / 1 / 2 / 2",
-    pointerEvents: "none",
-    touchAction: "none",
-    zIndex: 2,
-};
-
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function SubchartsGrid() {
     const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
-    const [isStarted, setIsStarted] = useState(false);
-
     const [messages, setMessages] = useState<TMessage[]>([]);
-
+    const [isStarted, setIsStarted] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-    const handleClickOpen = () => {
-        setIsDialogOpen(true);
-    };
 
     const handleClose = () => {
         setIsDialogOpen(false);
     };
 
-    const handleLabelsChange = (ev: any, checked: boolean) => {
+    const handleLabelsChange = (checked: boolean) => {
         controlsRef.current.setLabels(checked);
     };
 
@@ -72,56 +22,14 @@ export default function SubchartsGrid() {
         drawGridExample(rootElement, (newMessages: TMessage[]) => {
             setMessages([...newMessages]);
         });
-    const switchStyleOverrides = {
-        width: "100%",
-        margin: 0,
-        padding: "1em",
-        color: appTheme.ForegroundColor,
-        accentColor: "#0bdef4",
-
-        "& .MuiSwitch-track": {
-            opacity: 1,
-            backgroundColor: appTheme.PalePink,
-        },
-    };
-    const configurationDialog = (
-        <Dialog
-            onClose={handleClose}
-            open={isDialogOpen}
-            sx={{ color: appTheme.ForegroundColor, "& .MuiDialog-paper": { background: appTheme.DarkIndigo } }}
-        >
-            <DialogTitle sx={{ display: "flex", padding: "16px" }}>
-                <div style={{ color: appTheme.ForegroundColor }}>Chart Configurations</div>
-                <IconButton
-                    aria-label="close"
-                    onClick={handleClose}
-                    sx={(theme) => ({
-                        alignSelf: "flex-start",
-                        justifySelf: "flex-end",
-                        marginLeft: "24px",
-                        padding: 0,
-                        color: theme.palette.grey[500],
-                    })}
-                >
-                    <CloseIcon />
-                </IconButton>
-            </DialogTitle>
-            <List>
-                <ListItem disablePadding>
-                    <FormControlLabel
-                        control={<Switch onChange={handleLabelsChange} />}
-                        label="Axis Labels"
-                        sx={switchStyleOverrides}
-                    />
-                </ListItem>
-            </List>
-        </Dialog>
-    );
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow} style={{ justifyContent: "space-between" }}>
-                <Button
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <button
+                    className="sc-button sc-button-icon"
+                    aria-label={isStarted ? "Pause updates" : "Start updates"}
+                    title={isStarted ? "Pause updates" : "Start updates"}
                     onClick={() => {
                         if (isStarted) {
                             controlsRef.current.stopUpdate();
@@ -130,29 +38,76 @@ export default function SubchartsGrid() {
                         }
                         setIsStarted(!isStarted);
                     }}
+                    type="button"
                 >
-                    {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
-                </Button>
+                    {isStarted ? <StopIcon /> : <PlayArrowIcon />}
+                </button>
 
-                <div style={styles.configButtonWrapperStyle} title="Chart Configurations">
-                    <IconButton
-                        sx={{ color: appTheme.ForegroundColor, pointerEvents: "all", touchAction: "all" }}
-                        onClick={handleClickOpen}
-                    >
-                        <SettingsIcon fontSize="medium" />
-                    </IconButton>
-                    {configurationDialog}
-                </div>
+                <button
+                    className="sc-button sc-button-icon"
+                    aria-label="Chart configurations"
+                    title="Chart Configurations"
+                    onClick={() => setIsDialogOpen(true)}
+                    type="button"
+                >
+                    <SettingsIcon fontSize="medium" />
+                </button>
 
-                <div style={styles.infoBlock}>
+                {isDialogOpen ? (
+                    <BodyPortal>
+                        <div
+                            className="sc-modal-backdrop"
+                            onClick={(event) => event.target === event.currentTarget && handleClose()}
+                            onKeyDown={(event) => event.key === "Escape" && handleClose()}
+                        >
+                            <section
+                                className="sc-modal"
+                                role="dialog"
+                                aria-modal="true"
+                                aria-labelledby="subcharts-config-title"
+                            >
+                                <header className="sc-modal-header">
+                                    <strong id="subcharts-config-title">Chart Configurations</strong>
+                                    <button
+                                        className="sc-button sc-button-icon"
+                                        aria-label="Close chart configurations"
+                                        onClick={handleClose}
+                                        autoFocus
+                                        type="button"
+                                    >
+                                        <CloseIcon />
+                                    </button>
+                                </header>
+                                <div className="sc-modal-body">
+                                    <label className="sc-switch">
+                                        <input
+                                            type="checkbox"
+                                            onChange={(event) => handleLabelsChange(event.currentTarget.checked)}
+                                        />
+                                        Axis Labels
+                                    </label>
+                                </div>
+                            </section>
+                        </div>
+                    </BodyPortal>
+                ) : null}
+                <div className="flex gap-2 mr-2" style={{ flex: "1 1 20%" }}>
                     {messages.map((msg, index) => (
-                        <div key={index} style={styles.infoItem}>
+                        <div
+                            key={index}
+                            className="flex-none text-end p-1"
+                            style={{
+                                width: "16%",
+                                fontSize: "0.8em",
+                                textWrap: "nowrap",
+                            }}
+                        >
                             <div>{msg.title}</div>
                             <div>{msg.detail}</div>
                         </div>
                     ))}
                 </div>
-            </div>
+            </header>
             <SciChartReact
                 initChart={drawExample}
                 onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {

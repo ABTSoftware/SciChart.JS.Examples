@@ -1,7 +1,7 @@
+import "./styles.css";
 import { ChangeEventHandler, useContext, useEffect, useState } from "react";
-import { appTheme } from "../../../theme";
-import { IInitResult, SciChartSurfaceContext, TResolvedReturnType } from "scichart-react";
-import { Rect, SciChartSurface } from "scichart";
+import { SciChartSurfaceContext, TResolvedReturnType } from "scichart-react";
+import { Rect } from "scichart";
 import { createMainChart } from "./main-chart-config";
 
 const ThresholdSlider = () => {
@@ -40,31 +40,12 @@ const ThresholdSlider = () => {
 
     return (
         <div
-            style={{
-                top: seriesViewRect.top,
-                right: viewport.width - seriesViewRect.right,
-                position: "absolute",
-                color: appTheme.ForegroundColor,
-                fontSize: "0.8em",
-            }}
+            className="absolute"
+            style={{ fontSize: "0.8em", top: seriesViewRect.top - 13, right: viewport.width - seriesViewRect.right - 10 }}
         >
             Duration Threshold
             <br />
-            <input
-                type="range"
-                min="0"
-                max="2000"
-                value={width}
-                onChange={changeWidth}
-                style={{
-                    color: "red",
-                    appearance: "none",
-                    WebkitAppearance: "none",
-                    borderRadius: 15,
-                    height: 10,
-                    background: "#0bdef4",
-                }}
-            ></input>
+            <input type="range" min="0" max="2000" value={width} onChange={changeWidth} className="sc-range"></input>
         </div>
     );
 };

@@ -3,7 +3,6 @@ import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier"
 import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { AxisCore } from "scichart/Charting/Visuals/Axis/AxisCore";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { ELegendOrientation, TLegendItem } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 import { NumberRange } from "scichart/Core/NumberRange";

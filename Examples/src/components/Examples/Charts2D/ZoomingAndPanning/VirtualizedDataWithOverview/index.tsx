@@ -1,7 +1,5 @@
-import * as React from "react";
 import { useState } from "react";
 import { SciChartReact } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { getChartsInitializationApi } from "./drawExample";
 
 export default function VirtualizedDataOverview() {
@@ -9,21 +7,19 @@ export default function VirtualizedDataOverview() {
     const [isMainChartInitialized, setIsMainChartInitialized] = useState(false);
 
     return (
-        <div className={commonClasses.ChartWrapper}>
-            <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+        <div className="sc-chart-wrapper flex flex-col">
+            <SciChartReact
+                style={{ flex: "1 1 600px" }}
+                initChart={chartInitializationApi.createMainChart}
+                onInit={() => setIsMainChartInitialized(true)}
+            />
+            {isMainChartInitialized ? (
                 <SciChartReact
-                    style={{ flexBasis: 600, flexGrow: 1, flexShrink: 1 }}
-                    initChart={chartInitializationApi.createMainChart}
-                    onInit={() => setIsMainChartInitialized(true)}
+                    style={{ flex: "1 1 100px" }}
+                    initChart={chartInitializationApi.createOverview}
+                    onInit={chartInitializationApi.afterOverviewInit}
                 />
-                {isMainChartInitialized ? (
-                    <SciChartReact
-                        style={{ flexBasis: 100, flexGrow: 1, flexShrink: 1 }}
-                        initChart={chartInitializationApi.createOverview}
-                        onInit={chartInitializationApi.afterOverviewInit}
-                    />
-                ) : null}
-            </div>
+            ) : null}
         </div>
     );
 }

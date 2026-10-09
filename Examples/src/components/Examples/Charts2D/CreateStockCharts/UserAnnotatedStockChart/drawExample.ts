@@ -1,49 +1,25 @@
 // SCICHART EXAMPLE
 import {
     AnnotationClickEventArgs,
-    buildDataSeries,
     CategoryAxis,
-    chartReviver,
     configure2DSurface,
-    CursorModifier,
-    CursorTooltipSvgAnnotation,
-    CustomAnnotation,
-    DateTimeNumericAxis,
     EAutoRange,
     EBaseType,
     ECoordinateMode,
-    EDataSeriesType,
-    EExecuteOn,
-    EFillPaletteMode,
-    EHorizontalAnchorPoint,
     EMultiLineAlignment,
     ENumericFormat,
-    ESeriesType,
     EVerticalAnchorPoint,
     FastCandlestickRenderableSeries,
-    FastColumnRenderableSeries,
     FastLineRenderableSeries,
-    FastMountainRenderableSeries,
-    FastOhlcRenderableSeries,
-    GradientParams,
-    IFillPaletteProvider,
-    IPointMetadata,
-    IRenderableSeries,
     MouseWheelZoomModifier,
     NativeTextAnnotation,
     NumberRange,
     NumericAxis,
     OhlcDataSeries,
-    OhlcSeriesInfo,
-    parseColorToUIntArgb,
-    Point,
     registerFunction,
-    SciChartOverview,
     SciChartSurface,
-    SeriesInfo,
     SmartDateLabelProvider,
     TOhlcSeriesData,
-    XyDataSeries,
     XyMovingAverageFilter,
     ZoomExtentsModifier,
     ZoomPanModifier,
@@ -51,8 +27,6 @@ import {
 import { appTheme } from "../../../theme";
 import { CreateTradeMarkerModifier } from "./CreateTradeMarkerModifier";
 import { CreateLineAnnotationModifier } from "./CreateLineAnnotationModifier";
-import { VerticalYRulerModifier } from "./RulerModifier";
-import { simpleBinanceRestClient } from "../../../ExampleData/binanceRestClient";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
 const deleteOnClick = (args: AnnotationClickEventArgs) => {

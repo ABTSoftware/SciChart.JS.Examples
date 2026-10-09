@@ -1,64 +1,21 @@
-import * as React from "react";
-import {
-    MENU_ITEMS_2D,
-    MENU_ITEMS_2D_ID,
-    MENU_ITEMS_3D,
-    MENU_ITEMS_3D_ID,
-    MENU_ITEMS_FEATURED_APPS,
-    MENU_ITEMS_FEATURED_APPS_ID,
-} from "../AppRouter/examples";
-import FooterGrid from "./FooterGrid";
-import { useNavigate } from "react-router";
-import classes from "./AppFooter.module.scss";
-import { Facebook as FacebookIcon } from "@mui/icons-material";
-import { YouTube as YouTubeIcon } from "@mui/icons-material";
-import { LinkedIn as LinkedInIcon } from "@mui/icons-material";
-import { Twitter as TwitterIcon } from "@mui/icons-material";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TwitterIcon from "@mui/icons-material/Twitter";
 import Button from "@mui/material/Button";
 import { libraryVersion } from "scichart";
 
-export type TFooterlink = {
-    link: string;
-    text: string;
-};
-
 export default function AppFooter() {
-    const navigate = useNavigate();
-
-    const historyPushPath = (path: string) => {
-        if (!path) return;
-        navigate(path);
-    };
-
     return (
         <>
-            <div className={classes.AppFooter}>
-                {/* // removing this section from the footer  */}
-                {/* <FooterGrid
-                    historyPushPath={historyPushPath}
-                    title="Featured Apps"
-                    menuItems={MENU_ITEMS_FEATURED_APPS}
-                    menuItemsId={MENU_ITEMS_FEATURED_APPS_ID}
-                />
-                <FooterGrid
-                    historyPushPath={historyPushPath}
-                    title="2D Charts"
-                    menuItems={MENU_ITEMS_2D}
-                    menuItemsId={MENU_ITEMS_2D_ID}
-                />
-                <FooterGrid
-                    historyPushPath={historyPushPath}
-                    title="3D Charts"
-                    menuItems={MENU_ITEMS_3D}
-                    menuItemsId={MENU_ITEMS_3D_ID}
-                /> */}
-                <div className={classes.FooterBottomSection}>
-                    <div className={classes.LinksBox}>
+            <div className="sc-app-footer">
+                <div className="sc-app-footer-footer-bottom-section">
+                    <div className="sc-app-footer-links-box">
                         <h5>Frameworks</h5>
-                        <div className={classes.divider}>
-                            <div className={classes.dividerBox}></div>
+                        <div className="sc-app-footer-divider">
+                            <div className="sc-app-footer-divider-box"></div>
                         </div>
-                        <div className={classes.RelatedLinks}>
+                        <div className="sc-app-footer-related-links">
                             <a href="https://www.scichart.com/demo/javascript" title="SciChart Javascript Demos">
                                 SciChart Javascript Demos
                             </a>
@@ -70,12 +27,12 @@ export default function AppFooter() {
                             </a>
                         </div>
                     </div>
-                    <div className={classes.LinksBox}>
+                    <div className="sc-app-footer-links-box">
                         <h5>Quick Links</h5>
-                        <div className={classes.divider}>
-                            <div className={classes.dividerBox}></div>
+                        <div className="sc-app-footer-divider">
+                            <div className="sc-app-footer-divider-box"></div>
                         </div>
-                        <div className={classes.RelatedLinks}>
+                        <div className="sc-app-footer-related-links">
                             <a href="https://www.scichart.com/" title="Home Page" aria-current="page">
                                 Home
                             </a>
@@ -114,12 +71,12 @@ export default function AppFooter() {
                             </a>
                         </div>
                     </div>
-                    <div className={classes.LinksBox}>
+                    <div className="sc-app-footer-links-box">
                         <h5>Useful Links</h5>
-                        <div className={classes.divider}>
-                            <div className={classes.dividerBox}></div>
+                        <div className="sc-app-footer-divider">
+                            <div className="sc-app-footer-divider-box"></div>
                         </div>
-                        <div className={classes.RelatedLinks}>
+                        <div className="sc-app-footer-related-links">
                             <a href="https://www.scichart.com/changelog/scichart-js/" title="Changelog">
                                 View v{libraryVersion} Changelog
                             </a>
@@ -149,20 +106,20 @@ export default function AppFooter() {
                             </a>
                         </div>
                     </div>
-                    <div className={classes.LinksBox}>
+                    <div className="sc-app-footer-links-box">
                         <h5>Contact us</h5>
-                        <div className={classes.divider}>
-                            <div className={classes.dividerBox}></div>
+                        <div className="sc-app-footer-divider">
+                            <div className="sc-app-footer-divider-box"></div>
                         </div>
                         <p>Not sure where to start? Contact us, we are happy to help!</p>
                         <Button
-                            className={classes.ContactUsButton}
+                            className="sc-app-footer-contact-us-button"
                             href="https://www.scichart.com/contact-us/"
                             target="_blank"
                         >
                             Contact Us
                         </Button>
-                        <div className={classes.SocialMediaLinks}>
+                        <div className="sc-app-footer-social-media-links">
                             <a href="https://www.facebook.com/scichart" title="SciChart on Facebook">
                                 <FacebookIcon fontSize="large" />
                             </a>
@@ -179,7 +136,7 @@ export default function AppFooter() {
                     </div>
                 </div>
             </div>
-            <div className={classes.Copyright}>
+            <div className="sc-app-footer-copyright">
                 <span>SciChart Ltd, 16 Beaufort Court, Admirals Way, Docklands, London, E14 9XL.</span>
             </div>
         </>

@@ -3,7 +3,7 @@ import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMous
 import { Point } from "scichart/Core/Point";
 import { LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
 import { IAnnotation } from "scichart/Charting/Visuals/Annotations/IAnnotation";
-import { EExecuteOn, translateFromCanvasToSeriesViewRect } from "scichart";
+import { translateFromCanvasToSeriesViewRect } from "scichart";
 
 // Create a TypeScript class which inherits ChartModifierbase2D to insert into SciChartSurface.chartModifiers collection
 export class CreateLineAnnotationModifier extends ChartModifierBase2D {

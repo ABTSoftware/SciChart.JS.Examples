@@ -1,12 +1,8 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
-import { MouseEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getMinMax, australiaData, Keytype, interpolateColor, keyData } from "./helpers";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     const [key, setKey] = useState<Keytype>("population");
     const [mapData, setMapData] = useState<any>();
@@ -15,11 +11,6 @@ export default function ChartComponent() {
     const setMap = (nextKey: Keytype) => {
         setMapFunc.current?.(nextKey);
         setKey(nextKey);
-    };
-
-    const handleToggleButtonChanged = (_event: MouseEvent<HTMLElement>, value: Keytype | null) => {
-        if (!value) return;
-        setMap(value);
     };
 
     useEffect(() => {
@@ -32,61 +23,42 @@ export default function ChartComponent() {
     }, []);
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow}>
-                <ToggleButtonGroup
-                    className={commonClasses.ToggleButtonGroup}
-                    exclusive
-                    value={key}
-                    onChange={handleToggleButtonChanged}
-                    size="medium"
-                    color="primary"
-                    aria-label="map metric"
-                >
-                    <ToggleButton value="population">Population</ToggleButton>
-                    <ToggleButton value="area_km2">
-                        Area (km<sup>2</sup>)
-                    </ToggleButton>
-                    <ToggleButton value="population_density">Population Density</ToggleButton>
-                </ToggleButtonGroup>
-            </div>
-            <div className={commonClasses.FullHeightChartWrapper}>
-                <span
-                    style={{
-                        position: "absolute",
-                        top: "8px",
-                        left: "10px",
-                        zIndex: 1,
-                        display: "flex",
-                        flexDirection: "column",
-                        color: "var(--text)",
-                        fontSize: "11px",
-                        pointerEvents: "none",
-                    }}
-                >
-                    {australiaData.map((d) => {
-                        const [minValue, maxValue] = getMinMax(key, australiaData);
-                        const color = interpolateColor(minValue, maxValue, keyData[d.state][key]);
-                        return (
-                            <span key={d.state} style={{ color: "var(--text)" }}>
-                                <span
-                                    style={{
-                                        width: 10,
-                                        height: 10,
-                                        backgroundColor: color,
-                                        display: "inline-block",
-                                        marginRight: "6px",
-                                    }}
-                                />
-                                {d.state} - {new Intl.NumberFormat().format(keyData[d.state][key])}
-                            </span>
-                        );
-                    })}
-                </span>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="map metric">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={key === "population"}
+                        onClick={() => setMap("population")}
+                    >
+                        Population
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={key === "area_km2"}
+                        onClick={() => setMap("area_km2")}
+                    >
+                        <span>
+                            Area (km<sup>2</sup>)
+                        </span>
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={key === "population_density"}
+                        onClick={() => setMap("population_density")}
+                    >
+                        Population Density
+                    </button>
+                </div>
+            </header>
+            <div className="sc-chart-wrapper flex-auto">
                 {mapData ? (
                     <SciChartReact
                         initChart={drawExample}
-                        className={commonClasses.ChartWrapper}
+                        className="sc-chart-wrapper"
                         onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                             const { setMap, setMapJson } = initResult;
 
@@ -96,6 +68,30 @@ export default function ChartComponent() {
                         }}
                     />
                 ) : null}
+
+                <div
+                    className="absolute flex flex-col top-2 left-2 pointer-events-none"
+                    style={{ fontSize: 11 }}
+                >
+                    {australiaData.map((d) => {
+                        const [minValue, maxValue] = getMinMax(key, australiaData);
+                        const color = interpolateColor(minValue, maxValue, keyData[d.state][key]);
+                        return (
+                            <span key={d.state}>
+                                <span
+                                    style={{
+                                        width: 10,
+                                        height: 10,
+                                        display: "inline-block",
+                                        marginRight: 6,
+                                        backgroundColor: color,
+                                    }}
+                                />
+                                {d.state} - {new Intl.NumberFormat().format(keyData[d.state][key])}
+                            </span>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );

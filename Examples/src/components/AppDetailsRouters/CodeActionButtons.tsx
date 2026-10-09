@@ -1,5 +1,4 @@
 import React, { FC, ReactNode, useState } from "react";
-import classes from "./AppDetailsRouter.scss";
 import {
     EPageFramework,
     getFrameworkContent,
@@ -76,7 +75,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
             <CodeActionButton
                 iconName="fullscreen"
                 label="Fullscreen"
-                className={`${classes.btn} ${classes.btnGithub}`}
+                className={`sc-editor-action sc-editor-action-github`}
                 href={`iframe/${currentExample.path}`}
                 target="_blank"
                 rel="nofollow"
@@ -85,7 +84,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
             <CodeActionButton
                 iconName="exampleStackblitz"
                 label="Edit"
-                className={`${classes.btn} ${classes.btnDark}`}
+                className={`sc-editor-action sc-editor-action-dark`}
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.StackBlitz)}
                 title={
                     isFrameworkVariantAvailable
@@ -96,7 +95,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
             <CodeActionButton
                 iconName="codesandbox"
                 label="&nbsp;Edit"
-                className={`${classes.btn} ${classes.btnDark}`}
+                className={`sc-editor-action sc-editor-action-dark`}
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.CodeSandbox)}
                 title={
                     isFrameworkVariantAvailable
@@ -107,7 +106,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
             <CodeActionButton
                 iconName="docs"
                 label="Docs"
-                className={`${classes.btn} ${classes.btnDocs}`}
+                className={`sc-editor-action sc-editor-action-docs`}
                 href={`https://www.scichart.com/documentation/js/v5/intro`}
                 target="_blank"
                 rel="nofollow"
@@ -115,7 +114,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
             />
             <CodeActionButton
                 iconName="npm"
-                className={`${classes.btn} ${classes.btnNpm}`}
+                className={`sc-editor-action sc-editor-action-npm`}
                 href={`https://www.npmjs.com/package/scichart`}
                 target="_blank"
                 rel="nofollow"
@@ -124,7 +123,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
             <CodeActionButton
                 iconName="exampleGithub"
                 // label="View&nbsp;Source"
-                className={`${classes.btn} ${classes.btnGithub}`}
+                className={`sc-editor-action sc-editor-action-github`}
                 href={`https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Examples/src/components/Examples/${currentExample.filepath}`}
                 target="_blank"
                 rel="noopener"

@@ -1,14 +1,7 @@
 import path from "path";
 import fs from "fs";
 import { TExampleInfo } from "../../../components/AppRouter/examplePages";
-import {
-    SandboxConfig,
-    IFiles,
-    includeImportedModules,
-    includeExternalModules,
-    commonFiles,
-    csStyles,
-} from "./sandboxDependencyUtils";
+import { SandboxConfig, IFiles, includeExternalModules, commonFiles, csStyles } from "./sandboxDependencyUtils";
 import { SCICHART_ANCHOR, SCICHART_VERSION } from "./constants";
 
 const pj = require("../../../../package.json");
@@ -21,9 +14,7 @@ export const getReactSandBoxConfig = async (
     const tsPath = path.join(folderPath, "index.tsx");
     let code = await fs.promises.readFile(tsPath, "utf8");
     let files: IFiles = {};
-    await includeImportedModules(folderPath, files, code, true, true, baseUrl);
-    code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
-    code = await includeExternalModules(folderPath, folderPath, files, code, true, true);
+    code = await includeExternalModules(folderPath, folderPath, files, code, true, true, baseUrl);
     // console.log("creating sandbox", currentExample.title, currentExample.path.replace("/", ""));
     // for (const f in files) {
     //    console.log(f);
@@ -44,19 +35,13 @@ export const getReactSandBoxConfig = async (
                     eject: "react-scripts eject",
                 },
                 dependencies: {
-                    "@emotion/react": pj.dependencies["@emotion/react"],
-                    "@emotion/styled": pj.dependencies["@emotion/styled"],
-                    "@mui/material": pj.dependencies["@mui/material"],
-                    "@mui/lab": pj.dependencies["@mui/lab"],
-                    "@mui/icons-material": pj.dependencies["@mui/icons-material"],
-                    sass: "^1.49.9",
                     "loader-utils": "3.2.1",
                     react: pj.dependencies["react"],
                     "react-dom": pj.dependencies["react-dom"],
                     "react-scripts": "5.0.1",
                     scichart: pj.dependencies.scichart,
                     "scichart-react": pj.dependencies["scichart-react"],
-                    typescript: pj.devDependencies.typescript,
+                    typescript: pj.dependencies.typescript,
                     ...currentExample.extraDependencies,
                     "@types/react": pj.dependencies["@types/react"],
                     "@types/react-dom": pj.dependencies["@types/react-dom"],

@@ -19,10 +19,10 @@ import { OhlcHeikinAshiFilter, OhlcRenkoFilter, PointAndFigureFilter } from "sci
 export type TFilterMode = "source" | "heikinAshi" | "renko" | "pointAndFigure";
 
 const SOURCE_POINT_COUNT = 90;
-const RENKO_BRICK_SIZE = 1.4;
+const RENKO_BRICK_SIZE = 1;
 const RENKO_REVERSAL_AMOUNT = 2;
 const PNF_BOX_SIZE = 1.2;
-const PNF_REVERSAL_AMOUNT = 2;
+const PNF_REVERSAL_AMOUNT = 1;
 
 const createSeededRandom = (seed: number) => {
     let state = seed >>> 0;
@@ -100,6 +100,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         dataSeries: sourceSeries,
         dataPointWidth: 0.62,
         strokeThickness: 1,
+        stroke: "var(--bg)" // for tooltip bg color
     });
 
     const xMarksData = new XyDataSeries(wasmContext, { dataSeriesName: "Rising X" });

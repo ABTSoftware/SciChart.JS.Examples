@@ -7,7 +7,6 @@ import {
     FastBandRenderableSeries,
     SciChartSurface,
     NumberRange,
-    IRenderableSeries,
     BandAnimation,
 } from "scichart";
 import { appTheme } from "../../../theme";
@@ -18,10 +17,10 @@ const fillColor1 = appTheme.VividOrange + "33";
 const lineColor2 = appTheme.VividSkyBlue;
 const fillColor2 = appTheme.VividSkyBlue + "33";
 
-// Colurs used for style 2
-const lineColor1b = appTheme.VividPink;
+// Colours used for style 2
+
 const fillColor1b = appTheme.VividPink + "33";
-const lineColor2b = appTheme.PaleTeal;
+
 const fillColor2b = appTheme.PaleTeal + "33";
 
 const POINTS = 100;
@@ -98,8 +97,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 duration: 1000,
                 styles: {
                     strokeThickness: isStyle1 ? 4 : 8,
-                    stroke: isStyle1 ? lineColor1 : lineColor1b,
-                    strokeY1: isStyle1 ? lineColor2 : lineColor2b,
+                    stroke: isStyle1 ? lineColor1 : appTheme.VividPink,
+                    strokeY1: isStyle1 ? lineColor2 : appTheme.PaleTeal,
                     fill: isStyle1 ? fillColor1 : fillColor1b,
                     fillY1: isStyle1 ? fillColor2 : fillColor2b,
                 },

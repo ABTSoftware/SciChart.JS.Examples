@@ -11,7 +11,6 @@ import {
     HorizontalLineAnnotation,
     IFillPaletteProvider,
     IRenderableSeries,
-    IStrokePaletteProvider,
     MouseWheelZoomModifier,
     NumberRange,
     NumericAxis,
@@ -22,7 +21,6 @@ import {
     VerticalLineAnnotation,
     XyDataSeries,
     XyFilterBase,
-    XyyFilterBase,
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";

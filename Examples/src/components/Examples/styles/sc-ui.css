@@ -1,0 +1,744 @@
+:root {
+    --radius: 0.375rem;
+    --sc-text: var(--text, #fafafa);
+    --sc-background: var(--bg, #09090b);
+    --sc-primary: var(--sc-text);
+    --sc-error: #ee6e6c;
+    --sc-outline: color-mix(in srgb, var(--sc-text) 18%, var(--sc-background));
+    --sc-muted: color-mix(in srgb, var(--sc-text) 8%, transparent);
+    --sc-theme-bg: radial-gradient(circle, #22365B 0%, #17243d 100%);
+    color-scheme: dark;
+
+    @media (prefers-color-scheme: light) {
+        &:not([data-theme]) {
+            --sc-text: var(--text, #18181b);
+            --sc-background: var(--bg, #fff);
+            --sc-theme-bg: #F9F9F9FF;
+            color-scheme: light;
+        }
+    }
+}
+
+/* Match SciChart's theme backgrounds (Light uses a solid fill). */
+[data-theme="light"] {
+    --sc-text: #050a30;
+    --sc-background: var(--bg, #fff);
+    --sc-theme-bg: #F9F9F9FF;
+    color-scheme: light;
+}
+[data-theme="dark"] {
+    --sc-theme-bg: radial-gradient(circle, #3C3C3FFF 0%, #1C1C1EFF 100%);
+    color-scheme: dark;
+}
+[data-theme="navy"] {
+    --sc-theme-bg: radial-gradient(circle, #22365B 0%, #17243d 100%);
+    --sc-background: #0b162a;
+    color-scheme: dark;
+}
+
+/* Chart layout is shared by every example, including standalone exports. */
+.sc-chart-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    touch-action: none;
+    color: var(--sc-text);
+    background: var(--sc-theme-bg);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+
+    img { display: block; }
+    hr {
+        width: 100%;
+        margin: 0.25rem 0;
+        border: 0;
+        border-top: 1px solid var(--sc-outline);
+    }
+
+    &:has(> .sc-toolbar-row) {
+        display: flex;
+        flex-direction: column;
+
+        > :not(.sc-toolbar-row) {
+            flex: 1 1 0;
+            min-width: 0;
+            min-height: 0;
+        }
+    }
+}
+
+.sc-responsive-chart-wrapper {
+    display: flex;
+
+    > :first-child {
+        flex: 7 1 70%;
+        min-width: 0;
+        min-height: 0;
+        box-sizing: border-box;
+    }
+    .sc-responsive-controls {
+        flex: 3 1 30%;
+        min-width: 16rem;
+        min-height: 0;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+        overflow-y: auto;
+        border-top: none;
+        border-left: 1px solid var(--sc-outline);
+    }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+
+        > :first-child {
+            flex: 5 1 50%;
+        }
+
+        .sc-responsive-controls {
+            flex: 5 1 50%;
+            min-width: 0;
+            border-left: none;
+            border-top: 1px solid var(--sc-outline);
+            padding: 0.5rem;
+        }
+    }
+}
+
+.sc-toolbar-row {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    min-height: 52px;
+    order: -1;
+    flex: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 8px;
+    border-bottom: 1px solid var(--sc-outline);
+    color: var(--sc-text);
+    font-size: 0.875rem;
+    text-align: left;
+    white-space: nowrap;
+    overscroll-behavior-x: contain;
+    touch-action: auto;
+
+    > * { flex-shrink: 0; }
+    > :is(.sc-switch, .sc-control):first-child { margin-left: 0.5rem; }
+    > :is(.sc-switch):last-child { margin-right: 0.5rem; }
+}
+
+/* Small Tailwind-like utility classes shared by example layouts. */
+.contents { display: contents !important; }
+.flex { display: flex !important; }
+.inline-flex { display: inline-flex !important; }
+.flex-col { flex-direction: column !important; }
+.flex-wrap { flex-wrap: wrap !important; }
+.flex-1 { flex: 1 !important; }
+.flex-auto { flex: auto !important; }
+.flex-none { flex: none !important; }
+.items-center { align-items: center !important; }
+.items-end { align-items: flex-end !important; }
+.justify-start { justify-content: start !important; }
+.justify-between { justify-content: space-between !important; }
+.justify-end { justify-content: flex-end !important; }
+.w-full { width: 100% !important; }
+.h-full { height: 100% !important; }
+.w-max { width: max-content !important; }
+.monospace { font-family: monospace !important; }
+.gap-1 { gap: 0.25rem !important; }
+.gap-2 { gap: 0.5rem !important; }
+.gap-3 { gap: 0.75rem !important; }
+.p-0 { padding: 0 !important; }
+.p-1 { padding: 0.25rem !important; }
+.p-2 { padding: 0.5rem !important; }
+.m-0 { margin: 0 !important; }
+.m-1 { margin: 0.25rem !important; }
+.m-2 { margin: 0.5rem !important; }
+.cursor-default { cursor: default !important; }
+.px-2 { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
+.gap-0 { gap: 0 !important; }
+.ml-auto { margin-left: auto !important; }
+.mt-auto { margin-top: auto !important; }
+.mb-auto { margin-bottom: auto !important; }
+.mr-auto { margin-right: auto !important; }
+.mx-auto { margin-left: auto !important; margin-right: auto !important; }
+.-mt-1 { margin-top: -0.25rem !important; }
+.pl-4, .px-4 { padding-left: 1rem !important; }
+.pr-4, .px-4 { padding-right: 1rem !important; }
+.relative { position: relative !important; }
+.absolute { position: absolute !important; }
+.sticky { position: sticky !important; }
+.min-w-0 { min-width: 0 !important; }
+.min-h-0 { min-height: 0 !important; }
+.overflow-y-auto { overflow-y: auto !important; }
+.overflow-hidden { overflow: hidden !important; }
+.justify-center { justify-content: center !important; }
+.items-start { align-items: flex-start !important; }
+.shrink-0 { flex-shrink: 0 !important; }
+.text-center { text-align: center !important; }
+.border-r { border-right: 1px solid var(--sc-outline) !important; }
+.border-b { border-bottom: 1px solid var(--sc-outline) !important; }
+.border-t { border-top: 1px solid var(--sc-outline) !important; }
+.border-l { border-left: 1px solid var(--sc-outline) !important; }
+
+.top-0 { top: 0 !important; }
+.top-2 { top: 0.5rem !important; }
+.left-0 { left: 0 !important; }
+.left-2 { left: 0.5rem !important; }
+.bottom-0 { bottom: 0 !important; }
+.right-0 { right: 0 !important; }
+
+.pointer-events-none { pointer-events: none !important; }
+.touch-none { touch-action: none !important; }
+.cursor-pointer { cursor: pointer !important; }
+.font-bold { font-weight: 700 !important; }
+.text-error { color: var(--sc-error) !important; }
+.text-end { text-align: end !important; }
+.text-xs { font-size: 0.75rem !important; }
+.text-sm { font-size: 0.875rem !important; }
+.mb-2 { margin-bottom: 0.5rem !important; }
+.mr-2 { margin-right: 0.5rem !important; }
+
+/* Repeated chart grids, colour legends and nested overview layouts. */
+.sc-chart-grid {
+    display: flex;
+    flex-wrap: wrap;
+
+    > * {
+        flex: 1 1 33%;
+        min-width: min(200px, 100%);
+        min-height: 0;
+        height: auto;
+    }
+
+    /* Four charts use two columns; the absolute loading overlay adds one child. */
+    &:not(:has(> :nth-child(6))) > * { flex-basis: 50%; }
+
+    /* Six charts retain their padded grid, including while the loader is visible. */
+    &:has(> :nth-child(6)):not(:has(> :nth-child(8))) {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        gap: 5px;
+        padding: 5px;
+        box-sizing: border-box;
+
+        > * { min-width: 0; }
+
+        @media (max-width: 600px) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-rows: repeat(3, minmax(0, 1fr));
+        }
+    }
+}
+
+.sc-color-legend {
+    /* Override SciChartReact's inline relative positioning to overlay the chart. */
+    position: absolute !important;
+    top: 0;
+    right: 0;
+    width: 65px;
+    height: 100%;
+}
+
+.sc-chart-title {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    max-width: 90%;
+    margin: 0;
+    transform: translateX(-50%);
+    color: var(--sc-text);
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.sc-overview-chart {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+
+    > .sc-overview { flex: 1 1 20%; min-height: 0; }
+}
+
+/* Default, outline, danger and square icon buttons share one 40px size. */
+.sc-button {
+    box-sizing: border-box;
+    display: inline-flex;
+    height: 40px;
+    min-height: 40px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 12px;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    background: var(--sc-primary);
+    color: var(--sc-background);
+    font: 500 0.875rem/1 ui-sans-serif, system-ui, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 150ms, border-color 150ms;
+
+    &:hover:not(:disabled) {
+        background: color-mix(in srgb, var(--sc-primary) 85%, var(--sc-background));
+    }
+
+    &.sc-button-outline,
+    &.sc-button-icon {
+        border-color: var(--sc-outline);
+        background: var(--sc-background);
+        color: var(--sc-text);
+
+        &:hover:not(:disabled) {
+            background: var(--sc-muted);
+        }
+    }
+    &.sc-button-danger {
+        background: var(--sc-background);
+        color: var(--sc-error);
+        border-color: color-mix(in srgb, var(--sc-error) 25%, transparent);
+
+        &:hover:not(:disabled) {
+            background: color-mix(in srgb, var(--sc-error) 25%, var(--sc-background));
+        }
+    }
+
+    &.sc-button-icon {
+        width: 40px;
+        min-width: 40px;
+        padding: 0;
+    }
+
+    &[aria-pressed="true"],
+    &[aria-checked="true"] {
+        border-color: var(--sc-primary);
+        background: var(--sc-primary);
+        color: var(--sc-background);
+
+        &:hover:not(:disabled) {
+            background: color-mix(in srgb, var(--sc-primary) 85%, var(--sc-background));
+        }
+    }
+
+    svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+    }
+}
+
+.sc-button-group {
+    display: inline-flex;
+    align-items: stretch;
+
+    > .sc-button {
+        border-color: var(--sc-outline);
+        border-radius: 0;
+        background: var(--sc-background);
+        color: var(--sc-text);
+
+        &:hover:not(:disabled) { background: var(--sc-muted); }
+
+        &[aria-pressed="true"],
+        &[aria-checked="true"],
+        &[aria-pressed="true"]:hover,
+        &[aria-checked="true"]:hover {
+            z-index: 1;
+            border-color: var(--sc-primary);
+            background: var(--sc-primary);
+            color: var(--sc-background);
+        }
+
+        &:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+        &:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+        &:only-child { border-radius: var(--radius); }
+
+        + .sc-button { margin-left: -1px; }
+    }
+
+    &.flex-col > .sc-button {
+        &:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+        &:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+        &:only-child { border-radius: var(--radius); }
+
+        + .sc-button {
+            margin-left: 0;
+            margin-top: -1px;
+        }
+    }
+
+    &.w-full > .sc-button { flex: 1; }
+}
+
+.sc-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--sc-text);
+    font-size: 0.875rem;
+}
+
+.sc-input,
+.sc-select {
+    box-sizing: border-box;
+    height: 40px;
+    max-width: 100%;
+    padding: 0 12px;
+    border: 1px solid var(--sc-outline);
+    border-radius: var(--radius);
+    background: var(--sc-background);
+    color: var(--sc-text);
+    font: 400 0.875rem/1.5 ui-sans-serif, system-ui, sans-serif;
+
+    &:invalid { border-color: var(--sc-error); }
+}
+
+.sc-input {
+    &[type="number"] {
+        appearance: auto;
+        padding-right: 4px;
+
+        /* Restore native steppers hidden by the application-wide input reset. */
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            -webkit-appearance: auto;
+            opacity: 1;
+            margin: 0;
+        }
+    }
+
+    &[type="color"] {
+        width: 40px;
+        padding: 2px 4px;
+        cursor: pointer;
+    }
+
+    &:is(textarea) {
+        display: block;
+        width: 100%;
+        height: auto;
+        min-height: 12rem;
+        padding: 8px 12px;
+        resize: vertical;
+        font-family: ui-monospace, monospace;
+
+        .sc-toolbar-row & {
+            width: min(24rem, 40vw);
+            height: 40px;
+            min-height: 40px;
+            padding: 6px 12px;
+            resize: none;
+        }
+    }
+}
+
+.sc-select {
+    appearance: none;
+    padding-right: 32px;
+    text-align: start;
+    text-align-last: auto;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2371717a' stroke-width='1.5'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 8px center;
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+    option {
+        background: var(--sc-background);
+        color: var(--sc-text);
+    }
+
+    @supports (appearance: base-select) {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        background-image: none;
+
+        &, &::picker(select) { appearance: base-select; }
+
+        &::picker-icon {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 12px;
+            width: 7px;
+            height: 7px;
+            border-right: 1.5px solid currentColor;
+            border-bottom: 1.5px solid currentColor;
+            transform: translateY(-75%) rotate(45deg);
+        }
+
+        &::picker(select) {
+            gap: 3px;
+            margin-top: 4px;
+            padding: 4px 4px 0 4px;
+            border: 1px solid var(--sc-outline);
+            border-radius: var(--radius);
+            background: var(--sc-background);
+            color: var(--sc-text);
+            box-shadow: 0 2px 4px rgb(0 0 0 / 12%), 0 6px 16px rgb(0 0 0 / 18%);
+        }
+
+        option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 8px;
+            margin-bottom: 4px;
+            border-radius: calc(var(--radius) - 2px);
+
+            &::checkmark {
+                order: 1;
+                margin-left: auto;
+            }
+
+            &:hover, &:checked { background: var(--sc-muted); }
+        }
+    }
+}
+
+.sc-checkbox {
+    appearance: none;
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin: 0;
+    border: 1px solid var(--sc-outline);
+    border-radius: calc(var(--radius) / 2);
+    background: var(--sc-background);
+    cursor: pointer;
+
+    &:checked {
+        border-color: var(--sc-primary);
+        background-color: var(--sc-primary);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%2371717a' stroke-width='2' d='m3 8 3 3 7-7'/%3E%3C/svg%3E");
+    }
+}
+
+.sc-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 4px 0;
+    color: var(--sc-text);
+    font-size: 0.875rem;
+    cursor: pointer;
+
+    input[type="checkbox"] {
+        appearance: none;
+        position: relative;
+        box-sizing: border-box;
+        width: 36px;
+        height: 20px;
+        flex-shrink: 0;
+        margin: 0;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        background: var(--sc-outline);
+        cursor: pointer;
+        transition: background-color 150ms;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--sc-background);
+            transition: transform 150ms;
+        }
+
+        &:checked {
+            background: var(--sc-primary);
+
+            &::after { transform: translateX(16px); }
+        }
+    }
+
+    &:has(input:disabled) {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+}
+
+.sc-range {
+    appearance: none;
+    width: 100%;
+    height: 20px;
+    margin: 4px 0;
+    background: transparent;
+    accent-color: var(--sc-primary);
+    cursor: pointer;
+
+    &::-webkit-slider-runnable-track {
+        height: 4px;
+        border-radius: var(--radius);
+        background: var(--sc-outline);
+    }
+
+    &::-moz-range-track,
+    &::-moz-range-progress {
+        height: 4px;
+        border-radius: var(--radius);
+        background: var(--sc-outline);
+    }
+
+    &::-moz-range-progress { background: var(--sc-primary); }
+
+    &::-webkit-slider-thumb {
+        appearance: none;
+        box-sizing: border-box;
+        width: 14px;
+        height: 14px;
+        margin-top: -5px;
+        border: 2px solid var(--sc-primary);
+        border-radius: 50%;
+        background: var(--sc-background);
+    }
+
+    &::-moz-range-thumb {
+        box-sizing: border-box;
+        width: 14px;
+        height: 14px;
+        border: 2px solid var(--sc-primary);
+        border-radius: 50%;
+        background: var(--sc-background);
+    }
+
+    /* Native thumbs do not support ::after; a shadow paints the halo behind them. */
+    &:hover:not(:disabled) {
+        &::-webkit-slider-thumb { box-shadow: 0 0 0 5px color-mix(in srgb, var(--sc-primary) 15%, transparent); }
+        &::-moz-range-thumb { box-shadow: 0 0 0 5px color-mix(in srgb, var(--sc-primary) 15%, transparent); }
+    }
+
+    &:active:not(:disabled) {
+        &::-webkit-slider-thumb { box-shadow: 0 0 0 7px color-mix(in srgb, var(--sc-primary) 15%, transparent); }
+        &::-moz-range-thumb { box-shadow: 0 0 0 7px color-mix(in srgb, var(--sc-primary) 15%, transparent); }
+    }
+}
+
+/* Focus and disabled states apply equally to every native control. */
+.sc-button,
+.sc-input,
+.sc-select,
+.sc-checkbox,
+.sc-range,
+.sc-switch input {
+    &:focus-visible {
+        outline: 2px solid color-mix(in srgb, var(--sc-primary) 50%, transparent);
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+}
+
+/* Configuration dialogs recur across four demos. */
+.sc-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1300;
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    background: rgb(0 0 0 / 55%);
+}
+
+.sc-modal {
+    box-sizing: border-box;
+    width: min(480px, 100%);
+    max-height: min(90vh, 800px);
+    overflow: auto;
+    border: 1px solid var(--sc-outline);
+    border-radius: var(--radius);
+    background: var(--sc-background);
+    color: var(--sc-text);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+
+    &::backdrop { background: rgb(0 0 0 / 55%); }
+
+    .sc-modal-header {
+        display: flex;
+        min-height: 52px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border-bottom: 1px solid var(--sc-outline);
+    }
+
+    .sc-modal-body {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 0.5rem;
+    }
+}
+
+.sc-accordion {
+    display: block;
+    border: 1px solid var(--sc-outline);
+    border-radius: var(--radius);
+    background: var(--sc-background);
+    color: var(--sc-text);
+
+    .sc-accordion-summary {
+        display: flex;
+        min-height: 38px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        border-radius: var(--radius);
+        padding: 4px 12px;
+        background: color-mix(in srgb, var(--sc-primary) 4%, var(--sc-background));
+        cursor: pointer;
+        list-style: none;
+
+        > span:first-child {
+            font-weight: 600;
+        }
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--sc-primary);
+            outline-offset: -2px;
+        }
+    }
+
+    .sc-accordion-chevron {
+        margin-left: auto;
+        transition: transform 150ms ease;
+    }
+
+    &[open] .sc-accordion-chevron {
+        transform: rotate(180deg);
+    }
+
+    .sc-accordion-details {
+        padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+        border-top: 1px solid var(--sc-outline);
+    }
+}

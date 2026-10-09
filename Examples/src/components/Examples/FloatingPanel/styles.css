@@ -1,0 +1,65 @@
+.fp-paper {
+    overflow: hidden;
+    border: 1px solid var(--sc-outline);
+    border-radius: var(--radius);
+    background: var(--sc-background);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+}
+
+.fp-body {
+    padding: 8px;
+}
+
+.fp-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1300;
+    display: flex;
+    align-items: flex-end;
+    background: rgb(0 0 0 / 55%);
+}
+
+.fp-drawer {
+    box-sizing: border-box;
+    width: 100%;
+    max-height: 85vh;
+    overflow: auto;
+    padding: 16px 16px 24px;
+    border-radius: var(--radius) var(--radius) 0 0;
+    background: var(--sc-background);
+    color: var(--sc-text);
+
+    .fp-handle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        user-select: none;
+    }
+
+    hr {
+        margin-bottom: 12px;
+    }
+}
+
+.fp-floating {
+    position: fixed;
+    min-width: 260px;
+    top: 0;
+    left: 0;
+}
+.fp-drawer-heading,
+.fp-floating-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.fp-drawer-heading {
+    margin-bottom: 8px;
+}
+.fp-floating-heading {
+    padding: 6px 8px;
+    cursor: move;
+    background: var(--sc-background);
+    user-select: none;
+}

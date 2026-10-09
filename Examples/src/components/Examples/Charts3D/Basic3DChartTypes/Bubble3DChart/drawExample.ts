@@ -12,13 +12,10 @@ import {
     ScatterRenderableSeries3D,
     XyzDataSeries3D,
     SpherePointMarker3D,
-    TGradientStop,
-    parseColorToUIntArgb,
     TooltipModifier3D,
     SeriesInfo3D,
     TooltipSvgAnnotation3D,
     XyzSeriesInfo3D,
-    IPointMetadata3D,
 } from "scichart";
 
 import {

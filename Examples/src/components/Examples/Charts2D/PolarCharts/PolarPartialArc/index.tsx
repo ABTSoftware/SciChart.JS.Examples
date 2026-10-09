@@ -1,22 +1,15 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 import { useCallback, useRef, useState } from "react";
-import { ToggleButton, ToggleButtonGroup, Slider, Typography } from "@mui/material";
-import { appTheme } from "../../../theme";
-import commonClasses from "../../../styles/Examples.module.scss";
-
+import { PlayArrowIcon, StopIcon } from "../../../icons";
 export default function ChartComponent() {
     const [totalAngle, setTotalAngle] = useState<number>(0.004);
+    const [isAnimating, setIsAnimating] = useState(false);
     const [innerRadius, setInnerRadius] = useState<number>(0.9977);
 
     const isUpdatingFromAnimation = useRef<boolean>(false);
 
-    const [controls, setControls] = useState({
-        startAnimation: () => {},
-        endAnimation: () => {},
-        changeInnerRadiusInternal: (value: number) => {},
-        changeTotalAngleInternal: (value: number) => {},
-    });
+    const [controls, setControls] = useState<TResolvedReturnType<typeof drawExample>["controls"]>();
 
     const handleAnimationUpdate = useCallback((values: { innerRadius: number; totalAngle: number }) => {
         isUpdatingFromAnimation.current = true;
@@ -31,83 +24,77 @@ export default function ChartComponent() {
     function changeInnerRadius(value: number) {
         if (!isUpdatingFromAnimation.current) {
             setInnerRadius(value);
-            controls.changeInnerRadiusInternal(value);
+            controls?.changeInnerRadiusInternal(value);
         }
     }
 
     function changeTotalAngle(value: number) {
         if (!isUpdatingFromAnimation.current) {
             setTotalAngle(value);
-            controls.changeTotalAngleInternal(value);
+            controls?.changeTotalAngleInternal(value);
         }
     }
 
     return (
-        <div className={commonClasses.ChartWrapper}>
-            <div
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    background: appTheme.DarkIndigo,
-                }}
-            >
-                <div className={commonClasses.ToolbarRow}>
-                    <ToggleButtonGroup exclusive size="medium" color="primary" aria-label="button group">
-                        <ToggleButton value="start" onClick={() => controls.startAnimation()}>
-                            Start
-                        </ToggleButton>
-
-                        <ToggleButton value="end" onClick={() => controls.endAnimation()}>
-                            End
-                        </ToggleButton>
-                    </ToggleButtonGroup>
-
-                    <div style={{ flex: 1, paddingInline: 20 }}>
-                        <Typography variant="body1" color="white">
-                            Inner Radius: <strong>{innerRadius.toFixed(3)}</strong>
-                        </Typography>
-
-                        <input
-                            style={{ width: "100%" }}
-                            type="range"
-                            min={0.001}
-                            max={0.999}
-                            step={0.001}
-                            value={innerRadius}
-                            onChange={(e) => changeInnerRadius(parseFloat(e.target.value))}
-                        />
-                    </div>
-
-                    <div style={{ flex: 1, paddingInline: 20 }}>
-                        <Typography variant="body1" color="white">
-                            Total Angle: <strong>{(totalAngle / Math.PI).toFixed(3)} * π</strong> or{" "}
-                            <strong>{totalAngle.toFixed(3)}</strong>
-                        </Typography>
-
-                        <input
-                            style={{ width: "100%" }}
-                            type="range"
-                            min={0}
-                            max={Math.PI * 2}
-                            step={0.001}
-                            value={totalAngle}
-                            onChange={(e) => changeTotalAngle(parseFloat(e.target.value))}
-                        />
-                    </div>
-                </div>
-
-                <SciChartReact
-                    initChart={(rootElementId: string | HTMLDivElement) =>
-                        drawExample(rootElementId, innerRadius, totalAngle, handleAnimationUpdate)
-                    }
-                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                        setControls(initResult.controls);
+        <div className="sc-chart-wrapper" >
+            <header className="sc-toolbar-row">
+                <button
+                    type="button"
+                    className="sc-button sc-button-icon"
+                    aria-label={isAnimating ? "Stop animation" : "Start animation"}
+                    title={isAnimating ? "Stop animation" : "Start animation"}
+                    disabled={!controls}
+                    onClick={() => {
+                        if (isAnimating) controls.endAnimation();
+                        else controls.startAnimation();
+                        setIsAnimating(!isAnimating);
                     }}
-                    style={{ flex: 1 }}
-                />
-            </div>
+                >
+                    {isAnimating ? <StopIcon /> : <PlayArrowIcon />}
+                </button>
+
+                <label className="sc-control flex-col flex-1 gap-0">
+                    <span>
+                        Inner Radius: <strong>{innerRadius.toFixed(3)}</strong>
+                    </span>
+
+                    <input
+                        type="range"
+                        min={0.001}
+                        max={0.999}
+                        step={0.001}
+                        value={innerRadius}
+                        onChange={(e) => changeInnerRadius(parseFloat(e.target.value))}
+                        className="sc-range -mt-1"
+                    />
+                </label>
+
+                <label className="sc-control flex-col flex-1 gap-0">
+                    <span>
+                        Total Angle: <strong>{(totalAngle / Math.PI).toFixed(3)} * π</strong> or{" "}
+                        <strong>{totalAngle.toFixed(3)}</strong>
+                    </span>
+
+                    <input
+                        type="range"
+                        min={0}
+                        max={Math.PI * 2}
+                        step={0.001}
+                        value={totalAngle}
+                        onChange={(e) => changeTotalAngle(parseFloat(e.target.value))}
+                        className="sc-range -mt-1"
+                    />
+                </label>
+            </header>
+
+            <SciChartReact
+                initChart={(rootElementId: string | HTMLDivElement) =>
+                    drawExample(rootElementId, innerRadius, totalAngle, handleAnimationUpdate)
+                }
+                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                    setControls(initResult.controls);
+                }}
+            />
         </div>
     );
 }

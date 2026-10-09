@@ -1,4 +1,5 @@
 import * as React from "react";
+import "scichart-react/configureDefaults";
 import { Theme } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -11,13 +12,15 @@ import {
     MENU_ITEMS_3D,
     MENU_ITEMS_FEATURED_APPS,
 } from "./AppRouter/examples";
-// import AppBarTop from "./AppTopBar/AppBarTop";
+import "./Examples/styles/sc-main.css";
+import "./Examples/styles/sc-app.css";
+import "./Examples/styles/sc-gallery.css";
+import "./Examples/styles/sc-content.css";
+import "./Examples/styles/sc-editor.css";
 import DrawerContent from "./DrawerContent/DrawerContent";
 import AppFooter from "./AppFooter/AppFooter";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { SciChartDefaults } from "scichart/Charting/Visuals/SciChartDefaults";
-import classes from "./App.module.scss";
-import "./index.scss";
 import { GalleryItem } from "../helpers/types/types";
 import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
 import { StateProvider } from "../helpers/shared/Helpers/Context";
@@ -25,7 +28,7 @@ import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParame
 import AppDetailsRouter from "./AppDetailsRouters/AppDetailsRouter";
 import { Link, useNavigate } from "react-router";
 import { appTheme } from "./Examples/theme";
-import { SciChart3DSurface, SciChartSurfaceBase } from "scichart";
+import { SciChartSurfaceBase } from "scichart";
 import { ContentSectionRouter } from "./Navigation/AnchorTagRouter";
 import GalleryItems from "./GalleryItems";
 import SciChartNavbar from "./SciChartNavbar/SciChartNavbar";
@@ -58,6 +61,8 @@ const NotFound = () => (
 
 const ChatbotScript = (): React.ReactElement | null => {
     React.useEffect(() => {
+        const hostname = window.location.hostname;
+        if (hostname !== "scichart.com" && !hostname.endsWith(".scichart.com")) return undefined;
         const script = document.createElement("script");
         script.src = "https://chat.scichart.com/chatbot.js";
         script.type = "text/javascript";
@@ -72,6 +77,7 @@ const ChatbotScript = (): React.ReactElement | null => {
     return null;
 };
 
+// Override the wrapper's import-time defaults with the application's WASM base path.
 SciChartSurface.configure({
     wasmUrl: `${baseAppPath}/scichart.wasm`,
 });
@@ -154,7 +160,7 @@ export default function App() {
     if (isIFrame) {
         return (
             <StateProvider framework={framework}>
-                <AppRouter currentExample={currentExample} seeAlso={seeAlso} isIFrame={true} />
+                <AppRouter currentExample={currentExample} />
             </StateProvider>
         );
     }
@@ -195,12 +201,12 @@ export default function App() {
             </style>
             <ChatbotScript />
 
-            <div className={classes.App}>
+            <div className="sc-app-root">
                 {isMedium && (
                     <Drawer
-                        className={classes.DrawerMobile}
+                        className="sc-app-mobile-drawer"
                         variant="temporary"
-                        classes={{ paper: classes.DrawerPaper }}
+                        classes={{ paper: "sc-app-drawer-paper" }}
                         anchor="right"
                         open={isDrawerOpened}
                         onClose={toggleDrawer}
@@ -214,15 +220,15 @@ export default function App() {
                         />
                     </Drawer>
                 )}
-                <div className={classes.MainAppContent} style={{ position: "relative" }}>
+                <div className="sc-app-content relative">
                     <SciChartNavbar toggleDrawer={toggleDrawer} />
 
                     {is404 ? (
                         <NotFound />
                     ) : isHomePage ? (
-                        <div className={classes.MainAppWrapper}>
+                        <div className="sc-app-gallery-layout">
                             {!isMedium ? (
-                                <div className={classes.DrawerDesktop}>
+                                <div className="sc-app-home-drawer">
                                     <DrawerContent
                                         testIsOpened={testIsOpened}
                                         toggleOpenedMenuItem={toggleOpenedMenuItem}
@@ -233,7 +239,7 @@ export default function App() {
                                 </div>
                             ) : null}
 
-                            <div className={classes.GalleryAppWrapper}>
+                            <div className="sc-app-gallery-content">
                                 <GalleryItems
                                     examples={allGalleryItems}
                                     setMostVisibleCategory={setMostVisibleCategory}

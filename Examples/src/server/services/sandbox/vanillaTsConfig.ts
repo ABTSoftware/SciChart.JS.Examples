@@ -2,7 +2,7 @@ import * as path from "path";
 import * as fs from "fs";
 import { NotFoundError } from "../../Errors";
 import { TExampleInfo } from "../../../components/AppRouter/examplePages";
-import { IFiles, csStyles, includeImportedModules } from "./sandboxDependencyUtils";
+import { IFiles, csStyles, includeExternalModules } from "./sandboxDependencyUtils";
 
 const pj = require("../../../../package.json");
 
@@ -42,8 +42,6 @@ export const getVanillaSrc = async (folderPath: string) => {
 
 export const getVanillaTsSandBoxConfig = async (folderPath: string, currentExample: TExampleInfo, baseUrl: string) => {
     let code = await getVanillaSrc(folderPath);
-
-    code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
 
     let htmlCode = indexHtmlTemplate();
 
@@ -120,13 +118,6 @@ export const getVanillaTsSandBoxConfig = async (folderPath: string, currentExamp
 }`,
             isBinary: false,
         },
-        "src/types/declaration.d.ts": {
-            content: `declare module "*.scss" {
-            const content: Record<string, string>;
-            export default content;
-        }`,
-            isBinary: false,
-        },
         "src/types/jpg.d.ts": {
             content: `declare module "*.jpg" {
             const value: any;
@@ -163,6 +154,14 @@ export const getVanillaTsSandBoxConfig = async (folderPath: string, currentExamp
     }
     files = { ...files, ...csStyles };
 
-    await includeImportedModules(folderPath, files, code, true, true, baseUrl);
+    files["src/app.ts"].content = await includeExternalModules(
+        folderPath,
+        folderPath,
+        files,
+        code,
+        true,
+        true,
+        baseUrl
+    );
     return { files };
 };

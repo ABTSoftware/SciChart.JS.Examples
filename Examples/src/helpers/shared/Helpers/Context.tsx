@@ -324,7 +324,8 @@ patchSciChartCreateMethodsOnce();
 export function StateProvider({ children, framework }: { children: React.ReactNode; framework: EPageFramework }) {
     const [state, setState] = useState<StateType>(() => ({
         framework,
-        theme: getInitialTheme(),
+        // Match SSR first; apply the browser's stored/system preference after hydration.
+        theme: process.env.NODE_ENV === "production" ? ETheme.navy : getInitialTheme(),
     }));
 
     const themeRef = useRef(state.theme);
@@ -335,6 +336,10 @@ export function StateProvider({ children, framework }: { children: React.ReactNo
     const setTheme = useCallback((nextTheme: ETheme) => {
         setState((prevState) => (prevState.theme === nextTheme ? prevState : { ...prevState, theme: nextTheme }));
     }, []);
+
+    useEffect(() => {
+        if (process.env.NODE_ENV === "production") setTheme(getInitialTheme());
+    }, [setTheme]);
 
     const toggleTheme = useCallback(() => {
         setState((prevState) => ({ ...prevState, theme: getNextThemeInternal(prevState.theme) }));

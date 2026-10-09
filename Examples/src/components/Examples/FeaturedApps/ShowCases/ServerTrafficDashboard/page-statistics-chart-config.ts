@@ -1,14 +1,12 @@
 import {
     SciChartSurface,
     Thickness,
-    ETextAlignment,
     NumericAxis,
     ENumericFormat,
     NumberRange,
     StackedColumnCollection,
     XyDataSeries,
     StackedColumnRenderableSeries,
-    AUTO_COLOR,
     WaveAnimation,
     LegendModifier,
     ELegendPlacement,
@@ -19,11 +17,8 @@ import {
     ZoomPanModifier,
     MouseWheelZoomModifier,
     EAxisAlignment,
-    TRolloverTooltipDataTemplate,
-    XySeriesInfo,
     ECoordinateMode,
     VerticalSliceModifier,
-    CursorModifier,
     ChartModifierBase2D,
 } from "scichart";
 import { appTheme } from "../../../theme";

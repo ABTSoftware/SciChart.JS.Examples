@@ -1,18 +1,12 @@
-import * as React from "react";
-import { FormControl, InputLabel, MenuItem, Select, ToggleButton, ToggleButtonGroup } from "@mui/material";
-import commonClasses from "../../../styles/Examples.module.scss";
+import { useState, useRef, ChangeEvent } from "react";
 import { createCandlestickChart, sciChartOverview } from "./createCandlestickChart";
 import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
 import { binanceSocketClient, TRealtimePriceBar } from "./binanceSocketClient";
-import { Observable, Subscription } from "rxjs";
+import { Observable } from "rxjs";
 import { simpleBinanceRestClient, TPriceBar } from "../../../ExampleData/binanceRestClient";
-import { appTheme } from "../../../theme";
-import FormLabel from "@mui/material/FormLabel";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
 // SCICHART EXAMPLE
-// const drawExample = async (rootElement: string | HTMLDivElement) => {
-//     const { sciChartSurface, sciChartOverview, controls } = await createCandlestickChart(rootElement);
 export const drawExample = (dataSource: string) => async (rootElement: string | HTMLDivElement) => {
     // Create the candlestick chart example. Contains Candlestick series, tooltips, volume, zooming panning behaviour and more
     const { sciChartSurface, controls } = await createCandlestickChart(rootElement);
@@ -74,84 +68,77 @@ export const drawExample = (dataSource: string) => async (rootElement: string | 
 };
 
 export default function RealtimeTickingStockCharts() {
-    const [preset, setPreset] = React.useState<number>(0);
-    const chartControlsRef = React.useRef<{
+    const [preset, setPreset] = useState<number>(0);
+    const chartControlsRef = useRef<{
         setData: (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => void;
         onNewTrade: (priceBar: TPriceBar, tradeSize: number, lastTradeBuyOrSell: boolean) => void;
         setXRange: (startDate: Date, endDate: Date) => void;
         enableCandlestick: () => void;
         enableOhlc: () => void;
     }>(undefined);
-    const [dataSource, setDataSource] = React.useState<string>("Random");
+    const [dataSource, setDataSource] = useState<string>("Random");
 
-    const handleToggleButtonChanged = (event: any, state: number) => {
-        if (state === null || chartControlsRef.current === undefined) return;
+    const handleToggleButtonChanged = (state: number) => {
+        if (chartControlsRef.current === undefined) return;
         setPreset(state);
         console.log(`Toggling Candle/Ohlc state: ${state}`);
         if (state === 0) chartControlsRef.current.enableCandlestick();
         if (state === 1) chartControlsRef.current.enableOhlc();
     };
 
-    const handleDataSourceChanged = (event: any) => {
+    const handleDataSourceChanged = (event: ChangeEvent<HTMLSelectElement>) => {
         setDataSource(event.target.value);
     };
 
     const initFunc = drawExample(dataSource);
 
     return (
-        <div className={commonClasses.ChartWrapper} style={{ display: "flex", flexDirection: "column" }}>
-            <div className={commonClasses.ToolbarRow} style={{ flex: "none" }}>
-                <ToggleButtonGroup
-                    className={commonClasses.ToggleButtonGroup}
-                    exclusive
-                    value={preset}
-                    onChange={handleToggleButtonChanged}
-                    size="small"
-                    color="primary"
-                    aria-label="small outlined button group"
-                >
-                    <ToggleButton value={0}>Candlestick Series</ToggleButton>
-                    <ToggleButton value={1}>OHLC Series</ToggleButton>
-                </ToggleButtonGroup>
-                <FormControl sx={{ marginTop: "1em" }}>
-                    <InputLabel id="data-source-label" sx={{ color: appTheme.VividGreen }}>
-                        Data Source
-                    </InputLabel>
-                    <Select
-                        variant="outlined"
-                        labelId="data-source-label"
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="Playback">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={preset === 0}
+                        onClick={() => handleToggleButtonChanged(0)}
+                    >
+                        Candlestick Series
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={preset === 1}
+                        onClick={() => handleToggleButtonChanged(1)}
+                    >
+                        OHLC Series
+                    </button>
+                </div>
+                <label className="sc-control" htmlFor="data-source-select">
+                    Data Source
+                    <select
+                        className="sc-select"
                         id="data-source-select"
-                        label="Data Source"
-                        sx={{ color: "inherit", "& .MuiSvgIcon-root": { color: "inherit" } }}
-                        size="small"
-                        inputProps={{ MenuProps: { disableScrollLock: true }, "aria-label": "Without label" }}
                         value={dataSource}
                         onChange={handleDataSourceChanged}
                     >
-                        <MenuItem value={"Random"}>Random</MenuItem>
-                        <MenuItem value={"com"}>Binance.com</MenuItem>
-                        <MenuItem value={"us"}>Binance.us</MenuItem>
-                    </Select>
-                </FormControl>
-            </div>
+                        <option value="Random">Random</option>
+                        <option value="com">Binance.com</option>
+                        <option value="us">Binance.us</option>
+                    </select>
+                </label>
+            </header>
             <SciChartReact
                 key={dataSource}
+                className="sc-overview-chart"
                 initChart={initFunc}
                 onInit={(initResult: TResolvedReturnType<typeof initFunc>) => {
                     const { subscription, controls } = initResult;
                     chartControlsRef.current = controls;
 
-                    return () => {
-                        subscription.unsubscribe();
-                    };
+                    return () => subscription.unsubscribe();
                 }}
-                style={{ display: "flex", flexDirection: "column", width: "100%", flex: "auto" }}
-                innerContainerProps={{ style: { flexBasis: "80%", flexGrow: 1, flexShrink: 1 } }}
             >
-                <SciChartNestedOverview
-                    style={{ flexBasis: "20%", flexGrow: 1, flexShrink: 1 }}
-                    options={sciChartOverview}
-                />
+                <SciChartNestedOverview className="sc-overview" options={sciChartOverview} />
             </SciChartReact>
         </div>
     );

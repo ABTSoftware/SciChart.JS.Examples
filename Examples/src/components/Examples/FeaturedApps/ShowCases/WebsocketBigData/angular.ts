@@ -1,12 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import { MatSliderModule } from "@angular/material/slider";
-import { MatRadioModule } from "@angular/material/radio";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatButtonToggleModule } from "@angular/material/button-toggle";
-import { MatCardModule } from "@angular/material/card";
-import { MatButtonModule } from "@angular/material/button";
-import { MatInputModule } from "@angular/material/input";
-import { MatSelectModule } from "@angular/material/select";
+import { FormsModule } from "@angular/forms";
 import { ScichartAngularComponent } from "scichart-angular";
 import { ISettings, TMessage } from "./drawExample";
 import { drawExample } from "./drawExample";
@@ -14,98 +7,102 @@ import { ESeriesType } from "scichart";
 
 @Component({
     standalone: true,
-    imports: [
-        ScichartAngularComponent,
-        MatSliderModule,
-        MatRadioModule,
-        MatFormFieldModule,
-        MatButtonToggleModule,
-        MatCardModule,
-        MatButtonModule,
-        MatInputModule,
-        MatSelectModule,
-    ],
+    imports: [ScichartAngularComponent, FormsModule],
     selector: "app-realtime-big-data-showcase",
     template: `
-        <div style="display: flex; height: 100vh;">
+        <div class="sc-chart-wrapper flex">
             <scichart-angular
                 [initChart]="initChartFunction"
                 (onInit)="onChartInit($event)"
                 style="flex: 1; height: 100%;"
             ></scichart-angular>
             <div style="width: 300px; padding: 10px;">
-                <form #form="ngForm">
-                    <mat-label>Series Type</mat-label>
-                    <mat-radio-group name="seriesType" [(ngModel)]="seriesType" (ngModelChange)="changeChart($event)">
-                        <mat-radio-button value="LineSeries">Line Chart</mat-radio-button>
-                        <mat-radio-button value="ColumnSeries">Column Chart with Stacked Axes</mat-radio-button>
-                        <mat-radio-button value="StackedMountainSeries">Stacked Mountain Chart</mat-radio-button>
-                        <mat-radio-button value="BandSeries">Band Chart</mat-radio-button>
-                        <mat-radio-button value="ScatterSeries">Scatter Chart</mat-radio-button>
-                        <mat-radio-button value="CandlestickSeries">Candlestick Chart</mat-radio-button>
-                    </mat-radio-group>
-                    <mat-slider
+                <form class="flex flex-col gap-2" #form="ngForm">
+                    <label class="sc-control flex-col w-full">
+                        Chart type
+                        <select
+                            class="sc-select w-full"
+                            name="seriesType"
+                            [(ngModel)]="seriesType"
+                            (ngModelChange)="changeChart($event)"
+                        >
+                            <option value="LineSeries">Line</option>
+                            <option value="ColumnSeries">Column with stacked axes</option>
+                            <option value="StackedMountainSeries">Stacked mountain</option>
+                            <option value="BandSeries">Band</option>
+                            <option value="ScatterSeries">Scatter</option>
+                            <option value="CandlestickSeries">Candlestick</option>
+                        </select>
+                    </label>
+                    <input
+                        class="sc-range"
+                        type="range"
                         name="seriesCount"
+                        aria-label="Number of series"
                         min="1"
                         [max]="maxSettings.seriesCount"
                         [(ngModel)]="settings.seriesCount"
-                        (change)="handleFormChange(form)"
-                    >
-                        <input matSliderThumb />
-                    </mat-slider>
+                        (change)="handleFormChange()"
+                    />
                     <div>Number of Series: {{ settings.seriesCount }}</div>
-                    <mat-slider
+                    <input
+                        class="sc-range"
+                        type="range"
                         name="initialPoints"
+                        aria-label="Initial points"
                         min="0.1"
                         [max]="maxSettings.initialPoints"
                         [(ngModel)]="settings.initialPoints"
-                        (change)="handleFormChange(form)"
-                        [marks]="getLogMarks(maxSettings.initialPoints)"
-                    >
-                        <input matSliderThumb />
-                    </mat-slider>
+                        (change)="handleFormChange()"
+                        step="0.1"
+                    />
                     <div>Initial Points: {{ settings.initialPoints }}</div>
-                    <mat-slider
+                    <input
+                        class="sc-range"
+                        type="range"
                         name="pointsOnChart"
+                        aria-label="Max points on chart"
                         min="0.1"
                         [max]="maxSettings.pointsOnChart"
                         [(ngModel)]="settings.pointsOnChart"
-                        (change)="handleFormChange(form)"
-                        [marks]="getLogMarks(maxSettings.pointsOnChart)"
-                    >
-                        <input matSliderThumb />
-                    </mat-slider>
+                        (change)="handleFormChange()"
+                        step="0.1"
+                    />
                     <div>Max Points On Chart: {{ settings.pointsOnChart }}</div>
-                    <mat-slider
+                    <input
+                        class="sc-range"
+                        type="range"
                         name="pointsPerUpdate"
+                        aria-label="Points per update"
                         min="0.1"
                         [max]="maxSettings.pointsPerUpdate"
                         [(ngModel)]="settings.pointsPerUpdate"
-                        (change)="handleFormChange(form)"
-                        [marks]="getLogMarks(maxSettings.pointsPerUpdate)"
-                    >
-                        <input matSliderThumb />
-                    </mat-slider>
+                        (change)="handleFormChange()"
+                        step="0.1"
+                    />
                     <div>Points Per Update: {{ settings.pointsPerUpdate }}</div>
-                    <mat-slider
+                    <input
+                        class="sc-range"
+                        type="range"
                         name="sendEvery"
+                        aria-label="Send interval (ms)"
                         min="{{ maxSettings.sendEvery }}"
                         max="500"
                         [(ngModel)]="settings.sendEvery"
-                        (change)="handleFormChange(form)"
-                    >
-                        <input matSliderThumb />
-                    </mat-slider>
+                        (change)="handleFormChange()"
+                    />
                     <div>Send Data Interval (ms): {{ settings.sendEvery }}</div>
-                    <button mat-raised-button color="primary" (click)="startUpdate()">Start</button>
-                    <button mat-raised-button color="warn" (click)="stopUpdate()">Stop</button>
+                    <button type="button" (click)="toggleStreaming()" [disabled]="!controls" class="sc-button">
+                        {{ isRunning ? "Stop" : "Start" }}
+                    </button>
                 </form>
             </div>
         </div>
     `,
 })
 export class RealtimeBigDataShowcaseComponent {
-    private controls: any;
+    protected controls: any;
+    isRunning = false;
     seriesType = ESeriesType.LineSeries;
     isDirty = false;
     settings: ISettings = {
@@ -146,6 +143,11 @@ export class RealtimeBigDataShowcaseComponent {
         this.updateChartSettings();
     }
 
+    handleFormChange() {
+        this.isDirty = true;
+        this.updateChartSettings();
+    }
+
     private updateChartSettings() {
         if (this.controls) {
             this.controls.updateSettings({
@@ -161,6 +163,8 @@ export class RealtimeBigDataShowcaseComponent {
         if (this.controls) {
             this.controls.stopUpdate();
         }
+        this.isRunning = false;
+        this.controls = undefined;
         this.seriesType = newSeriesType;
         this.initChartFunction = drawExample((newMessages: TMessage[]) => {
             this.messages = [...newMessages];
@@ -168,10 +172,16 @@ export class RealtimeBigDataShowcaseComponent {
         this.updateChartSettings();
     }
 
+    toggleStreaming() {
+        if (this.isRunning) this.stopUpdate();
+        else this.startUpdate();
+    }
+
     startUpdate() {
         if (this.controls) {
             this.isDirty = false;
             this.controls.startUpdate();
+            this.isRunning = true;
         }
     }
 
@@ -179,6 +189,7 @@ export class RealtimeBigDataShowcaseComponent {
         if (this.controls) {
             this.isDirty = false;
             this.controls.stopUpdate();
+            this.isRunning = false;
         }
     }
 

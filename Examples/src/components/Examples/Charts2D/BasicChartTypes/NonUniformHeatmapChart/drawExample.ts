@@ -6,7 +6,6 @@ import {
     NonUniformHeatmapDataSeries,
     NonUniformHeatmapRenderableSeries,
     NumberRange,
-    PinchZoomModifier,
     SciChartSurface,
     ZoomExtentsModifier,
     ZoomPanModifier,

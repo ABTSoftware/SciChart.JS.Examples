@@ -1,10 +1,7 @@
 import { useRef, useState } from "react";
-import { PlayArrow as PlayArrowIcon } from "@mui/icons-material";
-import { Pause as PauseIcon } from "@mui/icons-material";
-import Button from "@mui/material/Button";
+import { PlayArrowIcon, StopIcon } from "../../../icons";
+
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import { appTheme } from "../../../theme";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 
 export default function RealtimePerformanceDemo() {
@@ -14,9 +11,12 @@ export default function RealtimePerformanceDemo() {
     const [stats, setStats] = useState({ numberPoints: 0, fps: 0 });
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow}>
-                <Button
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <button
+                    className="sc-button sc-button-icon"
+                    aria-label={isStarted ? "Pause updates" : "Start updates"}
+                    title={isStarted ? "Pause updates" : "Start updates"}
                     onClick={() => {
                         if (isStarted) {
                             controlsRef.current.stopUpdate();
@@ -25,16 +25,16 @@ export default function RealtimePerformanceDemo() {
                         }
                         setIsStarted(!isStarted);
                     }}
+                    type="button"
                 >
-                    {isStarted ? <PauseIcon /> : <PlayArrowIcon />}
-                </Button>
-                <div style={{ flex: "none", flexBasis: "13em", textAlign: "left" }}>
-                    # DataPoints: {stats.numberPoints.toLocaleString()}
-                </div>
-                <div style={{ flex: "none", flexBasis: "5em", textAlign: "left" }}>
-                    FPS:&nbsp;{stats.fps.toFixed(0).padStart(2, "0")}
-                </div>
-            </div>
+                    {isStarted ? <StopIcon /> : <PlayArrowIcon />}
+                </button>
+
+                <span className="monospace"># DataPoints: {stats.numberPoints.toLocaleString()}</span>
+
+                <span className="monospace">FPS:&nbsp;{stats.fps.toFixed(0).padStart(2, "0")}&nbsp;</span>
+            </header>
+
             <SciChartReact
                 initChart={drawExample}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
