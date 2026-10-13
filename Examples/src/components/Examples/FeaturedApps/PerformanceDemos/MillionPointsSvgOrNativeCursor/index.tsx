@@ -51,8 +51,8 @@ export default function HighPerformanceScatterCursor() {
                         aria-pressed={isCursor === true}
                         onClick={() => handleModifierChange(true)}
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path fill="#8886" strokeWidth="1" d="M3 3 3 21 L21 21L21 3L2.75 3" />
+                        <svg style={{ width: 30, height: 30}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#FFF">
+                            <path fill="#666" strokeWidth="1" d="M3 3 3 21 L21 21L21 3L2.75 3" />
                             <path strokeWidth="0.5" d="M7 3, v18M3 14h18" />
                             <path strokeWidth="0.5" fill="#222" d="M8.2 4.7, v8, h8, v-8Z" />
                             <circle stroke="#38F" cx="7" cy="13" r="0.5" />
@@ -61,7 +61,7 @@ export default function HighPerformanceScatterCursor() {
                             </text>
                             <path
                                 transform="translate(-0.9,7) scale(0.7)"
-                                fill="currentColor"
+                                fill="#FFF"
                                 stroke="#000000"
                                 strokeWidth="0.75"
                                 strokeLinecap="round"
@@ -77,8 +77,8 @@ export default function HighPerformanceScatterCursor() {
                         aria-pressed={isCursor === false}
                         onClick={() => handleModifierChange(false)}
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path fill="#8886" strokeWidth="1" d="M3 3 3 21 L21 21L21 3L2.75 3" />
+                        <svg style={{ width: 30, height: 30}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#FFF">
+                            <path fill="#666" strokeWidth="1" d="M3 3 3 21 L21 21L21 3L2.75 3" />
                             <path strokeWidth="0.5" d="M7 3, v18Z" />
                             <path strokeWidth="0.5" fill="#222" d="M9 8, v8, h8, v-8Z" />
                             <circle stroke="#38F" cx="7" cy="12" r="0.5" />
@@ -87,7 +87,7 @@ export default function HighPerformanceScatterCursor() {
                             </text>
                             <path
                                 transform="translate(-0.7,7) scale(0.7)"
-                                fill="currentColor"
+                                fill="#FFF"
                                 stroke="#000000"
                                 strokeWidth="0.75"
                                 strokeLinecap="round"

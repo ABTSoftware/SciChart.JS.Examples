@@ -54,7 +54,7 @@
 }
 
 .sc-semiconductors-dashboard-container .scichart__legend-item {
-    font-size: 12px;
+    font-size: var(--sc-font-size-xs);
 }
 
 .sc-semiconductors-dashboard-container .scichart__legend-item label:nth-child(1) {

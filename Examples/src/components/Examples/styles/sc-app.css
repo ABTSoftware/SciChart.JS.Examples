@@ -1,10 +1,9 @@
 /* Application layout and navigation. Demo controls belong to sc-ui.css. */
 
 #masthead {
-    --height: 90px;
+    --height: 80px;
     --nav-bg: #1f1f1f;
-    font-family: "Inter", sans-serif;
-    font-size: 14px;
+    font-size: var(--sc-font-size-sm);
 }
 #masthead.sc-app-nav-site-header {
     position: sticky;
@@ -17,13 +16,15 @@
     border-bottom: 1px solid #343434;
 }
 #masthead .sc-app-nav-site-logo {
+    height: 100%;
     display: flex;
-}
-#masthead .sc-app-nav-site-logo img {
-    width: auto;
-    height: calc(var(--height) - 44px);
-    margin-top: 5px;
-    margin-left: -3px;
+    align-items: center;
+
+    a { margin-bottom: -13px; }
+    img {
+        width: auto;
+        height: calc(var(--height) - 40px);
+    }
 }
 #masthead .sc-app-nav-header-nav {
     display: none;
@@ -61,7 +62,7 @@
         display: block;
     }
     #masthead .sc-app-nav-header-nav #primary-menu {
-        gap: 18px;
+        gap: 12px;
     }
     #masthead .sc-app-nav-header-nav ul {
         margin: 0;
@@ -79,16 +80,17 @@
         align-items: center;
         width: 100%;
     }
-    #masthead .sc-app-nav-menu-item > a {
+    #masthead .sc-app-nav-menu-item > a:not(.sc-button) {
         color: #fff;
         text-decoration: none;
         padding: 10px 20px;
+        margin: 0 4px;
         display: inline-block;
         transition: color 0.3s ease;
         white-space: nowrap;
         overflow: hidden;
     }
-    #masthead .sc-app-nav-menu-item > a:hover {
+    #masthead .sc-app-nav-menu-item > a:not(.sc-button):hover {
         color: #ccc;
     }
     #masthead .sc-app-nav-sub-menu {
@@ -103,7 +105,9 @@
         visibility: hidden;
         transform: translateY(-10px);
         transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;
-        padding: 10px 0;
+        padding: 12px;
+        border: 1px solid var(--sc-outline);
+        border-radius: var(--radius);
     }
     #masthead .sc-app-nav-sub-menu::before {
         content: "";
@@ -129,8 +133,9 @@
     }
     #masthead .sc-app-nav-sub-menu hr {
         width: 100%;
-        height: 1;
-        border-color: rgb(80, 80, 120);
+        height: 0;
+        border: 0;
+        border-top: 1px solid var(--sc-outline);
     }
     #masthead .sc-app-nav-menu-item:hover > .sc-app-nav-sub-menu {
         visibility: visible;
@@ -152,23 +157,6 @@
         opacity: 1;
         transform: translateX(0);
         transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s;
-    }
-    #masthead .sc-app-nav-menu-item.sc-app-nav-button {
-        color: white;
-        border: none;
-        border-radius: 25px;
-        display: flex;
-        align-items: center;
-        padding: 0 25px;
-        height: 38px;
-        cursor: pointer;
-        background: linear-gradient(90deg, #29aade, #44b6ce, #64c5bb);
-    }
-    #masthead .sc-app-nav-menu-item.sc-app-nav-button.sc-app-nav-dark {
-        background: linear-gradient(90deg, rgb(42, 99, 151), rgb(113, 55, 149), rgb(160, 36, 142));
-    }
-    #masthead .sc-app-nav-menu-item.sc-app-nav-button a {
-        padding: 0;
     }
     #masthead .sc-app-nav-menu-item.sc-app-nav-login .sc-app-nav-sub-menu {
         right: 0;
@@ -206,7 +194,7 @@
     #masthead .sc-app-nav-menu-item {
         margin-right: 0;
     }
-    #masthead .sc-app-nav-menu-item > a {
+    #masthead .sc-app-nav-menu-item > a:not(.sc-button) {
         padding: 0;
     }
 }
@@ -259,8 +247,8 @@
 }
 
 .sc-app-home-drawer {
-    top: 100px;
-    max-height: calc(100vh - 90px - 40px);
+    top: 90px;
+    max-height: calc(100vh - 90px - 10px);
 }
 @media (max-width: 60em) {
     .sc-app-home-drawer,
@@ -275,6 +263,7 @@
 }
 
 .sc-app-content {
+    position: relative;
     flex-grow: 1;
     background-color: var(--bg-darker);
     max-width: 100vw;
@@ -291,9 +280,18 @@
     flex: 1;
 }
 
+@media (max-width: 768px) {
+    .sc-app-content {
+        background-color: var(--bg);
+    }
+    .sc-app-gallery-layout {
+        padding: 0;
+    }
+}
+
 .sc-app-details-drawer {
-    top: 102px;
-    max-height: calc(100vh - 116px);
+    top: 90px;
+    max-height: calc(100vh - 90px - 10px);
 }
 .sc-app-details-layout {
     display: flex;
@@ -303,6 +301,7 @@
 @media only screen and (max-width: 768px) {
     .sc-app-details-layout {
         padding: 0;
+        background: var(--bg);
     }
 }
 .sc-app-details-content {
@@ -320,7 +319,7 @@
     .sc-app-details-content {
         max-width: 100vw;
         border: none;
-        border-radius: 0 0 15px 15px;
+        border-radius: 0;
     }
 }
 .sc-app-details-content .sc-app-layout-buttons {
@@ -397,13 +396,13 @@
     text-decoration: none;
     margin-bottom: 18px;
     font-weight: 500;
-    font-size: 16px;
+    font-size: var(--sc-font-size-base);
     line-height: 24px;
     cursor: pointer;
 }
 @media (max-width: 60em) {
     .sc-app-footer .sc-app-footer-related-links a {
-        font-size: 14px;
+        font-size: var(--sc-font-size-sm);
         line-height: 22px;
     }
 }
@@ -442,22 +441,22 @@
     font-weight: 600;
 }
 .sc-app-footer h5 {
-    font-size: 22px;
+    font-size: var(--sc-font-size-lg);
     line-height: 27px;
 }
 .sc-app-footer h6 {
-    font-size: 18px;
+    font-size: var(--sc-font-size-base);
     line-height: 22px;
     margin-bottom: 26px;
     margin-top: 40px;
 }
 @media (max-width: 60em) {
     .sc-app-footer h5 {
-        font-size: 20px;
+        font-size: var(--sc-font-size-lg);
         line-height: 24px;
     }
     .sc-app-footer h6 {
-        font-size: 16px;
+        font-size: var(--sc-font-size-base);
         line-height: 20px;
     }
 }
@@ -470,7 +469,7 @@
     }
 }
 .sc-app-footer .sc-app-footer-links-box P {
-    margin: 40px 0;
+    margin: 20px 0;
     color: #bac0c6;
 }
 .sc-app-footer .sc-app-footer-related-links {
@@ -479,39 +478,13 @@
     margin-top: 40px;
 }
 .sc-app-footer .sc-app-footer-contact-us-button {
-    flex: none;
-    width: 170px;
-    padding: 16px 16px;
-    border-radius: 4px;
-    background: #39b5db;
-    margin: 30px 0;
-    color: white;
-}
-.sc-app-footer .sc-app-footer-contact-us-button span {
-    color: #f7f8f8;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    line-height: 15px;
-    text-align: center;
-    text-transform: uppercase;
-    text-decoration-thickness: auto;
+    margin: 12px 0;
+    width: 100% !important;
 }
 .sc-app-footer .sc-app-footer-social-media-links {
     display: flex;
-}
-.sc-app-footer .sc-app-footer-social-media-links a {
-    display: flex;
-    flex: none;
-    justify-content: center;
-    align-items: center;
-    height: 44px;
-    width: 44px;
-    border-radius: 4px;
-    margin-right: 16px;
-    background-color: rgb(42, 99, 151);
-    color: inherit;
-    text-decoration: none;
+    flex-wrap: nowrap;
+    gap: 12px;
 }
 
 .sc-app-footer-copyright {
@@ -647,7 +620,7 @@
 .sc-app-navigation .sc-app-navigation-homepage-list-item,
 .sc-app-navigation .sc-app-navigation-selected-homepage-list-item {
     color: var(--text);
-    font-size: 0.875rem;
+    font-size: var(--sc-font-size-sm);
     font-weight: 600;
     padding-top: 12px;
     padding-bottom: 12px;
@@ -690,7 +663,7 @@
     margin-left: 20px;
 }
 .sc-app-menu-list-item-block .sc-app-menu-example-link {
-    font-size: 0.875rem;
+    font-size: var(--sc-font-size-sm);
     line-height: 17px;
     margin-left: 40px;
     color: var(--text);
@@ -768,4 +741,68 @@
 }
 :is(.sc-app-example, .sc-app-iframe) .scichart__legend input {
     margin-top: initial;
+}
+
+/* Navigation and footer keep their dark surfaces in every chart theme. */
+#masthead,
+.sc-app-footer {
+    --sc-text: #fafafa;
+    --sc-background: #121212;
+    --sc-primary: var(--sc-text);
+    --sc-outline: #414141;
+    --sc-muted: #242424;
+    color-scheme: dark;
+}
+:root[data-theme="light"] #masthead,
+:root[data-theme="light"] .sc-app-footer-social-media-links {
+    --sc-background: #0b162a;
+    --sc-muted: color-mix(in srgb, var(--sc-text) 8%, transparent);
+}
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) #masthead,
+    :root:not([data-theme]) .sc-app-footer-social-media-links {
+        --sc-background: #0b162a;
+        --sc-muted: color-mix(in srgb, var(--sc-text) 8%, transparent);
+    }
+}
+.sc-app-nav-theme-picker {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+.sc-app-nav-theme-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border: 1px solid var(--sc-outline);
+    border-radius: var(--radius);
+    padding: 6px;
+    background: var(--sc-background);
+    box-shadow: 0 12px 30px rgb(0 0 0 / 35%);
+    z-index: 2000;
+}
+
+@media (max-width: 600px) {
+    #masthead #site-navigation > .sc-app-nav-row {
+        gap: 12px;
+        padding: 0 16px;
+    }
+    #masthead .sc-app-nav-site-logo img {
+        width: min(180px, 42vw);
+        height: auto;
+        margin: 0;
+    }
+    #masthead .sc-app-nav-mobile-buttons {
+        padding-right: 16px;
+    }
+}
+
+/* Shared controls use the application font outside the examples. */
+#masthead .sc-button,
+.sc-app-footer .sc-button,
+.sc-gallery-view-options .sc-button {
+    font-family: var(--sc-font-family);
 }

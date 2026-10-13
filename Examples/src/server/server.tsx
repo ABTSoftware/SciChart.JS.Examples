@@ -45,7 +45,7 @@ const initialize = process.env.NODE_ENV === "production"
 initialize
     .then(() => loadStyles())
     .then(() => {
-        server.listen(port, () => {
+        server.listen(port, host, () => {
             console.log(
                 `Serving at http://${host}:${port}${baseAppPath} ${chalk.green("✓")}. ${chalk.red(
                     "To run in dev mode: npm run dev"

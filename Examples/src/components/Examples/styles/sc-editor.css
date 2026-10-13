@@ -28,8 +28,7 @@
     justify-content: center;
     border-radius: 8px;
     gap: 2px;
-    font-size: 14px;
-    font-family: "Arial";
+    font-size: var(--sc-font-size-sm);
     line-height: 20px;
     height: 35px;
     min-width: 50px;
@@ -173,7 +172,7 @@
     min-width: 22px;
 }
 .sc-editor-code-horizontal-scroller .sc-editor-code-select-tab p {
-    font-size: 15px;
+    font-size: var(--sc-font-size-sm);
     margin: 0;
     color: var(--text);
 }
@@ -246,7 +245,7 @@
 
 .sc-editor-frame-example-name {
     font-weight: 600;
-    font-size: 0.9em;
+    font-size: var(--sc-font-size-sm);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -300,12 +299,12 @@
 }
 .sc-editor-confirm-dialog h2 {
     margin: 0 0 8px 0;
-    font-size: 14px;
+    font-size: var(--sc-font-size-sm);
     font-weight: 600;
 }
 .sc-editor-confirm-dialog p {
     margin: 0 0 12px 0;
-    font-size: 12px;
+    font-size: var(--sc-font-size-xs);
 }
 
 .sc-editor-confirm-buttons {
@@ -320,7 +319,7 @@
     border: 1px solid var(--bg-darker);
     background: var(--bg);
     cursor: pointer;
-    font-size: 12px;
+    font-size: var(--sc-font-size-xs);
     color: var(--text);
 }
 .sc-editor-confirm-buttons button:hover {
@@ -361,7 +360,7 @@
     right: 10px;
     border: none;
     background: none;
-    font-size: 20px;
+    font-size: var(--sc-font-size-lg);
     cursor: pointer;
     color: #6e7681;
     width: 20px;
@@ -380,7 +379,7 @@
 
 .sc-editor-info-content {
     color: #24292f;
-    font-size: 15px;
+    font-size: var(--sc-font-size-sm);
     line-height: 1.5;
     margin-right: 24px;
     font-weight: 500;
@@ -514,7 +513,7 @@
 }
 
 .sc-editor-toolbar-text {
-    font-size: var(--sc-editor-font-size-xs);
+    font-size: var(--sc-font-size-xs);
     font-weight: 500;
     user-select: none;
     line-height: var(--sc-editor-spacing-xl);
@@ -575,7 +574,7 @@
     padding: var(--sc-editor-spacing-sm) var(--sc-editor-spacing-lg);
     background: var(--sc-editor-color-tooltip-bg);
     color: rgba(255, 255, 255, 0.98);
-    font-size: var(--sc-editor-font-size-xs);
+    font-size: var(--sc-font-size-xs);
     font-weight: 500;
     border-radius: var(--sc-editor-border-radius-md);
     white-space: nowrap;

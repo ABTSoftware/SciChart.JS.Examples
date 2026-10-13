@@ -1,4 +1,3 @@
-import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { useEffect, useRef, useState } from "react";
@@ -88,25 +87,14 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
         }, []);
 
         return (
-            <div ref={menuRef} style={{ position: "relative", display: "inline-flex", alignItems: "center" }}>
+            <div ref={menuRef} className="sc-app-nav-theme-picker">
                 <button
                     type="button"
-                    aria-label="select theme"
+                    className="sc-button sc-button-outline"
+                    aria-label="Select theme"
                     aria-expanded={isOpen}
                     title={`Current theme: ${currentThemeLabel}`}
                     onClick={() => setIsOpen((prev) => !prev)}
-                    style={{
-                        height: "100%",
-                        borderRadius: 8,
-                        padding: "6px",
-                        color: "#fff",
-                        border: "1px solid rgba(255,255,255,0.2)",
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 6,
-                        background: "rgba(255,255,255,0.06)",
-                        cursor: "pointer",
-                    }}
                 >
                     <ThemeIcon themeValue={theme} />
                     <svg
@@ -127,21 +115,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                 </button>
 
                 {isOpen && (
-                    <div
-                        role="listbox"
-                        aria-label="Theme options"
-                        style={{
-                            position: "absolute",
-                            top: "calc(100% + 8px)",
-                            right: 0,
-                            borderRadius: 10,
-                            padding: 6,
-                            background: "rgba(24, 24, 28, 0.98)",
-                            border: "1px solid rgba(255,255,255,0.12)",
-                            boxShadow: "0 12px 30px rgba(0,0,0,0.35)",
-                            zIndex: 2000,
-                        }}
-                    >
+                    <div role="listbox" aria-label="Theme options" className="sc-app-nav-theme-menu">
                         {themeOptions.map((option) => {
                             const isSelected = option.value === theme;
                             return (
@@ -149,22 +123,12 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                     type="button"
                                     key={option.value}
                                     role="option"
+                                    className="sc-button sc-button-outline"
                                     aria-selected={isSelected}
+                                    aria-pressed={isSelected}
                                     onClick={() => {
                                         setTheme(option.value);
                                         setIsOpen(false);
-                                    }}
-                                    style={{
-                                        width: "100%",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                        gap: 10,
-                                        padding: "8px 10px",
-                                        borderRadius: 8,
-                                        background: isSelected ? "rgba(255,255,255,0.15)" : "transparent",
-                                        color: "#fff",
-                                        cursor: "pointer",
                                     }}
                                 >
                                     <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
@@ -189,7 +153,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
             <nav id="site-navigation">
                 <div className="sc-app-nav-row">
                     <div className="sc-app-nav-site-logo">
-                        <a href="https://www.scichart.com/" style={{ overflow: "visible" }}>
+                        <a href="https://www.scichart.com/">
                             <img
                                 src="https://www.scichart.com/wp-content/themes/scichartv6/assets/icons/scichart-logo.svg"
                                 alt="SciChart"
@@ -528,22 +492,23 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                         <ThemeSelectComponent />
                                     </li>
 
-                                    <li id="menu-item-5373" className="sc-app-nav-button sc-app-nav-menu-item">
-                                        <a href="https://www.scichart.com/shop/" rel="nofollow" role="button">
-                                            Buy Now
-                                        </a>
-                                    </li>
-                                    <li
-                                        id="menu-item-cta-alt"
-                                        className="sc-app-nav-button sc-app-nav-dark sc-app-nav-menu-item"
-                                    >
+                                    <li id="menu-item-cta-alt" className="sc-app-nav-menu-item">
                                         <a
                                             href="https://www.scichart.com/getting-started/scichart-javascript/"
                                             target=""
                                             rel="nofollow"
-                                            role="button"
+                                            className="sc-button"
                                         >
-                                            Start for Free
+                                            Start for free
+                                        </a>
+                                    </li>
+                                    <li id="menu-item-5373" className="sc-app-nav-menu-item">
+                                        <a 
+                                            className="sc-button sc-button-outline"
+                                            href="https://www.scichart.com/shop/" 
+                                            rel="nofollow"
+                                        >
+                                            Buy now
                                         </a>
                                     </li>
 
@@ -592,9 +557,14 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                         <ThemeSelectComponent />
                     </div>
                     <div className="sc-app-nav-menu-burger">
-                        <Button onClick={toggleDrawer} aria-label="menu" sx={{ minWidth: 36 }}>
-                            <MenuIcon sx={{ color: "#fff" }} />
-                        </Button>
+                        <button
+                            type="button"
+                            className="sc-button sc-button-icon"
+                            onClick={toggleDrawer}
+                            aria-label="Open menu"
+                        >
+                            <MenuIcon />
+                        </button>
                     </div>
                 </div>
             </nav>

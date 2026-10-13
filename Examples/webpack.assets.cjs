@@ -1,5 +1,7 @@
 // Files shared by the production copy step and the development static server.
 module.exports = [
+    { from: "src/static/fonts/Inter.ttf", to: "Inter.ttf" },
+    { from: "src/static/fonts/OFL.txt", to: "Inter-OFL.txt" },
     { from: "src/static/favicon.ico", to: "" },
     { from: "src/static/webgl-intel.html", to: "" },
     { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Shale.csv", to: "" },

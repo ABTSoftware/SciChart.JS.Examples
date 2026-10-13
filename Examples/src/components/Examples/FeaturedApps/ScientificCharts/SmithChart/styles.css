@@ -42,7 +42,7 @@
     padding: 2px 8px;
     border-radius: var(--radius);
     color: #fff;
-    font-size: 11px;
+    font-size: var(--sc-font-size-xs);
     white-space: nowrap;
 }
 
@@ -125,7 +125,7 @@
 }
 
 .sc-smith-readout-table {
-    font-size: 11px;
+    font-size: var(--sc-font-size-xs);
     border-collapse: collapse;
 }
 

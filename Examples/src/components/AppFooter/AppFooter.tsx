@@ -2,7 +2,6 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import Button from "@mui/material/Button";
 import { libraryVersion } from "scichart";
 
 export default function AppFooter() {
@@ -28,7 +27,7 @@ export default function AppFooter() {
                         </div>
                     </div>
                     <div className="sc-app-footer-links-box">
-                        <h5>Quick Links</h5>
+                        <h5>Quick links</h5>
                         <div className="sc-app-footer-divider">
                             <div className="sc-app-footer-divider-box"></div>
                         </div>
@@ -58,7 +57,7 @@ export default function AppFooter() {
                                 News &amp; Releases
                             </a>
                             <a href="https://www.scichart.com/blog/" title="SciChart Blog">
-                                NEW! SciChart Blog
+                                SciChart blog
                             </a>
                             <a href="https://www.scichart.com/about-us/" title="About Us">
                                 About Us
@@ -72,7 +71,7 @@ export default function AppFooter() {
                         </div>
                     </div>
                     <div className="sc-app-footer-links-box">
-                        <h5>Useful Links</h5>
+                        <h5>Useful links</h5>
                         <div className="sc-app-footer-divider">
                             <div className="sc-app-footer-divider-box"></div>
                         </div>
@@ -80,8 +79,8 @@ export default function AppFooter() {
                             <a href="https://www.scichart.com/changelog/scichart-js/" title="Changelog">
                                 View v{libraryVersion} Changelog
                             </a>
-                            <a href="https://www.scichart.com/downloads/" title="Download FREE Trials">
-                                Download FREE Trials
+                            <a href="https://www.scichart.com/downloads/" title="Download free trials">
+                                Download free trials
                             </a>
                             <a href="https://www.scichart.com/read-testimonials/" title="Testimonials &amp; Reviews">
                                 Testimonials &amp; Reviews
@@ -112,25 +111,41 @@ export default function AppFooter() {
                             <div className="sc-app-footer-divider-box"></div>
                         </div>
                         <p>Not sure where to start? Contact us, we are happy to help!</p>
-                        <Button
-                            className="sc-app-footer-contact-us-button"
+                        <a
+                            className="sc-button sc-app-footer-contact-us-button"
                             href="https://www.scichart.com/contact-us/"
                             target="_blank"
                         >
-                            Contact Us
-                        </Button>
+                            Contact us
+                        </a>
                         <div className="sc-app-footer-social-media-links">
-                            <a href="https://www.facebook.com/scichart" title="SciChart on Facebook">
-                                <FacebookIcon fontSize="large" />
+                            <a
+                                className="sc-button sc-button-icon"
+                                href="https://www.facebook.com/scichart"
+                                title="SciChart on Facebook"
+                            >
+                                <FacebookIcon />
                             </a>
-                            <a href="https://www.youtube.com/user/SciChart" title="SciChart on YouTube">
-                                <YouTubeIcon fontSize="large" />
+                            <a
+                                className="sc-button sc-button-icon"
+                                href="https://www.youtube.com/user/SciChart"
+                                title="SciChart on YouTube"
+                            >
+                                <YouTubeIcon />
                             </a>
-                            <a href="https://www.linkedin.com/company/scichart" title="SciChart on LinkedIn">
-                                <LinkedInIcon fontSize="large" />
+                            <a
+                                className="sc-button sc-button-icon"
+                                href="https://www.linkedin.com/company/scichart"
+                                title="SciChart on LinkedIn"
+                            >
+                                <LinkedInIcon />
                             </a>
-                            <a href="https://twitter.com/scichart" title="SciChart on Twitter">
-                                <TwitterIcon fontSize="large" />
+                            <a
+                                className="sc-button sc-button-icon"
+                                href="https://twitter.com/scichart"
+                                title="SciChart on Twitter"
+                            >
+                                <TwitterIcon />
                             </a>
                         </div>
                     </div>

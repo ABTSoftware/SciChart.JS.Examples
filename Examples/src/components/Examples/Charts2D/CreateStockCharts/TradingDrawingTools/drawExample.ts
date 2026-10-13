@@ -48,7 +48,9 @@ const CHANNEL_LABEL_PAIRS = [
     [2, 3],
 ] as const;
 
-const PITCH_LABEL_PAIRS = [[1, 2]] as const;
+const PITCH_LABEL_PAIRS = [
+    [1, 2]
+] as const;
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const ctx = await createFinancialChart(rootElement, {
@@ -538,9 +540,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 connectorLineStroke: "#F87171",
                 connectorLineStrokeDashArray: [6, 4],
                 points: [
-                    { x: x(0.19), y: 61740 },
-                    { x: x(0.253), y: 62540 },
-                    { x: x(0.383), y: 62940 },
+                    { x: x(0.1), y: 61740 },
+                    { x: x(0.27), y: 62540 },
+                    { x: x(0.48), y: 62940 },
                 ],
             }),
             new FibonacciTimeZoneAnnotation({
@@ -556,11 +558,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 labelFontSize: 14,
                 extendStart: false,
                 extendEnd: true,
-                connectorLineStroke: "#F87171",
+                connectorLineStroke: "#60A5FA",
                 connectorLineStrokeDashArray: [6, 4],
                 points: [
-                    { x: x(0.469), y: 64580 },
-                    { x: x(0.496), y: 64580 },
+                    { x: x(0.46), y: 62500 },
+                    { x: x(0.51), y: 62500 },
                 ],
             }),
             new PolyLineAnnotation({

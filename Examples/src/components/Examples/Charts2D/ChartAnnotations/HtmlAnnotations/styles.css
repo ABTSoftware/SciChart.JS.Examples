@@ -1,7 +1,7 @@
 .styledTextAnnotation {
     max-width: 300px;
     padding: 4px;
-    font-size: 1em;
+    font-size: var(--sc-font-size-base);
     font-weight: bold;
     color: wheat;
     background: repeating-radial-gradient(circle at center, #14233c, #264b93 10px, #14233c 20px);
@@ -16,6 +16,6 @@
 
 @media (max-width: 600px) {
     .htmlAnnotationExampleChart {
-        font-size: 0.8em;
+        font-size: var(--sc-font-size-sm);
     }
 }

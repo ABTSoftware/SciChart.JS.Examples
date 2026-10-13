@@ -216,7 +216,7 @@ export default function App() {
                         />
                     </Drawer>
                 )}
-                <div className="sc-app-content relative">
+                <div className="sc-app-content">
                     <SciChartNavbar toggleDrawer={toggleDrawer} />
 
                     {is404 ? (

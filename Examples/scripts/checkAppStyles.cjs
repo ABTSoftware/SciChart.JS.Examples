@@ -20,6 +20,21 @@ for (const name of [...names, "ui"]) {
     const ast = postcss.parse(css);
     ast.walkDecls((decl) => {
         if (decl.prop.startsWith("--")) definitions.add(decl.prop);
+        if (decl.prop === "font-size") {
+            assert(
+                /^var\(--sc-font-size-(xs|sm|base|lg|xl)\)(?: !important)?$/.test(decl.value) ||
+                    ["inherit", "0", "16px"].includes(decl.value),
+                `Use the shared typography scale in sc-${name}.css: ${decl.value}`
+            );
+        }
+        if (decl.prop === "font-family") {
+            assert(
+                ['"Inter"', "inherit", "var(--sc-font-family)", "var(--sc-font-mono)"].includes(decl.value) ||
+                    (name === "ui" &&
+                        ["ui-sans-serif, system-ui, sans-serif", "ui-monospace, monospace", "monospace !important"].includes(decl.value)),
+                `Unexpected font family in sc-${name}.css: ${decl.value}`
+            );
+        }
         if (name !== "ui") {
             for (const match of decl.value.matchAll(/var\((--[\w-]+)\s*\)/g)) references.add(match[1]);
         }
@@ -33,7 +48,9 @@ for (const name of [...names, "ui"]) {
                 if (name === "ui") demoClasses.add(node.value);
                 else {
                     assert(
-                        appClass.test(node.value) || node.value === "scichart__legend",
+                        appClass.test(node.value) ||
+                            /^sc-button(?:-|$)/.test(node.value) ||
+                            node.value === "scichart__legend",
                         `Unscoped application class .${node.value} in sc-${name}.css`
                     );
                     classes.add(node.value);
@@ -83,7 +100,10 @@ for (const file of sourceFiles.filter((file) => file.endsWith(".tsx"))) {
                 : undefined;
             if (literal && (ts.isStringLiteral(literal) || ts.isNoSubstitutionTemplateLiteral(literal))) {
                 for (const value of literal.text.split(/\s+/)) {
-                    assert(!demoClasses.has(value), `${relative} uses demo-only class ${value}`);
+                    assert(
+                        !demoClasses.has(value) || /^sc-button(?:-|$)/.test(value),
+                        `${relative} uses demo-only class ${value}`
+                    );
                 }
             }
         }

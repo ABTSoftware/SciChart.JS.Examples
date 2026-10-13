@@ -41,7 +41,7 @@ const ThresholdSlider = () => {
     return (
         <div
             className="absolute"
-            style={{ fontSize: "0.8em", top: seriesViewRect.top - 13, right: viewport.width - seriesViewRect.right - 10 }}
+            style={{ fontSize: "var(--sc-font-size-sm)", top: seriesViewRect.top - 13, right: viewport.width - seriesViewRect.right - 10 }}
         >
             Duration Threshold
             <br />

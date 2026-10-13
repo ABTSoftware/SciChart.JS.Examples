@@ -4,34 +4,34 @@
     color: var(--text);
 }
 .sc-content-markdown h1 {
-    font-size: 100rem;
+    font-size: var(--sc-font-size-xl);
 }
 .sc-content-markdown h2 {
-    font-size: 1.8rem;
+    font-size: var(--sc-font-size-lg);
     font-weight: 600;
     margin-bottom: -6px;
     margin: 6px 0 -6px 0;
 }
 .sc-content-markdown h3 {
-    font-size: 1.6rem;
+    font-size: var(--sc-font-size-lg);
     font-weight: 600;
     margin: 4px 0 -6px 0;
 }
 .sc-content-markdown h4 {
-    font-size: 1.45rem;
+    font-size: var(--sc-font-size-base);
     font-weight: 600;
     margin: 3px 0 -4px 0;
 }
 .sc-content-markdown h5 {
-    font-size: 1.2rem;
+    font-size: var(--sc-font-size-base);
     font-weight: 400;
 }
 .sc-content-markdown h6 {
-    font-size: 1.15rem;
+    font-size: var(--sc-font-size-sm);
     font-weight: 400;
 }
 .sc-content-markdown p {
-    font-size: 1.1rem;
+    font-size: var(--sc-font-size-base);
     font-weight: 400;
 }
 .sc-content-markdown h1,
@@ -45,18 +45,17 @@
 .sc-content-markdown ul,
 .sc-content-markdown ol,
 .sc-content-markdown blockquote {
-    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-        sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: inherit;
     color: var(--text);
 }
 .sc-content-markdown a {
     color: var(--light-blue);
 }
 .sc-content-markdown strong {
-    font-weight: 900;
+    font-weight: 600;
 }
 .sc-content-markdown code {
-    font-family: Consolas, monospace;
+    font-family: var(--sc-font-mono);
     background-color: var(--markdown-code-background);
     font-weight: 400;
     padding: 1.5px 8px 1.5px 8px;
@@ -92,7 +91,7 @@
     padding: 0.7rem 0.75rem;
     border-radius: 6px;
     margin: 0.25rem 0;
-    font-size: 0.95rem;
+    font-size: var(--sc-font-size-base);
     line-height: 1.5;
     display: flex;
     align-items: flex-start;
@@ -100,7 +99,7 @@
 }
 .sc-content-also-known-as::before {
     content: "💡";
-    font-size: 1.2rem;
+    font-size: var(--sc-font-size-base);
     line-height: 1;
     margin-top: 1px;
 }
