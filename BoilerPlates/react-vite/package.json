@@ -13,7 +13,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "scichart": "6.0.1",
+    "scichart": "6.0.6",
     "scichart-react": "2.0.0",
     "vite-plugin-static-copy": "^4.1.1"
   },

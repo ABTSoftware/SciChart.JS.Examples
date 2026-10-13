@@ -100,7 +100,7 @@ Finally we added script to load scichart.js from CDN into `App.razor`.
 
 ```html
 <script
-  src="https://cdn.jsdelivr.net/npm/scichart@6.0.0-alpha.196/index.min.js"
+  src="https://cdn.jsdelivr.net/npm/scichart@6.0.6/index.min.js"
   crossorigin="anonymous"
 ></script>
 ```
