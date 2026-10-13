@@ -11,7 +11,7 @@ import carImage from "./javascript-3d-model-chart.jpg";
 const PROGRESS_TICK_MS = 100;
 
 /** Roughly the transfer size of the asset package, so the wait is explicable. */
-const PACKAGE_SIZE_LABEL = "~27 MB";
+const PACKAGE_SIZE_LABEL = "~19 MB";
 
 // The overlay is opaque: it hides the empty 3D scene until the model is actually in it,
 // so the chart appears complete rather than materialising piece by piece.

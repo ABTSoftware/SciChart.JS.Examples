@@ -81,7 +81,7 @@ Loads a cooked 3D model into a `SciChart3DSurface`. Two things are worth knowing
 
 -   The model package is fetched from `https://stagingdemo.scichart.com/fileshare/F1CarAssets.web.pkg`
     (the engine appends `.web.pkg` to the package name, so the name may be an absolute URL). It is a
-    ~28 MB staging asset and needs a production home before release; `scichart` does not ship it.
+    ~19 MB staging asset and needs a production home before release; `scichart` does not ship it.
 -   The entity has no load event, so the example polls `GetNodeHierarchyJson()` and calls
     `invalidateElement()` once the model arrives. Without that call a cached package can land before
     the first render pass and the scene stays empty.

@@ -14,7 +14,7 @@
  */
 
 /** Sets how fast the curve flattens. At t = this, progress is ~63%. */
-const TIME_CONSTANT_MS = 7_000;
+const TIME_CONSTANT_MS = 5_000;
 
 /** Ceiling for the estimate. The remaining 10% belongs to the actual load event. */
 const MAX_ESTIMATED = 0.9;
