@@ -1,193 +1,65 @@
 import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { MatSliderModule } from "@angular/material/slider";
-import { MatRadioModule } from "@angular/material/radio";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatButtonToggleModule } from "@angular/material/button-toggle";
-import { MatCardModule } from "@angular/material/card";
-import { MatButtonModule } from "@angular/material/button";
-import { MatInputModule } from "@angular/material/input";
-import { MatSelectModule } from "@angular/material/select";
 import { SciChartSurface, chartReviver, localStorageApi } from "scichart";
 import { ScichartAngularComponent } from "scichart-angular";
 import { drawExample } from "./drawExample";
 
 @Component({
     standalone: true,
-    imports: [
-        CommonModule,
-        FormsModule,
-        ScichartAngularComponent,
-        MatSliderModule,
-        MatRadioModule,
-        MatFormFieldModule,
-        MatButtonToggleModule,
-        MatCardModule,
-        MatButtonModule,
-        MatInputModule,
-        MatSelectModule,
-    ],
+    imports: [CommonModule, FormsModule, ScichartAngularComponent],
     selector: "app-user-annotated-stock-chart",
     template: `
-        <style>
-            .toolbar-row {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                padding: 10px;
-                background: #1f0954;
-                align-items: center;
-            }
-
-            mat-button-toggle-group {
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                padding: 4px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-            }
-
-            mat-button-toggle {
-                border: 1px solid #444;
-                border-radius: 4px;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 0 10px;
-            }
-
-            mat-form-field {
-                height: 40px;
-                flex-grow: 1;
-                display: flex;
-                align-items: flex-end;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                overflow: hidden;
-                background-color: white;
-            }
-
-            mat-form-field mat-select,
-            mat-form-field mat-input {
-                height: 100%;
-                padding: 0 10px;
-                border: none;
-                width: 100%;
-                background-color: transparent;
-                box-sizing: border-box;
-            }
-
-            mat-form-field mat-select {
-                display: flex;
-                align-items: flex-end;
-                height: auto;
-            }
-
-            mat-form-field mat-input {
-                display: flex;
-                align-items: flex-end;
-                height: auto;
-            }
-
-            mat-form-field .mat-form-field-wrapper {
-                height: 100%;
-                display: flex;
-                align-items: flex-end;
-            }
-
-            .mat-mdc-form-field-subscript-wrapper {
-                display: none;
-            }
-
-            button {
-                border: 1px solid #888;
-                border-radius: 4px;
-                margin-right: 10px;
-                padding: 8px 16px;
-                color: #fff;
-                height: 40px;
-                align-self: center;
-            }
-
-            button:hover {
-                background: #5a5a5a;
-            }
-
-            .mat-mdc-button:not(:disabled) {
-                color: #fff;
-            }
-
-            .mat-mdc-button:not(:disabled):hover {
-                color: #e0e0e0;
-            }
-            ::ng-deep .mat-mdc-form-field-subscript-wrapper {
-                display: none;
-            }
-
-            mat-button-toggle {
-                color: white;
-                transition: color 0.3s;
-            }
-
-            mat-button-toggle:hover {
-                color: black;
-            }
-
-            mat-button-toggle.mat-button-toggle-checked {
-                background-color: rgba(255, 255, 255, 0.2);
-                color: white;
-            }
-
-            mat-button-toggle:hover.mat-button-toggle-checked {
-                color: white;
-            }
-        </style>
-        <div class="chart-wrapper">
-            <div class="flex-outer-container">
-                <div class="toolbar-row">
-                    <mat-button-toggle-group
-                        (change)="onChartModeChange($event)"
-                        [value]="chartMode"
-                        appearance="outline"
-                        color="primary"
+        <div class="sc-chart-wrapper">
+            <div class="sc-toolbar-row">
+                <div class="sc-button-group" role="group" aria-label="Chart mode">
+                    <button
+                        type="button"
+                        class="sc-button"
+                        [attr.aria-pressed]="chartMode === 'pan'"
+                        (click)="onChartModeChange('pan')"
                     >
-                        <mat-button-toggle value="pan">Pan</mat-button-toggle>
-                        <mat-button-toggle value="line">Lines</mat-button-toggle>
-                        <mat-button-toggle value="marker">Markers</mat-button-toggle>
-                    </mat-button-toggle-group>
-                    <mat-form-field>
-                        <input
-                            matInput
-                            placeholder="Save As"
-                            [(ngModel)]="name"
-                            (ngModelChange)="onNameChanged($event)"
-                        />
-                    </mat-form-field>
-                    <button mat-button (click)="saveChart()">Save</button>
-                    <mat-form-field>
-                        <mat-select
-                            placeholder="Load From"
-                            [(ngModel)]="selectedChart"
-                            (selectionChange)="onSelectionChanged($event)"
-                        >
-                            <mat-option *ngFor="let name of getChartNames()" [value]="name">{{ name }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <button mat-button (click)="loadChart()">Load</button>
-                    <button mat-button (click)="resetChart()">Reset</button>
-                </div>
-                <div>
-                    <scichart-angular
-                        [initChart]="drawExample"
-                        (onInit)="onInit($event)"
-                        style="flex: 1; flex-basis: 50%;"
+                        Pan
+                    </button>
+                    <button
+                        type="button"
+                        class="sc-button"
+                        [attr.aria-pressed]="chartMode === 'line'"
+                        (click)="onChartModeChange('line')"
                     >
-                    </scichart-angular>
+                        Lines
+                    </button>
+                    <button
+                        type="button"
+                        class="sc-button"
+                        [attr.aria-pressed]="chartMode === 'marker'"
+                        (click)="onChartModeChange('marker')"
+                    >
+                        Markers
+                    </button>
                 </div>
+                <input
+                    class="sc-input"
+                    type="text"
+                    placeholder="Save as"
+                    aria-label="Chart name"
+                    [(ngModel)]="name"
+                    (ngModelChange)="onNameChanged($event)"
+                />
+                <button type="button" (click)="saveChart()" class="sc-button">Save</button>
+                <select
+                    class="sc-select"
+                    aria-label="Load From"
+                    [(ngModel)]="selectedChart"
+                    (ngModelChange)="onSelectionChanged($event)"
+                >
+                    <option value="" disabled>Load From</option>
+                    <option *ngFor="let chartName of getChartNames()" [value]="chartName">{{ chartName }}</option>
+                </select>
+                <button type="button" (click)="loadChart()" class="sc-button sc-button-outline">Load</button>
+                <button type="button" (click)="resetChart()" class="sc-button sc-button-danger">Reset</button>
             </div>
+            <scichart-angular [initChart]="drawExample" (onInit)="onInit($event)"></scichart-angular>
         </div>
     `,
 })
@@ -209,8 +81,8 @@ export class AppComponent implements OnInit {
         }
     }
 
-    onChartModeChange(event: any): void {
-        this.chartMode = event.value;
+    onChartModeChange(mode: string): void {
+        this.chartMode = mode;
         this.controlsRef?.setChartMode(this.chartMode);
     }
 
@@ -218,8 +90,8 @@ export class AppComponent implements OnInit {
         this.name = value;
     }
 
-    onSelectionChanged(event: any): void {
-        this.selectedChart = event.value;
+    onSelectionChanged(name: string): void {
+        this.selectedChart = name;
     }
 
     saveChart(): void {

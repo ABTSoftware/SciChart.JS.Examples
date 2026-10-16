@@ -1,5 +1,4 @@
 import React from "react";
-import classes from "./AppDetailsRouter.scss";
 import { Icon, TIconType } from "../buttons/Icon";
 
 interface BaseCodeActionButtonProps {
@@ -27,7 +26,7 @@ type CodeActionButtonProps = LinkCodeActionButtonProps | ClickCodeActionButtonPr
 export const CodeActionButton: React.FC<CodeActionButtonProps> = ({
     iconName,
     label,
-    className = classes.btn,
+    className = "sc-editor-action",
     title,
     href,
     target,
@@ -36,7 +35,7 @@ export const CodeActionButton: React.FC<CodeActionButtonProps> = ({
 }) => {
     return href ? (
         <a
-            className={`${className} ${classes.actionButton}`}
+            className={`${className} sc-editor-action-content`}
             href={href}
             target={target}
             onClick={onClick}
@@ -49,7 +48,7 @@ export const CodeActionButton: React.FC<CodeActionButtonProps> = ({
             {label ? <p>{label}</p> : null}
         </a>
     ) : (
-        <span className={`${className} ${classes.actionButton}`} onClick={onClick} title={title} rel={rel}>
+        <span className={`${className} sc-editor-action-content`} onClick={onClick} title={title} rel={rel}>
             <Icon name={iconName} />
             {label ? <p>{label}</p> : null}
         </span>

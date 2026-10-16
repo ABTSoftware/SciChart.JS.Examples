@@ -8,14 +8,14 @@ This example demonstrates how to animate both data updates and style changes on 
 
 -   SciChart.js (including FastBandRenderableSeries, NumericAxis, SciChartSurface, and animation modifiers)
 -   Angular (via scichart-angular)
--   React (using scichart-react and Material UI for UI controls)
--   Material UI (for the toggle button group in the React version)
+-   React (using scichart-react and shared CSS controls for UI controls)
+-   shared CSS controls (for the toggle button group in the React version)
 
 ## Code Explanation
 
 -   **angular.ts**: The Angular component initializes a SciChart chart using the scichart-angular component. It passes a reference to the `drawExample` function that sets up the chart.
 -   **drawExample.js / drawExample.ts**: These files contain the core logic for the example. They create a SciChartSurface with numeric X and Y axes, generate sample sine and cosine data, and create a band series with initial stroke and fill styles. The `animateChartStyle` function is defined to switch between two style presets, updating both the data and the visual style using the BandAnimation. Interactivity is added via zoom, pan, and mouse wheel modifiers.
--   **index.tsx**: This React component renders the chart using the SciChartReact component. It includes a toggle button group (from Material UI) that allows users to choose between the two animation styles. When a toggle button is pressed, the component calls the chart's `animateChartStyle` control function to update the styles.
+-   **index.tsx**: This React component renders the chart using the SciChartReact component. It includes a toggle button group (from shared CSS controls) that allows users to choose between the two animation styles. When a toggle button is pressed, the component calls the chart's `animateChartStyle` control function to update the styles.
 -   **javascript-style-animation.jpg**: A screenshot image of the example is provided to show how the animated chart appears.
 
 ## Customization

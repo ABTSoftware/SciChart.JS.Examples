@@ -9,7 +9,6 @@ import {
     ELegendOrientation,
     ELegendPlacement,
     NumberRange,
-    TextAnnotation,
     FastLineRenderableSeries,
     LegendModifier,
     MouseWheelZoomModifier,

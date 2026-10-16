@@ -1,6 +1,5 @@
 import {
     BaseRenderDataTransform,
-    XyyPointSeriesResampled,
     NumberRange,
     RenderPassData,
     IPointSeries,
@@ -8,17 +7,13 @@ import {
     SciChartSurface,
     NumericAxis,
     TrianglePointMarker,
-    XyScatterRenderableSeries,
     EllipsePointMarker,
     PointMarkerDrawingProvider,
-    IXyyPointSeries,
     IPointMarker,
     FastColumnRenderableSeries,
     GradientParams,
     Point,
     ColumnSeriesDrawingProvider,
-    ZoomExtentsModifier,
-    MouseWheelZoomModifier,
     DataPointSelectionModifier,
     LineSeriesDrawingProvider,
     FastLineRenderableSeries,
@@ -26,17 +21,10 @@ import {
     ELineDrawMode,
     OhlcPointSeriesResampled,
     IOhlcPointSeries,
-    RolloverModifier,
-    IPointMetadata,
-    SeriesInfo,
     NativeTextAnnotation,
     ECoordinateMode,
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
-    IStrokePaletteProvider,
-    parseColorToUIntArgb,
-    EStrokePaletteMode,
-    IRenderableSeries,
     vectorToArrayViewF64,
 } from "scichart";
 import { appTheme } from "../../../theme";
@@ -54,17 +42,17 @@ class SplitRenderDataTransform extends BaseRenderDataTransform<OhlcPointSeriesRe
         const { xValues: oldX, yValues: oldY, indexes: oldI, resampled } = renderPassData.pointSeries;
         // this.pointSeries is the target.  Clear the existing values
         const { xValues, yValues, highValues, lowValues, indexes } = this.pointSeries;
-        // This shows how to properly handled resampled data, though this is not necessary here.
+        // Resampled buffers already cover the visible range; raw buffers need the index range.
         const iStart = resampled ? 0 : renderPassData.indexRange.min;
         const iEnd = resampled ? oldX.size() - 1 : renderPassData.indexRange?.max;
         const length = iEnd - iStart + 1;
-        // Since this produces a known number of points we can just fast resize the target pointSeries to the desired length.  All this will be overritten
+        // Resize before creating array views: a later allocation would invalidate those views.
         xValues.resizeFast(length);
         yValues.resizeFast(length);
         highValues.resizeFast(length);
         lowValues.resizeFast(length);
         indexes.resizeFast(length);
-        // Create views over the source and target vectors for fast access.  These views are only valid as long as there is no memory allocation
+        // Views provide fast access to the native source and target buffers.
         const oldXView = vectorToArrayViewF64(oldX, this.wasmContext);
         const oldYView = vectorToArrayViewF64(oldY, this.wasmContext);
         const oldIndexView = vectorToArrayViewF64(oldI, this.wasmContext);
@@ -111,8 +99,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Column series with different gradient fill for selected columns
     const xValues = Array.from({ length: 20 }, (x, i) => i);
-    const colyValues = xValues.map((x) => 10 + Math.random() * 40);
-    const colmetadata = xValues.map((x) => ({
+    const colyValues = xValues.map(() => 10 + Math.random() * 40);
+    const colmetadata = xValues.map(() => ({
         isSelected: Math.random() < 0.3,
     }));
     const columnSeries = new FastColumnRenderableSeries(wasmContext, {
@@ -121,7 +109,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             { color: appTheme.MutedTeal, offset: 1 },
         ]),
         dataSeries: new XyDataSeries(wasmContext, {
-            xValues: xValues,
+            xValues,
             yValues: colyValues,
             metadata: colmetadata,
             containsNaN: true,
@@ -158,13 +146,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(columnSeries);
 
     const lineyValues = xValues.map((x) => 30 + x + x * Math.random());
-    const linemetadata = xValues.map((x) => ({
+    const linemetadata = xValues.map(() => ({
         isSelected: Math.random() < 0.3,
     }));
     // Line series with different pointmarker and dashed line for selected sections
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
-            xValues: xValues,
+            xValues,
             yValues: lineyValues,
             metadata: linemetadata,
             containsNaN: true,
@@ -192,9 +180,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         lineSeries,
         (ps) => (ps as IOhlcPointSeries).highValues
     );
-    // Make this drawingProvider used dashed lines
+    // Make this drawingProvider use dashed lines
     selectedLineDP.getProperties = (parentSeries) => {
-        const { stroke, strokeThickness, opacity, isDigitalLine, lineType, drawNaNAs } = parentSeries;
+        const { stroke, strokeThickness, isDigitalLine, lineType, drawNaNAs } = parentSeries;
         return {
             stroke,
             strokeThickness,
@@ -208,13 +196,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Add this as the first drawingProviders so it draws behind all pointmarkers
     lineSeries.drawingProviders.unshift(selectedLineDP);
 
-    // Additional point drawing for selecetd points
+    // Additional point drawing for selected points
     const triangleDP = new PointMarkerDrawingProvider(
         wasmContext,
         lineSeries,
         (ps) => (ps as IOhlcPointSeries).lowValues
     );
-    triangleDP.getProperties = (series) => {
+    triangleDP.getProperties = () => {
         return { pointMarker: trianglePM as IPointMarker };
     };
     lineSeries.drawingProviders.push(triangleDP);
@@ -242,21 +230,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.chartModifiers.add(
         new DataPointSelectionModifier({
             allowClickSelect: true,
-            onSelectionChanged: (args) => {
+            onSelectionChanged: () => {
                 lineSeries.renderDataTransform.requiresTransform = true;
                 columnSeries.renderDataTransform.requiresTransform = true;
             },
         })
     );
-    // sciChartSurface.chartModifiers.add(new RolloverModifier({
-    //     tooltipDataTemplate: (seriesInfo: SeriesInfo) => {
-    //         const vals: string[] = [];
-    //         vals.push(`X ${seriesInfo.formattedXValue}`);
-    //         vals.push(`Y ${seriesInfo.formattedYValue}`);
-    //         vals.push(`selected ${(seriesInfo.pointMetadata as IPointMetadata).isSelected}`);
-    //         return vals;
-    //     }
-    // }));
 
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };

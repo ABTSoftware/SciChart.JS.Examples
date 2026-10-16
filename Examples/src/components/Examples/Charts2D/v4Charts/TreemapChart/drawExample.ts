@@ -1,7 +1,6 @@
 import {
     SciChartSurface,
     NumericAxis,
-    NumberRange,
     IFillPaletteProvider,
     EFillPaletteMode,
     EStrokePaletteMode,

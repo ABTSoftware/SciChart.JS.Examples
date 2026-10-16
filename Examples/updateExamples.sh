@@ -14,7 +14,7 @@
 originalModule="index.tsx"
 logicModule="drawExample.ts"
 # Specify the content for the file to be added
-file_content="import * as React from \"react\";\n\nimport { SciChartReact } from \"scichart-react\";\nimport classes from \"../../../styles/Examples.module.scss\";\nimport { drawExample } from \"./drawExample\";\n\n// React component needed as our examples app is react.\n// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info\nexport default function ChartComponent() {\n    return <SciChartReact initChart={drawExample} className={classes.ChartWrapper} />;\n}"
+file_content="import * as React from \"react\";\n\nimport { SciChartReact } from \"scichart-react\";\nimport { drawExample } from \"./drawExample\";\n\n// React component needed as our examples app is react.\n// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info\nexport default function ChartComponent() {\n    return <SciChartReact initChart={drawExample} className=\"sc-chart-wrapper\" />;\n}"
 
 # Specify the file containing the search text
 search_text_file="./text-replacement-patterns/search-text.txt"
@@ -67,7 +67,6 @@ for folder in $(find ./src/components -type d -exec test -e "{}/$originalModule"
                 # remove redundant imports which were moved to new module
                 perl -i -0 -pe '$b = `cat ./text-replacement-patterns/div-element-id-search-text.txt`; $a = ``; s/\Q$b\E/$a/s' "$file_to_add"
                 perl -i -0 -pe '$b = `cat ./text-replacement-patterns/react-import-search-text.txt`; $a = ``; s/\Q$b\E/$a/s' "$file_to_add"
-                perl -i -0 -pe '$b = `cat ./text-replacement-patterns/classes-import-search-text.txt`; $a = ``; s/\Q$b\E/$a/s' "$file_to_add"
                 perl -i -0 -pe '$b = `cat ./text-replacement-patterns/init-function-search-text.txt`; $a = `cat ./text-replacement-patterns/export-statement-text.txt`; s/\Q$b\E/$a/s' "$file_to_add"
                 # echo "Replaced text in: $file_to_add"
                 # export drawExample
@@ -77,7 +76,6 @@ for folder in $(find ./src/components -type d -exec test -e "{}/$originalModule"
                 # remove redundant imports which were moved to new module
                 # perl -i -0 -pe '$b = `cat ./text-replacement-patterns/div-element-id-search-text.txt`; $a = ``; s/\Q$b\E/$a/s' "$file_to_add"
                 # perl -i -0 -pe '$b = `cat ./text-replacement-patterns/react-import-search-text.txt`; $a = ``; s/\Q$b\E/$a/s' "$file_to_add"
-                # perl -i -0 -pe '$b = `cat ./text-replacement-patterns/classes-import-search-text.txt`; $a = ``; s/\Q$b\E/$a/s' "$file_to_add"
             # else
                 # echo "Text to replace not found in: $file_to_add"
             # fi

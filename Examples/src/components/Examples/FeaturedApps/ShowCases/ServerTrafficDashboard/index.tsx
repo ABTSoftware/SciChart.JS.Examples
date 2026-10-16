@@ -1,7 +1,7 @@
-import * as React from "react";
-import { Settings as SettingsIcon } from "@mui/icons-material";
-import { CSSProperties, ChangeEventHandler, useEffect, useRef, useState } from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
+import "./styles.css";
+import { ChangeEventHandler, useEffect, useRef, useState } from "react";
+import { SettingsIcon, CloseIcon } from "../../../icons";
+import { BodyPortal } from "../../../Portal";
 import { ChartModifierBase2D, ISciChartSubSurface } from "scichart";
 import { GridLayoutModifier } from "./GridLayoutModifier";
 import { ModifierGroup } from "./ModifierGroup";
@@ -10,16 +10,11 @@ import { getMainChartConfig } from "./main-chart-config";
 
 import { overviewOptions } from "./Overview";
 import ThresholdSlider from "./ThresholdSlider";
-import { SciChartReact as SciChart, SciChartNestedOverview } from "scichart-react";
+import { SciChartReact as SciChart, SciChartNestedOverview, ChartGroupLoader } from "scichart-react";
 import { appTheme } from "../../../theme";
-import { Dialog, DialogTitle, FormControlLabel, IconButton, Typography } from "@mui/material";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import Switch from "@mui/material/Switch";
-import CloseIcon from "@mui/icons-material/Close";
 import { getPageStatisticsChartConfig } from "./page-statistics-chart-config";
 import { getServerLoadChartConfig } from "./server-load-chart-config";
-import { ChartGroupLoader } from "scichart-react";
+
 import type {
     TPageStatsConfigFuncResult,
     TServerStatsChartConfigFuncResult,
@@ -32,7 +27,6 @@ import { useViewType } from "../../../containerSizeHooks";
 function ServerTrafficDashboard() {
     const ref = useRef<HTMLDivElement>(null);
     const viewInfo = useViewType(ref);
-    const { isLargeView, isMobileView } = viewInfo ?? {};
 
     const [isVisibleRangeSynced, setIsVisibleRangeSynced] = useState(true);
     const [isHundredPercentCollection, setIsHundredPercentCollection] = useState(false);
@@ -112,7 +106,7 @@ function ServerTrafficDashboard() {
         setIsGridLayout(!isGridLayout);
     };
 
-    const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     const handleClickOpen = () => {
         setIsDialogOpen(true);
@@ -122,183 +116,107 @@ function ServerTrafficDashboard() {
         setIsDialogOpen(false);
     };
 
-    const switchStyleOverrides = {
-        width: "100%",
-        margin: 0,
-        padding: "1em",
-        color: appTheme.ForegroundColor,
-        accentColor: "#0bdef4",
+    const configurationDialog = isDialogOpen ? (
+        <BodyPortal>
+            <div
+                className="sc-modal-backdrop"
+                onClick={(event) => event.target === event.currentTarget && handleClose()}
+                onKeyDown={(event) => event.key === "Escape" && handleClose()}
+            >
+                <section className="sc-modal" role="dialog" aria-modal="true" aria-labelledby="server-config-title">
+                    <header className="sc-modal-header">
+                        <strong id="server-config-title">Chart Configurations</strong>
+                        <button
+                            className="sc-button sc-button-icon"
+                            aria-label="Close chart configurations"
+                            onClick={handleClose}
+                            autoFocus
+                            type="button"
+                        >
+                            <CloseIcon />
+                        </button>
+                    </header>
+                    <div className="sc-modal-body">
+                        <strong>Main Chart</strong>
 
-        "& .MuiSwitch-track": {
-            opacity: 1,
-            backgroundColor: appTheme.PalePink,
-        },
-    };
-
-    const configurationDialog = (
-        <Dialog
-            onClose={handleClose}
-            open={isDialogOpen}
-            sx={{ color: appTheme.ForegroundColor, "& .MuiDialog-paper": { background: appTheme.DarkIndigo } }}
-        >
-            <DialogTitle>
-                <span style={{ color: appTheme.ForegroundColor }}>Chart Configurations</span>
-                <IconButton
-                    aria-label="close"
-                    onClick={handleClose}
-                    sx={(theme) => ({
-                        position: "absolute",
-                        right: 8,
-                        top: 8,
-                        color: theme.palette.grey[500],
-                    })}
-                >
-                    <CloseIcon />
-                </IconButton>
-            </DialogTitle>
-            <List>
-                <Typography
-                    variant="subtitle2"
-                    fontWeight={"bold"}
-                    sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
-                >
-                    Main Chart
-                </Typography>
-
-                <ListItem disablePadding>
-                    <FormControlLabel
-                        control={<Switch checked={isVisibleRangeSynced} onChange={handleSyncVisibleRangeChange} />}
-                        label="Sync&nbsp;X-Axis&nbsp;visible&nbsp;range"
-                        sx={switchStyleOverrides}
-                    />
-                </ListItem>
-                <Typography
-                    variant="subtitle2"
-                    fontWeight={"bold"}
-                    sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
-                >
-                    URL Statistics Chart
-                </Typography>
-                <ListItem disablePadding>
-                    <FormControlLabel
-                        control={<Switch checked={isHundredPercentCollection} onChange={handleUsePercentage} />}
-                        label="is&nbsp;100%&nbsp;collection"
-                        sx={switchStyleOverrides}
-                    />
-                </ListItem>
-                <Typography
-                    variant="subtitle2"
-                    fontWeight={"bold"}
-                    sx={{ color: appTheme.ForegroundColor, padding: "0em 1em" }}
-                >
-                    Server Load Statistics Chart
-                </Typography>
-                <ListItem disablePadding>
-                    <FormControlLabel
-                        control={<Switch checked={isGridLayout} onChange={handleUseGridLayout} />}
-                        label="is&nbsp;Grid&nbsp;Layout"
-                        sx={switchStyleOverrides}
-                    />
-                </ListItem>
-            </List>
-        </Dialog>
-    );
+                        <label className="sc-switch">
+                            <input
+                                type="checkbox"
+                                checked={isVisibleRangeSynced}
+                                onChange={handleSyncVisibleRangeChange}
+                            />
+                            Sync X-Axis visible range
+                        </label>
+                        <strong>URL Statistics Chart</strong>
+                        <label className="sc-switch">
+                            <input
+                                type="checkbox"
+                                checked={isHundredPercentCollection}
+                                onChange={handleUsePercentage}
+                            />
+                            is 100% collection
+                        </label>
+                        <strong>Server Load Statistics Chart</strong>
+                        <label className="sc-switch">
+                            <input type="checkbox" checked={isGridLayout} onChange={handleUseGridLayout} />
+                            is Grid Layout
+                        </label>
+                    </div>
+                </section>
+            </div>
+        </BodyPortal>
+    ) : null;
 
     return (
-        <div ref={ref} className={commonClasses.ChartWrapper} style={{ backgroundColor: "#242529" }}>
+        <div ref={ref} className="sc-chart-wrapper sc-server-traffic">
             {viewInfo ? ( // checks if container was measured
-                <ChartGroupLoader style={gridStyle} onInit={afterAllChartsInit(axisSyncManager)}>
-                    <div style={configButtonWrapperStyle} title="Chart Configurations">
-                        <IconButton
-                            sx={{ color: appTheme.ForegroundColor, pointerEvents: "all", touchAction: "all" }}
+                <ChartGroupLoader
+                    className="h-full sc-server-traffic-grid"
+                    onInit={afterAllChartsInit(axisSyncManager)}
+                >
+                    <div className="sc-server-traffic-settings m-1" title="Chart Configurations">
+                        <button
+                            className="sc-button sc-button-icon"
+                            aria-label="Chart configurations"
                             onClick={handleClickOpen}
+                            type="button"
                         >
                             <SettingsIcon fontSize="large" />
-                        </IconButton>
+                        </button>
                         {configurationDialog}
                     </div>
 
                     <SciChart
                         initChart={getMainChartConfig(viewInfo)}
                         onInit={onMainChartInit}
-                        style={mainChartStyle}
-                        innerContainerProps={innerContainerProps}
+                        className="relative sc-server-main-chart h-full"
                     >
-                        {!isMobileView ? <ThresholdSlider /> : null}
-                        <SciChartNestedOverview style={overviewStyle} options={overviewOptions} />
+                        <ThresholdSlider />
+                        <SciChartNestedOverview style={{ height: "20%" }} options={overviewOptions} />
                     </SciChart>
 
                     <SciChart
                         initChart={getPageStatisticsChartConfig(viewInfo)}
                         onInit={onPageStatisticsChartInit}
-                        style={pageChartStyle}
+                        className="sc-server-page-chart"
                     />
 
                     <SciChart
                         initChart={getServerLoadChartConfig(viewInfo)}
                         onInit={onServerLoadChartInit}
-                        style={serverChartStyle}
+                        className="sc-server-load-chart"
                     />
 
-                    <SciChart initChart={getRegionStatisticsColumnChartConfig(viewInfo)} style={columnChartStyle} />
+                    <SciChart
+                        initChart={getRegionStatisticsColumnChartConfig(viewInfo)}
+                        className="sc-server-region-chart"
+                    />
 
-                    <SciChart initChart={createRegionStatisticsPieChart} style={pieChartStyle} />
+                    <SciChart initChart={createRegionStatisticsPieChart} className="sc-server-region-pie" />
                 </ChartGroupLoader>
             ) : null}
         </div>
     );
 }
-
-const gridStyle: React.CSSProperties = {
-    boxSizing: "border-box",
-    // padding: "0.5em",
-    height: "100%",
-    display: "grid",
-    gridTemplateColumns: "repeat(4, 1fr)",
-    gap: "0.2em",
-    gridTemplateRows: "repeat(8, 1fr)",
-};
-
-const mainChartStyle: CSSProperties = {
-    gridRow: "1 / 4",
-    gridColumn: "1/-1",
-    position: "relative",
-};
-
-const innerContainerProps = {
-    style: {
-        height: "80%",
-    },
-};
-
-const overviewStyle = {
-    height: "20%",
-};
-
-const pageChartStyle = {
-    gridRow: "4 / 7",
-    gridColumn: "1 / 3",
-};
-
-const serverChartStyle = {
-    gridRow: "4 / 7",
-    gridColumn: "3 / -1",
-};
-
-const columnChartStyle = {
-    gridRow: "7 / -1",
-    gridColumn: "span 3",
-};
-const pieChartStyle = {
-    gridRow: "7 / -1",
-    gridColumn: "span 1",
-};
-
-const configButtonWrapperStyle: CSSProperties = {
-    gridArea: "1 / 1 / 2 / 2",
-    pointerEvents: "none",
-    touchAction: "none",
-    zIndex: 2,
-};
 
 export default ServerTrafficDashboard;

@@ -1,4 +1,3 @@
-import { use } from "chai";
 import { createExampleInfo } from "../../../exampleInfoUtils";
 import { IExampleMetadata } from "../../../IExampleMetadata";
 

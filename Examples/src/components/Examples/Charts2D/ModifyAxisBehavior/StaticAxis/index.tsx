@@ -1,37 +1,44 @@
-import * as React from "react";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { useState, useRef } from "react";
+
 import { drawExample } from "./drawExample";
-import { appTheme } from "../../../theme";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import { Typography } from "@mui/material";
-
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
-    const [isStaticAxis, setIsStaticAxis] = React.useState(false);
+    const [isStaticAxis, setIsStaticAxis] = useState(false);
 
-    const controlsRef = React.useRef<{ toggleStaticAxis: () => void }>(undefined);
+    const controlsRef = useRef<{ toggleStaticAxis: () => void }>(undefined);
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow} style={{ justifyContent: "flex-start", paddingLeft: "1em" }}>
-                <Typography style={{ color: appTheme.ForegroundColor, alignSelf: "center" }}>Primary Axis: </Typography>
-                <ToggleButtonGroup
-                    exclusive
-                    value={isStaticAxis ? 1 : 0}
-                    onChange={() => {
-                        controlsRef.current.toggleStaticAxis();
-                        setIsStaticAxis(!isStaticAxis);
-                    }}
-                    size="medium"
-                    color="primary"
-                    aria-label="small outlined button group"
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div
+                    className="sc-button-group"
+                    role="group"
+                    aria-label="Primary X Axis mode"
                 >
-                    <ToggleButton value={1}>Normal Axis</ToggleButton>
-                    <ToggleButton value={0}>Static Axis</ToggleButton>
-                </ToggleButtonGroup>
-            </div>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={isStaticAxis}
+                        onClick={() => {
+                            if (!isStaticAxis) controlsRef.current.toggleStaticAxis();
+                            setIsStaticAxis(true);
+                        }}
+                    >
+                        Normal Primary X Axis
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={!isStaticAxis}
+                        onClick={() => {
+                            if (isStaticAxis) controlsRef.current.toggleStaticAxis();
+                            setIsStaticAxis(false);
+                        }}
+                    >
+                        Static Primary X Axis
+                    </button>
+                </div>
+            </header>
 
             <SciChartReact
                 initChart={drawExample}

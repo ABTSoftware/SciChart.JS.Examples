@@ -42,7 +42,7 @@ export const htmlTemplate = (options?: { body?: string; styles?: string; renderN
         <script type="module" src="drawExample.js"></script>
             <style>
                 body {
-                    font-family: "Arial";
+                    font-family: "Inter";
                 }
                 ${options?.styles ?? ""}
             </style>

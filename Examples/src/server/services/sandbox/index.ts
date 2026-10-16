@@ -2,11 +2,12 @@ import { TExampleInfo } from "../../../components/AppRouter/examplePages";
 import { EPageFramework } from "../../../helpers/shared/Helpers/frameworkParametrization";
 import { getAngularSandBoxConfig } from "./angularConfig";
 import { getVanillaTsSandBoxConfig } from "./vanillaTsConfig";
-import { handleInvalidFrameworkValue, IFiles, SandboxConfig } from "./sandboxDependencyUtils";
+import { csStyles, handleInvalidFrameworkValue, SandboxConfig } from "./sandboxDependencyUtils";
 import { getReactSandBoxConfig } from "./reactConfig";
 import { NotFoundError } from "../../Errors";
+import { useSingleExampleStylesheet } from "./sandboxStyles";
 
-export const getSandboxConfig = async (
+const getFrameworkSandboxConfig = async (
     folderPath: string,
     currentExample: TExampleInfo,
     framework: EPageFramework,
@@ -57,4 +58,31 @@ export const getSandboxConfig = async (
         }
         throw err;
     }
+};
+
+export const getSandboxConfig = async (
+    folderPath: string,
+    currentExample: TExampleInfo,
+    framework: EPageFramework,
+    baseUrl: string
+): Promise<SandboxConfig & { actualFramework: EPageFramework }> => {
+    const config = await getFrameworkSandboxConfig(folderPath, currentExample, framework, baseUrl);
+    const uiCss = csStyles?.["src/index.css"]?.content;
+
+    if (uiCss === undefined) {
+        throw new Error("Sandbox styles have not been loaded");
+    }
+
+    const entryFiles = {
+        [EPageFramework.React]: "src/App.tsx",
+        [EPageFramework.Vanilla]: "src/app.ts",
+        [EPageFramework.Angular]: "src/app/app.component.ts",
+    };
+    const entryFilePath = entryFiles[config.actualFramework];
+    const stylesheetImportPath = config.actualFramework === EPageFramework.Angular ? undefined : "./index.css";
+
+    return {
+        ...config,
+        files: useSingleExampleStylesheet(config.files, uiCss, entryFilePath, stylesheetImportPath),
+    };
 };

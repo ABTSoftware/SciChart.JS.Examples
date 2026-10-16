@@ -10,7 +10,7 @@ This example demonstrates how to customize specific label formats on a High Prec
 -   React – For React integration with SciChartReact wrapper
 -   date-fns – For custom date formatting in wide and precise labels
 -   TypeScript – Used throughout the implementation
--   Material-UI – For React toggle switch control
+-   shared CSS controls – For React toggle switch control
 
 ## Code Explanation
 

@@ -24,10 +24,8 @@ const yValues: number[] = [];
 const y1Values: number[] = [];
 const y2Values: number[] = [];
 const y3Values: number[] = [];
-const y4Values: number[] = [];
 for (let i = 0; i < dataSize; i++) {
     xValues.push(i);
-    y4Values.push(Math.random());
     y3Values.push(Math.random() + 1);
     y2Values.push(Math.random() + 1.8);
     y1Values.push(Math.random() + 2.5);
@@ -43,8 +41,7 @@ const onHoveredChanged = (sourceSeries: IRenderableSeries, isHovered: boolean) =
     const sciChartSurface = sourceSeries.parentSurface;
     const otherSeries = sciChartSurface.renderableSeries.asArray().filter((rs) => rs !== sourceSeries);
 
-    // Use the genericanimations feature to animate opacity on the hovered series
-    // TODO: SciChart devs will think of a way to make this code more succinct!
+    // Animate the hovered series and dim the remaining series.
     sciChartSurface.addAnimation(
         new GenericAnimation({
             from: sourceSeries.opacity,
@@ -78,7 +75,7 @@ const onHoveredChanged = (sourceSeries: IRenderableSeries, isHovered: boolean) =
 const onSelectedChanged = (sourceSeries: IRenderableSeries, isSelected: boolean) => {
     console.log(`Series ${sourceSeries.dataSeries.dataSeriesName} isSelected=${isSelected}`);
 
-    // When selected, set the stroke = white, or reset previous value
+    // Highlight selection with the theme foreground; deselection restores the series color.
     const targetSeriesStroke = isSelected ? appTheme.ForegroundColor : sourceSeries.pointMarker.fill;
     sourceSeries.stroke = targetSeriesStroke;
     sourceSeries.pointMarker.stroke = targetSeriesStroke;
@@ -103,69 +100,28 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
-    sciChartSurface.renderableSeries.add(
-        new SplineLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: "First Series" }),
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                fill: AUTO_COLOR,
-                stroke: AUTO_COLOR,
+    for (const { values, dataSeriesName } of [
+        { values: yValues, dataSeriesName: "First Series" },
+        { values: y1Values, dataSeriesName: "Second Series" },
+        { values: y2Values, dataSeriesName: "Third Series" },
+        { values: y3Values, dataSeriesName: "Fourth Series" },
+    ]) {
+        sciChartSurface.renderableSeries.add(
+            new SplineLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: values, dataSeriesName }),
+                pointMarker: new EllipsePointMarker(wasmContext, {
+                    fill: AUTO_COLOR,
+                    stroke: AUTO_COLOR,
+                    strokeThickness: 3,
+                    width: 20,
+                    height: 20,
+                }),
                 strokeThickness: 3,
-                width: 20,
-                height: 20,
-            }),
-            strokeThickness: 3,
-            onHoveredChanged,
-            onSelectedChanged,
-        })
-    );
-
-    sciChartSurface.renderableSeries.add(
-        new SplineLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values, dataSeriesName: "Second Series" }),
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                fill: AUTO_COLOR,
-                stroke: AUTO_COLOR,
-                strokeThickness: 3,
-                width: 20,
-                height: 20,
-            }),
-            strokeThickness: 3,
-            onHoveredChanged,
-            onSelectedChanged,
-        })
-    );
-
-    sciChartSurface.renderableSeries.add(
-        new SplineLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values, dataSeriesName: "Third Series" }),
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                fill: AUTO_COLOR,
-                stroke: AUTO_COLOR,
-                strokeThickness: 3,
-                width: 20,
-                height: 20,
-            }),
-            strokeThickness: 3,
-            onHoveredChanged,
-            onSelectedChanged,
-        })
-    );
-
-    sciChartSurface.renderableSeries.add(
-        new SplineLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y3Values, dataSeriesName: "Fourth Series" }),
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                fill: AUTO_COLOR,
-                stroke: AUTO_COLOR,
-                strokeThickness: 3,
-                width: 20,
-                height: 20,
-            }),
-            strokeThickness: 3,
-            onHoveredChanged,
-            onSelectedChanged,
-        })
-    );
+                onHoveredChanged,
+                onSelectedChanged,
+            })
+        );
+    }
 
     // Add title annotation
     sciChartSurface.annotations.add(

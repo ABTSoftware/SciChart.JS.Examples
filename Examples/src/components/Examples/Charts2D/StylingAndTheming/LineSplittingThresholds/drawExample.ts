@@ -19,7 +19,6 @@ import {
     ObservableArrayChangedArgs,
     parseColorToUIntArgb,
     RenderPassData,
-    RolloverModifier,
     SciChartJsNavyTheme,
     SciChartSurface,
     TSciChart,

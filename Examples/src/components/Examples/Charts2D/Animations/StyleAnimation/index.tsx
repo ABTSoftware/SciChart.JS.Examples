@@ -1,38 +1,40 @@
-import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { appTheme } from "../../../theme";
+import { useState } from "react";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function StyleAnimation() {
-    const [preset, setPreset] = React.useState<number>(0);
-    const [controls, setControls] = React.useState({ animateChartStyle: (state: boolean) => {} });
+    const [preset, setPreset] = useState<number>(0);
+    const [controls, setControls] = useState({ animateChartStyle: (_state: boolean) => {} });
 
-    const handleToggleButtonChanged = (event: any, value: number) => {
-        if (value === null) return;
+    const handleToggleButtonChanged = (value: number) => {
         setPreset(value);
         const isStyle1 = value === 0;
         controls.animateChartStyle(isStyle1);
     };
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow}>
-                <ToggleButtonGroup
-                    exclusive
-                    value={preset}
-                    onChange={handleToggleButtonChanged}
-                    size="medium"
-                    color="primary"
-                    aria-label="small outlined button group"
-                >
-                    <ToggleButton value={0}>Animate Styles 1</ToggleButton>
-                    <ToggleButton value={1}>Animate Styles 2</ToggleButton>
-                </ToggleButtonGroup>
-            </div>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="Style animation">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={preset === 0}
+                        onClick={() => handleToggleButtonChanged(0)}
+                    >
+                        Animation Style 1
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={preset === 1}
+                        onClick={() => handleToggleButtonChanged(1)}
+                    >
+                        Animation Style 2
+                    </button>
+                </div>
+            </header>
+
             <SciChartReact
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     setControls(initResult.controls);

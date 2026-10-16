@@ -1,79 +1,90 @@
-import Button from "@mui/material/Button";
-import * as React from "react";
-import { appTheme } from "../../../theme";
-import commonClasses from "../../../styles/Examples.module.scss";
+import { useState, useRef } from "react";
 import { getChartsInitializationApi } from "./drawExample";
 import { SciChartGroup, SciChartReact, TResolvedReturnType } from "scichart-react";
+import { InfoIcon, PlayArrowIcon, StopIcon } from "../../../icons";
 
 export default function HeatmapInteractions() {
-    const [chartsInitializationAPI] = React.useState(getChartsInitializationApi);
-    const controlsRef = React.useRef<TResolvedReturnType<typeof chartsInitializationAPI.onAllChartsInit>>(undefined);
+    const [chartsInitializationAPI] = useState(getChartsInitializationApi);
+    const controlsRef = useRef<TResolvedReturnType<typeof chartsInitializationAPI.onAllChartsInit>>(undefined);
+    const [isRunning, setIsRunning] = useState(true);
+    const [selectedExample, setSelectedExample] = useState("basic");
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow}>
-                <Button
-                    disabled
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <button
+                    className="sc-button sc-button-icon"
+                    aria-label={isRunning ? "Stop updates" : "Start updates"}
+                    title={isRunning ? "Stop updates" : "Start updates"}
                     onClick={() => {
-                        controlsRef.current.stopUpdate();
+                        if (isRunning) {
+                            controlsRef.current.stopUpdate();
+                        } else {
+                            controlsRef.current.startUpdate();
+                        }
+                        setIsRunning(!isRunning);
                     }}
+                    type="button"
                 >
-                    Start
-                </Button>
-                <Button
-                    onClick={() => {
-                        controlsRef.current.stopUpdate();
-                    }}
-                >
-                    Stop
-                </Button>
-                <Button
-                    onClick={() => {
-                        controlsRef.current.twoPoint();
-                    }}
-                >
-                    Load basic example
-                </Button>
-                <Button
-                    onClick={() => {
-                        controlsRef.current.interference();
-                    }}
-                >
-                    Load double slit example
-                </Button>
-                <Button
+                    {isRunning ? <StopIcon /> : <PlayArrowIcon />}
+                </button>
+
+                <div className="sc-button-group" role="radiogroup" aria-label="Load example">
+                    <button
+                        className="sc-button"
+                        role="radio"
+                        aria-checked={selectedExample === "basic"}
+                        onClick={() => {
+                            controlsRef.current.twoPoint();
+                            setIsRunning(true);
+                            setSelectedExample("basic");
+                        }}
+                        type="button"
+                    >
+                        Basic example
+                    </button>
+                    <button
+                        className="sc-button"
+                        role="radio"
+                        aria-checked={selectedExample === "doubleSlit"}
+                        onClick={() => {
+                            controlsRef.current.interference();
+                            setIsRunning(true);
+                            setSelectedExample("doubleSlit");
+                        }}
+                        type="button"
+                    >
+                        Double slit example
+                    </button>
+                </div>
+                <button
+                    className="sc-button sc-button-icon"
                     id="showHelp"
+                    aria-label="Show help"
+                    title="Show help"
                     onClick={() => {
                         controlsRef.current.showHelp();
                     }}
+                    type="button"
                 >
-                    Show Help
-                </Button>
-            </div>
+                    <InfoIcon />
+                </button>
+            </header>
             <SciChartGroup
                 onInit={() => {
                     controlsRef.current = chartsInitializationAPI.onAllChartsInit();
                 }}
             >
-                <div style={{ display: "flex", flexDirection: "row", flexBasis: 500 }}>
-                    <SciChartReact
-                        initChart={chartsInitializationAPI.initMainChart}
-                        style={{ flexBasis: 500, flexGrow: 1, flexShrink: 1 }}
-                    />
+                <div className="flex" style={{ flexBasis: 500 }}>
+                    <SciChartReact initChart={chartsInitializationAPI.initMainChart} style={{ flex: "1 1 500px" }} />
                     <SciChartReact
                         initChart={chartsInitializationAPI.initCrossSectionChart}
-                        style={{ flexBasis: 500, flexGrow: 1, flexShrink: 1 }}
+                        style={{ flex: "1 1 500px" }}
                     />
                 </div>
-                <div style={{ display: "flex", flexDirection: "row", flexBasis: 500 }}>
-                    <SciChartReact
-                        initChart={chartsInitializationAPI.inputChart}
-                        style={{ flexBasis: 500, flexGrow: 1, flexShrink: 1 }}
-                    />
-                    <SciChartReact
-                        initChart={chartsInitializationAPI.initHistoryChart}
-                        style={{ flexBasis: 500, flexGrow: 1, flexShrink: 1 }}
-                    />
+                <div className="flex" style={{ flexBasis: 500 }}>
+                    <SciChartReact initChart={chartsInitializationAPI.inputChart} style={{ flex: "1 1 500px" }} />
+                    <SciChartReact initChart={chartsInitializationAPI.initHistoryChart} style={{ flex: "1 1 500px" }} />
                 </div>
             </SciChartGroup>
         </div>

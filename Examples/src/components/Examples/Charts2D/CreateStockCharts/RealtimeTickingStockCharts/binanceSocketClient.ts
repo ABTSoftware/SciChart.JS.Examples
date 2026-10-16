@@ -1,5 +1,5 @@
 import { WebsocketBuilder } from "websocket-ts";
-import { combineLatest, map, Observable, scan, skipWhile, take } from "rxjs";
+import { combineLatest, Observable, scan, skipWhile, take } from "rxjs";
 
 const binanceDomain = "com";
 

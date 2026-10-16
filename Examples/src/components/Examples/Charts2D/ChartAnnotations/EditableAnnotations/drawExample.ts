@@ -24,7 +24,6 @@ import {
     AnnotationBase,
     EHoverMode,
     translateFromCanvasToSeriesViewRect,
-    DpiHelper,
     GenericAnimation,
     easing,
     Thickness,

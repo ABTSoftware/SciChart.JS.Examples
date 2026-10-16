@@ -1,5 +1,4 @@
 import {
-    SciChartSurface,
     build2DChart,
     buildSeries,
     registerType,

@@ -17,7 +17,6 @@ import {
     EAutoRange,
     PolarArcAnnotation,
     Thickness,
-    Logger,
 } from "scichart";
 import { appTheme } from "../../../theme";
 

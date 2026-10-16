@@ -3,13 +3,7 @@ import fs from "fs";
 
 import { TExampleInfo } from "../../../components/AppRouter/examplePages";
 import { NotFoundError } from "../../Errors";
-import {
-    IFiles,
-    includeImportedModules,
-    includeExternalModules,
-    commonFiles,
-    SandboxConfig,
-} from "./sandboxDependencyUtils";
+import { IFiles, includeExternalModules, commonFiles, csStyles, SandboxConfig } from "./sandboxDependencyUtils";
 import { SCICHART_ANCHOR, SCICHART_VERSION } from "./constants";
 
 const pj = require("../../../../package.json");
@@ -34,10 +28,8 @@ export const getAngularSandBoxConfig = async (
     let code = await getAngularSrc(folderPath);
 
     let files: IFiles = {};
-    await includeImportedModules(folderPath, files, code, true, true, baseUrl);
 
-    code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
-    code = await includeExternalModules(folderPath, folderPath, files, code, true, true);
+    code = await includeExternalModules(folderPath, folderPath, files, code, true, true, baseUrl);
     code = code.replace(/(\.\/)/g, "../");
     files = {
         ...commonFiles,
@@ -64,8 +56,6 @@ export const getAngularSandBoxConfig = async (
                     "@angular/platform-browser": "^18.2.0",
                     "@angular/platform-browser-dynamic": "^18.2.0",
                     "@angular/router": "^18.2.0",
-                    "@angular/material": "^18.2.8",
-                    "@angular/cdk": "^18.1.0",
                     rxjs: "~7.8.0",
                     scichart: pj.dependencies.scichart,
                     "scichart-angular": pj.dependencies["scichart-angular"],
@@ -145,6 +135,7 @@ export const getAngularSandBoxConfig = async (
             "outputPath": "dist/template",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "styles": ["src/index.css"],
             "polyfills": [
               "zone.js"
             ],
@@ -299,5 +290,5 @@ bootstrapApplication(AppWrapperComponent).catch((err) => console.error(err));`,
             isBinary: false,
         };
     }
-    return { files: { ...files } };
+    return { files: { ...csStyles, ...files } };
 };

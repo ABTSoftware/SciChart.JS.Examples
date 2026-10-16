@@ -43,7 +43,6 @@ import {
     ECoordinateMode,
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
-    EAnnotationLayer,
 } from "scichart";
 import { fetchMultiPaneData } from "../../../ExampleData/ExampleDataProvider";
 import { appTheme } from "../../../theme";
@@ -114,9 +113,6 @@ export const getChartsInitializationAPI = () => {
     let chart1XAxis: DiscontinuousDateAxis;
     let chart2XAxis: DiscontinuousDateAxis;
     let chart3XAxis: DiscontinuousDateAxis;
-    let priceChartSurface: SciChartSurface;
-    let macdChartSurface: SciChartSurface;
-    let rsiChartSurface: SciChartSurface;
     const axisAlignment = EAxisAlignment.Right;
 
     const upCol = appTheme.VividGreen;
@@ -255,7 +251,6 @@ export const getChartsInitializationAPI = () => {
         );
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
-        priceChartSurface = sciChartSurface;
         sciChartSurface.zoomExtentsX();
 
         return { wasmContext, sciChartSurface };
@@ -344,7 +339,6 @@ export const getChartsInitializationAPI = () => {
         );
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
-        macdChartSurface = sciChartSurface;
 
         return { wasmContext, sciChartSurface };
     };
@@ -426,7 +420,6 @@ export const getChartsInitializationAPI = () => {
         );
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
-        rsiChartSurface = sciChartSurface;
 
         return { wasmContext, sciChartSurface };
     };

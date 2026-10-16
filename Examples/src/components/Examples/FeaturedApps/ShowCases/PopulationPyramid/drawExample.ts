@@ -19,7 +19,6 @@ import {
     BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy,
     ELegendPlacement,
     WaveAnimation,
-    SciChartDefaults,
 } from "scichart";
 import { appTheme } from "../../../theme";
 

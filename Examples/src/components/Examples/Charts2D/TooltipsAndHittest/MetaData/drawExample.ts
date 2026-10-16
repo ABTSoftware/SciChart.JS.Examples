@@ -18,7 +18,6 @@ import {
     TPointMarkerArgb,
     TWebAssemblyChart,
     Thickness,
-    TSciChart,
     XyDataSeries,
     XySeriesInfo,
     EllipsePointMarker,

@@ -1,7 +1,4 @@
 import {
-    MouseWheelZoomModifier,
-    ZoomExtentsModifier,
-    ZoomPanModifier,
     XyyDataSeries,
     NumericAxis,
     FastBandRenderableSeries,
@@ -15,6 +12,7 @@ import {
     DoubleAnimator,
     BoxAnnotation,
     ECoordinateMode,
+    EMultiLineAlignment,
 } from "scichart";
 
 import { appTheme } from "../../../theme";
@@ -45,14 +43,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create the band series and add to the chart
     // The bandseries requires a special dataseries type called XyyDataSeries with X,Y and Y1 values
 
+    const band1Color = "#F07C64";
+    const band2Color = "#42B9CF";
+    const band3Color = "#9C7BE8";
+
     const band1 = new FastBandRenderableSeries(wasmContext, {
         dataSeries: new XyyDataSeries(wasmContext, { xValues, yValues, y1Values }),
         strokeThickness: 3,
-        fill: appTheme.MutedOrange,
-        fillY1: appTheme.MutedBlue,
-        opacity: 0.7,
-        stroke: appTheme.MutedOrange,
-        strokeY1: appTheme.MutedBlue,
+        fill: band1Color + "DD",
+        fillY1: band1Color + "66",
+        stroke: band1Color,
+        strokeY1: band1Color,
         animation: new SweepAnimation({ duration: 800 }),
         renderLayer: EDefaultRenderLayer.SeriesLayer, // default layer for series, not actually needed here
     });
@@ -64,11 +65,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             y1Values: y1Values.map((y) => y - 0.5),
         }),
         strokeThickness: 3,
-        fill: appTheme.MutedSkyBlue,
-        fillY1: appTheme.MutedPink,
-        opacity: 0.7,
-        stroke: appTheme.MutedSkyBlue,
-        strokeY1: appTheme.MutedPink,
+        fill: band2Color + "DD",
+        fillY1: band2Color + "66",
+        stroke: band2Color,
+        strokeY1: band2Color,
         animation: new SweepAnimation({ duration: 800 }),
         renderLayer: EDefaultRenderLayer.SeriesLayer, // default layer for series, not actually needed here
     });
@@ -80,11 +80,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             y1Values: y1Values.map((y) => y - 1),
         }),
         strokeThickness: 3,
-        fill: appTheme.MutedTeal,
-        fillY1: appTheme.MutedPurple,
-        opacity: 0.7,
-        stroke: appTheme.MutedTeal,
-        strokeY1: appTheme.MutedPurple,
+        fill: band3Color + "DD",
+        fillY1: band3Color + "66",
+        stroke: band3Color,
+        strokeY1: band3Color,
         animation: new SweepAnimation({ duration: 800 }),
         renderLayer: EDefaultRenderLayer.SeriesLayer, // default layer for series, not actually needed here
     });
@@ -132,11 +131,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     const nativeText = new NativeTextAnnotation({
-        text: "These Annotations are rendered on the series layer so they can render between series",
-        fontSize: 18,
-        x1: 4,
-        x2: 7,
-        y1: 0.2,
+        text: "Render order: 0.5\n\nAnnotations can render between\nseries, not just above them.",
+        fontSize: 16,
+        lineSpacing: 10,
+        multiLineAlignment: EMultiLineAlignment.Left,
+        x1: 4.05,
+        x2: 7.15,
+        y1: 0.15,
         textColor: appTheme.ForegroundColor,
         wrapTo: EWrapTo.Annotation,
         renderLayer: EDefaultRenderLayer.SeriesLayer,
@@ -147,50 +148,55 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const box = new BoxAnnotation({
         x1: 3.9,
         x2: 7.3,
-        y1: 0.23,
-        y2: -0.5,
-        stroke: appTheme.ForegroundColor,
-        fill: appTheme.MutedBlue,
-        opacity: 0.8,
+        y1: 0.25,
+        y2: -0.55,
+        stroke: appTheme.isDark ? "#52525B" : "#D4D4D8",
+        strokeThickness: 1,
+        fill: appTheme.isDark ? "#18181B" : "#FAFAFA",
         renderNextTo: { renderable: nativeText, offset: -0.1 },
     });
 
-    const annotationAnimation = new GenericAnimation<number>({
-        from: 0.5,
-        to: 4,
-        onAnimate: (from: number, to: number, progress: number) => {
-            const annotationRO = DoubleAnimator.interpolate(from, to, progress);
-            nativeText.text = `Render Order ${annotationRO.toFixed(
-                1
-            )}\n\nThese Annotations are rendered on the series layer so they can render between series`;
-            //nativeText.x1 += annotationRO;
-            //nativeText.x2 += annotationRO;
-            //box.x1 = nativeText.x1;
-            //box.x2 = nativeText.x2;
-            nativeText.setRenderOrder(annotationRO);
-        },
-        duration: 4000,
-        delay: 0,
-        onCompleted: () => {
-            let temp = annotationAnimation.from;
-            annotationAnimation.from = annotationAnimation.to;
-            annotationAnimation.to = temp;
-            annotationAnimation.reset();
-        },
-    });
+    let annotationOrder = 0.5;
+    let animationTarget = 4;
+    let annotationAnimation: GenericAnimation<number>;
 
-    sciChartSurface.addAnimation(annotationAnimation);
+    const updateAnnotation = (renderOrder: number) => {
+        annotationOrder = renderOrder;
+        nativeText.text = `Render order: ${renderOrder.toFixed(
+            1
+        )}\n\nAnnotations can render between\nseries, not just above them.`;
+        nativeText.setRenderOrder(renderOrder);
+    };
+
+    const startAnimation = () => {
+        annotationAnimation = new GenericAnimation<number>({
+            from: annotationOrder,
+            to: animationTarget,
+            duration: (4000 * Math.abs(animationTarget - annotationOrder)) / 3.5,
+            onAnimate: (from, to, progress) => updateAnnotation(DoubleAnimator.interpolate(from, to, progress)),
+            onCompleted: () => {
+                annotationAnimation.from = animationTarget;
+                animationTarget = animationTarget === 4 ? 0.5 : 4;
+                annotationAnimation.to = animationTarget;
+                annotationAnimation.duration = 4000;
+                annotationAnimation.reset();
+            },
+        });
+        sciChartSurface.addAnimation(annotationAnimation);
+    };
+
+    const setAnimationPaused = (paused: boolean) => {
+        if (paused) {
+            annotationAnimation.cancel();
+        } else {
+            startAnimation();
+        }
+    };
+
+    startAnimation();
 
     sciChartSurface.annotations.add(nativeText, box, label1, label2, label3);
-
     sciChartSurface.renderableSeries.add(band1, band2, band3);
-
-    // Optional: Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(
-        new ZoomExtentsModifier(),
-        new ZoomPanModifier({ enableZoom: true }),
-        new MouseWheelZoomModifier()
-    );
 
     const changeOrder = (order: boolean) => {
         if (order) {
@@ -212,6 +218,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }
     };
 
+    const resetDemo = () => {
+        changeOrder(true);
+        annotationAnimation.cancel();
+        animationTarget = 4;
+        updateAnnotation(0.5);
+        startAnimation();
+        sciChartSurface.zoomExtents();
+    };
+
+    changeOrder(true);
     sciChartSurface.zoomExtents();
-    return { wasmContext, sciChartSurface, changeOrder };
+    return { wasmContext, sciChartSurface, changeOrder, setAnimationPaused, resetDemo };
 };

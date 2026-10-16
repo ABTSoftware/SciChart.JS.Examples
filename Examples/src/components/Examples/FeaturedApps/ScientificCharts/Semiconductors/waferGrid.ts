@@ -26,7 +26,6 @@ import {
     IPointMetadata,
     parseColorToUIntArgb,
     EFillPaletteMode,
-    ModifierMouseArgs,
 } from "scichart";
 import { generateGridOfPoints, WaferLotData } from "./waferData";
 
@@ -121,19 +120,14 @@ const axisOptions: INumericAxisOptions = {
     labelPrecision: 1,
 };
 
-// theme overrides
-const sciChartTheme = appTheme.SciChartJsTheme;
-
 export const drawWaferGrid = async (rootElement: string | HTMLDivElement, selectedPoint: WaferLotData) => {
     const { wasmContext, sciChartSurface: mainSurface } = await SciChartSurface.create(rootElement, {
-        theme: sciChartTheme,
+        theme: appTheme.SciChartJsTheme,
     });
 
     const subChartsNumber = 12;
     const columnsNumber = 4;
     const rowsNumber = 3;
-
-    const subchartBorderColor = appTheme.VividSkyBlue;
 
     const xAxisVisibleRange = new NumberRange(0, columnsNumber);
     const yAxisVisibleRange = new NumberRange(0, rowsNumber);
@@ -215,14 +209,14 @@ export const drawWaferGrid = async (rootElement: string | HTMLDivElement, select
         // sub-surface configuration
         const subChartOptions: I2DSubSurfaceOptions = {
             id: `subChart-${subChartIndex}`,
-            theme: sciChartTheme,
+            theme: appTheme.SciChartJsTheme,
             position,
             parentXAxisId: mainXAxis.id,
             parentYAxisId: mainYAxis.id,
             coordinateMode: subChartPositioningCoordinateMode,
             padding: Thickness.fromNumber(0),
             viewportBorder: {
-                color: subchartBorderColor + "30",
+                color: appTheme.VividSkyBlue + "30",
                 border: 1,
             },
         };

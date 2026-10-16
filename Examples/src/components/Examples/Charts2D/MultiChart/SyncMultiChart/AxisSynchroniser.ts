@@ -3,7 +3,6 @@ import {
     AxisBase2D,
     VisibleRangeChangedArgs,
     EventHandler,
-    CategoryAxis,
     CategoryCoordinateCalculator,
 } from "scichart";
 

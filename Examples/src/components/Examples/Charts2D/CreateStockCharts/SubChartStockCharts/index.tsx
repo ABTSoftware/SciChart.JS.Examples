@@ -1,9 +1,6 @@
-import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { FinChartLegendModifier, IFinanceLegendModifierOptions } from "./FinChartLegendModifier";
 
 import {
-    SciChartSurface,
     BasePaletteProvider,
     calcAverageForArray,
     build2DChart,
@@ -417,7 +414,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const secondDividerElement = document.getElementById(dividerId2);
     let isDraggingFirst = false;
     let isDraggingSecond = false;
-    let dragStartPosition: number;
     const container = document.getElementById(containerId2);
 
     const baseHeight = container.offsetHeight;
@@ -463,14 +459,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         subSurface3.subPosition = new Rect(0, newPosition, 1, 1 - newPosition);
     };
 
-    const mouseDownHandlerFirst = (event: MouseEvent) => {
+    const mouseDownHandlerFirst = () => {
         isDraggingFirst = true;
-        dragStartPosition = event.clientY;
     };
 
-    const mouseDownHandlerSecond = (event: MouseEvent) => {
+    const mouseDownHandlerSecond = () => {
         isDraggingSecond = true;
-        dragStartPosition = event.clientY;
     };
 
     const mouseUpHandler = () => {
@@ -535,7 +529,7 @@ class VolumePaletteProvider extends BasePaletteProvider implements IStrokePalett
         this.volumnDownArgb = parseColorToUIntArgb(volumeDownColor);
     }
 
-    overrideFillArgb(xValue: number, yValue: number, index: number): number {
+    overrideFillArgb(_xValue: number, _yValue: number, index: number): number {
         const open = this.openValues[index];
         const close = this.closeValues[index];
 
@@ -561,7 +555,7 @@ class MacdHistogramPaletteProvider extends BasePaletteProvider implements IStrok
         this.belowZeroArgb = parseColorToUIntArgb(belowZeroColor);
     }
 
-    overrideFillArgb(xValue: number, yValue: number, index: number): number {
+    overrideFillArgb(_xValue: number, yValue: number, _index: number): number {
         return yValue >= 0 ? this.aboveZeroArgb : this.belowZeroArgb;
     }
 
@@ -610,70 +604,28 @@ const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
 
 export default function SubChartStockCharts() {
     return (
-        <div
-            className={commonClasses.ChartWrapper}
-            id={containerId2}
-            style={{
-                position: "relative",
-                width: "100%",
-                height: "100%",
-                touchAction: "none",
-            }}
-        >
-            <div
-                id={subChartWrapper1}
-                style={{
-                    position: "absolute", // important
-                }}
-            />
+        <div className="sc-chart-wrapper" id={containerId2}>
+            <div id={subChartWrapper1} className="absolute" />
             <div
                 id={dividerId1}
-                style={{
-                    width: "100%",
-                    height: "2px",
-                    backgroundColor: "var(--border-color)",
-                    cursor: "row-resize",
-                    position: "absolute",
-                    zIndex: 1,
-                }}
+                className="w-full absolute"
+                style={{ height: 2, backgroundColor: "var(--border-color)", cursor: "row-resize", zIndex: 1 }}
             >
-                <div style={{ height: "4px", width: "100%", borderBottom: "2px dashed" }}></div>
+                <div className="w-full" style={{ height: 4, borderBottom: "2px dashed" }}></div>
             </div>
-            <div
-                id={subChartWrapper2}
-                style={{
-                    position: "absolute", // important
-                }}
-            />
+            <div id={subChartWrapper2} className="absolute" />
             <div
                 id={dividerId2}
-                style={{
-                    width: "100%",
-                    height: "2px",
-                    backgroundColor: "var(--border-color)",
-                    cursor: "row-resize",
-                    position: "absolute",
-                    zIndex: 1,
-                }}
+                className="w-full absolute"
+                style={{ height: 2, backgroundColor: "var(--border-color)", cursor: "row-resize", zIndex: 1 }}
             >
-                <div style={{ height: "4px", width: "100%", borderBottom: "2px dashed" }}></div>
+                <div className="w-full" style={{ height: 4, borderBottom: "2px dashed" }}></div>
             </div>
-            <div
-                id={subChartWrapper3}
-                style={{
-                    position: "absolute", // important
-                }}
-            />
+            <div id={subChartWrapper3} className="absolute" />
             <SciChartReact
                 initChart={drawExample}
-                style={{
-                    minWidth: "100%",
-                    maxWidth: "100%",
-                    width: "100%",
-                    minHeight: "100%",
-                    maxHeight: "100%",
-                    height: "100%",
-                }}
+                className="w-full h-full"
+                style={{ minWidth: "100%", maxWidth: "100%", minHeight: "100%", maxHeight: "100%" }}
             />
         </div>
     );

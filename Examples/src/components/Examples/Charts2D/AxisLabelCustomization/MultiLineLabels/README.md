@@ -8,7 +8,7 @@ This example demonstrates how to create a SciChart.js chart with multi-line and 
 
 -   SciChart.js for high performance charting
 -   React for the UI (using TypeScript with TSX)
--   Material-UI (MUI) for the toggle button group
+-   shared CSS controls (shared CSS controls) for the toggle button group
 -   tss-react for styling
 -   WaveAnimation and PaletteFactory from SciChart.js for animations and gradient effects
 

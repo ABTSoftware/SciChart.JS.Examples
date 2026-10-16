@@ -1,53 +1,33 @@
-import * as React from "react";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
-import commonClasses from "../../../styles/Examples.module.scss";
+import { useRef, useState } from "react";
 import { SciChartSurface, StackedMountainCollection } from "scichart";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function StackedMountainChart() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
-    const stackedMountainCollectionRef = React.useRef<StackedMountainCollection>(undefined);
-    const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
+    const sciChartSurfaceRef = useRef<SciChartSurface>(undefined);
+    const stackedMountainCollectionRef = useRef<StackedMountainCollection>(undefined);
+    const [use100PercentStackedMode, setUse100PercentStackedMode] = useState(false);
 
-    const handleUsePercentage = (event: any, value: boolean) => {
-        if (value !== null) {
-            console.log(`100% stacked? ${value}`);
-            setUse100PercentStackedMode(value);
-            // Toggle 100% mode on click
-            stackedMountainCollectionRef.current.isOneHundredPercent = value;
-            sciChartSurfaceRef.current.zoomExtents(200);
-        }
+    const handleUsePercentage = (value: boolean) => {
+        console.log(`100% stacked? ${value}`);
+        setUse100PercentStackedMode(value);
+        // Toggle 100% mode on click
+        stackedMountainCollectionRef.current.isOneHundredPercent = value;
+        sciChartSurfaceRef.current.zoomExtents(200);
     };
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            {/* <ToggleButtonGroup
-                    className={commonClasses.ToolbarRow}
-                    exclusive
-                    value={use100PercentStackedMode}
-                    onChange={handleUsePercentage}
-                    size="small"
-                    color="primary"
-                    aria-label="small outlined button group"
-                >
-                    <ToggleButton value={false}>
-                        Stacked mode
-                    </ToggleButton>
-                    <ToggleButton value={true}>
-                        100% Stacked mode
-                    </ToggleButton>
-                </ToggleButtonGroup> */}
-            <div className={commonClasses.ToolbarRow}>
-                <FormControlLabel
-                    control={<Switch value={use100PercentStackedMode} onChange={handleUsePercentage} />}
-                    label="100%&nbsp;Mode"
-                    style={{ margin: 0, padding: "1em" }}
-                />
-            </div>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <label className="sc-switch">
+                    <input
+                        type="checkbox"
+                        checked={use100PercentStackedMode}
+                        onChange={(event) => handleUsePercentage(event.currentTarget.checked)}
+                    />
+                    100% Mode
+                </label>
+            </header>
             <SciChartReact
                 initChart={drawExample}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {

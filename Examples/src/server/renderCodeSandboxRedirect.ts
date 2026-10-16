@@ -6,10 +6,16 @@ import { BadRequestError, IHttpError, NotFoundError } from "./Errors";
 import { EPageFramework, EPlatform } from "../helpers/shared/Helpers/frameworkParametrization";
 import { getParameters } from "./codeSandboxLib";
 import { getSandboxConfig } from "./services/sandbox";
-import { SandboxConfig, IFiles, getSourceFilesForPath, loadStyles } from "./services/sandbox/sandboxDependencyUtils";
-import { indexHtmlTemplate } from "./services/sandbox/vanillaTsConfig";
+import {
+    SandboxConfig,
+    IFiles,
+    getSourceFilesForPath,
+    loadStyles,
+    csStyles,
+} from "./services/sandbox/sandboxDependencyUtils";
+import { readSourceFiles } from "./services/sandbox/readSourceFiles";
 import https from "https";
-import { ExampleSourceFile, SourceFilesVariant } from "../helpers/types/types";
+import { SourceFilesVariant } from "../helpers/types/types";
 
 //  const parameters = getParameters({ files, template:  getCodeSandboxTemplate(framework) });
 
@@ -184,7 +190,9 @@ export const cacheSourceFiles = async (exampleKey: string, folderPath: string, f
     );
     memoryCache[exampleKey] = Object.fromEntries(
         Object.entries(files).map(([filePath, file]) => {
-            const fileName = path.basename(filePath);
+            const fileName = path.isAbsolute(filePath)
+                ? path.relative(folderPath, filePath).replace(/\\/g, "/")
+                : filePath.replace(/^src\//, "");
             return [fileName, file.content];
         })
     );
@@ -756,51 +764,7 @@ const getCodeSandboxTemplate = (framework: EPageFramework) => {
     }
 };
 
-export const readSourceFiles = async (framework: EPageFramework, folderPath: string, baseUrl: string) => {
-    let files: IFiles = {};
-    let actualFramework = framework;
-
-    try {
-        switch (framework) {
-            case EPageFramework.Angular:
-                files = await getSourceFilesForPath(folderPath, "angular.ts", baseUrl);
-                break;
-            case EPageFramework.React:
-                files = await getSourceFilesForPath(folderPath, "index.tsx", baseUrl);
-                break;
-            case EPageFramework.Vanilla:
-                files = await getSourceFilesForPath(folderPath, "vanilla.ts", baseUrl);
-                const htmlPath = path.join(folderPath, "index.html");
-                let html: string;
-                try {
-                    const charHtmlSetup = await fs.promises.readFile(htmlPath, "utf8");
-                    html = indexHtmlTemplate(charHtmlSetup);
-                } catch (err) {
-                    html = indexHtmlTemplate();
-                }
-                files[htmlPath] = { content: html, isBinary: false };
-                break;
-            default:
-                throw new Error("Invalid framework value!");
-        }
-    } catch (err) {
-        // If files not found for requested framework, fallback to React
-        if (framework !== EPageFramework.React) {
-            actualFramework = EPageFramework.React;
-            files = await getSourceFilesForPath(folderPath, "index.tsx", baseUrl);
-        } else {
-            throw err;
-        }
-    }
-
-    const result: ExampleSourceFile[] = [];
-    for (const key in files) {
-        const sep = key.indexOf("/") > 0 ? "/" : "\\";
-        const name = key.substring(key.lastIndexOf(sep) + 1);
-        result.push({ name, content: files[key].content });
-    }
-    return { files: result, framework: actualFramework };
-};
+export { readSourceFiles } from "./services/sandbox/readSourceFiles";
 
 type ExampleSourceFilesPerFramework = { [value in EPageFramework]: SourceFilesVariant };
 const sourceFilesCache = new Map<string, ExampleSourceFilesPerFramework>(

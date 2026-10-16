@@ -1,6 +1,4 @@
-import React from "react";
 import { IconButton } from "./IconButton";
-import styles from "./IconRadioGroup.module.scss";
 
 interface IconRadioGroupProps<T extends string> {
     value: T;
@@ -20,7 +18,7 @@ export function IconRadioGroup<T extends string>({
     className = "",
 }: IconRadioGroupProps<T>) {
     return (
-        <div className={`${styles.iconRadioGroup} ${className}`.trim()}>
+        <div className={`sc-editor-radio-group ${className}`.trim()}>
             {options.map((option) => (
                 <IconButton
                     key={option}

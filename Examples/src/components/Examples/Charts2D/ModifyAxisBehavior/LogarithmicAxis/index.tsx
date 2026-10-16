@@ -1,23 +1,18 @@
-import * as React from "react";
-import { appTheme } from "../../../theme";
-import commonClasses from "../../../styles/Examples.module.scss";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { useRef, useState } from "react";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { AxisBase2D, LogarithmicAxis, NumericAxis, SciChartSurface } from "scichart";
 import { drawExample } from "./drawExample";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function LogarithmicAxisExample() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>(undefined);
+    const sciChartSurfaceRef = useRef<SciChartSurface>(undefined);
 
-    const [linearXAxis, setLinearXAxis] = React.useState<NumericAxis>();
-    const [logXAxis, setLogXAxis] = React.useState<LogarithmicAxis>();
-    const [linearYAxis, setLinearYAxis] = React.useState<NumericAxis>();
-    const [logYAxis, setLogYAxis] = React.useState<LogarithmicAxis>();
-    const [preset, setPreset] = React.useState<number>(0);
+    const [linearXAxis, setLinearXAxis] = useState<NumericAxis>();
+    const [logXAxis, setLogXAxis] = useState<LogarithmicAxis>();
+    const [linearYAxis, setLinearYAxis] = useState<NumericAxis>();
+    const [logYAxis, setLogYAxis] = useState<LogarithmicAxis>();
+    const [preset, setPreset] = useState<number>(0);
 
-    const handleToggleButtonChanged = (event: any, state: number) => {
+    const handleToggleButtonChanged = (state: number) => {
         const sciChartSurface = sciChartSurfaceRef.current;
         const toggleAxis = (axis: AxisBase2D, isEnabled: boolean) => {
             axis.isVisible = isEnabled; // toggle this axis as visible/invisible
@@ -64,22 +59,35 @@ export default function LogarithmicAxisExample() {
     };
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow}>
-                <ToggleButtonGroup
-                    className={commonClasses.ToggleButtonGroup}
-                    exclusive
-                    value={preset}
-                    onChange={handleToggleButtonChanged}
-                    size="medium"
-                    color="primary"
-                    aria-label="small outlined button group"
-                >
-                    <ToggleButton value={0}>Logarithmic X &amp; Y Axis</ToggleButton>
-                    <ToggleButton value={1}>Log X Axis, Linear Y Axis</ToggleButton>
-                    <ToggleButton value={2}>Linear X &amp; Y Axis</ToggleButton>
-                </ToggleButtonGroup>
-            </div>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="Axis scale">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={preset === 0}
+                        onClick={() => handleToggleButtonChanged(0)}
+                    >
+                        Logarithmic X &amp; Y Axis
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={preset === 1}
+                        onClick={() => handleToggleButtonChanged(1)}
+                    >
+                        Log X Axis, Linear Y Axis
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={preset === 2}
+                        onClick={() => handleToggleButtonChanged(2)}
+                    >
+                        Linear X &amp; Y Axis
+                    </button>
+                </div>
+            </header>
             <SciChartReact
                 initChart={drawExample}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {

@@ -17,17 +17,17 @@ const metaData: IExampleMetadata = {
             metaDescription:
                 "Create an interactive JavaScript trading charts for technical analysis. Trading Drawing Tools Demo, which shows how to use Polylines, Extended Lines, Rays, Channels, Pitchforks, Pitchfans, Fibonnaci Retracements, Measure, Stop Loss and Take Profit chart drawing tools for Technical Analysis.",
             markdownContent:
-                "## JavaScript Trading Drawing Tools\n\nThis example demonstrates a full drawing toolbar for financial and trading charts. It uses `scichart-financial-tools` for Polylines, Extended Lines, Channels, Rays, Pitchforks, Pitchfans, Fibonacci Retracements, Measure Tools and Stop-loss/Take-profit regions, with `MultiPointAnnotationPlacementModifier` for click-to-place workflows.",
+                "## JavaScript Trading Drawing Tools\n\nOpen Drawing tools to choose from many tools in a searchable modal. This example covers all 26 annotation types in `scichart-financial-tools`, including trend and angle lines, channels, pitchfork variants, Fibonacci studies, time cycles, sectors, labeled Elliott and XABCD patterns, measurement and risk tools, freehand pens, highlighters and an eraser. Click to place control points or drag to draw freehand. Press Escape to cancel, Delete to remove selected drawings, or Ctrl/Cmd+D to duplicate them.",
         },
         react: {
             subtitle:
-                "SciChart’s React Trading Drawing Tools demo shows how to use polylines, extended lines, rays, channels, pitchforks, pitchfans, Fibonacci retracements, stop loss, and Take Profit chart drawing tools for technical analysis.",
+                "Explore the many drawing tools for technical analysis: lines, channels, pitchforks, Fibonacci studies, cycles, patterns, measurement, risk regions, pens and highlighters. Choose tools from the searchable modal and draw directly on the chart.",
             title: "React Trading Drawing Tools Demo",
             pageTitle: "React Trading Drawing Tools for Devs | Try SciChart Demo",
             metaDescription:
                 "Build high-performance financial apps with React trading drawing tools. Try SciChart’s demo to see the advanced drawing tools for trading apps in action.",
             markdownContent:
-                "## React Trading Drawing Tools\n\nThis example demonstrates a full drawing toolbar for financial and trading charts. It uses `scichart-financial-tools` for Polylines, Extended Lines, Channels, Rays, Pitchforks, Pitchfans, Fibonacci Retracements, Measure Tools and Stop-loss/Take-profit regions, with `MultiPointAnnotationPlacementModifier` for click-to-place workflows.",
+                "## React Trading Drawing Tools\n\nOpen Drawing tools to choose from many tools in a searchable modal. This example covers all 26 annotation types in `scichart-financial-tools`, including trend and angle lines, channels, pitchfork variants, Fibonacci studies, time cycles, sectors, labeled Elliott and XABCD patterns, measurement and risk tools, freehand pens, highlighters and an eraser. Click to place control points or drag to draw freehand. Press Escape to cancel, Delete to remove selected drawings, or Ctrl/Cmd+D to duplicate them.",
         },
         angular: {
             subtitle:

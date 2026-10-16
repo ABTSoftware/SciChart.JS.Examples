@@ -8,13 +8,13 @@ This example demonstrates how to create SciChart charts entirely from JSON confi
 
 -   **SciChart.JS**: For rendering high-performance 2D charts using JSON definitions.
 -   **React with TypeScript**: The main framework used to build the interactive example.
--   **Material UI**: For UI components such as buttons, text fields, button groups, and alerts.
+-   **shared CSS controls**: For UI components such as buttons, text fields, button groups, and alerts.
 -   **SciChartReact**: A React component that integrates SciChart functionality into a React application.
 
 ## Code Explanation
 
 -   **drawExample.js / drawExample.ts**: These files contain the logic to construct a SciChartSurface using the builder API. They export the `drawExample` function which takes a target div element, a JSON string, and an error callback to build a chart from the given JSON configuration. They also include multiple JSON configuration templates (default, detailed, and central layout) that define the surface theme, axes, series, annotations, and interactive modifiers.
--   **index.tsx**: This is the main React component for the example. It uses the `SciChartReact` component to render the chart based on the current JSON configuration. The component provides an interactive UI where users can choose between different JSON definitions via buttons (Simple Example, Full Example, Central Axes) and also modify the JSON directly in a text field. When the user clicks the "Apply" button, the chart is rebuilt with the updated configuration and any errors are displayed using a Material UI Alert.
+-   **index.tsx**: This is the main React component for the example. It uses the `SciChartReact` component to render the chart based on the current JSON configuration. The component provides an interactive UI where users can choose between different JSON definitions via buttons (Simple Example, Full Example, Central Axes) and also modify the JSON directly in a text field. When the user clicks the "Apply" button, the chart is rebuilt with the updated configuration and any errors are displayed using a shared CSS controls Alert.
 -   **javascript-chart-from-json.jpg**: This image resource provides a visual preview of the chart produced from one of the JSON configurations.
 
 ## Customization

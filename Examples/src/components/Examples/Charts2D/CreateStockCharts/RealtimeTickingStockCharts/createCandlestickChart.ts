@@ -4,7 +4,6 @@ import {
     ECoordinateMode,
     EDataSeriesType,
     EHorizontalAnchorPoint,
-    EAnnotationLayer,
     EStrokePaletteMode,
     ESeriesType,
     ENumericFormat,
@@ -20,7 +19,6 @@ import {
     FastMountainRenderableSeries,
     FastOhlcRenderableSeries,
     GradientParams,
-    HorizontalLineAnnotation,
     IPointMarkerPaletteProvider,
     IPointMetadata,
     IRenderableSeries,
@@ -32,7 +30,6 @@ import {
     parseColorToUIntArgb,
     Point,
     SeriesInfo,
-    SciChartOverview,
     SciChartSurface,
     TextAnnotation,
     TPointMarkerArgb,
@@ -42,9 +39,11 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
+import { ELastYMode } from "scichart-financial-tools";
 import { TPriceBar } from "../../../ExampleData/binanceRestClient";
 import { appTheme } from "../../../theme";
 import { VolumePaletteProvider } from "./VolumePaletteProvider";
+import { SeriesValueWithLineModifier } from "./SeriesValueWithLineModifier";
 
 // Trades over this size will be rendered as bubbles on the chart
 export const LARGE_TRADE_THRESHOLD = 25_000;
@@ -171,6 +170,11 @@ export const createCandlestickChart = async (rootElement: string | HTMLDivElemen
         new ZoomExtentsModifier(),
         new ZoomPanModifier({ enableZoom: true }),
         new MouseWheelZoomModifier(),
+        new SeriesValueWithLineModifier({
+            lastYMode: ELastYMode.Last,
+            annotationTextColor: appTheme.ForegroundColor,
+            includedSeriesIds: [candlestickSeries.id, ohlcSeries.id],
+        }),
         new CursorModifier({
             crosshairStroke: appTheme.VividOrange,
             axisLabelFill: appTheme.VividOrange,
@@ -202,25 +206,6 @@ export const createCandlestickChart = async (rootElement: string | HTMLDivElemen
     });
     sciChartSurface.annotations.add(watermarkAnnotation);
 
-    // Add a vertical line annotation at the latest price
-    const latestPriceAnnotation = new HorizontalLineAnnotation({
-        isHidden: true,
-        strokeDashArray: [2, 2],
-        strokeThickness: 1,
-        axisFontSize: 13,
-        axisLabelStroke: appTheme.ForegroundColor,
-        showLabel: true,
-    });
-    sciChartSurface.annotations.add(latestPriceAnnotation);
-
-    // Update the latest price annotation position & colour
-    const updateLatestPriceAnnotation = (priceBar: TPriceBar) => {
-        latestPriceAnnotation.isHidden = false;
-        latestPriceAnnotation.y1 = priceBar.close;
-        latestPriceAnnotation.stroke = priceBar.close > priceBar.open ? appTheme.VividGreen : appTheme.MutedRed;
-        latestPriceAnnotation.axisLabelFill = latestPriceAnnotation.stroke;
-    };
-
     // Setup functions to return to caller to control the candlestick chart
     const setData = (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => {
         console.log(`createCandlestickChart(): Setting data for ${symbolName}, ${priceBars.length} candles`);
@@ -250,9 +235,8 @@ export const createCandlestickChart = async (rootElement: string | HTMLDivElemen
         // Set the candle data series name (used by tooltips / legends)
         candleDataSeries.dataSeriesName = symbolName;
 
-        // Update the watermark text & priceBarAnnotation
+        // Update the watermark text
         watermarkAnnotation.text = watermarkText;
-        updateLatestPriceAnnotation(priceBars[priceBars.length - 1]);
     };
 
     const onNewTrade = (priceBar: TPriceBar, tradeSize: number, lastTradeBuyOrSell: boolean) => {
@@ -296,8 +280,6 @@ export const createCandlestickChart = async (rootElement: string | HTMLDivElemen
                 lastTradeBuyOrSell,
             });
         }
-        // Update the latest price line annotation
-        updateLatestPriceAnnotation(priceBar);
     };
 
     const setXRange = (startDate: Date, endDate: Date) => {

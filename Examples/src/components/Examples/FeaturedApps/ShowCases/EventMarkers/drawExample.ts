@@ -7,7 +7,6 @@ import {
     EColumnMode,
     EColumnYMode,
     ECoordinateMode,
-    EDraggingGripPoint,
     EHorizontalAnchorPoint,
     ENumericFormat,
     EValueName,

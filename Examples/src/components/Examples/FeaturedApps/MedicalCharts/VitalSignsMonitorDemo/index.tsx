@@ -1,119 +1,101 @@
-import * as React from "react";
-import commonClasses from "../../../styles/Examples.module.scss";
+import { useState } from "react";
 import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
+import "./styles.css";
 
-// REACT COMPONENT
 export default function VitalSignsMonitorDemo() {
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
-
-    const [infoEcg, setInfoEcg] = React.useState<number>(0);
-    const [infoBloodPressure1, setInfoBloodPressure1] = React.useState<number>(0);
-    const [infoBloodPressure2, setInfoBloodPressure2] = React.useState<number>(0);
-    const [infoBloodVolume, setInfoBloodVolume] = React.useState<number>(0);
-    const [infoBloodOxygenation, setInfoBloodOxygenation] = React.useState<number>(0);
+    const [infoEcg, setInfoEcg] = useState<number>(0);
+    const [infoBloodPressure1, setInfoBloodPressure1] = useState<number>(0);
+    const [infoBloodPressure2, setInfoBloodPressure2] = useState<number>(0);
+    const [infoBloodVolume, setInfoBloodVolume] = useState<number>(0);
+    const [infoBloodOxygenation, setInfoBloodOxygenation] = useState<number>(0);
 
     return (
-        <div className={commonClasses.ChartWrapper}>
-            <div style={{ display: "flex", height: "100%" }}>
-                <SciChartReact
-                    className={commonClasses.VitalSigns}
-                    initChart={drawExample}
-                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                        initResult.subscribeToDataUpdates((info) => {
-                            setInfoEcg(info.ecg);
-                            setInfoBloodPressure1(info.bloodPressure1);
-                            setInfoBloodPressure2(info.bloodPressure2);
-                            setInfoBloodVolume(info.bloodVolume);
-                            setInfoBloodOxygenation(info.bloodOxygenation);
-                        });
+        <div className="sc-chart-wrapper flex">
+            <SciChartReact
+                className="w-full"
+                initChart={drawExample}
+                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                    initResult.subscribeToDataUpdates((info) => {
+                        setInfoEcg(info.ecg);
+                        setInfoBloodPressure1(info.bloodPressure1);
+                        setInfoBloodPressure2(info.bloodPressure2);
+                        setInfoBloodVolume(info.bloodVolume);
+                        setInfoBloodOxygenation(info.bloodOxygenation);
+                    });
 
-                        controlsRef.current = initResult.controls;
-                        initResult.controls.startUpdate();
+                    initResult.controls.startUpdate();
 
-                        return () => {
-                            initResult.controls.stopUpdate();
-                        };
-                    }}
-                />
-                <div className={commonClasses.InfoBoxContainer}>
-                    <div
-                        className={commonClasses.InfoBox}
-                        style={{ color: appTheme.VividOrange, background: appTheme.Background }}
-                    >
-                        <div className={commonClasses.IbRow1}>
-                            <div className={commonClasses.IbRow1Col1}>ECG</div>
-                            <div className={commonClasses.IbRow2Col2}>{infoEcg}</div>
-                        </div>
-                        <div className={commonClasses.IbRow2}>
-                            <div className={commonClasses.IbRow2Col1}>
-                                <div>
-                                    V1 - 1.4MM
-                                    <br />
-                                    ST | +0.6 || +0.9
-                                </div>
-                            </div>
-                        </div>
+                    return () => {
+                        initResult.controls.stopUpdate();
+                    };
+                }}
+            />
+            <div className="sc-vitals-cards flex flex-col">
+                <div className="sc-vitals-card flex flex-1 flex-col p-2" style={{ color: appTheme.VividOrange }}>
+                    <div className="flex flex-1">
+                        <div className="sc-vitals-title flex-1">ECG</div>
+                        <div className="sc-vitals-value ml-auto">{infoEcg}</div>
                     </div>
-                    <div
-                        className={commonClasses.InfoBox}
-                        style={{ color: appTheme.VividSkyBlue, background: appTheme.Background }}
-                    >
-                        <div className={commonClasses.IbRow1}>
-                            <div className={commonClasses.IbRow1Col1}>NIBP</div>
-                            <div className={commonClasses.IbRow1Col2}>
-                                AUTO
+                    <div className="flex items-end">
+                        <div className="sc-vitals-details">
+                            <div>
+                                V1 - 1.4MM
                                 <br />
-                                145/95
-                            </div>
-                        </div>
-                        <div className={commonClasses.IbRow2}>
-                            <div className={commonClasses.IbRow2Col2}>
-                                <div>
-                                    {infoBloodPressure1}/{infoBloodPressure2}
-                                </div>
+                                ST | +0.6 || +0.9
                             </div>
                         </div>
                     </div>
-                    <div
-                        className={commonClasses.InfoBox}
-                        style={{ color: appTheme.VividPink, background: appTheme.Background }}
-                    >
-                        <div className={commonClasses.IbRow1}>
-                            <div className={commonClasses.IbRow1Col1}>SV</div>
-                            <div className={commonClasses.IbRow1Col2}>
-                                ML 100
+                </div>
+                <div className="sc-vitals-card flex flex-1 flex-col p-2" style={{ color: appTheme.VividSkyBlue }}>
+                    <div className="flex flex-1">
+                        <div className="sc-vitals-title flex-1">NIBP</div>
+                        <div className="sc-vitals-meta">
+                            AUTO
+                            <br />
+                            145/95
+                        </div>
+                    </div>
+                    <div className="flex items-end">
+                        <div className="sc-vitals-value ml-auto">
+                            <div>
+                                {infoBloodPressure1}/{infoBloodPressure2}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="sc-vitals-card flex flex-1 flex-col p-2" style={{ color: appTheme.VividPink }}>
+                    <div className="flex flex-1">
+                        <div className="sc-vitals-title flex-1">SV</div>
+                        <div className="sc-vitals-meta">
+                            ML 100
+                            <br />
+                            %**** 55
+                        </div>
+                    </div>
+                    <div className="flex items-end">
+                        <div className="sc-vitals-value ml-auto">
+                            <div>{infoBloodVolume.toFixed(1)}</div>
+                        </div>
+                    </div>
+                </div>
+                <div className="sc-vitals-card flex flex-1 flex-col p-2" style={{ color: appTheme.VividTeal }}>
+                    <div className="flex flex-1">
+                        <div className="sc-vitals-title flex-1">
+                            SPO<span>2</span>
+                        </div>
+                        <div className="sc-vitals-meta">18:06</div>
+                    </div>
+                    <div className="flex items-end">
+                        <div className="sc-vitals-details">
+                            <div>
+                                71-
                                 <br />
-                                %**** 55
+                                RESP
                             </div>
                         </div>
-                        <div className={commonClasses.IbRow2}>
-                            <div className={commonClasses.IbRow2Col2}>
-                                <div>{infoBloodVolume.toFixed(1)}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        className={commonClasses.InfoBox}
-                        style={{ color: appTheme.VividTeal, background: appTheme.Background }}
-                    >
-                        <div className={commonClasses.IbRow1}>
-                            <div className={commonClasses.IbRow1Col1}>
-                                SPO<span style={{ fontSize: 12 }}>2</span>
-                            </div>
-                            <div className={commonClasses.IbRow1Col2}>18:06</div>
-                        </div>
-                        <div className={commonClasses.IbRow2}>
-                            <div className={commonClasses.IbRow2Col1}>
-                                <div>
-                                    71-
-                                    <br />
-                                    RESP
-                                </div>
-                            </div>
-                            <div className={commonClasses.IbRow2Col2}>{infoBloodOxygenation}</div>
-                        </div>
+                        <div className="sc-vitals-value ml-auto">{infoBloodOxygenation}</div>
                     </div>
                 </div>
             </div>

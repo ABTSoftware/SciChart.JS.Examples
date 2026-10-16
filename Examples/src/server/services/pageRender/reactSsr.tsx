@@ -16,6 +16,7 @@ import { SourceFilesVariant } from "../../../helpers/types/types";
 import { renderIndexHtml } from "../../renderIndexHtml";
 import createEmotionCache from "../../../createEmotionCache";
 import { baseAppPath } from "../../../constants";
+import "../../../components/Examples/styles/sc-ui.css";
 
 export function renderPage(url: string, sourceFilesInfo: SourceFilesVariant = defaultSourceFilesVariant) {
     // Create an emotion cache for SSR
@@ -42,5 +43,5 @@ export function renderPage(url: string, sourceFilesInfo: SourceFilesVariant = de
     // SEO tags
     const helmet = Helmet.renderStatic();
 
-    return renderIndexHtml(appHtml, emotionCss, helmet);
+    return renderIndexHtml(appHtml, emotionCss, helmet, sourceFilesInfo);
 }

@@ -1,16 +1,14 @@
 import { useContext, useState, MouseEvent, ReactNode } from "react";
 import { Link } from "react-router";
-import {
-    MenuItem,
-    Breadcrumbs,
-    ClickAwayListener,
-    Grow,
-    MenuList,
-    Paper,
-    Popper,
-    useMediaQuery,
-    Theme,
-} from "@mui/material";
+import MenuItem from "@mui/material/MenuItem";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Grow from "@mui/material/Grow";
+import MenuList from "@mui/material/MenuList";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import type { Theme } from "@mui/material/styles";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import React from "react";
 
